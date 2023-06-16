@@ -1,0 +1,17 @@
+
+*.sh
+*.md
+*.woff
+*.ttf
+.vscode
+.idea
+.history
+.husky
+.local
+
+dist
+/public
+/src/assets/
+/docs
+/bin
+Dockerfile

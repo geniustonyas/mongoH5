@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // ts编译后的执行环境
+    "allowJs": true,
+    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    /** TS 严格模式 */
+    "strict": true, // 启用所有严格类型检查选项
+    "jsx": "preserve", // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
+    "importHelpers": true, // 从 tslib 导入辅助工具函数
+    "experimentalDecorators": true, // 启用装饰器
+    "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入。
+    "sourceMap": true, // 生成相应的 '.map' 文件
+    "resolveJsonModule": true, 
+    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
+    "isolatedModules": true, // 将每个文件做为单独的模块
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"], // 指定要包含在编译中的库文件
+    "skipLibCheck": true,
+    "types": [
+      "node",
+      "vite/client",
+    ],
+    /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
+    "baseUrl": "./",
+    /** 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算 */
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "types/**/*.d.ts",
+    "vite.config.ts"
+  ],
+  /** 编译器默认排除的编译文件 */
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,219 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4109944 */
+  src: url('iconfont.woff2?t=1686502507221') format('woff2'),
+       url('iconfont.woff?t=1686502507221') format('woff'),
+       url('iconfont.ttf?t=1686502507221') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xuanzhong:before {
+  content: "\e615";
+}
+
+.icon-bangzhu:before {
+  content: "\e8c3";
+}
+
+.icon-password:before {
+  content: "\10100";
+}
+
+.icon-sfz:before {
+  content: "\e621";
+}
+
+.icon-scsfz:before {
+  content: "\e690";
+}
+
+.icon-googlecode:before {
+  content: "\e629";
+}
+
+.icon-eth:before {
+  content: "\e67b";
+}
+
+.icon-polygon:before {
+  content: "\e6c7";
+}
+
+.icon-trx:before {
+  content: "\e706";
+}
+
+.icon-guanyuwomen:before {
+  content: "\e654";
+}
+
+.icon-help:before {
+  content: "\e749";
+}
+
+.icon-fuzhi:before {
+  content: "\e613";
+}
+
+.icon-saoyisaoerweima:before {
+  content: "\e63b";
+}
+
+.icon-jiangli:before {
+  content: "\e60c";
+}
+
+.icon-xiaoxi:before {
+  content: "\e622";
+}
+
+.icon-zzjl:before {
+  content: "\e611";
+}
+
+.icon-tixing:before {
+  content: "\e62a";
+}
+
+.icon-users:before {
+  content: "\e748";
+}
+
+.icon-rewards:before {
+  content: "\e612";
+}
+
+.icon-setting:before {
+  content: "\e61b";
+}
+
+.icon-bets:before {
+  content: "\e607";
+}
+
+.icon-yincang:before {
+  content: "\e677";
+}
+
+.icon-xianshi:before {
+  content: "\e669";
+}
+
+.icon-add:before {
+  content: "\e620";
+}
+
+.icon-return:before {
+  content: "\e65c";
+}
+
+.icon-share:before {
+  content: "\e628";
+}
+
+.icon-tiaozheng:before {
+  content: "\e618";
+}
+
+.icon-caidan1:before {
+  content: "\e6c6";
+}
+
+.icon-caidan2:before {
+  content: "\e601";
+}
+
+.icon-tiaozhengziduan:before {
+  content: "\e603";
+}
+
+.icon-right:before {
+  content: "\100cd";
+}
+
+.icon-down:before {
+  content: "\eb05";
+}
+
+.icon-user1:before {
+  content: "\e60e";
+}
+
+.icon-account1:before {
+  content: "\e606";
+}
+
+.icon-account:before {
+  content: "\e609";
+}
+
+.icon-notice:before {
+  content: "\e650";
+}
+
+.icon-message:before {
+  content: "\e8c0";
+}
+
+.icon-close:before {
+  content: "\e605";
+}
+
+.icon-caidan:before {
+  content: "\e738";
+}
+
+.icon-zhedie:before {
+  content: "\e600";
+}
+
+.icon-zhedie1:before {
+  content: "\e668";
+}
+
+.icon-promo_fill:before {
+  content: "\e602";
+}
+
+.icon-promo:before {
+  content: "\e623";
+}
+
+.icon-user:before {
+  content: "\e8c8";
+}
+
+.icon-home:before {
+  content: "\e70e";
+}
+
+.icon-support_fill:before {
+  content: "\e6f0";
+}
+
+.icon-support:before {
+  content: "\e6f1";
+}
+
+.icon-home_full:before {
+  content: "\e712";
+}
+
+.icon-user_full:before {
+  content: "\e8c9";
+}
+
+.icon-search:before {
+  content: "\e7ec";
+}
+
+.icon-search_fill:before {
+  content: "\100cc";
+}
+
