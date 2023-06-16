@@ -628,8 +628,6 @@ let tab = ref('sports')
 let showGameOption = ref(false)
 // 列表显示or表格显示
 let gridShow = ref(true)
-// 侧边框内容展开折叠
-
 
 // 切换选项卡
 const toggleTab = (tabs: string) => {
