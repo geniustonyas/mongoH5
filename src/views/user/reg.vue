@@ -299,7 +299,7 @@
               <span>Username</span>
             </div>
             <div class="cr-input">
-              <input type="text" class="form-control" placeholder="Name your account" />
+              <input v-model="regForm.UserName" ref="userNameDom" type="text" class="form-control" placeholder="Name your account" />
             </div>
           </div>
           <div class="cf-row">
@@ -307,7 +307,28 @@
               <span>Email</span>
             </div>
             <div class="cr-input">
-              <input type="email" class="form-control" placeholder="e.g.you@example.com" />
+              <input v-model="regForm.Email" ref="emailDom" type="email" class="form-control" placeholder="e.g.you@example.com" />
+            </div>
+          </div>
+          <div class="cf-row">
+            <div class="cr-label">
+              <span>Date of Birth</span>
+            </div>
+            <div class="cr-input group">
+              <input v-model="day" ref="dayDom" type="number" class="form-control" placeholder=" Day" style="padding: 0 1rem" />
+              <input v-model="month" ref="monthDom" type="number" class="form-control" placeholder=" Month" style="padding: 0 1rem" />
+              <input v-model="year" ref="yearDom" type="number" class="form-control" placeholder=" Year" style="padding: 0 1rem" />
+            </div>
+          </div>
+          <div class="cf-row">
+            <div class="cr-label">
+              <span>Phone number</span>
+            </div>
+            <div class="cr-input group g-tel">
+              <select v-model="regForm.CountryCode" ref="countryDom" class="form-control">
+                <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
+              </select>
+              <input v-model="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" placeholder="" />
             </div>
           </div>
           <div class="cf-row">
@@ -315,9 +336,9 @@
               <span>Password</span>
             </div>
             <div class="cr-input">
-              <input type="password" class="form-control" placeholder="" />
-              <span class="password-addon">
-                <i class="iconfont icon-xianshi" />
+              <input v-model="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" placeholder="" />
+              <span :class="showPwd ? 'password-addon' : 'password-addon show'">
+                <i class="iconfont icon-xianshi" @click="showPwd = !showPwd" />
               </span>
             </div>
           </div>
@@ -335,7 +356,7 @@
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <a class="btn btn-primary full">Create account</a>
+              <a class="btn btn-primary full" @click="handleReg()">Create account</a>
             </div>
           </div>
           <div class="cf-row">
@@ -356,7 +377,7 @@
               <a href="#"> <img :src="getAssetsFile('svg/line.svg')" />Line </a>
             </dd>
             <dd>
-              <a href="#"> <img :src="getAssetsFile('svg/telegram.svg')" />Telegram </a>
+              <a @click="telegramLogin()"> <img :src="getAssetsFile('svg/telegram.svg')" />Telegram </a>
             </dd>
           </dl>
           <span class="icon-btn" @click="setShowThirdLoginBox()">
@@ -369,18 +390,41 @@
 </template>
 
 <script setup lang="ts">
-import { getAssetsFile } from '@/utils'
-import UserHeader from '@/components/layout/UserHeader.vue'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import { isPwd, isUname } from '@/utils/validate'
-import { checkUser, reg } from '@/api/user'
+
+import UserHeader from '@/components/layout/UserHeader.vue'
+
+import { telegramLogin } from '@/utils/telegram'
+import { useUserStore } from '@/store/modules/user'
+import { getAssetsFile } from '@/utils'
+import { countryCode } from '@/utils/countryCode'
+import { isPwd, isUname, isEmail } from '@/utils/validate'
+import { checkUser, checkEmail, reg } from '@/api/user'
+
 import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
 const router = useRouter()
-let confirmPwd = ref('')
+const userStore = useUserStore()
+// 是否显示第三方登录框
+let showPwd = ref(false)
 let showThirdLoginBox = ref(false)
+// 临时存储表单值
+// let confirmPwd = ref('')
+let day = ref<string | number>('')
+let month = ref<string | number>('')
+let year = ref<string | number>('')
+// dom元素
+let userNameDom = ref<HTMLInputElement | null>(null)
+let emailDom = ref<HTMLInputElement | null>(null)
+let dayDom = ref<HTMLInputElement | null>(null)
+let monthDom = ref<HTMLInputElement | null>(null)
+let yearDom = ref<HTMLInputElement | null>(null)
+let countryDom = ref<HTMLInputElement | null>(null)
+let phoneDom = ref<HTMLInputElement | null>(null)
+let pwdDom = ref<HTMLInputElement | null>(null)
+
 let regForm = reactive({
   UserName: '',
   Password: '',
@@ -398,60 +442,94 @@ const setShowThirdLoginBox = () => {
 }
 
 /** 登录逻辑 */
-const handleReg = () => {
-  if (!isUname(regForm.UserName)) {
+const handleReg = async () => {
+  if (!isUname(regForm.UserName.trim())) {
     showToast('用户名输入错误')
+    userNameDom.value?.focus()
     return false
   }
-  checkUser({ UserName: regForm.UserName })
-    .then((resp) => {
-      if (!resp) {
-        showToast('用户名已存在')
-      }
-      if (regForm.PhoneNumber == '') {
-        showToast('手机号码不能为空')
-        return false
-      }
-      if (regForm.CountryCode == '') {
-        showToast('国家代码不能为空')
-        return false
-      }
-      if (regForm.DateOfBirth == '') {
-        showToast('生日不能为空')
-        return false
-      }
-      if (regForm.CountryCode == '') {
-        showToast('国家代码输入错误')
-        return false
-      }
-      if (!isPwd(regForm.Password)) {
-        showToast('密码输入错误')
-        return false
-      }
-      if (regForm.Password != confirmPwd.value) {
-        showToast('两次密码不一致')
-        return false
-      }
-      reg(regForm)
-        .then(() => {
-          router.push({ name: 'index' })
-        })
-        .catch((error) => {
-          showToast(error)
-        })
-    })
-    .catch((error) => {
-      showToast(error)
-      return false
-    })
-
-  // if (regForm.VerificationCode == '') {
-  //   showToast('请输入验证码')
+  if (!isEmail(regForm.Email.trim())) {
+    showToast('邮箱输入错误')
+    emailDom.value?.focus()
+    return false
+  }
+  if (day.value == '') {
+    showToast('出生日不能为空')
+    dayDom.value?.focus()
+    return false
+  }
+  if (month.value == '') {
+    showToast('出生月份不能为空')
+    monthDom.value?.focus()
+    return false
+  }
+  if (year.value == '') {
+    showToast('出生年份不能为空')
+    userNameDom.value?.focus()
+    return false
+  }
+  if (regForm.CountryCode == '') {
+    showToast('国家代码不能为空')
+    countryDom.value?.focus()
+    return false
+  }
+  if (regForm.PhoneNumber == '') {
+    showToast('手机号码不能为空')
+    phoneDom.value?.focus()
+    return false
+  }
+  if (!isPwd(regForm.Password)) {
+    showToast('密码输入错误')
+    pwdDom.value?.focus()
+    return false
+  }
+  // if (regForm.Password != confirmPwd.value) {
+  //   showToast('两次密码不一致')
   //   return false
   // }
+  try {
+    const isExistUserResp = await checkUser({ UserName: regForm.UserName })
+    if (isExistUserResp.data) {
+      userNameDom.value?.focus()
+      showToast('用户名已存在')
+      return false
+    }
+  } catch (error: any) {
+    showToast(error)
+    return false
+  }
+  try {
+    const isExistEmailResp = await checkEmail({ Keyword: regForm.Email })
+    if (isExistEmailResp.data) {
+      emailDom.value?.focus()
+      showToast('邮箱已存在')
+      return false
+    }
+  } catch (error: any) {
+    showToast(error)
+    return false
+  }
+  try {
+    await reg(regForm)
+    userStore
+      .login({ UserName: regForm.UserName, PassWord: regForm.Password })
+      .then(() => {
+        showToast('注册成功')
+        router.push({ name: 'index' })
+        return false
+      })
+      .catch((error) => {
+        showToast(error)
+        router.push({ name: 'login' })
+        return false
+      })
+  } catch (error: any) {
+    showToast(error)
+    return false
+  }
 }
 </script>
-<style type="text/css">
+<style lang="less">
 .st0 {
   fill: #0cd664;
 }

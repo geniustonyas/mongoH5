@@ -819,6 +819,18 @@ body {
             margin-top: 1rem;
             color: var(--color-white);
         }
+        &.third-reg {
+            text-align: center;
+            h1 { 
+                font-weight: 700;
+                margin-top: 1rem;
+                color: var(--color-white);
+            }
+            h3 { 
+                margin-top: 1rem;
+                color: var(var(--color-text)) 
+            }
+        }
 
         .ls-third {
             .flex();
@@ -1024,6 +1036,7 @@ body {
                     .fg-qrcode {
                         .bg(var(--color-background));
                         .radius(1rem);
+                        .flex(); .flex-v();  .flex-align();
                         padding: 2rem;
 
                         img {

@@ -1,9 +1,40 @@
 <template>
   <div :class="appStore.showSideBar ? 'page open-sidebar' : 'page'">
-    <Header />
+    <header class="header">
+      <nav class="head-menu">
+        <div class="hm-l">
+          <a @click="appStore.showSideBar = !appStore.showSideBar" class="icon-btn navbar-left">
+            <i class="iconfont icon-zhedie1" />
+          </a>
+        </div>
+        <div class="hm-m">
+          <template v-if="userStore.userInfo.id">
+            <div class="user-info" @click="router.push({ name: 'fund' })">
+              <b>{{ userStore.userInfo.userName }}</b>
+              <a>
+                <label>+</label>
+                <span>{{ userStore.userInfo?.balance }}</span>
+                {{ userStore.userInfo?.defaultCurrencyCode == 'btc' ? userStore.userInfo?.btcUnit?.currencyUnit : userStore.userInfo?.defaultCurrencyCode }}
+              </a>
+            </div>
+          </template>
+        </div>
+        <div class="hm-r">
+          <template v-if="userStore.userInfo.id">
+            <a class="icon-btn" @click="router.push({ name: 'message' })">
+              <i class="iconfont icon-message" />
+            </a>
+          </template>
+          <template v-else>
+            <a class="btn" @click="router.push({ name: 'reg' })">Register</a>
+            <a class="btn btn-primary" @click="router.push({ name: 'login' })">Sign In</a>
+          </template>
+        </div>
+      </nav>
+    </header>
     <main class="main">
       <nav class="m-logo">
-        <a href="index.html"><img :src="getAssetsFile('logo.png')" /></a>
+        <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.png')" /></a>
       </nav>
       <nav class="m-menu">
         <a @click="toggleTab('sports')"> <img :src="getAssetsFile('svg/sports.svg')" />Sports </a>
@@ -609,12 +640,14 @@
 <script setup lang="ts">
 // vue自带
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 // 自定义组件
-import Header from '@/components/layout/Header.vue'
+// import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
-import Sidebar from '@/components/layout/Sidebar.vue'
+import Sidebar from '@/components/layout/SideBar.vue'
 // 引用方法
 import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
 //第三方插件
 import { Swipe, SwipeItem } from 'vant'
@@ -622,6 +655,8 @@ import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import 'vant/es/swipe/style'
 
 const appStore = useAppStore()
+const userStore = useUserStore()
+const router = useRouter()
 // 切换tab选项卡
 let tab = ref('sports')
 // 显示游戏筛选

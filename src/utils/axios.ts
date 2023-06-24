@@ -1,11 +1,10 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
 import { useUserStoreHook } from '@/store/modules/user'
-import { useAppStore } from '@/store/modules/app'
+import { useAppStoreHook } from '@/store/modules/app'
 import { get } from 'lodash-es'
 import { TokenPrefix, getToken } from '@/utils/auth'
 
-const appStore = useAppStore()
-const token = getToken()
+const useAppStore = useAppStoreHook()
 let loadingRequestCount = 0 // loading请求数
 
 /** 创建请求实例 */
@@ -17,32 +16,36 @@ function createService() {
       loadingRequestCount = loadingRequestCount + 1 // 统计请求数
       if (config.method?.toLowerCase() == 'post') {
         if (!config.data || !config.data.noLoading) {
-          appStore.setLoading(true)
+          useAppStore.loading = true
         }
       }
       if (config.method?.toLowerCase() == 'get') {
         if (!config.params || !config.params.noLoading) {
-          appStore.setLoading(true)
+          useAppStore.loading = true
         }
       }
       return config
     },
     // 发送失败
-    (error) => Promise.reject(error)
+    (error) => {
+      loadingRequestCount = 0
+      useAppStore.loading = false
+      Promise.reject(error)
+    }
   )
   // 响应拦截（可根据具体业务作出相应的调整）
   service.interceptors.response.use(
     (response) => {
       loadingRequestCount--
       if (loadingRequestCount <= 0) {
-        appStore.setLoading(false)
+        useAppStore.loading = false
       }
       const {
         data,
         data: { code }
       } = response
       if (code === undefined) {
-        return Promise.reject(data.message)
+        return data
       } else {
         switch (code) {
           case '200':
@@ -60,6 +63,7 @@ function createService() {
     },
     (error) => {
       loadingRequestCount = 0
+      useAppStore.loading = false
       return Promise.reject(error)
     }
   )
@@ -72,7 +76,7 @@ function createRequestFunction(service: AxiosInstance) {
     const configDefault = {
       headers: {
         // 携带 Token
-        Authorization: `${TokenPrefix}${token}`,
+        Authorization: `${TokenPrefix}${getToken()}`,
         'Accept-Language': localStorage.getItem('lang'),
         'Content-Type': get(config, 'headers.Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
       },

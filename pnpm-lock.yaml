@@ -10,6 +10,9 @@ dependencies:
   pinia:
     specifier: ^2.0.36
     version: 2.0.36(typescript@5.0.4)(vue@3.3.2)
+  qrcode.vue:
+    specifier: ^3.4.0
+    version: 3.4.0(vue@3.3.2)
   vant:
     specifier: ^4.4.1
     version: 4.4.1(vue@3.3.2)
@@ -90,6 +93,9 @@ devDependencies:
   vue-tsc:
     specifier: ^1.6.4
     version: 1.6.4(typescript@5.0.4)
+  vue3-google-login:
+    specifier: ^2.0.16
+    version: 2.0.16(vue@3.3.2)
 
 packages:
 
@@ -3193,6 +3199,14 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /qrcode.vue@3.4.0(vue@3.3.2):
+    resolution: {integrity: sha512-4XeImbv10Fin16Fl2DArCMhGyAdvIg2jb7vDT+hZiIAMg/6H6mz9nUZr/dR8jBcun5VzNzkiwKhiqOGbloinwA==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.3.2
+    dev: false
+
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
@@ -3881,6 +3895,14 @@ packages:
       '@volar/vue-typescript': 1.6.4(typescript@5.0.4)
       semver: 7.5.1
       typescript: 5.0.4
+    dev: true
+
+  /vue3-google-login@2.0.16(vue@3.3.2):
+    resolution: {integrity: sha512-akrXMX8/RnqBzKJT0PgtrCC+t1Wt2llrE/YVtPMU1ckfu+rymlTBA/TVJL+zlReKtNlGTMgW+x37qu56evXAog==}
+    peerDependencies:
+      vue: ^3.0.3
+    dependencies:
+      vue: 3.3.2
     dev: true
 
   /vue3-slide-up-down@2.0.1(vue@3.3.2):

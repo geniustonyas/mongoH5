@@ -1,59 +1,130 @@
 import { defineStore } from 'pinia'
 import store from '@/store'
-import { login as userLogin, getUserProfile } from '@/api/user/index'
-import { LoginData } from '@/api/user/types'
+
+import { login as userLogin, thirdLogin as userThirdLogin, getUserProfile, loginout } from '@/api/user/index'
+import { LoginData, getUserProfileData, thirdLoginData } from '@/api/user/types'
 import { setToken, clearToken } from '@/utils/auth'
-import { UserState } from './types'
+
+import { UserInfoType } from './types'
 import router from '@/router'
+import { ref, reactive } from 'vue'
 
-export const useUserStore = defineStore('user', {
-  state: (): UserState => ({
-    user_name: undefined,
-    avatar: undefined,
-    organization: undefined,
-    location: undefined,
+export const useUserStore = defineStore('userInfo', () => {
+  const userInfo = <UserInfoType>reactive({
+    id: undefined,
+    userName: undefined,
+    integral: undefined,
+    isBindGoogleAuth: undefined,
+    vip: undefined,
     email: undefined,
-    blogJuejin: undefined,
-    blogZhihu: undefined,
-    blogGithub: undefined,
-    profileBio: undefined,
-    devLanguages: undefined
-  }),
-  getters: {
-    userProfile(state: UserState): UserState {
-      return { ...state }
-    }
-  },
-  actions: {
-    // 设置用户的信息
-    setInfo(partial: Partial<UserState>) {
-      this.$patch(partial)
+    dateOfBirth: undefined,
+    phoneNumber: undefined,
+    countryCode: undefined,
+    country: undefined,
+    defaultCurrencyCode: undefined,
+    balance: undefined,
+    btcUnit: {
+      currencyUnit: undefined,
+      rate: undefined
     },
-    // 重置用户信息
-    resetInfo() {
-      this.$reset()
-    },
-    // 获取用户信息
-    async info() {
-      const result = await getUserProfile({ UserName: '' })
-      this.setInfo(result.data)
-    },
+    updatePassWordTime: undefined
+  })
+  const defaultUserInfo = JSON.parse(JSON.stringify(userInfo))
+  const refreshUserInfoTimer = ref<null | number>(null)
 
-    // 异步登录并存储token
-    async login(loginForm: LoginData) {
-      const result = await userLogin(loginForm)
-      const token = result?.data?.token
-      if (token) {
-        setToken(token)
-      }
-      return result
-    },
-    // Logout
-    async logout() {
-      this.resetInfo()
-      clearToken()
-      router.push({ name: 'login' })
-    }
+  const getUserInfo = (data: getUserProfileData) => {
+    return new Promise((resolve, reject) => {
+      getUserProfile(data)
+        .then((resp) => {
+          // userInfo =
+          Object.assign(userInfo, resp.data as UserInfoType)
+          resolve(resp)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  const refreshUserInfo = () => {
+    return new Promise((resolve, reject) => {
+      getUserInfo({ noLoading: true })
+        .then((resp) => {
+          if (refreshUserInfoTimer.value) {
+            clearInterval(refreshUserInfoTimer.value)
+          }
+          // refreshUserInfoTimer.value = window.setInterval(() => {
+          //   getUserInfo({ noLoading: true })
+          // }, 1 * 60 * 1000)
+          resolve(resp)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  // 登录
+  const login = (loginForm: LoginData) => {
+    return new Promise((resolve, reject) => {
+      userLogin(loginForm)
+        .then((resp) => {
+          const token = resp.data?.token
+          if (token) {
+            setToken(token)
+          }
+          resolve(resp)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  // 第三方登录
+  const thirdLogin = (loginForm: thirdLoginData) => {
+    return new Promise((resolve, reject) => {
+      userThirdLogin(loginForm)
+        .then((resp) => {
+          const token = resp.data?.token
+          if (token) {
+            setToken(token)
+          }
+          resolve(resp)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  // Logout
+  const logout = () => {
+    return new Promise((resolve, reject) => {
+      loginout()
+        .then((resp) => {
+          Object.assign(userInfo, defaultUserInfo as UserInfoType)
+          if (refreshUserInfoTimer.value) {
+            clearInterval(refreshUserInfoTimer.value)
+          }
+          clearToken()
+          router.push({ name: 'login' })
+          resolve(resp)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  return {
+    userInfo,
+    refreshUserInfoTimer,
+    getUserInfo,
+    refreshUserInfo,
+    login,
+    thirdLogin,
+    logout
   }
 })
 

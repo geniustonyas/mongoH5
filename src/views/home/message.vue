@@ -41,7 +41,7 @@
   </div>
 </template>
 
-<script setup name="HomeAccount">
+<script setup name="HomeMessage">
 // const { proxy } = getCurrentInstance()
 // const router = useRouter()
 // const route = useRoute()

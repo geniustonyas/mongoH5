@@ -15,6 +15,12 @@ export function getUrlAllParams() {
   return res
 }
 
+// 资源加载函数
 export function getAssetsFile(url: string) {
   return new URL(`../assets/imgs/${url}`, import.meta.url).href
+}
+
+// 处理多个async await
+export function awaitWraper(promise: any) {
+  return promise.then((res: any) => [null, res]).catch((err: any) => [err, null])
 }

@@ -278,9 +278,11 @@
           <h2>Sign In</h2>
           <div class="ls-third">
             <div class="t-list">
-              <a>
+              <a @click="googleLogin()">
+                <!-- <GoogleLogin :callback="googleLogin()"> -->
                 <img :src="getAssetsFile('svg/google-oauth2.svg')" />
                 Google
+                <!-- </GoogleLogin> -->
               </a>
               <a>
                 <img :src="getAssetsFile('svg/facebook.svg')" />
@@ -299,7 +301,7 @@
               <span>Username or Email</span>
             </div>
             <div class="cr-input">
-              <input v-model="loginForm.UserName" type="text" class="form-control" placeholder="" />
+              <input ref="userName" v-model="loginForm.UserName" type="text" class="form-control" placeholder="" @blur="checkIsBindGoogle()" />
             </div>
           </div>
 
@@ -309,21 +311,21 @@
               <a @click="router.push({ name: 'forget' })">Forgot Password？</a>
             </div>
             <div class="cr-input">
-              <input v-model="loginForm.PassWord" :type="showPwd ? 'text' : 'password'" class="form-control" placeholder="" />
+              <input ref="password" v-model="loginForm.PassWord" :type="showPwd ? 'text' : 'password'" class="form-control" placeholder="" />
               <span :class="showPwd ? 'password-addon' : 'password-addon show'">
-                <i class="iconfont icon-xianshi" @click="togglePwdFlag()" />
+                <i class="iconfont icon-xianshi" @click="showPwd = !showPwd" />
               </span>
             </div>
           </div>
           <div class="cf-row">
-            <div class="cr-mark cm-checkbox"><input type="checkbox" v-model="useGoogleAuthenticatore" />Use Google Authenticator</div>
+            <div class="cr-mark cm-checkbox"><input type="checkbox" v-model="useGoogleAuthenticatore" :readonly="isBind" />Use Google Authenticator</div>
           </div>
           <div class="cf-row" v-show="useGoogleAuthenticatore">
             <div class="cr-label">
               <span>Google Authenticator</span>
             </div>
             <div class="cr-input">
-              <input v-model="loginForm.VerificationCode" type="text" class="form-control" placeholder="" />
+              <input ref="verificationCode" v-model="loginForm.VerificationCode" type="text" class="form-control" placeholder="" />
             </div>
           </div>
           <div class="cf-row">
@@ -349,7 +351,7 @@
               <a href="#"> <img :src="getAssetsFile('svg/line.svg')" />Line </a>
             </dd>
             <dd>
-              <a href="#"> <img :src="getAssetsFile('svg/telegram.svg')" />Telegram </a>
+              <a @click="telegramLogin()"> <img :src="getAssetsFile('svg/telegram.svg')" />Telegram </a>
             </dd>
           </dl>
           <span class="icon-btn" @click="setShowThirdLoginBox()">
@@ -362,92 +364,82 @@
 </template>
 
 <script setup lang="ts">
-// import TelegramLogin from '@/components/TelegramLogin.vue'
-import UserHeader from '@/components/layout/UserHeader.vue'
-import { getAssetsFile } from '@/utils'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+
+import UserHeader from '@/components/layout/UserHeader.vue'
+
+import { getAssetsFile } from '@/utils'
+import { telegramLogin } from '@/utils/telegram'
+import { googleLogin } from '@/utils/google'
 import { useUserStore } from '@/store/modules/user'
-import { checkTelegramUser } from '@/api/user/index'
-import { showToast } from 'vant'
+import { checkUserBindGoogle } from '@/api/user/index'
+import { isPwd, isUname } from '@/utils/validate'
+
 import { useI18n } from 'vue-i18n'
+import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
 const router = useRouter()
 const userStore = useUserStore()
 const { t } = useI18n()
-// let loginCount = ref(0)
+
 let showPwd = ref(false)
 let showThirdLoginBox = ref(false)
 let useGoogleAuthenticatore = ref(false)
+let isBind = ref(false)
 let loginForm = reactive({
   UserName: '',
   PassWord: '',
   VerificationCode: ''
 })
-
-const togglePwdFlag = () => {
-  showPwd.value = !showPwd.value
-}
+let userName = ref<HTMLInputElement | null>(null)
+let password = ref<HTMLInputElement | null>(null)
+let verificationCode = ref<HTMLInputElement | null>(null)
 
 const setShowThirdLoginBox = () => {
   showThirdLoginBox.value = !showThirdLoginBox.value
-  console.log(showThirdLoginBox.value)
+}
+
+// 检查是否绑定Google验证码
+const checkIsBindGoogle = () => {
+  checkUserBindGoogle({ UserName: loginForm.UserName, noLoading: true })
+    .then((resp) => {
+      if (resp.data) {
+        useGoogleAuthenticatore.value = true
+        isBind.value = true
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
 /** 登录逻辑 */
 const handleLogin = () => {
-  if (loginForm.UserName == '') {
+  if (!isUname(loginForm.UserName.trim())) {
     showToast(t('tips.inputAccount'))
+    userName.value?.focus()
     return false
   }
-  if (loginForm.UserName.length < 5) {
-    showToast(t('tips.underAccount'))
-    return false
-  }
-  if (loginForm.UserName.length > 128) {
-    showToast(t('tips.overAccount'))
-    return false
-  }
-  if (loginForm.PassWord == '') {
+  if (!isPwd(loginForm.PassWord)) {
     showToast(t('tips.inputPassword'))
+    password.value?.focus()
     return false
   }
-  if (loginForm.PassWord.length < 5) {
-    showToast(t('tips.underPassword'))
-    return false
+  if (useGoogleAuthenticatore.value) {
+    if (loginForm.VerificationCode == '') {
+      showToast('请输入验证码')
+      verificationCode.value?.focus()
+      return false
+    }
   }
-  if (loginForm.PassWord.length > 128) {
-    showToast(t('tips.overPassword'))
-    return false
-  }
-  // if (loginForm.VerificationCode == '') {
-  //   showToast('请输入验证码')
-  //   return false
-  // }
   userStore
     .login(loginForm)
-    .then((resp) => {
-      console.log(resp)
-      console.log('aa')
-      router.push({ name: 'index' })
-    })
-    .catch((error) => {
-      showToast(error || error.message)
-    })
-}
-
-// telegram授权登录
-const telegramAuth = (user: any) => {
-  console.log(user)
-  // 拿到telegram用户信息后请求服务端验证
-  checkTelegramUser(user)
     .then(() => {
-      // 验证通过, 跳转到补充资料页面
       router.push({ name: 'index' })
     })
     .catch((error) => {
-      console.log(error)
       showToast(error || error.message)
     })
 }

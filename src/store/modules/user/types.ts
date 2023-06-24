@@ -1,19 +1,19 @@
-export interface UserState {
-  user_id?: string
-  user_name?: string
-  real_name?: string
-  avatar?: string
-  desc?: string
-  password?: string
-  token?: string
-  organization?: string
-  location?: string
+export interface UserInfoType {
+  id?: string
+  userName?: string
+  integral?: string
+  isBindGoogleAuth?: boolean
+  vip?: string
   email?: string
-  auths?: string[]
-  is_admin?: number
-  blogJuejin?: string
-  blogZhihu?: string
-  blogGithub?: string
-  profileBio?: string
-  devLanguages?: string
+  dateOfBirth?: string
+  phoneNumber?: string
+  countryCode?: string
+  country?: string
+  defaultCurrencyCode?: string
+  balance?: number | null
+  btcUnit?: {
+    currencyUnit?: string
+    rate?: number | null
+  }
+  updatePassWordTime?: string
 }

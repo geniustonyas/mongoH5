@@ -59,7 +59,7 @@ export function isTrueName(arg: any): boolean {
  * @returns {Boolean}
  */
 export function isEmail(arg: any): boolean {
-  return /^[1][3,4,5,6,7,8,9][0-9]{9}$/.test(arg)
+  return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/.test(arg)
 }
 
 /** 验证是否为空

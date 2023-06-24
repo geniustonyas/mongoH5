@@ -85,7 +85,7 @@
               </a>
             </li>
           </ul>
-          <a class="btn btn-primary">LOG OUT</a>
+          <a class="btn btn-primary" @click="handleLogout()">LOG OUT</a>
         </div>
       </div>
     </main>
@@ -94,11 +94,26 @@
 </template>
 
 <script setup name="SearchSearch">
-import { getAssetsFile } from '@/utils'
-import Footer from '@/components/layout/Footer.vue'
 import { useRouter } from 'vue-router'
-const router = useRouter()
-// const route = useRoute()
-</script>
 
-<style lang="less" scoped></style>
+import Footer from '@/components/layout/Footer.vue'
+
+import { useUserStore } from '@/store/modules/user'
+import { getAssetsFile } from '@/utils'
+import { showToast } from 'vant'
+import 'vant/es/toast/style'
+
+const router = useRouter()
+const userStore = useUserStore()
+const handleLogout = () => {
+  userStore
+    .logout()
+    .then((resp) => {
+      showToast('退出登录成功')
+      console.log(resp)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+</script>

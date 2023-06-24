@@ -10,6 +10,9 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
   const viteEnv = loadEnv(configEnv.mode, process.cwd()) as ImportMetaEnv
   const { VITE_PUBLIC_PATH, VITE_TITLE } = viteEnv
   return {
+    // define: {
+    //   'process.env': {}
+    // },
     /** 打包时根据实际情况修改 base */
     base: VITE_PUBLIC_PATH,
     resolve: {
@@ -31,7 +34,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       host: '0.0.0.0',
       // host: true,
       /** 端口号 */
-      port: 8090,
+      port: 80,
       /** 是否自动打开浏览器 */
       open: false,
       /** 跨域设置允许 */

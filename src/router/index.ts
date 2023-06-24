@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import AppMain from '@/components/layout/AppMain.vue'
+import { useUserStore } from '@/store/modules/user'
+import { getToken } from '@/utils/auth'
 
 const routes = [
   {
@@ -8,9 +10,15 @@ const routes = [
     redirect: { name: 'index' }
   },
   {
-    path: '/test',
-    name: 'test',
-    component: () => import('@/views/index/test.vue')
+    path: '/index',
+    name: 'index',
+    component: () => import('@/views/index/index.vue'),
+    meta: { transition: '', needLogin: false }
+  },
+  {
+    path: '/fund',
+    name: 'fund',
+    component: () => import('@/views/fund/fund.vue')
   },
   {
     path: '/user',
@@ -42,12 +50,6 @@ const routes = [
         meta: { transition: '', needLogin: false }
       }
     ]
-  },
-  {
-    path: '/index',
-    name: 'index',
-    component: () => import('@/views/index/index.vue'),
-    meta: { transition: '', needLogin: false }
   },
   {
     path: '/search',
@@ -87,37 +89,42 @@ const routes = [
         path: '',
         name: 'home',
         component: () => import('@/views/home/home.vue'),
-        meta: { transition: '', needLogin: false }
+        meta: { transition: '', needLogin: true }
       },
       {
         path: 'clubHouse',
         name: 'clubHouse',
         component: () => import('@/views/home/clubHouse.vue'),
-        meta: { transition: '', needLogin: false }
+        meta: { transition: '', needLogin: true }
       },
       {
         path: 'account',
         name: 'account',
         component: () => import('@/views/home/account.vue'),
-        meta: { transition: '', needLogin: false }
+        meta: { transition: '', needLogin: true }
       },
       {
         path: 'betRecord',
         name: 'betRecord',
         component: () => import('@/views/home/betRecord.vue'),
-        meta: { transition: '', needLogin: false }
+        meta: { transition: '', needLogin: true }
       },
       {
         path: 'rewards',
         name: 'rewards',
         component: () => import('@/views/home/rewards.vue'),
-        meta: { transition: '', needLogin: false }
+        meta: { transition: '', needLogin: true }
       },
       {
         path: 'message',
         name: 'message',
         component: () => import('@/views/home/message.vue'),
-        meta: { transition: '', needLogin: false }
+        meta: { transition: '', needLogin: true }
+      },
+      {
+        path: '*',
+        name: '404',
+        redirect: { name: 'index' }
       }
     ]
   }
@@ -127,6 +134,41 @@ const router = createRouter({
   history: import.meta.env.VITE_ROUTER_HISTORY === 'hash' ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH) : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
   linkActiveClass: 'active',
   routes
+})
+
+// 验证是否需要登录
+router.beforeEach((to, from, next) => {
+  const token = getToken()
+  let userStore: any = null
+  if (token) {
+    if (userStore === null) {
+      userStore = useUserStore()
+    }
+    if (userStore.userInfo.id) {
+      next()
+    } else {
+      try {
+        userStore
+          .refreshUserInfo()
+          .then(() => {
+            next()
+          })
+          .catch((error: any) => {
+            console.log(error)
+            next({ name: 'login', query: from.query })
+          })
+      } catch (error) {
+        console.log(error)
+        next()
+      }
+    }
+  } else {
+    if (to.meta.needLogin) {
+      next({ name: 'login', query: from.query })
+    } else {
+      next()
+    }
+  }
 })
 
 export default router

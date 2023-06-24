@@ -1,23 +1,19 @@
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { sysConfigState } from './types'
-// import piniaStore from '@/store/index'
+import store from '@/store'
 
-export const useAppStore = defineStore('app', {
-  state: () => ({
-    loading: false,
-    sysConfig: null as sysConfigState | null,
-    showSideBar: false
-  }),
-  getters: {},
-  actions: {
-    setLoading(status: boolean) {
-      this.loading = status
-    },
-    setSideBar(status: boolean) {
-      this.showSideBar = status
-    }
+export const useAppStore = defineStore('app', () => {
+  const loading = ref(false)
+  const sysConfig = ref<sysConfigState | null>(null)
+  const showSideBar = ref(false)
+
+  return {
+    loading,
+    sysConfig,
+    showSideBar
   }
 })
-// export function useAppOutsideStore() {
-//   return useAppStore(piniaStore)
-// }
+export function useAppStoreHook() {
+  return useAppStore(store)
+}

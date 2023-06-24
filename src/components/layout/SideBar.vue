@@ -3,20 +3,20 @@
     <header class="header">
       <nav class="head-menu">
         <div class="hm-l">
-          <a @click="appStore.setSideBar(!appStore.showSideBar)" class="icon-btn navbar-left">
+          <a @click="appStore.showSideBar = !appStore.showSideBar" class="icon-btn navbar-left">
             <i class="iconfont icon-close" />
           </a>
         </div>
         <div class="hm-m" />
         <div class="hm-r">
-          <a class="btn" href="register.html">Register</a>
-          <a class="btn btn-primary" href="login.html">Sign In</a>
+          <a class="btn" @click="router.push({ name: 'reg' })">Register</a>
+          <a class="btn btn-primary" @click="router.push({ name: 'login' })">Sign In</a>
         </div>
       </nav>
     </header>
     <section class="sm-main">
       <nav class="m-logo">
-        <a href="index.html"><img :src="getAssetsFile('logo.png')" /></a>
+        <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.png')" /></a>
       </nav>
       <nav class="m-menu">
         <a> <img :src="getAssetsFile('svg/sports.svg')" />Sports </a>
@@ -101,13 +101,14 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 // 引用方法
 import { getAssetsFile } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
 //第三方插件
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 const appStore = useAppStore()
-
+const router = useRouter()
 // 侧边框内容展开折叠
 let collapseSport = ref(true)
 let collapseLiveCashno = ref(true)
