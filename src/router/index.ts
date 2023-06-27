@@ -17,8 +17,27 @@ const routes = [
   },
   {
     path: '/fund',
-    name: 'fund',
-    component: () => import('@/views/fund/fund.vue')
+    component: AppMain,
+    children: [
+      {
+        path: '',
+        name: 'fund',
+        component: () => import('@/views/fund/fund.vue'),
+        meta: { transition: '', needLogin: true }
+      },
+      {
+        path: 'withdraw',
+        name: 'withdraw',
+        component: () => import('@/views/fund/withdraw.vue'),
+        meta: { transition: '', needLogin: true }
+      },
+      {
+        path: 'tradeRecord',
+        name: 'tradeRecord',
+        component: () => import('@/views/fund/tradeRecord.vue'),
+        meta: { transition: '', needLogin: true }
+      }
+    ]
   },
   {
     path: '/user',
@@ -120,13 +139,13 @@ const routes = [
         name: 'message',
         component: () => import('@/views/home/message.vue'),
         meta: { transition: '', needLogin: true }
-      },
-      {
-        path: '*',
-        name: '404',
-        redirect: { name: 'index' }
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: '404',
+    redirect: { name: 'index' }
   }
 ]
 
@@ -148,6 +167,7 @@ router.beforeEach((to, from, next) => {
       next()
     } else {
       try {
+        userStore.refreshTokenTime()
         userStore
           .refreshUserInfo()
           .then(() => {

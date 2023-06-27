@@ -12,7 +12,7 @@ export function login(data: User.LoginData) {
 
 /** 注册 */
 export function reg(data: User.RegData) {
-  return request<User.RegResp>({
+  return request<anyResp>({
     url: 'Member/Reg',
     method: 'post',
     data
@@ -21,7 +21,7 @@ export function reg(data: User.RegData) {
 
 /** 退出登录 */
 export function loginout() {
-  return request<User.RegResp>({
+  return request<anyResp>({
     url: 'Member/Logout',
     method: 'post'
   })
@@ -29,7 +29,7 @@ export function loginout() {
 
 /** 检查用户名是否已经注册 */
 export function checkUser(data: User.CheckData) {
-  return request<User.CheckResp>({
+  return request<anyResp>({
     url: 'Member/CheckUserName',
     method: 'post',
     data
@@ -38,7 +38,7 @@ export function checkUser(data: User.CheckData) {
 
 /** 检查用户是否绑定Google */
 export function checkUserBindGoogle(data: User.CheckData) {
-  return request<User.CheckResp>({
+  return request<anyResp>({
     url: 'Member/CheckIsBindGoogleAuth',
     method: 'post',
     data
@@ -47,7 +47,7 @@ export function checkUserBindGoogle(data: User.CheckData) {
 
 /** 检查邮箱是否已经注册 */
 export function checkEmail(data: User.CheckData) {
-  return request<User.CheckResp>({
+  return request<anyResp>({
     url: 'Member/CheckEmail',
     method: 'post',
     data
@@ -63,9 +63,17 @@ export function getUserProfile(data: User.getUserProfileData) {
   })
 }
 
+/**刷新token */
+export function refreshToken() {
+  return request<any>({
+    url: 'Member/refshToken',
+    method: 'post'
+  })
+}
+
 /** 检查第三方用户id是否存在 */
 export function checkThirdUser(data: User.thirdUserExistData) {
-  return request<User.thirdUserExistResp>({
+  return request<anyResp>({
     url: 'Member/CheckThirdPartyId',
     method: 'post',
     data
@@ -74,7 +82,7 @@ export function checkThirdUser(data: User.thirdUserExistData) {
 
 /** 验证telegram用户是否真实 */
 export function telegramValidate(params: any) {
-  return request<User.thirdUserExistResp>({
+  return request<anyResp>({
     url: 'telegram',
     method: 'get',
     baseURL: import.meta.env.VITE_THIRD_API,
@@ -84,7 +92,7 @@ export function telegramValidate(params: any) {
 
 /** 验证Google用户是否真实 */
 export function googleValidate(params: any) {
-  return request<User.thirdUserExistResp>({
+  return request<anyResp>({
     url: 'google',
     method: 'get',
     baseURL: import.meta.env.VITE_THIRD_API,
@@ -103,7 +111,7 @@ export function thirdLogin(data: User.thirdLoginData) {
 
 /** 第三方注册 */
 export function thirdReg(data: User.thirdRegData) {
-  return request<User.RegResp>({
+  return request<anyResp>({
     url: 'Member/thirdPartyReg',
     method: 'post',
     data

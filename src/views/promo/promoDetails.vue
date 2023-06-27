@@ -21,17 +21,17 @@
             <p class="p-opt">
               <a class="btn btn-primary" href="#">OPT IN</a>
             </p>
-            <p class="unflag">
-              <h2> How Does it Work?</h2>
+            <div class="unflag">
+              <h2>How Does it Work?</h2>
               <ul>
-                  <li>Opt-in to the promotion</li>
-                  <li>Place Live bets on French Open tennis tournament</li>
-                  <li>Hit consecutive wins.</li>
-                  <li>Unlock the reward based on your win streak.</li>
-                  <li>Bets need to be placed with minimum valid odds of 2.00</li>
-                  <li>Minimum bet amount is 20 USDT.</li>
+                <li>Opt-in to the promotion</li>
+                <li>Place Live bets on French Open tennis tournament</li>
+                <li>Hit consecutive wins.</li>
+                <li>Unlock the reward based on your win streak.</li>
+                <li>Bets need to be placed with minimum valid odds of 2.00</li>
+                <li>Minimum bet amount is 20 USDT.</li>
               </ul>
-            </p>
+            </div>
             <p class="p-opt" />
             <table class="promo-table">
               <thead>

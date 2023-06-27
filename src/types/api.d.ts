@@ -4,3 +4,10 @@ interface ApiResponseData<T> {
   data?: T
   message: string
 }
+
+/** 返回任意data */
+interface anyResp {
+  code: number
+  data?: any
+  message: string
+}

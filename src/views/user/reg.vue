@@ -315,9 +315,18 @@
               <span>Date of Birth</span>
             </div>
             <div class="cr-input group">
-              <input v-model="day" ref="dayDom" type="number" class="form-control" placeholder=" Day" style="padding: 0 1rem" />
+              <select class="form-control" v-model="day" ref="dayDom">
+                <option v-for="item in 31" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
+              </select>
+              <select class="form-control" v-model="month" ref="monthDom">
+                <option v-for="item in 12" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
+              </select>
+              <select class="form-control" v-model="year" ref="yearDom">
+                <option v-for="item in getYearList()" :key="item" :value="item">{{ item }}</option>
+              </select>
+              <!-- <input v-model="day" ref="dayDom" type="number" class="form-control" placeholder=" Day" style="padding: 0 1rem" />
               <input v-model="month" ref="monthDom" type="number" class="form-control" placeholder=" Month" style="padding: 0 1rem" />
-              <input v-model="year" ref="yearDom" type="number" class="form-control" placeholder=" Year" style="padding: 0 1rem" />
+              <input v-model="year" ref="yearDom" type="number" class="form-control" placeholder=" Year" style="padding: 0 1rem" /> -->
             </div>
           </div>
           <div class="cf-row">
@@ -397,7 +406,7 @@ import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { telegramLogin } from '@/utils/telegram'
 import { useUserStore } from '@/store/modules/user'
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, getYearList } from '@/utils'
 import { countryCode } from '@/utils/countryCode'
 import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUser, checkEmail, reg } from '@/api/user'
@@ -458,6 +467,11 @@ const handleReg = async () => {
     dayDom.value?.focus()
     return false
   }
+  // if (day.value < 1 || day.value > 31) {
+  //   showToast('出生日填写错误')
+  //   dayDom.value?.focus()
+  //   return false
+  // }
   if (month.value == '') {
     showToast('出生月份不能为空')
     monthDom.value?.focus()
@@ -465,7 +479,7 @@ const handleReg = async () => {
   }
   if (year.value == '') {
     showToast('出生年份不能为空')
-    userNameDom.value?.focus()
+    yearDom.value?.focus()
     return false
   }
   if (regForm.CountryCode == '') {
@@ -510,6 +524,7 @@ const handleReg = async () => {
     return false
   }
   try {
+    regForm.DateOfBirth = `${year.value}-${month.value}-${day.value}`
     await reg(regForm)
     userStore
       .login({ UserName: regForm.UserName, PassWord: regForm.Password })

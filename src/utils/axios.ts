@@ -53,8 +53,7 @@ function createService() {
           case '400':
             return Promise.reject(data.message)
           case '401':
-            // userStore.logout()
-            useUserStoreHook().logout()
+            useUserStoreHook().clearLogin()
             return Promise.reject(data.message)
           default:
             return Promise.reject(data.message)

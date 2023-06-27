@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "35704927",
+      "name": "跳转-copy",
+      "font_class": "tiaozhuan",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "13129067",
+      "name": "提币",
+      "font_class": "tibi1",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "15253986",
+      "name": "充币",
+      "font_class": "chongbi1",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "34346530",
+      "name": "充币",
+      "font_class": "tibi",
+      "unicode": "e676",
+      "unicode_decimal": 58998
+    },
+    {
+      "icon_id": "35518722",
+      "name": "充币",
+      "font_class": "chongbi",
+      "unicode": "e6a7",
+      "unicode_decimal": 59047
+    },
+    {
       "icon_id": "17779997",
       "name": "选中",
       "font_class": "xuanzhong",

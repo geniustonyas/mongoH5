@@ -4,7 +4,7 @@
     <main class="main">
       <div class="loginbox">
         <div class="l-partner">
-          <div class="lp-l">Official Partner of</div>
+          <div class="lp-l">{{ t('loginPage.partner') }}</div>
           <div class="lp-r">
             <a href="#">
               <svg width="100%" height="1em" viewBox="0 0 355.508 405.592" xmlns="http://www.w3.org/2000/svg" font-size="1.3rem" class="sc-bCBNXU bvpEFf">
@@ -275,7 +275,7 @@
           </div>
         </div>
         <div class="l-signin">
-          <h2>Sign In</h2>
+          <h2>{{ t('login') }}</h2>
           <div class="ls-third">
             <div class="t-list">
               <a @click="googleLogin()">
@@ -294,11 +294,13 @@
             </span>
           </div>
         </div>
-        <div class="l-line"><span>OR</span></div>
+        <div class="l-line">
+          <span>{{ $t('or') }}</span>
+        </div>
         <div class="custom-form">
           <div class="cf-row">
             <div class="cr-label">
-              <span>Username or Email</span>
+              <span>{{ $t('loginPage.userNameOrEmail') }}</span>
             </div>
             <div class="cr-input">
               <input ref="userName" v-model="loginForm.UserName" type="text" class="form-control" placeholder="" @blur="checkIsBindGoogle()" />
@@ -307,8 +309,8 @@
 
           <div class="cf-row">
             <div class="cr-label">
-              <span>Password</span>
-              <a @click="router.push({ name: 'forget' })">Forgot Password？</a>
+              <span>{{ $t('password') }}</span>
+              <a @click="router.push({ name: 'forget' })">{{ t('forgetPassword') }} ? </a>
             </div>
             <div class="cr-input">
               <input ref="password" v-model="loginForm.PassWord" :type="showPwd ? 'text' : 'password'" class="form-control" placeholder="" />
@@ -318,11 +320,11 @@
             </div>
           </div>
           <div class="cf-row">
-            <div class="cr-mark cm-checkbox"><input type="checkbox" v-model="useGoogleAuthenticatore" :readonly="isBind" />Use Google Authenticator</div>
+            <div class="cr-mark cm-checkbox"><input type="checkbox" v-model="useGoogleAuthenticatore" :readonly="isBind" />{{ $t('loginPage.useGoogle') }}</div>
           </div>
           <div class="cf-row" v-show="useGoogleAuthenticatore">
             <div class="cr-label">
-              <span>Google Authenticator</span>
+              <span>{{ $t('loginPage.useGoogle') }}</span>
             </div>
             <div class="cr-input">
               <input ref="verificationCode" v-model="loginForm.VerificationCode" type="text" class="form-control" placeholder="" />
@@ -330,11 +332,16 @@
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <a class="btn btn-primary full" @click="handleLogin()">Sign In</a>
+              <a class="btn btn-primary full" @click="handleLogin()">{{ $t('login') }}</a>
             </div>
           </div>
           <div class="cf-row">
-            <div class="cr-bo">Dont't have an account？ <a @click="router.push({ name: 'reg' })">Create account</a></div>
+            <div class="cr-bo">
+              {{ $t('noUser') }}
+              <a @click="router.push({ name: 'reg' })">
+                {{ $t('createUser') }}
+              </a>
+            </div>
           </div>
         </div>
       </div>

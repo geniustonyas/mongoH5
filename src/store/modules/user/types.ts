@@ -15,5 +15,7 @@ export interface UserInfoType {
     currencyUnit?: string
     rate?: number | null
   }
+  address?: string
+  zipcode?: string
   updatePassWordTime?: string
 }

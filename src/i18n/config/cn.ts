@@ -3,6 +3,22 @@ export default {
   cancel: '取消',
   close: '关闭',
   to: ' 至 ',
+  or: '或',
+  login: '登入',
+  reg: '注册',
+  userName: '用户名',
+  email: '电子邮件',
+  password: '密码',
+  forgetPassword: '忘记密码',
+  noUser: '没有账号？',
+  createUser: '创建账户',
+  googleCode: '谷歌身份验证码',
+  inputGoole: '输入谷歌身份验证码',
+  loginPage: {
+    useGoogle: '使用谷歌身份验证器',
+    partner: '官方合作伙伴：',
+    userNameOrEmail: '用户名或电子邮件'
+  },
   // 数据验证提示
   tips: {
     // 用戶-登录注册

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import store from '@/store'
 
-import { login as userLogin, thirdLogin as userThirdLogin, getUserProfile, loginout } from '@/api/user/index'
+import { login as userLogin, thirdLogin as userThirdLogin, getUserProfile, loginout, refreshToken } from '@/api/user/index'
 import { LoginData, getUserProfileData, thirdLoginData } from '@/api/user/types'
 import { setToken, clearToken } from '@/utils/auth'
 
@@ -27,10 +27,13 @@ export const useUserStore = defineStore('userInfo', () => {
       currencyUnit: undefined,
       rate: undefined
     },
+    address: undefined,
+    zipcode: undefined,
     updatePassWordTime: undefined
   })
   const defaultUserInfo = JSON.parse(JSON.stringify(userInfo))
   const refreshUserInfoTimer = ref<null | number>(null)
+  const refreshTokenTimer = ref<null | number>(null)
 
   const getUserInfo = (data: getUserProfileData) => {
     return new Promise((resolve, reject) => {
@@ -53,15 +56,24 @@ export const useUserStore = defineStore('userInfo', () => {
           if (refreshUserInfoTimer.value) {
             clearInterval(refreshUserInfoTimer.value)
           }
-          // refreshUserInfoTimer.value = window.setInterval(() => {
-          //   getUserInfo({ noLoading: true })
-          // }, 1 * 60 * 1000)
+          refreshUserInfoTimer.value = window.setInterval(() => {
+            getUserInfo({ noLoading: true })
+          }, 1 * 60 * 1000)
           resolve(resp)
         })
         .catch((error) => {
           reject(error)
         })
     })
+  }
+
+  const refreshTokenTime = () => {
+    if (refreshTokenTimer.value) {
+      clearInterval(refreshTokenTimer.value)
+    }
+    refreshTokenTimer.value = window.setInterval(() => {
+      refreshToken()
+    }, 1 * 60 * 1000)
   }
 
   // 登录
@@ -103,11 +115,7 @@ export const useUserStore = defineStore('userInfo', () => {
     return new Promise((resolve, reject) => {
       loginout()
         .then((resp) => {
-          Object.assign(userInfo, defaultUserInfo as UserInfoType)
-          if (refreshUserInfoTimer.value) {
-            clearInterval(refreshUserInfoTimer.value)
-          }
-          clearToken()
+          clearLogin()
           router.push({ name: 'login' })
           resolve(resp)
         })
@@ -117,14 +125,27 @@ export const useUserStore = defineStore('userInfo', () => {
     })
   }
 
+  const clearLogin = () => {
+    Object.assign(userInfo, defaultUserInfo as UserInfoType)
+    if (refreshUserInfoTimer.value) {
+      clearInterval(refreshUserInfoTimer.value)
+    }
+    if (refreshTokenTimer.value) {
+      clearInterval(refreshTokenTimer.value)
+    }
+    clearToken()
+  }
+
   return {
     userInfo,
     refreshUserInfoTimer,
     getUserInfo,
     refreshUserInfo,
+    refreshTokenTime,
     login,
     thirdLogin,
-    logout
+    logout,
+    clearLogin
   }
 })
 

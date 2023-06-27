@@ -1,4 +1,7 @@
 import _ from 'lodash-es'
+import Clipboard from 'clipboard'
+import { showToast } from 'vant'
+import 'vant/es/toast/style'
 
 // 获取url中全部参数的对象
 export function getUrlAllParams() {
@@ -23,4 +26,27 @@ export function getAssetsFile(url: string) {
 // 处理多个async await
 export function awaitWraper(promise: any) {
   return promise.then((res: any) => [null, res]).catch((err: any) => [err, null])
+}
+
+// 生成年份列表
+export function getYearList() {
+  const currentYear = new Date().getFullYear()
+  const yearList = []
+  for (let years = currentYear; years >= 1900; years--) {
+    yearList.push(years)
+  }
+  return yearList
+}
+
+// 初始化复制
+export function copy(selector: string, tips = '复制成功') {
+  const clipboard = new Clipboard(selector)
+  clipboard.on('success', () => {
+    showToast(tips)
+    clipboard.destroy()
+  })
+  clipboard.on('error', () => {
+    clipboard.destroy()
+    showToast('该浏览器不支持自动复制')
+  })
 }

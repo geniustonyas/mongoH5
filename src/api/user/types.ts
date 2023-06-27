@@ -77,7 +77,4 @@ export interface thirdRegData {
 
 // 返回类型
 export type LoginResp = ApiResponseData<{ id: number; userName: string; registerTime: string; token: string; tokenExpires: number }>
-export type RegResp = ApiResponseData<any>
-export type CheckResp = ApiResponseData<any>
 export type GetUserProfileResp = ApiResponseData<UserInfoType>
-export type thirdUserExistResp = ApiResponseData<any>
