@@ -45,4 +45,33 @@ export interface getMinWithdrawAmountData {
   CurrencyCode: string
 }
 
+// 获取提现最低金额
+export interface getTradeDetailData {
+  OrderId: string
+  orderType: string
+}
+
+// 获取交易记录列表
+export interface getTradeListData {
+  CurrencyCode: string
+  StartTime: string
+  EndTime: string
+  PageIndex: string | number
+  PageSize: string | number
+}
+
+// 交易详情返回内容
+export interface getTradeDetailResponse {
+  blockchainCode: string
+  createTime: string
+  currencyCode: string
+  orderId: string
+  txId: string
+  amount: string
+  afterAmount: string
+  orderType: string
+  orderStatus: string
+}
+
 export type getDepositAddressResp = ApiResponseData<getDepositAddressResponse>
+export type withdrawOrderResp = ApiResponseData<getTradeDetailResponse>

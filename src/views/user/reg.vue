@@ -4,7 +4,7 @@
     <main class="main">
       <div class="loginbox">
         <div class="l-partner">
-          <div class="lp-l">Official Partner of</div>
+          <div class="lp-l">{{ t('partner') }}</div>
           <div class="lp-r">
             <a href="#">
               <svg width="100%" height="1em" viewBox="0 0 355.508 405.592" xmlns="http://www.w3.org/2000/svg" font-size="1.3rem" class="sc-bCBNXU bvpEFf">
@@ -275,7 +275,7 @@
           </div>
         </div>
         <div class="l-signin">
-          <h2>Create account</h2>
+          <h2>{{ t('createUser') }}</h2>
           <div class="ls-third">
             <div class="t-list">
               <a>
@@ -292,27 +292,29 @@
             </span>
           </div>
         </div>
-        <div class="l-line"><span>OR</span></div>
+        <div class="l-line">
+          <span> {{ t('or') }} </span>
+        </div>
         <div class="custom-form">
           <div class="cf-row">
             <div class="cr-label">
-              <span>Username</span>
+              <span>{{ t('userName') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model="regForm.UserName" ref="userNameDom" type="text" class="form-control" placeholder="Name your account" />
+              <input v-model="regForm.UserName" ref="userNameDom" type="text" class="form-control" :placeholder="t('regPage.holderUserName')" />
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-label">
-              <span>Email</span>
+              <span>{{ t('email') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model="regForm.Email" ref="emailDom" type="email" class="form-control" placeholder="e.g.you@example.com" />
+              <input v-model="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" />
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-label">
-              <span>Date of Birth</span>
+              <span>{{ t('brithday') }}</span>
             </div>
             <div class="cr-input group">
               <select class="form-control" v-model="day" ref="dayDom">
@@ -331,18 +333,18 @@
           </div>
           <div class="cf-row">
             <div class="cr-label">
-              <span>Phone number</span>
+              <span>{{ t('telephone') }}</span>
             </div>
             <div class="cr-input group g-tel">
               <select v-model="regForm.CountryCode" ref="countryDom" class="form-control">
                 <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
               </select>
-              <input v-model="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" placeholder="" />
+              <input v-model="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" :placeholder="t('regPage.holderTelephone')" />
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-label">
-              <span>Password</span>
+              <span>{{ t('password') }}</span>
             </div>
             <div class="cr-input">
               <input v-model="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" placeholder="" />
@@ -354,22 +356,31 @@
 
           <div class="cf-row">
             <div class="cr-mark cm-checkbox">
-              <input type="checkbox" checked />I confirm that I am at least 18 years of age, and accept the <a href="#">Terms and Conditions</a>and <a href="#">Privacy Policy.</a>
+              <input type="checkbox" checked />
+              {{ t('regPage.isAdult') }}
+              <a href="#">{{ t('regPage.termCondition') }}</a>
+              {{ t('and') }}
+              <a href="#">{{ t('regPage.privacyPolicy') }}</a>
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-mark cm-checkbox">
-              <input type="checkbox" checked />I agree to receive marketing communication about exclusive Seabet.io rewards and promotions <a href="#">Terms and Conditions</a>and
-              <a href="#">Privacy Policy.</a>
+              <input type="checkbox" checked />
+              {{ t('regPage.isAgree') }}
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <a class="btn btn-primary full" @click="handleReg()">Create account</a>
+              <a class="btn btn-primary full" @click="handleReg()">{{ t('createUser') }}</a>
             </div>
           </div>
           <div class="cf-row">
-            <div class="cr-bo">Have an account？ <a @click="router.push({ name: 'login' })">Sign In</a></div>
+            <div class="cr-bo">
+              {{ t('hasAccount') }}
+              <a @click="router.push({ name: 'login' })">
+                {{ t('login') }}
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -378,7 +389,7 @@
       <div class="mb-bd">
         <div class="other-signin">
           <dl>
-            <dt>Other methods</dt>
+            <dt>{{ t('otherMethod') }}</dt>
             <dd>
               <a href="#"> <img :src="getAssetsFile('svg/twiter.svg')" />Twitter </a>
             </dd>
@@ -409,13 +420,16 @@ import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, getYearList } from '@/utils'
 import { countryCode } from '@/utils/countryCode'
 import { isPwd, isUname, isEmail } from '@/utils/validate'
-import { checkUser, checkEmail, reg } from '@/api/user'
+import { checkUserApi, checkEmailApi, regApi } from '@/api/user'
 
+import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
 const router = useRouter()
 const userStore = useUserStore()
+const { t } = useI18n()
+
 // 是否显示第三方登录框
 let showPwd = ref(false)
 let showThirdLoginBox = ref(false)
@@ -502,7 +516,7 @@ const handleReg = async () => {
   //   return false
   // }
   try {
-    const isExistUserResp = await checkUser({ UserName: regForm.UserName })
+    const isExistUserResp = await checkUserApi({ UserName: regForm.UserName })
     if (isExistUserResp.data) {
       userNameDom.value?.focus()
       showToast('用户名已存在')
@@ -513,7 +527,7 @@ const handleReg = async () => {
     return false
   }
   try {
-    const isExistEmailResp = await checkEmail({ Keyword: regForm.Email })
+    const isExistEmailResp = await checkEmailApi({ Keyword: regForm.Email })
     if (isExistEmailResp.data) {
       emailDom.value?.focus()
       showToast('邮箱已存在')
@@ -525,7 +539,7 @@ const handleReg = async () => {
   }
   try {
     regForm.DateOfBirth = `${year.value}-${month.value}-${day.value}`
-    await reg(regForm)
+    await regApi(regForm)
     userStore
       .login({ UserName: regForm.UserName, PassWord: regForm.Password })
       .then(() => {

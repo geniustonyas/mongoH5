@@ -1,5 +1,6 @@
 import _ from 'lodash-es'
 import Clipboard from 'clipboard'
+import BigNumber from 'bignumber.js'
 import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
@@ -49,4 +50,9 @@ export function copy(selector: string, tips = '复制成功') {
     clipboard.destroy()
     showToast('该浏览器不支持自动复制')
   })
+}
+
+// 格式化两位小数
+export function moneyFormat(value: any) {
+  return new BigNumber(Math.floor(parseFloat(value) * 100) / 100).toFormat(2)
 }

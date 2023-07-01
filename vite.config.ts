@@ -75,7 +75,6 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     /** Vite 插件 */
     plugins: [
       vue(),
-      // vant 按需载入
       Components({
         resolvers: [VantResolver()]
       }),

@@ -1,16 +1,10 @@
 <template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l" onclick="window.history.go(-1) ">
-          <i class="iconfont icon-return" />
-        </div>
-        <div class="hml-m">Rewards</div>
-        <div class="hml-r t-i-w" onclick="addRewards()">
-          claim reward<span><i class="iconfont icon-add" /></span>
-        </div>
+    <CommonHeader title="Rewards">
+      <div class="hml-r t-i-w" @click="showAddBox = true">
+        {{ t('claimReward') }}<span><i class="iconfont icon-add" /></span>
       </div>
-    </header>
+    </CommonHeader>
     <main class="main">
       <div class="rewards-box">
         <div class="rb-title">RECENT TRANSACTIONS</div>
@@ -118,26 +112,23 @@
         </ul>
       </div>
     </main>
-    <div class="mask-box" id="claimReward">
+    <div v-show="showAddBox" class="mask-box" id="claimReward">
       <div class="mb-bd">
         <div class="claim-reward-box">
-          <span class="icon-btn" onclick="$('#claimReward').hide()">
+          <span class="icon-btn" @click="showAddBox = false">
             <i class="iconfont icon-close" />
           </span>
-          <h2>Claim new reward</h2>
+          <h2>{{ t('claimNewReward') }}</h2>
           <div class="custom-form">
             <div class="cf-row">
-              <!--<div class="cr-label">
-                                <span>Claim new reward</span>
-                            </div>-->
               <div class="cr-input">
-                <input type="text" class="form-control" placeholder="Reward code" />
+                <input type="text" class="form-control" :placeholder="t('rewardCode')" />
               </div>
             </div>
 
             <div class="cf-row">
               <div class="cr-btns">
-                <a class="btn btn-primary full" href="#">Claim</a>
+                <a class="btn btn-primary full" href="#">{{ t('claim') }}</a>
               </div>
             </div>
           </div>
@@ -148,9 +139,13 @@
 </template>
 
 <script setup name="HomeAccount">
-// const { proxy } = getCurrentInstance()
-// const router = useRouter()
-// const route = useRoute()
-</script>
+import { ref } from 'vue'
 
-<style lang="less" scoped></style>
+import CommonHeader from '@/components/layout/CommonHeader.vue'
+
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+let showAddBox = ref(false)
+</script>

@@ -2,7 +2,7 @@ import { request } from '@/utils/axios'
 import * as Home from './types'
 
 /** 修改个人信息  */
-export function editUserInfo(data: Home.editUserInfoData) {
+export function editUserInfoApi(data: Home.editUserInfoData) {
   return request<anyResp>({
     url: 'Member/EditMemberInfo',
     method: 'post',
@@ -11,7 +11,7 @@ export function editUserInfo(data: Home.editUserInfoData) {
 }
 
 /** 修改密码 */
-export function editPassword(data: Home.ediPwdData) {
+export function editPasswordApi(data: Home.ediPwdData) {
   return request<anyResp>({
     url: 'Member/EditPassWord',
     method: 'post',
@@ -20,7 +20,7 @@ export function editPassword(data: Home.ediPwdData) {
 }
 
 /** 获取Google验证码字符串 */
-export function getGoogleCode() {
+export function getGoogleCodeApi() {
   return request<Home.getGoogleCodeResp>({
     url: 'Member/GetGoogleCode',
     method: 'post'
@@ -28,7 +28,7 @@ export function getGoogleCode() {
 }
 
 /** 绑定Google验证码 */
-export function bindGoogleCode(data: Home.googleCodeData) {
+export function bindGoogleCodeApi(data: Home.googleCodeData) {
   return request<anyResp>({
     url: 'Member/BindGoogleAuth',
     method: 'post',
@@ -37,7 +37,7 @@ export function bindGoogleCode(data: Home.googleCodeData) {
 }
 
 /** 解绑Google验证码 */
-export function unBindGoogleCode(data: Home.googleCodeData) {
+export function unBindGoogleCodeApi(data: Home.googleCodeData) {
   return request<anyResp>({
     url: 'Member/UnBindGoogleAuth',
     method: 'post',
@@ -46,7 +46,7 @@ export function unBindGoogleCode(data: Home.googleCodeData) {
 }
 
 /** 获取新消息数量 */
-export function getNewMessageCount() {
+export function getNewMessageCountApi() {
   return request<anyResp>({
     url: 'Member/GetNewNotificationCount',
     method: 'post'
@@ -54,7 +54,7 @@ export function getNewMessageCount() {
 }
 
 /** 获取通知消息列表 */
-export function getMessage(data: Home.messageData) {
+export function getMessageApi(data: Home.messageData) {
   return request<Home.messageResp>({
     url: 'Member/GetMemberNotificationList',
     method: 'post',
@@ -63,7 +63,7 @@ export function getMessage(data: Home.messageData) {
 }
 
 /** 设为已读 */
-export function setRead(data: Home.setReadData) {
+export function setReadApi(data: Home.setReadData) {
   return request<anyResp>({
     url: 'Member/SetNotificationRead',
     method: 'post',
@@ -72,7 +72,7 @@ export function setRead(data: Home.setReadData) {
 }
 
 /** 全部设为已读 */
-export function setAllRead() {
+export function setAllReadApi() {
   return request<anyResp>({
     url: 'Member/SetAllNotificationRead',
     method: 'post'

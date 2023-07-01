@@ -1,13 +1,6 @@
 <template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l" @click="router.back()">
-          <i class="iconfont icon-return" />
-        </div>
-        <div class="hml-m">Fund Account</div>
-      </div>
-    </header>
+    <CommonHeader title="Fund Account" />
     <main class="main">
       <div class="fund-box">
         <div class="fb-row line">
@@ -175,7 +168,7 @@
         <dl class="cur-lsit">
           <dt>SUPPORT SETTINGS</dt>
           <dd>
-            <a href="#">
+            <a @click="router.push({ name: 'walletSetting' })">
               <span> <i class="iconfont icon-setting" />Wallet settings </span>
               <i class="iconfont icon-right" />
             </a>
@@ -268,12 +261,14 @@
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
+import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Footer from '@/components/layout/Footer.vue'
 
-import { getBalance, getDepositAddress } from '@/api/fund/index'
+import { getBalanceApi, getDepositAddressApi } from '@/api/fund/index'
 import { getAssetsFile, copy } from '@/utils'
 import { usdtChainList } from '@/utils/blockChain'
 
+import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { ConfigProvider, showToast, Popup } from 'vant'
@@ -281,6 +276,7 @@ import 'vant/es/empty/style'
 import 'vant/es/popup/style'
 
 const router = useRouter()
+const { t } = useI18n()
 
 const depositTab = ref('digital')
 const fundTab = ref('deposit')
@@ -324,7 +320,7 @@ let showDepositQrcode = ref(false)
 
 // 获取余额列表
 const getBalanceList = () => {
-  getBalance()
+  getBalanceApi()
     .then((resp) => {
       selCurrency(resp.data[0])
       digitalList.value = resp.data.filter((item) => item.currencyType != 20)
@@ -356,7 +352,7 @@ const selBlockChain = (item) => {
 
 // 获取充值地址
 const getDeposit = () => {
-  getDepositAddress({ BlockchainCode: selCurrencyItem.name == 'USDT' ? selBlockChainItem.code : ' ', CurrencyCode: selCurrencyItem.name })
+  getDepositAddressApi({ BlockchainCode: selCurrencyItem.name == 'USDT' ? selBlockChainItem.code : ' ', CurrencyCode: selCurrencyItem.name })
     .then((resp) => {
       Object.assign(depositInfo, resp.data)
     })

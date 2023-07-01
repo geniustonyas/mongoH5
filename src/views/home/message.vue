@@ -1,22 +1,15 @@
 <template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l" @click="router.back()">
-          <i class="iconfont icon-return" />
-        </div>
-        <div class="hml-m">Notifications</div>
-      </div>
-    </header>
+    <CommonHeader title="Notifications" />
     <main class="main">
       <div class="notifications-box">
         <div v-if="dataList.length > 0" class="nb-head">
-          <a @click="setAllReaded()" class="disable">Mark all as read</a>
+          <a @click="setAllReaded()" class="disable">{{ t('makeAllRead') }}</a>
         </div>
         <div class="nb-list">
           <ul v-if="dataList.length > 0" style="height: 100%">
-            <PullRefresh v-model="refreshing" success-text="刷新成功" @refresh="fresh">
-              <List v-model="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" error-text="加载失败" finished-text="没有更多了..." @load="loadData">
+            <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
+              <List v-model="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" :error-text="t('loadingFail')" :finished-text="t('noMore')" @load="loadData">
                 <li v-for="(item, index) of dataList" class="top" :key="index" @click="setReaded(item)">
                   <div class="l-title">{{ item.title }}</div>
                   <div class="l-cont">{{ item.content }}</div>
@@ -29,7 +22,7 @@
               </List>
             </PullRefresh>
           </ul>
-          <Empty v-else description="暂无数据" />
+          <Nodata v-else :message="t('noMessage')" />
         </div>
       </div>
     </main>
@@ -38,15 +31,21 @@
 
 <script setup name="HomeMessage">
 import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 
-import { getMessage, setRead, setAllRead } from '@/api/home'
+import Nodata from '@/components/Nodata.vue'
+import CommonHeader from '@/components/layout/CommonHeader.vue'
 
-import { PullRefresh, List, Empty, showToast } from 'vant'
+import { getMessageApi, setReadApi, setAllReadApi } from '@/api/home'
+import { useI18n } from 'vue-i18n'
+
+import { PullRefresh, List, showToast } from 'vant'
 import 'vant/es/empty/style'
 import 'vant/es/toast/style'
 
-const router = useRouter()
+// const router = useRouter()
+const { t } = useI18n()
+
 let listLoading = ref(false)
 let refreshing = ref(false)
 let finished = ref(false)
@@ -60,7 +59,7 @@ let dataList = reactive([])
 let nodata = ref(false)
 
 const getList = () => {
-  getMessage(query)
+  getMessageApi(query)
     .then((resp) => {
       if (refreshing.value) {
         dataList = resp.data.items
@@ -100,7 +99,7 @@ const setReaded = (item) => {
   if (item.isRead) {
     return false
   }
-  setRead({ Id: item.id.toString() })
+  setReadApi({ Id: item.id.toString() })
     .then(() => {
       showToast('设置成功')
       var index = this.dataList.findIndex((fitem) => fitem.id == item.id)
@@ -113,7 +112,7 @@ const setReaded = (item) => {
 
 // 全部设置已读
 const setAllReaded = () => {
-  setAllRead()
+  setAllReadApi()
     .then(() => {
       this.dataList.forEach((item) => {
         item.isRead = true

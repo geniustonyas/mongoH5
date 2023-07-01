@@ -350,7 +350,7 @@
       <div class="mb-bd">
         <div class="other-signin">
           <dl>
-            <dt>Other methods</dt>
+            <dt>{{ $t('otherMethord') }}</dt>
             <dd>
               <a href="#"> <img :src="getAssetsFile('svg/twiter.svg')" />Twitter </a>
             </dd>
@@ -380,7 +380,7 @@ import { getAssetsFile } from '@/utils'
 import { telegramLogin } from '@/utils/telegram'
 import { googleLogin } from '@/utils/google'
 import { useUserStore } from '@/store/modules/user'
-import { checkUserBindGoogle } from '@/api/user/index'
+import { checkUserBindGoogleApi } from '@/api/user/index'
 import { isPwd, isUname } from '@/utils/validate'
 
 import { useI18n } from 'vue-i18n'
@@ -410,7 +410,7 @@ const setShowThirdLoginBox = () => {
 
 // 检查是否绑定Google验证码
 const checkIsBindGoogle = () => {
-  checkUserBindGoogle({ UserName: loginForm.UserName, noLoading: true })
+  checkUserBindGoogleApi({ UserName: loginForm.UserName, noLoading: true })
     .then((resp) => {
       if (resp.data) {
         useGoogleAuthenticatore.value = true

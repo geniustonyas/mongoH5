@@ -5,11 +5,16 @@
 </template>
 
 <script setup name="{{ properCase componentName }}">
-// const { proxy } = getCurrentInstance()
-// const router = useRouter()
-// const route = useRoute()
+import { ref, reactive } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
+import { useUserStore } from '@/store/modules/user'
+import { getAssetsFile } from '@/utils'
+
+import { useI18n } from 'vue-i18n'
+import { showToast, ConfigProvider } from 'vant'
+import 'vant/es/toast/style'
+
+const router = useRouter()
+const { t } = useI18n()
 </script>
-
-<style lang="less" scoped>
-
-</style>

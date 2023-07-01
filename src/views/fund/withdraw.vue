@@ -1,13 +1,6 @@
 <template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l" @click="router.back()">
-          <i class="iconfont icon-return" />
-        </div>
-        <div class="hml-m">withdraw</div>
-      </div>
-    </header>
+    <CommonHeader title="withdraw" />
     <main class="main">
       <div class="fund-box">
         <ul v-show="step != 4" class="progress-bar">
@@ -121,7 +114,7 @@
             </dd>
             <dd>
               Amount：
-              <span>{{ withdrawForm.Amount }} {{ withdrawBalanceItem.unit }}</span>
+              <span>{{ moneyFormat(withdrawForm.Amount) }} {{ withdrawBalanceItem.unit }}</span>
             </dd>
             <dd>
               Network：
@@ -139,13 +132,13 @@
         <div v-show="step == 4" class="fund-form wa">
           <div class="ff-w-a">
             <p>提款进行中</p>
-            <h2>{{ withdrawForm.Amount }}&nbsp;{{ withdrawBalanceItem.unit }}</h2>
+            <h2>{{ moneyFormat(withdrawDetail.amount) }}&nbsp;{{ withdrawDetail.unit }}</h2>
           </div>
           <dl class="ff-rows">
             <dt>钱包细节</dt>
             <dd>
               货币：
-              <span>{{ withdrawForm.CurrencyCode }}</span>
+              <span>{{ withdrawDetail.currencyCode }}</span>
             </dd>
             <dd>
               地址：
@@ -156,7 +149,7 @@
             <dt>总结</dt>
             <dd>
               日期：
-              <span>2023年6月27日 17:23</span>
+              <span>{{ withdrawDetail.createTime }}</span>
             </dd>
             <dd>
               交易类型：
@@ -164,17 +157,17 @@
             </dd>
             <dd>
               最终余额：
-              <span>{{ userStore.userInfo.balance }} usdt</span>
+              <span>{{ withdrawDetail.afterAmount }} {{ withdrawDetail.unit }}</span>
             </dd>
           </dl>
         </div>
         <div v-show="step == 4" class="fund-btn wa">
-          <a class="btn btn-primary" href="fund.html">回到资金</a>
+          <a class="btn btn-primary" @click="router.push({ name: 'fund' })">回到资金</a>
         </div>
         <dl v-show="step != 4" class="cur-lsit">
           <dt>SUPPORT SETTINGS</dt>
           <dd>
-            <a href="#">
+            <a>
               <span> <i class="iconfont icon-setting" />Wallet settings </span>
               <i class="iconfont icon-right" />
             </a>
@@ -224,10 +217,14 @@
 import { ref, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
+import CommonHeader from '@/components/layout/CommonHeader.vue'
+
 import { useUserStore } from '@/store/modules/user'
-import { getMinWithdrawAmount, getBalance, withdrawOrder } from '@/api/fund/index'
-import { getAssetsFile } from '@/utils'
+import { getMinWithdrawAmountApi, getBalanceApi, withdrawOrderApi, getTradeDetailApi } from '@/api/fund/index'
+// import { getTradeDetailResponse } from '@/api/fund/type'
+import { getAssetsFile, moneyFormat } from '@/utils'
 import { usdtChainList } from '@/utils/blockChain'
+import { useI18n } from 'vue-i18n'
 
 import BigNumber from 'bignumber.js'
 import { showToast, Popup, ConfigProvider } from 'vant'
@@ -236,10 +233,22 @@ import 'vant/es/toast/style'
 const userStore = useUserStore()
 const router = useRouter()
 const route = useRoute()
+const { t } = useI18n()
 
 const step = ref(1)
 const percent = ref(0.25)
-
+// 查询提现详情返回数据
+const withdrawDetail = reactive({
+  blockchainCode: '',
+  createTime: '',
+  currencyCode: '',
+  orderId: '',
+  txId: '',
+  amount: '',
+  afterAmount: '',
+  orderType: '',
+  orderStatus: ''
+})
 // 余额列表
 const withdrawBalanceItem = reactive({
   balance: 0,
@@ -284,7 +293,7 @@ const jumpStep = (jumpTo) => {
 
 // 获取最低提现金额
 const getMinWithdraw = () => {
-  getMinWithdrawAmount(getWithdrawAmountForm)
+  getMinWithdrawAmountApi(getWithdrawAmountForm)
     .then((resp) => {
       minWithdrawAmount.value = resp.data?.minimumWithdrawAmount
     })
@@ -296,7 +305,7 @@ const getMinWithdraw = () => {
 
 // 获取余额列表
 const getBalanceList = () => {
-  getBalance()
+  getBalanceApi()
     .then((resp) => {
       const item = resp.data.find((item) => item.name == getWithdrawAmountForm.CurrencyCode)
       if (item) {
@@ -357,11 +366,16 @@ const selTab = () => {
       document.getElementById('googleCode').focus()
       return false
     }
-    withdrawOrder(withdrawForm)
+    withdrawOrderApi(withdrawForm)
       .then((resp) => {
-        showToast('申请提现成功')
+        getTradeDetailApi({ OrderId: resp.data.orderId, orderType: 2 })
+          .then((resp) => {
+            Object.assign(withdrawDetail, resp.data)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
         userStore.getUserInfo()
-        console.log(resp)
         step.value = 4
       })
       .catch((error) => {

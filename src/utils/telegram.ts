@@ -1,5 +1,5 @@
 import { thirdUserExistData, thirdLoginData } from '@/api/user/types'
-import { telegramValidate, checkThirdUser } from '@/api/user/index'
+import { telegramValidateApi, checkThirdUserApi } from '@/api/user/index'
 import { awaitWraper } from './index'
 import { useUserStore } from '@/store/modules/user'
 import router from '@/router'
@@ -20,7 +20,7 @@ export const telegramLogin = () => {
   // @ts-ignore
   window.Telegram.Login.auth({ bot_id: BOT_ID, request_access: 'write', embed: 1 }, (data) => {
     if (data) {
-      telegramValidate(data)
+      telegramValidateApi(data)
         .then((resp) => {
           if (resp.data.ischecked) {
             handleThirdLogin({ ThirdPartyType: '2', ThirdPartyId: data.id, ThirdPartyName: 'Telegram' }, resp.data.sign)
@@ -39,7 +39,7 @@ export const telegramLogin = () => {
 
 // 用户存在则直接登录， 否则跳转注册
 export const handleThirdLogin = async (data: thirdUserExistData, sign: string) => {
-  const isExistResp = await awaitWraper(checkThirdUser(data))
+  const isExistResp = await awaitWraper(checkThirdUserApi(data))
   const isExist = get(isExistResp, '[1].data', false)
   loginData.Sign = sign
   Object.assign(loginData, data)

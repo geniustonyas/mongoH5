@@ -2,7 +2,7 @@ import { request } from '@/utils/axios'
 import type * as User from './types'
 
 /** 登录并返回 Token */
-export function login(data: User.LoginData) {
+export function loginApi(data: User.LoginData) {
   return request<User.LoginResp>({
     url: 'Member/Login',
     method: 'post',
@@ -11,7 +11,7 @@ export function login(data: User.LoginData) {
 }
 
 /** 注册 */
-export function reg(data: User.RegData) {
+export function regApi(data: User.RegData) {
   return request<anyResp>({
     url: 'Member/Reg',
     method: 'post',
@@ -20,7 +20,7 @@ export function reg(data: User.RegData) {
 }
 
 /** 退出登录 */
-export function loginout() {
+export function loginOutApi() {
   return request<anyResp>({
     url: 'Member/Logout',
     method: 'post'
@@ -28,7 +28,7 @@ export function loginout() {
 }
 
 /** 检查用户名是否已经注册 */
-export function checkUser(data: User.CheckData) {
+export function checkUserApi(data: User.CheckData) {
   return request<anyResp>({
     url: 'Member/CheckUserName',
     method: 'post',
@@ -37,7 +37,7 @@ export function checkUser(data: User.CheckData) {
 }
 
 /** 检查用户是否绑定Google */
-export function checkUserBindGoogle(data: User.CheckData) {
+export function checkUserBindGoogleApi(data: User.CheckData) {
   return request<anyResp>({
     url: 'Member/CheckIsBindGoogleAuth',
     method: 'post',
@@ -46,7 +46,7 @@ export function checkUserBindGoogle(data: User.CheckData) {
 }
 
 /** 检查邮箱是否已经注册 */
-export function checkEmail(data: User.CheckData) {
+export function checkEmailApi(data: User.CheckData) {
   return request<anyResp>({
     url: 'Member/CheckEmail',
     method: 'post',
@@ -55,7 +55,7 @@ export function checkEmail(data: User.CheckData) {
 }
 
 /**获取用户信息 */
-export function getUserProfile(data: User.getUserProfileData) {
+export function getUserProfileApi(data: User.getUserProfileData) {
   return request<User.GetUserProfileResp>({
     url: 'Member/GetMemberUserInfo',
     method: 'post',
@@ -64,7 +64,7 @@ export function getUserProfile(data: User.getUserProfileData) {
 }
 
 /**刷新token */
-export function refreshToken() {
+export function refreshTokenApi() {
   return request<any>({
     url: 'Member/refshToken',
     method: 'post'
@@ -72,7 +72,7 @@ export function refreshToken() {
 }
 
 /** 检查第三方用户id是否存在 */
-export function checkThirdUser(data: User.thirdUserExistData) {
+export function checkThirdUserApi(data: User.thirdUserExistData) {
   return request<anyResp>({
     url: 'Member/CheckThirdPartyId',
     method: 'post',
@@ -81,7 +81,7 @@ export function checkThirdUser(data: User.thirdUserExistData) {
 }
 
 /** 验证telegram用户是否真实 */
-export function telegramValidate(params: any) {
+export function telegramValidateApi(params: any) {
   return request<anyResp>({
     url: 'telegram',
     method: 'get',
@@ -91,7 +91,7 @@ export function telegramValidate(params: any) {
 }
 
 /** 验证Google用户是否真实 */
-export function googleValidate(params: any) {
+export function googleValidateApi(params: any) {
   return request<anyResp>({
     url: 'google',
     method: 'get',
@@ -101,7 +101,7 @@ export function googleValidate(params: any) {
 }
 
 /** 第三方登录 */
-export function thirdLogin(data: User.thirdLoginData) {
+export function thirdLoginApi(data: User.thirdLoginData) {
   return request<User.LoginResp>({
     url: 'Member/thirdPartyLogin',
     method: 'post',
@@ -110,7 +110,7 @@ export function thirdLogin(data: User.thirdLoginData) {
 }
 
 /** 第三方注册 */
-export function thirdReg(data: User.thirdRegData) {
+export function thirdRegApi(data: User.thirdRegData) {
   return request<anyResp>({
     url: 'Member/thirdPartyReg',
     method: 'post',

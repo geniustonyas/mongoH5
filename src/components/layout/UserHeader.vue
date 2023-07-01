@@ -2,7 +2,7 @@
   <header class="header">
     <nav class="head-menu-lf">
       <span @click="router.back()"><i class="iconfont icon-return" /></span>
-      <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.png')" /></a>
+      <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>
     </nav>
   </header>
 </template>

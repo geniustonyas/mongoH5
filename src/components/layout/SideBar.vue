@@ -9,19 +9,19 @@
         </div>
         <div class="hm-m" />
         <div class="hm-r">
-          <a class="btn" @click="router.push({ name: 'reg' })">Register</a>
-          <a class="btn btn-primary" @click="router.push({ name: 'login' })">Sign In</a>
+          <a class="btn" @click="router.push({ name: 'reg' })">{{ t('reg') }}</a>
+          <a class="btn btn-primary" @click="router.push({ name: 'login' })">{{ t('login') }}</a>
         </div>
       </nav>
     </header>
     <section class="sm-main">
       <nav class="m-logo">
-        <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.png')" /></a>
+        <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>
       </nav>
       <nav class="m-menu">
-        <a> <img :src="getAssetsFile('svg/sports.svg')" />Sports </a>
-        <a> <img :src="getAssetsFile('svg/livecasino.svg')" />Live Casino </a>
-        <a> <img :src="getAssetsFile('svg/slots.svg')" />Slots </a>
+        <a> <img :src="getAssetsFile('svg/sports.svg')" />{{ t('sports') }} </a>
+        <a> <img :src="getAssetsFile('svg/livecasino.svg')" />{{ t('liveCasino') }}</a>
+        <a> <img :src="getAssetsFile('svg/slots.svg')" />{{ t('slots') }} </a>
       </nav>
       <nav class="sm-menulist">
         <div :class="collapseSport ? 'menu-item show' : 'menu-item'">
@@ -29,16 +29,16 @@
           <Vue3SlideUpDown v-model="collapseSport">
             <ul>
               <li>
-                <a><img :src="getAssetsFile('svg/SabaSports.svg')" />Saba Sports</a>
+                <a><img :src="getAssetsFile('svg/SabaSports.svg')" />{{ t('sbSport') }}</a>
               </li>
               <li>
-                <a><img :src="getAssetsFile('svg/FBSports.svg')" />FB Sports</a>
+                <a><img :src="getAssetsFile('svg/FBSports.svg')" />{{ t('fbSport') }}</a>
               </li>
             </ul>
           </Vue3SlideUpDown>
         </div>
         <div :class="collapseLiveCashno ? 'menu-item show' : 'menu-item'">
-          <h2 @click="collapseLiveCashno = !collapseLiveCashno">Live Casino<i class="iconfont icon-down" /></h2>
+          <h2 @click="collapseLiveCashno = !collapseLiveCashno">{{ t('liveCasino') }}<i class="iconfont icon-down" /></h2>
           <Vue3SlideUpDown v-model="collapseLiveCashno">
             <ul>
               <li>
@@ -78,7 +78,7 @@
         <div class="menu-item show">
           <ul>
             <li>
-              <a><img :src="getAssetsFile('svg/ClubHouse.svg')" />Club House</a>
+              <a><img :src="getAssetsFile('svg/ClubHouse.svg')" />{{ t('club') }}</a>
             </li>
             <li>
               <a><img :src="getAssetsFile('svg/VIP.svg')" />VIP Clubhouse</a>
@@ -88,12 +88,21 @@
         <div class="menu-item show">
           <ul>
             <li>
-              <a><img :src="getAssetsFile('svg/App.svg')" />Download the App<small>For IOS and Android</small></a>
+              <a>
+                <img :src="getAssetsFile('svg/App.svg')" />
+                {{ t('downloadApp') }}
+                <small>{{ t('androidApple') }}</small>
+              </a>
             </li>
           </ul>
         </div>
       </nav>
-      <nav class="m-rate">English</nav>
+      <nav class="m-rate">
+        <select v-model="locale" class="form-control" @change="selLang">
+          <option value="cn">中文</option>
+          <option value="en">English</option>
+        </select>
+      </nav>
       <nav class="m-rate">1<b>BTC</b>=25,006,02<b>EUR</b></nav>
     </section>
   </aside>
@@ -102,6 +111,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
 // 引用方法
 import { getAssetsFile } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
@@ -109,8 +120,16 @@ import { useAppStore } from '@/store/modules/app'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 const appStore = useAppStore()
 const router = useRouter()
+const { t, locale } = useI18n()
 // 侧边框内容展开折叠
 let collapseSport = ref(true)
 let collapseLiveCashno = ref(true)
 let collapseSlots = ref(true)
+
+console.log(locale.value)
+const selLang = () => {
+  document.querySelector('html').setAttribute('lang', locale.value)
+  localStorage.setItem('lang', locale.value)
+  console.log(locale.value)
+}
 </script>

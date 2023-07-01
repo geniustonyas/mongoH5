@@ -1,23 +1,23 @@
 <template>
   <div class="page">
     <header class="header">
-      <h3>My Profile</h3>
+      <h3>{{ t('myprfile') }}</h3>
     </header>
     <main class="main">
       <div class="myprofile-box">
-        <div class="mp-steel">
+        <div class="mp-steel" @click="router.push({ name: 'clubHouse' })">
           <div class="ms-t">
             <div class="mt-l">
               <img :src="getAssetsFile('Lvl1.png')" />
               <p>
-                <span>Clubhouse tier</span>
-                <span>Current Multiplier</span>
+                <span>{{ t('clubLevel') }}</span>
+                <span>{{ t('homePage.currentMultiplier') }}</span>
               </p>
             </div>
             <div class="mt-r">
-              <h2>Steel</h2>
+              <h2>{{ t('userLevels.101') }}</h2>
               <span>
-                <b>1</b>
+                <b>1 </b>
                 <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0)">
                     <path
@@ -48,44 +48,44 @@
             </div>
           </div>
           <div class="ms-m">
-            <div class="m-t">Next tier reward</div>
+            <div class="m-t">{{ t('homePage.nextReward') }}</div>
             <div class="schedule-bar">
               <div class="sb-line" />
               <span>0/2800</span>
             </div>
           </div>
           <div class="ms-b">
-            <a @click="router.push({ name: 'clubHouse' })"> Show my progress<i class="iconfont icon-right" /> </a>
+            <a @click="router.push({ name: 'clubHouse' })"> {{ t('homePage.showProgress') }} <i class="iconfont icon-right" /> </a>
           </div>
         </div>
         <div class="mp-list">
           <ul class="list-group">
             <li>
               <a @click="router.push({ name: 'account' })">
-                <span><i class="iconfont icon-users" />Account </span>
+                <span><i class="iconfont icon-users" />{{ t('account') }} </span>
                 <i class="iconfont icon-right" />
               </a>
             </li>
             <li>
               <a @click="router.push({ name: 'betRecord' })">
-                <span><i class="iconfont icon-bets" />My bets </span>
+                <span><i class="iconfont icon-bets" />{{ t('myBets') }} </span>
                 <i class="iconfont icon-right" />
               </a>
             </li>
             <li>
               <a @click="router.push({ name: 'rewards' })">
-                <span><i class="iconfont icon-rewards" />Rewards </span>
+                <span><i class="iconfont icon-rewards" />{{ t('rewards') }} </span>
                 <i class="iconfont icon-right" />
               </a>
             </li>
             <li>
               <a @click="router.push({ name: 'message' })">
-                <span><i class="iconfont icon-tixing" />Notifications </span>
+                <span><i class="iconfont icon-tixing" />{{ t('notifications') }} </span>
                 <i class="iconfont icon-right" />
               </a>
             </li>
           </ul>
-          <a class="btn btn-primary" @click="handleLogout()">LOG OUT</a>
+          <a class="btn btn-primary" @click="handleLogout()">{{ t('logout') }}</a>
         </div>
       </div>
     </main>
@@ -100,11 +100,15 @@ import Footer from '@/components/layout/Footer.vue'
 
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
+
+import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
 const router = useRouter()
 const userStore = useUserStore()
+const { t } = useI18n()
+
 const handleLogout = () => {
   userStore
     .logout()

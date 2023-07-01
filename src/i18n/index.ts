@@ -1,23 +1,25 @@
 import { createI18n } from 'vue-i18n'
 import { getUrlAllParams } from '@/utils/index'
-import zh from './config/cn'
+import cn from './config/cn'
 import en from './config/en'
 
 const params = getUrlAllParams()
 const messages = {
   en,
-  zh
+  cn
 }
-const browerLang = (navigator.language || 'en').toLocaleLowerCase() // 获取浏览器的语言
-const lang = params?.lang || localStorage.getItem('lang') || browerLang.split('-')[0] || 'en' // 首先从缓存里拿，没有的话就用浏览器语言，
+
+const browerLang = (navigator.language || 'en').toLocaleLowerCase()
+// 首先参数中获取语言，其次用本地获取，其次从浏览器获取，如果都没有则设置为英语
+const lang = params?.lang || localStorage.getItem('lang') || browerLang.split('-')[0] || 'en'
 localStorage.setItem('lang', lang)
 const i18n = createI18n({
+  globalInjection: true,
   locale: lang,
   legacy: false,
   fallbackLocale: 'en', // 设置备用语言
   messages
 })
-
 export default i18n
 // import Vue from 'vue'
 // import VueI18n from 'vue-i18n'

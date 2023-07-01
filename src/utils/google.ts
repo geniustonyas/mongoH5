@@ -1,5 +1,5 @@
 import { thirdUserExistData, thirdLoginData } from '@/api/user/types'
-import { googleValidate, checkThirdUser } from '@/api/user/index'
+import { googleValidateApi, checkThirdUserApi } from '@/api/user/index'
 import { awaitWraper } from './index'
 import { useUserStore } from '@/store/modules/user'
 import router from '@/router'
@@ -21,7 +21,7 @@ export const googleLogin = () => {
   googleTokenLogin({
     clientId: GOOGLE_CLIENT_ID
   }).then((response) => {
-    googleValidate({ access_token: response.access_token })
+    googleValidateApi({ access_token: response.access_token })
       .then((resp) => {
         if (resp.data?.userInfo?.id) {
           handleThirdLogin({ ThirdPartyType: '4', ThirdPartyId: resp.data?.userInfo?.id, ThirdPartyName: 'Google' }, resp.data.sign)
@@ -37,7 +37,7 @@ export const googleLogin = () => {
 
 // 用户存在则直接登录， 否则跳转注册
 export const handleThirdLogin = async (data: thirdUserExistData, sign: string) => {
-  const isExistResp = await awaitWraper(checkThirdUser(data))
+  const isExistResp = await awaitWraper(checkThirdUserApi(data))
   const isExist = get(isExistResp, '[1].data', false)
   loginData.Sign = sign
   Object.assign(loginData, data)

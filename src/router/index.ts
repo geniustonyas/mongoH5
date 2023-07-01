@@ -36,6 +36,12 @@ const routes = [
         name: 'tradeRecord',
         component: () => import('@/views/fund/tradeRecord.vue'),
         meta: { transition: '', needLogin: true }
+      },
+      {
+        path: 'walletSetting',
+        name: 'walletSetting',
+        component: () => import('@/views/fund/walletSetting.vue'),
+        meta: { transition: '', needLogin: true }
       }
     ]
   },

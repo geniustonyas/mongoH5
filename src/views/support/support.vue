@@ -1,21 +1,17 @@
 <template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-m">Support</div>
-      </div>
-    </header>
+    <CommonHeader :show-back="false" title="Support" />
     <main class="main" />
     <Footer />
   </div>
 </template>
 
 <script setup name="PromoPromo">
-// import { getAssetsFile } from '@/utils'
+import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Footer from '@/components/layout/Footer.vue'
-// const { proxy } = getCurrentInstance()
-// const router = useRouter()
-// const route = useRoute()
-</script>
 
-<style lang="less" scoped></style>
+import { getAssetsFile } from '@/utils'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+</script>

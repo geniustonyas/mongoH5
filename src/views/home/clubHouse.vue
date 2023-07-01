@@ -1,17 +1,13 @@
 <template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l" onclick="window.history.go(-1) ">
-          <i class="iconfont icon-return" />
-        </div>
-        <div class="hml-m">Clubhouse</div>
-      </div>
-    </header>
+    <CommonHeader :title="t('club')" />
     <main class="main">
       <div class="clubhouse-box">
         <div class="cb-card">
-          <div class="c-name">Tiers<b>Steel</b></div>
+          <div class="c-name">
+            {{ t('tiers') }}
+            <b>{{ t('101') }}</b>
+          </div>
           <div class="c-icon">
             <svg class="circle_grade">
               <circle id="cg_progress" cx="65" cy="65" r="60" stroke="#333" stroke-width="3" fill="none" />
@@ -23,7 +19,7 @@
           </div>
           <div class="c_points">
             <b>1<em>|</em>5</b>
-            Current Points
+            {{ t('currentPoints') }}
           </div>
           <div class="c-grade">
             <div class="cg-t">
@@ -51,7 +47,7 @@
               </a>
             </div>
             <div class="cg-b">
-              <div class="b-l">Current points multiplier</div>
+              <div class="b-l">{{ t('currentPointsMultiplier') }}</div>
               <div class="b-r">
                 <b>1 x</b>
                 <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +81,7 @@
           </div>
         </div>
         <div class="cb-list">
-          <div class="l-title">Rewards</div>
+          <div class="l-title">{{ t('rewards') }}</div>
           <div class="l-rows">
             <div class="r-item">
               <div class="ri-t">
@@ -475,5 +471,14 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+import CommonHeader from '@/components/layout/CommonHeader.vue'
+
 import { getAssetsFile } from '@/utils'
+
+import { useI18n } from 'vue-i18n'
+
+const router = useRouter()
+const { t } = useI18n()
 </script>

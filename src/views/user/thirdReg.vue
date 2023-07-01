@@ -4,7 +4,7 @@
     <main class="main">
       <div class="loginbox">
         <div class="l-partner">
-          <div class="lp-l">Official Partner of</div>
+          <div class="lp-l">{{ t('partner') }}</div>
           <div class="lp-r">
             <a href="#">
               <svg width="100%" height="1em" viewBox="0 0 355.508 405.592" xmlns="http://www.w3.org/2000/svg" font-size="1.3rem" class="sc-bCBNXU bvpEFf">
@@ -275,66 +275,82 @@
           </div>
         </div>
         <div class="l-signin third-reg">
-          <h1>快完成了哦！</h1>
-          <h3>请补充完整您的资料</h3>
+          <h1>{{ t('thirdRegPage.beFinished') }}</h1>
+          <h3>{{ t('thirdRegPage.fixInfo') }}</h3>
         </div>
         <div class="custom-form">
           <div class="cf-row">
             <div class="cr-label">
-              <span>Username</span>
+              <span>{{ t('userName') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model="regForm.UserName" ref="userNameDom" type="text" class="form-control" placeholder="Name your account" @blur="checkUserExist()" />
+              <input v-model="regForm.UserName" ref="userNameDom" type="text" class="form-control" :placeholder="t('regPage.holderUserName')" @blur="checkUserExist()" />
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-label">
-              <span>Email</span>
+              <span>{{ t('email') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model="regForm.Email" ref="emailDom" type="email" class="form-control" placeholder="e.g.you@example.com" @blur="checkEmailExist()" />
+              <input v-model="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" />
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-label">
-              <span>Date of Birth</span>
+              <span>{{ t('birthday') }}</span>
             </div>
             <div class="cr-input group">
-              <input v-model="day" ref="dayDom" type="number" class="form-control" placeholder=" Day" style="padding: 0 1rem" />
-              <input v-model="month" ref="monthDom" type="number" class="form-control" placeholder=" Month" style="padding: 0 1rem" />
-              <input v-model="year" ref="yearDom" type="number" class="form-control" placeholder=" Year" style="padding: 0 1rem" />
+              <!-- <input v-model="day" ref="dayDom" type="number" class="form-control" :placeholder="t('day')" style="padding: 0 1rem" />
+              <input v-model="month" ref="monthDom" type="number" class="form-control" :placeholder="t('month')" style="padding: 0 1rem" />
+              <input v-model="year" ref="yearDom" type="number" class="form-control" :placeholder="t('year')" style="padding: 0 1rem" /> -->
+              <select class="form-control" v-model="day" ref="dayDom">
+                <option v-for="item in 31" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
+              </select>
+              <select class="form-control" v-model="month" ref="monthDom">
+                <option v-for="item in 12" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
+              </select>
+              <select class="form-control" v-model="year" ref="yearDom">
+                <option v-for="item in getYearList()" :key="item" :value="item">{{ item }}</option>
+              </select>
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-label">
-              <span>Phone number</span>
+              <span>{{ t('telephone') }}</span>
             </div>
             <div class="cr-input group g-tel">
               <select v-model="regForm.CountryCode" ref="countryDom" class="form-control">
                 <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
               </select>
-              <input v-model="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" placeholder="" />
+              <input v-model="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" :placeholder="t('regPage.holderTelephone')" />
             </div>
           </div>
 
           <div class="cf-row">
             <div class="cr-mark cm-checkbox">
-              <input type="checkbox" checked />I confirm that I am at least 18 years of age, and accept the <a href="#">Terms and Conditions</a>and <a href="#">Privacy Policy.</a>
+              <input type="checkbox" checked />
+              {{ t('regPage.isAdult') }}
+              <a href="#">{{ t('regPage.termCondition') }}</a>
+              {{ t('and') }}
+              <a href="#">{{ t('regPage.privacyPolicy') }}</a>
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-mark cm-checkbox">
-              <input type="checkbox" checked />I agree to receive marketing communication about exclusive Seabet.io rewards and promotions <a href="#">Terms and Conditions</a>and
-              <a href="#">Privacy Policy.</a>
+              <input type="checkbox" checked />
+              {{ t('regPage.isAgree') }}
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <a class="btn btn-primary full" @click="handleReg()">Create account</a>
+              <a class="btn btn-primary full" @click="handleReg()">{{ t('createUser') }}</a>
             </div>
           </div>
           <div class="cf-row">
-            <div class="cr-bo">Have an account？ <a @click="router.push({ name: 'login' })">Sign In</a></div>
+            <div class="cr-bo">
+              {{ t('hasAccount') }}
+              <a @click="router.push({ name: 'login' })">{{ t('login') }}</a>
+            </div>
           </div>
         </div>
       </div>
@@ -350,19 +366,23 @@ import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { awaitWraper } from '@/utils'
 import { useUserStore } from '@/store/modules/user'
+import { getYearList } from '@/utils'
 import { countryCode } from '@/utils/countryCode'
 import { isUname, isEmail } from '@/utils/validate'
-import { checkUser, checkEmail, thirdReg } from '@/api/user'
+import { checkUserApi, checkEmailApi, thirdRegApi } from '@/api/user'
 
+import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
 const route = useRoute()
 const router = useRouter()
-if (!route.query.ThirdPartyType || !route.query.ThirdPartyId || !route.query.ThirdPartyName || !route.query.Sign) {
-  showToast('参数错误')
-  router.back()
-}
+const { t } = useI18n()
+
+// if (!route.query.ThirdPartyType || !route.query.ThirdPartyId || !route.query.ThirdPartyName || !route.query.Sign) {
+//   showToast('参数错误')
+//   router.back()
+// }
 const userStore = useUserStore()
 
 // 临时存储表单值
@@ -403,7 +423,7 @@ let loginForm = {
 // 检查用户名是否占用
 const checkUserExist = async () => {
   try {
-    const isExistUserResp = await checkUser({ UserName: regForm.UserName })
+    const isExistUserResp = await checkUserApi({ UserName: regForm.UserName })
     if (isExistUserResp.data) {
       userNameDom.value?.focus()
       showToast('用户名已被占用')
@@ -418,7 +438,7 @@ const checkUserExist = async () => {
 // 检查用户名是否占用
 const checkEmailExist = async () => {
   try {
-    const isExistEmailResp = await checkEmail({ Keyword: regForm.Email })
+    const isExistEmailResp = await checkEmailApi({ Keyword: regForm.Email })
     if (isExistEmailResp.data) {
       emailDom.value?.focus()
       showToast('邮箱已被占用')
@@ -481,7 +501,7 @@ const handleReg = async () => {
   }
   Object.assign(regForm, route.query)
   Object.assign(loginForm, route.query)
-  const regResult = await awaitWraper(thirdReg(regForm))
+  const regResult = await awaitWraper(thirdRegApi(regForm))
   if (regResult[0]) {
     showToast(regResult[0])
     return false

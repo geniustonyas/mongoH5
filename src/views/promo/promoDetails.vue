@@ -1,13 +1,6 @@
 <template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l" onclick="window.history.go(-1) ">
-          <i class="iconfont icon-return" />
-        </div>
-        <div class="hml-m">Promotions Details</div>
-      </div>
-    </header>
+    <CommonHeader title="Promotions Details" />
     <main class="main">
       <div class="promo-box">
         <div class="pb-detail">
@@ -83,8 +76,10 @@
 </template>
 
 <script setup name="PromoPromo">
+import CommonHeader from '@/components/layout/CommonHeader.vue'
+
 import { getAssetsFile } from '@/utils'
-// const { proxy } = getCurrentInstance()
-// const router = useRouter()
-// const route = useRoute()
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>

@@ -1,41 +1,34 @@
 <template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l" onclick="window.history.go(-1) ">
-          <i class="iconfont icon-return" />
-        </div>
-        <div class="hml-m">Account</div>
-      </div>
-    </header>
+    <CommonHeader :title="t('userAccount')" />
     <main class="main">
       <div class="account-box">
         <div class="ab-list">
           <div class="l-item">
-            <div class="i-title" @click="collapseInfo = !collapseInfo"><i class="iconfont icon-sfz" /> General Information</div>
+            <div class="i-title" @click="collapseInfo = !collapseInfo"><i class="iconfont icon-sfz" /> {{ t('generalInformation') }}</div>
             <Vue3SlideUpDown v-model="collapseInfo">
               <div class="i-form">
                 <div class="custom-form">
                   <div class="cf-row">
                     <div class="cr-label">
-                      <span>Username</span>
+                      <span>{{ t('userName') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input :value="userStore.userInfo.userName" type="text" class="form-control" placeholder="Musk" disabled />
+                      <input :value="userStore.userInfo.userName" type="text" class="form-control" placeholder="" disabled />
                     </div>
                   </div>
                   <div class="cf-row">
                     <div class="cr-label">
-                      <span>Email</span>
+                      <span>{{ t('email') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input :value="userStore.userInfo.email" type="email" class="form-control" placeholder="musk@autic.com" disabled />
+                      <input :value="userStore.userInfo.email" type="email" class="form-control" placeholder="" disabled />
                     </div>
                   </div>
 
                   <div class="cf-row">
                     <div class="cr-label">
-                      <span>Date of Birth</span>
+                      <span>{{ t('birthday') }}</span>
                     </div>
                     <div class="cr-input group">
                       <select class="form-control" v-model="day" ref="dayDom">
@@ -51,7 +44,7 @@
                   </div>
                   <div class="cf-row">
                     <div class="cr-label">
-                      <span>Phone number</span>
+                      <span>{{ t('telephone') }}</span>
                     </div>
                     <div class="cr-input group g-tel">
                       <select v-model="editInfoForm.CountryCode" ref="countryDom" class="form-control">
@@ -62,7 +55,7 @@
                   </div>
                   <div class="cf-row">
                     <div class="cr-label">
-                      <span>Address</span>
+                      <span>{{ t('address') }}</span>
                     </div>
                     <div class="cr-input">
                       <input v-model="editInfoForm.Address" ref="addressDom" class="form-control" placeholder="Address" />
@@ -70,7 +63,7 @@
                   </div>
                   <div class="cf-row">
                     <div class="cr-label">
-                      <span>Zipcode</span>
+                      <span>{{ t('zipCode') }}</span>
                     </div>
                     <div class="cr-input">
                       <input v-model="editInfoForm.Zipcode" ref="zipcodeDom" type="number" class="form-control" placeholder="Zipcode" />
@@ -78,7 +71,7 @@
                   </div>
                   <div class="cf-row" v-if="userStore.userInfo.isBindGoogleAuth">
                     <div class="cr-label">
-                      <span>Google VerificationCode</span>
+                      <span>{{ t('googleCode') }}</span>
                     </div>
                     <div class="cr-input">
                       <input v-model="editInfoForm.VerificationCode" ref="editVerificationCodeDom" type="number" class="form-control" placeholder="Google VerificationCode" />
@@ -95,13 +88,13 @@
           </div>
           <!-- 修改用户密码 -->
           <div class="l-item">
-            <div class="i-title" @click="collapsePwd = !collapsePwd"><i class="iconfont icon-password" /> Change Password</div>
+            <div class="i-title" @click="collapsePwd = !collapsePwd"><i class="iconfont icon-password" /> {{ t('changePassword') }}</div>
             <Vue3SlideUpDown v-model="collapsePwd">
               <div class="i-form">
                 <div class="custom-form">
                   <div class="cf-row">
                     <div class="cr-label">
-                      <span>Enter your current password</span>
+                      <span>{{ t('currentPwd') }}</span>
                     </div>
                     <div class="cr-input">
                       <input v-model="editPwdForm.OldPassword" ref="oldPwdDom" :type="showOldPwd ? 'text' : 'password'" class="form-control" placeholder="" />
@@ -112,7 +105,7 @@
                   </div>
                   <div class="cf-row">
                     <div class="cr-label">
-                      <span>Enter new password</span>
+                      <span>{{ t('newPwd') }}</span>
                     </div>
                     <div class="cr-input">
                       <input v-model="editPwdForm.NewPassword" ref="newPwdDom" :type="showNewPwd ? 'text' : 'password'" class="form-control" placeholder="" />
@@ -123,7 +116,7 @@
                   </div>
                   <div class="cf-row">
                     <div class="cr-label">
-                      <span>Repeat password</span>
+                      <span>{{ t('confirmPwd') }}</span>
                     </div>
                     <div class="cr-input">
                       <input v-model="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" placeholder="" />
@@ -134,18 +127,18 @@
                   </div>
                   <div class="cf-row" v-if="userStore.userInfo.isBindGoogleAuth">
                     <div class="cr-label">
-                      <span>Google VerificationCode</span>
+                      <span>{{ t('googleAuthenticator') }}</span>
                     </div>
                     <div class="cr-input">
                       <input v-model="editPwdForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" placeholder="" />
                     </div>
                   </div>
                   <div class="cf-row">
-                    <div class="cr-mark">If you change your password,you will be unable to withdraw for 48 hours due to security reasons.</div>
+                    <div class="cr-mark">{{ t('changePwdLimit') }}</div>
                   </div>
                   <div class="cf-row">
                     <div class="cr-btns">
-                      <a class="btn btn-primary full" @click="changePwd()">Change Password</a>
+                      <a class="btn btn-primary full" @click="changePwd()">{{ t('changePassword') }}</a>
                     </div>
                   </div>
                 </div>
@@ -154,32 +147,32 @@
           </div>
           <!-- region Google 验证码 -->
           <div class="l-item">
-            <div class="i-title" @click="collapseGoogle = !collapseGoogle"><i class="iconfont icon-googlecode" /> Google Authenticator</div>
+            <div class="i-title" @click="collapseGoogle = !collapseGoogle"><i class="iconfont icon-googlecode" /> {{ t('googleAuthenticator') }}</div>
             <Vue3SlideUpDown v-model="collapseGoogle">
               <div class="i-form google">
                 <div class="fg-title">
-                  <h3>Google Authenticator is disabled</h3>
-                  <p>To activate,scan the QR code or enter the code manually</p>
+                  <h3>{{ t('disabledGoogle') }}</h3>
+                  <p>{{ t('activeGoogle') }}</p>
                 </div>
                 <div v-if="qrcodeValue != ''" class="fg-qrcode">
                   <qrcode-vue :value="qrcodeValue" :size="150" level="H" />
-                  <a target="_blank"> <i class="iconfont icon-bangzhu" /> What is google authenticator? </a>
+                  <a target="_blank"> <i class="iconfont icon-bangzhu" />{{ t('whatGoogleCode') }}</a>
                 </div>
                 <div class="cr-input">
-                  <input v-model="bindGoogleCodeForm.VerificationCode" type="text" class="form-control" placeholder="Type code" maxlength="8" />
-                  <a class="btn btn-primary" @click="bindGoogle()">Submit Code</a>
+                  <input v-model="bindGoogleCodeForm.VerificationCode" type="text" class="form-control" :placeholder="t('typeCode')" maxlength="8" />
+                  <a class="btn btn-primary" @click="bindGoogle()">{{ t('submitCode') }}</a>
                 </div>
-                <div class="cr-mark">Key value:GV3E25fceCJVJXARLUINRU2455C</div>
+                <div class="cr-mark">{{ t('keyValue') }}: {{ keyValue }}</div>
               </div>
             </Vue3SlideUpDown>
           </div>
           <!-- endregion -->
-          <div class="l-item">
+          <!-- <div class="l-item">
             <div class="i-title" @click="collapseVerify = !collapseVerify"><i class="iconfont icon-scsfz" /> Verify Account</div>
             <Vue3SlideUpDown v-model="collapseVerify">
               <div class="i-form">.....</div>
             </Vue3SlideUpDown>
-          </div>
+          </div> -->
         </div>
       </div>
     </main>
@@ -187,17 +180,19 @@
 </template>
 
 <script setup lang="ts">
-// vue自带
 import { reactive, ref } from 'vue'
 
+import CommonHeader from '@/components/layout/CommonHeader.vue'
+
 // import { getAssetsFile } from '@/utils'
-import { editUserInfo, getGoogleCode, bindGoogleCode, editPassword } from '@/api/home/index'
+import { editUserInfoApi, getGoogleCodeApi, bindGoogleCodeApi, editPasswordApi } from '@/api/home/index'
 import { editUserInfoData, googleCodeData, ediPwdData } from '@/api/home/types'
 import { useUserStore } from '@/store/modules/user'
 import { isPwd, isEmpty } from '@/utils/validate'
 import { countryCode } from '@/utils/countryCode'
 import { getYearList } from '@/utils'
 //第三方插件
+import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast } from 'vant'
@@ -205,12 +200,13 @@ import 'vant/es/toast/style'
 import router from '@/router'
 
 const userStore = useUserStore()
+const { t } = useI18n()
 
 // 展开折叠
 let collapseInfo = ref(false)
 let collapsePwd = ref(false)
 let collapseGoogle = ref(false)
-let collapseVerify = ref(false)
+// let collapseVerify = ref(false)
 
 // 修改个人信息
 let dayDom = ref<HTMLInputElement | null>(null)
@@ -262,6 +258,7 @@ const editPwdForm: ediPwdData = reactive({
 
 // 绑定google验证码 二维码值
 let qrcodeValue = ref('')
+let keyValue = ref('')
 const bindGoogleCodeForm: googleCodeData = reactive({ VerificationCode: '' })
 
 // 修改个人信息
@@ -307,7 +304,7 @@ const editInfo = () => {
     return false
   }
   editInfoForm.DateOfBirth = `${year.value}-${month.value}-${day.value}`
-  editUserInfo(editInfoForm)
+  editUserInfoApi(editInfoForm)
     .then(() => {
       showToast('修改用户信息成功')
       userStore.getUserInfo({ noLoading: false })
@@ -340,7 +337,7 @@ const changePwd = () => {
     verificationCodeDom?.value?.focus()
     return false
   }
-  editPassword(editPwdForm)
+  editPasswordApi(editPwdForm)
     .then(() => {
       userStore.logout()
       showToast('修改密码成功，请重新登录')
@@ -352,9 +349,10 @@ const changePwd = () => {
 
 // 获取google验证码
 const getGooogle = () => {
-  getGoogleCode()
+  getGoogleCodeApi()
     .then((resp) => {
       const userStore = useUserStore()
+      keyValue.value = resp.manualEntryKey
       qrcodeValue.value = `otpauth://totp/Gamix?secret=${resp.manualEntryKey}&issuer=${userStore.userInfo.userName}`
     })
     .catch((error) => {
@@ -366,7 +364,7 @@ getGooogle()
 
 // 绑定google验证码
 const bindGoogle = () => {
-  bindGoogleCode(bindGoogleCodeForm)
+  bindGoogleCodeApi(bindGoogleCodeForm)
     .then((resp) => {
       userStore.getUserInfo({ noLoading: false })
       showToast(resp.message)

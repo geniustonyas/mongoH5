@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import store from '@/store'
 
-import { login as userLogin, thirdLogin as userThirdLogin, getUserProfile, loginout, refreshToken } from '@/api/user/index'
+import { loginApi, thirdLoginApi, getUserProfileApi, loginOutApi, refreshTokenApi } from '@/api/user/index'
 import { LoginData, getUserProfileData, thirdLoginData } from '@/api/user/types'
 import { setToken, clearToken } from '@/utils/auth'
 
@@ -37,7 +37,7 @@ export const useUserStore = defineStore('userInfo', () => {
 
   const getUserInfo = (data: getUserProfileData) => {
     return new Promise((resolve, reject) => {
-      getUserProfile(data)
+      getUserProfileApi(data)
         .then((resp) => {
           // userInfo =
           Object.assign(userInfo, resp.data as UserInfoType)
@@ -49,6 +49,7 @@ export const useUserStore = defineStore('userInfo', () => {
     })
   }
 
+  // 刷新用户信息.
   const refreshUserInfo = () => {
     return new Promise((resolve, reject) => {
       getUserInfo({ noLoading: true })
@@ -72,14 +73,14 @@ export const useUserStore = defineStore('userInfo', () => {
       clearInterval(refreshTokenTimer.value)
     }
     refreshTokenTimer.value = window.setInterval(() => {
-      refreshToken()
+      refreshTokenApi()
     }, 1 * 60 * 1000)
   }
 
   // 登录
   const login = (loginForm: LoginData) => {
     return new Promise((resolve, reject) => {
-      userLogin(loginForm)
+      loginApi(loginForm)
         .then((resp) => {
           const token = resp.data?.token
           if (token) {
@@ -96,7 +97,7 @@ export const useUserStore = defineStore('userInfo', () => {
   // 第三方登录
   const thirdLogin = (loginForm: thirdLoginData) => {
     return new Promise((resolve, reject) => {
-      userThirdLogin(loginForm)
+      thirdLoginApi(loginForm)
         .then((resp) => {
           const token = resp.data?.token
           if (token) {
@@ -113,7 +114,7 @@ export const useUserStore = defineStore('userInfo', () => {
   // Logout
   const logout = () => {
     return new Promise((resolve, reject) => {
-      loginout()
+      loginOutApi()
         .then((resp) => {
           clearLogin()
           router.push({ name: 'login' })
