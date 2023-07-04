@@ -12,6 +12,19 @@ export interface LoginData {
   VerificationCode?: string
 }
 
+// 发送邮件验证码
+export interface sendEmailData {
+  EmailCheckCodeType: string | number
+  Email: string
+}
+
+// 找回密码
+export interface resetPwdData {
+  Email: string
+  PassWord: string
+  VerificationCode: string
+}
+
 // 注册类型
 export interface RegData {
   UserName: string
@@ -22,6 +35,7 @@ export interface RegData {
   AgentId?: string
   DateOfBirth: string
   RegisterUrl: string
+  VerificationCode: string
 }
 
 // 获取用户信息
@@ -36,19 +50,12 @@ export interface CheckData {
   noLoading?: boolean
 }
 
-// 检查第三方用户是否存在
-export interface thirdUserExistData {
-  ThirdPartyType: string | number
-  ThirdPartyId: string | number
-  ThirdPartyName: string
-}
-
 // 第三方登录
-export interface thirdLoginData {
+export interface thirdData {
   ThirdPartyType: string
   ThirdPartyId: string
   ThirdPartyName: string
-  Sign: string
+  Sign?: string
 }
 
 // 第三方注册
@@ -64,6 +71,7 @@ export interface thirdRegData {
   ThirdPartyId: string
   ThirdPartyName: string
   Sign: string
+  VerificationCode: string
 }
 
 // // telegram登录

@@ -63,6 +63,16 @@ body {
         }
 
         .hm-r {
+            .badge {
+                display: inline-block;
+                position: relative;
+                .size(7px, 7px);
+                .radius(50%);
+                .bgc(var(--color-primary), var(--color-white));
+                font-size: 0.6rem;
+                bottom: 12px;
+                left: -8px
+            }
         }
 
         .hm-m {
@@ -2658,6 +2668,20 @@ body {
                     i:before {
                         content: "\e677";
                     }
+                }
+            }
+            .captcha {
+                position: absolute;
+                right: 1rem;
+                top: .1rem;
+                width: 8rem;
+                .h-lh(3.8rem);
+                cursor: pointer;
+                z-index: 1;
+                color: var(--color-white);
+                text-align: right;
+                &.sended{
+                    color:var(--color-text)
                 }
             }
         }

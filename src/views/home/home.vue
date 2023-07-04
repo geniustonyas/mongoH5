@@ -113,7 +113,7 @@ const handleLogout = () => {
   userStore
     .logout()
     .then((resp) => {
-      showToast('退出登录成功')
+      showToast(t('tips.logoutSuccess'))
       console.log(resp)
     })
     .catch((error) => {

@@ -4,7 +4,6 @@ import { useAppStoreHook } from '@/store/modules/app'
 import { get } from 'lodash-es'
 import { TokenPrefix, getToken } from '@/utils/auth'
 
-const useAppStore = useAppStoreHook()
 let loadingRequestCount = 0 // loading请求数
 
 /** 创建请求实例 */
@@ -16,12 +15,12 @@ function createService() {
       loadingRequestCount = loadingRequestCount + 1 // 统计请求数
       if (config.method?.toLowerCase() == 'post') {
         if (!config.data || !config.data.noLoading) {
-          useAppStore.loading = true
+          useAppStoreHook().loading = true
         }
       }
       if (config.method?.toLowerCase() == 'get') {
         if (!config.params || !config.params.noLoading) {
-          useAppStore.loading = true
+          useAppStoreHook().loading = true
         }
       }
       return config
@@ -29,7 +28,7 @@ function createService() {
     // 发送失败
     (error) => {
       loadingRequestCount = 0
-      useAppStore.loading = false
+      useAppStoreHook().loading = false
       Promise.reject(error)
     }
   )
@@ -38,7 +37,7 @@ function createService() {
     (response) => {
       loadingRequestCount--
       if (loadingRequestCount <= 0) {
-        useAppStore.loading = false
+        useAppStoreHook().loading = false
       }
       const {
         data,
@@ -62,7 +61,7 @@ function createService() {
     },
     (error) => {
       loadingRequestCount = 0
-      useAppStore.loading = false
+      useAppStoreHook().loading = false
       return Promise.reject(error)
     }
   )

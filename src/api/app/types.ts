@@ -1,4 +1,4 @@
-export interface getSysConfigResp {
-  username: string
-  password: string
+export interface getAnnouncementListData {
+  PageIndex: string
+  PageSize: string
 }

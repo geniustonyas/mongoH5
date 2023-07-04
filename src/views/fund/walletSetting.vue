@@ -1,13 +1,13 @@
 <template>
   <div class="page">
-    <CommonHeader title="Wallet Setting" />
+    <CommonHeader :title="t('walletSettings')" />
     <main class="main">
       <div class="wallet-box">
-        <div class="w-title">钱包设置</div>
+        <div class="w-title">{{ t('walletSettings') }}</div>
         <div class="wbt-list">
-          <div class="wbtl-title">货币</div>
+          <div class="wbtl-title">{{ t('currency') }}</div>
           <div class="wbtl-cont">
-            <div class="wlc-text">比特币单位</div>
+            <div class="wlc-text">{{ t('btcUnit') }}</div>
             <div class="wlc-tabs">
               <span :class="{ active: userStore.userInfo.btcUnit.currencyUnit == 'mBTC' }" @click="setBtcUnit('mBTC')">mBTC</span>
               <span :class="{ active: userStore.userInfo.btcUnit.currencyUnit == 'μBTC' }" @click="setBtcUnit('μBTC')">μBTC</span>

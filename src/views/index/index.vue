@@ -23,6 +23,7 @@
           <template v-if="userStore.userInfo.id">
             <a class="icon-btn" @click="router.push({ name: 'message' })">
               <i class="iconfont icon-message" />
+              <em v-if="userStore.newMessageCount > 0" class="badge" />
             </a>
           </template>
           <template v-else>
@@ -68,24 +69,24 @@
           </div>
           <div class="swiper-pagination" /> -->
         </nav>
+        <!-- <NoticeBar left-icon="volume-o" :text="marqueeContent" /> -->
         <nav class="m-notice">
           <span class="mn-icon">
             <i class="iconfont icon-notice" />
           </span>
           <div class="mn-txt">
             <marquee align="left" behavior="scroll" width="100%" loop="-1" scrollamount="7" scrolldelay="180" onmouseout="this.start()" onmouseover="this.stop()" id="announcement-box">
-              1、Promotional betting round starts 12:00 SET 10 May.Allow for some time. 2、Promotional betting round starts 12:00 SET 10 May.Allow for some time. 3、Promotional betting round starts
-              12:00 SET 10 May.Allow for some time.
+              {{ marqueeContent }}
             </marquee>
           </div>
         </nav>
         <nav class="m-card">
           <div class="mc-t">
             <div class="mt-l">
-              <b>Global Payment Solutions</b>
-              <p>Cryptocurrency &<br />Other Popular Payment Gateways</p>
+              <b>{{ t('globalPaymentSolutions') }}</b>
+              <p>{{ t('cryptoCurrency') }} &<br />{{ t('otherPayment') }}</p>
             </div>
-            <a class="btn btn-primary-bordered"> Buy CryPto </a>
+            <a class="btn btn-primary-bordered" @click="router.push({ name: 'fund', query: { tab: 'buyCrypto' } })"> {{ t('buyCrypto') }} </a>
           </div>
           <div class="mc-b">
             <a href="#">
@@ -107,9 +108,9 @@
         </nav>
         <nav class="m-win">
           <div class="mw-menu">
-            <span class="active">Sports Bet</span>
-            <span>Live Casino Bet</span>
-            <span>Slots Bet</span>
+            <span class="active">{{ t('sportsBet') }}</span>
+            <span>{{ t('liveCasinoBet') }}</span>
+            <span>{{ t('slotBet') }}</span>
           </div>
           <table class="mw-list">
             <thead>
@@ -434,7 +435,12 @@
         </nav>
       </div>
 
-      <nav class="m-rate">1<b>BTC</b>=25,006,02<b>EUR</b></nav>
+      <nav class="m-rate">
+        1
+        <b>{{ currencyCode }}</b>
+        = {{ cxchangeRate }}
+        <b>EUR</b>
+      </nav>
       <nav class="m-term">
         <dl>
           <dt>Seabet</dt>
@@ -568,6 +574,7 @@ import { useRouter } from 'vue-router'
 import Footer from '@/components/layout/Footer.vue'
 import Sidebar from '@/components/layout/SideBar.vue'
 // 引用方法
+import { getExchangeRateApi, getAnnouncementListApi } from '@/api/app/index'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
@@ -576,6 +583,7 @@ import { useI18n } from 'vue-i18n'
 import { Swipe, SwipeItem } from 'vant'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import 'vant/es/swipe/style'
+import 'vant/es/notice-bar/style'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -587,12 +595,44 @@ let tab = ref('sports')
 let showGameOption = ref(false)
 // 列表显示or表格显示
 let gridShow = ref(true)
-
+// 汇率相关
+let currencyCode = ref('')
+let cxchangeRate = ref('')
+// 跑马灯工改
+let marqueeContent = ref('')
 // 切换选项卡
 const toggleTab = (tabs: string) => {
   tab.value = tabs
   showGameOption.value = false
 }
+
+// 获取汇率
+const getExchangeRate = () => {
+  getExchangeRateApi()
+    .then((resp) => {
+      currencyCode.value = resp.data[0].currencyCode
+      cxchangeRate.value = resp.data[0].cxchangeRate
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+// 获取首页跑马灯
+const getAnnouncementList = () => {
+  getAnnouncementListApi({ PageIndex: 1, PageSize: 3 })
+    .then((resp) => {
+      marqueeContent.value = resp.data.items.reduce((notice, item) => {
+        return notice + '  ' + item.content
+      }, '')
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+getAnnouncementList()
+getExchangeRate()
 </script>
 
 <style>

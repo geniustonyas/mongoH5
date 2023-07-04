@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import AppMain from '@/components/layout/AppMain.vue'
 import { useUserStore } from '@/store/modules/user'
+import { useAppStore } from '@/store/modules/app'
 import { getToken } from '@/utils/auth'
 
 const routes = [
@@ -151,7 +152,8 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: '404',
-    redirect: { name: 'index' }
+    redirect: { name: 'index' },
+    meta: { transition: '', needLogin: false }
   }
 ]
 
@@ -165,6 +167,13 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const token = getToken()
   let userStore: any = null
+  let appStore: any = null
+  if (appStore === null) {
+    appStore = useAppStore()
+    if (appStore.chat == '') {
+      appStore.getConfig()
+    }
+  }
   if (token) {
     if (userStore === null) {
       userStore = useUserStore()
@@ -173,7 +182,8 @@ router.beforeEach((to, from, next) => {
       next()
     } else {
       try {
-        userStore.refreshTokenTime()
+        userStore.refreshToken()
+        userStore.refreshNewMessageCount()
         userStore
           .refreshUserInfo()
           .then(() => {
@@ -195,6 +205,12 @@ router.beforeEach((to, from, next) => {
       next()
     }
   }
+})
+
+router.afterEach((to, from) => {
+  const toDepth = to.path.split('/').length
+  const fromDepth = from.path.split('/').length
+  to.meta.transition = toDepth == fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'
 })
 
 export default router

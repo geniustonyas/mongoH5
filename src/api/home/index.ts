@@ -46,10 +46,11 @@ export function unBindGoogleCodeApi(data: Home.googleCodeData) {
 }
 
 /** 获取新消息数量 */
-export function getNewMessageCountApi() {
+export function getNewMessageCountApi(data: Home.getNewMessageCountData) {
   return request<anyResp>({
     url: 'Member/GetNewNotificationCount',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
 

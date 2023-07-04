@@ -2,7 +2,9 @@ import { defineStore } from 'pinia'
 import store from '@/store'
 
 import { loginApi, thirdLoginApi, getUserProfileApi, loginOutApi, refreshTokenApi } from '@/api/user/index'
-import { LoginData, getUserProfileData, thirdLoginData } from '@/api/user/types'
+import { getNewMessageCountApi } from '@/api/home/index'
+
+import { LoginData, getUserProfileData, thirdData } from '@/api/user/types'
 import { setToken, clearToken } from '@/utils/auth'
 
 import { UserInfoType } from './types'
@@ -34,7 +36,10 @@ export const useUserStore = defineStore('userInfo', () => {
   const defaultUserInfo = JSON.parse(JSON.stringify(userInfo))
   const refreshUserInfoTimer = ref<null | number>(null)
   const refreshTokenTimer = ref<null | number>(null)
+  const newMessageCountTimer = ref<null | number>(null)
+  const newMessageCount = ref<null | number>(0)
 
+  // 获取用户信息
   const getUserInfo = (data: getUserProfileData) => {
     return new Promise((resolve, reject) => {
       getUserProfileApi(data)
@@ -68,12 +73,38 @@ export const useUserStore = defineStore('userInfo', () => {
     })
   }
 
-  const refreshTokenTime = () => {
+  // 刷新token
+  const refreshToken = () => {
     if (refreshTokenTimer.value) {
       clearInterval(refreshTokenTimer.value)
     }
     refreshTokenTimer.value = window.setInterval(() => {
       refreshTokenApi()
+    }, 1 * 60 * 1000)
+  }
+
+  // 获取新消息数量
+  const getNewMessageCount = () => {
+    return new Promise((resolve, reject) => {
+      getNewMessageCountApi({ noLoading: true })
+        .then((resp: any) => {
+          newMessageCount.value = parseInt(resp.data?.announcementCount) + parseInt(resp.data?.personalLetterCount)
+          resolve(resp)
+        })
+        .catch((error: any) => {
+          reject(error)
+        })
+    })
+  }
+
+  // 刷新新消息数量
+  const refreshNewMessageCount = () => {
+    getNewMessageCount()
+    if (newMessageCountTimer.value) {
+      clearInterval(newMessageCountTimer.value)
+    }
+    newMessageCountTimer.value = window.setInterval(() => {
+      getNewMessageCount()
     }, 1 * 60 * 1000)
   }
 
@@ -95,7 +126,7 @@ export const useUserStore = defineStore('userInfo', () => {
   }
 
   // 第三方登录
-  const thirdLogin = (loginForm: thirdLoginData) => {
+  const thirdLogin = (loginForm: thirdData) => {
     return new Promise((resolve, reject) => {
       thirdLoginApi(loginForm)
         .then((resp) => {
@@ -140,9 +171,12 @@ export const useUserStore = defineStore('userInfo', () => {
   return {
     userInfo,
     refreshUserInfoTimer,
+    newMessageCount,
     getUserInfo,
     refreshUserInfo,
-    refreshTokenTime,
+    refreshToken,
+    getNewMessageCount,
+    refreshNewMessageCount,
     login,
     thirdLogin,
     logout,

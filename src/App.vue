@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <router-view v-slot="{ Component, route }">
-      <!-- <transition :name="(route.meta.transition as string)"> -->
-      <component :is="Component" :key="route.path" />
-      <!-- </transition> -->
+      <transition :name="(route.meta.transition as string)">
+        <component :is="Component" :key="route.path" />
+      </transition>
     </router-view>
     <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
       <Loading />
@@ -30,28 +30,27 @@ body,
   width: 100%;
   height: 100%;
 }
-.slide-right-enter-active,
-.slide-right-leave-active,
 .slide-left-enter-active,
-.slide-left-leave-active {
-  will-change: transform;
-  transition: all 400ms;
-  position: fixed;
-}
-.slide-right-enter {
-  opacity: 0;
-  transform: translateX(-100%);
-}
+.slide-left-leave-active,
+.slide-right-enter-active,
 .slide-right-leave-active {
-  opacity: 0;
+  will-change: transform;
+  transition: transform 400ms;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+.slide-right-enter-from,
+.slide-left-leave-to {
   transform: translateX(100%);
 }
-.slide-left-enter {
-  opacity: 0;
-  transform: translateX(100%);
-}
-.slide-left-leave-active {
-  opacity: 0;
+
+.slide-right-leave-to,
+.slide-left-enter-from {
   transform: translateX(-100%);
 }
 </style>

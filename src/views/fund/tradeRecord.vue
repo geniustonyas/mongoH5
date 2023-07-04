@@ -1,32 +1,32 @@
 <template>
   <div class="page">
-    <CommonHeader title="Transaction history" />
+    <CommonHeader :title="t('transactionHistory')" />
     <main class="main">
       <div class="record-box">
         <div class="rb-head">
           <div class="line-tabs">
-            <span :class="{ active: tab == 'deposit' }" @click="selTab('deposit')">Deposits</span>
-            <span :class="{ active: tab == 'withdraw' }" @click="selTab('withdraw')">Withdrawals</span>
-            <span :class="{ active: tab == 'bet' }" @click="selTab('bet')">Bets</span>
-            <span :class="{ active: tab == 'win' }" @click="selTab('win')">Wins</span>
+            <span :class="{ active: tab == 'deposit' }" @click="selTab('deposit')">{{ t('deposits') }}</span>
+            <span :class="{ active: tab == 'withdraw' }" @click="selTab('withdraw')">{{ t('withdrawals') }}</span>
+            <span :class="{ active: tab == 'bet' }" @click="selTab('bet')">{{ t('bets') }}</span>
+            <span :class="{ active: tab == 'win' }" @click="selTab('win')">{{ t('wins') }}</span>
           </div>
           <div class="line-options">
             <!--此处参考sportsbet.io，一个带图标的下拉框，一个日期控件-->
             <ConfigProvider class="dark o-item">
               <DropdownMenu direction="down">
-                <DropdownItem title="CURRENCY" ref="currenyDom" teleport="body">
+                <DropdownItem :title="t('currencyFilter')" ref="currenyDom" teleport="body">
                   <div class="drop-item" v-for="(item, index) of currenyList" :key="index" @click="selCurrency(item, index)">
                     <img :src="getAssetsFile(item.icon)" />
                     <span>{{ item.currenyName }}</span>
                     <Icon name="success" :class="{ active: checkedCurrency.includes(item.code) }" />
                   </div>
                   <div class="drop-btn">
-                    <a class="btn btn-primary" @click="confirmCurreny()">确 定</a>
+                    <a class="btn btn-primary" @click="confirmCurreny()">{{ confirm }}</a>
                   </div>
                 </DropdownItem>
               </DropdownMenu>
             </ConfigProvider>
-            <div class="o-item" @click="showDatePicker = !showDatePicker">FILTER BY DATE</div>
+            <div class="o-item" @click="showDatePicker = !showDatePicker">{{ t('dateFilter') }}</div>
           </div>
         </div>
         <div class="mb-conts">
@@ -173,7 +173,7 @@
               </div>
             </div>
           </template>
-          <Nodata v-show="nodata" />
+          <Nodata v-show="nodata" :message="t('nodata')" />
         </div>
       </div>
     </main>
@@ -197,7 +197,6 @@
 
 <script setup name="FundWithdraw">
 import { ref, reactive } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Nodata from '@/components/Nodata.vue'
@@ -208,7 +207,7 @@ import { currenyList } from '@/utils/blockChain'
 import { useI18n } from 'vue-i18n'
 
 import dayjs from 'dayjs'
-import { showToast, Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List } from 'vant'
+import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List } from 'vant'
 import 'vant/es/toast/style'
 import 'vant/es/calendar/style'
 import 'vant/es/dropdown-menu/style'
@@ -217,8 +216,6 @@ import 'vant/es/icon/style'
 import 'vant/es/pull-refresh/style'
 import 'vant/es/list/style'
 
-const router = useRouter()
-// const route = useRoute()
 const { t } = useI18n()
 
 const tab = ref('deposit')

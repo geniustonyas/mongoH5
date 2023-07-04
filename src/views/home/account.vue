@@ -58,7 +58,7 @@
                       <span>{{ t('address') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editInfoForm.Address" ref="addressDom" class="form-control" placeholder="Address" />
+                      <input v-model="editInfoForm.Address" ref="addressDom" class="form-control" placeholder="" />
                     </div>
                   </div>
                   <div class="cf-row">
@@ -66,7 +66,7 @@
                       <span>{{ t('zipCode') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editInfoForm.Zipcode" ref="zipcodeDom" type="number" class="form-control" placeholder="Zipcode" />
+                      <input v-model="editInfoForm.Zipcode" ref="zipcodeDom" type="number" class="form-control" placeholder="" />
                     </div>
                   </div>
                   <div class="cf-row" v-if="userStore.userInfo.isBindGoogleAuth">
@@ -74,12 +74,12 @@
                       <span>{{ t('googleCode') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editInfoForm.VerificationCode" ref="editVerificationCodeDom" type="number" class="form-control" placeholder="Google VerificationCode" />
+                      <input v-model="editInfoForm.VerificationCode" ref="editVerificationCodeDom" type="number" class="form-control" placeholder="" />
                     </div>
                   </div>
                   <div class="cf-row">
                     <div class="cr-btns">
-                      <a class="btn btn-primary full" @click="editInfo()">Save</a>
+                      <a class="btn btn-primary full" @click="editInfo()">{{ t('save') }}</a>
                     </div>
                   </div>
                 </div>
@@ -197,7 +197,6 @@ import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast } from 'vant'
 import 'vant/es/toast/style'
-import router from '@/router'
 
 const userStore = useUserStore()
 const { t } = useI18n()
@@ -264,49 +263,49 @@ const bindGoogleCodeForm: googleCodeData = reactive({ VerificationCode: '' })
 // 修改个人信息
 const editInfo = () => {
   if (isEmpty(day.value)) {
-    showToast('出生日不能为空')
+    showToast(t('tips.inputDay'))
     dayDom.value?.focus()
     return false
   }
   if (isEmpty(month.value)) {
-    showToast('出生月份不能为空')
+    showToast(t('tips.inputMonth'))
     monthDom.value?.focus()
     return false
   }
   if (isEmpty(year.value)) {
-    showToast('出生年份不能为空')
+    showToast(t('tips.inputYear'))
     yearDom.value?.focus()
     return false
   }
   if (isEmpty(editInfoForm.CountryCode)) {
-    showToast('国家代码不能为空')
+    showToast(t('tips.inputCountryCode'))
     countryDom.value?.focus()
     return false
   }
   if (isEmpty(editInfoForm.PhoneNumber)) {
-    showToast('手机号码不能为空')
+    showToast(t('tips.inputphoneNumber'))
     phoneDom.value?.focus()
     return false
   }
   if (isEmpty(editInfoForm.Address)) {
-    showToast('地址不能为空')
+    showToast(t('tips.inputAddress'))
     addressDom.value?.focus()
     return false
   }
   if (isEmpty(editInfoForm.Zipcode)) {
-    showToast('邮编不能为空')
+    showToast(t('tips.inputZipCode'))
     zipcodeDom.value?.focus()
     return false
   }
   if (userStore.userInfo.isBindGoogleAuth && editInfoForm.VerificationCode == '') {
-    showToast('Google验证码不能为空')
+    showToast(t('tips.googleCode'))
     editVerificationCodeDom.value?.focus()
     return false
   }
   editInfoForm.DateOfBirth = `${year.value}-${month.value}-${day.value}`
   editUserInfoApi(editInfoForm)
     .then(() => {
-      showToast('修改用户信息成功')
+      showToast(t('tips.editUserInfoSuccess'))
       userStore.getUserInfo({ noLoading: false })
       collapseInfo.value = false
     })
@@ -317,30 +316,40 @@ const editInfo = () => {
 
 // 修改密码
 const changePwd = () => {
+  if (editPwdForm.NewPassword == '') {
+    showToast(t('tips.inputNewPwd'))
+    newPwdDom?.value?.focus()
+    return false
+  }
   if (!isPwd(editPwdForm.NewPassword)) {
-    showToast('新密码格式错误')
+    showToast(t('tips.isNewPwd'))
+    newPwdDom?.value?.focus()
+    return false
+  }
+  if (editPwdForm.NewPassword == '') {
+    showToast(t('tips.inputOldPwd'))
     newPwdDom?.value?.focus()
     return false
   }
   if (!isPwd(editPwdForm.OldPassword)) {
-    showToast('旧密码格式错误')
+    showToast(t('tips.isOldPwd'))
     oldPwdDom?.value?.focus()
     return false
   }
   if (editPwdForm.NewPassword != confirmPwd.value) {
-    showToast('两次密码不一致')
+    showToast(t('tips.pwdNotMatch'))
     confirmPwdDom?.value?.focus()
     return false
   }
-  if (userStore.userInfo.isBindGoogleAuth && editPwdForm.VerificationCode == '') {
-    showToast('Google验证码不能为空')
+  if (userStore.userInfo.isBindGoogleAuth && editPwdForm.VerificationCode.length != 6) {
+    showToast(t('tips.googleCode'))
     verificationCodeDom?.value?.focus()
     return false
   }
   editPasswordApi(editPwdForm)
     .then(() => {
       userStore.logout()
-      showToast('修改密码成功，请重新登录')
+      showToast(t('tips.editPwdSuccess'))
     })
     .catch((error) => {
       showToast(error)
@@ -365,10 +374,9 @@ getGooogle()
 // 绑定google验证码
 const bindGoogle = () => {
   bindGoogleCodeApi(bindGoogleCodeForm)
-    .then((resp) => {
+    .then(() => {
       userStore.getUserInfo({ noLoading: false })
-      showToast(resp.message)
-      router.push({ name: 'login' })
+      showToast(t('tips.bindGoogleSuccess'))
     })
     .catch((error) => {
       showToast(error)

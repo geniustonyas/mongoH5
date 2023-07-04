@@ -1,11 +1,11 @@
 <template>
   <div class="page">
-    <CommonHeader title="Fund Account" />
+    <CommonHeader :title="t('fundAccount')" />
     <main class="main">
       <div class="fund-box">
         <div class="fb-row line">
           <div class="row-body">
-            <div class="r-title">ACTIVE BALANCE</div>
+            <div class="r-title">{{ t('balance') }}</div>
             <div v-if="selCurrencyItem.name != ''" class="r-card">
               <div class="rc-l">
                 <img :src="getAssetsFile(`coin/${selCurrencyItem.name.toLocaleLowerCase()}.svg`)" />
@@ -16,7 +16,7 @@
               </div>
               <div class="rc-r" @click="showCurrencyItemBox = true">
                 <span>
-                  <b>{{ selCurrencyItem.balance }} USDT</b>
+                  <b>{{ selCurrencyItem.balance }} {{ selCurrencyItem.unit }}</b>
                   <small>${{ selCurrencyItem.usdAmount }} US</small>
                 </span>
                 <i class="iconfont icon-down" />
@@ -27,12 +27,12 @@
         <div class="fb-row">
           <div class="row-body">
             <div class="inner-tabs">
-              <span :class="{ active: fundTab == 'deposit' }" @click="fundTab = 'deposit'">Deposit</span>
-              <span :class="{ active: fundTab == 'buyCrypto' }" @click="fundTab = 'buyCrypto'">Buy Crypto</span>
-              <span :class="{ active: fundTab == 'widthdraw' }" @click="fundTab = 'widthdraw'">Withdraw</span>
+              <span :class="{ active: fundTab == 'deposit' }" @click="fundTab = 'deposit'">{{ t('deposit') }}</span>
+              <span :class="{ active: fundTab == 'buyCrypto' }" @click="fundTab = 'buyCrypto'">{{ t('buyCrypto') }}</span>
+              <span :class="{ active: fundTab == 'widthdraw' }" @click="fundTab = 'widthdraw'">{{ t('withdraw') }}</span>
             </div>
             <div v-show="fundTab == 'deposit'">
-              <div class="r-title">YOUR DEPOSIT ADDRESS</div>
+              <div class="r-title">{{ t('youDepositAddress') }}</div>
               <div class="r-group-card">
                 <div v-show="selCurrencyItem.name == 'USDT'" class="gc-t" @click="showBlockChainBox = true">
                   <div class="t-l">
@@ -62,14 +62,14 @@
                       1 USDT ≈ <span>US ${{ depositInfo.exchangeRate }}</span>
                     </p>
                     <p>
-                      Minimum deposit amount:
+                      {{ t('minDepositAmount') }}:
                       <span>{{ depositInfo.minDepositAmount }} {{ depositInfo.currencyUnit }}</span>
                     </p>
                   </div>
                 </div>
                 <div class="gc-b">
                   <div class="b-l">
-                    <small>ADDRESS</small>
+                    <small>{{ t('address') }}</small>
                     <span>{{ depositInfo.walletAddress }}</span>
                   </div>
                   <div class="b-r">
@@ -124,7 +124,7 @@
                     </div>
                     <div class="t-txt">
                       <span class="t-name">{{ selCurrencyItem.name }}</span>
-                      <span class="t-sub">{{ selCurrencyItem.name }}取款</span>
+                      <span class="t-sub">{{ selCurrencyItem.name }}{{ t('withdraw') }}</span>
                     </div>
                   </div>
                   <div class="t-r">
@@ -137,66 +137,22 @@
         </div>
         <div class="fb-row line">
           <div class="row-body">
-            <div class="r-title">QUICK TIPS</div>
-            <div class="r-card-txt">Please always check your deposit wallet address on our site before making your transactions.</div>
+            <div class="r-title">{{ t('quickTips') }}</div>
+            <div class="r-card-txt">{{ t('quickTipCont') }}</div>
           </div>
         </div>
-        <dl class="cur-lsit">
-          <dt>REWARDS</dt>
-          <dd>
-            <a href="#">
-              <span> <i class="iconfont icon-rewards" />Promotion code </span>
-              <i class="iconfont icon-right" />
-            </a>
-          </dd>
-          <dd>
-            <a href="#">
-              <span> <i class="iconfont icon-jiangli" />My Rewards </span>
-              <i class="iconfont icon-right" />
-            </a>
-          </dd>
-        </dl>
-        <dl class="cur-lsit">
-          <dt>RECENT TRANSACTIONS</dt>
-          <dd>
-            <a @click="router.push({ name: 'tradeRecord' })">
-              <span> <i class="iconfont icon-zzjl" />Transaction history </span>
-              <i class="iconfont icon-right" />
-            </a>
-          </dd>
-        </dl>
-        <dl class="cur-lsit">
-          <dt>SUPPORT SETTINGS</dt>
-          <dd>
-            <a @click="router.push({ name: 'walletSetting' })">
-              <span> <i class="iconfont icon-setting" />Wallet settings </span>
-              <i class="iconfont icon-right" />
-            </a>
-          </dd>
-          <dd>
-            <a href="#">
-              <span> <i class="iconfont icon-guanyuwomen" />FAQ </span>
-              <i class="iconfont icon-right" />
-            </a>
-          </dd>
-          <dd>
-            <a href="#">
-              <span> <i class="iconfont icon-xiaoxi" />Live Support </span>
-              <i class="iconfont icon-right" />
-            </a>
-          </dd>
-        </dl>
+        <FundFooter />
         <!-- 选择币种 -->
         <ConfigProvider theme="dark">
           <Popup id="promotion" v-model:show="showCurrencyItemBox" position="bottom" round style="padding: 0px 15px; padding-top: 20px" :closeable="true" @close="depositTab = 'digital'">
             <div class="fund-pop-box">
               <div class="bb-title">
-                <h3>当前余额</h3>
-                <p>选择您偏好的货币</p>
+                <h3>{{ t('currentBalance') }}</h3>
+                <p>{{ t('chooseCrypto') }}</p>
               </div>
               <div class="inner-tabs">
-                <span :class="{ active: depositTab == 'digital' }" @click="depositTab = 'digital'">加密货币</span>
-                <span :class="{ active: depositTab == 'bank' }" @click="depositTab = 'bank'">银行</span>
+                <span :class="{ active: depositTab == 'digital' }" @click="depositTab = 'digital'">{{ t('cryptoCurrency') }}</span>
+                <span :class="{ active: depositTab == 'bank' }" @click="depositTab = 'bank'">{{ t('bank') }}</span>
               </div>
               <ul v-show="depositTab == 'digital'" class="bb-cont">
                 <li v-for="(item, index) of digitalList" :key="index" @click="selCurrency(item)">
@@ -232,8 +188,8 @@
           <Popup id="promotion" v-model:show="showBlockChainBox" position="bottom" close-icon-position="top-right" round style="padding: 0px 15px; padding-top: 20px" :closeable="true">
             <div class="fund-pop-box">
               <div class="bb-title">
-                <h3>选择存款网络</h3>
-                <p>请在执行交易前确认您的存款地址</p>
+                <h3>{{ t('chooseDepositChain') }}</h3>
+                <p>{{ t('confirmDepositAddress') }}</p>
               </div>
               <ul class="bb-cont" style="height: 260px">
                 <li v-for="(item, index) of usdtChainList" :key="index" @click="selBlockChain(item)">
@@ -253,17 +209,15 @@
         </ConfigProvider>
       </div>
     </main>
-    <Footer />
   </div>
 </template>
 
 <script setup name="Fund">
 import { ref, reactive, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
-import Footer from '@/components/layout/Footer.vue'
-
+import FundFooter from '@/components/layout/FundFooter.vue'
 import { getBalanceApi, getDepositAddressApi } from '@/api/fund/index'
 import { getAssetsFile, copy } from '@/utils'
 import { usdtChainList } from '@/utils/blockChain'
@@ -276,10 +230,12 @@ import 'vant/es/empty/style'
 import 'vant/es/popup/style'
 
 const router = useRouter()
+const route = useRoute()
 const { t } = useI18n()
 
 const depositTab = ref('digital')
 const fundTab = ref('deposit')
+fundTab.value = route.query.tab || fundTab.value
 // 余额列表
 let showCurrencyItemBox = ref(false)
 let digitalList = ref([])

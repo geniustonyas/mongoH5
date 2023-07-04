@@ -1,9 +1,8 @@
 import { type ConfigEnv, type UserConfigExport, loadEnv } from 'vite'
 import { resolve } from 'path'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import mkcert from 'vite-plugin-mkcert'
 import vue from '@vitejs/plugin-vue'
-import Components from 'unplugin-vue-components/vite'
-import { VantResolver } from 'unplugin-vue-components/resolvers'
 
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default (configEnv: ConfigEnv): UserConfigExport => {
@@ -29,10 +28,10 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     },
     server: {
       /** 是否开启 HTTPS */
-      https: false,
+      https: true,
       /** 设置 host: true 才可以使用 Network 的形式，以 IP 访问项目 */
-      host: '0.0.0.0',
-      // host: true,
+      // host: '0.0.0.0',
+      host: true,
       /** 端口号 */
       port: 8081,
       /** 是否自动打开浏览器 */
@@ -75,9 +74,10 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     /** Vite 插件 */
     plugins: [
       vue(),
-      Components({
-        resolvers: [VantResolver()]
-      }),
+      [mkcert()],
+      // Components({
+      //   resolvers: [VantResolver()]
+      // }),
       createHtmlPlugin({
         inject: {
           data: {

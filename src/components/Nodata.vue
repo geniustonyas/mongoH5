@@ -74,6 +74,6 @@
 
 <script setup lang="ts">
 const props = defineProps({
-  message: { type: String, required: true, default: '暂无数据' }
+  message: { type: String, required: true, default: '' }
 })
 </script>

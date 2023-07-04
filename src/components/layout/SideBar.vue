@@ -25,7 +25,7 @@
       </nav>
       <nav class="sm-menulist">
         <div :class="collapseSport ? 'menu-item show' : 'menu-item'">
-          <h2 @click="collapseSport = !collapseSport">Sports<i class="iconfont icon-down" /></h2>
+          <h2 @click="collapseSport = !collapseSport">{{ t('sports') }}<i class="iconfont icon-down" /></h2>
           <Vue3SlideUpDown v-model="collapseSport">
             <ul>
               <li>

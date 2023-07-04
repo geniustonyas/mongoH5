@@ -1,29 +1,37 @@
 <template>
   <div class="page">
-    <CommonHeader title="Notifications" />
+    <header class="header">
+      <div class="head-menu-lmr">
+        <div class="hml-l" @click="router.back()">
+          <i class="iconfont icon-return" />
+        </div>
+        <div class="hml-m">
+          <div class="radio-tabs">
+            <span :class="{ active: tab == 2 }" @click="selTab(2)">{{ t('notice') }}</span>
+            <span :class="{ active: tab == 1 }" @click="selTab(1)">{{ t('mail') }}</span>
+          </div>
+        </div>
+      </div>
+    </header>
     <main class="main">
       <div class="notifications-box">
         <div v-if="dataList.length > 0" class="nb-head">
-          <a @click="setAllReaded()" class="disable">{{ t('makeAllRead') }}</a>
+          <a @click="setAllReaded()" :class="(tab == 2 && announcementCount == 0) || (tab == 1 && personalLetterCount == 0) ? 'disable' : ''">{{ t('makeAllRead') }}</a>
         </div>
-        <div class="nb-list">
-          <ul v-if="dataList.length > 0" style="height: 100%">
+        <div v-if="dataList.length > 0" class="nb-list">
+          <ul style="height: 100%">
             <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
               <List v-model="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" :error-text="t('loadingFail')" :finished-text="t('noMore')" @load="loadData">
-                <li v-for="(item, index) of dataList" class="top" :key="index" @click="setReaded(item)">
+                <li v-for="(item, index) of dataList" :class="item.isRead ? '' : 'new'" :key="index" @click="setReaded(item)">
                   <div class="l-title">{{ item.title }}</div>
                   <div class="l-cont">{{ item.content }}</div>
                   <div class="l-date">{{ item.createTime }}</div>
                 </li>
-                <!-- <li class="new">
-                  <div class="l-title">Welcome to the new Sportsbet.io!</div>
-                  <div class="l-date">03/21/2023,10:11 PM</div>
-                </li> -->
               </List>
             </PullRefresh>
           </ul>
-          <Nodata v-else :message="t('noMessage')" />
         </div>
+        <Nodata v-if="nodata" :message="t('noMessage')" />
       </div>
     </main>
   </div>
@@ -31,21 +39,25 @@
 
 <script setup name="HomeMessage">
 import { ref, reactive } from 'vue'
-// import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 import Nodata from '@/components/Nodata.vue'
-import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { getMessageApi, setReadApi, setAllReadApi } from '@/api/home'
+import { useUserStore } from '@/store/modules/user'
 import { useI18n } from 'vue-i18n'
 
 import { PullRefresh, List, showToast } from 'vant'
 import 'vant/es/empty/style'
 import 'vant/es/toast/style'
+import 'vant/es/pull-refresh/style'
+import 'vant/es/list/style'
 
-// const router = useRouter()
+const userStore = useUserStore()
+const router = useRouter()
 const { t } = useI18n()
 
+let tab = ref(2)
 let listLoading = ref(false)
 let refreshing = ref(false)
 let finished = ref(false)
@@ -53,20 +65,33 @@ let error = ref(false)
 let query = reactive({
   PageIndex: 1,
   PageSize: 10,
-  noLoading: false
+  noLoading: false,
+  NotificationType: 2
 })
-let dataList = reactive([])
+const announcementCount = ref(0)
+const personalLetterCount = ref(0)
+let dataList = ref([])
 let nodata = ref(false)
 
+// 切换站内信与通知
+const selTab = (tabValue) => {
+  tab.value = tabValue
+  query.NotificationType = tabValue
+  query.PageIndex = 1
+  dataList.value = []
+  getList()
+}
+
+// 获取列表
 const getList = () => {
   getMessageApi(query)
     .then((resp) => {
       if (refreshing.value) {
-        dataList = resp.data.items
+        dataList.value = resp.data.items
       } else {
-        dataList.push(...resp.data.items)
+        dataList.value.push(...resp.data.items)
       }
-      nodata.value = dataList.length == 0
+      nodata.value = dataList.value.length == 0
       refreshing.value = false
       finished.value = resp.data.items.length < query.PageSize
       listLoading.value = false
@@ -78,20 +103,18 @@ const getList = () => {
     })
 }
 
-getList()
-
 // 刷新
 const fresh = () => {
-  this.query.noLoading = true
-  this.query.PageIndex = 1
-  this.getList()
+  query.noLoading = true
+  query.PageIndex = 1
+  getList()
 }
 
 // 上拉加载更多数据
 const loadData = () => {
-  this.query.noLoading = true
-  this.query.PageIndex++
-  this.getList()
+  query.noLoading = true
+  query.PageIndex++
+  getList()
 }
 
 // 设置已读
@@ -101,9 +124,9 @@ const setReaded = (item) => {
   }
   setReadApi({ Id: item.id.toString() })
     .then(() => {
-      showToast('设置成功')
-      var index = this.dataList.findIndex((fitem) => fitem.id == item.id)
-      this.dataList[index].isRead = true
+      showToast(t('tips.setSuccess'))
+      var index = dataList.value.findIndex((fitem) => fitem.id == item.id)
+      dataList.value[index].isRead = true
     })
     .catch((error) => {
       console.log(error)
@@ -114,15 +137,24 @@ const setReaded = (item) => {
 const setAllReaded = () => {
   setAllReadApi()
     .then(() => {
-      this.dataList.forEach((item) => {
+      dataList.value.forEach((item) => {
         item.isRead = true
       })
-      showToast('设置成功')
+      showToast(t('tips.setSuccess'))
     })
     .catch((error) => {
       console.log(error)
     })
 }
-</script>
 
-<style lang="less" scoped></style>
+userStore
+  .getNewMessageCount()
+  .then((resp) => {
+    announcementCount.value = resp.data.announcementCount
+    personalLetterCount.value = resp.data.personalLetterCount
+    getList()
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+</script>

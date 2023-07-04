@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <CommonHeader :title="t('mybets')" />
+    <CommonHeader :title="t('myBets')" />
     <main class="main">
       <div class="mybets-box">
         <div class="line-tabs">

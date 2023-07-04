@@ -19,11 +19,29 @@ export function regApi(data: User.RegData) {
   })
 }
 
+/** 重置密码 */
+export function resetPwdApi(data: User.resetPwdData) {
+  return request<anyResp>({
+    url: 'Member/MemberResetPassWord',
+    method: 'post',
+    data
+  })
+}
+
 /** 退出登录 */
 export function loginOutApi() {
   return request<anyResp>({
     url: 'Member/Logout',
     method: 'post'
+  })
+}
+
+/** 发送邮箱验证码 */
+export function sendEmailApi(data: User.sendEmailData) {
+  return request<anyResp>({
+    url: 'Member/SendEmailCheckCode',
+    method: 'post',
+    data
   })
 }
 
@@ -72,11 +90,21 @@ export function refreshTokenApi() {
 }
 
 /** 检查第三方用户id是否存在 */
-export function checkThirdUserApi(data: User.thirdUserExistData) {
+export function checkThirdUserApi(data: User.thirdData) {
   return request<anyResp>({
     url: 'Member/CheckThirdPartyId',
     method: 'post',
     data
+  })
+}
+
+/** 验证Facebook用户是否真实 */
+export function facebookValidateApi(params: any) {
+  return request<anyResp>({
+    url: 'facebook',
+    method: 'get',
+    baseURL: import.meta.env.VITE_THIRD_API,
+    params
   })
 }
 
@@ -101,7 +129,7 @@ export function googleValidateApi(params: any) {
 }
 
 /** 第三方登录 */
-export function thirdLoginApi(data: User.thirdLoginData) {
+export function thirdLoginApi(data: User.thirdData) {
   return request<User.LoginResp>({
     url: 'Member/thirdPartyLogin',
     method: 'post',

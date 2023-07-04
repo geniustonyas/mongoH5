@@ -1,24 +1,25 @@
 <template>
   <div class="page">
-    <CommonHeader title="withdraw" />
+    <CommonHeader :title="t('withdraw')" />
     <main class="main">
       <div class="fund-box">
         <ul v-show="step != 4" class="progress-bar">
-          <li :class="{ active: step == 1 }" @click="jumpStep(1)">Input amount</li>
-          <li :class="{ active: step == 2 }" @click="jumpStep(2)">Wallet details</li>
-          <li :class="{ active: step == 3 }" @click="jumpStep(3)">Waiting results</li>
+          <li :class="{ active: step == 1 }" @click="jumpStep(1)">{{ t('inputAmount') }}</li>
+          <li :class="{ active: step == 2 }" @click="jumpStep(2)">{{ t('walletDetails') }}</li>
+          <li :class="{ active: step == 3 }" @click="jumpStep(3)">{{ t('waitingResults') }}</li>
         </ul>
 
         <!-- step 1 -->
         <div v-show="step == 1" class="fund-form">
-          <div class="ff-title">Withdraw USDT</div>
+          <div class="ff-title">{{ t('withdrawUsdt') }}</div>
           <div class="ff-balance">
-            Current balance:
+            {{ t('currentBalance') }}
+            {{ t('inputAmount') }}
             <span>{{ withdrawBalanceItem.balance }}</span>
             {{ withdrawBalanceItem.unit }}
           </div>
           <div class="ff-group">
-            <label>AMOUNT</label>
+            <label>{{ t('amount') }}</label>
             <input v-model="withdrawForm.Amount" type="number" id="amountInput" />
           </div>
           <ul class="ff-amounts">
@@ -33,25 +34,25 @@
             </li>
           </ul>
           <div class="ff-rmark">
-            Minimum withdrawal amount：
+            {{ t('minWithdrawAmount') }}
             <b>{{ minWithdrawAmount }} {{ withdrawBalanceItem.unit }}</b>
           </div>
         </div>
         <div v-show="step == 1" class="fund-btn">
-          <a :class="withdrawForm.Amount == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab(2)">Next</a>
+          <a :class="withdrawForm.Amount == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab(2)">{{ t('next') }}</a>
         </div>
         <!-- step 2 -->
         <div v-show="step == 2" class="fund-form">
-          <div class="ff-title">Wallet details</div>
+          <div class="ff-title">{{ t('walletDetails') }}</div>
           <div class="ff-balance">
-            Current balance:
+            {{ t('currentBalance') }}:
             <span>{{ withdrawBalanceItem.balance }}</span>
             {{ withdrawBalanceItem.unit }}
           </div>
 
           <div class="fb-row">
             <div class="row-body">
-              <div class="r-title">YOUR DEPOSIT ADDRESS</div>
+              <div class="r-title">{{ t('youWithdrawAddress') }}</div>
               <div class="r-group-card">
                 <div v-show="withdrawBalanceItem.name == 'USDT'" class="gc-t" @click="showBlockChainBox = true">
                   <div class="t-l">
@@ -72,22 +73,22 @@
             </div>
           </div>
           <div class="ff-group">
-            <label>PAY TO</label>
-            <input v-model="withdrawForm.PayeeAddress" id="address" type="text" placeholder="Wallet address" />
+            <label>{{ t('payto') }}</label>
+            <input v-model="withdrawForm.PayeeAddress" id="address" type="text" :placeholder="t('walletAddress')" />
           </div>
-          <div class="ff-rmark">Please always check your withdrawal wallet address before making your transactions.</div>
+          <div class="ff-rmark">{{ t('checkWithdrawAddress') }}</div>
         </div>
         <div v-show="step == 2" class="fund-btn">
-          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab(3)">Preview withdraw</a>
+          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab(3)">{{ t('previewWithdraw') }}</a>
         </div>
         <!-- step 3 -->
         <div v-show="step == 3" class="fund-form">
-          <div class="ff-title">Preview withdraw</div>
-          <div class="ff-balance">Make sure everything is correct</div>
+          <div class="ff-title">{{ t('previewWithdraw') }}</div>
+          <div class="ff-balance">{{ t('confirmWithdrawInfo') }}</div>
 
           <div class="fb-row">
             <div class="row-body">
-              <div class="r-title">WALLET ADDRESS</div>
+              <div class="r-title">{{ t('walletAddress') }}</div>
               <div class="r-group-card">
                 <div class="gc-t">
                   <div class="t-l">
@@ -107,80 +108,80 @@
             </div>
           </div>
           <dl class="ff-rows">
-            <dt>SUMMARY</dt>
+            <dt>{{ t('summary') }}</dt>
             <dd>
-              Currency：
+              {{ t('currency') }}:
               <span>{{ withdrawForm.CurrencyCode }}</span>
             </dd>
             <dd>
-              Amount：
+              {{ t('amount') }}:
               <span>{{ moneyFormat(withdrawForm.Amount) }} {{ withdrawBalanceItem.unit }}</span>
             </dd>
             <dd>
-              Network：
+              {{ t('network') }}:
               <span>{{ withdrawForm.BlockchainCode }}</span>
             </dd>
           </dl>
           <div v-if="userStore.userInfo.isBindGoogleAuth" class="ff-group">
-            <input v-model="withdrawForm.VerificationCode" id="googleCode" type="text" placeholder="输入谷歌身份验证码" />
+            <input v-model="withdrawForm.VerificationCode" id="googleCode" type="text" :placeholder="t('inputGoole')" />
           </div>
         </div>
         <div v-show="step == 3" class="fund-btn">
-          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab(4)">Confirm</a>
+          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab(4)">{{ t('confirm') }}</a>
         </div>
         <!-- step 4 -->
         <div v-show="step == 4" class="fund-form wa">
           <div class="ff-w-a">
-            <p>提款进行中</p>
+            <p>{{ t('withdrawing') }}</p>
             <h2>{{ moneyFormat(withdrawDetail.amount) }}&nbsp;{{ withdrawDetail.unit }}</h2>
           </div>
           <dl class="ff-rows">
-            <dt>钱包细节</dt>
+            <dt>{{ t('walletDetails') }}</dt>
             <dd>
-              货币：
+              {{ t('currency') }}:
               <span>{{ withdrawDetail.currencyCode }}</span>
             </dd>
             <dd>
-              地址：
+              {{ t('address') }}:
               <span>{{ withdrawForm.PayeeAddress }}</span>
             </dd>
           </dl>
           <dl class="ff-rows">
-            <dt>总结</dt>
+            <dt>{{ t('summary') }}</dt>
             <dd>
-              日期：
+              {{ t('date') }}:
               <span>{{ withdrawDetail.createTime }}</span>
             </dd>
             <dd>
-              交易类型：
-              <span>提款</span>
+              {{ t('transactionType') }}：
+              <span>{{ t('withdraw') }}</span>
             </dd>
             <dd>
-              最终余额：
+              {{ t('finalBalance') }}：
               <span>{{ withdrawDetail.afterAmount }} {{ withdrawDetail.unit }}</span>
             </dd>
           </dl>
         </div>
         <div v-show="step == 4" class="fund-btn wa">
-          <a class="btn btn-primary" @click="router.push({ name: 'fund' })">回到资金</a>
+          <a class="btn btn-primary" @click="router.push({ name: 'fund' })">{{ t('backToFund') }}</a>
         </div>
         <dl v-show="step != 4" class="cur-lsit">
-          <dt>SUPPORT SETTINGS</dt>
+          <dt>{{ t('supportSettings') }}</dt>
           <dd>
-            <a>
-              <span> <i class="iconfont icon-setting" />Wallet settings </span>
+            <a @click="router.push({ name: 'walletSetting' })">
+              <span> <i class="iconfont icon-setting" />{{ t('walletSettings') }}</span>
               <i class="iconfont icon-right" />
             </a>
           </dd>
           <dd>
             <a href="#">
-              <span> <i class="iconfont icon-guanyuwomen" />FAQ </span>
+              <span> <i class="iconfont icon-guanyuwomen" />{{ t('faq') }} </span>
               <i class="iconfont icon-right" />
             </a>
           </dd>
           <dd>
             <a href="#">
-              <span> <i class="iconfont icon-xiaoxi" />Live Support </span>
+              <span> <i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }} </span>
               <i class="iconfont icon-right" />
             </a>
           </dd>
@@ -190,8 +191,8 @@
         <Popup id="promotion" v-model:show="showBlockChainBox" position="bottom" close-icon-position="top-right" round style="padding: 0px 15px; padding-top: 20px" :closeable="true">
           <div class="fund-pop-box">
             <div class="bb-title">
-              <h3>选择提现网络</h3>
-              <p>请在执行交易前确认您的提现地址</p>
+              <h3>{{ t('chooseWithdrawChain') }}</h3>
+              <p>{{ t('confirmWithdrawAddress') }}</p>
             </div>
             <ul class="bb-cont" style="height: 260px">
               <li v-for="(item, index) of usdtChainList" :key="index" @click="selBlockChain(item)">

@@ -1,17 +1,35 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { sysConfigState } from './types'
+import { getConfigApi } from '@/api/app/index'
 import store from '@/store'
 
 export const useAppStore = defineStore('app', () => {
   const loading = ref(false)
-  const sysConfig = ref<sysConfigState | null>(null)
   const showSideBar = ref(false)
+  const chat = ref('')
+  const email = ref('')
+
+  // 获取系统配置
+  const getConfig = () => {
+    return new Promise((resolve, reject) => {
+      getConfigApi()
+        .then((resp: any) => {
+          chat.value = resp.data.find((item: any) => item.pKey == 'chat').value1
+          email.value = resp.data.find((item: any) => item.pKey == 'email').value1
+          resolve(resp)
+        })
+        .catch((error: any) => {
+          reject(error)
+        })
+    })
+  }
 
   return {
     loading,
-    sysConfig,
-    showSideBar
+    showSideBar,
+    chat,
+    email,
+    getConfig
   }
 })
 export function useAppStoreHook() {

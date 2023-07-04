@@ -27,6 +27,11 @@ export interface googleCodeData {
   VerificationCode: string
 }
 
+// 获取新消息数量
+export interface getNewMessageCountData {
+  noLoading?: boolean
+}
+
 // 获取消息列表
 export interface messageData {
   PageIndex: number

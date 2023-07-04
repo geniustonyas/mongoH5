@@ -52,6 +52,34 @@ export function copy(selector: string, tips = '复制成功') {
   })
 }
 
+// 动态加载外部第三方js
+export function loadJs(url: string) {
+  return new Promise((resolve, reject) => {
+    let isLoaded = false
+    const scripts = document.scripts
+    for (let i = 0; i < scripts.length; i++) {
+      const item = document.scripts[i]
+      if (item['src'] && item['src'] == url) {
+        isLoaded = true
+      }
+    }
+    if (isLoaded) {
+      resolve(true)
+    } else {
+      const script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.src = url
+      document.body.appendChild(script)
+      script.onload = () => {
+        resolve(true)
+      }
+      script.onerror = () => {
+        reject(false)
+      }
+    }
+  })
+}
+
 // 格式化两位小数
 export function moneyFormat(value: any) {
   return new BigNumber(Math.floor(parseFloat(value) * 100) / 100).toFormat(2)
