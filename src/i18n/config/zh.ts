@@ -179,7 +179,7 @@ export default {
   // 首页
   readMore: '详情',
   sports: '体育',
-  liveCasino: '电竞',
+  liveCasino: '真人娱乐城',
   slots: '娱乐场',
   sbSport: '沙巴体育',
   fbSport: 'FB体育',
@@ -188,7 +188,7 @@ export default {
   globalPaymentSolutions: '全球支付解决方案',
   otherPayment: '其他主流支付方式',
   sportsBet: '体育投注',
-  liveCasinoBet: '电竞投注',
+  liveCasinoBet: '真人娱乐投注',
   slotBet: ' 娱乐场投注',
   currencyLang: {
     usdt: '泰达币',

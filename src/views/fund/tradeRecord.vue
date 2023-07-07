@@ -12,7 +12,7 @@
           </div>
           <div class="line-options">
             <!--此处参考sportsbet.io，一个带图标的下拉框，一个日期控件-->
-            <ConfigProvider class="dark o-item">
+            <ConfigProvider theme="dark" class="o-item">
               <DropdownMenu direction="down">
                 <DropdownItem :title="t('currencyFilter')" ref="currenyDom" teleport="body">
                   <div class="drop-item" v-for="(item, index) of currenyList" :key="index" @click="selCurrency(item, index)">

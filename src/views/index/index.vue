@@ -45,7 +45,7 @@
 
       <div v-show="tab == 'sports'">
         <nav class="swiper m-banner">
-          <Swipe :autoplay="3500" class="my-swipe" lazy-render>
+          <Swipe :autoplay="3500" class="my-swipe">
             <SwipeItem v-lazy:background-image="getAssetsFile('bannber/bannber-1.jpg')">
               <div class="t-cont">
                 <h2>$100 FREE</h2>
@@ -193,114 +193,44 @@
               <div class="gh-b optstion">
                 <div class="form-row">
                   <label class="form-label">Providers</label>
-                  <select class="form-control">
-                    <option>All Game Providers</option>
-                  </select>
+                  <ConfigProvider theme="dark">
+                    <DropdownMenu v-if="pslist.length > 0" direction="down">
+                      <DropdownItem title="All Game Providers" ref="currenyDom">
+                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item, index)">
+                          <span :class="{ active: query.ps.includes(item.id) }">{{ item.name }}({{ item.count }})</span>
+                          <Icon name="success" :class="{ active: query.ps.includes(item.id) }" />
+                        </div>
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </ConfigProvider>
                 </div>
                 <div class="form-row">
                   <label class="form-label">Sort by</label>
-                  <select class="form-control">
-                    <option>Popularity</option>
-                  </select>
+                  <ConfigProvider theme="dark">
+                    <DropdownMenu v-if="pslist.length > 0" direction="down">
+                      <DropdownItem v-model="query.sortBy" :options="sortBy" @change="sortGame()" />
+                    </DropdownMenu>
+                  </ConfigProvider>
                 </div>
               </div>
             </Vue3SlideUpDown>
           </div>
-          <div :class="gridShow ? 'g-list' : 'g-list row'">
-            <div class="item">
+          <div v-if="dataList.length > 0" :class="gridShow ? 'g-list' : 'g-list row'">
+            <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item)">
               <div class="i-bd">
                 <div class="i-img">
-                  <img :src="getAssetsFile('game/game1.jpg')" />
-                  <span class="red">FEATURED</span>
+                  <img v-lazy="appStore.cdnurl + item.img" />
+                  <!-- <span class="red">FEATURED</span> -->
                 </div>
                 <div class="i-txt">
-                  <strong>Wild Coyote Megaways</strong>
-                  <span>ONETOUCH</span>
+                  <strong>{{ item.name }}</strong>
+                  <span>{{ item.pname }}</span>
                 </div>
               </div>
             </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game2.jpg')" />
-                  <span class="dark">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Kasahara vs lto Baccarat</strong>
-                  <span>EXCLUSIVE</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game3.jpg')" />
-                </div>
-                <div class="i-txt">
-                  <strong>Evolution Live Baccarat Lobby</strong>
-                  <span>EVOLUTION</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game4.jpg')" />
-                  <span class="dark">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Kasahara vs lto Baccarat</strong>
-                  <span>EXCLUSIVE</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game5.jpg')" />
-                  <span class="red">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Wild Coyote Megaways</strong>
-                  <span>ONETOUCH</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game6.jpg')" />
-                  <span class="dark">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Kasahara vs lto Baccarat</strong>
-                  <span>EXCLUSIVE</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game7.jpg')" />
-                </div>
-                <div class="i-txt">
-                  <strong>Evolution Live Baccarat Lobby</strong>
-                  <span>EVOLUTION</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game8.jpg')" />
-                  <span class="dark">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Kasahara vs lto Baccarat</strong>
-                  <span>EXCLUSIVE</span>
-                </div>
-              </div>
-            </div>
+          </div>
+          <div v-if="pageCount > 0" class="g-btn">
+            <a :class="query.page >= pageCount ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="loadMore()">加载更多</a>
           </div>
         </nav>
       </div>
@@ -320,117 +250,47 @@
               </div>
             </div>
             <Vue3SlideUpDown v-model="showGameOption">
-              <div class="gh-b optstion" v-show="showGameOption">
+              <div class="gh-b optstion">
                 <div class="form-row">
                   <label class="form-label">Providers</label>
-                  <select class="form-control">
-                    <option>All Game Providers</option>
-                  </select>
+                  <ConfigProvider theme="dark">
+                    <DropdownMenu v-if="pslist.length > 0" direction="down">
+                      <DropdownItem title="All Game Providers" ref="currenyDom" teleport="body">
+                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item, index)">
+                          <span :class="{ active: query.ps.includes(item.id) }">{{ item.name }}({{ item.count }})</span>
+                          <Icon name="success" :class="{ active: query.ps.includes(item.id) }" />
+                        </div>
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </ConfigProvider>
                 </div>
                 <div class="form-row">
                   <label class="form-label">Sort by</label>
-                  <select class="form-control">
-                    <option>Popularity</option>
-                  </select>
+                  <ConfigProvider theme="dark">
+                    <DropdownMenu v-if="pslist.length > 0" direction="down">
+                      <DropdownItem v-model="query.sortBy" :options="sortBy" @change="sortGame()" />
+                    </DropdownMenu>
+                  </ConfigProvider>
                 </div>
               </div>
             </Vue3SlideUpDown>
           </div>
-          <div :class="gridShow ? 'g-list' : 'g-list row'">
-            <div class="item">
+          <div v-if="dataList.length > 0" :class="gridShow ? 'g-list' : 'g-list row'">
+            <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item)">
               <div class="i-bd">
                 <div class="i-img">
-                  <img :src="getAssetsFile('game/game9.jpg')" />
-                  <span class="red">FEATURED</span>
+                  <img v-lazy="appStore.cdnurl + item.img" />
+                  <!-- <span class="red">FEATURED</span> -->
                 </div>
                 <div class="i-txt">
-                  <strong>Wild Coyote Megaways</strong>
-                  <span>ONETOUCH</span>
+                  <strong>{{ item.name }}</strong>
+                  <span>{{ item.pname }}</span>
                 </div>
               </div>
             </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game8.jpg')" />
-                  <span class="dark">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Kasahara vs lto Baccarat</strong>
-                  <span>EXCLUSIVE</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game7.jpg')" />
-                </div>
-                <div class="i-txt">
-                  <strong>Evolution Live Baccarat Lobby</strong>
-                  <span>EVOLUTION</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game6.jpg')" />
-                  <span class="dark">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Kasahara vs lto Baccarat</strong>
-                  <span>EXCLUSIVE</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game5.jpg')" />
-                  <span class="red">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Wild Coyote Megaways</strong>
-                  <span>ONETOUCH</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game4.jpg')" />
-                  <span class="dark">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Kasahara vs lto Baccarat</strong>
-                  <span>EXCLUSIVE</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game3.jpg')" />
-                </div>
-                <div class="i-txt">
-                  <strong>Evolution Live Baccarat Lobby</strong>
-                  <span>EVOLUTION</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img :src="getAssetsFile('game/game2.jpg')" />
-                  <span class="dark">FEATURED</span>
-                </div>
-                <div class="i-txt">
-                  <strong>Kasahara vs lto Baccarat</strong>
-                  <span>EXCLUSIVE</span>
-                </div>
-              </div>
-            </div>
+          </div>
+          <div class="g-btn">
+            <a :class="query.page >= pageCount ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="loadMore()">加载更多</a>
           </div>
         </nav>
       </div>
@@ -567,7 +427,7 @@
 
 <script setup lang="ts">
 // vue自带
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 // 自定义组件
 // import Header from '@/components/layout/Header.vue'
@@ -575,15 +435,20 @@ import Footer from '@/components/layout/Footer.vue'
 import Sidebar from '@/components/layout/SideBar.vue'
 // 引用方法
 import { getExchangeRateApi, getAnnouncementListApi } from '@/api/app/index'
+import { getGameListApi, getGameUrlApi } from '@/api/game/index'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
 //第三方插件
 import { useI18n } from 'vue-i18n'
-import { Swipe, SwipeItem } from 'vant'
+import { Swipe, SwipeItem, showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon, showConfirmDialog } from 'vant'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-import 'vant/es/swipe/style'
-import 'vant/es/notice-bar/style'
+// import 'vant/es/swipe/style'
+// import 'vant/es/notice-bar/style'
+// import 'vant/es/dropdown-menu/style'
+// import 'vant/es/dropdown-item/style'
+// import 'vant/es/icon/style'
+// import 'vant/es/dialog/style'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -600,10 +465,42 @@ let currencyCode = ref('')
 let cxchangeRate = ref('')
 // 跑马灯工改
 let marqueeContent = ref('')
+
+//  选择的运营商
+// let checkedProvider = ref([])
+const sortBy = [
+  { text: 'Polular', value: 3 },
+  { text: 'A-Z', value: 1 },
+  { text: 'RTP', value: 2 }
+]
+
+let query = reactive({
+  ps: [],
+  cs: [],
+  gts: [],
+  sortBy: 3,
+  page: 1
+})
+
+let pageCount = ref(0)
+let pslist = ref([])
+let cslist = ref([])
+let dataList = ref([])
+
 // 切换选项卡
 const toggleTab = (tabs: string) => {
   tab.value = tabs
   showGameOption.value = false
+  if (tabs == 'livecasino' || tabs == 'slots') {
+    query.gts = tabs == 'livecasino' ? [2] : [3]
+    query.page = 1
+    query.sortBy = 3
+    pageCount.value = 0
+    pslist.value = []
+    cslist.value = []
+    dataList.value = []
+    getGameList()
+  }
 }
 
 // 获取汇率
@@ -629,6 +526,70 @@ const getAnnouncementList = () => {
     .catch((error) => {
       console.log(error)
     })
+}
+
+// 选择运营商
+const selGameProvider = (item) => {
+  const index = query.ps.indexOf(item.id)
+  if (index > -1) {
+    query.ps.splice(index, 1)
+  } else {
+    query.ps.push(item.id)
+  }
+  query.page = 1
+  dataList.value = []
+  getGameList()
+}
+
+const sortGame = () => {
+  query.page = 1
+  dataList.value = []
+  getGameList()
+}
+
+const getGameList = () => {
+  getGameListApi(query)
+    .then((resp) => {
+      pslist.value = resp.data.ps
+      cslist.value = resp.data.cs
+      dataList.value = [...dataList.value, ...resp.data.gs.items]
+      pageCount.value = resp.data.gs.pages
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+const loadMore = () => {
+  if (parseInt(query.page) <= parseInt(pageCount.value)) {
+    query.page++
+    getGameList()
+  } else {
+    showToast(t('noMore'))
+  }
+}
+
+const startGame = (game) => {
+  if (!userStore.userInfo.id) {
+    showConfirmDialog({
+      title: '您尚未登录',
+      message: '立即前往登录'
+    })
+      .then(() => {
+        router.push({ name: 'login' })
+      })
+      .catch(() => {
+        return false
+      })
+  } else {
+    getGameUrlApi({ id: game.id, platform: 1 })
+      .then((resp) => {
+        window.location.href = resp.data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 }
 
 getAnnouncementList()

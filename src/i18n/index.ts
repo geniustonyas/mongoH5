@@ -1,12 +1,12 @@
 import { createI18n } from 'vue-i18n'
 import { getUrlAllParams } from '@/utils/index'
-import cn from './config/cn'
+import zh from './config/zh'
 import en from './config/en'
 
 const params = getUrlAllParams()
 const messages = {
   en,
-  cn
+  zh
 }
 
 const browerLang = (navigator.language || 'en').toLocaleLowerCase()
@@ -28,7 +28,7 @@ export default i18n
 
 // var params = param2Obj(window.location.href)
 // var messages = {
-//   'zh-cn': import('@/i18n/config/zh-cn'),
+//   'zh-zh': import('@/i18n/config/zh-zh'),
 //   'en-us': import('@/i18n/config/en-us'),
 //   'vi-vn': import('@/i18n/config/vi-vn'),
 //   'id-id': import('@/i18n/config/id-id'),
@@ -37,10 +37,10 @@ export default i18n
 // var lang = process.env.VUE_APP_LANG
 // var localLang = localStorage.getItem('lang')
 // if(localLang) {
-//   lang = (localLang.toLowerCase() in messages) ? localLang : 'zh-cn'
+//   lang = (localLang.toLowerCase() in messages) ? localLang : 'zh-zh'
 // }
 // if(params.lang) {
-//   lang = ((params.lang.toLowerCase()) in  messages) ? params.lang.toLowerCase() : 'zh-cn'
+//   lang = ((params.lang.toLowerCase()) in  messages) ? params.lang.toLowerCase() : 'zh-zh'
 // }
 // lang = lang.toLowerCase()
 // document.querySelector('html').setAttribute('lang', lang)

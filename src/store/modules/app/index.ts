@@ -8,6 +8,7 @@ export const useAppStore = defineStore('app', () => {
   const showSideBar = ref(false)
   const chat = ref('')
   const email = ref('')
+  const cdnurl = ref('')
 
   // 获取系统配置
   const getConfig = () => {
@@ -16,6 +17,7 @@ export const useAppStore = defineStore('app', () => {
         .then((resp: any) => {
           chat.value = resp.data.find((item: any) => item.pKey == 'chat').value1
           email.value = resp.data.find((item: any) => item.pKey == 'email').value1
+          cdnurl.value = resp.data.find((item: any) => item.pKey == 'CDNURL').value1
           resolve(resp)
         })
         .catch((error: any) => {
@@ -29,6 +31,7 @@ export const useAppStore = defineStore('app', () => {
     showSideBar,
     chat,
     email,
+    cdnurl,
     getConfig
   }
 })

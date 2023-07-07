@@ -311,6 +311,7 @@ body {
     max-height: 19rem;
 
     .van-swipe-item {
+        height: 19rem;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -707,12 +708,40 @@ body {
                     width: 100%;
                     font-size: 1.4rem;
                 }
+
+                .van-dropdown-menu__bar {
+                    background: var(--color-tabs);
+                    box-shadow: 0 0 0 #ccc;
+                    height: 3rem;
+                    .van-dropdown-menu__title {
+                        width: 100%;
+                        .h-lh(3rem);
+                        color: var(--color-text);
+                        font-size: 1.4rem;
+                        &:after {
+                            right: 10px;
+                        }
+                    }
+                }
+                .van-dropdown-item {
+                    .van-popup { 
+                        .bg(var(--color-tabs));
+                        .drop-item {
+                            span { color: var(--color-text);
+                                &.active { color: var(--color-primary) }
+                            }
+                        }
+                    }
+                }
+                .van-dropdown-item__option--active, 
+                .van-dropdown-item__option--active,
+                .van-dropdown-item__icon{ color: var(--color-primary) }
             }
         }
     }
 
     .g-list {
-        margin: 2rem -1.5rem 2rem 0;
+        margin: 2rem -1.5rem 0 0;
         .flex();
         .flex-wrap(wrap);
 
@@ -805,6 +834,10 @@ body {
                 }
             }
         }
+    }
+
+    .g-btn {
+        text-align: center;
     }
     &.search {
         margin: 1.5rem;
@@ -1286,9 +1319,10 @@ body {
 .drop-item { .flex(); .flex-align(); .flex-pack-justify(); .h-lh(4rem);
     padding: 1rem 2rem;
     img { .size(2rem, 2rem) }
-    span { color: var(--color-white);  text-align: left; width: 80%; font-size: 1.4rem }
+    span { color: var(--color-white);  text-align: left; width: 80%; font-size: 1.4rem ;
+        &.active { color: var(--color-primary) }
+    }
     .active { color: var(--color-primary) }
-    
 }
 .drop-btn {
     text-align: center; padding: 2rem;
@@ -2139,6 +2173,10 @@ body {
 //         }
 //     }
 // }
+
+.search-result {
+    padding: 1.5rem
+}
 
 .provider-list {
     padding: 1.5rem;

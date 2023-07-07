@@ -1,7 +1,7 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
 import { useUserStoreHook } from '@/store/modules/user'
 import { useAppStoreHook } from '@/store/modules/app'
-import { get } from 'lodash-es'
+import { get, merge } from 'lodash-es'
 import { TokenPrefix, getToken } from '@/utils/auth'
 
 let loadingRequestCount = 0 // loading请求数
@@ -82,7 +82,7 @@ function createRequestFunction(service: AxiosInstance) {
       baseURL: import.meta.env.VITE_BASE_API,
       data: {}
     }
-    return service(Object.assign(configDefault, config))
+    return service(merge(configDefault, config))
   }
 }
 

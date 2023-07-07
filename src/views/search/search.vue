@@ -5,11 +5,36 @@
         <b>{{ t('search') }}</b>
         <div class="search-box">
           <span><i class="iconfont icon-search" /></span>
-          <input :placeholder="t('searchHolder')" />
+          <input v-model="Keywords" :placeholder="t('searchHolder')" />
         </div>
       </div>
     </header>
     <main class="main">
+      <div class="search-result">
+        <div class="result-count">
+          <span v-if="nodata || (Keywords.length < 3 && Keywords.length > 0)" class="noResult">很抱歉，没有符合 "{{ Keywords }}" 的结果。请尝试其他搜索词。</span>
+          <span v-if="searchResult.length > 0" class="noResult">找到了 {{ searchResult.length }} 个结果</span>
+        </div>
+        <div class="gamebox search">
+          <div v-if="searchResult.length > 0" class="g-list row">
+            <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item)">
+              <div class="i-bd">
+                <div class="i-img">
+                  <img v-lazy="appStore.cdnurl + item.img" />
+                  <!-- <span class="red">FEATURED</span> -->
+                </div>
+                <div class="i-txt">
+                  <strong>{{ item.name }}</strong>
+                  <span>{{ item.pname }}</span>
+                </div>
+                <div class="i-btn">
+                  <a>{{ t('enter') }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <dl class="provider-list">
         <dt>{{ t('searchMore') }}</dt>
         <dd>
@@ -50,122 +75,19 @@
             <div class="gh-l">{{ t('searchRecommend') }}</div>
           </div>
         </div>
-        <div class="g-list row">
-          <div class="item">
+        <div v-if="dataList.length > 0" class="g-list row">
+          <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item)">
             <div class="i-bd">
               <div class="i-img">
-                <img :src="getAssetsFile('game/game9.jpg')" />
-                <span class="red">FEATURED</span>
+                <img v-lazy="appStore.cdnurl + item.imageName" />
+                <!-- <span class="red">FEATURED</span> -->
               </div>
               <div class="i-txt">
-                <strong>Wild Coyote Megaways</strong>
+                <strong>{{ item.gameName }}</strong>
                 <span>ONETOUCH</span>
               </div>
               <div class="i-btn">
                 <a>{{ t('enter') }}</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-bd">
-              <div class="i-img">
-                <img :src="getAssetsFile('game/game8.jpg')" />
-                <span class="dark">FEATURED</span>
-              </div>
-              <div class="i-txt">
-                <strong>Kasahara vs lto Baccarat</strong>
-                <span>EXCLUSIVE</span>
-              </div>
-              <div class="i-btn">
-                <a>进入</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-bd">
-              <div class="i-img">
-                <img :src="getAssetsFile('game/game7.jpg')" />
-              </div>
-              <div class="i-txt">
-                <strong>Evolution Live Baccarat Lobby</strong>
-                <span>EVOLUTION</span>
-              </div>
-              <div class="i-btn">
-                <a>进入</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-bd">
-              <div class="i-img">
-                <img :src="getAssetsFile('game/game6.jpg')" />
-                <span class="dark">FEATURED</span>
-              </div>
-              <div class="i-txt">
-                <strong>Kasahara vs lto Baccarat</strong>
-                <span>EXCLUSIVE</span>
-              </div>
-              <div class="i-btn">
-                <a>进入</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-bd">
-              <div class="i-img">
-                <img :src="getAssetsFile('game/game5.jpg')" />
-                <span class="red">FEATURED</span>
-              </div>
-              <div class="i-txt">
-                <strong>Wild Coyote Megaways</strong>
-                <span>ONETOUCH</span>
-              </div>
-              <div class="i-btn">
-                <a>进入</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-bd">
-              <div class="i-img">
-                <img :src="getAssetsFile('game/game4.jpg')" />
-                <span class="dark">FEATURED</span>
-              </div>
-              <div class="i-txt">
-                <strong>Kasahara vs lto Baccarat</strong>
-                <span>EXCLUSIVE</span>
-              </div>
-              <div class="i-btn">
-                <a>进入</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-bd">
-              <div class="i-img">
-                <img :src="getAssetsFile('game/game3.jpg')" />
-              </div>
-              <div class="i-txt">
-                <strong>Evolution Live Baccarat Lobby</strong>
-                <span>EVOLUTION</span>
-              </div>
-              <div class="i-btn">
-                <a>进入</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-bd">
-              <div class="i-img">
-                <img :src="getAssetsFile('game/game2.jpg')" />
-                <span class="dark">FEATURED</span>
-              </div>
-              <div class="i-txt">
-                <strong>Kasahara vs lto Baccarat</strong>
-                <span>EXCLUSIVE</span>
-              </div>
-              <div class="i-btn">
-                <a>进入</a>
               </div>
             </div>
           </div>
@@ -177,10 +99,82 @@
 </template>
 
 <script setup name="PromoPromo">
+import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
+
 import Footer from '@/components/layout/Footer.vue'
 
+import { getSearchGameApi, getGameRecommendApi, getGameUrlApi } from '@/api/game/index'
+import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
+
+import { showConfirmDialog } from 'vant'
+import { debounce } from 'lodash-es'
 import { useI18n } from 'vue-i18n'
 
+const appStore = useAppStore()
+const userStore = useUserStore()
+const router = useRouter()
 const { t } = useI18n()
+
+let Keywords = ref('')
+let searchResult = ref([])
+const dataList = ref([])
+const nodata = ref(false)
+
+watch(Keywords, () => {
+  if (Keywords.value.length >= 3) {
+    getSearchGame()
+  }
+})
+
+const getSearchGame = debounce(function () {
+  if (Keywords.value.length < 3) {
+    return false
+  }
+  getSearchGameApi({ Keywords: Keywords.value })
+    .then((resp) => {
+      searchResult.value = resp.data.items
+      nodata.value = resp.data.items.length == 0
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}, 500)
+
+const getGameRecommend = () => {
+  getGameRecommendApi({ id: 1, platform: 1 })
+    .then((resp) => {
+      dataList.value = resp.data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+const startGame = (game) => {
+  if (!userStore.userInfo.id) {
+    showConfirmDialog({
+      title: '您尚未登录',
+      message: '立即前往登录'
+    })
+      .then(() => {
+        router.push({ name: 'login' })
+      })
+      .catch(() => {
+        return false
+      })
+  } else {
+    getGameUrlApi({ id: game.id, platform: 1 })
+      .then((resp) => {
+        window.location.href = resp.data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+}
+
+getGameRecommend()
 </script>

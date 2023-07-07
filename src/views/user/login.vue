@@ -8,7 +8,7 @@
           <h2>{{ t('login') }}</h2>
           <div class="ls-third">
             <div class="t-list">
-              <a>
+              <a @click="walletLogin()">
                 <img :src="getAssetsFile('svg/metamask.svg')" />
                 Metamask
               </a>
@@ -112,7 +112,7 @@ import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { getAssetsFile } from '@/utils'
-import { telegramLogin, googleLogin, facebookInit, facebookLogin } from '@/thirdLogin/index'
+import { telegramLogin, googleLogin, facebookInit, facebookLogin, walletInit, walletLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { checkUserBindGoogleApi } from '@/api/user/index'
 import { isPwd, isUname } from '@/utils/validate'
@@ -195,8 +195,8 @@ const handleLogin = () => {
     })
 }
 
+walletInit()
 facebookInit()
-// initWeb3()
 </script>
 
 <style type="text/css">

@@ -182,9 +182,7 @@
               </ul>
             </div>
           </Popup>
-        </ConfigProvider>
-        <!-- 如果是USDT， 选择存款网络 -->
-        <ConfigProvider theme="dark">
+          <!-- 如果是USDT， 选择存款网络 -->
           <Popup id="promotion" v-model:show="showBlockChainBox" position="bottom" close-icon-position="top-right" round style="padding: 0px 15px; padding-top: 20px" :closeable="true">
             <div class="fund-pop-box">
               <div class="bb-title">

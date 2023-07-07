@@ -4,12 +4,19 @@ import { awaitWraper } from '@/utils/index'
 import { useUserStore } from '@/store/modules/user'
 import router from '@/router'
 
+import { configureChains, createConfig, getAccount } from '@wagmi/core'
+import { arbitrum, avalanche, mainnet, polygon } from '@wagmi/core/chains'
+import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
+import { Web3Modal } from '@web3modal/html'
+
 import facebookWebLogin from './plugin/facebookWebLogin'
 import { googleTokenLogin } from 'vue3-google-login'
 import { get } from 'lodash-es'
 import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
+// web3Modal project_Id
+const projectId = '1a2a6ba4947c7a9802ebcbe6426b3b5b'
 // telegram 信息
 const BOT_ID = '5984604441'
 // 谷歌app信息
@@ -22,6 +29,34 @@ const loginData = <thirdData>{
   ThirdPartyId: '',
   ThirdPartyName: '',
   Sign: ''
+}
+
+let modal: any = null
+
+export const walletInit = () => {
+  const chains = [mainnet, polygon, avalanche, arbitrum]
+  const { publicClient } = configureChains(chains, [w3mProvider({ projectId })])
+  const wagmiConfig = createConfig({
+    autoConnect: true,
+    // @ts-ignore
+    connectors: w3mConnectors({ chains, projectId }),
+    publicClient
+  })
+  const ethereumClient = new EthereumClient(wagmiConfig, chains)
+  modal = new Web3Modal({ projectId, themeMode: 'dark' }, ethereumClient)
+}
+
+export const walletLogin = async () => {
+  console.log(modal)
+  await modal.openModal({ route: 'ConnectWallet' })
+  const account = getAccount()
+  if (account.isConnected) {
+    console.log('connected')
+    // let aa = signMessage({ message: 'test' })
+    // console.log(aa)
+  } else {
+    console.log('user refused')
+  }
 }
 
 export const facebookInit = () => {
