@@ -86,10 +86,10 @@
               <a @click="facebookLogin"> <img :src="getAssetsFile('svg/facebook.svg')" />Facebook </a>
             </dd>
             <dd>
-              <a> <img :src="getAssetsFile('svg/twiter.svg')" />Twitter </a>
+              <a @click="twitterLogin"> <img :src="getAssetsFile('svg/twiter.svg')" />Twitter </a>
             </dd>
             <dd>
-              <a> <img :src="getAssetsFile('svg/line.svg')" />Line </a>
+              <a @click="lineLogin"> <img :src="getAssetsFile('svg/line.svg')" />Line </a>
             </dd>
             <dd>
               <a @click="telegramLogin()"> <img :src="getAssetsFile('svg/telegram.svg')" />Telegram </a>
@@ -112,7 +112,7 @@ import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { getAssetsFile } from '@/utils'
-import { telegramLogin, googleLogin, facebookInit, facebookLogin, walletInit, walletLogin } from '@/thirdLogin/index'
+import { telegramLogin, googleLogin, facebookInit, facebookLogin, walletLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { checkUserBindGoogleApi } from '@/api/user/index'
 import { isPwd, isUname } from '@/utils/validate'
@@ -195,8 +195,8 @@ const handleLogin = () => {
     })
 }
 
-walletInit()
 facebookInit()
+twitterInit()
 </script>
 
 <style type="text/css">

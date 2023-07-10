@@ -46,16 +46,16 @@ function createService() {
       if (code === undefined) {
         return data
       } else {
-        switch (code) {
-          case '200':
+        switch (parseInt(code)) {
+          case 200:
             return data
-          case '400':
+          case 400:
             return Promise.reject(data.message)
-          case '401':
+          case 401:
             useUserStoreHook().clearLogin()
             return Promise.reject(data.message)
           default:
-            return Promise.reject(data.message)
+            return Promise.reject(data)
         }
       }
     },
@@ -76,8 +76,9 @@ function createRequestFunction(service: AxiosInstance) {
         // 携带 Token
         Authorization: `${TokenPrefix}${getToken()}`,
         'Accept-Language': localStorage.getItem('lang'),
-        'Content-Type': get(config, 'headers.Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
+        'Content-Type': get(config, 'headers.Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
       },
+      withCredentials: true, // 发送cookies,authorization header或TLS客户端等资格证书, 主要用于跨域.
       timeout: 5000,
       baseURL: import.meta.env.VITE_BASE_API,
       data: {}

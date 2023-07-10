@@ -98,6 +98,27 @@ export function checkThirdUserApi(data: User.thirdData) {
   })
 }
 
+// 获取服务端唯一随机数
+export function getThirdNonceApi() {
+  return request<anyResp>({
+    url: 'walletNonce',
+    method: 'get',
+    withCredentials: true,
+    baseURL: import.meta.env.VITE_THIRD_API
+  })
+}
+
+// 验证钱包签名
+export function verifyMessageApi(params: any) {
+  return request<anyResp>({
+    url: 'wallet',
+    method: 'get',
+    withCredentials: true,
+    baseURL: import.meta.env.VITE_THIRD_API,
+    params
+  })
+}
+
 /** 验证Facebook用户是否真实 */
 export function facebookValidateApi(params: any) {
   return request<anyResp>({
@@ -108,10 +129,40 @@ export function facebookValidateApi(params: any) {
   })
 }
 
+/** 获取签名所需要的随机数 */
+export function getWalletNonce(params: any) {
+  return request<anyResp>({
+    url: 'walletNonce',
+    method: 'get',
+    baseURL: import.meta.env.VITE_THIRD_API,
+    params
+  })
+}
+
 /** 验证telegram用户是否真实 */
 export function telegramValidateApi(params: any) {
   return request<anyResp>({
     url: 'telegram',
+    method: 'get',
+    baseURL: import.meta.env.VITE_THIRD_API,
+    params
+  })
+}
+
+/** 生成Line的签名 */
+export function lineValidateApi(params: any) {
+  return request<anyResp>({
+    url: 'line',
+    method: 'get',
+    baseURL: import.meta.env.VITE_THIRD_API,
+    params
+  })
+}
+
+/** 生成Line的签名 */
+export function twitterValidateApi(params: any) {
+  return request<anyResp>({
+    url: 'twitter',
     method: 'get',
     baseURL: import.meta.env.VITE_THIRD_API,
     params

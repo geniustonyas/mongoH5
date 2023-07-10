@@ -74,6 +74,12 @@ const routes = [
         name: 'thirdReg',
         component: () => import('@/views/user/thirdReg.vue'),
         meta: { transition: '', needLogin: false }
+      },
+      {
+        path: 'authCallback',
+        name: 'authCallback',
+        component: () => import('@/views/user/authCallback.vue'),
+        meta: { transition: '', needLogin: false }
       }
     ]
   },

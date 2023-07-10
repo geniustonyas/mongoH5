@@ -38,6 +38,7 @@ export const useUserStore = defineStore('userInfo', () => {
   const refreshTokenTimer = ref<null | number>(null)
   const newMessageCountTimer = ref<null | number>(null)
   const newMessageCount = ref<null | number>(0)
+  const lineCode = ref('')
 
   // 获取用户信息
   const getUserInfo = (data: getUserProfileData) => {
@@ -172,6 +173,7 @@ export const useUserStore = defineStore('userInfo', () => {
     userInfo,
     refreshUserInfoTimer,
     newMessageCount,
+    lineCode,
     getUserInfo,
     refreshUserInfo,
     refreshToken,

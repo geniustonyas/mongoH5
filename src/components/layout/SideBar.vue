@@ -99,7 +99,7 @@
       </nav>
       <nav class="m-rate">
         <select v-model="locale" class="form-control" @change="selLang">
-          <option value="cn">中文</option>
+          <option value="zh">中文</option>
           <option value="en">English</option>
         </select>
       </nav>

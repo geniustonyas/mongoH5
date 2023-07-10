@@ -299,7 +299,7 @@
         1
         <b>{{ currencyCode }}</b>
         = {{ cxchangeRate }}
-        <b>EUR</b>
+        <b>USDT</b>
       </nav>
       <nav class="m-term">
         <dl>
@@ -550,6 +550,7 @@ const sortGame = () => {
 const getGameList = () => {
   getGameListApi(query)
     .then((resp) => {
+      console.log(resp)
       pslist.value = resp.data.ps
       cslist.value = resp.data.cs
       dataList.value = [...dataList.value, ...resp.data.gs.items]
