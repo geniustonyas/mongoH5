@@ -14,22 +14,6 @@ export interface getDepositAddressData {
   CurrencyCode: string
 }
 
-// 获取充值地址返回参数
-export interface getDepositAddressResponse {
-  channelId: string
-  channelCode: string
-  channelName: string
-  currencyType: number
-  blockchainCode: string
-  currencyCode: string
-  currencyUnit: string
-  subtitle: string
-  balance: string | number
-  walletAddress: string
-  exchangeRate: string | number
-  minDepositAmount: string | number
-}
-
 // 创建提现订单请求
 export interface depositData {
   CurrencyCode: string | number
@@ -73,5 +57,46 @@ export interface getTradeDetailResponse {
   orderStatus: string
 }
 
+// 获取充值地址返回参数
+export interface getDepositAddressResponse {
+  channelId: string
+  channelCode: string
+  channelName: string
+  currencyType: number
+  blockchainCode: string
+  currencyCode: string
+  currencyUnit: string
+  subtitle: string
+  balance: string | number
+  walletAddress: string
+  exchangeRate: string | number
+  minDepositAmount: string | number
+}
+
+// 获取交易记录
+export interface getRradeRecordResponse {
+  orderId: string
+  currencyCode: string
+  currencyType: string
+  createTime: string
+  amount: string
+  afterBalance: string
+  gameName: string
+  orderStatus: string
+  providerName?: string
+  gameItemName?: string
+}
+
+export interface getBalanceItemResponse {
+  balance: string
+  name: string
+  subtitle: string
+  unit: string
+  currencyType: string
+  usdAmount: string
+}
+
 export type getDepositAddressResp = ApiResponseData<getDepositAddressResponse>
 export type withdrawOrderResp = ApiResponseData<getTradeDetailResponse>
+export type getRradeRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getRradeRecordResponse[] }>
+export type getBalanceItemResp = ApiResponseData<getBalanceItemResponse[]>

@@ -149,6 +149,7 @@ export default {
   wins: '中奖',
   currencyFilter: '按币种筛选',
   dateFilter: '按日期筛选',
+  winLose: '输赢',
   nodata: '暂无记录',
   // 钱包设置
   currency: '货币',
@@ -175,6 +176,7 @@ export default {
   chooseWithdrawChain: '选择提款网络',
   confirmWithdrawAddress: '请在执行交易前确认您的提款地址',
   walletAddress: '钱包地址',
+  tradeStatus: { 1: '未完成', 2: '已确认', 3: '已删除' },
 
   // 首页
   readMore: '详情',

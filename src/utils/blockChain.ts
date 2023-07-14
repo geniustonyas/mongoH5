@@ -108,3 +108,18 @@ export const currenyList = [
     icon: 'coin/cny.svg'
   }
 ]
+
+export interface usdtChainListTypes {
+  chainName: string
+  subtitle: string
+  code: string
+  icon: string
+}
+
+export interface currenyListTypes {
+  code: string
+  currenyName: string
+  unit: string
+  currenyType: string
+  icon: string
+}

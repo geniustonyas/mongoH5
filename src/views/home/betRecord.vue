@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script setup name="HomeAccount">
+<script setup>
 import { ref, reactive } from 'vue'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
@@ -32,5 +32,3 @@ let tab = ref('unsettled')
 
 const { t } = useI18n()
 </script>
-
-<style lang="less" scoped></style>

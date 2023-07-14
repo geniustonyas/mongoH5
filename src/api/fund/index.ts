@@ -3,7 +3,7 @@ import type * as Fund from './types'
 
 /** 获取余额列表 */
 export function getBalanceApi() {
-  return request<anyResp>({
+  return request<Fund.getBalanceItemResp>({
     url: 'Member/GetMemberBalanceList',
     method: 'post'
   })
@@ -79,36 +79,36 @@ export function getDepositMethodApi() {
   })
 }
 
-/** 获取充值记录 */
+/** 获取充值充值记录 */
 export function getDepositListApi(data: Fund.getTradeListData) {
-  return request<anyResp>({
+  return request<Fund.getRradeRecordResp>({
     url: 'Member/GetMemberDepositList',
     method: 'post',
     data
   })
 }
 
-/** 获取投注记录 */
+/** 获取提现投注记录 */
 export function getWithdrawListApi(data: Fund.getTradeListData) {
-  return request<anyResp>({
+  return request<Fund.getRradeRecordResp>({
     url: 'Member/GetMemberWithdrawList',
     method: 'post',
     data
   })
 }
 
-/** 获取充值记录详情 */
+/** 获取投注记录详情 */
 export function getBetListApi(data: Fund.getTradeListData) {
-  return request<anyResp>({
+  return request<Fund.getRradeRecordResp>({
     url: 'Member/GetMemberBetList',
     method: 'post',
     data
   })
 }
 
-/** 获取充值记录详情 */
+/** 获取输赢记录详情 */
 export function getWinListApi(data: Fund.getTradeListData) {
-  return request<anyResp>({
+  return request<Fund.getRradeRecordResp>({
     url: 'Member/GetMemberWinList',
     method: 'post',
     data

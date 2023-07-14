@@ -15,9 +15,9 @@
               </p>
             </div>
             <div class="mt-r">
-              <h2>{{ t('userLevels.101') }}</h2>
+              <h2>{{ currentData.vipSubItemName }}</h2>
               <span>
-                <b>1 </b>
+                <b>{{ parseFloat(nextReward.integral) }} </b>
                 <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0)">
                     <path
@@ -50,8 +50,8 @@
           <div class="ms-m">
             <div class="m-t">{{ t('homePage.nextReward') }}</div>
             <div class="schedule-bar">
-              <div class="sb-line" />
-              <span>0/2800</span>
+              <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
+              <span>{{ parseInt(nextReward.totalBetAmount) }}/{{ parseInt(nextReward.nextVipRequiredTotalBetAmount) }}</span>
             </div>
           </div>
           <div class="ms-b">
@@ -93,21 +93,50 @@
   </div>
 </template>
 
-<script setup name="SearchSearch">
+<script setup lang="ts">
+import { reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 import Footer from '@/components/layout/Footer.vue'
 
+import { getNextRewardApi, getVipInfoApi } from '@/api/home/index'
+import { currentDataResp, getNextRewardResps } from '@/api/home/types'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
 
+import BigNumber from 'bignumber.js'
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
-import 'vant/es/toast/style'
 
 const router = useRouter()
 const userStore = useUserStore()
 const { t } = useI18n()
+
+let currentData = reactive<currentDataResp>({
+  totalBetAmount: '',
+  vipCode: '',
+  vipSubItemCode: '',
+  vipName: '',
+  vipSubItemName: ''
+})
+
+let nextReward = reactive<getNextRewardResps>({
+  vipCode: '',
+  vipName: '',
+  integral: '',
+  vipSubItemCode: '',
+  totalBetAmount: '',
+  nextVipRequiredTotalBetAmount: ''
+})
+
+// 下一奖励进度
+const rewardProgressWidth = computed(() => {
+  let width = '0'
+  if (nextReward.nextVipRequiredTotalBetAmount != '' && nextReward.totalBetAmount != '') {
+    width = new BigNumber(parseInt(nextReward.totalBetAmount)).dividedBy(parseInt(nextReward.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
+  }
+  return width
+})
 
 const handleLogout = () => {
   userStore
@@ -120,4 +149,24 @@ const handleLogout = () => {
       console.log(error)
     })
 }
+
+// 获取VIP信息
+const getVipInfo = () => {
+  getVipInfoApi()
+    .then((resp) => {
+      Object.assign(currentData, resp.data!.currentData)
+      getNextRewardApi({ VipSubItemCode: currentData.vipSubItemCode })
+        .then((resp) => {
+          Object.assign(nextReward, resp.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+getVipInfo()
 </script>

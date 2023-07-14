@@ -20,7 +20,7 @@ export function getExchangeRateApi() {
 
 // 获取首页跑马灯公告
 export function getAnnouncementListApi(data: App.getAnnouncementListData) {
-  return request<anyResp>({
+  return request<App.getAnnouncementListResp>({
     url: 'Member/GetAnnouncementList',
     method: 'post',
     data

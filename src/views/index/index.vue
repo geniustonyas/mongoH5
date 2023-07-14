@@ -196,9 +196,9 @@
                   <ConfigProvider theme="dark">
                     <DropdownMenu v-if="pslist.length > 0" direction="down">
                       <DropdownItem title="All Game Providers" ref="currenyDom">
-                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item, index)">
-                          <span :class="{ active: query.ps.includes(item.id) }">{{ item.name }}({{ item.count }})</span>
-                          <Icon name="success" :class="{ active: query.ps.includes(item.id) }" />
+                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item)">
+                          <span :class="{ active: query.ps.includes(parseInt(item.id)) }">{{ item.name }}({{ item.count }})</span>
+                          <Icon name="success" :class="{ active: query.ps.includes(parseInt(item.id)) }" />
                         </div>
                       </DropdownItem>
                     </DropdownMenu>
@@ -224,7 +224,7 @@
                 </div>
                 <div class="i-txt">
                   <strong>{{ item.name }}</strong>
-                  <span>{{ item.pname }}</span>
+                  <!-- <span>{{ item.pname }}</span> -->
                 </div>
               </div>
             </div>
@@ -256,9 +256,9 @@
                   <ConfigProvider theme="dark">
                     <DropdownMenu v-if="pslist.length > 0" direction="down">
                       <DropdownItem title="All Game Providers" ref="currenyDom" teleport="body">
-                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item, index)">
-                          <span :class="{ active: query.ps.includes(item.id) }">{{ item.name }}({{ item.count }})</span>
-                          <Icon name="success" :class="{ active: query.ps.includes(item.id) }" />
+                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item)">
+                          <span :class="{ active: query.ps.includes(parseInt(item.id)) }">{{ item.name }}({{ item.count }})</span>
+                          <Icon name="success" :class="{ active: query.ps.includes(parseInt(item.id)) }" />
                         </div>
                       </DropdownItem>
                     </DropdownMenu>
@@ -284,7 +284,7 @@
                 </div>
                 <div class="i-txt">
                   <strong>{{ item.name }}</strong>
-                  <span>{{ item.pname }}</span>
+                  <!-- <span>{{ item.pname }}</span> -->
                 </div>
               </div>
             </div>
@@ -435,6 +435,7 @@ import Footer from '@/components/layout/Footer.vue'
 import Sidebar from '@/components/layout/SideBar.vue'
 // 引用方法
 import { getExchangeRateApi, getAnnouncementListApi } from '@/api/app/index'
+import { getGameListItemResp, getGameListGsItemResp, getGameListData } from '@/api/game/types'
 import { getGameListApi, getGameUrlApi } from '@/api/game/index'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
@@ -443,12 +444,6 @@ import { getAssetsFile } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import { Swipe, SwipeItem, showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon, showConfirmDialog } from 'vant'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-// import 'vant/es/swipe/style'
-// import 'vant/es/notice-bar/style'
-// import 'vant/es/dropdown-menu/style'
-// import 'vant/es/dropdown-item/style'
-// import 'vant/es/icon/style'
-// import 'vant/es/dialog/style'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -474,7 +469,7 @@ const sortBy = [
   { text: 'RTP', value: 2 }
 ]
 
-let query = reactive({
+let query = reactive<getGameListData>({
   ps: [],
   cs: [],
   gts: [],
@@ -482,10 +477,14 @@ let query = reactive({
   page: 1
 })
 
+// 游戏列表页数
 let pageCount = ref(0)
-let pslist = ref([])
-let cslist = ref([])
-let dataList = ref([])
+// 运营商分类
+let pslist = ref<getGameListItemResp[]>([])
+// 游戏分类-暂时没用
+let cslist = ref<getGameListItemResp[]>([])
+// 游戏列表
+let dataList = ref<getGameListGsItemResp[]>([])
 
 // 切换选项卡
 const toggleTab = (tabs: string) => {
@@ -519,7 +518,7 @@ const getExchangeRate = () => {
 const getAnnouncementList = () => {
   getAnnouncementListApi({ PageIndex: 1, PageSize: 3 })
     .then((resp) => {
-      marqueeContent.value = resp.data.items.reduce((notice, item) => {
+      marqueeContent.value = resp.data!.items.reduce((notice, item) => {
         return notice + '  ' + item.content
       }, '')
     })
@@ -529,12 +528,12 @@ const getAnnouncementList = () => {
 }
 
 // 选择运营商
-const selGameProvider = (item) => {
-  const index = query.ps.indexOf(item.id)
+const selGameProvider = (item: getGameListItemResp) => {
+  const index = query.ps.indexOf(parseInt(item.id))
   if (index > -1) {
     query.ps.splice(index, 1)
   } else {
-    query.ps.push(item.id)
+    query.ps.push(parseInt(item.id))
   }
   query.page = 1
   dataList.value = []
@@ -550,11 +549,10 @@ const sortGame = () => {
 const getGameList = () => {
   getGameListApi(query)
     .then((resp) => {
-      console.log(resp)
-      pslist.value = resp.data.ps
-      cslist.value = resp.data.cs
-      dataList.value = [...dataList.value, ...resp.data.gs.items]
-      pageCount.value = resp.data.gs.pages
+      pslist.value = resp.data!.ps
+      cslist.value = resp.data!.cs
+      dataList.value = [...dataList.value, ...resp.data!.gs.items]
+      pageCount.value = parseInt(resp.data!.gs.pages)
     })
     .catch((error) => {
       console.log(error)
@@ -562,7 +560,7 @@ const getGameList = () => {
 }
 
 const loadMore = () => {
-  if (parseInt(query.page) <= parseInt(pageCount.value)) {
+  if (query.page <= pageCount.value) {
     query.page++
     getGameList()
   } else {
@@ -570,7 +568,7 @@ const loadMore = () => {
   }
 }
 
-const startGame = (game) => {
+const startGame = (game: getGameListGsItemResp) => {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
       title: '您尚未登录',

@@ -1184,7 +1184,7 @@ body {
 /*会员中心-注单记录*/
 .mb-conts {
     .mc-box {
-        display: none;
+        // display: none;
 
         &.active {
             display: block;
@@ -1810,12 +1810,12 @@ body {
                     }
                 }
             }
-            .bbc-md { width: 50%; 
+            .bbc-md { .flex-x(); margin-left: 1rem;
                 p { 
                     &:last-child { color: var(--color-text); font-size: 1.3rem; }
                 }
             }
-            .bbc-mr { width: 30%; text-align: right; }
+            .bbc-mr { text-align: right; }
             &:hover { .bg(var(--color-dark-gray)) }
         }
     }
@@ -1914,7 +1914,7 @@ body {
 
             .cricle_img {
                 position: absolute;
-                top: 0;
+                top: -1rem;
                 left: 0;
                 right: 0;
                 .size(100%,100%);
@@ -2090,9 +2090,6 @@ body {
                     margin-top: 1rem;
                     .border-t(.1rem,var(--color-dark-gray));
                     padding-top: .5rem;
-                    display: none;
-
-
                     .row {
                         .bg(var(--color-menu));
                         .radius(1rem);
@@ -2139,6 +2136,44 @@ body {
                                 b {
                                     margin-bottom: 1rem;
                                     display: inline-block;
+                                }
+                            }
+                        }
+                    }
+                    .reward-items-box {
+                        .items {
+                            .flex();
+                            .flex-pack-justify();
+                            .flex-align();
+                            margin-top: 1rem;
+                            .bg(var(--color-menu));
+                            .radius(1rem);
+                            padding: 1rem;
+                            .items-l {
+                                .itemsl-img {padding: 0.5rem; .bg(var(--color-background)); .size(4rem, 4rem); .radius(1rem); 
+                                    img { .size(3rem, 3rem) }
+                                }
+                            }
+                            .items-r {
+                                .flex-x();
+                                margin-left: 1rem;
+                                .itemsr-t {
+                                    .flex();
+                                    .flex-pack-justify();
+                                    .flex-align();
+                                    span { color: var(--color-text); font-size: 1.2rem; }
+                                }
+                                .itemsr-b { margin-top: 0.5rem;
+                                    .schedule-bar { 
+                                        span { bottom: 0.5rem }
+                                        
+                                    }
+                                }
+                                &.completed { .flex(); .flex-space-around(); .flex-align();
+                                    .cmpld-l { text-align: left; width: 5rem; color: var(--color-white);}
+                                    .cmpld-r { text-align: right; .flex-x(); font-size: 1rem;
+                                        .btn { .h-lh(2.5rem) }
+                                    }
                                 }
                             }
                         }

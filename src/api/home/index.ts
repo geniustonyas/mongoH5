@@ -79,3 +79,29 @@ export function setAllReadApi() {
     method: 'post'
   })
 }
+
+/** 获取Club信息 */
+export function getVipInfoApi() {
+  return request<Home.vipInfoResp>({
+    url: 'Member/GetMemberVipDetail',
+    method: 'post'
+  })
+}
+
+/** 获取Club信息 */
+export function receiveRewardApi(data: Home.receiveRewardData) {
+  return request<Home.vipInfoResp>({
+    url: 'Member/ReceiveVIPRewards',
+    method: 'post',
+    data
+  })
+}
+
+/** 获取下一级别奖励 */
+export function getNextRewardApi(data: Home.receiveRewardData) {
+  return request<Home.getNextRewardResp>({
+    url: 'Member/GetMemberNextVipReward',
+    method: 'post',
+    data
+  })
+}

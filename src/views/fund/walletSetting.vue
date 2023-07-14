@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script setup name="FundWalletSetting">
+<script setup>
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { useUserStore } from '@/store/modules/user'

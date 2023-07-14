@@ -103,7 +103,6 @@ export function getThirdNonceApi() {
   return request<anyResp>({
     url: 'walletNonce',
     method: 'get',
-    withCredentials: true,
     baseURL: import.meta.env.VITE_THIRD_API
   })
 }
@@ -113,7 +112,6 @@ export function verifyMessageApi(params: any) {
   return request<anyResp>({
     url: 'wallet',
     method: 'get',
-    withCredentials: true,
     baseURL: import.meta.env.VITE_THIRD_API,
     params
   })

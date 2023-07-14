@@ -65,7 +65,7 @@ const signWalletMessage = async () => {
     nonce: nonce
   }).prepareMessage()
   const signature = await signMessage(message)
-  const verifyResp = await verifyMessageApi({ message, signature })
+  const verifyResp = await verifyMessageApi({ message, signature, id: account.address })
   if (verifyResp.data.ischecked) {
     //@ts-ignore
     handleThirdLogin({ ThirdPartyType: '5', ThirdPartyId: account.address, ThirdPartyName: 'Wallet' }, verifyResp.data.sign)
@@ -222,7 +222,8 @@ window.addEventListener('message', async (event) => {
         code: event.data.lineCode, // 从 LINE 平台收到的授权码
         client_id: LINE_CLIENT_ID,
         client_secret: LINE_CLIENT_SECRET,
-        redirect_uri: location.origin + '/user/authCallback'
+        // redirect_uri: window.location.origin + '/user/authCallback'
+        redirect_uri: window.location.origin + '/user/login'
       }
       const resp = await axios({
         url: 'https://api.line.me/oauth2/v2.1/token',
@@ -254,6 +255,7 @@ window.addEventListener('message', async (event) => {
 const handleThirdLogin = async (data: thirdData, sign: string) => {
   const isExistResp = await awaitWraper(checkThirdUserApi(data))
   const isExist = get(isExistResp, '[1].data', false)
+  console.log(isExist)
   loginData.Sign = sign
   Object.assign(loginData, data)
   if (isExist) {

@@ -23,7 +23,7 @@ export function getSearchGameApi(data: Game.getSearchGameData) {
 
 // 获取游戏列表API
 export function getGameListApi(data: Game.getGameListData) {
-  return request<anyResp>({
+  return request<Game.getGameListResp>({
     headers: { 'Content-Type': 'application/json' },
     url: 'game/list',
     method: 'post',

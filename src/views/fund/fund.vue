@@ -16,8 +16,8 @@
               </div>
               <div class="rc-r" @click="showCurrencyItemBox = true">
                 <span>
-                  <b>{{ selCurrencyItem.balance }} {{ selCurrencyItem.unit }}</b>
-                  <small>${{ selCurrencyItem.usdAmount }} US</small>
+                  <b>{{ moneyFormat(selCurrencyItem.balance) }} {{ selCurrencyItem.unit }}</b>
+                  <small>${{ moneyFormat(selCurrencyItem.usdAmount) }} US</small>
                 </span>
                 <i class="iconfont icon-down" />
               </div>
@@ -162,8 +162,8 @@
                     <p>{{ item.name }}</p>
                   </div>
                   <div class="bbc-mr">
-                    <p>{{ item.balance }} {{ item.unit }}</p>
-                    <p>€ {{ item.usdAmount }}</p>
+                    <p>{{ moneyFormat(item.balance) }} {{ item.unit }}</p>
+                    <p>€ {{ moneyFormat(item.usdAmount) }}</p>
                   </div>
                 </li>
               </ul>
@@ -175,8 +175,8 @@
                     <p>{{ item.name }}</p>
                   </div>
                   <div class="bbc-mr">
-                    <p>{{ item.balance }} {{ item.unit }}</p>
-                    <p>€ {{ item.usdAmount }}</p>
+                    <p>{{ moneyFormat(item.balance) }} {{ item.unit }}</p>
+                    <p>€ {{ moneyFormat(item.usdAmount) }}</p>
                   </div>
                 </li>
               </ul>
@@ -210,41 +210,43 @@
   </div>
 </template>
 
-<script setup name="Fund">
+<script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 import FundFooter from '@/components/layout/FundFooter.vue'
+// import { getExchangeRateApi } from '@/api/app/index'
 import { getBalanceApi, getDepositAddressApi } from '@/api/fund/index'
-import { getAssetsFile, copy } from '@/utils'
-import { usdtChainList } from '@/utils/blockChain'
+import { getBalanceItemResponse } from '@/api/fund/types'
+import { getAssetsFile, copy, moneyFormat } from '@/utils'
+import { usdtChainList, usdtChainListTypes } from '@/utils/blockChain'
 
 import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { ConfigProvider, showToast, Popup } from 'vant'
-import 'vant/es/empty/style'
-import 'vant/es/popup/style'
 
 const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 
 const depositTab = ref('digital')
-const fundTab = ref('deposit')
-fundTab.value = route.query.tab || fundTab.value
+const fundTab = ref<string>('deposit')
+if (route.query.tab) {
+  fundTab.value = route.query.tab as any
+}
 // 余额列表
 let showCurrencyItemBox = ref(false)
-let digitalList = ref([])
-let bankList = ref([])
-let selCurrencyItem = reactive({
-  balance: 0,
+let digitalList = ref<getBalanceItemResponse[]>([])
+let bankList = ref<getBalanceItemResponse[]>([])
+let selCurrencyItem = reactive<getBalanceItemResponse>({
+  balance: '',
   name: '',
   subtitle: '',
   unit: '',
-  currencyType: 0,
-  usdAmount: 0
+  currencyType: '',
+  usdAmount: ''
 })
 // 如果是USDT 选择转账链
 let showBlockChainBox = ref(false)
@@ -272,14 +274,31 @@ let depositInfo = reactive({
 })
 let showDepositQrcode = ref(false)
 
+// let currencyCode = ref('')
+// let cxchangeRate = ref('')
+
+// // 获取汇率
+// const getExchangeRate = () => {
+//   getExchangeRateApi()
+//     .then((resp) => {
+//       currencyCode.value = resp.data[0].currencyCode
+//       cxchangeRate.value = resp.data[0].cxchangeRate
+//     })
+//     .catch((error) => {
+//       console.log(error)
+//     })
+// }
+
 // 获取余额列表
 const getBalanceList = () => {
   getBalanceApi()
     .then((resp) => {
-      selCurrency(resp.data[0])
-      digitalList.value = resp.data.filter((item) => item.currencyType != 20)
-      bankList.value = resp.data.filter((item) => item.currencyType == 20)
-      showDepositQrcode.value = false
+      if (resp.data.length > 0) {
+        selCurrency(resp.data[0])
+        digitalList.value = resp.data.filter((item) => item.currencyType != '20')
+        bankList.value = resp.data.filter((item) => item.currencyType == '20')
+        showDepositQrcode.value = false
+      }
     })
     .catch((error) => {
       showToast('获取充值地址失败')
@@ -288,7 +307,7 @@ const getBalanceList = () => {
 }
 
 // 选择币种余额
-const selCurrency = (item) => {
+const selCurrency = (item: getBalanceItemResponse) => {
   Object.assign(selCurrencyItem, item)
   if (selCurrencyItem.name == 'USDT') {
     Object.assign(selBlockChainItem, usdtChainList[1])
@@ -298,7 +317,7 @@ const selCurrency = (item) => {
 }
 
 // USDT 选择trc20或trc20
-const selBlockChain = (item) => {
+const selBlockChain = (item: usdtChainListTypes) => {
   Object.assign(selBlockChainItem, item)
   showBlockChainBox.value = false
   getDeposit()
@@ -316,13 +335,14 @@ const getDeposit = () => {
     })
 }
 
-const openBourse = (url) => {
+const openBourse = (url: string) => {
   window.open(url)
 }
-
-getBalanceList()
 
 onMounted(() => {
   copy('.copy')
 })
+
+// getExchangeRate()
+getBalanceList()
 </script>

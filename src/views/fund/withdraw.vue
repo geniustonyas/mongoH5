@@ -214,7 +214,7 @@
   </div>
 </template>
 
-<script setup name="FundWithdraw">
+<script setup>
 import { ref, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 

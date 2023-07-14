@@ -1,15 +1,16 @@
+import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
-import store from '@/store'
 
 import { loginApi, thirdLoginApi, getUserProfileApi, loginOutApi, refreshTokenApi } from '@/api/user/index'
 import { getNewMessageCountApi } from '@/api/home/index'
 
+import router from '@/router'
+import store from '@/store'
 import { LoginData, getUserProfileData, thirdData } from '@/api/user/types'
 import { setToken, clearToken } from '@/utils/auth'
-
 import { UserInfoType } from './types'
-import router from '@/router'
-import { ref, reactive } from 'vue'
+
+import { cloneDeep } from 'lodash-es'
 
 export const useUserStore = defineStore('userInfo', () => {
   const userInfo = <UserInfoType>reactive({
@@ -33,11 +34,11 @@ export const useUserStore = defineStore('userInfo', () => {
     zipcode: undefined,
     updatePassWordTime: undefined
   })
-  const defaultUserInfo = JSON.parse(JSON.stringify(userInfo))
+  const defaultUserInfo = cloneDeep<UserInfoType>(userInfo)
   const refreshUserInfoTimer = ref<null | number>(null)
   const refreshTokenTimer = ref<null | number>(null)
   const newMessageCountTimer = ref<null | number>(null)
-  const newMessageCount = ref<null | number>(0)
+  const newMessageCount = ref<number>(0)
   const lineCode = ref('')
 
   // 获取用户信息
@@ -159,7 +160,7 @@ export const useUserStore = defineStore('userInfo', () => {
   }
 
   const clearLogin = () => {
-    Object.assign(userInfo, defaultUserInfo as UserInfoType)
+    Object.assign(userInfo, defaultUserInfo)
     if (refreshUserInfoTimer.value) {
       clearInterval(refreshUserInfoTimer.value)
     }

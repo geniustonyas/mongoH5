@@ -39,8 +39,57 @@ export interface messageData {
   noLoading?: false
 }
 
+// 设为已读data
 export interface setReadData {
   Id: string
 }
 
+// 领取优惠data
+export interface receiveRewardData {
+  VipSubItemCode: string
+}
+
+// club信息vip列表
+export interface vipListItemResp {
+  id: string
+  code: string
+  name: string
+  integral: string
+  requiredTotalBetAmount: string
+  items: vipListItemItemsResp[]
+}
+
+// vip列表子列表
+export interface vipListItemItemsResp {
+  id: string
+  name: string
+  code: string
+  requiredTotalBetAmount: string
+  rewardAmount: string
+  receivedStatus: string
+  isReceived: boolean
+  isMerge: boolean
+}
+
+// club 当前vip等级信息
+export interface currentDataResp {
+  totalBetAmount: string
+  vipCode: string
+  vipSubItemCode: string
+  vipName: string
+  vipSubItemName: string
+}
+
+// 获取下一等级奖励
+export interface getNextRewardResps {
+  vipCode: string
+  vipName: string
+  integral: string
+  vipSubItemCode: string
+  totalBetAmount: string
+  nextVipRequiredTotalBetAmount: string
+}
+
 export type messageResp = ApiResponseData<{ items: []; pageIndex: string; pageSize: string; pageCount: string; recordCount: string }>
+export type vipInfoResp = ApiResponseData<{ vipList: vipListItemResp[]; currentData: currentDataResp }>
+export type getNextRewardResp = ApiResponseData<getNextRewardResps>

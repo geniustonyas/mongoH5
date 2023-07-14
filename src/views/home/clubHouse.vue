@@ -6,15 +6,12 @@
         <div class="cb-card">
           <div class="c-name">
             {{ t('tiers') }}
-            <b>{{ t('101') }}</b>
+            <b>{{ currentData.vipName }}</b>
           </div>
           <div class="c-icon">
-            <svg class="circle_grade">
-              <circle id="cg_progress" cx="65" cy="65" r="60" stroke="#333" stroke-width="3" fill="none" />
-              <path id="ring" fill="none" stroke="#f7cc00" stroke-width="3" />
-            </svg>
+            <Circle v-model:current-rate="currentRate" :rate="rate" :speed="100" size="125px" :stroke-width="30" layer-color="#333" color="#f7cc00" />
             <div class="cricle_img">
-              <img :src="getAssetsFile('grade/Lvl1.png')" />
+              <img :src="getAssetsFile(`grade/${currentData.vipCode}.png`)" />
             </div>
           </div>
           <div class="c_points">
@@ -23,33 +20,15 @@
           </div>
           <div class="c-grade">
             <div class="cg-t">
-              <a href="#" class="on cur">
-                <img :src="getAssetsFile('grade/Lvl1.png')" />
-                <span class="tag-complete"><i class="iconfont icon-xuanzhong" /></span>
-              </a>
-              <a href="#" class="on">
-                <img :src="getAssetsFile('grade/Lvl2.png')" />
-              </a>
-              <a href="#">
-                <img :src="getAssetsFile('grade/Lvl3.png')" />
-              </a>
-              <a href="#">
-                <img :src="getAssetsFile('grade/Lvl4.png')" />
-              </a>
-              <a href="#">
-                <img :src="getAssetsFile('grade/Lvl5.png')" />
-              </a>
-              <a href="#">
-                <img :src="getAssetsFile('grade/Lvl6.png')" />
-              </a>
-              <a href="#">
-                <img :src="getAssetsFile('grade/Lvl7.png')" />
+              <a v-for="(item, index) of vipList" :key="index" :class="currentData.vipCode == item.code ? 'on cur' : currentData.vipCode > item.code ? 'on' : ''">
+                <img :src="getAssetsFile(`grade/${item.code}.png`)" />
+                <span v-if="currentData.vipCode == item.code" class="tag-complete"><i class="iconfont icon-xuanzhong" /></span>
               </a>
             </div>
             <div class="cg-b">
               <div class="b-l">{{ t('currentPointsMultiplier') }}</div>
               <div class="b-r">
-                <b>1 x</b>
+                <b>{{ parseFloat(currentVipItem.integral) }} x</b>
                 <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0)">
                     <path
@@ -82,19 +61,57 @@
         </div>
         <div class="cb-list">
           <div class="l-title">{{ t('rewards') }}</div>
-          <div class="l-rows">
-            <div class="r-item">
-              <div class="ri-t">
+          <div v-if="rewardShow != null" class="l-rows">
+            <div v-for="(item, index) of vipList" :key="index" class="r-item">
+              <div class="ri-t" @click="rewardShow[item.code] = !rewardShow[item.code]">
                 <div class="t-l">
-                  <img :src="getAssetsFile('grade/Lvl1.png')" />
-                  <span> <label>Tier</label><b>Steel</b> </span>
+                  <img :src="getAssetsFile(`grade/${item.code}.png`)" />
+                  <span>
+                    <label>{{ t('tiers') }}</label>
+                    <b>{{ item.name }}</b>
+                  </span>
                 </div>
                 <div class="t-r">
                   <i class="iconfont icon-down" />
                 </div>
               </div>
-              <div class="ri-b">
-                <div class="row">
+              <!-- // @ts-ignore -->
+              <Vue3SlideUpDown v-model="rewardShow[item.code]" class="ri-b">
+                <div v-if="item.items.length > 0" class="reward-items-box">
+                  <div v-for="(items, indexs) of item.items" class="items" :key="indexs">
+                    <div class="items-l">
+                      <div class="itemsl-img">
+                        <img :src="getAssetsFile(`grade/${item.code}.png`)" />
+                      </div>
+                    </div>
+                    <!-- 奖励进度 -->
+                    <div v-if="items.receivedStatus == '0' && !items.isMerge && !items.isReceived" class="items-r">
+                      <div class="itemsr-t">
+                        <span class="item-ti">{{ items.name }}</span>
+                      </div>
+                      <div class="itemsr-b">
+                        <div class="schedule-bar">
+                          <template v-if="currentData.vipSubItemCode == items.code">
+                            <div class="sb-line" :style="{ width: progressWidth + '%' }" />
+                            <span>{{ parseInt(currentData.totalBetAmount) + ' / ' + parseInt(items.requiredTotalBetAmount) }}</span>
+                          </template>
+                          <span v-else>{{ parseInt(items.requiredTotalBetAmount) }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 已领取 -->
+                    <!-- ="items.receivedStatus == '0' && !items.isMerge && items.isReceived"  -->
+                    <div v-else class="items-r completed">
+                      <div class="cmpld-l">{{ items.name }}</div>
+                      <div class="cmpld-r">
+                        <a v-if="items.receivedStatus == '1' && !items.isMerge && !items.isReceived" class="btn btn-primary" @click="receiveReward(items.code)">领取优惠</a>
+                        <span v-if="items.isMerge">已经累计到下一级别合并领取</span>
+                        <span v-if="items.isReceived">已领取</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div v-else class="row">
                   <div class="r-l">
                     <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0)">
@@ -127,341 +144,7 @@
                     <p>No rewards available.Progress to the next Tier to unlock your first reward.</p>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="r-item">
-              <div class="ri-t">
-                <div class="t-l">
-                  <img :src="getAssetsFile('grade/Lvl2.png')" />
-                  <span> Tier<b>Bronze</b> </span>
-                </div>
-                <div class="t-r">
-                  <i class="iconfont icon-down" />
-                </div>
-              </div>
-              <div class="ri-b">
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl2.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 1</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>0/2800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="r-item">
-              <div class="ri-t">
-                <div class="t-l">
-                  <img :src="getAssetsFile('grade/Lvl3.png')" />
-                  <span> Tier<b>Silver</b> </span>
-                </div>
-                <div class="t-r">
-                  <i class="iconfont icon-down" />
-                </div>
-              </div>
-              <div class="ri-b">
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl3.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 1</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>0/2800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl3.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 2</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>8800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl3.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 3</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>12000</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="r-item">
-              <div class="ri-t">
-                <div class="t-l">
-                  <img :src="getAssetsFile('grade/Lvl4.png')" />
-                  <span> Tier<b>Gold</b> </span>
-                </div>
-                <div class="t-r">
-                  <i class="iconfont icon-down" />
-                </div>
-              </div>
-              <div class="ri-b">
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl4.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 1</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>0/2800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl4.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 2</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>8800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl4.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 3</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>12000</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="r-item">
-              <div class="ri-t">
-                <div class="t-l">
-                  <img :src="getAssetsFile('grade/Lvl5.png')" />
-                  <span> Tier<b>Platinum</b> </span>
-                </div>
-                <div class="t-r">
-                  <i class="iconfont icon-down" />
-                </div>
-              </div>
-              <div class="ri-b">
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl5.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 1</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>0/2800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl5.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 2</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>8800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl5.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 3</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>12000</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="r-item">
-              <div class="ri-t">
-                <div class="t-l">
-                  <img :src="getAssetsFile('grade/Lvl6.png')" />
-                  <span> Tier<b>Titanium</b> </span>
-                </div>
-                <div class="t-r">
-                  <i class="iconfont icon-down" />
-                </div>
-              </div>
-              <div class="ri-b">
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl6.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 1</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>0/2800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl6.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 2</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>8800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl6.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 3</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>12000</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="r-item">
-              <div class="ri-t">
-                <div class="t-l">
-                  <img :src="getAssetsFile('grade/Lvl7.png')" />
-                  <span> Tier<b>Diamond</b> </span>
-                </div>
-                <div class="t-r">
-                  <i class="iconfont icon-down" />
-                </div>
-              </div>
-              <div class="ri-b">
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl7.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 1</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>0/2800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl7.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 2</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>8800</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="r-l">
-                    <a>
-                      <img :src="getAssetsFile('grade/Lvl7.png')" />
-                    </a>
-                  </div>
-                  <div class="r-r">
-                    <div class="progress-box">
-                      <b>Rewad 3</b>
-                      <div class="schedule-bar">
-                        <div class="sb-line" />
-                        <span>12000</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </Vue3SlideUpDown>
             </div>
           </div>
         </div>
@@ -471,14 +154,115 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import { ref, reactive, computed } from 'vue'
+// import { useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
+import { getVipInfoApi, receiveRewardApi } from '@/api/home/index'
+import { currentDataResp, vipListItemResp, vipListItemItemsResp } from '@/api/home/types'
+// import { dynamicObject } from '@/types/api'
 import { getAssetsFile } from '@/utils'
+import dynamicObject from '@/types/dynamicObject'
 
+import { Vue3SlideUpDown } from 'vue3-slide-up-down'
+import { Circle, showToast } from 'vant'
 import { useI18n } from 'vue-i18n'
+import BigNumber from 'bignumber.js'
 
-const router = useRouter()
+// const router = useRouter()
 const { t } = useI18n()
+
+let currentData = reactive<currentDataResp>({
+  totalBetAmount: '',
+  vipCode: '',
+  vipSubItemCode: '',
+  vipName: '',
+  vipSubItemName: ''
+})
+let vipList = ref<vipListItemResp[]>([])
+
+// 圆形进度条初始进度
+const currentRate = ref(0)
+let rate = ref('0')
+
+// 当前vip等级在viplist中的item
+let currentVipItem = reactive<vipListItemResp>({
+  id: '',
+  code: '',
+  name: '',
+  integral: '',
+  requiredTotalBetAmount: '',
+  items: []
+})
+let currentSubVipItem = reactive<vipListItemItemsResp>({
+  id: '',
+  name: '',
+  code: '',
+  requiredTotalBetAmount: '',
+  rewardAmount: '',
+  receivedStatus: '',
+  isReceived: false,
+  isMerge: false
+})
+
+let rewardShow = reactive<dynamicObject>({})
+
+// 下一奖励进度
+const progressWidth = computed(() => {
+  let width = '0'
+  if (currentSubVipItem.requiredTotalBetAmount != '' && currentData.totalBetAmount != '') {
+    width = new BigNumber(parseInt(currentData.totalBetAmount)).dividedBy(parseInt(currentSubVipItem.requiredTotalBetAmount)).multipliedBy(100).toFixed(2)
+  }
+  console.log(currentData.totalBetAmount)
+  console.log(currentSubVipItem.requiredTotalBetAmount)
+  console.log(width)
+  return width
+})
+
+// 获取VIP信息
+const getVipInfo = () => {
+  getVipInfoApi()
+    .then((resp) => {
+      Object.assign(currentData, resp.data!.currentData)
+      vipList.value = resp.data!.vipList
+      Object.assign(
+        currentVipItem,
+        vipList.value.find((item: vipListItemResp) => item.code == currentData.vipCode)
+      )
+      Object.assign(
+        currentSubVipItem,
+        currentVipItem.items.find((item: vipListItemItemsResp) => item.code == currentData.vipSubItemCode)
+      )
+      if (rewardShow.length == 0) {
+        vipList.value.forEach((item: vipListItemResp) => {
+          rewardShow[item.code] = item.code == currentData.vipCode
+        })
+        console.log(rewardShow)
+      }
+      const nextItem = vipList.value.find((item: vipListItemResp) => parseInt(item.code) == parseInt(currentData.vipCode) + 1)
+      if (nextItem) {
+        rate.value = new BigNumber(currentData.totalBetAmount).dividedBy(nextItem.requiredTotalBetAmount).multipliedBy(100).toFixed(2)
+      } else {
+        rate.value = '100'
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+const receiveReward = (code: string) => {
+  receiveRewardApi({ VipSubItemCode: code })
+    .then((resp) => {
+      showToast('领取成功')
+      console.log(resp)
+      getVipInfo()
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+getVipInfo()
 </script>
