@@ -12,8 +12,8 @@
     <main class="main">
       <div class="search-result">
         <div class="result-count">
-          <span v-if="nodata || (Keywords.length < 3 && Keywords.length > 0)" class="noResult">很抱歉，没有符合 "{{ Keywords }}" 的结果。请尝试其他搜索词。</span>
-          <span v-if="searchResult.length > 0" class="noResult">找到了 {{ searchResult.length }} 个结果</span>
+          <span v-if="nodata || (Keywords.length < 3 && Keywords.length > 0)" class="noResult">{{ t('noSearchResult', { keyword: Keywords }) }}</span>
+          <span v-if="searchResult.length > 0" class="noResult">{{ t('searchResultNum', { searchResult: searchResult.length }) }}</span>
         </div>
         <div class="gamebox search">
           <div v-if="searchResult.length > 0" class="g-list row">
@@ -156,8 +156,8 @@ const getGameRecommend = () => {
 const startGame = (game) => {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
-      title: '您尚未登录',
-      message: '立即前往登录'
+      title: t('tips.noLogin'),
+      message: t('tips.goLogin')
     })
       .then(() => {
         router.push({ name: 'login' })

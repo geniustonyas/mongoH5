@@ -14,6 +14,7 @@ export interface getGameListData {
   ps: number[]
   cs: number[]
   gts: number[]
+  ct: number
   sortBy: number
   page: number
 }

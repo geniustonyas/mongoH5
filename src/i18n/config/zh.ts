@@ -8,9 +8,29 @@ export default {
   save: '保存',
   cancel: '取消',
   close: '关闭',
+  start: '开始',
+  loading: '加载中',
+  end: '结束',
   to: ' 至 ',
   or: '或',
   and: '和',
+  vant: {
+    title: '日期选择',
+    year: '年',
+    month: '月',
+    day: '日',
+    hour: '时',
+    minites: '分',
+    second: '秒',
+    tian: '天',
+    yi: '一',
+    er: '二',
+    san: '三',
+    si: '四',
+    wu: '五',
+    liu: '六',
+    xzts: '选择天数不能超过'
+  },
   refreshSuccess: '刷新成功',
   loadingFail: '加载失败',
   noMore: '没有更多了...',
@@ -29,7 +49,6 @@ export default {
   createUser: '创建账户',
   googleCode: '谷歌身份验证码',
   inputGoole: '输入谷歌身份验证码',
-  otherMethord: '其他登录方式',
   partner: '官方合作伙伴：',
   date: '日期',
   day: '日',
@@ -79,11 +98,18 @@ export default {
   myBets: '投注记录',
   rewards: '奖励',
   notifications: '通知消息',
+  // 搜索
+  noSearchResult: '很抱歉，没有符合 "{ keyword }" 的结果。请尝试其他搜索词。',
+  searchResultNum: '找到了 { searchResult } 个结果',
   // 俱乐部
   club: '俱乐部',
   tiers: '级别',
   currentPoints: '当前积分',
   currentPointsMultiplier: '当前积分倍数',
+  receiveReward: '领取奖励',
+  alreadyReceived: '已领取',
+  mergedReards: '已经累计到下一级别合并领取',
+  noReward: '暂无奖励，晋升到下一级别，解锁您的首次奖励',
   // 账户设置
   generalInformation: '一般信息',
   changePassword: '更换密码',
@@ -142,6 +168,7 @@ export default {
   bank: '银行',
   chooseDepositChain: '选择存款网络',
   confirmDepositAddress: '请在执行交易前确认您的存款地址',
+  recommendExchange: '从我们推荐的交易所购买加密货币',
   // 交易记录
   deposits: '存款',
   withdrawals: '提款',
@@ -207,6 +234,8 @@ export default {
     usd: '美元',
     cny: '人民币'
   },
+  // VIP CLUB
+
   // 数据验证提示
   tips: {
     // 用戶-登录注册
@@ -248,29 +277,18 @@ export default {
     bindGoogleSuccess: '绑定谷歌验证码成功',
     logoutSuccess: '退出登录成功',
     setSuccess: '设置成功',
-
-    oddsChanged: '赔率已变更',
-    oddsChangedTip: '所选投注的一个或多个选项赔率已变更',
-    noLiveMatch: '当前没有直播赛事',
-    nodata: '暂未开设任何赛事',
-    matchOverd: '该场赛事已结束',
-    matchClosed: '该场赛事已关闭',
-    matchCanceld: '该场赛事已取消',
-    addOdds: '添加选项到投注单。',
-    overLimit: '投注项不能超过10个',
-    noParlay: '红色选项不可以结合进行过关投注。',
-    noBalance: '投注额超出您的帐户余额, 请先充值!。',
-    noLogin: '您尚未登录，请登录后再操作。',
-    noAmount: '请输入投注金额。',
-    betFaild: '投注失败, 未知错误',
-    noBet: '暂无投注记录',
-    minBet: '单笔最低投注额为 ',
-    maxBet: '超过最高投注限额。您的最高投注额是 ',
-    loginTimeOut: '登录超时',
-    requestTimeOut: '请求超时,请检查您的网络',
-    requestAgain: '加载失败，请点击重试',
-    handicapClosed: '当前赛事盘口已关闭',
-    inputTeam: '请输入球队名称',
-    inputLeague: '请输入联赛名称'
+    inputWithdrawAmount: '请输入提现金额',
+    overMaxWithdrawAmount: '提现金额不能大于余额',
+    underMinWithdrawAmount: '提现金额必须大于最低金额',
+    inputWithdrawAddress: '请输入提现地址',
+    withdrawSuccess: '申请提现成功',
+    withdrawFail: '申请提现失败',
+    receivedRewardSuccess: '领取成功',
+    receivedRewardFail: '领取失败',
+    noLogin: '您尚未登录',
+    goLogin: '立即前往登录',
+    invalidThirdUser: '验证第三方用户失败',
+    authFail: '授权失败',
+    copyFail: '该浏览器不支持自动复制，请手动复制'
   }
 }

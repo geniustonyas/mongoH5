@@ -2,7 +2,7 @@ import _ from 'lodash-es'
 import Clipboard from 'clipboard'
 import BigNumber from 'bignumber.js'
 import { showToast } from 'vant'
-import 'vant/es/toast/style'
+import i18n from '@/i18n'
 
 // 获取url中全部参数的对象
 export function getUrlAllParams() {
@@ -40,7 +40,9 @@ export function getYearList() {
 }
 
 // 初始化复制
-export function copy(selector: string, tips = '复制成功') {
+export function copy(selector: string, tips = '') {
+  const { t } = i18n.global
+  tips = tips == '' ? t('tips.copySuccess') : tips
   const clipboard = new Clipboard(selector)
   clipboard.on('success', () => {
     showToast(tips)
@@ -48,7 +50,7 @@ export function copy(selector: string, tips = '复制成功') {
   })
   clipboard.on('error', () => {
     clipboard.destroy()
-    showToast('该浏览器不支持自动复制')
+    showToast(t('tips.copyFail'))
   })
 }
 

@@ -8,13 +8,13 @@
           <h2>{{ t('createUser') }}</h2>
           <div class="ls-third">
             <div class="t-list">
+              <a @click="walletLogin()">
+                <img :src="getAssetsFile('svg/metamask.svg')" />
+                Metamask
+              </a>
               <a @click="googleLogin()">
                 <img :src="getAssetsFile('svg/google-oauth2.svg')" />
                 Google
-              </a>
-              <a>
-                <img :src="getAssetsFile('svg/facebook.svg')" />
-                Facebook
               </a>
             </div>
             <span class="btn btn-light" @click="setShowThirdLoginBox()">
@@ -137,12 +137,15 @@
       <div class="mb-bd">
         <div class="other-signin">
           <dl>
-            <dt>{{ t('otherMethod') }}</dt>
+            <dt>{{ $t('otherMethod') }}</dt>
             <dd>
-              <a href="#"> <img :src="getAssetsFile('svg/twiter.svg')" />Twitter </a>
+              <a @click="facebookLogin"> <img :src="getAssetsFile('svg/facebook.svg')" />Facebook </a>
             </dd>
             <dd>
-              <a href="#"> <img :src="getAssetsFile('svg/line.svg')" />Line </a>
+              <a @click="twitterLogin"> <img :src="getAssetsFile('svg/twiter.svg')" />Twitter </a>
+            </dd>
+            <dd>
+              <a @click="lineLogin"> <img :src="getAssetsFile('svg/line.svg')" />Line </a>
             </dd>
             <dd>
               <a @click="telegramLogin()"> <img :src="getAssetsFile('svg/telegram.svg')" />Telegram </a>
@@ -164,7 +167,7 @@ import { useRouter } from 'vue-router'
 import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
-import { telegramLogin, googleLogin } from '@/thirdLogin/index'
+import { telegramLogin, googleLogin, facebookInit, facebookLogin, walletLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, getYearList } from '@/utils'
 import { countryCode } from '@/utils/countryCode'
@@ -173,7 +176,6 @@ import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/in
 
 import { useI18n } from 'vue-i18n'
 import { showToast, Loading } from 'vant'
-import 'vant/es/toast/style'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -303,7 +305,7 @@ const handleReg = async () => {
   }
   if (!isUname(regForm.UserName)) {
     showToast(t('tips.isAccount'))
-    showToast.value?.focus()
+    userNameDom.value?.focus()
     return false
   }
   if (regForm.Email == '') {

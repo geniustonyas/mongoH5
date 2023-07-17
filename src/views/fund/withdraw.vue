@@ -14,13 +14,13 @@
           <div class="ff-title">{{ t('withdrawUsdt') }}</div>
           <div class="ff-balance">
             {{ t('currentBalance') }}
-            {{ t('inputAmount') }}
-            <span>{{ withdrawBalanceItem.balance }}</span>
+            <!-- {{  }} -->
+            <span>{{ moneyFormat(withdrawBalanceItem.balance) }}</span>
             {{ withdrawBalanceItem.unit }}
           </div>
           <div class="ff-group">
             <label>{{ t('amount') }}</label>
-            <input v-model="withdrawForm.Amount" type="number" id="amountInput" />
+            <input v-model="withdrawForm.Amount" type="number" id="amountInput" :placeholder="t('inputAmount')" />
           </div>
           <ul class="ff-amounts">
             <li :class="{ active: percent == 0.25 }">
@@ -35,7 +35,7 @@
           </ul>
           <div class="ff-rmark">
             {{ t('minWithdrawAmount') }}
-            <b>{{ minWithdrawAmount }} {{ withdrawBalanceItem.unit }}</b>
+            <b>{{ moneyFormat(minWithdrawAmount) }} {{ withdrawBalanceItem.unit }}</b>
           </div>
         </div>
         <div v-show="step == 1" class="fund-btn">
@@ -46,7 +46,7 @@
           <div class="ff-title">{{ t('walletDetails') }}</div>
           <div class="ff-balance">
             {{ t('currentBalance') }}:
-            <span>{{ withdrawBalanceItem.balance }}</span>
+            <span>{{ moneyFormat(withdrawBalanceItem.balance) }}</span>
             {{ withdrawBalanceItem.unit }}
           </div>
 
@@ -88,7 +88,7 @@
 
           <div class="fb-row">
             <div class="row-body">
-              <div class="r-title">{{ t('walletAddress') }}</div>
+              <div class="r-title">{{ t('walletAddressBig') }}</div>
               <div class="r-group-card">
                 <div class="gc-t">
                   <div class="t-l">
@@ -299,7 +299,7 @@ const getMinWithdraw = () => {
       minWithdrawAmount.value = resp.data?.minimumWithdrawAmount
     })
     .catch((error) => {
-      showToast('获取最低充值金额失败')
+      // showToast('获取最低充值金额失败')
       console.log(error)
     })
 }
@@ -315,7 +315,7 @@ const getBalanceList = () => {
       }
     })
     .catch((error) => {
-      showToast('获取充值地址失败')
+      // showToast('获取充值地址失败')
       console.log(error)
     })
 }
@@ -339,31 +339,31 @@ const selTab = () => {
   if (step.value == 1) {
     if (withdrawForm.Amount == '') {
       document.getElementById('amountInput').focus()
-      showToast('请输入提现金额')
+      showToast(t('tips.inputWithdrawAmount'))
       return false
     }
     if (withdrawForm.Amount > withdrawBalanceItem.balance) {
       document.getElementById('amountInput').focus()
-      showToast('提现金额不能大于余额')
+      showToast(t('tips.overMaxWithdrawAmount'))
       return false
     }
     if (withdrawForm.Amount < minWithdrawAmount.value) {
       document.getElementById('amountInput').focus()
-      showToast('提现金额必须大于最低金额')
+      showToast(t('tips.underMinWithdrawAmount'))
       return false
     }
     step.value = 2
   } else if (step.value == 2) {
     if (withdrawForm.PayeeAddress == '') {
       document.getElementById('address').focus()
-      showToast('请输入提现地址')
+      showToast(t('tips.inputWithdrawAddress'))
       return false
     }
     withdrawForm.BlockchainCode = withdrawForm.BlockchainCode == '' ? selBlockChainItem.code : withdrawForm.BlockchainCode
     step.value = 3
   } else if (step.value == 3) {
     if (userStore.userInfo.isBindGoogleAuth && withdrawForm.VerificationCode == '') {
-      showToast('Google验证码不能为空')
+      showToast(t('tips.googleCode'))
       document.getElementById('googleCode').focus()
       return false
     }
@@ -371,6 +371,7 @@ const selTab = () => {
       .then((resp) => {
         getTradeDetailApi({ OrderId: resp.data.orderId, orderType: 2 })
           .then((resp) => {
+            showToast(t('tips.withdrawSuccess'))
             Object.assign(withdrawDetail, resp.data)
           })
           .catch((error) => {
@@ -380,7 +381,7 @@ const selTab = () => {
         step.value = 4
       })
       .catch((error) => {
-        showToast('申请提现失败')
+        showToast(t('tips.withdrawFail'))
         console.log(error)
       })
   }

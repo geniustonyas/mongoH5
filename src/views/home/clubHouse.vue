@@ -9,13 +9,22 @@
             <b>{{ currentData.vipName }}</b>
           </div>
           <div class="c-icon">
-            <Circle v-model:current-rate="currentRate" :rate="rate" :speed="100" size="125px" :stroke-width="30" layer-color="#333" color="#f7cc00" />
+            <Circle
+              v-if="vipList.length > 0"
+              v-model:current-rate="currentRate"
+              :rate="progressWidth(nextItem.requiredTotalBetAmount)"
+              :speed="100"
+              size="125px"
+              :stroke-width="30"
+              layer-color="#333"
+              color="#f7cc00"
+            />
             <div class="cricle_img">
               <img :src="getAssetsFile(`grade/${currentData.vipCode}.png`)" />
             </div>
           </div>
           <div class="c_points">
-            <b>1<em>|</em>5</b>
+            <b>{{ currentData.totalBetAmount }}<em>|</em>{{ nextSubItem.requiredTotalBetAmount }}</b>
             {{ t('currentPoints') }}
           </div>
           <div class="c-grade">
@@ -28,7 +37,7 @@
             <div class="cg-b">
               <div class="b-l">{{ t('currentPointsMultiplier') }}</div>
               <div class="b-r">
-                <b>{{ parseFloat(currentVipItem.integral) }} x</b>
+                <b>{{ parseFloat(currentItem.integral) }} x</b>
                 <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0)">
                     <path
@@ -61,9 +70,9 @@
         </div>
         <div class="cb-list">
           <div class="l-title">{{ t('rewards') }}</div>
-          <div v-if="rewardShow != null" class="l-rows">
+          <div v-if="showSubItem != null" class="l-rows">
             <div v-for="(item, index) of vipList" :key="index" class="r-item">
-              <div class="ri-t" @click="rewardShow[item.code] = !rewardShow[item.code]">
+              <div class="ri-t" @click="showSubItem[item.code] = !showSubItem[item.code]">
                 <div class="t-l">
                   <img :src="getAssetsFile(`grade/${item.code}.png`)" />
                   <span>
@@ -76,7 +85,7 @@
                 </div>
               </div>
               <!-- // @ts-ignore -->
-              <Vue3SlideUpDown v-model="rewardShow[item.code]" class="ri-b">
+              <Vue3SlideUpDown v-model="showSubItem[item.code]" class="ri-b">
                 <div v-if="item.items.length > 0" class="reward-items-box">
                   <div v-for="(items, indexs) of item.items" class="items" :key="indexs">
                     <div class="items-l">
@@ -91,8 +100,8 @@
                       </div>
                       <div class="itemsr-b">
                         <div class="schedule-bar">
-                          <template v-if="currentData.vipSubItemCode == items.code">
-                            <div class="sb-line" :style="{ width: progressWidth + '%' }" />
+                          <template v-if="nextSubItem.code == items.code">
+                            <div class="sb-line" :style="{ width: progressWidth(nextSubItem.requiredTotalBetAmount) + '%' }" />
                             <span>{{ parseInt(currentData.totalBetAmount) + ' / ' + parseInt(items.requiredTotalBetAmount) }}</span>
                           </template>
                           <span v-else>{{ parseInt(items.requiredTotalBetAmount) }}</span>
@@ -104,9 +113,9 @@
                     <div v-else class="items-r completed">
                       <div class="cmpld-l">{{ items.name }}</div>
                       <div class="cmpld-r">
-                        <a v-if="items.receivedStatus == '1' && !items.isMerge && !items.isReceived" class="btn btn-primary" @click="receiveReward(items.code)">领取优惠</a>
-                        <span v-if="items.isMerge">已经累计到下一级别合并领取</span>
-                        <span v-if="items.isReceived">已领取</span>
+                        <a v-if="items.receivedStatus == '1' && !items.isMerge && !items.isReceived" class="btn btn-primary" @click="receiveReward(items.code)">{{ t('receiveReward') }}</a>
+                        <span v-if="items.isMerge">{{ t('mergedReards') }}</span>
+                        <span v-if="items.isReceived">{{ t('alreadyReceived') }}</span>
                       </div>
                     </div>
                   </div>
@@ -141,7 +150,7 @@
                     </svg>
                   </div>
                   <div class="r-r">
-                    <p>No rewards available.Progress to the next Tier to unlock your first reward.</p>
+                    <p>{{ t('noReward') }}</p>
                   </div>
                 </div>
               </Vue3SlideUpDown>
@@ -184,10 +193,9 @@ let vipList = ref<vipListItemResp[]>([])
 
 // 圆形进度条初始进度
 const currentRate = ref(0)
-let rate = ref('0')
 
 // 当前vip等级在viplist中的item
-let currentVipItem = reactive<vipListItemResp>({
+let currentItem = reactive<vipListItemResp>({
   id: '',
   code: '',
   name: '',
@@ -195,7 +203,25 @@ let currentVipItem = reactive<vipListItemResp>({
   requiredTotalBetAmount: '',
   items: []
 })
-let currentSubVipItem = reactive<vipListItemItemsResp>({
+let currentSubItem = reactive<vipListItemItemsResp>({
+  id: '',
+  name: '',
+  code: '',
+  requiredTotalBetAmount: '',
+  rewardAmount: '',
+  receivedStatus: '',
+  isReceived: false,
+  isMerge: false
+})
+let nextItem = reactive<vipListItemResp>({
+  id: '',
+  code: '',
+  name: '',
+  integral: '',
+  requiredTotalBetAmount: '',
+  items: []
+})
+let nextSubItem = reactive<vipListItemItemsResp>({
   id: '',
   name: '',
   code: '',
@@ -206,17 +232,17 @@ let currentSubVipItem = reactive<vipListItemItemsResp>({
   isMerge: false
 })
 
-let rewardShow = reactive<dynamicObject>({})
+// 是否显示VIP的子等级
+let showSubItem = reactive<dynamicObject>([])
 
 // 下一奖励进度
-const progressWidth = computed(() => {
+const progressWidth = computed(() => (requiredTotalBetAmount: string) => {
   let width = '0'
-  if (currentSubVipItem.requiredTotalBetAmount != '' && currentData.totalBetAmount != '') {
-    width = new BigNumber(parseInt(currentData.totalBetAmount)).dividedBy(parseInt(currentSubVipItem.requiredTotalBetAmount)).multipliedBy(100).toFixed(2)
+  if (requiredTotalBetAmount != '') {
+    width = new BigNumber(parseInt(currentData.totalBetAmount)).dividedBy(parseInt(requiredTotalBetAmount)).multipliedBy(100).toFixed(2)
+  } else {
+    width = '100'
   }
-  console.log(currentData.totalBetAmount)
-  console.log(currentSubVipItem.requiredTotalBetAmount)
-  console.log(width)
   return width
 })
 
@@ -224,27 +250,41 @@ const progressWidth = computed(() => {
 const getVipInfo = () => {
   getVipInfoApi()
     .then((resp) => {
+      // 当前VIP数据
       Object.assign(currentData, resp.data!.currentData)
+      // VIP列表
       vipList.value = resp.data!.vipList
+      // 当前vip选项
       Object.assign(
-        currentVipItem,
+        currentItem,
         vipList.value.find((item: vipListItemResp) => item.code == currentData.vipCode)
       )
+      // 当前VIP等级子项
       Object.assign(
-        currentSubVipItem,
-        currentVipItem.items.find((item: vipListItemItemsResp) => item.code == currentData.vipSubItemCode)
+        currentSubItem,
+        currentItem.items.find((item: vipListItemItemsResp) => item.code == currentData.vipSubItemCode)
       )
-      if (rewardShow.length == 0) {
+      // 是否显示VIP的子等级-动态添加
+      if (showSubItem.length == 0) {
         vipList.value.forEach((item: vipListItemResp) => {
-          rewardShow[item.code] = item.code == currentData.vipCode
+          showSubItem[item.code] = item.code == currentData.vipCode
         })
-        console.log(rewardShow)
       }
-      const nextItem = vipList.value.find((item: vipListItemResp) => parseInt(item.code) == parseInt(currentData.vipCode) + 1)
-      if (nextItem) {
-        rate.value = new BigNumber(currentData.totalBetAmount).dividedBy(nextItem.requiredTotalBetAmount).multipliedBy(100).toFixed(2)
+      // 下一个大等级
+      const tmpNextItem = vipList.value.find((item: vipListItemResp) => parseInt(item.code) == parseInt(currentData.vipCode) + 1)
+      if (tmpNextItem) {
+        Object.assign(nextItem, tmpNextItem)
+      }
+      // 下一个子等级, 如果当前大等级中有下一个子等级，则获取， 如果没有，则从下一个大等级中获取第一个子等级， 如果都没有，则是当前子等级
+      const tmpNextSubItem = currentItem.items.find((item: vipListItemItemsResp) => parseInt(item.code) == parseInt(currentData.vipSubItemCode) + 1)
+      if (tmpNextSubItem) {
+        Object.assign(nextSubItem, tmpNextSubItem)
       } else {
-        rate.value = '100'
+        if (nextItem && nextItem.items.length > 0) {
+          Object.assign(nextSubItem, nextItem.items[0])
+        } else {
+          Object.assign(nextSubItem, currentSubItem)
+        }
       }
     })
     .catch((error) => {
@@ -255,11 +295,12 @@ const getVipInfo = () => {
 const receiveReward = (code: string) => {
   receiveRewardApi({ VipSubItemCode: code })
     .then((resp) => {
-      showToast('领取成功')
+      showToast(t('tips.receivedRewardSuccess'))
       console.log(resp)
       getVipInfo()
     })
     .catch((error) => {
+      showToast(t('tips.receivedRewardFail'))
       console.log(error)
     })
 }

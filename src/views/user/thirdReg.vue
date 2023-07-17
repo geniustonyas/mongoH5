@@ -122,7 +122,7 @@ const { t } = useI18n()
 
 if (!route.query.ThirdPartyType || !route.query.ThirdPartyId || !route.query.ThirdPartyName || !route.query.Sign) {
   showToast('参数错误')
-  router.back()
+  // router.back()
 }
 const userStore = useUserStore()
 

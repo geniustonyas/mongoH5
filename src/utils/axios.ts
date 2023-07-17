@@ -76,6 +76,7 @@ function createRequestFunction(service: AxiosInstance) {
         // 携带 Token
         Authorization: `${TokenPrefix}${getToken()}`,
         'Accept-Language': localStorage.getItem('lang'),
+        'X-Timezone-Offset': new Date().getTimezoneOffset(),
         'Content-Type': get(config, 'headers.Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
       },
       withCredentials: true, // 发送cookies,authorization header或TLS客户端等资格证书, 主要用于跨域.

@@ -156,7 +156,7 @@
                 </div>
                 <div v-if="qrcodeValue != ''" class="fg-qrcode">
                   <qrcode-vue :value="qrcodeValue" :size="150" level="H" />
-                  <a target="_blank"> <i class="iconfont icon-bangzhu" />{{ t('whatGoogleCode') }}</a>
+                  <a target="_blank" href="https://support.google.com/accounts/answer/1066447?co=GENIE.Platform%3DAndroid&hl=en"> <i class="iconfont icon-bangzhu" />{{ t('whatGoogleCode') }}</a>
                 </div>
                 <div class="cr-input">
                   <input v-model="bindGoogleCodeForm.VerificationCode" type="text" class="form-control" :placeholder="t('typeCode')" maxlength="8" />
@@ -196,7 +196,6 @@ import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast } from 'vant'
-import 'vant/es/toast/style'
 
 const userStore = useUserStore()
 const { t } = useI18n()

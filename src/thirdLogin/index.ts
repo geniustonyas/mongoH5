@@ -15,7 +15,9 @@ import hello from 'hellojs'
 import { SiweMessage } from 'siwe'
 import { get } from 'lodash-es'
 import { showToast } from 'vant'
-import 'vant/es/toast/style'
+
+import i18n from '@/i18n'
+const { t } = i18n.global
 
 // web3Modal project_Id
 // const projectId = '1a2a6ba4947c7a9802ebcbe6426b3b5b'
@@ -70,7 +72,7 @@ const signWalletMessage = async () => {
     //@ts-ignore
     handleThirdLogin({ ThirdPartyType: '5', ThirdPartyId: account.address, ThirdPartyName: 'Wallet' }, verifyResp.data.sign)
   } else {
-    showToast('非法用户')
+    showToast(t('tips.invalidThirdUser'))
   }
 }
 
@@ -97,7 +99,7 @@ export const googleLogin = () => {
         if (resp.data?.userInfo?.id) {
           handleThirdLogin({ ThirdPartyType: '4', ThirdPartyId: resp.data?.userInfo?.id, ThirdPartyName: 'Google' }, resp.data.sign)
         } else {
-          showToast('非法用户')
+          showToast(t('tips.invalidThirdUser'))
         }
       })
       .catch((error) => {
@@ -109,7 +111,7 @@ export const googleLogin = () => {
 export const facebookInit = () => {
   facebookWebLogin.init(FACEBOOK_APPID, (status) => {
     if (status) {
-      console.log('Facebook授权登录环境配置成功')
+      console.log('Facebook auth success')
     }
   })
 }
@@ -124,14 +126,14 @@ export const facebookLogin = () => {
               if (resp.data.ischecked) {
                 handleThirdLogin({ ThirdPartyType: '0', ThirdPartyId: resp.data.userInfo.user_id, ThirdPartyName: 'Facebook' }, resp.data.sign)
               } else {
-                showToast('非法用户')
+                showToast(t('tips.invalidThirdUser'))
               }
             })
             .catch((error) => {
               console.log(error)
             })
         } else {
-          console.log('当前用户未登录facebook')
+          showToast(t('tips.aithFail'))
         }
       })
     },
@@ -160,7 +162,7 @@ export const twitterLogin = () => {
               if (resp.data.ischecked) {
                 handleThirdLogin({ ThirdPartyType: '3', ThirdPartyId: userInfo.id, ThirdPartyName: 'Twitter' }, resp.data.sign)
               } else {
-                showToast('非法用户')
+                showToast(t('tips.invalidThirdUser'))
               }
             })
             .catch((error) => {
@@ -180,7 +182,7 @@ export const telegramLogin = () => {
           if (resp.data.ischecked) {
             handleThirdLogin({ ThirdPartyType: '2', ThirdPartyId: data.id, ThirdPartyName: 'Telegram' }, resp.data.sign)
           } else {
-            showToast('非法用户')
+            showToast(t('tips.invalidThirdUser'))
           }
         })
         .catch((error) => {
@@ -243,7 +245,7 @@ window.addEventListener('message', async (event) => {
         handleThirdLogin({ ThirdPartyType: '1', ThirdPartyId: userInfo.data.sub, ThirdPartyName: 'Line' }, result.data.sign)
         openWindow.close()
       } else {
-        showToast('非法用户')
+        showToast(t('tips.invalidThirdUser'))
       }
     } catch (error) {
       console.log(error)

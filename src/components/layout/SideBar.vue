@@ -98,12 +98,17 @@
         </div>
       </nav>
       <nav class="m-rate">
-        <select v-model="locale" class="form-control" @change="selLang">
+        <select v-model="locale" class="form-control" @change="selLang(locale)">
           <option value="zh">中文</option>
           <option value="en">English</option>
         </select>
       </nav>
-      <nav class="m-rate">1<b>BTC</b>=25,006,02<b>EUR</b></nav>
+      <nav class="m-rate">
+        1
+        <b>{{ props.currencyCode }}</b>
+        = {{ moneyFormat(props.cxchangeRate) }}
+        <b>USDT</b>
+      </nav>
     </section>
   </aside>
 </template>
@@ -114,10 +119,17 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
 // 引用方法
-import { getAssetsFile } from '@/utils'
+import { selLang } from '@/i18n/index'
+import { getAssetsFile, moneyFormat } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
 //第三方插件
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
+
+const props = defineProps({
+  currencyCode: { type: String, required: true, default: '' },
+  cxchangeRate: { type: String, required: true, default: '' }
+})
+
 const appStore = useAppStore()
 const router = useRouter()
 const { t, locale } = useI18n()
@@ -125,11 +137,4 @@ const { t, locale } = useI18n()
 let collapseSport = ref(true)
 let collapseLiveCashno = ref(true)
 let collapseSlots = ref(true)
-
-console.log(locale.value)
-const selLang = () => {
-  document.querySelector('html').setAttribute('lang', locale.value)
-  localStorage.setItem('lang', locale.value)
-  console.log(locale.value)
-}
 </script>

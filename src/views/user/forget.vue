@@ -45,7 +45,7 @@
               </span>
             </div>
           </div>
-
+          <!-- 
           <div class="cf-row" v-show="useGoogleAuthenticatore">
             <div class="cr-label">
               <span>Google Authenticator</span>
@@ -53,7 +53,7 @@
             <div class="cr-input">
               <input ref="verificationCode" v-model="resetForm.VerificationCode" type="text" class="form-control" placeholder="" />
             </div>
-          </div>
+          </div> -->
           <div class="cf-row">
             <div class="cr-btns">
               <a class="btn btn-primary full" @click="resetPassword()">{{ $t('resetPwd') }}</a>

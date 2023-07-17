@@ -116,7 +116,7 @@
                       </div>
                     </div>
                     <div class="i-row">
-                      <div class="r-col">{{ t('winLose') }}：<span class="txt-red">-40.00 CNY</span></div>
+                      <div class="r-col">{{ item.gameName }}</div>
                       <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
                     </div>
                   </div>

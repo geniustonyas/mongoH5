@@ -5,7 +5,7 @@
       <div class="fund-box">
         <div class="fb-row line">
           <div class="row-body">
-            <div class="r-title">{{ t('balance') }}</div>
+            <div class="r-title">{{ t('activeBalance') }}</div>
             <div v-if="selCurrencyItem.name != ''" class="r-card">
               <div class="rc-l">
                 <img :src="getAssetsFile(`coin/${selCurrencyItem.name.toLocaleLowerCase()}.svg`)" />
@@ -92,7 +92,7 @@
                     </div>
                     <div class="t-txt">
                       <span class="t-name">Binance</span>
-                      <span class="t-sub">从我们推荐的交易所购买加密货币</span>
+                      <span class="t-sub">{{ t('recommendExchange') }}</span>
                     </div>
                   </div>
                   <div class="t-r">
@@ -105,7 +105,7 @@
                       <img :src="getAssetsFile('coin/bitflyer_icon.svg')" />
                     </div>
                     <div class="t-txt">
-                      <span class="t-name">Binance</span>
+                      <span class="t-name">Bitflyer</span>
                       <span class="t-sub" />
                     </div>
                   </div>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="t-txt">
                       <span class="t-name">{{ selCurrencyItem.name }}</span>
-                      <span class="t-sub">{{ selCurrencyItem.name }}{{ t('withdraw') }}</span>
+                      <span class="t-sub">{{ selCurrencyItem.name }} {{ t('withdraw') }}</span>
                     </div>
                   </div>
                   <div class="t-r">
@@ -147,7 +147,7 @@
           <Popup id="promotion" v-model:show="showCurrencyItemBox" position="bottom" round style="padding: 0px 15px; padding-top: 20px" :closeable="true" @close="depositTab = 'digital'">
             <div class="fund-pop-box">
               <div class="bb-title">
-                <h3>{{ t('currentBalance') }}</h3>
+                <h3>{{ t('activeBalance') }}</h3>
                 <p>{{ t('chooseCrypto') }}</p>
               </div>
               <div class="inner-tabs">
@@ -163,7 +163,7 @@
                   </div>
                   <div class="bbc-mr">
                     <p>{{ moneyFormat(item.balance) }} {{ item.unit }}</p>
-                    <p>€ {{ moneyFormat(item.usdAmount) }}</p>
+                    <p>$ {{ moneyFormat(item.usdAmount) }}</p>
                   </div>
                 </li>
               </ul>
@@ -225,7 +225,7 @@ import { usdtChainList, usdtChainListTypes } from '@/utils/blockChain'
 import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-import { ConfigProvider, showToast, Popup } from 'vant'
+import { ConfigProvider, Popup } from 'vant'
 
 const router = useRouter()
 const route = useRoute()
@@ -301,7 +301,6 @@ const getBalanceList = () => {
       }
     })
     .catch((error) => {
-      showToast('获取充值地址失败')
       console.log(error)
     })
 }
@@ -330,7 +329,6 @@ const getDeposit = () => {
       Object.assign(depositInfo, resp.data)
     })
     .catch((error) => {
-      showToast('获取充值地址失败')
       console.log(error)
     })
 }

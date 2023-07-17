@@ -136,12 +136,6 @@ const routes = [
         meta: { transition: '', needLogin: true }
       },
       {
-        path: 'betRecord',
-        name: 'betRecord',
-        component: () => import('@/views/home/betRecord.vue'),
-        meta: { transition: '', needLogin: true }
-      },
-      {
         path: 'rewards',
         name: 'rewards',
         component: () => import('@/views/home/rewards.vue'),

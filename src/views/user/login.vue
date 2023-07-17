@@ -81,7 +81,7 @@
       <div class="mb-bd">
         <div class="other-signin">
           <dl>
-            <dt>{{ $t('otherMethord') }}</dt>
+            <dt>{{ $t('otherMethod') }}</dt>
             <dd>
               <a @click="facebookLogin"> <img :src="getAssetsFile('svg/facebook.svg')" />Facebook </a>
             </dd>
@@ -119,7 +119,6 @@ import { isPwd, isUname } from '@/utils/validate'
 
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
-import 'vant/es/toast/style'
 
 const router = useRouter()
 const userStore = useUserStore()

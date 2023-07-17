@@ -13,7 +13,7 @@
               <b>{{ userStore.userInfo.userName }}</b>
               <a>
                 <label>+</label>
-                <span>{{ userStore.userInfo?.balance }}</span>
+                <span>{{ moneyFormat(userStore.userInfo?.balance) }}</span>
                 {{ userStore.userInfo?.defaultCurrencyCode == 'btc' ? userStore.userInfo?.btcUnit?.currencyUnit : userStore.userInfo?.defaultCurrencyCode }}
               </a>
             </div>
@@ -298,7 +298,7 @@
       <nav class="m-rate">
         1
         <b>{{ currencyCode }}</b>
-        = {{ cxchangeRate }}
+        = {{ moneyFormat(cxchangeRate) }}
         <b>USDT</b>
       </nav>
       <nav class="m-term">
@@ -421,7 +421,7 @@
       </nav>
     </main>
     <Footer />
-    <Sidebar />
+    <Sidebar :currency-code="currencyCode" :cxchange-rate="cxchangeRate" />
   </div>
 </template>
 
@@ -439,15 +439,15 @@ import { getGameListItemResp, getGameListGsItemResp, getGameListData } from '@/a
 import { getGameListApi, getGameUrlApi } from '@/api/game/index'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, moneyFormat } from '@/utils'
 //第三方插件
 import { useI18n } from 'vue-i18n'
 import { Swipe, SwipeItem, showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon, showConfirmDialog } from 'vant'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 
+const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
-const router = useRouter()
 const { t } = useI18n()
 // 切换tab选项卡
 let tab = ref('sports')
@@ -473,6 +473,7 @@ let query = reactive<getGameListData>({
   ps: [],
   cs: [],
   gts: [],
+  ct: 1,
   sortBy: 3,
   page: 1
 })
@@ -571,8 +572,8 @@ const loadMore = () => {
 const startGame = (game: getGameListGsItemResp) => {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
-      title: '您尚未登录',
-      message: '立即前往登录'
+      title: t('tips.noLogin'),
+      message: t('tips.goLogin')
     })
       .then(() => {
         router.push({ name: 'login' })
