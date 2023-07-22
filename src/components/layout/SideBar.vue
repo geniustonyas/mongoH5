@@ -72,6 +72,9 @@
               <li>
                 <a><img :src="getAssetsFile('svg/PlayTech.svg')" />PlayTech</a>
               </li>
+              <li>
+                <a><img :src="getAssetsFile('svg/Mg.svg')" />Microgaming</a>
+              </li>
             </ul>
           </Vue3SlideUpDown>
         </div>
@@ -81,7 +84,7 @@
               <a><img :src="getAssetsFile('svg/ClubHouse.svg')" />{{ t('club') }}</a>
             </li>
             <li>
-              <a><img :src="getAssetsFile('svg/VIP.svg')" />VIP Clubhouse</a>
+              <a @click="router.push({ name: 'vip' })"><img :src="getAssetsFile('svg/VIP.svg')" />{{ t('vipClub') }}</a>
             </li>
           </ul>
         </div>
@@ -101,6 +104,14 @@
         <select v-model="locale" class="form-control" @change="selLang(locale)">
           <option value="zh">中文</option>
           <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="pt">Português</option>
+          <option value="tr">Türkçe</option>
+          <option value="ja">ภาษาไทย</option>
+          <option value="fr">Français</option>
+          <option value="ko">한국어</option>
+          <option value="vi">Tiếng Việt</option>
         </select>
       </nav>
       <nav class="m-rate">

@@ -115,55 +115,55 @@
           <table class="mw-list">
             <thead>
               <tr>
-                <th>GAME</th>
-                <th>USER</th>
-                <th>PAYOUT</th>
+                <th>{{ t('gameBig') }}</th>
+                <th>{{ t('userBig') }}</th>
+                <th>{{ t('payoutBig') }}</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr @click="toggleBetUser({})">
                 <td>Baccarat</td>
                 <td>
                   <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
                 </td>
                 <td>+0.12348934432</td>
               </tr>
-              <tr>
+              <tr @click="toggleBetUser({})">
                 <td>Baccarat</td>
                 <td>
                   <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
                 </td>
                 <td>+0.12348934432</td>
               </tr>
-              <tr>
+              <tr @click="toggleBetUser({})">
                 <td>Baccarat</td>
                 <td>
                   <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
                 </td>
                 <td>+0.12348934432</td>
               </tr>
-              <tr>
+              <tr @click="toggleBetUser({})">
                 <td>Baccarat</td>
                 <td>
                   <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
                 </td>
                 <td>+0.12348934432</td>
               </tr>
-              <tr>
+              <tr @click="toggleBetUser({})">
                 <td>Baccarat</td>
                 <td>
                   <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
                 </td>
                 <td>+0.12348934432</td>
               </tr>
-              <tr>
+              <tr @click="toggleBetUser({})">
                 <td>Baccarat</td>
                 <td>
                   <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
                 </td>
                 <td>+0.12348934432</td>
               </tr>
-              <tr>
+              <tr @click="toggleBetUser({})">
                 <td>Baccarat</td>
                 <td>
                   <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
@@ -179,7 +179,7 @@
         <nav class="gamebox">
           <div class="g-head">
             <div class="gh-t">
-              <div class="gh-l">Live Casino</div>
+              <div class="gh-l">{{ t('liveCasino') }}</div>
               <div class="gh-r">
                 <span class="btn btn-light optgame" @click="gridShow = !gridShow">
                   <i class="iconfont icon-caidan2" />
@@ -229,8 +229,8 @@
               </div>
             </div>
           </div>
-          <div v-if="pageCount > 0" class="g-btn">
-            <a :class="query.page >= pageCount ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="loadMore()">加载更多</a>
+          <div v-if="pageCount > 1" class="g-btn">
+            <a :class="query.page >= pageCount ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="loadMore()">{{ t('more') }}</a>
           </div>
         </nav>
       </div>
@@ -239,7 +239,7 @@
         <nav class="gamebox">
           <div class="g-head">
             <div class="gh-t">
-              <div class="gh-l">Slots</div>
+              <div class="gh-l">{{ t('slots') }}</div>
               <div class="gh-r">
                 <span class="btn btn-light optgame" @click="gridShow = !gridShow">
                   <i class="iconfont icon-caidan2" />
@@ -252,10 +252,10 @@
             <Vue3SlideUpDown v-model="showGameOption">
               <div class="gh-b optstion">
                 <div class="form-row">
-                  <label class="form-label">Providers</label>
+                  <label class="form-label">{{ t('providers') }}</label>
                   <ConfigProvider theme="dark">
                     <DropdownMenu v-if="pslist.length > 0" direction="down">
-                      <DropdownItem title="All Game Providers" ref="currenyDom" teleport="body">
+                      <DropdownItem :title="t('allProviders')" ref="currenyDom" teleport="body">
                         <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item)">
                           <span :class="{ active: query.ps.includes(parseInt(item.id)) }">{{ item.name }}({{ item.count }})</span>
                           <Icon name="success" :class="{ active: query.ps.includes(parseInt(item.id)) }" />
@@ -265,7 +265,7 @@
                   </ConfigProvider>
                 </div>
                 <div class="form-row">
-                  <label class="form-label">Sort by</label>
+                  <label class="form-label">{{ t('sortBy') }}</label>
                   <ConfigProvider theme="dark">
                     <DropdownMenu v-if="pslist.length > 0" direction="down">
                       <DropdownItem v-model="query.sortBy" :options="sortBy" @change="sortGame()" />
@@ -289,8 +289,8 @@
               </div>
             </div>
           </div>
-          <div class="g-btn">
-            <a :class="query.page >= pageCount ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="loadMore()">加载更多</a>
+          <div v-if="pageCount > 1" class="g-btn">
+            <a :class="query.page >= pageCount ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="loadMore()">{{ t('loadMore') }}</a>
           </div>
         </nav>
       </div>
@@ -304,28 +304,46 @@
       <nav class="m-term">
         <dl>
           <dt>Seabet</dt>
-          <dd><a href="#">Promotions</a></dd>
-          <dd><a href="#">VIP Club</a></dd>
+          <dd>
+            <a @click="router.push({ name: 'promo' })">{{ t('promotions') }}</a>
+          </dd>
+          <dd>
+            <a @click="router.push({ name: 'club' })">{{ t('club') }}</a>
+          </dd>
           <dd><a href="#">Store</a></dd>
         </dl>
         <dl>
-          <dt>Game</dt>
-          <dd><a href="#">Sports</a></dd>
-          <dd><a href="#">Live Casino</a></dd>
-          <dd><a href="#">Slots</a></dd>
-        </dl>
-        <dl>
-          <dt>About Us</dt>
+          <dt>{{ t('game') }}</dt>
           <dd>
-            <a href="#">Rules & Terms <i class="iconfont icon-share" /></a>
+            <a href="#">{{ t('sports') }}</a>
           </dd>
-          <dd><a href="#">Responsible Gambling</a></dd>
-          <dd><a href="#">AML Policy</a></dd>
-          <dd><a href="#">Self Exclusion</a></dd>
-          <dd><a href="#">Privacy Policy</a></dd>
+          <dd>
+            <a href="#">{{ t('liveCasino') }}</a>
+          </dd>
+          <dd>
+            <a href="#">{{ t('slots') }}</a>
+          </dd>
         </dl>
         <dl>
-          <dt>Follow Us</dt>
+          <dt>{{ t('aboutUs') }}</dt>
+          <dd>
+            <a href="#">{{ t('ruleTerms') }} <i class="iconfont icon-share" /></a>
+          </dd>
+          <dd>
+            <a href="#">{{ t('responsibleGambling') }}</a>
+          </dd>
+          <dd>
+            <a href="#">{{ t('amlPolicy') }}</a>
+          </dd>
+          <dd>
+            <a href="#">{{ t('selfExclusion') }}</a>
+          </dd>
+          <dd>
+            <a href="#">{{ t('privacyPolicy') }}</a>
+          </dd>
+        </dl>
+        <dl>
+          <dt>{{ t('followUs') }}</dt>
           <dd>
             <a href="#">Facebook <i class="iconfont icon-share" /></a>
           </dd>
@@ -343,21 +361,25 @@
           </dd>
         </dl>
         <dl>
-          <dt>Support</dt>
-          <dd><a href="#">Fairness</a></dd>
+          <dt>{{ t('onlineSupport') }}</dt>
           <dd>
-            <a href="#">Live Support <i class="iconfont icon-share" /></a>
+            <a href="#">{{ t('fairness') }}</a>
           </dd>
-          <dd><a href="#">Help Center</a></dd>
+          <dd>
+            <a href="#">{{ t('liveSupport') }}<i class="iconfont icon-share" /></a>
+          </dd>
+          <dd>
+            <a href="#">{{ t('helpCenter') }}</a>
+          </dd>
         </dl>
         <dl>
-          <dt>Language</dt>
+          <dt>{{ t('language') }}</dt>
           <dd><a href="#">English</a></dd>
         </dl>
       </nav>
       <nav class="m-accepted">
         <dl>
-          <dt>Cryptocurrencies Accepted</dt>
+          <dt>{{ t('acceptCrypto') }}</dt>
           <dd>
             <a href="#"><img :src="getAssetsFile('payment/btc.png')" /></a>
           </dd>
@@ -386,7 +408,7 @@
       </nav>
       <nav class="m-security">
         <dl>
-          <dt>Licences & Security</dt>
+          <dt>{{ t('licencesSecurity') }}</dt>
           <dd>
             <a href="#">
               <img :src="getAssetsFile('svg/ls-1.svg')" />
@@ -422,6 +444,35 @@
     </main>
     <Footer />
     <Sidebar :currency-code="currencyCode" :cxchange-rate="cxchangeRate" />
+    <div v-show="showBetDetailsBox" class="mask-box">
+      <div class="mb-bd">
+        <div class="win-bet">
+          <div class="wb-head">
+            <label><i class="iconfont icon-bets" />{{ t('bets') }}</label>
+            <span class="icon-btn" @click="showBetDetailsBox = false">
+              <i class="iconfont icon-close" />
+            </span>
+          </div>
+          <div class="wb-cont">
+            <h2>Grand Japanese Blackjack</h2>
+            <h2>ID 167,460.223,966<i class="iconfont icon-fuzhi" /><i class="iconfont icon-fxlj" /></h2>
+            <p>{{ t('betUser') }}：<img :src="getAssetsFile('svg/tb_user.svg')" />{{ t('invisibility') }}</p>
+            <p>{{ t('at') }} 2023/7/9 23:57</p>
+            <div class="b-info">
+              <p>{{ t('bets') }}</p>
+              <h3>1100.0000...<img :src="getAssetsFile('payment/tether.png')" /></h3>
+              <p>{{ t('multiplier') }}</p>
+              <h3>1.64x</h3>
+              <p>{{ t('paymentAmount') }}</p>
+              <h4>1800.000000..<img :src="getAssetsFile('payment/tether.png')" /></h4>
+            </div>
+            <div class="b-gm">
+              <a href="#">{{ t('goto') }} Grand Japanese Blackjack</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -461,10 +512,12 @@ let cxchangeRate = ref('')
 // 跑马灯工改
 let marqueeContent = ref('')
 
-//  选择的运营商
-// let checkedProvider = ref([])
+// 显示用户投注详情
+let showBetDetailsBox = ref(false)
+let betDetailsItem = reactive({})
+
 const sortBy = [
-  { text: 'Polular', value: 3 },
+  { text: t('polular'), value: 3 },
   { text: 'A-Z', value: 1 },
   { text: 'RTP', value: 2 }
 ]
@@ -501,6 +554,11 @@ const toggleTab = (tabs: string) => {
     dataList.value = []
     getGameList()
   }
+}
+
+const toggleBetUser = (item: any) => {
+  Object.assign(betDetailsItem, item)
+  showBetDetailsBox.value = true
 }
 
 // 获取汇率

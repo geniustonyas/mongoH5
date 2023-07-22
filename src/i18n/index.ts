@@ -1,20 +1,56 @@
 import { createI18n } from 'vue-i18n'
 import { getUrlAllParams } from '@/utils/index'
-import zh from './config/zh'
+import de from './config/de'
 import en from './config/en'
+import es from './config/es'
+import fr from './config/fr'
+import ja from './config/ja'
+import ko from './config/ko'
+import pt from './config/pt'
+import th from './config/th'
+import tr from './config/tr'
+import vi from './config/vi'
+import zh from './config/zh'
 import { Locale } from 'vant'
 // 引入语言包
-import zhCN from 'vant/es/locale/lang/zh-CN'
+import deDE from 'vant/es/locale/lang/de-DE'
 import enUS from 'vant/es/locale/lang/en-US'
+import esES from 'vant/es/locale/lang/es-ES'
+import frFR from 'vant/es/locale/lang/fr-FR'
+import jaJP from 'vant/es/locale/lang/ja-JP'
+import koKR from 'vant/es/locale/lang/ko-KR'
+import ptBR from 'vant/es/locale/lang/pt-BR'
+import thTH from 'vant/es/locale/lang/th-TH'
+import trTR from 'vant/es/locale/lang/tr-TR'
+import viVN from 'vant/es/locale/lang/vi-VN'
+import zhCN from 'vant/es/locale/lang/zh-CN'
 
 const messages = {
+  de,
   en,
+  es,
+  fr,
+  ja,
+  ko,
+  pt,
+  th,
+  tr,
+  vi,
   zh
 }
 
 const vantLangMap: dynamicObject = {
-  zh: zhCN,
-  en: enUS
+  de: deDE,
+  en: enUS,
+  es: esES,
+  fr: frFR,
+  ja: jaJP,
+  ko: koKR,
+  pt: ptBR,
+  th: thTH,
+  tr: trTR,
+  vi: viVN,
+  zh: zhCN
 }
 
 const params = getUrlAllParams()
@@ -28,6 +64,7 @@ const i18n = createI18n({
   locale: lang,
   legacy: false,
   fallbackLocale: 'en', // 设置备用语言
+  warnHtmlMessage: false,
   messages
 })
 export default i18n

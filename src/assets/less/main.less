@@ -2214,6 +2214,77 @@ body {
     padding: 1.5rem
 }
 
+.vip-clubhouse-box {
+    .vc-rows {
+        margin: 1rem;
+
+        .vr-title {
+            color: var(--color-white);
+            font-weight: 600;
+            font-size: 1.6rem;
+        }
+
+        .vr-conts {
+            p {
+                padding: .5rem;
+                &.mark{
+                    .bgc(var(--color-menu),var(--color-primary));
+                    padding:1rem;
+                    .radius(1rem);
+
+                }
+            }
+
+            dl {
+                padding: 1rem .5rem;
+
+                dt {
+                    color: var(--color-primary);
+                    font-weight: 600;
+                }
+
+                dd {
+                    position: relative;
+                    padding: .3rem .3rem .3rem 1.2rem;
+
+                    &:before {
+                        content: '';
+                        display: inline-block;
+                        width: .8rem;
+                        height: .8rem;
+                        .radius(.8rem);
+                        .bg(rgba(255,255,255,.4));
+                        position: absolute;
+                        left: 0;
+                        top: 1rem;
+                    }
+                }
+            }
+
+            table {
+                width: 100%;
+                .border-a(.1rem,rgba(255,255,255,.1));
+                margin: 1rem 0;
+
+                th, td {
+                    padding: .5rem;
+                    text-align: center;
+                    font-size: 1.3rem;
+                    .border-b(.1rem,rgba(255,255,255,.1));
+                }
+
+                th {
+                    color: var(--color-white)
+                }
+
+                tr:nth-child(2n+1) {
+                    .bg(var(--color-tabs));
+                }
+            }
+        }
+    }
+}
+
 .provider-list {
     padding: 1.5rem;
     .clearfix();
@@ -2943,6 +3014,83 @@ body {
             padding: 2rem 1.4rem;
             h2{font-size:1.8rem; color:var(--color-white); font-weight:700; margin-bottom:2rem;}
             .icon-btn{position:absolute;top:1.6rem; right:1rem;}
+        }
+
+        .win-bet {
+            position: relative;
+            width: 90%;
+            height: auto;
+            .radius(1rem);
+            .bg(var(--color-dark-gray));
+            padding: 2rem 1.4rem;
+
+            .wb-head {
+                .flex();
+                .flex-pack-justify();
+                .flex-align();
+
+                label {
+                    color: var(--color-white);
+                    font-size: 1.6rem;
+                    font-weight: 600;
+
+                    i {
+                        font-weight: 400;
+                        font-size: 2rem;
+                        vertical-align: middle;
+                        position: relative;
+                        bottom: 0.1rem;
+                        margin-right: 0.5rem;
+                    }
+                }
+            }
+
+            .wb-cont {
+                h2 {
+                    text-align: center;
+                    color: var(--color-white);
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    padding: .5rem 0;
+
+                    i {
+                        font-size: 1.8rem;
+                        margin-left: .5rem;
+                    }
+                }
+
+                p {
+                    text-align: center;
+                    padding: .5rem 0;
+                    img{width:1.4rem; height:auto; vertical-align:middle; margin:0 .2rem;}
+                }
+
+                .b-info {
+                    .bg(var(--color-menu));
+                    .radius();
+                    text-align: center;
+                    padding:1rem ;
+                    h3,h4{font-size:1.4rem; color:var(--color-white)}
+                    h4{color:var(--color-primary)}
+                    img {
+                        width: 1.8rem;
+                        height: 1.8rem;
+                        vertical-align: middle;
+                        margin-left:.5rem;
+                    }
+                }
+
+                .b-gm{
+                    text-align:center;
+                    margin-top:2rem;
+                    a{
+                        padding:1rem 2rem;
+                        .radius(.5rem);
+                        display:inline-block;
+                        .bgc(var(--color-tabs),var(--color-white));
+                    }
+                }
+            }
         }
     }
 }

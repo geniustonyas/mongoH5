@@ -150,6 +150,18 @@ const routes = [
     ]
   },
   {
+    path: '/vip',
+    component: AppMain,
+    children: [
+      {
+        path: '',
+        name: 'vip',
+        component: () => import('@/views/vip/vip.vue'),
+        meta: { transition: '', needLogin: true }
+      }
+    ]
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: '404',
     redirect: { name: 'index' },

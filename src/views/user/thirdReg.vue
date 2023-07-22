@@ -248,7 +248,7 @@ const handleReg = async () => {
   }
   if (!isUname(regForm.UserName)) {
     showToast(t('tips.isAccount'))
-    showToast.value?.focus()
+    userNameDom.value?.focus()
     return false
   }
   if (regForm.Email == '') {

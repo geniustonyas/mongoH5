@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   // 操作性表单文字
   cancel: 'Cancelar',
   confirm: 'OK',
