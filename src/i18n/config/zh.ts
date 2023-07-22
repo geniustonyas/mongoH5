@@ -113,11 +113,6 @@ export default {
   typeCode: '输入代码',
   submitCode: '提交代码',
   keyValue: '关键值',
-  // 投注记录
-  unSettledBet: '未结算注单',
-  settledBet: '已结算注单',
-  noUnSettledBetData: '您没有任何未结算注单',
-  noSettledBetData: '您没有任何已结算注单',
   // 消息通知
   notice: '公告',
   mail: '站内信',
