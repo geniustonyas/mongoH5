@@ -90,6 +90,7 @@ export default {
   // club
   club: 'Club',
   tiers: 'tiers',
+  clubTips: "Your rewards will be reset every month, please claim your rewards before the end of the month, don't miss it.",
   currentPoints: 'Current points',
   currentPointsMultiplier: 'Current Points Multiplier',
   receiveReward: 'Receive reward',

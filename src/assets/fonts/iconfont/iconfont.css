@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4109944 */
-  src: url('iconfont.woff2?t=1687681274017') format('woff2'),
-       url('iconfont.woff?t=1687681274017') format('woff'),
-       url('iconfont.ttf?t=1687681274017') format('truetype');
+  src: url('iconfont.woff2?t=1690012254914') format('woff2'),
+       url('iconfont.woff?t=1690012254914') format('woff'),
+       url('iconfont.ttf?t=1690012254914') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,46 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-losts:before {
+  content: "\e62b";
+}
+
+.icon-vip2:before {
+  content: "\e66a";
+}
+
+.icon-shandian:before {
+  content: "\e6da";
+}
+
+.icon-ball-1:before {
+  content: "\e61a";
+}
+
+.icon-qipai3:before {
+  content: "\e60b";
+}
+
+.icon-labax:before {
+  content: "\e608";
+}
+
+.icon-fxlj:before {
+  content: "\e60f";
+}
+
+.icon-wallet:before {
+  content: "\e6dc";
+}
+
+.icon-bianji:before {
+  content: "\e818";
+}
+
+.icon-tixing1:before {
+  content: "\e732";
 }
 
 .icon-tiaozhuan:before {
@@ -129,6 +169,10 @@
   content: "\e620";
 }
 
+.icon-enter:before {
+  content: "\10102";
+}
+
 .icon-return:before {
   content: "\e65c";
 }
@@ -159,6 +203,10 @@
 
 .icon-down:before {
   content: "\eb05";
+}
+
+.icon-left:before {
+  content: "\10101";
 }
 
 .icon-user1:before {

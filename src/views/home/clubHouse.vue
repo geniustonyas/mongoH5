@@ -3,6 +3,11 @@
     <CommonHeader :title="t('club')" />
     <main class="main">
       <div class="clubhouse-box">
+        <div class="cb_tips" v-show="showTips">
+          <i class="iconfont icon-guanyuwomen" />
+          <span>每个月您的奖励将会重置，请在月底前领取您的奖励，千万别错过哦。</span>
+          <i class="iconfont icon-close" @click="showTips = false" />
+        </div>
         <div class="cb-card">
           <div class="c-name">
             {{ t('tiers') }}
@@ -181,6 +186,8 @@ import BigNumber from 'bignumber.js'
 
 // const router = useRouter()
 const { t } = useI18n()
+
+let showTips = ref(true)
 
 let currentData = reactive<currentDataResp>({
   totalBetAmount: '',

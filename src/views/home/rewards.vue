@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <CommonHeader title="Rewards">
+    <CommonHeader :title="t('rewards')">
       <div class="hml-r t-i-w" @click="showAddBox = true">
         {{ t('claimReward') }}<span><i class="iconfont icon-add" /></span>
       </div>

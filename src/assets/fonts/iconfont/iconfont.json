@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "4789302",
+      "name": "slot3",
+      "font_class": "losts",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "1133840",
+      "name": "钻石",
+      "font_class": "vip2",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "16562581",
+      "name": "闪电",
+      "font_class": "shandian",
+      "unicode": "e6da",
+      "unicode_decimal": 59098
+    },
+    {
+      "icon_id": "4898240",
+      "name": "足球",
+      "font_class": "ball-1",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "4100359",
+      "name": "棋牌",
+      "font_class": "qipai3",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "10104508",
+      "name": "喇叭@2x",
+      "font_class": "labax",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "2435813",
+      "name": "分享连接",
+      "font_class": "fxlj",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "6801939",
+      "name": "Wallet-2",
+      "font_class": "wallet",
+      "unicode": "e6dc",
+      "unicode_decimal": 59100
+    },
+    {
+      "icon_id": "17711273",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e818",
+      "unicode_decimal": 59416
+    },
+    {
+      "icon_id": "9623123",
+      "name": "提醒",
+      "font_class": "tixing1",
+      "unicode": "e732",
+      "unicode_decimal": 59186
+    },
+    {
       "icon_id": "35704927",
       "name": "跳转-copy",
       "font_class": "tiaozhuan",
@@ -209,6 +279,13 @@
       "unicode_decimal": 58912
     },
     {
+      "icon_id": "36567812",
+      "name": "返回-copy",
+      "font_class": "enter",
+      "unicode": "10102",
+      "unicode_decimal": 65794
+    },
+    {
       "icon_id": "8949022",
       "name": "返回",
       "font_class": "return",
@@ -263,6 +340,13 @@
       "font_class": "down",
       "unicode": "eb05",
       "unicode_decimal": 60165
+    },
+    {
+      "icon_id": "36199622",
+      "name": "左左-copy-copy-copy",
+      "font_class": "left",
+      "unicode": "10101",
+      "unicode_decimal": 65793
     },
     {
       "icon_id": "5700827",

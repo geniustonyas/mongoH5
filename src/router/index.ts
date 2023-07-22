@@ -162,6 +162,18 @@ const routes = [
     ]
   },
   {
+    path: '/mall',
+    component: AppMain,
+    children: [
+      {
+        path: '',
+        name: 'mall',
+        component: () => import('@/views/mall/mall.vue'),
+        meta: { transition: '', needLogin: true }
+      }
+    ]
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: '404',
     redirect: { name: 'index' },

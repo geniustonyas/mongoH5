@@ -90,6 +90,7 @@ export default {
   // 俱乐部
   club: '俱乐部',
   tiers: '级别',
+  clubTips: '每个月您的奖励将会重置，请在月底前领取您的奖励，千万别错过哦。',
   currentPoints: '当前积分',
   currentPointsMultiplier: '当前积分倍数',
   receiveReward: '领取奖励',
@@ -99,6 +100,8 @@ export default {
   // vip俱乐部
   vipTitle: 'Seabet VIP俱乐部',
   vipClub: 'VIP 俱乐部',
+  // 积分商城
+  mallTitle: '积分商城',
   // 账户设置
   generalInformation: '一般信息',
   changePassword: '更换密码',
