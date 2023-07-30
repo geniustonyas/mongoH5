@@ -45,6 +45,15 @@ export function unBindGoogleCodeApi(data: Home.googleCodeData) {
   })
 }
 
+/** 隐私设置 */
+export function setPrivacyApi(data: Home.setPricacyData) {
+  return request<anyResp>({
+    url: 'Member/EditPrivacySetting',
+    method: 'post',
+    data
+  })
+}
+
 /** 获取新消息数量 */
 export function getNewMessageCountApi(data: Home.getNewMessageCountData) {
   return request<anyResp>({

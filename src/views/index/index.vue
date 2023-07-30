@@ -20,6 +20,9 @@
           </template>
         </div>
         <div class="hm-r">
+          <a class="icon-btn" @click="router.push({ name: 'mall' })">
+            <i class="iconfont icon-shandian" />
+          </a>
           <template v-if="userStore.userInfo.id">
             <a class="icon-btn" @click="router.push({ name: 'message' })">
               <i class="iconfont icon-message" />

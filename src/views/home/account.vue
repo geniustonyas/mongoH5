@@ -167,12 +167,20 @@
             </Vue3SlideUpDown>
           </div>
           <!-- endregion -->
-          <!-- <div class="l-item">
-            <div class="i-title" @click="collapseVerify = !collapseVerify"><i class="iconfont icon-scsfz" /> Verify Account</div>
-            <Vue3SlideUpDown v-model="collapseVerify">
-              <div class="i-form">.....</div>
+          <div class="l-item">
+            <div class="i-title" @click="collapsePrivacy = !collapsePrivacy"><i class="iconfont icon-scsfz" /> {{ t('privacySetting') }}</div>
+            <Vue3SlideUpDown v-model="collapsePrivacy">
+              <div class="i-form privacy">
+                <div class="privacy-switch-box">
+                  <div>启用隐身模式</div>
+                  <ConfigProvider theme="dark">
+                    <Switch v-model="openVisible" size="18px" @click="setPrivacy()" />
+                  </ConfigProvider>
+                </div>
+                <div>您的投注不会出现在公开投注动态和投注预览中</div>
+              </div>
             </Vue3SlideUpDown>
-          </div> -->
+          </div>
         </div>
       </div>
     </main>
@@ -185,7 +193,7 @@ import { reactive, ref } from 'vue'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 // import { getAssetsFile } from '@/utils'
-import { editUserInfoApi, getGoogleCodeApi, bindGoogleCodeApi, editPasswordApi } from '@/api/home/index'
+import { editUserInfoApi, getGoogleCodeApi, bindGoogleCodeApi, editPasswordApi, setPrivacyApi } from '@/api/home/index'
 import { editUserInfoData, googleCodeData, ediPwdData } from '@/api/home/types'
 import { useUserStore } from '@/store/modules/user'
 import { isPwd, isEmpty } from '@/utils/validate'
@@ -195,7 +203,7 @@ import { getYearList } from '@/utils'
 import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-import { showToast } from 'vant'
+import { showToast, ConfigProvider, Switch } from 'vant'
 
 const userStore = useUserStore()
 const { t } = useI18n()
@@ -204,7 +212,7 @@ const { t } = useI18n()
 let collapseInfo = ref(false)
 let collapsePwd = ref(false)
 let collapseGoogle = ref(false)
-// let collapseVerify = ref(false)
+let collapsePrivacy = ref(false)
 
 // 修改个人信息
 let dayDom = ref<HTMLInputElement | null>(null)
@@ -220,11 +228,8 @@ let birthday = userStore.userInfo.dateOfBirth?.split('-')
 let day = ref<string | number>('')
 let month = ref<string | number>('')
 let year = ref<string | number>('')
-//@ts-ignore
 year.value = birthday[0]
-//@ts-ignore
 month.value = birthday[1]
-//@ts-ignore
 day.value = birthday[2]
 let editInfoForm: editUserInfoData = reactive({
   CountryCode: '',
@@ -259,6 +264,8 @@ let qrcodeValue = ref('')
 let keyValue = ref('')
 const bindGoogleCodeForm: googleCodeData = reactive({ VerificationCode: '' })
 
+// 隐身模式
+const openVisible = ref(userStore.userInfo.inVisible == '1')
 // 修改个人信息
 const editInfo = () => {
   if (isEmpty(day.value)) {
@@ -379,6 +386,17 @@ const bindGoogle = () => {
     })
     .catch((error) => {
       showToast(error)
+    })
+}
+
+const setPrivacy = () => {
+  setPrivacyApi({ InVisible: openVisible.value ? 1 : 0 })
+    .then((resp) => {
+      showToast('设置成功')
+      console.log(resp)
+    })
+    .catch((err) => {
+      console.log(err)
     })
 }
 </script>

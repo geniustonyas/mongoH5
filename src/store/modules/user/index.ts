@@ -18,20 +18,23 @@ export const useUserStore = defineStore('userInfo', () => {
     userName: undefined,
     integral: undefined,
     isBindGoogleAuth: undefined,
-    vip: undefined,
+    address: undefined,
+    zipcode: undefined,
     email: undefined,
     dateOfBirth: undefined,
     phoneNumber: undefined,
     countryCode: undefined,
     country: undefined,
+    vip: undefined,
+    vipCode: undefined,
+    totalBetAmount: undefined,
+    nextVipRequiredTotalBetAmount: undefined,
     defaultCurrencyCode: undefined,
     balance: undefined,
     btcUnit: {
       currencyUnit: undefined,
       rate: undefined
     },
-    address: undefined,
-    zipcode: undefined,
     updatePassWordTime: undefined
   })
   const defaultUserInfo = cloneDeep<UserInfoType>(userInfo)

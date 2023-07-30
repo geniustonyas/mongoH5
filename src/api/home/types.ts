@@ -27,6 +27,11 @@ export interface googleCodeData {
   VerificationCode: string
 }
 
+// 设置隐私模式是否开启
+export interface setPricacyData {
+  InVisible: number
+}
+
 // 获取新消息数量
 export interface getNewMessageCountData {
   noLoading?: boolean

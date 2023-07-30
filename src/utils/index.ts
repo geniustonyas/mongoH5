@@ -83,6 +83,6 @@ export function loadJs(url: string) {
 }
 
 // 格式化两位小数
-export function moneyFormat(value: any) {
-  return new BigNumber(Math.floor(parseFloat(value) * 100) / 100).toFormat(2)
+export function moneyFormat(value: any, decimalLength = 2) {
+  return new BigNumber(Math.floor(parseFloat(value) * 100) / 100).toFormat(decimalLength)
 }

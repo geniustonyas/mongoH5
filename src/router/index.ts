@@ -169,7 +169,7 @@ const routes = [
         path: '',
         name: 'mall',
         component: () => import('@/views/mall/mall.vue'),
-        meta: { transition: '', needLogin: true }
+        meta: { transition: '', needLogin: false }
       }
     ]
   },

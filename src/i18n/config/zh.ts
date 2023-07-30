@@ -106,6 +106,7 @@ export default {
   generalInformation: '一般信息',
   changePassword: '更换密码',
   googleAuthenticator: '谷歌身份认证',
+  privacySetting: '隐私设置',
   currentPwd: '当前密码',
   newPwd: '新密码',
   confirmPwd: '再次确认密码',
