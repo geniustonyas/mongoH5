@@ -1,13 +1,10 @@
+// 首页跑马灯请求参数
 export interface getAnnouncementListData {
   PageIndex: string | number
   PageSize: string | number
 }
 
-// banner图和下面的图
-export interface getBannerData {
-  PositionCode: string
-}
-
+// 首页banner返回数据项
 export interface getBannerRespItem {
   id: string
   imageName: string
@@ -16,7 +13,7 @@ export interface getBannerRespItem {
 }
 
 // 跑马灯列表
-export interface getAnnouncementListItemResp {
+export interface getAnnouncementListItem {
   title: string
   content: string
 }
@@ -27,6 +24,8 @@ export type getAnnouncementListResp = ApiResponseData<{
   pageSize: string
   pageCount: string
   recordCount: string
-  items: getAnnouncementListItemResp[]
+  items: getAnnouncementListItem[]
 }>
+
+// 首页排行榜数据
 export type getBannerResp = ApiResponseData<getBannerRespItem[]>

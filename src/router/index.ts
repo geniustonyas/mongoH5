@@ -136,6 +136,12 @@ const routes = [
         meta: { transition: '', needLogin: true }
       },
       {
+        path: 'wallet',
+        name: 'wallet',
+        component: () => import('@/views/home/wallet.vue'),
+        meta: { transition: '', needLogin: true }
+      },
+      {
         path: 'rewards',
         name: 'rewards',
         component: () => import('@/views/home/rewards.vue'),

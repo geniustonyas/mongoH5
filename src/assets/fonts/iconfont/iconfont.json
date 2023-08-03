@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "9559012",
+      "name": "USDT",
+      "font_class": "tether",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "11780187",
+      "name": "USDT",
+      "font_class": "usdt",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
       "icon_id": "4789302",
       "name": "slot3",
       "font_class": "losts",

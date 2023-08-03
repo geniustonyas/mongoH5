@@ -67,6 +67,12 @@
               </a>
             </li>
             <li>
+              <a @click="router.push({ name: 'wallet' })">
+                <span><i class="iconfont icon-bets" />{{ t('wallet') }} </span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+            <li>
               <a @click="router.push({ name: 'tradeRecord' })">
                 <span><i class="iconfont icon-bets" />{{ t('myBets') }} </span>
                 <i class="iconfont icon-right" />

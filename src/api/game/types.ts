@@ -56,4 +56,21 @@ export interface getGameListGsItemResp {
   f: boolean
 }
 
+// 获取排行榜返回数据项
+export interface getRankListRespItem {
+  roundId: string
+  orderId: string
+  memberuserName: string
+  gameName: string
+  betTime: string
+  winAmount: string
+  gameType: number
+  betAmount: string
+  winRate: string
+  providerId: string
+  providerCode: string
+  gameCode: string
+}
+
 export type getGameListResp = ApiResponseData<{ cs: getGameListItemResp[]; gs: getGameListGsResp; ps: getGameListItemResp[] }>
+export type getRankListResp = ApiResponseData<{ sport: getRankListRespItem[]; casino: getRankListRespItem[]; slots: getRankListRespItem[] }>

@@ -81,6 +81,7 @@ export default {
     showProgress: '显示我的进度'
   },
   userAccount: '用户账号',
+  wallet: '钱包',
   myBets: '历史记录',
   rewards: '奖励',
   notifications: '通知消息',

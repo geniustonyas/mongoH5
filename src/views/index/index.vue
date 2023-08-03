@@ -36,6 +36,7 @@
         </div>
       </nav>
     </header>
+
     <main class="main">
       <nav class="m-logo">
         <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>
@@ -47,9 +48,9 @@
       </nav>
 
       <div v-show="tab == 'sports'">
-        <nav v-if="bannerImg.length > 0" class="swiper m-banner">
+        <nav v-if="swipeImg.length > 0" class="swiper m-banner">
           <Swipe :autoplay="3500" class="my-swipe">
-            <SwipeItem v-for="(item, index) of bannerImg" :key="index" v-lazy:background-image="appStore.cdnurl + item.imageName" />
+            <SwipeItem v-for="(item, index) of swipeImg" :key="index" v-lazy:background-image="appStore.cdnurl + item.imageName" />
           </Swipe>
         </nav>
         <!-- <NoticeBar left-icon="volume-o" :text="marqueeContent" /> -->
@@ -63,7 +64,9 @@
             </marquee>
           </div>
         </nav>
+        <!-- 支付解决方案 -->
         <nav class="m-card">
+          <!-- <img v-lazy="appStore.cdnurl + bannerImg[0]" /> -->
           <div class="mc-t">
             <div class="mt-l">
               <b>{{ t('globalPaymentSolutions') }}</b>
@@ -89,11 +92,13 @@
             </a>
           </div>
         </nav>
+
+        <!-- 排行榜数据 -->
         <nav class="m-win">
           <div class="mw-menu">
-            <span class="active">{{ t('sportsBet') }}</span>
-            <span>{{ t('liveCasinoBet') }}</span>
-            <span>{{ t('slotBet') }}</span>
+            <span :class="{ active: rankTab == 'sport' }" @click="rankTab = 'sport'">{{ t('sportsBet') }}</span>
+            <span :class="{ active: rankTab == 'casino' }" @click="rankTab = 'casino'">{{ t('liveCasinoBet') }}</span>
+            <span :class="{ active: rankTab == 'slots' }" @click="rankTab = 'slots'">{{ t('slotBet') }}</span>
           </div>
           <table class="mw-list">
             <thead>
@@ -104,60 +109,24 @@
               </tr>
             </thead>
             <tbody>
-              <tr @click="toggleBetUser({})">
-                <td>Baccarat</td>
+              <tr v-for="(item, index) of rankList[rankTab]" :key="index" @click="rankBetDetails({})">
+                <td>{{ item.gameName }}</td>
                 <td>
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
+                  <template v-if="item.memberuserName == ''">
+                    <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
+                  </template>
+                  <template v-else>
+                    {{ item.memberuserName }}
+                  </template>
                 </td>
-                <td>+0.12348934432</td>
-              </tr>
-              <tr @click="toggleBetUser({})">
-                <td>Baccarat</td>
-                <td>
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
-                </td>
-                <td>+0.12348934432</td>
-              </tr>
-              <tr @click="toggleBetUser({})">
-                <td>Baccarat</td>
-                <td>
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
-                </td>
-                <td>+0.12348934432</td>
-              </tr>
-              <tr @click="toggleBetUser({})">
-                <td>Baccarat</td>
-                <td>
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
-                </td>
-                <td>+0.12348934432</td>
-              </tr>
-              <tr @click="toggleBetUser({})">
-                <td>Baccarat</td>
-                <td>
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
-                </td>
-                <td>+0.12348934432</td>
-              </tr>
-              <tr @click="toggleBetUser({})">
-                <td>Baccarat</td>
-                <td>
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
-                </td>
-                <td>+0.12348934432</td>
-              </tr>
-              <tr @click="toggleBetUser({})">
-                <td>Baccarat</td>
-                <td>
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
-                </td>
-                <td>+0.12348934432</td>
+                <td>{{ moneyFormat(item.betAmount) }}</td>
               </tr>
             </tbody>
           </table>
         </nav>
       </div>
 
+      <!-- 真人游戏 -->
       <div v-show="tab == 'livecasino'">
         <nav class="gamebox">
           <div class="g-head">
@@ -217,7 +186,7 @@
           </div>
         </nav>
       </div>
-
+      <!-- 电子游戏 -->
       <div v-show="tab == 'slots'">
         <nav class="gamebox">
           <div class="g-head">
@@ -469,8 +438,10 @@ import Footer from '@/components/layout/Footer.vue'
 import Sidebar from '@/components/layout/SideBar.vue'
 // 引用方法
 import { getExchangeRateApi, getAnnouncementListApi, getBannerApi } from '@/api/app/index'
-import { getGameListItemResp, getGameListGsItemResp, getGameListData, getBannerRespItem } from '@/api/game/types'
-import { getGameListApi, getGameUrlApi } from '@/api/game/index'
+import { getBannerRespItem } from '@/api/app/types'
+import { getGameListApi, getGameUrlApi, getRankListApi } from '@/api/game/index'
+import { getGameListItemResp, getGameListGsItemResp, getGameListData, getRankListResp } from '@/api/game/types'
+
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, moneyFormat } from '@/utils'
@@ -483,29 +454,41 @@ const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const { t } = useI18n()
-// 切换tab选项卡
-let tab = ref('sports')
-// 显示游戏筛选
-let showGameOption = ref(false)
-// 列表显示or表格显示
-let gridShow = ref(true)
+
 // 汇率相关
 let currencyCode = ref('')
 let cxchangeRate = ref('')
-// 跑马灯工改
+
+// 跑马灯内容
 let marqueeContent = ref('')
+
+// 首页swiper 和下面banner
+let swipeImg = ref<getBannerRespItem[]>([])
 let bannerImg = ref<getBannerRespItem[]>([])
 
-// 显示用户投注详情
+// 排行榜列表数据
+let rankList = reactive<getRankListResp>({
+  sport: [],
+  casino: [],
+  slots: []
+})
+// 显示排行榜列表投注详情
 let showBetDetailsBox = ref(false)
 let betDetailsItem = reactive({})
 
+// 游戏列表tab选项卡
+let tab = ref('sports')
+// 游戏列表显示or隐藏筛选条件
+let showGameOption = ref(false)
+// 列表显示or表格显示
+let gridShow = ref(true)
+// 游戏列表排序规则
 const sortBy = [
   { text: t('polular'), value: 3 },
   { text: 'A-Z', value: 1 },
   { text: 'RTP', value: 2 }
 ]
-
+// 游戏列表查询参数
 let query = reactive<getGameListData>({
   ps: [],
   cs: [],
@@ -514,8 +497,7 @@ let query = reactive<getGameListData>({
   sortBy: 3,
   page: 1
 })
-
-// 游戏列表页数
+// 游戏列表分页
 let pageCount = ref(0)
 // 运营商分类
 let pslist = ref<getGameListItemResp[]>([])
@@ -524,23 +506,22 @@ let cslist = ref<getGameListItemResp[]>([])
 // 游戏列表
 let dataList = ref<getGameListGsItemResp[]>([])
 
-// 切换选项卡
-const toggleTab = (tabs: string) => {
-  tab.value = tabs
-  showGameOption.value = false
-  if (tabs == 'livecasino' || tabs == 'slots') {
-    query.gts = tabs == 'livecasino' ? [2] : [3]
-    query.page = 1
-    query.sortBy = 3
-    pageCount.value = 0
-    pslist.value = []
-    cslist.value = []
-    dataList.value = []
-    getGameList()
-  }
+// 排行表切换
+let rankTab = ref('sport')
+// 排行榜列表
+const getRankList = () => {
+  getRankListApi()
+    .then((resp) => {
+      Object.assign(rankList, resp.data)
+      console.log(rankList)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
-const toggleBetUser = (item: any) => {
+// 排行榜投注详情
+const rankBetDetails = (item: any) => {
   Object.assign(betDetailsItem, item)
   showBetDetailsBox.value = true
 }
@@ -551,6 +532,18 @@ const getExchangeRate = () => {
     .then((resp) => {
       currencyCode.value = resp.data[0].currencyCode
       cxchangeRate.value = resp.data[0].cxchangeRate
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+// 获取首页Banner
+const getBanner = () => {
+  getBannerApi()
+    .then((resp) => {
+      swipeImg.value = resp.data.filter((item) => item.positionCode == '101')
+      bannerImg.value = resp.data.filter((item) => item.positionCode == '102')
     })
     .catch((error) => {
       console.log(error)
@@ -570,15 +563,20 @@ const getAnnouncementList = () => {
     })
 }
 
-// 获取首页Banner
-const getBanner = (positionCode) => {
-  getBannerApi({ positionCode: positionCode })
-    .then((resp) => {
-      bannerImg.value = resp.data
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+// 游戏列表切换显示
+const toggleTab = (tabs: string) => {
+  tab.value = tabs
+  showGameOption.value = false
+  if (tabs == 'livecasino' || tabs == 'slots') {
+    query.gts = tabs == 'livecasino' ? [2] : [3]
+    query.page = 1
+    query.sortBy = 3
+    pageCount.value = 0
+    pslist.value = []
+    cslist.value = []
+    dataList.value = []
+    getGameList()
+  }
 }
 
 // 选择运营商
@@ -594,12 +592,14 @@ const selGameProvider = (item: getGameListItemResp) => {
   getGameList()
 }
 
+// 游戏列表排序
 const sortGame = () => {
   query.page = 1
   dataList.value = []
   getGameList()
 }
 
+// 获取游戏列表
 const getGameList = () => {
   getGameListApi(query)
     .then((resp) => {
@@ -613,6 +613,7 @@ const getGameList = () => {
     })
 }
 
+// 加载更多
 const loadMore = () => {
   if (query.page <= pageCount.value) {
     query.page++
@@ -622,6 +623,7 @@ const loadMore = () => {
   }
 }
 
+// 启动游戏列表
 const startGame = (game: getGameListGsItemResp) => {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
@@ -645,9 +647,10 @@ const startGame = (game: getGameListGsItemResp) => {
   }
 }
 
-getBanner(101)
+getBanner()
 getAnnouncementList()
 getExchangeRate()
+getRankList()
 </script>
 
 <style>

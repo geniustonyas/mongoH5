@@ -40,3 +40,11 @@ export function getGameUrlApi(data: Game.getGameUrlData) {
     data
   })
 }
+
+// 获取首页排行榜
+export function getRankListApi() {
+  return request<Game.getRankListResp>({
+    url: 'Game/RankingList',
+    method: 'post'
+  })
+}

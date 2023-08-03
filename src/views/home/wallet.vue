@@ -1,12 +1,12 @@
 <template>
   <div class="page">
-    <CommonHeader :title="t('transactionHistory')" />
+    <CommonHeader :title="t('wallet')" />
     <main class="main">
       <div class="record-box">
         <div class="rb-head">
           <div class="line-tabs">
-            <span :class="{ active: tab == 'bet' }" @click="selTab('bet')">{{ t('bets') }}</span>
-            <span :class="{ active: tab == 'win' }" @click="selTab('win')">{{ t('wins') }}</span>
+            <span :class="{ active: tab == 'deposit' }" @click="selTab('deposit')">{{ t('deposits') }}</span>
+            <span :class="{ active: tab == 'withdraw' }" @click="selTab('withdraw')">{{ t('withdrawals') }}</span>
           </div>
           <div class="line-options">
             <!--此处参考sportsbet.io，一个带图标的下拉框，一个日期控件-->
@@ -29,7 +29,7 @@
         </div>
         <div class="mb-conts">
           <div v-if="dataList.length > 0" class="mc-box">
-            <div v-if="tab == 'bet'" class="record-list">
+            <div v-if="tab == 'deposit' || tab == 'withdraw'" class="record-list">
               <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
                 <List
                   v-model="listLoading"
@@ -49,41 +49,13 @@
                       </div>
                     </div>
                     <div class="i-row">
-                      <div class="r-col">{{ item.providerName }}</div>
+                      <div class="r-col">{{ item.currencyCode }} {{ t(tab == 'deposit' ? 'deposit' : 'withdraw') }}</div>
                       <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
                     </div>
-                    <div class="i-row">
-                      <div class="r-col">{{ item.gameItemName }}</div>
+                    <div class="i-row flex-end">
                       <div class="r-col">
                         <span :class="`${orderStatusCss[item.orderStatus]} c-status`">{{ t(`tradeStatus[${item.orderStatus}]`) }}</span>
                       </div>
-                    </div>
-                  </div>
-                </List>
-              </PullRefresh>
-            </div>
-            <div v-if="tab == 'win'" class="record-list">
-              <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
-                <List
-                  v-model="listLoading"
-                  :offset="20"
-                  :finished="finished"
-                  :immediate-check="false"
-                  v-model:error="error"
-                  :error-text="t('loadingFail')"
-                  :finished-text="t('noMore')"
-                  @load="loadData"
-                >
-                  <div v-for="(item, index) of dataList" class="rl-item" :key="index">
-                    <div class="i-row">
-                      <div class="r-col">{{ item.createTime }}</div>
-                      <div class="r-col">
-                        <b>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</b>
-                      </div>
-                    </div>
-                    <div class="i-row">
-                      <div class="r-col">{{ item.gameName }}</div>
-                      <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
                     </div>
                   </div>
                 </List>
@@ -118,7 +90,7 @@ import { ref, reactive } from 'vue'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Nodata from '@/components/Nodata.vue'
 
-import { getBetListApi, getWinListApi } from '@/api/fund/index'
+import { getDepositListApi, getWithdrawListApi } from '@/api/fund/index'
 import { getRradeRecordResponse } from '@/api/fund/types'
 import { getAssetsFile } from '@/utils/index'
 import { currenyList, currenyListTypes } from '@/utils/blockChain'
@@ -132,7 +104,7 @@ import type { DropdownItemInstance } from 'vant'
 
 const { t } = useI18n()
 
-const tab = ref('bet')
+const tab = ref('deposit')
 
 // 筛选 - 日期控件参数
 const minDate = dayjs().subtract(1, 'months').toDate()
@@ -200,27 +172,27 @@ const confirmCurreny = () => {
 const getTradeRecordList = () => {
   query.CurrencyCode = checkedCurrency.value.join(',')
   switch (tab.value) {
-    case 'bet':
-      getBetList()
+    case 'deposit':
+      getDepositList()
       break
-    case 'win':
-      getWinList()
+    case 'withdraw':
+      getWithdrawList()
       break
     default:
       break
   }
 }
 
-// 获取投注记录
-const getBetList = () => {
-  getBetListApi(query)
+// 获取充值记录
+const getDepositList = () => {
+  getDepositListApi(query)
     .then((resp) => getListSuccess(resp))
     .catch((error) => getListFail(error))
 }
 
-// 获取中奖记录
-const getWinList = () => {
-  getWinListApi(query)
+// 获取提现记录
+const getWithdrawList = () => {
+  getWithdrawListApi(query)
     .then((resp) => getListSuccess(resp))
     .catch((error) => getListFail(error))
 }
