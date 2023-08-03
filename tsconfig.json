@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
+    "noImplicitAny": true, // 在表达式和声明上有隐含的 any类型时报错
+    "suppressImplicitAnyIndexErrors": true, // 禁止隐式 any 类型的索引错误
+    "ignoreDeprecations":"5.0", // 忽略对已弃用的警告
     "target": "esnext", // ts编译后的执行环境
     "allowJs": true,
     /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
@@ -40,5 +44,5 @@
     "vite.config.ts"
   ],
   /** 编译器默认排除的编译文件 */
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "src/thirdLogin/plugin/*"]
 }

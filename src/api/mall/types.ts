@@ -7,6 +7,7 @@ export interface getIntegralRecordData {
   AdjustType: string | number
   PageIndex: string | number
   PageSize: string | number
+  noLoading?: boolean
 }
 
 export interface getGoodsListItem {

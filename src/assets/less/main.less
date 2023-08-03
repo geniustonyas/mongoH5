@@ -452,21 +452,25 @@ body {
         }
     }
 
-    .mw-list {
+    .mw-list
+    {
         width: 100%;
         .bg(#242424);
-
-        th, td {
+        table-layout: fixed;
+        th, td
+        {
             padding: 1rem .5rem;
             font-size: 1.2rem;
             text-align: center;
         }
 
-        th {
+        th
+        {
             .bgc(var(--color-menu),var(--color-white));
         }
 
-        .sp-user {
+        .sp-user
+        {
             display: inline-block;
             width: 1.1rem;
             .h-lh(1.1rem);
@@ -475,16 +479,22 @@ body {
             .bg(#606060);
             margin-right: .5rem;
 
-            i {
+            i
+            {
                 font-size: .8rem;
                 color: #b3b3b3;
             }
         }
 
-        tr {
-            &:nth-child(2n+1) {
+        tr
+        {
+            &:nth-child(2n+1)
+            {
                 .bg(var(--color-menu));
             }
+        }
+        td:first-child{
+           width:40%;  .ellipsis();
         }
     }
 }
@@ -884,6 +894,28 @@ body {
         .g-list.row .item .i-bd .i-img {
             .flex-x(0 0 25%);
             width: 25%;
+        }
+    }
+}
+
+.sports-box {
+    .sb-a { padding: 1rem;
+        .item { position: relative; margin-bottom: 1.6rem; padding: 1.2rem; .radius(.8rem); .bg(var(--color-tabs)); .boxshadow(1px,2px,5px,#1c1c1c);
+            &:before { content: ""; position: absolute; right: 0; top: 0; height: 100%; width: 50%; .bg(rgba(36,36,36,.96)); z-index: 2; }
+
+            .i-l { position: absolute; top: 10%; right: 0; width: 30%; height: 80%; background-position: center; background-repeat: no-repeat; background-size: contain; z-index: 1; }
+            .i-r { position: relative; z-index: 2;
+                .ir-a { font-weight: 700; color: var(--color-white); font-size: 2rem;
+                    img { width: 1.6rem; vertical-align: middle; margin-right: .5rem; position: relative; bottom: .1rem; }
+                }
+                .ir-b { .flex(); .flex-wrap(wrap);
+                    span {.flex-x(0 0 50%); width: 50%; margin-top: 1rem; }
+                }
+                .ir-c { margin-top: 1.6rem;  
+                    a { width: 40%; }
+                }
+            }
+          
         }
     }
 }

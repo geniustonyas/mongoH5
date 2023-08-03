@@ -1,21 +1,25 @@
 export interface UserInfoType {
-  id?: string
-  userName?: string
-  integral?: string
-  isBindGoogleAuth?: boolean
-  vip?: string
-  email?: string
-  dateOfBirth?: string
-  phoneNumber?: string
-  countryCode?: string
-  country?: string
-  defaultCurrencyCode?: string
-  balance?: number | null
-  btcUnit?: {
-    currencyUnit?: string
-    rate?: number | null
+  address: string
+  balance: string
+  btcUnit: {
+    currencyUnit: string
+    rate: string
   }
-  address?: string
-  zipcode?: string
-  updatePassWordTime?: string
+  country: string
+  countryCode: string
+  dateOfBirth: string
+  defaultCurrencyCode: string
+  email: string
+  id: string
+  inVisible: string
+  integral: string
+  isBindGoogleAuth: boolean
+  nextVipRequiredTotalBetAmount: string
+  phoneNumber: string
+  totalBetAmount: string
+  updatePassWordTime: string | null
+  userName: string
+  vip: string
+  vipCode: string
+  zipcode: string
 }

@@ -867,7 +867,7 @@ const currentGoodsItem = reactive<getGoodsListItem>({
 const modules = [FreeMode, Navigation, Thumbs]
 let showGoodsDetails = ref(false)
 let thumbsSwiper = ref(null)
-const setThumbsSwiper = (swiper) => {
+const setThumbsSwiper = (swiper: any) => {
   thumbsSwiper.value = swiper
 }
 
@@ -886,11 +886,12 @@ const nodata = ref(false)
 const query = reactive<getIntegralRecordData>({
   AdjustType: 1,
   PageIndex: 1,
-  PageSize: 5
+  PageSize: 5,
+  noLoading: false
 })
 let integralList = ref<getIntegralRecordItem[]>([])
 
-const toggleTab = (tabs) => {
+const toggleTab = (tabs: any) => {
   tab.value = tabs
   if (tab.value == 'stats') {
     toggleRecord(1)
@@ -934,7 +935,7 @@ const exhangeGoods = () => {
   } else {
     console.log(userStore.userInfo.integral)
     console.log(currentGoodsItem.price)
-    if (parseFloat(userStore.userInfo.integral) < parseFloat(currentGoodsItem.price)) {
+    if (parseFloat(userStore.userInfo.integral as string) < parseFloat(currentGoodsItem.price)) {
       showToast('积分不足')
       return false
     }
@@ -942,7 +943,7 @@ const exhangeGoods = () => {
       .then(() => {
         showToast('兑换成功')
         showGoodsDetails.value = false
-        userStore.getUserInfo()
+        userStore.getUserInfo({ noLoading: false })
       })
       .catch((error) => {
         console.log(error)
@@ -973,7 +974,7 @@ const getIntegralRecord = () => {
       }
       nodata.value = integralList.value.length == 0
       refreshing.value = false
-      finished.value = resp.data.items.length < query.PageSize
+      finished.value = resp.data.items.length < parseInt(query.PageSize.toString())
       listLoading.value = false
     })
     .catch((error) => {
@@ -992,7 +993,7 @@ const fresh = () => {
 // 上拉加载更多数据
 const loadData = () => {
   query.noLoading = true
-  query.PageIndex++
+  query.PageIndex = parseInt(query.PageIndex.toString()) + 1
   getIntegralRecord()
 }
 

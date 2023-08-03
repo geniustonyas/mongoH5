@@ -14,28 +14,29 @@ import { cloneDeep } from 'lodash-es'
 
 export const useUserStore = defineStore('userInfo', () => {
   const userInfo = <UserInfoType>reactive({
-    id: undefined,
-    userName: undefined,
-    integral: undefined,
-    isBindGoogleAuth: undefined,
-    address: undefined,
-    zipcode: undefined,
-    email: undefined,
-    dateOfBirth: undefined,
-    phoneNumber: undefined,
-    countryCode: undefined,
-    country: undefined,
-    vip: undefined,
-    vipCode: undefined,
-    totalBetAmount: undefined,
-    nextVipRequiredTotalBetAmount: undefined,
-    defaultCurrencyCode: undefined,
-    balance: undefined,
+    address: '',
+    balance: '',
     btcUnit: {
-      currencyUnit: undefined,
-      rate: undefined
+      currencyUnit: '',
+      rate: ''
     },
-    updatePassWordTime: undefined
+    country: '',
+    countryCode: '',
+    dateOfBirth: '',
+    defaultCurrencyCode: '',
+    email: '',
+    id: '',
+    inVisible: '',
+    integral: '',
+    isBindGoogleAuth: false,
+    nextVipRequiredTotalBetAmount: '',
+    phoneNumber: '',
+    totalBetAmount: '',
+    updatePassWordTime: '',
+    userName: '',
+    vip: '',
+    vipCode: '',
+    zipcode: ''
   })
   const defaultUserInfo = cloneDeep<UserInfoType>(userInfo)
   const refreshUserInfoTimer = ref<null | number>(null)

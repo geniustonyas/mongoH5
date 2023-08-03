@@ -440,7 +440,7 @@ import Sidebar from '@/components/layout/SideBar.vue'
 import { getExchangeRateApi, getAnnouncementListApi, getBannerApi } from '@/api/app/index'
 import { getBannerRespItem } from '@/api/app/types'
 import { getGameListApi, getGameUrlApi, getRankListApi } from '@/api/game/index'
-import { getGameListItemResp, getGameListGsItemResp, getGameListData, getRankListResp } from '@/api/game/types'
+import { getGameListItemResp, getGameListGsItemResp, getGameListData } from '@/api/game/types'
 
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
@@ -467,7 +467,7 @@ let swipeImg = ref<getBannerRespItem[]>([])
 let bannerImg = ref<getBannerRespItem[]>([])
 
 // 排行榜列表数据
-let rankList = reactive<getRankListResp>({
+let rankList = reactive({
   sport: [],
   casino: [],
   slots: []
@@ -513,7 +513,6 @@ const getRankList = () => {
   getRankListApi()
     .then((resp) => {
       Object.assign(rankList, resp.data)
-      console.log(rankList)
     })
     .catch((error) => {
       console.log(error)
