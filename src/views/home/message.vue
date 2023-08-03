@@ -48,10 +48,6 @@ import { useUserStore } from '@/store/modules/user'
 import { useI18n } from 'vue-i18n'
 
 import { PullRefresh, List, showToast } from 'vant'
-import 'vant/es/empty/style'
-import 'vant/es/toast/style'
-import 'vant/es/pull-refresh/style'
-import 'vant/es/list/style'
 
 const userStore = useUserStore()
 const router = useRouter()

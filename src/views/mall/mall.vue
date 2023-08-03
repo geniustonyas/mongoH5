@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <CommonHeader :title="t('mallTitle')">
-      <div class="hml-r integral"><i class="iconfont icon-shandian" />{{ userStore.userInfo.balance ? moneyFormat(userStore.userInfo.balance) : '0.00' }}</div>
+      <div class="hml-r integral"><i class="iconfont icon-shandian" />{{ userStore.userInfo.integral ? moneyFormat(userStore.userInfo.integral) : '0.00' }}</div>
     </CommonHeader>
     <main class="main">
       <div class="marketplace-box">
@@ -15,8 +15,8 @@
         </div>
         <!-- tab切换 -->
         <div class="line-tabs" id="mk-tabs">
-          <span :class="{ active: tab == 'rewards' }" @click="tab = 'rewards'">REWARDS</span>
-          <span :class="{ active: tab == 'stats' }" @click="tab = 'stats'">MY STATS</span>
+          <span :class="{ active: tab == 'rewards' }" @click="toggleTab('rewards')">REWARDS</span>
+          <span :class="{ active: tab == 'stats' }" @click="toggleTab('stats')">MY STATS</span>
         </div>
         <div class="tab-content">
           <div v-show="tab == 'rewards'" class="tc-box">
@@ -73,7 +73,7 @@
               <h2>Exclusive Rewards</h2>
               <div v-if="goodsList.length > 0" class="list">
                 <template v-for="(item, index) of goodsList" :key="index">
-                  <div v-if="item.productType == 0" class="item" @click="showDetails()">
+                  <div v-if="item.productType == 0" class="item" @click="showDetails(item)">
                     <div class="er-img" v-lazy:background-image="appStore.cdnurl + item.images.split(',')[0]" />
                     <div class="er-title">{{ item.name }}</div>
                     <div class="er-mark">{{ item.intro }}</div>
@@ -131,7 +131,7 @@
               <h2>Quick Buys</h2>
               <div v-if="goodsList.length > 0" class="list">
                 <template v-for="(item, index) of goodsList" :key="index">
-                  <div v-if="item.productType == 1" class="item">
+                  <div v-if="item.productType == 1" class="item" @click="showDetails(item)">
                     <div class="i-card">
                       <div class="ic-t sbg1">
                         <div class="ic-info">
@@ -691,46 +691,77 @@
             <div class="ws-box">
               <div class="wb-title"><i class="iconfont icon-shandian" />History</div>
               <div class="line-tabs">
-                <span :class="{ active: query.AdjustType == 1 }" @click="query.AdjustType = 1">Earned</span>
-                <span :class="{ active: query.AdjustType == 2 }" @click="query.AdjustType = 2">Spent</span>
+                <span :class="{ active: query.AdjustType == 1 }" @click="toggleRecord(1)">Earned</span>
+                <span :class="{ active: query.AdjustType == 2 }" @click="toggleRecord(2)">Spent</span>
               </div>
-              <div class="wb-img">
-                <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g opacity="0.5">
-                    <circle cx="42.8184" cy="48" r="42" fill="#696969" />
-                    <rect x="11.8184" y="6" width="61" height="15.853" rx="4" fill="#ABABAB" />
-                    <rect x="16.8184" y="12" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
-                    <rect x="58.3555" y="12" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                    <rect x="49.2334" y="12" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                    <mask id="mask0_3776_69597" maskUnits="userSpaceOnUse" x="0" y="6" width="85" height="84"><circle cx="42.8184" cy="48" r="42" fill="white" /></mask>
-                    <g mask="url(#mask0_3776_69597)">
-                      <rect x="12.8184" y="25.1799" width="61" height="71.8201" rx="4" fill="#F3F3F3" />
-                      <rect x="58.3555" y="30.9939" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="58.3555" y="40.5759" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="58.3555" y="50.158" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="58.3555" y="59.74" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="58.3555" y="69.322" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="58.3555" y="78.9041" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="49.4214" y="30.9939" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="49.4214" y="40.5759" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="49.4214" y="50.158" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="49.4214" y="59.74" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="49.4214" y="69.322" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="49.4214" y="78.9041" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
-                      <rect x="17.8184" y="31.418" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
-                      <rect x="17.8184" y="41" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
-                      <rect x="17.8184" y="50.582" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
-                      <rect x="17.8184" y="60.1641" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
-                      <rect x="17.8184" y="69.7461" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
-                      <rect x="17.8184" y="79.3281" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
+              <div v-if="integralList.length > 0" class="points-list">
+                <div class="pl-head">
+                  <span>{{ $t(query.AdjustType == 1 ? 'earnPoints' : 'spentPoints') }}</span>
+                  <span>{{ t('afterPoints') }}</span>
+                  <span>{{ t('pointType') }}</span>
+                  <span>{{ t('createTime') }}</span>
+                </div>
+                <ul class="pl-list">
+                  <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
+                    <List
+                      v-model="listLoading"
+                      :offset="20"
+                      :finished="finished"
+                      :immediate-check="false"
+                      v-model:error="error"
+                      :error-text="t('loadingFail')"
+                      :finished-text="t('noMore')"
+                      @load="loadData"
+                    >
+                      <li v-for="(item, index) of integralList" :key="index">
+                        <span>{{ item.amount }}</span>
+                        <span>{{ item.afterAmount }}</span>
+                        <span>{{ $t('pointsType.' + item.category) }}</span>
+                        <span>{{ item.createTime }}</span>
+                      </li>
+                    </List>
+                  </PullRefresh>
+                </ul>
+              </div>
+              <template v-if="nodata">
+                <div class="wb-img">
+                  <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g opacity="0.5">
+                      <circle cx="42.8184" cy="48" r="42" fill="#696969" />
+                      <rect x="11.8184" y="6" width="61" height="15.853" rx="4" fill="#ABABAB" />
+                      <rect x="16.8184" y="12" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
+                      <rect x="58.3555" y="12" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                      <rect x="49.2334" y="12" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                      <mask id="mask0_3776_69597" maskUnits="userSpaceOnUse" x="0" y="6" width="85" height="84"><circle cx="42.8184" cy="48" r="42" fill="white" /></mask>
+                      <g mask="url(#mask0_3776_69597)">
+                        <rect x="12.8184" y="25.1799" width="61" height="71.8201" rx="4" fill="#F3F3F3" />
+                        <rect x="58.3555" y="30.9939" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="58.3555" y="40.5759" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="58.3555" y="50.158" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="58.3555" y="59.74" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="58.3555" y="69.322" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="58.3555" y="78.9041" width="10.4629" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="49.4214" y="30.9939" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="49.4214" y="40.5759" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="49.4214" y="50.158" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="49.4214" y="59.74" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="49.4214" y="69.322" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="49.4214" y="78.9041" width="5.88232" height="4" rx="2" fill="black" fill-opacity="0.2" />
+                        <rect x="17.8184" y="31.418" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
+                        <rect x="17.8184" y="41" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
+                        <rect x="17.8184" y="50.582" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
+                        <rect x="17.8184" y="60.1641" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
+                        <rect x="17.8184" y="69.7461" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
+                        <rect x="17.8184" y="79.3281" width="20" height="4" rx="2" fill="black" fill-opacity="0.5" />
+                      </g>
                     </g>
-                  </g>
-                </svg>
-              </div>
-              <div class="wb-mark">
-                <h3>Earn Lightning Points and track them here.</h3>
-                <p>View a record of all your Lightning Point earnings.</p>
-              </div>
+                  </svg>
+                </div>
+                <div class="wb-mark">
+                  <h3>Earn Lightning Points and track them here.</h3>
+                  <p>View a record of all your Lightning Point earnings.</p>
+                </div>
+              </template>
             </div>
           </div>
         </div>
@@ -738,51 +769,50 @@
     </main>
     <ConfigProvider theme="dark">
       <Popup id="goodsDetails" v-model:show="showGoodsDetails" position="bottom" round style="padding: 0px 15px; padding-top: 20px" :closeable="true" @close="showGoodsDetails = !showGoodsDetails">
-        <div class="goods-details-box">
+        <div v-if="currentGoodsItem.productType == 0" class="goods-details-box">
           <div class="g-top">
-            <div class="goods-name">2023 Lamborghini Huracán</div>
-            <div class="goods-sub">5.2-liter | V10 engine</div>
+            <div class="goods-name">{{ currentGoodsItem.name }}</div>
+            <div class="goods-sub">{{ currentGoodsItem.intro }}</div>
           </div>
-          <div class="g-mid">
+          <div class="g-mid" v-if="currentGoodsItem.images.split(',').length > 0">
             <swiper :space-between="10" :navigation="true" :thumbs="{ swiper: thumbsSwiper }" :modules="modules" class="goods-swiper">
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide>
+              <swiper-slide v-for="(item, index) of currentGoodsItem.images.split(',')" :key="index">
+                <img v-lazy="appStore.cdnurl + item" />
+              </swiper-slide>
             </swiper>
-            <swiper @swiper="setThumbsSwiper" :space-between="10" :slides-per-view="3" :free-mode="true" :watch-slidesrogress="true" :modules="modules" class="goods-swiper-pagination">
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide>
-              <swiper-slide><img src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide>
+            <swiper @swiper="setThumbsSwiper" :space-between="5" :slides-per-view="3" :free-mode="true" :watch-slidesrogress="true" :modules="modules" class="goods-swiper-pagination">
+              <swiper-slide v-for="(item, index) of currentGoodsItem.images.split(',')" :key="index">
+                <img v-lazy="appStore.cdnurl + item" />
+              </swiper-slide>
             </swiper>
           </div>
-          <div class="g-btm">
-            <p>
-              You deserve this. Work with your Cloudbet concierge to customize your very own 2023 Lamborghini Huracán Tecnica*. Car and Driver calls this beauty a "ravishing V-10 experience" with
-              "synapse tingling handling" that "excels at everything important except being subtle, which makes it an ideal supercar and the perfect Lamborghini."
-            </p>
-            <p>
-              <i
-                >* Subject to availability and jurisdiction. Cloudbet will work with you to facilitate customization and delivery through a licensed Lamborghini dealer. Cloudbet accepts no
-                responsibility in respect of the relevant good(s) and/or services(s) after the recipient has accepted delivery. Cloudbet retains the right to change or withdraw this promotion at any
-                time.</i
-              >
-            </p>
-            <p>
-              <i>Further <a href="/nolang/help/terms">terms and conditions</a> apply.</i>
-            </p>
-          </div>
+          <div class="g-btm" v-html="currentGoodsItem.description" />
           <div class="g-btn">
-            <a class="btn btn-primary">
-              BUYT NOW |
-              <i class="iconfont icon-shandian" /> 400000.00
+            <a :class="parseFloat(userStore.userInfo.integral) >= parseFloat(currentGoodsItem.price) ? 'btn btn-primary' : 'btn btn-primary disabled'" @click="exhangeGoods">
+              BUY NOW |
+              <i class="iconfont icon-shandian" /> {{ moneyFormat(currentGoodsItem.price) }}
+            </a>
+          </div>
+        </div>
+        <div v-else class="bonus-details-box">
+          <div class="b-top">{{ currentGoodsItem.name }}</div>
+          <div class="b-mid">
+            <div class="bm-title">You will get</div>
+            <div class="bm-cont">
+              <div class="bmc">
+                <h5>{{ currentGoodsItem.name }}</h5>
+                <h6>Bonus value</h6>
+              </div>
+              <div class="bmc">
+                <h5>1 X</h5>
+                <h6>Wagering requirement</h6>
+              </div>
+            </div>
+          </div>
+          <div class="b-btn">
+            <a :class="parseFloat(userStore.userInfo.integral) >= parseFloat(currentGoodsItem.price) ? 'btn btn-primary' : 'btn btn-primary disabled'" @click="exhangeGoods">
+              BUY NOW |
+              <i class="iconfont icon-shandian" /> {{ moneyFormat(currentGoodsItem.price) }}
             </a>
           </div>
         </div>
@@ -793,6 +823,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { getGoodsListApi, exhangeGoodsApi, getIntegralRecordApi, getIntegralVipApi } from '@/api/mall/index'
@@ -802,7 +833,8 @@ import { useAppStore } from '@/store/modules/app'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { useI18n } from 'vue-i18n'
 
-import { showToast, ConfigProvider, Popup } from 'vant'
+// import { cloneDeep } from 'lodash-es'
+import { showToast, ConfigProvider, Popup, PullRefresh, List, showConfirmDialog } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 import 'swiper/css'
@@ -810,10 +842,12 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 
+const router = useRouter()
 const { t } = useI18n()
 const userStore = useUserStore()
 const appStore = useAppStore()
 
+// tab切换
 let tab = ref('rewards')
 
 // 商品詳情
@@ -828,6 +862,8 @@ const currentGoodsItem = reactive<getGoodsListItem>({
   intro: '',
   description: ''
 })
+
+// swiper
 const modules = [FreeMode, Navigation, Thumbs]
 let showGoodsDetails = ref(false)
 let thumbsSwiper = ref(null)
@@ -841,18 +877,25 @@ let vipList = ref<getIntegralVipItem[]>([])
 // 商品列表参数
 let goodsList = ref<getGoodsListItem[]>([])
 
-const toggleRecord = (adjustType: number) => {
-  query.AdjustType = adjustType
-  getIntegralRecord()
-}
-
 // 获取积分记录
+let listLoading = ref(false)
+let refreshing = ref(false)
+let finished = ref(false)
+let error = ref(false)
+const nodata = ref(false)
 const query = reactive<getIntegralRecordData>({
   AdjustType: 1,
   PageIndex: 1,
-  PageSize: 10
+  PageSize: 5
 })
 let integralList = ref<getIntegralRecordItem[]>([])
+
+const toggleTab = (tabs) => {
+  tab.value = tabs
+  if (tab.value == 'stats') {
+    toggleRecord(1)
+  }
+}
 
 const getIntegralVip = () => {
   getIntegralVipApi()
@@ -876,30 +919,86 @@ const getGoodsList = () => {
     })
 }
 
-const exhangeGoods = (item: getGoodsListItem) => {
-  exhangeGoodsApi({ Id: item.id })
-    .then(() => {
-      showToast('兑换成功')
+const exhangeGoods = () => {
+  if (!userStore.userInfo.id) {
+    showConfirmDialog({
+      title: t('tips.noLogin'),
+      message: t('tips.goLogin')
     })
-    .catch((error) => {
-      console.log(error)
-    })
+      .then(() => {
+        router.push({ name: 'login' })
+      })
+      .catch(() => {
+        return false
+      })
+  } else {
+    console.log(userStore.userInfo.integral)
+    console.log(currentGoodsItem.price)
+    if (parseFloat(userStore.userInfo.integral) < parseFloat(currentGoodsItem.price)) {
+      showToast('积分不足')
+      return false
+    }
+    exhangeGoodsApi({ Id: currentGoodsItem.id })
+      .then(() => {
+        showToast('兑换成功')
+        showGoodsDetails.value = false
+        userStore.getUserInfo()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+}
+
+// 切换积分记录
+const toggleRecord = (adjustType: number) => {
+  query.AdjustType = adjustType
+  query.PageIndex = 1
+  integralList.value = []
+  getIntegralRecord()
 }
 
 // 获取积分记录
 const getIntegralRecord = () => {
+  // 未登录则不显示数据
+  if (!userStore.userInfo.id) {
+    nodata.value = true
+  }
   getIntegralRecordApi(query)
     .then((resp) => {
-      integralList.value = resp.data.items
+      if (refreshing.value) {
+        integralList.value = resp.data.items
+      } else {
+        integralList.value.push(...resp.data.items)
+      }
+      nodata.value = integralList.value.length == 0
+      refreshing.value = false
+      finished.value = resp.data.items.length < query.PageSize
+      listLoading.value = false
     })
     .catch((error) => {
+      listLoading.value = false
       console.log(error)
     })
 }
 
+// 刷新
+const fresh = () => {
+  query.noLoading = true
+  query.PageIndex = 1
+  getIntegralRecord()
+}
+
+// 上拉加载更多数据
+const loadData = () => {
+  query.noLoading = true
+  query.PageIndex++
+  getIntegralRecord()
+}
+
 const showDetails = (item: getGoodsListItem) => {
-  showGoodsDetails.value = true
   Object.assign(currentGoodsItem, item)
+  showGoodsDetails.value = true
 }
 
 getIntegralVip()

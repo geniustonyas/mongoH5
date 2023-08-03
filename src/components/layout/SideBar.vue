@@ -9,8 +9,11 @@
         </div>
         <div class="hm-m" />
         <div class="hm-r">
-          <a class="btn" @click="router.push({ name: 'reg' })">{{ t('reg') }}</a>
-          <a class="btn btn-primary" @click="router.push({ name: 'login' })">{{ t('login') }}</a>
+          <a v-if="userStore.userInfo.id">{{ userStore.userInfo.userName }}</a>
+          <template v-else>
+            <a class="btn" @click="router.push({ name: 'reg' })">{{ t('reg') }}</a>
+            <a class="btn btn-primary" @click="router.push({ name: 'login' })">{{ t('login') }}</a>
+          </template>
         </div>
       </nav>
     </header>
@@ -133,6 +136,7 @@ import { useI18n } from 'vue-i18n'
 import { selLang } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
 //第三方插件
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 
@@ -142,6 +146,7 @@ const props = defineProps({
 })
 
 const appStore = useAppStore()
+const userStore = useUserStore()
 const router = useRouter()
 const { t, locale } = useI18n()
 // 侧边框内容展开折叠

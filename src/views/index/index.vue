@@ -47,30 +47,10 @@
       </nav>
 
       <div v-show="tab == 'sports'">
-        <nav class="swiper m-banner">
+        <nav v-if="bannerImg.length > 0" class="swiper m-banner">
           <Swipe :autoplay="3500" class="my-swipe">
-            <SwipeItem v-lazy:background-image="getAssetsFile('bannber/bannber-1.jpg')">
-              <div class="t-cont">
-                <h2>$100 FREE</h2>
-                <h2>Bonus Round</h2>
-                <p>with every referral done</p>
-              </div>
-            </SwipeItem>
-            <SwipeItem v-lazy:background-image="getAssetsFile('bannber/bannber-2.jpg')" />
-            <SwipeItem v-lazy:background-image="getAssetsFile('bannber/bannber-3.jpg')" />
+            <SwipeItem v-for="(item, index) of bannerImg" :key="index" v-lazy:background-image="appStore.cdnurl + item.imageName" />
           </Swipe>
-          <!-- <div class="swiper-wrapper">
-            <div class="swiper-slide" v-lazy:background-image="getAssetsFile('bannber/bannber-1.jpg')">
-              <div class="t-cont">
-                <h2>$100 FREE</h2>
-                <h2>Bonus Round</h2>
-                <p>with every referral done</p>
-              </div>
-            </div>
-            <div class="swiper-slide" v-lazy:background-image="getAssetsFile('bannber/bannber-2.jpg')">Slide 2</div>
-            <div class="swiper-slide" v-lazy:background-image="getAssetsFile('bannber/bannber-3.jpg')">Slide 3</div>
-          </div>
-          <div class="swiper-pagination" /> -->
         </nav>
         <!-- <NoticeBar left-icon="volume-o" :text="marqueeContent" /> -->
         <nav class="m-notice">
@@ -488,8 +468,8 @@ import { useRouter } from 'vue-router'
 import Footer from '@/components/layout/Footer.vue'
 import Sidebar from '@/components/layout/SideBar.vue'
 // 引用方法
-import { getExchangeRateApi, getAnnouncementListApi } from '@/api/app/index'
-import { getGameListItemResp, getGameListGsItemResp, getGameListData } from '@/api/game/types'
+import { getExchangeRateApi, getAnnouncementListApi, getBannerApi } from '@/api/app/index'
+import { getGameListItemResp, getGameListGsItemResp, getGameListData, getBannerRespItem } from '@/api/game/types'
 import { getGameListApi, getGameUrlApi } from '@/api/game/index'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
@@ -514,6 +494,7 @@ let currencyCode = ref('')
 let cxchangeRate = ref('')
 // 跑马灯工改
 let marqueeContent = ref('')
+let bannerImg = ref<getBannerRespItem[]>([])
 
 // 显示用户投注详情
 let showBetDetailsBox = ref(false)
@@ -589,6 +570,17 @@ const getAnnouncementList = () => {
     })
 }
 
+// 获取首页Banner
+const getBanner = (positionCode) => {
+  getBannerApi({ positionCode: positionCode })
+    .then((resp) => {
+      bannerImg.value = resp.data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
 // 选择运营商
 const selGameProvider = (item: getGameListItemResp) => {
   const index = query.ps.indexOf(parseInt(item.id))
@@ -653,6 +645,7 @@ const startGame = (game: getGameListGsItemResp) => {
   }
 }
 
+getBanner(101)
 getAnnouncementList()
 getExchangeRate()
 </script>

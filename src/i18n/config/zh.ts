@@ -252,6 +252,22 @@ export default {
     usd: '美元',
     cny: '人民币'
   },
+  // 积分商城
+  points: '积分',
+  pointsNum: '积分数量',
+  earnPoints: '获得',
+  pointType: '类型',
+  spentPoints: '消费',
+  afterPoints: '账变后积分',
+  createTime: '创建时间',
+  pointsType: {
+    '1': '投注',
+    '2': '兑换商品',
+    '3': '优惠活动',
+    '4': '管理员添加',
+    '5': '管理员扣除',
+    '6': '取消兑换'
+  },
 
   // 数据验证提示
   tips: {

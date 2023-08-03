@@ -12,7 +12,7 @@ export function getGoodsListApi() {
 /** 兑换商品 */
 export function exhangeGoodsApi(data: Mall.exhangeGoodsData) {
   return request<anyResp>({
-    url: 'Integral/GetProductList',
+    url: 'Integral/ExchangeGoods',
     method: 'post',
     data
   })

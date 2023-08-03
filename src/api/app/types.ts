@@ -3,6 +3,19 @@ export interface getAnnouncementListData {
   PageSize: string | number
 }
 
+// banner图和下面的图
+export interface getBannerData {
+  PositionCode: string
+}
+
+export interface getBannerRespItem {
+  id: string
+  imageName: string
+  positionCode: string
+  targetUrl: string
+}
+
+// 跑马灯列表
 export interface getAnnouncementListItemResp {
   title: string
   content: string
@@ -16,3 +29,4 @@ export type getAnnouncementListResp = ApiResponseData<{
   recordCount: string
   items: getAnnouncementListItemResp[]
 }>
+export type getBannerResp = ApiResponseData<getBannerRespItem[]>
