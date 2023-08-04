@@ -39,15 +39,17 @@
 
     <main class="main">
       <nav class="m-logo">
-        <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>
+        <a @click="tab = ''"><img :src="getAssetsFile('logo.svg')" /></a>
       </nav>
+      <!-- 游戏切换 -->
       <nav class="m-menu">
-        <a @click="toggleTab('sports')"> <img :src="getAssetsFile('svg/sports.svg')" />{{ t('sports') }}</a>
+        <a :class="{ active: tab == 'sports' }" @click="toggleTab('sports')"> <img :src="getAssetsFile('svg/sports.svg')" />{{ t('sports') }}</a>
         <a :class="{ active: tab == 'livecasino' }" @click="toggleTab('livecasino')"> <img :src="getAssetsFile('svg/livecasino.svg')" />{{ t('liveCasino') }}</a>
         <a :class="{ active: tab == 'slots' }" @click="toggleTab('slots')"> <img :src="getAssetsFile('svg/slots.svg')" />{{ t('slots') }} </a>
       </nav>
 
-      <div v-show="tab == 'sports'">
+      <!-- 首页 -->
+      <div v-show="tab == ''">
         <nav v-if="swipeImg.length > 0" class="swiper m-banner">
           <Swipe :autoplay="3500" class="my-swipe">
             <SwipeItem v-for="(item, index) of swipeImg" :key="index" v-lazy:background-image="appStore.cdnurl + item.imageName" />
@@ -126,6 +128,41 @@
         </nav>
       </div>
 
+      <!-- 体育 -->
+      <div v-show="tab == 'sports'" class="sports-box">
+        <div class="sb-a">
+          <div class="item">
+            <div class="i-l" v-lazy:background-image="getAssetsFile('svg/SabaSports.svg')" />
+            <div class="i-r">
+              <div class="ir-a"><img v-lazy="getAssetsFile('svg/SabaSports.svg')" />Saba Sports</div>
+              <div class="ir-b">
+                <span>超全赛事</span>
+                <span>玩法多样</span>
+                <span>多终端支持</span>
+                <span>优质体验</span>
+              </div>
+              <div class="ir-c">
+                <a class="btn btn-primary">立即开始</a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="i-l" v-lazy:background-image="getAssetsFile('svg/FBSports.svg')" />
+            <div class="i-r">
+              <div class="ir-a"><img v-lazy="getAssetsFile('svg/FBSports.svg')" />FB Sports</div>
+              <div class="ir-b">
+                <span>实时扫描</span>
+                <span>秒级结算</span>
+                <span>提前兑现</span>
+                <span>及时止损</span>
+              </div>
+              <div class="ir-c">
+                <a class="btn btn-primary">立即开始</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- 真人游戏 -->
       <div v-show="tab == 'livecasino'">
         <nav class="gamebox">
@@ -148,7 +185,7 @@
                   <ConfigProvider theme="dark">
                     <DropdownMenu v-if="pslist.length > 0" direction="down">
                       <DropdownItem title="All Game Providers" ref="currenyDom">
-                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item)">
+                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item.id)">
                           <span :class="{ active: query.ps.includes(parseInt(item.id)) }">{{ item.name }}({{ item.count }})</span>
                           <Icon name="success" :class="{ active: query.ps.includes(parseInt(item.id)) }" />
                         </div>
@@ -208,7 +245,7 @@
                   <ConfigProvider theme="dark">
                     <DropdownMenu v-if="pslist.length > 0" direction="down">
                       <DropdownItem :title="t('allProviders')" ref="currenyDom" teleport="body">
-                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item)">
+                        <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item.id)">
                           <span :class="{ active: query.ps.includes(parseInt(item.id)) }">{{ item.name }}({{ item.count }})</span>
                           <Icon name="success" :class="{ active: query.ps.includes(parseInt(item.id)) }" />
                         </div>
@@ -431,7 +468,7 @@
 <script setup lang="ts">
 // vue自带
 import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 // 自定义组件
 // import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
@@ -440,7 +477,7 @@ import Sidebar from '@/components/layout/SideBar.vue'
 import { getExchangeRateApi, getAnnouncementListApi, getBannerApi } from '@/api/app/index'
 import { getBannerRespItem } from '@/api/app/types'
 import { getGameListApi, getGameUrlApi, getRankListApi } from '@/api/game/index'
-import { getGameListItemResp, getGameListGsItemResp, getGameListData } from '@/api/game/types'
+import { getGameListRespItem, getGameListGsItemResp, getGameListData } from '@/api/game/types'
 
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
@@ -451,6 +488,7 @@ import { Swipe, SwipeItem, showToast, ConfigProvider, DropdownMenu, DropdownItem
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 
 const router = useRouter()
+const route = useRoute()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const { t } = useI18n()
@@ -477,7 +515,8 @@ let showBetDetailsBox = ref(false)
 let betDetailsItem = reactive({})
 
 // 游戏列表tab选项卡
-let tab = ref('sports')
+let tab = ref('')
+
 // 游戏列表显示or隐藏筛选条件
 let showGameOption = ref(false)
 // 列表显示or表格显示
@@ -500,9 +539,9 @@ let query = reactive<getGameListData>({
 // 游戏列表分页
 let pageCount = ref(0)
 // 运营商分类
-let pslist = ref<getGameListItemResp[]>([])
+let pslist = ref<getGameListRespItem[]>([])
 // 游戏分类-暂时没用
-let cslist = ref<getGameListItemResp[]>([])
+let cslist = ref<getGameListRespItem[]>([])
 // 游戏列表
 let dataList = ref<getGameListGsItemResp[]>([])
 
@@ -579,12 +618,12 @@ const toggleTab = (tabs: string) => {
 }
 
 // 选择运营商
-const selGameProvider = (item: getGameListItemResp) => {
-  const index = query.ps.indexOf(parseInt(item.id))
+const selGameProvider = (id: string) => {
+  const index = query.ps.indexOf(parseInt(id))
   if (index > -1) {
     query.ps.splice(index, 1)
   } else {
-    query.ps.push(parseInt(item.id))
+    query.ps.push(parseInt(id))
   }
   query.page = 1
   dataList.value = []
@@ -650,6 +689,16 @@ getBanner()
 getAnnouncementList()
 getExchangeRate()
 getRankList()
+
+// 由搜索模块传过来的tab参数,切换tab
+if (route.query.tab) {
+  toggleTab(route.query.tab as string)
+  showGameOption.value = true
+}
+// 由搜索模块传过来的运营商参数,选择运营商
+if (route.query.providerId) {
+  selGameProvider(route.query.providerId as string)
+}
 </script>
 
 <style>

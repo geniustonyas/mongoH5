@@ -25,7 +25,7 @@
               <dl>
                 <dt>Earn Points</dt>
                 <dd>
-                  <a href="#">
+                  <a @click="router.push({ name: 'index', query: { tab: 'sports' } })">
                     <div class="a-l">
                       <i class="iconfont icon-ball-1" />
                     </div>
@@ -39,7 +39,7 @@
                   </a>
                 </dd>
                 <dd>
-                  <a href="#">
+                  <a @click="router.push({ name: 'index', query: { tab: 'livecasino' } })">
                     <div class="a-l">
                       <i class="iconfont icon-qipai3" />
                     </div>
@@ -52,8 +52,8 @@
                     </div>
                   </a>
                 </dd>
-                <!-- <dd>
-                  <a href="#">
+                <dd>
+                  <a @click="router.push({ name: 'index', query: { tab: 'slots' } })">
                     <div class="a-l">
                       <i class="iconfont icon-labax" />
                     </div>
@@ -65,7 +65,7 @@
                       <i class="iconfont icon-enter" />
                     </div>
                   </a>
-                </dd> -->
+                </dd>
               </dl>
             </div>
             <!-- 商品列表 -->

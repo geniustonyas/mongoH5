@@ -3,7 +3,7 @@ import type * as Game from './types'
 
 /** 获取搜索推荐列表 */
 export function getGameRecommendApi(data: Game.recommendGameData) {
-  return request<anyResp>({
+  return request<Game.recommendGameResp>({
     headers: { 'Content-Type': 'application/json' },
     url: 'game/SearchRecommended',
     method: 'post',
@@ -13,7 +13,7 @@ export function getGameRecommendApi(data: Game.recommendGameData) {
 
 // 游戏搜索
 export function getSearchGameApi(data: Game.getSearchGameData) {
-  return request<anyResp>({
+  return request<Game.getSearchGameResp>({
     headers: { 'Content-Type': 'application/json' },
     url: 'game/search',
     method: 'post',
