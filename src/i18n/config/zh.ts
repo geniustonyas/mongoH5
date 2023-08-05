@@ -91,6 +91,8 @@ export default {
   // 搜索
   noSearchResult: '很抱歉，没有符合 "{ keyword }" 的结果。请尝试其他搜索词。',
   searchResultNum: '找到了 { searchResult } 个结果',
+  // 优惠详情
+  promoDetail: '优惠详情',
   // 俱乐部
   club: '俱乐部',
   tiers: '级别',
@@ -200,7 +202,7 @@ export default {
   tradeStatus: { 1: '未完成', 2: '已确认', 3: '已删除' },
 
   // 首页
-  readMore: '详情',
+  readMore: '查看详情',
   sports: '体育',
   liveCasino: '真人荷官',
   slots: '娱乐场',
