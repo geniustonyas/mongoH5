@@ -156,13 +156,13 @@ const routes = [
     ]
   },
   {
-    path: '/vip',
+    path: '/terms',
     component: AppMain,
     children: [
       {
-        path: '',
-        name: 'vip',
-        component: () => import('@/views/vip/vip.vue'),
+        path: ':type(vip|rules|responsible|aml|selfExclusion)',
+        name: 'terms',
+        component: () => import('@/views/terms/terms.vue'),
         meta: { transition: '', needLogin: true }
       }
     ]

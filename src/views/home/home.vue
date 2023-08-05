@@ -68,7 +68,7 @@
             </li>
             <li>
               <a @click="router.push({ name: 'wallet' })">
-                <span><i class="iconfont icon-bets" />{{ t('wallet') }} </span>
+                <span><i class="iconfont icon-wallet" />{{ t('wallet') }} </span>
                 <i class="iconfont icon-right" />
               </a>
             </li>

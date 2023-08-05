@@ -8,22 +8,13 @@
           <span>每个月您的奖励将会重置，请在月底前领取您的奖励，千万别错过哦。</span>
           <i class="iconfont icon-close" @click="showTips = false" />
         </div>
-        <div class="cb-card">
+        <div v-if="vipList.length > 0" class="cb-card">
           <div class="c-name">
             {{ t('tiers') }}
             <b>{{ currentData.vipName }}</b>
           </div>
           <div class="c-icon">
-            <Circle
-              v-if="vipList.length > 0"
-              v-model:current-rate="currentRate"
-              :rate="progressWidth(nextItem.requiredTotalBetAmount)"
-              :speed="100"
-              size="125px"
-              :stroke-width="30"
-              layer-color="#333"
-              color="#f7cc00"
-            />
+            <Circle v-model:current-rate="currentRate" :rate="progressWidth(nextItem.requiredTotalBetAmount)" :speed="100" size="125px" :stroke-width="30" layer-color="#333" color="#f7cc00" />
             <div class="cricle_img">
               <img :src="getAssetsFile(`grade/${currentData.vipCode}.png`)" />
             </div>

@@ -42,7 +42,7 @@
       </nav>
     </header>
 
-    <main class="main">
+    <main class="main" ref="mainDom">
       <nav class="m-logo">
         <a @click="tab = ''"><img :src="getAssetsFile('logo.svg')" /></a>
       </nav>
@@ -310,38 +310,40 @@
             <a @click="router.push({ name: 'promo' })">{{ t('promotions') }}</a>
           </dd>
           <dd>
-            <a @click="router.push({ name: 'club' })">{{ t('club') }}</a>
+            <a @click="router.push({ name: 'clubHouse' })">{{ t('club') }}</a>
           </dd>
-          <dd><a href="#">Store</a></dd>
+          <dd>
+            <a @click="router.push({ name: 'mall' })">{{ t('mallStore') }}</a>
+          </dd>
         </dl>
         <dl>
           <dt>{{ t('game') }}</dt>
           <dd>
-            <a href="#">{{ t('sports') }}</a>
+            <a @click="toggleTop('sports')">{{ t('sports') }}</a>
           </dd>
           <dd>
-            <a href="#">{{ t('liveCasino') }}</a>
+            <a @click="toggleTop('livecasino')">{{ t('liveCasino') }}</a>
           </dd>
           <dd>
-            <a href="#">{{ t('slots') }}</a>
+            <a @click="toggleTop('slots')">{{ t('slots') }}</a>
           </dd>
         </dl>
         <dl>
           <dt>{{ t('aboutUs') }}</dt>
           <dd>
-            <a href="#">{{ t('ruleTerms') }} <i class="iconfont icon-share" /></a>
+            <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('html.rulesTitle') }} </a>
           </dd>
           <dd>
-            <a href="#">{{ t('responsibleGambling') }}</a>
+            <a @click="router.push({ name: 'terms', params: { type: 'responsible' } })">{{ t('html.responsibleTitle') }}</a>
           </dd>
           <dd>
-            <a href="#">{{ t('amlPolicy') }}</a>
+            <a @click="router.push({ name: 'terms', params: { type: 'aml' } })">{{ t('html.amlTitle') }}</a>
           </dd>
           <dd>
-            <a href="#">{{ t('selfExclusion') }}</a>
+            <a @click="router.push({ name: 'terms', params: { type: 'selfExclusion' } })">{{ t('html.selfExclusionTitle') }}</a>
           </dd>
           <dd>
-            <a href="#">{{ t('privacyPolicy') }}</a>
+            <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('html.fairnessTitle') }}</a>
           </dd>
         </dl>
         <dl>
@@ -364,19 +366,24 @@
         </dl>
         <dl>
           <dt>{{ t('onlineSupport') }}</dt>
+          <!-- <dd>
+            <a @click="toggleTab('srpots')">{{ t('fairness') }}</a>
+          </dd> -->
           <dd>
-            <a href="#">{{ t('fairness') }}</a>
+            <a @click="router.push({ name: 'support' })">{{ t('liveSupport') }}<i class="iconfont icon-share" /></a>
           </dd>
-          <dd>
-            <a href="#">{{ t('liveSupport') }}<i class="iconfont icon-share" /></a>
-          </dd>
-          <dd>
-            <a href="#">{{ t('helpCenter') }}</a>
-          </dd>
+          <!-- <dd>
+            <a @click="toggleTab('sports')">{{ t('helpCenter') }}</a>
+          </dd> -->
         </dl>
         <dl>
           <dt>{{ t('language') }}</dt>
-          <dd><a href="#">English</a></dd>
+          <dd class="lang">
+            <div class="form-control m-lang" @click.prevent="showLanguage()">
+              <span>{{ languages.find((item) => item.value == locale)?.text }}</span>
+              <i class="iconfont icon-right" />
+            </div>
+          </dd>
         </dl>
       </nav>
 
@@ -451,7 +458,7 @@
     <Footer />
 
     <!-- 侧边栏开始 -->
-    <Sidebar :currency-code="currencyCode" :cxchange-rate="cxchangeRate" @toggle-tab="toggleTab" @sel-game-provider="selGameProvider" />
+    <Sidebar :currency-code="currencyCode" :cxchange-rate="cxchangeRate" @show-language="showLanguage" @toggle-tab="toggleTab" @sel-game-provider="selGameProvider" />
 
     <!-- 排行榜投注详情 -->
     <div v-show="showBetDetailsBox" class="mask-box">
@@ -483,6 +490,9 @@
         </div>
       </div>
     </div>
+
+    <!-- 语言选择组件 -->
+    <Language ref="langDom" />
   </div>
 </template>
 
@@ -494,6 +504,8 @@ import { useRoute, useRouter } from 'vue-router'
 // import Header from '@/components/layout/Header.vue'
 import Footer from '@/components/layout/Footer.vue'
 import Sidebar from '@/components/layout/SideBar.vue'
+import Language from '@/components/Language.vue'
+
 // 引用方法
 import { getExchangeRateApi, getAnnouncementListApi, getBannerApi } from '@/api/app/index'
 import { getBannerRespItem } from '@/api/app/types'
@@ -503,6 +515,8 @@ import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { GameType, PlatForm } from '@/utils/constant'
+import { languages } from '@/i18n/index'
+
 //第三方插件
 import { useI18n } from 'vue-i18n'
 import { Swipe, SwipeItem, showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon, showConfirmDialog } from 'vant'
@@ -512,12 +526,17 @@ const router = useRouter()
 const route = useRoute()
 const appStore = useAppStore()
 const userStore = useUserStore()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const site_name = import.meta.env.VITE_APP_SITE_NAME
+
+let mainDom = ref<HTMLInputElement | null>(null)
 
 // 汇率相关
 let currencyCode = ref('')
 let cxchangeRate = ref('')
+
+// 语言选择组件dom
+let langDom = ref()
 
 // 跑马灯内容
 let marqueeContent = ref('')
@@ -709,10 +728,20 @@ const startGame = (game: getGameListGsItemResp) => {
   }
 }
 
-getBanner()
-getAnnouncementList()
-getExchangeRate()
-getRankList()
+// 首页底部点击游戏后， 切换游戏并回到顶部
+const toggleTop = (tab: string) => {
+  if (mainDom.value) {
+    mainDom.value.scrollTop = 0
+  }
+  toggleTab(tab)
+}
+
+// 显示语言选择框
+const showLanguage = () => {
+  if (langDom.value) {
+    langDom.value.showLangPick = true
+  }
+}
 
 // 由搜索模块传过来的tab参数,切换tab
 if (route.query.tab) {
@@ -723,6 +752,11 @@ if (route.query.tab) {
 if (route.query.providerId) {
   selGameProvider(route.query.providerId as string)
 }
+
+getBanner()
+getAnnouncementList()
+getExchangeRate()
+getRankList()
 </script>
 
 <style>

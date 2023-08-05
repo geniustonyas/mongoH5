@@ -552,6 +552,18 @@ body {
                 font-size: 1.2rem;
             }
         }
+        .lang {
+            padding: 0;
+        }
+        .m-lang {
+            width: 70%;
+            .h-lh(2.5rem);
+            font-size: 1.2rem;
+            color: (var(--color-text));
+            .flex();
+            .flex-pack-justify();
+            font-weight: normal;
+        }
     }
 }
 
@@ -3984,6 +3996,42 @@ body {
         }
     }
     
+}
+
+.term-box {
+    padding: 1rem;
+
+    a { 
+        color: var(--color-primary);
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none; 
+    }
+    p { padding: .6rem 1rem; }
+    h1, h2, h3, h4 ,h5, h6 {
+        margin-top: 1rem;;
+        color: var(--color-white);
+    }
+
+    ul {
+        li {
+            display: block;
+            padding: 0px 0px 0px 3rem;
+            margin: 0.5rem 0px 0px;
+            position: relative;
+            &::before {
+                content: "";
+                background: var(--color-primary);
+                position: absolute;
+                left: 1.875rem;
+                top: 0.625rem;
+                width: 0.3125rem;
+                height: 0.3125rem;
+                border-radius: 50%;
+            }
+        }
+    }
 }
 
 .loop-footmenu(@i: 1) when (@i<6) {

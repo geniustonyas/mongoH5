@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <CommonHeader :title="t('mallTitle')">
+    <CommonHeader :title="t('mallStore')">
       <div class="hml-r integral"><i class="iconfont icon-shandian" />{{ userStore.userInfo.integral ? moneyFormat(userStore.userInfo.integral) : '0.00' }}</div>
     </CommonHeader>
     <main class="main">
@@ -55,11 +55,11 @@
                 <dd>
                   <a @click="router.push({ name: 'index', query: { tab: 'slots' } })">
                     <div class="a-l">
-                      <i class="iconfont icon-labax" />
+                      <i class="iconfont icon-losts" />
                     </div>
                     <div class="a-m">
-                      <h3>Refer Friends</h3>
-                      <span>Passive Earnings</span>
+                      <h3>Play Slots</h3>
+                      <span>Spin & Win</span>
                     </div>
                     <div class="a-r">
                       <i class="iconfont icon-enter" />

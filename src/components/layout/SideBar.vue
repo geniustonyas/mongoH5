@@ -78,7 +78,7 @@
               <a @click="router.push({ name: 'clubHouse' })"><img :src="getAssetsFile('svg/ClubHouse.svg')" />{{ t('club') }}</a>
             </li>
             <li>
-              <a @click="router.push({ name: 'vip' })"><img :src="getAssetsFile('svg/VIP.svg')" />{{ t('vipClub') }}</a>
+              <a @click="router.push({ name: 'terms', params: { type: 'vip' } })"><img :src="getAssetsFile('svg/VIP.svg')" />{{ t('vipClub') }}</a>
             </li>
           </ul>
         </div>
@@ -96,23 +96,8 @@
         </div>
       </nav>
 
-      <!-- 语言 -->
-      <ConfigProvider theme="dark">
-        <Popup v-model:show="showLangPick" position="bottom" round :closeable="true">
-          <div class="picker-box">
-            <div class="pb-title">选择语言</div>
-            <ul>
-              <li v-for="(item, index) of languages" :key="index" @click="selLanguage(item.value)">
-                <span>{{ item.text }}</span>
-                <Icon v-if="item.value == locale" name="success" class="active" />
-              </li>
-            </ul>
-          </div>
-        </Popup>
-      </ConfigProvider>
-
       <nav class="m-rate">
-        <div class="form-control m-lang" @click.prevent="showLangPick = true">
+        <div class="form-control m-lang" @click.prevent="showLanguage()">
           <span>{{ languages.find((item) => item.value == locale)?.text }}</span>
           <i class="iconfont icon-right" />
         </div>
@@ -135,7 +120,7 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
 // 引用方法
-import { selLang, languages } from '@/i18n/index'
+import { languages } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { PlatForm } from '@/utils/constant'
 import { providerList, providerListItemTypes } from '@/utils/gameProviders'
@@ -144,13 +129,13 @@ import { useUserStore } from '@/store/modules/user'
 import { getGameUrlApi } from '@/api/game/index'
 //第三方插件
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-import { ConfigProvider, Popup, Icon, showConfirmDialog, showToast } from 'vant'
+import { showConfirmDialog, showToast } from 'vant'
 
 const props = defineProps({
   currencyCode: { type: String, required: true, default: '' },
   cxchangeRate: { type: String, required: true, default: '' }
 })
-const emit = defineEmits(['toggleTab', 'selGameProvider'])
+const emit = defineEmits(['toggleTab', 'selGameProvider', 'showLanguage'])
 
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -170,9 +155,6 @@ slotsProviderList.value = providerList.filter((item: providerListItemTypes) => i
 let collapseSport = ref(true)
 let collapseLiveCashno = ref(true)
 let collapseSlots = ref(true)
-
-// 显示语言选择
-let showLangPick = ref(false)
 
 // 切换首页游戏tab
 const changeTab = (tab: string) => {
@@ -211,10 +193,7 @@ const startGame = (item: providerListItemTypes) => {
   }
 }
 
-// 选择语言
-const selLanguage = (val: string) => {
-  selLang(val)
-  locale.value = val
-  showLangPick.value = !showLangPick.value
+const showLanguage = () => {
+  emit('showLanguage')
 }
 </script>

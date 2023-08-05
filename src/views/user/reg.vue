@@ -167,7 +167,7 @@ import { useRouter } from 'vue-router'
 import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
-import { telegramLogin, googleLogin, facebookInit, facebookLogin, walletLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
+import { telegramLogin, googleLogin, facebookLogin, walletLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, getYearList } from '@/utils'
 import { countryCode } from '@/utils/countryCode'
