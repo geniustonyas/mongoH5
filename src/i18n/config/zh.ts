@@ -6,6 +6,7 @@ export default {
   onlineSupport: '客服',
   account: '账户',
   confirm: '确定',
+  all: '全部',
   save: '保存',
   cancel: '取消',
   close: '关闭',
@@ -76,7 +77,7 @@ export default {
     '107': '钻石'
   },
   homePage: {
-    currentMultiplier: '当前倍数',
+    currentMultiplier: '当前积分倍数',
     nextReward: '下一级别奖励',
     showProgress: '显示我的进度'
   },
@@ -268,6 +269,22 @@ export default {
     '4': '管理员添加',
     '5': '管理员扣除',
     '6': '取消兑换'
+  },
+
+  // 游戏提供商
+  provider: {
+    all: '全部',
+    sabaSports: 'Saba Sports',
+    fbSports: 'FBSports',
+    evolution: 'Evolution',
+    bombayLive: 'Bombay Live',
+    ezugi: 'Ezugi',
+    asiaGaming: 'AsiaGaming',
+    pragmaticPlay: 'Pragmatic Play',
+    playingo: "Play'n Go",
+    netEnt: 'NetEnt',
+    playTech: 'PlayTech',
+    microgaming: 'Microgaming'
   },
 
   // 数据验证提示

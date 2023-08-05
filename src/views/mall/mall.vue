@@ -768,7 +768,7 @@
       </div>
     </main>
     <ConfigProvider theme="dark">
-      <Popup id="goodsDetails" v-model:show="showGoodsDetails" position="bottom" round style="padding: 0px 15px; padding-top: 20px" :closeable="true" @close="showGoodsDetails = !showGoodsDetails">
+      <Popup id="goodsDetails" v-model:show="showGoodsDetails" position="bottom" round style="padding: 0px 15px; padding-top: 20px" :closeable="true">
         <div v-if="currentGoodsItem.productType == 0" class="goods-details-box">
           <div class="g-top">
             <div class="goods-name">{{ currentGoodsItem.name }}</div>
@@ -891,6 +891,7 @@ const query = reactive<getIntegralRecordData>({
 })
 let integralList = ref<getIntegralRecordItem[]>([])
 
+// 顶部商城和积分记录切换
 const toggleTab = (tabs: any) => {
   tab.value = tabs
   if (tab.value == 'stats') {
@@ -898,6 +899,7 @@ const toggleTab = (tabs: any) => {
   }
 }
 
+// 获取积分商城顶部vip等级
 const getIntegralVip = () => {
   getIntegralVipApi()
     .then((resp) => {
@@ -913,13 +915,13 @@ const getGoodsList = () => {
   getGoodsListApi()
     .then((resp) => {
       goodsList.value = resp.data
-      console.log(goodsList.value)
     })
     .catch((error) => {
       console.log(error)
     })
 }
 
+// 积分兑换商品
 const exhangeGoods = () => {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
@@ -933,8 +935,6 @@ const exhangeGoods = () => {
         return false
       })
   } else {
-    console.log(userStore.userInfo.integral)
-    console.log(currentGoodsItem.price)
     if (parseFloat(userStore.userInfo.integral as string) < parseFloat(currentGoodsItem.price)) {
       showToast('积分不足')
       return false
@@ -964,6 +964,7 @@ const getIntegralRecord = () => {
   // 未登录则不显示数据
   if (!userStore.userInfo.id) {
     nodata.value = true
+    return false
   }
   getIntegralRecordApi(query)
     .then((resp) => {

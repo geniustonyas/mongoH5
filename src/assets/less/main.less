@@ -16,6 +16,7 @@
     --color-tabs: #242424;
     --color-menu: #111;
     --color-green: #009933;
+    --van-picker-confirm-action-color: var(--color-primary);
 }
 .txt-white{
     color:#fff;
@@ -511,6 +512,11 @@ body {
         color: var(--color-white);
         display: inline-block;
         margin: .2rem;
+    }
+    .m-lang {
+        .flex();
+        .flex-pack-justify();
+        font-weight: normal;
     }
 }
 
@@ -3953,6 +3959,31 @@ body {
             }
         }
     }
+}
+
+.picker-box {
+    padding: 1.5rem 1rem;
+    .pb-title {
+        color: var(--color-white);
+        font-size: 1.6rem;
+        font-weight: 500;
+        text-align: center;
+        padding-bottom: 1.5rem;
+        .border-b(.1rem, var(--color-dark-gray));
+    }
+    ul {
+        margin-top: 1rem;
+        li {
+            .flex(); .flex-pack-justify(); .flex-align(); line-height: 2rem; padding: 1rem 2rem;
+            span {
+                .flex-x();
+                display: inline-block;
+                text-align: center;
+            }
+            i { color: var(--color-primary); width: 2rem; }
+        }
+    }
+    
 }
 
 .loop-footmenu(@i: 1) when (@i<6) {

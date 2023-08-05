@@ -28,9 +28,11 @@ export const useUserStore = defineStore('userInfo', () => {
     id: '',
     inVisible: '',
     integral: '',
+    integralMultiple: '',
     isBindGoogleAuth: false,
     nextVipRequiredTotalBetAmount: '',
     phoneNumber: '',
+    subCode: '',
     totalBetAmount: '',
     updatePassWordTime: '',
     userName: '',
@@ -50,7 +52,6 @@ export const useUserStore = defineStore('userInfo', () => {
     return new Promise((resolve, reject) => {
       getUserProfileApi(data)
         .then((resp) => {
-          // userInfo =
           Object.assign(userInfo, resp.data as UserInfoType)
           resolve(resp)
         })
@@ -85,7 +86,7 @@ export const useUserStore = defineStore('userInfo', () => {
       clearInterval(refreshTokenTimer.value)
     }
     refreshTokenTimer.value = window.setInterval(() => {
-      refreshTokenApi()
+      refreshTokenApi({ noLoading: true })
     }, 1 * 60 * 1000)
   }
 

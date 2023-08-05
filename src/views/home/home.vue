@@ -8,16 +8,16 @@
         <div class="mp-steel" @click="router.push({ name: 'clubHouse' })">
           <div class="ms-t">
             <div class="mt-l">
-              <img :src="getAssetsFile('Lvl1.png')" />
+              <img :src="getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`)" />
               <p>
                 <span>{{ t('clubLevel') }}</span>
                 <span>{{ t('homePage.currentMultiplier') }}</span>
               </p>
             </div>
             <div class="mt-r">
-              <h2>{{ currentData.vipName }}</h2>
+              <h2>{{ userStore.userInfo.vip }}</h2>
               <span>
-                <b>{{ parseFloat(nextReward.integral) }} </b>
+                <b>{{ parseFloat(userStore.userInfo.integralMultiple) }} </b>
                 <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0)">
                     <path
@@ -51,7 +51,7 @@
             <div class="m-t">{{ t('homePage.nextReward') }}</div>
             <div class="schedule-bar">
               <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
-              <span>{{ parseInt(nextReward.totalBetAmount) }}/{{ parseInt(nextReward.nextVipRequiredTotalBetAmount) }}</span>
+              <span>{{ parseInt(userStore.userInfo.totalBetAmount) }}/{{ parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount) }}</span>
             </div>
           </div>
           <div class="ms-b">
@@ -100,13 +100,11 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 import Footer from '@/components/layout/Footer.vue'
 
-import { getNextRewardApi, getVipInfoApi } from '@/api/home/index'
-import { currentDataResp, getNextRewardResps } from '@/api/home/types'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
 
@@ -118,28 +116,11 @@ const router = useRouter()
 const userStore = useUserStore()
 const { t } = useI18n()
 
-let currentData = reactive<currentDataResp>({
-  totalBetAmount: '',
-  vipCode: '',
-  vipSubItemCode: '',
-  vipName: '',
-  vipSubItemName: ''
-})
-
-let nextReward = reactive<getNextRewardResps>({
-  vipCode: '',
-  vipName: '',
-  integral: '',
-  vipSubItemCode: '',
-  totalBetAmount: '',
-  nextVipRequiredTotalBetAmount: ''
-})
-
 // 下一奖励进度
 const rewardProgressWidth = computed(() => {
   let width = '0'
-  if (nextReward.nextVipRequiredTotalBetAmount != '' && nextReward.totalBetAmount != '') {
-    width = new BigNumber(parseInt(nextReward.totalBetAmount)).dividedBy(parseInt(nextReward.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
+  if (userStore.userInfo.nextVipRequiredTotalBetAmount != '' && userStore.userInfo.totalBetAmount != '') {
+    width = new BigNumber(parseInt(userStore.userInfo.totalBetAmount)).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
   }
   return width
 })
@@ -155,24 +136,4 @@ const handleLogout = () => {
       console.log(error)
     })
 }
-
-// 获取VIP信息
-const getVipInfo = () => {
-  getVipInfoApi()
-    .then((resp) => {
-      Object.assign(currentData, resp.data!.currentData)
-      getNextRewardApi({ VipSubItemCode: currentData.vipSubItemCode })
-        .then((resp) => {
-          Object.assign(nextReward, resp.data)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-
-getVipInfo()
 </script>

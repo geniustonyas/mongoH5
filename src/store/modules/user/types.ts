@@ -13,9 +13,11 @@ export interface UserInfoType {
   id: string
   inVisible: string
   integral: string
+  integralMultiple: string
   isBindGoogleAuth: boolean
   nextVipRequiredTotalBetAmount: string
   phoneNumber: string
+  subCode: string
   totalBetAmount: string
   updatePassWordTime: string | null
   userName: string

@@ -69,8 +69,32 @@ const i18n = createI18n({
 })
 export default i18n
 
+// <option value="zh">中文</option>
+// <option value="en">English</option>
+// <option value="de">Deutsch</option>
+// <option value="es">Español</option>
+// <option value="pt">Português</option>
+// <option value="tr">Türkçe</option>
+// <option value="ja">ภาษาไทย</option>
+// <option value="fr">Français</option>
+// <option value="ko">한국어</option>
+// <option value="vi">Tiếng Việt</option>
+export const languages = [
+  { value: 'zh', text: '中文' },
+  { value: 'en', text: 'English' },
+  { value: 'de', text: 'Deutsch' },
+  { value: 'es', text: 'Español' },
+  { value: 'pt', text: 'Português' },
+  { value: 'tr', text: 'Türkçe' },
+  { value: 'ja', text: 'ภาษาไทย' },
+  { value: 'fr', text: 'Français' },
+  { value: 'ko', text: '한국어' },
+  { value: 'vi', text: 'Tiếng Việt' }
+]
+
 export const selLang = (lang: string) => {
   document.querySelector('html')!.setAttribute('lang', lang)
   localStorage.setItem('lang', lang)
+  // 设置vant语言
   Locale.use(lang, vantLangMap[lang])
 }

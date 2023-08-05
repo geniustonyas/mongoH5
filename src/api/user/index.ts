@@ -82,10 +82,11 @@ export function getUserProfileApi(data: User.getUserProfileData) {
 }
 
 /**刷新token */
-export function refreshTokenApi() {
+export function refreshTokenApi(data: User.getUserProfileData) {
   return request<any>({
     url: 'Member/refshToken',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
 

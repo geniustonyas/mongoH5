@@ -2,11 +2,14 @@
   <div :class="appStore.showSideBar ? 'page open-sidebar' : 'page'">
     <header class="header">
       <nav class="head-menu">
+        <!-- logo 跳转主页 -->
         <div class="hm-l">
           <a @click="appStore.showSideBar = !appStore.showSideBar" class="icon-btn navbar-left">
             <i class="iconfont icon-zhedie1" />
           </a>
         </div>
+
+        <!-- 用户信息 -->
         <div class="hm-m">
           <template v-if="userStore.userInfo.id">
             <div class="user-info" @click="router.push({ name: 'fund' })">
@@ -19,6 +22,8 @@
             </div>
           </template>
         </div>
+
+        <!-- 积分商城或登录注册 -->
         <div class="hm-r">
           <a class="icon-btn" @click="router.push({ name: 'mall' })">
             <i class="iconfont icon-shandian" />
@@ -50,11 +55,14 @@
 
       <!-- 首页 -->
       <div v-show="tab == ''">
+        <!-- swiper图片 -->
         <nav v-if="swipeImg.length > 0" class="swiper m-banner">
           <Swipe :autoplay="3500" class="my-swipe">
             <SwipeItem v-for="(item, index) of swipeImg" :key="index" v-lazy:background-image="appStore.cdnurl + item.imageName" />
           </Swipe>
         </nav>
+
+        <!-- 跑马灯开始 -->
         <!-- <NoticeBar left-icon="volume-o" :text="marqueeContent" /> -->
         <nav class="m-notice">
           <span class="mn-icon">
@@ -68,7 +76,6 @@
         </nav>
         <!-- 支付解决方案 -->
         <nav class="m-card">
-          <!-- <img v-lazy="appStore.cdnurl + bannerImg[0]" /> -->
           <div class="mc-t">
             <div class="mt-l">
               <b>{{ t('globalPaymentSolutions') }}</b>
@@ -163,6 +170,7 @@
           </div>
         </div>
       </div>
+
       <!-- 真人游戏 -->
       <div v-show="tab == 'livecasino'">
         <nav class="gamebox">
@@ -204,6 +212,7 @@
               </div>
             </Vue3SlideUpDown>
           </div>
+
           <div v-if="dataList.length > 0" :class="gridShow ? 'g-list' : 'g-list row'">
             <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item)">
               <div class="i-bd">
@@ -223,6 +232,7 @@
           </div>
         </nav>
       </div>
+
       <!-- 电子游戏 -->
       <div v-show="tab == 'slots'">
         <nav class="gamebox">
@@ -284,12 +294,15 @@
         </nav>
       </div>
 
+      <!-- 汇率 -->
       <nav class="m-rate">
         1
         <b>{{ currencyCode }}</b>
         = {{ moneyFormat(cxchangeRate) }}
         <b>USDT</b>
       </nav>
+
+      <!-- 游戏协议条款 -->
       <nav class="m-term">
         <dl>
           <dt>Seabet</dt>
@@ -366,6 +379,8 @@
           <dd><a href="#">English</a></dd>
         </dl>
       </nav>
+
+      <!-- 支持的加密货币 -->
       <nav class="m-accepted">
         <dl>
           <dt>{{ t('acceptCrypto') }}</dt>
@@ -395,6 +410,8 @@
           </dd>
         </dl>
       </nav>
+
+      <!-- 许可证与安全性 -->
       <nav class="m-security">
         <dl>
           <dt>{{ t('licencesSecurity') }}</dt>
@@ -432,7 +449,11 @@
       </nav>
     </main>
     <Footer />
-    <Sidebar :currency-code="currencyCode" :cxchange-rate="cxchangeRate" />
+
+    <!-- 侧边栏开始 -->
+    <Sidebar :currency-code="currencyCode" :cxchange-rate="cxchangeRate" @toggle-tab="toggleTab" @sel-game-provider="selGameProvider" />
+
+    <!-- 排行榜投注详情 -->
     <div v-show="showBetDetailsBox" class="mask-box">
       <div class="mb-bd">
         <div class="win-bet">
@@ -478,10 +499,10 @@ import { getExchangeRateApi, getAnnouncementListApi, getBannerApi } from '@/api/
 import { getBannerRespItem } from '@/api/app/types'
 import { getGameListApi, getGameUrlApi, getRankListApi } from '@/api/game/index'
 import { getGameListRespItem, getGameListGsItemResp, getGameListData } from '@/api/game/types'
-
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, moneyFormat } from '@/utils'
+import { GameType, PlatForm } from '@/utils/constant'
 //第三方插件
 import { useI18n } from 'vue-i18n'
 import { Swipe, SwipeItem, showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon, showConfirmDialog } from 'vant'
@@ -606,9 +627,10 @@ const toggleTab = (tabs: string) => {
   tab.value = tabs
   showGameOption.value = false
   if (tabs == 'livecasino' || tabs == 'slots') {
-    query.gts = tabs == 'livecasino' ? [2] : [3]
+    query.gts = tabs == 'livecasino' ? [GameType.Casino] : [GameType.Slots]
     query.page = 1
     query.sortBy = 3
+    query.ps = []
     pageCount.value = 0
     pslist.value = []
     cslist.value = []
@@ -619,6 +641,7 @@ const toggleTab = (tabs: string) => {
 
 // 选择运营商
 const selGameProvider = (id: string) => {
+  showGameOption.value = true
   const index = query.ps.indexOf(parseInt(id))
   if (index > -1) {
     query.ps.splice(index, 1)
@@ -675,7 +698,7 @@ const startGame = (game: getGameListGsItemResp) => {
         return false
       })
   } else {
-    getGameUrlApi({ id: game.id, platform: 1 })
+    getGameUrlApi({ id: game.id, platform: PlatForm.H5 })
       .then((resp) => {
         window.location.href = resp.data
       })

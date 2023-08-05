@@ -81,12 +81,11 @@ import { getSearchGameApi, getGameRecommendApi, getGameUrlApi } from '@/api/game
 import { getSearchGameRespItem, recommendGameRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
-import { getAssetsFile } from '@/utils'
+import { providerList, providerListItemTypes } from '@/utils/gameProviders'
 
 import { showConfirmDialog } from 'vant'
 import { debounce } from 'lodash-es'
 import { useI18n } from 'vue-i18n'
-import { reactive } from 'vue'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -100,19 +99,9 @@ let searchResult = ref<getSearchGameRespItem[]>([])
 const recommendList = ref<recommendGameRespItem[]>([])
 const nodata = ref(false)
 
-// 搜索更多关键词列表
-const searchMoreList = reactive([
-  { id: '1', tab: 'livecasino', name: 'Pragmatic Pay', img: getAssetsFile('svg/PragmaticPlay.svg') },
-  { id: '2', tab: 'livecasino', name: 'FB Sports', img: getAssetsFile('svg/FBSports.svg') },
-  { id: '3', tab: 'livecasino', name: 'Evolution', img: getAssetsFile('svg/Evolution.svg') },
-  { id: '4', tab: 'livecasino', name: 'Bombay Live', img: getAssetsFile('svg/BombayLive.svg') },
-  { id: '5', tab: 'livecasino', name: 'Ezugi', img: getAssetsFile('svg/Ezugi.svg') },
-  { id: '6', tab: 'slots', name: 'Asia Gaming', img: getAssetsFile('svg/AsiaGaming.svg') },
-  { id: '7', tab: 'slots', name: 'Pragmatic Pay', img: getAssetsFile('svg/PragmaticPlay.svg') },
-  { id: '8', tab: 'slots', name: "Play'n Go", img: getAssetsFile('svg/Playingo.svg') },
-  { id: '9', tab: 'slots', name: 'NetEnt', img: getAssetsFile('svg/NetEnt.svg') },
-  { id: '10', tab: 'slots', name: 'PlayTech', img: getAssetsFile('svg/PlayTech.svg') }
-])
+// 搜索更多关键词列表-实际是跳转到首页对应的tab和providerId
+const searchMoreList = ref<providerListItemTypes[]>([])
+searchMoreList.value = providerList.filter((item: providerListItemTypes) => item.type != 'sports')
 
 // 观察关键词变化, 3个字符以上才搜索, 否则不搜索
 watch(keywords, () => {
