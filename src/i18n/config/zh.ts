@@ -8,6 +8,7 @@ export default {
   onlineSupport: '客服',
   account: '账户',
   confirm: '确定',
+  confirmd: '已确认',
   all: '全部',
   save: '保存',
   cancel: '取消',

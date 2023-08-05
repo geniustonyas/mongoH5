@@ -32,7 +32,7 @@
             <div v-if="tab == 'deposit' || tab == 'withdraw'" class="record-list">
               <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
                 <List
-                  v-model="listLoading"
+                  v-model:loading="listLoading"
                   :offset="20"
                   :finished="finished"
                   :immediate-check="false"

@@ -114,3 +114,21 @@ export function getNextRewardApi(data: Home.receiveRewardData) {
     data
   })
 }
+
+/** 获取奖励列表 */
+export function getRewardListApi(data: Home.getRewardListData) {
+  return request<Home.getRewardListResp>({
+    url: 'Promo/RewardFundList',
+    method: 'post',
+    data
+  })
+}
+
+/** 兑换奖励 */
+export function exchangeRewardApi(data: Home.exchangeRewardData) {
+  return request<anyResp>({
+    url: 'Promo/RedemptionReward',
+    method: 'post',
+    data
+  })
+}

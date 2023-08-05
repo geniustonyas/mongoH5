@@ -95,6 +95,28 @@ export interface getNextRewardResps {
   nextVipRequiredTotalBetAmount: string
 }
 
+// 奖励列表返回数据
+export interface getRewardListData {
+  noLoading?: boolean
+  PageIndex: number
+  PageSize: number
+}
+
+// 奖励列表返回数据项
+export interface getRewardListItem {
+  id: string
+  createTime: string
+  rewardCode: string
+  currencyCode: string
+  amount: string
+}
+
+// 兑换奖励请求数据
+export interface exchangeRewardData {
+  RewardCode: string
+}
+
 export type messageResp = ApiResponseData<{ items: []; pageIndex: string; pageSize: string; pageCount: string; recordCount: string }>
 export type vipInfoResp = ApiResponseData<{ vipList: vipListItemResp[]; currentData: currentDataResp }>
 export type getNextRewardResp = ApiResponseData<getNextRewardResps>
+export type getRewardListResp = ApiResponseData<{ items: getRewardListItem[]; pageIndex: string; pageSize: string; pageCount: string; recordCount: string }>

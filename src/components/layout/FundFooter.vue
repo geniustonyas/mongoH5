@@ -7,9 +7,12 @@
         <i class="iconfont icon-right" />
       </a>
     </dd>
+  </dl>
+  <dl class="cur-lsit">
+    <dt>{{ t('wallet') }}</dt>
     <dd>
-      <a @click="router.push({ name: 'myReward' })">
-        <span> <i class="iconfont icon-jiangli" />{{ t('rewards') }} </span>
+      <a @click="router.push({ name: 'wallet' })">
+        <span> <i class="iconfont icon-wallet" />{{ t('wallet') }}</span>
         <i class="iconfont icon-right" />
       </a>
     </dd>

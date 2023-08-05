@@ -21,7 +21,16 @@
         <div v-if="dataList.length > 0" class="nb-list">
           <ul style="height: 100%">
             <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
-              <List v-model="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" :error-text="t('loadingFail')" :finished-text="t('noMore')" @load="loadData">
+              <List
+                v-model:loading="listLoading"
+                :offset="20"
+                :finished="finished"
+                :immediate-check="false"
+                v-model:error="error"
+                :error-text="t('loadingFail')"
+                :finished-text="t('noMore')"
+                @load="loadData"
+              >
                 <li v-for="(item, index) of dataList" :class="item.isRead ? '' : 'new'" :key="index" @click="setReaded(item)">
                   <div class="l-title">{{ item.title }}</div>
                   <div class="l-cont">{{ item.content }}</div>

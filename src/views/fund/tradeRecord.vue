@@ -32,7 +32,7 @@
             <div v-if="tab == 'bet'" class="record-list">
               <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
                 <List
-                  v-model="listLoading"
+                  v-model:loading="listLoading"
                   :offset="20"
                   :finished="finished"
                   :immediate-check="false"
@@ -154,7 +154,7 @@ const query = reactive({
   StartTime: '',
   EndTime: '',
   PageIndex: '1',
-  PageSize: '20',
+  PageSize: '10',
   noLoading: false
 })
 
@@ -247,11 +247,13 @@ const getListFail = (error: any) => {
 const fresh = () => {
   query.noLoading = true
   query.PageIndex = '1'
+  listLoading.value = true
   getTradeRecordList()
 }
 
 // 上拉加载更多数据
 const loadData = () => {
+  listLoading.value = true
   query.noLoading = true
   query.PageIndex = (parseInt(query.PageIndex) + 1).toString()
   getTradeRecordList()
