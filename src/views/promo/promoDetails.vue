@@ -75,11 +75,41 @@
   </div>
 </template>
 
-<script setup name="PromoPromo">
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+
 import CommonHeader from '@/components/layout/CommonHeader.vue'
+
+import { getPromoDetailsApi } from '@/api/promo/index'
+import { getPromoDetailsResp } from '@/api/promo/types'
+import { useAppStore } from '@/store/modules/app'
 
 import { getAssetsFile } from '@/utils'
 import { useI18n } from 'vue-i18n'
+import { reactive } from 'vue'
 
+const route = useRoute()
 const { t } = useI18n()
+
+const promo = reactive({
+  image: '',
+  title: '',
+  content: '',
+  intro: ''
+})
+
+const getPromoDetails = () => {
+  getPromoDetailsApi({ Id: route.params.id as string })
+    .then((res) => {
+      Object.assign(promo, res.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+if (route.params.id) {
+  getPromoDetails()
+}
 </script>

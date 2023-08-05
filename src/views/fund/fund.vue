@@ -70,7 +70,7 @@
                 <div class="gc-b">
                   <div class="b-l">
                     <small>{{ t('address') }}</small>
-                    <span>{{ depositInfo.walletAddress }}</span>
+                    <span>{{ formatAddress(depositInfo.walletAddress) }}</span>
                   </div>
                   <div class="b-r">
                     <span @click="showDepositQrcode = !showDepositQrcode">
@@ -219,7 +219,7 @@ import FundFooter from '@/components/layout/FundFooter.vue'
 // import { getExchangeRateApi } from '@/api/app/index'
 import { getBalanceApi, getDepositAddressApi } from '@/api/fund/index'
 import { getBalanceItemResponse } from '@/api/fund/types'
-import { getAssetsFile, copy, moneyFormat } from '@/utils'
+import { getAssetsFile, copy, moneyFormat, formatAddress } from '@/utils'
 import { usdtChainList, usdtChainListTypes } from '@/utils/blockChain'
 
 import { useI18n } from 'vue-i18n'

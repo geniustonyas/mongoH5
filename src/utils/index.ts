@@ -86,3 +86,8 @@ export function loadJs(url: string) {
 export function moneyFormat(value: any, decimalLength = 2) {
   return new BigNumber(Math.floor(parseFloat(value) * 100) / 100).toFormat(decimalLength)
 }
+
+// 将数字货币地址中间部分用4个*号代替
+export function formatAddress(address: string) {
+  return address.length > 10 ? address.replace(address.substring(5, address.length - 5), '****') : address
+}

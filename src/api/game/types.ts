@@ -84,6 +84,7 @@ export interface getRankListRespItem {
   providerId: string
   providerCode: string
   gameCode: string
+  gameId: string
 }
 
 // 游戏搜索返回数据项

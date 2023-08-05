@@ -4,7 +4,7 @@ const t = i18n.global.t
 
 export const providerList = [
   // 体育提供商
-  { id: '1', type: 'sports', tab: '', name: t('provider.fbSports'), img: getAssetsFile('svg/SabaSports.svg') },
+  { id: '1', type: 'sports', tab: '', name: t('provider.sabaSports'), img: getAssetsFile('svg/SabaSports.svg') },
   { id: '2', type: 'sports', tab: '', name: t('provider.fbSports'), img: getAssetsFile('svg/FBSports.svg') },
   // 真人提供商
   { id: '3', type: 'casino', tab: 'livecasino', name: t('provider.evolution'), img: getAssetsFile('svg/Evolution.svg') },

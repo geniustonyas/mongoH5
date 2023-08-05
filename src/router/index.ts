@@ -100,7 +100,7 @@ const routes = [
         meta: { transition: '', needLogin: false }
       },
       {
-        path: 'promoDetails',
+        path: ':id(\\d+)',
         name: 'promoDetails',
         component: () => import('@/views/promo/promoDetails.vue'),
         meta: { transition: '', needLogin: false }

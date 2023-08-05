@@ -118,7 +118,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) of rankList[rankTab]" :key="index" @click="rankBetDetails({})">
+              <tr v-for="(item, index) of rankList[rankTab]" :key="index" @click="rankBetDetails(item)">
                 <td>{{ item.gameName }}</td>
                 <td>
                   <template v-if="item.memberuserName == ''">
@@ -149,7 +149,7 @@
                 <span>优质体验</span>
               </div>
               <div class="ir-c">
-                <a class="btn btn-primary">立即开始</a>
+                <a class="btn btn-primary" @click="startGame('1')">立即开始</a>
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@
                 <span>及时止损</span>
               </div>
               <div class="ir-c">
-                <a class="btn btn-primary">立即开始</a>
+                <a class="btn btn-primary" @click="startGame('2')">立即开始</a>
               </div>
             </div>
           </div>
@@ -214,7 +214,7 @@
           </div>
 
           <div v-if="dataList.length > 0" :class="gridShow ? 'g-list' : 'g-list row'">
-            <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item)">
+            <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item.id)">
               <div class="i-bd">
                 <div class="i-img">
                   <img v-lazy="appStore.cdnurl + item.img" />
@@ -275,7 +275,7 @@
             </Vue3SlideUpDown>
           </div>
           <div v-if="dataList.length > 0" :class="gridShow ? 'g-list' : 'g-list row'">
-            <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item)">
+            <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item.id)">
               <div class="i-bd">
                 <div class="i-img">
                   <img v-lazy="appStore.cdnurl + item.img" />
@@ -471,20 +471,20 @@
             </span>
           </div>
           <div class="wb-cont">
-            <h2>Grand Japanese Blackjack</h2>
-            <h2>ID 167,460.223,966<i class="iconfont icon-fuzhi" /><i class="iconfont icon-fxlj" /></h2>
-            <p>{{ t('betUser') }}：<img :src="getAssetsFile('svg/tb_user.svg')" />{{ t('invisibility') }}</p>
-            <p>{{ t('at') }} 2023/7/9 23:57</p>
+            <h2>{{ betDetailsItem.gameName }}</h2>
+            <h2>ID {{ betDetailsItem.orderId }}</h2>
+            <p>{{ t('betUser') }}：<img :src="getAssetsFile('svg/tb_user.svg')" />{{ betDetailsItem.memberuserName == '' ? t('invisibility') : betDetailsItem.memberuserName }}</p>
+            <p>{{ t('at') }} {{ betDetailsItem.betTime.replace('T', ' ') }}</p>
             <div class="b-info">
               <p>{{ t('bets') }}</p>
-              <h3>1100.0000...<img :src="getAssetsFile('payment/tether.png')" /></h3>
+              <h3>{{ betDetailsItem.betAmount }}<img :src="getAssetsFile('payment/tether.png')" /></h3>
               <p>{{ t('multiplier') }}</p>
-              <h3>1.64x</h3>
+              <h3>{{ betDetailsItem.winRate }}x</h3>
               <p>{{ t('paymentAmount') }}</p>
-              <h4>1800.000000..<img :src="getAssetsFile('payment/tether.png')" /></h4>
+              <h4>{{ betDetailsItem.winAmount }}<img :src="getAssetsFile('payment/tether.png')" /></h4>
             </div>
             <div class="b-gm">
-              <a href="#">{{ t('goto') }} Grand Japanese Blackjack</a>
+              <a @click="startGame(betDetailsItem.gameId)">{{ t('goto') }} {{ betDetailsItem.gameName }}</a>
             </div>
           </div>
         </div>
@@ -510,7 +510,7 @@ import Language from '@/components/Language.vue'
 import { getExchangeRateApi, getAnnouncementListApi, getBannerApi } from '@/api/app/index'
 import { getBannerRespItem } from '@/api/app/types'
 import { getGameListApi, getGameUrlApi, getRankListApi } from '@/api/game/index'
-import { getGameListRespItem, getGameListGsItemResp, getGameListData } from '@/api/game/types'
+import { getGameListRespItem, getGameListGsItemResp, getGameListData, getRankListRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, moneyFormat } from '@/utils'
@@ -553,7 +553,21 @@ let rankList = reactive({
 })
 // 显示排行榜列表投注详情
 let showBetDetailsBox = ref(false)
-let betDetailsItem = reactive({})
+let betDetailsItem = reactive<getRankListRespItem>({
+  roundId: '',
+  orderId: '',
+  memberuserName: '',
+  gameName: '',
+  betTime: '',
+  winAmount: '',
+  gameType: 0,
+  betAmount: '',
+  winRate: '',
+  providerId: '',
+  providerCode: '',
+  gameCode: '',
+  gameId: ''
+})
 
 // 游戏列表tab选项卡
 let tab = ref('')
@@ -705,7 +719,7 @@ const loadMore = () => {
 }
 
 // 启动游戏列表
-const startGame = (game: getGameListGsItemResp) => {
+const startGame = (gameId: string) => {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
       title: t('tips.noLogin'),
@@ -718,11 +732,12 @@ const startGame = (game: getGameListGsItemResp) => {
         return false
       })
   } else {
-    getGameUrlApi({ id: game.id, platform: PlatForm.H5 })
+    getGameUrlApi({ id: gameId, platform: PlatForm.H5 })
       .then((resp) => {
         window.location.href = resp.data
       })
       .catch((error) => {
+        showToast('启动游戏失败，请稍后再试')
         console.log(error)
       })
   }

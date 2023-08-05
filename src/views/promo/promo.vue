@@ -3,86 +3,12 @@
     <CommonHeader :show-back="false" title="Promotions" />
     <main class="main">
       <div class="promo-box">
-        <ul class="pb-list">
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p1.jpg')" />
-              <h3>Clubhouse Mystery Prize Drops</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
-              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-            </a>
-          </li>
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p2.png')" />
-              <h3>Megaways Bushido Princess:Cash Drop Launch</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
-              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-            </a>
-          </li>
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p3.jpg')" />
-              <h3>French Open Lucky Streak Challenge</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
-              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-            </a>
-          </li>
-
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p4.jpg')" />
-              <h3>Megaways Bushido Princess:Cash Drop Launch</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
-              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-            </a>
-          </li>
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p5.jpg')" />
-              <h3>French Open Lucky Streak Challenge</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
-              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-            </a>
-          </li>
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p1.jpg')" />
-              <h3>Clubhouse Mystery Prize Drops</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
-              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-            </a>
-          </li>
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p2.png')" />
-              <h3>Megaways Bushido Princess:Cash Drop Launch</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
-              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-            </a>
-          </li>
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p3.jpg')" />
-              <h3>French Open Lucky Streak Challenge</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
-              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-            </a>
-          </li>
-
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p4.jpg')" />
-              <h3>Megaways Bushido Princess:Cash Drop Launch</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
-              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-            </a>
-          </li>
-          <li>
-            <a @click="router.push({ name: 'promoDetails' })">
-              <img :src="getAssetsFile('promo/p5.jpg')" />
-              <h3>French Open Lucky Streak Challenge</h3>
-              <p>It's time to unwarp your mystery rewards with Clubhouse Mystery Prize Drops!</p>
+        <ul v-if="promoList.length > 0" class="pb-list">
+          <li v-for="(item, index) of promoList" :key="index">
+            <a @click="router.push({ name: 'promoDetails', params: { id: item.id } })">
+              <img v-lazy="appStore.cdnurl + item.image" />
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.intro }}</p>
               <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
             </a>
           </li>
@@ -93,15 +19,36 @@
   </div>
 </template>
 
-<script setup name="PromoPromo">
+<script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Footer from '@/components/layout/Footer.vue'
 
-import { useI18n } from 'vue-i18n'
-import { getAssetsFile } from '@/utils'
+import { getPromoApi } from '@/api/promo/index'
+import { getPromoRespItem } from '@/api/promo/types'
+import { useAppStore } from '@/store/modules/app'
 
+import { useI18n } from 'vue-i18n'
+
+const appStore = useAppStore()
 const router = useRouter()
 const { t } = useI18n()
+
+const promoList = ref<getPromoRespItem[]>([])
+const nodata = ref(false)
+
+const getPromoList = () => {
+  getPromoApi()
+    .then((res) => {
+      promoList.value = res.data
+      nodata.value = res.data.length == 0
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+getPromoList()
 </script>

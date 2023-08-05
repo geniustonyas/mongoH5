@@ -337,6 +337,7 @@ export default {
     goLogin: '立即前往登录',
     invalidThirdUser: '验证第三方用户失败',
     authFail: '授权失败',
+    copySuccess: '复制成功',
     copyFail: '该浏览器不支持自动复制，请手动复制'
   },
 

@@ -3,7 +3,9 @@
     <UserHeader />
     <main class="main">
       <div class="loginbox">
+        <!-- 合作伙伴 -->
         <UserPartner />
+        <!-- 第三方登录 -->
         <div class="l-signin">
           <h2>{{ t('login') }}</h2>
           <div class="ls-third">
@@ -25,6 +27,7 @@
         <div class="l-line">
           <span>{{ $t('or') }}</span>
         </div>
+        <!-- 登录表单 -->
         <div class="custom-form">
           <div class="cf-row">
             <div class="cr-label">
