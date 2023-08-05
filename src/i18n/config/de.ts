@@ -1,3 +1,5 @@
+const site_name = import.meta.env.VITE_APP_SITE_NAME
+
 export default {
   home: 'Heim',
   search: 'Suchen',
@@ -97,7 +99,7 @@ export default {
   mergedReards: 'Wurde auf der nächsten Ebene der kombinierten Sammlung gesammelt',
   noReward: 'Keine Belohnungen verfügbar. Erreiche die nächste Stufe, um deine nächste Belohnung freizuschalten.',
   // vip俱乐部
-  vipTitle: 'Seabet VIP-CLUB',
+  vipTitle: 'VIP-CLUB',
   vipClub: 'VIP-CLUB',
   // account settings
   generalInformation: 'Allgemeine Information',
@@ -311,9 +313,9 @@ export default {
         <div class="vc-rows">
           <div class="vr-title">1、VIP Club Introduction</div>
           <div class="vr-conts">
-            <p>Welcome to the Seabet VIP Club!</p>
-            <p>At Seabet, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
-            <p>Simply place bets on any game or sports event provided by Seabet.io to unlock exclusive rewards as you climb through the ranks.</p>
+            <p>Welcome to the ${site_name} VIP Club!</p>
+            <p>At ${site_name}, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
+            <p>Simply place bets on any game or sports event provided by ${site_name} to unlock exclusive rewards as you climb through the ranks.</p>
           </div>
         </div>
         <div class="vc-rows">
@@ -370,10 +372,10 @@ export default {
           <div class="vr-conts">
             <dl>
               <dd>Boost Bonuses: You can earn bonuses based on your weekly and monthly gaming volume. The more you play, the more bonuses you receive.</dd>
-              <dd>Recent Game Performance Bonus: Having a streak of bad luck? Seabet will provide additional funds based on your losses every time you level up.</dd>
+              <dd>Recent Game Performance Bonus: Having a streak of bad luck? ${site_name} will provide additional funds based on your losses every time you level up.</dd>
               <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
               <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
-              <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted Seabet, and we will arrange your itinerary.</dd>
+              <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>
               <dd>Exclusive VIP Service: You will be assigned a dedicated VIP service representative who will support and meet your betting needs</dd>
               <dd>Faster Points Accumulation: VIP levels earn points at a faster rate compared to regular members. Higher levels earn more points, leading to a wider range of prizes for redemption.</dd>
             </dl>
@@ -382,19 +384,19 @@ export default {
         <div class="vc-rows">
           <div class="vr-title">5、How to Become a VIP Member</div>
           <div class="vr-conts">
-            <p>How to become a VIP member of Seabet's VIP Club:</p>
+            <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
             <dl>
               <dd>
-                Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. Seabet rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by Seabet. You can also try betting with USDT and continue using your funds
+                Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
               </dd>
               <dd>
-                Participate in Regular Events: Seabet's promotional activities include various events and competitions that you can participate in at any time. Regular participation in any of these events will increase your chances of receiving an invitation to the VIP Club. Moreover, you can be more active in other club features offered by Seabet.
+                Participate in Regular Events: ${site_name}'s promotional activities include various events and competitions that you can participate in at any time. Regular participation in any of these events will increase your chances of receiving an invitation to the VIP Club. Moreover, you can be more active in other club features offered by ${site_name}.
               </dd>
               <dd>
                 Await the Invitation: The final thing you need to do is wait for us to send you an invitation. Continue playing games and participating in high roller events. After a few rounds of casino gambling and sports betting, once you are deemed worthy of becoming a VIP Club member, you will receive an invitation immediately.
               </dd>
               <dd>
-                Experience the Luxury Life as a Seabet VIP: Take your USDT gambling experience to a whole new level while enjoying top-notch privileges as a Seabet VIP Club member. As a valued player, you'll experience the best fun, fast, and fair betting when engaging in sports betting and casino games.
+                Experience the Luxury Life as a ${site_name} VIP: Take your USDT gambling experience to a whole new level while enjoying top-notch privileges as a ${site_name} VIP Club member. As a valued player, you'll experience the best fun, fast, and fair betting when engaging in sports betting and casino games.
               </dd>
             </dl>
           </div>

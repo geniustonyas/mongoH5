@@ -7,7 +7,7 @@ import vue from '@vitejs/plugin-vue'
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default (configEnv: ConfigEnv): UserConfigExport => {
   const viteEnv = loadEnv(configEnv.mode, process.cwd()) as ImportMetaEnv
-  const { VITE_PUBLIC_PATH, VITE_TITLE } = viteEnv
+  const { VITE_PUBLIC_PATH, VITE_APP_SITE_NAME } = viteEnv
   return {
     // define: {
     //   'process.env': {}
@@ -82,7 +82,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
         inject: {
           data: {
             //将环境变量 VITE_APP_TITLE 赋值给 title 方便 html页面使用 title 获取系统标题
-            title: VITE_TITLE
+            title: VITE_APP_SITE_NAME
           }
         }
       })

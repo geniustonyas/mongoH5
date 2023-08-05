@@ -305,7 +305,7 @@
       <!-- 游戏协议条款 -->
       <nav class="m-term">
         <dl>
-          <dt>Seabet</dt>
+          <dt>{{ site_name }}</dt>
           <dd>
             <a @click="router.push({ name: 'promo' })">{{ t('promotions') }}</a>
           </dd>
@@ -513,6 +513,7 @@ const route = useRoute()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const { t } = useI18n()
+const site_name = import.meta.env.VITE_APP_SITE_NAME
 
 // 汇率相关
 let currencyCode = ref('')
