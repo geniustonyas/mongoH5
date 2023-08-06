@@ -20,17 +20,17 @@
           </div>
           <div class="ff-group">
             <label>{{ t('amount') }}</label>
-            <input v-model="withdrawForm.Amount" type="number" id="amountInput" :placeholder="t('inputAmount')" />
+            <input v-model="withdrawForm.Amount" type="number" ref="amountDom" :placeholder="t('inputAmount')" />
           </div>
           <ul class="ff-amounts">
             <li :class="{ active: percent == 0.25 }">
-              <span @click="computeAMount(0.25)">25%</span>
+              <span @click="computeAmount(0.25)">25%</span>
             </li>
             <li :class="{ active: percent == 0.5 }">
-              <span @click="computeAMount(0.5)">50%</span>
+              <span @click="computeAmount(0.5)">50%</span>
             </li>
             <li :class="{ active: percent == 1 }">
-              <span @click="computeAMount(1)">100%</span>
+              <span @click="computeAmount(1)">100%</span>
             </li>
           </ul>
           <div class="ff-rmark">
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div v-show="step == 1" class="fund-btn">
-          <a :class="withdrawForm.Amount == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab(2)">{{ t('next') }}</a>
+          <a :class="withdrawForm.Amount == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('next') }}</a>
         </div>
         <!-- step 2 -->
         <div v-show="step == 2" class="fund-form">
@@ -74,12 +74,12 @@
           </div>
           <div class="ff-group">
             <label>{{ t('payto') }}</label>
-            <input v-model="withdrawForm.PayeeAddress" id="address" type="text" :placeholder="t('walletAddress')" />
+            <input v-model="withdrawForm.PayeeAddress" ref="addressDom" type="text" :placeholder="t('walletAddress')" />
           </div>
           <div class="ff-rmark">{{ t('checkWithdrawAddress') }}</div>
         </div>
         <div v-show="step == 2" class="fund-btn">
-          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab(3)">{{ t('previewWithdraw') }}</a>
+          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('previewWithdraw') }}</a>
         </div>
         <!-- step 3 -->
         <div v-show="step == 3" class="fund-form">
@@ -100,7 +100,7 @@
                       <small>{{ withdrawForm.PayeeAddress }}</small>
                     </div>
                   </div>
-                  <div class="t-r">
+                  <div class="t-r" @click="step = 2">
                     <i class="iconfont icon-bianji" />
                   </div>
                 </div>
@@ -123,17 +123,17 @@
             </dd>
           </dl>
           <div v-if="userStore.userInfo.isBindGoogleAuth" class="ff-group">
-            <input v-model="withdrawForm.VerificationCode" id="googleCode" type="text" :placeholder="t('inputGoole')" />
+            <input v-model="withdrawForm.VerificationCode" ref="googleCodeDom" type="text" :placeholder="t('inputGoole')" />
           </div>
         </div>
         <div v-show="step == 3" class="fund-btn">
-          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab(4)">{{ t('confirm') }}</a>
+          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('confirm') }}</a>
         </div>
         <!-- step 4 -->
         <div v-show="step == 4" class="fund-form wa">
           <div class="ff-w-a">
             <p>{{ t('withdrawing') }}</p>
-            <h2>{{ moneyFormat(withdrawDetail.amount) }}&nbsp;{{ withdrawDetail.unit }}</h2>
+            <h2>{{ moneyFormat(withdrawDetail.amount) }}&nbsp;{{ withdrawDetail.currencyCode }}</h2>
           </div>
           <dl class="ff-rows">
             <dt>{{ t('walletDetails') }}</dt>
@@ -158,7 +158,7 @@
             </dd>
             <dd>
               {{ t('finalBalance') }}：
-              <span>{{ withdrawDetail.afterAmount }} {{ withdrawDetail.unit }}</span>
+              <span>{{ moneyFormat(withdrawDetail.afterAmount) }} {{ withdrawDetail.currencyCode }}</span>
             </dd>
           </dl>
         </div>
@@ -173,14 +173,14 @@
               <i class="iconfont icon-right" />
             </a>
           </dd>
-          <dd>
+          <!-- <dd>
             <a href="#">
               <span> <i class="iconfont icon-guanyuwomen" />{{ t('faq') }} </span>
               <i class="iconfont icon-right" />
             </a>
-          </dd>
+          </dd> -->
           <dd>
-            <a href="#">
+            <a @click="router.push({ name: 'support' })">
               <span> <i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }} </span>
               <i class="iconfont icon-right" />
             </a>
@@ -214,7 +214,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -224,12 +224,11 @@ import { useUserStore } from '@/store/modules/user'
 import { getMinWithdrawAmountApi, getBalanceApi, withdrawOrderApi, getTradeDetailApi } from '@/api/fund/index'
 // import { getTradeDetailResponse } from '@/api/fund/type'
 import { getAssetsFile, moneyFormat } from '@/utils'
-import { usdtChainList } from '@/utils/blockChain'
+import { usdtChainList, usdtChainListTypes } from '@/utils/blockChain'
 import { useI18n } from 'vue-i18n'
 
 import BigNumber from 'bignumber.js'
 import { showToast, Popup, ConfigProvider } from 'vant'
-import 'vant/es/toast/style'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -237,6 +236,7 @@ const route = useRoute()
 const { t } = useI18n()
 
 const step = ref(1)
+// 快捷提现比例
 const percent = ref(0.25)
 // 查询提现详情返回数据
 const withdrawDetail = reactive({
@@ -245,7 +245,7 @@ const withdrawDetail = reactive({
   currencyCode: '',
   orderId: '',
   txId: '',
-  amount: '',
+  amount: '0',
   afterAmount: '',
   orderType: '',
   orderStatus: ''
@@ -260,24 +260,29 @@ const withdrawBalanceItem = reactive({
   usdAmount: 0
 })
 // 最低充值
-let minWithdrawAmount = ref(0)
+let minWithdrawAmount = ref('0')
 // 最低提现金额请求参数
 const getWithdrawAmountForm = reactive({
-  BlockchainCode: route.query?.BlockchainCode,
-  CurrencyCode: route.query?.CurrencyCode
+  BlockchainCode: route.query?.BlockchainCode as string,
+  CurrencyCode: route.query?.CurrencyCode as string
 })
 
-// step 2
+// 第二步： 选择提现链
 let showBlockChainBox = ref(false)
-let selBlockChainItem = reactive({
+let selBlockChainItem = reactive<usdtChainListTypes>({
   chainName: '',
   subtitle: '',
   code: '',
   icon: ''
 })
 
+//
+let amountDom = ref<HTMLInputElement | null>(null)
+let addressDom = ref<HTMLInputElement | null>(null)
+let googleCodeDom = ref<HTMLInputElement | null>(null)
+// 提现表单
 const withdrawForm = reactive({
-  CurrencyCode: route.query?.CurrencyCode,
+  CurrencyCode: route.query?.CurrencyCode as string,
   BlockchainCode: '',
   VerificationCode: '',
   PayeeAddress: '',
@@ -285,7 +290,7 @@ const withdrawForm = reactive({
 })
 
 // 跳转步骤
-const jumpStep = (jumpTo) => {
+const jumpStep = (jumpTo: number) => {
   if (step.value < jumpTo) {
     return false
   }
@@ -321,41 +326,41 @@ const getBalanceList = () => {
 }
 
 // 输入提现金额进行精确计算
-const computeAMount = (arg) => {
+const computeAmount = (arg: number) => {
   percent.value = arg
   const barg = new BigNumber(arg)
-  withdrawForm.Amount = barg.multipliedBy(withdrawBalanceItem.balance)
+  withdrawForm.Amount = barg.multipliedBy(withdrawBalanceItem.balance).toFormat(2)
 }
 
 // USDT 选择trc20或trc20
-const selBlockChain = (item) => {
+const selBlockChain = (item: usdtChainListTypes) => {
   Object.assign(selBlockChainItem, item)
   showBlockChainBox.value = false
   withdrawForm.BlockchainCode = item.code
 }
 
-// 提现步骤选择
+// 提现
 const selTab = () => {
   if (step.value == 1) {
     if (withdrawForm.Amount == '') {
-      document.getElementById('amountInput').focus()
+      amountDom.value?.focus()
       showToast(t('tips.inputWithdrawAmount'))
       return false
     }
-    if (withdrawForm.Amount > withdrawBalanceItem.balance) {
-      document.getElementById('amountInput').focus()
+    if (parseFloat(withdrawForm.Amount) > withdrawBalanceItem.balance) {
+      amountDom.value?.focus()
       showToast(t('tips.overMaxWithdrawAmount'))
       return false
     }
     if (withdrawForm.Amount < minWithdrawAmount.value) {
-      document.getElementById('amountInput').focus()
+      amountDom.value?.focus()
       showToast(t('tips.underMinWithdrawAmount'))
       return false
     }
     step.value = 2
   } else if (step.value == 2) {
     if (withdrawForm.PayeeAddress == '') {
-      document.getElementById('address').focus()
+      addressDom.value?.focus()
       showToast(t('tips.inputWithdrawAddress'))
       return false
     }
@@ -364,12 +369,12 @@ const selTab = () => {
   } else if (step.value == 3) {
     if (userStore.userInfo.isBindGoogleAuth && withdrawForm.VerificationCode == '') {
       showToast(t('tips.googleCode'))
-      document.getElementById('googleCode').focus()
+      googleCodeDom.value?.focus()
       return false
     }
     withdrawOrderApi(withdrawForm)
       .then((resp) => {
-        getTradeDetailApi({ OrderId: resp.data.orderId, orderType: 2 })
+        getTradeDetailApi({ OrderId: resp.data.orderId, orderType: '2' })
           .then((resp) => {
             showToast(t('tips.withdrawSuccess'))
             Object.assign(withdrawDetail, resp.data)
@@ -377,7 +382,7 @@ const selTab = () => {
           .catch((error) => {
             console.log(error)
           })
-        userStore.getUserInfo()
+        userStore.getUserInfo({ noLoading: true })
         step.value = 4
       })
       .catch((error) => {

@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { useUserStore } from '@/store/modules/user'
@@ -37,10 +37,10 @@ import { setBtcUnitApi } from '@/api/fund/index'
 const userStore = useUserStore()
 const { t } = useI18n()
 
-const setBtcUnit = (unit) => {
+const setBtcUnit = (unit: string) => {
   setBtcUnitApi({ CurrencyUnit: unit })
     .then((resp) => {
-      userStore.getUserInfo()
+      userStore.getUserInfo({ noLoading: true })
       console.log(resp)
     })
     .catch((error) => {

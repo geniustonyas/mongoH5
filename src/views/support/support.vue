@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup name="PromoPromo">
+<script setup lang="ts">
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Footer from '@/components/layout/Footer.vue'
 

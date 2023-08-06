@@ -37,7 +37,7 @@ export function getDepositAddressApi(data: Fund.getDepositAddressData) {
 }
 
 /** 创建提现订单 */
-export function withdrawOrderApi(data: Fund.depositData) {
+export function withdrawOrderApi(data: Fund.withdrawOrderData) {
   return request<anyResp>({
     url: 'Member/CreateWithdrawOrder',
     method: 'post',
@@ -47,7 +47,7 @@ export function withdrawOrderApi(data: Fund.depositData) {
 
 /** 获取最低提现金额 */
 export function getMinWithdrawAmountApi(data: Fund.getMinWithdrawAmountData) {
-  return request<Fund.getDepositAddressResp>({
+  return request<Fund.getMinWithdrawAmountResp>({
     url: 'Member/GetMinimumWithdrawAmount',
     method: 'post',
     data

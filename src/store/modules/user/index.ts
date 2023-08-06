@@ -94,7 +94,7 @@ export const useUserStore = defineStore('userInfo', () => {
   const getNewMessageCount = () => {
     return new Promise((resolve, reject) => {
       getNewMessageCountApi({ noLoading: true })
-        .then((resp: any) => {
+        .then((resp) => {
           newMessageCount.value = parseInt(resp.data?.announcementCount) + parseInt(resp.data?.personalLetterCount)
           resolve(resp)
         })

@@ -16,7 +16,7 @@
                   <div class="drop-item" v-for="(item, index) of currenyList" :key="index" @click="selCurrency(item)">
                     <img :src="getAssetsFile(item.icon)" />
                     <span>{{ item.currenyName }}</span>
-                    <Icon name="success" :class="{ active: checkedCurrency.includes(item.code) }" />
+                    <span><Icon v-show="checkedCurrency.includes(item.code)" name="success" class="active" /></span>
                   </div>
                   <div class="drop-btn">
                     <a class="btn btn-primary" @click="confirmCurreny()">{{ t('confirm') }}</a>

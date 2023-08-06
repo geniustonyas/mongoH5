@@ -56,7 +56,7 @@ export function setPrivacyApi(data: Home.setPricacyData) {
 
 /** 获取新消息数量 */
 export function getNewMessageCountApi(data: Home.getNewMessageCountData) {
-  return request<anyResp>({
+  return request<Home.getNewMessageCountResp>({
     url: 'Member/GetNewNotificationCount',
     method: 'post',
     data

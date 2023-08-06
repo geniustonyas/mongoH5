@@ -41,7 +41,17 @@ export interface getNewMessageCountData {
 export interface messageData {
   PageIndex: number
   PageSize: number
-  noLoading?: false
+  NotificationType: number
+  noLoading?: boolean
+}
+
+export interface messageItem {
+  id: string
+  isRead: boolean
+  createTime: string
+  content: string
+  title: string
+  notificationType: string
 }
 
 // 设为已读data
@@ -116,7 +126,8 @@ export interface exchangeRewardData {
   RewardCode: string
 }
 
-export type messageResp = ApiResponseData<{ items: []; pageIndex: string; pageSize: string; pageCount: string; recordCount: string }>
+export type messageResp = ApiResponseData<{ items: messageItem[]; pageIndex: string; pageSize: string; pageCount: string; recordCount: string }>
+export type getNewMessageCountResp = ApiResponseData<{ personalLetterCount: string; announcementCount: string }>
 export type vipInfoResp = ApiResponseData<{ vipList: vipListItemResp[]; currentData: currentDataResp }>
 export type getNextRewardResp = ApiResponseData<getNextRewardResps>
 export type getRewardListResp = ApiResponseData<{ items: getRewardListItem[]; pageIndex: string; pageSize: string; pageCount: string; recordCount: string }>

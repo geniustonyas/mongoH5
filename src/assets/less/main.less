@@ -1299,26 +1299,7 @@ body {
         width: 100%;
     }
 }
-.nodata {
-    .bg(var(--color-menu));
-    margin: 1.5rem;
-    height: 45%;
-    .radius(1rem);
-    .flex();
-    .flex-v();
-    .flex-align();
-    .flex-pack();
 
-    h2 {
-        color: var(--color-white);
-        margin-top: 3rem;
-    }
-
-    svg {
-        font-size: 16rem;
-        color: var(--color-primary);
-    }
-}
 /*会员中心-奖金*/
 .rewards-box {
     padding: 1rem;
@@ -1416,7 +1397,9 @@ body {
 .drop-item { .flex(); .flex-align(); .flex-pack-justify(); .h-lh(4rem);
     padding: 1rem 2rem;
     img { .size(2rem, 2rem) }
-    span { color: var(--color-white);  text-align: left; width: 80%; font-size: 1.4rem ;
+    span { color: var(--color-white);  font-size: 1.4rem ;
+        &:nth-of-type(1) {  text-align: left; width: 80%; margin-left: 1rem; }
+        &:nth-of-type(2) {  text-align: right; .flex-x(); }
         &.active { color: var(--color-primary) }
     }
     .active { color: var(--color-primary) }

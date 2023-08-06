@@ -189,6 +189,8 @@
                 </span>
               </div>
             </div>
+
+            <!-- 游戏筛选 -->
             <Vue3SlideUpDown v-model="showGameOption">
               <div class="gh-b optstion">
                 <div class="form-row">

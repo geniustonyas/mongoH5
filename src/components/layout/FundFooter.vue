@@ -2,7 +2,7 @@
   <dl class="cur-lsit">
     <dt>{{ t('rewards') }}</dt>
     <dd>
-      <a @click="router.push({ name: 'promo' })">
+      <a @click="router.push({ name: 'rewards' })">
         <span> <i class="iconfont icon-rewards" />{{ t('promoCode') }}</span>
         <i class="iconfont icon-right" />
       </a>
@@ -34,12 +34,12 @@
         <i class="iconfont icon-right" />
       </a>
     </dd>
-    <dd>
+    <!-- <dd>
       <a @click="router.push({ name: 'promo' })">
         <span> <i class="iconfont icon-guanyuwomen" />{{ t('faq') }} </span>
         <i class="iconfont icon-right" />
       </a>
-    </dd>
+    </dd> -->
     <dd>
       <a @click="router.push({ name: 'support' })">
         <span> <i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }} </span>

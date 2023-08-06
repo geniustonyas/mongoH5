@@ -33,6 +33,7 @@
             </List>
           </PullRefresh>
         </ul>
+        <Nodata v-if="nodata" :message="t('nodata')" />
       </div>
     </main>
     <div v-show="showAddBox" class="mask-box" id="claimReward">
@@ -65,6 +66,8 @@
 import { ref, reactive } from 'vue'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
+import Nodata from '@/components/Nodata.vue'
+
 import { getRewardListApi, exchangeRewardApi } from '@/api/home'
 import { getRewardListData, getRewardListItem } from '@/api/home/types'
 

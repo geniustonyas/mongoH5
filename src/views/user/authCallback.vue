@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script setup name="UserAuthCallbackVue">
+<script setup lang="ts">
 import { useRoute } from 'vue-router'
 
 const route = useRoute()

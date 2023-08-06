@@ -83,7 +83,7 @@ import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { providerList, providerListItemTypes } from '@/utils/gameProviders'
 
-import { showConfirmDialog } from 'vant'
+import { showConfirmDialog, showToast } from 'vant'
 import { debounce } from 'lodash-es'
 import { useI18n } from 'vue-i18n'
 
@@ -152,6 +152,7 @@ const startGame = (game: getSearchGameRespItem | recommendGameRespItem) => {
         window.location.href = resp.data
       })
       .catch((error) => {
+        showToast('启动游戏失败')
         console.log(error)
       })
   }

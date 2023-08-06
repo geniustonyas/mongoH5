@@ -8,13 +8,13 @@ export interface setDefaultCurrencyData {
   CurrencyCode: string
 }
 
-// 获取充值地址请求参数
+// 充值地址请求参数
 export interface getDepositAddressData {
   BlockchainCode: string
   CurrencyCode: string
 }
 
-// 创建提现订单请求
+// 创建充值订单请求
 export interface depositData {
   CurrencyCode: string | number
   BlockchainCode: string
@@ -23,13 +23,22 @@ export interface depositData {
   Amount: string | number
 }
 
-// 获取提现最低金额
+// 提现最低金额
 export interface getMinWithdrawAmountData {
   BlockchainCode: string
   CurrencyCode: string
 }
 
-// 获取提现最低金额
+// 创建提现订单请求参数
+export interface withdrawOrderData {
+  BlockchainCode: string
+  CurrencyCode: string
+  VerificationCode: string
+  PayeeAddress: string
+  Amount: string | number
+}
+
+// 提现交易详情参数
 export interface getTradeDetailData {
   OrderId: string
   orderType: string
@@ -87,6 +96,7 @@ export interface getRradeRecordResponse {
   gameItemName?: string
 }
 
+// 获取钱包余额
 export interface getBalanceItemResponse {
   balance: string
   name: string
@@ -97,6 +107,7 @@ export interface getBalanceItemResponse {
 }
 
 export type getDepositAddressResp = ApiResponseData<getDepositAddressResponse>
+export type getMinWithdrawAmountResp = ApiResponseData<{ currencyUnit: string; minimumWithdrawAmount: string }>
 export type withdrawOrderResp = ApiResponseData<getTradeDetailResponse>
 export type getRradeRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getRradeRecordResponse[] }>
 export type getBalanceItemResp = ApiResponseData<getBalanceItemResponse[]>

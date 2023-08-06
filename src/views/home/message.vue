@@ -16,7 +16,7 @@
     <main class="main">
       <div class="notifications-box">
         <div v-if="dataList.length > 0" class="nb-head">
-          <a @click="setAllReaded()" :class="(tab == 2 && announcementCount == 0) || (tab == 1 && personalLetterCount == 0) ? 'disable' : ''">{{ t('makeAllRead') }}</a>
+          <a @click="setAllReaded()">{{ t('makeAllRead') }}</a>
         </div>
         <div v-if="dataList.length > 0" class="nb-list">
           <ul style="height: 100%">
@@ -46,19 +46,21 @@
   </div>
 </template>
 
-<script setup name="HomeMessage">
+<script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 import Nodata from '@/components/Nodata.vue'
 
 import { getMessageApi, setReadApi, setAllReadApi } from '@/api/home'
-import { useUserStore } from '@/store/modules/user'
+import { messageItem } from '@/api/home/types'
+
+// import { useUserStore } from '@/store/modules/user'
 import { useI18n } from 'vue-i18n'
 
 import { PullRefresh, List, showToast } from 'vant'
 
-const userStore = useUserStore()
+// const userStore = useUserStore()
 const router = useRouter()
 const { t } = useI18n()
 
@@ -73,13 +75,11 @@ let query = reactive({
   noLoading: false,
   NotificationType: 2
 })
-const announcementCount = ref(0)
-const personalLetterCount = ref(0)
-let dataList = ref([])
+let dataList = ref<messageItem[]>([])
 let nodata = ref(false)
 
 // 切换站内信与通知
-const selTab = (tabValue) => {
+const selTab = (tabValue: number) => {
   tab.value = tabValue
   query.NotificationType = tabValue
   query.PageIndex = 1
@@ -123,7 +123,7 @@ const loadData = () => {
 }
 
 // 设置已读
-const setReaded = (item) => {
+const setReaded = (item: messageItem) => {
   if (item.isRead) {
     return false
   }
@@ -151,15 +151,4 @@ const setAllReaded = () => {
       console.log(error)
     })
 }
-
-userStore
-  .getNewMessageCount()
-  .then((resp) => {
-    announcementCount.value = resp.data.announcementCount
-    personalLetterCount.value = resp.data.personalLetterCount
-    getList()
-  })
-  .catch((error) => {
-    console.log(error)
-  })
 </script>
