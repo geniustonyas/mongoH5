@@ -102,6 +102,37 @@ body {
                 }
             }
         }
+        &.top-head
+        {
+            .hm-l, .hm-r
+            {
+                position: absolute;
+                top: 0;
+                height: 4.8rem;
+                .flex();
+                .flex-align();
+                .flex-pack();
+            }
+
+            .hm-l
+            {
+                left: 0;
+                width: 4.8rem;
+            }
+
+            .hm-r
+            {
+                right: 0;
+                width: 8rem;
+                text-align: right;
+            }
+
+            .hm-m
+            {
+                text-align: center;
+                width: 100%;
+            }
+        }
     }
 
     .head-menu-lf {

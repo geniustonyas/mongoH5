@@ -1,11 +1,14 @@
 <template>
   <div :class="appStore.showSideBar ? 'page open-sidebar' : 'page'">
     <header class="header">
-      <nav class="head-menu">
+      <nav :class="userStore.userInfo.id == '' ? 'head-menu' : 'head-menu top-head'">
         <!-- logo 跳转主页 -->
         <div class="hm-l">
           <a @click="appStore.showSideBar = !appStore.showSideBar" class="icon-btn navbar-left">
             <i class="iconfont icon-zhedie1" />
+          </a>
+          <a v-if="userStore.userInfo.id == ''" class="icon-btn" @click="router.push({ name: 'mall' })">
+            <i class="iconfont icon-shangcheng" />
           </a>
         </div>
 
@@ -25,10 +28,10 @@
 
         <!-- 积分商城或登录注册 -->
         <div class="hm-r">
-          <a class="icon-btn" @click="router.push({ name: 'mall' })">
-            <i class="iconfont icon-shandian" />
-          </a>
           <template v-if="userStore.userInfo.id">
+            <a class="icon-btn" @click="router.push({ name: 'mall' })">
+              <i class="iconfont icon-shangcheng" />
+            </a>
             <a class="icon-btn" @click="router.push({ name: 'message' })">
               <i class="iconfont icon-message" />
               <em v-if="userStore.newMessageCount > 0" class="badge" />
