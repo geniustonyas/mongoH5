@@ -6,6 +6,132 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "589705",
+      "name": "商城",
+      "font_class": "shangcheng4",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "808652",
+      "name": "商城",
+      "font_class": "shangcheng",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "3299556",
+      "name": "商城",
+      "font_class": "shangcheng1",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "5726205",
+      "name": "商城",
+      "font_class": "shangcheng2",
+      "unicode": "e6fa",
+      "unicode_decimal": 59130
+    },
+    {
+      "icon_id": "8224216",
+      "name": "在线商城",
+      "font_class": "shangcheng3",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "16921565",
+      "name": "退出",
+      "font_class": "tuichu1",
+      "unicode": "e7ed",
+      "unicode_decimal": 59373
+    },
+    {
+      "icon_id": "15188386",
+      "name": "google",
+      "font_class": "google",
+      "unicode": "e6eb",
+      "unicode_decimal": 59115
+    },
+    {
+      "icon_id": "348471",
+      "name": "facebook",
+      "font_class": "facebook",
+      "unicode": "eab7",
+      "unicode_decimal": 60087
+    },
+    {
+      "icon_id": "3876347",
+      "name": "line",
+      "font_class": "line",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "4936985",
+      "name": "twitter",
+      "font_class": "twitter",
+      "unicode": "e882",
+      "unicode_decimal": 59522
+    },
+    {
+      "icon_id": "5634871",
+      "name": "telegram-plane",
+      "font_class": "telegram",
+      "unicode": "f246",
+      "unicode_decimal": 62022
+    },
+    {
+      "icon_id": "550337",
+      "name": "密码",
+      "font_class": "mima2",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "736678",
+      "name": "email",
+      "font_class": "email_full",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "1400849",
+      "name": "对",
+      "font_class": "dui",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "17165067",
+      "name": "下降",
+      "font_class": "xj",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "22169652",
+      "name": "上升",
+      "font_class": "ss",
+      "unicode": "e6b6",
+      "unicode_decimal": 59062
+    },
+    {
+      "icon_id": "2061303",
+      "name": "详情1",
+      "font_class": "info",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "3647810",
+      "name": "播放 （fm播放列表）",
+      "font_class": "bofang",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
       "icon_id": "9559012",
       "name": "USDT",
       "font_class": "tether",
