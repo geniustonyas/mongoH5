@@ -1,6 +1,5 @@
 import _ from 'lodash-es'
 import Clipboard from 'clipboard'
-import BigNumber from 'bignumber.js'
 import { showToast } from 'vant'
 import i18n from '@/i18n'
 
@@ -83,8 +82,19 @@ export function loadJs(url: string) {
 }
 
 // 格式化两位小数
-export function moneyFormat(value: any, decimalLength = 2) {
-  return new BigNumber(Math.floor(parseFloat(value) * 100) / 100).toFormat(decimalLength)
+export function moneyFormat(value: any) {
+  let ret = ''
+  const num = parseFloat(value)
+  if (isNaN(num)) {
+    ret = '--'
+  } else {
+    if (num.toString().indexOf('.') == -1) {
+      ret = num + '.00'
+    } else {
+      num.toString().split('.')[1].length < 2 ? (ret = num + '0') : (ret = num.toString())
+    }
+  }
+  return ret
 }
 
 // 将数字货币地址中间部分用4个*号代替

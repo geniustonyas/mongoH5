@@ -252,7 +252,7 @@ const withdrawDetail = reactive({
 })
 // 余额列表
 const withdrawBalanceItem = reactive({
-  balance: 0,
+  balance: '0',
   name: '',
   subtitle: '',
   unit: '',
@@ -316,6 +316,7 @@ const getBalanceList = () => {
       const item = resp.data.find((item) => item.name == getWithdrawAmountForm.CurrencyCode)
       if (item) {
         Object.assign(withdrawBalanceItem, item)
+        computeAmount(percent.value)
         getMinWithdraw()
       }
     })
@@ -326,10 +327,10 @@ const getBalanceList = () => {
 }
 
 // 输入提现金额进行精确计算
-const computeAmount = (arg: number) => {
-  percent.value = arg
-  const barg = new BigNumber(arg)
-  withdrawForm.Amount = barg.multipliedBy(withdrawBalanceItem.balance).toFormat(2)
+const computeAmount = (rate: number) => {
+  percent.value = rate
+  const bigBalance = new BigNumber(withdrawBalanceItem.balance)
+  withdrawForm.Amount = bigBalance.times(rate).valueOf()
 }
 
 // USDT 选择trc20或trc20
@@ -347,7 +348,7 @@ const selTab = () => {
       showToast(t('tips.inputWithdrawAmount'))
       return false
     }
-    if (parseFloat(withdrawForm.Amount) > withdrawBalanceItem.balance) {
+    if (parseFloat(withdrawForm.Amount) > parseFloat(withdrawBalanceItem.balance)) {
       amountDom.value?.focus()
       showToast(t('tips.overMaxWithdrawAmount'))
       return false

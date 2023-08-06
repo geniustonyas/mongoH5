@@ -769,7 +769,8 @@
     </main>
     <ConfigProvider theme="dark">
       <Popup id="goodsDetails" v-model:show="showGoodsDetails" position="bottom" round style="padding: 0px 15px; padding-top: 20px" :closeable="true">
-        <div v-if="currentGoodsItem.productType == 0" class="goods-details-box">
+        <!-- v-show改为v-if会导致swiper读取不到classList报错： https://github.com/nolimits4web/swiper/labels/bug%20confirmed -->
+        <div v-show="currentGoodsItem.productType == 0" class="goods-details-box">
           <div class="g-top">
             <div class="goods-name">{{ currentGoodsItem.name }}</div>
             <div class="goods-sub">{{ currentGoodsItem.intro }}</div>
@@ -794,7 +795,7 @@
             </a>
           </div>
         </div>
-        <div v-else class="bonus-details-box">
+        <div v-show="currentGoodsItem.productType != 0" class="bonus-details-box">
           <div class="b-top">{{ currentGoodsItem.name }}</div>
           <div class="b-mid">
             <div class="bm-title">You will get</div>
@@ -943,7 +944,7 @@ const exhangeGoods = () => {
       .then(() => {
         showToast('兑换成功')
         showGoodsDetails.value = false
-        userStore.getUserInfo({ noLoading: false })
+        userStore.getUserInfo({ noLoading: true })
       })
       .catch((error) => {
         console.log(error)
