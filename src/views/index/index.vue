@@ -477,11 +477,11 @@
             <p>{{ t('at') }} {{ betDetailsItem.betTime.replace('T', ' ') }}</p>
             <div class="b-info">
               <p>{{ t('bets') }}</p>
-              <h3>{{ betDetailsItem.betAmount }}<img :src="getAssetsFile('payment/tether.png')" /></h3>
+              <h3>{{ moneyFormat(betDetailsItem.betAmount) }}<img :src="getAssetsFile('payment/tether.png')" /></h3>
               <p>{{ t('multiplier') }}</p>
               <h3>{{ betDetailsItem.winRate }}x</h3>
               <p>{{ t('paymentAmount') }}</p>
-              <h4>{{ betDetailsItem.winAmount }}<img :src="getAssetsFile('payment/tether.png')" /></h4>
+              <h4>{{ moneyFormat(betDetailsItem.winAmount) }}<img :src="getAssetsFile('payment/tether.png')" /></h4>
             </div>
             <div class="b-gm">
               <a @click="startGame(betDetailsItem.gameId)">{{ t('goto') }} {{ betDetailsItem.gameName }}</a>

@@ -131,6 +131,10 @@ const loadData = () => {
 
 // 兑换奖励
 const exchangeReward = () => {
+  if (rewardCode.value == '') {
+    showToast('请输入兑换码')
+    return false
+  }
   exchangeRewardApi({ RewardCode: rewardCode.value })
     .then(() => {
       showToast('领取成功')
