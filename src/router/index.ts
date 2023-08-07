@@ -17,6 +17,24 @@ const routes = [
     meta: { transition: '', needLogin: false }
   },
   {
+    path: '/sports',
+    name: 'sports',
+    component: () => import('@/views/sports/sports.vue'),
+    meta: { transition: '', needLogin: false }
+  },
+  {
+    path: '/casino',
+    name: 'casino',
+    component: () => import('@/views/casino/casino.vue'),
+    meta: { transition: '', needLogin: false }
+  },
+  {
+    path: '/slots',
+    name: 'slots',
+    component: () => import('@/views/slots/slots.vue'),
+    meta: { transition: '', needLogin: false }
+  },
+  {
     path: '/fund',
     component: AppMain,
     children: [

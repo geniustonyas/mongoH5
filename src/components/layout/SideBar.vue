@@ -29,9 +29,9 @@
       </nav>
       <!-- 首页tab切换 -->
       <nav class="m-menu">
-        <a @click="changeTab('sports')"> <img :src="getAssetsFile('svg/sports.svg')" />{{ t('sports') }} </a>
-        <a @click="changeTab('livecasino')"> <img :src="getAssetsFile('svg/livecasino.svg')" />{{ t('liveCasino') }}</a>
-        <a @click="changeTab('slots')"> <img :src="getAssetsFile('svg/slots.svg')" />{{ t('slots') }} </a>
+        <a @click="routeToGame('sports', null)"> <img :src="getAssetsFile('svg/sports.svg')" />{{ t('sports') }} </a>
+        <a @click="routeToGame('casino', null)"> <img :src="getAssetsFile('svg/livecasino.svg')" />{{ t('liveCasino') }}</a>
+        <a @click="routeToGame('slots', null)"> <img :src="getAssetsFile('svg/slots.svg')" />{{ t('slots') }} </a>
       </nav>
       <!-- 游戏菜单列表 -->
       <nav class="sm-menulist">
@@ -40,7 +40,7 @@
           <h2 @click="collapseSport = !collapseSport">{{ t('sports') }}<i class="iconfont icon-down" /></h2>
           <Vue3SlideUpDown v-model="collapseSport">
             <ul>
-              <li v-for="(item, index) of sportProviderList" :key="index" @click="startGame(item)">
+              <li v-for="(item, index) of sportProviderList" :key="index" @click="startGame(item.id)">
                 <a><img v-lazy="item.img" />{{ item.name }}</a>
               </li>
             </ul>
@@ -52,7 +52,7 @@
           <h2 @click="collapseLiveCashno = !collapseLiveCashno">{{ t('liveCasino') }}<i class="iconfont icon-down" /></h2>
           <Vue3SlideUpDown v-model="collapseLiveCashno">
             <ul>
-              <li v-for="(item, index) of casinoProviderList" :key="index" @click="selGameProvider(item)">
+              <li v-for="(item, index) of casinoProviderList" :key="index" @click="routeToGame(item.tab, { providerId: item.id })">
                 <a><img v-lazy="item.img" />{{ item.name }}</a>
               </li>
             </ul>
@@ -64,7 +64,7 @@
           <h2 @click="collapseSlots = !collapseSlots">Slots<i class="iconfont icon-down" /></h2>
           <Vue3SlideUpDown v-model="collapseSlots">
             <ul>
-              <li v-for="(item, index) of slotsProviderList" :key="index" @click="selGameProvider(item)">
+              <li v-for="(item, index) of slotsProviderList" :key="index" @click="routeToGame(item.tab, { providerId: item.id })">
                 <a><img v-lazy="item.img" />{{ item.name }}</a>
               </li>
             </ul>
@@ -107,10 +107,11 @@
       <nav class="m-rate">
         1
         <b>{{ props.currencyCode }}</b>
-        = {{ moneyFormat(props.cxchangeRate) }}
+        = {{ moneyFormat(props.exchangeRate) }}
         <b>USDT</b>
       </nav>
     </section>
+    <Language ref="langDom" />
   </aside>
 </template>
 
@@ -119,28 +120,32 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
+import Language from '@/components/Language.vue'
+
 // 引用方法
 import { languages } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
-import { PlatForm } from '@/utils/constant'
 import { providerList, providerListItemTypes } from '@/utils/gameProviders'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
-import { getGameUrlApi } from '@/api/game/index'
+import { startGame } from '@/composables/startGame'
+
 //第三方插件
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-import { showConfirmDialog, showToast } from 'vant'
-
-const props = defineProps({
-  currencyCode: { type: String, required: true, default: '' },
-  cxchangeRate: { type: String, required: true, default: '' }
-})
-const emit = defineEmits(['toggleTab', 'selGameProvider', 'showLanguage'])
+import { showToast } from 'vant'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
 const router = useRouter()
 const { t, locale } = useI18n()
+
+const props = defineProps({
+  currencyCode: { type: String, required: true, default: '' },
+  exchangeRate: { type: String, required: true, default: '' }
+})
+
+// 语言选择组件dom
+let langDom = ref()
 
 // 侧边框游戏提供商列表
 const sportProviderList = ref<providerListItemTypes[]>([])
@@ -156,44 +161,16 @@ let collapseSport = ref(true)
 let collapseLiveCashno = ref(true)
 let collapseSlots = ref(true)
 
-// 切换首页游戏tab
-const changeTab = (tab: string) => {
-  emit('toggleTab', tab)
+// 跳转到游戏
+const routeToGame = (routeName: string, query: any) => {
+  router.push({ name: routeName, query: query })
   appStore.showSideBar = !appStore.showSideBar
 }
 
-// 选择游戏提供商
-const selGameProvider = (item: providerListItemTypes) => {
-  emit('toggleTab', item.tab)
-  emit('selGameProvider', item.id)
-  appStore.showSideBar = !appStore.showSideBar
-}
-
-// 启动游戏列表
-const startGame = (item: providerListItemTypes) => {
-  if (!userStore.userInfo.id) {
-    showConfirmDialog({
-      title: t('tips.noLogin'),
-      message: t('tips.goLogin')
-    })
-      .then(() => {
-        router.push({ name: 'login' })
-      })
-      .catch(() => {
-        return false
-      })
-  } else {
-    getGameUrlApi({ id: item.id, platform: PlatForm.H5 })
-      .then((resp) => {
-        window.location.href = resp.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
-}
-
+// 显示语言选择框
 const showLanguage = () => {
-  emit('showLanguage')
+  if (langDom.value) {
+    langDom.value.showLangPick = true
+  }
 }
 </script>
