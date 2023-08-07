@@ -206,7 +206,7 @@ export default {
   readMore: '查看详情',
   sports: '体育',
   liveCasino: '真人荷官',
-  slots: '娱乐场',
+  slots: '老虎机',
   sbSport: '沙巴体育',
   fbSport: 'FB体育',
   downloadApp: '下载APP',
@@ -225,7 +225,12 @@ export default {
   promotions: '促销活动',
   aboutUs: '关于我们',
   selectLanguage: '选择语言',
-
+  ruleTerms: '规则和条款',
+  responsibleGambling: '负责任博彩',
+  amlPolicy: '反洗钱政策',
+  selfExclusion: '自我排除',
+  privacyPolicy: '隐私策略',
+  fairness: '公平性',
   game: '游戏',
   followUs: '关注我们',
   language: '语言',
@@ -274,8 +279,8 @@ export default {
   // 游戏提供商
   provider: {
     all: '全部',
-    sabaSports: 'Saba Sports',
-    fbSports: 'FBSports',
+    sabaSports: '沙巴体育',
+    fbSports: 'FB体育',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
     ezugi: 'Ezugi',
