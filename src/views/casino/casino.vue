@@ -53,11 +53,11 @@
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="appStore.cdnurl + item.img" />
-                <!-- <span class="red">FEATURED</span> -->
+                <span>{{ item.pn }}</span>
               </div>
               <div class="i-txt">
                 <strong>{{ item.name }}</strong>
-                <!-- <span>{{ item.pname }}</span> -->
+                <span>{{ item.pn }}</span>
               </div>
             </div>
           </div>

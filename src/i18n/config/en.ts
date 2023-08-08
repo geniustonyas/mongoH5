@@ -284,12 +284,12 @@ export default {
         evolution: 'Evolution',
         bombayLive: 'Bombay Live',
         ezugi: 'Ezugi',
-        asiaGaming: 'AsiaGaming',
+        asiaGaming: 'Asia Gaming',
         pragmaticPlay: 'Pragmatic Play',
         playingo: "Play'n Go",
         netEnt: 'NetEnt',
         playTech: 'PlayTech',
-        microgaming: 'Microgaming'
+        microgaming: 'Micro gaming'
     },
 
     // 数据验证提示
