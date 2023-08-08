@@ -19,7 +19,7 @@
             <a>
               <label>+</label>
               <span>{{ moneyFormat(userStore.userInfo?.balance) }}</span>
-              {{ userStore.userInfo?.defaultCurrencyCode == 'btc' ? userStore.userInfo?.btcUnit?.currencyUnit : userStore.userInfo?.defaultCurrencyCode }}
+              {{ userStore.userInfo?.defaultCurrencyCode == '10' ? userStore.userInfo?.btcUnit?.currencyUnit : userStore.userInfo?.defaultCurrencyCode }}
             </a>
           </div>
         </template>

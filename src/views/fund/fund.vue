@@ -1,11 +1,13 @@
 <template>
   <div class="page">
+    <!-- 头部 -->
     <CommonHeader :title="t('fundAccount')" />
     <main class="main">
       <div class="fund-box">
         <div class="fb-row line">
           <div class="row-body">
             <div class="r-title">{{ t('activeBalance') }}</div>
+            <!-- 余额框 -->
             <div v-if="selCurrencyItem.name != ''" class="r-card">
               <div class="rc-l">
                 <img :src="getAssetsFile(`coin/${selCurrencyItem.name.toLocaleLowerCase()}.svg`)" />
@@ -14,6 +16,7 @@
                   <small>{{ selCurrencyItem.name }}</small>
                 </span>
               </div>
+              <!-- 弹出余额列表框 -->
               <div class="rc-r" @click="showCurrencyItemBox = true">
                 <span>
                   <b>{{ moneyFormat(selCurrencyItem.balance) }} {{ selCurrencyItem.unit }}</b>
@@ -25,6 +28,7 @@
           </div>
         </div>
         <div class="fb-row">
+          <!-- 选择余额 -->
           <div class="row-body">
             <div class="inner-tabs">
               <span :class="{ active: fundTab == 'deposit' }" @click="fundTab = 'deposit'">{{ t('deposit') }}</span>
@@ -34,6 +38,7 @@
             <div v-show="fundTab == 'deposit'">
               <div class="r-title">{{ t('youDepositAddress') }}</div>
               <div class="r-group-card">
+                <!-- 选择链 -->
                 <div v-show="selCurrencyItem.name == 'USDT'" class="gc-t" @click="showBlockChainBox = true">
                   <div class="t-l">
                     <div class="t-icon">
@@ -49,6 +54,8 @@
                     <i class="iconfont icon-down" />
                   </div>
                 </div>
+
+                <!-- 充值地址二维码. 汇率 -->
                 <div class="gc-m">
                   <template v-if="depositInfo.walletAddress != ''">
                     <Vue3SlideUpDown v-model="showDepositQrcode">
@@ -67,6 +74,8 @@
                     </p>
                   </div>
                 </div>
+
+                <!-- 充值地址 -->
                 <div class="gc-b">
                   <div class="b-l">
                     <small>{{ t('address') }}</small>
@@ -142,7 +151,7 @@
           </div>
         </div>
         <FundFooter />
-        <!-- 选择币种 -->
+        <!-- 选择余额 -->
         <ConfigProvider theme="dark">
           <Popup id="promotion" v-model:show="showCurrencyItemBox" position="bottom" round style="padding: 0px 15px; padding-top: 20px" :closeable="true" @close="depositTab = 'digital'">
             <div class="fund-pop-box">
@@ -154,6 +163,7 @@
                 <span :class="{ active: depositTab == 'digital' }" @click="depositTab = 'digital'">{{ t('cryptoCurrency') }}</span>
                 <span :class="{ active: depositTab == 'bank' }" @click="depositTab = 'bank'">{{ t('bank') }}</span>
               </div>
+              <!-- 选择数字货币 -->
               <ul v-show="depositTab == 'digital'" class="bb-cont">
                 <li v-for="(item, index) of digitalList" :key="index" @click="selCurrency(item)">
                   <img :src="getAssetsFile(`coin/${item.name.toLocaleLowerCase()}.svg`)" />
@@ -167,6 +177,7 @@
                   </div>
                 </li>
               </ul>
+              <!-- 选择银行 -->
               <ul v-show="depositTab == 'bank'" class="bb-cont">
                 <li v-for="(item, index) of bankList" :key="index" @click="selCurrency(item)">
                   <img :src="getAssetsFile(`coin/${item.name.toLocaleLowerCase()}.svg`)" />
@@ -217,7 +228,7 @@ import { useRoute, useRouter } from 'vue-router'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 import FundFooter from '@/components/layout/FundFooter.vue'
 // import { getExchangeRateApi } from '@/api/app/index'
-import { getBalanceApi, getDepositAddressApi } from '@/api/fund/index'
+import { getBalanceApi, getDepositAddressApi, setDefaultCurrencyApi } from '@/api/fund/index'
 import { getBalanceItemResponse } from '@/api/fund/types'
 import { getAssetsFile, copy, moneyFormat, formatAddress } from '@/utils'
 import { usdtChainList, usdtChainListTypes } from '@/utils/blockChain'
@@ -226,21 +237,25 @@ import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { ConfigProvider, Popup } from 'vant'
+import { useUserStore } from '@/store/modules/user'
+import { cloneDeep } from 'lodash-es'
 
+const userStore = useUserStore()
 const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 
+// 数字货币和银行切换
 const depositTab = ref('digital')
-const fundTab = ref<string>('deposit')
-if (route.query.tab) {
-  fundTab.value = route.query.tab as any
-}
+
+// 存款|提款|购买数字货币切换
+const fundTab = ref('deposit')
+
 // 余额列表
-let showCurrencyItemBox = ref(false)
-let digitalList = ref<getBalanceItemResponse[]>([])
-let bankList = ref<getBalanceItemResponse[]>([])
-let selCurrencyItem = reactive<getBalanceItemResponse>({
+const showCurrencyItemBox = ref(false)
+const digitalList = ref<getBalanceItemResponse[]>([])
+const bankList = ref<getBalanceItemResponse[]>([])
+const selCurrencyItem = reactive<getBalanceItemResponse>({
   balance: '',
   name: '',
   subtitle: '',
@@ -248,9 +263,10 @@ let selCurrencyItem = reactive<getBalanceItemResponse>({
   currencyType: '',
   usdAmount: ''
 })
+
 // 如果是USDT 选择转账链
-let showBlockChainBox = ref(false)
-let selBlockChainItem = reactive({
+const showBlockChainBox = ref(false)
+const selBlockChainItem = reactive({
   chainName: '',
   subtitle: '',
   code: '',
@@ -258,7 +274,7 @@ let selBlockChainItem = reactive({
 })
 
 // 充值地址列表
-let depositInfo = reactive({
+const depositInfo = reactive({
   channelId: 0,
   channelCode: '',
   channelName: '',
@@ -272,31 +288,19 @@ let depositInfo = reactive({
   exchangeRate: 0,
   minDepositAmount: 0
 })
-let showDepositQrcode = ref(false)
-
-// let currencyCode = ref('')
-// let cxchangeRate = ref('')
-
-// // 获取汇率
-// const getExchangeRate = () => {
-//   getExchangeRateApi()
-//     .then((resp) => {
-//       currencyCode.value = resp.data[0].currencyCode
-//       cxchangeRate.value = resp.data[0].cxchangeRate
-//     })
-//     .catch((error) => {
-//       console.log(error)
-//     })
-// }
+const defaultDepositInfo = cloneDeep(depositInfo)
+const showDepositQrcode = ref(false)
 
 // 获取余额列表
 const getBalanceList = () => {
   getBalanceApi()
     .then((resp) => {
       if (resp.data.length > 0) {
-        selCurrency(resp.data[0])
+        // 根据默认币种获取余额
+        const item = resp.data.find((item) => item.name == userStore.userInfo.defaultCurrencyCode)
+        selCurrency(item ? item : resp.data[0])
         digitalList.value = resp.data.filter((item) => item.currencyType != '20')
-        bankList.value = resp.data.filter((item) => item.currencyType == '20')
+        // bankList.value = resp.data.filter((item) => item.currencyType == '20')
         showDepositQrcode.value = false
       }
     })
@@ -308,11 +312,28 @@ const getBalanceList = () => {
 // 选择币种余额
 const selCurrency = (item: getBalanceItemResponse) => {
   Object.assign(selCurrencyItem, item)
+  // 如果是usdt, 则设置默认链为trc20
   if (selCurrencyItem.name == 'USDT') {
     Object.assign(selBlockChainItem, usdtChainList[1])
   }
   showCurrencyItemBox.value = false
+  // 切换币种
+  if (userStore.userInfo.defaultCurrencyCode != selCurrencyItem.name) {
+    setDefaultCurrency()
+  }
+  // 获取充值地址
   getDeposit()
+}
+
+// 设置默认币种并刷新用户信息
+const setDefaultCurrency = () => {
+  setDefaultCurrencyApi({ CurrencyCode: selCurrencyItem.name })
+    .then(() => {
+      userStore.getUserInfo({ noLoading: false })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
 // USDT 选择trc20或trc20
@@ -329,18 +350,24 @@ const getDeposit = () => {
       Object.assign(depositInfo, resp.data)
     })
     .catch((error) => {
+      Object.assign(depositInfo, defaultDepositInfo)
       console.log(error)
     })
 }
 
+// 打开购买加密货币链接
 const openBourse = (url: string) => {
   window.open(url)
 }
 
+// 初始化赋值
 onMounted(() => {
   copy('.copy')
 })
 
-// getExchangeRate()
+if (route.query.tab) {
+  fundTab.value = route.query.tab as any
+}
+
 getBalanceList()
 </script>
