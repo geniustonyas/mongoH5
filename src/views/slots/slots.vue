@@ -26,9 +26,9 @@
                 <ConfigProvider theme="dark">
                   <DropdownMenu v-if="pslist.length > 0" direction="down">
                     <DropdownItem :title="t('allProviders')" ref="currenyDom" teleport="body">
-                      <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(item.id)">
+                      <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(parseInt(item.id))">
                         <span :class="{ active: query.ps.includes(parseInt(item.id)) }">{{ item.name }}({{ item.count }})</span>
-                        <Icon name="success" :class="{ active: query.ps.includes(parseInt(item.id)) }" />
+                        <span><Icon v-show="query.ps.includes(parseInt(item.id))" name="success" class="active" /></span>
                       </div>
                     </DropdownItem>
                   </DropdownMenu>
@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watchEffect } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
@@ -129,13 +129,13 @@ let cslist = ref<getGameListRespItem[]>([])
 let dataList = ref<getGameListGsItemResp[]>([])
 
 // 选择运营商
-const selGameProvider = (id: string) => {
+const selGameProvider = (id: number) => {
   showGameOption.value = true
-  const index = query.ps.indexOf(parseInt(id))
+  const index = query.ps.indexOf(id)
   if (index > -1) {
     query.ps.splice(index, 1)
   } else {
-    query.ps.push(parseInt(id))
+    query.ps.push(id)
   }
   query.page = 1
   dataList.value = []
@@ -174,13 +174,17 @@ const loadMore = () => {
 }
 
 // 观察路由请求参数providerId变化
-watchEffect(() => {
-  if (route.query.providerId) {
-    showGameOption.value = true
-    query.ps = [parseInt(route.query.providerId as string)]
-  } else {
-    query.ps = []
-  }
-  getGameList()
-})
+watch(
+  () => route.query.providerId,
+  (val) => {
+    if (val) {
+      showGameOption.value = true
+      query.ps = [parseInt(route.query.providerId as string)]
+    } else {
+      query.ps = []
+    }
+    getGameList()
+  },
+  { immediate: true }
+)
 </script>
