@@ -18,7 +18,7 @@
                 <span>优质体验</span>
               </div>
               <div class="ir-c">
-                <a class="btn btn-primary" @click="startGame('1')">立即开始</a>
+                <a class="btn btn-primary" @click="startGame(1439)">立即开始</a>
               </div>
             </div>
           </div>

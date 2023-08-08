@@ -14,7 +14,7 @@ const { t } = i18n.global
  * 启动游戏
  * @param id 游戏id
  */
-export function startGame(gameId: string) {
+export function startGame(gameId: string | number) {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
       title: t('tips.noLogin'),
