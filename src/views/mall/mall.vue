@@ -25,7 +25,7 @@
               <dl>
                 <dt>Earn Points</dt>
                 <dd>
-                  <a @click="router.push({ name: 'index', query: { tab: 'sports' } })">
+                  <a @click="router.push({ name: 'sport' })">
                     <div class="a-l">
                       <i class="iconfont icon-ball-1" />
                     </div>
@@ -39,7 +39,7 @@
                   </a>
                 </dd>
                 <dd>
-                  <a @click="router.push({ name: 'index', query: { tab: 'livecasino' } })">
+                  <a @click="router.push({ name: 'casino' })">
                     <div class="a-l">
                       <i class="iconfont icon-qipai3" />
                     </div>
@@ -53,7 +53,7 @@
                   </a>
                 </dd>
                 <dd>
-                  <a @click="router.push({ name: 'index', query: { tab: 'slots' } })">
+                  <a @click="router.push({ name: 'slots' })">
                     <div class="a-l">
                       <i class="iconfont icon-losts" />
                     </div>
