@@ -71,7 +71,7 @@
               <td>{{ item.gameName }}</td>
               <td>
                 <template v-if="item.memberuserName == ''">
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>Hidden
+                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>{{ t('invisibility') }}
                 </template>
                 <template v-else>
                   {{ item.memberuserName }}

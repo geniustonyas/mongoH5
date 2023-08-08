@@ -24,7 +24,7 @@
           <Vue3SlideUpDown v-model="showGameOption">
             <div class="gh-b optstion">
               <div class="form-row">
-                <label class="form-label">Providers</label>
+                <label class="form-label">{{ t('providers') }}</label>
                 <ConfigProvider theme="dark">
                   <DropdownMenu v-if="pslist.length > 0" direction="down">
                     <DropdownItem title="All Game Providers" ref="currenyDom">
@@ -37,7 +37,7 @@
                 </ConfigProvider>
               </div>
               <div class="form-row">
-                <label class="form-label">Sort by</label>
+                <label class="form-label">{{ t('sortBy') }}</label>
                 <ConfigProvider theme="dark">
                   <DropdownMenu v-if="pslist.length > 0" direction="down">
                     <DropdownItem v-model="query.sortBy" :options="sortBy" @change="sortGame()" />
@@ -53,7 +53,7 @@
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="appStore.cdnurl + item.img" />
-                <span>{{ item.pn }}</span>
+                <!-- <span>{{ item.pn }}</span> -->
               </div>
               <div class="i-txt">
                 <strong>{{ item.name }}</strong>

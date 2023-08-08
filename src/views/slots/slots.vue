@@ -28,7 +28,7 @@
                     <DropdownItem :title="t('allProviders')" ref="currenyDom" teleport="body">
                       <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(parseInt(item.id))">
                         <span :class="{ active: query.ps.includes(parseInt(item.id)) }">{{ item.name }}({{ item.count }})</span>
-                        <span><Icon v-show="query.ps.includes(parseInt(item.id))" name="success" class="active" /></span>
+                        <Icon name="success" class="active" />
                       </div>
                     </DropdownItem>
                   </DropdownMenu>

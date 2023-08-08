@@ -15,17 +15,19 @@
         </div>
         <!-- tab切换 -->
         <div class="line-tabs" id="mk-tabs">
-          <span :class="{ active: tab == 'rewards' }" @click="toggleTab('rewards')">REWARDS</span>
-          <span :class="{ active: tab == 'stats' }" @click="toggleTab('stats')">MY STATS</span>
+          <span :class="{ active: tab == 'rewards' }" @click="toggleTab('rewards')">{{ t('rewardsBig') }}</span>
+          <span :class="{ active: tab == 'stats' }" @click="toggleTab('stats')">
+            {{ t('myStats') }}
+          </span>
         </div>
         <div class="tab-content">
           <div v-show="tab == 'rewards'" class="tc-box">
             <!-- 赚取积分 -->
             <div class="earn-points">
               <dl>
-                <dt>Earn Points</dt>
+                <dt>{{ t('earnPoints') }}</dt>
                 <dd>
-                  <a @click="router.push({ name: 'sport' })">
+                  <a @click="router.push({ name: 'sports' })">
                     <div class="a-l">
                       <i class="iconfont icon-ball-1" />
                     </div>
@@ -70,7 +72,7 @@
             </div>
             <!-- 商品列表 -->
             <div class="exclusive-rewards">
-              <h2>Exclusive Rewards</h2>
+              <h2>{{ t('exclusiveRewards') }}</h2>
               <div v-if="goodsList.length > 0" class="list">
                 <template v-for="(item, index) of goodsList" :key="index">
                   <div v-if="item.productType == 0" class="item" @click="showDetails(item)">
@@ -128,7 +130,7 @@
             </div> -->
             <!-- 筹码 -->
             <div class="quick-buys">
-              <h2>Quick Buys</h2>
+              <h2>{{ t('quickBuys') }}</h2>
               <div v-if="goodsList.length > 0" class="list">
                 <template v-for="(item, index) of goodsList" :key="index">
                   <div v-if="item.productType == 1" class="item" @click="showDetails(item)">
@@ -136,7 +138,7 @@
                       <div class="ic-t sbg1">
                         <div class="ic-info">
                           <b><i class="iconfont icon-tether" />{{ item.amount }}</b>
-                          <span>{{ item.intro }} x multiplier</span>
+                          <span>{{ item.intro }} x {{ t('multiplier') }}</span>
                         </div>
                         <div class="ic-bg" />
                         <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hwlbks" focusable="false" viewBox="0 65 500 400" aria-hidden="true" id="quick-buy-pattern">
@@ -689,10 +691,10 @@
               </div>
             </div> -->
             <div class="ws-box">
-              <div class="wb-title"><i class="iconfont icon-shandian" />History</div>
+              <div class="wb-title"><i class="iconfont icon-shandian" />{{ t('pointsHistory') }}</div>
               <div class="line-tabs">
-                <span :class="{ active: query.AdjustType == 1 }" @click="toggleRecord(1)">Earned</span>
-                <span :class="{ active: query.AdjustType == 2 }" @click="toggleRecord(2)">Spent</span>
+                <span :class="{ active: query.AdjustType == 1 }" @click="toggleRecord(1)">{{ t('earned') }}</span>
+                <span :class="{ active: query.AdjustType == 2 }" @click="toggleRecord(2)">{{ t('spent') }}</span>
               </div>
               <div v-if="integralList.length > 0" class="points-list">
                 <div class="pl-head">
@@ -758,8 +760,8 @@
                   </svg>
                 </div>
                 <div class="wb-mark">
-                  <h3>Earn Lightning Points and track them here.</h3>
-                  <p>View a record of all your Lightning Point earnings.</p>
+                  <h3>{{ t('earnPointsAndTrack') }}</h3>
+                  <p>{{ t('viewPointsRecord') }}</p>
                 </div>
               </template>
             </div>
@@ -790,30 +792,28 @@
           <div class="g-btm" v-html="currentGoodsItem.description" />
           <div class="g-btn">
             <a :class="parseFloat(userStore.userInfo.integral) >= parseFloat(currentGoodsItem.price) ? 'btn btn-primary' : 'btn btn-primary disabled'" @click="exhangeGoods">
-              BUY NOW |
-              <i class="iconfont icon-shandian" /> {{ moneyFormat(currentGoodsItem.price) }}
+              {{ t('buyNow') }} |<i class="iconfont icon-shandian" /> {{ moneyFormat(currentGoodsItem.price) }}
             </a>
           </div>
         </div>
         <div v-show="currentGoodsItem.productType != 0" class="bonus-details-box">
           <div class="b-top">{{ currentGoodsItem.name }}</div>
           <div class="b-mid">
-            <div class="bm-title">You will get</div>
+            <div class="bm-title">{{ t('youWillGet') }}</div>
             <div class="bm-cont">
               <div class="bmc">
                 <h5>{{ currentGoodsItem.name }}</h5>
-                <h6>Bonus value</h6>
+                <h6>{{ t('bonusValue') }}</h6>
               </div>
               <div class="bmc">
                 <h5>1 X</h5>
-                <h6>Wagering requirement</h6>
+                <h6>{{ t('wageringRequirement') }}</h6>
               </div>
             </div>
           </div>
           <div class="b-btn">
             <a :class="parseFloat(userStore.userInfo.integral) >= parseFloat(currentGoodsItem.price) ? 'btn btn-primary' : 'btn btn-primary disabled'" @click="exhangeGoods">
-              BUY NOW |
-              <i class="iconfont icon-shandian" /> {{ moneyFormat(currentGoodsItem.price) }}
+              {{ t('buyNow') }} | <i class="iconfont icon-shandian" /> {{ moneyFormat(currentGoodsItem.price) }}
             </a>
           </div>
         </div>

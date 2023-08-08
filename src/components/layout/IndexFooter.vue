@@ -27,7 +27,7 @@
         <a @click="router.push({ name: 'sports' })">{{ t('sports') }}</a>
       </dd>
       <dd>
-        <a @click="router.push({ name: 'casino' })">{{ t('casino') }}</a>
+        <a @click="router.push({ name: 'casino' })">{{ t('liveCasino') }}</a>
       </dd>
       <dd>
         <a @click="router.push({ name: 'slots' })">{{ t('slots') }}</a>

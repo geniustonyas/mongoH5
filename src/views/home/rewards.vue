@@ -135,19 +135,19 @@ const loadData = () => {
 // 兑换奖励
 const exchangeReward = () => {
   if (rewardCode.value == '') {
-    showToast('请输入兑换码')
+    showToast(t('tips.inputExhangeCode'))
     return false
   }
   exchangeRewardApi({ RewardCode: rewardCode.value })
     .then(() => {
-      showToast('领取成功')
+      showToast(t('tips.receivedRewardSuccess'))
       showAddBox.value = false
       query.PageIndex = 1
       rewardList.value = []
       getRewardList()
     })
     .catch((error) => {
-      showToast('领取失败')
+      showToast(t('tips.receivedRewardFail'))
       console.log(error)
     })
 }

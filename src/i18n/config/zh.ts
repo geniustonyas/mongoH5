@@ -346,9 +346,27 @@ export default {
     invalidThirdUser: '验证第三方用户失败',
     authFail: '授权失败',
     copySuccess: '复制成功',
-    copyFail: '该浏览器不支持自动复制，请手动复制'
+    copyFail: '该浏览器不支持自动复制，请手动复制',
+    inputExhangeCode: '请输入兑换码',
+    startGameFail: '启动游戏失败',
   },
 
+  rewardsBig: '奖励',
+  myStats: '积分记录',
+  exclusiveRewards: '专属奖励',
+  quickBuys: '快速购买',
+  earned: '赚取',
+  spent: '消费',
+  pointsHistory: '积分记录',
+  earnPointsAndTrack: '赚取积分并跟踪他们',
+  viewPointsRecord: '查看您所有的积分消费记录',
+  buyNow: '立即兑换',
+  youWillGet: '您将获得',
+  bonusValue: '筹码价值',
+  wageringRequirement: '投注要求',
+  enableVisible: '启用隐身模式',
+  hiddenYourBet: '您的投注不会出现在公开投注动态和投注预览中',
+  startNow: '立即开始',
   // 条款协议等内容
   html: {
     // html标题

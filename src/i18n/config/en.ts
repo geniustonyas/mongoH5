@@ -349,6 +349,22 @@ export default {
         copyFail: 'The browser does not support automatic copying, please copy manually'
     },
 
+    rewardsBig: 'REWARDS',
+    myStats: 'MYSTATS',
+    exclusiveRewards: 'exclusive Rewards',
+    quickBuys: 'Quick Buys',
+    earned: 'Earned',
+    spent: 'Spent',
+    pointsHistory: 'History',
+    earnPointsAndTrack: 'Earn Lightning Points and track them here.',
+    viewPointsRecord: 'View a record of all your Lightning Point earnings.',
+    buyNow: 'BUY NOW',
+    youWillGet: 'You will get',
+    bonusValue: 'Bonus Value',
+    wageringRequirement: 'Wagering Requirement',
+    enableVisible: 'Enable Ghost Mode',
+    hiddenYourBet: "Your bets won't appear in public bet feed and bet preview",
+    startNow: 'Start Now',
     // 条款协议等内容
     html: {
         // html标题

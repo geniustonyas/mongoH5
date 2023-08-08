@@ -172,12 +172,12 @@
             <Vue3SlideUpDown v-model="collapsePrivacy">
               <div class="i-form privacy">
                 <div class="privacy-switch-box">
-                  <div>启用隐身模式</div>
+                  <div>{{ t('enableVisible') }}</div>
                   <ConfigProvider theme="dark">
                     <Switch v-model="openVisible" size="18px" @click="setPrivacy()" />
                   </ConfigProvider>
                 </div>
-                <div>您的投注不会出现在公开投注动态和投注预览中</div>
+                <div>{{ t('hiddenYourBet') }}</div>
               </div>
             </Vue3SlideUpDown>
           </div>

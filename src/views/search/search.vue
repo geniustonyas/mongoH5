@@ -152,7 +152,7 @@ const startGame = (game: getSearchGameRespItem | recommendGameRespItem) => {
         window.location.href = resp.data
       })
       .catch((error) => {
-        showToast('启动游戏失败')
+        showToast('tips.startGameFail')
         console.log(error)
       })
   }

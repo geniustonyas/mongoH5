@@ -5,7 +5,7 @@
       <div class="clubhouse-box">
         <div class="cb_tips" v-show="showTips">
           <i class="iconfont icon-guanyuwomen" />
-          <span>每个月您的奖励将会重置，请在月底前领取您的奖励，千万别错过哦。</span>
+          <span>{{ t('clubTips') }}</span>
           <i class="iconfont icon-close" @click="showTips = false" />
         </div>
         <div v-if="vipList.length > 0" class="cb-card">
