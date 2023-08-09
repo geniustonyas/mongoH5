@@ -4096,7 +4096,14 @@ body {
         .border-b(.1rem,rgba(0,0,0,.5));
         .bgc(var(--w-color-bg), var(--color-text));
         .van-notice-bar__left-icon {
+            font-family: "iconfont" !important;
+            font-size: 2rem;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
             color: var(--color-primary);
+            &::before {
+                content: "\e650" !important;
+            }
         }
     }
 }
