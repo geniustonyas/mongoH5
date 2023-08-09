@@ -20,7 +20,6 @@ export function startGame(gameId: string | number) {
       message: t('tips.goLogin')
     })
       .then(() => {
-        console.log(router)
         router.push({ name: 'login' })
       })
       .catch(() => {

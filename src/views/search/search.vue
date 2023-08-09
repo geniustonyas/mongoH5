@@ -10,6 +10,7 @@
       </div>
     </header>
     <main class="main">
+      <!-- 搜索游戏列比奥 -->
       <div v-if="keywords.length > 0" class="search-result">
         <div class="result-count">
           <span v-if="nodata || (keywords.length < 3 && keywords.length > 0)" class="noResult">{{ t('noSearchResult', { keyword: keywords }) }}</span>
@@ -17,7 +18,7 @@
         </div>
         <div class="gamebox search">
           <div v-if="searchResult.length > 0" class="g-list row">
-            <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item)">
+            <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item.id)">
               <div class="i-bd">
                 <div class="i-img">
                   <img v-lazy="appStore.cdnurl + item.img" />
@@ -37,11 +38,12 @@
       </div>
       <dl class="provider-list">
         <dt>{{ t('searchMore') }}</dt>
-        <dd v-for="(item, index) of searchMoreList" :key="index" @click="router.push({ name: 'index', query: { tab: item.tab, providerId: item.id } })">
+        <dd v-for="(item, index) of searchMoreList" :key="index" @click="router.push({ name: item.tab, query: { providerId: item.id } })">
           <a><img v-lazy="item.img" />{{ item.name }}</a>
         </dd>
       </dl>
 
+      <!-- 推荐游戏列表 -->
       <nav class="gamebox search">
         <div class="g-head">
           <div class="gh-t">
@@ -49,7 +51,7 @@
           </div>
         </div>
         <div v-if="recommendList.length > 0" class="g-list row">
-          <div v-for="(item, index) of recommendList" :key="index" class="item" @click="startGame(item)">
+          <div v-for="(item, index) of recommendList" :key="index" class="item" @click="startGame(item.id)">
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="appStore.cdnurl + item.imageName" />
@@ -57,7 +59,7 @@
               </div>
               <div class="i-txt">
                 <strong>{{ item.gameName }}</strong>
-                <span>ONETOUCH</span>
+                <span>{{ item.providerName }}</span>
               </div>
               <div class="i-btn">
                 <a>{{ t('enter') }}</a>
@@ -79,18 +81,17 @@ import { useRouter } from 'vue-router'
 
 import Footer from '@/components/layout/Footer.vue'
 
-import { getSearchGameApi, getGameRecommendApi, getGameUrlApi } from '@/api/game/index'
+import { getSearchGameApi, getGameRecommendApi } from '@/api/game/index'
 import { getSearchGameRespItem, recommendGameRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
-import { useUserStore } from '@/store/modules/user'
 import { providerList, providerListItemTypes } from '@/utils/gameProviders'
+import { startGame } from '@/composables/startGame'
 
-import { showConfirmDialog, showToast, ConfigProvider } from 'vant'
+import { ConfigProvider } from 'vant'
 import { debounce } from 'lodash-es'
 import { useI18n } from 'vue-i18n'
 
 const appStore = useAppStore()
-const userStore = useUserStore()
 const router = useRouter()
 const { t } = useI18n()
 
@@ -133,31 +134,6 @@ const getGameRecommend = () => {
     .catch((error) => {
       console.log(error)
     })
-}
-
-// 开始游戏
-const startGame = (game: getSearchGameRespItem | recommendGameRespItem) => {
-  if (!userStore.userInfo.id) {
-    showConfirmDialog({
-      title: t('tips.noLogin'),
-      message: t('tips.goLogin')
-    })
-      .then(() => {
-        router.push({ name: 'login' })
-      })
-      .catch(() => {
-        return false
-      })
-  } else {
-    getGameUrlApi({ id: game.id, platform: 1 })
-      .then((resp) => {
-        window.location.href = resp.data
-      })
-      .catch((error) => {
-        showToast('tips.startGameFail')
-        console.log(error)
-      })
-  }
 }
 
 getGameRecommend()

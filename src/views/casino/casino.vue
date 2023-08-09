@@ -135,14 +135,11 @@ let dataList = ref<getGameListGsItemResp[]>([])
 const selGameProvider = (id: number) => {
   showGameOption.value = true
   const index = query.ps.indexOf(id)
-  console.log(query.ps)
-  console.log(index)
   if (index > -1) {
     query.ps.splice(index, 1)
   } else {
     query.ps.push(id)
   }
-  console.log(query.ps)
   query.page = 1
   dataList.value = []
   getGameList()
