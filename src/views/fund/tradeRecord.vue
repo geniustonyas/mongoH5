@@ -171,6 +171,7 @@ const dayFormatter = (day: any) => {
 const selTab = (tabs: string) => {
   nodata.value = false
   query.PageIndex = '1'
+  query.noLoading = false
   dataList.value = []
   if (tab.value == tabs) {
     return false

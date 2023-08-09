@@ -1,25 +1,7 @@
 <template>
   <aside class="sidebar-menu">
     <!-- header开始 -->
-    <header class="header">
-      <nav class="head-menu">
-        <!-- 侧边栏开关 -->
-        <div class="hm-l">
-          <a @click="appStore.showSideBar = !appStore.showSideBar" class="icon-btn navbar-left">
-            <i class="iconfont icon-close" />
-          </a>
-        </div>
-        <div class="hm-m" />
-        <!-- 用户名 Or 登录注册 -->
-        <div class="hm-r">
-          <a v-if="userStore.userInfo.id">{{ userStore.userInfo.userName }}</a>
-          <template v-else>
-            <a class="btn" @click="router.push({ name: 'reg' })">{{ t('reg') }}</a>
-            <a class="btn btn-primary" @click="router.push({ name: 'login' })">{{ t('login') }}</a>
-          </template>
-        </div>
-      </nav>
-    </header>
+    <IndexHeader />
 
     <!-- 主体 -->
     <section class="sm-main">
@@ -120,6 +102,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
+import IndexHeader from '@/components/layout/IndexHeader.vue'
 import Language from '@/components/Language.vue'
 
 // 引用方法
@@ -127,7 +110,6 @@ import { languages } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { providerList, providerListItemTypes } from '@/utils/gameProviders'
 import { useAppStore } from '@/store/modules/app'
-import { useUserStore } from '@/store/modules/user'
 import { startGame } from '@/composables/startGame'
 
 //第三方插件
@@ -135,7 +117,6 @@ import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast } from 'vant'
 
 const appStore = useAppStore()
-const userStore = useUserStore()
 const router = useRouter()
 const { t, locale } = useI18n()
 

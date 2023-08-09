@@ -15,8 +15,8 @@
     </header>
     <main class="main">
       <div class="notifications-box">
-        <div v-if="dataList.length > 0" class="nb-head">
-          <a @click="setAllReaded()">{{ t('makeAllRead') }}</a>
+        <div v-if="tab == 1 && dataList.length > 0" class="nb-head">
+          <a :class="newMessageCount == 0 ? 'disable' : ''" @click="setAllReaded()">{{ t('makeAllRead') }}</a>
         </div>
         <div v-if="dataList.length > 0" class="nb-list">
           <ul style="height: 100%">
@@ -31,7 +31,7 @@
                 :finished-text="t('noMore')"
                 @load="loadData"
               >
-                <li v-for="(item, index) of dataList" :class="item.isRead ? '' : 'new'" :key="index" @click="setReaded(item)">
+                <li v-for="(item, index) of dataList" :class="tab == 1 && !item.isRead ? 'new' : ''" :key="index" @click="setReaded(item)">
                   <div class="l-title">{{ item.title }}</div>
                   <div class="l-cont">{{ item.content }}</div>
                   <div class="l-date">{{ item.createTime }}</div>
@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 import Nodata from '@/components/Nodata.vue'
@@ -77,6 +77,14 @@ let query = reactive({
 })
 let dataList = ref<messageItem[]>([])
 let nodata = ref(false)
+
+const newMessageCount = computed(() => {
+  let count = 0
+  count = dataList.value.reduce((count: number, item): number => {
+    return item.isRead ? count : ++count
+  }, 0)
+  return count
+})
 
 // 切换站内信与通知
 const selTab = (tabValue: number) => {

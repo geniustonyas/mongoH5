@@ -142,6 +142,7 @@ const dayFormatter = (day: any) => {
 // 列表切换
 const selTab = (tabs: string) => {
   nodata.value = false
+  query.noLoading = false
   query.PageIndex = '1'
   dataList.value = []
   if (tab.value == tabs) {
