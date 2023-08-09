@@ -29,7 +29,7 @@ export function startGame(gameId: string | number) {
   } else {
     getGameUrlApi({ id: gameId, platform: PlatForm.H5 })
       .then((resp) => {
-        window.location.href = resp.data
+        window.open(resp.data)
       })
       .catch((error) => {
         showToast(t('tips.startGameFail'))

@@ -71,10 +71,10 @@
               <td>{{ item.gameName }}</td>
               <td>
                 <template v-if="item.memberuserName == ''">
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>{{ t('invisibility') }}
+                  <span class="sp-user"><img :src="getAssetsFile('svg/tb_user.svg')" /></span>{{ t('invisibility') }}
                 </template>
                 <template v-else>
-                  {{ item.memberuserName }}
+                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>{{ item.memberuserName }}
                 </template>
               </td>
               <td>{{ moneyFormat(item.betAmount) }}</td>
@@ -103,7 +103,17 @@
           <div class="wb-cont">
             <h2>{{ betDetailsItem.gameName }}</h2>
             <h2>ID {{ betDetailsItem.orderId }}</h2>
-            <p>{{ t('betUser') }}：<img :src="getAssetsFile('svg/tb_user.svg')" />{{ betDetailsItem.memberuserName == '' ? t('invisibility') : betDetailsItem.memberuserName }}</p>
+            <p>
+              {{ t('betUser') }}：
+              <template v-if="betDetailsItem.memberuserName == ''">
+                <img :src="getAssetsFile('svg/tb_user.svg')" />
+                {{ t('invisibility') }}
+              </template>
+              <template v-else>
+                <i class="iconfont icon-user_full" />
+                {{ betDetailsItem.memberuserName }}
+              </template>
+            </p>
             <p>{{ t('at') }} {{ betDetailsItem.betTime.replace('T', ' ') }}</p>
             <div class="b-info">
               <p>{{ t('bets') }}</p>
