@@ -3703,12 +3703,16 @@ body {
                     margin-right: 1rem;
                     min-width: inherit;
                     padding: 0;
-                    text-align: center;
+                    
 
                     &:last-child {
                         margin-right: 0;
                     }
                    
+                }
+                
+                .sel-center {
+                    text-align: center;
                 }
               
 
@@ -3818,6 +3822,7 @@ body {
     .flex();
     .flex-align();
     .flex-pack();
+    overflow: hidden;
 
     .sb-line {
         position: absolute;
@@ -3832,6 +3837,8 @@ body {
     span {
         color: var(--color-white);
         font-size: .9rem; 
+        position: relative;
+        z-index: 1;
     }
 }
 

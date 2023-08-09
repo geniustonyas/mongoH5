@@ -31,7 +31,7 @@
               <span>{{ t('userName') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="regForm.UserName" ref="userNameDom" type="text" class="form-control" :placeholder="t('regPage.holderUserName')" @blur="checkUserExist()" />
+              <input v-model.trim="regForm.UserName" ref="userNameDom" type="text" class="form-control" :placeholder="t('regPage.holderUserName')" @blur="checkUserExist()" autocomplete="off" />
             </div>
           </div>
           <div class="cf-row">
@@ -39,7 +39,7 @@
               <span>{{ t('email') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" />
+              <input v-model.trim="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" autocomplete="off" />
               <Loading v-show="showloading" size="20px" class="captcha" />
               <span v-show="!showloading" :class="sended || regForm.Email.length == 0 ? 'captcha sended' : 'captcha'" @click="sendEmail()">{{ sended ? t('sended') : t('sendEmail') }}</span>
             </div>
@@ -49,7 +49,7 @@
               <span>{{ t('emailCaptcha') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="regForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" :placeholder="t('tips.inputEmailcapcha')" />
+              <input v-model.trim="regForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" :placeholder="t('tips.inputEmailcapcha')" autocomplete="off" />
             </div>
           </div>
           <div class="cf-row">
@@ -57,15 +57,15 @@
               <span>{{ t('birthday') }}</span>
             </div>
             <div class="cr-input group">
-              <select class="form-control" v-model="day" ref="dayDom">
+              <select class="form-control sel-center" v-model="day" ref="dayDom">
                 <option value="">Day</option>
                 <option v-for="item in 31" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
               </select>
-              <select class="form-control" v-model="month" ref="monthDom">
+              <select class="form-control sel-center" v-model="month" ref="monthDom">
                 <option value="">Month</option>
                 <option v-for="item in 12" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
               </select>
-              <select class="form-control" v-model="year" ref="yearDom">
+              <select class="form-control sel-center" v-model="year" ref="yearDom">
                 <option value="">Year</option>
                 <option v-for="item in getYearList()" :key="item" :value="item">{{ item }}</option>
               </select>
@@ -79,7 +79,7 @@
               <select v-model="regForm.CountryCode" ref="countryDom" class="form-control">
                 <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
               </select>
-              <input v-model.trim="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" :placeholder="t('regPage.holderTelephone')" />
+              <input v-model.trim="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" :placeholder="t('regPage.holderTelephone')" autocomplete="off" />
             </div>
           </div>
           <div class="cf-row">
@@ -87,7 +87,7 @@
               <span>{{ t('password') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" placeholder="" />
+              <input v-model.trim="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" placeholder="" autocomplete="off" />
               <span :class="showPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showPwd = !showPwd" />
               </span>
@@ -98,7 +98,7 @@
               <span>{{ t('confirmPwd') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" placeholder="" />
+              <input v-model.trim="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" placeholder="" autocomplete="off" />
               <span :class="showConfirmPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showConfirmPwd = !showConfirmPwd" />
               </span>

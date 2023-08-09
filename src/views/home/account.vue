@@ -14,7 +14,7 @@
                       <span>{{ t('userName') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input :value="userStore.userInfo.userName" type="text" class="form-control disabled" disabled placeholder="" />
+                      <input :value="userStore.userInfo.userName" type="text" class="form-control disabled" disabled placeholder="" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">
@@ -22,7 +22,7 @@
                       <span>{{ t('email') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input :value="userStore.userInfo.email" type="email" class="form-control disabled" disabled placeholder="" />
+                      <input :value="userStore.userInfo.email" type="email" class="form-control disabled" disabled placeholder="" autocomplete="off" />
                     </div>
                   </div>
 
@@ -50,7 +50,7 @@
                       <select v-model="editInfoForm.CountryCode" ref="countryDom" class="form-control">
                         <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
                       </select>
-                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" placeholder="" />
+                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" placeholder="" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">
@@ -58,7 +58,7 @@
                       <span>{{ t('address') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editInfoForm.Address" ref="addressDom" class="form-control" placeholder="" />
+                      <input v-model="editInfoForm.Address" ref="addressDom" class="form-control" placeholder="" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">
@@ -66,7 +66,7 @@
                       <span>{{ t('zipCode') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editInfoForm.Zipcode" ref="zipcodeDom" type="number" class="form-control" placeholder="" />
+                      <input v-model="editInfoForm.Zipcode" ref="zipcodeDom" type="number" class="form-control" placeholder="" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row" v-if="userStore.userInfo.isBindGoogleAuth">
@@ -74,7 +74,7 @@
                       <span>{{ t('googleCode') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editInfoForm.VerificationCode" ref="editVerificationCodeDom" type="number" class="form-control" placeholder="" />
+                      <input v-model="editInfoForm.VerificationCode" ref="editVerificationCodeDom" type="number" class="form-control" placeholder="" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">
@@ -97,7 +97,7 @@
                       <span>{{ t('currentPwd') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editPwdForm.OldPassword" ref="oldPwdDom" :type="showOldPwd ? 'text' : 'password'" class="form-control" placeholder="" />
+                      <input v-model="editPwdForm.OldPassword" ref="oldPwdDom" :type="showOldPwd ? 'text' : 'password'" class="form-control" placeholder="" autocomplete="off" />
                       <span :class="showOldPwd ? 'password-addon' : 'password-addon show'">
                         <i class="iconfont icon-xianshi" @click="showOldPwd = !showOldPwd" />
                       </span>
@@ -108,7 +108,7 @@
                       <span>{{ t('newPwd') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editPwdForm.NewPassword" ref="newPwdDom" :type="showNewPwd ? 'text' : 'password'" class="form-control" placeholder="" />
+                      <input v-model="editPwdForm.NewPassword" ref="newPwdDom" :type="showNewPwd ? 'text' : 'password'" class="form-control" placeholder="" autocomplete="off" />
                       <span :class="showNewPwd ? 'password-addon' : 'password-addon show'">
                         <i class="iconfont icon-xianshi" @click="showNewPwd = !showNewPwd" />
                       </span>
@@ -119,7 +119,7 @@
                       <span>{{ t('confirmPwd') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" placeholder="" />
+                      <input v-model="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" placeholder="" autocomplete="off" />
                       <span :class="showConfirmPwd ? 'password-addon' : 'password-addon show'">
                         <i class="iconfont icon-xianshi" @click="showConfirmPwd = !showConfirmPwd" />
                       </span>
@@ -130,7 +130,7 @@
                       <span>{{ t('googleAuthenticator') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editPwdForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" placeholder="" />
+                      <input v-model="editPwdForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" placeholder="" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">
@@ -159,7 +159,7 @@
                   <a target="_blank" href="https://support.google.com/accounts/answer/1066447?co=GENIE.Platform%3DAndroid&hl=en"> <i class="iconfont icon-bangzhu" />{{ t('whatGoogleCode') }}</a>
                 </div>
                 <div class="cr-input">
-                  <input v-model="bindGoogleCodeForm.VerificationCode" type="text" class="form-control" :placeholder="t('typeCode')" maxlength="8" />
+                  <input v-model="bindGoogleCodeForm.VerificationCode" type="text" class="form-control" :placeholder="t('typeCode')" maxlength="8" autocomplete="off" />
                   <a class="btn btn-primary" @click="bindGoogle()">{{ t('submitCode') }}</a>
                 </div>
                 <div class="cr-mark">{{ t('keyValue') }}: {{ keyValue }}</div>

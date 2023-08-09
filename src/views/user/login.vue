@@ -61,7 +61,7 @@
               <span>{{ $t('loginPage.useGoogle') }}</span>
             </div>
             <div class="cr-input">
-              <input ref="verificationCode" v-model.trim="loginForm.VerificationCode" type="text" class="form-control" placeholder="" />
+              <input ref="verificationCode" v-model.trim="loginForm.VerificationCode" type="text" class="form-control" placeholder="" autocomplete="off" />
             </div>
           </div>
           <div class="cf-row">

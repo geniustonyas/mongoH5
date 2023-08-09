@@ -46,7 +46,7 @@
           <div class="custom-form">
             <div class="cf-row">
               <div class="cr-input">
-                <input v-model="rewardCode" type="text" class="form-control" :placeholder="t('rewardCode')" />
+                <input v-model="rewardCode" type="text" class="form-control" :placeholder="t('rewardCode')" autocomplete="off" />
               </div>
             </div>
 

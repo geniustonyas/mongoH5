@@ -20,7 +20,7 @@
           </div>
           <div class="ff-group">
             <label>{{ t('amount') }}</label>
-            <input v-model="withdrawForm.Amount" type="number" ref="amountDom" :placeholder="t('inputAmount')" />
+            <input v-model="withdrawForm.Amount" type="number" ref="amountDom" :placeholder="t('inputAmount')" autocomplete="off" />
           </div>
           <ul class="ff-amounts">
             <li :class="{ active: percent == 0.25 }">
@@ -123,7 +123,7 @@
             </dd>
           </dl>
           <div v-if="userStore.userInfo.isBindGoogleAuth" class="ff-group">
-            <input v-model="withdrawForm.VerificationCode" ref="googleCodeDom" type="text" :placeholder="t('inputGoole')" />
+            <input v-model="withdrawForm.VerificationCode" ref="googleCodeDom" type="text" :placeholder="t('inputGoole')" autocomplete="off" />
           </div>
         </div>
         <div v-show="step == 3" class="fund-btn">
