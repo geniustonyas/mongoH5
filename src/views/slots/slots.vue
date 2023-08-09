@@ -51,7 +51,7 @@
               <div class="i-img">
                 <!-- <img v-lazy="appStore.cdnurl + item.img" /> -->
                 <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=200&h=152&q=20&dpr=2`" />
-                <span>{{ item.pn }}</span>
+                <!-- <span>{{ item.pn }}</span> -->
               </div>
               <div class="i-txt">
                 <strong>{{ item.name }}</strong>
