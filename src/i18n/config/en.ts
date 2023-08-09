@@ -346,7 +346,9 @@ export default {
         invalidThirdUser: 'Failed to verify the third-party user',
         authFail: 'Authorization failed',
         copySuccess: 'Copy Success',
-        copyFail: 'The browser does not support automatic copying, please copy manually'
+        copyFail: 'The browser does not support automatic copying, please copy manually.',
+        insufficientPoints: 'Insufficient points',
+        exhangeSuccess: 'exhange successfully'
     },
 
     rewardsBig: 'REWARDS',

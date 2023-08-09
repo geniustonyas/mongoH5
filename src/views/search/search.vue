@@ -67,7 +67,9 @@
         </div>
       </nav>
     </main>
-    <Footer />
+    <ConfigProvider theme="dark">
+      <Footer />
+    </ConfigProvider>
   </div>
 </template>
 
@@ -83,7 +85,7 @@ import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { providerList, providerListItemTypes } from '@/utils/gameProviders'
 
-import { showConfirmDialog, showToast } from 'vant'
+import { showConfirmDialog, showToast, ConfigProvider } from 'vant'
 import { debounce } from 'lodash-es'
 import { useI18n } from 'vue-i18n'
 

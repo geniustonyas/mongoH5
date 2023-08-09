@@ -1,4 +1,4 @@
-import { useRouter } from 'vue-router'
+import router from '@/router'
 import i18n from '@/i18n'
 import { showConfirmDialog, showToast } from 'vant'
 
@@ -7,7 +7,6 @@ import { useUserStore } from '@/store/modules/user'
 import { PlatForm } from '@/utils/constant'
 
 const userStore = useUserStore()
-const router = useRouter()
 const { t } = i18n.global
 
 /**
@@ -21,6 +20,7 @@ export function startGame(gameId: string | number) {
       message: t('tips.goLogin')
     })
       .then(() => {
+        console.log(router)
         router.push({ name: 'login' })
       })
       .catch(() => {
@@ -32,7 +32,7 @@ export function startGame(gameId: string | number) {
         window.location.href = resp.data
       })
       .catch((error) => {
-        showToast('启动游戏失败，请稍后再试')
+        showToast(t('tips.startGameFail'))
         console.log(error)
       })
   }

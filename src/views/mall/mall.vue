@@ -937,12 +937,12 @@ const exhangeGoods = () => {
       })
   } else {
     if (parseFloat(userStore.userInfo.integral as string) < parseFloat(currentGoodsItem.price)) {
-      showToast('积分不足')
+      showToast(t('tips.insufficientPoints'))
       return false
     }
     exhangeGoodsApi({ Id: currentGoodsItem.id })
       .then(() => {
-        showToast('兑换成功')
+        showToast(t('tips.exhangeSuccess'))
         showGoodsDetails.value = false
         userStore.getUserInfo({ noLoading: true })
       })

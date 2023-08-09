@@ -349,6 +349,8 @@ export default {
     copyFail: '该浏览器不支持自动复制，请手动复制',
     inputExhangeCode: '请输入兑换码',
     startGameFail: '启动游戏失败',
+    insufficientPoints: '积分不足',
+    exhangeSuccess: '兑换成功'
   },
 
   rewardsBig: '奖励',

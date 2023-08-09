@@ -151,4 +151,6 @@ const setAllReaded = () => {
       console.log(error)
     })
 }
+
+selTab(2)
 </script>
