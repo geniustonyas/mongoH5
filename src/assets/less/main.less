@@ -779,14 +779,20 @@ body {
                     width: 100%;
                     font-size: 1.4rem;
                 }
+                .van-dropdown-menu {
+                    .border-a(.1rem,rgba(255,255,255,.05));
+                    .drop-item {
+                        padding: 1rem 1rem;
+                    }
+                }
 
                 .van-dropdown-menu__bar {
                     background: var(--color-tabs);
                     box-shadow: 0 0 0 #ccc;
-                    height: 3rem;
+                    height: 4rem;
                     .van-dropdown-menu__title {
                         width: 100%;
-                        .h-lh(3rem);
+                        .h-lh(4rem);
                         color: var(--color-text);
                         font-size: 1.4rem;
                         &:after {
@@ -796,9 +802,14 @@ body {
                 }
                 .van-dropdown-item {
                     .van-popup { 
-                        .bg(var(--color-tabs));
+                        .bg(var(--van-cell-background));
                         .drop-item {
+                            .border-b(.1rem, var(--color-dark-gray));
+                            margin: 0 1rem;
                             span { color: var(--color-text);
+                                &:nth-of-type(1) {margin: 0;
+                                    color: var(--color-white)
+                                }
                                 &.active { color: var(--color-primary) }
                             }
                         }
@@ -1903,7 +1914,11 @@ body {
                     &:last-child { color: var(--color-text); font-size: 1.3rem; }
                 }
             }
-            .bbc-mr { text-align: right; }
+            .bbc-mr { text-align: right; 
+                :nth-child(2) {
+                    font-size: 1.2rem; color: var(--color-text);
+                }
+            }
             &:hover { .bg(var(--color-dark-gray)) }
         }
     }
@@ -4067,7 +4082,6 @@ body {
     .van-calendar {
         height: 90%;
     }
-    
 }
 .van-dialog {
     .van-dialog__footer {

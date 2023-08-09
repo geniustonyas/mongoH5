@@ -54,7 +54,7 @@
                     </div>
                     <div class="i-row flex-end">
                       <div class="r-col">
-                        <span :class="`${orderStatusCss[item.orderStatus]} c-status`">{{ t(`tradeStatus[${item.orderStatus}]`) }}</span>
+                        <span :class="`${walletStatus[item.orderStatus]} c-status`">{{ t(`withdrawStatus[${item.orderStatus}]`) }}</span>
                       </div>
                     </div>
                   </div>
@@ -130,7 +130,7 @@ const query = reactive({
   noLoading: false
 })
 
-const orderStatusCss = ref<dynamicObject>(['', 'incomplete', 'confirmed', 'deleted'])
+const walletStatus = ref<dynamicObject>(['', 'incomplete', 'confirmed', 'deleted'])
 const dataList = ref<getRradeRecordResponse[]>([])
 
 // 日期控件去掉日历格子下文字信息

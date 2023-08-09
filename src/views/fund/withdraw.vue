@@ -330,7 +330,8 @@ const getBalanceList = () => {
 const computeAmount = (rate: number) => {
   percent.value = rate
   const bigBalance = new BigNumber(withdrawBalanceItem.balance)
-  withdrawForm.Amount = bigBalance.times(rate).valueOf()
+  let tmp = bigBalance.times(rate)
+  withdrawForm.Amount = rate == 1 ? tmp.valueOf() : tmp.toFixed(0)
 }
 
 // USDT 选择trc20或trc20

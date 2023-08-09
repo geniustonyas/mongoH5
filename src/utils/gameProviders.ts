@@ -11,7 +11,7 @@ const t = i18n.global.t
 // 9  netent
 // 11  PNG 无
 // 15  Microgaming
-// 16  SEXY 无图标
+// 16  SEXY 无图标 sexy-baccarat
 
 export const providerList = [
   // 体育提供商
@@ -20,7 +20,7 @@ export const providerList = [
   // { id: '2', type: 'sports', tab: 'sports', name: t('provider.fbSports'), img: getAssetsFile('svg/FBSports.svg') },
   // 真人提供商
   { id: '6', type: 'casino', tab: 'casino', name: t('provider.evolution'), img: getAssetsFile('svg/Evolution.svg') },
-  // { id: '4', type: 'casino', tab: 'casino', name: t('provider.bombayLive'), img: getAssetsFile('svg/BombayLive.svg') },
+  { id: '16', type: 'casino', tab: 'casino', name: t('provider.sexy'), img: getAssetsFile('svg/sexy-baccarat.svg') },
   { id: '7', type: 'casino', tab: 'casino', name: t('provider.ezugi'), img: getAssetsFile('svg/Ezugi.svg') },
   { id: '3', type: 'casino', tab: 'casino', name: t('provider.asiaGaming'), img: getAssetsFile('svg/AsiaGaming.svg') },
   // 电子提供商

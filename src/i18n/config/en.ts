@@ -289,7 +289,8 @@ export default {
         playingo: "Play'n Go",
         netEnt: 'NetEnt',
         playTech: 'PlayTech',
-        microgaming: 'Microgaming'
+        microgaming: 'Microgaming',
+        sexy: 'SEXY'
     },
 
     // 数据验证提示
@@ -367,6 +368,7 @@ export default {
     enableVisible: 'Enable Ghost Mode',
     hiddenYourBet: "Your bets won't appear in public bet feed and bet preview",
     startNow: 'Start Now',
+    withdrawStatus: { 1: '处理中', 2: '成功', 3: '失败' },
     // 条款协议等内容
     html: {
         // html标题
