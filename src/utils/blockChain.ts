@@ -52,6 +52,13 @@ export const currenyList = [
     icon: 'coin/trx.svg'
   },
   {
+    code: 'BNB',
+    currenyName: t('currencyLang.bnb'),
+    unit: 'BNB',
+    currenyType: '10',
+    icon: 'coin/trx.svg'
+  },
+  {
     code: 'BUSD',
     currenyName: t('currencyLang.busd'),
     unit: 'BUSD',

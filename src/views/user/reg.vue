@@ -58,12 +58,15 @@
             </div>
             <div class="cr-input group">
               <select class="form-control" v-model="day" ref="dayDom">
+                <option value="">Day</option>
                 <option v-for="item in 31" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
               </select>
               <select class="form-control" v-model="month" ref="monthDom">
+                <option value="">Month</option>
                 <option v-for="item in 12" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
               </select>
               <select class="form-control" v-model="year" ref="yearDom">
+                <option value="">Year</option>
                 <option v-for="item in getYearList()" :key="item" :value="item">{{ item }}</option>
               </select>
             </div>

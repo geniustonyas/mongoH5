@@ -51,7 +51,7 @@
           </div>
         </div>
         <div v-if="recommendList.length > 0" class="g-list row">
-          <div v-for="(item, index) of recommendList" :key="index" class="item" @click="startGame(item.id)">
+          <div v-for="(item, index) of recommendList" :key="index" class="item" @click="startGame(item.gameItemId)">
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="appStore.cdnurl + item.imageName" />

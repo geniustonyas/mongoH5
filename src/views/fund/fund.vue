@@ -168,7 +168,7 @@
                 <li v-for="(item, index) of digitalList" :key="index" @click="selCurrency(item)">
                   <img :src="getAssetsFile(`coin/${item.name.toLocaleLowerCase()}.svg`)" />
                   <div class="bbc-md">
-                    <p>{{ item.subtitle }}</p>
+                    <p>{{ currenyName(item.name) }}</p>
                     <p>{{ item.name }}</p>
                   </div>
                   <div class="bbc-mr">
@@ -182,7 +182,7 @@
                 <li v-for="(item, index) of bankList" :key="index" @click="selCurrency(item)">
                   <img :src="getAssetsFile(`coin/${item.name.toLocaleLowerCase()}.svg`)" />
                   <div class="bbc-md">
-                    <p>{{ item.subtitle }}</p>
+                    <p>{{ currenyName(item.name) }}</p>
                     <p>{{ item.name }}</p>
                   </div>
                   <div class="bbc-mr">
@@ -231,7 +231,7 @@ import FundFooter from '@/components/layout/FundFooter.vue'
 import { getBalanceApi, getDepositAddressApi, setDefaultCurrencyApi } from '@/api/fund/index'
 import { getBalanceItemResponse } from '@/api/fund/types'
 import { getAssetsFile, copy, moneyFormat, formatAddress } from '@/utils'
-import { usdtChainList, usdtChainListTypes } from '@/utils/blockChain'
+import { usdtChainList, usdtChainListTypes, currenyList } from '@/utils/blockChain'
 
 import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
@@ -290,6 +290,12 @@ const depositInfo = reactive({
 })
 const defaultDepositInfo = cloneDeep(depositInfo)
 const showDepositQrcode = ref(false)
+
+// 替换币种名称
+const currenyName = (code: string) => {
+  const tmp = currenyList.find((item) => item.code == code)
+  return tmp ? tmp.currenyName : code
+}
 
 // 获取余额列表
 const getBalanceList = () => {
