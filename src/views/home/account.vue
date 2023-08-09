@@ -14,7 +14,7 @@
                       <span>{{ t('userName') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input :value="userStore.userInfo.userName" type="text" class="form-control disabled" placeholder="" />
+                      <input :value="userStore.userInfo.userName" type="text" class="form-control disabled" disabled placeholder="" />
                     </div>
                   </div>
                   <div class="cf-row">
@@ -22,7 +22,7 @@
                       <span>{{ t('email') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input :value="userStore.userInfo.email" type="email" class="form-control disabled" placeholder="" />
+                      <input :value="userStore.userInfo.email" type="email" class="form-control disabled" disabled placeholder="" />
                     </div>
                   </div>
 
