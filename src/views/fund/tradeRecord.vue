@@ -50,7 +50,7 @@
                     </div>
                     <div class="i-row">
                       <div class="r-col">{{ item.providerName }}</div>
-                      <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
+                      <!-- <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div> -->
                     </div>
                     <div class="i-row">
                       <div class="r-col">{{ item.gameItemName }}</div>

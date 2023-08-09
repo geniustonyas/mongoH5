@@ -12,8 +12,10 @@
       </nav>
 
       <!-- 跑马灯开始 -->
-      <!-- <NoticeBar left-icon="volume-o" :text="marqueeContent" /> -->
-      <nav class="m-notice">
+      <ConfigProvider theme="dark">
+        <NoticeBar left-icon="volume-o" :text="marqueeContent" />
+      </ConfigProvider>
+      <!-- <nav class="m-notice">
         <span class="mn-icon">
           <i class="iconfont icon-notice" />
         </span>
@@ -22,7 +24,7 @@
             {{ marqueeContent }}
           </marquee>
         </div>
-      </nav>
+      </nav> -->
       <!-- 支付解决方案 -->
       <nav class="m-card">
         <div class="mc-t">
@@ -77,7 +79,7 @@
                   <span class="sp-user"><i class="iconfont icon-user_full" /></span>{{ item.memberuserName }}
                 </template>
               </td>
-              <td>{{ moneyFormat(item.betAmount) }}</td>
+              <td>{{ moneyFormat(item.winAmount) }}</td>
             </tr>
           </tbody>
         </table>
@@ -156,7 +158,7 @@ import { getExchangeRate } from '@/composables/getExchangeRate'
 
 //第三方插件
 import { useI18n } from 'vue-i18n'
-import { Swipe, SwipeItem } from 'vant'
+import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
 
 const router = useRouter()
 const appStore = useAppStore()
