@@ -222,7 +222,7 @@ let regForm = reactive({
   Email: '',
   AgentId: '',
   DateOfBirth: '',
-  RegisterUrl: window.location.href,
+  RegisterUrl: document.domain,
   VerificationCode: ''
 })
 
