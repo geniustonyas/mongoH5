@@ -15,7 +15,7 @@
         <a @click="router.push({ name: 'promo' })">{{ t('promotions') }}</a>
       </dd>
       <dd>
-        <a @click="router.push({ name: 'clubHouse' })">{{ t('club') }}</a>
+        <a @click="router.push({ name: 'terms', params: { type: 'vip' } })">{{ t('vipClub') }}</a>
       </dd>
       <dd>
         <a @click="router.push({ name: 'mall' })">{{ t('mallStore') }}</a>

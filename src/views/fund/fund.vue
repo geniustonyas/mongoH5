@@ -66,7 +66,7 @@
                   </template>
                   <div class="gc-md">
                     <p>
-                      1 USDT ≈ <span>US ${{ moneyFormat(depositInfo.exchangeRate) }}</span>
+                      1 {{ depositInfo.currencyCode }} ≈ <span>US ${{ moneyFormat(depositInfo.exchangeRate) }}</span>
                     </p>
                     <p>
                       {{ t('minDepositAmount') }}:
