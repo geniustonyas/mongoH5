@@ -154,8 +154,8 @@ export const useUserStore = defineStore('userInfo', () => {
     return new Promise((resolve, reject) => {
       loginOutApi()
         .then((resp) => {
-          clearLogin()
           router.push({ name: 'login' })
+          clearLogin()
           resolve(resp)
         })
         .catch((error) => {
