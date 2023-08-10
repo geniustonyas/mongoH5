@@ -59,6 +59,8 @@ const browerLang = (navigator.language || 'en').toLocaleLowerCase()
 const lang = params?.lang || localStorage.getItem('lang') || browerLang.split('-')[0] || 'en'
 localStorage.setItem('lang', lang)
 Locale.use(lang, vantLangMap[lang])
+document.querySelector('body')!.setAttribute('lang', lang)
+document.querySelector('html')!.setAttribute('lang', lang)
 const i18n = createI18n({
   globalInjection: true,
   locale: lang,
@@ -94,6 +96,7 @@ export const languages = [
 
 export const selLang = (lang: string) => {
   document.querySelector('html')!.setAttribute('lang', lang)
+  document.querySelector('body')!.setAttribute('lang', lang)
   localStorage.setItem('lang', lang)
   // 设置vant语言
   Locale.use(lang, vantLangMap[lang])
