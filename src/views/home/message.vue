@@ -33,7 +33,7 @@
               >
                 <li v-for="(item, index) of dataList" :class="tab == 1 && !item.isRead ? 'new' : ''" :key="index" @click="setReaded(item)">
                   <div class="l-title">{{ item.title }}</div>
-                  <div class="l-cont">{{ item.content }}</div>
+                  <div class="l-cont" v-html="item.content" />
                   <div class="l-date">{{ item.createTime }}</div>
                 </li>
               </List>
