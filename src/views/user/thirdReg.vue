@@ -35,14 +35,12 @@
               <input v-model.trim="regForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" :placeholder="t('tips.inputEmailcapcha')" />
             </div>
           </div>
-          <div class="cf-row">
+          <!-- 生日 -->
+          <!-- <div class="cf-row">
             <div class="cr-label">
               <span>{{ t('birthday') }}</span>
             </div>
             <div class="cr-input group">
-              <!-- <input v-model="day" ref="dayDom" type="number" class="form-control" :placeholder="t('day')" style="padding: 0 1rem" />
-              <input v-model="month" ref="monthDom" type="number" class="form-control" :placeholder="t('month')" style="padding: 0 1rem" />
-              <input v-model="year" ref="yearDom" type="number" class="form-control" :placeholder="t('year')" style="padding: 0 1rem" /> -->
               <select class="form-control" v-model="day" ref="dayDom">
                 <option v-for="item in 31" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
               </select>
@@ -53,8 +51,9 @@
                 <option v-for="item in getYearList()" :key="item" :value="item">{{ item }}</option>
               </select>
             </div>
-          </div>
-          <div class="cf-row">
+          </div> -->
+          <!-- 电话号码 -->
+          <!-- <div class="cf-row">
             <div class="cr-label">
               <span>{{ t('telephone') }}</span>
             </div>
@@ -64,7 +63,7 @@
               </select>
               <input v-model="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" :placeholder="t('regPage.holderTelephone')" />
             </div>
-          </div>
+          </div> -->
 
           <div class="cf-row">
             <div class="cr-mark cm-checkbox">
@@ -107,8 +106,8 @@ import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { awaitWraper } from '@/utils'
 import { useUserStore } from '@/store/modules/user'
-import { getYearList } from '@/utils'
-import { countryCode } from '@/utils/countryCode'
+// import { getYearList } from '@/utils'
+// import { countryCode } from '@/utils/countryCode'
 import { isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, thirdRegApi, sendEmailApi } from '@/api/user'
 
@@ -122,27 +121,27 @@ const { t } = useI18n()
 
 if (!route.query.ThirdPartyType || !route.query.ThirdPartyId || !route.query.ThirdPartyName || !route.query.Sign) {
   showToast('参数错误')
-  // router.back()
+  router.back()
 }
 const userStore = useUserStore()
 
 // 临时存储表单值
 let sended = ref(false)
 let showloading = ref(false)
-let day = ref<string | number>('')
-let month = ref<string | number>('')
-let year = ref<string | number>('')
+// let day = ref<string | number>('')
+// let month = ref<string | number>('')
+// let year = ref<string | number>('')
 let isAudit = ref(true)
 let isAgree = ref(true)
 
 // dom元素
 let userNameDom = ref<HTMLInputElement | null>(null)
 let emailDom = ref<HTMLInputElement | null>(null)
-let dayDom = ref<HTMLInputElement | null>(null)
-let monthDom = ref<HTMLInputElement | null>(null)
-let yearDom = ref<HTMLInputElement | null>(null)
-let countryDom = ref<HTMLInputElement | null>(null)
-let phoneDom = ref<HTMLInputElement | null>(null)
+// let dayDom = ref<HTMLInputElement | null>(null)
+// let monthDom = ref<HTMLInputElement | null>(null)
+// let yearDom = ref<HTMLInputElement | null>(null)
+// let countryDom = ref<HTMLInputElement | null>(null)
+// let phoneDom = ref<HTMLInputElement | null>(null)
 let isAuditDom = ref<HTMLInputElement | null>(null)
 let isAgreeDom = ref<HTMLInputElement | null>(null)
 let verificationCodeDom = ref<HTMLInputElement | null>(null)
@@ -150,11 +149,11 @@ let verificationCodeDom = ref<HTMLInputElement | null>(null)
 let regForm = reactive({
   UserName: '',
   CountryCode: '',
-  PhoneNumber: '',
+  // PhoneNumber: '',
   Email: '',
   AgentId: '',
-  DateOfBirth: '',
-  RegisterUrl: document.domain,
+  // DateOfBirth: '',
+  RegisterUrl: window.location.href,
   ThirdPartyType: '',
   ThirdPartyId: '',
   ThirdPartyName: '',
@@ -266,31 +265,31 @@ const handleReg = async () => {
     verificationCodeDom.value?.focus()
     return false
   }
-  if (day.value == '') {
-    showToast(t('tips.inputDay'))
-    dayDom.value?.focus()
-    return false
-  }
-  if (month.value == '') {
-    showToast(t('tips.inputMonth'))
-    monthDom.value?.focus()
-    return false
-  }
-  if (year.value == '') {
-    showToast(t('tips.inputYear'))
-    yearDom.value?.focus()
-    return false
-  }
-  if (regForm.CountryCode == '') {
-    showToast(t('tips.inputCountryCode'))
-    countryDom.value?.focus()
-    return false
-  }
-  if (regForm.PhoneNumber == '') {
-    showToast(t('tips.inputphoneNumber'))
-    phoneDom.value?.focus()
-    return false
-  }
+  // if (day.value == '') {
+  //   showToast(t('tips.inputDay'))
+  //   dayDom.value?.focus()
+  //   return false
+  // }
+  // if (month.value == '') {
+  //   showToast(t('tips.inputMonth'))
+  //   monthDom.value?.focus()
+  //   return false
+  // }
+  // if (year.value == '') {
+  //   showToast(t('tips.inputYear'))
+  //   yearDom.value?.focus()
+  //   return false
+  // }
+  // if (regForm.CountryCode == '') {
+  //   showToast(t('tips.inputCountryCode'))
+  //   countryDom.value?.focus()
+  //   return false
+  // }
+  // if (regForm.PhoneNumber == '') {
+  //   showToast(t('tips.inputphoneNumber'))
+  //   phoneDom.value?.focus()
+  //   return false
+  // }
 
   const isExistUser = await checkUserExist()
   if (isExistUser) {
@@ -303,7 +302,7 @@ const handleReg = async () => {
   }
   Object.assign(regForm, route.query)
   Object.assign(loginForm, route.query)
-  regForm.DateOfBirth = `${year.value}-${month.value}-${day.value}`
+  // regForm.DateOfBirth = `${year.value}-${month.value}-${day.value}`
   const regResult = await awaitWraper(thirdRegApi(regForm))
   if (regResult[0]) {
     showToast(t('tips.regFail'))

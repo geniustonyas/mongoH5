@@ -148,6 +148,9 @@ const setReaded = (item: messageItem) => {
 
 // 全部设置已读
 const setAllReaded = () => {
+  if (newMessageCount.value > 0) {
+    return false
+  }
   setAllReadApi()
     .then(() => {
       dataList.value.forEach((item) => {

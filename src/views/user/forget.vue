@@ -45,7 +45,7 @@
               </span>
             </div>
           </div>
-          <!-- 
+          <!--
           <div class="cf-row" v-show="useGoogleAuthenticatore">
             <div class="cr-label">
               <span>Google Authenticator</span>
@@ -60,9 +60,9 @@
             </div>
           </div>
           <div class="cf-row">
-            <div class="cr-bo">
+            <div class="cr-bo" @click="router.push({ name: 'reg' })">
               {{ $t('noUser') }}
-              <a @click="router.push({ name: 'reg' })">
+              <a>
                 {{ $t('createUser') }}
               </a>
             </div>

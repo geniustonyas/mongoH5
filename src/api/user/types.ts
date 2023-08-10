@@ -29,11 +29,11 @@ export interface resetPwdData {
 export interface RegData {
   UserName: string
   Password: string
-  CountryCode: string
-  PhoneNumber: string
+  CountryCode?: string
+  PhoneNumber?: string
   Email: string
   AgentId?: string
-  DateOfBirth: string
+  DateOfBirth?: string
   RegisterUrl: string
   VerificationCode: string
 }
@@ -61,11 +61,11 @@ export interface thirdData {
 // 第三方注册
 export interface thirdRegData {
   UserName: string
-  CountryCode: string
-  PhoneNumber: string
+  CountryCode?: string
+  PhoneNumber?: string
   Email: string
   AgentId?: string
-  DateOfBirth: string
+  DateOfBirth?: string
   RegisterUrl: string
   ThirdPartyType: string
   ThirdPartyId: string

@@ -69,10 +69,10 @@
               <a class="btn btn-primary full" @click="handleLogin()">{{ $t('login') }}</a>
             </div>
           </div>
-          <div class="cf-row">
+          <div class="cf-row" @click="router.push({ name: 'reg' })">
             <div class="cr-bo">
               {{ $t('noUser') }}
-              <a @click="router.push({ name: 'reg' })">
+              <a>
                 {{ $t('createUser') }}
               </a>
             </div>
