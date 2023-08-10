@@ -356,8 +356,9 @@ const changePwd = () => {
   }
   editPasswordApi(editPwdForm)
     .then(() => {
-      showToast(t('tips.editPwdSuccess'))
       userStore.logout()
+      showToast(t('tips.editPwdSuccess'))
+      router.push({ name: 'index' })
     })
     .catch((error) => {
       showToast(error)
