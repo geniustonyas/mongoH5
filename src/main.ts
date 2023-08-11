@@ -18,14 +18,14 @@ app.use(Lazyload)
 app.use(router)
 app.use(
   createWeb3Auth({
-    autoInit: true,
+    // autoInit: true,
     projectId: '57a3047717eb3ab7e00969b66dfbbed8',
     chains: [Chains.mainnet, Chains.polygon, Chains.avalanche, Chains.arbitrum, Chains.bsc],
-    autoConnect: true,
-    disconnectUnknownChain: true,
-    reconnectToChain: true,
-    logEnabled: true,
-    enableCustomProvider: true,
+    // autoConnect: true,
+    // disconnectUnknownChain: true,
+    // reconnectToChain: true,
+    // logEnabled: true,
+    // enableCustomProvider: true,
     web3modalOptions: {
       themeMode: 'dark',
       themeVariables: {

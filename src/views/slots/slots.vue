@@ -184,6 +184,7 @@ watch(
     } else {
       query.ps = []
     }
+    dataList.value = []
     getGameList()
   },
   { immediate: true }

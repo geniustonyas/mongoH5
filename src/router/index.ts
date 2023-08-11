@@ -181,7 +181,7 @@ const routes = [
         path: ':type(vip|rules|responsible|aml|selfExclusion)',
         name: 'terms',
         component: () => import('@/views/terms/terms.vue'),
-        meta: { transition: '', needLogin: true }
+        meta: { transition: '', needLogin: false }
       }
     ]
   },
