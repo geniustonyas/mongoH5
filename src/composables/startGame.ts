@@ -28,7 +28,19 @@ export function startGame(gameId: string | number) {
   } else {
     getGameUrlApi({ id: gameId, platform: PlatForm.H5 })
       .then((resp) => {
-        window.open(resp.data)
+        const wd = window.open(resp.data)
+        if (!wd) {
+          showConfirmDialog({
+            title: t('tips.openWindow'),
+            message: t('tips.startNow')
+          })
+            .then(() => {
+              window.open(resp.data)
+            })
+            .catch(() => {
+              return false
+            })
+        }
       })
       .catch((error) => {
         showToast(t('tips.startGameFail'))

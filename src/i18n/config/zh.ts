@@ -351,7 +351,8 @@ export default {
     inputExhangeCode: '请输入兑换码',
     startGameFail: '启动游戏失败',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '兑换成功'
+    exhangeSuccess: '兑换成功',
+    openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快'
   },
 
   rewardsBig: '奖励',

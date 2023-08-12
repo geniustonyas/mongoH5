@@ -11,6 +11,7 @@
           <div class="ls-third">
             <div class="t-list">
               <a @click="walletLogin()">
+                <!-- <a> -->
                 <img :src="getAssetsFile('svg/metamask.svg')" />
                 Metamask
               </a>
@@ -116,6 +117,7 @@ import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { getAssetsFile } from '@/utils'
 import { telegramLogin, googleLogin, facebookInit, facebookLogin, walletLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
+// import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { checkUserBindGoogleApi } from '@/api/user/index'
 import { isPwd, isUname } from '@/utils/validate'

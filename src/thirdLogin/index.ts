@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import { thirdData } from '@/api/user/types'
 import { checkThirdUserApi, getThirdNonceApi, verifyMessageApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
+// import { checkThirdUserApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
 import { awaitWraper } from '@/utils/index'
 import { useUserStore } from '@/store/modules/user'
 import router from '@/router'
@@ -133,7 +134,7 @@ export const facebookLogin = () => {
               console.log(error)
             })
         } else {
-          showToast(t('tips.aithFail'))
+          showToast(t('tips.authFail'))
         }
       })
     },

@@ -8,7 +8,7 @@
           <h2>{{ t('createUser') }}</h2>
           <div class="ls-third">
             <div class="t-list">
-              <a @click="walletLogin()">
+              <a>
                 <img :src="getAssetsFile('svg/metamask.svg')" />
                 Metamask
               </a>
@@ -173,7 +173,8 @@ import { useRouter } from 'vue-router'
 import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
-import { telegramLogin, googleLogin, facebookLogin, walletLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
+import { telegramLogin, googleLogin, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
+// import { telegramLogin, googleLogin, facebookLogin, walletLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
 // import { countryCode } from '@/utils/countryCode'
