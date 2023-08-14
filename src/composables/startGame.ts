@@ -31,8 +31,8 @@ export function startGame(gameId: string | number) {
         const wd = window.open(resp.data)
         if (!wd) {
           showConfirmDialog({
-            title: t('tips.openWindow'),
-            message: t('tips.startNow')
+            title: t(''),
+            message: t('tips.openWindow')
           })
             .then(() => {
               window.open(resp.data)

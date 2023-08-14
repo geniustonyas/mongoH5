@@ -112,9 +112,9 @@
             <div class="cr-mark cm-checkbox">
               <input v-model="isAudit" ref="isAuditDom" type="checkbox" />
               {{ t('regPage.isAdult') }}
-              <a href="#">{{ t('regPage.termCondition') }}</a>
+              <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.termCondition') }}</a>
               {{ t('and') }}
-              <a href="#">{{ t('regPage.privacyPolicy') }}</a>
+              <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.privacyPolicy') }}</a>
             </div>
           </div>
           <div class="cf-row">

@@ -1,19 +1,19 @@
-import { watchEffect } from 'vue'
+// import { watchEffect } from 'vue'
 import axios from 'axios'
 
 import { thirdData } from '@/api/user/types'
-import { checkThirdUserApi, getThirdNonceApi, verifyMessageApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
-// import { checkThirdUserApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
+// import { checkThirdUserApi, getThirdNonceApi, verifyMessageApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
+import { checkThirdUserApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
 import { awaitWraper } from '@/utils/index'
 import { useUserStore } from '@/store/modules/user'
 import router from '@/router'
 
 import facebookWebLogin from './plugin/facebookWebLogin'
-import { account, connect, signMessage, chain } from '@kolirt/vue-web3-auth'
+// import { account, connect, signMessage, chain } from '@kolirt/vue-web3-auth'
 import { googleTokenLogin } from 'vue3-google-login'
 //@ts-ignore
 import hello from 'hellojs'
-import { SiweMessage } from 'siwe'
+// import { SiweMessage } from 'siwe'
 import { get } from 'lodash-es'
 import { showToast } from 'vant'
 
@@ -51,45 +51,45 @@ const loginData = <thirdData>{
 let openWindow: any = null
 const userStore = useUserStore()
 
-const signWalletMessage = async () => {
-  let nonce = ''
-  const nonceResp = await getThirdNonceApi()
-  if (!nonceResp.data) {
-    return false
-  }
-  nonce = nonceResp.data
-  const message = new SiweMessage({
-    domain: window.location.host,
-    address: account.address,
-    statement: 'Sign in with Ethereum to the app.',
-    uri: window.location.origin,
-    version: '1',
-    chainId: chain.value.id,
-    nonce: nonce
-  }).prepareMessage()
-  const signature = await signMessage(message)
-  const verifyResp = await verifyMessageApi({ message, signature, id: account.address })
-  if (verifyResp.data.ischecked) {
-    //@ts-ignore
-    handleThirdLogin({ ThirdPartyType: '5', ThirdPartyId: account.address, ThirdPartyName: 'Wallet' }, verifyResp.data.sign)
-  } else {
-    showToast(t('tips.invalidThirdUser'))
-  }
-}
+// const signWalletMessage = async () => {
+//   let nonce = ''
+//   const nonceResp = await getThirdNonceApi()
+//   if (!nonceResp.data) {
+//     return false
+//   }
+//   nonce = nonceResp.data
+//   const message = new SiweMessage({
+//     domain: window.location.host,
+//     address: account.address,
+//     statement: 'Sign in with Ethereum to the app.',
+//     uri: window.location.origin,
+//     version: '1',
+//     chainId: chain.value.id,
+//     nonce: nonce
+//   }).prepareMessage()
+//   const signature = await signMessage(message)
+//   const verifyResp = await verifyMessageApi({ message, signature, id: account.address })
+//   if (verifyResp.data.ischecked) {
+//     //@ts-ignore
+//     handleThirdLogin({ ThirdPartyType: '5', ThirdPartyId: account.address, ThirdPartyName: 'Wallet' }, verifyResp.data.sign)
+//   } else {
+//     showToast(t('tips.invalidThirdUser'))
+//   }
+// }
 
-watchEffect(async () => {
-  if (account.connected) {
-    signWalletMessage()
-  }
-})
+// watchEffect(async () => {
+//   if (account.connected) {
+//     signWalletMessage()
+//   }
+// })
 
-export const walletLogin = async () => {
-  if (account.connected) {
-    signWalletMessage()
-  } else {
-    connect()
-  }
-}
+// export const walletLogin = async () => {
+//   if (account.connected) {
+//     signWalletMessage()
+//   } else {
+//     connect()
+//   }
+// }
 
 export const googleLogin = () => {
   googleTokenLogin({

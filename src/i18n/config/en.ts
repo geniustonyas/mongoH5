@@ -349,7 +349,8 @@ export default {
     copySuccess: 'Copy Success',
     copyFail: 'The browser does not support automatic copying, please copy manually.',
     insufficientPoints: 'Insufficient points',
-    exhangeSuccess: 'exhange successfully'
+    exhangeSuccess: 'exhange successfully',
+    openWindow: 'The window will be opened for you to play the game soon, wish you a happy game.'
   },
 
   rewardsBig: 'REWARDS',
@@ -368,7 +369,9 @@ export default {
   enableVisible: 'Enable Ghost Mode',
   hiddenYourBet: "Your bets won't appear in public bet feed and bet preview",
   startNow: 'Start Now',
-  withdrawStatus: { 1: '处理中', 2: '成功', 3: '失败' },
+  withdrawStatus: { 1: 'Processing', 2: 'Success', 3: 'Failure' },
+  time: 'Time',
+  betAmount: 'Bet Amout',
   // 条款协议等内容
   html: {
     // html标题
