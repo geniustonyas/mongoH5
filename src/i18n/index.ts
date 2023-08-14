@@ -82,14 +82,15 @@ export default i18n
 // <option value="ko">한국어</option>
 // <option value="vi">Tiếng Việt</option>
 export const languages = [
-  { value: 'zh', text: '中文' },
+  { value: 'ja', text: '日本语' },
   { value: 'en', text: 'English' },
   { value: 'de', text: 'Deutsch' },
   { value: 'es', text: 'Español' },
   { value: 'pt', text: 'Português' },
   { value: 'tr', text: 'Türkçe' },
-  { value: 'ja', text: 'ภาษาไทย' },
+  { value: 'th', text: 'ภาษาไทย' },
   { value: 'fr', text: 'Français' },
+  { value: 'zh', text: '中文' },
   { value: 'ko', text: '한국어' },
   { value: 'vi', text: 'Tiếng Việt' }
 ]

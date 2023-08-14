@@ -10,13 +10,8 @@
           <div class="item">
             <div class="i-l" v-lazy:background-image="getAssetsFile('svg/SabaSports.svg')" />
             <div class="i-r">
-              <div class="ir-a"><img v-lazy="getAssetsFile('svg/SabaSports.svg')" />Saba Sports</div>
-              <div class="ir-b">
-                <span>超全赛事</span>
-                <span>玩法多样</span>
-                <span>多终端支持</span>
-                <span>优质体验</span>
-              </div>
+              <div class="ir-a"><img v-lazy="getAssetsFile('svg/SabaSports.svg')" />{{ t('provider.sabaSports') }}</div>
+              <div class="ir-b">{{ t('sabaSportIntro') }}</div>
               <div class="ir-c">
                 <a class="btn btn-primary" @click="startGame(1439)">{{ t('startNow') }}</a>
               </div>
@@ -25,13 +20,8 @@
           <div class="item">
             <div class="i-l" v-lazy:background-image="getAssetsFile('svg/FBSports.svg')" />
             <div class="i-r">
-              <div class="ir-a"><img v-lazy="getAssetsFile('svg/FBSports.svg')" />FB Sports</div>
-              <div class="ir-b">
-                <span>实时扫描</span>
-                <span>秒级结算</span>
-                <span>提前兑现</span>
-                <span>及时止损</span>
-              </div>
+              <div class="ir-a"><img v-lazy="getAssetsFile('svg/FBSports.svg')" />{{ t('provider.btiports') }}</div>
+              <div class="ir-b">{{ t('btiSportIntro') }}</div>
               <div class="ir-c">
                 <a class="btn btn-primary" @click="startGame('2')">{{ t('startNow') }}</a>
               </div>
@@ -63,6 +53,7 @@ import { startGame } from '@/composables/startGame'
 import { useAppStore } from '@/store/modules/app'
 import { getAssetsFile } from '@/utils'
 import { getExchangeRate } from '@/composables/getExchangeRate'
+import { provide } from 'vue'
 
 const appStore = useAppStore()
 const { t } = useI18n()

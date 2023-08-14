@@ -2,6 +2,8 @@ import _ from 'lodash-es'
 import Clipboard from 'clipboard'
 import { showToast } from 'vant'
 import i18n from '@/i18n'
+import { useUserStore } from '@/store/modules/user'
+import router from '@/router'
 
 // 获取url中全部参数的对象
 export function getUrlAllParams() {
@@ -100,4 +102,14 @@ export function moneyFormat(value: any) {
 // 将数字货币地址中间部分用4个*号代替
 export function formatAddress(address: string) {
   return address.length > 10 ? address.replace(address.substring(5, address.length - 5), '****') : address
+}
+
+// 登录后跳转到指定地址
+export function loginTo(route: string) {
+  const userStore = useUserStore()
+  if (userStore.userInfo.id != '') {
+    router.push({ name: route })
+  } else {
+    router.push({ name: 'login', query: { routeTo: route } })
+  }
 }

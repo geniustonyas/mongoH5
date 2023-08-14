@@ -1,29 +1,21 @@
-// import { watchEffect } from 'vue'
 import axios from 'axios'
 
 import { thirdData } from '@/api/user/types'
-// import { checkThirdUserApi, getThirdNonceApi, verifyMessageApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
 import { checkThirdUserApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
 import { awaitWraper } from '@/utils/index'
 import { useUserStore } from '@/store/modules/user'
 import router from '@/router'
 
 import facebookWebLogin from './plugin/facebookWebLogin'
-// import { account, connect, signMessage, chain } from '@kolirt/vue-web3-auth'
 import { googleTokenLogin } from 'vue3-google-login'
 //@ts-ignore
 import hello from 'hellojs'
-// import { SiweMessage } from 'siwe'
 import { get } from 'lodash-es'
 import { showToast } from 'vant'
 
 import i18n from '@/i18n'
 const { t } = i18n.global
 
-// web3Modal project_Id
-// const projectId = '1a2a6ba4947c7a9802ebcbe6426b3b5b'
-// telegram 信息
-// const BOT_ID = '5984604441'
 const BOT_ID = '6360341967'
 // 谷歌app信息
 const GOOGLE_CLIENT_ID = '761335815308-g5tbur6tcihf1j6iv7kboqnim1l4tj5a.apps.googleusercontent.com'
@@ -31,12 +23,6 @@ const GOOGLE_CLIENT_ID = '761335815308-g5tbur6tcihf1j6iv7kboqnim1l4tj5a.apps.goo
 const FACEBOOK_APPID = '663909171737293'
 // Twitter
 const API_KEY = 'j0FMRYjdLk1FYeo1s8LXxFE0r'
-// const APISECRET = 'dPs7txRNjO8WiGckCqIyazJ2rkBf6ayMQ7aXHZouwwR8Bx22QD'
-// const CLIENT_ID = 'a3l5U2w1NF9pRlRERXRIUXl6a2s6MTpjaQ'
-// const CLIENT_SECRET = 'efxh_b4aY9n0P1wIauQDY8BLGP710cRE6xj1O-Y7BRp-7-BEmO'
-// const Access_Token = '1673429389072306176-gN4fLy2oE0XdXLhNLlk5buUVwDUoaw'
-// const Access_Token_Secret = 'DBsRVnIYUUb7RWTUBRXGKMvaTcASDpNgZv6ZqMNDpuPVg'
-// const BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAKVRogEAAAAAjJ6keGYc%2FCqXAMAWVBxvSRpVe5I%3D3iNGsnLUVh3mRy2rx8VoAebemJFHSlwW8YNmOqfabdDuxeezaN'
 
 // Line
 const LINE_CLIENT_ID = '2000085263'
@@ -50,46 +36,6 @@ const loginData = <thirdData>{
 }
 let openWindow: any = null
 const userStore = useUserStore()
-
-// const signWalletMessage = async () => {
-//   let nonce = ''
-//   const nonceResp = await getThirdNonceApi()
-//   if (!nonceResp.data) {
-//     return false
-//   }
-//   nonce = nonceResp.data
-//   const message = new SiweMessage({
-//     domain: window.location.host,
-//     address: account.address,
-//     statement: 'Sign in with Ethereum to the app.',
-//     uri: window.location.origin,
-//     version: '1',
-//     chainId: chain.value.id,
-//     nonce: nonce
-//   }).prepareMessage()
-//   const signature = await signMessage(message)
-//   const verifyResp = await verifyMessageApi({ message, signature, id: account.address })
-//   if (verifyResp.data.ischecked) {
-//     //@ts-ignore
-//     handleThirdLogin({ ThirdPartyType: '5', ThirdPartyId: account.address, ThirdPartyName: 'Wallet' }, verifyResp.data.sign)
-//   } else {
-//     showToast(t('tips.invalidThirdUser'))
-//   }
-// }
-
-// watchEffect(async () => {
-//   if (account.connected) {
-//     signWalletMessage()
-//   }
-// })
-
-// export const walletLogin = async () => {
-//   if (account.connected) {
-//     signWalletMessage()
-//   } else {
-//     connect()
-//   }
-// }
 
 export const googleLogin = () => {
   googleTokenLogin({

@@ -13,7 +13,7 @@
 
       <!-- 跑马灯开始 -->
       <ConfigProvider theme="dark">
-        <NoticeBar left-icon="volume-o" :text="marqueeContent" />
+        <NoticeBar left-icon="volume-o" :text="marqueeContent" @click="loginTo('message')" />
       </ConfigProvider>
       <!-- <nav class="m-notice">
         <span class="mn-icon">
@@ -152,7 +152,7 @@ import { getBannerRespItem } from '@/api/app/types'
 import { getRankListApi } from '@/api/game/index'
 import { getRankListRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
-import { getAssetsFile, moneyFormat } from '@/utils'
+import { getAssetsFile, moneyFormat, loginTo } from '@/utils'
 import { startGame } from '@/composables/startGame'
 import { getExchangeRate } from '@/composables/getExchangeRate'
 

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <CommonHeader :show-back="false" :title="t('promotions')" />
+    <CommonHeader :show-back="false" :title="t('promo')" />
     <main class="main">
       <div class="promo-box">
         <ul v-if="promoList.length > 0" class="pb-list">

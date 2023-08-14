@@ -43,7 +43,7 @@
 
         <!-- 电子 -->
         <div :class="collapseSlots ? 'menu-item show' : 'menu-item'">
-          <h2 @click="collapseSlots = !collapseSlots">Slots<i class="iconfont icon-down" /></h2>
+          <h2 @click="collapseSlots = !collapseSlots">{{ t('slots') }}<i class="iconfont icon-down" /></h2>
           <Vue3SlideUpDown v-model="collapseSlots">
             <ul>
               <li v-for="(item, index) of slotsProviderList" :key="index" @click="routeToGame(item.tab, { providerId: item.id })">
@@ -68,10 +68,12 @@
         <div class="menu-item show">
           <ul>
             <li>
-              <a @click="showToast('即将开放...')">
+              <a @click="showToast('即将开放...')" class="download">
                 <img :src="getAssetsFile('svg/App.svg')" />
-                {{ t('downloadApp') }}
-                <small>{{ t('androidApple') }}</small>
+                <div>
+                  <span>{{ t('downloadApp') }}</span>
+                  <small>{{ t('androidApple') }}</small>
+                </div>
               </a>
             </li>
           </ul>

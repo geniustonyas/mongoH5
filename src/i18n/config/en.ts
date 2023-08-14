@@ -6,6 +6,7 @@ export default {
   promo: 'Promotion',
   support: 'Support',
   onlineSupport: 'Online Support',
+  accountMenu: 'Account',
   account: 'Account',
   confirm: 'Confirm',
   confirmd: 'Confirmed',
@@ -209,8 +210,8 @@ export default {
   slots: 'Casino',
   sbSport: 'Saba Sports',
   fbSport: 'FB Sports',
-  downloadApp: 'Download APP',
-  androidApple: 'Support Android and Apple',
+  downloadApp: 'Download Client',
+  androidApple: 'Support Android and IOS',
   globalPaymentSolutions: 'Global Payment Solutions',
   otherPayment: 'Other mainstream payment methods',
   sportsBet: 'Sports',
@@ -280,6 +281,7 @@ export default {
   provider: {
     all: 'ALL',
     sabaSports: 'Saba Sports',
+    btiports: 'BTI Sports',
     fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -290,7 +292,7 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
-    sexy: 'SEXY'
+    sexy: 'Sexy Baccarat'
   },
 
   // 数据验证提示
@@ -372,6 +374,9 @@ export default {
   withdrawStatus: { 1: 'Processing', 2: 'Success', 3: 'Failure' },
   time: 'Time',
   betAmount: 'Bet Amout',
+  support2: 'Support',
+  btiSportIntro: 'With years of experience in sports platform operation, the BTi sports betting platform offers players an immersive and optimized sports betting gaming experience.',
+  sabaSportIntro: 'Verified by various parties over nearly two decades, the Saba Sports platform offers a wide range of sports events, multiple innovative betting types, and industry-leading odds.',
   // 条款协议等内容
   html: {
     // html标题

@@ -552,6 +552,9 @@ body {
         .flex();
         .flex-pack-justify();
         font-weight: normal;
+        span {
+            width: 100%;
+        }
     }
 }
 
@@ -709,6 +712,12 @@ body {
                         color: var(--color-text);
                         margin-left: 2.4rem;
                         margin-top: .2rem;
+                    }
+                    &.download {
+                        .flex(); .flex-align(); 
+                        small {
+                            margin-left: 1rem;
+                        }
                     }
                 }
             }
@@ -979,8 +988,7 @@ body {
                 .ir-a { font-weight: 700; color: var(--color-white); font-size: 2rem;
                     img { width: 1.6rem; vertical-align: middle; margin-right: .5rem; position: relative; bottom: .1rem; }
                 }
-                .ir-b { .flex(); .flex-wrap(wrap);
-                    span {.flex-x(0 0 50%); width: 50%; margin-top: 1rem; }
+                .ir-b { margin: 3rem auto 5rem 0; text-indent: 1rem;
                 }
                 .ir-c { margin-top: 1.6rem;  
                     a { width: 40%; }

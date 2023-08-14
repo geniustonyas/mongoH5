@@ -3,22 +3,13 @@
     <UserHeader />
     <main class="main">
       <div class="loginbox">
-        <!-- 合作伙伴 -->
-        <UserPartner />
         <!-- 第三方登录 -->
         <div class="l-signin">
           <h2>{{ t('login') }}</h2>
           <div class="ls-third">
             <div class="t-list">
-              <!-- <a @click="walletLogin()"> -->
-              <a>
-                <img :src="getAssetsFile('svg/metamask.svg')" />
-                Metamask
-              </a>
-              <a @click="googleLogin()">
-                <img :src="getAssetsFile('svg/google-oauth2.svg')" />
-                Google
-              </a>
+              <a @click="googleLogin"> <img :src="getAssetsFile('svg/google-oauth2.svg')" /> Google</a>
+              <a @click="facebookLogin"> <img :src="getAssetsFile('svg/facebook.svg')" />Facebook </a>
             </div>
             <span class="btn btn-light" @click="setShowThirdLoginBox()">
               <i class="iconfont icon-add" />
@@ -87,16 +78,13 @@
           <dl>
             <dt>{{ $t('otherMethod') }}</dt>
             <dd>
-              <a @click="facebookLogin"> <img :src="getAssetsFile('svg/facebook.svg')" />Facebook </a>
-            </dd>
-            <dd>
               <a @click="twitterLogin"> <img :src="getAssetsFile('svg/twiter.svg')" />Twitter </a>
             </dd>
             <dd>
               <a @click="lineLogin"> <img :src="getAssetsFile('svg/line.svg')" />Line </a>
             </dd>
             <dd>
-              <a @click="telegramLogin()"> <img :src="getAssetsFile('svg/telegram.svg')" />Telegram </a>
+              <a @click="telegramLogin"> <img :src="getAssetsFile('svg/telegram.svg')" />Telegram </a>
             </dd>
           </dl>
           <span class="icon-btn" @click="setShowThirdLoginBox()">
@@ -110,13 +98,11 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
-import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { getAssetsFile } from '@/utils'
-// import { telegramLogin, googleLogin, facebookInit, facebookLogin, walletLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
 import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { checkUserBindGoogleApi } from '@/api/user/index'
@@ -126,6 +112,7 @@ import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 
 const router = useRouter()
+const route = useRoute()
 const userStore = useUserStore()
 const { t } = useI18n()
 
@@ -192,7 +179,8 @@ const handleLogin = () => {
   userStore
     .login(loginForm)
     .then(() => {
-      router.push({ name: 'index' })
+      const routeName = route.query.routeTo ? route.query.routeTo.toString() : 'index'
+      router.push({ name: routeName })
     })
     .catch(() => {
       showToast(t('tips.loginFail'))

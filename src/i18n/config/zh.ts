@@ -3,9 +3,10 @@ const site_name = import.meta.env.VITE_APP_SITE_NAME
 export default {
   home: '首页',
   search: '搜索',
-  promo: '优惠',
+  promo: '促销',
   support: '客服',
   onlineSupport: '客服',
+  accountMenu: '我的',
   account: '账户',
   confirm: '确定',
   confirmd: '已确认',
@@ -205,17 +206,17 @@ export default {
   // 首页
   readMore: '查看详情',
   sports: '体育',
-  liveCasino: '真人荷官',
+  liveCasino: '真人娱乐',
   slots: '老虎机',
   sbSport: '沙巴体育',
   fbSport: 'FB体育',
-  downloadApp: '下载APP',
-  androidApple: '支持安卓和苹果',
+  downloadApp: '下载客户端',
+  androidApple: '安卓和IOS',
   globalPaymentSolutions: '全球支付解决方案',
   otherPayment: '其他主流支付方式',
   sportsBet: '体育投注',
   liveCasinoBet: '真人娱乐投注',
-  slotBet: '娱乐场投注',
+  slotBet: '老虎机投注',
   more: '更多',
   loadMore: '加载更多',
   providers: '运营商',
@@ -229,7 +230,7 @@ export default {
   responsibleGambling: '负责任博彩',
   amlPolicy: '反洗钱政策',
   selfExclusion: '自我排除',
-  privacyPolicy: '隐私策略',
+  privacyPolicy: '隐私政策',
   fairness: '公平性',
   game: '游戏',
   followUs: '关注我们',
@@ -290,7 +291,7 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Micro gaming',
-    sexy: 'SEXY'
+    sexy: 'Sexy Baccarat'
   },
 
   // 数据验证提示
@@ -374,6 +375,9 @@ export default {
   withdrawStatus: { 1: '处理中', 2: '成功', 3: '失败' },
   time: '时间',
   betAmount: '投注金额',
+  support2: '支持',
+  btiSportIntro: '多年体育平台运营经验，BTi体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
+  sabaSportIntro: '经过近二十年的多方证实，沙巴体育平台提供广泛的体育赛事、多种创新投注类型、业界最佳赔率。',
   // 条款协议等内容
   html: {
     // html标题

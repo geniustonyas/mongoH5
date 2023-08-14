@@ -3,7 +3,7 @@
     <UserHeader />
     <main class="main">
       <div class="loginbox">
-        <UserPartner />
+        <!-- <UserPartner /> -->
         <div class="l-signin">
           <h2>{{ t('createUser') }}</h2>
           <div class="ls-third">
@@ -52,38 +52,6 @@
               <input v-model.trim="regForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" :placeholder="t('tips.inputEmailcapcha')" autocomplete="off" />
             </div>
           </div>
-          <!-- 生日 -->
-          <!-- <div class="cf-row">
-            <div class="cr-label">
-              <span>{{ t('birthday') }}</span>
-            </div>
-            <div class="cr-input group">
-              <select class="form-control sel-center" v-model="day" ref="dayDom">
-                <option value="">Day</option>
-                <option v-for="item in 31" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
-              </select>
-              <select class="form-control sel-center" v-model="month" ref="monthDom">
-                <option value="">Month</option>
-                <option v-for="item in 12" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
-              </select>
-              <select class="form-control sel-center" v-model="year" ref="yearDom">
-                <option value="">Year</option>
-                <option v-for="item in getYearList()" :key="item" :value="item">{{ item }}</option>
-              </select>
-            </div>
-          </div> -->
-          <!-- 电话号码 -->
-          <!-- <div class="cf-row">
-            <div class="cr-label">
-              <span>{{ t('telephone') }}</span>
-            </div>
-            <div class="cr-input group g-tel">
-              <select v-model="regForm.CountryCode" ref="countryDom" class="form-control">
-                <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
-              </select>
-              <input v-model.trim="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" :placeholder="t('regPage.holderTelephone')" autocomplete="off" />
-            </div>
-          </div> -->
           <div class="cf-row">
             <div class="cr-label">
               <span>{{ t('password') }}</span>
@@ -170,14 +138,11 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { telegramLogin, googleLogin, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
-// import { telegramLogin, googleLogin, facebookLogin, walletLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
-// import { countryCode } from '@/utils/countryCode'
 import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/index'
 
@@ -196,19 +161,11 @@ let confirmPwd = ref('')
 let showConfirmPwd = ref(false)
 let sended = ref(false)
 let showloading = ref(false)
-// let day = ref<string | number>('')
-// let month = ref<string | number>('')
-// let year = ref<string | number>('')
 let isAudit = ref(true)
 let isAgree = ref(true)
 // dom元素
 let userNameDom = ref<HTMLInputElement | null>(null)
 let emailDom = ref<HTMLInputElement | null>(null)
-// let dayDom = ref<HTMLInputElement | null>(null)
-// let monthDom = ref<HTMLInputElement | null>(null)
-// let yearDom = ref<HTMLInputElement | null>(null)
-// let countryDom = ref<HTMLInputElement | null>(null)
-// let phoneDom = ref<HTMLInputElement | null>(null)
 let pwdDom = ref<HTMLInputElement | null>(null)
 let confirmPwdDom = ref<HTMLInputElement | null>(null)
 let isAuditDom = ref<HTMLInputElement | null>(null)
@@ -330,31 +287,6 @@ const handleReg = async () => {
     verificationCodeDom.value?.focus()
     return false
   }
-  // if (day.value == '') {
-  //   showToast(t('tips.inputDay'))
-  //   dayDom.value?.focus()
-  //   return false
-  // }
-  // if (month.value == '') {
-  //   showToast(t('tips.inputMonth'))
-  //   monthDom.value?.focus()
-  //   return false
-  // }
-  // if (year.value == '') {
-  //   showToast(t('tips.inputYear'))
-  //   yearDom.value?.focus()
-  //   return false
-  // }
-  // if (regForm.CountryCode == '') {
-  //   showToast(t('tips.inputCountryCode'))
-  //   countryDom.value?.focus()
-  //   return false
-  // }
-  // if (regForm.PhoneNumber == '') {
-  //   showToast(t('tips.inputphoneNumber'))
-  //   phoneDom.value?.focus()
-  //   return false
-  // }
   if (!isPwd(regForm.Password)) {
     showToast(t('tips.isPwd'))
     pwdDom.value?.focus()
@@ -398,7 +330,6 @@ const handleReg = async () => {
     return false
   }
   try {
-    // regForm.DateOfBirth = `${year.value}-${month.value}-${day.value}`
     await regApi(regForm)
     userStore
       .login({ UserName: regForm.UserName, PassWord: regForm.Password })

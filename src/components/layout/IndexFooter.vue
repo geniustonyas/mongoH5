@@ -48,7 +48,7 @@
         <a @click="router.push({ name: 'terms', params: { type: 'selfExclusion' } })">{{ t('html.selfExclusionTitle') }}</a>
       </dd>
       <dd>
-        <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('html.fairnessTitle') }}</a>
+        <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('privacyPolicy') }}</a>
       </dd>
     </dl>
     <dl>
@@ -70,14 +70,14 @@
       </dd>
     </dl>
     <dl>
-      <dt>{{ t('onlineSupport') }}</dt>
-      <!-- <dd>
-            <a @click="toggleTab('srpots')">{{ t('fairness') }}</a>
-          </dd> -->
+      <dt>{{ t('support2') }}</dt>
       <dd>
-        <a @click="router.push({ name: 'support' })">{{ t('liveSupport') }}<i class="iconfont icon-share" /></a>
+        <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('fairness') }}</a>
       </dd>
       <!-- <dd>
+        <a @click="router.push({ name: 'support' })">{{ t('liveSupport') }}<i class="iconfont icon-share" /></a>
+      </dd>
+      <dd>
             <a @click="toggleTab('sports')">{{ t('helpCenter') }}</a>
           </dd> -->
     </dl>

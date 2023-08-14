@@ -5,7 +5,7 @@
       <router-link to="/search"><i />{{ t('search') }} </router-link>
       <router-link to="/promo"><i />{{ t('promo') }} </router-link>
       <router-link to="/support"><i />{{ t('support') }} </router-link>
-      <router-link to="/home"><i />{{ t('account') }} </router-link>
+      <router-link to="/home"><i />{{ t('accountMenu') }} </router-link>
     </nav>
   </footer>
 </template>

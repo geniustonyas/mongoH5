@@ -4,11 +4,11 @@
       <!-- logo 跳转主页 -->
       <div class="hm-l">
         <a @click="appStore.showSideBar = !appStore.showSideBar" class="icon-btn navbar-left">
-          <i class="iconfont icon-zhedie1" />
+          <i :class="appStore.showSideBar ? 'iconfont icon-close' : 'iconfont icon-zhedie1'" />
         </a>
-        <a v-if="userStore.userInfo.id == ''" class="icon-btn" @click="router.push({ name: 'mall' })">
+        <!-- <a v-if="userStore.userInfo.id == ''" class="icon-btn" @click="router.push({ name: 'mall' })">
           <i class="iconfont icon-shangcheng" />
-        </a>
+        </a> -->
       </div>
 
       <!-- 用户信息 -->
@@ -31,7 +31,7 @@
           <a class="icon-btn" @click="router.push({ name: 'mall' })">
             <i class="iconfont icon-shangcheng" />
           </a>
-          <a class="icon-btn" @click="router.push({ name: 'message' })">
+          <a class="icon-btn" @click="loginTo('message')">
             <i class="iconfont icon-message" />
             <em v-if="userStore.newMessageCount > 0" class="badge" />
           </a>
@@ -51,7 +51,7 @@ import { useI18n } from 'vue-i18n'
 
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
-import { moneyFormat } from '@/utils'
+import { moneyFormat, loginTo } from '@/utils'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
