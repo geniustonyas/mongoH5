@@ -15,7 +15,7 @@
     </header>
     <main class="main">
       <div class="notifications-box">
-        <div v-if="tab == 1 && dataList.length > 0" class="nb-head">
+        <div v-if="dataList.length > 0" class="nb-head">
           <a :class="newMessageCount == 0 ? 'disable' : ''" @click="setAllReaded()">{{ t('makeAllRead') }}</a>
         </div>
         <div v-if="dataList.length > 0" class="nb-list">
@@ -151,7 +151,7 @@ const setAllReaded = () => {
   if (newMessageCount.value > 0) {
     return false
   }
-  setAllReadApi()
+  setAllReadApi({ NotificationType: tab.value.toString() })
     .then(() => {
       dataList.value.forEach((item) => {
         item.isRead = true

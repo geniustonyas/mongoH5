@@ -64,7 +64,7 @@ export function getTradeRecordApi() {
 
 /** 获取交易记录详情 */
 export function getTradeDetailApi(data: Fund.getTradeDetailData) {
-  return request<anyResp>({
+  return request<Fund.getTradeDetailResp>({
     url: 'Member/GetDealRecordDetail',
     method: 'post',
     data
@@ -79,18 +79,18 @@ export function getDepositMethodApi() {
   })
 }
 
-/** 获取充值充值记录 */
+/** 获取充值记录 */
 export function getDepositListApi(data: Fund.getTradeListData) {
-  return request<Fund.getRradeRecordResp>({
+  return request<Fund.getTradeRecordResp>({
     url: 'Member/GetMemberDepositList',
     method: 'post',
     data
   })
 }
 
-/** 获取提现投注记录 */
+/** 获取提现记录 */
 export function getWithdrawListApi(data: Fund.getTradeListData) {
-  return request<Fund.getRradeRecordResp>({
+  return request<Fund.getTradeRecordResp>({
     url: 'Member/GetMemberWithdrawList',
     method: 'post',
     data
@@ -99,7 +99,7 @@ export function getWithdrawListApi(data: Fund.getTradeListData) {
 
 /** 获取投注记录详情 */
 export function getBetListApi(data: Fund.getTradeListData) {
-  return request<Fund.getRradeRecordResp>({
+  return request<Fund.getTradeRecordResp>({
     url: 'Member/GetMemberBetList',
     method: 'post',
     data
@@ -108,8 +108,17 @@ export function getBetListApi(data: Fund.getTradeListData) {
 
 /** 获取输赢记录详情 */
 export function getWinListApi(data: Fund.getTradeListData) {
-  return request<Fund.getRradeRecordResp>({
+  return request<Fund.getTradeRecordResp>({
     url: 'Member/GetMemberWinList',
+    method: 'post',
+    data
+  })
+}
+
+/** 获取账变记录 */
+export function getFundChangeRecordApi(data: Fund.getFundChangeRecordData) {
+  return request<Fund.getFundChangeRecordResp>({
+    url: 'Member/GetMemberWalletFundList',
     method: 'post',
     data
   })

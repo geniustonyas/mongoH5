@@ -377,6 +377,27 @@ export default {
   support2: 'Support',
   btiSportIntro: 'With years of experience in sports platform operation, the BTi sports betting platform offers players an immersive and optimized sports betting gaming experience.',
   sabaSportIntro: 'Verified by various parties over nearly two decades, the Saba Sports platform offers a wide range of sports events, multiple innovative betting types, and industry-leading odds.',
+  fundRecord: 'Fund Change Record',
+  categoryFilter: 'FILTER BY CATEGORY',
+  fundCategory: {
+    1: 'Deposit',
+    2: 'Withdraw',
+    3: 'Bet',
+    4: 'Settle',
+    5: 'Administrator Charge',
+    6: 'Administrator Deduction',
+    7: 'Promotional Gift',
+    8: 'Refund',
+    9: 'VIPRewards',
+    10: 'Exchange Goods',
+    17: 'Withdraw Failure'
+  },
+  beforeBalance: 'Before change',
+  afterBalance: 'After change',
+  tradeDetails: 'Trade Details',
+  tradeNo: 'Order No',
+  orderType: 'Order Type',
+  orderTypes: { 1: 'Deposit', 2: 'Withdraw', 3: 'Bet', 4: 'Win' },
   // 条款协议等内容
   html: {
     // html标题

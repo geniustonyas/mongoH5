@@ -28,6 +28,9 @@
       <!-- 积分商城或登录注册 -->
       <div class="hm-r">
         <template v-if="userStore.userInfo.id">
+          <a class="icon-btn" @click="router.push({ name: 'clubHouse' })">
+            <img :src="getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`)" />
+          </a>
           <a class="icon-btn" @click="router.push({ name: 'mall' })">
             <i class="iconfont icon-shangcheng" />
           </a>
@@ -51,7 +54,7 @@ import { useI18n } from 'vue-i18n'
 
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
-import { moneyFormat, loginTo } from '@/utils'
+import { moneyFormat, getAssetsFile, loginTo } from '@/utils'
 
 const appStore = useAppStore()
 const userStore = useUserStore()

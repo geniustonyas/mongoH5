@@ -9,7 +9,6 @@
             <span :class="{ active: tab == 'withdraw' }" @click="selTab('withdraw')">{{ t('withdrawals') }}</span>
           </div>
           <div class="line-options">
-            <!--此处参考sportsbet.io，一个带图标的下拉框，一个日期控件-->
             <ConfigProvider theme="dark" class="o-item">
               <DropdownMenu direction="down">
                 <DropdownItem :title="t('currencyFilter')" ref="currenyDom" teleport="body">
@@ -41,7 +40,7 @@
                   :finished-text="t('noMore')"
                   @load="loadData"
                 >
-                  <div v-for="(item, index) of dataList" class="rl-item" :key="index">
+                  <div v-for="(item, index) of dataList" class="rl-item" :key="index" @click="getTradeDetail(item)">
                     <div class="i-row">
                       <div class="r-col">{{ item.createTime }}</div>
                       <div class="r-col">
@@ -50,9 +49,6 @@
                     </div>
                     <div class="i-row">
                       <div class="r-col">{{ item.currencyCode }} {{ t(tab == 'deposit' ? 'deposit' : 'withdraw') }}</div>
-                      <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
-                    </div>
-                    <div class="i-row flex-end">
                       <div class="r-col">
                         <span :class="`${walletStatus[item.orderStatus]} c-status`">{{ t(`withdrawStatus[${item.orderStatus}]`) }}</span>
                       </div>
@@ -69,6 +65,7 @@
     <ConfigProvider theme="dark">
       <Calendar
         v-model:show="showDatePicker"
+        :default-date="[dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]"
         type="range"
         :min-date="minDate"
         :max-date="maxDate"
@@ -80,6 +77,43 @@
         :formatter="dayFormatter"
         @confirm="customDate"
       />
+      <Popup v-model:show="showDetailsBox" round style="width: 80%" :closeable="true">
+        <div class="fund-form wa" style="">
+          <div class="ff-w-a">
+            <p>{{ t(`withdrawStatus[${detailsData.orderStatus}]`) }}</p>
+            <h2>{{ moneyFormat(detailsData.amount) }}&nbsp;{{ detailsData.currencyCode }}</h2>
+          </div>
+          <dl class="ff-rows">
+            <dt>{{ t('tradeDetails') }}</dt>
+            <dd>
+              {{ t('tradeNo') }}: <span>{{ detailsData.orderId }}</span>
+            </dd>
+            <dd>
+              {{ t('blockChain') }}:
+              <span>{{ t(`${detailsData.blockchainCode}`) }}</span>
+            </dd>
+            <dd>
+              {{ t('orderStatus') }}:
+              <span>{{ t(`withdrawStatus.${detailsData.orderStatus}`) }}</span>
+            </dd>
+          </dl>
+          <dl class="ff-rows">
+            <dt>{{ t('summary') }}</dt>
+            <dd>
+              {{ t('date') }}:
+              <span>{{ detailsData.createTime }}</span>
+            </dd>
+            <dd>
+              {{ t('orderType') }}：
+              <span>{{ t(`orderTypes.${detailsData.orderType}`) }}</span>
+            </dd>
+            <dd>
+              {{ t('afterBalance') }}：
+              <span>{{ moneyFormat(detailsData.afterAmount) }} {{ detailsData.currencyCode }}</span>
+            </dd>
+          </dl>
+        </div>
+      </Popup>
     </ConfigProvider>
   </div>
 </template>
@@ -90,17 +124,18 @@ import { ref, reactive } from 'vue'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Nodata from '@/components/Nodata.vue'
 
-import { getDepositListApi, getWithdrawListApi } from '@/api/fund/index'
-import { getRradeRecordResponse } from '@/api/fund/types'
+import { getDepositListApi, getTradeDetailApi, getWithdrawListApi } from '@/api/fund/index'
+import { getRradeRecordResponse, getTradeDetailResponse } from '@/api/fund/types'
 import { getAssetsFile } from '@/utils/index'
-import { currenyList, currenyListTypes } from '@/utils/blockChain'
+import { currenyList, currenyListTypes } from '@/utils/config'
 import dynamicObject from '@/types/dynamicObject'
 import { useI18n } from 'vue-i18n'
 
 import { moneyFormat } from '@/utils/index'
 import dayjs from 'dayjs'
-import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List } from 'vant'
+import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List, Popup } from 'vant'
 import type { DropdownItemInstance } from 'vant'
+import { cloneDeep } from 'lodash-es'
 
 const { t } = useI18n()
 
@@ -123,15 +158,31 @@ let error = ref(false)
 let nodata = ref(false)
 const query = reactive({
   CurrencyCode: '',
-  StartTime: '',
-  EndTime: '',
+  StartTime: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
+  EndTime: dayjs().add(1, 'day').format('YYYY-MM-DD'),
   PageIndex: '1',
   PageSize: '20',
   noLoading: false
 })
 
+// 充值提现状态css
 const walletStatus = ref<dynamicObject>(['', 'incomplete', 'confirmed', 'deleted'])
 const dataList = ref<getRradeRecordResponse[]>([])
+
+// 交易详情
+const showDetailsBox = ref(false)
+const detailsData = reactive<getTradeDetailResponse>({
+  blockchainCode: '',
+  createTime: '',
+  currencyCode: '',
+  orderId: '',
+  txId: '',
+  amount: '',
+  afterAmount: '',
+  orderType: '',
+  orderStatus: ''
+})
+const defaultDetailsData = cloneDeep(detailsData)
 
 // 日期控件去掉日历格子下文字信息
 const dayFormatter = (day: any) => {
@@ -233,8 +284,21 @@ const loadData = () => {
 const customDate = (time: any) => {
   query.StartTime = dayjs(time[0]).format('YYYY-MM-DD')
   query.EndTime = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
+  dataList.value = []
   getTradeRecordList()
   showDatePicker.value = false
+}
+
+// 获取交易详情
+const getTradeDetail = (item: getRradeRecordResponse) => {
+  getTradeDetailApi({ OrderId: item.orderId, orderType: tab.value == 'deposit' ? '1' : '2' })
+    .then((resp) => {
+      Object.assign(detailsData, resp.data)
+      showDetailsBox.value = true
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
 checkedCurrency.value = currenyList.map((item) => item.code)

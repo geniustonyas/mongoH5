@@ -84,7 +84,7 @@ import Footer from '@/components/layout/Footer.vue'
 import { getSearchGameApi, getGameRecommendApi } from '@/api/game/index'
 import { getSearchGameRespItem, recommendGameRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
-import { providerList, providerListItemTypes } from '@/utils/gameProviders'
+import { providerList, providerListItemTypes } from '@/utils/config'
 import { startGame } from '@/composables/startGame'
 
 import { ConfigProvider } from 'vant'

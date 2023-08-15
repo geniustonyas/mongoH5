@@ -8,7 +8,7 @@
           <div class="row-body">
             <div class="r-title">{{ t('activeBalance') }}</div>
             <!-- 余额框 -->
-            <div v-if="selCurrencyItem.name != ''" class="r-card">
+            <div v-if="selCurrencyItem.name != ''" class="r-card" @click="showCurrencyItemBox = true">
               <div class="rc-l">
                 <img :src="getAssetsFile(`coin/${selCurrencyItem.name.toLocaleLowerCase()}.svg`)" />
                 <span>
@@ -17,10 +17,10 @@
                 </span>
               </div>
               <!-- 弹出余额列表框 -->
-              <div class="rc-r" @click="showCurrencyItemBox = true">
+              <div class="rc-r">
                 <span>
                   <b>{{ moneyFormat(selCurrencyItem.balance) }} {{ selCurrencyItem.unit }}</b>
-                  <small>${{ moneyFormat(selCurrencyItem.usdAmount) }} US</small>
+                  <small>${{ moneyFormat(selCurrencyItem.usdAmount) }} USD</small>
                 </span>
                 <i class="iconfont icon-down" />
               </div>
@@ -79,7 +79,7 @@
                 <div class="gc-b">
                   <div class="b-l">
                     <small>{{ t('address') }}</small>
-                    <span>{{ formatAddress(depositInfo.walletAddress) }}</span>
+                    <span @click="showAddress = true" :class="showAddress ? 'show-all' : ''">{{ depositInfo.walletAddress }}</span>
                   </div>
                   <div class="b-r">
                     <span @click="showDepositQrcode = !showDepositQrcode">
@@ -222,7 +222,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
@@ -231,7 +231,7 @@ import FundFooter from '@/components/layout/FundFooter.vue'
 import { getBalanceApi, getDepositAddressApi, setDefaultCurrencyApi } from '@/api/fund/index'
 import { getBalanceItemResponse } from '@/api/fund/types'
 import { getAssetsFile, copy, moneyFormat, formatAddress } from '@/utils'
-import { usdtChainList, usdtChainListTypes, currenyList } from '@/utils/blockChain'
+import { usdtChainList, usdtChainListTypes, currenyList } from '@/utils/config'
 
 import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
@@ -250,6 +250,9 @@ const depositTab = ref('digital')
 
 // 存款|提款|购买数字货币切换
 const fundTab = ref('deposit')
+
+// 是否显示完整地址
+const showAddress = ref(false)
 
 // 余额列表
 const showCurrencyItemBox = ref(false)
@@ -354,6 +357,9 @@ const getDeposit = () => {
   getDepositAddressApi({ BlockchainCode: selCurrencyItem.name == 'USDT' ? selBlockChainItem.code : ' ', CurrencyCode: selCurrencyItem.name })
     .then((resp) => {
       Object.assign(depositInfo, resp.data)
+      nextTick(() => {
+        copy('.copy')
+      })
     })
     .catch((error) => {
       Object.assign(depositInfo, defaultDepositInfo)
@@ -365,11 +371,6 @@ const getDeposit = () => {
 const openBourse = (url: string) => {
   window.open(url)
 }
-
-// 初始化赋值
-onMounted(() => {
-  copy('.copy')
-})
 
 if (route.query.tab) {
   fundTab.value = route.query.tab as any

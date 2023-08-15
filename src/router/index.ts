@@ -154,6 +154,12 @@ const routes = [
         meta: { transition: '', needLogin: true }
       },
       {
+        path: 'fundRecord',
+        name: 'fundRecord',
+        component: () => import('@/views/home/fundRecord.vue'),
+        meta: { transition: '', needLogin: true }
+      },
+      {
         path: 'wallet',
         name: 'wallet',
         component: () => import('@/views/home/wallet.vue'),

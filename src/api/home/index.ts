@@ -82,10 +82,11 @@ export function setReadApi(data: Home.setReadData) {
 }
 
 /** 全部设为已读 */
-export function setAllReadApi() {
+export function setAllReadApi(data: Home.setAllReadData) {
   return request<anyResp>({
     url: 'Member/SetAllNotificationRead',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
 

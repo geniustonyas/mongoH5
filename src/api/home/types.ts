@@ -59,6 +59,10 @@ export interface setReadData {
   Id: string
 }
 
+export interface setAllReadData {
+  NotificationType: string
+}
+
 // 领取优惠data
 export interface receiveRewardData {
   VipSubItemCode: string

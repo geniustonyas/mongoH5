@@ -101,7 +101,7 @@ export function moneyFormat(value: any) {
 
 // 将数字货币地址中间部分用4个*号代替
 export function formatAddress(address: string) {
-  return address.length > 10 ? address.replace(address.substring(5, address.length - 5), '****') : address
+  return address.length > 25 ? address.replace(address.substring(25, address.length), '...') : address
 }
 
 // 登录后跳转到指定地址

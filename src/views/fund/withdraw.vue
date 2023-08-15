@@ -224,7 +224,7 @@ import { useUserStore } from '@/store/modules/user'
 import { getMinWithdrawAmountApi, getBalanceApi, withdrawOrderApi, getTradeDetailApi } from '@/api/fund/index'
 // import { getTradeDetailResponse } from '@/api/fund/type'
 import { getAssetsFile, moneyFormat } from '@/utils'
-import { usdtChainList, usdtChainListTypes } from '@/utils/blockChain'
+import { usdtChainList, usdtChainListTypes } from '@/utils/config'
 import { useI18n } from 'vue-i18n'
 
 import BigNumber from 'bignumber.js'

@@ -1,18 +1,13 @@
 <template>
   <div class="page">
-    <CommonHeader :title="t('transactionHistory')" />
+    <CommonHeader :title="t('fundRecord')" />
     <main class="main">
       <div class="record-box">
         <div class="rb-head">
-          <div class="line-tabs">
-            <span :class="{ active: tab == 'bet' }" @click="selTab('bet')">{{ t('bets') }}</span>
-            <span :class="{ active: tab == 'win' }" @click="selTab('win')">{{ t('wins') }}</span>
-          </div>
           <div class="line-options">
-            <!--此处参考sportsbet.io，一个带图标的下拉框，一个日期控件-->
             <ConfigProvider theme="dark" class="o-item">
               <DropdownMenu direction="down">
-                <DropdownItem :title="t('currencyFilter')" ref="currenyDom" teleport="body">
+                <DropdownItem :title="t('currencyFilter')" ref="currenyDom">
                   <div class="drop-item" v-for="(item, index) of currenyList" :key="index" @click="selCurrency(item)">
                     <img :src="getAssetsFile(item.icon)" />
                     <span>{{ item.currenyName }}</span>
@@ -24,12 +19,17 @@
                 </DropdownItem>
               </DropdownMenu>
             </ConfigProvider>
+            <ConfigProvider theme="dark" class="o-item">
+              <DropdownMenu direction="down">
+                <DropdownItem v-model="query.Category" ref="categoryDom" :options="fundCategory" @click="selCategory" />
+              </DropdownMenu>
+            </ConfigProvider>
             <div class="o-item" @click="showDatePicker = !showDatePicker">{{ t('dateFilter') }}</div>
           </div>
         </div>
         <div class="mb-conts">
           <div v-if="dataList.length > 0" class="mc-box">
-            <div v-if="tab == 'bet'" class="record-list">
+            <div v-if="tab == 'deposit' || tab == 'withdraw'" class="record-list">
               <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
                 <List
                   v-model:loading="listLoading"
@@ -44,46 +44,26 @@
                   <div v-for="(item, index) of dataList" class="rl-item" :key="index">
                     <div class="i-row">
                       <div class="r-col">{{ item.createTime }}</div>
+                    </div>
+                    <div class="i-row">
+                      <div class="r-col">{{ formatterCategory(item.category) }}</div>
+                      <div class="r-col">{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
+                    </div>
+                    <div class="i-row">
                       <div class="r-col">
-                        <b>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</b>
+                        {{ t('beforeBalance') }}
+                      </div>
+                      <div class="r-col">
+                        {{ moneyFormat(item.beforeBalance) + item.currencyCode }}
                       </div>
                     </div>
                     <div class="i-row">
-                      <div class="r-col">{{ item.providerName }}</div>
-                      <!-- <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div> -->
-                    </div>
-                    <div class="i-row">
-                      <div class="r-col">{{ item.gameItemName }}</div>
                       <div class="r-col">
-                        <span :class="`${orderStatusCss[item.orderStatus]} c-status`">{{ t(`tradeStatus[${item.orderStatus}]`) }}</span>
+                        {{ t('afterBalance') }}
                       </div>
-                    </div>
-                  </div>
-                </List>
-              </PullRefresh>
-            </div>
-            <div v-if="tab == 'win'" class="record-list">
-              <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
-                <List
-                  v-model="listLoading"
-                  :offset="20"
-                  :finished="finished"
-                  :immediate-check="false"
-                  v-model:error="error"
-                  :error-text="t('loadingFail')"
-                  :finished-text="t('noMore')"
-                  @load="loadData"
-                >
-                  <div v-for="(item, index) of dataList" class="rl-item" :key="index">
-                    <div class="i-row">
-                      <div class="r-col">{{ item.createTime }}</div>
                       <div class="r-col">
-                        <b>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</b>
+                        {{ moneyFormat(item.afterBalance) + item.currencyCode }}
                       </div>
-                    </div>
-                    <div class="i-row">
-                      <div class="r-col">{{ item.gameName }}</div>
-                      <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
                     </div>
                   </div>
                 </List>
@@ -118,11 +98,10 @@ import { ref, reactive } from 'vue'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Nodata from '@/components/Nodata.vue'
 
-import { getBetListApi, getWinListApi } from '@/api/fund/index'
-import { getRradeRecordResponse } from '@/api/fund/types'
+import { getFundChangeRecordApi } from '@/api/fund/index'
+import { getFundChangeRecordRespItems } from '@/api/fund/types'
 import { getAssetsFile } from '@/utils/index'
-import { currenyList, currenyListTypes } from '@/utils/config'
-import dynamicObject from '@/types/dynamicObject'
+import { currenyList, currenyListTypes, fundCategory } from '@/utils/config'
 import { useI18n } from 'vue-i18n'
 
 import { moneyFormat } from '@/utils/index'
@@ -132,7 +111,7 @@ import type { DropdownItemInstance } from 'vant'
 
 const { t } = useI18n()
 
-const tab = ref('bet')
+const tab = ref('deposit')
 
 // 筛选 - 日期控件参数
 const minDate = dayjs().subtract(1, 'months').toDate()
@@ -154,31 +133,17 @@ const query = reactive({
   StartTime: '',
   EndTime: '',
   PageIndex: '1',
-  PageSize: '10',
+  PageSize: '20',
+  Category: '',
   noLoading: false
 })
 
-const orderStatusCss = ref<dynamicObject>(['', 'incomplete', 'confirmed', 'deleted'])
-const dataList = ref<getRradeRecordResponse[]>([])
+const dataList = ref<getFundChangeRecordRespItems[]>([])
 
 // 日期控件去掉日历格子下文字信息
 const dayFormatter = (day: any) => {
   day.bottomInfo = ''
   return day
-}
-
-// 列表切换
-const selTab = (tabs: string) => {
-  nodata.value = false
-  query.PageIndex = '1'
-  query.noLoading = false
-  dataList.value = []
-  if (tab.value == tabs) {
-    return false
-  } else {
-    tab.value = tabs
-    getTradeRecordList()
-  }
 }
 
 // 选择币种
@@ -191,37 +156,28 @@ const selCurrency = (item: currenyListTypes) => {
   }
 }
 
-// 选择币种后查询交易列表
+// 选择分类筛选
+const selCategory = () => {
+  query.PageIndex = '1'
+  dataList.value = []
+  nodata.value = false
+  getFundChangeRecord()
+}
+
+// 选择币种后查询账变记录
 const confirmCurreny = () => {
   currenyDom?.value!.toggle()
-  getTradeRecordList()
+  getFundChangeRecord()
 }
 
-// 获取交易列表
-const getTradeRecordList = () => {
-  query.CurrencyCode = checkedCurrency.value.join(',')
-  switch (tab.value) {
-    case 'bet':
-      getBetList()
-      break
-    case 'win':
-      getWinList()
-      break
-    default:
-      break
-  }
+const formatterCategory = (categoryValue: string) => {
+  const item = fundCategory.find((item) => item.value == categoryValue)
+  return item ? item.text : ''
 }
 
-// 获取投注记录
-const getBetList = () => {
-  getBetListApi(query)
-    .then((resp) => getListSuccess(resp))
-    .catch((error) => getListFail(error))
-}
-
-// 获取中奖记录
-const getWinList = () => {
-  getWinListApi(query)
+// 获取账变记录
+const getFundChangeRecord = () => {
+  getFundChangeRecordApi(query)
     .then((resp) => getListSuccess(resp))
     .catch((error) => getListFail(error))
 }
@@ -248,26 +204,24 @@ const getListFail = (error: any) => {
 const fresh = () => {
   query.noLoading = true
   query.PageIndex = '1'
-  listLoading.value = true
-  getTradeRecordList()
+  getFundChangeRecord()
 }
 
 // 上拉加载更多数据
 const loadData = () => {
-  listLoading.value = true
   query.noLoading = true
   query.PageIndex = (parseInt(query.PageIndex) + 1).toString()
-  getTradeRecordList()
+  getFundChangeRecord()
 }
 
 const customDate = (time: any) => {
   query.StartTime = dayjs(time[0]).format('YYYY-MM-DD')
   query.EndTime = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
-  getTradeRecordList()
+  getFundChangeRecord()
   showDatePicker.value = false
 }
 
 checkedCurrency.value = currenyList.map((item) => item.code)
 
-getTradeRecordList()
+getFundChangeRecord()
 </script>

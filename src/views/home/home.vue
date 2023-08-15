@@ -73,6 +73,12 @@
               </a>
             </li>
             <li>
+              <a @click="router.push({ name: 'fundRecord' })">
+                <span><Icon name="cash-back-record" />{{ t('fundRecord') }} </span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+            <li>
               <a @click="router.push({ name: 'tradeRecord' })">
                 <span><i class="iconfont icon-bets" />{{ t('myBets') }} </span>
                 <i class="iconfont icon-right" />
@@ -110,7 +116,7 @@ import { getAssetsFile } from '@/utils'
 
 import BigNumber from 'bignumber.js'
 import { useI18n } from 'vue-i18n'
-import { showToast } from 'vant'
+import { showToast, Icon } from 'vant'
 
 const router = useRouter()
 const userStore = useUserStore()

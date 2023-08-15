@@ -110,7 +110,7 @@ import Language from '@/components/Language.vue'
 // 引用方法
 import { languages } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
-import { providerList, providerListItemTypes } from '@/utils/gameProviders'
+import { providerList, providerListItemTypes } from '@/utils/config'
 import { useAppStore } from '@/store/modules/app'
 import { startGame } from '@/composables/startGame'
 

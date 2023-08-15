@@ -106,8 +106,29 @@ export interface getBalanceItemResponse {
   usdAmount: string
 }
 
+export interface getFundChangeRecordData {
+  CurrencyCode: string
+  StartTime: string
+  EndTime: string
+  PageIndex: string
+  PageSize: string
+  Category: string
+}
+
+export interface getFundChangeRecordRespItems {
+  orderId: string
+  currencyCode: string
+  currencyType: number
+  createTime: string
+  category: string
+  amount: string
+  afterBalance: string
+  beforeBalance: string
+}
+
 export type getDepositAddressResp = ApiResponseData<getDepositAddressResponse>
 export type getMinWithdrawAmountResp = ApiResponseData<{ currencyUnit: string; minimumWithdrawAmount: string }>
-export type withdrawOrderResp = ApiResponseData<getTradeDetailResponse>
-export type getRradeRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getRradeRecordResponse[] }>
+export type getTradeDetailResp = ApiResponseData<getTradeDetailResponse>
+export type getTradeRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getRradeRecordResponse[] }>
 export type getBalanceItemResp = ApiResponseData<getBalanceItemResponse[]>
+export type getFundChangeRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getFundChangeRecordRespItems[] }>
