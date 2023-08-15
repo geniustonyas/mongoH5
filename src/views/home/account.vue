@@ -207,6 +207,7 @@ import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast, ConfigProvider, Switch } from 'vant'
 
 // const router = useRouter()
+const site_name = import.meta.env.VITE_APP_SITE_NAME
 const userStore = useUserStore()
 const { t } = useI18n()
 
@@ -370,7 +371,7 @@ const getGooogle = () => {
     .then((resp) => {
       const userStore = useUserStore()
       keyValue.value = resp.manualEntryKey
-      qrcodeValue.value = `otpauth://totp/Gamix?secret=${resp.manualEntryKey}&issuer=${userStore.userInfo.userName}`
+      qrcodeValue.value = `otpauth://totp/${site_name}?secret=${resp.manualEntryKey}&issuer=${userStore.userInfo.userName}`
     })
     .catch((error) => {
       showToast(error)

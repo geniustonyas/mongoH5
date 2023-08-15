@@ -137,7 +137,6 @@ const setReaded = (item: messageItem) => {
   }
   setReadApi({ Id: item.id.toString() })
     .then(() => {
-      showToast(t('tips.setSuccess'))
       var index = dataList.value.findIndex((fitem) => fitem.id == item.id)
       dataList.value[index].isRead = true
     })
@@ -156,7 +155,6 @@ const setAllReaded = () => {
       dataList.value.forEach((item) => {
         item.isRead = true
       })
-      showToast(t('tips.setSuccess'))
     })
     .catch((error) => {
       console.log(error)

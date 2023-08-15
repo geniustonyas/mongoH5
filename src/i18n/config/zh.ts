@@ -63,7 +63,7 @@ export default {
     isAdult: '我确认我已满18周岁, 并接受',
     termCondition: '条款条件',
     privacyPolicy: '隐私政策',
-    isAgree: '我同意接受Sportsbet.io的促销和活动相关的市场信息。'
+    isAgree: `我同意接受${site_name}的促销和活动相关的市场信息。`
   },
   thirdRegPage: {
     beFinished: '快完成了哦！',
@@ -154,7 +154,7 @@ export default {
   promoCode: '优惠代码',
   currentBalance: '当前余额',
   myRewards: '我的奖励',
-  transactionHistory: '转历史账记录',
+  transactionHistory: '历史记录',
   supportSettings: '支持与设置',
   walletSettings: '钱包设置',
   faq: '帮助',
@@ -169,7 +169,7 @@ export default {
   deposits: '存款',
   withdrawals: '提款',
   bets: '投注',
-  wins: '中奖',
+  wins: '奖金',
   currencyFilter: '按币种筛选',
   dateFilter: '按日期筛选',
   winLose: '输赢',
@@ -278,9 +278,10 @@ export default {
 
   // 游戏提供商
   provider: {
-    all: '全部',
-    sabaSports: '沙巴体育',
-    fbSports: 'FB体育',
+    all: 'ALL',
+    sabaSports: 'Saba Sports',
+    btiports: 'BTI Sports',
+    fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
     ezugi: 'Ezugi',
@@ -289,7 +290,7 @@ export default {
     playingo: "Play'n Go",
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
-    microgaming: 'Micro gaming',
+    microgaming: 'Microgaming',
     sexy: 'Sexy Baccarat'
   },
 
@@ -352,7 +353,8 @@ export default {
     startGameFail: '启动游戏失败',
     insufficientPoints: '积分不足',
     exhangeSuccess: '兑换成功',
-    openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快'
+    openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
+    openExchange: '即将为您打开窗口进入交易所'
   },
 
   rewardsBig: '奖励',
@@ -390,7 +392,7 @@ export default {
     8: '退款',
     9: 'VIP升级奖励',
     10: '兑换筹码',
-    11: '提款失败'
+    17: '提款失败'
   },
   beforeBalance: '账变前余额',
   afterBalance: '账变后余额',
@@ -398,8 +400,12 @@ export default {
   tradeNo: '订单号',
   orderStatus: '订单状态',
   orderType: '订单类型',
-  orderTypes: { 1: '存款', 2: '提现', 3: '投注', 4: '中奖' },
+  orderTypes: { 1: '存款', 2: '提现', 3: '投注', 4: '奖金' },
   blockChain: '链',
+  betAndEarn: '下注 & 赢取',
+  placeAndEarn: '投注 & 赢取',
+  spinAndEarn: '旋转 & 赢取',
+
   // 条款协议等内容
   html: {
     // html标题

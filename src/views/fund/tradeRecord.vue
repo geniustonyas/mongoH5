@@ -97,6 +97,7 @@
     <ConfigProvider theme="dark">
       <Calendar
         v-model:show="showDatePicker"
+        :default-date="[dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]"
         type="range"
         :min-date="minDate"
         :max-date="maxDate"
@@ -151,8 +152,8 @@ let error = ref(false)
 let nodata = ref(false)
 const query = reactive({
   CurrencyCode: '',
-  StartTime: '',
-  EndTime: '',
+  StartTime: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
+  EndTime: dayjs().add(1, 'day').format('YYYY-MM-DD'),
   PageIndex: '1',
   PageSize: '10',
   noLoading: false
@@ -232,6 +233,7 @@ const getListSuccess = (resp: any) => {
   } else {
     dataList.value.push(...resp.data.items)
   }
+  // dataList.value[0].amount = '0.000018'
   nodata.value = dataList.value.length == 0
   refreshing.value = false
   finished.value = resp.data.items.length < query.PageSize
@@ -263,6 +265,7 @@ const loadData = () => {
 const customDate = (time: any) => {
   query.StartTime = dayjs(time[0]).format('YYYY-MM-DD')
   query.EndTime = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
+  dataList.value = []
   getTradeRecordList()
   showDatePicker.value = false
 }

@@ -63,7 +63,7 @@ export default {
     isAdult: 'I confirm that I am over 18 years old and accept',
     termCondition: 'Terms and conditions',
     privacyPolicy: 'Privacy Policy',
-    isAgree: 'I agree to receive marketing information about Sportsbet.io promotions and events. '
+    isAgree: `I agree to receive marketing information about ${site_name} promotions and events. `
   },
   thirdRegPage: {
     beFinished: 'Almost there! ',
@@ -350,9 +350,12 @@ export default {
     authFail: 'Authorization failed',
     copySuccess: 'Copy Success',
     copyFail: 'The browser does not support automatic copying, please copy manually.',
+    inputExhangeCode: 'Please enter the redemption code',
+    startGameFail: 'Failed to start the game',
     insufficientPoints: 'Insufficient points',
     exhangeSuccess: 'exhange successfully',
-    openWindow: 'The window will be opened for you to play the game soon, wish you a happy game.'
+    openWindow: 'The window will be opened for you to play the game soon, wish you a happy game.',
+    openExchange: 'About to open a new window for you to enter the exchange'
   },
 
   rewardsBig: 'REWARDS',
@@ -398,6 +401,10 @@ export default {
   tradeNo: 'Order No',
   orderType: 'Order Type',
   orderTypes: { 1: 'Deposit', 2: 'Withdraw', 3: 'Bet', 4: 'Win' },
+  blockChain: 'blockChain',
+  betAndEarn: 'Bet & Earn',
+  placeAndEarn: 'Place & Win',
+  spinAndEarn: 'Spin & Win',
   // 条款协议等内容
   html: {
     // html标题

@@ -32,8 +32,8 @@
                       <i class="iconfont icon-ball-1" />
                     </div>
                     <div class="a-m">
-                      <h3>Place Bets</h3>
-                      <span>Bet & Earn</span>
+                      <h3>{{ t('sports') }}</h3>
+                      <span>{{ t('betAndEarn') }}</span>
                     </div>
                     <div class="a-r">
                       <i class="iconfont icon-enter" />
@@ -46,8 +46,8 @@
                       <i class="iconfont icon-qipai3" />
                     </div>
                     <div class="a-m">
-                      <h3>Play Casino</h3>
-                      <span>Spin & Win</span>
+                      <h3>{{ t('liveCasino') }}</h3>
+                      <span>{{ t('placeAndEarn') }}</span>
                     </div>
                     <div class="a-r">
                       <i class="iconfont icon-enter" />
@@ -60,8 +60,8 @@
                       <i class="iconfont icon-losts" />
                     </div>
                     <div class="a-m">
-                      <h3>Play Slots</h3>
-                      <span>Spin & Win</span>
+                      <h3>{{ t('slots') }}</h3>
+                      <span>{{ t('spinAndEarn') }}</span>
                     </div>
                     <div class="a-r">
                       <i class="iconfont icon-enter" />

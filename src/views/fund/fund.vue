@@ -94,28 +94,14 @@
             </div>
             <div v-show="fundTab == 'buyCrypto'">
               <div class="r-group-card">
-                <div class="bourse" @click="openBourse('https://www.binance.com/')">
+                <div v-for="(item, index) of buyCrypto" :key="index" class="bourse" @click="openBourse(item.url)">
                   <div class="t-l">
                     <div class="t-icon">
-                      <img :src="getAssetsFile('coin/binance_icon.svg')" />
+                      <img :src="item.img" />
                     </div>
                     <div class="t-txt">
-                      <span class="t-name">Binance</span>
-                      <span class="t-sub">{{ t('recommendExchange') }}</span>
-                    </div>
-                  </div>
-                  <div class="t-r">
-                    <i class="iconfont icon-right" />
-                  </div>
-                </div>
-                <div class="bourse" @click="openBourse('https://bitflyer.com/')">
-                  <div class="t-l">
-                    <div class="t-icon">
-                      <img :src="getAssetsFile('coin/bitflyer_icon.svg')" />
-                    </div>
-                    <div class="t-txt">
-                      <span class="t-name">Bitflyer</span>
-                      <span class="t-sub" />
+                      <span class="t-name">{{ item.name }}</span>
+                      <span class="t-sub">{{ item.sub }}</span>
                     </div>
                   </div>
                   <div class="t-r">
@@ -230,13 +216,13 @@ import FundFooter from '@/components/layout/FundFooter.vue'
 // import { getExchangeRateApi } from '@/api/app/index'
 import { getBalanceApi, getDepositAddressApi, setDefaultCurrencyApi } from '@/api/fund/index'
 import { getBalanceItemResponse } from '@/api/fund/types'
-import { getAssetsFile, copy, moneyFormat, formatAddress } from '@/utils'
-import { usdtChainList, usdtChainListTypes, currenyList } from '@/utils/config'
+import { getAssetsFile, copy, moneyFormat } from '@/utils'
+import { usdtChainList, usdtChainListTypes, currenyList, buyCrypto } from '@/utils/config'
 
 import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-import { ConfigProvider, Popup } from 'vant'
+import { ConfigProvider, Popup, showConfirmDialog } from 'vant'
 import { useUserStore } from '@/store/modules/user'
 import { cloneDeep } from 'lodash-es'
 
@@ -369,7 +355,19 @@ const getDeposit = () => {
 
 // 打开购买加密货币链接
 const openBourse = (url: string) => {
-  window.open(url)
+  const wd = window.open(url)
+  if (!wd) {
+    showConfirmDialog({
+      title: t(''),
+      message: t('tips.openExchange')
+    })
+      .then(() => {
+        window.open(url)
+      })
+      .catch(() => {
+        return false
+      })
+  }
 }
 
 if (route.query.tab) {
