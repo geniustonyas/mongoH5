@@ -3917,6 +3917,29 @@ body {
     }
 }
 
+.popup-new-reward {
+    position: fixed;
+    z-index: 2000;
+    padding: 1rem;
+    width: 90%;
+    bottom: 5rem;
+    left: 0;
+    right: 0;
+    .radius(1rem);
+    .bgc(var(--color-white), var(--color-dark));
+    margin: 0 auto;
+
+    .close {
+        position: absolute; top: 1rem; right: 1rem;
+        i { font-size: 2.4rem; .size(3.6rem, 3.6rem); color: (var(--color-text)); }
+    }
+    .pnr-top {
+        .flex(); .flex-align();
+        img { .size(4rem, 4rem); .bg(var(--color-dark)); .radius(.5rem); margin-right: 2rem;}
+    }
+    .pnr-cont { margin-top: 1rem; width: 90%; }
+}
+
 .mask-box {
     .bg(rgba(0,0,0,.75));
     position: fixed;

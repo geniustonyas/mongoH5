@@ -132,9 +132,14 @@
         </div>
       </div>
     </div>
-    <Popup v-model:show="showRewardBox" position="bottom" round :closeable="true" style="width: 80%">
-      <div class=""></div>
-    </Popup>
+    <div v-show="showRewardBox" class="popup-new-reward">
+      <div class="close"><i class="iconfont icon-close" /></div>
+      <div class="pnr-top">
+        <img :src="getAssetsFile(`grade/101.png`)" />
+        <h3>新奖励已解锁！</h3>
+      </div>
+      <div class="pnr-cont">恭喜您！ 刚刚解锁了新奖励。点击此处选择您的奖励类型</div>
+    </div>
   </div>
 </template>
 
@@ -166,6 +171,8 @@ import { Swipe, SwipeItem, NoticeBar, ConfigProvider, Popup } from 'vant'
 const router = useRouter()
 const appStore = useAppStore()
 const { t } = useI18n()
+
+const showRewardBox = ref(true)
 
 // 汇率相关
 const { currencyCode, exchangeRate } = getExchangeRate()
