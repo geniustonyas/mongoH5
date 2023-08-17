@@ -405,6 +405,8 @@ export default {
   betAndEarn: 'Bet & Earn',
   placeAndEarn: 'Place & Win',
   spinAndEarn: 'Spin & Win',
+  enabledGoogle: 'Google Authenticator is enabled',
+  stopGoogle: 'Google Authenticator is enabled, if you want to close this feature, please enter the code and click "Submit Code" to close',
   // 条款协议等内容
   html: {
     // html标题

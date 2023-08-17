@@ -25,7 +25,7 @@
         <div class="l-line">
           <span> {{ t('or') }} </span>
         </div>
-        <div class="custom-form">
+        <Form class="custom-form">
           <div class="cf-row">
             <div class="cr-label">
               <span>{{ t('userName') }}</span>
@@ -104,7 +104,7 @@
               </a>
             </div>
           </div>
-        </div>
+        </Form>
       </div>
     </main>
     <div class="mask-box" id="other-signin" v-show="showThirdLoginBox">
@@ -147,7 +147,7 @@ import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/index'
 
 import { useI18n } from 'vue-i18n'
-import { showToast, Loading } from 'vant'
+import { showToast, Loading, Form, Field } from 'vant'
 
 const router = useRouter()
 const userStore = useUserStore()

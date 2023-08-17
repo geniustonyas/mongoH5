@@ -132,6 +132,9 @@
         </div>
       </div>
     </div>
+    <Popup v-model:show="showRewardBox" position="bottom" round :closeable="true" style="width: 80%">
+      <div class=""></div>
+    </Popup>
   </div>
 </template>
 
@@ -158,7 +161,7 @@ import { getExchangeRate } from '@/composables/getExchangeRate'
 
 //第三方插件
 import { useI18n } from 'vue-i18n'
-import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
+import { Swipe, SwipeItem, NoticeBar, ConfigProvider, Popup } from 'vant'
 
 const router = useRouter()
 const appStore = useAppStore()

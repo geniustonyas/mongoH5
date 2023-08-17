@@ -354,7 +354,8 @@ export default {
     insufficientPoints: '积分不足',
     exhangeSuccess: '兑换成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
-    openExchange: '即将为您打开窗口进入交易所'
+    openExchange: '即将为您打开窗口进入交易所',
+    unBindGoogleSuccess: '解绑成功'
   },
 
   rewardsBig: '奖励',
@@ -405,6 +406,8 @@ export default {
   betAndEarn: '下注 & 赢取',
   placeAndEarn: '投注 & 赢取',
   spinAndEarn: '旋转 & 赢取',
+  enabledGoogle: '谷歌身份验证器已启用',
+  stopGoogle: '谷歌身份验证器已启用, 如果想关闭此功能, 请使用谷歌身份验证器扫描二维码或输入代码后点击"提交代码关闭"。',
 
   // 条款协议等内容
   html: {

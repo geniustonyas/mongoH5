@@ -150,19 +150,27 @@
             <div class="i-title" @click="collapseGoogle = !collapseGoogle"><i class="iconfont icon-googlecode" /> {{ t('googleAuthenticator') }}</div>
             <Vue3SlideUpDown v-model="collapseGoogle">
               <div class="i-form google">
-                <div class="fg-title">
-                  <h3>{{ t('disabledGoogle') }}</h3>
-                  <p>{{ t('activeGoogle') }}</p>
-                </div>
-                <div v-if="qrcodeValue != ''" class="fg-qrcode">
-                  <qrcode-vue :value="qrcodeValue" :size="150" level="H" />
-                  <a target="_blank" href="https://support.google.com/accounts/answer/1066447?co=GENIE.Platform%3DAndroid&hl=en"> <i class="iconfont icon-bangzhu" />{{ t('whatGoogleCode') }}</a>
-                </div>
+                <template v-if="userStore.userInfo.isBindGoogleAuth">
+                  <div class="fg-title">
+                    <h3>{{ t('disabledGoogle') }}</h3>
+                    <p>{{ t('stopGoogle') }}</p>
+                  </div>
+                </template>
+                <template v-else>
+                  <div class="fg-title">
+                    <h3>{{ t('enabledGoogle') }}</h3>
+                    <p>{{ t('activeGoogle') }}</p>
+                  </div>
+                  <div v-if="qrcodeValue != ''" class="fg-qrcode">
+                    <qrcode-vue :value="qrcodeValue" :size="150" level="H" />
+                    <a target="_blank" href="https://support.google.com/accounts/answer/1066447?co=GENIE.Platform%3DAndroid&hl=en"> <i class="iconfont icon-bangzhu" />{{ t('whatGoogleCode') }}</a>
+                  </div>
+                </template>
                 <div class="cr-input">
                   <input v-model="bindGoogleCodeForm.VerificationCode" type="text" class="form-control" :placeholder="t('typeCode')" maxlength="8" autocomplete="off" />
                   <a class="btn btn-primary" @click="bindGoogle()">{{ t('submitCode') }}</a>
                 </div>
-                <div class="cr-mark">{{ t('keyValue') }}: {{ keyValue }}</div>
+                <div v-if="!userStore.userInfo.isBindGoogleAuth" class="cr-mark">{{ t('keyValue') }}: {{ keyValue }}</div>
               </div>
             </Vue3SlideUpDown>
           </div>
@@ -194,7 +202,7 @@ import { reactive, ref } from 'vue'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 // import { getAssetsFile } from '@/utils'
-import { editUserInfoApi, getGoogleCodeApi, bindGoogleCodeApi, editPasswordApi, setPrivacyApi } from '@/api/home/index'
+import { editUserInfoApi, getGoogleCodeApi, bindGoogleCodeApi, unBindGoogleCodeApi, editPasswordApi, setPrivacyApi } from '@/api/home/index'
 import { editUserInfoData, googleCodeData, ediPwdData } from '@/api/home/types'
 import { useUserStore } from '@/store/modules/user'
 import { isPwd, isEmpty } from '@/utils/validate'
@@ -382,14 +390,26 @@ getGooogle()
 
 // 绑定google验证码
 const bindGoogle = () => {
-  bindGoogleCodeApi(bindGoogleCodeForm)
-    .then(() => {
-      userStore.getUserInfo({ noLoading: false })
-      showToast(t('tips.bindGoogleSuccess'))
-    })
-    .catch((error) => {
-      showToast(error)
-    })
+  if (userStore.userInfo.isBindGoogleAuth) {
+    unBindGoogleCodeApi(bindGoogleCodeForm)
+      .then(() => {
+        userStore.getUserInfo({ noLoading: false })
+        showToast(t('tips.bindGoogleSuccess'))
+      })
+      .catch((error) => {
+        showToast(error)
+      })
+  } else {
+    bindGoogleCodeApi(bindGoogleCodeForm)
+      .then(() => {
+        userStore.getUserInfo({ noLoading: false })
+        showToast(t('tips.bindGoogleSuccess'))
+      })
+      .catch((error) => {
+        showToast(error)
+      })
+  }
+
 }
 
 const setPrivacy = () => {
