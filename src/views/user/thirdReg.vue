@@ -3,7 +3,7 @@
     <UserHeader />
     <main class="main">
       <div class="loginbox">
-        <UserPartner />
+        <!-- <UserPartner /> -->
         <div class="l-signin third-reg">
           <h1>{{ t('thirdRegPage.beFinished') }}</h1>
           <h3>{{ t('thirdRegPage.fixInfo') }}</h3>
@@ -101,7 +101,7 @@
 import { ref, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
-import UserPartner from '@/components/layout/UserPartner.vue'
+// import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { awaitWraper } from '@/utils'
