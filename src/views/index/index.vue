@@ -133,7 +133,7 @@
       </div>
     </div>
     <div v-show="newRewardVipCode != 0" class="popup-new-reward">
-      <div class="close"><i class="iconfont icon-close" /></div>
+      <div class="close" @click="newRewardVipCode = 0"><i class="iconfont icon-close" /></div>
       <div class="pnr-top">
         <img :src="getAssetsFile(`grade/${newRewardVipCode}.png`)" />
         <h3>{{ t('unlockNewReward') }}</h3>

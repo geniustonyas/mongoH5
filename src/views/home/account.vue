@@ -409,7 +409,6 @@ const bindGoogle = () => {
         showToast(error)
       })
   }
-
 }
 
 const setPrivacy = () => {

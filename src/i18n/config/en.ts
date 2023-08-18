@@ -409,6 +409,7 @@ export default {
   stopGoogle: 'Google Authenticator is enabled, if you want to close this feature, please enter the code and click "Submit Code" to close',
   unlockNewReward: 'New rewards have been unlocked!',
   unlockNewRewardTip: 'Congratulations! Just unlocked a new reward. Click here to select your award type',
+  dymondReward: 'Rewards will be generated automatically when you reach this level',
   // 条款协议等内容
   html: {
     // html标题
