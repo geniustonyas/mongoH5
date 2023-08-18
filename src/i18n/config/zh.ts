@@ -408,7 +408,8 @@ export default {
   spinAndEarn: '旋转 & 赢取',
   enabledGoogle: '谷歌身份验证器已启用',
   stopGoogle: '谷歌身份验证器已启用, 如果想关闭此功能, 请使用谷歌身份验证器扫描二维码或输入代码后点击"提交代码关闭"。',
-
+  unlockNewReward: '新奖励已解锁！',
+  unlockNewRewardTip: '恭喜您！ 刚刚解锁了新奖励。点击此处选择您的奖励类型',
   // 条款协议等内容
   html: {
     // html标题

@@ -34,3 +34,11 @@ export function getBannerApi() {
     method: 'post'
   })
 }
+
+// 获取首页弹窗提醒
+export function getRemindApi() {
+  return request<App.getRemindResp>({
+    url: 'Member/GetPopupReminder',
+    method: 'post'
+  })
+}
