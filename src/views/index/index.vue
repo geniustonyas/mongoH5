@@ -166,7 +166,7 @@ import { getExchangeRate } from '@/composables/getExchangeRate'
 
 //第三方插件
 import { useI18n } from 'vue-i18n'
-import { Swipe, SwipeItem, NoticeBar, ConfigProvider, Popup } from 'vant'
+import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
 
 const router = useRouter()
 const appStore = useAppStore()
