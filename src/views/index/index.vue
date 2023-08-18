@@ -132,13 +132,13 @@
         </div>
       </div>
     </div>
-    <div v-show="showRewardBox" class="popup-new-reward">
+    <div v-show="newRewardVipCode != 0" class="popup-new-reward">
       <div class="close"><i class="iconfont icon-close" /></div>
       <div class="pnr-top">
-        <img :src="getAssetsFile(`grade/101.png`)" />
-        <h3>新奖励已解锁！</h3>
+        <img :src="getAssetsFile(`grade/${newRewardVipCode}.png`)" />
+        <h3>{{ t('unlockNewReward') }}</h3>
       </div>
-      <div class="pnr-cont">恭喜您！ 刚刚解锁了新奖励。点击此处选择您的奖励类型</div>
+      <div class="pnr-cont" @click="router.push({ name: 'clubHouse' })">{{ t('unlockNewRewardTip') }}</div>
     </div>
   </div>
 </template>
@@ -155,11 +155,12 @@ import Footer from '@/components/layout/Footer.vue'
 import Sidebar from '@/components/layout/SideBar.vue'
 
 // 引用方法
-import { getAnnouncementListApi, getBannerApi } from '@/api/app/index'
+import { getAnnouncementListApi, getBannerApi, getRemindApi } from '@/api/app/index'
 import { getBannerRespItem } from '@/api/app/types'
 import { getRankListApi } from '@/api/game/index'
 import { getRankListRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, moneyFormat, loginTo } from '@/utils'
 import { startGame } from '@/composables/startGame'
 import { getExchangeRate } from '@/composables/getExchangeRate'
@@ -170,9 +171,10 @@ import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
 
 const router = useRouter()
 const appStore = useAppStore()
+const userStore = useUserStore()
 const { t } = useI18n()
 
-const showRewardBox = ref(true)
+const newRewardVipCode = ref(0)
 
 // 汇率相关
 const { currencyCode, exchangeRate } = getExchangeRate()
@@ -252,9 +254,25 @@ const getAnnouncementList = () => {
     })
 }
 
+// 解锁新奖励，弹窗提醒
+const getRemind = () => {
+  if (userStore.userInfo.id == '') {
+    newRewardVipCode.value = 0
+    return false
+  }
+  getRemindApi()
+    .then((resp) => {
+      newRewardVipCode.value = parseFloat(resp.data.vipCode)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
 getBanner()
 getAnnouncementList()
 getRankList()
+getRemind()
 </script>
 
 <style>
