@@ -135,7 +135,7 @@ import { moneyFormat } from '@/utils/index'
 import dayjs from 'dayjs'
 import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List, Popup } from 'vant'
 import type { DropdownItemInstance } from 'vant'
-import { cloneDeep } from 'lodash-es'
+// import { cloneDeep } from 'lodash-es'
 
 const { t } = useI18n()
 
@@ -182,7 +182,7 @@ const detailsData = reactive<getTradeDetailResponse>({
   orderType: '',
   orderStatus: ''
 })
-const defaultDetailsData = cloneDeep(detailsData)
+// const defaultDetailsData = cloneDeep(detailsData)
 
 // 日期控件去掉日历格子下文字信息
 const dayFormatter = (day: any) => {
