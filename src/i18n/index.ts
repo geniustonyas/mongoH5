@@ -92,8 +92,8 @@ export const languages = [
   { value: 'zh', text: '中文' },
   { value: 'fr', text: 'Français' },
   { value: 'ko', text: '한국어' },
-  { value: 'vi', text: 'Tiếng Việt' },
-  { value: 'ar', text: 'العربية' }
+  { value: 'vi', text: 'Tiếng Việt' }
+  // { value: 'ar', text: 'العربية' }
 ]
 
 export const selLang = (lang: string) => {
