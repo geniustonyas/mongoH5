@@ -16,9 +16,7 @@
         <!-- tab切换 -->
         <div class="line-tabs" id="mk-tabs">
           <span :class="{ active: tab == 'rewards' }" @click="toggleTab('rewards')">{{ t('rewardsBig') }}</span>
-          <span :class="{ active: tab == 'stats' }" @click="toggleTab('stats')">
-            {{ t('myStats') }}
-          </span>
+          <span :class="{ active: tab == 'stats' }" @click="toggleTab('stats')">{{ t('myStats') }}</span>
         </div>
         <div class="tab-content">
           <div v-show="tab == 'rewards'" class="tc-box">
@@ -74,8 +72,8 @@
             <div class="exclusive-rewards">
               <h2>{{ t('exclusiveRewards') }}</h2>
               <div v-if="goodsList.length > 0" class="list">
-                <template v-for="(item, index) of goodsList" :key="index">
-                  <div v-if="item.productType == 0" class="item" @click="showDetails(item)">
+                <template v-for="(item, index) of goodsList">
+                  <div v-if="item.productType == 0" :key="index" class="item" @click="showDetails(item)">
                     <div class="er-img" v-lazy:background-image="appStore.cdnurl + item.images.split(',')[0]" />
                     <div class="er-title">{{ item.name }}</div>
                     <div class="er-mark">{{ item.intro }}</div>

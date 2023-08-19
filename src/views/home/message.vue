@@ -58,7 +58,7 @@ import { messageItem } from '@/api/home/types'
 // import { useUserStore } from '@/store/modules/user'
 import { useI18n } from 'vue-i18n'
 
-import { PullRefresh, List, showToast } from 'vant'
+import { PullRefresh, List } from 'vant'
 
 // const userStore = useUserStore()
 const router = useRouter()
