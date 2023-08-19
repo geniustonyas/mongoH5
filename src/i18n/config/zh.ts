@@ -411,6 +411,8 @@ export default {
   unlockNewReward: '新奖励已解锁！',
   unlockNewRewardTip: '恭喜您！ 刚刚解锁了新奖励。点击此处选择您的奖励类型',
   dymondReward: '当您达到该等级时，将会自动生成奖励',
+  siteTitle: '最领先的加密货币赌场及体育博彩平台',
+  unlockAllReward: '恭喜您！ 解锁了全部奖励',
   // 条款协议等内容
   html: {
     // html标题

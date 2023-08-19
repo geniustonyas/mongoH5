@@ -14,7 +14,12 @@
 <script setup lang="ts">
 import { Overlay, Loading } from 'vant'
 import { useAppStore } from '@/store/modules/app'
+import { useI18n } from 'vue-i18n'
 const appStore = useAppStore()
+
+const { t } = useI18n()
+
+document.title = t('siteTitle')
 </script>
 
 <style>

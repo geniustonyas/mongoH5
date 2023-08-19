@@ -410,6 +410,8 @@ export default {
   unlockNewReward: 'New rewards have been unlocked!',
   unlockNewRewardTip: 'Congratulations! Just unlocked a new reward. Click here to select your award type',
   dymondReward: 'Rewards will be generated automatically when you reach this level',
+  siteTitle: 'Best crypto sports betting and casino site | Bitcoin Betting',
+  unlockAllReward: 'Congratulations! You have unlocked all rewards.',
   // 条款协议等内容
   html: {
     // html标题

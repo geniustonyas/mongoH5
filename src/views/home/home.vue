@@ -48,11 +48,20 @@
             </div>
           </div>
           <div class="ms-m">
-            <div class="m-t">{{ t('homePage.nextReward') }}</div>
-            <div class="schedule-bar">
-              <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
-              <span>{{ parseInt(userStore.userInfo.totalBetAmount) }}/{{ parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount) }}</span>
-            </div>
+            <template v-if="userStore.userInfo.subCode == '10706'">
+              <div class="m-t">{{ t('unlockAllReward') }}</div>
+              <div class="schedule-bar">
+                <div class="sb-line" style="width: 100%" />
+                <span>{{ parseInt(userStore.userInfo.totalBetAmount) }}/ 80000000</span>
+              </div>
+            </template>
+            <template v-else>
+              <div class="m-t">{{ t('homePage.nextReward') }}</div>
+              <div class="schedule-bar">
+                <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
+                <span>{{ parseInt(userStore.userInfo.totalBetAmount) }}/{{ parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount) }}</span>
+              </div>
+            </template>
           </div>
           <div class="ms-b">
             <a @click="router.push({ name: 'clubHouse' })"> {{ t('homePage.showProgress') }} <i class="iconfont icon-right" /> </a>

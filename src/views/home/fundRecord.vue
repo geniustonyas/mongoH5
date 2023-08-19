@@ -47,7 +47,7 @@
                     </div>
                     <div class="i-row">
                       <div class="r-col">{{ formatterCategory(item.category) }}</div>
-                      <div class="r-col">{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
+                      <div class="r-col">{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</div>
                     </div>
                     <div class="i-row">
                       <div class="r-col">

@@ -132,17 +132,22 @@ const loadData = () => {
 
 // 设置已读
 const setReaded = (item: messageItem) => {
-  if (item.isRead) {
-    return false
+  if (!item.isRead) {
+    setReadApi({ Id: item.id.toString() })
+      .then(() => {
+        var index = dataList.value.findIndex((fitem) => fitem.id == item.id)
+        dataList.value[index].isRead = true
+        item.targetUrl = 'MemberVip'
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
-  setReadApi({ Id: item.id.toString() })
-    .then(() => {
-      var index = dataList.value.findIndex((fitem) => fitem.id == item.id)
-      dataList.value[index].isRead = true
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+
+  // 跳转到俱乐部
+  if (item.targetUrl == 'MemberVip') {
+    router.push({ name: 'clubHouse' })
+  }
 }
 
 // 全部设置已读

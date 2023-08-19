@@ -52,6 +52,7 @@ export interface messageItem {
   content: string
   title: string
   notificationType: string
+  targetUrl: string
 }
 
 // 设为已读data
