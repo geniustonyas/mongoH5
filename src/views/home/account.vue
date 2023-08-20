@@ -210,7 +210,7 @@ import { editUserInfoApi, getGoogleCodeApi, bindGoogleCodeApi, unBindGoogleCodeA
 import { editUserInfoData, googleCodeData, ediPwdData } from '@/api/home/types'
 import { useUserStore } from '@/store/modules/user'
 import { isPwd, isEmpty } from '@/utils/validate'
-import { countryCode } from '@/utils/countryCode'
+// import { countryCode } from '@/utils/countryCode'
 import { getYearList } from '@/utils'
 //第三方插件
 import { useI18n } from 'vue-i18n'
