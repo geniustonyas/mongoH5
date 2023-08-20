@@ -8,14 +8,8 @@
           <h2>{{ t('createUser') }}</h2>
           <div class="ls-third">
             <div class="t-list">
-              <a>
-                <img :src="getAssetsFile('svg/metamask.svg')" />
-                Metamask
-              </a>
-              <a @click="googleLogin()">
-                <img :src="getAssetsFile('svg/google-oauth2.svg')" />
-                Google
-              </a>
+              <a @click="googleLogin"> <img :src="getAssetsFile('svg/google-oauth2.svg')" /> Google</a>
+              <a @click="facebookLogin"> <img :src="getAssetsFile('svg/facebook.svg')" />Facebook </a>
             </div>
             <span class="btn btn-light" @click="setShowThirdLoginBox()">
               <i class="iconfont icon-add" />
@@ -112,9 +106,6 @@
         <div class="other-signin">
           <dl>
             <dt>{{ $t('otherMethod') }}</dt>
-            <dd>
-              <a @click="facebookLogin"> <img :src="getAssetsFile('svg/facebook.svg')" />Facebook </a>
-            </dd>
             <dd>
               <a @click="twitterLogin"> <img :src="getAssetsFile('svg/twiter.svg')" />Twitter </a>
             </dd>

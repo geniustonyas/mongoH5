@@ -32,12 +32,15 @@
                     </div>
                     <div class="cr-input group">
                       <select class="form-control" v-model="day" ref="dayDom">
+                        <option value="">{{ t('day') }}</option>
                         <option v-for="item in 31" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
                       </select>
                       <select class="form-control" v-model="month" ref="monthDom">
+                        <option value="">{{ t('month') }}</option>
                         <option v-for="item in 12" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
                       </select>
                       <select class="form-control" v-model="year" ref="yearDom">
+                        <option value="">{{ t('year') }}</option>
                         <option v-for="item in getYearList()" :key="item" :value="item">{{ item }}</option>
                       </select>
                     </div>
@@ -47,9 +50,10 @@
                       <span>{{ t('telephone') }}</span>
                     </div>
                     <div class="cr-input group g-tel">
-                      <select v-model="editInfoForm.CountryCode" ref="countryDom" class="form-control">
+                      <!-- <select v-model="editInfoForm.CountryCode" ref="countryDom" class="form-control">
                         <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
-                      </select>
+                      </select> -->
+                      <input v-model="editInfoForm.CountryCode" ref="countryDom" type="tel" class="form-control" placeholder="+1" autocomplete="off" />
                       <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" placeholder="" autocomplete="off" />
                     </div>
                   </div>
