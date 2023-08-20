@@ -694,35 +694,31 @@
                 <span :class="{ active: query.AdjustType == 1 }" @click="toggleRecord(1)">{{ t('earned') }}</span>
                 <span :class="{ active: query.AdjustType == 2 }" @click="toggleRecord(2)">{{ t('spent') }}</span>
               </div>
-              <div v-if="integralList.length > 0" class="points-list">
-                <div class="pl-head">
-                  <span>{{ $t(query.AdjustType == 1 ? 'earnPoints' : 'spentPoints') }}</span>
-                  <span>{{ t('afterPoints') }}</span>
-                  <span>{{ t('pointType') }}</span>
-                  <span>{{ t('createTime') }}</span>
-                </div>
-                <ul class="pl-list">
-                  <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
-                    <List
-                      v-model:loading="listLoading"
-                      :offset="20"
-                      :finished="finished"
-                      :immediate-check="false"
-                      v-model:error="error"
-                      :error-text="t('loadingFail')"
-                      :finished-text="t('noMore')"
-                      @load="loadData"
-                    >
-                      <li v-for="(item, index) of integralList" :key="index">
-                        <span>{{ item.amount }}</span>
-                        <span>{{ item.afterAmount }}</span>
-                        <span>{{ $t('pointsType.' + item.category) }}</span>
-                        <span>{{ item.createTime }}</span>
-                      </li>
-                    </List>
-                  </PullRefresh>
-                </ul>
-              </div>
+              <ul v-if="integralList.length > 0" class="wb-list">
+                <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
+                  <List
+                    v-model:loading="listLoading"
+                    :offset="20"
+                    :finished="finished"
+                    :immediate-check="false"
+                    v-model:error="error"
+                    :error-text="t('loadingFail')"
+                    :finished-text="t('noMore')"
+                    @load="loadData"
+                  >
+                    <li v-for="(item, index) of integralList" :key="index">
+                      <div class="l-l">
+                        <p>{{ item.createTime }}</p>
+                        <label>{{ $t('pointsType.' + item.category) }}</label>
+                      </div>
+                      <div class="l-r">
+                        <b>{{ item.amount }}</b>
+                        <span><small>After Points：</small>{{ item.afterAmount }}</span>
+                      </div>
+                    </li>
+                  </List>
+                </PullRefresh>
+              </ul>
               <template v-if="nodata">
                 <div class="wb-img">
                   <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -885,7 +881,7 @@ const nodata = ref(false)
 const query = reactive<getIntegralRecordData>({
   AdjustType: 1,
   PageIndex: 1,
-  PageSize: 5,
+  PageSize: 10,
   noLoading: false
 })
 let integralList = ref<getIntegralRecordItem[]>([])
