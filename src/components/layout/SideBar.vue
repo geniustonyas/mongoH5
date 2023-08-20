@@ -60,7 +60,7 @@
               <a @click="router.push({ name: 'clubHouse' })"><img :src="getAssetsFile('svg/ClubHouse.svg')" />{{ t('club') }}</a>
             </li>
             <li>
-              <a @click="router.push({ name: 'terms', params: { type: 'vip' } })"><img :src="getAssetsFile('svg/VIP.svg')" />{{ t('vipClub') }}</a>
+              <a @click="router.push({ name: 'vip' })"><img :src="getAssetsFile('svg/VIP.svg')" />{{ t('vipClub') }}</a>
             </li>
           </ul>
         </div>

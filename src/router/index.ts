@@ -184,9 +184,21 @@ const routes = [
     component: AppMain,
     children: [
       {
-        path: ':type(vip|rules|responsible|aml|selfExclusion)',
+        path: ':type(rules|responsible|aml|selfExclusion)',
         name: 'terms',
         component: () => import('@/views/terms/terms.vue'),
+        meta: { transition: '', needLogin: false }
+      }
+    ]
+  },
+  {
+    path: '/vips',
+    component: AppMain,
+    children: [
+      {
+        path: 'vip',
+        name: 'vip',
+        component: () => import('@/views/vips/vip.vue'),
         meta: { transition: '', needLogin: false }
       }
     ]
