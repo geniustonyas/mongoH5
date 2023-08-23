@@ -18,7 +18,9 @@ const { t } = i18n.global
 
 const BOT_ID = '6360341967'
 // 谷歌app信息
-const GOOGLE_CLIENT_ID = '761335815308-g5tbur6tcihf1j6iv7kboqnim1l4tj5a.apps.googleusercontent.com'
+// const GOOGLE_CLIENT_ID = '761335815308-g5tbur6tcihf1j6iv7kboqnim1l4tj5a.apps.googleusercontent.com'
+const GOOGLE_CLIENT_ID = '213787019958-ojer4h9l5k216et4f5rp52ektlrjn5cv.apps.googleusercontent.com'
+// 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
 // Facebook ID
 const FACEBOOK_APPID = '663909171737293'
 // Twitter

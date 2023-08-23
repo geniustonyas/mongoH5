@@ -54,19 +54,19 @@
     <dl>
       <dt>{{ t('followUs') }}</dt>
       <dd>
-        <a href="#">Facebook <i class="iconfont icon-share" /></a>
+        <a target="_blank" href="https://www.facebook.com/seabet.io/">Facebook <i class="iconfont icon-share" /></a>
       </dd>
       <dd>
-        <a href="#">Twitter <i class="iconfont icon-share" /></a>
+        <a target="_blank" href="https://twitter.com/seabetio">Twitter <i class="iconfont icon-share" /></a>
       </dd>
       <dd>
-        <a href="#">Instagram <i class="iconfont icon-share" /></a>
+        <a target="_blank" href="https://www.instagram.com/seabet.io/">Instagram <i class="iconfont icon-share" /></a>
       </dd>
       <dd>
-        <a href="#">Youtube <i class="iconfont icon-share" /></a>
+        <a target="_blank" href="https://www.youtube.com/channel/UC3L5HrPC4elNgHkrvMSFjCQ">Youtube <i class="iconfont icon-share" /></a>
       </dd>
       <dd>
-        <a href="#">Tiktok <i class="iconfont icon-share" /></a>
+        <a target="_blank" href="https://www.tiktok.com/@seabet.io?lang=en">Tiktok <i class="iconfont icon-share" /></a>
       </dd>
     </dl>
     <dl>

@@ -126,7 +126,7 @@
               <h4>{{ moneyFormat(betDetailsItem.winAmount) }}<img :src="getAssetsFile('payment/tether.png')" /></h4>
             </div>
             <div class="b-gm">
-              <a @click="startGame(betDetailsItem.gameId)">{{ t('goto') }} {{ betDetailsItem.gameName }}</a>
+              <a @click="router.push({ name: 'gameDetails', params: { id: betDetailsItem.gameId } })">{{ t('goto') }} {{ betDetailsItem.gameName }}</a>
             </div>
           </div>
         </div>
@@ -162,7 +162,6 @@ import { getRankListRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, moneyFormat, loginTo } from '@/utils'
-import { startGame } from '@/composables/startGame'
 import { getExchangeRate } from '@/composables/getExchangeRate'
 
 //第三方插件

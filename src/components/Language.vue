@@ -32,7 +32,10 @@ const selLanguage = (val: string) => {
   selLang(val)
   locale.value = val
   showLangPick.value = !showLangPick.value
-  userStore.getUserInfo({ noLoading: false })
+  if (userStore.userInfo.id) {
+    userStore.getUserInfo({ noLoading: true })
+    userStore.setDefultLang()
+  }
 }
 
 defineExpose({

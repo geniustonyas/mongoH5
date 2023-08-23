@@ -1,7 +1,7 @@
 import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
 
-import { loginApi, thirdLoginApi, getUserProfileApi, loginOutApi, refreshTokenApi } from '@/api/user/index'
+import { loginApi, thirdLoginApi, getUserProfileApi, loginOutApi, refreshTokenApi, setDefultLangApi } from '@/api/user/index'
 import { getNewMessageCountApi } from '@/api/home/index'
 
 import router from '@/router'
@@ -53,6 +53,19 @@ export const useUserStore = defineStore('userInfo', () => {
       getUserProfileApi(data)
         .then((resp) => {
           Object.assign(userInfo, resp.data as UserInfoType)
+          resolve(resp)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  // 获取用户信息
+  const setDefultLang = () => {
+    return new Promise((resolve, reject) => {
+      setDefultLangApi({ noLoading: true })
+        .then((resp) => {
           resolve(resp)
         })
         .catch((error) => {
@@ -184,6 +197,7 @@ export const useUserStore = defineStore('userInfo', () => {
     lineCode,
     getUserInfo,
     refreshUserInfo,
+    setDefultLang,
     refreshToken,
     getNewMessageCount,
     refreshNewMessageCount,

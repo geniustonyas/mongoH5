@@ -22,7 +22,7 @@
           <h2 @click="collapseSport = !collapseSport">{{ t('sports') }}<i class="iconfont icon-down" /></h2>
           <Vue3SlideUpDown v-model="collapseSport">
             <ul>
-              <li v-for="(item, index) of sportProviderList" :key="index" @click="startGame(item.id)">
+              <li v-for="(item, index) of sportProviderList" :key="index" @click="router.push({ name: 'gameDetails', params: { id: item.id } })">
                 <a><img v-lazy="item.img" />{{ item.name }}</a>
               </li>
             </ul>
@@ -112,7 +112,6 @@ import { languages } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { providerList, providerListItemTypes } from '@/utils/config'
 import { useAppStore } from '@/store/modules/app'
-import { startGame } from '@/composables/startGame'
 
 //第三方插件
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'

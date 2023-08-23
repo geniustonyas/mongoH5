@@ -1,675 +1,558 @@
 const site_name = import.meta.env.VITE_APP_SITE_NAME
 
 export default {
-  home: '首页',
-  search: '搜索',
-  promo: '优惠',
-  support: '客服',
-  onlineSupport: '客服',
-  account: '账户',
-  confirm: '确定',
-  save: '保存',
-  cancel: '取消',
-  close: '关闭',
-  start: '开始',
-  loading: '加载中',
-  end: '结束',
-  to: ' 至 ',
-  or: '或',
-  and: '和',
-  at: '于',
-  goto: '前往',
-  refreshSuccess: '刷新成功',
-  loadingFail: '加载失败',
-  noMore: '没有更多了...',
-  login: '登入',
-  otherMethod: '其他方式',
-  reg: '注册',
-  userName: '用户名',
-  email: '电子邮件',
-  sendEmail: '发送验证码',
-  sended: '已发送',
-  emailCaptcha: '邮箱验证码',
-  password: '密码',
-  forgetPassword: '忘记密码',
-  resetPwd: '重置密码',
-  noUser: '没有账号？',
-  createUser: '创建账户',
-  googleCode: '谷歌身份验证码',
-  inputGoole: '输入谷歌身份验证码',
-  partner: '官方合作伙伴：',
-  date: '日期',
-  day: '日',
-  month: '月',
-  year: '年',
-  birthday: '出生日期',
-  telephone: '电话',
-  country: '国家',
-  hasAccount: '已有账号？',
-  logout: '登出',
-  address: '地址',
-  zipCode: '邮编',
+  home: 'Home',
+  search: 'Search',
+  promo: 'Promotion',
+  support: 'Support',
+  onlineSupport: 'Online Support',
+  accountMenu: 'Account',
+  account: 'Account',
+  confirm: 'Confirm',
+  confirmd: 'Confirmed',
+  all: 'All',
+  save: 'Save',
+  cancel: 'Cancel',
+  close: 'Close',
+  start: 'Start',
+  loading: 'loading',
+  end: 'end',
+  to: 'to',
+  or: 'OR',
+  and: 'and',
+  at: 'At',
+  goto: 'Go to',
+  refreshSuccess: 'Refresh successfully',
+  loadingFail: 'Loading failed',
+  noMore: 'No more...',
+  login: 'Sign In',
+  otherMethod: 'Other methods',
+  reg: 'Register',
+  userName: 'Username',
+  email: 'Email',
+  sendEmail: 'Send',
+  sended: 'Sent',
+  emailCaptcha: 'Email verification code',
+  password: 'Password',
+  forgetPassword: 'Forgot Password',
+  resetPwd: 'Reset Password',
+  noUser: `Don't have an account?`,
+  createUser: 'Create account',
+  googleCode: 'Google authenticator code',
+  inputGoole: 'Enter Google authenticator code',
+  partner: 'Official Partner of',
+  date: 'date',
+  day: 'Day',
+  month: 'Month',
+  year: 'Year',
+  birthday: 'Date of birth',
+  telephone: 'Phone',
+  country: 'Country',
+  hasAccount: 'Have an account? ',
+  logout: 'LOG OUT',
+  address: 'Address',
+  zipCode: 'Zip code',
   loginPage: {
-    useGoogle: '使用谷歌身份验证器',
-    userNameOrEmail: '用户名或电子邮件'
+    useGoogle: 'Use Google Authenticator',
+    userNameOrEmail: 'Username or Email'
   },
   regPage: {
-    holderUserName: '创建您的用户名',
-    holderEmail: `例如:you{'@'}example.com`,
-    holderTelephone: '电话(+66 xxxxxxxxxxx)',
-    isAdult: '我确认我已满18周岁, 并接受',
-    termCondition: '条款条件',
-    privacyPolicy: '隐私政策',
-    isAgree: '我同意接受Sportsbet.io的促销和活动相关的市场信息。'
+    holderUserName: 'Name your account',
+    holderEmail: `e.g. you{'@'}example.com`,
+    holderTelephone: 'Telephone (+66 xxxxxxxxxxx)',
+    isAdult: 'I confirm that I am over 18 years old and accept',
+    termCondition: 'Terms and conditions',
+    privacyPolicy: 'Privacy Policy',
+    isAgree: `I agree to receive marketing information about ${site_name} promotions and events. `
   },
   thirdRegPage: {
-    beFinished: '快完成了哦！',
-    fixInfo: '请补充完整您的资料'
+    beFinished: 'Almost there! ',
+    fixInfo: 'Please fill out the rest of the fields for your account'
   },
-  myprfile: '我的档案',
-  clubLevel: '俱乐部级别',
+  myprfile: 'My Profile',
+  clubLevel: 'Clubhouse tier',
   userLevels: {
-    '101': '钢铁',
-    '102': '青铜',
-    '103': '白银',
-    '104': '黄金',
-    '105': '铂金',
-    '106': '钛金',
-    '107': '钻石'
+    '101': 'Steel',
+    '102': 'Bronze',
+    '103': 'Silver',
+    '104': 'Gold',
+    '105': 'Platinum',
+    '106': 'Titanium',
+    '107': 'Diamond'
   },
   homePage: {
-    currentMultiplier: '当前倍数',
-    nextReward: '下一级别奖励',
-    showProgress: '显示我的进度'
+    currentMultiplier: 'Current multiple',
+    nextReward: 'Next tier reward',
+    showProgress: 'Show my progress'
   },
-  userAccount: '用户账号',
-  myBets: '历史记录',
-  rewards: '奖励',
-  notifications: '通知消息',
+  userAccount: 'Account',
+  wallet: 'Wallet',
+  myBets: 'History',
+  rewards: 'Rewards',
+  notifications: 'Notifications',
   // 搜索
-  noSearchResult: '很抱歉，没有符合 "{ keyword }" 的结果。请尝试其他搜索词。',
-  searchResultNum: '找到了 { searchResult } 个结果',
+  noSearchResult: 'Sorry, there are no results matching "{ keyword }". Please try another search term. ',
+  searchResultNum: 'Find { searchResult } results',
+  // 优惠详情
+  promoDetail: 'Promotion Details',
   // 俱乐部
-  club: '俱乐部',
-  tiers: '级别',
-  currentPoints: '当前积分',
-  currentPointsMultiplier: '当前积分倍数',
-  receiveReward: '领取奖励',
-  alreadyReceived: '已领取',
-  mergedReards: '已经累计到下一级别合并领取',
-  noReward: '暂无奖励，晋升到下一级别，解锁您的首次奖励',
+  club: 'Club',
+  tiers: 'tiers',
+  clubTips: "Your rewards will be reset every month, please claim your rewards before the end of the month, don't miss it.",
+  currentPoints: 'Current points',
+  currentPointsMultiplier: 'Current Points Multiplier',
+  receiveReward: 'Receive reward',
+  alreadyReceived: 'Already received',
+  mergedReards: 'Accumulated to the next level of merged receipt',
+  noReward: 'No rewards yet, advance to the next level and unlock your first reward',
   // vip俱乐部
-  vipTitle: 'VIP俱乐部',
-  vipClub: 'VIP 俱乐部',
+  vipClub: 'VIP-CLUB',
+  // 积分商城
+  mallStore: 'Marketplace',
   // 账户设置
-  generalInformation: '一般信息',
-  changePassword: '更换密码',
-  googleAuthenticator: '谷歌身份认证',
-  currentPwd: '当前密码',
-  newPwd: '新密码',
-  confirmPwd: '再次确认密码',
-  changePwdLimit: '为确保您的资金安全，当您修改密码后， 48小时内您将无法进行提款操作。',
-  disabledGoogle: '谷歌身份验证器已停用',
-  activeGoogle: '请使用谷歌身份验证器扫描二维码或输入代码激活。',
-  whatGoogleCode: '什么是谷歌验证码？',
-  typeCode: '输入代码',
-  submitCode: '提交代码',
-  keyValue: '关键值',
+  generalInformation: 'General Information',
+  changePassword: 'Change Password',
+  googleAuthenticator: 'Google Authenticator',
+  privacySetting: 'Privacy Settings',
+  currentPwd: 'Current Password',
+  newPwd: 'New Password',
+  confirmPwd: 'Confirm Password',
+  changePwdLimit: 'To ensure the safety of your funds, after you change your password, you will not be able to withdraw money within 48 hours. ',
+  disabledGoogle: 'Google Authenticator is disabled',
+  activeGoogle: 'To activate, scan the QR code or enter the code manually ',
+  whatGoogleCode: 'What is Google Verification Code? ',
+  typeCode: 'Type code',
+  submitCode: 'Submit code',
+  keyValue: 'Key value',
   // 消息通知
-  notice: '公告',
-  mail: '站内信',
-  makeAllRead: '全部设为已读',
-  noMessage: '您没有任何通知消息',
+  notice: 'Notice',
+  mail: 'Mail',
+  makeAllRead: 'Set all as read',
+  noMessage: 'You don not have any notification messages',
   // 奖励
-  claimReward: '领取奖励',
-  claimNewReward: '领取新的奖励',
-  rewardCode: '奖励代码',
-  claim: '领取',
-  recentTransaction: '近期交易',
+  claimReward: 'Claim reward',
+  claimNewReward: 'Claim a new reward',
+  rewardCode: 'Reward Code',
+  claim: 'Receive',
+  recentTransaction: 'Recent transactions',
   // 搜索
-  searchHolder: '游戏、厂商',
-  searchMore: '搜索更多',
-  searchRecommend: '为你推荐',
-  enter: '进入',
+  searchHolder: 'Game, manufacturer',
+  searchMore: 'Search More',
+  searchRecommend: 'Recommended for you',
+  enter: 'Enter',
   // fund
-  fundAccount: '资金账户',
-  activeBalance: '余额',
-  balance: '余额',
-  deposit: '存款',
-  buyCrypto: '购买加密货币',
-  withdraw: '提款',
-  youDepositAddress: '您的存款地址',
-  minDepositAmount: '最低存款金额',
-  quickTips: '快速提示',
-  quickTipCont: '在您每次进行转账时, 请务必使用您在我们出纳柜台的最新存款钱包地址.',
-  promoCode: '优惠代码',
-  currentBalance: '当前余额',
-  myRewards: '我的奖励',
-  transactionHistory: '转历史账记录',
-  supportSettings: '支持与设置',
-  walletSettings: '钱包设置',
-  faq: '帮助',
-  liveSupport: '在线客服',
-  chooseCrypto: '选择您偏好的货币',
-  cryptoCurrency: '加密货币',
-  bank: '银行',
-  chooseDepositChain: '选择存款网络',
-  confirmDepositAddress: '请在执行交易前确认您的存款地址',
-  recommendExchange: '从我们推荐的交易所购买加密货币',
+  fundAccount: 'Fund account',
+  activeBalance: 'Active Balance',
+  balance: 'Balance',
+  deposit: 'Deposit',
+  buyCrypto: 'Buy Crypto',
+  withdraw: 'Withdraw',
+  youDepositAddress: 'YOUR DEPOSIT ADDRESS',
+  minDepositAmount: 'Minimum deposit amount',
+  quickTips: 'Quick Tips',
+  quickTipCont: 'Please always check your deposit wallet address on our site before making your transactions.',
+  promoCode: 'Promo code',
+  currentBalance: 'Current balance',
+  myRewards: 'My Rewards',
+  transactionHistory: 'History',
+  supportSettings: 'Support and Settings',
+  walletSettings: 'Wallet settings',
+  faq: 'Help',
+  liveSupport: 'Online customer service',
+  chooseCrypto: 'Choose your preferred currency',
+  cryptoCurrency: 'Crypto',
+  bank: 'FIAT',
+  chooseDepositChain: 'Select deposit network',
+  confirmDepositAddress: 'Please always check your deposit wallet address on our site before making your transactions.',
+  recommendExchange: 'Buy cryptocurrencies from our recommended exchanges',
   // 交易记录
-  deposits: '存款',
-  withdrawals: '提款',
-  bets: '投注',
-  wins: '中奖',
-  currencyFilter: '按币种筛选',
-  dateFilter: '按日期筛选',
-  winLose: '输赢',
-  nodata: '暂无记录',
+  deposits: 'Deposit',
+  withdrawals: 'Withdrawals',
+  bets: 'Bets',
+  wins: 'Wins',
+  currencyFilter: 'Currency',
+  dateFilter: 'FILTER BY DATE',
+  winLose: 'win or lose',
+  nodata: 'No record yet',
   // 钱包设置
-  currency: '货币',
-  btcUnit: '比特币单位',
+  currency: 'Currency',
+  btcUnit: 'Bitcoin Unit',
   // 提款
-  inputAmount: '输入金额',
-  walletDetails: '钱包详情',
-  walletDetailsBig: '钱包详情',
-  waitingResults: '等待审核',
-  withdrawUsdt: 'USDT提款',
-  amount: '金额',
-  minWithdrawAmount: '最低提款金额',
-  next: '下一步',
-  youWithdrawAddress: '您的提款地址',
-  payto: '支付到',
-  checkWithdrawAddress: '请在每次交易之前务必检查您的提款钱包地址。',
-  previewWithdraw: '预览提款',
-  confirmWithdrawInfo: '请确认所有资料正确',
-  network: '网络',
-  withdrawing: '提款进行中',
-  summary: '总结',
-  transactionType: '交易类型',
-  finalBalance: '最终余额',
-  backToFund: '回到资金',
-  chooseWithdrawChain: '选择提款网络',
-  confirmWithdrawAddress: '请在执行交易前确认您的提款地址',
-  walletAddress: '钱包地址',
-  walletAddressBig: '钱包地址',
-  tradeStatus: { 1: '未完成', 2: '已确认', 3: '已删除' },
+  inputAmount: 'Enter the amount',
+  walletDetails: 'Wallet details',
+  walletDetailsBig: 'WALLET DETAILS',
+  waitingResults: 'waiting for review',
+  withdrawUsdt: 'Withdraw USDT',
+  amount: 'amount',
+  minWithdrawAmount: 'Minimum withdrawal amount',
+  next: 'Next',
+  youWithdrawAddress: 'YOUR WITHDRAW ADDRESS',
+  payto: 'PAY TO',
+  checkWithdrawAddress: ' Please always check your withdrawal wallet address before making your transactions ',
+  previewWithdraw: 'Preview withdrawal',
+  confirmWithdrawInfo: 'Please confirm that all information is correct',
+  network: 'Network',
+  withdrawing: 'withdrawal in progress',
+  summary: 'SUMMARY',
+  transactionType: 'transaction type',
+  finalBalance: 'final balance',
+  backToFund: 'Back to Fund',
+  chooseWithdrawChain: 'Choose withdrawal network',
+  confirmWithdrawAddress: 'Please confirm your withdrawal address before executing the transaction',
+  walletAddress: 'Wallet address',
+  walletAddressBig: 'WALLET ADDRESS',
+  tradeStatus: { 1: 'Processing', 2: 'Confirmed', 3: 'Deleted' },
 
   // 首页
-  readMore: '详情',
-  sports: '体育',
-  liveCasino: '真人娱乐',
-  slots: '娱乐场',
-  sbSport: '沙巴体育',
-  fbSport: 'FB体育',
-  downloadApp: '下载APP',
-  androidApple: '支持安卓和苹果',
-  globalPaymentSolutions: '全球支付解决方案',
-  otherPayment: '其他主流支付方式',
-  sportsBet: '体育投注',
-  liveCasinoBet: '真人娱乐投注',
-  slotBet: ' 娱乐场投注',
-  more: '更多',
-  loadMore: '加载更多',
-  providers: '运营商',
-  allProviders: '全部运营商',
-  sortBy: '排序',
-  polular: '流行',
-  promotions: '促销活动',
-  aboutUs: '关于我们',
-  ruleTerms: '规则与条款',
-  responsibleGambling: '博彩责任',
-  amlPolicy: '反洗钱政策',
-  selfExclusion: '自我排斥',
-  privacyPolicy: '隐私政策',
-  fairness: '公平性',
-  game: '游戏',
-  followUs: '关注我们',
-  language: '语言',
-  helpCenter: '帮助中心',
-  acceptCrypto: '支持的加密货币',
-  licencesSecurity: '许可证与安全性',
-  gameBig: '游戏',
-  userBig: '用户',
-  payoutBig: '支付',
-  betUser: '投注者',
-  multiplier: '倍数',
-  paymentAmount: '支付额',
-  invisibility: '隐身',
+  readMore: 'Details',
+  sports: 'Sports',
+  liveCasino: 'Live Casino',
+  slots: 'Casino',
+  sbSport: 'Saba Sports',
+  fbSport: 'FB Sports',
+  downloadApp: 'Download Client',
+  androidApple: 'Support Android and IOS',
+  globalPaymentSolutions: 'Global Payment Solutions',
+  otherPayment: 'Other mainstream payment methods',
+  sportsBet: 'Sports',
+  liveCasinoBet: 'Live Casino',
+  slotBet: 'Slots',
+  more: 'more',
+  loadMore: 'load more',
+  providers: 'providers',
+  allProviders: 'All Game Providers',
+  sortBy: 'Sort by',
+  polular: 'Polular',
+  promotions: 'Promotions',
+  aboutUs: 'about us',
+  selectLanguage: 'Select Language',
+  ruleTerms: 'rule & terms',
+  responsibleGambling: 'responsible Gambling',
+  amlPolicy: 'AML Policy',
+  selfExclusion: 'self-Exclusion',
+  privacyPolicy: 'Privacy Policy',
+  fairness: 'Fairness',
+  game: 'Game',
+  followUs: 'follow us',
+  language: 'Language',
+  helpCenter: 'Help Center',
+  acceptCrypto: 'Cryptocurrencies Accepted',
+  licencesSecurity: 'Licences & Security',
+  gameBig: 'GAME',
+  userBig: 'USER',
+  payoutBig: 'PAYOUT',
+  betUser: 'Bettor',
+  multiplier: 'Multiplier',
+  paymentAmount: 'Payment amount',
+  invisibility: 'Hidden',
   currencyLang: {
-    usdt: '泰达币',
-    btc: '比特币',
-    eth: '以太坊',
+    usdt: 'USDT',
+    btc: 'Bitcoin',
+    eth: 'Ethereum',
     busd: 'Binance USD',
-    trx: '波场币',
-    xrp: '瑞波币',
+    trx: 'TRON',
+    xrp: 'Ripple',
     bnb: 'Binance Coin',
-    ltc: '莱特币',
+    ltc: 'Litecoin',
     ada: 'Cardano',
-    doge: '狗狗币',
-    ton: '公开网络',
-    usd: '美元',
-    cny: '人民币'
+    doge: 'Dogecoin',
+    ton: 'Open network',
+    usd: 'US dollar',
+    cny: 'RMB'
+  },
+  // 积分商城
+  points: 'Points',
+  pointsNum: 'Points Num',
+  earnPoints: 'Earn Points',
+  pointType: 'Point Type',
+  spentPoints: 'Spent Points',
+  afterPoints: 'After Points',
+  createTime: 'Create Time',
+  pointsType: {
+    '1': 'Betting',
+    '2': 'Exchange Product',
+    '3': 'Promotion',
+    '4': 'Administrator Charge',
+    '5': 'Administrator Deduction',
+    '6': 'Cancel Exchange'
+  },
+
+  // 游戏提供商
+  provider: {
+    all: 'ALL',
+    sabaSports: 'Saba Sports',
+    btiports: 'BTI Sports',
+    fbSports: 'FB Sports',
+    evolution: 'Evolution',
+    bombayLive: 'Bombay Live',
+    ezugi: 'Ezugi',
+    asiaGaming: 'Asia Gaming',
+    pragmaticPlay: 'Pragmatic Play',
+    playingo: "Play'n Go",
+    netEnt: 'NetEnt',
+    playTech: 'PlayTech',
+    microgaming: 'Microgaming',
+    sexy: 'Sexy Baccarat'
   },
 
   // 数据验证提示
   tips: {
     // 用戶-登录注册
-    inputAccount: '请输入用户名',
-    isAccount: '用户名必须是5-12位以字母开头的字符串',
-    inputPassword: '请输入密码',
-    isPwd: '密码必须是6-16位的数字或字母',
-    pwdNotMatch: '两次密码不一致',
-    googleCode: '谷歌身份验证码必须是6位数字',
-    loginFail: '登录失败',
-    inputEmail: '请输入邮箱',
-    isEmail: '邮箱格式错误',
-    inputEmailcapcha: '请输入邮箱验证码',
-    inputDay: '请选择出生日',
-    inputMonth: '请选择出生月份',
-    inputYear: '请选择出生年份',
-    inputCountryCode: '请输入国家代码',
-    inputphoneNumber: '请输入手机号码',
-    inputAddress: '请输入地址',
-    inputZipCode: '请输入邮政编码',
-    userNameExist: '用户名已存在',
-    emailExist: '邮箱已存在',
-    emailNotExist: '邮箱不存在',
-    isAudit: '请确认您已经成年并接受隐私策略',
-    isAgree: '请阅读并接受相关市场活动信息',
-    regSuccess: '注册成功',
-    regFail: '注册失败',
-    loginSuccess: '登录成功',
-    sendSuccess: '发送成功',
-    resetSuccess: '重置密码成功，请重新登录',
-    resetFail: '重置密码失败',
-    sendFail: '发送失败',
-    editUserInfoSuccess: '修改用户信息成功',
-    inputNewPwd: '请输入新密码',
-    isNewPwd: '新密码必须是6-16位的数字或字母',
-    inputOldPwd: '请输入旧密码',
-    isOldPwd: '旧密码必须是6-16位的数字或字母',
-    editPwdSuccess: '修改密码成功，请重新登录',
-    bindGoogleSuccess: '绑定谷歌验证码成功',
-    logoutSuccess: '退出登录成功',
-    setSuccess: '设置成功',
-    inputWithdrawAmount: '请输入提现金额',
-    overMaxWithdrawAmount: '提现金额不能大于余额',
-    underMinWithdrawAmount: '提现金额必须大于最低金额',
-    inputWithdrawAddress: '请输入提现地址',
-    withdrawSuccess: '申请提现成功',
-    withdrawFail: '申请提现失败',
-    receivedRewardSuccess: '领取成功',
-    receivedRewardFail: '领取失败',
-    noLogin: '您尚未登录',
-    goLogin: '立即前往登录',
-    invalidThirdUser: '验证第三方用户失败',
-    authFail: '授权失败',
-    copyFail: '该浏览器不支持自动复制，请手动复制'
+    inputAccount: 'Please enter your username',
+    isAccount: 'The user name must be a string of 5-12 characters beginning with a letter',
+    inputPassword: 'Please enter a password',
+    isPwd: 'Password must be 6-16 digits or letters',
+    pwdNotMatch: 'The two passwords do not match',
+    googleCode: 'Google authenticator code must be 6 digits',
+    loginFail: 'Login failed',
+    inputEmail: 'Please enter your email',
+    isEmail: 'Email format error',
+    inputEmailcapcha: 'Please enter the email verification code',
+    inputDay: 'Please select a date of birth',
+    inputMonth: 'Please select the month of birth',
+    inputYear: 'Please select the year of birth',
+    inputCountryCode: 'Please enter the country code',
+    inputphoneNumber: 'Please enter your phone number',
+    inputAddress: 'Please enter the address',
+    inputZipCode: 'Please enter the zip code',
+    userNameExist: 'Username already exists',
+    emailExist: 'Mailbox already exists',
+    emailNotExist: 'Email does not exist',
+    isAudit: 'Please confirm that you are an adult and accept the privacy policy',
+    isAgree: 'Please read and accept relevant market activity information',
+    regSuccess: 'Registration successful',
+    regFail: 'Registration failed',
+    loginSuccess: 'Login successful',
+    sendSuccess: 'send successfully',
+    resetSuccess: 'The password has been reset successfully, please log in again',
+    resetFail: 'Failed to reset password',
+    sendFail: 'Failed to send',
+    editUserInfoSuccess: 'Modified user information successfully',
+    inputNewPwd: 'Please enter a new password',
+    isNewPwd: 'The new password must be 6-16 digits or letters',
+    inputOldPwd: 'Please enter the old password',
+    isOldPwd: 'Old password must be 6-16 digits or letters',
+    editPwdSuccess: 'Password changed successfully, please log in again',
+    bindGoogleSuccess: 'Bind Google verification code successfully',
+    logoutSuccess: 'logout successful',
+    setSuccess: 'Setting succeeded',
+    inputWithdrawAmount: 'Please enter the withdrawal amount',
+    overMaxWithdrawAmount: 'The withdrawal amount cannot be greater than the balance',
+    underMinWithdrawAmount: 'The withdrawal amount must be greater than the minimum amount',
+    inputWithdrawAddress: 'Please enter the withdrawal address',
+    withdrawSuccess: 'Application for withdrawal successful',
+    withdrawFail: 'Application withdrawal failed',
+    receivedRewardSuccess: 'received successfully',
+    receivedRewardFail: 'Failed to receive',
+    noLogin: 'You are not logged in',
+    goLogin: 'Go to login now',
+    invalidThirdUser: 'Failed to verify the third-party user',
+    authFail: 'Authorization failed',
+    copySuccess: 'Copy Success',
+    copyFail: 'The browser does not support automatic copying, please copy manually.',
+    inputExhangeCode: 'Please enter the redemption code',
+    startGameFail: 'Failed to start the game',
+    insufficientPoints: 'Insufficient points',
+    exhangeSuccess: 'exhange successfully',
+    openWindow: 'The window will be opened for you to play the game soon, wish you a happy game.',
+    openExchange: 'About to open a new window for you to enter the exchange'
   },
 
+  rewardsBig: 'REWARDS',
+  myStats: 'MYSTATS',
+  exclusiveRewards: 'exclusive Rewards',
+  quickBuys: 'Quick Buys',
+  earned: 'Earned',
+  spent: 'Spent',
+  pointsHistory: 'History',
+  earnPointsAndTrack: 'Earn Lightning Points and track them here.',
+  viewPointsRecord: 'View a record of all your Lightning Point earnings.',
+  buyNow: 'BUY NOW',
+  youWillGet: 'You will get',
+  bonusValue: 'Bonus Value',
+  wageringRequirement: 'Wagering Requirement',
+  enableVisible: 'Enable Ghost Mode',
+  hiddenYourBet: "Your bets won't appear in public bet feed and bet preview",
+  startNow: 'Start Now',
+  withdrawStatus: { 1: 'Processing', 2: 'Success', 3: 'Failure' },
+  time: 'Time',
+  betAmount: 'Bet Amout',
+  support2: 'Support',
+  btiSportIntro: 'With years of experience in sports platform operation, the BTi sports betting platform offers players an immersive and optimized sports betting gaming experience.',
+  sabaSportIntro: 'Verified by various parties over nearly two decades, the Saba Sports platform offers a wide range of sports events, multiple innovative betting types, and industry-leading odds.',
+  fundRecord: 'Fund Change Record',
+  categoryFilter: 'FILTER BY CATEGORY',
+  fundCategory: {
+    1: 'Deposit',
+    2: 'Withdraw',
+    3: 'Bet',
+    4: 'Settle',
+    5: 'Administrator Charge',
+    6: 'Administrator Deduction',
+    7: 'Promotional Gift',
+    8: 'Refund',
+    9: 'VIPRewards',
+    10: 'Exchange Goods',
+    17: 'Withdraw Failure'
+  },
+  beforeBalance: 'Before change',
+  afterBalance: 'After change',
+  tradeDetails: 'Trade Details',
+  tradeNo: 'Order No',
+  orderType: 'Order Type',
+  orderTypes: { 1: 'Deposit', 2: 'Withdraw', 3: 'Bet', 4: 'Win' },
+  blockChain: 'blockChain',
+  betAndEarn: 'Bet & Earn',
+  placeAndEarn: 'Place & Win',
+  spinAndEarn: 'Spin & Win',
+  enabledGoogle: 'Google Authenticator is enabled',
+  stopGoogle: 'Google Authenticator is enabled, if you want to close this feature, please enter the code and click "Submit Code" to close',
+  unlockNewReward: 'New rewards have been unlocked!',
+  unlockNewRewardTip: 'Congratulations! Just unlocked a new reward. Click here to select your award type',
+  dymondReward: 'Rewards will be generated automatically when you reach this level',
+  siteTitle: 'Best crypto sports betting and casino site | Bitcoin Betting',
+  unlockAllReward: 'Congratulations! You have unlocked all rewards.',
+  newGame: 'New Game',
+  oneDay: '24 hours',
+  week: 'Week',
+  moreGame: 'More Game',
+  question: 'FAQ',
+  // 条款协议等内容
   html: {
-    vipContent: `
-      <div class="vip-clubhouse-box">
-        <div class="vc-rows">
-          <div class="vr-title">一、VIP俱乐部介绍</div>
-          <div class="vr-conts">
-            <p>欢迎来到${site_name}尊贵会员俱乐部</p>
-            <p>在${site_name}，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。</p>
-            <p>只需投注您所喜爱的游戏/体育赛事等任意一款由${site_name}提供的游戏服务并通过等级的上升即可解锁独家奖励。</p>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">二、个性化服务</div>
-          <div class="vr-conts">
-            <p>专业的客户经理团队确保您的一切需求并始终达到行业最高标准，VIP会员可享受独家奖金、受邀参加著名活动以及为您制定快速、有趣/高效的游戏体验，为您量身定制的多种多样的奖励机制。</p>
-            <dl>
-              <dt>VIP专属经理：</dt>
-              <dd>只关注您的需求</dd>
-              <dd>专为您量身定制的私人游戏体验</dd>
-            </dl>
-            <dl>
-              <dt>高额奖励：</dt>
-              <dd>专为您设计的优惠</dd>
-              <dd>免下注奖励</dd>
-              <dd>高快速的积分获取速度</dd>
-            </dl>
-            <dl>
-              <dt>业内最高投注限额：</dt>
-              <dd>通过加密货币每日无限次的存款和取款</dd>
-            </dl>
-            <dl>
-              <dt>VIP专属促销：</dt>
-              <dd>区别于普通会员的促销优惠</dd>
-              <dd>为您保留最好的游戏体验</dd>
-              <dd>仅VIP用户可见</dd>
-              <dd>个性化优惠</dd>
-              <dd>为您定制专属于您的娱乐服务</dd>
-            </dl>
-            <dl>
-              <dt>7*24小时优先服务：</dt>
-              <dd>无需排队，无需等待</dd>
-              <dd>我们首先关注您的需求</dd>
-              <dd>多种社交媒体联系方式，专属客户经理在线服务</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">三、等级设置</div>
-          <div class="vr-conts">
-            <p>六种VIP等级，完整涵盖了您整个的游戏旅程</p>
-            <dl>
-              <dd>青铜：青铜1</dd>
-              <dd>白银：白银1-白银5</dd>
-              <dd>黄金：黄金1-黄金8</dd>
-              <dd>铂金：铂金1-铂金10</dd>
-              <dd>钛金：钛金1-钛金10</dd>
-              <dd>钻石：钻石1-钻石6</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">四、VIP俱乐部成员能够享受到的福利</div>
-          <div class="vr-conts">
-            <dl>
-              <dd>助推奖金：您可以根据您每周、每月的游戏量获得奖金，玩的越多，获得的奖金越多</dd>
-              <dd>近期游戏表现奖金：运气不佳？${site_name}会在您每次升级时根据您的损失提供额外资金</dd>
-              <dd>升级奖金：在每达到下个级别后获取奖金，所达到的级别越高，奖金越多</dd>
-              <dd>定制只属于您的优惠：对常规优惠不感兴趣？没关系，当您达到相应的VIP等级后，我们将会为您特别定制您所感兴趣的优惠内容，仅属于您个人的优惠内容</dd>
-              <dd>私人定制级娱乐体验：无论是各大赛事、演唱会、音乐会还是一场豪华旅行，当您成为我们的高级VIP会员，您的一切个人花销均由您所信赖的${site_name}提供，您的行程由我们来安排</dd>
-              <dd>祝福礼金：重大的节日、您的生日、还有一些特殊的日子您都将获得一份祝福礼金，等级越高，礼金越高</dd>
-              <dd>专属VIP服务：为您分配一名支持并满足您的投注需求的专属VIP服务代表</dd>
-              <dd>更快速的积分获取：不同的VIP等级所获取的积分速度对比普通会员更快，更高的等级获取的积分也会更多，所能兑换的奖品也将更丰富</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">五、VIP俱乐部升级条件</div>
-          <div class="vr-conts">
-            <p>${site_name}贵宾会员俱乐部是以玩家投注额为基础，以每个自然月1日00:00开始计算到每月最后一天的23:59为计算周期，在计算周期内，玩家达到相应的投注金额即可晋级同时享受晋级后的等级待遇。</p>
-            <table>
-              <tr>
-                <th>VIP等级</th>
-                <th>所需投注额</th>
-                <th>升级奖金</th>
-              </tr>
-              <tr>
-                <td>青铜</td>
-                <td>100USDT</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <td>白银1</td>
-                <td>500USDT</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>白银2</td>
-                <td>1000USDT</td>
-                <td>15</td>
-              </tr>
-              <tr>
-                <td>白银3</td>
-                <td>3000USDT</td>
-                <td>25</td>
-              </tr>
-              <tr>
-                <td>白银4</td>
-                <td>6000USDT</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>白银5</td>
-                <td>1万USDT</td>
-                <td>50</td>
-              </tr>
-              <tr class="od">
-                <td>黄金1</td>
-                <td>1.5万USDT</td>
-                <td>70</td>
-              </tr>
-              <tr class="od">
-                <td>黄金2</td>
-                <td>2.5万USDT</td>
-                <td>80</td>
-              </tr>
-              <tr class="od">
-                <td>黄金3</td>
-                <td>4万USDT</td>
-                <td>100</td>
-              </tr>
-              <tr class="od">
-                <td>黄金4</td>
-                <td>6万USDT</td>
-                <td>120</td>
-              </tr>
-              <tr class="od">
-                <td>黄金5</td>
-                <td>8.5万USDT</td>
-                <td>150</td>
-              </tr>
-              <tr class="od">
-                <td>黄金6</td>
-                <td>11.5万USDT</td>
-                <td>170</td>
-              </tr>
-              <tr class="od">
-                <td>黄金7</td>
-                <td>15万USDT</td>
-                <td>200</td>
-              </tr>
-              <tr class="od">
-                <td>黄金8</td>
-                <td>19万USDT</td>
-                <td>230</td>
-              </tr>
-              <tr>
-                <td>铂金1</td>
-                <td>30万USDT</td>
-                <td>260</td>
-              </tr>
-              <tr>
-                <td>铂金2</td>
-                <td>42万USDT</td>
-                <td>300</td>
-              </tr>
-              <tr>
-                <td>铂金3</td>
-                <td>55万USDT</td>
-                <td>350</td>
-              </tr>
-              <tr>
-                <td>铂金4</td>
-                <td>69万USDT</td>
-                <td>400</td>
-              </tr>
-              <tr>
-                <td>铂金5</td>
-                <td>75万USDT</td>
-                <td>450</td>
-              </tr>
-              <tr>
-                <td>铂金6</td>
-                <td>90万USDT</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>铂金7</td>
-                <td>107万USDT</td>
-                <td>550</td>
-              </tr>
-              <tr>
-                <td>铂金8</td>
-                <td>125万USDT</td>
-                <td>600</td>
-              </tr>
-              <tr>
-                <td>铂金9</td>
-                <td>145万USDT</td>
-                <td>660</td>
-              </tr>
-              <tr>
-                <td>铂金10</td>
-                <td>160万USDT</td>
-                <td>700</td>
-              </tr>
-              <tr class="od">
-                <td>钛金1</td>
-                <td>190万USDT</td>
-                <td>800</td>
-              </tr>
-              <tr class="od">
-                <td>钛金2</td>
-                <td>225万USDT</td>
-                <td>900</td>
-              </tr>
-              <tr class="od">
-                <td>钛金3</td>
-                <td>257万USDT</td>
-                <td>1000</td>
-              </tr>
-              <tr class="od">
-                <td>钛金4</td>
-                <td>290万USDT</td>
-                <td>1100</td>
-              </tr>
-              <tr class="od">
-                <td>钛金5</td>
-                <td>325万USDT</td>
-                <td>1200</td>
-              </tr>
-              <tr class="od">
-                <td>钛金6</td>
-                <td>359万USDT</td>
-                <td>1300</td>
-              </tr>
-              <tr class="od">
-                <td>钛金7</td>
-                <td>395万USDT</td>
-                <td>1380</td>
-              </tr>
-              <tr class="od">
-                <td>钛金8</td>
-                <td>432万USDT</td>
-                <td>1500</td>
-              </tr>
-              <tr class="od">
-                <td>钛金9</td>
-                <td>470万USDT</td>
-                <td>1650</td>
-              </tr>
-              <tr class="od">
-                <td>钛金10</td>
-                <td>509万USDT</td>
-                <td>1700</td>
-              </tr>
-              <tr>
-                <td>钻石1</td>
-                <td>600万USDT</td>
-                <td>2000</td>
-              </tr>
-              <tr>
-                <td>钻石2</td>
-                <td>1000万USDT</td>
-                <td>5000</td>
-              </tr>
-              <tr>
-                <td>钻石3</td>
-                <td>2000万USDT</td>
-                <td>10000</td>
-              </tr>
-              <tr>
-                <td>钻石4</td>
-                <td>3500万USDT</td>
-                <td>15000</td>
-              </tr>
-              <tr>
-                <td>钻石5</td>
-                <td>5500万USDT</td>
-                <td>20000</td>
-              </tr>
-              <tr>
-                <td>钻石6</td>
-                <td>8000万USDT</td>
-                <td>35000</td>
-              </tr>
-            </table>
-            <p>*VIP等级会于每月初始之日清零</p>
-            <p>*VIP积分永久保留</p>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">六、VIP俱乐部福利</div>
-          <div class="vr-conts">
-            <table>
-              <tr>
-                <th>VIP级别</th>
-                <th>积分系数</th>
-                <th>专属优惠</th>
-                <th>定制优惠</th>
-              </tr>
-              <tr>
-                <td>青铜</td>
-                <td>无</td>
-                <td>无</td>
-                <td>无</td>
-              </tr>
-              <tr>
-                <td>白银</td>
-                <td>1.1倍</td>
-                <td>无</td>
-                <td>无</td>
-              </tr>
-              <tr>
-                <td>黄金</td>
-                <td>1.2倍</td>
-                <td>无</td>
-                <td>无</td>
-              </tr>
-              <tr>
-                <td>铂金</td>
-                <td>1.3倍</td>
-                <td>√</td>
-                <td>无</td>
-              </tr>
-              <tr>
-                <td>钛金</td>
-                <td>1.5倍</td>
-                <td>√</td>
-                <td>√</td>
-              </tr>
-              <tr>
-                <td>钻石</td>
-                <td>2倍</td>
-                <td>√</td>
-                <td>√</td>
-              </tr>
-            </table>
-            <p class="mark">
-              <i class="iconfont icon-notice"></i>
-              积分系数说明：积分系数决定玩家获取积分的速度与倍数，${site_name}积分获取公式为玩家在任意场馆的投注金额*0.1*对应级别的积分系数，如玩家等级为铂金，投注金额为5000，那么根据积分计算公式，该玩家所获积分为5000*0.1*1.3=650积分。${site_name}积分用途广泛，玩家可通过积分在积分商城中兑换等值礼品及服务项目。
-            </p>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">七、如何成为我们的VIP会员</div>
-          <div class="vr-conts">
-            <p>如何成为${site_name}的VIP会所会员</p>
-            <dl>
-              <dd>
-                继续投注：成为 VIP 的关键是始终投注各种体育赛事和赌场游戏。${site_name} 将奖励您的一致性。作为顶级加密博彩网站，请定期使用您的数字资产对 ${site_name} 提供的任何赛事和赌场游戏进行投注。也可以尝试
-                USDT 投注，并持续使用您的资金。
-              </dd>
-              <dd>
-                参加定期活动：${site_name} 的促销活动包括您可以随时参加的各种活动和竞赛。定期参加其中任何一个活动都会让您更有机会获得 VIP 会所邀请。不仅如此，您还可以在 ${site_name} 的其他俱乐部功能中更加活跃
-              </dd>
-              <dd>等待邀请：您需要做的最后一件事就是等待我们向您发送邀请。继续玩游戏并参加豪客赛。经过几次赌场博彩和体育博彩后，一旦您被认为值得成为 VIP 俱乐部会员，您将立即获得邀请。</dd>
-              <dd>
-                作为${site_name}会所VIP体验高尚生活：将您的 USDT 博彩体验带入一个全新的世界，同时享受作为 ${site_name}
-                贵宾俱乐部会员的顶级福利。当您进行体育博彩和赌场游戏时，作为有价值的玩家享受最好的乐趣、快速和公平的投注。
-              </dd>
-            </dl>
-          </div>
-        </div>
-      </div>`
+    // html标题
+    vipTitle: 'VIP Club',
+    rulesTitle: 'Rules & Terms ',
+    responsibleTitle: 'Responsible Gambling',
+    amlTitle: 'AML Policy',
+    selfExclusionTitle: 'Self Exclusion',
+    privacyTitle: 'Privacy Policy',
+    fairnessTitle: 'Fairness',
+
+    // html内容
+    vipContent: ` <div class="vip-clubhouse-box">
+                    <div class="vc-rows">
+                      <div class="vr-title">1、VIP Club Introduction</div>
+                      <div class="vr-conts">
+                        <p>Welcome to the ${site_name} VIP Club!</p>
+                        <p>At ${site_name}, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
+                        <p>Simply place bets on any game or sports event provided by ${site_name} to unlock exclusive rewards as you climb through the ranks.</p>
+                      </div>
+                    </div>
+                    <div class="vc-rows">
+                      <div class="vr-title">2、Personalized Service</div>
+                      <div class="vr-conts">
+                        <p>Professional Customer Manager Team Ensures All Your Needs and Meets Industry's Highest Standards. VIP members can enjoy exclusive bonuses, invitations to renowned events, and a variety of customized rewards to provide you with fast, enjoyable, and efficient gaming experiences.</p>
+                        <dl>
+                          <dt>VIP Exclusive Manager：</dt>
+                          <dd>Devoted to addressing your needs</dd>
+                          <dd>Tailored private gaming experiences just for you</dd>
+                        </dl>
+                        <dl>
+                          <dt>High Rewards：</dt>
+                          <dd>Exclusive offers designed for you</dd>
+                          <dd>No-wager bonuses</dd>
+                          <dd>Rapid accumulation of points</dd>
+                        </dl>
+                        <dl>
+                          <dt>Industry's Highest Betting Limits：</dt>
+                          <dd>Unlimited daily deposits and withdrawals with cryptocurrencies</dd>
+                        </dl>
+                        <dl>
+                          <dt>VIP Exclusive Promotions：</dt>
+                          <dd>Distinguished from regular member promotions</dd>
+                          <dd>Preserve the best gaming experience for you</dd>
+                          <dd>Exclusive to VIP users</dd>
+                          <dd>Personalized offers</dd>
+                          <dd>Customized entertainment services exclusively for you</dd>
+                        </dl>
+                        <dl>
+                          <dt>24/7 Priority Service：</dt>
+                          <dd>No need to queue or wait</dd>
+                          <dd>Your needs are our top priority</dd>
+                          <dd>Multiple social media contact methods, dedicated customer managers providing online services.</dd>
+                        </dl>
+                      </div>
+                    </div>
+                    <div class="vc-rows">
+                      <div class="vr-title">3、Level Structure</div>
+                      <div class="vr-conts">
+                        <p>Six VIP levels that comprehensively cover your entire gaming journey:</p>
+                        <dl>
+                          <dd>Bronze: Bronze 1</dd>
+                          <dd>Silver: Silver 1 - Silver 5</dd>
+                          <dd>Gold: Gold 1 - Gold 8</dd>
+                          <dd>Platinum: Platinum 1 - Platinum 10</dd>
+                          <dd>Titanium: Titanium 1 - Titanium 10</dd>
+                          <dd>Diamond: Diamond 1 - Diamond 6</dd>
+                        </dl>
+                      </div>
+                    </div>
+                    <div class="vc-rows">
+                      <div class="vr-title">4、Benefits for VIP Club Members</div>
+                      <div class="vr-conts">
+                        <dl>
+                          <dd>Boost Bonuses: You can earn bonuses based on your weekly and monthly gaming volume. The more you play, the more bonuses you receive.</dd>
+                          <dd>Recent Game Performance Bonus: Having a streak of bad luck? ${site_name} will provide additional funds based on your losses every time you level up.</dd>
+                          <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
+                          <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
+                          <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>
+                          <dd>Exclusive VIP Service: You will be assigned a dedicated VIP service representative who will support and meet your betting needs</dd>
+                          <dd>Faster Points Accumulation: VIP levels earn points at a faster rate compared to regular members. Higher levels earn more points, leading to a wider range of prizes for redemption.</dd>
+                        </dl>
+                      </div>
+                    </div>
+                    <div class="vc-rows">
+                      <div class="vr-title">5、How to Become a VIP Member</div>
+                      <div class="vr-conts">
+                        <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
+                        <dl>
+                          <dd>
+                            Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
+                          </dd>
+                          <dd>
+                            Participate in Regular Events: ${site_name}'s promotional activities include various events and competitions that you can participate in at any time. Regular participation in any of these events will increase your chances of receiving an invitation to the VIP Club. Moreover, you can be more active in other club features offered by ${site_name}.
+                          </dd>
+                          <dd>
+                            Await the Invitation: The final thing you need to do is wait for us to send you an invitation. Continue playing games and participating in high roller events. After a few rounds of casino gambling and sports betting, once you are deemed worthy of becoming a VIP Club member, you will receive an invitation immediately.
+                          </dd>
+                          <dd>
+                            Experience the Luxury Life as a ${site_name} VIP: Take your USDT gambling experience to a whole new level while enjoying top-notch privileges as a ${site_name} VIP Club member. As a valued player, you'll experience the best fun, fast, and fair betting when engaging in sports betting and casino games.
+                          </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>`,
+
+    rulesContent: ``,
+    responsibleContent: ``,
+    amlContent: `<div>
+                  <h3>Declaración contra el lavado de dinero y el financiamiento del terrorismo</h3>
+                  <h4>1. Modelo de negocio de la empresa</h4>
+                  <p>Seabet actualmente brinda soporte a sus usuarios en más de 169 países alrededor del mundo. Como parte de sus operaciones globales, Seabet ha implementado medidas de cumplimiento diseñadas para prevenir y detectar actividades ilegales en su plataforma. Estas incluyen la incorporación y evaluación de cumplimiento para sus clientes, así como controles basados en transacciones.</p>
+                  <h4>2. Declaración de política de la empresa</h4>
+                  <p>Seabet prohíbe y rechaza explícitamente el uso de sus productos para cualquier forma de actividad ilegal, incluyendo el lavado de dinero, el financiamiento del terrorismo o violaciones de sanciones comerciales, de acuerdo con las leyes, regulaciones y directrices nacionales contra el lavado de dinero (AML). Seabet sigue monitoreando los parámetros establecidos por el Grupo de Acción Financiera Internacional (GAFI) y otras organizaciones comerciales de juegos, así como la Comisión de Control de Juegos de Curazao, y tomará las medidas que considere apropiadas para reflejar los cambios en la legislación. Seabet tiene la intención de seguir las mejores prácticas globales y evitar que sus productos sean utilizados para facilitar tales actividades. Estas mejores prácticas incluyen:</p>
+                  <ul>
+                      <li>Adoptar políticas escritas, procedimientos y controles razonablemente diseñados para prevenir el lavado de dinero, el financiamiento del terrorismo y las violaciones de sanciones comerciales;</li>
+                      <li>Designar, cuando corresponda, a un oficial de cumplimiento para supervisar la implementación de políticas, procedimientos y controles;</li>
+                      <li>Proporcionar educación y capacitación relevante al personal pertinente;</li>
+                      <li>Realizar revisiones independientes, monitoreo y mantenimiento de políticas, procedimientos y controles.</li>
+                  </ul>
+                  <h4>3. Definiciones</h4>
+                  <p>Los siguientes términos definitorios son ampliamente utilizados en la industria:</p>
+                  <p>- Lavado de dinero: El proceso de hacer que las ganancias obtenidas ilegalmente parezcan legítimas. Este proceso generalmente implica tres etapas: colocación, estratificación e integración.</p>
+                  <p>- Colocación: El acto de depositar fondos ilegales en una institución financiera tradicional;</p>
+                  <p>- Estratificación: El proceso de separar los productos de actividades delictivas de su origen mediante el uso de transacciones financieras complejas, como la conversión de efectivo en cheques de viaje, giros postales, transferencias electrónicas, cartas de crédito, adquisición de acciones, bonos o bienes raíces;</p>
+                  <p>- Integración: El uso de transacciones aparentemente legítimas para mezclar fondos ilícitos con recursos legales, con el fin de reintroducirlos en el sistema financiero legal;</p>
+                  <p>- Actividad sospechosa: Actividad realizada por un usuario o no usuario que utiliza la institución financiera donde existen indicios de que la transacción puede estar motivada por fraude o actividades ilegales;</p>
+                  <p>- Sanciones: Medidas adoptadas por la comunidad internacional para prohibir o restringir ciertas actividades. Se utilizan para alentar un cambio de comportamiento, presionar a un país objetivo para que cumpla con los objetivos establecidos, como una herramienta de aplicación de la ley cuando se amenaza la paz y seguridad internacionales y han fallado los esfuerzos diplomáticos, así como prevenir y combatir el financiamiento del terrorismo o actos terroristas.</p>
+                  <h4>4. Gobernanza y supervisión</h4>
+                  <p>Seabet ha designado a un Director de Cumplimiento (CCO) para coordinar la implementación de las políticas y programas de AML. Las responsabilidades del Director de Cumplimiento también incluyen el desarrollo de planes AML, trabajar con otras partes interesadas para revisar las políticas de AML, evaluar nuevos requisitos regulatorios e investigar posibles actividades sospechosas o inusuales. Seabet también proporciona regularmente capacitación en AML a todos sus empleados.</p>
+                  <h4>5. Educación y formación</h4>
+                  <p>Seabet, con la asistencia de su asesor legal y bajo la supervisión de su CCO, puede proporcionar capacitación periódica en cumplimiento de AML, financiamiento del terrorismo y sanciones comerciales a sus empleados según sea necesario.</p>
+                  <h4>6. Informes</h4>
+                  <p>Seabet está obligado a informar cualquier transacción inusual o sospechosa de acuerdo con los decretos nacionales. Los clientes identificados en listas de sanciones relacionadas con el lavado de dinero, financiamiento del terrorismo u otras actividades delictivas, serán reportados al regulador como actividad sospechosa.</p>
+              </div> `,
+    privacyContent: ``,
+    fairnessContent: ``
   }
 }

@@ -27,19 +27,19 @@
     </dd>
   </dl>
   <dl class="cur-lsit">
-    <dt>{{ t('supportSettings') }}</dt>
-    <dd>
+    <dt>{{ t('support2') }}</dt>
+    <!-- <dd>
       <a @click="router.push({ name: 'walletSetting' })">
         <span> <i class="iconfont icon-setting" />{{ t('walletSettings') }}</span>
         <i class="iconfont icon-right" />
       </a>
-    </dd>
-    <!-- <dd>
-      <a @click="router.push({ name: 'promo' })">
-        <span> <i class="iconfont icon-guanyuwomen" />{{ t('faq') }} </span>
+    </dd> -->
+    <dd>
+      <a @click="router.push({ name: 'faq' })">
+        <span> <i class="iconfont icon-guanyuwomen" />{{ t('question') }} </span>
         <i class="iconfont icon-right" />
       </a>
-    </dd> -->
+    </dd>
     <dd>
       <a @click="router.push({ name: 'support' })">
         <span> <i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }} </span>

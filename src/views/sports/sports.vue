@@ -53,7 +53,6 @@ import { startGame } from '@/composables/startGame'
 import { useAppStore } from '@/store/modules/app'
 import { getAssetsFile } from '@/utils'
 import { getExchangeRate } from '@/composables/getExchangeRate'
-import { provide } from 'vue'
 
 const appStore = useAppStore()
 const { t } = useI18n()

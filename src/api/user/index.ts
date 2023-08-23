@@ -19,6 +19,15 @@ export function regApi(data: User.RegData) {
   })
 }
 
+/** 设置默认语言 */
+export function setDefultLangApi(data: User.getUserProfileData) {
+  return request<anyResp>({
+    url: 'Member/SetDefaultLanguage',
+    method: 'post',
+    data
+  })
+}
+
 /** 重置密码 */
 export function resetPwdApi(data: User.resetPwdData) {
   return request<anyResp>({

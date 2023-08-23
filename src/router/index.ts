@@ -35,6 +35,19 @@ const routes = [
     meta: { transition: '', needLogin: false }
   },
   {
+    path: '/game',
+    component: AppMain,
+    meta: { transition: '', needLogin: false },
+    children: [
+      {
+        path: 'gameDetails/:id',
+        name: 'gameDetails',
+        component: () => import('@/views/game/gameDetails.vue'),
+        meta: { transition: '', needLogin: false }
+      }
+    ]
+  },
+  {
     path: '/fund',
     component: AppMain,
     children: [
@@ -211,6 +224,18 @@ const routes = [
         path: '',
         name: 'mall',
         component: () => import('@/views/mall/mall.vue'),
+        meta: { transition: '', needLogin: false }
+      }
+    ]
+  },
+  {
+    path: '/faq',
+    component: AppMain,
+    children: [
+      {
+        path: '',
+        name: 'faq',
+        component: () => import('@/views/faq/faq.vue'),
         meta: { transition: '', needLogin: false }
       }
     ]

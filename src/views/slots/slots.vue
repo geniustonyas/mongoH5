@@ -46,7 +46,7 @@
           </Vue3SlideUpDown>
         </div>
         <div v-if="dataList.length > 0" :class="gridShow ? 'g-list' : 'g-list row'">
-          <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item.id)">
+          <div v-for="(item, index) of dataList" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })">
             <div class="i-bd">
               <div class="i-img">
                 <!-- <img v-lazy="appStore.cdnurl + item.img" /> -->
@@ -76,7 +76,7 @@
 <script setup lang="ts">
 import { ref, reactive, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import IndexHeader from '@/components/layout/IndexHeader.vue'
 import IndexFooter from '@/components/layout/IndexFooter.vue'
@@ -86,7 +86,6 @@ import Sidebar from '@/components/layout/SideBar.vue'
 
 import { getGameListApi } from '@/api/game/index'
 import { getGameListRespItem, getGameListGsItemResp, getGameListData } from '@/api/game/types'
-import { startGame } from '@/composables/startGame'
 import { useAppStore } from '@/store/modules/app'
 import { GameType } from '@/utils/constant'
 import { getExchangeRate } from '@/composables/getExchangeRate'
@@ -95,6 +94,7 @@ import { showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon } from 'van
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 
 const route = useRoute()
+const router = useRouter()
 const appStore = useAppStore()
 const { t } = useI18n()
 
