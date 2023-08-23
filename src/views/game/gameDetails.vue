@@ -27,7 +27,7 @@
             <div class="item"><label>最小-最大投注</label><span>0.2 - 100 USDT</span></div>
             <div class="item"><label>波动性</label><span>高波动性</span></div>
             <div class="item"><label>命中率</label><span>30%</span></div>
-            <a class="btn btn-primary" @click="startGame(game.id)">真钱游戏</a>
+            <a class="btn btn-primary">真钱游戏</a>
             <div class="sb-item">
               <a>#高波动性</a>
               <a>#历史</a>
