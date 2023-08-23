@@ -273,6 +273,7 @@ router.beforeEach((to, from, next) => {
       next()
     } else {
       try {
+        // 如果有token 跳转路由时就调用一下定时任务方法，目的是确保刷新后有数据
         userStore.refreshToken()
         userStore.refreshNewMessageCount()
         userStore
@@ -280,8 +281,7 @@ router.beforeEach((to, from, next) => {
           .then(() => {
             next()
           })
-          .catch((error: any) => {
-            console.log(error)
+          .catch(() => {
             next({ name: 'login', query: from.query })
           })
       } catch (error) {

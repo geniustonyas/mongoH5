@@ -43,6 +43,7 @@ function createService() {
         data,
         data: { code }
       } = response
+
       if (code === undefined) {
         return data
       } else {

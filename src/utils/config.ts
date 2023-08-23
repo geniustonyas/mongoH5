@@ -151,9 +151,9 @@ export const fundCategory = [
 ]
 
 export const buyCrypto = [
-  { name: 'Moonpay', sub: t('recommendExchange'), url: 'https://www.moonpay.com/', img: getAssetsFile('coin/binance_icon.svg') },
+  { name: 'Moonpay', sub: t('recommendExchange'), url: 'https://www.moonpay.com/', img: getAssetsFile('coin/moonpay.svg') },
   { name: 'Binance', sub: t('recommendExchange'), url: 'https://www.binance.com/', img: getAssetsFile('coin/binance_icon.svg') },
-  { name: 'OKX', sub: t('recommendExchange'), url: 'https://www.okx.com/', img: getAssetsFile('coin/binance_icon.svg') },
+  { name: 'OKX', sub: t('recommendExchange'), url: 'https://www.okx.com/', img: getAssetsFile('coin/okx.svg') },
   { name: 'Bybit', sub: t('recommendExchange'), url: 'https://www.bybit.com/', img: getAssetsFile('coin/bybit_icon.svg') },
   { name: 'Blockfinex', sub: t('recommendExchange'), url: 'https://www.blockfinex.com/', img: getAssetsFile('coin/blockfinex_icon.svg') },
   { name: 'Bitflyer', sub: t('recommendExchange'), url: 'https://www.bitflyer.com/', img: getAssetsFile('coin/bitflyer_icon.svg') }

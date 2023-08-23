@@ -18,7 +18,8 @@
         </div>
         <div class="gamebox search">
           <div v-if="searchResult.length > 0" class="g-list row">
-            <div v-for="(item, index) of searchResult" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })">
+            <!-- <div v-for="(item, index) of searchResult" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })"> -->
+            <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item.id)">
               <div class="i-bd">
                 <div class="i-img">
                   <img v-lazy="appStore.cdnurl + item.img" />
@@ -51,7 +52,8 @@
           </div>
         </div>
         <div v-if="recommendList.length > 0" class="g-list row">
-          <div v-for="(item, index) of recommendList" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.gameItemId } })">
+          <!-- <div v-for="(item, index) of recommendList" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.gameItemId } })"> -->
+          <div v-for="(item, index) of recommendList" :key="index" class="item" @click="startGame(item.gameItemId)">
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="appStore.cdnurl + item.imageName" />
@@ -85,6 +87,7 @@ import { getSearchGameApi, getGameRecommendApi } from '@/api/game/index'
 import { getSearchGameRespItem, recommendGameRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
 import { providerList, providerListItemTypes } from '@/utils/config'
+import { startGame } from '@/composables/startGame'
 
 import { ConfigProvider } from 'vant'
 import { debounce } from 'lodash-es'

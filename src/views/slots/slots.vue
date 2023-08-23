@@ -46,7 +46,8 @@
           </Vue3SlideUpDown>
         </div>
         <div v-if="dataList.length > 0" :class="gridShow ? 'g-list' : 'g-list row'">
-          <div v-for="(item, index) of dataList" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })">
+          <!-- <div v-for="(item, index) of dataList" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })"> -->
+          <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item.id)">
             <div class="i-bd">
               <div class="i-img">
                 <!-- <img v-lazy="appStore.cdnurl + item.img" /> -->
@@ -92,6 +93,7 @@ import { getExchangeRate } from '@/composables/getExchangeRate'
 
 import { showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon } from 'vant'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
+import { startGame } from '@/composables/startGame'
 
 const route = useRoute()
 const router = useRouter()
