@@ -94,4 +94,5 @@ const showQuestion2 = ref(false)
 const showQuestion3 = ref(false)
 const showQuestion4 = ref(false)
 const showQuestion5 = ref(false)
+const showQuestion6 = ref(false)
 </script>
