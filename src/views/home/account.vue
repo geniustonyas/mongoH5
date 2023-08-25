@@ -156,13 +156,13 @@
               <div class="i-form google">
                 <template v-if="userStore.userInfo.isBindGoogleAuth">
                   <div class="fg-title">
-                    <h3>{{ t('disabledGoogle') }}</h3>
+                    <h3>{{ t('enabledGoogle') }}</h3>
                     <p>{{ t('stopGoogle') }}</p>
                   </div>
                 </template>
                 <template v-else>
                   <div class="fg-title">
-                    <h3>{{ t('enabledGoogle') }}</h3>
+                    <h3>{{ t('disabledGoogle') }}</h3>
                     <p>{{ t('activeGoogle') }}</p>
                   </div>
                   <div v-if="qrcodeValue != ''" class="fg-qrcode">
@@ -174,7 +174,12 @@
                   <input v-model="bindGoogleCodeForm.VerificationCode" type="text" class="form-control" :placeholder="t('typeCode')" maxlength="8" autocomplete="off" />
                   <a class="btn btn-primary" @click="bindGoogle()">{{ t('submitCode') }}</a>
                 </div>
-                <div v-if="!userStore.userInfo.isBindGoogleAuth" class="cr-mark">{{ t('keyValue') }}: {{ keyValue }}</div>
+                <div v-if="!userStore.userInfo.isBindGoogleAuth" class="cr-mark">
+                  {{ t('keyValue') }}: {{ keyValue }}
+                  <span class="copy" :data-clipboard-text="keyValue">
+                    <i class="iconfont icon-fuzhi" />
+                  </span>
+                </div>
               </div>
             </Vue3SlideUpDown>
           </div>
@@ -200,7 +205,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted, nextTick } from 'vue'
 // import { useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
@@ -211,7 +216,7 @@ import { editUserInfoData, googleCodeData, ediPwdData } from '@/api/home/types'
 import { useUserStore } from '@/store/modules/user'
 import { isPwd, isEmpty } from '@/utils/validate'
 // import { countryCode } from '@/utils/countryCode'
-import { getYearList } from '@/utils'
+import { getYearList, copy } from '@/utils'
 //第三方插件
 import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
@@ -383,7 +388,7 @@ const getGooogle = () => {
     .then((resp) => {
       const userStore = useUserStore()
       keyValue.value = resp.manualEntryKey
-      qrcodeValue.value = `otpauth://totp/${site_name}?secret=${resp.manualEntryKey}&issuer=${userStore.userInfo.userName}`
+      qrcodeValue.value = `otpauth://totp/${userStore.userInfo.userName}?secret=${resp.manualEntryKey}&issuer=${site_name}`
     })
     .catch((error) => {
       showToast(error)
@@ -418,11 +423,17 @@ const bindGoogle = () => {
 const setPrivacy = () => {
   setPrivacyApi({ InVisible: openVisible.value ? 1 : 0 })
     .then((resp) => {
-      showToast('设置成功')
+      // showToast('设置成功')
       console.log(resp)
     })
     .catch((err) => {
       console.log(err)
     })
 }
+
+onMounted(() => {
+  nextTick(() => {
+    copy('.copy')
+  })
+})
 </script>

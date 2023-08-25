@@ -18,8 +18,9 @@
             <b>{{ userStore.userInfo.userName }}</b>
             <a>
               <label>+</label>
-              <span>{{ moneyFormat(userStore.userInfo?.balance) }}</span>
-              {{ userStore.userInfo?.defaultCurrencyCode == 'BTC' ? userStore.userInfo?.btcUnit?.currencyUnit : userStore.userInfo?.defaultCurrencyCode }}
+              <span>{{ Math.floor(parseFloat(userStore.userInfo?.balance) * 1000) / 1000 }}</span>
+              {{ userStore.userInfo?.defaultCurrencyCode }}
+              <!-- {{ userStore.userInfo?.defaultCurrencyCode == 'BTC' ? userStore.userInfo?.btcUnit?.currencyUnit : userStore.userInfo?.defaultCurrencyCode }} -->
             </a>
           </div>
         </template>
@@ -54,7 +55,7 @@ import { useI18n } from 'vue-i18n'
 
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
-import { moneyFormat, getAssetsFile, loginTo } from '@/utils'
+import { getAssetsFile, loginTo } from '@/utils'
 
 const appStore = useAppStore()
 const userStore = useUserStore()

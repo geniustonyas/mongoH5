@@ -7,7 +7,7 @@
       <!-- swiper图片 -->
       <nav v-if="swipeImg.length > 0" class="swiper m-banner">
         <Swipe :autoplay="3500" class="my-swipe">
-          <SwipeItem v-for="(item, index) of swipeImg" :key="index" v-lazy:background-image="appStore.cdnurl + item.imageName" />
+          <SwipeItem v-for="(item, index) of swipeImg" :key="index" v-lazy:background-image="appStore.cdnurl + item.imageName" @click="routeTo(item)" />
         </Swipe>
       </nav>
 
@@ -242,12 +242,25 @@ const getBanner = () => {
     })
 }
 
+// 点击banner跳转
+const routeTo = (item: getBannerRespItem) => {
+  if (item.targetUrl == '') {
+    return false
+  }
+  if (item.targetUrl && (item.targetUrl.indexOf('http') || item.targetUrl.indexOf('https'))) {
+    console.log(item.targetUrl)
+    window.open(item.targetUrl)
+  } else {
+    router.push({ path: item.targetUrl })
+  }
+}
+
 // 获取首页跑马灯
 const getAnnouncementList = () => {
   getAnnouncementListApi({ PageIndex: 1, PageSize: 3 })
     .then((resp) => {
-      marqueeContent.value = resp.data!.items.reduce((notice, item) => {
-        return notice + '  ' + item.content
+      marqueeContent.value = resp.data!.items.reduce((notice, item, index) => {
+        return notice + (index + 1) + '. ' + item.content + '. '
       }, '')
     })
     .catch((error) => {

@@ -713,7 +713,10 @@
                       </div>
                       <div class="l-r">
                         <b>{{ item.amount }}</b>
-                        <span><small>After Points：</small>{{ item.afterAmount }}</span>
+                        <span>
+                          <small>{{ t('afterPoints') }}：</small>
+                          {{ item.afterAmount }}
+                        </span>
                       </div>
                     </li>
                   </List>

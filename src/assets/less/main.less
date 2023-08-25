@@ -61,27 +61,18 @@ body {
         padding: 1rem;
         .hm-l {
             a {
-                width: 10rem;
+                width: 3.6rem;
                 display: inline-block;
                 position: relative;
                 top: -1rem;
+                right: 1.5rem;
                 text-align: left;
+                i {
+                    position: relative;
+                    left: .5rem;
+                }
             }
         }
-
-        .hm-r {
-            .badge {
-                display: inline-block;
-                position: relative;
-                .size(7px, 7px);
-                .radius(50%);
-                .bgc(var(--color-primary), var(--color-white));
-                font-size: 0.6rem;
-                bottom: 12px;
-                left: -8px
-            }
-        }
-
         .hm-m {
             .user-info {
                 width: fit-content;
@@ -91,6 +82,8 @@ body {
                 .flex-v();
 
                 b {
+                    position: relative;
+                    bottom: -.4rem;
                     color: var(--color-white);
                     font-size: 1.3rem;
                 }
@@ -127,6 +120,21 @@ body {
                 position: relative;
                 top: -1rem;
                 right: -1rem;
+                .badge {
+                    display: inline-block;
+                    position: relative;
+                    .size(7px, 7px);
+                    .radius(50%);
+                    .bgc(var(--color-primary), var(--color-white));
+                    font-size: 0.6rem;
+                    bottom: 12px;
+                    left: -8px
+                }
+                .icon-btn {
+                    &:first-child { position: relative; top: -.3rem; }
+                    i { position: relative; left: .2rem; }
+                    img { position: relative; left: .3rem; top: -.1rem;; }
+                }
             }
 
             .hm-m
@@ -1153,8 +1161,7 @@ body {
                 .ir-a { font-weight: 700; color: var(--color-white); font-size: 2rem;
                     img { width: 1.6rem; vertical-align: middle; margin-right: .5rem; position: relative; bottom: .1rem; }
                 }
-                .ir-b { margin: 3rem auto 5rem 0; text-indent: 1rem;
-                }
+                .ir-b { margin: 3rem auto 5rem 0; }
                 .ir-c { margin-top: 1.6rem;  
                     a { width: 40%; }
                 }
@@ -1463,6 +1470,7 @@ body {
                         font-size: 1.2rem;
                         margin-top: 1.5rem;
                         word-wrap: break-word;
+                        i { position: relative; bottom: -.2rem; margin-left: .5rem; }
                     }
                 }
 
@@ -1713,6 +1721,7 @@ body {
 
 /*优惠*/
 .promo-box {
+    margin-top: 1rem;
     .pb-list {
         margin: 1rem 1rem 2rem 1rem;
 
@@ -2497,6 +2506,27 @@ body {
                 }
             }
         }
+    }
+
+    .cb_help {
+        margin: 1.5rem;
+        padding: 1.5rem;
+        .radius(1rem);
+        .bg(var(--color-menu));
+
+        .lm-title {
+            color: var(--color-white);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .lm-bottom {
+            width: 100%; .flex(); .flex-align();
+            .btn {
+                margin: 1rem auto; width: 20rem;
+            }
+        }
+        .faq-box { margin: 0; margin-top: 1rem; }
+        
     }
 }
 
@@ -3994,7 +4024,7 @@ body {
 
                 &.g-tel {
                     input[type='tel'] {
-                        .flex-x(2);
+                        &:first-child { width: 12rem;.flex-x(0); }
                         padding: 0 2rem;
                     }
                 }

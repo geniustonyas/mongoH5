@@ -13,7 +13,7 @@
                 <img :src="getAssetsFile(`coin/${selCurrencyItem.name.toLocaleLowerCase()}.svg`)" />
                 <span>
                   <b>{{ selCurrencyItem.subtitle }}</b>
-                  <small>{{ selCurrencyItem.name }}</small>
+                  <small>{{ currenyName(selCurrencyItem.name) }}</small>
                 </span>
               </div>
               <!-- 弹出余额列表框 -->
@@ -66,12 +66,12 @@
                   </template>
                   <div class="gc-md">
                     <p>
-                      1 {{ depositInfo.currencyCode }} ≈ <span>US ${{ moneyFormat(depositInfo.exchangeRate) }}</span>
+                      1 {{ depositInfo.currencyCode }} ≈ <span>USD ${{ moneyFormat(depositInfo.exchangeRate) }}</span>
                     </p>
-                    <p>
+                    <!-- <p>
                       {{ t('minDepositAmount') }}:
-                      <span>{{ moneyFormat(depositInfo.minDepositAmount) }} {{ depositInfo.currencyUnit }}</span>
-                    </p>
+                      <span>{{ moneyFormat(depositInfo.minDepositAmount) }} {{ depositInfo.currencyCode }}</span>
+                    </p> -->
                   </div>
                 </div>
 
@@ -217,7 +217,7 @@ import FundFooter from '@/components/layout/FundFooter.vue'
 import { getBalanceApi, getDepositAddressApi, setDefaultCurrencyApi } from '@/api/fund/index'
 import { getBalanceItemResponse } from '@/api/fund/types'
 import { getAssetsFile, copy, moneyFormat } from '@/utils'
-import { usdtChainList, usdtChainListTypes, currenyList, buyCrypto } from '@/utils/config'
+import { usdtChainListData, usdtChainListTypes, currenyListData, buyCryptoData } from '@/utils/config'
 
 import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
@@ -230,6 +230,9 @@ const userStore = useUserStore()
 const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
+const usdtChainList = usdtChainListData()
+const currenyList = currenyListData()
+const buyCrypto = buyCryptoData()
 
 // 数字货币和银行切换
 const depositTab = ref('digital')

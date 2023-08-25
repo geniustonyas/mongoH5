@@ -101,7 +101,7 @@ import Nodata from '@/components/Nodata.vue'
 import { getFundChangeRecordApi } from '@/api/fund/index'
 import { getFundChangeRecordRespItems } from '@/api/fund/types'
 import { getAssetsFile } from '@/utils/index'
-import { currenyList, currenyListTypes, fundCategory } from '@/utils/config'
+import { currenyListData, currenyListTypes, fundCategoryData } from '@/utils/config'
 import { useI18n } from 'vue-i18n'
 
 import { moneyFormat } from '@/utils/index'
@@ -110,6 +110,8 @@ import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh
 import type { DropdownItemInstance } from 'vant'
 
 const { t } = useI18n()
+const currenyList = currenyListData()
+const fundCategory = fundCategoryData()
 
 const tab = ref('deposit')
 

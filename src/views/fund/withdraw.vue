@@ -11,7 +11,7 @@
 
         <!-- step 1 -->
         <div v-show="step == 1" class="fund-form">
-          <div class="ff-title">{{ route.query?.CurrencyCode }} {{ t('withdrawals') }}</div>
+          <div class="ff-title">{{ currenyName() }}{{ t('withdrawals') }}</div>
           <div class="ff-balance">
             {{ t('currentBalance') }}
             <!-- {{  }} -->
@@ -166,19 +166,13 @@
           <a class="btn btn-primary" @click="router.push({ name: 'fund' })">{{ t('backToFund') }}</a>
         </div>
         <dl v-show="step != 4" class="cur-lsit">
-          <dt>{{ t('supportSettings') }}</dt>
+          <dt>{{ t('support2') }}</dt>
           <dd>
-            <a @click="router.push({ name: 'walletSetting' })">
-              <span> <i class="iconfont icon-setting" />{{ t('walletSettings') }}</span>
+            <a @click="router.push({ name: 'faq' })">
+              <span> <i class="iconfont icon-guanyuwomen" />{{ t('question') }} </span>
               <i class="iconfont icon-right" />
             </a>
           </dd>
-          <!-- <dd>
-            <a href="#">
-              <span> <i class="iconfont icon-guanyuwomen" />{{ t('faq') }} </span>
-              <i class="iconfont icon-right" />
-            </a>
-          </dd> -->
           <dd>
             <a @click="router.push({ name: 'support' })">
               <span> <i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }} </span>
@@ -224,7 +218,7 @@ import { useUserStore } from '@/store/modules/user'
 import { getMinWithdrawAmountApi, getBalanceApi, withdrawOrderApi, getTradeDetailApi } from '@/api/fund/index'
 // import { getTradeDetailResponse } from '@/api/fund/type'
 import { getAssetsFile, moneyFormat } from '@/utils'
-import { usdtChainList, usdtChainListTypes } from '@/utils/config'
+import { usdtChainListData, currenyListData, usdtChainListTypes } from '@/utils/config'
 import { useI18n } from 'vue-i18n'
 
 import BigNumber from 'bignumber.js'
@@ -234,6 +228,8 @@ const userStore = useUserStore()
 const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
+const usdtChainList = usdtChainListData()
+const currenyList = currenyListData()
 
 const step = ref(1)
 // 快捷提现比例
@@ -288,6 +284,11 @@ const withdrawForm = reactive({
   PayeeAddress: '',
   Amount: ''
 })
+
+const currenyName = () => {
+  const tmp = currenyList.find((item) => item.code == (route.query?.CurrencyCode as string))
+  return tmp ? tmp.currenyName : ''
+}
 
 // 跳转步骤
 const jumpStep = (jumpTo: number) => {

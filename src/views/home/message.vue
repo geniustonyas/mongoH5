@@ -31,7 +31,7 @@
                 :finished-text="t('noMore')"
                 @load="loadData"
               >
-                <li v-for="(item, index) of dataList" :class="tab == 1 && !item.isRead ? 'new' : ''" :key="index" @click="setReaded(item)">
+                <li v-for="(item, index) of dataList" :class="!item.isRead ? 'new' : ''" :key="index" @click="setReaded(item)">
                   <div class="l-title">{{ item.title }}</div>
                   <div class="l-cont" v-html="item.content" />
                   <div class="l-date">{{ item.createTime }}</div>
@@ -152,7 +152,7 @@ const setReaded = (item: messageItem) => {
 
 // 全部设置已读
 const setAllReaded = () => {
-  if (newMessageCount.value > 0) {
+  if (newMessageCount.value == 0) {
     return false
   }
   setAllReadApi({ NotificationType: tab.value.toString() })

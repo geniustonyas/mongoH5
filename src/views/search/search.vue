@@ -86,7 +86,7 @@ import Footer from '@/components/layout/Footer.vue'
 import { getSearchGameApi, getGameRecommendApi } from '@/api/game/index'
 import { getSearchGameRespItem, recommendGameRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
-import { providerList, providerListItemTypes } from '@/utils/config'
+import { providerListData, providerListItemTypes } from '@/utils/config'
 import { startGame } from '@/composables/startGame'
 
 import { ConfigProvider } from 'vant'
@@ -96,6 +96,7 @@ import { useI18n } from 'vue-i18n'
 const appStore = useAppStore()
 const router = useRouter()
 const { t } = useI18n()
+const providerList = providerListData()
 
 // 搜索关键词
 let keywords = ref('')

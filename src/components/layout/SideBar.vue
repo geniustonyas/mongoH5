@@ -111,7 +111,7 @@ import Language from '@/components/Language.vue'
 // 引用方法
 import { languages } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
-import { providerList, providerListItemTypes } from '@/utils/config'
+import { providerListData, providerListItemTypes } from '@/utils/config'
 import { useAppStore } from '@/store/modules/app'
 import { startGame } from '@/composables/startGame'
 //第三方插件
@@ -121,6 +121,7 @@ import { showToast } from 'vant'
 const appStore = useAppStore()
 const router = useRouter()
 const { t, locale } = useI18n()
+const providerList = providerListData()
 
 const props = defineProps({
   currencyCode: { type: String, required: true, default: '' },

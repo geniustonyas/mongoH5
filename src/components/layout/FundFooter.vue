@@ -8,7 +8,7 @@
       </a>
     </dd>
   </dl>
-  <dl class="cur-lsit">
+  <!-- <dl class="cur-lsit">
     <dt>{{ t('wallet') }}</dt>
     <dd>
       <a @click="router.push({ name: 'wallet' })">
@@ -16,7 +16,7 @@
         <i class="iconfont icon-right" />
       </a>
     </dd>
-  </dl>
+  </dl> -->
   <dl class="cur-lsit">
     <dt>{{ t('recentTransaction') }}</dt>
     <dd>
@@ -28,12 +28,6 @@
   </dl>
   <dl class="cur-lsit">
     <dt>{{ t('support2') }}</dt>
-    <!-- <dd>
-      <a @click="router.push({ name: 'walletSetting' })">
-        <span> <i class="iconfont icon-setting" />{{ t('walletSettings') }}</span>
-        <i class="iconfont icon-right" />
-      </a>
-    </dd> -->
     <dd>
       <a @click="router.push({ name: 'faq' })">
         <span> <i class="iconfont icon-guanyuwomen" />{{ t('question') }} </span>

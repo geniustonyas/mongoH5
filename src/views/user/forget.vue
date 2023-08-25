@@ -173,8 +173,7 @@ const resetPassword = () => {
       return false
     })
     .catch((error) => {
-      showToast(t('tips.resetFail'))
-      console.log(error)
+      showToast(t(error))
       return false
     })
 }

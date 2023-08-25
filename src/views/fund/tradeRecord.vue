@@ -122,7 +122,7 @@ import Nodata from '@/components/Nodata.vue'
 import { getBetListApi, getWinListApi } from '@/api/fund/index'
 import { getRradeRecordResponse } from '@/api/fund/types'
 import { getAssetsFile } from '@/utils/index'
-import { currenyList, currenyListTypes } from '@/utils/config'
+import { currenyListData, currenyListTypes } from '@/utils/config'
 import dynamicObject from '@/types/dynamicObject'
 import { useI18n } from 'vue-i18n'
 
@@ -132,6 +132,7 @@ import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh
 import type { DropdownItemInstance } from 'vant'
 
 const { t } = useI18n()
+const currenyList = currenyListData()
 
 const tab = ref('bet')
 

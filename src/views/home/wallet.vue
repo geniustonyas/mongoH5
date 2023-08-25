@@ -127,7 +127,7 @@ import Nodata from '@/components/Nodata.vue'
 import { getDepositListApi, getTradeDetailApi, getWithdrawListApi } from '@/api/fund/index'
 import { getRradeRecordResponse, getTradeDetailResponse } from '@/api/fund/types'
 import { getAssetsFile } from '@/utils/index'
-import { currenyList, currenyListTypes } from '@/utils/config'
+import { currenyListData, currenyListTypes } from '@/utils/config'
 import dynamicObject from '@/types/dynamicObject'
 import { useI18n } from 'vue-i18n'
 
@@ -138,6 +138,7 @@ import type { DropdownItemInstance } from 'vant'
 // import { cloneDeep } from 'lodash-es'
 
 const { t } = useI18n()
+const currenyList = currenyListData()
 
 const tab = ref('deposit')
 

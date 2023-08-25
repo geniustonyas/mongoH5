@@ -61,6 +61,7 @@ function createService() {
       }
     },
     (error) => {
+      console.log(error)
       loadingRequestCount = 0
       useAppStoreHook().loading = false
       return Promise.reject(error)
@@ -76,6 +77,7 @@ function createRequestFunction(service: AxiosInstance) {
       headers: {
         // 携带 Token
         Authorization: `${TokenPrefix}${getToken()}`,
+        'Access-Control-Allow-Credentials': true,
         'Accept-Language': localStorage.getItem('lang'),
         'X-Timezone-Offset': new Date().getTimezoneOffset(),
         'Content-Type': get(config, 'headers.Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')

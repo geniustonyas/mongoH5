@@ -210,8 +210,8 @@ export default {
   slots: 'Casino',
   sbSport: 'Saba Sports',
   fbSport: 'FB Sports',
-  downloadApp: 'Download Client',
-  androidApple: 'Support Android and IOS',
+  downloadApp: 'Download APP',
+  androidApple: 'Android and IOS',
   globalPaymentSolutions: 'Global Payment Solutions',
   otherPayment: 'Other mainstream payment methods',
   sportsBet: 'Sports',
@@ -355,7 +355,8 @@ export default {
     insufficientPoints: 'Insufficient points',
     exhangeSuccess: 'exhange successfully',
     openWindow: 'The window will be opened for you to play the game soon, wish you a happy game.',
-    openExchange: 'About to open a new window for you to enter the exchange'
+    openExchange: 'About to open a new window for you to enter the exchange',
+    unBindGoogleSuccess: 'Unbind successfully'
   },
 
   rewardsBig: 'REWARDS',
@@ -409,7 +410,7 @@ export default {
   stopGoogle: 'Google Authenticator is enabled, if you want to close this feature, please enter the code and click "Submit Code" to close',
   unlockNewReward: 'New rewards have been unlocked!',
   unlockNewRewardTip: 'Congratulations! Just unlocked a new reward. Click here to select your award type',
-  dymondReward: 'Rewards will be generated automatically when you reach this level',
+  dymondReward: 'Your rewards will be unlocked when you reach this level',
   siteTitle: 'Best crypto sports betting and casino site | Bitcoin Betting',
   unlockAllReward: 'Congratulations! You have unlocked all rewards.',
   newGame: 'New Game',

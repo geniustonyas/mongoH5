@@ -1,7 +1,6 @@
 import { type ConfigEnv, type UserConfigExport, loadEnv } from 'vite'
 import { resolve } from 'path'
 import { createHtmlPlugin } from 'vite-plugin-html'
-import mkcert from 'vite-plugin-mkcert'
 import vue from '@vitejs/plugin-vue'
 
 /** 配置项文档：https://cn.vitejs.dev/config */
@@ -74,7 +73,6 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     /** Vite 插件 */
     plugins: [
       vue(),
-      [mkcert()],
       // Components({
       //   resolvers: [VantResolver()]
       // }),
