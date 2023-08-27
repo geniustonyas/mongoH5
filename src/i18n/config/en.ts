@@ -356,7 +356,8 @@ export default {
     exhangeSuccess: 'exhange successfully',
     openWindow: 'The window will be opened for you to play the game soon, wish you a happy game.',
     openExchange: 'About to open a new window for you to enter the exchange',
-    unBindGoogleSuccess: 'Unbind successfully'
+    unBindGoogleSuccess: 'Unbind successfully',
+    openExplorer: 'The window will be opened for you to inquire about transactions'
   },
 
   rewardsBig: 'REWARDS',
@@ -421,6 +422,7 @@ export default {
   status: 'Status',
   tradeCode: 'Transaction Code',
   copyTradeCode: 'Copy Transaction Code',
+
   // 条款协议等内容
   html: {
     // html标题

@@ -32,91 +32,104 @@ export const currenyListData = () => {
       currenyName: t('currencyLang.usdt'),
       unit: 'USDT',
       currenyType: '11',
-      icon: 'coin/usdt.svg'
+      icon: 'coin/usdt.svg',
+      explorer: ''
     },
     {
       code: 'BTC',
       currenyName: t('currencyLang.btc'),
       unit: 'μBTC',
       currenyType: '10',
-      icon: 'coin/btc.svg'
+      icon: 'coin/btc.svg',
+      explorer: ''
     },
     {
       code: 'ETH',
       currenyName: t('currencyLang.eth'),
       unit: 'ETH',
       currenyType: '10',
-      icon: 'coin/eth.svg'
+      icon: 'coin/eth.svg',
+      explorer: ''
     },
     {
       code: 'TRX',
       currenyName: t('currencyLang.trx'),
       unit: 'TRX',
       currenyType: '10',
-      icon: 'coin/trx.svg'
+      icon: 'coin/trx.svg',
+      explorer: ''
     },
     {
       code: 'BNB',
       currenyName: t('currencyLang.bnb'),
       unit: 'BNB',
       currenyType: '10',
-      icon: 'coin/trx.svg'
+      icon: 'coin/trx.svg',
+      explorer: ''
     },
     {
       code: 'BUSD',
       currenyName: t('currencyLang.busd'),
       unit: 'BUSD',
       currenyType: '10',
-      icon: 'coin/busd.svg'
+      icon: 'coin/busd.svg',
+      explorer: ''
     },
     {
       code: 'XRP',
       currenyName: t('currencyLang.xrp'),
       unit: 'XRP',
       currenyType: '10',
-      icon: 'coin/xrp.svg'
+      icon: 'coin/xrp.svg',
+      explorer: ''
     },
     {
       code: 'LTC',
       currenyName: t('currencyLang.ltc'),
       unit: 'LTC',
       currenyType: '10',
-      icon: 'coin/ltc.svg'
+      icon: 'coin/ltc.svg',
+      explorer: ''
     },
     {
       code: 'ADA',
       currenyName: t('currencyLang.ada'),
       unit: 'ADA',
       currenyType: '10',
-      icon: 'coin/ada.svg'
+      icon: 'coin/ada.svg',
+      explorer: ''
     },
     {
       code: 'DOGE',
       currenyName: t('currencyLang.doge'),
       unit: 'DOGE',
       currenyType: '10',
-      icon: 'coin/doge.svg'
+      icon: 'coin/doge.svg',
+      explorer: ''
     },
     {
       code: 'TON',
       currenyName: t('currencyLang.ton'),
       unit: 'TON',
       currenyType: '10',
-      icon: 'coin/ton.svg'
+      icon: 'coin/ton.svg',
+      explorer: ''
     },
     {
       code: 'USD',
       currenyName: t('currencyLang.btc'),
       unit: 'USD',
       currenyType: '20',
-      icon: 'coin/usd.svg'
+      icon: 'coin/usd.svg',
+      explorer: ''
     },
     {
       code: 'CNY',
       currenyName: t('currencyLang.cny'),
       unit: 'CNY',
       currenyType: '20',
-      icon: 'coin/cny.svg'
+      icon: 'coin/cny.svg',
+      explorer: ''
     }
   ]
 }

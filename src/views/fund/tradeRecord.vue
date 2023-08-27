@@ -128,7 +128,7 @@
     <ConfigProvider theme="dark">
       <Calendar
         v-model:show="showDatePicker"
-        :default-date="[dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]"
+        :default-date="defaultDate"
         type="range"
         :min-date="minDate"
         :max-date="maxDate"
@@ -140,13 +140,15 @@
         :formatter="dayFormatter"
         @confirm="customDate"
       />
-      <Popup v-model:show="showDetailsBox" round style="width: 80%" :closeable="true">
-        <div class="fund-form wa" style="">
+      <Popup v-model:show="showDetailsBox" round style="width: 80%" :closeable="true" @closed="clearData">
+        <div v-if="detailsData.id" class="fund-form wa" style="">
           <div class="ff-w-a">
             <h2>{{ t('tradeDetails') }}</h2>
             <p v-if="detailsData.category == 1">{{ detailsData.currencyCode }} {{ t('fundCategory.' + detailsData.category) }}</p>
             <p v-else-if="detailsData.category == 2">{{ detailsData.currencyCode }} {{ t('fundCategory.' + detailsData.category) }}</p>
             <p v-else-if="detailsData.category == 3">{{ t('fundCategory.' + detailsData.category) + ' ' + detailsData.gameName }}</p>
+            <p v-else-if="detailsData.category == 4">{{ t('fundCategory.' + detailsData.category) + ' ' + detailsData.gameName }}</p>
+            <p v-else-if="detailsData.category == 8">{{ t('fundCategory.' + detailsData.category) + ' ' + detailsData.gameName }}</p>
             <p v-else>{{ t('fundCategory.' + detailsData.category) }}</p>
           </div>
           <dl class="ff-rows">
@@ -174,12 +176,12 @@
           <template v-if="detailsData.txId && detailsData.txId != ''">
             <div class="txid-cont">
               <div class="tc-title">{{ t('tradeCode') }}</div>
-              <div class="tc_id">
+              <div class="tc_id" @click="openExplorer(detailsData)">
                 <span>{{ detailsData.txId }}</span>
                 <i class="iconfont icon-tiaozhuan" />
               </div>
               <div class="tx-btn">
-                <a class="btn btn-primary">
+                <a class="btn btn-primary copy" :data-clipboard-text="detailsData.txId">
                   {{ t('copyTradeCode') }}
                 </a>
               </div>
@@ -207,7 +209,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
@@ -215,7 +217,7 @@ import Nodata from '@/components/Nodata.vue'
 
 import { getHistoryRecordApi, getHistoryRecordDetailsApi } from '@/api/fund/index'
 import { getHistoryRecordItems, getHistoryRecordDetails } from '@/api/fund/types'
-import { getAssetsFile } from '@/utils/index'
+import { getAssetsFile, copy } from '@/utils/index'
 import { currenyListData, currenyListTypes } from '@/utils/config'
 import { HisotyReocrdType } from '@/utils/constant'
 import dynamicObject from '@/types/dynamicObject'
@@ -223,8 +225,9 @@ import { useI18n } from 'vue-i18n'
 
 import { moneyFormat } from '@/utils/index'
 import dayjs from 'dayjs'
-import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List, Popup } from 'vant'
+import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List, Popup, showConfirmDialog } from 'vant'
 import type { DropdownItemInstance } from 'vant'
+import { cloneDeep } from 'lodash-es'
 
 const router = useRouter()
 const { t } = useI18n()
@@ -245,14 +248,28 @@ let refreshing = ref(false)
 let finished = ref(false)
 let error = ref(false)
 let nodata = ref(false)
+let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]
 const query = reactive({
   CurrencyCode: '',
   RecordType: HisotyReocrdType.Deposit,
-  StartTime: dayjs().subtract(7, 'day').format('YYYY-MM-DD'),
-  EndTime: dayjs().add(1, 'day').format('YYYY-MM-DD'),
+  StartTime: dayjs(defaultDate[0]).format('YYYY-MM-DD'),
+  EndTime: dayjs(defaultDate[1]).format('YYYY-MM-DD'),
   PageIndex: '1',
   PageSize: '10',
   noLoading: false
+})
+
+// 区块链浏览器映射
+const explorer = reactive({
+  Binance: 'https://bscscan.com/tx/',
+  Bitcoin: 'https://www.blockchain.com/explorer/transactions/btc/',
+  Cardano: 'https://blockchair.com/cardano/transaction/',
+  Dogecoin: 'https://blockchair.com/dogecoin/transaction/',
+  Ethereum: 'https://etherscan.io/tx/',
+  Litecoin: 'https://blockchair.com/litecoin/transaction/',
+  Ripple: 'https://blockchair.com/ripple/transaction/',
+  Toncoin: 'https://etherscan.io/tx/',
+  Tron: 'https://tronscan.org/#/transaction/'
 })
 
 const orderStatusCss = ref<dynamicObject>(['', 'incomplete', 'confirmed', 'deleted'])
@@ -274,8 +291,13 @@ const detailsData = reactive<getHistoryRecordDetails>({
   createTime: '',
   currencyCode: '',
   afterBalance: '',
-  gameName: ''
+  gameName: '',
+  orderId: '',
+  txId: '',
+  toAddress: '',
+  blockchainCode: ''
 })
+const defaultDetailsData = cloneDeep(detailsData)
 
 // 列表切换
 const selTab = (tabs: HisotyReocrdType) => {
@@ -335,6 +357,9 @@ const getTradeDetail = (item: getHistoryRecordItems) => {
   getHistoryRecordDetailsApi({ Id: item.id })
     .then((resp) => {
       Object.assign(detailsData, resp.data)
+      nextTick(() => {
+        copy('.copy')
+      })
       showDetailsBox.value = true
     })
     .catch((error) => {
@@ -364,6 +389,30 @@ const customDate = (time: any) => {
   dataList.value = []
   getTradeRecordList()
   showDatePicker.value = false
+}
+
+const openExplorer = (detailsData: getHistoryRecordDetails) => {
+  if (detailsData.blockchainCode) {
+    const wd = window.open(explorer[detailsData.blockchainCode] + detailsData.txId)
+    if (!wd) {
+      showConfirmDialog({
+        title: t(''),
+        message: t('tips.openWindow')
+      })
+        .then(() => {
+          if (detailsData.blockchainCode) {
+            window.open(explorer[detailsData.blockchainCode] + detailsData.txId)
+          }
+        })
+        .catch(() => {
+          return false
+        })
+    }
+  }
+}
+
+const clearData = () => {
+  Object.assign(detailsData, defaultDetailsData)
 }
 
 checkedCurrency.value = currenyList.map((item) => item.code)

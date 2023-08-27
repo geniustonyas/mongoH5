@@ -355,7 +355,8 @@ export default {
     exhangeSuccess: '兑换成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
-    unBindGoogleSuccess: '解绑成功'
+    unBindGoogleSuccess: '解绑成功',
+    openExplorer: '即将为您打开窗口查询交易'
   },
 
   rewardsBig: '奖励',
@@ -421,6 +422,7 @@ export default {
   status: '状态',
   tradeCode: '交易代码',
   copyTradeCode: '复制交易代码',
+
   // 条款协议等内容
   html: {
     // html标题
