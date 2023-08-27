@@ -1,8 +1,32 @@
 // 兑换商品
 export type exhangeGoodsData = {
   Id: string
+  AirTicketOrder?: {
+    Name: string
+    Sex: string
+    DocumentType: string
+    DocumentNumber: string
+    AirlineCompany: string
+    PlaceOfDeparture: string
+    Destination: string
+    OnewayOrRoundtrip: string
+    EngineroomType: string
+    Otherservices: string
+  }
+  GroggeryOrder?: {
+    Name: string
+    Sex: string
+    HotelName: string
+    HotelCountry: string
+    TheCityRegion: string
+    RoomType: string
+    NumberOfRooms: string
+    NumberOfDaysRequired: string
+    OtherServices: string
+  }
 }
 
+// 获取积分记录
 export interface getIntegralRecordData {
   AdjustType: string | number
   PageIndex: string | number
@@ -10,6 +34,7 @@ export interface getIntegralRecordData {
   noLoading?: boolean
 }
 
+// 商品列表数组
 export interface getGoodsListItem {
   id: string
   price: string
@@ -22,6 +47,7 @@ export interface getGoodsListItem {
   description: string
 }
 
+// 积分记录item
 export interface getIntegralRecordItem {
   id: string
   createTime: string
@@ -31,6 +57,7 @@ export interface getIntegralRecordItem {
   afterAmount: string
 }
 
+// 积分商城顶部vip列表
 export interface getIntegralVipItem {
   name: string
   code: string

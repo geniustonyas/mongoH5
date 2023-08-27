@@ -88,9 +88,6 @@ export const useUserStore = defineStore('userInfo', () => {
           resolve(resp)
         })
         .catch((error) => {
-          if (error.message == 'Network Error') {
-            clearLogin()
-          }
           reject(error)
         })
     })
