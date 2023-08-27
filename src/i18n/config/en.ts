@@ -398,7 +398,7 @@ export default {
   },
   beforeBalance: 'Before change',
   afterBalance: 'After change',
-  tradeDetails: 'Trade Details',
+  tradeDetails: 'Transaction Details',
   tradeNo: 'Order No',
   orderType: 'Order Type',
   orderTypes: { 1: 'Deposit', 2: 'Withdraw', 3: 'Bet', 4: 'Win' },
@@ -418,6 +418,9 @@ export default {
   week: 'Week',
   moreGame: 'More Game',
   question: 'FAQ',
+  status: 'Status',
+  tradeCode: 'Transaction Code',
+  copyTradeCode: 'Copy Transaction Code',
   // 条款协议等内容
   html: {
     // html标题

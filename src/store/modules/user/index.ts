@@ -170,10 +170,9 @@ export const useUserStore = defineStore('userInfo', () => {
     return new Promise((resolve, reject) => {
       loginOutApi()
         .then((resp) => {
-          router.push({ name: 'login' })
           setTimeout(() => {
             clearLogin()
-          }, 200)
+          }, 100)
           resolve(resp)
         })
         .catch((error) => {
@@ -191,6 +190,7 @@ export const useUserStore = defineStore('userInfo', () => {
       clearInterval(refreshTokenTimer.value)
     }
     clearToken()
+    router.push({ name: 'login' })
   }
 
   return {

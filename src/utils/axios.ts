@@ -61,9 +61,11 @@ function createService() {
       }
     },
     (error) => {
-      console.log(error)
       loadingRequestCount = 0
       useAppStoreHook().loading = false
+      if (error.response.status === 401) {
+        useUserStoreHook().clearLogin()
+      }
       return Promise.reject(error)
     }
   )

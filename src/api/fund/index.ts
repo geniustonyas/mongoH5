@@ -63,7 +63,7 @@ export function getTradeRecordApi() {
 }
 
 /** 获取交易记录详情 */
-export function getTradeDetailApi(data: Fund.getTradeDetailData) {
+export function getTradeDetailApi(data: Fund.getHistoryRecordDetailsData) {
   return request<Fund.getTradeDetailResp>({
     url: 'Member/GetDealRecordDetail',
     method: 'post',
@@ -119,6 +119,24 @@ export function getWinListApi(data: Fund.getTradeListData) {
 export function getFundChangeRecordApi(data: Fund.getFundChangeRecordData) {
   return request<Fund.getFundChangeRecordResp>({
     url: 'Member/GetMemberWalletFundList',
+    method: 'post',
+    data
+  })
+}
+
+/** 获取历史记录 */
+export function getHistoryRecordApi(data: Fund.getHistoryRecordData) {
+  return request<Fund.getHistoryRecordResp>({
+    url: 'Member/HisotyReocrd',
+    method: 'post',
+    data
+  })
+}
+
+/** 获取历史记录详情 */
+export function getHistoryRecordDetailsApi(data: Fund.getHistoryRecordDetailsData) {
+  return request<Fund.getHistoryRecordDetailsResp>({
+    url: 'Member/HistoryRecordDetail',
     method: 'post',
     data
   })

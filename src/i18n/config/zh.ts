@@ -418,6 +418,9 @@ export default {
   week: '周',
   moreGame: '更多游戏',
   question: '常见问题',
+  status: '状态',
+  tradeCode: '交易代码',
+  copyTradeCode: '复制交易代码',
   // 条款协议等内容
   html: {
     // html标题

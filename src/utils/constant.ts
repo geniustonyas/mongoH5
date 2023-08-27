@@ -28,3 +28,11 @@ export enum FundCategory {
   ExchangeGoods = 10,
   WithdrawFailure = 17
 }
+
+/** 历史记录类型 */
+export enum HisotyReocrdType {
+  Deposit = '1',
+  Withdraw = '2',
+  Bet = '3',
+  Reward = '4'
+}

@@ -126,9 +126,52 @@ export interface getFundChangeRecordRespItems {
   beforeBalance: string
 }
 
+export interface getHistoryRecordData {
+  CurrencyCode: string
+  RecordType: string
+  StartTime: string
+  EndTime: string
+  PageIndex: string
+  PageSize: string
+}
+
+export interface getHistoryRecordItems {
+  id: string
+  orderId: string
+  currencyCode: string
+  currencyType: number
+  createTime: string
+  amount: string
+  gameName: string
+  afterBalance: string
+  orderStatus: string
+  category: number
+}
+
+export interface getHistoryRecordDetailsData {
+  Id: string
+}
+
+export interface getHistoryRecordDetails {
+  id: string
+  category: number
+  amount: string
+  orderStatus: string
+  createTime: string
+  currencyCode: string
+  afterBalance: string
+  gameName: string
+  orderId?: string
+  txId?: string
+  toAddress?: string
+  blockchainCode?: string
+}
+
 export type getDepositAddressResp = ApiResponseData<getDepositAddressResponse>
 export type getMinWithdrawAmountResp = ApiResponseData<{ currencyUnit: string; minimumWithdrawAmount: string }>
 export type getTradeDetailResp = ApiResponseData<getTradeDetailResponse>
 export type getTradeRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getRradeRecordResponse[] }>
 export type getBalanceItemResp = ApiResponseData<getBalanceItemResponse[]>
 export type getFundChangeRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getFundChangeRecordRespItems[] }>
+export type getHistoryRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getHistoryRecordItems[] }>
+export type getHistoryRecordDetailsResp = ApiResponseData<getHistoryRecordDetails>
