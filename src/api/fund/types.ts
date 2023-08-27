@@ -148,6 +148,11 @@ export interface getHistoryRecordItems {
   category: number
 }
 
+export interface getTradeDetailsData {
+  OrderId: string
+  orderType: string
+}
+
 export interface getHistoryRecordDetailsData {
   Id: string
 }

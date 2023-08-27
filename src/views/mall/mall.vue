@@ -273,7 +273,7 @@
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="ticketOrder.DocumentType" is-link readonly name="calendar" label="出行时间" placeholder="点击选择出行时间" @click="showDocTypePicker = true" />
+              <Field v-model="ticketOrder.DocumentType" is-link readonly name="calendar" label="出行时间" placeholder="点击选择出行时间" @click="showDatePicker = true" />
               <Field name="isOneWay" label="机舱类型">
                 <template #input>
                   <RadioGroup v-model="ticketOrder.EngineroomType">
@@ -307,7 +307,7 @@
               </Field>
               <Field v-model="hotelOrder.HotelCountry" name="" label="目的城市" placeholder="点击选择国家/城市" />
               <Field v-model="hotelOrder.HotelName" name="hotelName" label="酒店名称" placeholder="酒店名称" />
-              <Field v-model="hotelOrder.NumberOfDaysRequired" is-link readonly name="calendar" label="入住/退房" placeholder="点击选择入住时间/退房时间" @click="showHotelTime = true" />
+              <Field v-model="hotelOrder.NumberOfDaysRequired" is-link readonly name="calendar" label="入住/退房" placeholder="点击选择入住时间/退房时间" @click="showDatePicker = true" />
               <Field name="roomType" label="房间类型">
                 <template #input>
                   <RadioGroup v-model="hotelOrder.RoomType">
@@ -431,7 +431,6 @@ const ticketOrder = reactive({
 })
 
 // 酒店订单
-const showHotelTime = ref(false)
 const hotelOrder = reactive({
   Name: '',
   Sex: '',
@@ -598,7 +597,7 @@ const customDate = (time: any) => {
   // query.EndTime = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
   // dataList.value = []
   // getTradeRecordList()
-  // showDatePicker.value = false
+  showDatePicker.value = false
 }
 
 const confirmCity = (city: any) => {

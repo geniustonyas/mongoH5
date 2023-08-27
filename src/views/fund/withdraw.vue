@@ -131,7 +131,7 @@
         </div>
         <!-- step 4 -->
         <div v-show="step == 4" class="fund-form wa">
-          <div class="ff-w-a">
+          <div class="ff-w-a-t">
             <p>{{ t('withdrawing') }}</p>
             <h2>{{ moneyFormat(withdrawDetail.amount) }}&nbsp;{{ withdrawDetail.currencyCode }}</h2>
           </div>

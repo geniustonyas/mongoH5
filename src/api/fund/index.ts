@@ -63,7 +63,7 @@ export function getTradeRecordApi() {
 }
 
 /** 获取交易记录详情 */
-export function getTradeDetailApi(data: Fund.getHistoryRecordDetailsData) {
+export function getTradeDetailApi(data: Fund.getTradeDetailsData) {
   return request<Fund.getTradeDetailResp>({
     url: 'Member/GetDealRecordDetail',
     method: 'post',
