@@ -250,43 +250,42 @@
           <Form class="ticket-form">
             <CellGroup inset>
               <!-- 名字 -->
-              <Field v-model="ticketOrder.Name" name="姓名" label="姓名" placeholder="姓名" :rules="[{ required: true, message: '请填写姓名' }]" />
+              <Field v-model="ticketOrder.Name" name="name" :label="t('realName')" :placeholder="t('tips.inputTrueName')" :rules="[{ required: true, message: t('inputTrueName') }]" />
               <!-- 性别 -->
-              <Field name="radio" label="性别">
+              <Field name="radio" :label="t('sex')">
                 <template #input>
                   <RadioGroup v-model="ticketOrder.Sex" direction="horizontal">
-                    <Radio name="1">男</Radio>
-                    <Radio name="2">女</Radio>
+                    <Radio name="1">{{ t('male') }}</Radio>
+                    <Radio name="2">{{ t('female') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="ticketOrder.DocumentType" is-link readonly name="picker" label="证件类型" placeholder="点击选择证件类型" @click="showDocTypePicker = true" />
-              <Field v-model="ticketOrder.DocumentNumber" name="证件号码" label="证件号码" placeholder="证件号码" />
-              <Field v-model="ticketOrder.AirlineCompany" name="航空公司" label="航空公司" placeholder="航空公司" />
-              <Field v-model="ticketOrder.PlaceOfDeparture" is-link readonly name="出发地" label="出发地" placeholder="点击选择国家/城市" />
-              <Field v-model="ticketOrder.Destination" is-link readonly name="目的地" label="目的地" placeholder="点击选择国家/城市" />
-              <Field name="isOneWay" label="是否往返">
+              <Field v-model="ticketOrder.DocumentType" is-link readonly name="picker" :label="t('female')" :placeholder="t('tips.selectDocType')" @click="showDocTypePicker = true" />
+              <Field v-model="ticketOrder.DocumentNumber" name="docNumber" :label="t('documentNumber')" :placeholder="t('tips.docNumber')" />
+              <Field v-model="ticketOrder.AirlineCompany" name="airlineCompany" :label="t('airlineCompany')" :placeholder="t('tips.airlineCompany')" />
+              <Field v-model="ticketOrder.PlaceOfDeparture" name="placeOfDeparture" :label="t('placeOfDeparture')" :placeholder="t('tips.inputDeparture')" />
+              <Field v-model="ticketOrder.Destination" name="destination" :label="t('destination')" :placeholder="t('tips.inputDestination')" />
+              <Field name="isOneWay" :label="t('onewayOrRoundtrip')">
                 <template #input>
                   <RadioGroup v-model="ticketOrder.OnewayOrRoundtrip" direction="horizontal">
-                    <Radio name="1">单程</Radio>
-                    <Radio name="2">往返</Radio>
+                    <Radio :name="t('oneway')">{{ t('oneway') }}</Radio>
+                    <Radio :name="t('roundtrip')">{{ t('roundtrip') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="ticketOrder.DocumentType" is-link readonly name="calendar" label="出行时间" placeholder="点击选择出行时间" @click="showDatePicker = true" />
-              <Field name="isOneWay" label="机舱类型">
+              <Field name="engineroomType" :label="t('engineroomType')">
                 <template #input>
                   <RadioGroup v-model="ticketOrder.EngineroomType">
-                    <Radio name="1">经济舱</Radio>
-                    <Radio name="2">商务舱</Radio>
-                    <Radio name="3">头等舱</Radio>
+                    <Radio :name="t('economyClass')">{{ t('economyClass') }}</Radio>
+                    <Radio :name="t('businessClass')">{{ t('businessClass') }}</Radio>
+                    <Radio :name="t('firstClass')">{{ t('firstClass') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="ticketOrder.Otherservices" name="其他服务" label="其他服务" placeholder="其他服务" />
+              <Field v-model="ticketOrder.Otherservices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
             </CellGroup>
             <div class="ticket-btn" @click="exhangeGoods">
-              <a class="btn btn-primary">提交</a>
+              <a class="btn btn-primary">{{ t('submit') }}</a>
             </div>
           </Form>
         </div>
@@ -295,51 +294,38 @@
           <Form class="ticket-form">
             <CellGroup inset>
               <!-- 名字 -->
-              <Field v-model="hotelOrder.Name" name="姓名" label="姓名" placeholder="姓名" :rules="[{ required: true, message: '请填写姓名' }]" />
+              <Field v-model="hotelOrder.Name" name="realName" :label="t('realName')" :placeholder="t('tips.inputTrueName')" :rules="[{ required: true, message: t('inputTrueName') }]" />
               <!-- 性别 -->
-              <Field name="radio" label="性别">
+              <Field name="radio" :label="t('sex')">
                 <template #input>
                   <RadioGroup v-model="hotelOrder.Sex" direction="horizontal">
-                    <Radio name="1">男</Radio>
-                    <Radio name="2">女</Radio>
+                    <Radio :name="t('male')">{{ t('male') }}</Radio>
+                    <Radio :name="t('female')">{{ t('female') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="hotelOrder.HotelCountry" name="" label="目的城市" placeholder="点击选择国家/城市" />
-              <Field v-model="hotelOrder.HotelName" name="hotelName" label="酒店名称" placeholder="酒店名称" />
-              <Field v-model="hotelOrder.NumberOfDaysRequired" is-link readonly name="calendar" label="入住/退房" placeholder="点击选择入住时间/退房时间" @click="showDatePicker = true" />
-              <Field name="roomType" label="房间类型">
+              <Field v-model="hotelOrder.HotelName" name="hotelName" :label="t('hotelName')" :placeholder="t('tips.inputHotelName')" />
+              <Field v-model="hotelOrder.HotelCountry" name="hotelCountry" :label="t('country')" :placeholder="t('tips.inputCountry')" />
+              <Field v-model="hotelOrder.TheCityRegion" name="theCityRegion" :label="t('city')" :placeholder="t('tips.inputCity')" />
+              <Field name="roomType" :label="t('roomType')">
                 <template #input>
                   <RadioGroup v-model="hotelOrder.RoomType">
-                    <Radio name="1">总统套房</Radio>
-                    <Radio name="2">豪华套房</Radio>
-                    <Radio name="3">商务套房</Radio>
+                    <Radio :name="t('presidentialSuite')">{{ t('presidentialSuite') }}</Radio>
+                    <Radio :name="t('luxurySuite')">{{ t('luxurySuite') }}</Radio>
+                    <Radio :name="t('businessSuite')">{{ t('businessSuite') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="hotelOrder.NumberOfRooms" name="房间数" label="房间数" placeholder="房间数" />
-              <Field v-model="hotelOrder.OtherServices" name="其他服务" label="其他服务" placeholder="其他服务" />
+              <Field v-model="hotelOrder.NumberOfRooms" name="roomNum" :label="t('roomNum')" :placeholder="t('tips.roomNum')" />
+              <Field v-model="hotelOrder.NumberOfDaysRequired" name="roomDay" :label="t('roomDay')" :placeholder="t('tips.inputInRoomDay')" />
+              <Field v-model="hotelOrder.OtherServices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
             </CellGroup>
             <div class="ticket-btn" @click="exhangeGoods">
-              <a class="btn btn-primary">提交</a>
+              <a class="btn btn-primary">{{ t('submit') }}</a>
             </div>
           </Form>
         </div>
       </Popup>
-      <Calendar
-        v-model:show="showDatePicker"
-        type="range"
-        :min-date="minDate"
-        :max-date="maxDate"
-        color="#f7cc00"
-        :allow-same-day="true"
-        :style="{ height: '500px' }"
-        round
-        :show-confirm="false"
-        :formatter="dayFormatter"
-        @confirm="customDate"
-      />
-      <van-picker title="选择国家/城市" :columns="countryCity" @confirm="confirmCity" />
     </ConfigProvider>
   </div>
 </template>
@@ -357,8 +343,7 @@ import { getAssetsFile, moneyFormat } from '@/utils'
 import { useI18n } from 'vue-i18n'
 
 // import { cloneDeep } from 'lodash-es'
-import { showToast, ConfigProvider, Popup, PullRefresh, List, showConfirmDialog, Form, CellGroup, Field, RadioGroup, Radio, Calendar } from 'vant'
-import dayjs from 'dayjs'
+import { showToast, ConfigProvider, Popup, PullRefresh, List, showConfirmDialog, Form, CellGroup, Field, RadioGroup, Radio } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 import 'swiper/css'
@@ -387,36 +372,8 @@ const currentGoodsItem = reactive<getGoodsListItem>({
   description: ''
 })
 
-// 筛选 - 日期控件参数
-const minDate = dayjs().toDate()
-const maxDate = dayjs().add(6, 'months').toDate()
-// 日期控件去掉日历格子下文字信息
-const dayFormatter = (day: any) => {
-  day.bottomInfo = ''
-  return day
-}
-const countryCity = [
-  {
-    text: '英国',
-    value: 'english',
-    children: [
-      { text: '伦敦', value: 'london' },
-      { text: '曼彻斯特', value: 'Wenzhou' }
-    ]
-  },
-  {
-    text: '法国',
-    value: 'english',
-    children: [
-      { text: '柏林', value: 'london' },
-      { text: '慕尼黑', value: 'Wenzhou' }
-    ]
-  }
-]
-
 // 机票订单
 const showDocTypePicker = ref(false)
-const showDatePicker = ref(false)
 const ticketOrder = reactive({
   Name: '',
   Sex: '1',
@@ -581,27 +538,6 @@ const loadData = () => {
 const showDetails = (item: getGoodsListItem) => {
   Object.assign(currentGoodsItem, item)
   showGoodsDetails.value = true
-}
-
-const customDate = (time: any) => {
-  // 机票订单
-  if (currentGoodsItem.productType == 3) {
-    ticketOrder.OnewayOrRoundtrip = '1'
-  }
-  // 酒店订单
-  if (currentGoodsItem.productType == 4) {
-    hotelOrder.NumberOfRooms = '1'
-  }
-
-  // query.StartTime = dayjs(time[0]).format('YYYY-MM-DD')
-  // query.EndTime = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
-  // dataList.value = []
-  // getTradeRecordList()
-  showDatePicker.value = false
-}
-
-const confirmCity = (city: any) => {
-  console.log(city)
 }
 
 getIntegralVip()
