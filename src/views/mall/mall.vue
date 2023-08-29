@@ -253,7 +253,13 @@
           <Form class="ticket-form" @submit="exhangeGoods">
             <CellGroup inset>
               <!-- 名字 -->
-              <Field v-model="exhangeGoodsParams.AirTicketOrder.Name" name="name" :label="t('realName')" :placeholder="t('tips.inputTrueName')" :rules="[{ required: true, message: t('tips.inputTrueName') }]" />
+              <Field
+                v-model="exhangeGoodsParams.AirTicketOrder.Name"
+                name="name"
+                :label="t('realName')"
+                :placeholder="t('tips.inputTrueName')"
+                :rules="[{ required: true, message: t('tips.inputTrueName') }]"
+              />
               <!-- 性别 -->
               <Field name="radio" :label="t('sex')">
                 <template #input>
@@ -330,7 +336,13 @@
           <Form class="ticket-form" @submit="exhangeGoods">
             <CellGroup inset>
               <!-- 名字 -->
-              <Field v-model="exhangeGoodsParams.GroggeryOrder.Name" name="realName" :label="t('realName')" :placeholder="t('tips.inputTrueName')" :rules="[{ required: true, message: t('tips.inputTrueName') }]" />
+              <Field
+                v-model="exhangeGoodsParams.GroggeryOrder.Name"
+                name="realName"
+                :label="t('realName')"
+                :placeholder="t('tips.inputTrueName')"
+                :rules="[{ required: true, message: t('tips.inputTrueName') }]"
+              />
               <!-- 性别 -->
               <Field name="radio" :label="t('sex')">
                 <template #input>
@@ -340,9 +352,27 @@
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="exhangeGoodsParams.GroggeryOrder.HotelName" name="hotelName" :label="t('hotelName')" :placeholder="t('tips.inputHotelName')" :rules="[{ required: true, message: t('tips.inputHotelName') }]" />
-              <Field v-model="exhangeGoodsParams.GroggeryOrder.HotelCountry" name="hotelCountry" :label="t('country')" :placeholder="t('tips.inputCountry')" :rules="[{ required: true, message: t('tips.inputCountry') }]" />
-              <Field v-model="exhangeGoodsParams.GroggeryOrder.TheCityRegion" name="theCityRegion" :label="t('city')" :placeholder="t('tips.inputCity')" :rules="[{ required: true, message: t('tips.inputCity') }]" />
+              <Field
+                v-model="exhangeGoodsParams.GroggeryOrder.HotelName"
+                name="hotelName"
+                :label="t('hotelName')"
+                :placeholder="t('tips.inputHotelName')"
+                :rules="[{ required: true, message: t('tips.inputHotelName') }]"
+              />
+              <Field
+                v-model="exhangeGoodsParams.GroggeryOrder.HotelCountry"
+                name="hotelCountry"
+                :label="t('country')"
+                :placeholder="t('tips.inputCountry')"
+                :rules="[{ required: true, message: t('tips.inputCountry') }]"
+              />
+              <Field
+                v-model="exhangeGoodsParams.GroggeryOrder.TheCityRegion"
+                name="theCityRegion"
+                :label="t('city')"
+                :placeholder="t('tips.inputCity')"
+                :rules="[{ required: true, message: t('tips.inputCity') }]"
+              />
               <Field name="roomType" :label="t('roomType')">
                 <template #input>
                   <RadioGroup v-model="exhangeGoodsParams.GroggeryOrder.RoomType">
@@ -352,7 +382,13 @@
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="exhangeGoodsParams.GroggeryOrder.NumberOfRooms" name="roomNum" :label="t('roomNum')" :placeholder="t('roomNum')" :rules="[{ required: true, message: t('tips.inputRoomNum') }]" />
+              <Field
+                v-model="exhangeGoodsParams.GroggeryOrder.NumberOfRooms"
+                name="roomNum"
+                :label="t('roomNum')"
+                :placeholder="t('roomNum')"
+                :rules="[{ required: true, message: t('tips.inputRoomNum') }]"
+              />
               <Field
                 v-model="exhangeGoodsParams.GroggeryOrder.NumberOfDaysRequired"
                 name="roomDay"
@@ -454,7 +490,7 @@ const exhangeGoodsParams = reactive({
     NumberOfRooms: '',
     NumberOfDaysRequired: '',
     OtherServices: ''
-  },
+  }
 })
 
 // swiper
@@ -536,13 +572,13 @@ const exhangeGoods = () => {
     }
     let data = <exhangeGoodsData>{}
     if (currentGoodsItem.productType == 0) {
-      data = { Id: exhangeGoodsParams.Id }
+      data = { Id: currentGoodsItem.id }
     } else if (currentGoodsItem.productType == 3) {
-      data = { Id: exhangeGoodsParams.Id, AirTicketOrder: exhangeGoodsParams.AirTicketOrder }
+      data = { Id: currentGoodsItem.id, AirTicketOrder: exhangeGoodsParams.AirTicketOrder }
     } else if (currentGoodsItem.productType == 4) {
-      data = { Id: exhangeGoodsParams.Id, GroggeryOrder: exhangeGoodsParams.GroggeryOrder }
+      data = { Id: currentGoodsItem.id, GroggeryOrder: exhangeGoodsParams.GroggeryOrder }
     }
-    console.log(data);
+
     exhangeGoodsApi(data)
       .then(() => {
         showToast(t('tips.exhangeSuccess'))

@@ -14,6 +14,7 @@ export function exhangeGoodsApi(data: Mall.exhangeGoodsData) {
   return request<anyResp>({
     url: 'Integral/ExchangeGoods',
     method: 'post',
+    headers: { 'Content-Type': 'application/json' },
     data
   })
 }

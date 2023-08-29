@@ -465,6 +465,7 @@ export default {
   passport: '护照',
   militaryId: '军官证',
   diplomaticCard: '护照',
+  moonpayExchange: '使用借记卡/信用卡购买加密货币',
   // 条款协议等内容
   html: {
     // html标题

@@ -1,76 +1,78 @@
 const site_name = import.meta.env.VITE_APP_SITE_NAME
 
 export default {
-  home: 'Heim',
-  search: 'Suchen',
-  promo: 'Promotions',
-  support: 'Hilfe',
-  onlineSupport: 'Hilfe',
+  home: 'Startseite',
+  search: 'Suche',
+  promo: 'Aktionen',
+  support: 'Support',
+  onlineSupport: 'Online-Support',
   account: 'Konto',
-  confirm: 'OK',
+  confirm: 'Bestätigen',
+  confirmd: 'Bestätigt',
+  all: 'Alle',
   save: 'Speichern',
-  cancel: 'Stornieren',
-  close: 'Schließung',
+  cancel: 'Abbrechen',
+  close: 'Schließen',
   start: 'Start',
-  loading: 'Wird geladen',
-  end: 'Beenden',
-  to: ' zu ',
-  or: 'Oder',
-  and: 'Und',
+  loading: 'Laden',
+  end: 'Ende',
+  to: ' bis ',
+  or: 'oder',
+  and: 'und',
   at: 'bei',
-  goto: 'gehe zu',
-  refreshSuccess: 'Erfolgreich aktualisieren',
+  goto: 'Gehe zu',
+  refreshSuccess: 'Aktualisierung erfolgreich',
   loadingFail: 'Laden fehlgeschlagen',
-  noMore: 'Nicht mehr...',
+  noMore: 'Keine weiteren...',
   login: 'Anmelden',
-  otherMethod: 'Andere Methoden',
+  otherMethod: 'Andere Methode',
   reg: 'Registrieren',
   userName: 'Benutzername',
-  email: 'E-mail',
-  sendEmail: 'Schicken',
-  sended: 'Wurde gesendet',
-  emailCaptcha: 'E-Mail-Bestätigungscode',
+  email: 'E-Mail',
+  sendEmail: 'Verifikations-E-Mail senden',
+  sended: 'Gesendet',
+  emailCaptcha: 'E-Mail-Verifizierungscode',
   password: 'Passwort',
-  forgetPassword: 'Passwort vergessen?',
+  forgetPassword: 'Passwort vergessen',
   resetPwd: 'Passwort zurücksetzen',
-  noUser: 'Kein Account？',
-  createUser: 'Benutzerkonto erstellen',
-  googleCode: 'Google authenticator code',
-  inputGoole: 'Gib den Google Authentifizierungscode ein',
-  partner: 'Offizieller Partner von:',
+  noUser: 'Kein Konto vorhanden?',
+  createUser: 'Konto erstellen',
+  googleCode: 'Google Authenticator-Code',
+  inputGoole: 'Google Authenticator-Code eingeben',
+  partner: 'Offizieller Partner: ',
   date: 'Datum',
   day: 'Tag',
   month: 'Monat',
   year: 'Jahr',
-  birthday: 'Geburtsdatum',
-  telephone: 'Telefon-Nr',
-  country: 'Nation',
-  hasAccount: 'Du hast kein Konto?',
-  logout: 'Ausloggen',
+  birthday: 'Geburtstag',
+  telephone: 'Telefonnummer',
+  country: 'Land',
+  hasAccount: 'Bereits ein Konto vorhanden?',
+  logout: 'Abmelden',
   address: 'Adresse',
   zipCode: 'PLZ',
   loginPage: {
-    useGoogle: 'Nutze Google Authentifizierung',
+    useGoogle: 'Google Authenticator verwenden',
     userNameOrEmail: 'Benutzername oder E-Mail'
   },
   regPage: {
-    holderUserName: 'Wähle einen Benutzernamen',
-    holderEmail: `z.B. you{'@'}example.com`,
-    holderTelephone: 'Telefon-Nr',
-    isAdult: 'Ich bestätige, dass ich mindestens 18 Jahre alt bin und die  und den  akzeptiere.',
-    termCondition: 'Geschäftsbedingungen',
-    privacyPolicy: 'Datenschutzerklärung',
-    isAgree: 'Ich bin damit einverstanden, Marketingmitteilungen über exklusive Prämien und Werbeaktionen von Sportsbet.io zu erhalten'
+    holderUserName: 'Benutzernamen erstellen',
+    holderEmail: `Zum Beispiel: sie{'@'}beispiel.com`,
+    holderTelephone: 'Telefonnummer (+49 xxxxxxxxxxx)',
+    isAdult: 'Ich bestätige, dass ich mindestens 18 Jahre alt bin und die',
+    termCondition: 'Allgemeinen Geschäftsbedingungen',
+    privacyPolicy: 'Datenschutzrichtlinie',
+    isAgree: `Ich stimme zu, Marketinginformationen zu Aktionen und Events von ${site_name} zu erhalten.`
   },
   thirdRegPage: {
-    beFinished: 'Fast geschafft',
-    fixInfo: 'Bitte fülle die restlichen Felder deines Kontos aus'
+    beFinished: 'Fast geschafft!',
+    fixInfo: 'Vervollständigen Sie Ihre Informationen'
   },
   myprfile: 'Mein Profil',
-  clubLevel: 'Klubhaus Level',
+  clubLevel: 'Clubstufe',
   userLevels: {
-    '101': 'Stahl',
-    '102': 'Stufe',
+    '101': 'Eisen',
+    '102': 'Bronze',
     '103': 'Silber',
     '104': 'Gold',
     '105': 'Platin',
@@ -78,329 +80,191 @@ export default {
     '107': 'Diamant'
   },
   homePage: {
-    currentMultiplier: 'Aktueller Multiplikator',
-    nextReward: 'Belohnung des nächsten Levels',
-    showProgress: 'Zeige meinen Fortschritt'
+    currentMultiplier: 'Aktueller Punktvervielfacher',
+    nextReward: 'Nächste Belohnung auf Stufe',
+    showProgress: 'Meinen Fortschritt anzeigen'
   },
-  userAccount: 'Konto',
-  myBets: 'Geschichtsaufzeichnung',
+  userAccount: 'Benutzerkonto',
+  wallet: 'Wallet',
+  myBets: 'Meine Wetten',
   rewards: 'Belohnungen',
   notifications: 'Benachrichtigungen',
-  // 搜索
-  noSearchResult: 'Leider gibt es keine Ergebnisse für "{ keyword }". Bitte versuchen Sie es mit einem anderen Suchbegriff.',
-  searchResultNum: '{ searchResult } Ergebnisse gefunden',
-  // club
-  club: 'Klubhaus',
+  noSearchResult: 'Entschuldigung, es wurden keine Ergebnisse für "{keyword}" gefunden. Versuchen Sie es mit anderen Suchbegriffen.',
+  searchResultNum: '{searchResult} Ergebnisse gefunden',
+  promoDetail: 'Aktionseinzelheiten',
+  club: 'Club',
   tiers: 'Stufen',
+  clubTips: 'Ihre Belohnungen werden monatlich zurückgesetzt. Vergessen Sie nicht, Ihre Belohnungen vor Monatsende einzulösen!',
   currentPoints: 'Aktuelle Punkte',
-  currentPointsMultiplier: 'Aktueller Punkte Multiplikator',
-  receiveReward: 'Auszeichnung erhalten',
+  currentPointsMultiplier: 'Aktueller Punktvervielfacher',
+  receiveReward: 'Belohnung erhalten',
   alreadyReceived: 'Bereits erhalten',
-  mergedReards: 'Wurde auf der nächsten Ebene der kombinierten Sammlung gesammelt',
-  noReward: 'Keine Belohnungen verfügbar. Erreiche die nächste Stufe, um deine nächste Belohnung freizuschalten.',
-  // vip俱乐部
-  vipTitle: 'VIP-CLUB',
-  vipClub: 'VIP-CLUB',
-  // account settings
-  generalInformation: 'Allgemeine Information',
+  mergedReards: 'Die Belohnungen wurden zusammengeführt und werden auf der nächsten Stufe eingelöst',
+  noReward: 'Keine Belohnung verfügbar. Aufsteigen, um Ihre erste Belohnung freizuschalten.',
+  vipClub: 'VIP-Club',
+  mallStore: 'Punkteshop',
+  generalInformation: 'Allgemeine Informationen',
   changePassword: 'Passwort ändern',
-  googleAuthenticator: 'Google Authentifizierung',
-  currentPwd: 'Aktuelles Passworte eingeben',
-  newPwd: 'Neues Passwort eingeben',
-  confirmPwd: 'Passwort wiederholen',
-  changePwdLimit: 'Wenn du dein Passwort änderst, kannst du im Laufe von 48 darauffolgenden Stunden aus Sicherheitsgründen  keine Auszahlung vornehmen. ',
-  disabledGoogle: 'Google Authenticator ist deaktiviert',
-  activeGoogle: 'Zum Aktivieren scanne den QR-Code oder gib den Code manuell ein',
-  whatGoogleCode: 'Was ist Google Authenticator?',
+  googleAuthenticator: 'Google Authenticator',
+  privacySetting: 'Datenschutzeinstellungen',
+  currentPwd: 'Aktuelles Passwort',
+  newPwd: 'Neues Passwort',
+  confirmPwd: 'Neues Passwort bestätigen',
+  changePwdLimit: 'Zum Schutz Ihrer Gelder können nach einer Passwortänderung für 48 Stunden keine Abhebungen vorgenommen werden.',
+  disabledGoogle: 'Google Authenticator deaktiviert',
+  activeGoogle: 'QR-Code scannen oder Code eingeben, um Google Authenticator zu aktivieren.',
+  whatGoogleCode: 'Was ist ein Google-Code?',
   typeCode: 'Code eingeben',
-  submitCode: 'Code einreichen',
-  keyValue: 'Schlüsselwert',
-  // 消息通知
-  notice: 'Benachrichtigungen',
-  mail: 'mail',
-  makeAllRead: 'Alles als gelesen markieren',
-  noMessage: 'Sie haben keine Benachrichtigungen',
-  // 奖励
-  claimReward: 'Auszeichnung erhalten',
-  claimNewReward: 'Fordern Sie neue Belohnungen an',
-  rewardCode: 'Bonus-Code',
-  claim: 'erhalten',
-  recentTransaction: 'Letzte Transaktion',
-  // 搜索
-  searchHolder: 'Spiele, Hersteller',
+  submitCode: 'Code senden',
+  keyValue: 'Sicherheitsschlüssel',
+  notice: 'Hinweise',
+  mail: 'Interne Nachrichten',
+  makeAllRead: 'Alle als gelesen markieren',
+  noMessage: 'Sie haben keine Nachrichten.',
+  claimReward: 'Belohnung einfordern',
+  claimNewReward: 'Neue Belohnung einfordern',
+  rewardCode: 'Belohnungscode',
+  claim: 'Einfordern',
+  recentTransaction: 'Kürzliche Transaktionen',
+  searchHolder: 'Spiel, Anbieter',
   searchMore: 'Mehr suchen',
-  searchRecommend: 'Ihnen empfohlen',
-  enter: 'eingeben',
-  // fund
-  fundAccount: 'Fondskonto',
+  searchRecommend: 'Empfohlen für Sie',
+  enter: 'Eingeben',
+  fundAccount: 'Guthabenkonto',
   activeBalance: 'Aktives Guthaben',
-  balance: 'Gleichgewicht',
+  balance: 'Guthaben',
   deposit: 'Einzahlung',
-  buyCrypto: 'Krypto kaufen',
-  withdraw: 'Auszahlung',
-  youDepositAddress: 'Deine Einzahlungsadresse',
+  buyCrypto: 'Kryptowährungen kaufen',
+  withdraw: 'Abhebung',
+  youDepositAddress: 'Ihre Einzahlungsadresse',
   minDepositAmount: 'Mindesteinzahlungsbetrag',
-  quickTips: 'Schnelle Tipps',
-  quickTipCont: 'Denke bitte immer daran, die Einzahlungs-Wallet-Adresse auf unserer Website zu überprüfen, bevor du Transaktionen durchführst.',
-  promoCode: 'Aktionscode',
+  quickTips: 'Schnelltipps',
+  quickTipCont: 'Bitte verwenden Sie bei jeder Transaktion stets die aktuellste Einzahlungsadresse aus unserer Kasse.',
+  promoCode: 'Aktioncode',
   currentBalance: 'Aktueller Kontostand',
   myRewards: 'Meine Belohnungen',
-  transactionHistory: 'Transaktionshistorie',
-  supportSettings: 'Support & Einstellungen',
-  walletSettings: 'Wallet-Einstellungen ',
-  faq: 'FAQ',
-  liveSupport: 'Live-Kundendienst',
-  chooseCrypto: 'Währung',
-  cryptoCurrency: 'Krypto',
-  bank: 'Banking',
-  chooseDepositChain: 'Wähle das Einzahlungsnetzwerk',
-  confirmDepositAddress: 'Bitte überprüfe immer die Einzahlungs-Wallet-Adresse auf unserer Website, bevor du deine Transaktionen tätigst.',
-  recommendExchange: 'Krypto über unsere empfohlene Krypto-Börse erwerben',
-  // 交易记录
-  deposits: 'Einzahlung',
-  withdrawals: 'Auszahlung',
-  bets: 'Wetten',
-  wins: 'Gewinnen',
-  currencyFilter: 'Nach Währung filtern',
-  dateFilter: 'Nach Datum filtern',
-  winLose: 'gewinnen oder verlieren',
-  nodata: 'Keine Aufzeichnungen',
-  // 钱包设置
-  currency: 'Währung',
-  btcUnit: 'Bitcoin-Metrikpräfix',
-  // 提款
-  inputAmount: 'Geben Sie Summe ein',
-  walletDetails: 'Wallet Details',
-  walletDetailsBig: 'WALLET DETAILS',
-  waitingResults: 'Moderiert',
-  withdrawUsdt: 'USDT Auszahlung',
-  amount: 'Summe',
-  minWithdrawAmount: 'Mindestauszahlung beträgt',
-  next: 'nächste',
-  youWithdrawAddress: 'Ihre Auszahlungsadresse',
-  payto: 'bezahlt um',
-  checkWithdrawAddress: 'Bitte überprüfen Sie vor jeder Transaktion unbedingt die Adresse Ihres Auszahlungs-Wallets.',
-  previewWithdraw: 'Vorschau Zurückziehen',
-  confirmWithdrawInfo: 'Bitte stellen Sie sicher, dass alle Informationen korrekt sind',
+  transactionHistory: 'Transaktionsverlauf',
+  inputAmount: 'Betrag eingeben',
+  walletDetails: 'Wallet-Details',
+  walletDetailsBig: 'Wallet-Details',
+  waitingResults: 'Warte auf Ergebnisse',
+  withdrawUsdt: 'USDT abheben',
+  amount: 'Betrag',
+  minWithdrawAmount: 'Mindestabhebungsbetrag',
+  next: 'Weiter',
+  youWithdrawAddress: 'Ihre Abhebungsadresse',
+  payto: 'Bezahlen an',
+  checkWithdrawAddress: 'Bitte überprüfen Sie vor jeder Transaktion unbedingt Ihre Abhebungs-Wallet-Adresse.',
+  previewWithdraw: 'Abhebung anzeigen',
+  confirmWithdrawInfo: 'Bitte überprüfen Sie alle Informationen korrekt',
   network: 'Netzwerk',
-  withdrawing: 'Rückzug',
+  withdrawing: 'Abhebung läuft',
   summary: 'Zusammenfassung',
-  transactionType: 'Art der Transaktion',
-  finalBalance: 'Endbilanz',
-  backToFund: 'zurück zum Fonds',
-  chooseWithdrawChain: 'Wählen Sie das Auszahlungsnetzwerk',
-  confirmWithdrawAddress: 'Bitte bestätigen Sie Ihre Auszahlungsadresse, bevor Sie die Transaktion ausführen',
+  transactionType: 'Transaktionstyp',
+  finalBalance: 'Endguthaben',
+  backToFund: 'Zurück zu Guthaben',
+  chooseWithdrawChain: 'Abhebungsnetzwerk wählen',
+  confirmWithdrawAddress: 'Bitte überprüfen Sie vor jeder Transaktion unbedingt Ihre Abhebungs-Wallet-Adresse.',
   walletAddress: 'Wallet-Adresse',
-  walletAddressBig: 'WALLET ADRESSE',
-  tradeStatus: { 1: 'rückgängig gemacht', 2: 'Bestätigt', 3: 'Gelöscht' },
-
-  // 首页
-  readMore: 'Weiterlesen',
+  walletAddressBig: 'Wallet-Adresse',
+  tradeStatus: { 1: 'Nicht abgeschlossen', 2: 'Bestätigt', 3: 'Gelöscht' },
+  readMore: 'Mehr lesen',
   sports: 'Sport',
-  liveCasino: 'Live-Casino',
+  liveCasino: 'Live Casino',
   slots: 'Slots',
-  sbSport: 'sha ba Sport',
+  sbSport: 'SB Sport',
   fbSport: 'FB Sport',
-  downloadApp: 'Lade App herunter',
+  downloadApp: 'App herunterladen',
   androidApple: 'Unterstützt Android und Apple',
   globalPaymentSolutions: 'Globale Zahlungslösungen',
   otherPayment: 'Andere gängige Zahlungsmethoden',
-  sportsBet: 'Sport Bet',
-  liveCasinoBet: 'Live Casino Bet',
-  slotBet: ' Slot Bet',
+  sportsBet: 'Sportwetten',
+  liveCasinoBet: 'Live Casino-Wetten',
+  slotBet: 'Slot-Wetten',
   more: 'Mehr',
   loadMore: 'Mehr laden',
   providers: 'Anbieter',
-  allProviders: 'Alle Spielanbieter',
+  allProviders: 'Alle Anbieter',
   sortBy: 'Sortieren nach',
-  polular: 'Beliebtheit',
-  promotions: 'Angebote',
-  aboutUs: 'über uns',
-  ruleTerms: 'Geschäftsbedingungen',
-  responsibleGambling: 'Verantwortliches Glücksspiel',
-  amlPolicy: 'AML',
-  selfExclusion: 'Selbstausschluss',
-  privacyPolicy: 'Datenschutz-Bestimmungen',
-  fairness: 'Gerechtigkeit',
+  polular: 'Beliebt',
+  promotions: 'Aktionen',
+  aboutUs: 'Über uns',
+  selectLanguage: 'Sprache auswählen',
+  ruleTerms: 'Regeln und Bedingungen',
+  responsibleGambling: 'Verantwortungsbewusstes Spielen',
+  amlPolicy: 'AML-Richtlinie',
+  selfExclusion: 'Selbstauschluss',
+  privacyPolicy: 'Datenschutzrichtlinie',
+  fairness: 'Fairness',
   game: 'Spiel',
   followUs: 'Folgen Sie uns',
   language: 'Sprache',
-  helpCenter: 'Hilfezentrum',
-  acceptCrypto: 'Zahlungsmethoden',
-  licencesSecurity: 'Lizenzen & Sicherheit',
-  gameBig: 'SPIEL',
+  helpCenter: 'Hilfe-Center',
+  acceptCrypto: 'Unterstützte Kryptowährungen',
+  licencesSecurity: 'Lizenzen und Sicherheit',
+  gameBig: 'Spiel',
   userBig: 'Benutzer',
   payoutBig: 'Auszahlung',
-  betUser: 'Wetter',
-  multiplier: 'Mehrere',
+  betUser: 'Wettkunden',
+  multiplier: 'Multiplikator',
   paymentAmount: 'Zahlungsbetrag',
   invisibility: 'Unsichtbarkeit',
   currencyLang: {
     usdt: 'USDT',
-    btc: 'Bitcoin',
-    eth: 'Ethereum',
-    busd: 'Binance USD',
-    trx: 'TRON',
-    xrp: 'Ripple',
-    bnb: 'Binance Coin',
-    ltc: 'Litecoin',
-    ada: 'Cardano',
-    doge: 'Dogecoin',
-    ton: 'Open network',
-    usd: 'US dollar',
-    cny: 'RMB'
+    btc: 'BTC',
+    eth: 'ETH',
+    busd: 'BUSD',
+    trx: 'TRX',
+    xrp: 'XRP',
+    bnb: 'BNB',
+    ltc: 'LTC',
+    ada: 'ADA',
+    doge: 'DOGE',
+    ton: 'TON',
+    usd: 'USD',
+    cny: 'CNY'
   },
-
-  // 数据验证提示
-  tips: {
-    // 用戶-登录注册
-    inputAccount: 'Bitte geben Sie Ihren Benutzernamen ein',
-    isAccount: 'Der Benutzername muss eine Zeichenfolge von 5–12 Zeichen sein, die mit einem Buchstaben beginnt',
-    inputPassword: 'Bitte geben Sie ein Passwort ein',
-    isPwd: 'Passwort muss aus 6–16 Ziffern oder Buchstaben bestehen',
-    pwdNotMatch: 'Die beiden Passwörter stimmen nicht überein',
-    googleCode: 'Der Google-Authentifizierungscode muss 6-stellig sein',
-    loginFail: 'Anmeldung fehlgeschlagen',
-    inputEmail: 'Bitte geben Sie Ihre E-Mail-Adresse ein',
-    isEmail: 'E-Mail-Formatfehler',
-    inputEmailcapcha: 'Bitte geben Sie den E-Mail-Bestätigungscode ein',
-    inputDay: 'Bitte wählen Sie ein Geburtsdatum aus',
-    inputMonth: 'Bitte wählen Sie den Geburtsmonat aus',
-    inputYear: 'Bitte wählen Sie das Geburtsjahr aus',
-    inputCountryCode: 'Bitte geben Sie den Ländercode ein',
-    inputphoneNumber: 'Bitte geben Sie Ihre Telefonnummer ein',
-    inputAddress: 'Bitte geben Sie die Adresse ein',
-    inputZipCode: 'Bitte geben Sie die Postleitzahl ein',
-    userNameExist: 'Benutzername existiert bereits',
-    emailExist: 'Postfach existiert bereits',
-    emailNotExist: 'E-Mail existiert nicht',
-    isAudit: 'Bitte bestätigen Sie, dass Sie volljährig sind und akzeptieren Sie die Datenschutzbestimmungen',
-    isAgree: 'Bitte lesen und akzeptieren Sie relevante Informationen zur Marktaktivität',
-    regSuccess: 'Registrierung erfolgreich',
-    regFail: 'Registrierung fehlgeschlagen',
-    loginSuccess: 'Anmeldung erfolgreich',
-    sendSuccess: 'erfolgreich senden',
-    resetSuccess: 'Das Passwort wurde erfolgreich zurückgesetzt, bitte melden Sie sich erneut an',
-    resetFail: 'Passwort konnte nicht zurückgesetzt werden',
-    sendFail: 'Senden fehlgeschlagen',
-    editUserInfoSuccess: 'Benutzerinformationen erfolgreich geändert',
-    inputNewPwd: 'Bitte geben Sie ein neues Passwort ein',
-    isNewPwd: 'Das neue Passwort muss aus 6–16 Ziffern oder Buchstaben bestehen',
-    inputOldPwd: 'Bitte geben Sie das alte Passwort ein',
-    isOldPwd: 'Altes Passwort muss aus 6–16 Ziffern oder Buchstaben bestehen',
-    editPwdSuccess: 'Passwort erfolgreich geändert, bitte melden Sie sich erneut an',
-    bindGoogleSuccess: 'Google-Bestätigungscode erfolgreich binden',
-    logoutSuccess: 'Abmeldung erfolgreich',
-    setSuccess: 'Einstellung erfolgreich',
-    inputWithdrawAmount: 'Bitte geben Sie den Auszahlungsbetrag ein',
-    overMaxWithdrawAmount: 'Der Auszahlungsbetrag darf nicht größer sein als der Saldo',
-    underMinWithdrawAmount: 'Der Auszahlungsbetrag muss größer als der Mindestbetrag sein',
-    inputWithdrawAddress: 'Bitte geben Sie die Auszahlungsadresse ein',
-    withdrawSuccess: 'Antrag auf Auszahlung erfolgreich',
-    withdrawFail: 'Antragsrücknahme fehlgeschlagen',
-    receivedRewardSuccess: 'Erfolgreich empfangen',
-    receivedRewardFail: 'Empfang fehlgeschlagen',
-    noLogin: 'Sie sind nicht angemeldet',
-    goLogin: 'Jetzt zum Login gehen',
-    invalidThirdUser: 'rittanbieter-Benutzer konnte nicht überprüft werden',
-    authFail: 'utorisierung fehlgeschlagen',
-    copyFail: 'Der Browser unterstützt kein automatisches Kopieren, bitte manuell kopieren'
+  points: 'Punkte',
+  pointsNum: 'Punktebetrag',
+  earnPoints: 'Punkte verdienen',
+  pointType: 'Art',
+  spentPoints: 'Punkte ausgeben',
+  afterPoints: 'Punktestand nach',
+  createTime: 'Erstellungszeitpunkt',
+  pointsType: {
+    '1': 'Wetten',
+    '2': 'Artikel eintauschen',
+    '3': 'Aktionen',
+    '4': 'Von Administrator hinzugefügt',
+    '5': 'Von Administrator abgezogen',
+    '6': 'Eintausch stornieren'
   },
-
-  html: {
-    vipContent: `
-      <div class="vip-clubhouse-box">
-        <div class="vc-rows">
-          <div class="vr-title">1、VIP Club Introduction</div>
-          <div class="vr-conts">
-            <p>Welcome to the ${site_name} VIP Club!</p>
-            <p>At ${site_name}, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
-            <p>Simply place bets on any game or sports event provided by ${site_name} to unlock exclusive rewards as you climb through the ranks.</p>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">2、Personalized Service</div>
-          <div class="vr-conts">
-            <p>Professional Customer Manager Team Ensures All Your Needs and Meets Industry's Highest Standards. VIP members can enjoy exclusive bonuses, invitations to renowned events, and a variety of customized rewards to provide you with fast, enjoyable, and efficient gaming experiences.</p>
-            <dl>
-              <dt>VIP Exclusive Manager：</dt>
-              <dd>Devoted to addressing your needs</dd>
-              <dd>Tailored private gaming experiences just for you</dd>
-            </dl>
-            <dl>
-              <dt>High Rewards：</dt>
-              <dd>Exclusive offers designed for you</dd>
-              <dd>No-wager bonuses</dd>
-              <dd>Rapid accumulation of points</dd>
-            </dl>
-            <dl>
-              <dt>Industry's Highest Betting Limits：</dt>
-              <dd>Unlimited daily deposits and withdrawals with cryptocurrencies</dd>
-            </dl>
-            <dl>
-              <dt>VIP Exclusive Promotions：</dt>
-              <dd>Distinguished from regular member promotions</dd>
-              <dd>Preserve the best gaming experience for you</dd>
-              <dd>Exclusive to VIP users</dd>
-              <dd>Personalized offers</dd>
-              <dd>Customized entertainment services exclusively for you</dd>
-            </dl>
-            <dl>
-              <dt>24/7 Priority Service：</dt>
-              <dd>No need to queue or wait</dd>
-              <dd>Your needs are our top priority</dd>
-              <dd>Multiple social media contact methods, dedicated customer managers providing online services.</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">3、Level Structure</div>
-          <div class="vr-conts">
-            <p>Six VIP levels that comprehensively cover your entire gaming journey:</p>
-            <dl>
-              <dd>Bronze: Bronze 1</dd>
-              <dd>Silver: Silver 1 - Silver 5</dd>
-              <dd>Gold: Gold 1 - Gold 8</dd>
-              <dd>Platinum: Platinum 1 - Platinum 10</dd>
-              <dd>Titanium: Titanium 1 - Titanium 10</dd>
-              <dd>Diamond: Diamond 1 - Diamond 6</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">4、Benefits for VIP Club Members</div>
-          <div class="vr-conts">
-            <dl>
-              <dd>Boost Bonuses: You can earn bonuses based on your weekly and monthly gaming volume. The more you play, the more bonuses you receive.</dd>
-              <dd>Recent Game Performance Bonus: Having a streak of bad luck? ${site_name} will provide additional funds based on your losses every time you level up.</dd>
-              <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
-              <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
-              <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>
-              <dd>Exclusive VIP Service: You will be assigned a dedicated VIP service representative who will support and meet your betting needs</dd>
-              <dd>Faster Points Accumulation: VIP levels earn points at a faster rate compared to regular members. Higher levels earn more points, leading to a wider range of prizes for redemption.</dd>
-            </dl>
-          </div>
-        </div>
-        <div class="vc-rows">
-          <div class="vr-title">5、How to Become a VIP Member</div>
-          <div class="vr-conts">
-            <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
-            <dl>
-              <dd>
-                Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
-              </dd>
-              <dd>
-                Participate in Regular Events: ${site_name}'s promotional activities include various events and competitions that you can participate in at any time. Regular participation in any of these events will increase your chances of receiving an invitation to the VIP Club. Moreover, you can be more active in other club features offered by ${site_name}.
-              </dd>
-              <dd>
-                Await the Invitation: The final thing you need to do is wait for us to send you an invitation. Continue playing games and participating in high roller events. After a few rounds of casino gambling and sports betting, once you are deemed worthy of becoming a VIP Club member, you will receive an invitation immediately.
-              </dd>
-              <dd>
-                Experience the Luxury Life as a ${site_name} VIP: Take your USDT gambling experience to a whole new level while enjoying top-notch privileges as a ${site_name} VIP Club member. As a valued player, you'll experience the best fun, fast, and fair betting when engaging in sports betting and casino games.
-              </dd>
-            </dl>
-          </div>
-        </div>
-      </div>`
-  }
+  provider: {
+    all: 'Alle',
+    sabaSports: 'Saba Sport',
+    fbSports: 'FB Sport',
+    evolution: 'Evolution',
+    bombayLive: 'Bombay Live',
+    ezugi: 'Ezugi',
+    asiaGaming: 'Asia Gaming',
+    pragmaticPlay: 'Pragmatic Play',
+    playingo: "Play'n Go",
+    netEnt: 'NetEnt',
+    playTech: 'PlayTech',
+    microgaming: 'Microgaming'
+  },
+  vipTitle: 'VIP-Club',
+  rulesTitle: 'Regeln und Bedingungen',
+  responsibleTitle: 'Verantwortungsbewusstes Spielen',
+  amlTitle: 'AML-Richtlinie',
+  selfExclusionTitle: 'Selbstauschluss',
+  privacyTitle: 'Datenschutzrichtlinie',
+  fairnessTitle: 'Fairness',
+  vipContent: '',
+  rulesContent: '',
+  responsibleContent: '',
+  amlContent: '',
+  selfExclusionContent: '',
+  privacyContent: '',
+  fairnessContent: ''
 }
