@@ -6,6 +6,7 @@ export default {
   promo: 'Promociones',
   support: 'Soporte',
   onlineSupport: 'Soporte en Línea',
+  accountMenu: 'Cuenta',
   account: 'Cuenta',
   confirm: 'Confirmar',
   confirmd: 'Confirmado',
@@ -277,8 +278,9 @@ export default {
   // Proveedores de Juegos
   provider: {
     all: 'Todos',
-    sabaSports: 'Deportes de Arena',
-    fbSports: 'Deportes de Fútbol',
+    sabaSports: 'Saba Sports',
+    btiports: 'BTI Sports',
+    fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
     ezugi: 'Ezugi',
@@ -287,7 +289,8 @@ export default {
     playingo: "Play'n Go",
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
-    microgaming: 'Microgaming'
+    microgaming: 'Microgaming',
+    sexy: 'Sexy Baccarat'
   },
 
   // Consejos de validación de datos
@@ -346,7 +349,26 @@ export default {
     copySuccess: 'Copia exitosa',
     copyFail: 'Este navegador no admite la copia automática, copie manualmente',
     inputExhangeCode: 'Ingrese el código de intercambio',
-    startGameFail: 'Fallo al iniciar el juego'
+    startGameFail: 'Fallo al iniciar el juego',
+    insufficientPoints: '积分不足',
+    exhangeSuccess: '兑换成功',
+    openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
+    openExchange: '即将为您打开窗口进入交易所',
+    unBindGoogleSuccess: '解绑成功',
+    openExplorer: '即将为您打开窗口查询交易',
+
+    inputTrueName: '请输入姓名',
+    selectDocType: '点击选择证件类型',
+    inputDocType: '请选择证件类型',
+    inputDdocNumber: '请输入证件号码',
+    airlineCompany: '请输入航空公司',
+    inputDeparture: '请输入出发地',
+    inputDestination: '请输入目的地',
+    inputHotelName: '请输入酒店名称',
+    inputCity: '请输入酒店所在城市',
+    inputCountry: '请输入酒店所在国家',
+    inputRoomNum: '请输入酒店房间数量',
+    inputInRoomDay: '请输入入住天数'
   },
 
   rewardsBig: 'Recompensas',
@@ -365,6 +387,84 @@ export default {
   enableVisible: 'Habilitar Modo Invisible',
   hiddenYourBet: 'Sus apuestas no aparecerán en las actividades públicas ni en las vistas previas de apuestas',
   startNow: 'Iniciar Ahora',
+  withdrawStatus: { 1: '处理中', 2: '成功', 3: '失败' },
+  time: '时间',
+  betAmount: '投注金额',
+  support2: '支持',
+  btiSportIntro: '多年体育平台运营经验，BTi体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
+  sabaSportIntro: '经过近二十年的多方证实，沙巴体育平台提供广泛的体育赛事、多种创新投注类型、业界最佳赔率。',
+  fundRecord: '账变记录',
+  categoryFilter: '按分类筛选',
+  fundCategory: {
+    1: '存款',
+    2: '提款',
+    3: '投注',
+    4: '结算',
+    5: '管理员加款',
+    6: '管理员扣款',
+    7: '促销活动赠送',
+    8: '退款',
+    9: 'VIP升级奖励',
+    10: '兑换筹码',
+    17: '提款失败'
+  },
+  beforeBalance: '账变前余额',
+  afterBalance: '账变后余额',
+  tradeDetails: '交易详情',
+  tradeNo: '订单号',
+  orderStatus: '订单状态',
+  orderType: '订单类型',
+  orderTypes: { 1: '存款', 2: '提现', 3: '投注', 4: '奖金' },
+  blockChain: '链',
+  betAndEarn: '下注 & 赢取',
+  placeAndEarn: '投注 & 赢取',
+  spinAndEarn: '旋转 & 赢取',
+  enabledGoogle: '谷歌身份验证器已启用',
+  stopGoogle: '谷歌身份验证器已启用, 如果想关闭此功能, 请使输入谷歌验证码后点击"提交代码"关闭。',
+  unlockNewReward: '新奖励已解锁！',
+  unlockNewRewardTip: '恭喜您！ 刚刚解锁了新奖励。点击此处选择您的奖励类型',
+  dymondReward: '当您达到该等级时，将会自动生成奖励',
+  siteTitle: '最领先的加密货币赌场及体育博彩平台',
+  unlockAllReward: '恭喜您！ 解锁了全部奖励',
+  newGame: '新游戏',
+  oneDay: '24小时',
+  week: '周',
+  moreGame: '更多游戏',
+  question: '常见问题',
+  status: '状态',
+  tradeCode: '交易代码',
+  copyTradeCode: '复制交易代码',
+  realName: '姓名',
+  sex: '性别',
+  male: '男',
+  female: '女',
+  documentType: '证件类型',
+  documentNumber: '证件号码',
+  airlineCompany: '航空公司',
+  placeOfDeparture: '出发地',
+  destination: '目的地',
+  onewayOrRoundtrip: '是否往返',
+  oneway: '单程',
+  roundtrip: '往返',
+  engineroomType: '机舱类型',
+  economyClass: '经济舱',
+  businessClass: '商务舱',
+  firstClass: '头等舱',
+  submit: '提交',
+  hotelName: '酒店名称',
+  city: '城市',
+  roomType: '房间类型',
+  presidentialSuite: '总统套房',
+  luxurySuite: '豪华套房',
+  businessSuite: '商务套房',
+  roomNum: '房间数量',
+  roomDay: '入住天数',
+  otherService: '其他服务',
+  idCard: '身份证',
+  passport: '护照',
+  militaryId: '军官证',
+  diplomaticCard: '护照',
+  moonpayExchange: '使用借记卡/信用卡购买加密货币',
   // Términos y Contenidos HTML
   html: {
     // Títulos HTML
@@ -377,10 +477,128 @@ export default {
     fairnessTitle: 'Equidad',
 
     // Contenido HTML
-    vipContent: ``,
+    vipContent: `<div class="vip-clubhouse-box">
+                  <div class="vc-rows">
+                    <div class="vr-title">1、VIP Club Introduction</div>
+                    <div class="vr-conts">
+                      <p>Welcome to the ${site_name} VIP Club!</p>
+                      <p>At ${site_name}, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
+                      <p>Simply place bets on any game or sports event provided by ${site_name} to unlock exclusive rewards as you climb through the ranks.</p>
+                    </div>
+                  </div>
+                  <div class="vc-rows">
+                    <div class="vr-title">2、Personalized Service</div>
+                    <div class="vr-conts">
+                      <p>Professional Customer Manager Team Ensures All Your Needs and Meets Industry's Highest Standards. VIP members can enjoy exclusive bonuses, invitations to renowned events, and a variety of customized rewards to provide you with fast, enjoyable, and efficient gaming experiences.</p>
+                      <dl>
+                        <dt>VIP Exclusive Manager：</dt>
+                        <dd>Devoted to addressing your needs</dd>
+                        <dd>Tailored private gaming experiences just for you</dd>
+                      </dl>
+                      <dl>
+                        <dt>High Rewards：</dt>
+                        <dd>Exclusive offers designed for you</dd>
+                        <dd>No-wager bonuses</dd>
+                        <dd>Rapid accumulation of points</dd>
+                      </dl>
+                      <dl>
+                        <dt>Industry's Highest Betting Limits：</dt>
+                        <dd>Unlimited daily deposits and withdrawals with cryptocurrencies</dd>
+                      </dl>
+                      <dl>
+                        <dt>VIP Exclusive Promotions：</dt>
+                        <dd>Distinguished from regular member promotions</dd>
+                        <dd>Preserve the best gaming experience for you</dd>
+                        <dd>Exclusive to VIP users</dd>
+                        <dd>Personalized offers</dd>
+                        <dd>Customized entertainment services exclusively for you</dd>
+                      </dl>
+                      <dl>
+                        <dt>24/7 Priority Service：</dt>
+                        <dd>No need to queue or wait</dd>
+                        <dd>Your needs are our top priority</dd>
+                        <dd>Multiple social media contact methods, dedicated customer managers providing online services.</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  <div class="vc-rows">
+                    <div class="vr-title">3、Level Structure</div>
+                    <div class="vr-conts">
+                      <p>Six VIP levels that comprehensively cover your entire gaming journey:</p>
+                      <dl>
+                        <dd>Bronze: Bronze 1</dd>
+                        <dd>Silver: Silver 1 - Silver 5</dd>
+                        <dd>Gold: Gold 1 - Gold 8</dd>
+                        <dd>Platinum: Platinum 1 - Platinum 10</dd>
+                        <dd>Titanium: Titanium 1 - Titanium 10</dd>
+                        <dd>Diamond: Diamond 1 - Diamond 6</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  <div class="vc-rows">
+                    <div class="vr-title">4、Benefits for VIP Club Members</div>
+                    <div class="vr-conts">
+                      <dl>
+                        <dd>Boost Bonuses: You can earn bonuses based on your weekly and monthly gaming volume. The more you play, the more bonuses you receive.</dd>
+                        <dd>Recent Game Performance Bonus: Having a streak of bad luck? ${site_name} will provide additional funds based on your losses every time you level up.</dd>
+                        <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
+                        <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
+                        <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>
+                        <dd>Exclusive VIP Service: You will be assigned a dedicated VIP service representative who will support and meet your betting needs</dd>
+                        <dd>Faster Points Accumulation: VIP levels earn points at a faster rate compared to regular members. Higher levels earn more points, leading to a wider range of prizes for redemption.</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  <div class="vc-rows">
+                    <div class="vr-title">5、How to Become a VIP Member</div>
+                    <div class="vr-conts">
+                      <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
+                      <dl>
+                        <dd>
+                          Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
+                        </dd>
+                        <dd>
+                          Participate in Regular Events: ${site_name}'s promotional activities include various events and competitions that you can participate in at any time. Regular participation in any of these events will increase your chances of receiving an invitation to the VIP Club. Moreover, you can be more active in other club features offered by ${site_name}.
+                        </dd>
+                        <dd>
+                          Await the Invitation: The final thing you need to do is wait for us to send you an invitation. Continue playing games and participating in high roller events. After a few rounds of casino gambling and sports betting, once you are deemed worthy of becoming a VIP Club member, you will receive an invitation immediately.
+                        </dd>
+                        <dd>
+                          Experience the Luxury Life as a ${site_name} VIP: Take your USDT gambling experience to a whole new level while enjoying top-notch privileges as a ${site_name} VIP Club member. As a valued player, you'll experience the best fun, fast, and fair betting when engaging in sports betting and casino games.
+                        </dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>`,
     rulesContent: ``,
     responsibleContent: ``,
-    amlContent: ``,
+    amlContent: `<div>
+                  <h3>Declaración contra el lavado de dinero y el financiamiento del terrorismo</h3>
+                  <h4>1. Modelo de negocio de la empresa</h4>
+                  <p>Seabet actualmente brinda soporte a sus usuarios en más de 169 países alrededor del mundo. Como parte de sus operaciones globales, Seabet ha implementado medidas de cumplimiento diseñadas para prevenir y detectar actividades ilegales en su plataforma. Estas incluyen la incorporación y evaluación de cumplimiento para sus clientes, así como controles basados en transacciones.</p>
+                  <h4>2. Declaración de política de la empresa</h4>
+                  <p>Seabet prohíbe y rechaza explícitamente el uso de sus productos para cualquier forma de actividad ilegal, incluyendo el lavado de dinero, el financiamiento del terrorismo o violaciones de sanciones comerciales, de acuerdo con las leyes, regulaciones y directrices nacionales contra el lavado de dinero (AML). Seabet sigue monitoreando los parámetros establecidos por el Grupo de Acción Financiera Internacional (GAFI) y otras organizaciones comerciales de juegos, así como la Comisión de Control de Juegos de Curazao, y tomará las medidas que considere apropiadas para reflejar los cambios en la legislación. Seabet tiene la intención de seguir las mejores prácticas globales y evitar que sus productos sean utilizados para facilitar tales actividades. Estas mejores prácticas incluyen:</p>
+                  <ul>
+                      <li>Adoptar políticas escritas, procedimientos y controles razonablemente diseñados para prevenir el lavado de dinero, el financiamiento del terrorismo y las violaciones de sanciones comerciales;</li>
+                      <li>Designar, cuando corresponda, a un oficial de cumplimiento para supervisar la implementación de políticas, procedimientos y controles;</li>
+                      <li>Proporcionar educación y capacitación relevante al personal pertinente;</li>
+                      <li>Realizar revisiones independientes, monitoreo y mantenimiento de políticas, procedimientos y controles.</li>
+                  </ul>
+                  <h4>3. Definiciones</h4>
+                  <p>Los siguientes términos definitorios son ampliamente utilizados en la industria:</p>
+                  <p>- Lavado de dinero: El proceso de hacer que las ganancias obtenidas ilegalmente parezcan legítimas. Este proceso generalmente implica tres etapas: colocación, estratificación e integración.</p>
+                  <p>- Colocación: El acto de depositar fondos ilegales en una institución financiera tradicional;</p>
+                  <p>- Estratificación: El proceso de separar los productos de actividades delictivas de su origen mediante el uso de transacciones financieras complejas, como la conversión de efectivo en cheques de viaje, giros postales, transferencias electrónicas, cartas de crédito, adquisición de acciones, bonos o bienes raíces;</p>
+                  <p>- Integración: El uso de transacciones aparentemente legítimas para mezclar fondos ilícitos con recursos legales, con el fin de reintroducirlos en el sistema financiero legal;</p>
+                  <p>- Actividad sospechosa: Actividad realizada por un usuario o no usuario que utiliza la institución financiera donde existen indicios de que la transacción puede estar motivada por fraude o actividades ilegales;</p>
+                  <p>- Sanciones: Medidas adoptadas por la comunidad internacional para prohibir o restringir ciertas actividades. Se utilizan para alentar un cambio de comportamiento, presionar a un país objetivo para que cumpla con los objetivos establecidos, como una herramienta de aplicación de la ley cuando se amenaza la paz y seguridad internacionales y han fallado los esfuerzos diplomáticos, así como prevenir y combatir el financiamiento del terrorismo o actos terroristas.</p>
+                  <h4>4. Gobernanza y supervisión</h4>
+                  <p>Seabet ha designado a un Director de Cumplimiento (CCO) para coordinar la implementación de las políticas y programas de AML. Las responsabilidades del Director de Cumplimiento también incluyen el desarrollo de planes AML, trabajar con otras partes interesadas para revisar las políticas de AML, evaluar nuevos requisitos regulatorios e investigar posibles actividades sospechosas o inusuales. Seabet también proporciona regularmente capacitación en AML a todos sus empleados.</p>
+                  <h4>5. Educación y formación</h4>
+                  <p>Seabet, con la asistencia de su asesor legal y bajo la supervisión de su CCO, puede proporcionar capacitación periódica en cumplimiento de AML, financiamiento del terrorismo y sanciones comerciales a sus empleados según sea necesario.</p>
+                  <h4>6. Informes</h4>
+                  <p>Seabet está obligado a informar cualquier transacción inusual o sospechosa de acuerdo con los decretos nacionales. Los clientes identificados en listas de sanciones relacionadas con el lavado de dinero, financiamiento del terrorismo u otras actividades delictivas, serán reportados al regulador como actividad sospechosa.</p>
+              </div>`,
     selfExclusionContent: ``,
     privacyContent: ``,
     fairnessContent: ``
