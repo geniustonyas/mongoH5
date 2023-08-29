@@ -360,7 +360,8 @@ export default {
 
     inputTrueName: '请输入姓名',
     selectDocType: '点击选择证件类型',
-    docNumber: '请输入证件号码',
+    inputDocType: '请选择证件类型',
+    inputDdocNumber: '请输入证件号码',
     airlineCompany: '请输入航空公司',
     inputDeparture: '请输入出发地',
     inputDestination: '请输入目的地',
@@ -460,6 +461,10 @@ export default {
   roomNum: '房间数量',
   roomDay: '入住天数',
   otherService: '其他服务',
+  idCard: '身份证',
+  passport: '护照',
+  militaryId: '军官证',
+  diplomaticCard: '护照',
   // 条款协议等内容
   html: {
     // html标题

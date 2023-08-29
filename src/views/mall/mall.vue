@@ -81,6 +81,9 @@
                       <i class="iconfont icon-shandian" />
                       <b>{{ moneyFormat(item.price) }}</b>
                     </div>
+                    <div v-else class="er-exhange">
+                      <a class="btn btn-primary">立即兑换</a>
+                    </div>
                   </div>
                 </template>
               </div>
@@ -246,28 +249,61 @@
             </a>
           </div>
         </div>
-        <div v-show="currentGoodsItem.productType == 3" class="exchange-ticket">
-          <Form class="ticket-form">
+        <div v-show="currentGoodsItem.productType == 3" class="exchange-ticket" ref="exchangeTicket">
+          <Form class="ticket-form" @submit="exhangeGoods">
             <CellGroup inset>
               <!-- 名字 -->
-              <Field v-model="ticketOrder.Name" name="name" :label="t('realName')" :placeholder="t('tips.inputTrueName')" :rules="[{ required: true, message: t('inputTrueName') }]" />
+              <Field v-model="exhangeGoodsParams.AirTicketOrder.Name" name="name" :label="t('realName')" :placeholder="t('tips.inputTrueName')" :rules="[{ required: true, message: t('tips.inputTrueName') }]" />
               <!-- 性别 -->
               <Field name="radio" :label="t('sex')">
                 <template #input>
-                  <RadioGroup v-model="ticketOrder.Sex" direction="horizontal">
-                    <Radio name="1">{{ t('male') }}</Radio>
-                    <Radio name="2">{{ t('female') }}</Radio>
+                  <RadioGroup v-model="exhangeGoodsParams.AirTicketOrder.Sex" direction="horizontal">
+                    <Radio :name="t('male')">{{ t('male') }}</Radio>
+                    <Radio :name="t('female')">{{ t('female') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="ticketOrder.DocumentType" is-link readonly name="picker" :label="t('female')" :placeholder="t('tips.selectDocType')" @click="showDocTypePicker = true" />
-              <Field v-model="ticketOrder.DocumentNumber" name="docNumber" :label="t('documentNumber')" :placeholder="t('tips.docNumber')" />
-              <Field v-model="ticketOrder.AirlineCompany" name="airlineCompany" :label="t('airlineCompany')" :placeholder="t('tips.airlineCompany')" />
-              <Field v-model="ticketOrder.PlaceOfDeparture" name="placeOfDeparture" :label="t('placeOfDeparture')" :placeholder="t('tips.inputDeparture')" />
-              <Field v-model="ticketOrder.Destination" name="destination" :label="t('destination')" :placeholder="t('tips.inputDestination')" />
+              <Field
+                v-model="exhangeGoodsParams.AirTicketOrder.DocumentType"
+                is-link
+                readonly
+                name="picker"
+                :label="t('documentType')"
+                :placeholder="t('tips.selectDocType')"
+                :rules="[{ required: true, message: t('tips.inputDocType') }]"
+                @click="showDocTypePicker = true"
+              />
+              <Field
+                v-model="exhangeGoodsParams.AirTicketOrder.DocumentNumber"
+                name="docNumber"
+                :label="t('documentNumber')"
+                :placeholder="t('tips.inputDdocNumber')"
+                :rules="[{ required: true, message: t('tips.inputDdocNumber') }]"
+              />
+              <Field
+                v-model="exhangeGoodsParams.AirTicketOrder.AirlineCompany"
+                name="airlineCompany"
+                :label="t('airlineCompany')"
+                :placeholder="t('tips.airlineCompany')"
+                :rules="[{ required: true, message: t('tips.airlineCompany') }]"
+              />
+              <Field
+                v-model="exhangeGoodsParams.AirTicketOrder.PlaceOfDeparture"
+                name="placeOfDeparture"
+                :label="t('placeOfDeparture')"
+                :placeholder="t('tips.inputDeparture')"
+                :rules="[{ required: true, message: t('tips.inputDeparture') }]"
+              />
+              <Field
+                v-model="exhangeGoodsParams.AirTicketOrder.Destination"
+                name="destination"
+                :label="t('destination')"
+                :placeholder="t('tips.inputDestination')"
+                :rules="[{ required: true, message: t('tips.inputDestination') }]"
+              />
               <Field name="isOneWay" :label="t('onewayOrRoundtrip')">
                 <template #input>
-                  <RadioGroup v-model="ticketOrder.OnewayOrRoundtrip" direction="horizontal">
+                  <RadioGroup v-model="exhangeGoodsParams.AirTicketOrder.OnewayOrRoundtrip" direction="horizontal">
                     <Radio :name="t('oneway')">{{ t('oneway') }}</Radio>
                     <Radio :name="t('roundtrip')">{{ t('roundtrip') }}</Radio>
                   </RadioGroup>
@@ -275,56 +311,66 @@
               </Field>
               <Field name="engineroomType" :label="t('engineroomType')">
                 <template #input>
-                  <RadioGroup v-model="ticketOrder.EngineroomType">
+                  <RadioGroup v-model="exhangeGoodsParams.AirTicketOrder.EngineroomType">
                     <Radio :name="t('economyClass')">{{ t('economyClass') }}</Radio>
                     <Radio :name="t('businessClass')">{{ t('businessClass') }}</Radio>
                     <Radio :name="t('firstClass')">{{ t('firstClass') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="ticketOrder.Otherservices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
+              <Field v-model="exhangeGoodsParams.AirTicketOrder.Otherservices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
             </CellGroup>
-            <div class="ticket-btn" @click="exhangeGoods">
-              <a class="btn btn-primary">{{ t('submit') }}</a>
+            <div class="ticket-btn">
+              <Button class="btn btn-primary" native-type="submit">{{ t('submit') }}</Button>
             </div>
           </Form>
         </div>
 
-        <div v-show="currentGoodsItem.productType == 4" class="exchange-ticket">
-          <Form class="ticket-form">
+        <div v-show="currentGoodsItem.productType == 4" class="exchange-ticket" ref="exchangeHotel">
+          <Form class="ticket-form" @submit="exhangeGoods">
             <CellGroup inset>
               <!-- 名字 -->
-              <Field v-model="hotelOrder.Name" name="realName" :label="t('realName')" :placeholder="t('tips.inputTrueName')" :rules="[{ required: true, message: t('inputTrueName') }]" />
+              <Field v-model="exhangeGoodsParams.GroggeryOrder.Name" name="realName" :label="t('realName')" :placeholder="t('tips.inputTrueName')" :rules="[{ required: true, message: t('tips.inputTrueName') }]" />
               <!-- 性别 -->
               <Field name="radio" :label="t('sex')">
                 <template #input>
-                  <RadioGroup v-model="hotelOrder.Sex" direction="horizontal">
+                  <RadioGroup v-model="exhangeGoodsParams.GroggeryOrder.Sex" direction="horizontal">
                     <Radio :name="t('male')">{{ t('male') }}</Radio>
                     <Radio :name="t('female')">{{ t('female') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="hotelOrder.HotelName" name="hotelName" :label="t('hotelName')" :placeholder="t('tips.inputHotelName')" />
-              <Field v-model="hotelOrder.HotelCountry" name="hotelCountry" :label="t('country')" :placeholder="t('tips.inputCountry')" />
-              <Field v-model="hotelOrder.TheCityRegion" name="theCityRegion" :label="t('city')" :placeholder="t('tips.inputCity')" />
+              <Field v-model="exhangeGoodsParams.GroggeryOrder.HotelName" name="hotelName" :label="t('hotelName')" :placeholder="t('tips.inputHotelName')" :rules="[{ required: true, message: t('tips.inputHotelName') }]" />
+              <Field v-model="exhangeGoodsParams.GroggeryOrder.HotelCountry" name="hotelCountry" :label="t('country')" :placeholder="t('tips.inputCountry')" :rules="[{ required: true, message: t('tips.inputCountry') }]" />
+              <Field v-model="exhangeGoodsParams.GroggeryOrder.TheCityRegion" name="theCityRegion" :label="t('city')" :placeholder="t('tips.inputCity')" :rules="[{ required: true, message: t('tips.inputCity') }]" />
               <Field name="roomType" :label="t('roomType')">
                 <template #input>
-                  <RadioGroup v-model="hotelOrder.RoomType">
+                  <RadioGroup v-model="exhangeGoodsParams.GroggeryOrder.RoomType">
                     <Radio :name="t('presidentialSuite')">{{ t('presidentialSuite') }}</Radio>
                     <Radio :name="t('luxurySuite')">{{ t('luxurySuite') }}</Radio>
                     <Radio :name="t('businessSuite')">{{ t('businessSuite') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="hotelOrder.NumberOfRooms" name="roomNum" :label="t('roomNum')" :placeholder="t('tips.roomNum')" />
-              <Field v-model="hotelOrder.NumberOfDaysRequired" name="roomDay" :label="t('roomDay')" :placeholder="t('tips.inputInRoomDay')" />
-              <Field v-model="hotelOrder.OtherServices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
+              <Field v-model="exhangeGoodsParams.GroggeryOrder.NumberOfRooms" name="roomNum" :label="t('roomNum')" :placeholder="t('roomNum')" :rules="[{ required: true, message: t('tips.inputRoomNum') }]" />
+              <Field
+                v-model="exhangeGoodsParams.GroggeryOrder.NumberOfDaysRequired"
+                name="roomDay"
+                :label="t('roomDay')"
+                :placeholder="t('tips.inputInRoomDay')"
+                :rules="[{ required: true, message: t('tips.inputInRoomDay') }]"
+              />
+              <Field v-model="exhangeGoodsParams.GroggeryOrder.OtherServices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
             </CellGroup>
-            <div class="ticket-btn" @click="exhangeGoods">
-              <a class="btn btn-primary">{{ t('submit') }}</a>
+            <div class="ticket-btn">
+              <Button class="btn btn-primary" native-type="submit">{{ t('submit') }}</Button>
             </div>
           </Form>
         </div>
+      </Popup>
+
+      <Popup v-model:show="showDocTypePicker" round position="bottom">
+        <Picker :columns="docType" @confirm="confirmIdCard" @cancel="showDocTypePicker = false" />
       </Popup>
     </ConfigProvider>
   </div>
@@ -336,14 +382,14 @@ import { useRouter } from 'vue-router'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { getGoodsListApi, exhangeGoodsApi, getIntegralRecordApi, getIntegralVipApi } from '@/api/mall/index'
-import { getGoodsListItem, getIntegralRecordItem, getIntegralRecordData, getIntegralVipItem } from '@/api/mall/types'
+import { getGoodsListItem, getIntegralRecordItem, getIntegralRecordData, getIntegralVipItem, exhangeGoodsData } from '@/api/mall/types'
 import { useUserStore } from '@/store/modules/user'
 import { useAppStore } from '@/store/modules/app'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { useI18n } from 'vue-i18n'
 
 // import { cloneDeep } from 'lodash-es'
-import { showToast, ConfigProvider, Popup, PullRefresh, List, showConfirmDialog, Form, CellGroup, Field, RadioGroup, Radio } from 'vant'
+import { showToast, ConfigProvider, Popup, PullRefresh, List, showConfirmDialog, Form, CellGroup, Field, RadioGroup, Radio, Picker, Button } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 import 'swiper/css'
@@ -359,6 +405,9 @@ const appStore = useAppStore()
 // tab切换
 let tab = ref('rewards')
 
+const exchangeTicket = ref('exchangeTicket')
+const exchangeHotel = ref('exchangeHotel')
+
 // 商品詳情
 const currentGoodsItem = reactive<getGoodsListItem>({
   id: '',
@@ -372,32 +421,40 @@ const currentGoodsItem = reactive<getGoodsListItem>({
   description: ''
 })
 
+const docType = [
+  { text: t('idCard'), value: t('idCard') },
+  { text: t('passport'), value: t('passport') },
+  { text: t('militaryId'), value: t('militaryId') },
+  { text: t('diplomaticCard'), value: t('diplomaticCard') }
+]
+
 // 机票订单
 const showDocTypePicker = ref(false)
-const ticketOrder = reactive({
-  Name: '',
-  Sex: '1',
-  DocumentType: '',
-  DocumentNumber: '',
-  AirlineCompany: '',
-  PlaceOfDeparture: '',
-  Destination: '',
-  OnewayOrRoundtrip: '1',
-  EngineroomType: '',
-  Otherservices: ''
-})
-
-// 酒店订单
-const hotelOrder = reactive({
-  Name: '',
-  Sex: '',
-  HotelName: '',
-  HotelCountry: '',
-  TheCityRegion: '',
-  RoomType: '',
-  NumberOfRooms: '',
-  NumberOfDaysRequired: '',
-  OtherServices: ''
+const exhangeGoodsParams = reactive({
+  Id: '',
+  AirTicketOrder: {
+    Name: '',
+    Sex: t('male'),
+    DocumentType: t('idCard'),
+    DocumentNumber: '',
+    AirlineCompany: '',
+    PlaceOfDeparture: '',
+    Destination: '',
+    OnewayOrRoundtrip: t('oneway'),
+    EngineroomType: t('economyClass'),
+    Otherservices: ''
+  },
+  GroggeryOrder: {
+    Name: '',
+    Sex: t('male'),
+    HotelName: '',
+    HotelCountry: '',
+    TheCityRegion: '',
+    RoomType: t('presidentialSuite'),
+    NumberOfRooms: '',
+    NumberOfDaysRequired: '',
+    OtherServices: ''
+  },
 })
 
 // swiper
@@ -460,6 +517,7 @@ const getGoodsList = () => {
 
 // 积分兑换商品
 const exhangeGoods = () => {
+  console.log(exchangeTicket.value)
   if (!userStore.userInfo.id) {
     showConfirmDialog({
       title: t('tips.noLogin'),
@@ -476,7 +534,16 @@ const exhangeGoods = () => {
       showToast(t('tips.insufficientPoints'))
       return false
     }
-    exhangeGoodsApi({ Id: currentGoodsItem.id })
+    let data = <exhangeGoodsData>{}
+    if (currentGoodsItem.productType == 0) {
+      data = { Id: exhangeGoodsParams.Id }
+    } else if (currentGoodsItem.productType == 3) {
+      data = { Id: exhangeGoodsParams.Id, AirTicketOrder: exhangeGoodsParams.AirTicketOrder }
+    } else if (currentGoodsItem.productType == 4) {
+      data = { Id: exhangeGoodsParams.Id, GroggeryOrder: exhangeGoodsParams.GroggeryOrder }
+    }
+    console.log(data);
+    exhangeGoodsApi(data)
       .then(() => {
         showToast(t('tips.exhangeSuccess'))
         showGoodsDetails.value = false
@@ -538,6 +605,11 @@ const loadData = () => {
 const showDetails = (item: getGoodsListItem) => {
   Object.assign(currentGoodsItem, item)
   showGoodsDetails.value = true
+}
+
+const confirmIdCard = (selected: any) => {
+  exhangeGoodsParams.AirTicketOrder.DocumentType = selected.selectedValues[0]
+  showDocTypePicker.value = false
 }
 
 getIntegralVip()
