@@ -463,7 +463,7 @@ export default {
   passport: '护照',
   militaryId: '军官证',
   diplomaticCard: '护照',
-  moonpayExchange: '使用借记卡/信用卡购买加密货币',
+  moonpayExchange: 'クレジット/デビットカードで購入する',
   // 利用規約と協議内容等
   html: {
     // htmlタイトル

@@ -207,7 +207,7 @@ export default {
   readMore: 'Details',
   sports: 'Sports',
   liveCasino: 'Live Casino',
-  slots: 'Casino',
+  slots: 'Slots',
   sbSport: 'Saba Sports',
   fbSport: 'FB Sports',
   downloadApp: 'Download APP',
