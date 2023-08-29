@@ -141,7 +141,7 @@ export default {
   searchRecommend: '为你推荐',
   enter: '进入',
   // fund
-  fundAccount: '资金账户',
+  fundAccount: '钱包',
   activeBalance: '余额',
   balance: '余额',
   deposit: '存款',
@@ -151,7 +151,7 @@ export default {
   minDepositAmount: '最低存款金额',
   quickTips: '快速提示',
   quickTipCont: '在您每次进行转账时, 请务必使用您在我们出纳柜台的最新存款钱包地址.',
-  promoCode: '优惠代码',
+  promoCode: '促销代码',
   currentBalance: '当前余额',
   myRewards: '我的奖励',
   transactionHistory: '历史记录',
@@ -167,7 +167,7 @@ export default {
   recommendExchange: '从我们推荐的交易所购买加密货币',
   // 交易记录
   deposits: '存款',
-  withdrawals: '提款',
+  withdrawals: '{curreny} 提款',
   bets: '投注',
   wins: '奖金',
   currencyFilter: '按币种筛选',
@@ -182,7 +182,7 @@ export default {
   walletDetails: '钱包详情',
   walletDetailsBig: '钱包详情',
   waitingResults: '等待审核',
-  withdrawUsdt: 'USDT提款',
+  withdrawUsdt: '{curreny} 提款',
   amount: '金额',
   minWithdrawAmount: '最低提款金额',
   next: '下一步',
@@ -466,6 +466,37 @@ export default {
   militaryId: '军官证',
   diplomaticCard: '护照',
   moonpayExchange: '使用借记卡/信用卡购买加密货币',
+
+  problem: {
+    whatVip: '什么是VIP俱乐部?',
+    whatVips: `<p>seabet.ioVIP俱乐部是专门为加密货币客户开放的社区，让他们可以随时在网站上享受所有优惠活动。您的每一次投注，每次旋转和每手游戏都将进行累积，您将在俱乐部中逐渐升级，并一路解锁惊喜奖励。在解锁VIP等级的同时您也将获得Seabet投注积分，通过积分您将获得更加丰富的奖励和服务。</p>
+    <p>其实简单来说就是： 您玩游戏，我们奖励</p>`,
+    howGetIntegrial: '如何获得积分?',
+    howGetIntegrials: `<p>您每次投注，老虎机旋转和牌桌游戏都会获得俱乐部积分。收集的积分越多，获得的等级越高。当您通过不断晋级的过程中，将伴着花式惊喜奖励。一路解锁，奖励一路升高</p>`,
+    whatVipLevel: '什么是VIP等级?',
+    whatVipLevels: `<p>俱乐部等级决定您可以领取奖励的价值和类型。在俱乐部逐渐晋级的过程中，您的奖励也将不断提高.</p>
+                    <p>VIP级别	所需投注额	奖励次数</p>
+                    <p>青铜	100	1</p>
+                    <p>白银	500	5</p>
+                    <p>黄金	15000	8</p>
+                    <p>铂金	30万	10</p>
+                    <p>钛金	190万	10</p>
+                    <p>钻石	600万	6</p>`,
+    howComputeInterial: '积分如何计?',
+    howComputeInterials: `<p>不论是体育投注，还是玩娱乐场游戏旋转时，使用加密货币都将可以得积分。为了计算您每次下注所赚取的积分，我们将在结算注单时按照实时市场汇率将您的下注金额转换为USDT，从而使无论您使用哪种加密货币，所有点数收集都是公平的。由于转换率会长期波动，因此我们在计算积分时会始终遵守四舍五入到最接近的整数的原则来进行补偿。</p>
+                        <p>Seabet积分获取公式为玩家在任意场馆的投注金额*0.01*对应级别的积分系数，如玩家等级为铂金，投注金额为5000，那么根据积分计算公式，该玩家所获积分为5000*0.01*1.3=650积分。Seabet积分用途广泛，玩家可通过积分在积分商城中兑换等值礼品及服务项目。</p>`,
+    whyMergedReward: '为什么我的奖励被合并?',
+    whyMergedRewards: `<p>您的奖励被合并是因为您的一次投注有可能解锁多个奖励。为了方便您使用，我们将奖励价值相加，并显示为一种奖励。</p>`,
+    resetVip: '我的VIP等级何时重置?',
+    resetVips: '<p>您的VIP等级将在每个月初重置为0。然后，您可以从青铜等级开始再次领取下一级别的所有奖励。您积分仍将被保留，以兑换更多的奖励及服务。</p>',
+    everyGetInterial: '是否每个投注都可收集俱乐部积分?',
+    everyGetInterials: `<p>不是。只有用真钱投注才会累积俱乐部积分。</p>
+                        <p>此外，俱乐部中不包括以下类别赛事，因此，在这些赛事上下的投注不会为您累积积分：</p>
+                        <p>赛马</p>
+                        <p>电竞体育</p>
+                        <p>体育竞猜大师</p>
+                        <p>以下娱乐场游戏也不包括在俱乐部内，在这些游戏上下的投注不会为您累积积分：Can I Earn Club Points with Every Bet?</p>`
+  },
   // 条款协议等内容
   html: {
     // html标题
@@ -540,8 +571,6 @@ export default {
                       <div class="vr-title">四、VIP俱乐部成员能够享受到的福利</div>
                       <div class="vr-conts">
                         <dl>
-                          <dd>助推奖金：您可以根据您每周、每月的游戏量获得奖金，玩的越多，获得的奖金越多</dd>
-                          <dd>近期游戏表现奖金：运气不佳？${site_name}会在您每次升级时根据您的损失提供额外资金</dd>
                           <dd>升级奖金：在每达到下个级别后获取奖金，所达到的级别越高，奖金越多</dd>
                           <dd>定制只属于您的优惠：对常规优惠不感兴趣？没关系，当您达到相应的VIP等级后，我们将会为您特别定制您所感兴趣的优惠内容，仅属于您个人的优惠内容</dd>
                           <dd>私人定制级娱乐体验：无论是各大赛事、演唱会、音乐会还是一场豪华旅行，当您成为我们的高级VIP会员，您的一切个人花销均由您所信赖的${site_name}提供，您的行程由我们来安排</dd>

@@ -182,7 +182,7 @@ export default {
   walletDetails: 'Cüzdan Detayları',
   walletDetailsBig: 'Cüzdan Detayları',
   waitingResults: 'Sonuç Bekleniyor',
-  withdrawUsdt: 'USDT Çekimi',
+  withdrawUsdt: ' {curreny} Çekimi',
   amount: 'Miktar',
   minWithdrawAmount: 'Minimum Çekim Miktarı',
   next: 'Sonraki',

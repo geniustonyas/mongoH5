@@ -53,8 +53,8 @@
                       <!-- <select v-model="editInfoForm.CountryCode" ref="countryDom" class="form-control">
                         <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
                       </select> -->
-                      <input v-model="editInfoForm.CountryCode" ref="countryDom" type="tel" class="form-control" placeholder="+1" autocomplete="off" />
-                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" placeholder="" autocomplete="off" />
+                      <input v-model="editInfoForm.CountryCode" ref="countryDom" type="tel" class="form-control" placeholder="+86" autocomplete="off" />
+                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" placeholder="+138xxxxxxxx" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">

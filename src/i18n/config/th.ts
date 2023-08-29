@@ -182,7 +182,7 @@ export default {
   walletDetails: 'รายละเอียดกระเป๋าเงิน',
   walletDetailsBig: 'รายละเอียดกระเป๋าเงิน',
   waitingResults: 'รอการตรวจสอบ',
-  withdrawUsdt: 'ถอน USDT',
+  withdrawUsdt: 'ถอน {curreny}',
   amount: 'จำนวนเงิน',
   minWithdrawAmount: 'ยอดถอนขั้นต่ำ',
   next: 'ถัดไป',

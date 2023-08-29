@@ -182,7 +182,7 @@ export default {
   walletDetails: 'Détails du Portefeuille',
   walletDetailsBig: 'Détails du Portefeuille',
   waitingResults: 'En Attente de Validation',
-  withdrawUsdt: 'Retrait USDT',
+  withdrawUsdt: 'Retrait {curreny}',
   amount: 'Montant',
   minWithdrawAmount: 'Montant Minimum de Retrait',
   next: 'Suivant',

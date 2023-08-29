@@ -197,7 +197,7 @@ const routes = [
     component: AppMain,
     children: [
       {
-        path: ':type(rules|responsible|aml|selfExclusion)',
+        path: ':type(rules|responsible|aml|selfExclusion|fairness|privacy)',
         name: 'terms',
         component: () => import('@/views/terms/terms.vue'),
         meta: { transition: '', needLogin: false }

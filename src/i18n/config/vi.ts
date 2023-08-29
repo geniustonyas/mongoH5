@@ -182,7 +182,7 @@ export default {
   walletDetails: 'Chi tiết ví',
   walletDetailsBig: 'Chi tiết ví',
   waitingResults: 'Đang chờ xác nhận',
-  withdrawUsdt: 'Rút USDT',
+  withdrawUsdt: 'Rút {curreny}',
   amount: 'Số tiền',
   minWithdrawAmount: 'Số tiền rút tối thiểu',
   next: 'Tiếp theo',

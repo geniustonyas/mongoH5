@@ -11,7 +11,7 @@
 
         <!-- step 1 -->
         <div v-show="step == 1" class="fund-form">
-          <div class="ff-title">{{ currenyName() }}{{ t('withdrawals') }}</div>
+          <div class="ff-title">{{ t('withdrawUsdt', { curreny: currenyName() }) }}</div>
           <div class="ff-balance">
             {{ t('currentBalance') }}
             <!-- {{  }} -->

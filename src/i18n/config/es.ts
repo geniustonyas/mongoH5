@@ -182,7 +182,7 @@ export default {
   walletDetails: 'Detalles de la Billetera',
   walletDetailsBig: 'Detalles de la Billetera',
   waitingResults: 'Esperando Resultados',
-  withdrawUsdt: 'Retiro USDT',
+  withdrawUsdt: 'Retiro {curreny}',
   amount: 'Monto',
   minWithdrawAmount: 'Monto Mínimo de Retiro',
   next: 'Siguiente',

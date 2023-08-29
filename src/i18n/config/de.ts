@@ -182,7 +182,7 @@ export default {
   walletDetails: 'Wallet-Details',
   walletDetailsBig: 'Wallet-Details',
   waitingResults: 'Warte auf Ergebnisse',
-  withdrawUsdt: 'USDT abheben',
+  withdrawUsdt: 'USDT {curreny}',
   amount: 'Betrag',
   minWithdrawAmount: 'Mindestabhebungsbetrag',
   next: 'Weiter',

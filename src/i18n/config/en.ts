@@ -81,7 +81,7 @@ export default {
     '107': 'Diamond'
   },
   homePage: {
-    currentMultiplier: 'Current multiple',
+    currentMultiplier: 'multiplier',
     nextReward: 'Next tier reward',
     showProgress: 'Show my progress'
   },
@@ -97,8 +97,8 @@ export default {
   promoDetail: 'Promotion Details',
   // 俱乐部
   club: 'Club',
-  tiers: 'tiers',
-  clubTips: "Your rewards will be reset every month, please claim your rewards before the end of the month, don't miss it.",
+  tiers: 'Tiers',
+  clubTips: 'Your rewards will reset every month. Please claim your rewards by the end of each month before it expires. Do not miss it!',
   currentPoints: 'Current points',
   currentPointsMultiplier: 'Current Points Multiplier',
   receiveReward: 'Receive reward',
@@ -106,7 +106,7 @@ export default {
   mergedReards: 'Accumulated to the next level of merged receipt',
   noReward: 'No rewards yet, advance to the next level and unlock your first reward',
   // vip俱乐部
-  vipClub: 'VIP-CLUB',
+  vipClub: 'VIP Club',
   // 积分商城
   mallStore: 'Marketplace',
   // 账户设置
@@ -117,7 +117,7 @@ export default {
   currentPwd: 'Current Password',
   newPwd: 'New Password',
   confirmPwd: 'Confirm Password',
-  changePwdLimit: 'To ensure the safety of your funds, after you change your password, you will not be able to withdraw money within 48 hours. ',
+  changePwdLimit: 'To ensure the safety of your funds, no withdrawal is allowed in the next 48 hours after a change of password is made.',
   disabledGoogle: 'Google Authenticator is disabled',
   activeGoogle: 'To activate, scan the QR code or enter the code manually ',
   whatGoogleCode: 'What is Google Verification Code? ',
@@ -141,7 +141,7 @@ export default {
   searchRecommend: 'Recommended for you',
   enter: 'Enter',
   // fund
-  fundAccount: 'Fund account',
+  fundAccount: 'Wallet',
   activeBalance: 'Active Balance',
   balance: 'Balance',
   deposit: 'Deposit',
@@ -151,14 +151,14 @@ export default {
   minDepositAmount: 'Minimum deposit amount',
   quickTips: 'Quick Tips',
   quickTipCont: 'Please always check your deposit wallet address on our site before making your transactions.',
-  promoCode: 'Promo code',
+  promoCode: 'Promotion Code',
   currentBalance: 'Current balance',
   myRewards: 'My Rewards',
   transactionHistory: 'History',
   supportSettings: 'Support and Settings',
   walletSettings: 'Wallet settings',
   faq: 'Help',
-  liveSupport: 'Online customer service',
+  liveSupport: 'Live Support',
   chooseCrypto: 'Choose your preferred currency',
   cryptoCurrency: 'Crypto',
   bank: 'FIAT',
@@ -167,7 +167,7 @@ export default {
   recommendExchange: 'Buy cryptocurrencies from our recommended exchanges',
   // 交易记录
   deposits: 'Deposit',
-  withdrawals: 'Withdrawals',
+  withdrawals: 'Withdraw {curreny}',
   bets: 'Bets',
   wins: 'Wins',
   currencyFilter: 'Currency',
@@ -181,7 +181,7 @@ export default {
   inputAmount: 'Enter the amount',
   walletDetails: 'Wallet details',
   walletDetailsBig: 'WALLET DETAILS',
-  waitingResults: 'waiting for review',
+  waitingResults: 'review in progress',
   withdrawUsdt: 'Withdraw USDT',
   amount: 'amount',
   minWithdrawAmount: 'Minimum withdrawal amount',
@@ -387,7 +387,7 @@ export default {
   bonusValue: 'Bonus Value',
   wageringRequirement: 'Wagering Requirement',
   enableVisible: 'Enable Ghost Mode',
-  hiddenYourBet: "Your bets won't appear in public bet feed and bet preview",
+  hiddenYourBet: 'Your bets will not appear on our public betting activity page',
   startNow: 'Start Now',
   withdrawStatus: { 1: 'Processing', 2: 'Success', 3: 'Failure' },
   time: 'Time',
@@ -466,6 +466,51 @@ export default {
   militaryId: 'Military ID',
   diplomaticCard: 'Passport',
   moonpayExchange: 'Buy crypto with Credit/Debit Card',
+
+  problem: {
+    whatVip: 'What is the VIP Club?',
+    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
+                <p>In simple terms, it means: You play games, and we reward you.</p>`,
+    howGetIntegrial: 'How to Earn Points?',
+    howGetIntegrials: `<p>How to Earn Points?</p>
+                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
+                        <p></p>`,
+    whatVipLevel: 'What are VIP Levels?',
+    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
+                    <p>VIP Level 	Required Bet Amount	Frequency</p>
+                    <p>Bronze 	100	1</p>
+                    <p>Silver	500	5</p>
+                    <p>Gold 	15000	8</p>
+                    <p>Platinum 	300,000	10</p>
+                    <p>Titanium	1,900,000	10</p>
+                    <p>Diamond 	6,000,000	6</p>
+                    <p></p>`,
+    howComputeInterial: 'How are Points Calculated?',
+    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
+                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
+    whyMergedReward: 'Why are My Rewards Merged?',
+    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
+    resetVip: 'When will My VIP Level Reset?',
+    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
+    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
+    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
+                        <p>Horse Racing</p>
+                        <p>Esports Sports</p>
+                        <p>Sportsbook Masters</p>
+                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
+                        <p></p>
+                        <p>OneTouch - Russian Poker</p>
+                        <p>Genii - Aces And Faces Video Poker</p>
+                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+                        <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
+                        <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
+                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
+                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
+                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
+                        <p>Asia Gaming - Fish Hunter</p>
+                        <p>Spadegaming - Fishing God, Fishing War</p>
+                        <p>Gamatron - Tokyo Kombat</p>`
+  },
   // 条款协议等内容
   html: {
     // html标题
@@ -540,8 +585,6 @@ export default {
                       <div class="vr-title">4、Benefits for VIP Club Members</div>
                       <div class="vr-conts">
                         <dl>
-                          <dd>Boost Bonuses: You can earn bonuses based on your weekly and monthly gaming volume. The more you play, the more bonuses you receive.</dd>
-                          <dd>Recent Game Performance Bonus: Having a streak of bad luck? ${site_name} will provide additional funds based on your losses every time you level up.</dd>
                           <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
                           <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
                           <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>

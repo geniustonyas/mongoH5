@@ -182,7 +182,7 @@ export default {
   walletDetails: 'Detalhes da Carteira',
   walletDetailsBig: 'Detalhes da Carteira',
   waitingResults: 'Aguardando Resultados',
-  withdrawUsdt: 'Retirada USDT',
+  withdrawUsdt: 'Retirada  {curreny}',
   amount: 'Valor',
   minWithdrawAmount: 'Valor Mínimo de Retirada',
   next: 'Próximo',

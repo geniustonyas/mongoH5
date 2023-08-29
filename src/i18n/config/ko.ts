@@ -182,7 +182,7 @@ export default {
   walletDetails: '지갑세부정보',
   walletDetailsBig: '지갑세부정보',
   waitingResults: '검토결과 대기',
-  withdrawUsdt: 'USDT출금',
+  withdrawUsdt: ' {curreny} 출금',
   amount: '금액',
   minWithdrawAmount: '최소출금금액',
   next: '다음',

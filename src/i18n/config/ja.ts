@@ -182,7 +182,7 @@ export default {
   walletDetails: 'ウォレットの詳細',
   walletDetailsBig: 'ウォレットの詳細',
   waitingResults: '承認待ち',
-  withdrawUsdt: 'USDT出金',
+  withdrawUsdt: '{curreny} 出金',
   amount: '金額',
   minWithdrawAmount: 'ミニマム出金金額',
   next: '次へ',
