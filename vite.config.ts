@@ -13,6 +13,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     // },
     /** 打包时根据实际情况修改 base */
     base: VITE_PUBLIC_PATH,
+    publicDir: 'public',
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
