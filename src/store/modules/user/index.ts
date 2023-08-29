@@ -186,6 +186,9 @@ export const useUserStore = defineStore('userInfo', () => {
     if (refreshTokenTimer.value) {
       clearInterval(refreshTokenTimer.value)
     }
+    if (newMessageCountTimer.value) {
+      clearInterval(newMessageCountTimer.value)
+    }
     clearToken()
     router.push({ name: 'login' })
   }
