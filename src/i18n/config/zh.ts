@@ -61,7 +61,7 @@ export default {
     holderEmail: `例如:you{'@'}example.com`,
     holderTelephone: '电话(+66 xxxxxxxxxxx)',
     isAdult: '我确认我已满18周岁, 并接受',
-    termCondition: '条款条件',
+    termCondition: '规则与条款',
     privacyPolicy: '隐私政策',
     isAgree: `我同意接受${site_name}的促销和活动相关的市场信息。`
   },
