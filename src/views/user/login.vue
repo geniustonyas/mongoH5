@@ -182,8 +182,8 @@ const handleLogin = () => {
       const routeName = route.query.routeTo ? route.query.routeTo.toString() : 'index'
       router.push({ name: routeName })
     })
-    .catch(() => {
-      showToast(t('tips.loginFail'))
+    .catch((error) => {
+      showToast(error)
     })
 }
 
