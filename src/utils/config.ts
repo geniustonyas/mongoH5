@@ -173,7 +173,7 @@ export const fundCategoryData = () => {
 
 export const buyCryptoData = () => {
   return [
-    { name: 'Moonpay', sub: t('recommendExchange'), url: 'https://www.moonpay.com/', img: getAssetsFile('coin/moonpay.svg') },
+    { name: 'Moonpay', sub: t('moonpayExchange'), url: 'https://www.moonpay.com/', img: getAssetsFile('coin/moonpay.svg') },
     { name: 'Binance', sub: t('recommendExchange'), url: 'https://www.binance.com/', img: getAssetsFile('coin/binance_icon.svg') },
     { name: 'OKX', sub: t('recommendExchange'), url: 'https://www.okx.com/', img: getAssetsFile('coin/okx.svg') },
     { name: 'Bybit', sub: t('recommendExchange'), url: 'https://www.bybit.com/', img: getAssetsFile('coin/bybit_icon.svg') },
