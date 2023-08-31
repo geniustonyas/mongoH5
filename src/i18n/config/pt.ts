@@ -466,6 +466,103 @@ export default {
   militaryId: '军官证',
   diplomaticCard: '护照',
   moonpayExchange: '使用借记卡/信用卡购买加密货币',
+  learnMore: '了解更多',
+
+  problem: {
+    whatVip: 'What is the VIP Club?',
+    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
+                <p>In simple terms, it means: You play games, and we reward you.</p>`,
+    howGetIntegrial: 'How to Earn Points?',
+    howGetIntegrials: `<p>How to Earn Points?</p>
+                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
+                        <p></p>`,
+    whatVipLevel: 'What are VIP Levels?',
+    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
+                    <p>VIP Level 	Required Bet Amount	Frequency</p>
+                    <p>Bronze 	100	1</p>
+                    <p>Silver	500	5</p>
+                    <p>Gold 	15000	8</p>
+                    <p>Platinum 	300,000	10</p>
+                    <p>Titanium	1,900,000	10</p>
+                    <p>Diamond 	6,000,000	6</p>
+                    <p></p>`,
+    howComputeInterial: 'How are Points Calculated?',
+    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
+                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
+    whyMergedReward: 'Why are My Rewards Merged?',
+    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
+    resetVip: 'When will My VIP Level Reset?',
+    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
+    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
+    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
+                        <p>Horse Racing</p>
+                        <p>Esports Sports</p>
+                        <p>Sportsbook Masters</p>
+                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
+                        <p></p>
+                        <p>OneTouch - Russian Poker</p>
+                        <p>Genii - Aces And Faces Video Poker</p>
+                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+                        <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
+                        <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
+                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
+                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
+                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
+                        <p>Asia Gaming - Fish Hunter</p>
+                        <p>Spadegaming - Fishing God, Fishing War</p>
+                        <p>Gamatron - Tokyo Kombat</p>`
+  },
+  faqs: {
+    q1: 'Como faço um depósito?',
+    a1: `<p>PIX</p>
+          <p>1. Selecione a opção PIX.</p>
+          <p>2. Digite o valor que deseja depositar.</p>
+          <p>3. Clique em "Próximo", confirme seus dados e depois clique em "Confirmar".</p>
+          <p>4. Clique em "Continue" e você será redirecionado para o site do provedor de pagamentos.</p>
+          <p>5. Use o QR code ou copie o código para pagar no aplicativo do seu banco.</p>`,
+    q2: 'Transferência Bancária',
+    a2: `<p>1. Selecione a opção de transferência bancária.</p>
+          <p>2. Selecione o banco, e caso seu banco não esteja nas opções, basta selcionar qualquer um.</p>
+          <p>3. Clique em "Confirmar".</p>
+          <p>4. Clique em "Continue" e você será redirecionado para o site do provedor de pagamentos.</p>
+          <p>5. Use os dados informados pelo provedor para realizar o pagamento, e lembre-se de transferir o valor exato que aparece na tela.</p>`,
+    q3: 'Quanto tempo leva o processamento dos depósitos/saques?',
+    a3: `<p>Depósitos</p>
+        <p>Depósitos por PIX podem levar até 10 minutos para serem confirmados.</p>
+        <p>Depósitos por transferência bancária podem levar até 1 dia útil para serem confirmados.</p>
+        <p>Saques</p>
+        <p>Saques por PIX podem ser instantâneos, mas o prazo máximo é de até 1 dia útil para serem confirmados.</p>
+        <p>Saques por transferência bancária podem ser compensados em até 1 dia, mas o prazo máximo é de 5 dias úteis.</p>`,
+    q4: 'É necessário verificar minha conta (processo KYC) para sacar?',
+    a4: `<p>Aconselhamos que você verifique sua conta antes de sacar, pois isso ajuda a evitar possíveis problemas com transações futuras.</p>
+          <p>Você pode enviar os documentos para a verificação de conta através do seu perfil, e qualquer dúvida que tiver entre em contato com nosso time pelo email suporte@sportsbet.io.</p>`,
+    q5: 'Quais moedas e métodos de pagamento estão disponíveis?',
+    a5: `As opções de moeda disponíveis no Sportsbet.io são:
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.btc </p>
+          <p>• @:currencyLang.eth </p>
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.busd </p>
+          <p>• @:currencyLang.trx </p>
+          <p>• @:currencyLang.xrp </p>
+          <p>• @:currencyLang.bnb </p>
+          <p>• @:currencyLang.ltc </p>
+          <p>• @:currencyLang.ada </p>
+          <p>• @:currencyLang.doge </p>
+          <p>• @:currencyLang.ton </p>
+          <p>• @:currencyLang.usd </p>
+          <p>• @:currencyLang.cny </p>`,
+    q6: 'Há cobrança de taxas nas transações?',
+    a6: `<p>Embora não apliquemos nenhuma taxa de transação para depósitos e saques no Sportsbet.io, pode haver cobrança de taxas ao utilizar o blockchain e/ou taxas cobradas diretamente do seu banco.</p>`,
+    q7: '',
+    a7: ``,
+    q8: '',
+    a8: ``,
+    q9: '',
+    a9: ``,
+    q10: '',
+    a10: ``
+  },
   html: {
     // Títulos HTML
     vipTitle: 'Clube VIP',

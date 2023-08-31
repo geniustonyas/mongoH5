@@ -117,7 +117,7 @@ export const currenyListData = () => {
     },
     {
       code: 'USD',
-      currenyName: t('currencyLang.btc'),
+      currenyName: t('currencyLang.usd'),
       unit: 'USD',
       currenyType: '20',
       icon: 'coin/usd.svg',

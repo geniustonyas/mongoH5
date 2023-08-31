@@ -465,6 +465,95 @@ export default {
   militaryId: '军官证',
   diplomaticCard: '护照',
   moonpayExchange: '使用借记卡/信用卡购买加密货币',
+  learnMore: 'Learn More',
+
+  problem: {
+    whatVip: 'What is the VIP Club?',
+    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
+                <p>In simple terms, it means: You play games, and we reward you.</p>`,
+    howGetIntegrial: 'How to Earn Points?',
+    howGetIntegrials: `<p>How to Earn Points?</p>
+                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
+                        <p></p>`,
+    whatVipLevel: 'What are VIP Levels?',
+    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
+                    <p>VIP Level 	Required Bet Amount	Frequency</p>
+                    <p>Bronze 	100	1</p>
+                    <p>Silver	500	5</p>
+                    <p>Gold 	15000	8</p>
+                    <p>Platinum 	300,000	10</p>
+                    <p>Titanium	1,900,000	10</p>
+                    <p>Diamond 	6,000,000	6</p>
+                    <p></p>`,
+    howComputeInterial: 'How are Points Calculated?',
+    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
+                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
+    whyMergedReward: 'Why are My Rewards Merged?',
+    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
+    resetVip: 'When will My VIP Level Reset?',
+    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
+    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
+    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
+                        <p>Horse Racing</p>
+                        <p>Esports Sports</p>
+                        <p>Sportsbook Masters</p>
+                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
+                        <p></p>
+                        <p>OneTouch - Russian Poker</p>
+                        <p>Genii - Aces And Faces Video Poker</p>
+                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+                        <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
+                        <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
+                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
+                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
+                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
+                        <p>Asia Gaming - Fish Hunter</p>
+                        <p>Spadegaming - Fishing God, Fishing War</p>
+                        <p>Gamatron - Tokyo Kombat</p>`
+  },
+  faqs: {
+    q1: '¿Cómo hago un depósito?<',
+    a1: `<p>1. Selecciona la criptomoneda de tu elección, luego haz clic en Depositar.</p>
+        <p>2. Copia la dirección de depósito único y utilícela en tu billetera (o escanee el código QR).</p>
+        <p>3. Una vez que se confirme tu transacción, recibirá una notificación.</p>`,
+    q2: '¿Cómo hago un retiro?',
+    a2: `<p>1. Elige la criptomoneda que te gustaría retirar, luego haz clic en Retirar.</p>
+        <p>2. Ingresa la cantidad que deseas retirar.</p>
+        <p>3. Ingresa la dirección de tu billetera.</p>
+        <p>4. Haz clic en el botón Retirar.</p>`,
+    q3: '¿Cuánto tardan los depósitos/retiros?',
+    a3: `<p>La mayoría de los depósitos criptográficos se procesan a la velocidad del rayo. Sin embargo, puede haber algunos retrasos de los servicios de terceros. Para los depósitos de BTCXE, tu transacción puede tardar hasta 30 minutos en procesarse debido al tiempo necesario para la conversión de fondos fiduciarios a BTC.</p>
+        <p>Retiro</p>
+        <p>La mayoría de los retiros se procesan instantáneamente. En el caso de grandes retiros, procesamos estos retiros manualmente, por lo que puede haber un ligero retraso.</p>`,
+    q4: '¿Es necesario verificar mi cuenta (KYC) para retirar?',
+    a4: `<p>Le recomendamos que verifique su cuenta antes de retirar dinero, ya que esto ayuda a evitar posibles problemas con las transacciones en un momento posterior.</p>
+        <p>Al registrarse, puede enviar documentos de verificación de cuenta a través de tu perfil.</p>
+        <p>Nuestro Equipo de garantía de seguridad del jugador se comunicará con los usuarios más adelante si hay inquietudes con respecto al uso de nuestra plataforma y el origen/destino de los fondos.</p>`,
+    q5: '¿Qué monedas y métodos de pago ofrecen?',
+    a5: `Las opciones de moneda disponibles en seabet.io son:
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.btc </p>
+          <p>• @:currencyLang.eth </p>
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.busd </p>
+          <p>• @:currencyLang.trx </p>
+          <p>• @:currencyLang.xrp </p>
+          <p>• @:currencyLang.bnb </p>
+          <p>• @:currencyLang.ltc </p>
+          <p>• @:currencyLang.ada </p>
+          <p>• @:currencyLang.doge </p>
+          <p>• @:currencyLang.ton </p>`,
+    q6: '¿Aplican comisiones en las transacciones?',
+    a6: `<p>Si bien no aplicamos ninguna tarifa de transacción para depósitos y retiros en Sportsbet.io, puede haber tarifas de transacción que deba pagar al usar la cadena de bloques y/o su banco.</p>`,
+    q7: '',
+    a7: ``,
+    q8: '',
+    a8: ``,
+    q9: '',
+    a9: ``,
+    q10: '',
+    a10: ``
+  },
   // Términos y Contenidos HTML
   html: {
     // Títulos HTML

@@ -466,6 +466,7 @@ export default {
   militaryId: 'Military ID',
   diplomaticCard: 'Passport',
   moonpayExchange: 'Buy crypto with Credit/Debit Card',
+  learnMore: 'Learn More',
 
   problem: {
     whatVip: 'What is the VIP Club?',
@@ -510,6 +511,68 @@ export default {
                         <p>Asia Gaming - Fish Hunter</p>
                         <p>Spadegaming - Fishing God, Fishing War</p>
                         <p>Gamatron - Tokyo Kombat</p>`
+  },
+  faqs: {
+    q1: 'How do I deposit with crypto?',
+    a1: `<p>1. Select the cryptocurrency of your choice, then click “Deposit”.</p>
+        <p>2. Copy the one-time deposit address and paste it in your wallet (or scan the QR code).</p>
+        <p>3. Once your transaction is confirmed, you will receive a notification.</p>`,
+    q2: 'How do I Deposit with JPY?',
+    a2: `<p>1. You can deposit with your JPY by using Instant JPY Bank Transfer.</p>
+          <p>2. Select JPY as your wallet currency.</p>
+          <p>3. Click Instant JPY Bank Transfer from the available payment methods, follow the steps, enter the required information, and click “Continue”.</p>
+          <p>4. Once you have completed the steps on the seabet.io page, you will be redirected to your bank. Follow the steps to complete your deposit.</p>
+          <p>5. Once the transaction has been completed, you will be redirected back to Sportsbet.io.</p>`,
+    q3: 'How do I deposit with credit/debit card',
+    a3: `<p>Deposit via Onramper</p>
+          <p>1. Choose the “Onramper” payment method</p>
+          <p>2. Select your Fiat currency and which Crypto you would like to purchase</p>
+          <p>3. Fill in the amount you would like to deposit</p>
+          <p>4. Fill in your email address</p>
+          <p>5. Retrieve the code sent to your email address and fill it in on the webpage</p>
+          <p>6. Fill in your details and click continue</p>
+          <p>7. Review your payment</p>
+          <p>8. Fill in your card details</p>`,
+    q4: 'How to withdraw crypto?',
+    a4: `<p>1. Choose the cryptocurrency you would like to withdraw, then click “Withdraw”.</p>
+        <p>2. Enter the amount that you want to withdraw.</p>
+        <p>3. Enter your wallet address.</p>
+        <p>4. Click the Withdraw button.</p>`,
+    q5: 'How to withdraw JPY?',
+    a5: `<p>1. You can withdraw JPY by using Instant JPY Bank Transfer.</p>
+          <p>2. Select JPY as your wallet currency.</p>
+          <p>3. Click Instant JPY Bank Transfer from the available payment methods, follow the steps, enter the required information, and click “Continue”.</p>
+          <p>4. Once you have completed the steps on the Sportsbet.io page, you will be redirected to your bank. Follow the steps to complete your withdrawal.</p>
+          <p>5. Once the transaction has been completed, you will be redirected back to Sportsbet.io.</p>`,
+    q6: 'How long do deposits/withdrawals take?',
+    a6: `<p>Deposit</p>
+          <p>Most crypto deposits are processed at lightning speed. However, there may be some delays from third-party services. For BTCXE deposits, it may take up to 30 minutes for your transaction to be processed due to the time needed for the conversion from fiat funds to BTC.</p>
+          <p>Withdrawal</p>
+          <p>Most withdrawals are processed instantly. In the event of large withdrawals, we process these withdrawals manually so there may be a slight delay.</p>`,
+    q7: 'Is it necessary to verify my account (KYC) to withdraw?',
+    a7: `<p>We advise you to verify your account before withdrawing as this helps to prevent any possible issues with transactions at a later time.</p>
+          <p>Upon registration, you can submit account verification documents via your profile.</p>
+          <p>Our Player Safety & Assurance Team will contact any users later on if there are concerns regarding their use of our platform and source/destination of funds.</p>`,
+    q8: 'What currencies and payment methods do you offer?',
+    a8: `<p>The available currency options in Sportsbet.io are:</p>
+        <p>• @:currencyLang.usdt </p>
+        <p>• @:currencyLang.btc </p>
+        <p>• @:currencyLang.eth </p>
+        <p>• @:currencyLang.usdt </p>
+        <p>• @:currencyLang.busd </p>
+        <p>• @:currencyLang.trx </p>
+        <p>• @:currencyLang.xrp </p>
+        <p>• @:currencyLang.bnb </p>
+        <p>• @:currencyLang.ltc </p>
+        <p>• @:currencyLang.ada </p>
+        <p>• @:currencyLang.doge </p>
+        <p>• @:currencyLang.ton </p>
+        <p>• @:currencyLang.usd </p>
+        <p>• @:currencyLang.cny </p>`,
+    q9: 'Do you apply fees on transactions?',
+    a9: `<p>While we don’t apply any transaction fees for deposits and withdrawals at Sportsbet.io, there may be transaction fees you have to pay for using the blockchain and/or your bank.</p>`,
+    q10: '',
+    a10: ``
   },
   // 条款协议等内容
   html: {

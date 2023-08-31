@@ -467,6 +467,98 @@ export default {
   militaryId: '军官证',
   diplomaticCard: '护照',
   moonpayExchange: '신용/직불 카드로 암호화폐 구매',
+  learnMore: '了解更多',
+
+  problem: {
+    whatVip: 'What is the VIP Club?',
+    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
+                <p>In simple terms, it means: You play games, and we reward you.</p>`,
+    howGetIntegrial: 'How to Earn Points?',
+    howGetIntegrials: `<p>How to Earn Points?</p>
+                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
+                        <p></p>`,
+    whatVipLevel: 'What are VIP Levels?',
+    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
+                    <p>VIP Level 	Required Bet Amount	Frequency</p>
+                    <p>Bronze 	100	1</p>
+                    <p>Silver	500	5</p>
+                    <p>Gold 	15000	8</p>
+                    <p>Platinum 	300,000	10</p>
+                    <p>Titanium	1,900,000	10</p>
+                    <p>Diamond 	6,000,000	6</p>
+                    <p></p>`,
+    howComputeInterial: 'How are Points Calculated?',
+    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
+                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
+    whyMergedReward: 'Why are My Rewards Merged?',
+    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
+    resetVip: 'When will My VIP Level Reset?',
+    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
+    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
+    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
+                        <p>Horse Racing</p>
+                        <p>Esports Sports</p>
+                        <p>Sportsbook Masters</p>
+                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
+                        <p></p>
+                        <p>OneTouch - Russian Poker</p>
+                        <p>Genii - Aces And Faces Video Poker</p>
+                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+                        <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
+                        <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
+                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
+                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
+                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
+                        <p>Asia Gaming - Fish Hunter</p>
+                        <p>Spadegaming - Fishing God, Fishing War</p>
+                        <p>Gamatron - Tokyo Kombat</p>`
+  },
+  faqs: {
+    q1: '어떻게 입금하나요?',
+    a1: `<p>1. 원하는 암호화폐를 선택후 입금을 클릭하세요.</p>
+        <p>2. 일회용 입금 주소를 복사하여 지갑에 붙으세요(또는 QR 코드를 스캔하세요).</p>
+        <p>3. 거래가 확인되면, 알림을 받게됩니다.</p>`,
+    q2: '어떻게 출금하나요?',
+    a2: `<p>1. 원하는 암호화폐를 선택후 출금을 클릭하세요.</p>
+        <p>2. 출금하고자 하는 금액을 입력하세요.</p>
+        <p>3. 지갑 주소를 입력하세요.</p>
+        <p>4. 출금 버튼을 클릭하세요.</p>`,
+    q3: '입/출금에 얼마나 걸립니까?',
+    a3: `<p>입금</p>
+        <p>그러나, 타사 서비스에 의해 지연이 발생할 수 있습니다. BTCXE 입금의 경우 FIAT 자금을 BTC로 환전하기 위해 소요되는 시간으로 인해 거래가 처리될 때 까지 최대 30 분이 소요될 수 있습니다.</p>
+        <p>출금</p>
+        <p>대부분의 출금은 즉시 처리됩니다. 큰 금액의 출금의 경우, 수동으로 처리가 될 수 있으며 지연이 발생할 수 있습니다.</p>`,
+    q4: '출금시에 계정 인증 (KYC)가 필요합니까?<',
+    a4: `<p>향후 발생할 수 있는 장애 사항을 방지하기 위해 출금전 계정 인증을 추천합니다.</p>
+        <p>회원가입 후, 계정 인증 문서를 프로필 페이지에서 업로드 할 수 있습니다.</p>
+        <p>향후 고객의 자금 출처 및 전송에 관한 우려로 인해 고객 보호팀은 모든 유저에게 연락을 할 수 있습니다.</p>`,
+    q5: '어떤 통화와 결제 수단을 제공합니까?',
+    a5: `seabet.io의 취급화폐는 다음과 같습니다:
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.btc </p>
+          <p>• @:currencyLang.eth </p>
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.busd </p>
+          <p>• @:currencyLang.trx </p>
+          <p>• @:currencyLang.xrp </p>
+          <p>• @:currencyLang.bnb </p>
+          <p>• @:currencyLang.ltc </p>
+          <p>• @:currencyLang.ada </p>
+          <p>• @:currencyLang.doge </p>
+          <p>• @:currencyLang.ton </p>
+          <p>• @:currencyLang.usd </p>
+          <p>• @:currencyLang.cny </p>`,
+    q6: '거래 수수료가 부가됩니까?',
+    a6: `<p>당사는 입출금에 어떠한 수수료도 부가하지 않습니다만, 블록체인 상에서 또는 은행을 통해 부가되는 수수료가 발생할 수 있습니다.</p>`,
+    q7: '',
+    a7: ``,
+    q8: '',
+    a8: ``,
+    q9: '',
+    a9: ``,
+    q10: '',
+    a10: ``
+  },
   // 条款协议等内容
   html: {
     // html제목

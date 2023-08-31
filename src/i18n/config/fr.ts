@@ -465,6 +465,98 @@ export default {
   militaryId: '军官证',
   diplomaticCard: '护照',
   moonpayExchange: '使用借记卡/信用卡购买加密货币',
+  learnMore: '了解更多',
+
+  problem: {
+    whatVip: 'What is the VIP Club?',
+    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
+                <p>In simple terms, it means: You play games, and we reward you.</p>`,
+    howGetIntegrial: 'How to Earn Points?',
+    howGetIntegrials: `<p>How to Earn Points?</p>
+                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
+                        <p></p>`,
+    whatVipLevel: 'What are VIP Levels?',
+    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
+                    <p>VIP Level 	Required Bet Amount	Frequency</p>
+                    <p>Bronze 	100	1</p>
+                    <p>Silver	500	5</p>
+                    <p>Gold 	15000	8</p>
+                    <p>Platinum 	300,000	10</p>
+                    <p>Titanium	1,900,000	10</p>
+                    <p>Diamond 	6,000,000	6</p>
+                    <p></p>`,
+    howComputeInterial: 'How are Points Calculated?',
+    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
+                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
+    whyMergedReward: 'Why are My Rewards Merged?',
+    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
+    resetVip: 'When will My VIP Level Reset?',
+    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
+    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
+    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
+                        <p>Horse Racing</p>
+                        <p>Esports Sports</p>
+                        <p>Sportsbook Masters</p>
+                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
+                        <p></p>
+                        <p>OneTouch - Russian Poker</p>
+                        <p>Genii - Aces And Faces Video Poker</p>
+                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+                        <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
+                        <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
+                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
+                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
+                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
+                        <p>Asia Gaming - Fish Hunter</p>
+                        <p>Spadegaming - Fishing God, Fishing War</p>
+                        <p>Gamatron - Tokyo Kombat</p>`
+  },
+  faqs: {
+    q1: 'Comment puis-je faire un dépôt ?',
+    a1: `<p>1. Sélectionnez la cryptomonnaie de votre choix, puis cliquez sur Déposer.</p>
+          <p>2. Copiez l’adresse de dépôt unique et utilisez-la dans votre portefeuille (ou scannez le code QR).</p>
+          <p>3. Une fois votre transaction confirmée, vous recevrez un avis.</p>`,
+    q2: 'Comment puis-je effectuer un retrait ?',
+    a2: `<p>1. Choisissez la cryptomonnaie que vous souhaitez retirer, puis cliquez sur Retirer.</p>
+          <p>2. Entrez le montant que vous souhaitez retirer.</p>
+          <p>3. Entrez votre adresse de portefeuille.</p>
+          <p>4. Cliquez sur le bouton Retirer.</p>`,
+    q3: 'Combien de temps les dépôts/retraits prennent-ils ?',
+    a3: `<p>dépôt</p>
+          <p>La plupart des dépôts cryptographiques sont traités à la vitesse de l’éclair. Cependant, il peut y avoir des retards de services tiers. Pour les dépôts BTCXE, cela peut prendre jusqu’à 30 minutes pour que votre transaction soit traitée en raison du temps nécessaire pour la conversion de fonds fiduciaires en BTC.</p>
+          <p>retrait</p>
+          <p>La plupart des retraits sont traités instantanément. En cas de retraits importants, nous traitons ces retraits manuellement de sorte qu’il peut y avoir un léger retard.</p>`,
+    q4: 'Est-il nécessaire de vérifier mon compte (KYC) pour le retirer ?',
+    a4: `<p>Nous vous conseillons de vérifier votre compte avant de le retirer, car cela permet d’éviter tout problème éventuel avec les transactions à un moment ultérieur.</p>
+          <p>Lors de votre inscription, vous pouvez soumettre des documents de vérification de compte via votre profil.</p>
+          <p>Notre équipe Sécurité et assurance des joueurs communiquera avec les utilisateurs plus tard s’ils ont des préoccupations au sujet de l’utilisation de notre plateforme et de la source ou de la destination des fonds.</p>`,
+    q5: 'Quelles devises et méthodes de paiement offrez-vous ?',
+    a5: `Les options de devises disponibles dans seabet.io sont :
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.btc </p>
+          <p>• @:currencyLang.eth </p>
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.busd </p>
+          <p>• @:currencyLang.trx </p>
+          <p>• @:currencyLang.xrp </p>
+          <p>• @:currencyLang.bnb </p>
+          <p>• @:currencyLang.ltc </p>
+          <p>• @:currencyLang.ada </p>
+          <p>• @:currencyLang.doge </p>
+          <p>• @:currencyLang.ton </p>
+          <p>• @:currencyLang.usd </p>
+          <p>• @:currencyLang.cny </p>`,
+    q6: 'Appliquez-vous des frais sur les transactions ?',
+    a6: `<p>Bien que nous n’appliquons pas de frais de transaction pour les dépôts et les retraits chez Sportsbet.io, il peut y avoir des frais de transaction que vous devez payer pour utiliser la blockchain et / ou votre banque.</p>`,
+    q7: '',
+    a7: ``,
+    q8: '',
+    a8: ``,
+    q9: '',
+    a9: ``,
+    q10: '',
+    a10: ``
+  },
   html: {
     // Titres HTML
     vipTitle: 'Club VIP',

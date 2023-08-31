@@ -466,6 +466,7 @@ export default {
   militaryId: '军官证',
   diplomaticCard: '护照',
   moonpayExchange: '使用借记卡/信用卡购买加密货币',
+  learnMore: '了解更多',
 
   problem: {
     whatVip: '什么是VIP俱乐部?',
@@ -496,6 +497,53 @@ export default {
                         <p>电竞体育</p>
                         <p>体育竞猜大师</p>
                         <p>以下娱乐场游戏也不包括在俱乐部内，在这些游戏上下的投注不会为您累积积分：Can I Earn Club Points with Every Bet?</p>`
+  },
+
+  faqs: {
+    q1: '我如何存款？',
+    a1: `<p>1.选择您选择的加密货币，然后点击存款</p>
+          <p>2.复制一次性充值地址，在钱包中使用（或扫描二维码）。</p>
+          <p>3.交易一经确认，您将收到通知。</p>`,
+    q2: '我如何提款？',
+    a2: `<p>1. 选择您要提现的加密货币，然后点击提现。</p>
+          <p>2. 输入您要提取的金额。</p>
+          <p>3. 输入你的钱包地址。</p>
+          <p>4. 单击提款按钮。</p>`,
+    q3: '存款/取款需要多长时间？',
+    a3: `<p><b> 订金 </b></p>
+          <p>大多数加密货币存款都以闪电般的速度处理。但是，第三方服务可能会有一些延迟。对于 BTCXE 存款，由于从法定资金转换为 BTC 所需的时间，您的交易最多可能需要 30 分钟才能处理完毕。</p>
+          <p><b> 退出 </b></p>
+          <p>大多数提款都会立即处理。在大额提款的情况下，我们会手动处理这些提款，因此可能会稍有延迟。</p>`,
+    q4: '是否需要验证我的账户 (KYC) 才能提款？',
+    a4: `<p>我们建议您在提款之前验证您的帐户，因为这有助于防止以后出现任何可能的交易问题。</p>
+          <p>注册后，您可以通过您的个人资料提交帐户验证文件。&nbsp;</p>
+          <p>我们的球员安全和如果对他们使用我们的平台和资金来源/目的地有任何疑问，保证团队将在稍后联系任何用户。</p>`,
+    q5: '你们提供哪些货币和付款方式？',
+    a5: `<p>Sportsbet.io 中可用的货币选项有：</p>
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.btc </p>
+          <p>• @:currencyLang.eth </p>
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.busd </p>
+          <p>• @:currencyLang.trx </p>
+          <p>• @:currencyLang.xrp </p>
+          <p>• @:currencyLang.bnb </p>
+          <p>• @:currencyLang.ltc </p>
+          <p>• @:currencyLang.ada </p>
+          <p>• @:currencyLang.doge </p>
+          <p>• @:currencyLang.ton </p>
+          <p>• @:currencyLang.usd </p>
+          <p>• @:currencyLang.cny </p>`,
+    q6: '你们对交易收取费用吗？',
+    a6: `<p>虽然我们不对 Sportsbet.io 的存款和取款收取任何交易费用，但您可能需要为使用区块链和/或您的银行支付交易费用。</p>`,
+    q7: '',
+    a7: '',
+    q8: '',
+    a8: '',
+    q9: '',
+    a9: '',
+    q10: '',
+    a10: ''
   },
   // 条款协议等内容
   html: {

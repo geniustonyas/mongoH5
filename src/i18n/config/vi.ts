@@ -466,8 +466,99 @@ export default {
   militaryId: '军官证',
   diplomaticCard: '护照',
   moonpayExchange: '使用借记卡/信用卡购买加密货币',
-  // 条款协议等内容
+  learnMore: '了解更多',
 
+  problem: {
+    whatVip: 'What is the VIP Club?',
+    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
+                <p>In simple terms, it means: You play games, and we reward you.</p>`,
+    howGetIntegrial: 'How to Earn Points?',
+    howGetIntegrials: `<p>How to Earn Points?</p>
+                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
+                        <p></p>`,
+    whatVipLevel: 'What are VIP Levels?',
+    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
+                    <p>VIP Level 	Required Bet Amount	Frequency</p>
+                    <p>Bronze 	100	1</p>
+                    <p>Silver	500	5</p>
+                    <p>Gold 	15000	8</p>
+                    <p>Platinum 	300,000	10</p>
+                    <p>Titanium	1,900,000	10</p>
+                    <p>Diamond 	6,000,000	6</p>
+                    <p></p>`,
+    howComputeInterial: 'How are Points Calculated?',
+    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
+                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
+    whyMergedReward: 'Why are My Rewards Merged?',
+    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
+    resetVip: 'When will My VIP Level Reset?',
+    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
+    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
+    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
+                        <p>Horse Racing</p>
+                        <p>Esports Sports</p>
+                        <p>Sportsbook Masters</p>
+                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
+                        <p></p>
+                        <p>OneTouch - Russian Poker</p>
+                        <p>Genii - Aces And Faces Video Poker</p>
+                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+                        <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
+                        <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
+                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
+                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
+                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
+                        <p>Asia Gaming - Fish Hunter</p>
+                        <p>Spadegaming - Fishing God, Fishing War</p>
+                        <p>Gamatron - Tokyo Kombat</p>`
+  },
+  faqs: {
+    q1: 'Làm cách nào để nạp tiền?',
+    a1: `<p>1. Chọn tiền điện tử mà bạn muốn dùng, sau đó nhấp vào Nạp tiền.</p>
+          <p>2. Sao chép địa chỉ gửi tiền một lần và sử dụng nó trong ví của bạn (hoặc quét mã QR).</p>
+          <p>3. Khi giao dịch của bạn được xác nhận, bạn sẽ nhận được thông báo.</p>`,
+    q2: 'Làm cách nào để rút tiền?',
+    a2: `<p>1. Chọn loại tiền điện tử bạn muốn rút, sau đó nhấp vào Rút tiền.</p>
+          <p>2. Nhập số tiền bạn muốn rút.</p>
+          <p>3. Nhập địa chỉ ví của bạn.</p>
+          <p>4. Nhấp vào nút Rút tiền.</p>`,
+    q3: 'Nạp/rút tiền mất bao lâu?',
+    a3: `<p>Tiền gửi</p>
+        <p>Hầu hết các khoản tiền gửi tiền điện tử được xử lý với tốc độ cực nhanh. Tuy nhiên, có thể có một số chậm trễ từ các dịch vụ của bên thứ ba. Đối với tiền gửi BTCXE, có thể mất tới 30 phút để xử lý giao dịch của bạn do thời gian cần thiết để chuyển đổi từ tiền fiat sang BTC.</p>
+        <p>Rút tiền</p>
+        <p>Hầu hết các giao dịch rút tiền được xử lý ngay lập tức. Trong trường hợp rút tiền lớn, chúng tôi xử lý các khoản rút tiền này theo cách thủ công nên có thể có một chút chậm trễ.</p>`,
+    q4: 'Có cần phải xác minh tài khoản của tôi (KYC) để rút tiền không?',
+    a4: `<p>Chúng tôi khuyên bạn nên xác minh tài khoản của mình trước khi rút tiền vì điều này giúp ngăn ngừa bất kỳ sự cố nào có thể xảy ra với các giao dịch sau này.</p>
+        <p>Sau khi đăng ký, bạn có thể gửi tài liệu xác minh tài khoản thông qua hồ sơ của mình.</p>
+        <p>An toàn người chơi của chúng tôi & Nhóm đảm bảo sẽ liên hệ với bất kỳ người dùng nào sau đó nếu có lo ngại về việc họ sử dụng nền tảng và nguồn/đích của tiền của chúng tôi.</p>`,
+    q5: 'Bạn cung cấp các loại tiền tệ và phương thức thanh toán nào?',
+    a5: `Các tùy chọn tiền tệ có sẵn trong Sportsbet.io là:
+        <p>• @:currencyLang.usdt </p>
+        <p>• @:currencyLang.btc </p>
+        <p>• @:currencyLang.eth </p>
+        <p>• @:currencyLang.usdt </p>
+        <p>• @:currencyLang.busd </p>
+        <p>• @:currencyLang.trx </p>
+        <p>• @:currencyLang.xrp </p>
+        <p>• @:currencyLang.bnb </p>
+        <p>• @:currencyLang.ltc </p>
+        <p>• @:currencyLang.ada </p>
+        <p>• @:currencyLang.doge </p>
+        <p>• @:currencyLang.ton </p>
+        <p>• @:currencyLang.usd </p>
+        <p>• @:currencyLang.cny </p>`,
+    q6: 'Bạn có áp dụng phí giao dịch không?',
+    a6: `<p>Mặc dù chúng tôi không áp dụng bất kỳ khoản phí giao dịch nào cho việc gửi và rút tiền tại Sportsbet.io, nhưng có thể có phí giao dịch mà bạn phải trả khi sử dụng blockchain và / hoặc ngân hàng của bạn.</p>`,
+    q7: '',
+    a7: ``,
+    q8: '',
+    a8: ``,
+    q9: '',
+    a9: ``,
+    q10: '',
+    a10: ``
+  },
+  // 条款协议等内容
   html: {
     // Tiêu đề HTML
     vipTitle: 'Câu lạc bộ VIP',

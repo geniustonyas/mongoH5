@@ -464,6 +464,106 @@ export default {
   militaryId: '军官证',
   diplomaticCard: '护照',
   moonpayExchange: 'クレジット/デビットカードで購入する',
+  learnMore: '了解更多',
+
+  problem: {
+    whatVip: 'What is the VIP Club?',
+    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
+                <p>In simple terms, it means: You play games, and we reward you.</p>`,
+    howGetIntegrial: 'How to Earn Points?',
+    howGetIntegrials: `<p>How to Earn Points?</p>
+                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
+                        <p></p>`,
+    whatVipLevel: 'What are VIP Levels?',
+    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
+                    <p>VIP Level 	Required Bet Amount	Frequency</p>
+                    <p>Bronze 	100	1</p>
+                    <p>Silver	500	5</p>
+                    <p>Gold 	15000	8</p>
+                    <p>Platinum 	300,000	10</p>
+                    <p>Titanium	1,900,000	10</p>
+                    <p>Diamond 	6,000,000	6</p>
+                    <p></p>`,
+    howComputeInterial: 'How are Points Calculated?',
+    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
+                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
+    whyMergedReward: 'Why are My Rewards Merged?',
+    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
+    resetVip: 'When will My VIP Level Reset?',
+    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
+    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
+    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
+                        <p>Horse Racing</p>
+                        <p>Esports Sports</p>
+                        <p>Sportsbook Masters</p>
+                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
+                        <p></p>
+                        <p>OneTouch - Russian Poker</p>
+                        <p>Genii - Aces And Faces Video Poker</p>
+                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+                        <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
+                        <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
+                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
+                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
+                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
+                        <p>Asia Gaming - Fish Hunter</p>
+                        <p>Spadegaming - Fishing God, Fishing War</p>
+                        <p>Gamatron - Tokyo Kombat</p>`
+  },
+  faqs: {
+    q1: '仮想通貨の入金方法',
+    a1: `<p>1. ご希望の仮想通貨を選択し、「入金」をクリックします。</p>
+        <p>2. ワンタイムデポジットのアドレスをコピーし、ウォレットに貼り付けます。（またはQRコードをスキャンします。）</p>
+        <p>3. トランザクションが完了すると、通知が届きます。</p>`,
+    q2: '日本円の入金方法',
+    a2: `<p>1. JPY即時銀行送金、ATM経由、Ezeebillで日本円（JPY）を入金できます。</p>
+          <p>2. ウォレット通貨をJPYに選択します。</p>
+          <p>3. ご希望の入金方法をクリックし、手順に従って必要事項を入力し「続ける」をクリックします。</p>
+          <p>4. スポーツベットアイオーのウェブサイトでの手順が完了すると、お客様の銀行へリダイレクトされます。手順に従い、入金を完了させてください。</p>
+          <p>5. トランザクションが完了すると、スポーツベットアイオーにリダイレクトされます。</p>`,
+    q3: '仮想通貨の出金方法',
+    a3: `<p>1. 出金したい仮想通貨を選択し、 「出金」をクリックします。</p>
+        <p>2. 出金したい金額を入力します。</p>
+        <p>3. ウォレットアドレスを入力します。</p>
+        <p>4. 出金ボタンをクリックします。</p>`,
+    q4: '日本円の出金方法',
+    a4: `<p>1. JPY即時銀行送金、ATM経由、Ezeebillで日本円（JPY）を出金できます。</p>
+          <p>2. ウォレット通貨をJPYに選択します。</p>
+          <p>3. 利用可能な支払い方法から即時銀行送金をクリックし、手順に従って必要事項を入力し、「続ける」をクリックします。</p>
+          <p>4. スポーツベットアイオーのウェブサイトでの手順が完了すると、お客様の銀行へリダイレクトされます。手順に従い、出金を完了させてください。</p>
+          <p>5. トランザクションが完了すると、スポーツベットアイオーにリダイレクトされます。</p>`,
+    q5: '入金・出金にはどれくらい時間がかかりますか？',
+    a5: `<h4>入金</h4>
+          <p>ほとんどの仮想通貨による入金は、即座に処理されますが、サードパーティーサービスにおいて遅延が発生する場合がございます。BTCXEの入金は、法定通貨からBTCへの交換に時間を要するため、トランザクションが処理されるまでに最大30分かかる場合があります。</p>
+
+          <h4>出金</h4>
+          <p>ほとんどの出金は即座に処理されます。大口のお引き出しの場合は、手動で処理されるため、若干の遅れが生じる場合がございます。</p>
+          <p>もっと詳しく ></p>`,
+    q6: '出金の際、アカウント認証（KYC）は必要ですか？',
+    a6: `<p>トランザクションにおけるトラブル防止のため、お引き出しの前に、アカウント認証を行なっていただくことをお勧めします。</p>
+        <p>アカウント登録時に、「プロフィール」ページからアカウント認証書類を提出することができます。</p>
+        <p>当社プラットフォームの使用および資金の送金元/送金先に関する懸念がある場合、当社のプレイヤーセーフティ＆アシュアランスチームが、後日該当プレイヤーにご連絡致します。</p>`,
+    q7: 'どのような通貨で支払いが可能ですか？',
+    a7: `<p>現在、スポーツベットアイオーでご利用可能な通貨は以下の通りです:</p>
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.btc </p>
+          <p>• @:currencyLang.eth </p>
+          <p>• @:currencyLang.usdt </p>
+          <p>• @:currencyLang.busd </p>
+          <p>• @:currencyLang.trx </p>
+          <p>• @:currencyLang.xrp </p>
+          <p>• @:currencyLang.bnb </p>
+          <p>• @:currencyLang.ltc </p>
+          <p>• @:currencyLang.ada </p>
+          <p>• @:currencyLang.doge </p>
+          <p>• @:currencyLang.ton </p>`,
+    q8: '入出金に手数料はかかりますか？',
+    a8: `<p>スポーツベットアイオーでの入出金には、ランザクション手数料はかかりません。ただし、ブロックチェーンや銀行を利用する際にトランザクション手数料が発生する場合があります。</p>`,
+    q9: '',
+    a9: ``,
+    q10: '',
+    a10: ``
+  },
   // 利用規約と協議内容等
   html: {
     // htmlタイトル
