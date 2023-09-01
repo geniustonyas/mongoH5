@@ -48,3 +48,14 @@ export function startGame(gameId: string | number) {
       })
   }
 }
+
+/**
+ * 参考 https://codepen.io/intercom/pen/QGqWxw
+ * @param message
+ * @returns
+ */
+export function startService(message: string) {
+  //@ts-ignore
+  window.Intercom(message)
+  return true
+}

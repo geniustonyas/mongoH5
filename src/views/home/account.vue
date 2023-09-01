@@ -248,9 +248,9 @@ let birthday = userStore.userInfo.dateOfBirth?.split('-')
 let day = ref<string | number>('')
 let month = ref<string | number>('')
 let year = ref<string | number>('')
-year.value = birthday[0]
-month.value = birthday[1]
-day.value = birthday[2]
+year.value = birthday[0] ?? ''
+month.value = birthday[1] ?? ''
+day.value = birthday[2] ?? ''
 let editInfoForm: editUserInfoData = reactive({
   CountryCode: '',
   PhoneNumber: '',

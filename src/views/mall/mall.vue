@@ -566,10 +566,6 @@ const exhangeGoods = () => {
         return false
       })
   } else {
-    if (parseFloat(userStore.userInfo.integral as string) < parseFloat(currentGoodsItem.price)) {
-      showToast(t('tips.insufficientPoints'))
-      return false
-    }
     let data = <exhangeGoodsData>{}
     if (currentGoodsItem.productType == 0) {
       data = { Id: currentGoodsItem.id }
@@ -586,7 +582,7 @@ const exhangeGoods = () => {
         userStore.getUserInfo({ noLoading: true })
       })
       .catch((error) => {
-        console.log(error)
+        showToast(error)
       })
   }
 }

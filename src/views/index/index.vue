@@ -247,7 +247,7 @@ const routeTo = (item: getBannerRespItem) => {
   if (item.targetUrl == '') {
     return false
   }
-  if (item.targetUrl && (item.targetUrl.indexOf('http') || item.targetUrl.indexOf('https'))) {
+  if (item.targetUrl && (item.targetUrl.indexOf('http') > -1 || item.targetUrl.indexOf('https') > -1 )) {
     console.log(item.targetUrl)
     window.open(item.targetUrl)
   } else {
