@@ -19,7 +19,7 @@
               <ul class="rb-promo-list">
                 <li>
                   <div class="l-l">
-                    <i class="iconfont icon-ball-1"></i>
+                    <i class="iconfont icon-ball-1" />
                   </div>
                   <div class="l-r">
                     <h3>体育每日连胜</h3>
@@ -28,7 +28,7 @@
                 </li>
                 <li>
                   <div class="l-l">
-                    <i class="iconfont icon-ball-1"></i>
+                    <i class="iconfont icon-ball-1" />
                   </div>
                   <div class="l-r">
                     <h3>体育每日连串过关</h3>
@@ -37,7 +37,7 @@
                 </li>
                 <li>
                   <div class="l-l">
-                    <i class="iconfont icon-ball-1"></i>
+                    <i class="iconfont icon-ball-1" />
                   </div>
                   <div class="l-r">
                     <h3>连续签到奖金</h3>

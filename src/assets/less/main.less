@@ -4241,6 +4241,48 @@ body {
     }
 }
 
+/*会员中心-奖金*/
+.rewards-box { padding: 1rem;
+
+    .rb-title { padding: 1rem 0; }
+
+    .rb-list {
+        li { .bg(var(--color-menu)); .radius(.5rem); padding: 1rem; .flex(); .flex-pack-justify(); .flex-align(); margin-bottom: .5rem;
+
+            strong { color: var(--color-white); font-weight: 700; font-size: 1.6rem; margin: .3rem 0; display: block; }
+
+            .l-l { text-align: left; }
+
+            .l-r { text-align: right;
+
+                span { position: relative; font-size: 1rem; .radius(); padding: .1rem 1rem .1rem .5rem; .bg(var(--color-dark-gray));
+
+                    &:before { content: ""; position: absolute; top: 0.8rem; right: 0.3rem; display: inline-block; .size(.5rem,.5rem); .radius(.5rem); .bg(transparent); }
+
+                    &.confirmed {
+
+                        &:before { .bg(var(--color-green)); }
+                    }
+
+                    &.incomplete {
+                        &:before { .bg(var(--color-red)); }
+                    }
+                }
+            }
+        }
+    }
+    .rb-promo-list {
+        li { margin-bottom: 1rem; padding: 1.5rem; .radius(1rem); .bg(var(--color-menu)); .flex();.flex-pack-justify(); .flex-align();
+            .l-l {.flex-x(0 0 5rem); width: 5rem;
+                i { font-size: 4.8rem; }
+            }
+            .l-r {.flex-x(); padding-left: 1rem; text-align: right;
+                h3 { color: var(--color-white); font-size: 1.5rem; margin-bottom: 1rem; }
+            }
+        }
+    }
+}
+
 .popup-new-reward {
     position: fixed;
     z-index: 2000;
