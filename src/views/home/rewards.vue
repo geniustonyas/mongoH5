@@ -9,183 +9,61 @@
       <div class="record-box">
         <div class="rb-head">
           <div class="line-tabs">
-            <span class="active">奖励活动</span>
-            <span>奖励记录</span>
+            <span :class="{ active: tab == 'activities' }" @click="toggleTab('activities')">{{ t('rewardActivities') }}</span>
+            <span :class="{ active: tab == 'records' }" @click="toggleTab('records')">{{ t('rewardRecords') }}</span>
           </div>
         </div>
         <div class="mb-conts">
-          <div class="mc-box active">
+          <div v-show="tab == 'activities'" class="mc-box">
             <div class="rewards-box">
-              <ul class="rb-promo-list">
-                <li>
+              <ul v-if="promoCodeList.length > 0" class="rb-promo-list">
+                <li v-for="(item, index) of promoCodeList" :key="index">
                   <div class="l-l">
-                    <i class="iconfont icon-ball-1" />
+                    <img v-lazy="`https://seabet.imgix.net/${item.image}?auto=compress,format&w=200&h=160&q=50&dpr=2`" />
                   </div>
                   <div class="l-r">
-                    <h3>体育每日连胜</h3>
-                    <a class="btn btn-primary" onclick="claimPromo()">立即申请</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <i class="iconfont icon-ball-1" />
-                  </div>
-                  <div class="l-r">
-                    <h3>体育每日连串过关</h3>
-                    <a class="btn btn-primary" onclick="claimPromo()">立即申请</a>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <i class="iconfont icon-ball-1" />
-                  </div>
-                  <div class="l-r">
-                    <h3>连续签到奖金</h3>
-                    <a class="btn btn-primary">立即申请</a>
+                    <h3>{{ item.name }}</h3>
+                    <a class="btn btn-primary" @click="claimPromo(item)">{{ t('applyNow') }}</a>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="mc-box">
+          <div v-show="tab == 'records'" class="mc-box">
             <div class="rewards-box">
-              <div class="rb-title">RECENT TRANSACTIONS</div>
-              <ul class="rb-list">
-                <li>
-                  <div class="l-l">
-                    <span>10:24 10/06/2023</span>
-                    <strong>EHGKHS</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>100.00USDT</strong>
-                    <span class="confirmed">Confirmed</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <span>11:24 10/06/2023</span>
-                    <strong>BCGKHG</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>200.00USDT</strong>
-                    <span class="incomplete">Incomplete</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <span>10:24 10/06/2023</span>
-                    <strong>EHGKHS</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>100.00USDT</strong>
-                    <span class="confirmed">Confirmed</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <span>11:24 10/06/2023</span>
-                    <strong>BCGKHG</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>200.00USDT</strong>
-                    <span class="incomplete">Incomplete</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <span>10:24 10/06/2023</span>
-                    <strong>EHGKHS</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>100.00USDT</strong>
-                    <span class="confirmed">Confirmed</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <span>11:24 10/06/2023</span>
-                    <strong>BCGKHG</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>200.00USDT</strong>
-                    <span class="incomplete">Incomplete</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <span>10:24 10/06/2023</span>
-                    <strong>EHGKHS</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>100.00USDT</strong>
-                    <span class="confirmed">Confirmed</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <span>11:24 10/06/2023</span>
-                    <strong>BCGKHG</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>200.00USDT</strong>
-                    <span class="incomplete">Incomplete</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <span>10:24 10/06/2023</span>
-                    <strong>EHGKHS</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>100.00USDT</strong>
-                    <span class="confirmed">Confirmed</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="l-l">
-                    <span>11:24 10/06/2023</span>
-                    <strong>BCGKHG</strong>
-                  </div>
-                  <div class="l-r">
-                    <strong>200.00USDT</strong>
-                    <span class="incomplete">Incomplete</span>
-                  </div>
-                </li>
+              <div class="rb-title">{{ t('recentTransaction') }}</div>
+              <ul v-if="rewardList.length > 0" class="rb-list">
+                <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
+                  <List
+                    v-model:loading="listLoading"
+                    :offset="20"
+                    :finished="finished"
+                    :immediate-check="false"
+                    v-model:error="error"
+                    :error-text="t('loadingFail')"
+                    :finished-text="t('noMore')"
+                    @load="loadData"
+                  >
+                    <li v-for="(item, index) of rewardList" :key="index">
+                      <div class="l-l">
+                        <span>{{ item.createTime }}</span>
+                        <strong>{{ item.rewardCode }}</strong>
+                      </div>
+                      <div class="l-r">
+                        <strong>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</strong>
+                        <span class="confirmed">{{ t('confirmd') }}</span>
+                      </div>
+                    </li>
+                  </List>
+                </PullRefresh>
               </ul>
+              <Nodata v-if="nodata" :message="t('nodata')" />
             </div>
           </div>
         </div>
       </div>
-      <!-- <div class="rewards-box">
-        <ul v-if="rewardList.length > 0" class="rb-list">
-          <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
-            <List
-              v-model:loading="listLoading"
-              :offset="20"
-              :finished="finished"
-              :immediate-check="false"
-              v-model:error="error"
-              :error-text="t('loadingFail')"
-              :finished-text="t('noMore')"
-              @load="loadData"
-            >
-              <li v-for="(item, index) of rewardList" :key="index">
-                <div class="l-l">
-                  <span>{{ item.createTime }}</span>
-                  <strong>{{ item.rewardCode }}</strong>
-                </div>
-                <div class="l-r">
-                  <strong>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</strong>
-                  <span class="confirmed">{{ t('confirmd') }}</span>
-                </div>
-              </li>
-            </List>
-          </PullRefresh>
-        </ul>
-        <Nodata v-if="nodata" :message="t('nodata')" />
-      </div> -->
     </main>
-    <div v-show="showAddBox" class="mask-box" id="claimReward">
+    <div v-show="showAddBox" class="mask-box">
       <div class="mb-bd">
         <div class="claim-reward-box">
           <span class="icon-btn" @click="showAddBox = false">
@@ -208,6 +86,51 @@
         </div>
       </div>
     </div>
+
+    <div v-show="showPromoBox" class="mask-box">
+      <div class="mb-bd">
+        <div class="claim-reward-box">
+          <span class="icon-btn" @click="showPromoBox = false">
+            <i class="iconfont icon-close" />
+          </span>
+          <h2>{{ t('applyPromo') }}</h2>
+          <div class="custom-form">
+            <div class="cf-row">
+              <div class="cr-input">
+                <input v-model="promoQuery.Data.BetTime" type="text" class="form-control" readonly style="border-radius: 0.4rem" :placeholder="t('tips.betHolder')" @focus="selectDate" />
+              </div>
+            </div>
+            <div class="cf-row">
+              <div class="cr-input">
+                <textarea v-model="promoQuery.Data.OrderNo" class="form-control bor-rad" :placeholder="t('tips.orderNoholder')" rows="3" />
+              </div>
+            </div>
+            <div class="cf-row">
+              <div class="cr-btns">
+                <a class="btn btn-primary full" @click="applyReward">{{ t('claim') }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ConfigProvider theme="dark">
+      <Calendar
+        v-model:show="showDatePicker"
+        :default-date="[dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]"
+        type="range"
+        :min-date="minDate"
+        :max-date="maxDate"
+        color="#f7cc00"
+        :allow-same-day="true"
+        :style="{ height: '500px' }"
+        round
+        :show-confirm="false"
+        :formatter="dayFormatter"
+        @confirm="customDate"
+      />
+    </ConfigProvider>
   </div>
 </template>
 
@@ -217,19 +140,38 @@ import { ref, reactive } from 'vue'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Nodata from '@/components/Nodata.vue'
 
-import { getRewardListApi, exchangeRewardApi } from '@/api/home'
-import { getRewardListData, getRewardListItem } from '@/api/home/types'
+import { getRewardCodeListApi, getRewardListApi, exchangeRewardApi, applyRewardApi } from '@/api/home'
+import { getRewardListData, getRewardListItem, getRewardCodeListItem } from '@/api/home/types'
 
 import { useI18n } from 'vue-i18n'
 import { moneyFormat } from '@/utils'
 
-import { PullRefresh, List, showToast } from 'vant'
+import { PullRefresh, List, showToast, Calendar } from 'vant'
+import dayjs from 'dayjs'
 
 const { t } = useI18n()
 
+const tab = ref('activities')
+
 // 显示兑奖弹窗
 let showAddBox = ref(false)
+let showPromoBox = ref(false)
+// 奖励代码
 let rewardCode = ref('')
+
+// 优惠码列表
+let currentNeedForm = ref(false)
+let promoCodeList = ref<getRewardCodeListItem[]>([])
+
+const promoQuery = reactive({
+  Id: '',
+  Data: {
+    OrderNo: '',
+    BetTime: '',
+    Expand: '',
+    Expand1: ''
+  }
+})
 
 // 列表刷新下拉等参数
 let listLoading = ref(false)
@@ -244,6 +186,37 @@ const query = reactive<getRewardListData>({
 })
 // 奖励列表
 let rewardList = ref<getRewardListItem[]>([])
+
+// 筛选 - 日期控件参数
+const minDate = dayjs().subtract(1, 'months').toDate()
+const maxDate = dayjs().toDate()
+let showDatePicker = ref(false)
+// 日期控件去掉日历格子下文字信息
+const dayFormatter = (day: any) => {
+  day.bottomInfo = ''
+  return day
+}
+
+// 切换tab选项
+const toggleTab = (tabs: string) => {
+  tab.value = tabs
+  if (tab.value == 'activities') {
+    getPromoCodeList()
+  } else {
+    query.PageIndex = 1
+    rewardList.value = []
+    getRewardList()
+  }
+}
+
+// 获取优惠码列表
+const getPromoCodeList = () => {
+  getRewardCodeListApi()
+    .then((resp) => {
+      promoCodeList.value = resp.data
+    })
+    .catch((error) => showToast(error))
+}
 
 // 获取奖励列表
 const getRewardList = () => {
@@ -281,6 +254,40 @@ const loadData = () => {
   getRewardList()
 }
 
+// 申请优惠前判断是否需要提交表单
+const claimPromo = (item: getRewardCodeListItem) => {
+  promoQuery.Id = item.id
+  currentNeedForm.value = item.needForm
+  if (item.needForm) {
+    showPromoBox.value = true
+  } else {
+    applyReward()
+  }
+}
+
+// 申请优惠
+const applyReward = () => {
+  if (currentNeedForm.value) {
+    if (!promoQuery.Data.BetTime) {
+      showToast(t('tips.inputBetTime'))
+      return false
+    }
+    if (promoQuery.Data.OrderNo == '') {
+      showToast(t('tips.inputOrderId'))
+      return false
+    }
+  }
+  applyRewardApi(promoQuery)
+    .then(() => {
+      showToast(t('tips.applySuccess'))
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  showDatePicker.value = false
+}
+
 // 兑换奖励
 const exchangeReward = () => {
   if (rewardCode.value == '') {
@@ -301,5 +308,16 @@ const exchangeReward = () => {
     })
 }
 
-getRewardList()
+// 选择日期后回调
+const customDate = (time: any) => {
+  promoQuery.Data.BetTime = dayjs(time[0]).format('YYYY-MM-DD HH:mm:ss') + '-' + dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD HH:mm:ss')
+  showDatePicker.value = false
+}
+
+const selectDate = () => {
+  showDatePicker.value = true
+  console.log(showDatePicker.value)
+}
+
+toggleTab('activities')
 </script>

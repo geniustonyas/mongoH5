@@ -370,7 +370,13 @@ export default {
     inputCity: 'Please type in the city where the hotel is located',
     inputCountry: 'Please type in the country where the hotel is located',
     inputRoomNum: 'Please enter the number of hotel rooms',
-    inputInRoomDay: 'Please enter the number of days of stay'
+    inputInRoomDay: 'Please enter the number of days of stay',
+    betHolder: 'Bet Time',
+    inputBetTime: 'Please select bet time',
+    inputOrderId: 'Please enter the ticket number',
+    orderNoholder: "Please use ',' to separate multiple bet order.",
+    applySuccess: 'Apply Successed',
+    applyFail: 'Apply Faild'
   },
 
   rewardsBig: 'REWARDS',
@@ -469,6 +475,10 @@ export default {
   learnMore: 'Learn More',
   comingSoon: 'coming soon...',
   affiliate: 'Affiliate',
+  rewardActivities: 'Reward Activities',
+  rewardRecords: 'Reward Records',
+  applyPromo: 'Apply Rewards',
+  applyNow: 'Apply Now',
 
   problem: {
     whatVip: 'What is the VIP Club?',

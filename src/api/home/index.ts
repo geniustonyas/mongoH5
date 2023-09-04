@@ -116,6 +116,14 @@ export function getNextRewardApi(data: Home.receiveRewardData) {
   })
 }
 
+/** 获取优惠码列表 */
+export function getRewardCodeListApi() {
+  return request<Home.getRewardCodeListResp>({
+    url: 'Promo/GetWebRewardCodeList',
+    method: 'post'
+  })
+}
+
 /** 获取奖励列表 */
 export function getRewardListApi(data: Home.getRewardListData) {
   return request<Home.getRewardListResp>({
@@ -130,6 +138,16 @@ export function exchangeRewardApi(data: Home.exchangeRewardData) {
   return request<anyResp>({
     url: 'Promo/RedemptionReward',
     method: 'post',
+    data
+  })
+}
+
+/** 申请奖励 */
+export function applyRewardApi(data: Home.applyRewardData) {
+  return request<anyResp>({
+    url: 'Promo/ApplyReward',
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
     data
   })
 }

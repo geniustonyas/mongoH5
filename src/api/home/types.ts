@@ -131,8 +131,31 @@ export interface exchangeRewardData {
   RewardCode: string
 }
 
+// 优惠码列表返回数组
+export interface getRewardCodeListItem {
+  id: string
+  needForm: boolean
+  name: string
+  image: string
+  intro: string
+}
+
+// 申请奖励请求数据
+export interface applyRewardData {
+  Id: string
+  Data?: {
+    OrderNo: string
+    BetTime: string
+    Expand?: string
+    Expand1?: string
+  }
+}
+
+export interface applyRewardResp {}
+
 export type messageResp = ApiResponseData<{ items: messageItem[]; pageIndex: string; pageSize: string; pageCount: string; recordCount: string }>
 export type getNewMessageCountResp = ApiResponseData<{ personalLetterCount: string; announcementCount: string }>
 export type vipInfoResp = ApiResponseData<{ vipList: vipListItemResp[]; currentData: currentDataResp }>
 export type getNextRewardResp = ApiResponseData<getNextRewardResps>
 export type getRewardListResp = ApiResponseData<{ items: getRewardListItem[]; pageIndex: string; pageSize: string; pageCount: string; recordCount: string }>
+export type getRewardCodeListResp = ApiResponseData<getRewardCodeListItem[]>
