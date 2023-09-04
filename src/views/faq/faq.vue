@@ -72,7 +72,7 @@
             ><i class="iconfont icon-down" />
           </div>
           <Vue3SlideUpDown v-model="showQuestion8">
-            <div class="l-cont" v-html="t('faqs.a8')" />
+            <div class="li-cont" v-html="t('faqs.a8')" />
           </Vue3SlideUpDown>
         </li>
         <li v-if="t('faqs.q9') != ''">

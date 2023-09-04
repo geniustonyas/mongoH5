@@ -96,29 +96,8 @@
   <nav class="m-accepted">
     <dl>
       <dt>{{ t('acceptCrypto') }}</dt>
-      <dd>
-        <a href="#"><img :src="getAssetsFile('payment/btc.png')" /></a>
-      </dd>
-      <dd>
-        <a href="#"><img :src="getAssetsFile('payment/ltc.png')" /></a>
-      </dd>
-      <dd>
-        <a href="#"><img :src="getAssetsFile('payment/tether.png')" /></a>
-      </dd>
-      <dd>
-        <a href="#"><img :src="getAssetsFile('payment/eth.png')" /></a>
-      </dd>
-      <dd>
-        <a href="#"><img :src="getAssetsFile('payment/trx.png')" /></a>
-      </dd>
-      <dd>
-        <a href="#"><img :src="getAssetsFile('payment/cardano.svg')" /></a>
-      </dd>
-      <dd>
-        <a href="#"><img :src="getAssetsFile('payment/busd.svg')" /></a>
-      </dd>
-      <dd>
-        <a href="#"><img :src="getAssetsFile('payment/bnb.svg')" /></a>
+      <dd v-for="(item, index) of currencyList" :key="index">
+        <a href="#"><img :src="getAssetsFile(item.icon)" /></a>
       </dd>
     </dl>
   </nav>
@@ -171,6 +150,7 @@ import { useI18n } from 'vue-i18n'
 
 import Language from '@/components/Language.vue'
 
+import { currenyListData } from '@/utils/config'
 import { moneyFormat, getAssetsFile } from '@/utils'
 import { languages } from '@/i18n/index'
 
@@ -183,6 +163,8 @@ const props = defineProps({
   currencyCode: { type: String, required: true, default: '' },
   exchangeRate: { type: String, required: true, default: '' }
 })
+
+const currencyList = currenyListData()
 
 // 语言选择组件dom
 let langDom = ref()

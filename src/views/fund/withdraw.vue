@@ -355,7 +355,7 @@ const selTab = () => {
       showToast(t('tips.overMaxWithdrawAmount'))
       return false
     }
-    if (withdrawForm.Amount < minWithdrawAmount.value) {
+    if (parseFloat(withdrawForm.Amount) < parseFloat(minWithdrawAmount.value)) {
       amountDom.value?.focus()
       showToast(t('tips.underMinWithdrawAmount'))
       return false

@@ -66,10 +66,10 @@
           </ul>
         </div>
         <!-- 下载 -->
-        <div class="menu-item show">
+        <div class="menu-item">
           <ul>
             <li>
-              <a @click="showToast('即将开放...')" class="download">
+              <a @click="showToast(t('comingSoon'))" class="download">
                 <img :src="getAssetsFile('svg/App.svg')" />
                 <div>
                   <span>{{ t('downloadApp') }}</span>
@@ -77,6 +77,20 @@
                 </div>
               </a>
             </li>
+          </ul>
+        </div>
+        <!-- 在线客服 -->
+        <div class="menu-item">
+          <ul>
+            <li>
+              <a @click="startService('showMessages')"><i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }}</a>
+            </li>
+            <li>
+              <a @click="routeToGame('promo', null)"><i class="iconfont icon-rewards" />{{ t('promotions') }}</a>
+            </li>
+            <!-- <li>
+              <a @click="routeToGame('promo', null)"><i class="iconfont icon-rewards" />{{ t('promotions') }}</a>
+            </li> -->
           </ul>
         </div>
       </nav>
@@ -113,7 +127,7 @@ import { languages } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { providerListData, providerListItemTypes } from '@/utils/config'
 import { useAppStore } from '@/store/modules/app'
-import { startGame } from '@/composables/startGame'
+import { startGame, startService } from '@/composables/startGame'
 //第三方插件
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast } from 'vant'

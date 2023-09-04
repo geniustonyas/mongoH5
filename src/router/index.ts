@@ -64,12 +64,6 @@ const routes = [
         meta: { transition: '', needLogin: true }
       },
       {
-        path: 'tradeRecord',
-        name: 'tradeRecord',
-        component: () => import('@/views/fund/tradeRecord.vue'),
-        meta: { transition: '', needLogin: true }
-      },
-      {
         path: 'walletSetting',
         name: 'walletSetting',
         component: () => import('@/views/fund/walletSetting.vue'),
@@ -167,9 +161,9 @@ const routes = [
         meta: { transition: '', needLogin: true }
       },
       {
-        path: 'fundRecord',
-        name: 'fundRecord',
-        component: () => import('@/views/home/fundRecord.vue'),
+        path: 'tradeRecord',
+        name: 'tradeRecord',
+        component: () => import('@/views/home/tradeRecord.vue'),
         meta: { transition: '', needLogin: true }
       },
       {

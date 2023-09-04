@@ -567,7 +567,7 @@ const exhangeGoods = () => {
       })
   } else {
     let data = <exhangeGoodsData>{}
-    if (currentGoodsItem.productType == 0) {
+    if (currentGoodsItem.productType == 0 || currentGoodsItem.productType == 1) {
       data = { Id: currentGoodsItem.id }
     } else if (currentGoodsItem.productType == 3) {
       data = { Id: currentGoodsItem.id, AirTicketOrder: exhangeGoodsParams.AirTicketOrder }

@@ -114,23 +114,23 @@ export const currenyListData = () => {
       currenyType: '10',
       icon: 'coin/ton.svg',
       explorer: ''
-    },
-    {
-      code: 'USD',
-      currenyName: t('currencyLang.usd'),
-      unit: 'USD',
-      currenyType: '20',
-      icon: 'coin/usd.svg',
-      explorer: ''
-    },
-    {
-      code: 'CNY',
-      currenyName: t('currencyLang.cny'),
-      unit: 'CNY',
-      currenyType: '20',
-      icon: 'coin/cny.svg',
-      explorer: ''
     }
+    // {
+    //   code: 'USD',
+    //   currenyName: t('currencyLang.usd'),
+    //   unit: 'USD',
+    //   currenyType: '20',
+    //   icon: 'coin/usd.svg',
+    //   explorer: ''
+    // },
+    // {
+    //   code: 'CNY',
+    //   currenyName: t('currencyLang.cny'),
+    //   unit: 'CNY',
+    //   currenyType: '20',
+    //   icon: 'coin/cny.svg',
+    //   explorer: ''
+    // }
   ]
 }
 
