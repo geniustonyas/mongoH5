@@ -6,8 +6,157 @@
       </div>
     </CommonHeader>
     <main class="main">
-      <div class="rewards-box">
-        <!-- <div class="rb-title">RECENT TRANSACTIONS</div> -->
+      <div class="record-box">
+        <div class="rb-head">
+          <div class="line-tabs">
+            <span class="active">奖励活动</span>
+            <span>奖励记录</span>
+          </div>
+        </div>
+        <div class="mb-conts">
+          <div class="mc-box active">
+            <div class="rewards-box">
+              <ul class="rb-promo-list">
+                <li>
+                  <div class="l-l">
+                    <i class="iconfont icon-ball-1"></i>
+                  </div>
+                  <div class="l-r">
+                    <h3>体育每日连胜</h3>
+                    <a class="btn btn-primary" onclick="claimPromo()">立即申请</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <i class="iconfont icon-ball-1"></i>
+                  </div>
+                  <div class="l-r">
+                    <h3>体育每日连串过关</h3>
+                    <a class="btn btn-primary" onclick="claimPromo()">立即申请</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <i class="iconfont icon-ball-1"></i>
+                  </div>
+                  <div class="l-r">
+                    <h3>连续签到奖金</h3>
+                    <a class="btn btn-primary">立即申请</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mc-box">
+            <div class="rewards-box">
+              <div class="rb-title">RECENT TRANSACTIONS</div>
+              <ul class="rb-list">
+                <li>
+                  <div class="l-l">
+                    <span>10:24 10/06/2023</span>
+                    <strong>EHGKHS</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>100.00USDT</strong>
+                    <span class="confirmed">Confirmed</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <span>11:24 10/06/2023</span>
+                    <strong>BCGKHG</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>200.00USDT</strong>
+                    <span class="incomplete">Incomplete</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <span>10:24 10/06/2023</span>
+                    <strong>EHGKHS</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>100.00USDT</strong>
+                    <span class="confirmed">Confirmed</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <span>11:24 10/06/2023</span>
+                    <strong>BCGKHG</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>200.00USDT</strong>
+                    <span class="incomplete">Incomplete</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <span>10:24 10/06/2023</span>
+                    <strong>EHGKHS</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>100.00USDT</strong>
+                    <span class="confirmed">Confirmed</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <span>11:24 10/06/2023</span>
+                    <strong>BCGKHG</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>200.00USDT</strong>
+                    <span class="incomplete">Incomplete</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <span>10:24 10/06/2023</span>
+                    <strong>EHGKHS</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>100.00USDT</strong>
+                    <span class="confirmed">Confirmed</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <span>11:24 10/06/2023</span>
+                    <strong>BCGKHG</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>200.00USDT</strong>
+                    <span class="incomplete">Incomplete</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <span>10:24 10/06/2023</span>
+                    <strong>EHGKHS</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>100.00USDT</strong>
+                    <span class="confirmed">Confirmed</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="l-l">
+                    <span>11:24 10/06/2023</span>
+                    <strong>BCGKHG</strong>
+                  </div>
+                  <div class="l-r">
+                    <strong>200.00USDT</strong>
+                    <span class="incomplete">Incomplete</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="rewards-box">
         <ul v-if="rewardList.length > 0" class="rb-list">
           <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
             <List
@@ -34,7 +183,7 @@
           </PullRefresh>
         </ul>
         <Nodata v-if="nodata" :message="t('nodata')" />
-      </div>
+      </div> -->
     </main>
     <div v-show="showAddBox" class="mask-box" id="claimReward">
       <div class="mb-bd">
