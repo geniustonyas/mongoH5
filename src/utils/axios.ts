@@ -56,7 +56,7 @@ function createService() {
           useUserStoreHook().clearLogin()
         } else if (t('errorCodes.' + code) != '') {
           if (['1013'].includes(code)) {
-            showToast(t('errorCodes.' + code, { data: data }))
+            showToast(t('errorCodes.' + code, { data: data.message }))
           } else {
             showToast(t('errorCodes.' + code))
           }
