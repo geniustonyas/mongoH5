@@ -244,7 +244,7 @@
                   <span>{{ t('problem.everyGetInterial') }}</span
                   ><i class="iconfont icon-down" />
                 </div>
-                <Vue3SlideUpDown v-model="showQuestion5">
+                <Vue3SlideUpDown v-model="showQuestion6">
                   <div class="l-cont" v-html="t('problem.resetVips')" />
                 </Vue3SlideUpDown>
               </li>
@@ -253,7 +253,7 @@
                   <span>{{ t('problem.whatVip') }}</span
                   ><i class="iconfont icon-down" />
                 </div>
-                <Vue3SlideUpDown v-model="showQuestion5">
+                <Vue3SlideUpDown v-model="showQuestion7">
                   <div class="l-cont" v-html="t('problem.everyGetInterials')" />
                 </Vue3SlideUpDown>
               </li>
