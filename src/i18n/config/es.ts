@@ -368,7 +368,13 @@ export default {
     inputCity: '请输入酒店所在城市',
     inputCountry: '请输入酒店所在国家',
     inputRoomNum: '请输入酒店房间数量',
-    inputInRoomDay: '请输入入住天数'
+    inputInRoomDay: '请输入入住天数',
+    betHolder: '投注时间',
+    inputBetTime: '请选择投注时间',
+    inputOrderId: '请输入注单号码',
+    orderNoholder: "注单号码，多个请用'，'隔开",
+    applySuccess: '申请成功',
+    applyFail: '申请失败'
   },
 
   rewardsBig: 'Recompensas',
@@ -466,6 +472,12 @@ export default {
   diplomaticCard: '护照',
   moonpayExchange: '使用借记卡/信用卡购买加密货币',
   learnMore: 'Learn More',
+  comingSoon: '即将开放...',
+  affiliate: '联盟计划',
+  rewardActivities: '奖励活动',
+  rewardRecords: '奖励记录',
+  applyPromo: '申请奖励',
+  applyNow: '立即申请',
 
   problem: {
     whatVip: 'What is the VIP Club?',
