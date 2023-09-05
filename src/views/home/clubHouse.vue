@@ -223,7 +223,7 @@
             <template v-if="showMore">
               <li>
                 <div class="l-title" @click="showQuestion4 = !showQuestion4">
-                  <span>{{ t('problem.whyMergedReward') }}</span
+                  <span>{{ t('problem.howComputeInterial') }}</span
                   ><i class="iconfont icon-down" />
                 </div>
                 <Vue3SlideUpDown v-model="showQuestion4">
@@ -232,7 +232,7 @@
               </li>
               <li>
                 <div class="l-title" @click="showQuestion5 = !showQuestion5">
-                  <span>{{ t('problem.resetVip') }}</span
+                  <span>{{ t('problem.whyMergedReward') }}</span
                   ><i class="iconfont icon-down" />
                 </div>
                 <Vue3SlideUpDown v-model="showQuestion5">
@@ -241,7 +241,7 @@
               </li>
               <li>
                 <div class="l-title" @click="showQuestion6 = !showQuestion6">
-                  <span>{{ t('problem.everyGetInterial') }}</span
+                  <span>{{ t('problem.resetVip') }}</span
                   ><i class="iconfont icon-down" />
                 </div>
                 <Vue3SlideUpDown v-model="showQuestion6">
@@ -250,8 +250,8 @@
               </li>
               <li>
                 <div class="l-title" @click="showQuestion7 = !showQuestion7">
-                  <span>{{ t('problem.whatVip') }}</span
-                  ><i class="iconfont icon-down" />
+                  <span>{{ t('problem.everyGetInterial') }}</span>
+                  <i class="iconfont icon-down" />
                 </div>
                 <Vue3SlideUpDown v-model="showQuestion7">
                   <div class="l-cont" v-html="t('problem.everyGetInterials')" />

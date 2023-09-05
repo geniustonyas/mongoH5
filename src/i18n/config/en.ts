@@ -224,7 +224,7 @@ export default {
   sortBy: 'Sort by',
   polular: 'Polular',
   promotions: 'Promotions',
-  aboutUs: 'about us',
+  aboutUs: 'About Us',
   selectLanguage: 'Select Language',
   ruleTerms: 'rule & terms',
   responsibleGambling: 'responsible Gambling',
@@ -232,8 +232,8 @@ export default {
   selfExclusion: 'self-Exclusion',
   privacyPolicy: 'Privacy Policy',
   fairness: 'Fairness',
-  game: 'Game',
-  followUs: 'follow us',
+  game: 'Games',
+  followUs: 'Follow Us',
   language: 'Language',
   helpCenter: 'Help Center',
   acceptCrypto: 'Cryptocurrencies Accepted',
@@ -545,7 +545,7 @@ export default {
           <p>6. Fill in your details and click continue</p>
           <p>7. Review your payment</p>
           <p>8. Fill in your card details</p>`,
-    q4: 'How to withdraw crypto?',
+    q4: '',
     a4: `<p>1. Choose the cryptocurrency you would like to withdraw, then click “Withdraw”.</p>
         <p>2. Enter the amount that you want to withdraw.</p>
         <p>3. Enter your wallet address.</p>

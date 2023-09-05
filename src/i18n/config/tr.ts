@@ -528,7 +528,8 @@ export default {
           <p>Çekim</p>
           <p>Çekimlerin çoğu anında gerçekleşir. Büyük miktarlı çekimler ise manuel olarak işleme alındığı için ufak gecikmeler olabilir.</p>
           <p>Daha fazla bilgi></p>`,
-    q4: 'Çekim yapmak için hesap doğrulaması (KYC) şart mı?',
+    // q4: 'Çekim yapmak için hesap doğrulaması (KYC) şart mı?',
+    q4: '',
     a4: `<p>Daha sonra gerçekleştireceğiniz işlemlerinizde herhangi bir aksaklık yaşamamanız için çekim yapmadan önce hesabınızı doğrulamanızı tavsiye ediyoruz.</p>
         <p>Kayıt olduktan sonra profilinize hesap doğrulama belgelerini yükleyebilirsiniz.</p>
         <p>Oyuncuların site kullanımında veya çektikleri bakiyelerin gittiği adreslerde herhangi bir şaibe tespit edilirse, Oyuncu Güvenliği Ekibimiz doğrudan iletişime geçer.</p>`,

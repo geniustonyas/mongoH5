@@ -533,7 +533,8 @@ export default {
         <p>Saques</p>
         <p>Saques por PIX podem ser instantâneos, mas o prazo máximo é de até 1 dia útil para serem confirmados.</p>
         <p>Saques por transferência bancária podem ser compensados em até 1 dia, mas o prazo máximo é de 5 dias úteis.</p>`,
-    q4: 'É necessário verificar minha conta (processo KYC) para sacar?',
+    // q4: 'É necessário verificar minha conta (processo KYC) para sacar?',
+    q4: '',
     a4: `<p>Aconselhamos que você verifique sua conta antes de sacar, pois isso ajuda a evitar possíveis problemas com transações futuras.</p>
           <p>Você pode enviar os documentos para a verificação de conta através do seu perfil, e qualquer dúvida que tiver entre em contato com nosso time pelo email suporte@sportsbet.io.</p>`,
     q5: 'Quais moedas e métodos de pagamento estão disponíveis?',

@@ -527,7 +527,8 @@ export default {
         <p>Hầu hết các khoản tiền gửi tiền điện tử được xử lý với tốc độ cực nhanh. Tuy nhiên, có thể có một số chậm trễ từ các dịch vụ của bên thứ ba. Đối với tiền gửi BTCXE, có thể mất tới 30 phút để xử lý giao dịch của bạn do thời gian cần thiết để chuyển đổi từ tiền fiat sang BTC.</p>
         <p>Rút tiền</p>
         <p>Hầu hết các giao dịch rút tiền được xử lý ngay lập tức. Trong trường hợp rút tiền lớn, chúng tôi xử lý các khoản rút tiền này theo cách thủ công nên có thể có một chút chậm trễ.</p>`,
-    q4: 'Có cần phải xác minh tài khoản của tôi (KYC) để rút tiền không?',
+    // q4: 'Có cần phải xác minh tài khoản của tôi (KYC) để rút tiền không?',
+    q4: '',
     a4: `<p>Chúng tôi khuyên bạn nên xác minh tài khoản của mình trước khi rút tiền vì điều này giúp ngăn ngừa bất kỳ sự cố nào có thể xảy ra với các giao dịch sau này.</p>
         <p>Sau khi đăng ký, bạn có thể gửi tài liệu xác minh tài khoản thông qua hồ sơ của mình.</p>
         <p>An toàn người chơi của chúng tôi & Nhóm đảm bảo sẽ liên hệ với bất kỳ người dùng nào sau đó nếu có lo ngại về việc họ sử dụng nền tảng và nguồn/đích của tiền của chúng tôi.</p>`,

@@ -526,7 +526,8 @@ export default {
           <p>La plupart des dépôts cryptographiques sont traités à la vitesse de l’éclair. Cependant, il peut y avoir des retards de services tiers. Pour les dépôts BTCXE, cela peut prendre jusqu’à 30 minutes pour que votre transaction soit traitée en raison du temps nécessaire pour la conversion de fonds fiduciaires en BTC.</p>
           <p>retrait</p>
           <p>La plupart des retraits sont traités instantanément. En cas de retraits importants, nous traitons ces retraits manuellement de sorte qu’il peut y avoir un léger retard.</p>`,
-    q4: 'Est-il nécessaire de vérifier mon compte (KYC) pour le retirer ?',
+    // q4: 'Est-il nécessaire de vérifier mon compte (KYC) pour le retirer ?',
+    q4: '',
     a4: `<p>Nous vous conseillons de vérifier votre compte avant de le retirer, car cela permet d’éviter tout problème éventuel avec les transactions à un moment ultérieur.</p>
           <p>Lors de votre inscription, vous pouvez soumettre des documents de vérification de compte via votre profil.</p>
           <p>Notre équipe Sécurité et assurance des joueurs communiquera avec les utilisateurs plus tard s’ils ont des préoccupations au sujet de l’utilisation de notre plateforme et de la source ou de la destination des fonds.</p>`,

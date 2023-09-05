@@ -495,7 +495,7 @@ export default {
                     <p>铂金	30万	10</p>
                     <p>钛金	190万	10</p>
                     <p>钻石	600万	6</p>`,
-    howComputeInterial: '积分如何计?',
+    howComputeInterial: '积分如何计算?',
     howComputeInterials: `<p>不论是体育投注，还是玩娱乐场游戏旋转时，使用加密货币都将可以得积分。为了计算您每次下注所赚取的积分，我们将在结算注单时按照实时市场汇率将您的下注金额转换为USDT，从而使无论您使用哪种加密货币，所有点数收集都是公平的。由于转换率会长期波动，因此我们在计算积分时会始终遵守四舍五入到最接近的整数的原则来进行补偿。</p>
                         <p>Seabet积分获取公式为玩家在任意场馆的投注金额*0.01*对应级别的积分系数，如玩家等级为铂金，投注金额为5000，那么根据积分计算公式，该玩家所获积分为5000*0.01*1.3=650积分。Seabet积分用途广泛，玩家可通过积分在积分商城中兑换等值礼品及服务项目。</p>`,
     whyMergedReward: '为什么我的奖励被合并?',
@@ -508,7 +508,10 @@ export default {
                         <p>赛马</p>
                         <p>电竞体育</p>
                         <p>体育竞猜大师</p>
-                        <p>以下娱乐场游戏也不包括在俱乐部内，在这些游戏上下的投注不会为您累积积分：Can I Earn Club Points with Every Bet?</p>`
+                        <p>以下娱乐场游戏也不包括在俱乐部内，在这些游戏上下的投注不会为您累积积分：此外，以下的赌场游戏也不包含在俱乐部内，对它们下注将不会为您赚取积分
+                        NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up
+                        Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack
+                        Asia Gaming - Fish Hunter</p>`
   },
 
   faqs: {
@@ -522,15 +525,16 @@ export default {
           <p>3. 输入你的钱包地址。</p>
           <p>4. 单击提款按钮。</p>`,
     q3: '存款/取款需要多长时间？',
-    a3: `<p><b> 订金 </b></p>
-          <p>大多数加密货币存款都以闪电般的速度处理。但是，第三方服务可能会有一些延迟。对于 BTCXE 存款，由于从法定资金转换为 BTC 所需的时间，您的交易最多可能需要 30 分钟才能处理完毕。</p>
-          <p><b> 退出 </b></p>
-          <p>大多数提款都会立即处理。在大额提款的情况下，我们会手动处理这些提款，因此可能会稍有延迟。</p>`,
-    q4: '是否需要验证我的账户 (KYC) 才能提款？',
+    a3: `<p><b> 存款 </b></p>
+          <p>大多数加密货币存款都以闪电般的速度处理。但是，第三方服务可能会有一些延迟。</p>
+          <p><b> 取款 </b></p>
+          <p>大多数提款都会立即处理。在大额提款的情况下，我们会手动处理这些提款，因此可能会稍有延迟。。</p>`,
+    // q4: '是否需要验证我的账户 (KYC) 才能提款？',
+    q4: '',
     a4: `<p>我们建议您在提款之前验证您的帐户，因为这有助于防止以后出现任何可能的交易问题。</p>
           <p>注册后，您可以通过您的个人资料提交帐户验证文件。&nbsp;</p>
           <p>我们的球员安全和如果对他们使用我们的平台和资金来源/目的地有任何疑问，保证团队将在稍后联系任何用户。</p>`,
-    q5: '你们提供哪些货币和付款方式？',
+    q5: '你们提供哪些付款方式？',
     a5: `<p>Seabet.io 中可用的货币选项有：</p>
           <p>• @:currencyLang.usdt </p>
           <p>• @:currencyLang.btc </p>
@@ -547,7 +551,7 @@ export default {
           <p>• @:currencyLang.usd </p>
           <p>• @:currencyLang.cny </p>`,
     q6: '你们对交易收取费用吗？',
-    a6: `<p>虽然我们不对 Seabet.io 的存款和取款收取任何交易费用，但您可能需要为使用区块链和/或您的银行支付交易费用。</p>`,
+    a6: `<p>虽然我们不对 Seabet.io 的存款和取款收取任何交易费用，但您可能需要为使用区块链支付交易费用。</p>`,
     q7: '',
     a7: '',
     q8: '',

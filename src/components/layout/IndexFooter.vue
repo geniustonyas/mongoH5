@@ -10,7 +10,7 @@
   <!-- 游戏协议条款 -->
   <nav class="m-term">
     <dl>
-      <dt>{{ site_name }}</dt>
+      <dt>{{ site_name.split('.')[0] }}</dt>
       <dd>
         <a @click="router.push({ name: 'promo' })">{{ t('promotions') }}</a>
       </dd>
