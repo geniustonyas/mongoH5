@@ -3,6 +3,9 @@ import { useUserStoreHook } from '@/store/modules/user'
 import { useAppStoreHook } from '@/store/modules/app'
 import { get, merge } from 'lodash-es'
 import { TokenPrefix, getToken } from '@/utils/auth'
+import i18n from '@/i18n'
+const { t } = i18n.global
+import { showToast } from 'vant'
 
 let loadingRequestCount = 0 // loading请求数
 
@@ -47,17 +50,14 @@ function createService() {
       if (code === undefined) {
         return data
       } else {
-        switch (parseInt(code)) {
-          case 200:
-            return data
-          case 400:
-            return Promise.reject(data.message)
-          case 401:
-            useUserStoreHook().clearLogin()
-            return Promise.reject(data.message)
-          default:
-            return Promise.reject(data)
+        if (code == '200') {
+          return data
+        } else if (code == '401') {
+          useUserStoreHook().clearLogin()
+        } else if (t('errorCodes.' + code) != '') {
+          showToast(t('errorCodes.' + code))
         }
+        return Promise.reject(data.message)
       }
     },
     (error) => {

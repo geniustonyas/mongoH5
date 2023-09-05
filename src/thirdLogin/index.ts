@@ -138,7 +138,7 @@ export const telegramLogin = () => {
           console.log(error)
         })
     } else {
-      showToast('telegram授权失败')
+      showToast(t('tips.authFail'))
     }
   })
 }

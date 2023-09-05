@@ -305,7 +305,6 @@ const getMinWithdraw = () => {
       minWithdrawAmount.value = resp.data?.minimumWithdrawAmount
     })
     .catch((error) => {
-      // showToast('获取最低充值金额失败')
       console.log(error)
     })
 }
@@ -322,7 +321,6 @@ const getBalanceList = () => {
       }
     })
     .catch((error) => {
-      // showToast('获取充值地址失败')
       console.log(error)
     })
 }
@@ -389,7 +387,7 @@ const selTab = () => {
         step.value = 4
       })
       .catch((error) => {
-        showToast(t('tips.withdrawFail'))
+        // showToast(t('tips.withdrawFail'))
         console.log(error)
       })
   }

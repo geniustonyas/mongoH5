@@ -336,7 +336,7 @@ const editInfo = () => {
       // collapseInfo.value = false
     })
     .catch((error) => {
-      showToast(error)
+      console.log(error)
     })
 }
 
@@ -378,7 +378,7 @@ const changePwd = () => {
       userStore.logout()
     })
     .catch((error) => {
-      showToast(error)
+      console.log(error)
     })
 }
 
@@ -391,7 +391,7 @@ const getGooogle = () => {
       qrcodeValue.value = `otpauth://totp/${userStore.userInfo.userName}?secret=${resp.manualEntryKey}&issuer=${site_name}`
     })
     .catch((error) => {
-      showToast(error)
+      console.log(error)
     })
 }
 // 获取Google验证码
@@ -406,7 +406,7 @@ const bindGoogle = () => {
         showToast(t('tips.bindGoogleSuccess'))
       })
       .catch((error) => {
-        showToast(error)
+        console.log(error)
       })
   } else {
     bindGoogleCodeApi(bindGoogleCodeForm)
@@ -415,7 +415,7 @@ const bindGoogle = () => {
         showToast(t('tips.bindGoogleSuccess'))
       })
       .catch((error) => {
-        showToast(error)
+        console.log(error)
       })
   }
 }
@@ -423,7 +423,6 @@ const bindGoogle = () => {
 const setPrivacy = () => {
   setPrivacyApi({ InVisible: openVisible.value ? 1 : 0 })
     .then((resp) => {
-      // showToast('设置成功')
       console.log(resp)
     })
     .catch((err) => {

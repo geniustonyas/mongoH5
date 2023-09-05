@@ -43,7 +43,6 @@ export function startGame(gameId: string | number) {
         }
       })
       .catch((error) => {
-        showToast(t('tips.startGameFail'))
         console.log(error)
       })
   }

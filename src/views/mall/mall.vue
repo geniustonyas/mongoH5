@@ -582,7 +582,7 @@ const exhangeGoods = () => {
         userStore.getUserInfo({ noLoading: true })
       })
       .catch((error) => {
-        showToast(error)
+        console.log(error)
       })
   }
 }

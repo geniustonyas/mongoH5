@@ -191,7 +191,7 @@ const sendEmail = async () => {
     })
     .catch((error) => {
       showloading.value = false
-      showToast(t('tips.sendFail'))
+      // showToast(t('tips.sendFail'))
       console.log(error)
     })
 }
@@ -212,7 +212,7 @@ const checkUserExist = async () => {
     }
     return isExistUserResp.data
   } catch (error: any) {
-    showToast(error)
+    // showToast(error)
     return false
   }
 }
@@ -233,7 +233,7 @@ const checkEmailExist = async () => {
     }
     return isExistEmailResp.data
   } catch (error: any) {
-    showToast(error)
+    // showToast(error)
     return false
   }
 }
@@ -316,7 +316,8 @@ const handleReg = async () => {
         return false
       })
       .catch((error) => {
-        showToast(error)
+        // showToast(error)
+        console.log(error)
         router.push({ name: 'login' })
         return false
       })

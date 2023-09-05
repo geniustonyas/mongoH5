@@ -303,7 +303,7 @@ const exchangeReward = () => {
       getRewardList()
     })
     .catch((error) => {
-      showToast(t('tips.receivedRewardFail'))
+      // showToast(t('tips.receivedRewardFail'))
       console.log(error)
     })
 }

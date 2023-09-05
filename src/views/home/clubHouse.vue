@@ -417,7 +417,7 @@ const receiveReward = (code: string) => {
       getVipInfo()
     })
     .catch((error) => {
-      showToast(t('tips.receivedRewardFail'))
+      // showToast(t('tips.receivedRewardFail'))
       console.log(error)
     })
 }

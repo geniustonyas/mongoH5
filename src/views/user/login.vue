@@ -183,7 +183,7 @@ const handleLogin = () => {
       router.push({ name: routeName })
     })
     .catch((error) => {
-      showToast(error)
+      console.log(error)
     })
 }
 

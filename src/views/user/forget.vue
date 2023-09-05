@@ -134,7 +134,7 @@ const sendEmail = async () => {
     })
     .catch((error) => {
       showloading.value = false
-      showToast(t('tips.sendFail'))
+      // showToast(t('tips.sendFail'))
       console.log(error)
     })
 }
@@ -173,7 +173,8 @@ const resetPassword = () => {
       return false
     })
     .catch((error) => {
-      showToast(t(error))
+      // showToast(t(error))
+      console.log(error)
       return false
     })
 }
