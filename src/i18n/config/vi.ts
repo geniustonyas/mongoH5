@@ -515,38 +515,35 @@ export default {
   faqs: {
     q1: 'Làm cách nào để nạp tiền?',
     a1: `<p>1. Chọn tiền điện tử mà bạn muốn dùng, sau đó nhấp vào Nạp tiền.</p>
-          <p>2. Sao chép địa chỉ gửi tiền một lần và sử dụng nó trong ví của bạn (hoặc quét mã QR).</p>
-          <p>3. Khi giao dịch của bạn được xác nhận, bạn sẽ nhận được thông báo.</p>`,
+        <p>2. Sao chép địa chỉ gửi tiền một lần và sử dụng nó trong ví của bạn (hoặc quét mã QR).</p>
+        <p>3. Khi giao dịch của bạn được xác nhận, bạn sẽ nhận được thông báo.</p>`,
     q2: 'Làm cách nào để rút tiền?',
     a2: `<p>1. Chọn loại tiền điện tử bạn muốn rút, sau đó nhấp vào Rút tiền.</p>
-          <p>2. Nhập số tiền bạn muốn rút.</p>
-          <p>3. Nhập địa chỉ ví của bạn.</p>
-          <p>4. Nhấp vào nút Rút tiền.</p>`,
+        <p>2. Nhập số tiền bạn muốn rút.</p>
+        <p>3. Nhập địa chỉ ví của bạn.</p>
+        <p>4. Nhấp vào nút Rút tiền.</p>`,
     q3: 'Nạp/rút tiền mất bao lâu?',
     a3: `<p>Tiền gửi</p>
-        <p>Hầu hết các khoản tiền gửi tiền điện tử được xử lý với tốc độ cực nhanh. Tuy nhiên, có thể có một số chậm trễ từ các dịch vụ của bên thứ ba. Đối với tiền gửi BTCXE, có thể mất tới 30 phút để xử lý giao dịch của bạn do thời gian cần thiết để chuyển đổi từ tiền fiat sang BTC.</p>
-        <p>Rút tiền</p>
-        <p>Hầu hết các giao dịch rút tiền được xử lý ngay lập tức. Trong trường hợp rút tiền lớn, chúng tôi xử lý các khoản rút tiền này theo cách thủ công nên có thể có một chút chậm trễ.</p>`,
-    // q4: 'Có cần phải xác minh tài khoản của tôi (KYC) để rút tiền không?',
-    q4: '',
-    a4: `<p>Chúng tôi khuyên bạn nên xác minh tài khoản của mình trước khi rút tiền vì điều này giúp ngăn ngừa bất kỳ sự cố nào có thể xảy ra với các giao dịch sau này.</p>
-        <p>Sau khi đăng ký, bạn có thể gửi tài liệu xác minh tài khoản thông qua hồ sơ của mình.</p>
-        <p>An toàn người chơi của chúng tôi & Nhóm đảm bảo sẽ liên hệ với bất kỳ người dùng nào sau đó nếu có lo ngại về việc họ sử dụng nền tảng và nguồn/đích của tiền của chúng tôi.</p>`,
-    q5: 'Bạn cung cấp các loại tiền tệ và phương thức thanh toán nào?',
-    a5: `Các tùy chọn tiền tệ có sẵn trong Sportsbet.io là:
-        <p>• @:currencyLang.usdt </p>
-        <p>• @:currencyLang.btc </p>
-        <p>• @:currencyLang.eth </p>
-        <p>• @:currencyLang.busd </p>
-        <p>• @:currencyLang.trx </p>
-        <p>• @:currencyLang.xrp </p>
-        <p>• @:currencyLang.bnb </p>
-        <p>• @:currencyLang.ltc </p>
-        <p>• @:currencyLang.ada </p>
-        <p>• @:currencyLang.doge </p>
-        <p>• @:currencyLang.ton </p>`,
-    q6: 'Bạn có áp dụng phí giao dịch không?',
-    a6: `<p>Mặc dù chúng tôi không áp dụng bất kỳ khoản phí giao dịch nào cho việc gửi và rút tiền tại Sportsbet.io, nhưng có thể có phí giao dịch mà bạn phải trả khi sử dụng blockchain và / hoặc ngân hàng của bạn.</p>`,
+          <p>Hầu hết các khoản tiền gửi tiền điện tử được xử lý với tốc độ cực nhanh. Tuy nhiên, có thể có một số chậm trễ từ các dịch vụ của bên thứ ba.</p>
+          <p>Rút tiền</p>
+          <p>Hầu hết các giao dịch rút tiền được xử lý ngay lập tức. Trong trường hợp rút tiền lớn, chúng tôi xử lý các khoản rút tiền này theo cách thủ công nên có thể có một chút chậm trễ.</p>`,
+    q4: 'Bạn cung cấp các phương thức thanh toán nào?',
+    a4: `<p>Các tùy chọn tiền tệ có sẵn trên Seabet.io là:</p>
+          <p>• Tether (USDT)</p>
+          <p>• Bitcoin (BTC)</p>
+          <p>• Ethereum (ETH)</p>
+          <p>• Tron (TRX)</p>
+          <p>• Binance USD (BUSD)</p>
+          <p>• Binance Coin (BNB)</p>
+          <p>• Ripple (XRP)</p>
+          <p>• Litecoin (LTC)</p>
+          <p>• Cardano (ADA)</p>
+          <p>• Dogecoin (DOGE)</p>
+          <p>• The Open Network (TON)</p>`,
+    q5: 'Bạn có áp dụng phí giao dịch không?',
+    a5: `<p>Mặc dù chúng tôi không thu thêm bất kỳ phí nào cho các giao dịch nạp tiền và rút tiền trên Seabet.io, nhưng bạn có thể cần phải trả các khoản phí giao dịch khi sử dụng thanh toán qua blockchain.</p>`,
+    q6: '',
+    a6: ``,
     q7: '',
     a7: ``,
     q8: '',

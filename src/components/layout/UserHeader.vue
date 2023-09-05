@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <nav class="head-menu-lf">
-      <span @click="router.back()"><i class="iconfont icon-return" /></span>
+      <span @click="routeTo"><i class="iconfont icon-return" /></span>
       <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>
     </nav>
   </header>
@@ -11,4 +11,16 @@
 import { getAssetsFile } from '@/utils'
 import { useRouter } from 'vue-router'
 const router = useRouter()
+
+const props = defineProps({
+  routeName: { type: String, default: '' }
+})
+
+const routeTo = () => {
+  if (props.routeName != '') {
+    router.push({ name: props.routeName })
+  } else {
+    router.back()
+  }
+}
 </script>

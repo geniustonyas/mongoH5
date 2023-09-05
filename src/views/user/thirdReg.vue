@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <UserHeader />
+    <UserHeader :route-name="'index'" />
     <main class="main">
       <div class="loginbox">
         <!-- <UserPartner /> -->

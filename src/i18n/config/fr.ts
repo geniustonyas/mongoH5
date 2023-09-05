@@ -514,8 +514,8 @@ export default {
   faqs: {
     q1: 'Comment puis-je faire un dépôt ?',
     a1: `<p>1. Sélectionnez la cryptomonnaie de votre choix, puis cliquez sur Déposer.</p>
-          <p>2. Copiez l’adresse de dépôt unique et utilisez-la dans votre portefeuille (ou scannez le code QR).</p>
-          <p>3. Une fois votre transaction confirmée, vous recevrez un avis.</p>`,
+        <p>2. Copiez l’adresse de dépôt unique et utilisez-la dans votre portefeuille (ou scannez le code QR).</p>
+        <p>3. Une fois votre transaction confirmée, vous recevrez un avis.</p>`,
     q2: 'Comment puis-je effectuer un retrait ?',
     a2: `<p>1. Choisissez la cryptomonnaie que vous souhaitez retirer, puis cliquez sur Retirer.</p>
           <p>2. Entrez le montant que vous souhaitez retirer.</p>
@@ -523,29 +523,26 @@ export default {
           <p>4. Cliquez sur le bouton Retirer.</p>`,
     q3: 'Combien de temps les dépôts/retraits prennent-ils ?',
     a3: `<p>dépôt</p>
-          <p>La plupart des dépôts cryptographiques sont traités à la vitesse de l’éclair. Cependant, il peut y avoir des retards de services tiers. Pour les dépôts BTCXE, cela peut prendre jusqu’à 30 minutes pour que votre transaction soit traitée en raison du temps nécessaire pour la conversion de fonds fiduciaires en BTC.</p>
-          <p>retrait</p>
-          <p>La plupart des retraits sont traités instantanément. En cas de retraits importants, nous traitons ces retraits manuellement de sorte qu’il peut y avoir un léger retard.</p>`,
-    // q4: 'Est-il nécessaire de vérifier mon compte (KYC) pour le retirer ?',
-    q4: '',
-    a4: `<p>Nous vous conseillons de vérifier votre compte avant de le retirer, car cela permet d’éviter tout problème éventuel avec les transactions à un moment ultérieur.</p>
-          <p>Lors de votre inscription, vous pouvez soumettre des documents de vérification de compte via votre profil.</p>
-          <p>Notre équipe Sécurité et assurance des joueurs communiquera avec les utilisateurs plus tard s’ils ont des préoccupations au sujet de l’utilisation de notre plateforme et de la source ou de la destination des fonds.</p>`,
-    q5: 'Quelles devises et méthodes de paiement offrez-vous ?',
-    a5: `Les options de devises disponibles dans seabet.io sont :
-          <p>• @:currencyLang.usdt </p>
-          <p>• @:currencyLang.btc </p>
-          <p>• @:currencyLang.eth </p>
-          <p>• @:currencyLang.busd </p>
-          <p>• @:currencyLang.trx </p>
-          <p>• @:currencyLang.xrp </p>
-          <p>• @:currencyLang.bnb </p>
-          <p>• @:currencyLang.ltc </p>
-          <p>• @:currencyLang.ada </p>
-          <p>• @:currencyLang.doge </p>
-          <p>• @:currencyLang.ton </p>`,
-    q6: 'Appliquez-vous des frais sur les transactions ?',
-    a6: `<p>Bien que nous n’appliquons pas de frais de transaction pour les dépôts et les retraits chez Sportsbet.io, il peut y avoir des frais de transaction que vous devez payer pour utiliser la blockchain et / ou votre banque.</p>`,
+    <p>La plupart des dépôts cryptographiques sont traités à la vitesse de l’éclair. Cependant, il peut y avoir des retards de services tiers.</p>
+    <p>retrait</p>
+    <p>La plupart des retraits sont traités instantanément. En cas de retraits importants, nous traitons ces retraits manuellement de sorte qu’il peut y avoir un léger retard.</p>`,
+    q4: 'Quels modes de paiement proposez-vous ?',
+    a4: `<p>Les options de devise disponibles sur Seabet.io sont :</p>
+          <p>• Tether (USDT)</p>
+          <p>• Bitcoin (BTC)</p>
+          <p>• Ethereum (ETH)</p>
+          <p>• Tron (TRX)</p>
+          <p>• Binance USD (BUSD)</p>
+          <p>• Binance Coin (BNB)</p>
+          <p>• Ripple (XRP)</p>
+          <p>• Litecoin (LTC)</p>
+          <p>• Cardano (ADA)</p>
+          <p>• Dogecoin (DOGE)</p>
+          <p>• The Open Network (TON)</p>`,
+    q5: 'Appliquez-vous des frais sur les transactions ?',
+    a5: `<p>Bien que nous ne facturions aucuns frais pour les dépôts et les retraits sur Seabet.io, il se peut que vous deviez payer des frais de transaction lorsque vous utilisez des paiements via la blockchain.</p>`,
+    q6: '',
+    a6: ``,
     q7: '',
     a7: ``,
     q8: '',

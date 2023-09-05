@@ -515,43 +515,31 @@ export default {
   faqs: {
     q1: 'Como faço um depósito?',
     a1: `<p>PIX</p>
-          <p>1. Selecione a opção PIX.</p>
-          <p>2. Digite o valor que deseja depositar.</p>
-          <p>3. Clique em "Próximo", confirme seus dados e depois clique em "Confirmar".</p>
-          <p>4. Clique em "Continue" e você será redirecionado para o site do provedor de pagamentos.</p>
-          <p>5. Use o QR code ou copie o código para pagar no aplicativo do seu banco.</p>`,
-    q2: 'Transferência Bancária',
-    a2: `<p>1. Selecione a opção de transferência bancária.</p>
-          <p>2. Selecione o banco, e caso seu banco não esteja nas opções, basta selcionar qualquer um.</p>
-          <p>3. Clique em "Confirmar".</p>
-          <p>4. Clique em "Continue" e você será redirecionado para o site do provedor de pagamentos.</p>
-          <p>5. Use os dados informados pelo provedor para realizar o pagamento, e lembre-se de transferir o valor exato que aparece na tela.</p>`,
-    q3: 'Quanto tempo leva o processamento dos depósitos/saques?',
-    a3: `<p>Depósitos</p>
-        <p>Depósitos por PIX podem levar até 10 minutos para serem confirmados.</p>
-        <p>Depósitos por transferência bancária podem levar até 1 dia útil para serem confirmados.</p>
-        <p>Saques</p>
-        <p>Saques por PIX podem ser instantâneos, mas o prazo máximo é de até 1 dia útil para serem confirmados.</p>
-        <p>Saques por transferência bancária podem ser compensados em até 1 dia, mas o prazo máximo é de 5 dias úteis.</p>`,
-    // q4: 'É necessário verificar minha conta (processo KYC) para sacar?',
-    q4: '',
-    a4: `<p>Aconselhamos que você verifique sua conta antes de sacar, pois isso ajuda a evitar possíveis problemas com transações futuras.</p>
-          <p>Você pode enviar os documentos para a verificação de conta através do seu perfil, e qualquer dúvida que tiver entre em contato com nosso time pelo email suporte@sportsbet.io.</p>`,
-    q5: 'Quais moedas e métodos de pagamento estão disponíveis?',
-    a5: `As opções de moeda disponíveis no Sportsbet.io são:
-          <p>• @:currencyLang.usdt </p>
-          <p>• @:currencyLang.btc </p>
-          <p>• @:currencyLang.eth </p>
-          <p>• @:currencyLang.busd </p>
-          <p>• @:currencyLang.trx </p>
-          <p>• @:currencyLang.xrp </p>
-          <p>• @:currencyLang.bnb </p>
-          <p>• @:currencyLang.ltc </p>
-          <p>• @:currencyLang.ada </p>
-          <p>• @:currencyLang.doge </p>
-          <p>• @:currencyLang.ton </p>`,
-    q6: 'Há cobrança de taxas nas transações?',
-    a6: `<p>Embora não apliquemos nenhuma taxa de transação para depósitos e saques no Sportsbet.io, pode haver cobrança de taxas ao utilizar o blockchain e/ou taxas cobradas diretamente do seu banco.</p>`,
+          <p>1. Escolha a criptomoeda que você selecionou e clique em depositar.</p>
+          <p>2. Copie o endereço de depósito único e use-o na sua carteira (ou digitalize o código QR).</p>
+          <p>3. Após a confirmação da transação, você receberá uma notificação.</p>`,
+    q2: 'Quanto tempo leva o processamento dos depósitos/saques?',
+    a2: `p>Depósito</p>
+        <p>A maioria dos depósitos de criptomoedas é processada a uma velocidade relâmpago. No entanto, pode haver alguns atrasos de serviços de terceiros.</p>
+        <p>Retirada</p>
+        <p>A maioria das retiradas é processada instantaneamente. No caso de retiradas de grande valor, processamos essas retiradas manualmente, portanto, pode haver um leve atraso.</p>`,
+    q3: 'Quais métodos de pagamento vocês oferecem?',
+    a3: `<p>As opções de moeda disponíveis no Seabet.io são:</p>
+          <p>• Tether (USDT)</p>
+          <p>• Bitcoin (BTC)</p>
+          <p>• Ethereum (ETH)</p>
+          <p>• Tron (TRX)</p>
+          <p>• Binance USD (BUSD)</p>
+          <p>• Binance Coin (BNB)</p>
+          <p>• Ripple (XRP)</p>
+          <p>• Litecoin (LTC)</p>
+          <p>• Cardano (ADA)</p>
+          <p>• Dogecoin (DOGE)</p>
+          <p>• The Open Network (TON)</p>`,
+    q4: 'Há cobrança de taxas nas transações?',
+    a4: `<p>Embora não cobremos nenhuma taxa por depósitos e retiradas no Seabet.io, é possível que você precise pagar taxas de transação ao usar pagamentos com blockchain.</p>`,
+    q5: '',
+    a5: ``,
     q7: '',
     a7: ``,
     q8: '',

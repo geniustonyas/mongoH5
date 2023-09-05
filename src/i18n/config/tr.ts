@@ -515,8 +515,8 @@ export default {
   faqs: {
     q1: 'Nasıl yatırım yaparım?',
     a1: `<p>1. Dilediğin kripto para birimini seçtikten sonra Yatırım'a tıkla.</p>
-          <p>2. Tek kullanımlık yatırım adresini kopyala ve kripto cüzdanındaki gönderim adresine yapıştır (veya QR kodunu tarat).</p>
-          <p>3. İşlem tamamlandığında bildirim alırsın.</p>`,
+        <p>2. Tek kullanımlık yatırım adresini kopyala ve kripto cüzdanındaki gönderim adresine yapıştır (veya QR kodunu tarat).</p>
+        <p>3. İşlem tamamlandığında bildirim alırsın.</p>`,
     q2: 'Nasıl çekim yaparım?',
     a2: `<p>1. Çekmek istediğin kripto para birimini seç ve sonra Çekim'e tıkla.</p>
         <p>2. Çekmek istediğin miktarı gir.</p>
@@ -524,30 +524,26 @@ export default {
         <p>4. Sonra Çekim butonuna tıkla.</p>`,
     q3: 'Yatırımlar/Çekimler ne kadar zaman alır?',
     a3: `<p>Yatırım</p>
-          <p>Kripto para yatırımlarının çoğu ışık hızında gerçekleşir. Fakat üçüncü şahıs sağlayıcılardan kaynaklı gecikmeler olabilir. Most crypto deposits are processed at lightning speed. BTCXE yatırımları ise fiat bakiyelerin BTC bakiyelere çevrimleri sebebiyle 30 dakikaya kadar gerçekleşir.</p>
-          <p>Çekim</p>
-          <p>Çekimlerin çoğu anında gerçekleşir. Büyük miktarlı çekimler ise manuel olarak işleme alındığı için ufak gecikmeler olabilir.</p>
-          <p>Daha fazla bilgi></p>`,
-    // q4: 'Çekim yapmak için hesap doğrulaması (KYC) şart mı?',
-    q4: '',
-    a4: `<p>Daha sonra gerçekleştireceğiniz işlemlerinizde herhangi bir aksaklık yaşamamanız için çekim yapmadan önce hesabınızı doğrulamanızı tavsiye ediyoruz.</p>
-        <p>Kayıt olduktan sonra profilinize hesap doğrulama belgelerini yükleyebilirsiniz.</p>
-        <p>Oyuncuların site kullanımında veya çektikleri bakiyelerin gittiği adreslerde herhangi bir şaibe tespit edilirse, Oyuncu Güvenliği Ekibimiz doğrudan iletişime geçer.</p>`,
-    q5: 'Bünyenizde hangi para birimleri ve ödeme yöntemleri mevcuttur?',
-    a5: `seabet.io'daki mevcut para birimleri:
-          <p>• @:currencyLang.usdt </p>
-          <p>• @:currencyLang.btc </p>
-          <p>• @:currencyLang.eth </p>
-          <p>• @:currencyLang.busd </p>
-          <p>• @:currencyLang.trx </p>
-          <p>• @:currencyLang.xrp </p>
-          <p>• @:currencyLang.bnb </p>
-          <p>• @:currencyLang.ltc </p>
-          <p>• @:currencyLang.ada </p>
-          <p>• @:currencyLang.doge </p>
-          <p>• @:currencyLang.ton </p>`,
-    q6: 'İşlem ücreti kesiyor musunuz?',
-    a6: `<p>seabet.io'da tüm yatırım ve çekim işlemleri için bizim tarafımızdan herhangi bir işlem ücreti kesilmez. Fakat blockchain servisiniz ve/veya bankanız tarafından kesilebilir.</p>`,
+        <p>Kriptopara yatırımlarının çoğu ışık hızında gerçekleşir. Fakat üçüncü şahıs sağlayıcılardan kaynaklı gecikmeler olabilir.</p>
+        <p>Çekim</p>
+        <p>Çekimlerin çoğu anında gerçekleşir. Büyük miktarlı çekimler ise manuel olarak işleme alındığı için ufak gecikmeler olabilir.</p>`,
+    q4: 'Ne tür ödeme yöntemleri sunuyorsunuz?',
+    a4: `<p>Seabet.io'da mevcut olan para birimi seçenekleri:</p>
+        <p>• Tether (USDT)</p>
+        <p>• Bitcoin (BTC)</p>
+        <p>• Ethereum (ETH)</p>
+        <p>• Tron (TRX)</p>
+        <p>• Binance USD (BUSD)</p>
+        <p>• Binance Coin (BNB)</p>
+        <p>• Ripple (XRP)</p>
+        <p>• Litecoin (LTC)</p>
+        <p>• Cardano (ADA)</p>
+        <p>• Dogecoin (DOGE)</p>
+        <p>• The Open Network (TON)</p>`,
+    q5: 'İşlem ücreti kesiyor musunuz?',
+    a5: `<p>Seabet.io'daki yatırma ve çekme işlemleri için herhangi bir ücret almıyoruz, ancak blockchain ödemeleri kullanırken işlem ücretleri ödemeniz gerekebilir.</p>`,
+    q6: '',
+    a6: ``,
     q7: '',
     a7: ``,
     q8: '',

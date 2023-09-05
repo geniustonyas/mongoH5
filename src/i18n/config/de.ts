@@ -511,10 +511,10 @@ export default {
                         <p>Gamatron - Tokyo Kombat</p>`
   },
   faqs: {
-    q1: 'Wie zahle ich ein?<',
+    q1: 'Wie zahle ich ein?',
     a1: `<p>1. Wähle die Kryptowährung deiner Wahl und klicke dann auf "Einzahlen".</p>
-          <p>2. Kopiere die Adresse für die einmalige Einzahlung und verwende sie in deiner Brieftasche (oder scanne den QR-Code).</p>
-          <p>3. Sobald deine Transaktion bestätigt ist, erhältst du eine Benachrichtigung.</p>`,
+        <p>2. Kopiere die Adresse für die einmalige Einzahlung und verwende sie in deiner Brieftasche (oder scanne den QR-Code).</p>
+        <p>3. Sobald deine Transaktion bestätigt ist, erhältst du eine Benachrichtigung.</p>`,
     q2: 'Wie zahle ich aus?',
     a2: `<p>1. Wähle die Kryptowährung aus, die du auszahlen möchtest, und klicke dann auf "Auszahlen".</p>
           <p>2. Gib den Betrag ein, den du auszahlen möchtest.</p>
@@ -522,17 +522,26 @@ export default {
           <p>4. Klicke auf die "Auszahlen"-Taste.</p>`,
     q3: 'Wie lange dauern Ein-/Auszahlungen?',
     a3: `<p>Einzahlung</p>
-          <p>Die meisten Kryptoeinzahlungen werden blitzschnell bearbeitet. Es kann jedoch zu einigen Verzögerungen durch Drittanbieterdienste kommen. Bei BTCXE-Einzahlungen kann es bis zu 30 Minuten dauern, bis deine Transaktion bearbeitet wird, da die Zeit für die Umwandlung von Fiat-Geldern in BTC benötigt wird.</p>
-          <p>Auszahlung</p>
-          <p>Die meisten Auszahlungen werden sofort bearbeitet. Bei größeren Auszahlungen bearbeiten wir diese manuell, daher kann es zu einer leichten Verzögerung kommen.</p>`,
-    q4: 'Ist es notwendig, mein Konto zu verifizieren (KYC), um Geld auszuzahlen?',
-    a4: `<p>Wir empfehlen dir, dein Konto vor der Abhebung zu verifizieren, um mögliche Probleme mit späteren Transaktionen zu vermeiden.</p>
-          <p>Nach der Registrierung kannst du über dein Profil Dokumente zur Kontoverifizierung einreichen.</p>
-          <p>Unser Sicherheitsteam wird sich später mit allen Nutzern in Verbindung setzen, wenn es Bedenken hinsichtlich der Nutzung unserer Plattform und der Herkunft bzw. des Verbleibs von Geldern gibt.</p>`,
-    q5: 'Welche Währungen und Zahlungsarten bieten wir an?',
-    a5: `Die verfügbaren Währungsoptionen bei seabet.io sind:`,
-    q6: 'Erheben wir Gebühren für Transaktionen?',
-    a6: `<p>Während wir keine Transaktionsgebühren für Ein- und Auszahlungen bei Sportsbet.io erheben, können Transaktionsgebühren anfallen, die du für die Nutzung der Blockchain und/oder deiner Bank bezahlen musst.</p>`,
+        <p>Die meisten Kryptoeinzahlungen werden blitzschnell bearbeitet. Es kann jedoch zu einigen Verzögerungen durch Drittanbieterdienste kommen.</p>
+        <p>Auszahlung</p>
+        <p>Die meisten Auszahlungen werden sofort bearbeitet. Bei größeren Auszahlungen bearbeiten wir diese manuell, daher kann es zu einer leichten Verzögerung kommen.</p>`,
+    q4: 'Welche Zahlungsmethoden bieten Sie an?',
+    a4: `<p>Die verfügbaren Währungsoptionen auf Seabet.io sind:</p>
+          <p>• Tether (USDT)</p>
+          <p>• Bitcoin (BTC)</p>
+          <p>• Ethereum (ETH)</p>
+          <p>• Tron (TRX)</p>
+          <p>• Binance USD (BUSD)</p>
+          <p>• Binance Coin (BNB)</p>
+          <p>• Ripple (XRP)</p>
+          <p>• Litecoin (LTC)</p>
+          <p>• Cardano (ADA)</p>
+          <p>• Dogecoin (DOGE)</p>
+          <p>• The Open Network (TON)</p>`,
+    q5: 'Erheben wir Gebühren für Transaktionen?',
+    a5: `<p>Obwohl wir keine Gebühren für Ein- und Auszahlungen auf Seabet.io erheben, kann es sein, dass Sie Transaktionsgebühren bei der Verwendung von Zahlungen über die Blockchain bezahlen müssen.</p>`,
+    q6: '',
+    a6: ``,
     q7: '',
     a7: ``,
     q8: '',

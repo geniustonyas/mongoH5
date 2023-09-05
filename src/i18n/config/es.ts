@@ -525,13 +525,8 @@ export default {
     a3: `<p>La mayoría de los depósitos criptográficos se procesan a la velocidad del rayo. Sin embargo, puede haber algunos retrasos de los servicios de terceros. Para los depósitos de BTCXE, tu transacción puede tardar hasta 30 minutos en procesarse debido al tiempo necesario para la conversión de fondos fiduciarios a BTC.</p>
         <p>Retiro</p>
         <p>La mayoría de los retiros se procesan instantáneamente. En el caso de grandes retiros, procesamos estos retiros manualmente, por lo que puede haber un ligero retraso.</p>`,
-    // q4: '¿Es necesario verificar mi cuenta (KYC) para retirar?',
-    q4: '',
-    a4: `<p>Le recomendamos que verifique su cuenta antes de retirar dinero, ya que esto ayuda a evitar posibles problemas con las transacciones en un momento posterior.</p>
-        <p>Al registrarse, puede enviar documentos de verificación de cuenta a través de tu perfil.</p>
-        <p>Nuestro Equipo de garantía de seguridad del jugador se comunicará con los usuarios más adelante si hay inquietudes con respecto al uso de nuestra plataforma y el origen/destino de los fondos.</p>`,
-    q5: '¿Qué monedas y métodos de pago ofrecen?',
-    a5: `Las opciones de moneda disponibles en seabet.io son:
+    q4: '¿Qué monedas y métodos de pago ofrecen?',
+    a4: `Las opciones de moneda disponibles en seabet.io son:
           <p>• @:currencyLang.usdt </p>
           <p>• @:currencyLang.btc </p>
           <p>• @:currencyLang.eth </p>
@@ -544,8 +539,10 @@ export default {
           <p>• @:currencyLang.ada </p>
           <p>• @:currencyLang.doge </p>
           <p>• @:currencyLang.ton </p>`,
-    q6: '¿Aplican comisiones en las transacciones?',
-    a6: `<p>Si bien no aplicamos ninguna tarifa de transacción para depósitos y retiros en Sportsbet.io, puede haber tarifas de transacción que deba pagar al usar la cadena de bloques y/o su banco.</p>`,
+    q5: '¿Aplican comisiones en las transacciones?',
+    a5: `<p>Si bien no aplicamos ninguna tarifa de transacción para depósitos y retiros en Sportsbet.io, puede haber tarifas de transacción que deba pagar al usar la cadena de bloques y/o su banco.</p>`,
+    q6: '',
+    a6: ``,
     q7: '',
     a7: ``,
     q8: '',
