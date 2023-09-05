@@ -55,7 +55,11 @@ function createService() {
         } else if (code == '401') {
           useUserStoreHook().clearLogin()
         } else if (t('errorCodes.' + code) != '') {
-          showToast(t('errorCodes.' + code))
+          if (['1013'].includes(code)) {
+            showToast(t('errorCodes.' + code, { data: data }))
+          } else {
+            showToast(t('errorCodes.' + code))
+          }
         }
         return Promise.reject(data.message)
       }
