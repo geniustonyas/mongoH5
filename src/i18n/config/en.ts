@@ -479,6 +479,7 @@ export default {
   rewardRecords: 'Reward Records',
   applyPromo: 'Apply Rewards',
   applyNow: 'Apply Now',
+  rewardStatus: { 0: 'Processing', 1: 'Passed', 2: 'Rejected' },
 
   problem: {
     whatVip: 'What is the VIP Club?',

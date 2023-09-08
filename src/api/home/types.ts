@@ -123,6 +123,7 @@ export interface getRewardListItem {
   createTime: string
   rewardCode: string
   currencyCode: string
+  orderStatus: string
   amount: string
 }
 

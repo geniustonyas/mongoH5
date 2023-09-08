@@ -137,6 +137,7 @@
         :style="{ height: '500px' }"
         round
         :show-confirm="false"
+        :show-mark="false"
         :formatter="dayFormatter"
         @confirm="customDate"
       />

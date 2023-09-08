@@ -51,7 +51,7 @@
                       </div>
                       <div class="l-r">
                         <strong>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</strong>
-                        <span class="confirmed">{{ t('confirmd') }}</span>
+                        <span :class="`${rewardStatusCss[item.orderStatus]}`">{{ t(`rewardStatus[${item.orderStatus}]`) }}</span>
                       </div>
                     </li>
                   </List>
@@ -118,7 +118,7 @@
     <ConfigProvider theme="dark">
       <Calendar
         v-model:show="showDatePicker"
-        :default-date="[dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]"
+        :default-date="defaultDate"
         type="range"
         :min-date="minDate"
         :max-date="maxDate"
@@ -127,6 +127,7 @@
         :style="{ height: '500px' }"
         round
         :show-confirm="false"
+        :show-mark="false"
         :formatter="dayFormatter"
         @confirm="customDate"
       />
@@ -145,6 +146,7 @@ import { getRewardListData, getRewardListItem, getRewardCodeListItem } from '@/a
 
 import { useI18n } from 'vue-i18n'
 import { moneyFormat } from '@/utils'
+import dynamicObject from '@/types/dynamicObject'
 
 import { PullRefresh, List, showToast, Calendar } from 'vant'
 import dayjs from 'dayjs'
@@ -152,7 +154,8 @@ import dayjs from 'dayjs'
 const { t } = useI18n()
 
 const tab = ref('activities')
-
+const rewardStatusCss = ref<dynamicObject>(['incomplete', 'confirmed', 'deleted'])
+let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]
 // 显示兑奖弹窗
 let showAddBox = ref(false)
 let showPromoBox = ref(false)
@@ -310,7 +313,7 @@ const exchangeReward = () => {
 
 // 选择日期后回调
 const customDate = (time: any) => {
-  promoQuery.Data.BetTime = dayjs(time[0]).format('YYYY-MM-DD HH:mm:ss') + '-' + dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD HH:mm:ss')
+  promoQuery.Data.BetTime = dayjs(time[0]).format('YYYY-MM-DD HH:mm:ss') + ' - ' + dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD HH:mm:ss')
   showDatePicker.value = false
 }
 

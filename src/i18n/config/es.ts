@@ -477,7 +477,7 @@ export default {
   rewardActivities: '奖励活动',
   rewardRecords: '奖励记录',
   applyPromo: '申请奖励',
-  applyNow: '立即申请',
+  rewardStatus: { 0: '处理中', 1: '通过', 2: '拒绝' },
 
   problem: {
     whatVip: 'What is the VIP Club?',
