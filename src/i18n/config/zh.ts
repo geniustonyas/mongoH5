@@ -505,14 +505,12 @@ export default {
     resetVips: '<p>您的VIP等级将在每个月初重置为0。然后，您可以从青铜等级开始再次领取下一级别的所有奖励。您积分仍将被保留，以兑换更多的奖励及服务。</p>',
     everyGetInterial: '是否每个投注都可收集俱乐部积分?',
     everyGetInterials: `<p>不是。只有用真钱投注才会累积俱乐部积分。</p>
-                        <p>此外，俱乐部中不包括以下类别赛事，因此，在这些赛事上下的投注不会为您累积积分：</p>
                         <p>赛马</p>
-                        <p>电竞体育</p>
-                        <p>体育竞猜大师</p>
-                        <p>以下娱乐场游戏也不包括在俱乐部内，在这些游戏上下的投注不会为您累积积分：此外，以下的赌场游戏也不包含在俱乐部内，对它们下注将不会为您赚取积分
-                        NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up
-                        Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack
-                        Asia Gaming - Fish Hunter</p>`
+                        <p>电竞游戏</p>
+                        <p>此外，以下的赌场游戏也不包含在俱乐部内，对它们下注将不会为您赚取积分
+                        <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
+                        <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
+                        <p>Asia Gaming - Fish Hunter</p>`
   },
 
   faqs: {
