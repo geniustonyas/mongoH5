@@ -77,9 +77,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import IndexHeader from '@/components/layout/IndexHeader.vue'
 import IndexFooter from '@/components/layout/IndexFooter.vue'
@@ -99,7 +99,7 @@ import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 
 const appStore = useAppStore()
 const route = useRoute()
-const router = useRouter()
+// const router = useRouter()
 const { t } = useI18n()
 
 // 汇率相关
@@ -110,11 +110,13 @@ let showGameOption = ref(false)
 // 列表显示or表格显示
 let gridShow = ref(true)
 // 游戏列表排序规则
-const sortBy = [
-  { text: t('polular'), value: 3 },
-  { text: 'A-Z', value: 1 },
-  { text: 'RTP', value: 2 }
-]
+const sortBy = computed(() => {
+  return [
+    { text: t('polular'), value: 3 },
+    { text: 'A-Z', value: 1 },
+    { text: 'RTP', value: 2 }
+  ]
+})
 // 游戏列表查询参数
 let query = reactive<getGameListData>({
   ps: [],

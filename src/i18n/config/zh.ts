@@ -507,7 +507,7 @@ export default {
     everyGetInterials: `<p>不是。只有用真钱投注才会累积俱乐部积分。</p>
                         <p>赛马</p>
                         <p>电竞游戏</p>
-                        <p>此外，以下的赌场游戏也不包含在俱乐部内，对它们下注将不会为您赚取积分
+                        <p>此外，以下的赌场游戏也不包含在俱乐部内，对它们下注将不会为您赚取积分</p>
                         <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
                         <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
                         <p>Asia Gaming - Fish Hunter</p>`
