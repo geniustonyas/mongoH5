@@ -1183,7 +1183,7 @@ export default {
                         <li>To provide and improve our services</li>
                         <li>Identify and verify your identity</li>
                         <li>Communicate with you</li>
-                        <li>conducting market research and promotional activities</li>
+                        <li>Conducting market research and promotional activities</li>
                         <li>To respond to your questions and requests</li>
                         <li>To comply with our contractual and legal obligations</li>
                       </ul>

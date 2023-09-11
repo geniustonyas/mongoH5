@@ -47,10 +47,10 @@
                     <li v-for="(item, index) of rewardList" :key="index">
                       <div class="l-l">
                         <span>{{ item.createTime }}</span>
-                        <strong>{{ item.rewardCode }}</strong>
+                        <strong>{{ item.rewardName }}</strong>
                       </div>
                       <div class="l-r">
-                        <strong>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</strong>
+                        <strong>{{ item.orderStatus == '1' ? moneyFormat(item.amount) + item.currencyCode : '' }}</strong>
                         <span :class="`${rewardStatusCss[item.orderStatus]}`">{{ t(`rewardStatus[${item.orderStatus}]`) }}</span>
                       </div>
                     </li>

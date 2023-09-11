@@ -122,6 +122,7 @@ export interface getRewardListItem {
   id: string
   createTime: string
   rewardCode: string
+  rewardName: string
   currencyCode: string
   orderStatus: string
   amount: string
