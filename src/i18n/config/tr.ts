@@ -482,48 +482,66 @@ export default {
   rewardStatus: { 0: '处理中', 1: '通过', 2: '拒绝' },
 
   problem: {
-    whatVip: 'What is the VIP Club?',
-    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
-                <p>In simple terms, it means: You play games, and we reward you.</p>`,
-    howGetIntegrial: 'How to Earn Points?',
-    howGetIntegrials: `<p>How to Earn Points?</p>
-                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
-                        <p></p>`,
-    whatVipLevel: 'What are VIP Levels?',
-    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
-                    <p>VIP Level 	Required Bet Amount	Frequency</p>
-                    <p>Bronze 	100	1</p>
-                    <p>Silver	500	5</p>
-                    <p>Gold 	15000	8</p>
-                    <p>Platinum 	300,000	10</p>
-                    <p>Titanium	1,900,000	10</p>
-                    <p>Diamond 	6,000,000	6</p>
-                    <p></p>`,
-    howComputeInterial: 'How are Points Calculated?',
-    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
-                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
-    whyMergedReward: 'Why are My Rewards Merged?',
-    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
-    resetVip: 'When will My VIP Level Reset?',
-    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
-    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
-    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
-                        <p>Horse Racing</p>
-                        <p>Esports Sports</p>
-                        <p>Sportsbook Masters</p>
-                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
-                        <p></p>
-                        <p>OneTouch - Russian Poker</p>
-                        <p>Genii - Aces And Faces Video Poker</p>
-                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+    whatVip: '1.VIP Kulübü nedir?',
+    whatVips: `<p>seabet.io VIP Kulübü, kripto para müşterilerine açık olan, her zaman web sitesindeki tüm promosyon etkinliklerinin tadını çıkarmalarını sağlayan özel bir topluluktur. Oynadığınız her bahis, dönüş ve oyun puan biriktirecek, kulüpte yavaşça seviye atlayacak ve yol boyunca heyecan verici ödülleri kilitleyeceksiniz. VIP seviyelerini açtıkça, ayrıca Seabet bahis puanları kazanacaksınız, bu da size daha fazla ödüllendirici deneyimler ve hizmetler sunacaktır.</p>
+                <p>Basitçe söylemek gerekirse: Siz oyun oynarsınız, biz de sizi ödüllendiririz.</p>`,
+    howGetIntegrial: '2.Puan Nasıl Kazanılır?',
+    howGetIntegrials: `Her bahis, slot makinesi çevirme ve oynadığınız masa oyunları ile kulüp puanları kazanırsınız. Topladığınız puan ne kadar fazla olursa, seviyeniz o kadar yüksek olur. Rütbeler arasında ilerledikçe, çeşitli heyecan verici ödülleri kilitleyeceksiniz. Yeni seviyeleri açtıkça ödüller daha da iyi olmaya devam edecektir.`,
+    whatVipLevel: '3.VIP Seviyeleri nedir?',
+    whatVipLevels: `<p>VIP seviyeleri, talep edebileceğiniz ödüllerin değerini ve türünü belirler. Kulüpte ilerledikçe ve seviye atladıkça ödülleriniz de artar.</p>
+                    <table>
+                      <tr>
+                        <th>VIP Seviye</th>
+                        <th>Gerekli Bahis Miktarı</th>
+                        <th>Sıklık</th>
+                      </tr>
+                      <tr>
+                        <td>Bronz</td>
+                        <td>100</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>Gümüş</td>
+                        <td>500</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>Altın</td>
+                        <td>15000</td>
+                        <td>8</td>
+                      </tr>
+                      <tr>
+                        <td>Platin</td>
+                        <td>300,000</td>
+                        <td>10</td>
+                      </tr>
+                      <tr>
+                        <td>Titanyum</td>
+                        <td>1,900,000</td>
+                        <td>10</td>
+                      </tr>
+                      <tr>
+                        <td>Elmas</td>
+                        <td>6,000,000</td>
+                        <td>6</td>
+                      </tr>
+                    </table>`,
+    howComputeInterial: '4.Puanlar Nasıl Hesaplanır?',
+    howComputeInterials: `<p>Spor bahislerinden veya kumar oyunlarından puan kazanmak için kripto para kullanmanız durumunda, her bahsiniz için puanlarınızı hesaplarken, işlem sırasında gerçek zamanlı piyasa döviz kuruyla bahis miktarınızı USDT'ye dönüştürüyoruz. Bu, kullanılan kripto paranın ne olduğuna bakılmaksızın tüm puan toplamalarının adil olduğunu garanti eder. Dalgalanan döviz kuru nedeniyle, puanları hesaplarken en yakın tam sayıya yuvarlama ilkesini takip ediyoruz..</p>
+                          <p>Seabet puanlarını kazanma formülü şöyledir: Oyuncunun bahis miktarı * 0.1 * ilgili seviyenin puan katsayısı. Örneğin, bir oyuncu Platin seviyesinde ise ve 5000 bahis yaparsa, puan hesaplama formülüne göre oyuncu 5000 * 0.1 * 1.3 = 650 puan kazanır. Seabet puanlarının geniş bir kullanım alanı vardır ve oyuncular, puan mağazasından eşdeğer hediyeleri ve hizmetleri alabilirler.</p>`,
+    whyMergedReward: '5.Ödüllerim neden birleştiriliyor?',
+    whyMergedRewards: `<p>Ödülleriniz birleştiriliyor çünkü tek bir bahis birden fazla ödülü açabilir. Sizi rahatlatmak için, ödüllerin değerlerini toplarız ve bunları tek bir ödül olarak gösteririz.</p>`,
+    resetVip: '6.VIP seviyem ne zaman sıfırlanacak?',
+    resetVips: `<p>VIP seviyeniz her ayın başında sıfırlanacaktır. Daha sonra Bronz seviyesinden tekrar başlayabilir ve bir sonraki seviyenin tüm ödüllerini alabilirsiniz. Biriktirdiğiniz puanlar hala saklanacak ve daha fazla ödül ve hizmet almak için kullanabileceksiniz.</p>`,
+    everyGetInterial: '7. Her Bahisle Kulüp Puanı Kazanabilir miyim?',
+    everyGetInterials: `<p>Hayır, kulüp puanları yalnızca gerçek parayla bahis yaparken biriktirilir. Ayrıca, belirli kategori olayları ve oyunları kulüp içinde yer almadığından, bu kategorilere yapılan bahisler size puan kazandırmaz. Bu kategoriler şunları içerir:</p>
+                        <p>At Yarışı</p>
+                        <p>Esports Sporlar</p>
+                        <p>Spor Bahisleri Ustaları</p>
+                        <p>Ayrıca, aşağıdaki kumar oyunları da kulüp içinde yer almadığından, bunlara yapılan bahisler size puan kazandırmaz.</p>
                         <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
                         <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
-                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
-                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
-                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
-                        <p>Asia Gaming - Fish Hunter</p>
-                        <p>Spadegaming - Fishing God, Fishing War</p>
-                        <p>Gamatron - Tokyo Kombat</p>`
+                        <p>Asia Gaming - Fish Hunter</p>`
   },
   faqs: {
     q1: 'Nasıl yatırım yaparım?',

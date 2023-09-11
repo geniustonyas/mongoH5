@@ -483,48 +483,66 @@ export default {
   rewardStatus: { 0: '处理中', 1: '通过', 2: '拒绝' },
 
   problem: {
-    whatVip: 'What is the VIP Club?',
-    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
-                <p>In simple terms, it means: You play games, and we reward you.</p>`,
-    howGetIntegrial: 'How to Earn Points?',
-    howGetIntegrials: `<p>How to Earn Points?</p>
-                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
-                        <p></p>`,
-    whatVipLevel: 'What are VIP Levels?',
-    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
-                    <p>VIP Level 	Required Bet Amount	Frequency</p>
-                    <p>Bronze 	100	1</p>
-                    <p>Silver	500	5</p>
-                    <p>Gold 	15000	8</p>
-                    <p>Platinum 	300,000	10</p>
-                    <p>Titanium	1,900,000	10</p>
-                    <p>Diamond 	6,000,000	6</p>
-                    <p></p>`,
-    howComputeInterial: 'How are Points Calculated?',
-    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
-                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
-    whyMergedReward: 'Why are My Rewards Merged?',
-    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
-    resetVip: 'When will My VIP Level Reset?',
-    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
-    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
-    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
-                        <p>Horse Racing</p>
-                        <p>Esports Sports</p>
-                        <p>Sportsbook Masters</p>
-                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
-                        <p></p>
-                        <p>OneTouch - Russian Poker</p>
-                        <p>Genii - Aces And Faces Video Poker</p>
-                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+    whatVip: '1.VIP 클럽이란 무엇인가요?',
+    whatVips: `<p>seabet.io VIP 클럽은 암호화폐 고객을 위한 전용 커뮤니티로, 언제든지 웹 사이트에서 제공하는 모든 프로모션 활동을 즐길 수 있도록 해줍니다. 당신이 베팅, 스핀, 그리고 게임을 할 때마다 점수가 쌓이며, 클럽 내에서 점차 레벨을 올리고 여러 흥미로운 보상을 언락하게 됩니다. VIP 레벨을 언락함에 따라 Seabet 베팅 포인트도 얻게 되어 더 다양한 보상과 서비스를 누릴 수 있습니다.</p>
+                <p>간단히 말해, 이것은 게임을 하고 우리가 보상을 제공하는 것을 의미합니다.</p>`,
+    howGetIntegrial: '2.포인트를 어떻게 얻을 수 있나요?',
+    howGetIntegrials: `<p>모든 베팅, 슬롯 머신 스핀 및 테이블 게임을 플레이할 때마다 클럽 포인트를 얻을 수 있습니다. 포인트를 더 많이 모을수록 레벨이 높아집니다. 계급을 통해 진행함에 따라 다양한 흥미로운 보상을 언락할 수 있습니다. 새로운 레벨을 언락할수록 보상은 계속해서 더 좋아집니다.</p>`,
+    whatVipLevel: '3.VIP 레벨이란 무엇인가요?',
+    whatVipLevels: `<p>VIP 레벨은 당신이 요구할 수 있는 보상의 가치와 유형을 결정합니다. 클럽을 진행하고 레벨을 올릴수록 보상도 증가합니다.</p>
+                    <table>
+                      <tr>
+                        <th>VIP 레벨</th>
+                        <th>필요한 베팅 금액</th>
+                        <th>빈도</th>
+                      </tr>
+                      <tr>
+                        <td>브론즈</td>
+                        <td>100</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>실버</td>
+                        <td>500</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>골드</td>
+                        <td>15000</td>
+                        <td>8</td>
+                      </tr>
+                      <tr>
+                        <td>플래티넘</td>
+                        <td>300,000</td>
+                        <td>10</td>
+                      </tr>
+                      <tr>
+                        <td>티타늄</td>
+                        <td>1,900,000</td>
+                        <td>10</td>
+                      </tr>
+                      <tr>
+                        <td>다이아몬드</td>
+                        <td>6,000,000</td>
+                        <td>6</td>
+                      </tr>
+                    </table>`,
+    howComputeInterial: '4.포인트는 어떻게 계산되나요?',
+    howComputeInterials: `<p>스포츠 베팅이든 카지노 게임이든, 암호화폐를 사용하면 포인트를 얻을 수 있습니다. 각 베팅으로 얻는 포인트를 계산하기 위해 정산 과정에서 베팅 금액을 실시간 시장 환율로 USDT로 변환합니다. 이렇게 하면 사용된 암호화폐의 종류에 관계없이 모든 포인트 모으기가 공정하게 이루어집니다. 환율 변동으로 인해 포인트 계산 시 가장 가까운 정수로 반올림하는 원칙을 따릅니다.</p>
+                          <p>Seabet 포인트를 얻는 공식은 다음과 같습니다: 플레이어의 베팅 금액 * 0.1 * 해당 레벨의 포인트 계수. 예를 들어, 플레이어가 플래티넘 레벨에 있고 5000을 베팅한다면, 포인트 계산 공식에 따라 플레이어는 5000 * 0.1 * 1.3 = 650 포인트를 얻게 됩니다. Seabet 포인트는 다양한 용도로 사용할 수 있으며 플레이어는 포인트 상점에서 동등한 선물과 서비스를 교환할 수 있습니다.</p>`,
+    whyMergedReward: '5.내 리워드가 병합되는 이유는 무엇인가요?',
+    whyMergedRewards: `<p>내 보상이 합쳐진 이유는 단일 베팅으로 여러 보상을 언락할 수 있기 때문입니다. 편리하게 하기 위해 보상의 가치를 더하고 하나의 보상으로 표시합니다.</p>`,
+    resetVip: '6.내 VIP 레벨은 언제 초기화되나요?',
+    resetVips: `<p>당신의 VIP 레벨은 매월 초에 0으로 초기화됩니다. 그런 다음 브론즈 레벨부터 다시 시작하고 다음 레벨의 모든 보상을 요구할 수 있습니다. 누적된 포인트는 여전히 보상과 서비스를 더 많이 교환할 수 있도록 보존됩니다.</p>`,
+    everyGetInterial: '7.모든 베팅으로 클럽 포인트를 얻을 수 있나요?',
+    everyGetInterials: `<p>아니요, 클럽 포인트는 실제 돈으로 베팅할 때만 누적됩니다. 또한 일부 이벤트 및 게임 범주는 클럽에 포함되지 않으므로 그 위에 베팅을 해도 포인트를 획득하지 못합니다. 이러한 범주에는 다음이 포함됩니다.</p>
+                        <p>경마</p>
+                        <p>전자 스포츠</p>
+                        <p>스포츠 북 마스터</p>
+                        <p>게다가 다음의 카지노 게임들도 클럽에 포함되지 않으며, 그 위에 베팅을 해도 포인트를 획득하지 못합니다.</p>
                         <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
                         <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
-                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
-                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
-                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
-                        <p>Asia Gaming - Fish Hunter</p>
-                        <p>Spadegaming - Fishing God, Fishing War</p>
-                        <p>Gamatron - Tokyo Kombat</p>`
+                        <p>Asia Gaming - Fish Hunter</p>`
   },
   faqs: {
     q1: '어떻게 입금하나요?',
