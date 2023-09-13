@@ -13,7 +13,7 @@
               <div class="ir-a"><img v-lazy="getAssetsFile('svg/SabaSports.svg')" />{{ t('provider.sabaSports') }}</div>
               <div class="ir-b">{{ t('sabaSportIntro') }}</div>
               <div class="ir-c">
-                <a class="btn btn-primary" @click="startGame(1439)">{{ t('startNow') }}</a>
+                <a class="btn btn-primary" @click="startGame('1439')">{{ t('startNow') }}</a>
               </div>
             </div>
           </div>
@@ -23,7 +23,7 @@
               <div class="ir-a"><img v-lazy="getAssetsFile('svg/FBSports.svg')" />{{ t('provider.btiports') }}</div>
               <div class="ir-b">{{ t('btiSportIntro') }}</div>
               <div class="ir-c">
-                <a class="btn btn-primary" @click="startGame('2')">{{ t('startNow') }}</a>
+                <a class="btn btn-primary" @click="startGame('2110')">{{ t('startNow') }}</a>
               </div>
             </div>
           </div>

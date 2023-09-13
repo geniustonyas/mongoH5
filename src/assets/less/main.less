@@ -1726,7 +1726,6 @@ body {
 
 /*优惠*/
 .promo-box {
-    margin-top: 1rem;
     .pb-list {
         margin: 1rem 1rem 2rem 1rem;
 
@@ -1829,6 +1828,17 @@ body {
         }
     }
 }
+
+.promo-table{font-size:1.4rem;}
+ .promo-box .pb-detail .pd-conts .promo-table th, .promo-box .pb-detail .pd-conts .promo-table td { text-align: center; }
+ @media screen and (max-width: 600px) { .promo-table.atuo { border: 1px solid rgba(255,255,255,.1); font-size: 1.4rem; }
+     .promo-table.atuo thead { display: none; }
+     .promo-table.atuo td { display: block; text-align: right !important; }
+     .promo-table.atuo td:before { content: attr(data-label); float: left; color: var(--color-primary); padding-left: .5rem; font-weight: 600; }
+     .promo-table.atuo tr:nth-child(2n) { background-color: transparent; }
+     .promo-table.atuo tr td:nth-child(2n) { background-color: var(--color-menu); }
+ }
+ 
 /*充值提现*/
 .fund-box {
     margin-bottom: 2rem;

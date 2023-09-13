@@ -36,6 +36,7 @@ const selLanguage = (val: string) => {
     userStore.getUserInfo({ noLoading: true })
     userStore.setDefultLang()
   }
+  window.location.reload()
 }
 
 defineExpose({

@@ -138,7 +138,7 @@ export const providerListData = () => {
   return [
     // 体育提供商
     { id: '1439', type: 'sports', tab: 'sports', name: t('provider.sabaSports'), img: getAssetsFile('svg/SabaSports.svg') },
-    // { id: '2', type: 'sports', tab: 'sports', name: t('provider.fbSports'), img: getAssetsFile('svg/FBSports.svg') },
+    { id: '2110', type: 'sports', tab: 'sports', name: t('provider.btiports'), img: getAssetsFile('svg/FBSports.svg') },
     // { id: '2', type: 'sports', tab: 'sports', name: t('provider.fbSports'), img: getAssetsFile('svg/FBSports.svg') },
     // 真人提供商
     { id: '6', type: 'casino', tab: 'casino', name: t('provider.evolution'), img: getAssetsFile('svg/Evolution.svg') },
