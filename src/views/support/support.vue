@@ -2,7 +2,7 @@
   <div class="page">
     <CommonHeader :show-back="false" :title="t('support')" />
     <main v-if="appStore.chat != null" class="main">
-      <iframe :src="appStore.chat" style="border: none; width: 100%; height: calc(100vh - 48px)" />
+      <iframe :src="appStore.chat" style="border: none; width: 100%; height: calc(100vh - 96px)" />
     </main>
     <Footer />
   </div>

@@ -1,6 +1,6 @@
 import router from '@/router'
 import i18n from '@/i18n'
-import { showConfirmDialog, showToast } from 'vant'
+import { showConfirmDialog } from 'vant'
 
 import { getGameUrlApi } from '@/api/game'
 import { useUserStore } from '@/store/modules/user'

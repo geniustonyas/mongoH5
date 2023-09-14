@@ -4,7 +4,8 @@
       <router-link to="/index"><i />{{ t('home') }} </router-link>
       <router-link to="/search"><i />{{ t('search') }} </router-link>
       <router-link to="/promo"><i />{{ t('promo') }} </router-link>
-      <a @click="startService('showMessages')"><i />{{ t('support') }} </a>
+      <router-link to="/support"><i />{{ t('support') }} </router-link>
+      <!-- <a @click="startService('showMessages')"><i />{{ t('support') }} </a> -->
       <router-link to="/home"><i />{{ t('accountMenu') }} </router-link>
     </nav>
   </footer>
@@ -12,7 +13,7 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { startService } from '@/composables/startGame'
+// import { startService } from '@/composables/startGame'
 
 const { t } = useI18n()
 </script>
