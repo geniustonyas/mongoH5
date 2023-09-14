@@ -147,7 +147,7 @@ export const providerListData = () => {
     { id: '3', type: 'casino', tab: 'casino', name: t('provider.asiaGaming'), img: getAssetsFile('svg/AsiaGaming.svg') },
     // 电子提供商
     { id: '1', type: 'slots', tab: 'slots', name: t('provider.pragmaticPlay'), img: getAssetsFile('svg/PragmaticPlay.svg') },
-    // { id: '8', type: 'slots', tab: 'slots', name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg') },
+    { id: '11', type: 'slots', tab: 'slots', name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg') },
     { id: '9', type: 'slots', tab: 'slots', name: t('provider.netEnt'), img: getAssetsFile('svg/NetEnt.svg') },
     // { id: '10', type: 'slots', tab: 'slots', name: t('provider.playTech'), img: getAssetsFile('svg/PlayTech.svg') },
     { id: '15', type: 'slots', tab: 'slots', name: t('provider.microgaming'), img: getAssetsFile('svg/Mg.svg') }
