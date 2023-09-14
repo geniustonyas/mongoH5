@@ -28,7 +28,7 @@
             </div>
             <div class="item">
               <label>{{ t('minMaxBet') }}</label
-              ><span>{{ detailsData.minBetAmount }} - {{ detailsData.maxBetAmount }} USDT</span>
+              ><span>{{ parseFloat(detailsData.minBetAmount).toFixed(2) }} - {{ parseFloat(detailsData.maxBetAmount).toFixed(2) }} USDT</span>
             </div>
             <div class="item" v-if="detailsData.volatility != '0'">
               <label>{{ t('volatility') }}</label

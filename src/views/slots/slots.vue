@@ -46,7 +46,6 @@
           </Vue3SlideUpDown>
         </div>
         <div v-if="dataList.length > 0" :class="gridShow ? 'g-list' : 'g-list row'">
-          <!-- <div v-for="(item, index) of dataList" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })"> -->
           <div v-for="(item, index) of dataList" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })">
             <div class="i-bd">
               <div class="i-img">
