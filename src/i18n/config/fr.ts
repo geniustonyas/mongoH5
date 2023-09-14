@@ -281,7 +281,7 @@ export default {
   provider: {
     all: 'Tous',
     sabaSports: 'SABA Sports',
-    btiports: 'BTI Sports',
+    btiports: 'Seabet Sports',
     fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -498,7 +498,7 @@ export default {
                     <p></p>`,
     howComputeInterial: '4.Comment sont calculés les points ?',
     howComputeInterials: `<p>Que ce soit pour les paris sportifs ou les jeux de casino, l'utilisation de cryptomonnaies vous permettra de gagner des points. Pour calculer les points que vous gagnez à chaque pari, nous convertissons le montant de votre mise en USDT au taux de change du marché en temps réel lors de la régularisation. Cela garantit que toutes les collectes de points, quel que soit le type de cryptomonnaie utilisé, sont équitables. En raison des taux de conversion fluctuants, nous suivons le principe de l'arrondi au nombre entier le plus proche lors du calcul des points.</p>
-                          <p>La formule pour gagner des points Seabet est la suivante : Montant de la mise du joueur * 0,1 * coefficient de points du niveau correspondant. Par exemple, si un joueur est au niveau Platinum et mise 5000, selon la formule de calcul des points, le joueur gagnera 5000 * 0,1 * 1,3 = 650 points. Les points Seabet ont une large gamme d'utilisations, et les joueurs peuvent échanger des cadeaux et des services équivalents auprès de la boutique de points.</p>`,
+                          <p>La formule pour gagner des points Seabet est la suivante : Montant de la mise du joueur * 0,1 * coefficient de points du niveau correspondant. Par exemple, si un joueur est au niveau Platinum et mise 5000, selon la formule de calcul des points, le joueur gagnera 5000 * 0,01 * 1,3 = 65 points. Les points Seabet ont une large gamme d'utilisations, et les joueurs peuvent échanger des cadeaux et des services équivalents auprès de la boutique de points.</p>`,
     whyMergedReward: '5.Pourquoi mes récompenses sont-elles fusionnées ?',
     whyMergedRewards: `<p>Vos récompenses sont fusionnées parce qu'un seul pari peut débloquer plusieurs récompenses. Pour vous faciliter les choses, nous additionnons la valeur des récompenses et les affichons sous forme d'une seule récompense.</p>`,
     resetVip: '6.Quand mon niveau VIP sera-t-il réinitialisé ?',

@@ -150,6 +150,7 @@ import dynamicObject from '@/types/dynamicObject'
 
 import { PullRefresh, List, showToast, Calendar } from 'vant'
 import dayjs from 'dayjs'
+import { cloneDeep } from 'lodash-es'
 
 const { t } = useI18n()
 
@@ -175,6 +176,8 @@ const promoQuery = reactive({
     Expand1: ''
   }
 })
+
+const defaultPromoQuery = cloneDeep(promoQuery)
 
 // 列表刷新下拉等参数
 let listLoading = ref(false)
@@ -287,7 +290,8 @@ const applyReward = () => {
     .catch((error) => {
       console.log(error)
     })
-
+  Object.assign(promoQuery, defaultPromoQuery)
+  showPromoBox.value = false
   showDatePicker.value = false
 }
 

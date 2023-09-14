@@ -278,7 +278,7 @@ export default {
   provider: {
     all: 'Alle',
     sabaSports: 'Saba Sport',
-    btiports: 'BTI Sports',
+    btiports: 'Seabet Sports',
     fbSports: 'FB Sport',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -526,7 +526,7 @@ export default {
                     </table>`,
     howComputeInterial: '4.Wie werden Punkte berechnet?',
     howComputeInterials: `<p>Ob es sich um Sportwetten oder das Spielen von Casinospielen handelt, die Verwendung von Kryptowährungen wird Ihnen Punkte einbringen. Um die Punkte zu berechnen, die Sie bei jeder Wette verdienen, konvertieren wir den Betrag Ihrer Wette während der Abrechnung in USDT zum Echtzeit-Marktwechselkurs. Dies stellt sicher, dass alle Punktesammlungen, unabhängig von der verwendeten Kryptowährung, fair sind. Aufgrund der schwankenden Wechselkurse folgen wir dem Prinzip der Rundung auf die nächste ganze Zahl bei der Berechnung von Punkten.</p>
-                          <p>Die Formel zum Verdienen von Seabet-Punkten lautet: Spielerwetteinsatz * 0,1 * entsprechender Punktkoeffizient des Levels. Zum Beispiel, wenn ein Spieler auf dem Platin-Level ist und 5000 setzt, nach der Formel zur Punkteberechnung wird der Spieler 5000 * 0,1 * 1,3 = 650 Punkte verdienen. Seabet-Punkte haben eine breite Palette von Verwendungsmöglichkeiten, und Spieler können äquivalente Geschenke und Dienstleistungen im Punkteladen einlösen.</p>`,
+                          <p>Die Formel zum Verdienen von Seabet-Punkten lautet: Spielerwetteinsatz * 0,1 * entsprechender Punktkoeffizient des Levels. Zum Beispiel, wenn ein Spieler auf dem Platin-Level ist und 5000 setzt, nach der Formel zur Punkteberechnung wird der Spieler 5000 * 0,01 * 1,3 = 65 Punkte verdienen. Seabet-Punkte haben eine breite Palette von Verwendungsmöglichkeiten, und Spieler können äquivalente Geschenke und Dienstleistungen im Punkteladen einlösen.</p>`,
     whyMergedReward: '5.Warum werden meine Belohnungen zusammengefasst?',
     whyMergedRewards: `<p>Ihre Belohnungen werden zusammengefasst, weil eine einzelne Wette mehrere Belohnungen freischalten kann. Um es Ihnen bequem zu machen, addieren wir den Wert der Belohnungen zusammen und zeigen sie als eine einzelne Belohnung an.</p>`,
     resetVip: '6.Wann wird mein VIP-Level zurückgesetzt?',

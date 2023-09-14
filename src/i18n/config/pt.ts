@@ -281,6 +281,7 @@ export default {
   provider: {
     all: 'Todos',
     sabaSports: 'Esportes Saba',
+    btiports: 'Esportes Seabet',
     fbSports: 'Esportes FB',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -528,7 +529,7 @@ export default {
                     </table>`,
     howComputeInterial: '4.Como São Calculados os Pontos?',
     howComputeInterials: `<p>Quer esteja a fazer apostas desportivas ou a jogar jogos de casino, o uso de criptomoedas permitir-lhe-á ganhar pontos. Para calcular os pontos que ganha com cada aposta, convertemos o valor da sua aposta em USDT à taxa de câmbio de mercado em tempo real durante a liquidação. Isso garante que todas as coletas de pontos, independentemente da criptomoeda usada, sejam justas. Devido às taxas de conversão flutuantes, seguimos o princípio de arredondar para o número inteiro mais próximo ao calcular os pontos.</p>
-                          <p>A fórmula para ganhar pontos Seabet é: Valor da aposta do jogador * 0,1 * coeficiente de pontos do nível correspondente. Por exemplo, se um jogador estiver no nível Platina e apostar 5000, de acordo com a fórmula de cálculo de pontos, o jogador ganhará 5000 * 0,1 * 1,3 = 650 pontos. Os pontos Seabet têm uma ampla gama de usos, e os jogadores podem resgatar presentes e serviços equivalentes na loja de pontos.</p>`,
+                          <p>A fórmula para ganhar pontos Seabet é: Valor da aposta do jogador * 0,1 * coeficiente de pontos do nível correspondente. Por exemplo, se um jogador estiver no nível Platina e apostar 5000, de acordo com a fórmula de cálculo de pontos, o jogador ganhará 5000 * 0,01 * 1,3 = 65 pontos. Os pontos Seabet têm uma ampla gama de usos, e os jogadores podem resgatar presentes e serviços equivalentes na loja de pontos.</p>`,
     whyMergedReward: '5.Por que as minhas recompensas estão unificadas?',
     whyMergedRewards: `<p>As suas recompensas são unificadas porque uma única aposta pode desbloquear múltiplas recompensas. Para tornar mais conveniente para você, somamos o valor das recompensas e as exibimos como uma única recompensa.</p>`,
     resetVip: '6.Quando o meu nível VIP será redefinido?',

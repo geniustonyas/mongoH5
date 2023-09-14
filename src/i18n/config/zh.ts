@@ -280,7 +280,7 @@ export default {
   provider: {
     all: 'ALL',
     sabaSports: 'Saba Sports',
-    btiports: 'BTI Sports',
+    btiports: 'Seabet Sports',
     fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -480,6 +480,13 @@ export default {
   applyPromo: '申请奖励',
   applyNow: '立即申请',
   rewardStatus: { 0: '处理中', 1: '通过', 2: '拒绝' },
+  betTime: '投注时间',
+  betOrderNo: '注单号码',
+  startEarning: '开始赚取',
+  historyType: '类型',
+  rewardName: '奖励名称',
+  startTime: '开始时间',
+  endTime: '结束时间',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',
@@ -528,7 +535,7 @@ export default {
                     </table>`,
     howComputeInterial: '4. 积分如何计算?',
     howComputeInterials: `<p>不论是体育投注，还是玩娱乐场游戏旋转时，使用加密货币都将可以得积分。为了计算您每次下注所赚取的积分，我们将在结算注单时按照实时市场汇率将您的下注金额转换为USDT，从而使无论您使用哪种加密货币，所有点数收集都是公平的。由于转换率会长期波动，因此我们在计算积分时会始终遵守四舍五入到最接近的整数的原则来进行补偿。</p>
-                        <p>Seabet积分获取公式为玩家在任意场馆的投注金额*0.01*对应级别的积分系数，如玩家等级为铂金，投注金额为5000，那么根据积分计算公式，该玩家所获积分为5000*0.01*1.3=650积分。Seabet积分用途广泛，玩家可通过积分在积分商城中兑换等值礼品及服务项目。</p>`,
+                        <p>Seabet积分获取公式为玩家在任意场馆的投注金额*0.01*对应级别的积分系数，如玩家等级为铂金，投注金额为5000，那么根据积分计算公式，该玩家所获积分为5000*0.01*1.3=65积分。Seabet积分用途广泛，玩家可通过积分在积分商城中兑换等值礼品及服务项目。</p>`,
     whyMergedReward: '5. 为什么我的奖励被合并?',
     whyMergedRewards: `<p>您的奖励被合并是因为您的一次投注有可能解锁多个奖励。为了方便您使用，我们将奖励价值相加，并显示为一种奖励。</p>`,
     resetVip: '6. 我的VIP等级何时重置?',

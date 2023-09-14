@@ -281,7 +281,7 @@ export default {
   provider: {
     all: 'ALL',
     sabaSports: 'Saba Sports',
-    btiports: 'BTI Sports',
+    btiports: 'Seabet Sports',
     fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -480,6 +480,13 @@ export default {
   applyPromo: 'Apply Rewards',
   applyNow: 'Apply Now',
   rewardStatus: { 0: 'Processing', 1: 'Passed', 2: 'Rejected' },
+  betTime: 'Bet Time',
+  betOrderNo: 'Bet Order No',
+  startEarning: 'to start earning',
+  historyType: 'Type',
+  rewardName: 'Reward Name',
+  startTime: 'Start Time',
+  endTime: 'End Time',
 
   problem: {
     whatVip: 'What is the VIP Club?',
@@ -530,7 +537,7 @@ export default {
                     </table>`,
     howComputeInterial: 'How are Points Calculated?',
     howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
-                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
+                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.01 * 1.3 = 65 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
     whyMergedReward: 'Why are My Rewards Merged?',
     whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
     resetVip: 'When will My VIP Level Reset?',

@@ -281,7 +281,7 @@ export default {
   provider: {
     all: 'Tümü',
     sabaSports: 'Saba Spor',
-    btiports: 'BTI Sports',
+    btiports: 'Seabet Sports',
     fbSports: 'FB Spor',
     evolution: 'Evolution',
     bombayLive: 'Bombay Canlı',
@@ -528,7 +528,7 @@ export default {
                     </table>`,
     howComputeInterial: '4.Puanlar Nasıl Hesaplanır?',
     howComputeInterials: `<p>Spor bahislerinden veya kumar oyunlarından puan kazanmak için kripto para kullanmanız durumunda, her bahsiniz için puanlarınızı hesaplarken, işlem sırasında gerçek zamanlı piyasa döviz kuruyla bahis miktarınızı USDT'ye dönüştürüyoruz. Bu, kullanılan kripto paranın ne olduğuna bakılmaksızın tüm puan toplamalarının adil olduğunu garanti eder. Dalgalanan döviz kuru nedeniyle, puanları hesaplarken en yakın tam sayıya yuvarlama ilkesini takip ediyoruz..</p>
-                          <p>Seabet puanlarını kazanma formülü şöyledir: Oyuncunun bahis miktarı * 0.1 * ilgili seviyenin puan katsayısı. Örneğin, bir oyuncu Platin seviyesinde ise ve 5000 bahis yaparsa, puan hesaplama formülüne göre oyuncu 5000 * 0.1 * 1.3 = 650 puan kazanır. Seabet puanlarının geniş bir kullanım alanı vardır ve oyuncular, puan mağazasından eşdeğer hediyeleri ve hizmetleri alabilirler.</p>`,
+                          <p>Seabet puanlarını kazanma formülü şöyledir: Oyuncunun bahis miktarı * 0.1 * ilgili seviyenin puan katsayısı. Örneğin, bir oyuncu Platin seviyesinde ise ve 5000 bahis yaparsa, puan hesaplama formülüne göre oyuncu 5000 * 0.01 * 1.3 = 65 puan kazanır. Seabet puanlarının geniş bir kullanım alanı vardır ve oyuncular, puan mağazasından eşdeğer hediyeleri ve hizmetleri alabilirler.</p>`,
     whyMergedReward: '5.Ödüllerim neden birleştiriliyor?',
     whyMergedRewards: `<p>Ödülleriniz birleştiriliyor çünkü tek bir bahis birden fazla ödülü açabilir. Sizi rahatlatmak için, ödüllerin değerlerini toplarız ve bunları tek bir ödül olarak gösteririz.</p>`,
     resetVip: '6.VIP seviyem ne zaman sıfırlanacak?',
