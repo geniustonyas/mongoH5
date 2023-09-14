@@ -281,7 +281,7 @@ export default {
   provider: {
     all: 'ALL',
     sabaSports: 'Saba Sports',
-    btiports: 'Seabet Sports',
+    btiSports: 'Seabet Sports',
     fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -487,6 +487,9 @@ export default {
   rewardName: 'Reward Name',
   startTime: 'Start Time',
   endTime: 'End Time',
+  minMaxBet: 'Min-Max Bet',
+  volatility: 'Volatility',
+  volatilitys: { 1: 'Low', 2: 'Low-Medium', 3: 'Medium', 4: 'Medium-High', 5: 'High', 6: 'Very hign', 7: 'Very low' },
 
   problem: {
     whatVip: 'What is the VIP Club?',

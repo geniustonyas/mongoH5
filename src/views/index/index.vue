@@ -127,7 +127,7 @@
             </div>
             <div class="b-gm">
               <!-- <a @click="router.push({ name: 'gameDetails', params: { id: betDetailsItem.gameId } })">{{ t('goto') }} {{ betDetailsItem.gameName }}</a> -->
-              <a @click="startGame(betDetailsItem.gameId)">{{ t('goto') }} {{ betDetailsItem.gameName }}</a>
+              <a @click="router.push({ name: 'gameDetails', params: { id: betDetailsItem.gameId } })">{{ t('goto') }} {{ betDetailsItem.gameName }}</a>
             </div>
           </div>
         </div>
@@ -164,7 +164,6 @@ import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, moneyFormat, loginTo } from '@/utils'
 import { getExchangeRate } from '@/composables/getExchangeRate'
-import { startGame } from '@/composables/startGame'
 
 //第三方插件
 import { useI18n } from 'vue-i18n'

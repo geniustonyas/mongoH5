@@ -281,7 +281,7 @@ export default {
   provider: {
     all: 'Tất cả',
     sabaSports: 'Thể thao Saba',
-    btiports: 'Thể thao Seabet',
+    btiSports: 'Thể thao Seabet',
     fbSports: 'Thể thao FB',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -480,6 +480,16 @@ export default {
   applyPromo: '申请奖励',
   applyNow: '立即申请',
   rewardStatus: { 0: '处理中', 1: '通过', 2: '拒绝' },
+  betTime: '投注时间',
+  betOrderNo: '注单号码',
+  startEarning: '开始赚取',
+  historyType: '类型',
+  rewardName: '奖励名称',
+  startTime: '开始时间',
+  endTime: '结束时间',
+  minMaxBet: '最小-最大投注',
+  volatility: '波动性',
+  volatilitys: { 1: '低', 2: '中低', 3: '中', 4: '中高', 5: '高', 6: '非常高', 7: '非常低' },
 
   problem: {
     whatVip: 'What is the VIP Club?',

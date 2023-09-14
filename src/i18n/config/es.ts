@@ -279,7 +279,7 @@ export default {
   provider: {
     all: 'Todos',
     sabaSports: 'Saba Sports',
-    btiports: 'Seabet Sports',
+    btiSports: 'Seabet Sports',
     fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -478,6 +478,16 @@ export default {
   rewardRecords: '奖励记录',
   applyPromo: '申请奖励',
   rewardStatus: { 0: '处理中', 1: '通过', 2: '拒绝' },
+  betTime: '投注时间',
+  betOrderNo: '注单号码',
+  startEarning: '开始赚取',
+  historyType: '类型',
+  rewardName: '奖励名称',
+  startTime: '开始时间',
+  endTime: '结束时间',
+  minMaxBet: '最小-最大投注',
+  volatility: '波动性',
+  volatilitys: { 1: '低', 2: '中低', 3: '中', 4: '中高', 5: '高', 6: '非常高', 7: '非常低' },
 
   problem: {
     whatVip: '1.¿Qué es el Club VIP?',

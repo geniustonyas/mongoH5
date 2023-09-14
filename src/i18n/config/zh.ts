@@ -280,7 +280,7 @@ export default {
   provider: {
     all: 'ALL',
     sabaSports: 'Saba Sports',
-    btiports: 'Seabet Sports',
+    btiSports: 'Seabet Sports',
     fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -487,6 +487,9 @@ export default {
   rewardName: '奖励名称',
   startTime: '开始时间',
   endTime: '结束时间',
+  minMaxBet: '最小-最大投注',
+  volatility: '波动性',
+  volatilitys: { 1: '低', 2: '中低', 3: '中', 4: '中高', 5: '高', 6: '非常高', 7: '非常低' },
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

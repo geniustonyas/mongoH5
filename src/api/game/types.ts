@@ -33,6 +33,10 @@ export interface getGameListData {
   page: number
 }
 
+export interface getGameDetailsData {
+  Id: string
+}
+
 // 推荐游戏列表
 export interface getGameUrlData {
   id: string | number
@@ -97,7 +101,39 @@ export interface getSearchGameRespItem {
   f: boolean
 }
 
+export interface getGameDetailsRespGameItem {
+  name: string
+  id: string
+  gameType: string
+  providerCode: string
+  providerId: string
+  providerName: string
+  defaultRTPName: string
+  volatility: string
+  lines: string
+  minBetAmount: string
+  maxBetAmount: string
+  imageName: string
+}
+
+export interface getGameDetailsRespItem {
+  defaultRTPName: string
+  volatility: string
+  lines: string
+  minBetAmount: string
+  maxBetAmount: string
+  gameType: string
+  providerCode: string
+  providerId: string
+  providerName: string
+  name: string
+  id: string
+  imageName: string
+  game: getGameDetailsRespGameItem[]
+}
+
 export type recommendGameResp = ApiResponseData<recommendGameRespItem[]>
 export type getGameListResp = ApiResponseData<{ cs: getGameListRespItem[]; gs: getGameListGsResp; ps: getGameListRespItem[] }>
 export type getRankListResp = ApiResponseData<{ sport: getRankListRespItem[]; casino: getRankListRespItem[]; slots: getRankListRespItem[] }>
 export type getSearchGameResp = ApiResponseData<{ count: string; items: getSearchGameRespItem[] }>
+export type getGameDetailsResp = ApiResponseData<getGameDetailsRespItem>
