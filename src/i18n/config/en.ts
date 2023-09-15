@@ -490,6 +490,12 @@ export default {
   minMaxBet: 'Min-Max Bet',
   volatility: 'Volatility',
   volatilitys: { 1: 'Low', 2: 'Low-Medium', 3: 'Medium', 4: 'Medium-High', 5: 'High', 6: 'Very hign', 7: 'Very low' },
+  myPoints: 'My Points',
+  backPromo: 'Back to promotions',
+  noSupportFullScreen: 'Your browser does not support full screen',
+  pointsExchange: 'Exhange',
+  view: 'view',
+  oprate: '操作',
 
   problem: {
     whatVip: 'What is the VIP Club?',
@@ -638,7 +644,8 @@ export default {
     1029: '邮件发送失败',
     1030: '商品数量不足',
     1031: '可用积分不足',
-    1101: '可用余额不足'
+    1101: '可用余额不足',
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。'
   },
 
   // 条款协议等内容
