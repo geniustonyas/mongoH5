@@ -495,8 +495,9 @@ export default {
   backPromo: '返回促销',
   noSupportFullScreen: '当前浏览器不支持全屏',
   pointsExchange: '积分兑换',
-  view: '查看',
-  oprate: '操作',
+  view: '详情',
+  oprate: '查看',
+  remain: '剩余',
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',

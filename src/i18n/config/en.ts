@@ -494,8 +494,9 @@ export default {
   backPromo: 'Back to promotions',
   noSupportFullScreen: 'Your browser does not support full screen',
   pointsExchange: 'Exhange',
-  view: 'view',
-  oprate: '操作',
+  view: 'more',
+  oprate: 'view',
+  remain: 'Remain',
 
   problem: {
     whatVip: 'What is the VIP Club?',
