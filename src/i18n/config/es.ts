@@ -397,7 +397,7 @@ export default {
   time: '时间',
   betAmount: '投注金额',
   support2: '支持',
-  btiSportIntro: '多年体育平台运营经验，BTi体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
+  btiSportIntro: '多年体育平台运营经验，Seabet体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
   sabaSportIntro: '经过近二十年的多方证实，沙巴体育平台提供广泛的体育赛事、多种创新投注类型、业界最佳赔率。',
   fundRecord: '账变记录',
   categoryFilter: '按分类筛选',

@@ -82,7 +82,7 @@
                       <b>{{ moneyFormat(item.price) }}</b>
                     </div>
                     <div v-else class="er-exhange">
-                      <a class="btn btn-primary">立即兑换</a>
+                      <a class="btn btn-primary">{{ t('buyNow') }}</a>
                     </div>
                   </div>
                 </template>
