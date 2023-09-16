@@ -64,7 +64,7 @@ export const currenyListData = () => {
       currenyName: t('currencyLang.bnb'),
       unit: 'BNB',
       currenyType: '10',
-      icon: 'coin/trx.svg',
+      icon: 'coin/binance_icon.svg',
       explorer: ''
     },
     {

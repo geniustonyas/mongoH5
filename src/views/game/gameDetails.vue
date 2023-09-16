@@ -49,7 +49,7 @@
           </div>
         </div>
         <div v-if="detailsData.game.length > 0" class="g-list">
-          <div v-for="(item, index) of detailsData.game" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })">
+          <div v-for="(item, index) of detailsData.game" :key="index" class="item" @click="router.replace({ name: 'gameDetails', params: { id: item.id } })">
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="`https://seabet.imgix.net/${item.imageName}?auto=compress,format&w=200&h=152&q=50&dpr=2`" />
