@@ -197,7 +197,7 @@
               </a>
             </dd>
             <dd>
-              <a @click="router.push({ name: 'support' })">
+              <a @click="liveChatCall('maximize')">
                 <span> <i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }} </span>
                 <i class="iconfont icon-right" />
               </a>
@@ -223,7 +223,7 @@ import { currenyListData, currenyListTypes } from '@/utils/config'
 import { HisotyReocrdType } from '@/utils/constant'
 import dynamicObject from '@/types/dynamicObject'
 import { useI18n } from 'vue-i18n'
-
+import { liveChatCall } from '@/composables/startGame'
 import { moneyFormat } from '@/utils/index'
 import dayjs from 'dayjs'
 import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List, Popup, showConfirmDialog } from 'vant'

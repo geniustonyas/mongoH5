@@ -174,7 +174,7 @@
             </a>
           </dd>
           <dd>
-            <a @click="router.push({ name: 'support' })">
+            <a @click="liveChatCall('maximize')">
               <span> <i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }} </span>
               <i class="iconfont icon-right" />
             </a>
@@ -220,6 +220,7 @@ import { getMinWithdrawAmountApi, getBalanceApi, withdrawOrderApi, getTradeDetai
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { usdtChainListData, currenyListData, usdtChainListTypes } from '@/utils/config'
 import { useI18n } from 'vue-i18n'
+import { liveChatCall } from '@/composables/startGame'
 
 import BigNumber from 'bignumber.js'
 import { showToast, Popup, ConfigProvider } from 'vant'

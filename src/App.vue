@@ -12,12 +12,26 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
 import { Overlay, Loading } from 'vant'
 import { useAppStore } from '@/store/modules/app'
 import { useI18n } from 'vue-i18n'
-const appStore = useAppStore()
+import { useUserStore } from './store/modules/user'
+import { liveChatCall } from '@/composables/startGame'
 
+const appStore = useAppStore()
+const userStore = useUserStore()
 const { t } = useI18n()
+
+watch(
+  () => userStore.userInfo.userName,
+  (val) => {
+    if (val && val != '') {
+      liveChatCall('set_customer_name', userStore.userInfo.userName)
+      liveChatCall('set_customer_email', userStore.userInfo.email)
+    }
+  }
+)
 
 document.title = t('siteTitle')
 </script>

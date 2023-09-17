@@ -83,7 +83,7 @@
         <div class="menu-item">
           <ul>
             <li>
-              <a @click="startService('showMessages')"><i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }}</a>
+              <a @click="liveChatCall('maximize')"><i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }}</a>
             </li>
             <li>
               <a @click="routeToGame('promo', null)"><i class="iconfont icon-rewards" />{{ t('promotions') }}</a>
@@ -127,7 +127,7 @@ import { languages } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { providerListData, providerListItemTypes } from '@/utils/config'
 import { useAppStore } from '@/store/modules/app'
-import { startGame, startService } from '@/composables/startGame'
+import { startGame, liveChatCall } from '@/composables/startGame'
 //第三方插件
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast } from 'vant'

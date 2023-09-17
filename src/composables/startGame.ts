@@ -3,10 +3,10 @@ import i18n from '@/i18n'
 import { showConfirmDialog } from 'vant'
 
 import { getGameUrlApi } from '@/api/game'
-import { useUserStore } from '@/store/modules/user'
+import { useUserStoreHook } from '@/store/modules/user'
 import { PlatForm } from '@/utils/constant'
 
-const userStore = useUserStore()
+const userStore = useUserStoreHook()
 const { t } = i18n.global
 
 /**
@@ -50,12 +50,15 @@ export function startGame(gameId: string | number) {
 }
 
 /**
- * 参考 https://codepen.io/intercom/pen/QGqWxw
- * @param message
+ * 参考 https://platform.text.com/docs/extending-chat-widget/javascript-api
  * @returns
  */
-export function startService(message: string) {
-  //@ts-ignore
-  window.Intercom(message)
-  return true
+export function liveChatCall(key: string, value: string | undefined = undefined) {
+  if (value) {
+    //@ts-ignore
+    window.LiveChatWidget.call(key, value)
+  } else {
+    //@ts-ignore
+    window.LiveChatWidget.call(key)
+  }
 }

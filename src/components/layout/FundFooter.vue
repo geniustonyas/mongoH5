@@ -35,7 +35,7 @@
       </a>
     </dd>
     <dd>
-      <a @click="router.push({ name: 'support' })">
+      <a @click="liveChatCall('maximize')">
         <span> <i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }} </span>
         <i class="iconfont icon-right" />
       </a>
@@ -46,6 +46,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import { liveChatCall } from '@/composables/startGame'
 
 const router = useRouter()
 const { t } = useI18n()

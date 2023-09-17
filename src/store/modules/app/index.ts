@@ -7,6 +7,7 @@ export const useAppStore = defineStore('app', () => {
   const loading = ref(false)
   const showSideBar = ref(false)
   const chat = ref('')
+  const liveChatView = ref('minimized')
   const email = ref('')
   const cdnurl = ref('')
 
@@ -30,6 +31,7 @@ export const useAppStore = defineStore('app', () => {
     loading,
     showSideBar,
     chat,
+    liveChatView,
     email,
     cdnurl,
     getConfig
