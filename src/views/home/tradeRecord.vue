@@ -327,6 +327,8 @@ const selCurrency = (item: currenyListTypes) => {
 // 选择币种后查询交易列表
 const confirmCurreny = () => {
   currenyDom?.value!.toggle()
+  query.PageIndex = '1'
+  dataList.value = []
   getTradeRecordList()
 }
 
