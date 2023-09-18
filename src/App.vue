@@ -46,6 +46,7 @@ body,
 #app {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 .slide-left-enter-active,
 .slide-left-leave-active,
