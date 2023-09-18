@@ -117,7 +117,7 @@ export default {
   currentPwd: 'Mật khẩu hiện tại',
   newPwd: 'Mật khẩu mới',
   confirmPwd: 'Xác nhận mật khẩu',
-  changePwdLimit: 'Để đảm bảo an toàn tài chính của bạn, sau khi thay đổi mật khẩu, bạn sẽ không thể thực hiện giao dịch rút tiền trong vòng 48 giờ.',
+  changePwdLimit: 'Để đảm bảo an toàn tài chính của bạn, sau khi thay đổi mật khẩu, bạn sẽ không thể thực hiện giao dịch rút tiền trong vòng 24 giờ.',
   disabledGoogle: 'Ứng dụng xác minh Google đã tắt',
   activeGoogle: 'Vui lòng sử dụng ứng dụng xác minh Google để quét mã QR hoặc nhập mã để kích hoạt.',
   whatGoogleCode: 'Mã xác minh Google là gì?',
@@ -634,7 +634,8 @@ export default {
     1030: '商品数量不足',
     1031: '可用积分不足',
     1101: '可用余额不足',
-    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。'
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   // 条款协议等内容
@@ -1337,7 +1338,7 @@ export default {
 
                         <p><b>3.11 </b>As part of the registration process, you are obliged to complete the login process to the Website. You'll need to choose a username that isn't offensive or contentious. You are responsible for the security of your login details and are strictly prohibited from divulging them to anyone. You will be responsible for any misuse of your Member Account by a third party as a result of your disclosure, whether intentional, accidental or actively or passively provided to any third party. </p>
 
-                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 48 hours for security reasons. </p>
+                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 24 hours for security reasons. </p>
 
                         <h3>4. Security</h3>
                         <p><b>4.1 </b>When registering through the Website, you will be required to select a password to authenticate your membership account using the Website. </p>

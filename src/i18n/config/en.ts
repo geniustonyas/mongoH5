@@ -117,10 +117,10 @@ export default {
   currentPwd: 'Current Password',
   newPwd: 'New Password',
   confirmPwd: 'Confirm Password',
-  changePwdLimit: 'To ensure the safety of your funds, no withdrawal is allowed in the next 48 hours after a change of password is made.',
+  changePwdLimit: 'To ensure the safety of your funds, no withdrawal is allowed in the next 24 hours after a change of password is made.',
   disabledGoogle: 'Google Authenticator is disabled',
   activeGoogle: 'To activate, scan the QR code or enter the code manually ',
-  whatGoogleCode: 'What is Google Verification Code? ',
+  whatGoogleCode: 'What is google authenticator? ',
   typeCode: 'Type code',
   submitCode: 'Submit code',
   keyValue: 'Key value',
@@ -182,7 +182,7 @@ export default {
   walletDetails: 'Wallet details',
   walletDetailsBig: 'WALLET DETAILS',
   waitingResults: 'review in progress',
-  withdrawUsdt: 'Withdraw USDT',
+  withdrawUsdt: 'Withdraw {curreny}',
   amount: 'amount',
   minWithdrawAmount: 'Minimum withdrawal amount',
   next: 'Next',
@@ -503,9 +503,7 @@ export default {
     whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
                 <p>In simple terms, it means: You play games, and we reward you.</p>`,
     howGetIntegrial: 'How to Earn Points?',
-    howGetIntegrials: `<p>How to Earn Points?</p>
-                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
-                        <p></p>`,
+    howGetIntegrials: `<p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>`,
     whatVipLevel: 'What are VIP Levels?',
     whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
                     <table>
@@ -646,7 +644,8 @@ export default {
     1030: '商品数量不足',
     1031: '可用积分不足',
     1101: '可用余额不足',
-    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。'
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   // 条款协议等内容
@@ -1347,7 +1346,7 @@ export default {
 
                         <p><b>3.11 </b>As part of the registration process, you are obliged to complete the login process to the Website. You'll need to choose a username that isn't offensive or contentious. You are responsible for the security of your login details and are strictly prohibited from divulging them to anyone. You will be responsible for any misuse of your Member Account by a third party as a result of your disclosure, whether intentional, accidental or actively or passively provided to any third party. </p>
 
-                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 48 hours for security reasons. </p>
+                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 24 hours for security reasons. </p>
 
                         <h3>4. Security</h3>
                         <p><b>4.1 </b>When registering through the Website, you will be required to select a password to authenticate your membership account using the Website. </p>

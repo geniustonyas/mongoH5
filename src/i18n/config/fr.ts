@@ -117,7 +117,7 @@ export default {
   currentPwd: 'Mot de Passe Actuel',
   newPwd: 'Nouveau Mot de Passe',
   confirmPwd: 'Confirmez le Mot de Passe',
-  changePwdLimit: 'Pour votre sécurité, vous ne pourrez pas effectuer de retraits pendant 48 heures après avoir changé de mot de passe.',
+  changePwdLimit: 'Pour votre sécurité, vous ne pourrez pas effectuer de retraits pendant 24 heures après avoir changé de mot de passe.',
   disabledGoogle: 'Google Authenticator désactivé',
   activeGoogle: 'Veuillez scanner le code QR ou saisir le code pour activer Google Authenticator.',
   whatGoogleCode: "Qu'est-ce que le code Google Authenticator ?",
@@ -634,7 +634,8 @@ export default {
     1030: '商品数量不足',
     1031: '可用积分不足',
     1101: '可用余额不足',
-    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。'
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   html: {
@@ -1336,7 +1337,7 @@ export default {
 
                         <p><b>3.11 </b>As part of the registration process, you are obliged to complete the login process to the Website. You'll need to choose a username that isn't offensive or contentious. You are responsible for the security of your login details and are strictly prohibited from divulging them to anyone. You will be responsible for any misuse of your Member Account by a third party as a result of your disclosure, whether intentional, accidental or actively or passively provided to any third party. </p>
 
-                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 48 hours for security reasons. </p>
+                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 24 hours for security reasons. </p>
 
                         <h3>4. Security</h3>
                         <p><b>4.1 </b>When registering through the Website, you will be required to select a password to authenticate your membership account using the Website. </p>

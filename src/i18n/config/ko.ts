@@ -280,8 +280,8 @@ export default {
   // 게임제공업체
   provider: {
     all: '전부',
-    sabaSports: '사바스포츠',
-    btiSports: 'Seabet스포츠',
+    sabaSports: 'Saba Sports',
+    btiSports: 'Seabet Sports',
     fbSports: 'FB스포츠',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -589,7 +589,7 @@ export default {
           <p>• Cardano (ADA)</p>
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
-    q5: '어떤 통화와 결제 수단을 제공합니까?',
+    q5: '거래 수수료가 부과 됩니까?',
     a5: `<p>Seabet.io에서 입출금에 대한 수수료를 부과하지는 않지만, 블록체인 결제를 사용할 때 거래 수수료를 지불해야 할 수 있습니다.</p>`,
     q6: '',
     a6: ``,
@@ -636,7 +636,8 @@ export default {
     1030: '商品数量不足',
     1031: '可用积分不足',
     1101: '可用余额不足',
-    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。'
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   // 条款协议等内容

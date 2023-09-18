@@ -279,9 +279,9 @@ export default {
   // ゲームプロバイダー
   provider: {
     all: '全部',
-    sabaSports: 'Sabaスポーツ',
-    btiSports: 'Seabetスポーツ',
-    fbSports: 'FBスポーツ',
+    sabaSports: 'Saba Sports',
+    btiSports: 'Seabet Sports',
+    fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
     ezugi: 'Ezugi',
@@ -396,7 +396,7 @@ export default {
   withdrawStatus: { 1: '处理中', 2: '成功', 3: '失败' },
   time: '时间',
   betAmount: '投注金额',
-  support2: '支持',
+  support2: 'サポート',
   btiSportIntro: '多年体育平台运营经验，Seabet体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
   sabaSportIntro: '经过近二十年的多方证实，沙巴体育平台提供广泛的体育赛事、多种创新投注类型、业界最佳赔率。',
   fundRecord: '账变记录',
@@ -636,7 +636,8 @@ export default {
     1030: '商品数量不足',
     1031: '可用积分不足',
     1101: '可用余额不足',
-    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。'
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   // 利用規約と協議内容等

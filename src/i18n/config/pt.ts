@@ -117,7 +117,7 @@ export default {
   currentPwd: 'Senha Atual',
   newPwd: 'Nova Senha',
   confirmPwd: 'Confirmar Nova Senha',
-  changePwdLimit: 'Por razões de segurança, você não poderá efetuar retiradas nas próximas 48 horas após a alteração da senha.',
+  changePwdLimit: 'Por razões de segurança, você não poderá efetuar retiradas nas próximas 24 horas após a alteração da senha.',
   disabledGoogle: 'Autenticador Google Desativado',
   activeGoogle: 'Digitalize o código QR ou insira o código para ativar o Autenticador Google.',
   whatGoogleCode: 'O que é o Código Google?',
@@ -632,7 +632,8 @@ export default {
     1030: '商品数量不足',
     1031: '可用积分不足',
     1101: '可用余额不足',
-    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。'
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   html: {

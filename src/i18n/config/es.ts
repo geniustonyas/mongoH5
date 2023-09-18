@@ -117,7 +117,7 @@ export default {
   currentPwd: 'Contraseña Actual',
   newPwd: 'Nueva Contraseña',
   confirmPwd: 'Confirmar Contraseña',
-  changePwdLimit: 'Para asegurar la seguridad de tus fondos, después de cambiar la contraseña no podrás realizar retiros durante 48 horas.',
+  changePwdLimit: 'Para asegurar la seguridad de tus fondos, después de cambiar la contraseña no podrás realizar retiros durante 24 horas.',
   disabledGoogle: 'Autenticador de Google desactivado',
   activeGoogle: 'Usa el Autenticador de Google para escanear el código QR o ingresar el código para activarlo.',
   whatGoogleCode: '¿Qué es el Código de Google?',
@@ -633,7 +633,8 @@ export default {
     1030: '商品数量不足',
     1031: '可用积分不足',
     1101: '可用余额不足',
-    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。'
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   // Términos y Contenidos HTML

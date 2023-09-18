@@ -117,7 +117,7 @@ export default {
   currentPwd: 'Aktuelles Passwort',
   newPwd: 'Neues Passwort',
   confirmPwd: 'Neues Passwort bestätigen',
-  changePwdLimit: 'Zum Schutz Ihrer Gelder können nach einer Passwortänderung für 48 Stunden keine Abhebungen vorgenommen werden.',
+  changePwdLimit: 'Zum Schutz Ihrer Gelder können nach einer Passwortänderung für 24 Stunden keine Abhebungen vorgenommen werden.',
   disabledGoogle: 'Google Authenticator deaktiviert',
   activeGoogle: 'QR-Code scannen oder Code eingeben, um Google Authenticator zu aktivieren.',
   whatGoogleCode: 'Was ist ein Google-Code?',
@@ -182,7 +182,7 @@ export default {
   walletDetails: 'Wallet-Details',
   walletDetailsBig: 'Wallet-Details',
   waitingResults: 'Warte auf Ergebnisse',
-  withdrawUsdt: 'USDT {curreny}',
+  withdrawUsdt: 'Withdraw {curreny}',
   amount: 'Betrag',
   minWithdrawAmount: 'Mindestabhebungsbetrag',
   next: 'Weiter',
@@ -1336,7 +1336,7 @@ export default {
 
                           <p><b>3.11 </b>As part of the registration process, you are obliged to complete the login process to the Website. You'll need to choose a username that isn't offensive or contentious. You are responsible for the security of your login details and are strictly prohibited from divulging them to anyone. You will be responsible for any misuse of your Member Account by a third party as a result of your disclosure, whether intentional, accidental or actively or passively provided to any third party. </p>
 
-                          <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 48 hours for security reasons. </p>
+                          <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 24 hours for security reasons. </p>
 
                           <h3>4. Security</h3>
                           <p><b>4.1 </b>When registering through the Website, you will be required to select a password to authenticate your membership account using the Website. </p>
