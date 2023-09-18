@@ -28,8 +28,8 @@
               ><span>{{ t('volatilitys.' + detailsData.volatility) }}</span>
             </div>
             <div class="btns">
-              <a v-if="parseInt(detailsData.gameType) === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, 'game/demo')">{{ t('demoMode') }}</a>
               <a class="btn btn-primary" @click="startGame(detailsData.id, 'game/url')">{{ t('startNow') }}</a>
+              <a v-if="parseInt(detailsData.gameType) === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, 'game/demo')">{{ t('demoMode') }}</a>
             </div>
           </div>
         </div>
