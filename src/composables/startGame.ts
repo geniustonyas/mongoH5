@@ -13,8 +13,7 @@ const { t } = i18n.global
  * 启动游戏
  * @param id 游戏id
  */
-export function startGame(gameId: string | number) {
-  console.log(gameId)
+export function startGame(gameId: string | number, url = 'game/url') {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
       title: t('tips.noLogin'),
@@ -27,21 +26,22 @@ export function startGame(gameId: string | number) {
         return false
       })
   } else {
-    getGameUrlApi({ id: gameId, platform: PlatForm.H5 })
+    getGameUrlApi({ id: gameId, platform: PlatForm.H5 }, url)
       .then((resp) => {
-        const wd = window.open(resp.data)
-        if (!wd) {
-          showConfirmDialog({
-            title: t(''),
-            message: t('tips.openWindow')
-          })
-            .then(() => {
-              window.open(resp.data)
-            })
-            .catch(() => {
-              return false
-            })
-        }
+        // const wd = window.open(resp.data)
+        window.location.href = resp.data
+        // if (!wd) {
+        //   showConfirmDialog({
+        //     title: t(''),
+        //     message: t('tips.openWindow')
+        //   })
+        //     .then(() => {
+        //       window.open(resp.data)
+        //     })
+        //     .catch(() => {
+        //       return false
+        //     })
+        // }
       })
       .catch((error) => {
         console.log(error)

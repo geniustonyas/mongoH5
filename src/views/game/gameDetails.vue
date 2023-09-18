@@ -9,20 +9,13 @@
               <img v-lazy="`https://seabet.imgix.net/${detailsData.imageName}?auto=compress,format&w=200&h=152&q=50&dpr=2`" />
             </div>
             <div class="a-r">
-              <!-- <span>{{ t('newGame') }}</span> -->
               <h3>{{ detailsData.name }}</h3>
               <p>
                 <label>{{ detailsData.providerName }}</label>
-                <!-- <label>ELK</label> -->
               </p>
             </div>
           </div>
           <div class="gd-b">
-            <!-- <div class="st-item">
-              <span class="active">{{ t('oneDay') }}<b>58.58%</b><i class="iconfont icon-xj" /> </span>
-              <span> {{ t('week') }}<b>59.58%</b><i class="iconfont icon-ss" /> </span>
-              <span> {{ t('month') }}<b>81.73%</b><i class="iconfont icon-xj" /> </span>
-            </div> -->
             <div class="item" v-if="detailsData.defaultRTPName != ''">
               <label>RTP</label><span>{{ detailsData.defaultRTPName }}</span>
             </div>
@@ -34,15 +27,13 @@
               <label>{{ t('volatility') }}</label
               ><span>{{ t('volatilitys.' + detailsData.volatility) }}</span>
             </div>
-            <!-- <div class="item"><label>命中率</label><span>30%</span></div> -->
-            <a class="btn btn-primary" @click="startGame(detailsData.id)">{{ t('startNow') }}</a>
-            <!-- <div class="sb-item">
-              <a>#高波动性</a>
-              <a>#历史</a>
-              <a>#定制老虎机</a>
-            </div> -->
+            <div class="btns">
+              <a v-if="parseInt(detailsData.gameType) === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, 'game/demo')">{{ t('demoMode') }}</a>
+              <a class="btn btn-primary" @click="startGame(detailsData.id, 'game/url')">{{ t('startNow') }}</a>
+            </div>
           </div>
         </div>
+        <!-- 更多游戏列表 -->
         <div class="g-head">
           <div class="gh-t">
             <div class="gh-l">{{ t('moreGame') }}</div>
@@ -53,7 +44,6 @@
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="`https://seabet.imgix.net/${item.imageName}?auto=compress,format&w=200&h=152&q=50&dpr=2`" />
-                <!-- <span class="red">FEATURED</span> -->
               </div>
               <div class="i-txt">
                 <strong>{{ item.name }}</strong>
@@ -74,11 +64,14 @@ import { useRoute } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
+import { useUserStore } from '@/store/modules/user'
 import { getGameDetailsApi } from '@/api/game/index'
 import { getGameDetailsRespItem } from '@/api/game/types'
 import { startGame } from '@/composables/startGame'
 import router from '@/router'
+import { GameType } from '@/utils/constant'
 
+const userStore = useUserStore()
 const route = useRoute()
 const { t } = useI18n()
 

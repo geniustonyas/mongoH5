@@ -1117,13 +1117,21 @@ body {
                 }
             }
 
-            .btn
-            {
-                width: 100%;
-                .radius(.8rem);
-                .h-lh(4rem);
-                margin-top: 1rem;
+            .btns {
+                .flex(); .flex-pack-justify();
+                .btn {
+                    width: 100%;
+                    .radius(4rem);
+                    .h-lh(4rem);
+                    margin-top: 1rem;
+                    &.dark {
+                        .bgc(var(--color-dark-gray), var(--color-white));
+                        margin-right: 1rem;
+                    }
+                }
             }
+
+           
 
             .sb-item
             {

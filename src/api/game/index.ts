@@ -41,10 +41,10 @@ export function getGameDetailsApi(data: Game.getGameDetailsData) {
 }
 
 // 获取启动游戏url
-export function getGameUrlApi(data: Game.getGameUrlData) {
+export function getGameUrlApi(data: Game.getGameUrlData, url: string) {
   return request<anyResp>({
     headers: { 'Content-Type': 'application/json' },
-    url: 'game/url',
+    url: url,
     method: 'post',
     data
   })

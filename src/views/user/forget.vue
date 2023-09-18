@@ -11,7 +11,7 @@
             </div>
             <div class="cr-input">
               <input v-model.trim="resetForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" />
-              <Loading v-show="showloading" size="20px" class="captcha" />
+              <!-- <Loading v-show="showloading" size="20px" class="captcha" /> -->
               <span v-show="!showloading" :class="sended || resetForm.Email.length == 0 ? 'captcha sended' : 'captcha'" @click="sendEmail()">{{ sended ? t('sended') : t('sendEmail') }}</span>
             </div>
           </div>
