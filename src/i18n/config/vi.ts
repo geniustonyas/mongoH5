@@ -497,6 +497,12 @@ export default {
   view: '详情',
   oprate: '查看',
   remain: '剩余',
+  directlyLogin: '直接登录',
+  fastDeposit: '快速存款',
+  demoMode: '乐趣试玩',
+  trueMode: '真钱模式',
+  gameStatic: '游戏数据统计',
+  receivedSuccess: '{ amount } USDT 已领取成功',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

@@ -497,6 +497,12 @@ export default {
   view: 'more',
   oprate: 'view',
   remain: 'Remain',
+  directlyLogin: 'Directly Login',
+  fastDeposit: 'Fast Deposit',
+  demoMode: 'Fun Mode',
+  trueMode: 'Real Mode',
+  gameStatic: 'Game Statistics',
+  receivedSuccess: '{ amount } USDT received successfully',
 
   problem: {
     whatVip: 'What is the VIP Club?',
