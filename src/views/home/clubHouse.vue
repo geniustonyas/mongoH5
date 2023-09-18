@@ -344,7 +344,7 @@ let nextSubItem = reactive<vipListItemItemsResp>({
 let showSubItem = reactive<dynamicObject>([])
 
 const showMore = ref(false)
-const showQuestion1 = ref(true)
+const showQuestion1 = ref(false)
 const showQuestion2 = ref(false)
 const showQuestion3 = ref(false)
 const showQuestion4 = ref(false)

@@ -99,7 +99,7 @@ export default {
   club: 'คลับ',
   tiers: 'ระดับ',
   clubTips: 'รางวัลของคุณจะรีเซ็ตทุกเดือน โปรดรับรางวัลก่อนสิ้นเดือน เพื่อหลีกเลี่ยงผิดพลาด',
-  currentPoints: 'คะแนนปัจจุบัน',
+  currentPoints: 'จำนวนเงินเดิมพันปัจจุบัน',
   currentPointsMultiplier: 'ตัวคูณคะแนนปัจจุบัน',
   receiveReward: 'รับรางวัล',
   alreadyReceived: 'รับแล้ว',
@@ -351,7 +351,7 @@ export default {
     inputExhangeCode: 'โปรดใส่รหัสแลกเปลี่ยน',
     startGameFail: 'เริ่มเกมล้มเหลว',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '兑换成功',
+    exhangeSuccess: '您的信息提交成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
     unBindGoogleSuccess: '解绑成功',
@@ -497,48 +497,66 @@ export default {
   remain: '剩余',
 
   problem: {
-    whatVip: 'What is the VIP Club?',
-    whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
-                <p>In simple terms, it means: You play games, and we reward you.</p>`,
-    howGetIntegrial: 'How to Earn Points?',
-    howGetIntegrials: `<p>How to Earn Points?</p>
-                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
-                        <p></p>`,
-    whatVipLevel: 'What are VIP Levels?',
-    whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
-                    <p>VIP Level 	Required Bet Amount	Frequency</p>
-                    <p>Bronze 	100	1</p>
-                    <p>Silver	500	5</p>
-                    <p>Gold 	15000	8</p>
-                    <p>Platinum 	300,000	10</p>
-                    <p>Titanium	1,900,000	10</p>
-                    <p>Diamond 	6,000,000	6</p>
-                    <p></p>`,
-    howComputeInterial: 'How are Points Calculated?',
-    howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
-                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.01 * 1.3 = 65 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
-    whyMergedReward: 'Why are My Rewards Merged?',
-    whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
-    resetVip: 'When will My VIP Level Reset?',
-    resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
-    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
-    everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
-                        <p>Horse Racing</p>
-                        <p>Esports Sports</p>
-                        <p>Sportsbook Masters</p>
-                        <p>Furthermore, the following casino games are also not included in the club, and bets placed on them will not earn you points.</p>
-                        <p></p>
-                        <p>OneTouch - Russian Poker</p>
-                        <p>Genii - Aces And Faces Video Poker</p>
-                        <p>Betsoft - Max Quest: Wrath of Ra 2.0, 21 Burn Blackjack, Jacks or Better BSG, Multihand Bonus Deluxe, Pontoon, Single Deck Blackjack, Split Way Royal, Super 7 Blackjack</p>
+    whatVip: '1. คลับ VIP คืออะไร?',
+    whatVips: `<p>คลับ VIP ของ Seabet.io เป็นชุมชนที่มีการสร้างขึ้นเพื่อลูกค้าที่ใช้สกุลเงินดิจิทัล ที่ช่วยให้พวกคุณเพลิดเพลินกับกิจกรรมโปรโมชั่นทั้งหมดที่มีให้บนเว็บไซต์ได้ตลอดเวลา ทุกการเดิมพัน, การหมุน, และการเล่นเกมที่คุณทำจะสะสมคะแนน โดยค่อย ๆ เลื่อนขึ้นในคลับและปลดล็อครางวัลที่น่าตื่นเต้นในระหว่างทาง ด้วยการปลดล็อคระดับ VIP คุณยังจะได้รับคะแนนเดิมพัน Seabet ซึ่งจะช่วยให้คุณได้ประสบการณ์และบริการที่มีค่ามากยิ่งขึ้นอีกด้วยในคำสั้น ๆ </p>
+                <p>นั้นคือ: คุณเล่นเกมและเราจะรีวอร์ดคุณ		</p>`,
+    howGetIntegrial: '2. วิธีการสะสมคะแนนคืออะไร?',
+    howGetIntegrials: `<p>คุณสามารถสะสมคะแนนคลับได้ทุกครั้งที่คุณทำการเดิมพัน หมุนสล็อตแมชชีน และเล่นเกมโต๊ะใดๆ โดยเมื่อคุณสะสมคะแนนมากขึ้นคุณก็จะได้รับระดับที่สูงขึ้นเรื่อย ๆ ซึ่งเมื่อคุณก้าวขึ้นในระดับนั้น คุณจะปลดล็อครางวัลที่น่าตื่นเต้นให้ได้ รางวัลจะกลายเป็นสิ่งที่น่าสนใจมากขึ้นเรื่อย ๆ เมื่อคุณก้าวขึ้นในระดับใหม่ต่อไป</p>`,
+    whatVipLevel: '3. ระดับ VIP คืออะไร?',
+    whatVipLevels: `<p>ระดับ VIP กำหนดค่าและประเภทของรางวัลที่คุณสามารถเรียกรับได้ ซึ่งเมื่อคุณก้าวขึ้นในคลับและเลเวลของคุณก็จะเพิ่มขึ้นตามไปด้วย รางวัลของคุณจะเพิ่มขึ้นเรื่อย ๆ เมื่อคุณก้าวขึ้นในระดับต่าง ๆ ไปตามนั้น</p>
+                    <table>
+                      <tr>
+                        <th>ระดับ VIP</th>
+                        <th>ยอดการเดิมพันที่ต้องการ</th>
+                        <th>ความถี่</th>
+                      </tr>
+                      <tr>
+                        <td>ทองแดง</td>
+                        <td>100</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>เงิน</td>
+                        <td>500</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>ทอง</td>
+                        <td>15000</td>
+                        <td>8</td>
+                      </tr>
+                      <tr>
+                        <td>แพลตินัม</td>
+                        <td>300,000</td>
+                        <td>10</td>
+                      </tr>
+                      <tr>
+                        <td>ไทเทเนียม</td>
+                        <td>1,900,000</td>
+                        <td>10</td>
+                      </tr>
+                      <tr>
+                        <td>เพชร</td>
+                        <td>6,000,000</td>
+                        <td>6</td>
+                      </tr>
+                    </table>`,
+    howComputeInterial: '4. วิธีการคำนวณคะแนน？',
+    howComputeInterials: `<p>ไม่ว่าจะเป็นการเดิมพันกีฬาหรือการเล่นเกมคาสิโน การใช้สกุลเงินดิจิทัลจะทำให้คุณได้รับคะแนน ในการคำนวณคะแนนที่คุณได้กับการเดิมพันแต่ละครั้ง เราจะแปลงจำนวนเงินที่คุณเดิมพันเป็น USDT ตามอัตราแลกเปลี่ยนทางตลาดแบบเรียลไทม์ในขณะที่ชำระเงิน นี้จะทำให้การสะสมคะแนนทั้งหมด ไม่ว่าจะใช้สกุลเงินดิจิทัลใด ๆ ก็จะเป็นการเป็นธรรม. เนื่องจากอัตราแลกเปลี่ยนเปลี่ยนแปลงไปอยู่ตลอดเวลา เราปฏิบัติตามหลักการในการปัดเศษไปยังจำนวนเต็มที่ใกล้ที่สุดเมื่อคำนวณคะแนน</p>
+                          <p>สูตรในการสะสมคะแนน Seabet คือ: จำนวนเงินที่เดิมพันของผู้เล่น * 0.01 * ความสัมพันธ์ของคะแนนในระดับที่เกี่ยวข้อง ตัวอย่างเช่น หากผู้เล่นอยู่ในระดับ Platinum และเดิมพัน 5000 ตามสูตรคำนวณคะแนน ผู้เล่นจะได้รับ 5000 * 0.01 * 1.3 = 65 คะแนน. คะแนน Seabet สามารถใช้ในหลากหลายรูปแบบและผู้เล่นสามารถแลกของขวัญและบริการเทียบเท่าจากร้านคะแนนได้</p>`,
+    whyMergedReward: '5. ทำไมรางวัลของฉันถูกรวมกัน?',
+    whyMergedRewards: `<p>รางวัลของคุณถูกรวมกันเพราะการเดิมพันเดียวอาจปลดล็อครางวัลหลายรางวัลพร้อมกัน โดยเรารวมมูลค่าของรางวัลและแสดงให้คุณเป็นรางวัลเดียวเพื่อความสะดวกสบายของคุณ</p>`,
+    resetVip: '6. เมื่อระดับ VIP ของฉันจะรีเซ็ต?',
+    resetVips: `<p>ระดับ VIP ของคุณจะรีเซ็ตเป็นระดับ 0 เมื่อเริ่มเดือนใหม่ครับ คุณจะสามารถเริ่มต้นใหม่จากระดับ Bronze และเรียกรับรางวัลในระดับถัดไปได้ครับ คะแนนที่คุณสะสมไว้ยังคงอยู่เพื่อให้คุณแลกเป็นรางวัลและบริการเพิ่มเติมครับ</p>`,
+    everyGetInterial: '7. คุณสามารถรับคะแนนคลับได้กับการเดิมพันทุกครั้งหรือไม่?',
+    everyGetInterials: `<p>ไม่ได้ครับ คะแนนคลับสามารถสะสมได้เฉพาะเมื่อทำการเดิมพันด้วยเงินจริงเท่านั้น นอกจากนี้ มีบางประเภทของกิจกรรมและเกมที่ไม่รวมอยู่ในคลับ ดังนั้นการเดิมพันในประเภทเหล่านี้จะไม่ทำให้คุณสะสมคะแนน รายการเหล่านี้รวมถึง:</p>
+                        <p>การแข่งม้า</p>
+                        <p>กีฬาอีสปอร์ต</p>
+                        <p>สปอร์ตบุ๊คมาสเตอร์</p>
+                        <p>นอกจากนี้ เกมคาสิโนต่อไปนี้ก็ไม่รวมอยู่ในคลับและการเดิมพันในเกมเหล่านี้จะไม่ทำให้คุณสะสมคะแนนครับ</p>
                         <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
                         <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
-                        <p>Realistic - Realistic Blackjack, Realistic Hi Lo Blackjack</p>
-                        <p>Yggdrasil - Dr. Fortuno Blackjack, Sonya Blackjack</p>
-                        <p>Tangente - Joker Poker Kings, Double Bonus Poker</p>
-                        <p>Asia Gaming - Fish Hunter</p>
-                        <p>Spadegaming - Fishing God, Fishing War</p>
-                        <p>Gamatron - Tokyo Kombat</p>`
+                        <p>Asia Gaming - Fish Hunter</p>`
   },
   faqs: {
     q1: 'วิธีการฝากเงินดิจิทัล:',
@@ -706,7 +724,6 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">5、How to Become a VIP Member</div>
                       <div class="vr-conts">
-                        <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
                         <dl>
                           <dd>
                             Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
@@ -1289,13 +1306,13 @@ export default {
 
                         <p><b>2.1.15 </b>You have not been diagnosed or classified as a compulsive or problem gambler. We are not responsible for gambling if such problems arise while using our services, but will endeavour to inform you of the relevant assistance available. We reserve the right to implement a cooling-off period if we believe such actions would be beneficial. </p>
 
-                        <p><b>2.1.15 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
+                        <p><b>2.1.16 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
 
-                        <p><b>2.1.17 </b>you have only one account with us and agree not to open any account with us; </p>
+                        <p><b>2.1.17 </b>You have only one account with us and agree not to open any account with us; </p>
 
                         <p><b>2.1.18 </b>You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited technologies, including but not limited to fraud easy detection, automated registration and registration, gameplay and screen capture technologies. These steps may include, but are not limited to, checking player deviceability, detecting geolocation and IP masking, transactions, and blockchain analytics; </p>
 
-                        <p><b>2.1.19 </b>you accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
+                        <p><b>2.1.19 </b>You accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
 
                         <h3>3. Register and open your member account</h3>
                         <p><b>3.1 </b>In order to be able to place bets on our website, you must first register for an account with us in person ("Member Account"). </p>
@@ -1518,9 +1535,9 @@ export default {
 
                         <p><b>13.2 </b>Without prejudice to the generality of the foregoing, you accept that we:</p>
 
-                        <p><b>13.2.1 </b>does not warrant that the Software, Games and Website are fit for their purpose; </p>
+                        <p><b>13.2.1 </b>Does not warrant that the Software, Games and Website are fit for their purpose; </p>
 
-                        <p><b>13.2.2 </b>does not warrant that the Software, Games and Website are error-free; </p>
+                        <p><b>13.2.2 </b>Does not warrant that the Software, Games and Website are error-free; </p>
 
                         <p><b>13.2.3 </b>There is no guarantee that the Software, Games and Website will be interrupted without interruption. </p>
 

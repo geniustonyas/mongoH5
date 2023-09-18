@@ -99,7 +99,7 @@ export default {
   club: 'Club',
   tiers: 'Stufen',
   clubTips: 'Ihre Belohnungen werden monatlich zurückgesetzt. Vergessen Sie nicht, Ihre Belohnungen vor Monatsende einzulösen!',
-  currentPoints: 'Aktuelle Punkte',
+  currentPoints: 'Aktueller Einsatzbetrag',
   currentPointsMultiplier: 'Aktueller Punktvervielfacher',
   receiveReward: 'Belohnung erhalten',
   alreadyReceived: 'Bereits erhalten',
@@ -350,7 +350,7 @@ export default {
     inputExhangeCode: '请输入兑换码',
     startGameFail: '启动游戏失败',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '兑换成功',
+    exhangeSuccess: '您的信息提交成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
     unBindGoogleSuccess: '解绑成功',
@@ -543,7 +543,7 @@ export default {
                     </table>`,
     howComputeInterial: '4.Wie werden Punkte berechnet?',
     howComputeInterials: `<p>Ob es sich um Sportwetten oder das Spielen von Casinospielen handelt, die Verwendung von Kryptowährungen wird Ihnen Punkte einbringen. Um die Punkte zu berechnen, die Sie bei jeder Wette verdienen, konvertieren wir den Betrag Ihrer Wette während der Abrechnung in USDT zum Echtzeit-Marktwechselkurs. Dies stellt sicher, dass alle Punktesammlungen, unabhängig von der verwendeten Kryptowährung, fair sind. Aufgrund der schwankenden Wechselkurse folgen wir dem Prinzip der Rundung auf die nächste ganze Zahl bei der Berechnung von Punkten.</p>
-                          <p>Die Formel zum Verdienen von Seabet-Punkten lautet: Spielerwetteinsatz * 0,1 * entsprechender Punktkoeffizient des Levels. Zum Beispiel, wenn ein Spieler auf dem Platin-Level ist und 5000 setzt, nach der Formel zur Punkteberechnung wird der Spieler 5000 * 0,01 * 1,3 = 65 Punkte verdienen. Seabet-Punkte haben eine breite Palette von Verwendungsmöglichkeiten, und Spieler können äquivalente Geschenke und Dienstleistungen im Punkteladen einlösen.</p>`,
+                          <p>Die Formel zum Verdienen von Seabet-Punkten lautet: Spielerwetteinsatz * 0,01 * entsprechender Punktkoeffizient des Levels. Zum Beispiel, wenn ein Spieler auf dem Platin-Level ist und 5000 setzt, nach der Formel zur Punkteberechnung wird der Spieler 5000 * 0,01 * 1,3 = 65 Punkte verdienen. Seabet-Punkte haben eine breite Palette von Verwendungsmöglichkeiten, und Spieler können äquivalente Geschenke und Dienstleistungen im Punkteladen einlösen.</p>`,
     whyMergedReward: '5.Warum werden meine Belohnungen zusammengefasst?',
     whyMergedRewards: `<p>Ihre Belohnungen werden zusammengefasst, weil eine einzelne Wette mehrere Belohnungen freischalten kann. Um es Ihnen bequem zu machen, addieren wir den Wert der Belohnungen zusammen und zeigen sie als eine einzelne Belohnung an.</p>`,
     resetVip: '6.Wann wird mein VIP-Level zurückgesetzt?',
@@ -723,7 +723,6 @@ export default {
                       <div class="vc-rows">
                         <div class="vr-title">5、How to Become a VIP Member</div>
                         <div class="vr-conts">
-                          <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
                           <dl>
                             <dd>
                               Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
@@ -1306,13 +1305,13 @@ export default {
 
                           <p><b>2.1.15 </b>You have not been diagnosed or classified as a compulsive or problem gambler. We are not responsible for gambling if such problems arise while using our services, but will endeavour to inform you of the relevant assistance available. We reserve the right to implement a cooling-off period if we believe such actions would be beneficial. </p>
 
-                          <p><b>2.1.15 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
+                          <p><b>2.1.16 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
 
-                          <p><b>2.1.17 </b>you have only one account with us and agree not to open any account with us; </p>
+                          <p><b>2.1.17 </b>You have only one account with us and agree not to open any account with us; </p>
 
                           <p><b>2.1.18 </b>You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited technologies, including but not limited to fraud easy detection, automated registration and registration, gameplay and screen capture technologies. These steps may include, but are not limited to, checking player deviceability, detecting geolocation and IP masking, transactions, and blockchain analytics; </p>
 
-                          <p><b>2.1.19 </b>you accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
+                          <p><b>2.1.19 </b>You accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
 
                           <h3>3. Register and open your member account</h3>
                           <p><b>3.1 </b>In order to be able to place bets on our website, you must first register for an account with us in person ("Member Account"). </p>
@@ -1535,9 +1534,9 @@ export default {
 
                           <p><b>13.2 </b>Without prejudice to the generality of the foregoing, you accept that we:</p>
 
-                          <p><b>13.2.1 </b>does not warrant that the Software, Games and Website are fit for their purpose; </p>
+                          <p><b>13.2.1 </b>Does not warrant that the Software, Games and Website are fit for their purpose; </p>
 
-                          <p><b>13.2.2 </b>does not warrant that the Software, Games and Website are error-free; </p>
+                          <p><b>13.2.2 </b>Does not warrant that the Software, Games and Website are error-free; </p>
 
                           <p><b>13.2.3 </b>There is no guarantee that the Software, Games and Website will be interrupted without interruption. </p>
 

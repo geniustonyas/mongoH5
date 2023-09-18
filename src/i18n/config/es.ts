@@ -99,7 +99,7 @@ export default {
   club: 'Club',
   tiers: 'Niveles',
   clubTips: 'Cada mes, tus recompensas se restablecerán. Asegúrate de reclamar tus recompensas antes de que termine el mes.',
-  currentPoints: 'Puntos Actuales',
+  currentPoints: 'Monto de la apuesta actual',
   currentPointsMultiplier: 'Multiplicador de Puntos Actuales',
   receiveReward: 'Reclamar Recompensa',
   alreadyReceived: 'Ya Reclamado',
@@ -351,7 +351,7 @@ export default {
     inputExhangeCode: 'Ingrese el código de intercambio',
     startGameFail: 'Fallo al iniciar el juego',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '兑换成功',
+    exhangeSuccess: '您的信息提交成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
     unBindGoogleSuccess: '解绑成功',
@@ -723,7 +723,6 @@ export default {
                   <div class="vc-rows">
                     <div class="vr-title">5、How to Become a VIP Member</div>
                     <div class="vr-conts">
-                      <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
                       <dl>
                         <dd>
                           Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds

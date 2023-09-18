@@ -460,8 +460,6 @@ const currentGoodsItem = reactive<getGoodsListItem>({
 const docType = [
   { text: t('idCard'), value: t('idCard') },
   { text: t('passport'), value: t('passport') },
-  { text: t('militaryId'), value: t('militaryId') },
-  { text: t('diplomaticCard'), value: t('diplomaticCard') }
 ]
 
 // 机票订单

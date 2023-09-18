@@ -99,7 +99,7 @@ export default {
   club: 'Kulüp',
   tiers: 'Kademeler',
   clubTips: 'Ödüller her ay sıfırlanır, lütfen ay sonundan önce ödüllerinizi almayı unutmayın.',
-  currentPoints: 'Mevcut Puan',
+  currentPoints: 'Güncel bahis tutarı',
   currentPointsMultiplier: 'Mevcut Puan Çarpanı',
   receiveReward: 'Ödülü Al',
   alreadyReceived: 'Zaten Alındı',
@@ -352,7 +352,7 @@ export default {
     inputExhangeCode: 'Takas kodunu girin',
     startGameFail: 'Oyun başlatılamadı',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '兑换成功',
+    exhangeSuccess: '您的信息提交成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
     unBindGoogleSuccess: '解绑成功',
@@ -545,7 +545,7 @@ export default {
                     </table>`,
     howComputeInterial: '4.Puanlar Nasıl Hesaplanır?',
     howComputeInterials: `<p>Spor bahislerinden veya kumar oyunlarından puan kazanmak için kripto para kullanmanız durumunda, her bahsiniz için puanlarınızı hesaplarken, işlem sırasında gerçek zamanlı piyasa döviz kuruyla bahis miktarınızı USDT'ye dönüştürüyoruz. Bu, kullanılan kripto paranın ne olduğuna bakılmaksızın tüm puan toplamalarının adil olduğunu garanti eder. Dalgalanan döviz kuru nedeniyle, puanları hesaplarken en yakın tam sayıya yuvarlama ilkesini takip ediyoruz..</p>
-                          <p>Seabet puanlarını kazanma formülü şöyledir: Oyuncunun bahis miktarı * 0.1 * ilgili seviyenin puan katsayısı. Örneğin, bir oyuncu Platin seviyesinde ise ve 5000 bahis yaparsa, puan hesaplama formülüne göre oyuncu 5000 * 0.01 * 1.3 = 65 puan kazanır. Seabet puanlarının geniş bir kullanım alanı vardır ve oyuncular, puan mağazasından eşdeğer hediyeleri ve hizmetleri alabilirler.</p>`,
+                          <p>Seabet puanlarını kazanma formülü şöyledir: Oyuncunun bahis miktarı * 0.01 * ilgili seviyenin puan katsayısı. Örneğin, bir oyuncu Platin seviyesinde ise ve 5000 bahis yaparsa, puan hesaplama formülüne göre oyuncu 5000 * 0.01 * 1.3 = 65 puan kazanır. Seabet puanlarının geniş bir kullanım alanı vardır ve oyuncular, puan mağazasından eşdeğer hediyeleri ve hizmetleri alabilirler.</p>`,
     whyMergedReward: '5.Ödüllerim neden birleştiriliyor?',
     whyMergedRewards: `<p>Ödülleriniz birleştiriliyor çünkü tek bir bahis birden fazla ödülü açabilir. Sizi rahatlatmak için, ödüllerin değerlerini toplarız ve bunları tek bir ödül olarak gösteririz.</p>`,
     resetVip: '6.VIP seviyem ne zaman sıfırlanacak?',
@@ -725,7 +725,6 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">5、How to Become a VIP Member</div>
                       <div class="vr-conts">
-                        <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
                         <dl>
                           <dd>
                             Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
@@ -1308,13 +1307,13 @@ export default {
 
                         <p><b>2.1.15 </b>You have not been diagnosed or classified as a compulsive or problem gambler. We are not responsible for gambling if such problems arise while using our services, but will endeavour to inform you of the relevant assistance available. We reserve the right to implement a cooling-off period if we believe such actions would be beneficial. </p>
 
-                        <p><b>2.1.15 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
+                        <p><b>2.1.16 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
 
-                        <p><b>2.1.17 </b>you have only one account with us and agree not to open any account with us; </p>
+                        <p><b>2.1.17 </b>You have only one account with us and agree not to open any account with us; </p>
 
                         <p><b>2.1.18 </b>You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited technologies, including but not limited to fraud easy detection, automated registration and registration, gameplay and screen capture technologies. These steps may include, but are not limited to, checking player deviceability, detecting geolocation and IP masking, transactions, and blockchain analytics; </p>
 
-                        <p><b>2.1.19 </b>you accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
+                        <p><b>2.1.19 </b>You accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
 
                         <h3>3. Register and open your member account</h3>
                         <p><b>3.1 </b>In order to be able to place bets on our website, you must first register for an account with us in person ("Member Account"). </p>
@@ -1537,9 +1536,9 @@ export default {
 
                         <p><b>13.2 </b>Without prejudice to the generality of the foregoing, you accept that we:</p>
 
-                        <p><b>13.2.1 </b>does not warrant that the Software, Games and Website are fit for their purpose; </p>
+                        <p><b>13.2.1 </b>Does not warrant that the Software, Games and Website are fit for their purpose; </p>
 
-                        <p><b>13.2.2 </b>does not warrant that the Software, Games and Website are error-free; </p>
+                        <p><b>13.2.2 </b>Does not warrant that the Software, Games and Website are error-free; </p>
 
                         <p><b>13.2.3 </b>There is no guarantee that the Software, Games and Website will be interrupted without interruption. </p>
 

@@ -1,14 +1,12 @@
 <template>
-  <div id="app">
-    <router-view v-slot="{ Component, route }">
-      <transition :name="route.meta.transition as string">
-        <component :is="Component" :key="route.path" />
-      </transition>
-    </router-view>
-    <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
-      <Loading />
-    </Overlay>
-  </div>
+  <router-view v-slot="{ Component, route }">
+    <transition :name="route.meta.transition as string">
+      <component :is="Component" :key="route.path" />
+    </transition>
+  </router-view>
+  <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
+    <Loading />
+  </Overlay>
 </template>
 
 <script setup lang="ts">
