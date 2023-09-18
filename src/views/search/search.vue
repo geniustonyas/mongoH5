@@ -13,7 +13,7 @@
       <!-- 搜索游戏列比奥 -->
       <div v-if="keywords.length > 0" class="search-result">
         <div class="result-count">
-          <span v-if="nodata || (keywords.length < 3 && keywords.length > 0)" class="noResult">{{ t('noSearchResult', { keyword: keywords }) }}</span>
+          <span v-if="nodata || (keywords.length < 2 && keywords.length > 0)" class="noResult">{{ t('noSearchResult', { keyword: keywords }) }}</span>
           <span v-if="searchResult.length > 0" class="noResult">{{ t('searchResultNum', { searchResult: searchResult.length }) }}</span>
         </div>
         <div class="gamebox search">
@@ -111,7 +111,7 @@ searchMoreList.value = providerList.filter((item: providerListItemTypes) => item
 
 // 观察关键词变化, 3个字符以上才搜索, 否则不搜索
 watch(keywords, () => {
-  if (keywords.value.length >= 3) {
+  if (keywords.value.length >= 2) {
     getSearchGame()
   }
 })
