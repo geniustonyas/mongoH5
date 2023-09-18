@@ -3,7 +3,6 @@
     <UserHeader :route-name="'index'" />
     <main class="main">
       <div class="loginbox">
-        <!-- <UserPartner /> -->
         <div class="l-signin">
           <h2>{{ t('createUser') }}</h2>
           <div class="ls-third">
