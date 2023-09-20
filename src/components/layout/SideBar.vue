@@ -71,7 +71,7 @@
             <li>
               <a @click="showToast(t('comingSoon'))" class="download">
                 <img :src="getAssetsFile('svg/App.svg')" />
-                <div>
+                <div class="down-app-box">
                   <span>{{ t('downloadApp') }}</span>
                   <small>{{ t('androidApple') }}</small>
                 </div>
