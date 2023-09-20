@@ -99,6 +99,7 @@ export interface getSearchGameRespItem {
   img: string
   rtp: string
   f: boolean
+  type: string
 }
 
 export interface getGameDetailsRespGameItem {

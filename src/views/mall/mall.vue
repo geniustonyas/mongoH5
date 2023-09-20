@@ -546,7 +546,7 @@ const exhangeGoodsParams = reactive({
     NumberOfDaysRequired: '',
     OtherServices: '',
     StartTime: '',
-    EndTime: '',
+    EndTime: ''
   }
 })
 

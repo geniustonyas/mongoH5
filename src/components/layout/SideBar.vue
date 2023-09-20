@@ -23,7 +23,7 @@
           <Vue3SlideUpDown v-model="collapseSport">
             <ul>
               <!-- <li v-for="(item, index) of sportProviderList" :key="index" @click="router.push({ name: 'gameDetails', params: { id: item.id } })"> -->
-              <li v-for="(item, index) of sportProviderList" :key="index" @click="startGame(item.id)">
+              <li v-for="(item, index) of sportProviderList" :key="index" @click="startGame(item.id, GameType.Sports)">
                 <a><img v-lazy="item.img" />{{ item.name }}</a>
               </li>
             </ul>
@@ -131,6 +131,7 @@ import { startGame, liveChatCall } from '@/composables/startGame'
 //第三方插件
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast } from 'vant'
+import { GameType } from '@/utils/constant'
 
 const appStore = useAppStore()
 const router = useRouter()

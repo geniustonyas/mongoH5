@@ -28,8 +28,10 @@
               ><span>{{ t('volatilitys.' + detailsData.volatility) }}</span>
             </div>
             <div class="btns">
-              <a class="btn btn-primary" @click="startGame(detailsData.id, 'game/url', true)">{{ t('startNow') }}</a>
-              <a v-if="parseInt(detailsData.gameType) === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, 'game/demo', true)">{{ t('demoMode') }}</a>
+              <a class="btn btn-primary" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/url', true)">{{ t('startNow') }}</a>
+              <a v-if="parseInt(detailsData.gameType) === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/demo', true)">
+                {{ t('demoMode') }}
+              </a>
             </div>
           </div>
         </div>
@@ -64,14 +66,14 @@ import { useRoute } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
-import { useUserStore } from '@/store/modules/user'
+// import { useUserStore } from '@/store/modules/user'
 import { getGameDetailsApi } from '@/api/game/index'
 import { getGameDetailsRespItem } from '@/api/game/types'
 import { startGame } from '@/composables/startGame'
 import router from '@/router'
 import { GameType } from '@/utils/constant'
 
-const userStore = useUserStore()
+// const userStore = useUserStore()
 const route = useRoute()
 const { t } = useI18n()
 

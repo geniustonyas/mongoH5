@@ -10,7 +10,7 @@
       </div>
     </header>
     <main class="main">
-      <!-- 搜索游戏列比奥 -->
+      <!-- 搜索游戏列表 -->
       <div v-if="keywords.length > 0" class="search-result">
         <div class="result-count">
           <span v-if="nodata || (keywords.length < 2 && keywords.length > 0)" class="noResult">{{ t('noSearchResult', { keyword: keywords }) }}</span>
@@ -18,7 +18,7 @@
         </div>
         <div class="gamebox search">
           <div v-if="searchResult.length > 0" class="g-list row">
-            <div v-for="(item, index) of searchResult" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })">
+            <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item.id, parseInt(item.type))">
               <!-- <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item.id)"> -->
               <div class="i-bd">
                 <div class="i-img">
@@ -92,6 +92,7 @@ import { providerListData, providerListItemTypes } from '@/utils/config'
 import { ConfigProvider } from 'vant'
 import { debounce } from 'lodash-es'
 import { useI18n } from 'vue-i18n'
+import { startGame } from '@/composables/startGame'
 
 const appStore = useAppStore()
 const router = useRouter()
