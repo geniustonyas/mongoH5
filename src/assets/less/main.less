@@ -35,10 +35,7 @@ html {
 body {
     .bgc(var(--color-background),var(--color-text));
     .font()!important;
-    // position: relative;
 }
-// .intercom-namespace .intercom-1wi8wsw > iframe { height: 100% !important; }
-// .intercom-container,.intercom-app { width:100%; height:100%; position: relative; }
 
 .page {
     .size(100%,100%);
@@ -302,7 +299,8 @@ body {
     }
 
     .head-search {
-        .bgc(var(--color-menu),var(--color-white));
+        color:var(--color-white);
+        .border-b(.1rem,rgba(255,255,255,.06rem));
         padding: 1.5rem;
 
         b {
@@ -4096,10 +4094,14 @@ body {
         .bgc(var(--color-tabs),var(--color-white));
         width: 100%;
         .h-lh(3.6rem);
-        border: none;
+        border: .1rem solid transparent;
         .radius(.8rem);
         font-size: 1.5rem;
         padding: 0 2rem 0 4rem;
+        .transition(all,.15s);
+        &:focus{
+            border-color:var(--color-primary)
+        }
     }
 
     span {
@@ -4110,7 +4112,7 @@ body {
         display: inline-block;
         width: 3.6rem;
         height: 3.6rem;
-        .bg(var(--color-tabs));
+        
     }
 }
 
@@ -4635,6 +4637,77 @@ body {
             color: var(--color-primary);
         }
     }
+}
+body[lang='ja']{
+.m-menu{
+        .flex-pack-justify();
+        a{
+            .flex-x(none); padding:.5rem;
+            font-size:1.2rem; white-space: nowrap;}
+    }
+.m-win .mw-menu {
+    .scroll-touch(auto,hidden);
+         span{white-space: nowrap;  padding:.5rem;
+         font-size:1rem; line-height:normal;
+    }
+}
+}
+body[lang='es'],body[lang='vi']{
+     .m-win .mw-menu{ .scroll-touch(auto,hidden);
+         span{white-space: nowrap;  padding:.5rem;
+         font-size:1rem; line-height:normal;
+    }
+    }
+     .m-menu{
+       .scroll-touch(auto,hidden);
+        a{
+            .flex-x(none);
+          white-space: nowrap;  padding:.5rem;
+         font-size:1rem; line-height:normal;}
+    }
+}
+body[lang='pt']  {
+    .footer .foot-menu a{.ellipsis(); font-size:.8rem;}
+    .m-win .mw-menu{ .scroll-touch(auto,hidden);
+         span{white-space: nowrap;  padding:.5rem;
+         font-size:1rem; line-height:normal;
+    }
+    }
+    .m-menu{
+        .flex-pack-justify();
+        a{
+            .flex-x(none);
+            font-size:1rem; white-space: nowrap;}
+    }
+}
+body[lang='de']{
+    .m-card .mc-t .btn{margin-left:-2rem; font-size:1rem;}
+     .m-win .mw-menu{ .scroll-touch(auto,hidden);
+         span{white-space: nowrap;  padding:.5rem;
+         font-size:1rem; line-height:normal;
+    }
+    }
+}
+body[lang='fr']{
+      .m-win .mw-menu{ .scroll-touch(auto,hidden);
+         span{white-space: nowrap;  padding:.5rem;
+         font-size:1rem; line-height:normal;
+    }
+    }
+     .m-menu{
+       .scroll-touch(auto,hidden);
+        a{
+            .flex-x(none);
+          white-space: nowrap;  padding:.5rem;
+         font-size:1rem; line-height:normal;}
+    }
+     .m-card .mc-t{
+          position:relative;
+          .mt-l{
+              margin-right:12rem;
+          }
+          a{position:absolute; right:0;}
+     }
 }
 
 .loop-footmenu(@i: 1) when (@i<6) {
