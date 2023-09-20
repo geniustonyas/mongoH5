@@ -15,16 +15,7 @@
       <ConfigProvider theme="dark">
         <NoticeBar left-icon="volume-o" :text="marqueeContent" @click="loginTo('message')" />
       </ConfigProvider>
-      <!-- <nav class="m-notice">
-        <span class="mn-icon">
-          <i class="iconfont icon-notice" />
-        </span>
-        <div class="mn-txt">
-          <marquee align="left" behavior="scroll" width="100%" loop="-1" scrollamount="7" scrolldelay="180" onmouseout="this.start()" onmouseover="this.stop()" id="announcement-box">
-            {{ marqueeContent }}
-          </marquee>
-        </div>
-      </nav> -->
+
       <!-- 支付解决方案 -->
       <nav class="m-card">
         <div class="mc-t">
@@ -127,7 +118,7 @@
             </div>
             <div class="b-gm">
               <!-- <a @click="router.push({ name: 'gameDetails', params: { id: betDetailsItem.gameId } })">{{ t('goto') }} {{ betDetailsItem.gameName }}</a> -->
-              <a @click="router.push({ name: 'gameDetails', params: { id: betDetailsItem.gameId } })">{{ t('goto') }} {{ betDetailsItem.gameName }}</a>
+              <a @click="startGame(betDetailsItem.gameId)">{{ t('goto') }} {{ betDetailsItem.gameName }}</a>
             </div>
           </div>
         </div>
@@ -168,6 +159,7 @@ import { getExchangeRate } from '@/composables/getExchangeRate'
 //第三方插件
 import { useI18n } from 'vue-i18n'
 import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
+import { startGame } from '@/composables/startGame'
 
 const router = useRouter()
 const appStore = useAppStore()

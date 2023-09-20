@@ -22,7 +22,7 @@
               <!-- <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item.id)"> -->
               <div class="i-bd">
                 <div class="i-img">
-                  <img v-lazy="appStore.cdnurl + item.img" />
+                  <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=140&h=100&q=50&dpr=2`" />
                   <!-- <span class="red">FEATURED</span> -->
                 </div>
                 <div class="i-txt">

@@ -13,7 +13,20 @@ const { t } = i18n.global
  * 启动游戏
  * @param id 游戏id
  */
-export function startGame(gameId: string | number, url = 'game/url') {
+export function startGame(gameId: string | number, url = 'game/url', startNow = false) {
+  if (gameId == '1439' || gameId == '2110') {
+    getGameUrl(gameId.toString(), url)
+  } else {
+    if (startNow) {
+      getGameUrl(gameId.toString(), url)
+    } else {
+      router.push({ name: 'gameDetails', params: { id: gameId } })
+    }
+  }
+}
+
+// 获取游戏链接
+export function getGameUrl(gameId: string, gameUrl = 'game/url') {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
       title: t('tips.noLogin'),
@@ -26,22 +39,9 @@ export function startGame(gameId: string | number, url = 'game/url') {
         return false
       })
   } else {
-    getGameUrlApi({ id: gameId, platform: PlatForm.H5 }, url)
+    getGameUrlApi({ id: gameId, platform: PlatForm.H5 }, gameUrl)
       .then((resp) => {
-        // const wd = window.open(resp.data)
         window.location.href = resp.data
-        // if (!wd) {
-        //   showConfirmDialog({
-        //     title: t(''),
-        //     message: t('tips.openWindow')
-        //   })
-        //     .then(() => {
-        //       window.open(resp.data)
-        //     })
-        //     .catch(() => {
-        //       return false
-        //     })
-        // }
       })
       .catch((error) => {
         console.log(error)

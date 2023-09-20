@@ -47,7 +47,6 @@
         </div>
     </nav>-->
 
-
     <nav class="head-menu index-head">
       <div class="ih-l">
         <a @click="appStore.showSideBar = !appStore.showSideBar" class="icon-btn navbar-left">
@@ -56,7 +55,7 @@
       </div>
       <div class="ih-r">
         <div class="ihr-bd">
-          <div class="rb-l">
+          <div v-if="userStore.userInfo.id" class="rb-l" @click="router.push({ name: 'fund' })">
             <b>{{ userStore.userInfo.userName }}</b>
             <a>
               <label>+</label>
@@ -64,7 +63,7 @@
               {{ userStore.userInfo?.defaultCurrencyCode == 'BTC' ? userStore.userInfo?.btcUnit?.currencyUnit : userStore.userInfo?.defaultCurrencyCode }}
             </a>
           </div>
-          <div class="rb-r">
+          <div v-if="userStore.userInfo.id" class="rb-r">
             <a class="icon-btn" @click="router.push({ name: 'clubHouse' })">
               <img :src="getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`)" />
             </a>
@@ -73,33 +72,29 @@
             </a>
             <a class="icon-btn" @click="loginTo('message')">
               <i class="iconfont icon-message" />
-              <em class="badge" />
+              <em v-if="userStore.newMessageCount > 0" class="badge" />
             </a>
+          </div>
+          <div v-else class="rb-r">
+            <a class="btn" @click="router.push({ name: 'reg' })">{{ t('reg') }}</a>
+            <a class="btn btn-primary" @click="router.push({ name: 'login' })">{{ t('login') }}</a>
           </div>
         </div>
       </div>
     </nav>
-
   </header>
-
-
-
-
-
-
-
 </template>
 
 <script setup lang="ts">
-  import { useRouter } from 'vue-router'
-  import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
-  import { useAppStore } from '@/store/modules/app'
-  import { useUserStore } from '@/store/modules/user'
-  import { getAssetsFile, loginTo } from '@/utils'
+import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
+import { getAssetsFile, loginTo } from '@/utils'
 
-  const appStore = useAppStore()
-  const userStore = useUserStore()
-  const router = useRouter()
-  const { t } = useI18n()
+const appStore = useAppStore()
+const userStore = useUserStore()
+const router = useRouter()
+const { t } = useI18n()
 </script>
