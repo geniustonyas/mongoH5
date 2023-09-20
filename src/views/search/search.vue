@@ -52,8 +52,7 @@
           </div>
         </div>
         <div v-if="recommendList.length > 0" class="g-list row">
-          <div v-for="(item, index) of recommendList" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.gameItemId } })">
-            <!-- <div v-for="(item, index) of recommendList" :key="index" class="item" @click="startGame(item.gameItemId)"> -->
+          <div v-for="(item, index) of recommendList" :key="index" class="item" @click="startGame(item.gameItemId, item.gameType)">
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="appStore.cdnurl + item.imageName" />

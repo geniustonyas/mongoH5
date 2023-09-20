@@ -16,6 +16,7 @@ export interface recommendGameRespItem {
   providerCode: string
   providerName: string
   imageName: string
+  gameType: number
 }
 
 // 搜索游戏

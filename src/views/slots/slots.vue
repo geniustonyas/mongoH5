@@ -46,7 +46,7 @@
           </Vue3SlideUpDown>
         </div>
         <div v-if="dataList.length > 0" :class="gridShow ? 'g-list' : 'g-list row'">
-          <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item.id)">
+          <div v-for="(item, index) of dataList" :key="index" class="item" @click="startGame(item.id, item.type)">
             <div class="i-bd">
               <div class="i-img">
                 <!-- <img v-lazy="appStore.cdnurl + item.img" /> -->
@@ -76,7 +76,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import IndexHeader from '@/components/layout/IndexHeader.vue'
 import IndexFooter from '@/components/layout/IndexFooter.vue'
@@ -95,7 +95,6 @@ import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { startGame } from '@/composables/startGame'
 
 const route = useRoute()
-const router = useRouter()
 const appStore = useAppStore()
 const { t } = useI18n()
 

@@ -13,7 +13,7 @@
               <div class="ir-a"><img v-lazy="getAssetsFile('svg/SabaSports.svg')" />{{ t('provider.sabaSports') }}</div>
               <div class="ir-b">{{ t('sabaSportIntro') }}</div>
               <div class="ir-c">
-                <a class="btn btn-primary" @click="startGame('1439')">{{ t('startNow') }}</a>
+                <a class="btn btn-primary" @click="startGame('1439', GameType.Sports)">{{ t('startNow') }}</a>
               </div>
             </div>
           </div>
@@ -23,7 +23,7 @@
               <div class="ir-a"><img v-lazy="getAssetsFile('svg/seabetSport.svg')" />{{ t('provider.btiSports') }}</div>
               <div class="ir-b">{{ t('btiSportIntro') }}</div>
               <div class="ir-c">
-                <a class="btn btn-primary" @click="startGame('2110')">{{ t('startNow') }}</a>
+                <a class="btn btn-primary" @click="startGame('2110', GameType.Sports)">{{ t('startNow') }}</a>
               </div>
             </div>
           </div>
@@ -53,6 +53,7 @@ import { startGame } from '@/composables/startGame'
 import { useAppStore } from '@/store/modules/app'
 import { getAssetsFile } from '@/utils'
 import { getExchangeRate } from '@/composables/getExchangeRate'
+import { GameType } from '@/utils/constant'
 
 const appStore = useAppStore()
 const { t } = useI18n()
