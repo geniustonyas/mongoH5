@@ -33,6 +33,7 @@ export const currenyListData = () => {
       unit: 'USDT',
       currenyType: '11',
       icon: 'coin/usdt.svg',
+      chain: '',
       explorer: ''
     },
     {
@@ -41,6 +42,7 @@ export const currenyListData = () => {
       unit: 'μBTC',
       currenyType: '10',
       icon: 'coin/btc.svg',
+      chain: 'Bitcoin',
       explorer: ''
     },
     {
@@ -49,6 +51,7 @@ export const currenyListData = () => {
       unit: 'ETH',
       currenyType: '10',
       icon: 'coin/eth.svg',
+      chain: 'Ethereum',
       explorer: ''
     },
     {
@@ -57,6 +60,7 @@ export const currenyListData = () => {
       unit: 'TRX',
       currenyType: '10',
       icon: 'coin/trx.svg',
+      chain: 'Tron',
       explorer: ''
     },
     {
@@ -65,6 +69,7 @@ export const currenyListData = () => {
       unit: 'BNB',
       currenyType: '10',
       icon: 'coin/binance_icon.svg',
+      chain: 'Binance',
       explorer: ''
     },
     {
@@ -73,6 +78,7 @@ export const currenyListData = () => {
       unit: 'BUSD',
       currenyType: '10',
       icon: 'coin/busd.svg',
+      chain: 'Binance',
       explorer: ''
     },
     {
@@ -81,6 +87,7 @@ export const currenyListData = () => {
       unit: 'XRP',
       currenyType: '10',
       icon: 'coin/xrp.svg',
+      chain: 'Ripple',
       explorer: ''
     },
     {
@@ -89,6 +96,7 @@ export const currenyListData = () => {
       unit: 'LTC',
       currenyType: '10',
       icon: 'coin/ltc.svg',
+      chain: 'Litecoin',
       explorer: ''
     },
     {
@@ -97,6 +105,7 @@ export const currenyListData = () => {
       unit: 'ADA',
       currenyType: '10',
       icon: 'coin/ada.svg',
+      chain: 'Cardano',
       explorer: ''
     },
     {
@@ -105,6 +114,7 @@ export const currenyListData = () => {
       unit: 'DOGE',
       currenyType: '10',
       icon: 'coin/doge.svg',
+      chain: 'Dogecoin',
       explorer: ''
     },
     {
@@ -113,11 +123,12 @@ export const currenyListData = () => {
       unit: 'TON',
       currenyType: '10',
       icon: 'coin/ton.svg',
+      chain: 'Toncoin',
       explorer: ''
     }
     // {
     //   code: 'USD',
-    //   currenyName: t('currencyLang.usd'),
+    //   currenyName: t('currencyLang.btc'),
     //   unit: 'USD',
     //   currenyType: '20',
     //   icon: 'coin/usd.svg',
@@ -195,6 +206,7 @@ export interface currenyListTypes {
   unit: string
   currenyType: string
   icon: string
+  chain: string
 }
 
 export interface providerListItemTypes {

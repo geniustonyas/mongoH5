@@ -30,7 +30,7 @@ export default {
   reg: 'Đăng ký',
   userName: 'Tên người dùng',
   email: 'Email',
-  sendEmail: 'Gửi mã xác nhận',
+  sendEmail: 'Send',
   sended: 'Đã gửi',
   emailCaptcha: 'Mã xác nhận email',
   password: 'Mật khẩu',
@@ -528,6 +528,8 @@ export default {
   inputOutTime: '请选择退房时间',
   hotelTimeError: '退房时间不能小于入住时间',
   ticketTimeError: '返程时间不能小于出行时间',
+  countryHolder: '+86',
+  numberHolder: '138xxxxxxxx',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

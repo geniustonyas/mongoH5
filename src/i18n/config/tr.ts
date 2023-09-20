@@ -30,7 +30,7 @@ export default {
   reg: 'Kayıt Ol',
   userName: 'Kullanıcı Adı',
   email: 'E-posta',
-  sendEmail: 'E-posta Gönder',
+  sendEmail: 'Send',
   sended: 'Gönderildi',
   emailCaptcha: 'E-posta Onay Kodu',
   password: 'Şifre',
@@ -528,6 +528,8 @@ export default {
   inputOutTime: '请选择退房时间',
   hotelTimeError: '退房时间不能小于入住时间',
   ticketTimeError: '返程时间不能小于出行时间',
+  countryHolder: '+86',
+  numberHolder: '138xxxxxxxx',
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',

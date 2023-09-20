@@ -30,7 +30,7 @@ export default {
   reg: 'ลงทะเบียน',
   userName: 'ชื่อผู้ใช้',
   email: 'อีเมล',
-  sendEmail: 'ส่งรหัสยืนยัน',
+  sendEmail: 'Send',
   sended: 'ได้รับแล้ว',
   emailCaptcha: 'รหัสยืนยันทางอีเมล',
   password: 'รหัสผ่าน',
@@ -526,6 +526,8 @@ export default {
   inputOutTime: '请选择退房时间',
   hotelTimeError: '退房时间不能小于入住时间',
   ticketTimeError: '返程时间不能小于出行时间',
+  countryHolder: '+86',
+  numberHolder: '138xxxxxxxx',
 
   problem: {
     whatVip: '1. คลับ VIP คืออะไร?',

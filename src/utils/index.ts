@@ -47,7 +47,6 @@ export function copy(selector: string, tips = '') {
   const clipboard = new Clipboard(selector)
   clipboard.on('success', () => {
     showToast(tips)
-    clipboard.destroy()
   })
   clipboard.on('error', () => {
     clipboard.destroy()

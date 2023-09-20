@@ -8,22 +8,22 @@
       <div class="sports-box">
         <div class="sb-a">
           <div class="item">
-            <div class="i-l" v-lazy:background-image="getAssetsFile('svg/SabaSports.svg')" />
-            <div class="i-r">
-              <div class="ir-a"><img v-lazy="getAssetsFile('svg/SabaSports.svg')" />{{ t('provider.sabaSports') }}</div>
-              <div class="ir-b">{{ t('sabaSportIntro') }}</div>
-              <div class="ir-c">
-                <a class="btn btn-primary" @click="startGame('1439', GameType.Sports)">{{ t('startNow') }}</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
             <div class="i-l" v-lazy:background-image="getAssetsFile('svg/seabetSport.svg')" />
             <div class="i-r">
               <div class="ir-a"><img v-lazy="getAssetsFile('svg/seabetSport.svg')" />{{ t('provider.btiSports') }}</div>
               <div class="ir-b">{{ t('btiSportIntro') }}</div>
               <div class="ir-c">
                 <a class="btn btn-primary" @click="startGame('2110', GameType.Sports)">{{ t('startNow') }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="i-l" v-lazy:background-image="getAssetsFile('svg/SabaSports.svg')" />
+            <div class="i-r">
+              <div class="ir-a"><img v-lazy="getAssetsFile('svg/SabaSports.svg')" />{{ t('provider.sabaSports') }}</div>
+              <div class="ir-b">{{ t('sabaSportIntro') }}</div>
+              <div class="ir-c">
+                <a class="btn btn-primary" @click="startGame('1439', GameType.Sports)">{{ t('startNow') }}</a>
               </div>
             </div>
           </div>

@@ -528,6 +528,8 @@ export default {
   inputOutTime: '请选择退房时间',
   hotelTimeError: '退房时间不能小于入住时间',
   ticketTimeError: '返程时间不能小于出行时间',
+  countryHolder: '+86',
+  numberHolder: '138xxxxxxxx',
 
   problem: {
     whatVip: 'What is the VIP Club?',

@@ -93,7 +93,7 @@
                 <div class="gc-t">
                   <div class="t-l">
                     <div class="t-icon">
-                      <img :src="getAssetsFile('coin/usdt.svg')" />
+                      <img :src="getAssetsFile(currenyImg())" />
                     </div>
                     <div class="t-txt">
                       <span>{{ withdrawForm.CurrencyCode }}{{ withdrawForm.CurrencyCode == 'USDT' ? `(${withdrawForm.BlockchainCode})` : '' }}</span>
@@ -117,7 +117,7 @@
               {{ t('amount') }}:
               <span>{{ moneyFormat(withdrawForm.Amount) }} {{ withdrawBalanceItem.unit }}</span>
             </dd>
-            <dd>
+            <dd v-if="withdrawForm.CurrencyCode == 'USDT'">
               {{ t('network') }}:
               <span>{{ withdrawForm.BlockchainCode }}</span>
             </dd>
@@ -291,6 +291,16 @@ const currenyName = () => {
   return tmp ? tmp.currenyName : ''
 }
 
+const currenyImg = () => {
+  const tmp = currenyList.find((item) => item.code == (route.query?.CurrencyCode as string))
+  return tmp ? tmp.icon : ''
+}
+
+const currencyChain = () => {
+  const tmp = currenyList.find((item) => item.code == (route.query?.CurrencyCode as string))
+  return tmp ? tmp.chain : ''
+}
+
 // 跳转步骤
 const jumpStep = (jumpTo: number) => {
   if (step.value < jumpTo) {
@@ -367,6 +377,12 @@ const selTab = () => {
       return false
     }
     withdrawForm.BlockchainCode = withdrawForm.BlockchainCode == '' ? selBlockChainItem.code : withdrawForm.BlockchainCode
+    // 设置提现链
+    if (route.query.currencyCode == 'USDT') {
+      withdrawForm.BlockchainCode = withdrawForm.BlockchainCode == '' ? selBlockChainItem.code : withdrawForm.BlockchainCode
+    } else {
+      withdrawForm.BlockchainCode = currencyChain()
+    }
     step.value = 3
   } else if (step.value == 3) {
     if (userStore.userInfo.isBindGoogleAuth && withdrawForm.VerificationCode == '') {
@@ -394,7 +410,9 @@ const selTab = () => {
   }
 }
 
-Object.assign(selBlockChainItem, usdtChainList[1])
+if (route.query?.CurrencyCode == 'USDT') {
+  Object.assign(selBlockChainItem, usdtChainList[1])
+}
 
 getBalanceList()
 </script>

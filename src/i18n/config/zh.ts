@@ -528,6 +528,8 @@ export default {
   inputOutTime: '请选择退房时间',
   hotelTimeError: '退房时间不能小于入住时间',
   ticketTimeError: '返程时间不能小于出行时间',
+  countryHolder: '+86',
+  numberHolder: '138xxxxxxxx',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',
@@ -694,7 +696,7 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">二、个性化服务</div>
                       <div class="vr-conts">
-                        <p>专业的客户经理团队确保您的一切需求并始终达到行业最高标准，VIP会员可享受独家奖金、受邀参加著名活动以及为您制定快速、有趣/高效的游戏体验，为您量身定制的多种多样的奖励机制。</p>
+                        <p>专业的客户经理团队确保您的一切需求并始终达到行业最高标准，VIP会员可享受独家奖金、受邀参加著名活动以及为您制定快速、有趣、高效的游戏体验，为您量身定制的多种多样的奖励机制。</p>
                         <dl>
                           <dt>VIP专属经理：</dt>
                           <dd>只关注您的需求</dd>
