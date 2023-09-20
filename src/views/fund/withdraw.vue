@@ -93,7 +93,11 @@
                 <div class="gc-t">
                   <div class="t-l">
                     <div class="t-icon">
-                      <img :src="getAssetsFile(currenyImg())" />
+                      <img v-if="withdrawForm.CurrencyCode != 'USDT'" :src="getAssetsFile(currenyImg())" />
+                      <template v-else>
+                        <img :src="getAssetsFile('coin/usdt.svg')" />
+                        <em><i :class="withdrawForm.BlockchainCode == 'Tron' ? 'iconfont icon-trx' : 'iconfont icon-eth'" /></em>
+                      </template>
                     </div>
                     <div class="t-txt">
                       <span>{{ withdrawForm.CurrencyCode }}{{ withdrawForm.CurrencyCode == 'USDT' ? `(${withdrawForm.BlockchainCode})` : '' }}</span>
@@ -378,7 +382,7 @@ const selTab = () => {
     }
     withdrawForm.BlockchainCode = withdrawForm.BlockchainCode == '' ? selBlockChainItem.code : withdrawForm.BlockchainCode
     // 设置提现链
-    if (route.query.currencyCode == 'USDT') {
+    if (route.query.CurrencyCode == 'USDT') {
       withdrawForm.BlockchainCode = withdrawForm.BlockchainCode == '' ? selBlockChainItem.code : withdrawForm.BlockchainCode
     } else {
       withdrawForm.BlockchainCode = currencyChain()
