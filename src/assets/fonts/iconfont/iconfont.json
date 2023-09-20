@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "27003780",
+      "name": "合作",
+      "font_class": "hezuo",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "7269837",
+      "name": "时间",
+      "font_class": "shijian",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
+      "icon_id": "3605264",
+      "name": "成功",
+      "font_class": "chenggong",
+      "unicode": "e79a",
+      "unicode_decimal": 59290
+    },
+    {
+      "icon_id": "6004236",
+      "name": "失败",
+      "font_class": "shibai",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "1261483",
+      "name": "code",
+      "font_class": "code",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "5910805",
+      "name": "pc-全屏",
+      "font_class": "quanping",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
       "icon_id": "9512671",
       "name": "验证码",
       "font_class": "verify",
