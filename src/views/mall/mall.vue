@@ -310,11 +310,33 @@
               <Field name="isOneWay" :label="t('onewayOrRoundtrip')">
                 <template #input>
                   <RadioGroup v-model="exhangeGoodsParams.AirTicketOrder.OnewayOrRoundtrip" direction="horizontal">
-                    <Radio :name="t('oneway')">{{ t('oneway') }}</Radio>
-                    <Radio :name="t('roundtrip')">{{ t('roundtrip') }}</Radio>
+                    <Radio name="oneway">{{ t('oneway') }}</Radio>
+                    <Radio name="roundtrip">{{ t('roundtrip') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
+
+              <Field
+                v-model="ticketTime"
+                is-link
+                readonly
+                :label="t('goTime')"
+                :placeholder="t('inputGotime')"
+                :rules="[{ required: true, message: t('inputGotime') }]"
+                @click="showTicketCalendar = true"
+              />
+              <Calendar
+                v-model:show="showTicketCalendar"
+                :type="exhangeGoodsParams.AirTicketOrder.OnewayOrRoundtrip == 'oneway' ? 'single' : 'range'"
+                :min-date="minDate"
+                :max-date="maxDate"
+                color="#f7cc00"
+                :style="{ height: '500px' }"
+                round
+                :show-confirm="false"
+                :formatter="dayFormatter"
+                @confirm="customDate"
+              />
               <Field name="engineroomType" :label="t('engineroomType')">
                 <template #input>
                   <RadioGroup v-model="exhangeGoodsParams.AirTicketOrder.EngineroomType">
@@ -373,6 +395,27 @@
                 :placeholder="t('tips.inputCity')"
                 :rules="[{ required: true, message: t('tips.inputCity') }]"
               />
+              <Field
+                v-model="hotelTime"
+                is-link
+                readonly
+                :label="t('inTime')"
+                :placeholder="t('inputInTime')"
+                :rules="[{ required: true, message: t('inputInTime') }]"
+                @click="showHotelCalendar = true"
+              />
+              <Calendar
+                v-model:show="showHotelCalendar"
+                type="range"
+                :min-date="minDate"
+                :max-date="maxDate"
+                color="#f7cc00"
+                :style="{ height: '500px' }"
+                round
+                :show-confirm="false"
+                :formatter="dayFormatter"
+                @confirm="customDate"
+              />
               <Field name="roomType" :label="t('roomType')">
                 <template #input>
                   <RadioGroup v-model="exhangeGoodsParams.GroggeryOrder.RoomType">
@@ -389,13 +432,13 @@
                 :placeholder="t('roomNum')"
                 :rules="[{ required: true, message: t('tips.inputRoomNum') }]"
               />
-              <Field
+              <!-- <Field
                 v-model="exhangeGoodsParams.GroggeryOrder.NumberOfDaysRequired"
                 name="roomDay"
                 :label="t('roomDay')"
                 :placeholder="t('tips.inputInRoomDay')"
                 :rules="[{ required: true, message: t('tips.inputInRoomDay') }]"
-              />
+              /> -->
               <Field v-model="exhangeGoodsParams.GroggeryOrder.OtherServices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
             </CellGroup>
             <div class="ticket-btn">
@@ -424,8 +467,8 @@ import { useAppStore } from '@/store/modules/app'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { useI18n } from 'vue-i18n'
 
-// import { cloneDeep } from 'lodash-es'
-import { showToast, ConfigProvider, Popup, PullRefresh, List, showConfirmDialog, Form, CellGroup, Field, RadioGroup, Radio, Picker, Button } from 'vant'
+import dayjs from 'dayjs'
+import { showToast, ConfigProvider, Popup, PullRefresh, List, showConfirmDialog, Form, CellGroup, Field, RadioGroup, Radio, Picker, Button, Calendar } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
 import 'swiper/css'
@@ -462,8 +505,20 @@ const docType = [
   { text: t('passport'), value: t('passport') }
 ]
 
-// 机票订单
+// 日期控件去掉日历格子下文字信息
+const dayFormatter = (day: any) => {
+  day.bottomInfo = ''
+  return day
+}
+
+// 筛选 - 日期控件参数
+const ticketTime = ref('')
+const hotelTime = ref('')
+const minDate = dayjs().toDate()
+const maxDate = dayjs().add(1, 'year').toDate()
 const showDocTypePicker = ref(false)
+const showTicketCalendar = ref(false)
+const showHotelCalendar = ref(false)
 const exhangeGoodsParams = reactive({
   Id: '',
   AirTicketOrder: {
@@ -474,7 +529,9 @@ const exhangeGoodsParams = reactive({
     AirlineCompany: '',
     PlaceOfDeparture: '',
     Destination: '',
-    OnewayOrRoundtrip: t('oneway'),
+    StartTime: '',
+    EndTime: '',
+    OnewayOrRoundtrip: 'oneway',
     EngineroomType: t('economyClass'),
     Otherservices: ''
   },
@@ -487,7 +544,9 @@ const exhangeGoodsParams = reactive({
     RoomType: t('presidentialSuite'),
     NumberOfRooms: '',
     NumberOfDaysRequired: '',
-    OtherServices: ''
+    OtherServices: '',
+    StartTime: '',
+    EndTime: '',
   }
 })
 
@@ -569,6 +628,9 @@ const exhangeGoods = () => {
       data = { Id: currentGoodsItem.id }
     } else if (currentGoodsItem.productType == 3) {
       data = { Id: currentGoodsItem.id, AirTicketOrder: exhangeGoodsParams.AirTicketOrder }
+      if (data.AirTicketOrder?.OnewayOrRoundtrip) {
+        data.AirTicketOrder.OnewayOrRoundtrip = t(data.AirTicketOrder?.OnewayOrRoundtrip)
+      }
     } else if (currentGoodsItem.productType == 4) {
       data = { Id: currentGoodsItem.id, GroggeryOrder: exhangeGoodsParams.GroggeryOrder }
     }
@@ -632,11 +694,32 @@ const loadData = () => {
   getIntegralRecord()
 }
 
+// 显示商品详情
 const showDetails = (item: getGoodsListItem) => {
   Object.assign(currentGoodsItem, item)
   showGoodsDetails.value = true
 }
 
+// 选择日期后刷新
+const customDate = (time: any) => {
+  if (currentGoodsItem.productType == 3) {
+    exhangeGoodsParams.AirTicketOrder.StartTime = dayjs(time[0]).format('YYYY-MM-DD')
+    exhangeGoodsParams.AirTicketOrder.EndTime = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
+    if (exhangeGoodsParams.AirTicketOrder.OnewayOrRoundtrip == 'oneway') {
+      ticketTime.value = exhangeGoodsParams.AirTicketOrder.StartTime
+    } else {
+      ticketTime.value = exhangeGoodsParams.AirTicketOrder.StartTime + ' - ' + exhangeGoodsParams.AirTicketOrder.EndTime
+    }
+    showTicketCalendar.value = false
+  } else if (currentGoodsItem.productType == 4) {
+    exhangeGoodsParams.GroggeryOrder.StartTime = dayjs(time[0]).format('YYYY-MM-DD')
+    exhangeGoodsParams.GroggeryOrder.EndTime = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
+    hotelTime.value = exhangeGoodsParams.GroggeryOrder.StartTime + ' - ' + exhangeGoodsParams.GroggeryOrder.EndTime
+    showHotelCalendar.value = false
+  }
+}
+
+// 自定义日期
 const confirmIdCard = (selected: any) => {
   exhangeGoodsParams.AirTicketOrder.DocumentType = selected.selectedValues[0]
   showDocTypePicker.value = false

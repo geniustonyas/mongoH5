@@ -503,6 +503,31 @@ export default {
   trueMode: '真钱模式',
   gameStatic: '游戏数据统计',
   receivedSuccess: '{ amount } USDT 已领取成功',
+  goTime: '出行时间',
+  backTime: '返程时间',
+  inTime: '入住时间',
+  outTime: '退房时间',
+  sabaSportDesc: {
+    0: '超全赛事',
+    1: '多终端支持',
+    2: '安全加密',
+    3: '准确即时赔率',
+    4: '独立后台'
+  },
+  seabetSportDesc: {
+    0: '自主研发',
+    1: '最高赔率',
+    2: '定制级投注界面',
+    3: '精确结算系统',
+    4: '上百种投注选择'
+  },
+  pickDate: '选择日期',
+  inputGotime: '请选择出行时间',
+  inputBacktime: '请选择返程时间',
+  inputInTime: '请选择入住时间',
+  inputOutTime: '请选择退房时间',
+  hotelTimeError: '退房时间不能小于入住时间',
+  ticketTimeError: '返程时间不能小于出行时间',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

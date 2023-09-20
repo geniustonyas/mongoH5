@@ -12,6 +12,8 @@ export type exhangeGoodsData = {
     OnewayOrRoundtrip: string
     EngineroomType: string
     Otherservices: string
+    StartTime: string
+    EndTime: string
   }
   GroggeryOrder?: {
     Name: string
@@ -23,6 +25,8 @@ export type exhangeGoodsData = {
     NumberOfRooms: string
     NumberOfDaysRequired: string
     OtherServices: string
+    StartTime: string
+    EndTime: string
   }
 }
 
