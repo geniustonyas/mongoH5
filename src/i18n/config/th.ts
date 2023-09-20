@@ -117,7 +117,7 @@ export default {
   currentPwd: 'รหัสผ่านปัจจุบัน',
   newPwd: 'รหัสผ่านใหม่',
   confirmPwd: 'ยืนยันรหัสผ่านใหม่',
-  changePwdLimit: 'เพื่อความปลอดภัยของเงินของคุณ หลังจากเปลี่ยนรหัสผ่าน คุณจะไม่สามารถทำการถอนเงินภายใน 48 ชั่วโมง',
+  changePwdLimit: 'เพื่อความปลอดภัยของเงินของคุณ หลังจากเปลี่ยนรหัสผ่าน คุณจะไม่สามารถทำการถอนเงินภายใน 24 ชั่วโมง',
   disabledGoogle: 'ปิดใช้งาน Google Authenticator แล้ว',
   activeGoogle: 'กรุณาสแกนคิวอาร์โค้ดของ Google Authenticator หรือป้อนรหัสเพื่อเปิดใช้งาน',
   whatGoogleCode: 'คือรหัส Google Authenticator คืออะไร?',
@@ -280,8 +280,8 @@ export default {
   // ผู้ให้บริการเกม
   provider: {
     all: 'ทั้งหมด',
-    sabaSports: 'กีฬาซาบะ',
-    btiSports: 'กีฬา Seabet',
+    sabaSports: 'Saba Sports',
+    btiSports: 'Seabet Sports',
     fbSports: 'กีฬา FB',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -495,7 +495,7 @@ export default {
   view: '详情',
   oprate: '查看',
   remain: '剩余',
-  directlyLogin: '直接登录',
+  directlyLogin: '或者使用',
   fastDeposit: '快速存款',
   demoMode: '乐趣试玩',
   trueMode: '真钱模式',
@@ -745,8 +745,6 @@ export default {
                       <div class="vr-title">4、Benefits for VIP Club Members</div>
                       <div class="vr-conts">
                         <dl>
-                          <dd>Boost Bonuses: You can earn bonuses based on your weekly and monthly gaming volume. The more you play, the more bonuses you receive.</dd>
-                          <dd>Recent Game Performance Bonus: Having a streak of bad luck? ${site_name} will provide additional funds based on your losses every time you level up.</dd>
                           <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
                           <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
                           <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>

@@ -117,7 +117,7 @@ export default {
   currentPwd: '現在のパスワード',
   newPwd: '新しいパスワード',
   confirmPwd: '再度、新しいパスワードを入力してください',
-  changePwdLimit: 'お客様の資金の安全確保の為、パスワード変更後４８時間内は資金の引き出し操作が出来ません。',
+  changePwdLimit: 'お客様の資金の安全確保の為、パスワード変更後24時間内は資金の引き出し操作が出来ません。',
   disabledGoogle: 'Google認証は利用出来ません',
   activeGoogle: 'Google認証のQRコードか認証コードを使いアクティベートさせてください。',
   whatGoogleCode: 'Googleコードとは？',
@@ -496,7 +496,7 @@ export default {
   view: '详情',
   oprate: '查看',
   remain: '剩余',
-  directlyLogin: '直接登录',
+  directlyLogin: '或者使用',
   fastDeposit: '快速存款',
   demoMode: '乐趣试玩',
   trueMode: '真钱模式',
@@ -747,8 +747,6 @@ export default {
                       <div class="vr-title">四、VIP俱乐部成员能够享受到的福利</div>
                       <div class="vr-conts">
                         <dl>
-                          <dd>助推奖金：您可以根据您每周、每月的游戏量获得奖金，玩的越多，获得的奖金越多</dd>
-                          <dd>近期游戏表现奖金：运气不佳？${site_name}会在您每次升级时根据您的损失提供额外资金</dd>
                           <dd>升级奖金：在每达到下个级别后获取奖金，所达到的级别越高，奖金越多</dd>
                           <dd>定制只属于您的优惠：对常规优惠不感兴趣？没关系，当您达到相应的VIP等级后，我们将会为您特别定制您所感兴趣的优惠内容，仅属于您个人的优惠内容</dd>
                           <dd>私人定制级娱乐体验：无论是各大赛事、演唱会、音乐会还是一场豪华旅行，当您成为我们的高级VIP会员，您的一切个人花销均由您所信赖的${site_name}提供，您的行程由我们来安排</dd>

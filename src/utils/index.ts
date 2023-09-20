@@ -41,15 +41,19 @@ export function getYearList() {
 }
 
 // 初始化复制
-export function copy(selector: string, tips = '') {
+export function copy(selector: string, tips = '', clipboard: any = null) {
+  if (clipboard) {
+    clipboard.destroy()
+  }
   const { t } = i18n.global
   tips = tips == '' ? t('tips.copySuccess') : tips
-  const clipboard = new Clipboard(selector)
-  clipboard.on('success', () => {
+  const newClipboard = new Clipboard(selector)
+  newClipboard.on('success', () => {
     showToast(tips)
+    copy(selector, tips, newClipboard)
   })
-  clipboard.on('error', () => {
-    clipboard.destroy()
+  newClipboard.on('error', () => {
+    copy(selector, tips, newClipboard)
     showToast(t('tips.copyFail'))
   })
 }

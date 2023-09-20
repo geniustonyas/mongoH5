@@ -280,8 +280,8 @@ export default {
   // Nhà cung cấp trò chơi
   provider: {
     all: 'Tất cả',
-    sabaSports: 'Thể thao Saba',
-    btiSports: 'Thể thao Seabet',
+    sabaSports: 'Saba Sports',
+    btiSports: 'Seabet Sports',
     fbSports: 'Thể thao FB',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -497,7 +497,7 @@ export default {
   view: '详情',
   oprate: '查看',
   remain: '剩余',
-  directlyLogin: '直接登录',
+  directlyLogin: '或者使用',
   fastDeposit: '快速存款',
   demoMode: '乐趣试玩',
   trueMode: '真钱模式',
@@ -578,7 +578,7 @@ export default {
                     </table>`,
     howComputeInterial: '4.Cách tính điểm như thế nào?',
     howComputeInterials: `<p>Cho dù đó là cược thể thao hay chơi các trò chơi sòng bạc, việc sử dụng tiền điện tử sẽ giúp bạn kiếm điểm. Để tính điểm bạn kiếm được từ mỗi lần đặt cược, chúng tôi sẽ chuyển đổi số tiền cược của bạn thành USDT tại tỷ giá hối đoái thị trường thời gian thực trong quá trình thanh toán. Điều này đảm bảo rằng tất cả việc tích lũy điểm, bất kể loại tiền điện tử được sử dụng, đều công bằng. Do tỷ giá chuyển đổi biến động, chúng tôi tuân theo nguyên tắc làm tròn đến số nguyên gần nhất khi tính điểm.</p>
-                          <p>Công thức để kiếm điểm Seabet là: Số tiền cược của người chơi * 0,1 * hệ số điểm của cấp độ tương ứng. Ví dụ, nếu một người chơi ở cấp độ Platinum và đặt cược 5000, theo công thức tính điểm, người chơi sẽ kiếm được 5000 * 0,01 * 1,3 = 65 điểm. Điểm Seabet có một loạt các ứng dụng và người chơi có thể đổi quà tặng và dịch vụ tương đương từ cửa hàng điểm.</p>`,
+                          <p>Công thức để kiếm điểm Seabet là: Số tiền cược của người chơi * 0,01 * hệ số điểm của cấp độ tương ứng. Ví dụ, nếu một người chơi ở cấp độ Platinum và đặt cược 5000, theo công thức tính điểm, người chơi sẽ kiếm được 5000 * 0,01 * 1,3 = 65 điểm. Điểm Seabet có một loạt các ứng dụng và người chơi có thể đổi quà tặng và dịch vụ tương đương từ cửa hàng điểm.</p>`,
     whyMergedReward: '5.Tại sao phần thưởng của tôi được gộp lại?',
     whyMergedRewards: `<p>Phần thưởng của bạn được gộp lại vì một lần đặt cược có thể mở khóa nhiều phần thưởng. Để làm cho nó tiện lợi cho bạn, chúng tôi cộng tổng giá trị của các phần thưởng và hiển thị chúng như một phần thưởng duy nhất.</p>`,
     resetVip: '6.Khi nào cấp độ VIP của tôi sẽ được đặt lại?',
@@ -745,8 +745,6 @@ export default {
                       <div class="vr-title">4、Benefits for VIP Club Members</div>
                       <div class="vr-conts">
                         <dl>
-                          <dd>Boost Bonuses: You can earn bonuses based on your weekly and monthly gaming volume. The more you play, the more bonuses you receive.</dd>
-                          <dd>Recent Game Performance Bonus: Having a streak of bad luck? ${site_name} will provide additional funds based on your losses every time you level up.</dd>
                           <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
                           <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
                           <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>

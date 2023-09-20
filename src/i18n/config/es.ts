@@ -495,7 +495,7 @@ export default {
   view: '详情',
   oprate: '查看',
   remain: '剩余',
-  directlyLogin: '直接登录',
+  directlyLogin: '或者使用',
   fastDeposit: '快速存款',
   demoMode: '乐趣试玩',
   trueMode: '真钱模式',
@@ -576,7 +576,7 @@ export default {
                     </table>`,
     howComputeInterial: '4.¿Cómo se calculan los puntos?',
     howComputeInterials: `<pYa sea en apuestas deportivas o jugando juegos de casino, el uso de criptomonedas te permitirá ganar puntos. Para calcular los puntos que ganas con cada apuesta, convertimos la cantidad de tu apuesta a USDT utilizando la tasa de cambio de mercado en tiempo real durante la liquidación. Esto asegura que todas las acumulaciones de puntos, independientemente de la criptomoneda utilizada, sean justas. Debido a las fluctuaciones en las tasas de conversión, seguimos el principio de redondear al número entero más cercano al calcular los puntos.</p>
-                          <p>La fórmula para ganar puntos Seabet es: Cantidad apostada por el jugador * 0.1 * coeficiente de puntos del nivel correspondiente. Por ejemplo, si un jugador está en el nivel Platino y apuesta 5000, según la fórmula de cálculo de puntos, el jugador ganará 5000 * 0.01 * 1.3 = 65 puntos. Los puntos Seabet tienen una amplia variedad de usos, y los jugadores pueden canjear regalos y servicios equivalentes en la tienda de puntos.</p>`,
+                          <p>La fórmula para ganar puntos Seabet es: Cantidad apostada por el jugador * 0.01 * coeficiente de puntos del nivel correspondiente. Por ejemplo, si un jugador está en el nivel Platino y apuesta 5000, según la fórmula de cálculo de puntos, el jugador ganará 5000 * 0.01 * 1.3 = 65 puntos. Los puntos Seabet tienen una amplia variedad de usos, y los jugadores pueden canjear regalos y servicios equivalentes en la tienda de puntos.</p>`,
     whyMergedReward: '5.¿Por qué se combinan mis recompensas?',
     whyMergedRewards: `<p>Tus recompensas se combinan porque una sola apuesta puede desbloquear múltiples recompensas. Para hacértelo más conveniente, sumamos el valor de las recompensas y las mostramos como una única recompensa.</p>`,
     resetVip: '6.¿Cuándo se reiniciará mi nivel VIP?',
@@ -744,8 +744,6 @@ export default {
                     <div class="vr-title">4、Benefits for VIP Club Members</div>
                     <div class="vr-conts">
                       <dl>
-                        <dd>Boost Bonuses: You can earn bonuses based on your weekly and monthly gaming volume. The more you play, the more bonuses you receive.</dd>
-                        <dd>Recent Game Performance Bonus: Having a streak of bad luck? ${site_name} will provide additional funds based on your losses every time you level up.</dd>
                         <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
                         <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
                         <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>
