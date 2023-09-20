@@ -148,6 +148,60 @@ body {
                 width: 100%;
             }
         }
+        &.index-head{
+            .flex();
+            .flex-pack-justify();
+             padding:1rem .5rem ;
+
+            .icon-btn{ width:3.6rem; .h-lh(3.6rem); text-align:center; padding:0; vertical-align:middle;
+                       &:hover, &:active,&:focus{ 
+                           background:var(--color-black) !important;
+                           color:var(--color-primary) !important;
+                       }
+            }
+            .ih-l{ width:4rem; text-align:center;
+                   i{font-size:2.2rem;}
+                   .icon-btn{ background:transparent;
+                              &.active{
+                                  background:var(--color-black) !important;
+                              }
+                   }
+            }
+            .ih-r{
+               
+                 .ihr-bd{
+                     .flex();
+                     .flex-align();
+               
+                     .rb-l{  
+                         .flex();
+                         .flex-v();
+                         .flex-align(flex-end);
+                              line-height:normal;
+                              margin-right:1rem;
+                              b{font-size:1.2rem; font-weight:400; margin-bottom:-.2rem;}
+                              label{color:var(--color-primary)}
+                              a{color:var(--color-white); cursor:pointer;}
+                         
+                     }
+                     .rb-r{
+                           .icon-btn{margin-left:.5rem; position:relative; background:var(--color-black);
+                                     .badge{
+                                         position:absolute;
+                                         display:inline-block;
+                                         .size(.6rem,.6rem);
+                                         top:.7rem;
+                                         right:1rem;
+                                         .radius(.6rem);
+                                         .bg(var(--color-primary));
+                                       
+                                     }
+                           }
+                 i,img{ margin:0; padding:0; bottom:.5rem; width:2.8rem; height:2.8rem;}
+                     }
+                 }
+            }
+        }
     }
 
     .head-menu-lf {
