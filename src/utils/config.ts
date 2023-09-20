@@ -64,7 +64,7 @@ export const currenyListData = () => {
       currenyName: t('currencyLang.bnb'),
       unit: 'BNB',
       currenyType: '10',
-      icon: 'coin/trx.svg',
+      icon: 'coin/binance_icon.svg',
       explorer: ''
     },
     {
@@ -137,8 +137,8 @@ export const currenyListData = () => {
 export const providerListData = () => {
   return [
     // 体育提供商
+    { id: '2110', type: 'sports', tab: 'sports', name: t('provider.btiSports'), img: getAssetsFile('svg/seabetSport.svg') },
     { id: '1439', type: 'sports', tab: 'sports', name: t('provider.sabaSports'), img: getAssetsFile('svg/SabaSports.svg') },
-    { id: '2110', type: 'sports', tab: 'sports', name: t('provider.btiports'), img: getAssetsFile('svg/FBSports.svg') },
     // { id: '2', type: 'sports', tab: 'sports', name: t('provider.fbSports'), img: getAssetsFile('svg/FBSports.svg') },
     // 真人提供商
     { id: '6', type: 'casino', tab: 'casino', name: t('provider.evolution'), img: getAssetsFile('svg/Evolution.svg') },
@@ -147,7 +147,7 @@ export const providerListData = () => {
     { id: '3', type: 'casino', tab: 'casino', name: t('provider.asiaGaming'), img: getAssetsFile('svg/AsiaGaming.svg') },
     // 电子提供商
     { id: '1', type: 'slots', tab: 'slots', name: t('provider.pragmaticPlay'), img: getAssetsFile('svg/PragmaticPlay.svg') },
-    // { id: '8', type: 'slots', tab: 'slots', name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg') },
+    { id: '11', type: 'slots', tab: 'slots', name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg') },
     { id: '9', type: 'slots', tab: 'slots', name: t('provider.netEnt'), img: getAssetsFile('svg/NetEnt.svg') },
     // { id: '10', type: 'slots', tab: 'slots', name: t('provider.playTech'), img: getAssetsFile('svg/PlayTech.svg') },
     { id: '15', type: 'slots', tab: 'slots', name: t('provider.microgaming'), img: getAssetsFile('svg/Mg.svg') }

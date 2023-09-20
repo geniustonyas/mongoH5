@@ -37,7 +37,8 @@
           </a>
           <a class="icon-btn" @click="loginTo('message')">
             <i class="iconfont icon-message" />
-            <em v-if="userStore.newMessageCount > 0" class="badge" />
+            <em class="badge" />
+            <!-- <em v-if="userStore.newMessageCount > 0" class="badge" /> -->
           </a>
         </template>
         <template v-else>

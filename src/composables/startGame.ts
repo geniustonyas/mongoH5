@@ -3,17 +3,17 @@ import i18n from '@/i18n'
 import { showConfirmDialog } from 'vant'
 
 import { getGameUrlApi } from '@/api/game'
-import { useUserStore } from '@/store/modules/user'
+import { useUserStoreHook } from '@/store/modules/user'
 import { PlatForm } from '@/utils/constant'
 
-const userStore = useUserStore()
+const userStore = useUserStoreHook()
 const { t } = i18n.global
 
 /**
  * 启动游戏
  * @param id 游戏id
  */
-export function startGame(gameId: string | number) {
+export function startGame(gameId: string | number, url = 'game/url') {
   if (!userStore.userInfo.id) {
     showConfirmDialog({
       title: t('tips.noLogin'),
@@ -26,21 +26,22 @@ export function startGame(gameId: string | number) {
         return false
       })
   } else {
-    getGameUrlApi({ id: gameId, platform: PlatForm.H5 })
+    getGameUrlApi({ id: gameId, platform: PlatForm.H5 }, url)
       .then((resp) => {
-        const wd = window.open(resp.data)
-        if (!wd) {
-          showConfirmDialog({
-            title: t(''),
-            message: t('tips.openWindow')
-          })
-            .then(() => {
-              window.open(resp.data)
-            })
-            .catch(() => {
-              return false
-            })
-        }
+        // const wd = window.open(resp.data)
+        window.location.href = resp.data
+        // if (!wd) {
+        //   showConfirmDialog({
+        //     title: t(''),
+        //     message: t('tips.openWindow')
+        //   })
+        //     .then(() => {
+        //       window.open(resp.data)
+        //     })
+        //     .catch(() => {
+        //       return false
+        //     })
+        // }
       })
       .catch((error) => {
         console.log(error)
@@ -49,12 +50,15 @@ export function startGame(gameId: string | number) {
 }
 
 /**
- * 参考 https://codepen.io/intercom/pen/QGqWxw
- * @param message
+ * 参考 https://platform.text.com/docs/extending-chat-widget/javascript-api
  * @returns
  */
-export function startService(message: string) {
-  //@ts-ignore
-  window.Intercom(message)
-  return true
+export function liveChatCall(key: string, value: string | undefined = undefined) {
+  if (value) {
+    //@ts-ignore
+    window.LiveChatWidget.call(key, value)
+  } else {
+    //@ts-ignore
+    window.LiveChatWidget.call(key)
+  }
 }

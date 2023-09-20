@@ -99,7 +99,7 @@ export default {
   club: 'Club',
   tiers: 'Niveaux',
   clubTips: 'Vos récompenses seront réinitialisées chaque mois. Assurez-vous de les réclamer avant la fin du mois pour ne rien manquer.',
-  currentPoints: 'Points Actuels',
+  currentPoints: 'Montant actuel de la mise',
   currentPointsMultiplier: 'Multiplicateur de Points Actuel',
   receiveReward: 'Réclamer la Récompense',
   alreadyReceived: 'Déjà Réclamé',
@@ -117,7 +117,7 @@ export default {
   currentPwd: 'Mot de Passe Actuel',
   newPwd: 'Nouveau Mot de Passe',
   confirmPwd: 'Confirmez le Mot de Passe',
-  changePwdLimit: 'Pour votre sécurité, vous ne pourrez pas effectuer de retraits pendant 48 heures après avoir changé de mot de passe.',
+  changePwdLimit: 'Pour votre sécurité, vous ne pourrez pas effectuer de retraits pendant 24 heures après avoir changé de mot de passe.',
   disabledGoogle: 'Google Authenticator désactivé',
   activeGoogle: 'Veuillez scanner le code QR ou saisir le code pour activer Google Authenticator.',
   whatGoogleCode: "Qu'est-ce que le code Google Authenticator ?",
@@ -281,7 +281,7 @@ export default {
   provider: {
     all: 'Tous',
     sabaSports: 'SABA Sports',
-    btiports: 'BTI Sports',
+    btiSports: 'Seabet Sports',
     fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -351,7 +351,7 @@ export default {
     inputExhangeCode: 'Veuillez entrer le code de conversion',
     startGameFail: 'Échec du démarrage du jeu',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '兑换成功',
+    exhangeSuccess: '您的信息提交成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
     unBindGoogleSuccess: '解绑成功',
@@ -397,7 +397,7 @@ export default {
   time: '时间',
   betAmount: '投注金额',
   support2: '支持',
-  btiSportIntro: '多年体育平台运营经验，BTi体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
+  btiSportIntro: '多年体育平台运营经验，Seabet体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
   sabaSportIntro: '经过近二十年的多方证实，沙巴体育平台提供广泛的体育赛事、多种创新投注类型、业界最佳赔率。',
   fundRecord: '账变记录',
   categoryFilter: '按分类筛选',
@@ -479,6 +479,29 @@ export default {
   applyPromo: '申请奖励',
   applyNow: '立即申请',
   rewardStatus: { 0: '处理中', 1: '通过', 2: '拒绝' },
+  betTime: '投注时间',
+  betOrderNo: '注单号码',
+  startEarning: '开始赚取',
+  historyType: '类型',
+  rewardName: '奖励名称',
+  startTime: '开始时间',
+  endTime: '结束时间',
+  minMaxBet: '最小-最大投注',
+  volatility: '波动性',
+  volatilitys: { 1: '低', 2: '中低', 3: '中', 4: '中高', 5: '高', 6: '非常高', 7: '非常低' },
+  myPoints: '我的积分',
+  backPromo: '返回促销',
+  noSupportFullScreen: '当前浏览器不支持全屏',
+  pointsExchange: '积分兑换',
+  view: '详情',
+  oprate: '查看',
+  remain: '剩余',
+  directlyLogin: '直接登录',
+  fastDeposit: '快速存款',
+  demoMode: '乐趣试玩',
+  trueMode: '真钱模式',
+  gameStatic: '游戏数据统计',
+  receivedSuccess: '{ amount } USDT 已领取成功',
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",
@@ -486,19 +509,48 @@ export default {
                 <p>En termes simples, cela signifie : Vous jouez à des jeux, et nous vous récompensons.</p>`,
     howGetIntegrial: '2.Comment gagner des points ?',
     howGetIntegrials: `Vous gagnez des points de club à chaque pari, à chaque tour de machine à sous et à chaque jeu de table que vous jouez. Plus vous accumulez de points, plus votre niveau augmente. À mesure que vous progressez dans les rangs, vous débloquerez diverses récompenses excitantes. Les récompenses deviendront de plus en plus intéressantes à mesure que vous continuerez à débloquer de nouveaux niveaux.`,
-    whatVipLevel: '3.Quels sont les niveaux VIP ?',
+    whatVipLevel: '3.Niveau VIP  ?',
     whatVipLevels: `<p>Les niveaux VIP déterminent la valeur et le type de récompenses que vous pouvez réclamer. À mesure que vous progressez dans le club et montez en niveau, vos récompenses augmenteront également.</p>
-                    <p>VIP Level 	Required Bet Amount	Frequency</p>
-                    <p>Bronze 	100	1</p>
-                    <p>Silver	500	5</p>
-                    <p>Gold 	15000	8</p>
-                    <p>Platinum 	300,000	10</p>
-                    <p>Titanium	1,900,000	10</p>
-                    <p>Diamond 	6,000,000	6</p>
-                    <p></p>`,
+                    <table>
+                      <tr>
+                        <th>Niveau VIP </th>
+                        <th>Montant de mise requis Amount</th>
+                        <th>Fréquence</th>
+                      </tr>
+                      <tr>
+                        <td>Bronze</td>
+                        <td>100</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>Argent</td>
+                        <td>500</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>Or</td>
+                        <td>15000</td>
+                        <td>8</td>
+                      </tr>
+                      <tr>
+                        <td>Titane</td>
+                        <td>300,000</td>
+                        <td>10</td>
+                      </tr>
+                      <tr>
+                        <td>Titane</td>
+                        <td>1,900,000</td>
+                        <td>10</td>
+                      </tr>
+                      <tr>
+                        <td>Diamant </td>
+                        <td>6,000,000</td>
+                        <td>6</td>
+                      </tr>
+                    </table>`,
     howComputeInterial: '4.Comment sont calculés les points ?',
     howComputeInterials: `<p>Que ce soit pour les paris sportifs ou les jeux de casino, l'utilisation de cryptomonnaies vous permettra de gagner des points. Pour calculer les points que vous gagnez à chaque pari, nous convertissons le montant de votre mise en USDT au taux de change du marché en temps réel lors de la régularisation. Cela garantit que toutes les collectes de points, quel que soit le type de cryptomonnaie utilisé, sont équitables. En raison des taux de conversion fluctuants, nous suivons le principe de l'arrondi au nombre entier le plus proche lors du calcul des points.</p>
-                          <p>La formule pour gagner des points Seabet est la suivante : Montant de la mise du joueur * 0,1 * coefficient de points du niveau correspondant. Par exemple, si un joueur est au niveau Platinum et mise 5000, selon la formule de calcul des points, le joueur gagnera 5000 * 0,1 * 1,3 = 650 points. Les points Seabet ont une large gamme d'utilisations, et les joueurs peuvent échanger des cadeaux et des services équivalents auprès de la boutique de points.</p>`,
+                          <p>La formule pour gagner des points Seabet est la suivante : Montant de la mise du joueur * 0,01 * coefficient de points du niveau correspondant. Par exemple, si un joueur est au niveau Platinum et mise 5000, selon la formule de calcul des points, le joueur gagnera 5000 * 0,01 * 1,3 = 65 points. Les points Seabet ont une large gamme d'utilisations, et les joueurs peuvent échanger des cadeaux et des services équivalents auprès de la boutique de points.</p>`,
     whyMergedReward: '5.Pourquoi mes récompenses sont-elles fusionnées ?',
     whyMergedRewards: `<p>Vos récompenses sont fusionnées parce qu'un seul pari peut débloquer plusieurs récompenses. Pour vous faciliter les choses, nous additionnons la valeur des récompenses et les affichons sous forme d'une seule récompense.</p>`,
     resetVip: '6.Quand mon niveau VIP sera-t-il réinitialisé ?',
@@ -587,7 +639,9 @@ export default {
     1029: '邮件发送失败',
     1030: '商品数量不足',
     1031: '可用积分不足',
-    1101: '可用余额不足'
+    1101: '可用余额不足',
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   html: {
@@ -676,7 +730,6 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">5、How to Become a VIP Member</div>
                       <div class="vr-conts">
-                        <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
                         <dl>
                           <dd>
                             Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
@@ -1259,13 +1312,13 @@ export default {
 
                         <p><b>2.1.15 </b>You have not been diagnosed or classified as a compulsive or problem gambler. We are not responsible for gambling if such problems arise while using our services, but will endeavour to inform you of the relevant assistance available. We reserve the right to implement a cooling-off period if we believe such actions would be beneficial. </p>
 
-                        <p><b>2.1.15 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
+                        <p><b>2.1.16 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
 
-                        <p><b>2.1.17 </b>you have only one account with us and agree not to open any account with us; </p>
+                        <p><b>2.1.17 </b>You have only one account with us and agree not to open any account with us; </p>
 
                         <p><b>2.1.18 </b>You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited technologies, including but not limited to fraud easy detection, automated registration and registration, gameplay and screen capture technologies. These steps may include, but are not limited to, checking player deviceability, detecting geolocation and IP masking, transactions, and blockchain analytics; </p>
 
-                        <p><b>2.1.19 </b>you accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
+                        <p><b>2.1.19 </b>You accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
 
                         <h3>3. Register and open your member account</h3>
                         <p><b>3.1 </b>In order to be able to place bets on our website, you must first register for an account with us in person ("Member Account"). </p>
@@ -1290,7 +1343,7 @@ export default {
 
                         <p><b>3.11 </b>As part of the registration process, you are obliged to complete the login process to the Website. You'll need to choose a username that isn't offensive or contentious. You are responsible for the security of your login details and are strictly prohibited from divulging them to anyone. You will be responsible for any misuse of your Member Account by a third party as a result of your disclosure, whether intentional, accidental or actively or passively provided to any third party. </p>
 
-                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 48 hours for security reasons. </p>
+                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 24 hours for security reasons. </p>
 
                         <h3>4. Security</h3>
                         <p><b>4.1 </b>When registering through the Website, you will be required to select a password to authenticate your membership account using the Website. </p>
@@ -1488,9 +1541,9 @@ export default {
 
                         <p><b>13.2 </b>Without prejudice to the generality of the foregoing, you accept that we:</p>
 
-                        <p><b>13.2.1 </b>does not warrant that the Software, Games and Website are fit for their purpose; </p>
+                        <p><b>13.2.1 </b>Does not warrant that the Software, Games and Website are fit for their purpose; </p>
 
-                        <p><b>13.2.2 </b>does not warrant that the Software, Games and Website are error-free; </p>
+                        <p><b>13.2.2 </b>Does not warrant that the Software, Games and Website are error-free; </p>
 
                         <p><b>13.2.3 </b>There is no guarantee that the Software, Games and Website will be interrupted without interruption. </p>
 

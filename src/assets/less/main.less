@@ -1116,13 +1116,21 @@ body {
                 }
             }
 
-            .btn
-            {
-                width: 100%;
-                .radius(.8rem);
-                .h-lh(4rem);
-                margin-top: 1rem;
+            .btns {
+                .flex(); .flex-pack-justify();
+                .btn {
+                    width: 100%;
+                    .radius(4rem);
+                    .h-lh(4rem);
+                    margin-top: 1rem;
+                    &.dark {
+                        .bgc(var(--color-dark-gray), var(--color-white));
+                        margin-left: 1rem;
+                    }
+                }
             }
+
+           
 
             .sb-item
             {
@@ -4189,6 +4197,11 @@ body {
     &:focus {
         border-color: var(--color-primary);
     }
+}
+.bor-rad {
+    border-radius: 0.5rem;
+    height: auto;
+    line-height: 2.5rem;
 }
 
 

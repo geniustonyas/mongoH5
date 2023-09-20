@@ -6,7 +6,7 @@ export default {
   promo: '프로모션',
   support: '서포트',
   onlineSupport: '온라인서포트',
-  accountMenu: '我的',
+  accountMenu: '내 거',
   account: '어카운터',
   confirm: '확인',
   confirmd: '확인됨',
@@ -99,7 +99,7 @@ export default {
   club: '클럽',
   tiers: '레벨',
   clubTips: '매월 회원들의 보너스는 초기화 됩니다. 매월 마지막일자 전에 보너스를 수령하시길 바라며, 아무쪼록 보너스를 놓치지 않기를 부탁드립니다.。',
-  currentPoints: '현재포인트',
+  currentPoints: '현재 베팅 금액',
   currentPointsMultiplier: '현재 포인트배수',
   receiveReward: '보너스받기',
   alreadyReceived: '이미받음',
@@ -280,8 +280,8 @@ export default {
   // 게임제공업체
   provider: {
     all: '전부',
-    sabaSports: '사바스포츠',
-    btiports: 'BTI스포츠',
+    sabaSports: 'Saba Sports',
+    btiSports: 'Seabet Sports',
     fbSports: 'FB스포츠',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -352,7 +352,7 @@ export default {
     inputExhangeCode: '익스체인지코드를 입력해 주세요',
     startGameFail: '게임시작 실패',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '兑换成功',
+    exhangeSuccess: '您的信息提交成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
     unBindGoogleSuccess: '解绑成功',
@@ -399,7 +399,7 @@ export default {
   time: '时间',
   betAmount: '投注金额',
   support2: '支持',
-  btiSportIntro: '多年体育平台运营经验，BTi体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
+  btiSportIntro: '多年体育平台运营经验，Seabet体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
   sabaSportIntro: '经过近二十年的多方证实，沙巴体育平台提供广泛的体育赛事、多种创新投注类型、业界最佳赔率。',
   fundRecord: '账变记录',
   categoryFilter: '按分类筛选',
@@ -481,6 +481,29 @@ export default {
   applyPromo: '申请奖励',
   applyNow: '立即申请',
   rewardStatus: { 0: '处理中', 1: '通过', 2: '拒绝' },
+  betTime: '投注时间',
+  betOrderNo: '注单号码',
+  startEarning: '开始赚取',
+  historyType: '类型',
+  rewardName: '奖励名称',
+  startTime: '开始时间',
+  endTime: '结束时间',
+  minMaxBet: '最小-最大投注',
+  volatility: '波动性',
+  volatilitys: { 1: '低', 2: '中低', 3: '中', 4: '中高', 5: '高', 6: '非常高', 7: '非常低' },
+  myPoints: '我的积分',
+  backPromo: '返回促销',
+  noSupportFullScreen: '当前浏览器不支持全屏',
+  pointsExchange: '积分兑换',
+  view: '详情',
+  oprate: '查看',
+  remain: '剩余',
+  directlyLogin: '直接登录',
+  fastDeposit: '快速存款',
+  demoMode: '乐趣试玩',
+  trueMode: '真钱模式',
+  gameStatic: '游戏数据统计',
+  receivedSuccess: '{ amount } USDT 已领取成功',
 
   problem: {
     whatVip: '1.VIP 클럽이란 무엇인가요?',
@@ -529,7 +552,7 @@ export default {
                     </table>`,
     howComputeInterial: '4.포인트는 어떻게 계산되나요?',
     howComputeInterials: `<p>스포츠 베팅이든 카지노 게임이든, 암호화폐를 사용하면 포인트를 얻을 수 있습니다. 각 베팅으로 얻는 포인트를 계산하기 위해 정산 과정에서 베팅 금액을 실시간 시장 환율로 USDT로 변환합니다. 이렇게 하면 사용된 암호화폐의 종류에 관계없이 모든 포인트 모으기가 공정하게 이루어집니다. 환율 변동으로 인해 포인트 계산 시 가장 가까운 정수로 반올림하는 원칙을 따릅니다.</p>
-                          <p>Seabet 포인트를 얻는 공식은 다음과 같습니다: 플레이어의 베팅 금액 * 0.1 * 해당 레벨의 포인트 계수. 예를 들어, 플레이어가 플래티넘 레벨에 있고 5000을 베팅한다면, 포인트 계산 공식에 따라 플레이어는 5000 * 0.1 * 1.3 = 650 포인트를 얻게 됩니다. Seabet 포인트는 다양한 용도로 사용할 수 있으며 플레이어는 포인트 상점에서 동등한 선물과 서비스를 교환할 수 있습니다.</p>`,
+                          <p>Seabet 포인트를 얻는 공식은 다음과 같습니다: 플레이어의 베팅 금액 * 0.01 * 해당 레벨의 포인트 계수. 예를 들어, 플레이어가 플래티넘 레벨에 있고 5000을 베팅한다면, 포인트 계산 공식에 따라 플레이어는 5000 * 0.01 * 1.3 = 65 포인트를 얻게 됩니다. Seabet 포인트는 다양한 용도로 사용할 수 있으며 플레이어는 포인트 상점에서 동등한 선물과 서비스를 교환할 수 있습니다.</p>`,
     whyMergedReward: '5.내 리워드가 병합되는 이유는 무엇인가요?',
     whyMergedRewards: `<p>내 보상이 합쳐진 이유는 단일 베팅으로 여러 보상을 언락할 수 있기 때문입니다. 편리하게 하기 위해 보상의 가치를 더하고 하나의 보상으로 표시합니다.</p>`,
     resetVip: '6.내 VIP 레벨은 언제 초기화되나요?',
@@ -572,7 +595,7 @@ export default {
           <p>• Cardano (ADA)</p>
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
-    q5: '어떤 통화와 결제 수단을 제공합니까?',
+    q5: '거래 수수료가 부과 됩니까?',
     a5: `<p>Seabet.io에서 입출금에 대한 수수료를 부과하지는 않지만, 블록체인 결제를 사용할 때 거래 수수료를 지불해야 할 수 있습니다.</p>`,
     q6: '',
     a6: ``,
@@ -618,7 +641,9 @@ export default {
     1029: '邮件发送失败',
     1030: '商品数量不足',
     1031: '可用积分不足',
-    1101: '可用余额不足'
+    1101: '可用余额不足',
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   // 条款协议等内容
@@ -639,7 +664,7 @@ export default {
                       <div class="vr-conts">
                         <p>欢迎来到${site_name}尊贵会员俱乐部</p>
                         <p>在${site_name}，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。</p>
-                        <p>只需投注您所喜爱的游戏/体育赛事等任意一款由${site_name}提供的游戏服务并通过等级的上升即可解锁独家奖励。</p>
+                        <p>只需投注您所喜爱的游戏、体育赛事等任意一款由${site_name}提供的游戏服务并通过等级的上升即可解锁独家奖励。</p>
                       </div>
                     </div>
                     <div class="vc-rows">
@@ -708,7 +733,6 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">五、如何成为我们的VIP会员</div>
                       <div class="vr-conts">
-                        <p>如何成为${site_name}的VIP会所会员</p>
                         <dl>
                           <dd>
                             继续投注：成为 VIP 的关键是始终投注各种体育赛事和赌场游戏。${site_name} 将奖励您的一致性。作为顶级加密博彩网站，请定期使用您的数字资产对 ${site_name} 提供的任何赛事和赌场游戏进行投注。也可以尝试
@@ -1292,7 +1316,7 @@ export default {
 
                         <p><b>2.1.15 </b>귀하는 강박 도박꾼 또는 문제성 도박꾼으로 진단되거나 분류되지 않았습니다. 당사는 서비스를 사용하는 동안 이러한 문제가 발생하는 경우 도박에 대해 책임을 지지 않지만 사용 가능한 관련 지원을 알리기 위해 노력할 것입니다. 당사는 그러한 조치가 유익하다고 판단되는 경우 냉각 기간을 시행할 권리가 있습니다. </p>
 
-                        <p><b>2.1.15 </b>귀하가 정치적으로 노출된 사람 이거나 정치적으로 노출된 사람의 가족 구성원인 경우, 귀하는 당사가 이행할 수 있는 실사 의무를 이행하기 위해 사전 통지 없이 귀하의 계정을 검토하거나 일시 중지해야 할 수도 있음을 수락하고 인정합니다. 귀하는 귀하의 계정 상태에 관한 모든 결정이 전적으로 당사의 단독 재량에 따라 이루어지며, 여기에는 귀하의 계정을 영구적으로 폐쇄하는 것이 포함될 수 있음을 인정합니다. </p>
+                        <p><b>2.1.16 </b>귀하가 정치적으로 노출된 사람 이거나 정치적으로 노출된 사람의 가족 구성원인 경우, 귀하는 당사가 이행할 수 있는 실사 의무를 이행하기 위해 사전 통지 없이 귀하의 계정을 검토하거나 일시 중지해야 할 수도 있음을 수락하고 인정합니다. 귀하는 귀하의 계정 상태에 관한 모든 결정이 전적으로 당사의 단독 재량에 따라 이루어지며, 여기에는 귀하의 계정을 영구적으로 폐쇄하는 것이 포함될 수 있음을 인정합니다. </p>
 
                         <p><b>2.1.17 </b>귀하는 당사에 하나의 계정만 가지고 있으며 당사에 어떠한 계정도 개설하지 않을 것에 동의합니다. </p>
 

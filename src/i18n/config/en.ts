@@ -99,7 +99,7 @@ export default {
   club: 'Club',
   tiers: 'Tiers',
   clubTips: 'Your rewards will reset every month. Please claim your rewards by the end of each month before it expires. Do not miss it!',
-  currentPoints: 'Current points',
+  currentPoints: 'Current Bet Amount',
   currentPointsMultiplier: 'Current Points Multiplier',
   receiveReward: 'Receive reward',
   alreadyReceived: 'Already received',
@@ -117,10 +117,10 @@ export default {
   currentPwd: 'Current Password',
   newPwd: 'New Password',
   confirmPwd: 'Confirm Password',
-  changePwdLimit: 'To ensure the safety of your funds, no withdrawal is allowed in the next 48 hours after a change of password is made.',
+  changePwdLimit: 'To ensure the safety of your funds, no withdrawal is allowed in the next 24 hours after a change of password is made.',
   disabledGoogle: 'Google Authenticator is disabled',
   activeGoogle: 'To activate, scan the QR code or enter the code manually ',
-  whatGoogleCode: 'What is Google Verification Code? ',
+  whatGoogleCode: 'What is google authenticator? ',
   typeCode: 'Type code',
   submitCode: 'Submit code',
   keyValue: 'Key value',
@@ -182,7 +182,7 @@ export default {
   walletDetails: 'Wallet details',
   walletDetailsBig: 'WALLET DETAILS',
   waitingResults: 'review in progress',
-  withdrawUsdt: 'Withdraw USDT',
+  withdrawUsdt: 'Withdraw {curreny}',
   amount: 'amount',
   minWithdrawAmount: 'Minimum withdrawal amount',
   next: 'Next',
@@ -281,7 +281,7 @@ export default {
   provider: {
     all: 'ALL',
     sabaSports: 'Saba Sports',
-    btiports: 'BTI Sports',
+    btiSports: 'Seabet Sports',
     fbSports: 'FB Sports',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -353,7 +353,7 @@ export default {
     inputExhangeCode: 'Please enter the redemption code',
     startGameFail: 'Failed to start the game',
     insufficientPoints: 'Insufficient points',
-    exhangeSuccess: 'exhange successfully',
+    exhangeSuccess: 'Your information was submitted successfully',
     openWindow: 'The window will be opened for you to play the game soon, wish you a happy game.',
     openExchange: 'About to open a new window for you to enter the exchange',
     unBindGoogleSuccess: 'Unbind successfully',
@@ -381,7 +381,7 @@ export default {
 
   rewardsBig: 'REWARDS',
   myStats: 'MYSTATS',
-  exclusiveRewards: 'exclusive Rewards',
+  exclusiveRewards: 'Exclusive Rewards',
   quickBuys: 'Quick Buys',
   earned: 'Earned',
   spent: 'Spent',
@@ -480,15 +480,36 @@ export default {
   applyPromo: 'Apply Rewards',
   applyNow: 'Apply Now',
   rewardStatus: { 0: 'Processing', 1: 'Passed', 2: 'Rejected' },
+  betTime: 'Bet Time',
+  betOrderNo: 'Bet Order No',
+  startEarning: 'to start earning',
+  historyType: 'Type',
+  rewardName: 'Reward Name',
+  startTime: 'Start Time',
+  endTime: 'End Time',
+  minMaxBet: 'Min-Max Bet',
+  volatility: 'Volatility',
+  volatilitys: { 1: 'Low', 2: 'Low-Medium', 3: 'Medium', 4: 'Medium-High', 5: 'High', 6: 'Very hign', 7: 'Very low' },
+  myPoints: 'My Points',
+  backPromo: 'Back to promotions',
+  noSupportFullScreen: 'Your browser does not support full screen',
+  pointsExchange: 'Exhange',
+  view: 'more',
+  oprate: 'view',
+  remain: 'Remain',
+  directlyLogin: 'Directly Login',
+  fastDeposit: 'Fast Deposit',
+  demoMode: 'Fun Mode',
+  trueMode: 'Real Mode',
+  gameStatic: 'Game Statistics',
+  receivedSuccess: '{ amount } USDT received successfully',
 
   problem: {
     whatVip: 'What is the VIP Club?',
     whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
                 <p>In simple terms, it means: You play games, and we reward you.</p>`,
     howGetIntegrial: 'How to Earn Points?',
-    howGetIntegrials: `<p>How to Earn Points?</p>
-                        <p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>
-                        <p></p>`,
+    howGetIntegrials: `<p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>`,
     whatVipLevel: 'What are VIP Levels?',
     whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
                     <table>
@@ -530,7 +551,7 @@ export default {
                     </table>`,
     howComputeInterial: 'How are Points Calculated?',
     howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
-                          <p>The formula for earning Seabet points is: Player's betting amount * 0.1 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.1 * 1.3 = 650 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
+                          <p>The formula for earning Seabet points is: Player's betting amount * 0.01 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.01 * 1.3 = 65 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
     whyMergedReward: 'Why are My Rewards Merged?',
     whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
     resetVip: 'When will My VIP Level Reset?',
@@ -628,7 +649,9 @@ export default {
     1029: '邮件发送失败',
     1030: '商品数量不足',
     1031: '可用积分不足',
-    1101: '可用余额不足'
+    1101: '可用余额不足',
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   // 条款协议等内容
@@ -716,7 +739,6 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">5、How to Become a VIP Member</div>
                       <div class="vr-conts">
-                        <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
                         <dl>
                           <dd>
                             Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
@@ -1299,13 +1321,13 @@ export default {
 
                         <p><b>2.1.15 </b>You have not been diagnosed or classified as a compulsive or problem gambler. We are not responsible for gambling if such problems arise while using our services, but will endeavour to inform you of the relevant assistance available. We reserve the right to implement a cooling-off period if we believe such actions would be beneficial. </p>
 
-                        <p><b>2.1.15 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
+                        <p><b>2.1.16 </b>If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
 
-                        <p><b>2.1.17 </b>you have only one account with us and agree not to open any account with us; </p>
+                        <p><b>2.1.17 </b>You have only one account with us and agree not to open any account with us; </p>
 
                         <p><b>2.1.18 </b>You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited technologies, including but not limited to fraud easy detection, automated registration and registration, gameplay and screen capture technologies. These steps may include, but are not limited to, checking player deviceability, detecting geolocation and IP masking, transactions, and blockchain analytics; </p>
 
-                        <p><b>2.1.19 </b>you accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
+                        <p><b>2.1.19 </b>You accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
 
                         <h3>3. Register and open your member account</h3>
                         <p><b>3.1 </b>In order to be able to place bets on our website, you must first register for an account with us in person ("Member Account"). </p>
@@ -1330,7 +1352,7 @@ export default {
 
                         <p><b>3.11 </b>As part of the registration process, you are obliged to complete the login process to the Website. You'll need to choose a username that isn't offensive or contentious. You are responsible for the security of your login details and are strictly prohibited from divulging them to anyone. You will be responsible for any misuse of your Member Account by a third party as a result of your disclosure, whether intentional, accidental or actively or passively provided to any third party. </p>
 
-                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 48 hours for security reasons. </p>
+                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 24 hours for security reasons. </p>
 
                         <h3>4. Security</h3>
                         <p><b>4.1 </b>When registering through the Website, you will be required to select a password to authenticate your membership account using the Website. </p>
@@ -1528,9 +1550,9 @@ export default {
 
                         <p><b>13.2 </b>Without prejudice to the generality of the foregoing, you accept that we:</p>
 
-                        <p><b>13.2.1 </b>does not warrant that the Software, Games and Website are fit for their purpose; </p>
+                        <p><b>13.2.1 </b>Does not warrant that the Software, Games and Website are fit for their purpose; </p>
 
-                        <p><b>13.2.2 </b>does not warrant that the Software, Games and Website are error-free; </p>
+                        <p><b>13.2.2 </b>Does not warrant that the Software, Games and Website are error-free; </p>
 
                         <p><b>13.2.3 </b>There is no guarantee that the Software, Games and Website will be interrupted without interruption. </p>
 

@@ -105,6 +105,12 @@ const routes = [
         name: 'authCallback',
         component: () => import('@/views/user/authCallback.vue'),
         meta: { transition: '', needLogin: false }
+      },
+      {
+        path: 'cancelAuth',
+        name: 'cancelAuth',
+        component: () => import('@/views/user/authCallback.vue'),
+        meta: { transition: '', needLogin: false }
       }
     ]
   },
@@ -131,12 +137,6 @@ const routes = [
         meta: { transition: '', needLogin: false }
       }
     ]
-  },
-  {
-    path: '/support',
-    name: 'support',
-    component: () => import('@/views/support/support.vue'),
-    meta: { transition: '', needLogin: false }
   },
   {
     path: '/home',

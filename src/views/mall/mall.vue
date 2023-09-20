@@ -82,7 +82,7 @@
                       <b>{{ moneyFormat(item.price) }}</b>
                     </div>
                     <div v-else class="er-exhange">
-                      <a class="btn btn-primary">立即兑换</a>
+                      <a class="btn btn-primary">{{ t('buyNow') }}</a>
                     </div>
                   </div>
                 </template>
@@ -460,8 +460,6 @@ const currentGoodsItem = reactive<getGoodsListItem>({
 const docType = [
   { text: t('idCard'), value: t('idCard') },
   { text: t('passport'), value: t('passport') },
-  { text: t('militaryId'), value: t('militaryId') },
-  { text: t('diplomaticCard'), value: t('diplomaticCard') }
 ]
 
 // 机票订单

@@ -18,9 +18,9 @@
             </div>
           </div>
           <div class="item">
-            <div class="i-l" v-lazy:background-image="getAssetsFile('svg/FBSports.svg')" />
+            <div class="i-l" v-lazy:background-image="getAssetsFile('svg/seabetSport.svg')" />
             <div class="i-r">
-              <div class="ir-a"><img v-lazy="getAssetsFile('svg/FBSports.svg')" />{{ t('provider.btiports') }}</div>
+              <div class="ir-a"><img v-lazy="getAssetsFile('svg/seabetSport.svg')" />{{ t('provider.btiSports') }}</div>
               <div class="ir-b">{{ t('btiSportIntro') }}</div>
               <div class="ir-c">
                 <a class="btn btn-primary" @click="startGame('2110')">{{ t('startNow') }}</a>

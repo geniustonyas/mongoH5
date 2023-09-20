@@ -99,7 +99,7 @@ export default {
   club: 'Clube',
   tiers: 'Níveis',
   clubTips: 'Suas recompensas serão redefinidas a cada mês. Certifique-se de resgatá-las antes do final do mês.',
-  currentPoints: 'Pontos Atuais',
+  currentPoints: 'Valor da aposta atual',
   currentPointsMultiplier: 'Multiplicador de Pontos Atual',
   receiveReward: 'Receber Recompensa',
   alreadyReceived: 'Já Recebido',
@@ -117,7 +117,7 @@ export default {
   currentPwd: 'Senha Atual',
   newPwd: 'Nova Senha',
   confirmPwd: 'Confirmar Nova Senha',
-  changePwdLimit: 'Por razões de segurança, você não poderá efetuar retiradas nas próximas 48 horas após a alteração da senha.',
+  changePwdLimit: 'Por razões de segurança, você não poderá efetuar retiradas nas próximas 24 horas após a alteração da senha.',
   disabledGoogle: 'Autenticador Google Desativado',
   activeGoogle: 'Digitalize o código QR ou insira o código para ativar o Autenticador Google.',
   whatGoogleCode: 'O que é o Código Google?',
@@ -281,6 +281,7 @@ export default {
   provider: {
     all: 'Todos',
     sabaSports: 'Esportes Saba',
+    btiSports: 'Esportes Seabet',
     fbSports: 'Esportes FB',
     evolution: 'Evolution',
     bombayLive: 'Bombay Live',
@@ -351,7 +352,7 @@ export default {
     inputExhangeCode: 'Insira o código de troca',
     startGameFail: 'Falha ao iniciar o jogo',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '兑换成功',
+    exhangeSuccess: '您的信息提交成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
     unBindGoogleSuccess: '解绑成功',
@@ -398,7 +399,7 @@ export default {
   time: '时间',
   betAmount: '投注金额',
   support2: '支持',
-  btiSportIntro: '多年体育平台运营经验，BTi体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
+  btiSportIntro: '多年体育平台运营经验，Seabet体育博彩平台为玩家提供身临其境、优化的体育博彩游戏体验。',
   sabaSportIntro: '经过近二十年的多方证实，沙巴体育平台提供广泛的体育赛事、多种创新投注类型、业界最佳赔率。',
   fundRecord: '账变记录',
   categoryFilter: '按分类筛选',
@@ -480,6 +481,29 @@ export default {
   applyPromo: '申请奖励',
   applyNow: '立即申请',
   rewardStatus: { 0: '处理中', 1: '通过', 2: '拒绝' },
+  betTime: '投注时间',
+  betOrderNo: '注单号码',
+  startEarning: '开始赚取',
+  historyType: '类型',
+  rewardName: '奖励名称',
+  startTime: '开始时间',
+  endTime: '结束时间',
+  minMaxBet: '最小-最大投注',
+  volatility: '波动性',
+  volatilitys: { 1: '低', 2: '中低', 3: '中', 4: '中高', 5: '高', 6: '非常高', 7: '非常低' },
+  myPoints: '我的积分',
+  backPromo: '返回促销',
+  noSupportFullScreen: '当前浏览器不支持全屏',
+  pointsExchange: '积分兑换',
+  view: '详情',
+  oprate: '查看',
+  remain: '剩余',
+  directlyLogin: '直接登录',
+  fastDeposit: '快速存款',
+  demoMode: '乐趣试玩',
+  trueMode: '真钱模式',
+  gameStatic: '游戏数据统计',
+  receivedSuccess: '{ amount } USDT 已领取成功',
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',
@@ -528,7 +552,7 @@ export default {
                     </table>`,
     howComputeInterial: '4.Como São Calculados os Pontos?',
     howComputeInterials: `<p>Quer esteja a fazer apostas desportivas ou a jogar jogos de casino, o uso de criptomoedas permitir-lhe-á ganhar pontos. Para calcular os pontos que ganha com cada aposta, convertemos o valor da sua aposta em USDT à taxa de câmbio de mercado em tempo real durante a liquidação. Isso garante que todas as coletas de pontos, independentemente da criptomoeda usada, sejam justas. Devido às taxas de conversão flutuantes, seguimos o princípio de arredondar para o número inteiro mais próximo ao calcular os pontos.</p>
-                          <p>A fórmula para ganhar pontos Seabet é: Valor da aposta do jogador * 0,1 * coeficiente de pontos do nível correspondente. Por exemplo, se um jogador estiver no nível Platina e apostar 5000, de acordo com a fórmula de cálculo de pontos, o jogador ganhará 5000 * 0,1 * 1,3 = 650 pontos. Os pontos Seabet têm uma ampla gama de usos, e os jogadores podem resgatar presentes e serviços equivalentes na loja de pontos.</p>`,
+                          <p>A fórmula para ganhar pontos Seabet é: Valor da aposta do jogador * 0,01 * coeficiente de pontos do nível correspondente. Por exemplo, se um jogador estiver no nível Platina e apostar 5000, de acordo com a fórmula de cálculo de pontos, o jogador ganhará 5000 * 0,01 * 1,3 = 65 pontos. Os pontos Seabet têm uma ampla gama de usos, e os jogadores podem resgatar presentes e serviços equivalentes na loja de pontos.</p>`,
     whyMergedReward: '5.Por que as minhas recompensas estão unificadas?',
     whyMergedRewards: `<p>As suas recompensas são unificadas porque uma única aposta pode desbloquear múltiplas recompensas. Para tornar mais conveniente para você, somamos o valor das recompensas e as exibimos como uma única recompensa.</p>`,
     resetVip: '6.Quando o meu nível VIP será redefinido?',
@@ -613,7 +637,9 @@ export default {
     1029: '邮件发送失败',
     1030: '商品数量不足',
     1031: '可用积分不足',
-    1101: '可用余额不足'
+    1101: '可用余额不足',
+    1032: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+    1033: '邮箱验证码错误'
   },
 
   html: {
@@ -702,7 +728,6 @@ export default {
                   <div class="vc-rows">
                     <div class="vr-title">5、How to Become a VIP Member</div>
                     <div class="vr-conts">
-                      <p>How to become a VIP member of ${site_name}'s VIP Club:</p>
                       <dl>
                         <dd>
                           Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds

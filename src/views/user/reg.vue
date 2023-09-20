@@ -3,7 +3,6 @@
     <UserHeader :route-name="'index'" />
     <main class="main">
       <div class="loginbox">
-        <!-- <UserPartner /> -->
         <div class="l-signin">
           <h2>{{ t('createUser') }}</h2>
           <div class="ls-third">
@@ -34,7 +33,7 @@
             </div>
             <div class="cr-input">
               <input v-model.trim="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" autocomplete="off" />
-              <Loading v-show="showloading" size="20px" class="captcha" />
+              <!-- <Loading v-show="showloading" size="20px" class="captcha" /> -->
               <span v-show="!showloading" :class="sended || regForm.Email.length == 0 ? 'captcha sended' : 'captcha'" @click="sendEmail()">{{ sended ? t('sended') : t('sendEmail') }}</span>
             </div>
           </div>
@@ -76,7 +75,7 @@
               {{ t('regPage.isAdult') }}
               <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.termCondition') }}</a>
               {{ t('and') }}
-              <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.privacyPolicy') }}</a>
+              <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('regPage.privacyPolicy') }}</a>
             </div>
           </div>
           <div class="cf-row">
@@ -131,7 +130,7 @@ import { useRouter } from 'vue-router'
 
 import UserHeader from '@/components/layout/UserHeader.vue'
 
-import { telegramLogin, googleLogin, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
+import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
 import { isPwd, isUname, isEmail } from '@/utils/validate'
@@ -339,6 +338,9 @@ const handleReg = async () => {
     return false
   }
 }
+
+facebookInit()
+twitterInit()
 </script>
 <style lang="less">
 .st0 {

@@ -31,11 +31,20 @@ export function getGameListApi(data: Game.getGameListData) {
   })
 }
 
+// 获取游戏详情
+export function getGameDetailsApi(data: Game.getGameDetailsData) {
+  return request<Game.getGameDetailsResp>({
+    url: 'game/GameDetailInfo',
+    method: 'post',
+    data
+  })
+}
+
 // 获取启动游戏url
-export function getGameUrlApi(data: Game.getGameUrlData) {
+export function getGameUrlApi(data: Game.getGameUrlData, url: string) {
   return request<anyResp>({
     headers: { 'Content-Type': 'application/json' },
-    url: 'game/url',
+    url: url,
     method: 'post',
     data
   })
