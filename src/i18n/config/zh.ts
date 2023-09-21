@@ -287,7 +287,7 @@ export default {
     ezugi: 'Ezugi',
     asiaGaming: 'Asia Gaming',
     pragmaticPlay: 'Pragmatic Play',
-    playingo: "Play'n Go",
+    playingo: "Play'n GO",
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
