@@ -58,7 +58,7 @@ export default {
   },
   regPage: {
     holderUserName: 'Crie seu Nome de Usuário',
-    holderEmail: 'Por exemplo: você@example.com',
+    holderEmail: `Por exemplo: você{'@'}example.com`,
     holderTelephone: 'Telefone (+66 xxxxxxxxxxx)',
     isAdult: 'Eu confirmo que tenho mais de 18 anos e aceito os',
     termCondition: 'termos e condições',
