@@ -8,7 +8,7 @@
         <!-- vip等级 -->
         <div v-if="vipList.length > 0" class="step-vip">
           <div v-for="(item, index) of vipList" :key="index" :class="userStore.userInfo.vipCode == item.code ? 'sv-item active' : 'sv-item'">
-            <label>x{{ item.integral }}</label>
+            <label>x{{ parseFloat(item.integral) }}</label>
             <span />
             <img :src="getAssetsFile(`grade/${item.code}.png`)" />
           </div>
@@ -157,6 +157,7 @@
                   </List>
                 </PullRefresh>
               </ul>
+              <!-- 无数据 -->
               <template v-if="nodata">
                 <div class="wb-img">
                   <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">

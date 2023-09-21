@@ -34,6 +34,7 @@
             </li>
           </ul>
           <div class="ff-rmark">
+            <i class="iconfont icon-info" />
             {{ t('minWithdrawAmount') }}
             <b>{{ moneyFormat(minWithdrawAmount) }} {{ withdrawBalanceItem.unit }}</b>
           </div>
