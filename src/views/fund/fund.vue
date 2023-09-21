@@ -133,7 +133,7 @@
         <div class="fb-row line">
           <div class="row-body">
             <div class="r-title">{{ t('quickTips') }}</div>
-            <div class="r-card-txt">{{ t('quickTipCont') }}</div>
+            <div class="r-card-txt"><i class="iconfont icon-info" />{{ t('quickTipCont') }}</div>
           </div>
         </div>
         <FundFooter />
