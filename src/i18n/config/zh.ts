@@ -530,6 +530,7 @@ export default {
   ticketTimeError: '返程时间不能小于出行时间',
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
+  inputNumber: '请输入数字',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

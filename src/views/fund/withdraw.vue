@@ -363,6 +363,11 @@ const selTab = () => {
       showToast(t('tips.inputWithdrawAmount'))
       return false
     }
+    if (isNaN(parseFloat(withdrawForm.Amount))) {
+      amountDom.value?.focus()
+      showToast(t('inputNumber'))
+      return false
+    }
     if (parseFloat(withdrawForm.Amount) > parseFloat(withdrawBalanceItem.balance)) {
       amountDom.value?.focus()
       showToast(t('tips.overMaxWithdrawAmount'))

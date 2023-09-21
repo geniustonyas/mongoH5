@@ -54,13 +54,12 @@ import Nodata from '@/components/Nodata.vue'
 
 import { getMessageApi, setReadApi, setAllReadApi } from '@/api/home'
 import { messageItem } from '@/api/home/types'
-
-// import { useUserStore } from '@/store/modules/user'
 import { useI18n } from 'vue-i18n'
+import { useUserStore } from '@/store/modules/user'
 
 import { PullRefresh, List } from 'vant'
 
-// const userStore = useUserStore()
+const userStore = useUserStore()
 const router = useRouter()
 const { t } = useI18n()
 
@@ -138,6 +137,7 @@ const setReaded = (item: messageItem) => {
         var index = dataList.value.findIndex((fitem) => fitem.id == item.id)
         dataList.value[index].isRead = true
         item.targetUrl = 'MemberVip'
+        userStore.getUserInfo({ noLoading: true })
       })
       .catch((error) => {
         console.log(error)
@@ -160,6 +160,7 @@ const setAllReaded = () => {
       dataList.value.forEach((item) => {
         item.isRead = true
       })
+      userStore.getUserInfo({ noLoading: true })
     })
     .catch((error) => {
       console.log(error)
