@@ -9,10 +9,16 @@ import { Lazyload } from 'vant'
 import 'vant/lib/index.css'
 import './assets/less/main.less'
 
+// 懒加载图片
+const lazyImage = new URL(`./assets/imgs/seabetio.png`, import.meta.url).href
+
 const app = createApp(App)
 app.use(store)
 app.use(i18n)
-app.use(Lazyload)
+app.use(Lazyload, {
+  loading: lazyImage,
+  error: lazyImage
+})
 app.use(router)
 
 router.isReady().then(() => {
