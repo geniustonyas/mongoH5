@@ -65,7 +65,7 @@
           </div>
           <div v-if="userStore.userInfo.id" class="rb-r">
             <a class="icon-btn" @click="router.push({ name: 'clubHouse' })">
-              <img :src="getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`)" />
+              <img :grade="userStore.userInfo.vipCode" :src="getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`)" />
             </a>
             <a class="icon-btn" @click="router.push({ name: 'mall' })">
               <i class="iconfont icon-shangcheng" />
