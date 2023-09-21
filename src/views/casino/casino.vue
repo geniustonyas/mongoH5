@@ -78,7 +78,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import IndexHeader from '@/components/layout/IndexHeader.vue'
 import IndexFooter from '@/components/layout/IndexFooter.vue'
@@ -98,7 +98,6 @@ import { startGame } from '@/composables/startGame'
 
 const appStore = useAppStore()
 const route = useRoute()
-const router = useRouter()
 const { t } = useI18n()
 
 // 汇率相关

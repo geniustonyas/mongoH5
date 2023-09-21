@@ -106,7 +106,7 @@ import { getAssetsFile } from '@/utils'
 import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { checkUserBindGoogleApi } from '@/api/user/index'
-import { isPwd, isUname } from '@/utils/validate'
+import { isEmail, isPwd, isUname } from '@/utils/validate'
 
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
@@ -154,7 +154,7 @@ const handleLogin = () => {
     userName.value?.focus()
     return false
   }
-  if (!isUname(loginForm.UserName)) {
+  if (!isUname(loginForm.UserName) && !isEmail(loginForm.UserName)) {
     showToast(t('tips.isAccount'))
     userName.value?.focus()
     return false
