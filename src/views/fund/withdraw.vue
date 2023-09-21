@@ -4,8 +4,8 @@
     <main class="main">
       <div class="fund-box">
         <ul v-show="step != 4" class="progress-bar">
-          <li :class="{ active: step == 1 }" @click="jumpStep(1)">{{ t('inputAmount') }}</li>
-          <li :class="{ active: step == 2 }" @click="jumpStep(2)">{{ t('walletDetails') }}</li>
+          <li :class="{ active: step >= 1 }" @click="jumpStep(1)">{{ t('inputAmount') }}</li>
+          <li :class="{ active: step >= 2 }" @click="jumpStep(2)">{{ t('walletDetails') }}</li>
           <li :class="{ active: step == 3 }" @click="jumpStep(3)">{{ t('waitingResults') }}</li>
         </ul>
 

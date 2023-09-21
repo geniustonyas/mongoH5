@@ -290,7 +290,8 @@ export default {
     playingo: "Play'n Go",
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
-    microgaming: 'Microgaming'
+    microgaming: 'Microgaming',
+    sexy: 'Sexy Baccarat'
   },
 
   // データ入力に関するヒント

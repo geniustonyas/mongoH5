@@ -28,6 +28,7 @@ export function startGame(gameId: string | number, gameType = GameType.Sports, u
   } else {
     if (startNow) {
       if ((gameType != GameType.Slots && userStore.userInfo.id == '') || (gameType == GameType.Slots && userStore.userInfo.id == '' && url == 'game/url')) {
+        console.log('startGame', gameId, gameType, url, startNow)
         showLoginBox()
         return false
       } else {

@@ -1,8 +1,12 @@
 <template>
   <header class="header">
-    <nav class="head-menu-lf">
-      <span @click="routeTo"><i class="iconfont icon-return" /></span>
-      <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>
+    <nav class="head-menu-lmr">
+      <div class="hml-l" @click="routeTo">
+        <i class="iconfont icon-return" />
+      </div>
+      <div class="hml-m">
+        <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>
+      </div>
     </nav>
   </header>
 </template>

@@ -76,7 +76,7 @@
                   <div v-if="item.productType != 1" :key="index" class="item" @click="showDetails(item)">
                     <div class="er-img" v-lazy:background-image="appStore.cdnurl + item.images.split(',')[0]" />
                     <div class="er-title">{{ item.name }}</div>
-                    <div class="er-mark">{{ item.intro }}</div>
+                    <!-- <div class="er-mark">{{ item.intro }}</div>   -->
                     <div v-if="![3, 4].includes(item.productType)" class="er-price">
                       <i class="iconfont icon-shandian" />
                       <b>{{ moneyFormat(item.price) }}</b>

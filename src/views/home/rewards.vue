@@ -148,7 +148,7 @@ import { useI18n } from 'vue-i18n'
 import { moneyFormat } from '@/utils'
 import dynamicObject from '@/types/dynamicObject'
 
-import { PullRefresh, List, showToast, Calendar } from 'vant'
+import { PullRefresh, List, showToast, Calendar, ConfigProvider } from 'vant'
 import dayjs from 'dayjs'
 import { cloneDeep } from 'lodash-es'
 

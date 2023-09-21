@@ -291,7 +291,8 @@ export default {
     playingo: "Play'n Go",
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
-    microgaming: 'Microgaming'
+    microgaming: 'Microgaming',
+    sexy: 'Sexy Baccarat'
   },
 
   // 데이터검증 프롬프트

@@ -673,7 +673,7 @@ export default {
   // 条款协议等内容
   html: {
     // html标题
-    vipTitle: 'VIP-Club',
+    vipTitle: 'VIP Club',
     rulesTitle: 'Regeln und Bedingungen',
     responsibleTitle: 'Verantwortungsbewusstes Spielen',
     amlTitle: 'AML-Richtlinie',
