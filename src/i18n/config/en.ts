@@ -631,17 +631,7 @@ export default {
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
     q5: 'Do you apply fees on transactions?',
-    a5: `<p>While we do not charge any fees for deposits and withdrawals on Seabet.io, you may incur transaction fees when using blockchain payments.</p>`,
-    q6: '',
-    a6: ``,
-    q7: '',
-    a7: ``,
-    q8: '',
-    a8: ``,
-    q9: '',
-    a9: ``,
-    q10: '',
-    a10: ``
+    a5: `<p>While we do not charge any fees for deposits and withdrawals on Seabet.io, you may incur transaction fees when using blockchain payments.</p>`
   },
 
   errorCodes: {

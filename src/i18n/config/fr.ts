@@ -623,17 +623,7 @@ export default {
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
     q5: 'Appliquez-vous des frais sur les transactions ?',
-    a5: `<p>Bien que nous ne facturions aucuns frais pour les dépôts et les retraits sur Seabet.io, il se peut que vous deviez payer des frais de transaction lorsque vous utilisez des paiements via la blockchain.</p>`,
-    q6: '',
-    a6: ``,
-    q7: '',
-    a7: ``,
-    q8: '',
-    a8: ``,
-    q9: '',
-    a9: ``,
-    q10: '',
-    a10: ``
+    a5: `<p>Bien que nous ne facturions aucuns frais pour les dépôts et les retraits sur Seabet.io, il se peut que vous deviez payer des frais de transaction lorsque vous utilisez des paiements via la blockchain.</p>`
   },
 
   errorCodes: {

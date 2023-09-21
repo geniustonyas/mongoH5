@@ -622,17 +622,7 @@ export default {
           <p>• @:currencyLang.doge </p>
           <p>• @:currencyLang.ton </p>`,
     q5: '¿Aplican comisiones en las transacciones?',
-    a5: `<p>Si bien no aplicamos ninguna tarifa de transacción para depósitos y retiros en Sportsbet.io, puede haber tarifas de transacción que deba pagar al usar la cadena de bloques y/o su banco.</p>`,
-    q6: '',
-    a6: ``,
-    q7: '',
-    a7: ``,
-    q8: '',
-    a8: ``,
-    q9: '',
-    a9: ``,
-    q10: '',
-    a10: ``
+    a5: `<p>Si bien no aplicamos ninguna tarifa de transacción para depósitos y retiros en Sportsbet.io, puede haber tarifas de transacción que deba pagar al usar la cadena de bloques y/o su banco.</p>`
   },
 
   errorCodes: {

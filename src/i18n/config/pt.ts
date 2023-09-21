@@ -596,17 +596,7 @@ export default {
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
     q4: 'Há cobrança de taxas nas transações?',
-    a4: `<p>Embora não cobremos nenhuma taxa por depósitos e retiradas no Seabet.io, é possível que você precise pagar taxas de transação ao usar pagamentos com blockchain.</p>`,
-    q5: '',
-    a5: ``,
-    q7: '',
-    a7: ``,
-    q8: '',
-    a8: ``,
-    q9: '',
-    a9: ``,
-    q10: '',
-    a10: ``
+    a4: `<p>Embora não cobremos nenhuma taxa por depósitos e retiradas no Seabet.io, é possível que você precise pagar taxas de transação ao usar pagamentos com blockchain.</p>`
   },
 
   errorCodes: {

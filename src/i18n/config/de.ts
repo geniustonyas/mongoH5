@@ -621,17 +621,7 @@ export default {
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
     q5: 'Erheben wir Gebühren für Transaktionen?',
-    a5: `<p>Obwohl wir keine Gebühren für Ein- und Auszahlungen auf Seabet.io erheben, kann es sein, dass Sie Transaktionsgebühren bei der Verwendung von Zahlungen über die Blockchain bezahlen müssen.</p>`,
-    q6: '',
-    a6: ``,
-    q7: '',
-    a7: ``,
-    q8: '',
-    a8: ``,
-    q9: '',
-    a9: ``,
-    q10: '',
-    a10: ``
+    a5: `<p>Obwohl wir keine Gebühren für Ein- und Auszahlungen auf Seabet.io erheben, kann es sein, dass Sie Transaktionsgebühren bei der Verwendung von Zahlungen über die Blockchain bezahlen müssen.</p>`
   },
 
   errorCodes: {

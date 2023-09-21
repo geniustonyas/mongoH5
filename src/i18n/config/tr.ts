@@ -623,17 +623,7 @@ export default {
         <p>• Dogecoin (DOGE)</p>
         <p>• The Open Network (TON)</p>`,
     q5: 'İşlem ücreti kesiyor musunuz?',
-    a5: `<p>Seabet.io'daki yatırma ve çekme işlemleri için herhangi bir ücret almıyoruz, ancak blockchain ödemeleri kullanırken işlem ücretleri ödemeniz gerekebilir.</p>`,
-    q6: '',
-    a6: ``,
-    q7: '',
-    a7: ``,
-    q8: '',
-    a8: ``,
-    q9: '',
-    a9: ``,
-    q10: '',
-    a10: ``
+    a5: `<p>Seabet.io'daki yatırma ve çekme işlemleri için herhangi bir ücret almıyoruz, ancak blockchain ödemeleri kullanırken işlem ücretleri ödemeniz gerekebilir.</p>`
   },
 
   errorCodes: {
