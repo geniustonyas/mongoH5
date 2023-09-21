@@ -4,8 +4,8 @@
     <main class="main">
       <div class="fund-box">
         <ul v-show="step != 4" class="progress-bar">
-          <li :class="{ active: step == 1 }" @click="jumpStep(1)">{{ t('inputAmount') }}</li>
-          <li :class="{ active: step == 2 }" @click="jumpStep(2)">{{ t('walletDetails') }}</li>
+          <li :class="{ active: step >= 1 }" @click="jumpStep(1)">{{ t('inputAmount') }}</li>
+          <li :class="{ active: step >= 2 }" @click="jumpStep(2)">{{ t('walletDetails') }}</li>
           <li :class="{ active: step == 3 }" @click="jumpStep(3)">{{ t('waitingResults') }}</li>
         </ul>
 
@@ -361,6 +361,11 @@ const selTab = () => {
     if (withdrawForm.Amount == '') {
       amountDom.value?.focus()
       showToast(t('tips.inputWithdrawAmount'))
+      return false
+    }
+    if (isNaN(parseFloat(withdrawForm.Amount))) {
+      amountDom.value?.focus()
+      showToast(t('inputNumber'))
       return false
     }
     if (parseFloat(withdrawForm.Amount) > parseFloat(withdrawBalanceItem.balance)) {

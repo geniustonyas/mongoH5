@@ -290,7 +290,8 @@ export default {
     playingo: "Play'n Go",
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
-    microgaming: 'Microgaming'
+    microgaming: 'Microgaming',
+    sexy: 'Sexy Baccarat'
   },
 
   // データ入力に関するヒント
@@ -496,29 +497,29 @@ export default {
   view: '详情',
   oprate: '查看',
   remain: '剩余',
-  directlyLogin: '或者使用',
-  fastDeposit: '快速存款',
-  demoMode: '乐趣试玩',
-  trueMode: '真钱模式',
-  gameStatic: '游戏数据统计',
-  receivedSuccess: '{ amount } USDT 已领取成功',
-  goTime: '出行时间',
-  backTime: '返程时间',
-  inTime: '入住时间',
-  outTime: '退房时间',
+  directlyLogin: '直接ログイン',
+  fastDeposit: 'クイック入金',
+  demoMode: 'トライアルモード',
+  trueMode: 'リアルマネーモード',
+  gameStatic: 'ゲームデータ統計',
+  receivedSuccess: '{ amount } USDT 受け取り成功',
+  goTime: '出発時間',
+  backTime: '帰りの時間',
+  inTime: 'ホテルのチェックイン時間',
+  outTime: 'ホテルのチェックアウト時間',
   sabaSportDesc: {
-    0: '超全赛事',
-    1: '多终端支持',
-    2: '安全加密',
-    3: '准确即时赔率',
-    4: '独立后台'
+    0: 'すべてのスポーツイベント',
+    1: 'すべてのデジタルデバイス iOS、Android、Macos、およびWindows をサポート',
+    2: 'セキュリティ暗号化',
+    3: '正確なリアルタイムオッズ',
+    4: '独立バックエンド'
   },
   seabetSportDesc: {
-    0: '自主研发',
-    1: '最高赔率',
-    2: '定制级投注界面',
-    3: '精确结算系统',
-    4: '上百种投注选择'
+    0: '自主的な研究開発',
+    1: '最高のオッズ',
+    2: 'カスタマイズされたベッティングインターフェイス',
+    3: '正確な決済システム',
+    4: '数百種のベッティングオプション'
   },
   pickDate: '选择日期',
   inputGotime: '请选择出行时间',

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <UserHeader :route-name="'index'" />
+    <UserHeader :route-name="'index'" :title="t('login')" />
     <main class="main">
       <div class="loginbox">
         <!-- 第三方登录 -->

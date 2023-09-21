@@ -495,29 +495,29 @@ export default {
   view: '详情',
   oprate: '查看',
   remain: '剩余',
-  directlyLogin: '或者使用',
-  fastDeposit: '快速存款',
-  demoMode: '乐趣试玩',
-  trueMode: '真钱模式',
-  gameStatic: '游戏数据统计',
-  receivedSuccess: '{ amount } USDT 已领取成功',
-  goTime: '出行时间',
-  backTime: '返程时间',
-  inTime: '入住时间',
-  outTime: '退房时间',
+  directlyLogin: 'Jetzt anmelden',
+  fastDeposit: 'Jetzt einzahlen',
+  demoMode: 'Versuchs-Modus',
+  trueMode: 'Jetzt wetten',
+  gameStatic: 'Spielstatistiken',
+  receivedSuccess: '{ amount } USDT beansprucht',
+  goTime: 'Abfahrtszeit',
+  backTime: 'Ankunftszeit',
+  inTime: 'Hotel-Check-in-Zeit',
+  outTime: 'Hotel Check-out-Zeit',
   sabaSportDesc: {
-    0: '超全赛事',
-    1: '多终端支持',
-    2: '安全加密',
-    3: '准确即时赔率',
-    4: '独立后台'
+    0: 'Alle Sportveranstaltungen',
+    1: 'Unterstützt alle digitalen Geräte iOS, Android, MacOS und Windows',
+    2: 'Sicherheitsverschlüsselung',
+    3: 'Echtzeit-Quoten',
+    4: 'Unabhängiges Backend'
   },
   seabetSportDesc: {
-    0: '自主研发',
-    1: '最高赔率',
-    2: '定制级投注界面',
-    3: '精确结算系统',
-    4: '上百种投注选择'
+    0: 'Unabhängig entwickelt',
+    1: 'Höchste Quoten',
+    2: 'Anpassbare Wettschnittstelle',
+    3: 'Präzises Abrechnungssystem',
+    4: 'Hunderte Wettmöglichkeiten'
   },
   pickDate: '选择日期',
   inputGotime: '请选择出行时间',
@@ -673,7 +673,7 @@ export default {
   // 条款协议等内容
   html: {
     // html标题
-    vipTitle: 'VIP-Club',
+    vipTitle: 'VIP Club',
     rulesTitle: 'Regeln und Bedingungen',
     responsibleTitle: 'Verantwortungsbewusstes Spielen',
     amlTitle: 'AML-Richtlinie',
