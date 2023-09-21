@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7008906",
+      "name": "collection_fill",
+      "font_class": "shoucang_fill",
+      "unicode": "e6ea",
+      "unicode_decimal": 59114
+    },
+    {
+      "icon_id": "7008907",
+      "name": "collection",
+      "font_class": "shoucang",
+      "unicode": "e6ec",
+      "unicode_decimal": 59116
+    },
+    {
+      "icon_id": "577361",
+      "name": "时钟-fill",
+      "font_class": "shizhong_fill",
+      "unicode": "e74e",
+      "unicode_decimal": 59214
+    },
+    {
+      "icon_id": "577362",
+      "name": "时钟",
+      "font_class": "shizhong",
+      "unicode": "e74f",
+      "unicode_decimal": 59215
+    },
+    {
       "icon_id": "27003780",
       "name": "合作",
       "font_class": "hezuo",
