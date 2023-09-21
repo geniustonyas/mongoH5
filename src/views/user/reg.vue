@@ -137,7 +137,7 @@ import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/index'
 
 import { useI18n } from 'vue-i18n'
-import { showToast, Loading, Form } from 'vant'
+import { showToast, Form } from 'vant'
 
 const router = useRouter()
 const userStore = useUserStore()
