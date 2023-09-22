@@ -638,7 +638,8 @@ const exhangeGoods = () => {
 
     exhangeGoodsApi(data)
       .then(() => {
-        showToast(t('tips.exhangeSuccess'))
+        const msg = [3, 4].includes(currentGoodsItem.productType) ? t('submitInfoSuccess') : t('tips.exhangeSuccess')
+        showToast(msg)
         showGoodsDetails.value = false
         userStore.getUserInfo({ noLoading: true })
       })

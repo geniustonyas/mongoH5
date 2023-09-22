@@ -352,7 +352,7 @@ export default {
     inputExhangeCode: '请输入兑换码',
     startGameFail: '启动游戏失败',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '您的信息提交成功',
+    exhangeSuccess: '兑换成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
     unBindGoogleSuccess: '解绑成功',
@@ -530,7 +530,7 @@ export default {
   ticketTimeError: '返程时间不能小于出行时间',
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
-  inputNumber: '请输入数字',
+  submitInfoSuccess: '您的信息提交成功',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

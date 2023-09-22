@@ -353,7 +353,7 @@ export default {
     inputExhangeCode: 'Please enter the redemption code',
     startGameFail: 'Failed to start the game',
     insufficientPoints: 'Insufficient points',
-    exhangeSuccess: 'Your information was submitted successfully',
+    exhangeSuccess: 'Exhange successfully',
     openWindow: 'The window will be opened for you to play the game soon, wish you a happy game.',
     openExchange: 'About to open a new window for you to enter the exchange',
     unBindGoogleSuccess: 'Unbind successfully',
@@ -530,6 +530,7 @@ export default {
   ticketTimeError: '返程时间不能小于出行时间',
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
+  submitInfoSuccess: '您的信息提交成功',
 
   problem: {
     whatVip: 'What is the VIP Club?',
