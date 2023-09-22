@@ -677,89 +677,90 @@ export default {
     // html内容
     vipContent: ` <div class="vip-clubhouse-box">
                     <div class="vc-rows">
-                      <div class="vr-title">1、Hội viên VIP Seabet</div>
+                      <div class="vr-title">Giới thiệu Câu lạc bộ VIP</div>
                       <div class="vr-conts">
-                        <p>Chào mừng đến với Seabet VIP Club</p>
-                        <p>Tại Seabet, chúng tôi cam kết nâng cao chất lượng trò chơi và cung cấp trải nghiệm chơi game tốt nhất. Chúng tôi đã giới thiệu Hội viên VIP hoàn toàn mới để thưởng cho những thành viên của chúng tôi, người dành thời gian chơi trò chơi trên trang web của chúng tôi một cách trung thành.</p>
-                        <p>Chỉ cần đặt cược trên bất kỳ trò chơi hoặc sự kiện thể thao nào được cung cấp bởi ${site_name}, và khi bạn tiến bộ qua các cấp độ, bạn sẽ mở khóa những phần thưởng độc quyền.。</p>
+                        <p>Chào mừng bạn đến với Seabet VIP Club!</p>
+                        <p>Tại Seabet, chúng tôi cam kết nâng cao chất lượng chơi game và cung cấp trải nghiệm chơi game tốt nhất. Chúng tôi rất vui mừng được giới thiệu Câu lạc bộ VIP hoàn toàn mới của chúng tôi, được thiết kế để thưởng cho các thành viên trung thành của chúng tôi, những người dành thời gian chơi trò chơi trên trang web của chúng tôi.</p>
+                        <p>Chỉ cần đặt cược vào bất kỳ trò chơi hoặc sự kiện thể thao nào do Seabet.io cung cấp để mở khóa các phần thưởng độc quyền khi bạn leo qua các cấp bậc.</p>
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">2、Personalized Service</div>
+                      <div class="vr-title">Dịch vụ cá nhân hóa</div>
                       <div class="vr-conts">
-                        <p>Professional Customer Manager Team Ensures All Your Needs and Meets Industry's Highest Standards. VIP members can enjoy exclusive bonuses, invitations to renowned events, and a variety of customized rewards to provide you with fast, enjoyable, and efficient gaming experiences.</p>
+                        <p>Đội ngũ quản lý khách hàng chuyên nghiệp đảm bảo tất cả các nhu cầu của bạn và đáp ứng các tiêu chuẩn cao nhất của ngành. Thành viên VIP có thể tận hưởng tiền thưởng độc quyền, lời mời tham dự các sự kiện nổi tiếng và nhiều phần thưởng tùy chỉnh để cung cấp cho bạn trải nghiệm chơi game nhanh chóng, thú vị và hiệu quả.</p>
                         <dl>
-                            <dt>Quản lý Độc quyền VIP</dt>
-                            <dd>Cam kết đáp ứng nhu cầu của bạn</dd>
-                            <dd>Trải nghiệm chơi game riêng tư được tùy chỉnh dành riêng cho bạn</dd>
+                            <dt>Quản lý độc quyền VIP:</dt>
+                            <dd>Tận tâm giải quyết nhu cầu của bạn</dd>
+                            <dd>Trải nghiệm chơi trò chơi riêng tư phù hợp dành riêng cho bạn</dd>
                         </dl>
                         <dl>
-                          <dt>High Rewards：</dt>
-                          <dd>Exclusive offers designed for you</dd>
-                          <dd>No-wager bonuses</dd>
-                          <dd>Rapid accumulation of points</dd>
+                          <dt>Phần thưởng cao:</dt>
+                          <dd>Ưu đãi độc quyền được thiết kế cho bạn</dd>
+                          <dd>Tiền thưởng không đặt cược</dd>
+                          <dd>Tích lũy điểm nhanh chóng</dd>
                         </dl>
                         <dl>
-                          <dt>Industry's Highest Betting Limits：</dt>
-                          <dd>Unlimited daily deposits and withdrawals with cryptocurrencies</dd>
+                          <dt>Giới hạn đặt cược cao nhất trong ngành:</dt>
+                          <dd>Tiền gửi và rút tiền hàng ngày không giới hạn bằng tiền điện tử</dd>
                         </dl>
                         <dl>
-                          <dt>VIP Exclusive Promotions：</dt>
-                          <dd>Distinguished from regular member promotions</dd>
-                          <dd>Preserve the best gaming experience for you</dd>
-                          <dd>Exclusive to VIP users</dd>
-                          <dd>Personalized offers</dd>
-                          <dd>Customized entertainment services exclusively for you</dd>
+                          <dt>Chương trình khuyến mãi dành riêng cho VIP:</dt>
+                          <dd>Phân biệt với các chương trình khuyến mãi thành viên thường xuyên</dd>
+                          <dd>Duy trì trải nghiệm chơi game tốt nhất cho bạn</dd>
+                          <dd>Dành riêng cho người dùng VIP</dd>
+                          <dd>Ưu đãi được cá nhân hóa</dd>
+                          <dd>Dịch vụ giải trí tùy chỉnh dành riêng cho bạn</dd>
                         </dl>
                         <dl>
-                          <dt>24/7 Priority Service：</dt>
-                          <dd>No need to queue or wait</dd>
-                          <dd>Your needs are our top priority</dd>
-                          <dd>Multiple social media contact methods, dedicated customer managers providing online services.</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">3、Level Structure</div>
-                      <div class="vr-conts">
-                        <p>Six VIP levels that comprehensively cover your entire gaming journey:</p>
-                        <dl>
-                          <dd>Bronze: Bronze 1</dd>
-                          <dd>Silver: Silver 1 - Silver 5</dd>
-                          <dd>Gold: Gold 1 - Gold 8</dd>
-                          <dd>Platinum: Platinum 1 - Platinum 10</dd>
-                          <dd>Titanium: Titanium 1 - Titanium 10</dd>
-                          <dd>Diamond: Diamond 1 - Diamond 6</dd>
+                          <dt>Dịch vụ ưu tiên 24/7:</dt>
+                          <dd>Không cần phải xếp hàng hay chờ đợi</dd>
+                          <dd>Nhu cầu của bạn là ưu tiên hàng đầu của chúng tôi</dd>
+                          <dd>Nhiều phương thức liên hệ truyền thông xã hội, người quản lý khách hàng tận tâm cung cấp dịch vụ trực tuyến.</dd>
                         </dl>
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">4、Benefits for VIP Club Members</div>
+                      <div class="vr-title">Cấu trúc cấp độ</div>
                       <div class="vr-conts">
+                        <p>Sáu cấp độ VIP bao gồm toàn diện toàn bộ hành trình chơi game của bạn:</p>
                         <dl>
-                          <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
-                          <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
-                          <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>
-                          <dd>Exclusive VIP Service: You will be assigned a dedicated VIP service representative who will support and meet your betting needs</dd>
-                          <dd>Faster Points Accumulation: VIP levels earn points at a faster rate compared to regular members. Higher levels earn more points, leading to a wider range of prizes for redemption.</dd>
+                          <dd>Đồng: Đồng 1</dd>
+                          <dd>Bạc: Bạc 1 - Bạc 5</dd>
+                          <dd>Vàng: Vàng 1 - Vàng 8</dd>
+                          <dd>Bạch kim: Bạch kim 1 - Bạch kim 10</dd>
+                          <dd>Titan: Titanium 1 - Titanium 10</dd>
+                          <dd>Kim cương: Kim cương 1 - Kim cương 6</dd>
                         </dl>
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">5、How to Become a VIP Member</div>
+                      <div class="vr-title">Lợi ích dành cho thành viên câu lạc bộ VIP</div>
                       <div class="vr-conts">
+                        <dl>
+                          <dd>Tiền thưởng tăng cấp: Nhận tiền thưởng khi đạt đến cấp độ tiếp theo. Cấp độ bạn đạt được càng cao, tiền thưởng càng lớn.</dd>
+                          <dd>Ưu đãi độc quyền tùy chỉnh: Không quan tâm đến các chương trình khuyến mãi thường xuyên? Không vấn đề gì. Khi bạn đạt đến cấp độ VIP tương ứng, chúng tôi sẽ đặc biệt điều chỉnh các ưu đãi dựa trên sở thích của bạn, dành riêng cho bạn.</dd>
+                          <dd>Trải nghiệm giải trí được cá nhân hóa: Cho dù đó là các sự kiện thể thao lớn, buổi hòa nhạc, chương trình âm nhạc hay một chuyến đi sang trọng, với tư cách là thành viên VIP cao cấp, tất cả các chi phí cá nhân của bạn sẽ được Seabet đáng tin cậy chi trả và chúng tôi sẽ sắp xếp hành trình của bạn.</dd>
+                          <dd>Dịch vụ VIP độc quyền: Bạn sẽ được chỉ định một đại diện dịch vụ VIP chuyên dụng, người sẽ hỗ trợ và đáp ứng nhu cầu cá cược của bạn.</dd>
+                          <dd>Tích lũy điểm nhanh hơn: Các cấp độ VIP kiếm được điểm với tốc độ nhanh hơn so với các thành viên thông thường. Các cấp độ cao hơn kiếm được nhiều điểm hơn, dẫn đến một loạt các giải thưởng để đổi.</dd>
+                        </dl>
+                      </div>
+                    </div>
+                    <div class="vc-rows">
+                      <div class="vr-title">Làm thế nào để trở thành thành viên VIP</div>
+                      <div class="vr-conts">
+                        <p>Làm thế nào để trở thành thành viên VIP của Câu lạc bộ VIP của Seabet:</p>
                         <dl>
                           <dd>
-                            Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
+                          Tiếp tục cá cược: Chìa khóa để trở thành VIP là luôn đặt cược vào các sự kiện thể thao và trò chơi sòng bạc khác nhau. Seabet thưởng cho sự nhất quán của bạn. Là một trang web cờ bạc tiền điện tử hàng đầu, hãy thường xuyên sử dụng tài sản kỹ thuật số của bạn để đặt cược vào bất kỳ sự kiện thể thao và trò chơi sòng bạc nào do Seabet cung cấp. Bạn cũng có thể thử đặt cược với USDT và tiếp tục sử dụng tiền của mình.
                           </dd>
                           <dd>
-                            Participate in Regular Events: ${site_name}'s promotional activities include various events and competitions that you can participate in at any time. Regular participation in any of these events will increase your chances of receiving an invitation to the VIP Club. Moreover, you can be more active in other club features offered by ${site_name}.
+                          Tham gia vào các sự kiện thường xuyên: Các hoạt động quảng cáo của Seabet bao gồm các sự kiện và cuộc thi khác nhau mà bạn có thể tham gia bất cứ lúc nào. Tham gia thường xuyên vào bất kỳ sự kiện nào trong số này sẽ tăng cơ hội nhận được lời mời tham gia Câu lạc bộ VIP. Hơn nữa, bạn có thể tích cực hơn trong các tính năng câu lạc bộ khác do Seabet cung cấp.
                           </dd>
                           <dd>
-                            Await the Invitation: The final thing you need to do is wait for us to send you an invitation. Continue playing games and participating in high roller events. After a few rounds of casino gambling and sports betting, once you are deemed worthy of becoming a VIP Club member, you will receive an invitation immediately.
+                          Chờ đợi lời mời: Điều cuối cùng bạn cần làm là đợi chúng tôi gửi cho bạn lời mời. Tiếp tục chơi game và tham gia vào các sự kiện con lăn cao. Sau một vài vòng đánh bạc sòng bạc và cá cược thể thao, một khi bạn được coi là xứng đáng trở thành thành viên Câu lạc bộ VIP, bạn sẽ nhận được lời mời ngay lập tức.
                           </dd>
                           <dd>
-                            Experience the Luxury Life as a ${site_name} VIP: Take your USDT gambling experience to a whole new level while enjoying top-notch privileges as a ${site_name} VIP Club member. As a valued player, you'll experience the best fun, fast, and fair betting when engaging in sports betting and casino games.
+                          Trải nghiệm cuộc sống sang trọng với tư cách là VIP của Seabet: Đưa trải nghiệm đánh bạc USDT của bạn lên một cấp độ hoàn toàn mới trong khi tận hưởng các đặc quyền hàng đầu với tư cách là thành viên Câu lạc bộ VIP Seabet. Là một người chơi có giá trị, bạn sẽ trải nghiệm cá cược vui vẻ, nhanh chóng và công bằng nhất khi tham gia vào cá cược thể thao và trò chơi sòng bạc.
                           </dd>
                         </dl>
                       </div>

@@ -677,89 +677,90 @@ export default {
     // html内容
     vipContent: ` <div class="vip-clubhouse-box">
                     <div class="vc-rows">
-                      <div class="vr-title">1、VIP Club Introduction</div>
+                      <div class="vr-title">1.VIP Kulüp Tanıtımı</div>
                       <div class="vr-conts">
-                        <p>Welcome to the ${site_name} VIP Club!</p>
-                        <p>At ${site_name}, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
-                        <p>Simply place bets on any game or sports event provided by ${site_name} to unlock exclusive rewards as you climb through the ranks.</p>
+                        <p>Seabet VIP Kulübü'ne hoş geldiniz!</p>
+                        <p>Seabet olarak, oyun kalitesini artırmaya ve en iyi oyun deneyimini sunmaya kararlıyız. Sadık üyelerimizi ödüllendirmek amacıyla tasarlanmış olan yeni VIP Kulübümüzü tanıtmaktan heyecan duyuyoruz. </p>
+                        <p>Web sitemizdeki oyunlarda zaman geçiren sadık üyelerimize özel ödüller kazanmak için Seabet.io tarafından sunulan herhangi bir oyun veya spor etkinliğine bahis yapmanız yeterlidir.</p>
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">2、Personalized Service</div>
+                      <div class="vr-title">2.Kişiselleştirilmiş Hizmet</div>
                       <div class="vr-conts">
-                        <p>Professional Customer Manager Team Ensures All Your Needs and Meets Industry's Highest Standards. VIP members can enjoy exclusive bonuses, invitations to renowned events, and a variety of customized rewards to provide you with fast, enjoyable, and efficient gaming experiences.</p>
+                        <p>Profesyonel Müşteri Yönetimi Ekibi, Tüm İhtiyaçlarınızı Karşılar ve Endüstrinin En Yüksek Standartlarını Karşılar. VIP üyeler, sizi hızlı, keyifli ve verimli oyun deneyimleri sunmak için özel olarak tasarlanmış bonuslar, tanınmış etkinliklere davetiyeler ve çeşitli özelleştirilmiş ödüllerin tadını çıkarabilirler.</p>
                         <dl>
-                          <dt>VIP Exclusive Manager：</dt>
-                          <dd>Devoted to addressing your needs</dd>
-                          <dd>Tailored private gaming experiences just for you</dd>
+                          <dt>VIP Özel Yönetici:</dt>
+                          <dd>htiyaçlarınıza cevap verme konusunda özverili</dd>
+                          <dd>Sadece sizin için özel oyun deneyimleri</dd>
                         </dl>
                         <dl>
-                          <dt>High Rewards：</dt>
-                          <dd>Exclusive offers designed for you</dd>
-                          <dd>No-wager bonuses</dd>
-                          <dd>Rapid accumulation of points</dd>
+                          <dt>Yüksek Ödüller:</dt>
+                          <dd>Size özel tasarlanmış teklifler</dd>
+                          <dd>Çevrim şartsız bonuslar</dd>
+                          <dd>Hızlı puan biriktirme</dd>
                         </dl>
                         <dl>
-                          <dt>Industry's Highest Betting Limits：</dt>
-                          <dd>Unlimited daily deposits and withdrawals with cryptocurrencies</dd>
+                          <dt>Endüstrinin En Yüksek Bahis Limitleri:</dt>
+                          <dd>Kripto paralarla sınırsız günlük para yatırma ve çekme işlemi</dd>
                         </dl>
                         <dl>
-                          <dt>VIP Exclusive Promotions：</dt>
-                          <dd>Distinguished from regular member promotions</dd>
-                          <dd>Preserve the best gaming experience for you</dd>
-                          <dd>Exclusive to VIP users</dd>
-                          <dd>Personalized offers</dd>
-                          <dd>Customized entertainment services exclusively for you</dd>
+                          <dt>VIP Özel Promosyonlar:</dt>
+                          <dd>Normal üye promosyonlarından ayrıcalıklı</dd>
+                          <dd>Sizin için en iyi oyun deneyimini korur</dd>
+                          <dd>Sadece VIP kullanıcılarına özgü</dd>
+                          <dd>Kişiselleştirilmiş teklifler</dd>
+                          <dd>Sadece sizin için özel olarak tasarlanmış eğlence hizmetleri</dd>
                         </dl>
                         <dl>
-                          <dt>24/7 Priority Service：</dt>
-                          <dd>No need to queue or wait</dd>
-                          <dd>Your needs are our top priority</dd>
-                          <dd>Multiple social media contact methods, dedicated customer managers providing online services.</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">3、Level Structure</div>
-                      <div class="vr-conts">
-                        <p>Six VIP levels that comprehensively cover your entire gaming journey:</p>
-                        <dl>
-                          <dd>Bronze: Bronze 1</dd>
-                          <dd>Silver: Silver 1 - Silver 5</dd>
-                          <dd>Gold: Gold 1 - Gold 8</dd>
-                          <dd>Platinum: Platinum 1 - Platinum 10</dd>
-                          <dd>Titanium: Titanium 1 - Titanium 10</dd>
-                          <dd>Diamond: Diamond 1 - Diamond 6</dd>
+                          <dt>7/24 Öncelikli Hizmet:</dt>
+                          <dd>Sıra bekleme veya beklemeye gerek yok</dd>
+                          <dd>İhtiyaçlarınız bizim önceliğimizdir</dd>
+                          <dd>Çeşitli sosyal medya iletişim yönte</dd>
                         </dl>
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">4、Benefits for VIP Club Members</div>
+                      <div class="vr-title">3.Seviye Yapısı</div>
                       <div class="vr-conts">
+                        <p>Oyun deneyiminizi kapsayan altı VIP seviyesi:</p>
                         <dl>
-                          <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
-                          <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
-                          <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted ${site_name}, and we will arrange your itinerary.</dd>
-                          <dd>Exclusive VIP Service: You will be assigned a dedicated VIP service representative who will support and meet your betting needs</dd>
-                          <dd>Faster Points Accumulation: VIP levels earn points at a faster rate compared to regular members. Higher levels earn more points, leading to a wider range of prizes for redemption.</dd>
+                          <dd>Bronz: Bronz 1</dd>
+                          <dd>Gümüş: Gümüş 1 - Gümüş 5</dd>
+                          <dd>Altın: Altın 1 - Altın 8</dd>
+                          <dd>Platin: Platin 1 - Platin 10</dd>
+                          <dd>Titanyum: Titanyum 1 - Titanyum 10</dd>
+                          <dd>Elmas: Elmas 1 - Elmas 6</dd>
                         </dl>
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">5、How to Become a VIP Member</div>
+                      <div class="vr-title">4.VIP Club Üyeleri İçin Avantajlar</div>
                       <div class="vr-conts">
+                        <dl>
+                          <dd>Seviye Atlama Bonusları: Bir sonraki seviyeye ulaştığınızda bonuslar alın. Ulaştığınız seviye ne kadar yüksekse, bonus o kadar büyük olur.</dd>
+                          <dd>Özel ve Kişiselleştirilmiş Teklifler: Sıradan promosyonlardan hoşlanmıyor musunuz? Sorun değil. İlgili VIP seviyesine ulaştığınızda, sizin ilgi alanlarınıza göre özel teklifler sunacağız, sadece size özel.</dd>
+                          <dd>Kişiselleştirilmiş Eğlence Deneyimi: Büyük spor etkinlikleri, konserler, müzik gösterileri veya lüks bir seyahat olsun, kıdemli bir VIP üyesi olarak tüm kişisel masraflarınız güvendiğiniz Seabet tarafından karşılanacak ve sizin için seyahat düzenleyeceğiz.</dd>
+                          <dd>Özel VIP Hizmeti: Size özel bir VIP hizmet temsilcisi atanacak ve bahis ihtiyaçlarınızı destekleyecek.</dd>
+                          <dd>Daha Hızlı Puan Biriktirme: VIP seviyeleri, düzenli üyelere göre daha hızlı bir hızda puan kazanır. Daha yüksek seviyeler daha fazla puan kazanır, bu da daha geniş bir ödül yelpazesi için puanların kullanılabilirliği anlamına gelir.</dd>
+                        </dl>
+                      </div>
+                    </div>
+                    <div class="vc-rows">
+                      <div class="vr-title">5.VIP Üyesi Nasıl Olunur</div>
+                      <div class="vr-conts">
+                        <p>Seabet'in VIP Kulübü'nün bir üyesi olmanın yolları:</p>
                         <dl>
                           <dd>
-                            Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
+                            Bahis Yapmaya Devam Edin: VIP olmanın anahtarı, çeşitli spor etkinliklerine ve kumarhane oyunlarına sürekli bahis yapmaktır. Seabet, sürekliğinizi ödüllendirir. Top kripto para kumarhane sitesi olarak dijital varlıklarınızı düzenli olarak kullanarak Seabet tarafından sunulan herhangi bir spor etkinliğine ve kumarhane oyunlarına bahis yapın. Ayrıca USDT ile bahis yapmayı deneyebilir ve fonlarınızı kullanmaya devam edebilirsiniz.
                           </dd>
                           <dd>
-                            Participate in Regular Events: ${site_name}'s promotional activities include various events and competitions that you can participate in at any time. Regular participation in any of these events will increase your chances of receiving an invitation to the VIP Club. Moreover, you can be more active in other club features offered by ${site_name}.
+                            Düzenli Etkinliklere Katılın: Seabet'in promosyon etkinlikleri, istediğiniz her an katılabileceğiniz çeşitli etkinlikler ve yarışmalar içerir. Bu etkinliklerden herhangi birine düzenli olarak katılmak, VIP Kulübü'ne davet alma şansınızı artırır. Ayrıca, Seabet tarafından sunulan diğer kulüp özelliklerinde daha aktif olabilirsiniz.
                           </dd>
                           <dd>
-                            Await the Invitation: The final thing you need to do is wait for us to send you an invitation. Continue playing games and participating in high roller events. After a few rounds of casino gambling and sports betting, once you are deemed worthy of becoming a VIP Club member, you will receive an invitation immediately.
+                            Daveti Bekleyin: Yapmanız gereken son şey, size davetiye göndermemizi beklemektir. Oyun oynamaya devam edin ve yüksek bahisli etkinliklere katılın. Birkaç tur kumar oyunundan ve spor bahislerinden sonra, VIP Kulüp üyesi olmaya değer bulunduğunuzda, hemen bir davetiye alırsınız.
                           </dd>
                           <dd>
-                            Experience the Luxury Life as a ${site_name} VIP: Take your USDT gambling experience to a whole new level while enjoying top-notch privileges as a ${site_name} VIP Club member. As a valued player, you'll experience the best fun, fast, and fair betting when engaging in sports betting and casino games.
+                            Seabet VIP olarak Lüks Yaşamı Deneyimleyin: Seabet VIP Kulübü üyesi olarak üst düzey ayrıcalıkların tadını çıkarırken USDT kumar deneyiminizi tamamen yeni bir seviyeye taşıyın. Değerli bir oyuncu olarak, spor bahisleri ve kumarhane oyunlarına katılırken en iyi eğlenceyi, hızlı ve adil bahis deneyimini yaşayacaksınız.
                           </dd>
                         </dl>
                       </div>

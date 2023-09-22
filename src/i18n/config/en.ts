@@ -687,9 +687,9 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">1、VIP Club Introduction</div>
                       <div class="vr-conts">
-                        <p>Welcome to the ${site_name} VIP Club!</p>
-                        <p>At ${site_name}, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
-                        <p>Simply place bets on any game or sports event provided by ${site_name} to unlock exclusive rewards as you climb through the ranks.</p>
+                        <p>Welcome to the Seabet VIP Club!</p>
+                        <p>At Seabet, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
+                        <p>Simply place bets on any game or sports event provided by Seabet.io to unlock exclusive rewards as you climb through the ranks.</p>
                       </div>
                     </div>
                     <div class="vc-rows">
@@ -756,6 +756,7 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">5、How to Become a VIP Member</div>
                       <div class="vr-conts">
+                        <p>How to become a VIP member of Seabet's VIP Club:</p>
                         <dl>
                           <dd>
                             Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds

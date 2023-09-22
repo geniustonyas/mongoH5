@@ -748,6 +748,7 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">五、如何成为我们的VIP会员</div>
                       <div class="vr-conts">
+                        <p>要成为Seabet的VIP俱乐部会员，请遵循以下步骤：</p>
                         <dl>
                           <dd>
                             继续投注：成为 VIP 的关键是始终投注各种体育赛事和赌场游戏。${site_name} 将奖励您的一致性。作为顶级加密博彩网站，请定期使用您的数字资产对 ${site_name} 提供的任何赛事和赌场游戏进行投注。也可以尝试
