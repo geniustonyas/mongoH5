@@ -222,7 +222,7 @@ export default {
   providers: 'ผู้ให้บริการ',
   allProviders: 'ผู้ให้บริการทั้งหมด',
   sortBy: 'เรียงลำดับตาม',
-  polular: 'ยอดนิยม',
+  polular: 'เกมส์นิยม',
   promotions: 'โปรโมชั่น',
   aboutUs: 'เกี่ยวกับเรา',
   selectLanguage: 'เลือกภาษา',

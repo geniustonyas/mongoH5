@@ -222,7 +222,7 @@ export default {
   providers: 'providers',
   allProviders: 'All Game Providers',
   sortBy: 'Sort by',
-  polular: 'Polular',
+  polular: 'Popularity',
   promotions: 'Promotions',
   aboutUs: 'About Us',
   selectLanguage: 'Select Language',

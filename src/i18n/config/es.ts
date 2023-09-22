@@ -221,7 +221,7 @@ export default {
   providers: 'Proveedores',
   allProviders: 'Todos los Proveedores',
   sortBy: 'Ordenar por',
-  polular: 'Popular',
+  polular: 'Popularidad',
   promotions: 'Promociones',
   aboutUs: 'Acerca de Nosotros',
   selectLanguage: 'Selecciona Idioma',

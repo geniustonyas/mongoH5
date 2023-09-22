@@ -222,7 +222,7 @@ export default {
   providers: '제공업체',
   allProviders: '모든제공업체',
   sortBy: '정렬',
-  polular: '유행',
+  polular: '인기',
   promotions: '프로모션',
   aboutUs: '우리에 대해',
   selectLanguage: '언어선택',

@@ -221,7 +221,7 @@ export default {
   providers: 'Anbieter',
   allProviders: 'Alle Anbieter',
   sortBy: 'Sortieren nach',
-  polular: 'Beliebt',
+  polular: 'Beliebtheit',
   promotions: 'Aktionen',
   aboutUs: 'Über uns',
   selectLanguage: 'Sprache auswählen',

@@ -222,7 +222,7 @@ export default {
   providers: 'Fornecedores',
   allProviders: 'Todos os Fornecedores',
   sortBy: 'Ordenar por',
-  polular: 'Popular',
+  polular: 'Popularidade',
   promotions: 'Promoções',
   aboutUs: 'Sobre Nós',
   selectLanguage: 'Selecionar Idioma',
