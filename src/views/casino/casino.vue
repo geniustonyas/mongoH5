@@ -1,7 +1,7 @@
 <template>
   <div :class="appStore.showSideBar ? 'page open-sidebar' : 'page'">
     <IndexHeader />
-    <main class="main" ref="mainDom">
+    <main class="main" ref="scrollRef">
       <!-- 切换体育真人老虎机 -->
       <IndexTab tab="casino" />
 
@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from 'vue'
+import { ref, reactive, computed, watch, onActivated, onDeactivated } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
@@ -177,6 +177,20 @@ const loadMore = () => {
     showToast(t('noMore'))
   }
 }
+
+const scrollRef = ref<HTMLElement | null>(null)
+const scrollTop = ref(0)
+onActivated(() => {
+  if (scrollRef.value) {
+    scrollRef.value.scrollTop = scrollTop.value
+  }
+})
+
+onDeactivated(() => {
+  if (scrollRef.value) {
+    scrollTop.value = scrollRef.value.scrollTop
+  }
+})
 
 // 观察路由请求参数providerId变化
 watch(

@@ -1,7 +1,9 @@
 <template>
   <router-view v-slot="{ Component, route }">
-    <transition :name="route.meta.transition as string">
-      <component :is="Component" :key="route.path" />
+    <transition :name="getTransition(route.meta.transition)">
+      <keep-alive :include="['casino', 'slots']">
+        <component :is="Component" :key="route.path" />
+      </keep-alive>
     </transition>
   </router-view>
   <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
@@ -20,6 +22,13 @@ import { liveChatCall } from '@/composables/startGame'
 const appStore = useAppStore()
 const userStore = useUserStore()
 const { t } = useI18n()
+
+const getTransition = (transition: unknown): string | undefined => {
+  if (typeof transition === 'string') {
+    return transition
+  }
+  return undefined
+}
 
 watch(
   () => userStore.userInfo.userName,

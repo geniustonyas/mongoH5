@@ -209,8 +209,8 @@ export default {
   slots: '老虎机',
   sbSport: '沙巴体育',
   fbSport: 'FB体育',
-  downloadApp: '下载客户端',
-  androidApple: '安卓和IOS',
+  downloadApp: 'Download APP',
+  androidApple: 'Android and IOS',
   globalPaymentSolutions: '全球支付解决方案',
   otherPayment: '其他主流支付方式',
   sportsBet: '体育投注',
@@ -352,7 +352,7 @@ export default {
     inputExhangeCode: '请输入兑换码',
     startGameFail: '启动游戏失败',
     insufficientPoints: '积分不足',
-    exhangeSuccess: '您的信息提交成功',
+    exhangeSuccess: '兑换成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
     unBindGoogleSuccess: '解绑成功',
@@ -530,7 +530,7 @@ export default {
   ticketTimeError: '返程时间不能小于出行时间',
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
-  inputNumber: '请输入数字',
+  submitInfoSuccess: '您的信息提交成功',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',
@@ -748,6 +748,7 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">五、如何成为我们的VIP会员</div>
                       <div class="vr-conts">
+                        <p>要成为Seabet的VIP俱乐部会员，请遵循以下步骤：</p>
                         <dl>
                           <dd>
                             继续投注：成为 VIP 的关键是始终投注各种体育赛事和赌场游戏。${site_name} 将奖励您的一致性。作为顶级加密博彩网站，请定期使用您的数字资产对 ${site_name} 提供的任何赛事和赌场游戏进行投注。也可以尝试
