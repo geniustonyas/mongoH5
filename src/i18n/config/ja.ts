@@ -63,7 +63,7 @@ export default {
     isAdult: 'あなたは18歳以上であり、利用規約に同意します',
     termCondition: '利用規約',
     privacyPolicy: 'プライバシーポリシー',
-    isAgree: '私はSportsbet.ioのプロモーションとマーケティングニュースのメール通知を受け取ることに同意します。'
+    isAgree: `私は${site_name}のプロモーションとマーケティングニュースのメール通知を受け取ることに同意します。`
   },
   thirdRegPage: {
     beFinished: 'もうすぐで完了です！',
@@ -209,8 +209,8 @@ export default {
   slots: 'スロットマシン',
   sbSport: 'SBスポーツ',
   fbSport: 'FBスポーツ',
-  downloadApp: 'APPをダウンロード',
-  androidApple: 'アンドロイドとアップル対応',
+  downloadApp: 'Download APP',
+  androidApple: 'Android and IOS',
   globalPaymentSolutions: 'グローバルお支払い方法',
   otherPayment: '他のお支払い方法',
   sportsBet: 'スポーツベット',

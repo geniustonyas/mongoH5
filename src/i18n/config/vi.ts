@@ -210,8 +210,8 @@ export default {
   slots: 'Máy đánh bạc',
   sbSport: 'Thể thao Saba',
   fbSport: 'Thể thao FB',
-  downloadApp: 'Tải ứng dụng',
-  androidApple: 'Hỗ trợ Android và Apple',
+  downloadApp: 'Download APP',
+  androidApple: 'Android and IOS',
   globalPaymentSolutions: 'Giải pháp thanh toán toàn cầu',
   otherPayment: 'Phương thức thanh toán khác',
   sportsBet: 'Cược thể thao',
@@ -535,7 +535,7 @@ export default {
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',
-    whatVips: `<p>Câu lạc bộ VIP của seabet.io là một cộng đồng dành riêng cho khách hàng sử dụng tiền điện tử, cho phép họ tham gia vào tất cả các hoạt động khuyến mãi có sẵn trên trang web bất kỳ lúc nào. Mỗi lần đặt cược, quay và chơi trò chơi đều tích luỹ điểm, từ đó từ từ leo lên trong câu lạc bộ và mở khóa những phần thưởng thú vị trên đường đi. Khi bạn mở khóa các cấp độ VIP, bạn cũng sẽ kiếm được điểm cược Seabet, giúp bạn có được những trải nghiệm và dịch vụ đáng giá hơn.</p>
+    whatVips: `<p>Câu lạc bộ VIP của ${site_name} là một cộng đồng dành riêng cho khách hàng sử dụng tiền điện tử, cho phép họ tham gia vào tất cả các hoạt động khuyến mãi có sẵn trên trang web bất kỳ lúc nào. Mỗi lần đặt cược, quay và chơi trò chơi đều tích luỹ điểm, từ đó từ từ leo lên trong câu lạc bộ và mở khóa những phần thưởng thú vị trên đường đi. Khi bạn mở khóa các cấp độ VIP, bạn cũng sẽ kiếm được điểm cược Seabet, giúp bạn có được những trải nghiệm và dịch vụ đáng giá hơn.</p>
                 <p>Nói một cách đơn giản, điều đó có nghĩa: Bạn chơi trò chơi, và chúng tôi thưởng bạn.</p>`,
     howGetIntegrial: '2.Làm cách nào để kiếm điểm?',
     howGetIntegrials: `<p>Bạn có thể kiếm điểm câu lạc bộ bằng mỗi lần đặt cược, quay máy đánh bạc và chơi trò chơi bàn. Càng nhiều điểm bạn tích luỹ, càng cao cấp độ của bạn trở nên. Khi bạn tiến bộ qua các cấp bậc, bạn sẽ mở khóa nhiều phần thưởng thú vị. Các phần thưởng sẽ càng trở nên tốt hơn khi bạn tiếp tục mở khóa các cấp độ mới.</p>`,
@@ -610,7 +610,7 @@ export default {
           <p>Rút tiền</p>
           <p>Hầu hết các giao dịch rút tiền được xử lý ngay lập tức. Trong trường hợp rút tiền lớn, chúng tôi xử lý các khoản rút tiền này theo cách thủ công nên có thể có một chút chậm trễ.</p>`,
     q4: 'Bạn cung cấp các phương thức thanh toán nào?',
-    a4: `<p>Các tùy chọn tiền tệ có sẵn trên Seabet.io là:</p>
+    a4: `<p>Các tùy chọn tiền tệ có sẵn trên ${site_name} là:</p>
           <p>• Tether (USDT)</p>
           <p>• Bitcoin (BTC)</p>
           <p>• Ethereum (ETH)</p>
@@ -623,7 +623,7 @@ export default {
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
     q5: 'Bạn có áp dụng phí giao dịch không?',
-    a5: `<p>Mặc dù chúng tôi không thu thêm bất kỳ phí nào cho các giao dịch nạp tiền và rút tiền trên Seabet.io, nhưng bạn có thể cần phải trả các khoản phí giao dịch khi sử dụng thanh toán qua blockchain.</p>`
+    a5: `<p>Mặc dù chúng tôi không thu thêm bất kỳ phí nào cho các giao dịch nạp tiền và rút tiền trên ${site_name}, nhưng bạn có thể cần phải trả các khoản phí giao dịch khi sử dụng thanh toán qua blockchain.</p>`
   },
 
   errorCodes: {
@@ -677,11 +677,11 @@ export default {
     // html内容
     vipContent: ` <div class="vip-clubhouse-box">
                     <div class="vc-rows">
-                      <div class="vr-title">1、VIP Club Introduction</div>
+                      <div class="vr-title">1、Hội viên VIP Seabet</div>
                       <div class="vr-conts">
-                        <p>Welcome to the ${site_name} VIP Club!</p>
-                        <p>At ${site_name}, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
-                        <p>Simply place bets on any game or sports event provided by ${site_name} to unlock exclusive rewards as you climb through the ranks.</p>
+                        <p>Chào mừng đến với Seabet VIP Club</p>
+                        <p>Tại Seabet, chúng tôi cam kết nâng cao chất lượng trò chơi và cung cấp trải nghiệm chơi game tốt nhất. Chúng tôi đã giới thiệu Hội viên VIP hoàn toàn mới để thưởng cho những thành viên của chúng tôi, người dành thời gian chơi trò chơi trên trang web của chúng tôi một cách trung thành.</p>
+                        <p>Chỉ cần đặt cược trên bất kỳ trò chơi hoặc sự kiện thể thao nào được cung cấp bởi ${site_name}, và khi bạn tiến bộ qua các cấp độ, bạn sẽ mở khóa những phần thưởng độc quyền.。</p>
                       </div>
                     </div>
                     <div class="vc-rows">
@@ -689,9 +689,9 @@ export default {
                       <div class="vr-conts">
                         <p>Professional Customer Manager Team Ensures All Your Needs and Meets Industry's Highest Standards. VIP members can enjoy exclusive bonuses, invitations to renowned events, and a variety of customized rewards to provide you with fast, enjoyable, and efficient gaming experiences.</p>
                         <dl>
-                          <dt>VIP Exclusive Manager：</dt>
-                          <dd>Devoted to addressing your needs</dd>
-                          <dd>Tailored private gaming experiences just for you</dd>
+                            <dt>Quản lý Độc quyền VIP</dt>
+                            <dd>Cam kết đáp ứng nhu cầu của bạn</dd>
+                            <dd>Trải nghiệm chơi game riêng tư được tùy chỉnh dành riêng cho bạn</dd>
                         </dl>
                         <dl>
                           <dt>High Rewards：</dt>
@@ -768,9 +768,9 @@ export default {
 
     rulesContent: `<div>
                     <h2>Terms and Conditions</h2>
-                    <h3>1. SEABET.IO</h3>
+                    <h3>1. ${site_name}</h3>
                     <h3>2. IMPORTANT NOTICE</h3>
-                    <p><b>2.1 </b>BY REGISTERING ON WWW.SEABET.IO (THE “WEBSITE”), YOU ENTER INTO A CONTRACTED, AND AGREE TO BE BOUND BY: </p>
+                    <p><b>2.1 </b>BY REGISTERING ON ${site_name} (THE “WEBSITE”), YOU ENTER INTO A CONTRACTED, AND AGREE TO BE BOUND BY: </p>
                     <p>(I) THESE TERMS AND CONDITIONS; </p>
                     <p>(II) OUR PRIVACY POLICY; </p>
                     <p>(III) OUR COOKIES POLICY AND </p>
@@ -778,7 +778,7 @@ export default {
 
                     <p><b>2.2 </b>PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT, PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT) OF THE WEBSITE.</p>
                     <h3>3. GENERAL</h3>
-                    <p><b>3.1 </b>When registering on www.Seabet.io.</p>
+                    <p><b>3.1 </b>When registering on ${site_name}.</p>
                     <p> You (“You”, “Your”, Yourself” or the “Player” interchangeably) enter into an agreement with Seabet.</p>
                     <p><b>3.2 </b>This Agreement should be read by You in its entirety prior to your use of Seabet's service or products. Please note that the Agreement constitutes a legally binding agreement between you and Seabet.</p>
                     <p><b>3.3 </b>These Terms and Conditions come into force as soon as you complete the registration process, which includes checking the box accepting these Terms and Conditions and successfully creating an account. By using any part of the Website following account creation, you agree to these Terms and Conditions applying to the use of the Website.</p>
@@ -788,9 +788,9 @@ export default {
 
                     <h3>4. SEABET ACCOUNT</h3>
                     <p>Registration</p>
-                    <p><b>4.1 </b>In order for you to be able to place bets on Seabet.io, you must first personally register an account with us ("Seabet Account").</p>
+                    <p><b>4.1 </b>In order for you to be able to place bets on ${site_name}, you must first personally register an account with us ("Seabet Account").</p>
                     <p><b>4.2 </b>For a person to be registered as a player with Seabet and use the Website, that person must submit an application for registration and opening of a Seabet account. The application for the opening of the Seabet Account must be submitted personally, and will require You to provide a set of personal information, namely e-mail, full name, date of birth, address, etc.</p>
-                    <p><b>4.3 </b>Where the information stipulated in <b>4.2.</b> is not provided and/or is not deemed to be complete, accurate or up-to-date at any point in time, Seabet reserves the right to suspend the Seabet Account registration and treat any subsequent potentially accepted deposits to the Player’s Seabet Account as invalid (and any winnings arising from such deposit as void). Where a Seabet Account is suspended, you should contact customer support at (support{'@'}Seabet.io).</p>
+                    <p><b>4.3 </b>Where the information stipulated in <b>4.2.</b> is not provided and/or is not deemed to be complete, accurate or up-to-date at any point in time, Seabet reserves the right to suspend the Seabet Account registration and treat any subsequent potentially accepted deposits to the Player’s Seabet Account as invalid (and any winnings arising from such deposit as void). Where a Seabet Account is suspended, you should contact customer support at (support{'@'}${site_name}).</p>
                     <p><b>4.4 </b>All applicants must be 18 or such other legal age of majority as determined by any laws which are applicable to you, whichever age is greater or older. Seabet reserves the right to ask for proof of age from any Player and suspend their Seabet Account until satisfactory documentation is provided. Seabet takes its responsibilities in respect of under age and responsible gambling very seriously.</p>
                     <p><b>4.5 </b>Seabet will not accept registration from individuals:</p>
                     <p>a) Under 18 years old or under the legal age of majority or gambling in their jurisdiction;</p>
@@ -844,7 +844,7 @@ export default {
                     <p>d) You are not currently self-excluded from any gambling site or gambling premises. You will inform Seabet immediately if you enter into a self-exclusion agreement with any gambling provider.</p>
 
                     <p>Jurisdiction</p>
-                    <p>e) You are accessing Seabet.io from a jurisdiction in which it is legal to do so;</p>
+                    <p>e) You are accessing ${site_name} from a jurisdiction in which it is legal to do so;</p>
                     <p>f) You will not use our services while located in any jurisdiction that prohibits the placing and/or accepting of bets online and/or playing casino and/or live games;</p>
                     <p>g) You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited techniques, including but not limited to fraudulent transaction detection, automated registration and signup, gameplay and screen capture techniques. These steps may include, but are not limited to, examination of Players device properties, detection of geo-location and IP masking, transactions and blockchain analysis;</p>
 
@@ -887,13 +887,13 @@ export default {
                     <p>(iv)Any defects in the Website and Services will be corrected; or </p>
                     <p>(v)The Website or the servers are virus-free.</p>
 
-                    <p><b>6.3 </b>Seabet can be contacted by email on (support{'@'}seabet.io) or on its live chat 24/7. The live chat is available when logged into Your Seabet Account. In the event that Seabet, in its sole discretion, deems that Your behaviour, via live chat, email, or otherwise, has been abusive or derogatory towards any of Seabet’s or its Affiliates or third-party service provider’s employees, Seabet shall have the right to block or terminate Your Seabet Account.</p>
+                    <p><b>6.3 </b>Seabet can be contacted by email on (support{'@'}${site_name}) or on its live chat 24/7. The live chat is available when logged into Your Seabet Account. In the event that Seabet, in its sole discretion, deems that Your behaviour, via live chat, email, or otherwise, has been abusive or derogatory towards any of Seabet’s or its Affiliates or third-party service provider’s employees, Seabet shall have the right to block or terminate Your Seabet Account.</p>
 
                     <h3>7. DEPOSITS</h3>
                     <p><b>7.1 </b>You may participate in any Game only if you have sufficient funds on your Seabet Account for such participation. For that purpose, you shall use the payment methods available on the Website to deposit your funds. Seabet will not give you any credit whatsoever for participation in any Game.</p>
-                    <p><b>7.2 </b>You must deposit funds to Your Seabet Account using the payment methods available at www.Seabet.io.</p>
+                    <p><b>7.2 </b>You must deposit funds to Your Seabet Account using the payment methods available at www.${site_name}.</p>
                     <p><b>7.3 </b>You shall ensure that funds that You deposit into your Seabet Account are not tainted with any illegality and, in particular, do not originate from any illegal activity or source.</p>
-                    <p><b>7.4 </b>To deposit funds into your Seabet Account, you can transfer funds from crypto-wallets under your control or through any other payment methods available on Seabet.io. Deposits can only be made with your own funds.</p>
+                    <p><b>7.4 </b>To deposit funds into your Seabet Account, you can transfer funds from crypto-wallets under your control or through any other payment methods available on ${site_name}. Deposits can only be made with your own funds.</p>
                     <p><b>7.5 </b>You should only deposit money into Your account for the purpose of You using such money to place bets/wager on the Website. Seabet is entitled to suspend or close Your account if we reasonably believe that You are depositing funds without any intention to place sporting and/or gaming wagers. In such circumstances we may also report this activity to relevant authorities.</p>
                     <p><b>7.6 </b>You acknowledge and understand that funding Your Seabet Account can only be funded by payment methods owned by You.</p>
                     <p><b>7.7 </b>You further understand, agree and acknowledge that if Seabet discovers, detects and/or identifies that You:</p>
@@ -908,7 +908,7 @@ export default {
                     <p>b) your bank or payment service provider may charge you additional fees for deposits of currency conversion according to their terms and conditions and your user agreement.</p>
                     <p><b>7.11 </b>We reserve the right to use additional procedures and means to verify your identity when processing deposits into your Seabet Account.</p>
                     <p><b>7.12 </b>Funds cannot be transferred from your Seabet Account to the Seabet Account of another Player.</p>
-                    <p><b>7.13 </b>Seabet can refuse any deposits at its own description. Users that have their accounts blocked, or suspended shall refrain from depositing at www.Seabet.io.</p>
+                    <p><b>7.13 </b>Seabet can refuse any deposits at its own description. Users that have their accounts blocked, or suspended shall refrain from depositing at www.${site_name}.</p>
                     <p><b>7.14 </b>In the event that a player tries to deposit when his account is blocked or suspended, Seabet will have the right to retain the funds.</p>
 
                     <h3>8. WITHDRAWALS</h3>
@@ -930,7 +930,7 @@ export default {
 
                     <p>Crypto Withdrawals</p>
                     <p><b>8.10 </b>Crypto withdrawals will be made to your stated cryptocurrency wallet address when making a valid withdrawal request.</p>
-                    <p><b>8.11 </b>Seabet reserves the right to carry out additional KYC verification procedures for any withdrawal. Players who wish to recover funds held in a closed, locked or excluded account, are advised to contact (support{'@'}seabet.io).</p>
+                    <p><b>8.11 </b>Seabet reserves the right to carry out additional KYC verification procedures for any withdrawal. Players who wish to recover funds held in a closed, locked or excluded account, are advised to contact (support{'@'}${site_name}).</p>
                     <p><b>8.12 </b>All transactions shall be checked in order to prevent money laundering. If a player becomes aware of any suspicious activity relating to any of the Games of the Website, s/he must report this to Seabet immediately. Seabet may suspend, block or close a Seabet Account and withhold funds if requested to do so in accordance with the Prevention of Money Laundering Act or on any other legal basis requested by any state authority. You acknowledge that the funds in your account are consumed instantly when playing and we do not provide return of goods, refunds or retrospective cancellation of your account.</p>
 
                     <h3>9. PLAYER FUNDS PROTECTION & CHARGEBACKS</h3>
@@ -944,7 +944,7 @@ export default {
                     <p><b>10.4 </b>Your funds will be allocated to bets/wagers in the order they are placed and will not be available for any other use. Seabet reserves the right to void and/or reverse any transactions made after a bet/wager has been placed involving allocated funds, either at the time or retrospectively.</p>
                     <h3>11. BET/WAGER CONFIRMATION</h3>
                     <p><b>11.1 </b>Bets/wagers will only be valid once You receive the confirmation of the acceptance of Your bet/wager. Bets/wagers placed with insufficient funds in Your account will be void.</p>
-                    <p><b>11.2 </b>A bet/wager that You request will only be valid once accepted by Seabet. Each valid bet/wager will receive a unique transaction code. We shall not be liable for the settlement of any bets/wagers which are not issued with a unique transaction code. If You are unsure about the validity of a bet/wager, please check Your account history, or contact our Customer Support Team (support{'@'}seabet.io).</p>
+                    <p><b>11.2 </b>A bet/wager that You request will only be valid once accepted by Seabet. Each valid bet/wager will receive a unique transaction code. We shall not be liable for the settlement of any bets/wagers which are not issued with a unique transaction code. If You are unsure about the validity of a bet/wager, please check Your account history, or contact our Customer Support Team (support{'@'}${site_name}).</p>
                     <p><b>11.3 </b>Should a dispute arise regarding the content of a bet, You and Seabet agree that the Seabet transaction log database of its internal control system will be the ultimate authority in such matters.</p>
                     <h3>12. BONUS</h3>
                     <p><b>12.1 </b>Seabet, at its sole discretion, might offer from time to time, a number of Bonuses and Promotions. </p>
@@ -967,7 +967,7 @@ export default {
                     <p><b>12.11 </b>Seabet reserves the right to cancel any bonus at its sole description.</p>
 
                     <h3>13. AUTHORITY/TERMS OF SERVICE</h3>
-                    <p><b>13.1 </b>You agree to the game rules described on the Seabet.io website. Seabet retains authority over the issuing, maintenance, and closing of the Service. The decision of Seabet's management, concerning any use of the Service, or dispute resolution, is final and shall not be open to review or appeal.</p>
+                    <p><b>13.1 </b>You agree to the game rules described on the ${site_name} website. Seabet retains authority over the issuing, maintenance, and closing of the Service. The decision of Seabet's management, concerning any use of the Service, or dispute resolution, is final and shall not be open to review or appeal.</p>
 
                     <h3>14. PROHIBITED USES</h3>
                     <p>PERSONAL USE</p>
@@ -1049,7 +1049,7 @@ export default {
                     <p><b>22.2 </b>The term "Seabet", its domain names and any other trade marks, or service marks used by Seabet as part of the Service (the "Trade Marks"), are solely owned by Seabet. In addition, all content on the website, including, but not limited to, the images, pictures, graphics, photographs, animations, videos, music, audio and text (the "Site Content") belongs to Seabet and is protected by copyright and/or other intellectual property or other rights. You hereby acknowledge that by using the Service, you obtain no rights in the Site Content and/or the Trade Marks, or any part thereof. Under no circumstances may you use the Site Content and/or the Trade Marks without Seabet's prior written consent. Additionally, you agree not to do anything that will harm or potentially harm the rights, including the intellectual property rights of Seabet.</p>
 
                     <h3>23. DISPUTES</h3>
-                    <p><b>23.1 </b>If a User wishes to make a complaint, please contact Seabet's customer service team at (support{'@'}seabet.io). Should any dispute not be resolved to your satisfaction you may pursue remedies in the governing law jurisdiction set forth below.</p>
+                    <p><b>23.1 </b>If a User wishes to make a complaint, please contact Seabet's customer service team at (support{'@'}${site_name}). Should any dispute not be resolved to your satisfaction you may pursue remedies in the governing law jurisdiction set forth below.</p>
 
                     <h3>24. AMENDMENT</h3>
                     <p><b>24.1 </b>Seabet reserves the right to update or modify this Agreement or any part thereof at any time or otherwise change the Service without notice and you will be bound by such amended Agreement upon posting. Therefore, we encourage you check the terms and conditions contained in the version of the Agreement in force at such time. Your continued use of the Service shall be deemed to attest to your agreement to any amendments to the Agreement.</p>
@@ -1068,16 +1068,16 @@ export default {
                     <p><b>27.5 </b>This Agreement constitutes the entire understanding and agreement between you and Seabet regarding the Service and supersedes any prior agreement, understanding, or arrangement between you and Seabet.</p>
 
                     <h3>28. COMPLAINTS</h3>
-                    <p><b>28.1 </b>If you have a complaint to make regarding our services, you may contact our customer support via Live Chat or by email (support{'@'}seabet.io). We will endeavour to resolve the matter promptly.</p>
+                    <p><b>28.1 </b>If you have a complaint to make regarding our services, you may contact our customer support via Live Chat or by email (support{'@'}${site_name}). We will endeavour to resolve the matter promptly.</p>
 
                   </div>`,
     responsibleContent: `<div>
                           <h2>Responsible Gambling</h2>
 
-                          <p>In Seabet.io; The platforms and services we provide enable our customers to enjoy gaming and betting. Our goal is to provide you with a safe, secure, regulated environment that provides you with a pleasant and rewarding experience. We encourage our customers to use our services responsibly and reasonably.</p>
-                          <p>All kinds of casino games have been popular for many years, and in Seabet.io games are designed to bring fun to everyone. We also encourage our players to have fun without letting the game interfere with their daily lives and take up time with family and friends. It's important to make sure that the amount spent on the game is only the change or spare money left after all expenses in your life, and it's important that the game is not a means of making a living because you can't guarantee a profit from it.</p>
+                          <p>In ${site_name}; The platforms and services we provide enable our customers to enjoy gaming and betting. Our goal is to provide you with a safe, secure, regulated environment that provides you with a pleasant and rewarding experience. We encourage our customers to use our services responsibly and reasonably.</p>
+                          <p>All kinds of casino games have been popular for many years, and in ${site_name} games are designed to bring fun to everyone. We also encourage our players to have fun without letting the game interfere with their daily lives and take up time with family and friends. It's important to make sure that the amount spent on the game is only the change or spare money left after all expenses in your life, and it's important that the game is not a means of making a living because you can't guarantee a profit from it.</p>
                           <p>Although most players will play responsibly and normally. But unfortunately, there are a small number of players who may have the problem of indulging in gambling. </p>
-                          <p>At Seabet.io, the quality of life/psychology of our players is important to us and we take our role in responsible gambling very seriously and advise you :</p>
+                          <p>At ${site_name}, the quality of life/psychology of our players is important to us and we take our role in responsible gambling very seriously and advise you :</p>
                           <ul>
                             <li>Think of your bets and games as a form of entertainment, using only the money you set aside for entertainment.</li>
                             <li>Do not place bets or bet more than you can afford.</li>
@@ -1094,12 +1094,12 @@ export default {
                             <li><a target="_blank" href="https://www.gamblingtherapy.org/">Gambling Therapy</a></li>
                           </ul>
 
-                          <p>In addition, if you would like to learn about our self-exclusion process, you can email (support{'@'}seabet.io) our friendly Seabet.io customer service. Sometimes a short break can help you settle your thoughts and stop you from making any rash betting decisions that don't match your usual.</p>
+                          <p>In addition, if you would like to learn about our self-exclusion process, you can email (support{'@'}${site_name}) our friendly ${site_name} customer service. Sometimes a short break can help you settle your thoughts and stop you from making any rash betting decisions that don't match your usual.</p>
                           <p>Upon request, we will place your account with a cooling-off period of at least 24 hours. Subsequently, one of our support agents will notify you of the available voluntary 1 week, 1 month, 3 months, 6 months, or permanent self-exclusion.</p>
                           <p>Please note; Accounts closed under our self-exclusion policy cannot be revoked or reopened for any reason. However, once your self-exclusion expires, we will send you an email letting you know that your account is active again. Permanent self-exclusion will exist indefinitely.</p>
 
                           <p>Underage</p>
-                          <p>If you wish to gamble with us in Seabet.io, you must be at least 18 years of age or the legal minimum gambling age (if lesser) in the jurisdiction in which you hold under the laws applicable to you.</p>
+                          <p>If you wish to gamble with us in ${site_name}, you must be at least 18 years of age or the legal minimum gambling age (if lesser) in the jurisdiction in which you hold under the laws applicable to you.</p>
 
                           <p>We recommend that if you have any minors in your home, check out the following links to parental control software, which can be a useful tool for controlling and limiting what can be accessed on your device.</p>
 
@@ -1161,7 +1161,7 @@ export default {
                             <p>Problem gambling occurs when a person loses control over their gambling, particularly the amount of money gambled and the amount of time devoted to gambling.</p>
 
                             <h3>4. Customer Care Principles</h3>
-                            <p>At Seabet.io, we want to be an industry leader in providing a safe environment for our customers. We actively encourage and promote responsible gambling practices and provide tools to assist our customers in maintaining control of their gambling.</p>
+                            <p>At ${site_name}, we want to be an industry leader in providing a safe environment for our customers. We actively encourage and promote responsible gambling practices and provide tools to assist our customers in maintaining control of their gambling.</p>
 
                             <h3>5. Responsible Gambling Policy</h3>
                             <p>We are committed to sharing responsibility, with Governments and communities and individuals, for helping customers control their gambling, and helping problem gamblers to identify their problem and seek assistance.</p>
@@ -1182,7 +1182,7 @@ export default {
                             <p>Filtering options can be enabled to help prevent persons from entering online casinos or online sports betting websites. If minors have access to the device that you use to access our betting platforms, we encourage you to use filtering software to prevent access to our betting platforms by minors.</p>
 
                             <h3>8. Additional Help</h3>
-                            <p>In the case of needed help please contact our support team at support{'@'}seabet.io or on our live chat system and one of our agents will be able to give you the details of associations and help phone numbers available in your country.</p>
+                            <p>In the case of needed help please contact our support team at support{'@'}${site_name} or on our live chat system and one of our agents will be able to give you the details of associations and help phone numbers available in your country.</p>
 
                             <h3>9. Conditions and Processes</h3>
                             <p>To self-exclude means to stop betting or gambling for a set time. Self-exclusion can be temporary or permanent.</p>
@@ -1213,9 +1213,9 @@ export default {
                           </div>`,
     privacyContent: `<div>
                       <h2>Privacy Policy </h2>
-                      <p>Seabet.io respects and protects the privacy of all users of our Services. This Privacy Policy ("Policy") details how we collect, store, use and disclose your personal information.</p>
+                      <p>${site_name} respects and protects the privacy of all users of our Services. This Privacy Policy ("Policy") details how we collect, store, use and disclose your personal information.</p>
                       <h3>1. Scope and Application </h3>
-                      <p>This Policy applies to your access to and use of Seabet.io (the "Website") and all websites and applications under the Seabet brand, including all of our mobile applications and tablet applications. In addition, this Policy also applies where we interact with you in other ways.</p>
+                      <p>This Policy applies to your access to and use of ${site_name} (the "Website") and all websites and applications under the Seabet brand, including all of our mobile applications and tablet applications. In addition, this Policy also applies where we interact with you in other ways.</p>
                       <h3>2. User's Consent and Modification</h3>
                       <p>By using Seabet's website, you agree to be bound by this Policy. We reserve the right, in our sole discretion, to modify or change this Policy at any time, and we will post such changes on the Site, and such changes will be effective immediately upon posting. Your continued use of the Site following such changes constitutes your acceptance of such changes. This Policy does not apply to other websites linked to this website.</p>
                       <h3>3. Personal Information Collected</h3>
@@ -1251,33 +1251,33 @@ export default {
                       <h3>5. Use and Disclosure of Personal Information</h3>
                       <p>We may use your personal information for marketing activities and may tell you about products or services that we think may be of interest to you by email, text message or telephone. If you no longer wish to receive marketing or promotional information from us, you may unsubscribe at any time by contacting us by email.</p>
                       <h3>6. Security of Personal Information</h3>
-                      <p>The User shall understand that the transmission of Internet data is not absolutely secure, Seabet.io cannot guarantee the absolute security of the information uploaded by the User to the Platform, and the User shall bear the risk. However, after receiving the transmission of the user's information, Seabet.io will take appropriate measures to prevent the misuse, loss, and unauthorized access, modification and disclosure of the user's personal information. This includes the use of password protection of systems and databases, as well as the use of Secure Sockets Layer (SSL) technology. By using our Services or providing personal information, users agree that we may communicate with you electronically regarding security, privacy, and administrative issues related to the use of the Services. Seabet.io employees, agents and contractors are required to keep members' personal information and transactions confidential. Information posted by users on public platforms or social media environments (e.g., Facebook, Twitter) will be considered public information, Seabet.io the security of such information cannot be guaranteed.</p>
+                      <p>The User shall understand that the transmission of Internet data is not absolutely secure, ${site_name} cannot guarantee the absolute security of the information uploaded by the User to the Platform, and the User shall bear the risk. However, after receiving the transmission of the user's information, ${site_name} will take appropriate measures to prevent the misuse, loss, and unauthorized access, modification and disclosure of the user's personal information. This includes the use of password protection of systems and databases, as well as the use of Secure Sockets Layer (SSL) technology. By using our Services or providing personal information, users agree that we may communicate with you electronically regarding security, privacy, and administrative issues related to the use of the Services. ${site_name} employees, agents and contractors are required to keep members' personal information and transactions confidential. Information posted by users on public platforms or social media environments (e.g., Facebook, Twitter) will be considered public information, ${site_name} the security of such information cannot be guaranteed.</p>
                       <p>We emphasize that our services are not directed to children and we do not accept accounts or personal information. However, parents or guardians have an obligation to monitor their children's internet activities. Make sure to log out of your account as soon as you're done using the website, especially if you're sharing your device. The User is responsible for the security and access rights of the devices used to access the Website. Ultimately, users maintain the confidentiality of usernames, passwords and account information and are vigilant when using the Internet and our website.</p>
                       <h3>7. Access to Personal Information</h3>
-                      <p>Users can access the personal information collected by Seabet.io by clicking on the "Settings" link on the website or by sending an email to the support{'@'}Seabet.io. We will respond to the user's access request within a reasonable period of time. If we are unable to comply with your request, we will inform you in writing of the reasons for the denial of access and the complaint mechanism.</p>
+                      <p>Users can access the personal information collected by ${site_name} by clicking on the "Settings" link on the website or by sending an email to the support{'@'}${site_name}. We will respond to the user's access request within a reasonable period of time. If we are unable to comply with your request, we will inform you in writing of the reasons for the denial of access and the complaint mechanism.</p>
                       <h3>8. Removal of personal data</h3>
-                      <p>If it is no longer possible to lawfully process or store the user's personal data, the user has the right to request its deletion. However, this right is not absolute and if Seabet.io are subject to legal obligations, it will not be able to meet the user's requirements. Please make a request by sending an email to support{'@'}Seabet.io.</p>
+                      <p>If it is no longer possible to lawfully process or store the user's personal data, the user has the right to request its deletion. However, this right is not absolute and if ${site_name} are subject to legal obligations, it will not be able to meet the user's requirements. Please make a request by sending an email to support{'@'}${site_name}.</p>
                       <h3>9. Contact</h3>
-                      <p>If you have any questions, requests or complaints about our processing of your personal information, please contact us via email support{'@'}Seabet.io or the website customer support chat function.</p>
+                      <p>If you have any questions, requests or complaints about our processing of your personal information, please contact us via email support{'@'}${site_name} or the website customer support chat function.</p>
 
 
 
                       <h3>10. International Data Transfers</h3>
                       <p>We may transfer, process and store information worldwide, including but not limited to other countries whose data protection laws may differ from those of your location. We will protect your information as much as possible and as required by applicable law.</p>
                       <h3>11. Root of the legal basis for processing</h3>
-                      <p>According to the Global General Data Protection Regulation, Seabet.io processing of your personal information has the following lawful bases: performance of a contract, legitimate interests, user consent and compliance with a legal obligation.</p>
+                      <p>According to the Global General Data Protection Regulation, ${site_name} processing of your personal information has the following lawful bases: performance of a contract, legitimate interests, user consent and compliance with a legal obligation.</p>
                       <h3>12. Privacy Policy Updates</h3>
-                      <p>Seabet.io may periodically review, change, and update this Privacy Policy to reflect our practices and responsibilities. We will post the latest Privacy Policy on the Website Seabet.io. Users should periodically review this Privacy Policy to familiarize themselves with its terms.</p>
+                      <p>${site_name} may periodically review, change, and update this Privacy Policy to reflect our practices and responsibilities. We will post the latest Privacy Policy on the Website ${site_name}. Users should periodically review this Privacy Policy to familiarize themselves with its terms.</p>
                     </div>`,
     fairnessContent: `<div>
                         <h2>Fairness</h2>
-                        <p>Before you can place bets in fiat currencies, including cryptocurrency, you must register for an account on Seabet.io website. Your use of the Seabet.io (the "Website") and the opening of an account with the Seabet.io shall be deemed to have been read, understood and bound by these Terms and Conditions.</p>
+                        <p>Before you can place bets in fiat currencies, including cryptocurrency, you must register for an account on ${site_name} website. Your use of the ${site_name} (the "Website") and the opening of an account with the ${site_name} shall be deemed to have been read, understood and bound by these Terms and Conditions.</p>
 
                         <h3>Definition</h3>
-                        <p>Seabet.io – referred to as "we" or "company".</p>
+                        <p>${site_name} – referred to as "we" or "company".</p>
                         <p>Player – referred to as "you" or "player" or "member" or "customer" or "account holder".</p>
                         <p>Games – Refers to casinos and other RNG (Random Number Generator) games, which may be available on the Website from time to time.</p>
-                        <p>Website – means a website used by Seabet.io Player through desktop, mobile, or other platforms.</p>
+                        <p>Website – means a website used by ${site_name} Player through desktop, mobile, or other platforms.</p>
                         <p>Member Account - A user account required to access and use the Site.</p>
                         <p>Customer Support - Assistance and support services provided by the Company to its customers.</p>
                         <p>Event - means a sports or betting event or a match or game within a sport in which a customer can place a bet on the outcome.</p>
@@ -1351,7 +1351,7 @@ export default {
 
                         <p><b>3.6 </b> We expect you to inform us immediately of any inaccuracies relating to your account, or any calculation errors relating to any bets placed by you. We reserve the right to void any bet affected by such errors and reverse accordingly. </p>
 
-                        <p><b>3.7 </b>If you do not use an account with a positive balance for a period of 3 months, you will be notified by us. If you do not use your balance within 1 month of our notification, we may remove the balance from your account to protect your funds. If this happens, please contact us at support{'@'}seabet.io Reopen your account and get your funds back. </p>
+                        <p><b>3.7 </b>If you do not use an account with a positive balance for a period of 3 months, you will be notified by us. If you do not use your balance within 1 month of our notification, we may remove the balance from your account to protect your funds. If this happens, please contact us at support{'@'}${site_name} Reopen your account and get your funds back. </p>
 
                         <p><b>3.8 </b>If your account balance is positive and has been inactive for more than 12 months, we reserve the right to deduct a monthly administration fee equivalent to 5% from your balance</p>
 

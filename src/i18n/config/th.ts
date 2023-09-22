@@ -63,7 +63,7 @@ export default {
     isAdult: 'ฉันยืนยันว่าฉันเป็นผู้ใหญ่อายุ 18 ปีขึ้นไป และยอมรับ',
     termCondition: 'ข้อกำหนดและเงื่อนไข',
     privacyPolicy: 'นโยบายความเป็นส่วนตัว',
-    isAgree: 'ฉันยอมรับข้อมูลการตลาดที่เกี่ยวข้องกับกิจกรรมของ Sportsbet.io'
+    isAgree: `ฉันยอมรับข้อมูลการตลาดที่เกี่ยวข้องกับกิจกรรมของ ${site_name}`
   },
   thirdRegPage: {
     beFinished: 'เหลือเพียงเสร็จสิ้นอย่างรวดเร็วเท่านั้น!',
@@ -210,8 +210,8 @@ export default {
   slots: 'สล็อต',
   sbSport: 'กีฬาซาบะ',
   fbSport: 'กีฬา FB',
-  downloadApp: 'ดาวน์โหลดแอปพลิเคชัน',
-  androidApple: 'รองรับแอนดรอยและแอปเปิ้ล',
+  downloadApp: 'Download APP',
+  androidApple: 'Android and IOS',
   globalPaymentSolutions: 'โซลูชันการชำระเงินทั่วโลก',
   otherPayment: 'วิธีการชำระเงินอื่นๆ',
   sportsBet: 'เดิมพันกีฬา',

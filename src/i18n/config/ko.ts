@@ -63,7 +63,7 @@ export default {
     isAdult: '만18세 이상 임을 확인 했으며,동의합니다',
     termCondition: '이용약관',
     privacyPolicy: '프라이버시 정책',
-    isAgree: '나는Sportsbet.io의 프로모션 활동 관련한 시장정보를 받는 것에 동의 합니다'
+    isAgree: `나는${site_name}의 프로모션 활동 관련한 시장정보를 받는 것에 동의 합니다`
   },
   thirdRegPage: {
     beFinished: '곧 완성됩니다!',
@@ -210,8 +210,8 @@ export default {
   slots: '슬롯머신',
   sbSport: 'SB스포츠',
   fbSport: 'FB스포츠',
-  downloadApp: '다운로드APP',
-  androidApple: '안드로이드.애플',
+  downloadApp: 'Download APP',
+  androidApple: 'Android and IOS',
   globalPaymentSolutions: '글로벌결재 해결방안',
   otherPayment: '다른결재방식',
   sportsBet: '스포츠베팅',

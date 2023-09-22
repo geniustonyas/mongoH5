@@ -209,8 +209,8 @@ export default {
   slots: 'Máquinas Tragamonedas',
   sbSport: 'Deportes de Arena',
   fbSport: 'Deportes de Fútbol',
-  downloadApp: 'Descargar App',
-  androidApple: 'Disponible para Android y Apple',
+  downloadApp: 'Download APP',
+  androidApple: 'Android and IOS',
   globalPaymentSolutions: 'Soluciones Globales de Pago',
   otherPayment: 'Otros Métodos de Pago Populares',
   sportsBet: 'Apuestas Deportivas',
@@ -622,7 +622,7 @@ export default {
           <p>• @:currencyLang.doge </p>
           <p>• @:currencyLang.ton </p>`,
     q5: '¿Aplican comisiones en las transacciones?',
-    a5: `<p>Si bien no aplicamos ninguna tarifa de transacción para depósitos y retiros en Sportsbet.io, puede haber tarifas de transacción que deba pagar al usar la cadena de bloques y/o su banco.</p>`
+    a5: `<p>Si bien no aplicamos ninguna tarifa de transacción para depósitos y retiros en Seabet.io, puede haber tarifas de transacción que deba pagar al usar la cadena de bloques y/o su banco.</p>`
   },
 
   errorCodes: {

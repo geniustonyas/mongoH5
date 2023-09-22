@@ -63,33 +63,33 @@ export const currenyListData = () => {
       chain: 'Tron',
       explorer: ''
     },
-    {
-      code: 'BNB',
-      currenyName: t('currencyLang.bnb'),
-      unit: 'BNB',
-      currenyType: '10',
-      icon: 'coin/binance_icon.svg',
-      chain: 'Binance',
-      explorer: ''
-    },
-    {
-      code: 'BUSD',
-      currenyName: t('currencyLang.busd'),
-      unit: 'BUSD',
-      currenyType: '10',
-      icon: 'coin/busd.svg',
-      chain: 'Binance',
-      explorer: ''
-    },
-    {
-      code: 'XRP',
-      currenyName: t('currencyLang.xrp'),
-      unit: 'XRP',
-      currenyType: '10',
-      icon: 'coin/xrp.svg',
-      chain: 'Ripple',
-      explorer: ''
-    },
+    // {
+    //   code: 'BNB',
+    //   currenyName: t('currencyLang.bnb'),
+    //   unit: 'BNB',
+    //   currenyType: '10',
+    //   icon: 'coin/binance_icon.svg',
+    //   chain: 'Binance',
+    //   explorer: ''
+    // },
+    // {
+    //   code: 'BUSD',
+    //   currenyName: t('currencyLang.busd'),
+    //   unit: 'BUSD',
+    //   currenyType: '10',
+    //   icon: 'coin/busd.svg',
+    //   chain: 'Binance',
+    //   explorer: ''
+    // },
+    // {
+    //   code: 'XRP',
+    //   currenyName: t('currencyLang.xrp'),
+    //   unit: 'XRP',
+    //   currenyType: '10',
+    //   icon: 'coin/xrp.svg',
+    //   chain: 'Ripple',
+    //   explorer: ''
+    // },
     {
       code: 'LTC',
       currenyName: t('currencyLang.ltc'),
@@ -99,15 +99,15 @@ export const currenyListData = () => {
       chain: 'Litecoin',
       explorer: ''
     },
-    {
-      code: 'ADA',
-      currenyName: t('currencyLang.ada'),
-      unit: 'ADA',
-      currenyType: '10',
-      icon: 'coin/ada.svg',
-      chain: 'Cardano',
-      explorer: ''
-    },
+    // {
+    //   code: 'ADA',
+    //   currenyName: t('currencyLang.ada'),
+    //   unit: 'ADA',
+    //   currenyType: '10',
+    //   icon: 'coin/ada.svg',
+    //   chain: 'Cardano',
+    //   explorer: ''
+    // },
     {
       code: 'DOGE',
       currenyName: t('currencyLang.doge'),
@@ -116,16 +116,16 @@ export const currenyListData = () => {
       icon: 'coin/doge.svg',
       chain: 'Dogecoin',
       explorer: ''
-    },
-    {
-      code: 'TON',
-      currenyName: t('currencyLang.ton'),
-      unit: 'TON',
-      currenyType: '10',
-      icon: 'coin/ton.svg',
-      chain: 'Toncoin',
-      explorer: ''
     }
+    // {
+    //   code: 'TON',
+    //   currenyName: t('currencyLang.ton'),
+    //   unit: 'TON',
+    //   currenyType: '10',
+    //   icon: 'coin/ton.svg',
+    //   chain: 'Toncoin',
+    //   explorer: ''
+    // }
     // {
     //   code: 'USD',
     //   currenyName: t('currencyLang.btc'),

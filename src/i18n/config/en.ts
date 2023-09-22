@@ -272,8 +272,8 @@ export default {
     '1': 'Betting',
     '2': 'Exchange Product',
     '3': 'Promotion',
-    '4': 'Administrator Charge',
-    '5': 'Administrator Deduction',
+    '4': 'System Charge',
+    '5': 'System Deduction',
     '6': 'Cancel Exchange'
   },
 
