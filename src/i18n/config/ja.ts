@@ -221,7 +221,7 @@ export default {
   providers: 'プロバイダー',
   allProviders: '全てのプロバイダー',
   sortBy: '分類',
-  polular: '流行',
+  polular: '人気順',
   promotions: 'プロモーション',
   aboutUs: '会社概要',
   selectLanguage: '言語選択',

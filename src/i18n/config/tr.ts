@@ -222,7 +222,7 @@ export default {
   providers: 'Sağlayıcılar',
   allProviders: 'Tüm Sağlayıcılar',
   sortBy: 'Sırala',
-  polular: 'Popüler',
+  polular: 'Popülerlik',
   promotions: 'Promosyonlar',
   aboutUs: 'Hakkımızda',
   selectLanguage: 'Dil Seçin',
