@@ -396,7 +396,7 @@ export default {
   hiddenYourBet: '당신의 베팅은 공개베팅다이나믹스나 베팅보기에 나타나지 않습니다.',
   startNow: '바로시작',
   // 이용약관 등 내용
-  withdrawStatus: { 1: '처리 중', 2: '성공', 3: '실패' },
+  withdrawStatus: { 1: '처리 중', 2: '확인됨', 3: '실패' },
   time: '시간',
   betAmount: '배팅 금액',
   support2: '지원',
@@ -533,6 +533,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: '반품',
 
   problem: {
     whatVip: '1.VIP 클럽이란 무엇인가요?',

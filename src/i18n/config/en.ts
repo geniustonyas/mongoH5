@@ -222,7 +222,7 @@ export default {
   providers: 'providers',
   allProviders: 'All Game Providers',
   sortBy: 'Sort by',
-  polular: 'Popularity',
+  polular: 'Popular',
   promotions: 'Promotions',
   aboutUs: 'About Us',
   selectLanguage: 'Select Language',
@@ -395,7 +395,7 @@ export default {
   enableVisible: 'Enable Ghost Mode',
   hiddenYourBet: 'Your bets will not appear on our public betting activity page',
   startNow: 'Play Now',
-  withdrawStatus: { 1: 'Processing', 2: 'Success', 3: 'Failure' },
+  withdrawStatus: { 1: 'Processing', 2: 'Confirmed', 3: 'Failure' },
   time: 'Time',
   betAmount: 'Bet Amount',
   support2: 'Support',
@@ -531,6 +531,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: 'Back',
 
   problem: {
     whatVip: 'What is the VIP Club?',

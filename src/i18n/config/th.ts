@@ -392,7 +392,7 @@ export default {
   enableVisible: 'เปิดใช้งานโหมดซ่อนตัว',
   hiddenYourBet: 'การเดิมพันของคุณจะไม่แสดงในการเดิมพันสาธารณะและการพรีวิวการเดิมพัน',
   startNow: 'เริ่มต้นเดี๋ยวนี้',
-  withdrawStatus: { 1: 'กำลังดำเนินการ', 2: 'สำเร็จ', 3: 'ล้มเหลว' },
+  withdrawStatus: { 1: 'กำลังดำเนินการ', 2: 'เสร็จสิ้น', 3: 'ล้มเหลว' },
   time: 'เวลา',
   betAmount: 'ยอดเดิมพัน',
   support2: 'สนับสนุน',
@@ -503,6 +503,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: 'กลับ',
 
   problem: {
     whatVip: '1. คลับ VIP คืออะไร?',

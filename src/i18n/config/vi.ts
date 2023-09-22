@@ -394,7 +394,7 @@ export default {
   enableVisible: 'Bật chế độ ẩn danh',
   hiddenYourBet: 'Các cược của bạn sẽ không xuất hiện trong dòng thời gian cược và xem trước cược công khai',
   startNow: 'Bắt đầu ngay',
-  withdrawStatus: { 1: 'Đang xử lý', 2: 'Thành công', 3: 'Thất bại' },
+  withdrawStatus: { 1: 'Đang xử lý', 2: 'Đã xác nhận', 3: 'Thất bại' },
   time: 'Thời gian',
   betAmount: 'Số tiền đặt cược',
   support2: 'Hỗ trợ',
@@ -533,6 +533,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: 'trở lại',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

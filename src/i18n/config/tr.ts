@@ -394,7 +394,7 @@ export default {
   enableVisible: 'Görünürlüğü Etkinleştir',
   hiddenYourBet: 'Bahsiniz, kamuya açık bahis akışında ve önizlemesinde görünmeyecektir',
   startNow: 'Şimdi Oyna',
-  withdrawStatus: { 1: 'İşleniyor', 2: 'Başarılı', 3: 'Başarısız' },
+  withdrawStatus: { 1: 'İşleniyor', 2: 'Onaylandı', 3: 'Başarısız' },
   time: 'Zaman',
   betAmount: 'Bahis Miktarı',
   support2: 'Destek',
@@ -532,6 +532,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: 'geri dönmek',
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',

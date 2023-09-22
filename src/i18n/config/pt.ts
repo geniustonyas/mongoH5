@@ -395,7 +395,7 @@ export default {
   hiddenYourBet: 'Suas apostas não aparecerão nas atividades públicas e visualizações de apostas',
   startNow: 'Iniciar Agora',
   // Termos e Conteúdos de HTML
-  withdrawStatus: { 1: 'Processando', 2: 'Sucesso', 3: 'Falha' },
+  withdrawStatus: { 1: 'Processando', 2: 'Confirmado', 3: 'Falha' },
   time: 'Tempo',
   betAmount: 'Valor da Aposta',
   support2: 'Suporte',
@@ -509,6 +509,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: 'Retornar',
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',

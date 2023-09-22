@@ -393,7 +393,7 @@ export default {
   enableVisible: 'Habilitar Modo Invisible',
   hiddenYourBet: 'Sus apuestas no aparecerán en las actividades públicas ni en las vistas previas de apuestas',
   startNow: 'Iniciar Ahora',
-  withdrawStatus: { 1: 'Procesando', 2: 'Éxito', 3: 'Fallo' },
+  withdrawStatus: { 1: 'Procesando', 2: 'Completado', 3: 'Fallo' },
   time: 'Tiempo',
   betAmount: 'Cantidad apostad',
   support2: 'Soporte',
@@ -531,6 +531,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: 'Devolver',
 
   problem: {
     whatVip: '1.¿Qué es el Club VIP?',

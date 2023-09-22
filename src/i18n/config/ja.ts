@@ -394,7 +394,7 @@ export default {
   enableVisible: '非表示設定を有効にする',
   hiddenYourBet: 'ベット金額を非表示にする',
   startNow: 'すぐスタート',
-  withdrawStatus: { 1: '処理中', 2: '成功', 3: '失敗' },
+  withdrawStatus: { 1: '処理中', 2: '完了', 3: '失敗' },
   time: '時間',
   betAmount: '賭け金',
   support2: 'サポート',
@@ -531,6 +531,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: '戻る',
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',

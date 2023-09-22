@@ -531,6 +531,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: '返回',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

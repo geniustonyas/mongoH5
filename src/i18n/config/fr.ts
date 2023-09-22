@@ -393,7 +393,7 @@ export default {
   enableVisible: 'Activer le Mode Invisible',
   hiddenYourBet: 'Vos paris ne seront pas visibles dans les flux publics de paris ni dans les aperçus de paris',
   startNow: 'Commencer Maintenant',
-  withdrawStatus: { 1: 'En cours de traitement', 2: 'Succès', 3: 'Échec' },
+  withdrawStatus: { 1: 'En cours de traitement', 2: 'Confirmé', 3: 'Échec' },
   time: 'Temps',
   betAmount: 'Montant misé',
   support2: 'Support',
@@ -532,6 +532,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: 'Retour',
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",

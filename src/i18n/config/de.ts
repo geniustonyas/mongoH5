@@ -392,7 +392,7 @@ export default {
   enableVisible: 'Ghost-Modus aktivieren',
   hiddenYourBet: 'Ihre Wetten werden nicht auf unserer öffentlichen Wettaktivitätsseite angezeigt',
   startNow: 'Jetzt spielen',
-  withdrawStatus: { 1: 'Verarbeitung', 2: 'Erfolg', 3: 'Fehlschlag' },
+  withdrawStatus: { 1: 'Verarbeitung', 2: 'Bestätigt', 3: 'Fehlschlag' },
   time: 'Zeit',
   betAmount: 'Einsatzbetrag',
   support2: 'Kundensupport',
@@ -530,6 +530,7 @@ export default {
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
+  back: 'zurückkehren',
 
   problem: {
     whatVip: '1.Was ist der VIP-Club?',
