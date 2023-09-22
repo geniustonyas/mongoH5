@@ -210,7 +210,7 @@ export default {
   sbSport: '沙巴体育',
   fbSport: 'FB体育',
   downloadApp: 'Download APP',
-  androidApple: 'Android and IOS',
+  androidApple: 'Android/IOS',
   globalPaymentSolutions: '全球支付解决方案',
   otherPayment: '其他主流支付方式',
   sportsBet: '体育投注',

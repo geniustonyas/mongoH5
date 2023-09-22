@@ -210,7 +210,7 @@ export default {
   sbSport: 'SBスポーツ',
   fbSport: 'FBスポーツ',
   downloadApp: 'Download APP',
-  androidApple: 'Android and IOS',
+  androidApple: 'Android/IOS',
   globalPaymentSolutions: 'グローバルお支払い方法',
   otherPayment: '他のお支払い方法',
   sportsBet: 'スポーツベット',
@@ -530,7 +530,7 @@ export default {
   ticketTimeError: '返程时间不能小于出行时间',
   countryHolder: '+86',
   numberHolder: '138xxxxxxxx',
-submitInfoSuccess: '您的信息提交成功',
+  submitInfoSuccess: '您的信息提交成功',
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',

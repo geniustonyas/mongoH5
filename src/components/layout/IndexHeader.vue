@@ -60,7 +60,7 @@
             <a>
               <label>+</label>
               <span>{{ Math.floor(parseFloat(userStore.userInfo?.balance) * 1000) / 1000 }}</span>
-              {{ userStore.userInfo?.defaultCurrencyCode == 'BTC' ? userStore.userInfo?.btcUnit?.currencyUnit : userStore.userInfo?.defaultCurrencyCode }}
+              {{ userStore.userInfo.defaultCurrencyCode }}
             </a>
           </div>
           <div v-if="userStore.userInfo.id" class="rb-r">

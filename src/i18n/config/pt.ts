@@ -211,7 +211,7 @@ export default {
   sbSport: 'Esportes SB',
   fbSport: 'Esportes FB',
   downloadApp: 'Download APP',
-  androidApple: 'Android and IOS',
+  androidApple: 'Android/IOS',
   globalPaymentSolutions: 'Soluções Globais de Pagamento',
   otherPayment: 'Outros Métodos de Pagamento',
   sportsBet: 'Apostas Esportivas',

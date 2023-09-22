@@ -151,7 +151,7 @@ let confirmPwd = ref('')
 let showConfirmPwd = ref(false)
 let sended = ref(false)
 let showloading = ref(false)
-let isAudit = ref(true)
+let isAudit = ref(false)
 let isAgree = ref(true)
 // dom元素
 let userNameDom = ref<HTMLInputElement | null>(null)
@@ -288,7 +288,7 @@ const handleReg = async () => {
     return false
   }
   if (!isAudit.value) {
-    showToast(t('tips.isAgree'))
+    showToast(t('tips.isAudit'))
     isAuditDom.value?.focus()
     return false
   }
