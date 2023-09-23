@@ -117,10 +117,10 @@ export default {
   currentPwd: '현재비밀번호',
   newPwd: '새비밀번호',
   confirmPwd: '비밀번호재확인',
-  changePwdLimit: '자금의 안전을 위해서, 비밀번호 수정후 24 시간동안 출금을 진행 할수 없습니다.',
+  changePwdLimit: '귀하의 자금 보안을 보장하기 위해 비밀번호를 변경한 후 24시간 동안 새로운 지갑 주소로 인출할 수 없습니다.',
   disabledGoogle: '구글인증을 사용 할수 없습니다.',
   activeGoogle: '구글인증을 이용,QR코드를 스캔하거나 코드를 입력해서 활성화 해 주세요.',
-  whatGoogleCode: '구글코드가 뭐죠?',
+  whatGoogleCode: 'Google 인증자란 무엇인가요?',
   typeCode: '코드입력',
   submitCode: '코드제출',
   keyValue: '핵심가치',
@@ -272,8 +272,8 @@ export default {
     '1': '베팅',
     '2': '물품교환',
     '3': '할인활동',
-    '4': '관리원추가',
-    '5': '관리원공제',
+    '4': '시스템 추가',
+    '5': '시스템 공제',
     '6': '교환취소'
   },
 
@@ -396,7 +396,7 @@ export default {
   hiddenYourBet: '당신의 베팅은 공개베팅다이나믹스나 베팅보기에 나타나지 않습니다.',
   startNow: '바로시작',
   // 이용약관 등 내용
-  withdrawStatus: { 1: '처리 중', 2: '확인됨', 3: '실패' },
+  withdrawStatus: { 1: '처리 중', 2: '확인됨', 3: '거부되었습니다' },
   time: '시간',
   betAmount: '배팅 금액',
   support2: '지원',
@@ -409,8 +409,8 @@ export default {
     2: '출금',
     3: '베팅',
     4: '결산',
-    5: '관리자 수수료',
-    6: '관리자 차감',
+    5: '시스템 입금',
+    6: '시스템 공제',
     7: '프로모션 선물',
     8: '환불',
     9: 'VIP 보상',
@@ -498,7 +498,7 @@ export default {
   view: '더 보기',
   oprate: '보기',
   remain: '남음',
-  directlyLogin: '직접 로그인',
+  directlyLogin: '또는 직접 로그인',
   fastDeposit: '빠른 입금',
   demoMode: '체험 모드',
   trueMode: '리얼머니 모드',
@@ -523,16 +523,16 @@ export default {
     4: '수백종의 베팅 옵션'
   },
 
-  pickDate: '选择日期',
-  inputGotime: '请选择出行时间',
-  inputBacktime: '请选择返程时间',
-  inputInTime: '请选择入住时间',
-  inputOutTime: '请选择退房时间',
-  hotelTimeError: '退房时间不能小于入住时间',
-  ticketTimeError: '返程时间不能小于出行时间',
-  countryHolder: '+86',
-  numberHolder: '138xxxxxxxx',
-  submitInfoSuccess: '您的信息提交成功',
+  pickDate: '날짜 선택',
+  inputGotime: '출발 시간을 선택해주세요',
+  inputBacktime: '귀국 시간을 선택해주세요',
+  inputInTime: '체크인 시간을 선택해주세요',
+  inputOutTime: '체크아웃 시간을 선택해주세요',
+  hotelTimeError: '체크아웃 시간은 체크인 시간보다 빠를 수 없습니다',
+  ticketTimeError: '귀국 시간은 출발 시간보다 빠를 수 없습니다',
+  countryHolder: '국가 코드',
+  numberHolder: '전화 번호',
+  submitInfoSuccess: '귀하의 정보가 성공적으로 제출되었습니다',
   back: '반품',
 
   problem: {
@@ -663,7 +663,7 @@ export default {
     1031: '사용 가능한 포인트가 부족합니다',
     1101: '사용 가능한 잔액이 부족합니다',
     1032: '자금의 보안을 보장하기 위해 비밀번호를 변경한 후 24시간 동안 인출이 불가능합니다.',
-    1033: '邮箱验证码错误'
+    1033: '이메일 확인 코드가 올바르지 않습니다'
   },
 
   // 条款协议等内容
