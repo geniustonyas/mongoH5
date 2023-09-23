@@ -1,13 +1,17 @@
 #custom
 /seabetPC
 /seabetH5
+/seabetH5-test
+/seabetPC-test
 /seabet
 /dist
 /.history
 /.vscode
 seabet.zip
 seabetPC.zip
-seabetH5.zip
+seabetPC.zip
+seabetH5-test.zip
+seabetH5-test.zip
 dist.zip
 components.d.ts
 # Logs
