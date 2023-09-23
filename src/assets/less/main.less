@@ -1383,13 +1383,20 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             }
         }
     }
-    .rb-promo-list {
-        li { margin-bottom: 1rem; padding: 1.5rem; .radius(1rem); .bg(var(--color-menu)); .flex();.flex-pack-justify(); .flex-align();
-            .l-l {.flex-x(0 0 5rem); width: 5rem;
-                i { font-size: 4.8rem; }
+ .rb-promo-list { .flex(); .flex-v();
+        li {  margin-bottom: 1.6rem; }
+        .rewards-card { .bg(var(--color-menu)); .flex(); .flex-v(); .radius(.5rem); overflow: hidden;
+            .rc-t { padding: 1rem; .flex();
+                .rct-l {.flex-x(1);
+                    img { width: 100%; }
+                }
+                .rct-r {.flex-x(2); padding-left: 1rem;
+                    h3 { font-size: 1.6rem; color: var(--color-white); margin-bottom: 1rem; }
+                    p { font-size: 1.3rem; }
+                }
             }
-            .l-r {.flex-x(); padding-left: 1rem; text-align: right;
-                h3 { color: var(--color-white); font-size: 1.5rem; margin-bottom: 1rem; }
+            .rc-b { padding: 1.6rem; text-align: right; .bg(rgba(255,255,255,.1));
+                .btn { padding: 0 3rem; }
             }
         }
     }

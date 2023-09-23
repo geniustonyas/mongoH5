@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15188688",
+      "name": "youtube",
+      "font_class": "youtube",
+      "unicode": "e73b",
+      "unicode_decimal": 59195
+    },
+    {
+      "icon_id": "34719004",
+      "name": "TikTok",
+      "font_class": "tiktok",
+      "unicode": "e6cb",
+      "unicode_decimal": 59083
+    },
+    {
+      "icon_id": "7239513",
+      "name": "instagram",
+      "font_class": "instagram",
+      "unicode": "e6fc",
+      "unicode_decimal": 59132
+    },
+    {
+      "icon_id": "18528454",
+      "name": "资源 6",
+      "font_class": "vip3",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "30948332",
+      "name": "business-icon-buyers-club",
+      "font_class": "julebu1",
+      "unicode": "f347",
+      "unicode_decimal": 62279
+    },
+    {
+      "icon_id": "10896231",
+      "name": "俱乐部",
+      "font_class": "julebu",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
       "icon_id": "7008906",
       "name": "collection_fill",
       "font_class": "shoucang_fill",

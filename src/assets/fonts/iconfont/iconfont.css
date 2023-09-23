@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4109944 */
-  src: url('iconfont.woff2?t=1695317434495') format('woff2'),
-       url('iconfont.woff?t=1695317434495') format('woff'),
-       url('iconfont.ttf?t=1695317434495') format('truetype');
+  src: url('iconfont.woff2?t=1695459535338') format('woff2'),
+       url('iconfont.woff?t=1695459535338') format('woff'),
+       url('iconfont.ttf?t=1695459535338') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,30 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-youtube:before {
+  content: "\e73b";
+}
+
+.icon-tiktok:before {
+  content: "\e6cb";
+}
+
+.icon-instagram:before {
+  content: "\e6fc";
+}
+
+.icon-vip3:before {
+  content: "\e627";
+}
+
+.icon-julebu1:before {
+  content: "\f347";
+}
+
+.icon-julebu:before {
+  content: "\e643";
 }
 
 .icon-shoucang_fill:before {
