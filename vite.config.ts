@@ -2,11 +2,19 @@ import { type ConfigEnv, type UserConfigExport, loadEnv } from 'vite'
 import { resolve } from 'path'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import vue from '@vitejs/plugin-vue'
+// 自动压缩
+import compresssionBuild from 'rollup-plugin-compression'
+import type { ICompressionOptions } from 'rollup-plugin-compression'
 
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default (configEnv: ConfigEnv): UserConfigExport => {
   const viteEnv = loadEnv(configEnv.mode, process.cwd()) as ImportMetaEnv
-  const { VITE_PUBLIC_PATH, VITE_APP_SITE_NAME } = viteEnv
+  const { VITE_PUBLIC_PATH, VITE_APP_SITE_NAME, VITE_BUILD_DIR } = viteEnv
+  const option: ICompressionOptions = {
+    sourceName: VITE_BUILD_DIR,
+    type: 'zip',
+    targetName: VITE_BUILD_DIR
+  }
   return {
     // define: {
     //   'process.env': {}
@@ -52,7 +60,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       // }
     },
     build: {
-      outDir: 'seabetH5',
+      outDir: VITE_BUILD_DIR,
       /** 消除打包大小超过 500kb 警告 */
       chunkSizeWarningLimit: 2000,
       /** Vite 2.6.x 以上需要配置 minify: 'terser', terserOptions 才能生效 */
@@ -78,6 +86,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       // Components({
       //   resolvers: [VantResolver()]
       // }),
+      compresssionBuild(option),
       createHtmlPlugin({
         inject: {
           data: {

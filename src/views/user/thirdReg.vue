@@ -3,7 +3,6 @@
     <UserHeader :route-name="'index'" />
     <main class="main">
       <div class="loginbox">
-        <!-- <UserPartner /> -->
         <div class="l-signin third-reg">
           <h1>{{ t('thirdRegPage.beFinished') }}</h1>
           <h3>{{ t('thirdRegPage.fixInfo') }}</h3>

@@ -3,7 +3,6 @@
     <UserHeader />
     <main class="main">
       <div class="loginbox">
-        <UserPartner />
         <div class="custom-form">
           <div class="cf-row">
             <div class="cr-label">
@@ -77,7 +76,6 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
-import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 // import { useUserStore } from '@/store/modules/user'
