@@ -34,36 +34,6 @@
               <input v-model.trim="regForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" :placeholder="t('tips.inputEmailcapcha')" />
             </div>
           </div>
-          <!-- 生日 -->
-          <!-- <div class="cf-row">
-            <div class="cr-label">
-              <span>{{ t('birthday') }}</span>
-            </div>
-            <div class="cr-input group">
-              <select class="form-control" v-model="day" ref="dayDom">
-                <option v-for="item in 31" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
-              </select>
-              <select class="form-control" v-model="month" ref="monthDom">
-                <option v-for="item in 12" :key="item" :value="item < 10 ? '0' + item : item">{{ item < 10 ? '0' + item : item }}</option>
-              </select>
-              <select class="form-control" v-model="year" ref="yearDom">
-                <option v-for="item in getYearList()" :key="item" :value="item">{{ item }}</option>
-              </select>
-            </div>
-          </div> -->
-          <!-- 电话号码 -->
-          <!-- <div class="cf-row">
-            <div class="cr-label">
-              <span>{{ t('telephone') }}</span>
-            </div>
-            <div class="cr-input group g-tel">
-              <select v-model="regForm.CountryCode" ref="countryDom" class="form-control">
-                <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
-              </select>
-              <input v-model="regForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" :placeholder="t('regPage.holderTelephone')" />
-            </div>
-          </div> -->
-
           <div class="cf-row">
             <div class="cr-mark cm-checkbox">
               <input v-model="isAudit" ref="isAuditDom" type="checkbox" />

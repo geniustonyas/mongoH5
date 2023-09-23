@@ -206,7 +206,6 @@ window.addEventListener('message', async (event) => {
 const handleThirdLogin = async (data: thirdData, sign: string) => {
   const isExistResp = await awaitWraper(checkThirdUserApi(data))
   const isExist = get(isExistResp, '[1].data', false)
-  console.log(isExist)
   loginData.Sign = sign
   Object.assign(loginData, data)
   if (isExist) {
