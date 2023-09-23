@@ -16,16 +16,25 @@
         <div class="mb-conts">
           <div v-show="tab == 'activities'" class="mc-box">
             <div class="rewards-box">
-              <ul v-if="promoCodeList.length > 0" class="rb-promo-list">
+              <ul v-if="promoCodeList.length > 0" class="rb-promo-list"> 
                 <li v-for="(item, index) of promoCodeList" :key="index">
-                  <div class="l-l">
-                    <img v-lazy="`https://seabet.imgix.net/${item.image}?auto=compress,format&w=200&h=160&q=50&dpr=2`" />
-                  </div>
-                  <div class="l-r">
-                    <h3>{{ item.name }}</h3>
-                    <a class="btn btn-primary" @click="claimPromo(item)">{{ t('applyNow') }}</a>
+                  <div class="rewards-card">
+                    <div class="rc-t">
+                      <div class="rct-l">
+                        <img :src="`https://seabet.imgix.net/${item.image}?auto=compress,format&w=200&h=160&q=50&dpr=2`" />
+                      </div>
+                      <div class="rct-r">
+                        <h3>{{ item.name }}</h3>
+                        <p>{{ item.intro }}</p>
+                      </div>
+                    </div>
+                    <div class="rc-b">
+                      <a class="btn btn-primary" @click="claimPromo(item)">{{ t('applyNow') }}</a>
+                    </div>
                   </div>
                 </li>
+
+
               </ul>
             </div>
           </div>
