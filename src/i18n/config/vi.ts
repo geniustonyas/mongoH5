@@ -662,7 +662,7 @@ export default {
     1031: 'Điểm có sẵn không đủ',
     1101: 'Số dư có sẵn không đủ',
     1032: 'Để đảm bảo an toàn cho quỹ của bạn, sau khi bạn thay đổi mật khẩu, bạn sẽ không thể thực hiện rút tiền trong vòng 24 giờ',
-    1033: '邮箱验证码错误'
+    1033: 'Mã xác minh email không chính xác'
   },
 
   // 条款协议等内容
