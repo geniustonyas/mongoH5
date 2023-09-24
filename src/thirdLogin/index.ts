@@ -3,7 +3,8 @@ import axios from 'axios'
 import { thirdData } from '@/api/user/types'
 import { checkThirdUserApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
 import { awaitWraper } from '@/utils/index'
-import { useUserStore } from '@/store/modules/user'
+import { useUserStoreHook } from '@/store/modules/user'
+import { useAppStoreHook } from '@/store/modules/app'
 import router from '@/router'
 
 import facebookWebLogin from './plugin/facebookWebLogin'
@@ -15,6 +16,8 @@ import { showToast } from 'vant'
 
 import i18n from '@/i18n'
 const { t } = i18n.global
+const userStore = useUserStoreHook()
+const appStore = useAppStoreHook()
 
 const BOT_ID = '6360341967'
 // 谷歌app信息
@@ -37,7 +40,6 @@ const loginData = <thirdData>{
   Sign: ''
 }
 let openWindow: any = null
-const userStore = useUserStore()
 
 export const googleLogin = () => {
   googleTokenLogin({
@@ -46,7 +48,7 @@ export const googleLogin = () => {
     googleValidateApi({ access_token: response.access_token })
       .then((resp) => {
         if (resp.data?.userInfo?.id) {
-          handleThirdLogin({ ThirdPartyType: '4', ThirdPartyId: resp.data?.userInfo?.id, ThirdPartyName: 'Google' }, resp.data.sign)
+          handleThirdLogin({ ThirdPartyType: '4', ThirdPartyId: resp.data?.userInfo?.id, ThirdPartyName: 'Google' }, resp.data.sign, resp.data?.userInfo?.email)
         } else {
           showToast(t('tips.invalidThirdUser'))
         }
@@ -203,7 +205,7 @@ window.addEventListener('message', async (event) => {
 })
 
 // 用户存在则直接登录， 否则跳转注册
-const handleThirdLogin = async (data: thirdData, sign: string) => {
+const handleThirdLogin = async (data: thirdData, sign: string, email = '') => {
   const isExistResp = await awaitWraper(checkThirdUserApi(data))
   const isExist = get(isExistResp, '[1].data', false)
   loginData.Sign = sign
@@ -216,7 +218,11 @@ const handleThirdLogin = async (data: thirdData, sign: string) => {
       router.push({ name: 'index' })
     }
   } else {
-    // 跳转到第三方注册补充资料
-    router.push({ name: 'thirdReg', query: { ThirdPartyType: loginData.ThirdPartyType, ThirdPartyId: loginData.ThirdPartyId, ThirdPartyName: loginData.ThirdPartyName, Sign: loginData.Sign } })
+    // 如果是google登录则设置邮箱
+    if (loginData.ThirdPartyType == '4') {
+      appStore.googleEmail = email
+    }
+    appStore.thirdData = loginData
+    router.push({ name: 'thirdReg' })
   }
 }

@@ -1,7 +1,9 @@
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import { getConfigApi } from '@/api/app/index'
 import store from '@/store'
+import { thirdData } from '@/api/user/types'
+import { cloneDeep } from 'lodash-es'
 
 export const useAppStore = defineStore('app', () => {
   const loading = ref(false)
@@ -9,6 +11,14 @@ export const useAppStore = defineStore('app', () => {
   const chat = ref('')
   const email = ref('')
   const cdnurl = ref('')
+  const googleEmail = ref('')
+  const thirdData = <thirdData>reactive({
+    ThirdPartyType: '',
+    ThirdPartyId: '',
+    ThirdPartyName: '',
+    Sign: ''
+  })
+  const defaultThirdData = cloneDeep<thirdData>(thirdData)
 
   // 获取系统配置
   const getConfig = () => {
@@ -26,13 +36,20 @@ export const useAppStore = defineStore('app', () => {
     })
   }
 
+  const resetThirdData = () => {
+    Object.assign(thirdData, defaultThirdData)
+  }
+
   return {
     loading,
     showSideBar,
     chat,
     email,
     cdnurl,
-    getConfig
+    googleEmail,
+    thirdData,
+    getConfig,
+    resetThirdData
   }
 })
 export function useAppStoreHook() {

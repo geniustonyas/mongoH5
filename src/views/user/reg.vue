@@ -33,8 +33,7 @@
             </div>
             <div class="cr-input">
               <input v-model.trim="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" autocomplete="off" />
-              <!-- <Loading v-show="showloading" size="20px" class="captcha" /> -->
-              <span v-show="!showloading" :class="sended || regForm.Email.length == 0 ? 'captcha sended' : 'captcha'" @click="sendEmail()">{{ sended ? t('sended') : t('sendEmail') }}</span>
+              <span class="captcha" @click="sendEmail()">{{ regCount === 0 ? t('sendEmail') : regCount }}</span>
             </div>
           </div>
           <div class="cf-row">
@@ -138,10 +137,15 @@ import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/in
 
 import { useI18n } from 'vue-i18n'
 import { showToast, Form } from 'vant'
+import { onMounted } from 'vue'
 
 const router = useRouter()
 const userStore = useUserStore()
 const { t } = useI18n()
+
+// 发送邮件倒计时60秒
+let regCount = ref(0)
+const regTimer = ref(0)
 
 // 是否显示第三方登录框
 let showPwd = ref(false)
@@ -149,7 +153,6 @@ let showThirdLoginBox = ref(false)
 // 临时存储表单值
 let confirmPwd = ref('')
 let showConfirmPwd = ref(false)
-let sended = ref(false)
 let showloading = ref(false)
 let isAudit = ref(false)
 let isAgree = ref(true)
@@ -181,7 +184,7 @@ const setShowThirdLoginBox = () => {
 
 // 发送验证码
 const sendEmail = async () => {
-  if (sended.value) {
+  if (regCount.value > 0) {
     return false
   }
   if (!isEmail(regForm.Email)) {
@@ -196,9 +199,17 @@ const sendEmail = async () => {
   showloading.value = true
   sendEmailApi({ EmailCheckCodeType: 0, Email: regForm.Email })
     .then((resp) => {
-      sended.value = true
       showloading.value = false
       showToast(t('tips.sendSuccess'))
+
+      regCount.value = 60
+      regTimer.value = window.setInterval(() => {
+        regCount.value--
+        localStorage.setItem('regCount', regCount.value.toString())
+        if (regCount.value == 0) {
+          clearInterval(regTimer.value)
+        }
+      }, 1000)
       console.log(resp)
     })
     .catch((error) => {
@@ -338,6 +349,23 @@ const handleReg = async () => {
     return false
   }
 }
+
+onMounted(() => {
+  // 设置点击发送邮件后倒计时60秒
+  const regCountStorage = localStorage.getItem('regCount')
+  if (regCountStorage && parseInt(regCountStorage) > 0) {
+    regCount.value = parseInt(regCountStorage)
+  }
+  if (regCount.value > 0) {
+    regTimer.value = window.setInterval(() => {
+      regCount.value--
+      localStorage.setItem('regCount', regCount.value.toString())
+      if (regCount.value == 0) {
+        clearInterval(regTimer.value)
+      }
+    }, 1000)
+  }
+})
 
 facebookInit()
 twitterInit()

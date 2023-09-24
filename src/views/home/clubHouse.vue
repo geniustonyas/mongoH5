@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="c_points">
-            <b>{{ currentData.totalBetAmount }}<em>|</em>{{ nextSubItem.requiredTotalBetAmount }}</b>
+            <b>{{ currentData.totalBetAmount }}<em>|</em>{{ nextItem.requiredTotalBetAmount }}</b>
             {{ t('currentPoints') }}
           </div>
           <div class="c-grade">

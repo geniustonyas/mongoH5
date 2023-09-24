@@ -22,11 +22,11 @@
             </div>
             <div class="cr-input">
               <input v-model.trim="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" />
-              <Loading v-show="showloading" size="20px" class="captcha" />
-              <span v-show="!showloading" :class="sended || regForm.Email.length == 0 ? 'captcha sended' : 'captcha'" @click="sendEmail()">{{ sended ? t('sended') : t('sendEmail') }}</span>
+              <span v-if="!isGoogle" class="captcha" @click="sendEmail()">{{ thirdRegCount === 0 ? t('sendEmail') : thirdRegCount }}</span>
             </div>
           </div>
-          <div class="cf-row">
+          <!-- 邮箱验证码 -->
+          <div v-if="!isGoogle" class="cf-row">
             <div class="cr-label">
               <span>{{ t('emailCaptcha') }}</span>
             </div>
@@ -67,16 +67,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, reactive, onMounted, nextTick } from 'vue'
+import { useRouter } from 'vue-router'
 
-// import UserPartner from '@/components/layout/UserPartner.vue'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { awaitWraper } from '@/utils'
+import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
-// import { getYearList } from '@/utils'
-// import { countryCode } from '@/utils/countryCode'
 import { isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, thirdRegApi, sendEmailApi } from '@/api/user'
 
@@ -84,23 +82,23 @@ import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
-const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
 
-if (!route.query.ThirdPartyType || !route.query.ThirdPartyId || !route.query.ThirdPartyName || !route.query.Sign) {
-  showToast('参数错误')
-  router.back()
-}
 const userStore = useUserStore()
+const appStore = useAppStore()
 
-// 临时存储表单值
-let sended = ref(false)
+const isGoogle = ref(false)
+
+// 发送邮件倒计时60秒
+let thirdRegCount = ref(0)
+const thirdRegTimer = ref(0)
+
 let showloading = ref(false)
 // let day = ref<string | number>('')
 // let month = ref<string | number>('')
 // let year = ref<string | number>('')
-let isAudit = ref(true)
+let isAudit = ref(false)
 let isAgree = ref(true)
 
 // dom元素
@@ -138,7 +136,7 @@ let loginForm = {
 
 // 发送验证码
 const sendEmail = async () => {
-  if (sended.value) {
+  if (thirdRegCount.value > 0) {
     return false
   }
   if (!isEmail(regForm.Email)) {
@@ -153,9 +151,19 @@ const sendEmail = async () => {
   showloading.value = true
   sendEmailApi({ EmailCheckCodeType: 0, Email: regForm.Email })
     .then((resp) => {
-      sended.value = true
       showloading.value = false
       showToast(t('tips.sendSuccess'))
+
+      // 倒计时
+      thirdRegCount.value = 60
+      thirdRegTimer.value = window.setInterval(() => {
+        thirdRegCount.value--
+        localStorage.setItem('thirdRegCount', thirdRegCount.value.toString())
+        if (thirdRegCount.value == 0) {
+          clearInterval(thirdRegTimer.value)
+        }
+      }, 1000)
+
       console.log(resp)
     })
     .catch((error) => {
@@ -219,46 +227,34 @@ const handleReg = async () => {
     userNameDom.value?.focus()
     return false
   }
-  if (regForm.Email == '') {
-    showToast(t('tips.inputEmail'))
-    emailDom.value?.focus()
+
+  if (!isGoogle.value) {
+    if (regForm.Email == '') {
+      showToast(t('tips.inputEmail'))
+      emailDom.value?.focus()
+      return false
+    }
+    if (!isEmail(regForm.Email)) {
+      showToast(t('tips.isEmail'))
+      emailDom.value?.focus()
+      return false
+    }
+    if (regForm.VerificationCode == '') {
+      showToast(t('tips.inputEmailcapcha'))
+      verificationCodeDom.value?.focus()
+      return false
+    }
+  }
+  if (!isAudit.value) {
+    showToast(t('tips.isAudit'))
+    isAuditDom.value?.focus()
     return false
   }
-  if (!isEmail(regForm.Email)) {
-    showToast(t('tips.isEmail'))
-    emailDom.value?.focus()
+  if (!isAgree.value) {
+    showToast(t('tips.isAgree'))
+    isAgreeDom.value?.focus()
     return false
   }
-  if (regForm.VerificationCode == '') {
-    showToast(t('tips.inputEmailcapcha'))
-    verificationCodeDom.value?.focus()
-    return false
-  }
-  // if (day.value == '') {
-  //   showToast(t('tips.inputDay'))
-  //   dayDom.value?.focus()
-  //   return false
-  // }
-  // if (month.value == '') {
-  //   showToast(t('tips.inputMonth'))
-  //   monthDom.value?.focus()
-  //   return false
-  // }
-  // if (year.value == '') {
-  //   showToast(t('tips.inputYear'))
-  //   yearDom.value?.focus()
-  //   return false
-  // }
-  // if (regForm.CountryCode == '') {
-  //   showToast(t('tips.inputCountryCode'))
-  //   countryDom.value?.focus()
-  //   return false
-  // }
-  // if (regForm.PhoneNumber == '') {
-  //   showToast(t('tips.inputphoneNumber'))
-  //   phoneDom.value?.focus()
-  //   return false
-  // }
 
   const isExistUser = await checkUserExist()
   if (isExistUser) {
@@ -269,8 +265,8 @@ const handleReg = async () => {
   if (isExistEmail) {
     return false
   }
-  Object.assign(regForm, route.query)
-  Object.assign(loginForm, route.query)
+  Object.assign(regForm, appStore.thirdData)
+  Object.assign(loginForm, appStore.thirdData)
   // regForm.DateOfBirth = `${year.value}-${month.value}-${day.value}`
   const regResult = await awaitWraper(thirdRegApi(regForm))
   if (regResult[0]) {
@@ -282,6 +278,7 @@ const handleReg = async () => {
       .then(() => {
         showToast(t('tips.regSuccess'))
         router.push({ name: 'index' })
+        appStore.resetThirdData()
         return false
       })
       .catch((error) => {
@@ -292,6 +289,39 @@ const handleReg = async () => {
       })
   }
 }
+
+onMounted(() => {
+  isGoogle.value = appStore.thirdData.ThirdPartyType == '4' && appStore.googleEmail != ''
+  // 如果没有参数， 则跳转回登录页
+  if (appStore.thirdData.ThirdPartyType == '' || appStore.thirdData.ThirdPartyId == '' || appStore.thirdData.ThirdPartyName == '' || appStore.thirdData.Sign == '') {
+    showToast(t('errorCodes.1005'))
+    router.back()
+  }
+
+  // 如果是google登录，则设置表单邮箱为google邮箱，并且禁用邮箱输入框
+  if (appStore.thirdData.ThirdPartyType == '4') {
+    regForm.Email = appStore.googleEmail
+    nextTick(() => {
+      emailDom.value?.setAttribute('disabled', 'disabled')
+      userNameDom.value?.focus()
+    })
+  }
+
+  // 设置点击发送邮件后倒计时60秒
+  const regCountStorage = localStorage.getItem('thirdRegCount')
+  if (regCountStorage && parseInt(regCountStorage) > 0) {
+    thirdRegCount.value = parseInt(regCountStorage)
+  }
+  if (thirdRegCount.value > 0) {
+    thirdRegTimer.value = window.setInterval(() => {
+      thirdRegCount.value--
+      localStorage.setItem('thirdRegCount', thirdRegCount.value.toString())
+      if (thirdRegCount.value == 0) {
+        clearInterval(thirdRegTimer.value)
+      }
+    }, 1000)
+  }
+})
 </script>
 <style lang="less">
 .st0 {
