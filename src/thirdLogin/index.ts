@@ -100,28 +100,30 @@ export const twitterInit = () => {
 }
 
 export const twitterLogin = () => {
-  hello('twitter').login()
-  // Listen to signin requests
-  hello.on('auth.login', function (resp: any) {
-    // Get Profile
-    hello(resp.network)
-      .api('/me')
-      .then(function (userInfo: any) {
-        if (userInfo.id) {
-          twitterValidateApi({ userId: userInfo.id })
-            .then((resp) => {
-              if (resp.data.ischecked) {
-                handleThirdLogin({ ThirdPartyType: '3', ThirdPartyId: userInfo.id, ThirdPartyName: 'Twitter' }, resp.data.sign)
-              } else {
-                showToast(t('tips.invalidThirdUser'))
-              }
-            })
-            .catch((error) => {
-              console.log(error)
-            })
-        }
-      })
-  })
+  const url = import.meta.env.VITE_THIRD_API + '/auth/twitter'
+  openWindow = window.open(`${url}`, '', 'width=500,height=700,top=0,left=0,titlebar=no, menubar=no, scrollbars=yes, resizable=yes, status=yes, toolbar=no, location=yes')
+  // hello('twitter').login()
+  // // Listen to signin requests
+  // hello.on('auth.login', function (resp: any) {
+  //   // Get Profile
+  //   hello(resp.network)
+  //     .api('/me')
+  //     .then(function (userInfo: any) {
+  //       if (userInfo.id) {
+  //         twitterValidateApi({ userId: userInfo.id })
+  //           .then((resp) => {
+  //             if (resp.data.ischecked) {
+  //               handleThirdLogin({ ThirdPartyType: '3', ThirdPartyId: userInfo.id, ThirdPartyName: 'Twitter' }, resp.data.sign)
+  //             } else {
+  //               showToast(t('tips.invalidThirdUser'))
+  //             }
+  //           })
+  //           .catch((error) => {
+  //             console.log(error)
+  //           })
+  //       }
+  //     })
+  // })
 }
 
 export const telegramLogin = () => {
