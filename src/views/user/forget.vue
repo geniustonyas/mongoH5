@@ -11,7 +11,7 @@
             <div class="cr-input">
               <input v-model.trim="resetForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" />
               <!-- <Loading v-show="showloading" size="20px" class="captcha" /> -->
-              <span v-show="!showloading" :class="sended || resetForm.Email.length == 0 ? 'captcha sended' : 'captcha'" @click="sendEmail()">{{ sended ? t('sended') : t('sendEmail') }}</span>
+              <span class="captcha" @click="sendEmail()">{{ forgetCount === 0 ? t('sendEmail') : forgetCount }}</span>
             </div>
           </div>
           <div class="cf-row">
@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 import UserHeader from '@/components/layout/UserHeader.vue'
@@ -90,11 +90,14 @@ const router = useRouter()
 // const userStore = useUserStore()
 const { t } = useI18n()
 
+// 发送邮件倒计时60秒
+let forgetCount = ref(0)
+const forgetTimer = ref(0)
+
 // 临时存储表单值
 let showPwd = ref(false)
 let confirmPwd = ref('')
 let showConfirmPwd = ref(false)
-let sended = ref(false)
 let showloading = ref(false)
 
 let resetForm = reactive({
@@ -109,7 +112,7 @@ let confirmPwdDom = ref<HTMLInputElement | null>(null)
 
 // 发送验证码
 const sendEmail = async () => {
-  if (sended.value) {
+  if (forgetCount.value > 0) {
     return false
   }
   if (!isEmail(resetForm.Email)) {
@@ -120,14 +123,23 @@ const sendEmail = async () => {
   const isExistEmail = await checkEmailApi({ Keyword: resetForm.Email, noLoading: true })
   if (!isExistEmail.data) {
     showToast(t('tips.emailNotExist'))
+    emailDom.value?.focus()
     return false
   }
   showloading.value = true
   sendEmailApi({ EmailCheckCodeType: 1, Email: resetForm.Email })
     .then((resp) => {
-      sended.value = true
       showloading.value = false
       showToast(t('tips.sendSuccess'))
+      forgetCount.value = 60
+      forgetTimer.value = window.setInterval(() => {
+        forgetCount.value--
+        localStorage.setItem('forgetCount', forgetCount.value.toString())
+        if (forgetCount.value == 0) {
+          clearInterval(forgetTimer.value)
+        }
+      }, 1000)
+
       console.log(resp)
     })
     .catch((error) => {
@@ -176,4 +188,21 @@ const resetPassword = () => {
       return false
     })
 }
+
+onMounted(() => {
+  // 设置点击发送邮件后倒计时60秒
+  const regCountStorage = localStorage.getItem('forgetCount')
+  if (regCountStorage && parseInt(regCountStorage) > 0) {
+    forgetCount.value = parseInt(regCountStorage)
+  }
+  if (forgetCount.value > 0) {
+    forgetTimer.value = window.setInterval(() => {
+      forgetCount.value--
+      localStorage.setItem('forgetCount', forgetCount.value.toString())
+      if (forgetCount.value == 0) {
+        clearInterval(forgetTimer.value)
+      }
+    }, 1000)
+  }
+})
 </script>

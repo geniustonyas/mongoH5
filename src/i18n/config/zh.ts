@@ -394,7 +394,7 @@ export default {
   enableVisible: '启用隐身模式',
   hiddenYourBet: '您的投注不会出现在公开投注动态和投注预览中',
   startNow: '立即开始',
-  withdrawStatus: { 1: '处理中', 2: '成功', 3: '失败' },
+  withdrawStatus: { 1: '处理中', 2: '已确认', 3: '已拒绝' },
   time: '时间',
   betAmount: '投注金额',
   support2: '支持',
