@@ -668,13 +668,13 @@ export default {
   // 条款协议等内容
   html: {
     // html标题
-    vipTitle: 'VIP Club',
-    rulesTitle: 'Rules & Terms ',
-    responsibleTitle: 'Responsible Gambling',
-    amlTitle: 'AML Policy',
-    selfExclusionTitle: 'Self Exclusion',
-    privacyTitle: 'Privacy Policy',
-    fairnessTitle: 'Fairness',
+    vipTitle: 'คลับ VIP',
+    rulesTitle: 'กฎและเงื่อนไข',
+    responsibleTitle: 'การเล่นเกมที่รับผิดชอบ',
+    amlTitle: 'นโยบาย AML',
+    selfExclusionTitle: 'การยกเว้นตัวเอง',
+    privacyTitle: 'นโยบายความเป็นส่วนตัว',
+    fairnessTitle: 'ความเที่ยงตรง',
 
     // html内容
     vipContent: ` <div class="vip-clubhouse-box">
