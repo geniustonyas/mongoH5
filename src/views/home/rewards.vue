@@ -16,7 +16,7 @@
         <div class="mb-conts">
           <div v-show="tab == 'activities'" class="mc-box">
             <div class="rewards-box">
-              <ul v-if="promoCodeList.length > 0" class="rb-promo-list"> 
+              <ul v-if="promoCodeList.length > 0" class="rb-promo-list">
                 <li v-for="(item, index) of promoCodeList" :key="index">
                   <div class="rewards-card">
                     <div class="rc-t">
@@ -33,8 +33,6 @@
                     </div>
                   </div>
                 </li>
-
-
               </ul>
             </div>
           </div>

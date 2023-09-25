@@ -769,873 +769,869 @@ export default {
                   </div>`,
 
     rulesContent: `<div>
-                    <h2>Terms and Conditions</h2>
-                    <h3>1. SEABET.IO</h3>
-                    <h3>2. IMPORTANT NOTICE</h3>
-                    <p><b>2.1 </b>BY REGISTERING ON WWW.SEABET.IO (THE “WEBSITE”), YOU ENTER INTO A CONTRACTED, AND AGREE TO BE BOUND BY: </p>
-                    <p>(I) THESE TERMS AND CONDITIONS; </p>
-                    <p>(II) OUR PRIVACY POLICY; </p>
-                    <p>(III) OUR COOKIES POLICY AND </p>
-                    <p>(IV) THE RULES APPLICABLE TO OUR BETTING OR GAMING PRODUCTS AS FURTHER REFERENCED IN THESE TERMS AND CONDITIONS (“TERMS AND CONDITIONS” OR “AGREEMENT”), AND THE BETTING AND/OR GAMING SPECIFIC RULES, AND ARE DEEMED TO HAVE ACCEPTED AND UNDERSTOOD ALL THE TERMS.</p>
+                        <h2>ข้อกําหนดและเงื่อนไข</h2>
+                        <h3>1. ซีเบท ไอโอ</h3>
+                        <h3>2. ประกาศสําคัญ</h3>
+                        <p><b>2.1</b> โดยการลงทะเบียนบน WWW.SEABET.IO  ("เว็บไซต์") คุณทําสัญญาและตกลงที่จะผูกพันโดย: </p>
+                        <p>(I) ข้อกําหนดและเงื่อนไขเหล่านี้ </p>
+                        <p>(II) นโยบายความเป็นส่วนตัวของเรา </p>
+                        <p>(III) นโยบายคุกกี้ของเราและ </p>
+                        <p>(IV) กฎที่บังคับใช้กับผลิตภัณฑ์การเดิมพันหรือเกมของเราตามที่อ้างถึงเพิ่มเติมในข้อกําหนดและเงื่อนไขเหล่านี้ ("ข้อกําหนดและเงื่อนไข" หรือ "ข้อตกลง") และกฎเฉพาะการเดิมพันและ / หรือการเล่นเกมและถือว่าได้ยอมรับและเข้าใจข้อกําหนดทั้งหมด</p>
 
-                    <p><b>2.2 </b>PLEASE READ THIS AGREEMENT CAREFULLY TO MAKE SURE YOU FULLY UNDERSTAND ITS CONTENT. IF YOU HAVE ANY DOUBTS AS TO YOUR RIGHTS AND OBLIGATIONS RESULTING FROM THE ACCEPTANCE OF THIS AGREEMENT, PLEASE CONSULT A LEGAL ADVISOR IN YOUR JURISDICTION BEFORE FURTHER USING THE WEBSITE(S) AND ACCESSING ITS CONTENT. IF YOU DO NOT ACCEPT THE TERMS, DO NOT USE, VISIT OR ACCESS ANY PART (INCLUDING, BUT NOT LIMITED TO, SUB-DOMAINS, SOURCE CODE AND/OR WEBSITE APIS, WHETHER VISIBLE OR NOT) OF THE WEBSITE.</p>
-                    <h3>3. GENERAL</h3>
-                    <p><b>3.1 </b>When registering on www.Seabet.io.</p>
-                    <p> You (“You”, “Your”, Yourself” or the “Player” interchangeably) enter into an agreement with Seabet.</p>
-                    <p><b>3.2 </b>This Agreement should be read by You in its entirety prior to your use of Seabet's service or products. Please note that the Agreement constitutes a legally binding agreement between you and Seabet.</p>
-                    <p><b>3.3 </b>These Terms and Conditions come into force as soon as you complete the registration process, which includes checking the box accepting these Terms and Conditions and successfully creating an account. By using any part of the Website following account creation, you agree to these Terms and Conditions applying to the use of the Website.</p>
-                    <p><b>3.4 </b>We are entitled to make amendments to these Terms and Conditions at any time and without advanced notice. If we make such amendments, we may take appropriate steps to bring such changes to your attention (such as by email or placing a notice on a prominent position on the Website, together with the amended terms and conditions) but it shall be your sole responsibility to check for any amendments, updates and/or modifications. Your continued use of the website services after any such amendment to the Terms and Conditions will be deemed as your acceptance and agreement to be bound by such amendments, updates and/or modifications.</p>
-                    <p><b>3.5 </b>The terms of this Terms and Conditions shall prevail in the event of any conflict between the terms of this Terms and Conditions and of any of the game rules or other documents referred to in this Terms and Conditions.</p>
-                    <p><b>3.6 </b>These Terms and Conditions may be published in several languages for informational purposes and ease of access by players. The English version is the only legal basis of the relationship between you and us and in the case of any discrepancy with respect to a translation of any kind, the English version of these Terms and Conditions shall prevail.</p>
+                        <p><b>2.2</b> โปรดอ่านข้อตกลงนี้อย่างละเอียดเพื่อให้แน่ใจว่าคุณเข้าใจเนื้อหาอย่างถ่องแท้ หากคุณมีข้อสงสัยเกี่ยวกับสิทธิ์และภาระผูกพันของคุณอันเป็นผลมาจากการยอมรับข้อตกลงนี้โปรดปรึกษาที่ปรึกษากฎหมายในเขตอํานาจศาลของคุณก่อนที่จะใช้เว็บไซต์และเข้าถึงเนื้อหาต่อไป หากคุณไม่ยอมรับข้อกําหนดอย่าใช้เยี่ยมชมหรือเข้าถึงส่วนใด ๆ (รวมถึง แต่ไม่ จํากัด เพียงโดเมนย่อยซอร์สโค้ดและ / หรือ API ของเว็บไซต์ไม่ว่าจะมองเห็นหรือไม่ก็ตาม) ของเว็บไซต์</p>
+                        <h3>3. ทั่วไป</h3>
+                        <p><b>3.1</b> เมื่อลงทะเบียนบน www. Seabet.io</p>
+                        <p> คุณ ("คุณ", "ของคุณ", ตัวคุณเอง" หรือ "ผู้เล่น" แทนกันได้) ทําข้อตกลงกับ Seabet</p>
+                        <p><b>3.2</b> ท่านควรอ่านข้อตกลงนี้อย่างครบถ้วนก่อนใช้บริการหรือผลิตภัณฑ์ของ Seabet โปรดทราบว่าข้อตกลงนี้ถือเป็นข้อตกลงที่มีผลผูกพันตามกฎหมายระหว่างคุณและ Seabet</p>
+                        <p><b>3.3</b> ข้อกําหนดและเงื่อนไขเหล่านี้มีผลบังคับใช้ทันทีที่คุณเสร็จสิ้นขั้นตอนการลงทะเบียนซึ่งรวมถึงการทําเครื่องหมายในช่องยอมรับข้อกําหนดและเงื่อนไขเหล่านี้และสร้างบัญชีสําเร็จ โดยการใช้ส่วนใดส่วนหนึ่งของเว็บไซต์หลังจากสร้างบัญชีคุณยอมรับข้อกําหนดและเงื่อนไขเหล่านี้ที่ใช้กับการใช้งานเว็บไซต์</p>
+                        <p><b>3.4</b> เรามีสิทธิ์ที่จะแก้ไขข้อกําหนดและเงื่อนไขเหล่านี้ได้ตลอดเวลาโดยไม่ต้องแจ้งให้ทราบล่วงหน้า หากเราทําการแก้ไขดังกล่าวเราอาจดําเนินการตามขั้นตอนที่เหมาะสมเพื่อนําการเปลี่ยนแปลงดังกล่าวมาสู่ความสนใจของคุณ (เช่นทางอีเมลหรือประกาศเกี่ยวกับตําแหน่งที่โดดเด่นบนเว็บไซต์พร้อมกับข้อกําหนดและเงื่อนไขที่แก้ไขแล้ว) แต่จะเป็นความรับผิดชอบของคุณ แต่เพียงผู้เดียวในการตรวจสอบการแก้ไขการปรับปรุงและ / หรือการแก้ไขใด ๆ การใช้บริการเว็บไซต์ต่อไปของคุณหลังจากการแก้ไขข้อกําหนดและเงื่อนไขดังกล่าวจะถือว่าเป็นการยอมรับและข้อตกลงของคุณที่จะผูกพันโดยการแก้ไขปรับปรุงและ / หรือแก้ไขดังกล่าว</p>
+                        <p><b>3.5</b> ข้อกําหนดของข้อกําหนดและเงื่อนไขนี้จะมีผลเหนือกว่าในกรณีที่มีข้อขัดแย้งระหว่างข้อกําหนดของข้อกําหนดและเงื่อนไขนี้กับกฎของเกมหรือเอกสารอื่น ๆ ที่อ้างถึงในข้อกําหนดและเงื่อนไขนี้</p>
+                        <p><b>3.6</b> ข้อกําหนดและเงื่อนไขเหล่านี้อาจได้รับการเผยแพร่ในหลายภาษาเพื่อวัตถุประสงค์ในการให้ข้อมูลและความสะดวกในการเข้าถึงโดยผู้เล่น ฉบับภาษาอังกฤษเป็นพื้นฐานทางกฎหมายเพียงอย่างเดียวของความสัมพันธ์ระหว่างคุณกับเราและในกรณีที่มีความคลาดเคลื่อนใด ๆ เกี่ยวกับการแปลใด ๆ ให้ยึดข้อกําหนดและเงื่อนไขฉบับภาษาอังกฤษเหล่านี้เป็นหลัก</p>
 
-                    <h3>4. SEABET ACCOUNT</h3>
-                    <p>Registration</p>
-                    <p><b>4.1 </b>In order for you to be able to place bets on Seabet.io, you must first personally register an account with us ("Seabet Account").</p>
-                    <p><b>4.2 </b>For a person to be registered as a player with Seabet and use the Website, that person must submit an application for registration and opening of a Seabet account. The application for the opening of the Seabet Account must be submitted personally, and will require You to provide a set of personal information, namely e-mail, full name, date of birth, address, etc.</p>
-                    <p><b>4.3 </b>Where the information stipulated in <b>4.2.</b> is not provided and/or is not deemed to be complete, accurate or up-to-date at any point in time, Seabet reserves the right to suspend the Seabet Account registration and treat any subsequent potentially accepted deposits to the Player’s Seabet Account as invalid (and any winnings arising from such deposit as void). Where a Seabet Account is suspended, you should contact customer support at (support{'@'}Seabet.io).</p>
-                    <p><b>4.4 </b>All applicants must be 18 or such other legal age of majority as determined by any laws which are applicable to you, whichever age is greater or older. Seabet reserves the right to ask for proof of age from any Player and suspend their Seabet Account until satisfactory documentation is provided. Seabet takes its responsibilities in respect of under age and responsible gambling very seriously.</p>
-                    <p><b>4.5 </b>Seabet will not accept registration from individuals:</p>
-                    <p>a) Under 18 years old or under the legal age of majority or gambling in their jurisdiction;</p>
-                    <p>b) Residing in jurisdictions from where it is illegal or gambling is not permitted. Seabet is not able to verify the legality of the Service in each jurisdiction and it is the User's responsibility to ensure that their use of the Service is lawful;</p>
-                    <p>c) Provide misleading information or try to pass by third parties.</p>
-                    <p><b>4.6 </b>Seabet reserves the right to refuse any application for a Seabet Account, at its sole discretion.</p>
+                        <h3>4. บัญชี SEABET</h3>
+                        <p>การลงทะเบียน</p>
+                        <p><b>4.1</b> เพื่อให้คุณสามารถวางเดิมพันกับ Seabet.io ได้ คุณต้องลงทะเบียนบัญชีกับเราเป็นการส่วนตัวก่อน ("บัญชี Seabet")</p>
+                        <p><b>4.2</b> สําหรับบุคคลที่จะลงทะเบียนเป็นผู้เล่นกับ Seabet และใช้เว็บไซต์ บุคคลนั้นจะต้องยื่นคําขอลงทะเบียนและเปิดบัญชี Seabet ใบสมัครสําหรับการเปิดบัญชี Seabet จะต้องส่งเป็นการส่วนตัวและคุณจะต้องให้ชุดข้อมูลส่วนบุคคล ได้แก่ อีเมลชื่อเต็มวันเดือนปีเกิดที่อยู่</p>
+                        <p><b>4.3</b> ในกรณีที่ข้อมูลที่ระบุไว้ในข้อ <b>4.2</b>. ไม่ได้ให้ไว้ และ/หรือไม่ถือว่าข้อมูลครบถ้วน ถูกต้อง หรือเป็นปัจจุบัน ณ เวลาใดเวลาหนึ่ง Seabet ขอสงวนสิทธิ์ในการระงับการลงทะเบียนบัญชี Seabet และปฏิบัติต่อเงินฝากที่อาจได้รับการยอมรับในภายหลังไปยังบัญชี Seabet ของผู้เล่นว่าไม่ถูกต้อง (และเงินรางวัลใด ๆ ที่เกิดขึ้นจากการฝากเงินดังกล่าวเป็นโมฆะ) ในกรณีที่บัญชี Seabet ถูกระงับคุณควรติดต่อฝ่ายสนับสนุนลูกค้าที่ (support@Seabet.io)</p>
+                        <p><b>4.4</b> ผู้สมัครทุกคนต้องมีอายุ 18 ปีหรือบรรลุนิติภาวะตามกฎหมายอื่น ๆ ตามที่กฎหมายกําหนดซึ่งมีผลบังคับใช้กับคุณ แล้วแต่อายุใดจะมากกว่าหรือมากกว่า Seabet ขอสงวนสิทธิ์ในการขอหลักฐานอายุจากผู้เล่นคนใดและระงับบัญชี Seabet ของพวกเขาจนกว่าจะมีเอกสารที่น่าพอใจ Seabet รับผิดชอบในส่วนที่เกี่ยวกับอายุต่ํากว่าเกณฑ์และการพนันอย่างมีความรับผิดชอบอย่างจริงจัง</p>
+                        <p><b>4.5</b> Seabet จะไม่รับการลงทะเบียนจากบุคคลธรรมดา:</p>
+                        <p>ก) อายุต่ํากว่า 18 ปีหรือต่ํากว่าอายุตามกฎหมายของผู้เยาว์หรือการพนันในเขตอํานาจศาลของตน</p>
+                        <p>ข) อาศัยอยู่ในเขตอํานาจศาลที่ผิดกฎหมายหรือไม่อนุญาตให้เล่นการพนัน Seabet ไม่สามารถตรวจสอบความถูกต้องตามกฎหมายของบริการในแต่ละเขตอํานาจศาลและเป็นความรับผิดชอบของผู้ใช้ในการตรวจสอบให้แน่ใจว่าการใช้บริการของพวกเขาถูกต้องตามกฎหมาย</p>
+                        <p>c) ให้ข้อมูลที่ทําให้เข้าใจผิดหรือพยายามผ่านโดยบุคคลที่สาม</p>
+                        <p><b>4.6</b> Seabet ขอสงวนสิทธิ์ในการปฏิเสธการสมัครบัญชี Seabet ตามดุลยพินิจของตนแต่เพียงผู้เดียว</p>
 
-                    <p>Know Your Customer</p>
-                    <p><b>4.7 </b>You represent and warrant that any information provided by You on Your application form is true, updated and correct.</p>
-                    <p><b>4.8 </b>Seabet reserves the right, at any time, to ask for any KYC documentation it deems necessary to determine the identity and location of a Player. Seabet reserves the right to restrict the Service, payment or withdrawal until identity is sufficiently determined, or for any other reason in Seabet’s sole discretion. Seabet also reserves the right to disclose a Player’s information as appropriate to comply with legal process or as otherwise permitted by the privacy policy of Seabet (owner and operator of Seabet), and by using the Service, you acknowledge and consent to the possibility of such disclosure.</p>
+                        <p>รู้จักลูกค้าของคุณ</p>
+                        <p><b>4.7</b> คุณรับรองและรับประกันว่าข้อมูลใด ๆ ที่คุณให้ไว้ในแบบฟอร์มใบสมัครของคุณเป็นความจริงอัปเดตและถูกต้อง</p>
+                        <p><b>4.8</b> Seabet ขอสงวนสิทธิ์ในการขอเอกสาร KYC ใด ๆ ที่เห็นว่าจําเป็นในการกําหนดตัวตนและตําแหน่งของผู้เล่นได้ตลอดเวลา ซีเบทขอสงวนสิทธิ์ในการจํากัดบริการ การชําระเงิน หรือการถอนตัวจนกว่าจะมีการกําหนดตัวตนอย่างเพียงพอ หรือด้วยเหตุผลอื่นใดตามดุลยพินิจของซีเบท แต่เพียงผู้เดียว ซีเบทขอสงวนสิทธิ์ในการเปิดเผยข้อมูลของผู้เล่นตามความเหมาะสมเพื่อให้สอดคล้องกับกระบวนการทางกฎหมายหรือตามที่ได้รับอนุญาตจากนโยบายความเป็นส่วนตัวของ Seabet (เจ้าของและผู้ดําเนินการของ Seabet) และโดยการใช้บริการคุณรับทราบและยินยอมให้มีการเปิดเผยดังกล่าว</p>
 
-                    <p>Multiple Accounts</p>
-                    <p><b>4.9 </b>Only one Seabet Account per Player is allowed. Should You attempt or successfully open more than one Seabet Account, under Your own name or under any other name, or should You attempt or succeed in using the Website by means of any other person's Seabet Account, Seabet will be entitled to immediately close all Your Seabet Account(s), retain all monies in such Seabet Accounts and ban You from future use of the Website.</p>
-                    <p><b>4.10 </b>Should Seabet have reason to believe that You have registered and/or used more than one Seabet Account, or colluded with one or more other individuals using a number of different Seabet Accounts, Seabet shall be entitled to deem such accounts as constituting multiple Seabet Accounts, and suspend or close all such Seabet Accounts. Seabet will also be entitled to retain the funds till the Player proves that he did not attempt to create multiple accounts.</p>
-                    <p><b>4.11 </b>If you notice that you have more than one registered Seabet Account you must notify us immediately. Failure to do so may lead to your Seabet Account being blocked and the funds retained.</p>
+                        <p>หลายบัญชี</p>
+                        <p><b>4.9</b> อนุญาตบัญชี Seabet หนึ่งบัญชีต่อผู้เล่นหนึ่งบัญชีเท่านั้น หากคุณพยายามหรือประสบความสําเร็จในการเปิดบัญชี Seabet มากกว่าหนึ่งบัญชีภายใต้ชื่อของคุณเองหรือภายใต้ชื่ออื่น ๆ หรือหากคุณพยายามหรือประสบความสําเร็จในการใช้เว็บไซต์โดยใช้บัญชี Seabet ของบุคคลอื่น Seabet จะมีสิทธิ์ปิดบัญชี Seabet ทั้งหมดของคุณทันทีเก็บเงินทั้งหมดในบัญชี Seabet ดังกล่าวและห้ามคุณจากการใช้งานเว็บไซต์ในอนาคต</p>
+                        <p><b>4.10</b> หากซีเบทมีเหตุอันควรเชื่อได้ว่าท่านได้ลงทะเบียนและ/หรือใช้บัญชีซีเบทมากกว่าหนึ่งบัญชี หรือสมรู้ร่วมคิดกับบุคคลอื่นอย่างน้อยหนึ่งบัญชีโดยใช้บัญชีซีเบทที่แตกต่างกันจํานวนหนึ่ง ซีเบทมีสิทธิที่จะถือว่าบัญชีดังกล่าวเป็นบัญชีซีเบทหลายบัญชี และระงับหรือปิดบัญชีซีเบทดังกล่าวทั้งหมด Seabet จะมีสิทธิ์เก็บเงินไว้จนกว่าผู้เล่นจะพิสูจน์ได้ว่าเขาไม่ได้พยายามสร้างบัญชีหลายบัญชี</p>
+                        <p><b>4.11</b> หากคุณสังเกตเห็นว่าคุณมีบัญชี Seabet ที่ลงทะเบียนไว้มากกว่าหนึ่งบัญชีคุณต้องแจ้งให้เราทราบทันที การไม่ทําเช่นนั้นอาจทําให้บัญชี Seabet ของคุณถูกบล็อกและเงินที่เก็บไว้</p>
 
-                    <p>User Responsibility</p>
-                    <p><b>4.12 </b>It is your sole and exclusive responsibility to ensure that your login details are kept securely. You must not disclose your login details to anyone.</p>
-                    <p><b>4.13 </b>We are not liable or responsible for any abuse or misuse of your Seabet Account by third parties due to your disclosure, whether intentional, accidental, active or passive, of your login details to any third party.</p>
-                    <p><b>4.14 </b>You are prohibited from selling, transferring or acquiring Seabet Accounts to or from other Players.</p>
-                    <p><b>4.15 </b>You will inform us as soon as you become aware of any errors with respect to your account or any calculations with respect to any bet you have placed. We reserve the right to declare null and void any bets that are subject to such an error.</p>
-                    <p><b>4.16 </b>You are responsible for all activities that occur under your account.</p>
+                        <p>ความรับผิดชอบของผู้ใช้</p>
+                        <p><b>4.12</b> เป็นความรับผิดชอบแต่เพียงผู้เดียวของคุณในการตรวจสอบให้แน่ใจว่ารายละเอียดการเข้าสู่ระบบของคุณจะถูกเก็บไว้อย่างปลอดภัย คุณต้องไม่เปิดเผยรายละเอียดการเข้าสู่ระบบของคุณแก่ใคร</p>
+                        <p><b>4.13</b> เราจะไม่รับผิดหรือรับผิดชอบต่อการละเมิดหรือการใช้บัญชี Seabet ของคุณในทางที่ผิดโดยบุคคลที่สามเนื่องจากการเปิดเผยของคุณไม่ว่าจะโดยเจตนาตั้งใจใช้งานหรืออยู่เฉยๆของรายละเอียดการเข้าสู่ระบบของคุณต่อบุคคลที่สาม</p>
+                        <p><b>4.14</b> ห้ามมิให้คุณขาย โอน หรือรับบัญชี Seabet ไปยังหรือจากผู้เล่นคนอื่น</p>
+                        <p><b>4.15</b> คุณจะแจ้งให้เราทราบทันทีที่คุณทราบถึงข้อผิดพลาดใด ๆ เกี่ยวกับบัญชีของคุณหรือการคํานวณใด ๆ ที่เกี่ยวข้องกับการเดิมพันใด ๆ ที่คุณวางไว้ เราขอสงวนสิทธิ์ในการประกาศการเดิมพันใด ๆ ที่เป็นโมฆะและเป็นโมฆะซึ่งอาจมีข้อผิดพลาดดังกล่าว</p>
+                        <p><b>4.16</b> คุณต้องรับผิดชอบต่อกิจกรรมทั้งหมดที่เกิดขึ้นภายใต้บัญชีของคุณ</p>
 
-                    <p>Security Features</p>
-                    <p><b>4.17 </b>We recommend that you enable two-factor authentication to enhance the security of your account.</p>
-                    <p><b>4.18 </b>We may provide other security measures from time to time, and we encourage you to use them.</p>
-
-
-                    <p>Suspension and Closure by Seabet</p>
-                    <p><b>4.19 </b>Seabet shall be entitled to close or suspend Your Seabet Account if:</p>
-                    <p>a) Seabet considers that You are using or have used the Website in a fraudulent or collusive       manner or for illegal and/or unlawful or improper purposes;</p>
-                    <p>b) Seabet considers that You are using or have used the Website in an unfair manner, have deliberately cheated or taken unfair advantage of Seabet or any of its customers or if Your Seabet Account is being used for the benefit of a third party;</p>
-                    <p>c) Seabet is requested to do so by the police, any regulatory authority or court or if Seabet is unable to verify Your identity, profession or source of funds as is expressly required by the applicable regulations;</p>
-                    <p>d) You are in breach of these Terms and Conditions, the applicable regulations or the fair use of our services, or Seabet has concerns that You are a compulsive problem gambler without being self-excluded;</p>
-                    <p>e) Seabet considers that any of the events referred to in (a) to (e) above may have occurred or are likely to occur.</p>
-                    <p><b>4.20 </b>If Seabet closes or suspends Your Seabet Account for any of the reasons referred to in <b>4.15,</b> You shall, to the extent permitted by applicable laws, be liable for any and all claims, direct losses, liabilities, damages, costs and expenses incurred or suffered by Seabet (together, the “Claims”) arising therefrom and shall, to the extent permitted by applicable laws, indemnify and hold Seabet harmless on demand for such claims.</p>
-                    <p><b>4.21 </b>In the circumstances referred to in <b>4.15,</b> Seabet shall also be entitled to void any bets placed by You following such actions by You or to withhold and/or retain any and all amounts which would otherwise have been paid or payable to you (including any winnings) to the extent permitted by law.</p>
-                    <p><b>4.22 </b>We reserve the right to suspend or terminate your account at any time, with or without notice, if we suspect that your account has been compromised or is being used in breach of our Terms of Service.</p>
-                    <p><b>4.23 </b>If Seabet closes Your Seabet Account it will inform You of the available means to withdraw the remaining balance on Your Seabet Account.</p>
-
-                    <p>Our Liability</p>
-                    <p><b>4.24 </b>We take no responsibility for any loss or damage that you may suffer as a result of unauthorised access to your account.</p>
-                    <p><b>4.25 </b>We take no responsibility for any loss or damage that you may suffer as a result of your failure to keep your login secure and private.</p>
-
-                    <h3>5. YOUR WARRANTIES</h3>
-                    <p><b>5.1 </b>Prior to your use of the Service and on an ongoing basis you represent, warrant, covenant and agree that:</p>
-                    <p>Capacity</p>
-                    <p>a) You are over 18 or such other legal age of majority as determined by any laws which are applicable to you, whichever age is greater;</p>
-                    <p>b) You have full capacity to enter into a legally binding agreement with us and you are not restricted by any form of limited legal capacity;</p>
-                    <p>c) You are not diagnosed or classified as a compulsive or problem gambler;</p>
-                    <p>d) You are not currently self-excluded from any gambling site or gambling premises. You will inform Seabet immediately if you enter into a self-exclusion agreement with any gambling provider.</p>
-
-                    <p>Jurisdiction</p>
-                    <p>e) You are accessing Seabet.io from a jurisdiction in which it is legal to do so;</p>
-                    <p>f) You will not use our services while located in any jurisdiction that prohibits the placing and/or accepting of bets online and/or playing casino and/or live games;</p>
-                    <p>g) You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited techniques, including but not limited to fraudulent transaction detection, automated registration and signup, gameplay and screen capture techniques. These steps may include, but are not limited to, examination of Players device properties, detection of geo-location and IP masking, transactions and blockchain analysis;</p>
-
-                    <p>Funds & Tax</p>
-                    <p>h) You are solely responsible for reporting and accounting for any taxes applicable to you under relevant laws for any winnings that you receive from us;</p>
-                    <p>i) You are solely responsible for any applicable taxes which may be payable on cryptocurrency awarded to you through your using the Service;</p>
-                    <p>j) There is a risk of losing cryptocurrency when using the Service and that Seabet has no responsibility to you for any such loss;</p>
-                    <p>k) You will not deposit funds which originate from criminal or other unauthorised activity;</p>
-                    <p>l) You will not deposit funds using payment methods that do not belong to You;</p>
-                    <p>m) All the funds deposited shall exclusively be used for Services available on the Website;</p>
-                    <p>n) You will not withdraw or try to withdraw to a payment method that do not belong to You;</p>
-                    <p>o) You understand that by participating in the Services available on the Website, You take the risk of losing money deposited.</p>
-                    <p>p) You accept and acknowledge that the value of cryptocurrency can change dramatically depending on the market value;</p>
-                    <p>q) Seabet shall not be treated as a financial institution;</p>
-
-                    <p>Others</p>
-                    <p>r) Your use of the Service is at your sole option, discretion and risk;</p>
-                    <p>s) You will not conduct criminal activities through the Seabet Account;</p>
-                    <p>t) All information that you provide to us during the term of validity of this agreement is true, complete, correct, and that you shall immediately notify us of any change of such information;</p>
-                    <p>u) You participate in the Games strictly in your personal and non-professional capacity and participate for recreational and entertainment purposes only;</p>
-                    <p>v) You participate in the Games on your own behalf and not on the behalf of any other person;</p>
-                    <p>w) You have only one account with us and agree to not to open any more accounts with us;</p>
-                    <p>x) The telecommunications networks and Internet access services required for you to access and use the Service are entirely beyond the control of Seabet and Seabet shall have no liability whatsoever for any outages, slowness, capacity constraints or other deficiencies affecting the same;</p>
-                    <p>y) You will not be involved in any fraudulent, collusive, fixing or other unlawful activity in relation to Your or any third parties’ participation in any of the games and/or services on the Website, and shall not use any software-assisted methods or techniques or hardware devices for Your participation in any of the games and/or services on the Website;</p>
-                    <p>z) If you have access to non-public information related to an event or that can impact the outcome of an event or bet type, You will not bet on any event overseen by the relevant sport/event governing body;</p>
-                    <p>aa) If You are an athlete, coach, manager, owner, referee, or anyone with sufficient authority to influence the outcome of an event You will not bet on any event overseen by the relevant sport or event of the governing body;</p>
-                    <p>bb) If You are an owner (a person who is a direct or indirect legal or beneficial owner of 10 percent or greater) of a sport governing body or member team You will not bet on any event overseen by the sport governing body or any event in which a member team of that sport or event governing body participates;</p>
-                    <p>cc) If You are involved in a sport or event, You will not be involved in compiling betting odds for the competition in which You are involved.</p>
-                    <p><b>5.2 </b>In case of a breach of any of the representations, warrants or covenants mentioned in <b>5.1,</b> Seabet reserves the right to close or suspend Your Seabet account at its own discretion and void any bets to the extent applicable by law.</p>
-
-                    <h3>6. SEABET WARRANTIES</h3>
-                    <p><b>6.1 </b>Seabet warrants that they will:</p>
-                    <p>a) manage funds belonging to the Player in a secure and appropriate manner; and</p>
-                    <p>b) manage personal information pertaining to the Player in accordance with applicable law, and in accordance with its Privacy Policy.</p>
-                    <p><b>6.2 </b>The software is provided "as is" without any warranties, conditions, undertakings or representations, express or implied, statutory or otherwise. Seabet hereby excludes all implied terms, representations, conditions and warranties (including any of merchantability, merchantable quality, satisfactory quality and fitness for any particular purpose). </p>
-                    <p>Seabet does not warrant that: </p>
-                    <p>(i)The Website and Services will meet Your requirements; </p>
-                    <p>(ii)The Website and Services will not infringe any third party’s intellectual property rights;</p>
-                    <p>(iii)The operation of the Website and Services will be error-free or uninterrupted;</p>
-                    <p>(iv)Any defects in the Website and Services will be corrected; or </p>
-                    <p>(v)The Website or the servers are virus-free.</p>
-
-                    <p><b>6.3 </b>Seabet can be contacted by email on (support{'@'}seabet.io) or on its live chat 24/7. The live chat is available when logged into Your Seabet Account. In the event that Seabet, in its sole discretion, deems that Your behaviour, via live chat, email, or otherwise, has been abusive or derogatory towards any of Seabet’s or its Affiliates or third-party service provider’s employees, Seabet shall have the right to block or terminate Your Seabet Account.</p>
-
-                    <h3>7. DEPOSITS</h3>
-                    <p><b>7.1 </b>You may participate in any Game only if you have sufficient funds on your Seabet Account for such participation. For that purpose, you shall use the payment methods available on the Website to deposit your funds. Seabet will not give you any credit whatsoever for participation in any Game.</p>
-                    <p><b>7.2 </b>You must deposit funds to Your Seabet Account using the payment methods available at www.Seabet.io.</p>
-                    <p><b>7.3 </b>You shall ensure that funds that You deposit into your Seabet Account are not tainted with any illegality and, in particular, do not originate from any illegal activity or source.</p>
-                    <p><b>7.4 </b>To deposit funds into your Seabet Account, you can transfer funds from crypto-wallets under your control or through any other payment methods available on Seabet.io. Deposits can only be made with your own funds.</p>
-                    <p><b>7.5 </b>You should only deposit money into Your account for the purpose of You using such money to place bets/wager on the Website. Seabet is entitled to suspend or close Your account if we reasonably believe that You are depositing funds without any intention to place sporting and/or gaming wagers. In such circumstances we may also report this activity to relevant authorities.</p>
-                    <p><b>7.6 </b>You acknowledge and understand that funding Your Seabet Account can only be funded by payment methods owned by You.</p>
-                    <p><b>7.7 </b>You further understand, agree and acknowledge that if Seabet discovers, detects and/or identifies that You:</p>
-                    <p>a) Funded/are funding Your Seabet Account using third party payment methods; and/or</p>
-                    <p>b) Funded/are funding Your Seabet Account with funds that are tainted with illegality, such activity will be deemed as constituting a violation of the Terms of Service amounting to fraud, and by extension:</p>
-                    <p>i) Seabet reserves the right, at its own discretion, to suspend or close Your Seabet Account; and</p>
-                    <p>ii) Seabet reserves the right, at its own discretion, to cancel, reverse or adjust any transactions and to forfeit funds deposited and/or winnings generated from the deposited funds.</p>
-                    <p><b>7.8 </b>Seabet can set at its own description a minimum deposit amount. The minimum deposit amount can be changed at all time at Seabet’s description and will be identified on the website. Please be aware that depending on the payment method used by You, additional fees might be charged by the payment providers.</p>
-                    <p><b>7.9 </b>The payment methods made available to you and the minimum and maximum deposit limit can be found in the wallet section on the Site. Applicable service fees may be applied and changed. Some payment methods may not be available in all countries.</p>
-                    <p><b>7.10 </b>Deposits are immediately processed and the updated balance is shown in the Seabet Account instantly whenever a payment service provider is used. Seabet does not take responsibility for any delays caused due to its payment system or due to delays caused by any third party. Note that:</p>
-                    <p>a) some payment methods may include additional fees. In this case, the fee will be clearly visible for you in the cashier.</p>
-                    <p>b) your bank or payment service provider may charge you additional fees for deposits of currency conversion according to their terms and conditions and your user agreement.</p>
-                    <p><b>7.11 </b>We reserve the right to use additional procedures and means to verify your identity when processing deposits into your Seabet Account.</p>
-                    <p><b>7.12 </b>Funds cannot be transferred from your Seabet Account to the Seabet Account of another Player.</p>
-                    <p><b>7.13 </b>Seabet can refuse any deposits at its own description. Users that have their accounts blocked, or suspended shall refrain from depositing at www.Seabet.io.</p>
-                    <p><b>7.14 </b>In the event that a player tries to deposit when his account is blocked or suspended, Seabet will have the right to retain the funds.</p>
-
-                    <h3>8. WITHDRAWALS</h3>
-                    <p><b>8.1 </b>Seabet reserves the right to refuse any withdrawal by a Player from their Seabet Account until:</p>
-                    <p>a) the Player’s identity has been verified and Seabet has confirmed the withdrawal is being made by a holder of the Seabet Account;</p>
-                    <p>b) the withdrawal is being transferred to an account of which the Player is a legal holder;</p>
-                    <p>c) any additional information requested by Seabet has been provided; and</p>
-                    <p>d) the Player has complied with the minimum wager requirement for each deposit.</p>
-                    <p><b>8.2 </b>Seabet reserves all rights to investigate Your account and gaming activity. If Seabet reasonably suspects that Your account or gaming activity has violated these terms of service or applicable laws or regulations, it may, in its sole discretion, delay or decline further deposits, withdrawals and/or game play while it conducts its investigation. You acknowledge and accept that Seabet may not be in a position to provide an explanation as to the nature of its investigation.</p>
-                    <p><b>8.3 </b>All withdrawals must be done through the same payment method chosen by you when placing a deposit, unless we decide otherwise or are unable to do so. If you deposit using a number of payment methods, we reserve the right to split your withdrawal across such payment methods and process each part through the respective payment method at our discretion and in accordance with anti-money laundering policies and regulation.</p>
-                    <p><b>8.4 </b>If we mistakenly credit your Seabet Account with winnings that do not belong to you, whether due to a technical error in the pay-tables, or human error or otherwise, the amount will remain our property and will be deducted from your Seabet Account. If you have withdrawn funds that do not belong to you prior to us becoming aware of the error, the mistakenly paid amount will (without prejudice to other remedies and actions that may be available at law) constitute a debt owed by you to us. In the event of an incorrect crediting, you are obliged to notify us immediately by email.</p>
-
-                    <p>FIAT Withdrawals</p>
-                    <p><b>8.5 </b>You need to wager 100% of the value of your deposit in order to request a FIAT withdrawal.</p>
-                    <p><b>8.6 </b>Withdrawals from Seabet Account are made through payments addressed to the Player or transferred to a bank account held in the name of the Player, as advised to Seabet by the Player. Before processing any withdrawal, Seabet reserves the right to perform enhanced due diligence where deemed necessary.</p>
-                    <p><b>8.7 </b>The minimum withdrawal amount will be identified on the website when performing a withdrawal.</p>
-                    <p><b>8.8 </b>If You have multiple withdrawals pending, Seabet reserves the right to reject all withdrawals and request You to perform one withdrawal with the sum of all multiple withdrawals.</p>
-                    <p><b>8.9 </b>Seabet will not charge You any fees on withdrawals. However, You are advised to check if the payment method You use imposes any additional charges. Seabet will not be responsible for any commissions or processing fees charged to You by third parties such as Your bank as this is beyond our control.</p>
-
-                    <p>Crypto Withdrawals</p>
-                    <p><b>8.10 </b>Crypto withdrawals will be made to your stated cryptocurrency wallet address when making a valid withdrawal request.</p>
-                    <p><b>8.11 </b>Seabet reserves the right to carry out additional KYC verification procedures for any withdrawal. Players who wish to recover funds held in a closed, locked or excluded account, are advised to contact (support{'@'}seabet.io).</p>
-                    <p><b>8.12 </b>All transactions shall be checked in order to prevent money laundering. If a player becomes aware of any suspicious activity relating to any of the Games of the Website, s/he must report this to Seabet immediately. Seabet may suspend, block or close a Seabet Account and withhold funds if requested to do so in accordance with the Prevention of Money Laundering Act or on any other legal basis requested by any state authority. You acknowledge that the funds in your account are consumed instantly when playing and we do not provide return of goods, refunds or retrospective cancellation of your account.</p>
-
-                    <h3>9. PLAYER FUNDS PROTECTION & CHARGEBACKS</h3>
-                    <p><b>9.1 </b>Any funds You deposit with us in Your Seabet Account, along with any winnings, are held for You in separate customer bank accounts/crypto wallet for the sole and specific purpose for You to place sports and gaming wagers and to settle any fees or charges that You might incur in connection with the use of our Services. This means Your funds are protected from being used for any other purpose.</p>
-                    <p><b>9.2 </b>If we incur any charge-backs, reversals or denial of payments or any loss suffered by Seabet as a consequence thereof due to causes attributable to You in respect of Your Seabet Account, we reserve the right to charge You for the relevant amounts incurred.</p>
-                    <p><b>9.3 </b>We may, at any time, set off any positive balance on Your account against any amounts owed by You to Seabet.</p>
-                    <h3>10. PLACING BETS/WAGERS</h3>
-                    <p><b>10.1 </b>You are allowed to place Your bets/wagers on the markets/products offered in the Website. Seabet is not obliged to accept any bet/wager from You and bets/wagers will only be deemed as valid and finalised, and therefore as accepted by Seabet, when You receive the confirmation from Seabet of the acceptance of Your bet/wager.</p>
-                    <p><b>10.2 </b>Seabet only accepts bets/wagers made online (including via mobile device). Bets/wagers are not accepted in any other form (post, email, fax, etc.) and where received will be invalid and void - win or lose.</p>
-                    <p><b>10.3 </b>It is Your responsibility to ensure details of the bets/wagers are correct. Once bets/wagers have been placed they may not be cancelled by You. Bets can only be changed by You using our Edit Bet feature, where this is available. Seabet can only cancel or amend a bet/wager if the relevant event has been suspended or cancelled, if there was an obvious error on the relevant bet or its odds, if the bet is placed in breach of the Terms or if required to do so for legal or regulatory reasons.</p>
-                    <p><b>10.4 </b>Your funds will be allocated to bets/wagers in the order they are placed and will not be available for any other use. Seabet reserves the right to void and/or reverse any transactions made after a bet/wager has been placed involving allocated funds, either at the time or retrospectively.</p>
-                    <h3>11. BET/WAGER CONFIRMATION</h3>
-                    <p><b>11.1 </b>Bets/wagers will only be valid once You receive the confirmation of the acceptance of Your bet/wager. Bets/wagers placed with insufficient funds in Your account will be void.</p>
-                    <p><b>11.2 </b>A bet/wager that You request will only be valid once accepted by Seabet. Each valid bet/wager will receive a unique transaction code. We shall not be liable for the settlement of any bets/wagers which are not issued with a unique transaction code. If You are unsure about the validity of a bet/wager, please check Your account history, or contact our Customer Support Team (support{'@'}seabet.io).</p>
-                    <p><b>11.3 </b>Should a dispute arise regarding the content of a bet, You and Seabet agree that the Seabet transaction log database of its internal control system will be the ultimate authority in such matters.</p>
-                    <h3>12. BONUS</h3>
-                    <p><b>12.1 </b>Seabet, at its sole discretion, might offer from time to time, a number of Bonuses and Promotions. </p>
-
-                    <p>Eligibility</p>
-                    <p><b>12.2 </b>Upon successful registration for a Seabet Account, you may be eligible to receive Seabet Promotions and Bonuses. By accepting this agreement and registering for a Seabet Account on the Website, you are also acknowledging and accepting to be bound by the rules and regulations associated with any Promotions and Bonuses offered to You by Seabet.</p>
-                    <p>Bonus T&C</p>
-                    <p><b>12.3 </b>All promotions, bonuses, or special offers are subject to the express terms of any bonus offered on the Website(s) and promotion-specific terms and conditions, if applicable, and any bonus credited to Your account must be used in adherence with such terms and conditions. By accepting a promotion, bonus, or special offer available on the Website(s), You consent to the terms and conditions of such promotion, bonus, or special offer and acknowledge that wagers must always be placed with cash balances before bonus balances can be used to wager. We reserve the right to withdraw any promotion, bonus, or special offer at any time.</p>
-                    <p>Activation & Expiry</p>
-                    <p><b>12.4 </b>By activating a Bonus or Promotion, you confirm that You also agree to the applicable terms and conditions.</p>
-                    <p><b>12.5 </b>No promotion, bonus, or special offer will be accepted or honoured by the Seabet following the expiration date of the promotion, bonus, or special offer, unless Seabet in its sole discretion chooses to do so for any particular customer, promotion, bonus, or special offer. Expiration dates will be set forth in the specific rules or terms and conditions of the particular promotion, bonus, or special offer. Furthermore, Seabet reserves the right, in its sole discretion, to change or modify any policy with respect to the earning or expiration of bonuses.</p>
-                    <p><b>12.6 </b>Once forfeited or de-activated, the Bonus will no longer be available to You (and cannot be re-activated at any time thereafter). The amount of any Bonus Funds that have already been credited to your Seabet Account Balance will remain available to You.</p>
-                    <p>Bonus Abuse & Fraud</p>
-                    <p><b>12.7 </b>In the event that Seabet believes a Player of the Service is abusing or attempting to abuse a bonus or other promotion or is likely to benefit through abuse or lack of good faith from a policy adopted by Seabet, then Seabet may, at its sole discretion, deny, withhold, or withdraw from any Player any bonus or promotion, or terminate that Player’s access to the Services, the Software, and/or lock that Player’s account, either temporarily or permanently.</p>
-                    <p><b>12.8 </b>You may only open one (1) account on the Website. The opening of multiple accounts on the Website for the purpose of accumulating bonuses, promotions, special offers, or otherwise, shall be considered abusive behaviour.</p>
-
-                    <p>Seabet Rights</p>
-                    <p><b>12.9 </b>Seabet reserves the right to remove bonuses from all inactive accounts or accounts that are identified as “bonus abusers”.</p>
-                    <p><b>12.10 </b>Seabet reserves the right to cancel all bonuses that have not been claimed within the claiming period or 60 days, the shorter of the two.</p>
-                    <p><b>12.11 </b>Seabet reserves the right to cancel any bonus at its sole description.</p>
-
-                    <h3>13. AUTHORITY/TERMS OF SERVICE</h3>
-                    <p><b>13.1 </b>You agree to the game rules described on the Seabet.io website. Seabet retains authority over the issuing, maintenance, and closing of the Service. The decision of Seabet's management, concerning any use of the Service, or dispute resolution, is final and shall not be open to review or appeal.</p>
-
-                    <h3>14. PROHIBITED USES</h3>
-                    <p>PERSONAL USE</p>
-                    <p><b>14.1 </b>The Service is intended solely for the User's personal use. The User is only allowed to wager for his/her personal entertainment. Users may not create multiple accounts for the purpose of collusion, sports betting and/or abuse of service.</p>
-
-                    <p>AML & SANCTIONS COMPLIANCE</p>
-                    <p><b>14.2 </b>Seabet expressly prohibits and rejects the use of the Service for any form of illicit activity, including money laundering, terrorist financing or trade sanctions violations, consistent with various jurisdictions' laws, regulations and norms. To that end, the Service is not offered to individuals or entities subject to United States, European Union, or other global sanctions or watch lists. By using the Service, you represent and warrant that you are not so subject.</p>
-                    <p>JURISDICTIONS</p>
-                    <p><b>14.3 </b>Persons located in or reside in Afghanistan, Australia, Belarus, Belgium, Côte d'Ivoire, Cuba, Curaçao, Czech Republic, Democratic Republic of the Congo, Denmark, France, Germany, Greece, Iran, Iraq, Italy, Liberia, Libya, Lithuania, Netherlands, North Korea, Ontario, Portugal, Serbia, Slovakia, South Sudan, Spain, Sudan, Syria, Switzerland, United Kingdom, United States, Zimbabwe (the "Prohibited Jurisdictions") are not permitted make use of the Service. For the avoidance of doubt, the foregoing restrictions on engaging in real-money play from Prohibited Jurisdictions applies equally to residents and citizens of other nations while located in a Prohibited Jurisdiction. Any attempt to circumvent the restrictions on play by any persons located in a Prohibited Jurisdiction or Restricted Jurisdiction, is a breach of this Agreement. An attempt at circumvention includes, but is not limited to, manipulating the information used by Seabet to identify your location and providing Seabet with false or misleading information regarding your location or place of residence.</p>
-
-                    <p><b>14.4 </b>The attempt to manipulate your real location through the use of VPN, proxy, or similar services or through the provision of incorrect or misleading information about your place of residence, with the intent to circumvent geo-blocking or jurisdiction restrictions, constitutes a breach of Clause 5 of this Terms of Service.</p>
-
-                    <h3>15. YOUR EQUIPMENT</h3>
-                    <p><b>15.1 </b>Your computer equipment or mobile device and internet connection may affect the performance and/or operation of the Website. Seabet does not guarantee that the Website will operate without faults or errors or that Seabet services will be provided without interruption. Seabet does not accept any liability for any failures or issues that arise due to Your equipment, internet connection or internet or telecommunication service provider (including, for example, if You are unable to place bets or wagers or to view or receive certain information in relation to particular events).</p>
-                    <p><b>15.2 </b>For customers using a mobile device for the placing of bets/wagers, please note that Seabet will not be responsible for any damage to, or loss of data from the mobile device that the software is installed on, and will also not be responsible for any call, data or other charges incurred whilst using the software.</p>
-                    <p><b>15.3 </b>Due to limited display sizes on mobile devices, the mobile experience might differ slightly from other platforms. Differences might include, but are not limited to, the location of certain information on the platform and game names not being visible on all game pages.</p>
-
-                    <h3>16. FAIR USE</h3>
-                    <p><b>16.1 </b>The Website and Services may only be used for recreational purposes by placing bets and wagers on events and/or gaming products.</p>
-                    <p><b>16.2 </b>You must not use the Website for the benefit of a third party or for any purpose which is illegal, defamatory, abusive or obscene, or which Seabet considers discriminatory, fraudulent, dishonest or inappropriate. Seabet may report to the authorities any activity which it considers to be suspicious and/or in breach of this paragraph.</p>
-                    <p><b>16.3 </b>If Seabet has a reasonable suspicion that You are involved in fraudulent, dishonest or criminal acts, as set out under applicable laws, via or in connection with the Website or Services, Seabet may seek criminal and contractual sanctions against You. Seabet will withhold payment to any customer where any of these are suspected or where the payment is suspected to be for the benefit of a third party.</p>
-                    <p><b>16.4 </b>You shall indemnify and shall be liable to pay Seabet, on demand, all costs, charges or losses sustained or incurred by us and our affiliates (including any direct, indirect or consequential losses, loss of profit and loss of reputation) in respect of all Claims arising directly or indirectly from Your fraudulent, dishonest or criminal acts while using the Website or Services</p>
-                    <p><b>16.5 </b>Furthermore, we reserve the right not to accept, process and/or honour bets/wagers where it would be forbidden, unlawful or illegal under applicable law or regulation to do so.</p>
-
-                    <h3>17. SOFTWARE AND TECHNOLOGY ISSUES</h3>
-                    <p><b>17.1 </b>In order for You to use the Website and Services, You may need to download some software (for example, casino games that are made available via a flash player). Also, certain third-party product providers may require You to agree to additional terms and conditions governing the use of their products that are available on or through the Website. If You do not accept those third-party terms and conditions, do not use the relevant third-party software. Seabet does not accept any liability in respect of any third-party software.</p>
-                    <p><b>17.2 </b>You are only permitted to use any and all software made available to You via the Website for the purpose of using the Website and Services and, save to the extent permitted by applicable law, for no other purposes whatsoever.</p>
-                    <p><b>17.3 </b>We hereby grant to You a personal, non-exclusive, non-transferable right to use the Website for the sole purpose of accessing and using the Services on the Website, in accordance with these Terms and Conditions. This right to use our Website and will be immediately terminated once Your user registration is cancelled for any reason, and specially, but not limited to, if You make use of that right with the aim of generating a parallel enterprise based in our Website or our products, or with the aim of making use of an automated service or software analysing, capturing or somehow using the information shown in our Website.</p>
-                    <p><b>17.4 </b>You are not permitted to:</p>
-                    <p>a) install or load the software that forms part of the Website onto a server or other networked device or take other steps to make the software available via any form of "bulletin board", online service or remote dial-in or network to any other person;</p>
-                    <p>b) sub-license, assign, rent, lease, loan, transfer or copy (except as expressly provided elsewhere in these Terms and Conditions) Your right to use the Website, or the software that forms part of the Website, or make or distribute copies of same;</p>
-                    <p>c) enter, access or attempt to enter or access or otherwise bypass Seabet’s security system or interfere in any way (including but not limited to, robots or similar devices) with the products or the Website or attempt to make any modifications to the software and/or any features or components thereof;</p>
-                    <p>d) copy or translate any user documentation provided 'online' or in electronic format.</p>
-                    <p>e) In addition, except to the minimum extent permitted by applicable law in relation to computer programs, You are not permitted to: (i) translate, reverse engineer, decompile, disassemble, modify, create derivative works based on, or otherwise modify the Website; or (ii) reverse engineer, decompile, disassemble, modify, adapt, translate, make any attempt to discover the source code of the software that forms part of the Website or to create derivative works based on the whole or on any part of the Website.</p>
-                    <p><b>17.5 </b>You do not own the software that forms part of the Website. Such software is owned and is the exclusive property of Seabet or a third-party software provider company (any such third-party provider, the "Software Provider"). Any software and accompanying documentation which have been licensed to Seabet are proprietary products of the Software Provider and protected throughout the world by copyright law. Your use of the software does not give You ownership of any intellectual property rights in the software.</p>
-                    <p><b>17.6 </b>The software is provided "as is" without any warranties, conditions, undertakings or representations, express or implied, statutory or otherwise. Seabet hereby excludes all implied terms, conditions and warranties, including any of merchantability, merchantable quality, satisfactory quality and fitness for any particular purpose, completeness or accuracy of the services or the software or infringement of applicable laws and regulations. Seabet does not warrant or condition that: </p>
-                    <p>(i) the software will meet Your requirements; </p>
-                    <p>(ii) the software will not infringe any third party’s intellectual property rights; </p>
-                    <p>(iii) the operation of the software will be error free or uninterrupted; (iv) any defects in the software will be corrected; or </p>
-                    <p>(v) the software or the servers are virus-free.</p>
-
-                    <p><b>17.7 </b>In the event of communications or system errors occurring in connection with the settlement of accounts or other features or components of the software, neither Seabet nor the Software Provider will have any liability to You or to any third party in respect of such errors. Seabet reserves the right in the event of such errors to remove all relevant products from the Website and take any other action to correct such errors.</p>
-                    <p><b>17.8 </b>You hereby acknowledge that how You use the software is outside of Seabet’s control. Accordingly, You install and/or use the software at Your own risk. Seabet will not have any liability to You or to any third party in respect of Your receipt of and/or use of the software.</p>
-                    <p><b>17.9 </b>The software may include confidential information which is secret and valuable to the Software Provider and/or Seabet. You are not entitled to use or disclose that confidential information other than strictly in accordance with these Terms and Conditions.</p>
-                    <p><b>17.10 </b>Seabet shall not be liable if for any reason the Website is unavailable at any time or for any period. We reserve the right to make changes or corrections to or to alter, suspend or discontinue any aspect of the Website and the content or services or products available through it, including Your access to it.</p>
-                    <p><b>17.11 </b>You must not misuse the Website by introducing viruses, trojans, worms, logic bombs or other material which is malicious or technologically harmful. In particular, You must not access the Website without authority, interfere with, damage or disrupt the Website or any part of it, any equipment or network on which the Website is hosted, any software used in connection with the provision of the Website, or any equipment, software or website owned or used by a third party. You must not attack our Website via a denial-of-service attack. We will not be liable for any loss or damage caused by a distributed denial-of-service attack, viruses or other technologically harmful material that may infect Your computer equipment, computer programs, data or other proprietary material arising due to Your use of the Website, software or to Your downloading of any material posted on it, or on any website linked to it.</p>
-
-                    <h3>18. THIRD PARTY CONTENT</h3>
-                    <p><b>18.1 </b>Seabet receives feeds, commentaries and content from a number of suppliers. Certain third-party product providers may require You to agree to additional terms and conditions governing the use of their feeds, commentaries and content. If You do not accept the relevant third-party terms and conditions, You agree to not use the relevant feeds, commentaries or content.</p>
-                    <p><b>18.2 </b>Seabet does not accept any liability in respect of any third-party feeds, commentaries and content.</p>
-                    <p><b>18.3 </b>Where the Website contains links to third party websites and resources, these links are provided for Your information only. Seabet has no control over the content of these sites or resources, and accepts no liability for them or for any loss or damage that may arise from Your use of them. The inclusion of a link to a third-party website does not constitute an endorsement of that third party’s website, product or services, if applicable.</p>
-
-                    <h3>19. ERRORS</h3>
-                    <p><b>19.1 </b>Seabet will not be liable in the event You try to or obtain an advantage from any errors in respect of bets or wagers on the Website if You were deliberately acting in bad-faith, including where: </p>
-                    <p>(i) there is an obvious error in the relevant odds, spreads, handicap, totals, cash-out; </p>
-                    <p>(ii) Seabet continues to accept bets or wagers on closed or suspended markets; </p>
-                    <p>(iii) Seabet incorrectly calculates or pays a settlement amount, including where a bet is Cashed Out for the full settlement amount, or a bet is made void incorrectly, where ‘Void if player does not start’ was selected at bet placement; or </p>
-                    <p>(iv) any error occurs in a random number generator or pay tables included, incorporated or used in any game or product.</p>
-
-                    <h3>20. BREACH</h3>
-                    <p><b>20.1 </b>Without prejudice to any other rights, if a user breaches in whole or in part any provision contained herein, Seabet reserves the right to take such action as it sees fit, including terminating this Agreement or any other agreement in place with the User and/or taking legal action against such User.</p>
-                    <p><b>20.2 </b>You agree to fully indemnify, defend and hold harmless Seabet and its shareholders, directors, agents and employees from and against all claims, demands, liabilities, damages, losses, costs and expenses, including legal fees and any other charges whatsoever, howsoever caused, that may arise as a result of:</p>
-                    <p>a) your breach of this Agreement, in whole or in part;</p>
-                    <p>b) violation by you of any law or any third-party rights; and</p>
-                    <p>c) use by you of the Service.</p>
+                        <p>คุณสมบัติด้านความปลอดภัย</p>
+                        <p><b>4.17</b> เราขอแนะนําให้คุณเปิดใช้งานการยืนยันตัวตนแบบสองชั้นเพื่อเพิ่มความปลอดภัยของบัญชีของคุณ</p>
+                        <p><b>4.18</b> เราอาจจัดให้มีมาตรการรักษาความปลอดภัยอื่น ๆ เป็นครั้งคราวและเราขอแนะนําให้คุณใช้มาตรการเหล่านี้</p>
 
 
+                        <p>การระงับและการปิดโดย Seabet</p>
+                        <p><b>4.19</b> Seabet มีสิทธิ์ปิดหรือระงับบัญชี Seabet ของคุณหาก:</p>
+                        <p>ก) ซีเบทถือว่าคุณกําลังใช้หรือใช้เว็บไซต์ในลักษณะที่ฉ้อฉลหรือสมรู้ร่วมคิด หรือเพื่อวัตถุประสงค์ที่ผิดกฎหมายและ/หรือผิดกฎหมายหรือไม่เหมาะสม</p>
+                        <p>ข) ซีเบทถือว่าท่านใช้หรือใช้งานเว็บไซต์อย่างไม่เป็นธรรม จงใจโกง หรือเอาเปรียบซีเบทหรือลูกค้ารายใดของซีเบท หรือหากบัญชีซีเบทของท่านถูกใช้เพื่อประโยชน์ของบุคคลที่สาม</p>
+                        <p>c) Seabet ได้รับการร้องขอจากตํารวจหน่วยงานกํากับดูแลหรือศาลใด ๆ หรือหาก Seabet ไม่สามารถยืนยันตัวตนอาชีพหรือแหล่งที่มาของเงินทุนของคุณตามที่กําหนดอย่างชัดแจ้งโดยกฎระเบียบที่เกี่ยวข้อง</p>
+                        <p>d) คุณละเมิดข้อกําหนดและเงื่อนไขเหล่านี้กฎระเบียบที่บังคับใช้หรือการใช้บริการของเราอย่างเป็นธรรมหรือ Seabet มีข้อกังวลว่าคุณเป็นนักพนันที่มีปัญหาบังคับโดยไม่ได้รับการยกเว้นด้วยตนเอง</p>
+                        <p>จ) Seabet พิจารณาว่าเหตุการณ์ใด ๆ ที่อ้างถึงใน (ก) ถึง (จ) ข้างต้นอาจเกิดขึ้นหรือมีแนวโน้มที่จะเกิดขึ้น</p>
+                        <p><b>4.20</b> หากซีเบทปิดหรือระงับบัญชีซีเบทของท่านด้วยเหตุผลใดๆ ที่อ้างถึงใน <b>4.15</b> ท่านจะต้องรับผิดต่อการเรียกร้อง ความสูญเสียโดยตรง ความรับผิด ความเสียหาย ต้นทุน และค่าใช้จ่ายที่เกิดขึ้นหรือได้รับความเดือดร้อนจากซีเบท (รวมเรียกว่า "ข้อเรียกร้อง") ที่เกิดขึ้นจากที่ดังกล่าวและทั้งหมดตามขอบเขตที่กฎหมายที่ใช้บังคับอนุญาต  ชดใช้ค่าเสียหายและทําให้ Seabet ไม่เป็นอันตรายตามความต้องการสําหรับการเรียกร้องดังกล่าว</p>
+                        <p><b>4.21</b> ในสถานการณ์ที่อ้างถึงใน <b>4.15</b> ซีเบทมีสิทธิ์ที่จะยกเลิกการเดิมพันใด ๆ ที่คุณวางไว้หลังจากการกระทําดังกล่าวของคุณหรือเพื่อระงับและ / หรือรักษาจํานวนเงินใด ๆ และทั้งหมดที่จะจ่ายหรือจ่ายให้คุณ (รวมถึงการชนะใด ๆ ) ตามขอบเขตที่กฎหมายอนุญาต</p>
+                        <p><b>4.22</b> เราขอสงวนสิทธิ์ในการระงับหรือยกเลิกบัญชีของคุณได้ตลอดเวลาโดยมีหรือไม่มีการแจ้งให้ทราบล่วงหน้าหากเราสงสัยว่าบัญชีของคุณถูกบุกรุกหรือถูกใช้โดยละเมิดข้อกําหนดในการให้บริการของเรา</p>
+                        <p><b>4.23</b> หาก Seabet ปิดบัญชี Seabet ของท่าน จะแจ้งให้ท่านทราบถึงวิธีการถอนยอดเงินคงเหลือในบัญชี Seabet ของท่าน</p>
 
-                    <h3>21. LIMITATIONS AND LIABILITY</h3>
-                    <p><b>21.1 </b>Under no circumstances, including negligence, shall Seabet be liable for any special, incidental, direct, indirect or consequential damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use (or misuse) of the Service even if Seabet had prior knowledge of the possibility of such damages.</p>
-                    <p><b>21.2 </b>Nothing in this Agreement shall exclude or limit Seabet's liability for death or personal injury resulting from its negligence.</p>
+                        <p>ความรับผิดของเรา</p>
+                        <p><b>4.24</b> เราไม่รับผิดชอบต่อความสูญเสียหรือความเสียหายใด ๆ ที่คุณอาจได้รับอันเป็นผลมาจากการเข้าถึงบัญชีของคุณโดยไม่ได้รับอนุญาต</p>
+                        <p><b>4.25</b> เราไม่รับผิดชอบต่อความสูญเสียหรือความเสียหายใด ๆ ที่คุณอาจได้รับอันเป็นผลมาจากความล้มเหลวในการเก็บรักษาการเข้าสู่ระบบของคุณให้ปลอดภัยและเป็นส่วนตัว</p>
 
-                    <h3>22. INTELLECTUAL PROPERTY</h3>
-                    <p><b>22.1 </b>Seabet and its licensors are the sole holders of all rights in and to the Service and code, structure and organisation, including copyright, trade secrets, intellectual property and other rights. You may not, within the limits prescribed by applicable laws: </p>
-                    <p>(a) copy, distribute, publish, reverse engineer, decompile, disassemble, modify, or translate the website; or </p>
-                    <p>(b) use the Service in a manner prohibited by applicable laws or regulations (each of the above is an "Unauthorised Use"). </p>
-                    <p>Seabet reserves any and all rights implied or otherwise, which are not expressly granted to the User hereunder and retain all rights, title and interest in and to the Service. You agree that you will be solely liable for any damage, costs or expenses arising out of or in connection with the commission by you of any Unauthorized Use. </p>
-                    <p>You shall notify Seabet immediately upon becoming aware of the commission by any person of any Unauthorised Use and shall provide Seabet with reasonable assistance with any investigations it conducts in light of the information provided by you in this respect.</p>
-                    <p><b>22.2 </b>The term "Seabet", its domain names and any other trade marks, or service marks used by Seabet as part of the Service (the "Trade Marks"), are solely owned by Seabet. In addition, all content on the website, including, but not limited to, the images, pictures, graphics, photographs, animations, videos, music, audio and text (the "Site Content") belongs to Seabet and is protected by copyright and/or other intellectual property or other rights. You hereby acknowledge that by using the Service, you obtain no rights in the Site Content and/or the Trade Marks, or any part thereof. Under no circumstances may you use the Site Content and/or the Trade Marks without Seabet's prior written consent. Additionally, you agree not to do anything that will harm or potentially harm the rights, including the intellectual property rights of Seabet.</p>
+                        <h3>5. การรับประกันของคุณ</h3>
+                        <p><b>5.1</b> ก่อนที่คุณจะใช้บริการและต่อเนื่องคุณรับรองรับประกันพันธสัญญาและยอมรับว่า:</p>
+                        <p>ความสามารถ</p>
+                        <p>ก) คุณมีอายุมากกว่า 18 ปีหรือบรรลุนิติภาวะตามกฎหมายอื่น ๆ ตามที่กําหนดโดยกฎหมายใด ๆ ที่บังคับใช้กับคุณ แล้วแต่อายุใดจะมากกว่า</p>
+                        <p>ข) คุณมีความสามารถอย่างเต็มที่ในการทําข้อตกลงที่มีผลผูกพันทางกฎหมายกับเรา และคุณไม่ได้ถูกจํากัดด้วยความสามารถทางกฎหมายที่จํากัดทุกรูปแบบ</p>
+                        <p>c) คุณไม่ได้รับการวินิจฉัยหรือจัดให้เป็นนักพนันที่บังคับหรือมีปัญหา</p>
+                        <p>d) ขณะนี้คุณไม่ได้ถูกแยกออกจากเว็บไซต์การพนันหรือสถานที่เล่นการพนันใด ๆ คุณจะแจ้งให้ Seabet ทราบทันทีหากคุณทําข้อตกลงการยกเว้นตนเองกับผู้ให้บริการการพนันรายใด</p>
 
-                    <h3>23. DISPUTES</h3>
-                    <p><b>23.1 </b>If a User wishes to make a complaint, please contact Seabet's customer service team at (support{'@'}seabet.io). Should any dispute not be resolved to your satisfaction you may pursue remedies in the governing law jurisdiction set forth below.</p>
+                        <p>อำนาจ</p>
+                        <p>จ) คุณกําลังเข้าถึง Seabet.io จากเขตอํานาจศาลที่กฎหมายกําหนดให้ทําเช่นนั้น</p>
+                        <p>f) คุณจะไม่ใช้บริการของเราในขณะที่อยู่ในเขตอํานาจศาลใด ๆ ที่ห้ามการวางและ / หรือยอมรับการเดิมพันออนไลน์และ / หรือเล่นคาสิโนและ / หรือเกมสด</p>
+                        <p>g) คุณยอมรับและรับทราบว่าเราขอสงวนสิทธิ์ในการตรวจจับและป้องกันการใช้เทคนิคต้องห้ามรวมถึง แต่ไม่ จํากัด เพียงการตรวจจับธุรกรรมที่เป็นการฉ้อโกงการลงทะเบียนและการลงทะเบียนอัตโนมัติการเล่นเกมและเทคนิคการจับภาพหน้าจอ ขั้นตอนเหล่านี้อาจรวมถึง แต่ไม่ จํากัด เพียงการตรวจสอบคุณสมบัติของอุปกรณ์ผู้เล่นการตรวจจับตําแหน่งทางภูมิศาสตร์และการปิดบัง IP ธุรกรรมและการวิเคราะห์บล็อกเชน</p>
 
-                    <h3>24. AMENDMENT</h3>
-                    <p><b>24.1 </b>Seabet reserves the right to update or modify this Agreement or any part thereof at any time or otherwise change the Service without notice and you will be bound by such amended Agreement upon posting. Therefore, we encourage you check the terms and conditions contained in the version of the Agreement in force at such time. Your continued use of the Service shall be deemed to attest to your agreement to any amendments to the Agreement.</p>
+                        <p>กองทุนและภาษี</p>
+                        <p>h) คุณเป็นผู้รับผิดชอบแต่เพียงผู้เดียวในการรายงานและการบัญชีสําหรับภาษีใด ๆ ที่เกี่ยวข้องกับคุณภายใต้กฎหมายที่เกี่ยวข้องสําหรับการชนะใด ๆ ที่คุณได้รับจากเรา</p>
+                        <p>i) คุณเป็นผู้รับผิดชอบแต่เพียงผู้เดียวสําหรับภาษีที่เกี่ยวข้องใด ๆ ที่อาจจ่ายให้กับสกุลเงินดิจิทัลที่มอบให้คุณผ่านการใช้บริการของคุณ</p>
+                        <p>j) มีความเสี่ยงที่จะสูญเสียสกุลเงินดิจิทัลเมื่อใช้บริการและ Seabet ไม่รับผิดชอบต่อคุณสําหรับการสูญเสียดังกล่าว</p>
+                        <p>k) คุณจะไม่ฝากเงินที่มาจากกิจกรรมทางอาญาหรือกิจกรรมที่ไม่ได้รับอนุญาตอื่น ๆ</p>
+                        <p>l) คุณจะไม่ฝากเงินโดยใช้วิธีการชําระเงินที่ไม่ใช่ของคุณ</p>
+                        <p>m) เงินทั้งหมดที่ฝากจะใช้สําหรับบริการที่มีอยู่บนเว็บไซต์เท่านั้น</p>
+                        <p>n) คุณจะไม่ถอนหรือพยายามถอนไปยังวิธีการชําระเงินที่ไม่ใช่ของคุณ</p>
+                        <p>o) คุณเข้าใจว่าการเข้าร่วมในบริการที่มีอยู่บนเว็บไซต์คุณจะเสี่ยงต่อการสูญเสียเงินที่ฝาก</p>
+                        <p>p) คุณยอมรับและรับทราบว่ามูลค่าของสกุลเงินดิจิทัลสามารถเปลี่ยนแปลงได้อย่างมากขึ้นอยู่กับมูลค่าตลาด</p>
+                        <p>q) ซีเบทจะไม่ถือว่าเป็นสถาบันการเงิน</p>
 
-                    <h3>25. SEVERABILITY</h3>
-                    <p><b>25.1 </b>If a provision of this Agreement is or becomes illegal, invalid or unenforceable in any jurisdiction, that shall not affect the validity or enforceability in that jurisdiction of any other provision hereof or the validity or enforceability in other jurisdictions of that or any other provision hereof.</p>
+                        <p>อื่น ๆ</p>
+                        <p>r) การใช้บริการของคุณขึ้นอยู่กับตัวเลือกดุลยพินิจและความเสี่ยงของคุณแต่เพียงผู้เดียว</p>
+                        <p>s) คุณจะไม่ดําเนินกิจกรรมทางอาญาผ่านบัญชี Seabet</p>
+                        <p>t) ข้อมูลทั้งหมดที่คุณให้กับเราในช่วงระยะเวลาของความถูกต้องของข้อตกลงนี้เป็นความจริงสมบูรณ์ถูกต้องและคุณจะต้องแจ้งให้เราทราบทันทีถึงการเปลี่ยนแปลงข้อมูลดังกล่าว</p>
+                        <p>u) คุณเข้าร่วมในเกมอย่างเคร่งครัดในความสามารถส่วนตัวและไม่ใช่มืออาชีพของคุณและเข้าร่วมเพื่อวัตถุประสงค์ในการพักผ่อนหย่อนใจและความบันเทิงเท่านั้น</p>
+                        <p>v) คุณเข้าร่วมในเกมในนามของคุณเองและไม่ใช่ในนามของบุคคลอื่น</p>
+                        <p>w) คุณมีบัญชีเดียวกับเราเพียงบัญชีเดียวและตกลงที่จะไม่เปิดบัญชีกับเราอีก</p>
+                        <p>x) เครือข่ายโทรคมนาคมและบริการเชื่อมต่ออินเทอร์เน็ตที่จําเป็นสําหรับคุณในการเข้าถึงและใช้บริการอยู่นอกเหนือการควบคุมของ Seabet และ Seabet จะไม่รับผิดชอบต่อการหยุดทํางานความช้าข้อ จํากัด ด้านความจุหรือข้อบกพร่องอื่น ๆ ที่มีผลต่อสิ่งเดียวกัน</p>
+                        <p>y) คุณจะไม่มีส่วนร่วมในกิจกรรมฉ้อโกงสมรู้ร่วมคิดแก้ไขหรือกิจกรรมที่ผิดกฎหมายอื่น ๆ ที่เกี่ยวข้องกับการมีส่วนร่วมของคุณหรือบุคคลที่สามในเกมและ / หรือบริการใด ๆ บนเว็บไซต์และจะไม่ใช้วิธีการหรือเทคนิคซอฟต์แวร์ช่วยหรืออุปกรณ์ฮาร์ดแวร์ใด ๆ สําหรับการเข้าร่วมในเกมและ / หรือบริการใด ๆ บนเว็บไซต์</p>
+                        <p>z) หากคุณสามารถเข้าถึงข้อมูลที่ไม่เปิดเผยต่อสาธารณะที่เกี่ยวข้องกับเหตุการณ์หรืออาจส่งผลกระทบต่อผลลัพธ์ของเหตุการณ์หรือประเภทการเดิมพันคุณจะไม่เดิมพันกับเหตุการณ์ใด ๆ ที่ดูแลโดยหน่วยงานกํากับดูแลกีฬา / กิจกรรมที่เกี่ยวข้อง</p>
+                        <p>aa) หากคุณเป็นนักกีฬาโค้ชผู้จัดการเจ้าของผู้ตัดสินหรือใครก็ตามที่มีอํานาจเพียงพอที่จะมีอิทธิพลต่อผลลัพธ์ของเหตุการณ์คุณจะไม่เดิมพันกับเหตุการณ์ใด ๆ ที่ดูแลโดยกีฬาหรือเหตุการณ์ที่เกี่ยวข้องของหน่วยงานกํากับดูแล</p>
+                        <p>bb) หากคุณเป็นเจ้าของ (บุคคลที่เป็นเจ้าของตามกฎหมายหรือผลประโยชน์โดยตรงหรือโดยอ้อมตั้งแต่ 10 เปอร์เซ็นต์ขึ้นไป) ขององค์กรกํากับดูแลกีฬาหรือทีมสมาชิก คุณจะไม่เดิมพันกับเหตุการณ์ใด ๆ ที่ดูแลโดยองค์กรกํากับดูแลกีฬาหรือเหตุการณ์ใด ๆ ที่ทีมสมาชิกของกีฬาหรือองค์กรกํากับดูแลการแข่งขันนั้นเข้าร่วม</p>
+                        <p>cc) หากคุณมีส่วนร่วมในกีฬาหรือเหตุการณ์คุณจะไม่มีส่วนร่วมในการรวบรวมอัตราต่อรองการเดิมพันสําหรับการแข่งขันที่คุณมีส่วนร่วม</p>
+                        <p><b>5.2</b> ในกรณีที่มีการละเมิดการรับรอง ใบสําคัญแสดงสิทธิ หรือพันธสัญญาใด ๆ ที่กล่าวถึงใน <b>5.1</b> Seabet ขอสงวนสิทธิ์ในการปิดหรือระงับบัญชี Seabet ของคุณตามดุลยพินิจของตนเองและทําให้การเดิมพันใด ๆ เป็นโมฆะตามขอบเขตที่กฎหมายกําหนด</p>
 
-                    <h3>26. ASSIGNMENT</h3>
-                    <p><b>26.1 </b>Seabet reserves the right to assign this agreement, in whole or in part, at any time without notice. The User may not assign any of his/her rights or obligations under this Agreement.</p>
+                        <h3>6. การรับประกันของ SEABET</h3>
+                        <p><b>6.1</b> Seabet รับประกันว่าพวกเขาจะ:</p>
+                        <p>ก) จัดการเงินที่เป็นของผู้เล่นในลักษณะที่ปลอดภัยและเหมาะสม และ</p>
+                        <p>ข) จัดการข้อมูลส่วนบุคคลที่เกี่ยวข้องกับผู้เล่นตามกฎหมายที่บังคับใช้และเป็นไปตามนโยบายความเป็นส่วนตัว</p>
+                        <p><b>6.2</b> ซอฟต์แวร์มีให้ "ตามที่เป็นอยู่" โดยไม่มีการรับประกันเงื่อนไขการดําเนินการหรือการรับรองใด ๆ โดยชัดแจ้งหรือโดยนัยตามกฎหมายหรืออื่น ๆ Seabet ขอยกเว้นข้อกําหนดการรับรองเงื่อนไขและการรับประกันโดยนัยทั้งหมด (รวมถึงความสามารถในการขายคุณภาพที่ขายได้คุณภาพที่น่าพอใจและความเหมาะสมสําหรับวัตถุประสงค์เฉพาะใด ๆ ) </p>
+                        <p>Seabet ไม่รับประกันว่า: </p>
+                        <p>(๑)เว็บไซต์และบริการจะตอบสนองความต้องการของคุณ </p>
+                        <p>(๒)เว็บไซต์และบริการจะไม่ละเมิดสิทธิ์ในทรัพย์สินทางปัญญาของบุคคลที่สาม</p>
+                        <p>(๓)การทํางานของเว็บไซต์และบริการจะปราศจากข้อผิดพลาดหรือไม่หยุดชะงัก</p>
+                        <p>(๔)ข้อบกพร่องใด ๆ ในเว็บไซต์และบริการจะได้รับการแก้ไข หรือ </p>
+                        <p>(๕)เว็บไซต์หรือเซิร์ฟเวอร์ไม่มีไวรัส</p>
 
-                    <h3>27. MISCELLANEOUS</h3>
-                    <p><b>27.1 </b>No waiver by Seabet of any breach of any provision of this Agreement (including the failure of Seabet to require strict and literal performance of or compliance with any provision of this Agreement) shall in any way be construed as a waiver of any subsequent breach of such provision or of any breach of any other provision of this Agreement.</p>
-                    <p><b>27.2 </b>Nothing in this Agreement shall create or confer any rights or other benefits in favour of any third parties not party to this Agreement.</p>
-                    <p><b>27.3 </b>Nothing in this Agreement shall create or be deemed to create a partnership, agency, trust arrangement, fiduciary relationship or joint venture between you and Seabet.</p>
-                    <p><b>27.4 </b>Seabet may assign, transfer, charge, sub-license, or deal in any other manner with this Agreement, or sub-contract any of its rights and obligations under this Agreement, to any other party.</p>
-                    <p><b>27.5 </b>This Agreement constitutes the entire understanding and agreement between you and Seabet regarding the Service and supersedes any prior agreement, understanding, or arrangement between you and Seabet.</p>
+                        <p><b>6.3</b> Seabet สามารถติดต่อได้ทางอีเมลที่ (support@seabet.io) หรือทางแชทสดตลอด 24 ชั่วโมงทุกวัน แชทสดสามารถใช้ได้เมื่อลงชื่อเข้าใช้บัญชี Seabet ของคุณ ในกรณีที่ซีเบทพิจารณาตามดุลยพินิจของตนแต่เพียงผู้เดียวว่าพฤติกรรมของคุณผ่านการแชทสดอีเมลหรืออื่น ๆ เป็นการละเมิดหรือเสื่อมเสียต่อซีเบทหรือบริษัทในเครือหรือพนักงานของผู้ให้บริการบุคคลที่สาม Seabet มีสิทธิ์ที่จะบล็อกหรือยกเลิกบัญชี Seabet ของคุณ</p>
 
-                    <h3>28. COMPLAINTS</h3>
-                    <p><b>28.1 </b>If you have a complaint to make regarding our services, you may contact our customer support via Live Chat or by email (support{'@'}seabet.io). We will endeavour to resolve the matter promptly.</p>
+                        <h3>7. เงินฝาก</h3>
+                        <p><b>7.1</b> คุณสามารถเข้าร่วมในเกมใดก็ได้ก็ต่อเมื่อคุณมีเงินเพียงพอในบัญชี Seabet ของคุณสําหรับการเข้าร่วมดังกล่าว เพื่อจุดประสงค์นั้นคุณจะต้องใช้วิธีการชําระเงินที่มีอยู่บนเว็บไซต์เพื่อฝากเงินของคุณ Seabet จะไม่ให้เครดิตใด ๆ แก่คุณสําหรับการเข้าร่วมในเกมใด ๆ</p>
+                        <p><b>7.2</b> คุณต้องฝากเงินเข้าบัญชี Seabet ของคุณโดยใช้วิธีการชําระเงินที่มีอยู่ใน www. Seabet.io</p>
+                        <p><b>7.3</b> คุณจะต้องตรวจสอบให้แน่ใจว่าเงินที่คุณฝากเข้าบัญชี Seabet ของคุณไม่ได้ปนเปื้อนด้วยสิ่งผิดกฎหมายใด ๆ และโดยเฉพาะอย่างยิ่งไม่ได้มาจากกิจกรรมหรือแหล่งที่มาที่ผิดกฎหมายใด ๆ</p>
+                        <p><b>7.4</b> ในการฝากเงินเข้าบัญชี Seabet ของคุณคุณสามารถโอนเงินจาก crypto-wallets ภายใต้การควบคุมของคุณหรือผ่านวิธีการชําระเงินอื่น ๆ ที่มีอยู่ใน Seabet.io การฝากเงินสามารถทําได้ด้วยเงินของคุณเองเท่านั้น</p>
+                        <p><b>7.5</b> คุณควรฝากเงินเข้าบัญชีของคุณเพื่อวัตถุประสงค์ของคุณโดยใช้เงินดังกล่าวเพื่อวางเดิมพัน / เดิมพันบนเว็บไซต์เท่านั้น Seabet มีสิทธิ์ที่จะระงับหรือปิดบัญชีของคุณหากเราเชื่ออย่างสมเหตุสมผลว่าคุณกําลังฝากเงินโดยไม่มีเจตนาที่จะวางเดิมพันกีฬาและ / หรือการเล่นเกม ในกรณีดังกล่าวเราอาจรายงานกิจกรรมนี้ต่อหน่วยงานที่เกี่ยวข้อง</p>
+                        <p><b>7.6</b> คุณรับทราบและเข้าใจว่าการฝากเงินเข้าบัญชี Seabet ของคุณสามารถฝากเงินได้โดยวิธีการชําระเงินที่คุณเป็นเจ้าของเท่านั้น</p>
+                        <p><b>7.7</b> ท่านเข้าใจ ตกลง และรับทราบว่าหากซีเบทค้นพบ ตรวจพบ และ/หรือระบุว่าท่าน:</p>
+                        <p>ก) ได้รับทุน/กําลังฝากเงินเข้าบัญชี Seabet ของคุณโดยใช้วิธีการชําระเงินของบุคคลที่สาม และ/หรือ</p>
+                        <p>ข) ได้รับทุน/กําลังฝากเงินเข้าบัญชี Seabet ของคุณด้วยเงินที่ผิดกฎหมายกิจกรรมดังกล่าวจะถือว่าเป็นการละเมิดข้อกําหนดในการให้บริการที่เป็นการฉ้อโกงและโดยการขยายเวลา:</p>
+                        <p>i) Seabet ขอสงวนสิทธิ์ในการระงับหรือปิดบัญชี Seabet ของคุณตามดุลยพินิจของตนเอง และ</p>
+                        <p>ii) Seabet ขอสงวนสิทธิ์ตามดุลยพินิจของตนเองในการยกเลิกย้อนกลับหรือปรับเปลี่ยนธุรกรรมใด ๆ และริบเงินที่ฝากและ / หรือเงินรางวัลที่เกิดจากเงินที่ฝาก</p>
+                        <p><b>7.8</b> Seabet สามารถกําหนดจํานวนเงินฝากขั้นต่ําได้ตามคําอธิบายของตนเอง จํานวนเงินฝากขั้นต่ําสามารถเปลี่ยนแปลงได้ตลอดเวลาที่คําอธิบายของ Seabet และจะระบุไว้บนเว็บไซต์ โปรดทราบว่าผู้ให้บริการการชําระเงินอาจเรียกเก็บค่าธรรมเนียมเพิ่มเติมทั้งนี้ขึ้นอยู่กับวิธีการชําระเงินของคุณ</p>
+                        <p><b>7.9</b> วิธีการชําระเงินที่มีให้คุณและวงเงินฝากขั้นต่ําและสูงสุดสามารถพบได้ในส่วนกระเป๋าเงินบนเว็บไซต์ ค่าบริการที่เกี่ยวข้องอาจมีการใช้และเปลี่ยนแปลงได้ วิธีการชําระเงินบางวิธีอาจไม่มีให้บริการในบางประเทศ</p>
+                        <p><b>7.10</b> เงินฝากจะได้รับการดําเนินการทันทีและยอดคงเหลือที่อัปเดตจะแสดงในบัญชี Seabet ทันทีเมื่อใดก็ตามที่มีการใช้ผู้ให้บริการชําระเงิน ซีเบทจะไม่รับผิดชอบต่อความล่าช้าใด ๆ ที่เกิดจากระบบการชําระเงินหรือเนื่องจากความล่าช้าที่เกิดจากบุคคลที่สาม โปรดทราบว่า:</p>
+                        <p>ก) วิธีการชําระเงินบางวิธีอาจมีค่าธรรมเนียมเพิ่มเติม ในกรณีนี้ค่าธรรมเนียมจะปรากฏให้คุณเห็นอย่างชัดเจนในแคชเชียร์</p>
+                        <p>ข) ธนาคารหรือผู้ให้บริการชําระเงินของคุณอาจเรียกเก็บค่าธรรมเนียมเพิ่มเติมสําหรับเงินฝากของการแปลงสกุลเงินตามข้อกําหนดและเงื่อนไขและข้อตกลงผู้ใช้ของคุณ</p>
+                        <p><b>7.11</b> เราขอสงวนสิทธิ์ในการใช้ขั้นตอนและวิธีการเพิ่มเติมเพื่อยืนยันตัวตนของคุณเมื่อดําเนินการฝากเงินเข้าบัญชี Seabet ของคุณ</p>
+                        <p><b>7.12</b> เงินไม่สามารถโอนจากบัญชี Seabet ของคุณไปยังบัญชี Seabet ของผู้เล่นคนอื่นได้</p>
+                        <p><b>7.13</b> Seabet สามารถปฏิเสธการฝากเงินใด ๆ ตามคําอธิบายของตนเอง ผู้ใช้ที่ถูกบล็อกบัญชีหรือถูกระงับจะต้องงดการฝากเงินที่ www.Seabet.io</p>
+                        <p><b>7.14</b> ในกรณีที่ผู้เล่นพยายามฝากเงินเมื่อบัญชีของเขาถูกบล็อกหรือระงับ Seabet จะมีสิทธิ์เก็บเงินไว้</p>
+
+                        <h3>8. การถอนเงิน</h3>
+                        <p><b>8.1</b> Seabet ขอสงวนสิทธิ์ในการปฏิเสธการถอนเงินโดยผู้เล่นจากบัญชี Seabet ของพวกเขาจนกว่า:</p>
+                        <p>ก) ตัวตนของผู้เล่นได้รับการยืนยันแล้ว และ Seabet ได้ยืนยันการถอนเงินโดยผู้ถือบัญชี Seabet แล้ว</p>
+                        <p>ข) การถอนเงินจะถูกโอนไปยังบัญชีที่ผู้เล่นเป็นผู้ถือตามกฎหมาย</p>
+                        <p>c) ข้อมูลเพิ่มเติมใด ๆ ที่ Seabet ร้องขอได้รับการจัดเตรียมไว้ และ</p>
+                        <p>d) ผู้เล่นได้ปฏิบัติตามข้อกําหนดการเดิมพันขั้นต่ําสําหรับการฝากเงินแต่ละครั้ง</p>
+                        <p><b>8.2</b> Seabet ขอสงวนสิทธิ์ในการตรวจสอบบัญชีและกิจกรรมการเล่นเกมของคุณ หาก Seabet มีเหตุอันควรสงสัยว่าบัญชีหรือกิจกรรมการเล่นเกมของคุณละเมิดข้อกําหนดในการให้บริการเหล่านี้หรือกฎหมายหรือข้อบังคับที่บังคับใช้ Seabet อาจชะลอหรือปฏิเสธการฝากถอนและ / หรือการเล่นเกมเพิ่มเติมในขณะที่ดําเนินการตรวจสอบตามดุลยพินิจของตน แต่เพียงผู้เดียว คุณรับทราบและยอมรับว่า Seabet อาจไม่อยู่ในฐานะที่จะให้คําอธิบายเกี่ยวกับลักษณะของการสอบสวน</p>
+                        <p><b>8.3</b> การถอนเงินทั้งหมดจะต้องดําเนินการผ่านวิธีการชําระเงินเดียวกันกับที่คุณเลือกเมื่อทําการฝากเงิน เว้นแต่เราจะตัดสินใจเป็นอย่างอื่นหรือไม่สามารถทําได้ หากคุณฝากเงินโดยใช้วิธีการชําระเงินหลายวิธีเราขอสงวนสิทธิ์ในการแบ่งการถอนเงินของคุณในวิธีการชําระเงินดังกล่าวและดําเนินการแต่ละส่วนผ่านวิธีการชําระเงินที่เกี่ยวข้องตามดุลยพินิจของเราและเป็นไปตามนโยบายและข้อบังคับต่อต้านการฟอกเงิน</p>
+                        <p><b>8.4</b> หากเราเครดิตเงินรางวัลที่ไม่ได้อยู่ในบัญชีซีเบทของคุณผิดพลาดไม่ว่าจะเกิดจากข้อผิดพลาดทางเทคนิคในตารางการชําระเงินหรือข้อผิดพลาดของมนุษย์หรืออื่น ๆ จํานวนเงินจะยังคงเป็นทรัพย์สินของเราและจะถูกหักออกจากบัญชี Seabet ของคุณ หากคุณถอนเงินที่ไม่ได้เป็นของคุณก่อนที่เราจะตระหนักถึงข้อผิดพลาดจํานวนเงินที่จ่ายผิดพลาดจะ (โดยไม่กระทบต่อการเยียวยาและการกระทําอื่น ๆ ที่อาจมีอยู่ในกฎหมาย) ถือเป็นหนี้ที่คุณค้างชําระกับเรา ในกรณีที่มีการให้เครดิตไม่ถูกต้องคุณมีหน้าที่แจ้งให้เราทราบทันทีทางอีเมล</p>
+
+                        <p>การถอนเงิน FIAT</p>
+                        <p><b>8.5</b> คุณต้องเดิมพัน 100% ของมูลค่าเงินฝากของคุณเพื่อขอถอนเงิน FIAT</p>
+                        <p><b>8.6</b> การถอนเงินจากบัญชี Seabet จะทําผ่านการชําระเงินที่ส่งไปยังผู้เล่นหรือโอนไปยังบัญชีธนาคารที่ถือในนามของผู้เล่นตามที่ผู้เล่นแนะนําให้ Seabet ก่อนที่จะดําเนินการถอนเงินใด ๆ Seabet ขอสงวนสิทธิ์ในการดําเนินการตรวจสอบสถานะที่เพิ่มขึ้นเมื่อเห็นว่าจําเป็น</p>
+                        <p><b>8.7</b> จํานวนเงินถอนขั้นต่ําจะถูกระบุบนเว็บไซต์เมื่อทําการถอนเงิน</p>
+                        <p><b>8.8</b> หากคุณมีการถอนเงินหลายรายการที่รอดําเนินการ Seabet ขอสงวนสิทธิ์ในการปฏิเสธการถอนเงินทั้งหมดและขอให้คุณทําการถอนเงินเพียงครั้งเดียวด้วยผลรวมของการถอนเงินหลายรายการ</p>
+                        <p><b>8.9</b> Seabet จะไม่เรียกเก็บค่าธรรมเนียมใด ๆ จากการถอนเงิน อย่างไรก็ตามคุณควรตรวจสอบว่าวิธีการชําระเงินที่คุณใช้เรียกเก็บค่าใช้จ่ายเพิ่มเติมหรือไม่ Seabet จะไม่รับผิดชอบต่อค่าคอมมิชชั่นหรือค่าธรรมเนียมการดําเนินการใด ๆ ที่เรียกเก็บจากคุณโดยบุคคลที่สามเช่นธนาคารของคุณเนื่องจากอยู่นอกเหนือการควบคุมของเรา</p>
+
+                        <p>การถอนเงิน Crypto</p>
+                        <p><b>8.10</b> การถอนเงิน Crypto จะทํากับที่อยู่กระเป๋าเงิน cryptocurrency ที่คุณระบุไว้เมื่อส่งคําขอถอนเงินที่ถูกต้อง</p>
+                        <p><b>8.11</b> Seabet ขอสงวนสิทธิ์ในการดําเนินการตามขั้นตอนการตรวจสอบ KYC เพิ่มเติมสําหรับการถอนเงินใด ๆ ผู้เล่นที่ต้องการกู้คืนเงินที่เก็บไว้ในบัญชีที่ปิดล็อคหรือยกเว้นควรติดต่อ (support@seabet.io)</p>
+                        <p><b>8.12</b> ธุรกรรมทั้งหมดจะต้องได้รับการตรวจสอบเพื่อป้องกันการฟอกเงิน หากผู้เล่นตระหนักถึงกิจกรรมที่น่าสงสัยใด ๆ ที่เกี่ยวข้องกับเกมใด ๆ ของเว็บไซต์เขาจะต้องรายงานเรื่องนี้ไปยัง Seabet ทันที Seabet อาจระงับ บล็อก หรือปิดบัญชี Seabet และระงับเงินหากได้รับการร้องขอให้ดําเนินการตามพระราชบัญญัติป้องกันและปราบปรามการฟอกเงินหรือบนพื้นฐานทางกฎหมายอื่นใดที่หน่วยงานของรัฐร้องขอ คุณรับทราบว่าเงินในบัญชีของคุณจะถูกใช้ทันทีเมื่อเล่นและเราไม่ได้ให้การคืนสินค้าการคืนเงินหรือการยกเลิกบัญชีของคุณย้อนหลัง</p>
+
+                        <h3>9. การคุ้มครองเงินทุนของผู้เล่นและการปฏิเสธการชําระเงิน</h3>
+                        <p><b>9.1</b> เงินใด ๆ  ที่คุณฝากไว้กับเราในบัญชี Seabet ของคุณพร้อมกับเงินรางวัลใด ๆ จะถูกเก็บไว้สําหรับคุณในบัญชีธนาคารของลูกค้า / กระเป๋าเงินคริปโตแยกต่างหากเพื่อวัตถุประสงค์เฉพาะสําหรับคุณในการวางเดิมพันกีฬาและการเล่นเกมและเพื่อชําระค่าธรรมเนียมหรือค่าใช้จ่ายใด ๆ ที่อาจเกิดขึ้นจากการใช้บริการของเรา ซึ่งหมายความว่าเงินของคุณได้รับการคุ้มครองจากการถูกใช้เพื่อวัตถุประสงค์อื่นใด</p>
+                        <p><b>9.2</b> หากเรามีการเรียกเก็บเงินคืน การกลับรายการ หรือการปฏิเสธการชําระเงิน หรือความสูญเสียใด ๆ ที่ Seabet ได้รับอันเป็นผลมาจากสาเหตุอันเนื่องมาจากคุณในส่วนที่เกี่ยวกับบัญชี Seabet ของคุณ เราขอสงวนสิทธิ์ในการเรียกเก็บเงินจากคุณสําหรับจํานวนเงินที่เกี่ยวข้องที่เกิดขึ้น</p>
+                        <p><b>9.3</b> เราอาจกําหนดยอดคงเหลือที่เป็นบวกในบัญชีของคุณกับจํานวนเงินใด ๆ ที่คุณค้างชําระกับ Seabet ได้ตลอดเวลา</p>
+                        <h3>10. การวางเดิมพัน/การเดิมพัน</h3>
+                        <p><b>10.1</b> คุณได้รับอนุญาตให้วางเดิมพัน / เดิมพันของคุณในตลาด / ผลิตภัณฑ์ที่นําเสนอในเว็บไซต์ ซีเบทไม่จําเป็นต้องยอมรับการเดิมพัน/การเดิมพันใด ๆ จากคุณ และการเดิมพัน/การเดิมพันจะถือว่าถูกต้องและสรุปได้เท่านั้น และตามที่ Seabet ยอมรับเมื่อคุณได้รับการยืนยันจาก Seabet ถึงการยอมรับการเดิมพัน/การเดิมพันของคุณ</p>
+                        <p><b>10.2</b> Seabet ยอมรับเฉพาะการเดิมพัน/การเดิมพันออนไลน์ (รวมถึงผ่านอุปกรณ์มือถือ) การเดิมพัน/การเดิมพันไม่ได้รับการยอมรับในรูปแบบอื่นใด (ไปรษณีย์ อีเมล แฟกซ์ ฯลฯ) และที่ได้รับจะไม่ถูกต้องและเป็นโมฆะ - ชนะหรือแพ้</p>
+                        <p><b>10.3</b> เป็นความรับผิดชอบของคุณในการตรวจสอบให้แน่ใจว่ารายละเอียดของการเดิมพัน / การเดิมพันนั้นถูกต้อง เมื่อวางเดิมพัน/วางเดิมพันแล้ว คุณจะไม่อาจยกเลิกได้ การเดิมพันสามารถเปลี่ยนแปลงได้โดยคุณโดยใช้คุณสมบัติแก้ไขการเดิมพันของเราเท่านั้นซึ่งสามารถใช้ได้ Seabet สามารถยกเลิกหรือแก้ไขการเดิมพัน / การเดิมพันได้ก็ต่อเมื่อเหตุการณ์ที่เกี่ยวข้องถูกระงับหรือยกเลิกหากมีข้อผิดพลาดที่ชัดเจนเกี่ยวกับการเดิมพันที่เกี่ยวข้องหรืออัตราต่อรองหากการเดิมพันนั้นละเมิดข้อกําหนดหรือหากจําเป็นให้ทําเช่นนั้นด้วยเหตุผลทางกฎหมายหรือกฎระเบียบ</p>
+                        <p><b>10.4</b> เงินของคุณจะถูกจัดสรรให้กับการเดิมพัน / การเดิมพันตามลําดับที่วางไว้และจะไม่สามารถใช้งานได้อื่นใด Seabet ขอสงวนสิทธิ์ในการยกเลิกและ / หรือย้อนกลับธุรกรรมใด ๆ ที่เกิดขึ้นหลังจากการวางเดิมพัน / การเดิมพันที่เกี่ยวข้องกับเงินที่ได้รับการจัดสรรไม่ว่าจะในเวลานั้นหรือย้อนหลัง</p>
+                        <h3>11. การยืนยันการเดิมพัน/การเดิมพัน</h3>
+                        <p><b>11.1</b> การเดิมพัน/การเดิมพันจะใช้ได้ก็ต่อเมื่อคุณได้รับการยืนยันการยอมรับการเดิมพัน/การเดิมพันของคุณ การเดิมพัน/การเดิมพันที่มีเงินไม่เพียงพอในบัญชีของคุณจะถือเป็นโมฆะ</p>
+                        <p><b>11.2</b> การเดิมพัน/การเดิมพันที่คุณร้องขอจะใช้ได้เมื่อ Seabet ยอมรับแล้วเท่านั้น การเดิมพัน/การเดิมพันที่ถูกต้องแต่ละครั้งจะได้รับรหัสธุรกรรมที่ไม่ซ้ํากัน เราจะไม่รับผิดชอบต่อการชําระการเดิมพัน / การเดิมพันใด ๆ ที่ไม่ได้ออกด้วยรหัสธุรกรรมที่ไม่ซ้ํากัน หากคุณไม่แน่ใจเกี่ยวกับความถูกต้องของการเดิมพัน / การเดิมพันโปรดตรวจสอบประวัติบัญชีของคุณหรือติดต่อทีมสนับสนุนลูกค้าของเรา (support@seabet.io)</p>
+                        <p><b>11.3</b> หากมีข้อพิพาทเกิดขึ้นเกี่ยวกับเนื้อหาของการเดิมพันคุณและ Seabet ตกลงว่าฐานข้อมูลบันทึกการทําธุรกรรมของ Seabet ของระบบควบคุมภายในจะเป็นอํานาจสูงสุดในเรื่องดังกล่าว</p>
+                        <h3>12. โบนัส</h3>
+                        <p><b>12.1</b> Seabet อาจเสนอโบนัสและโปรโมชั่นจํานวนหนึ่งเป็นครั้งคราวตามดุลยพินิจของตน</p>
+
+                        <p>คุณสมบัติ</p>
+                        <p><b>12.2</b> เมื่อลงทะเบียนบัญชี Seabet สําเร็จ คุณอาจมีสิทธิ์ได้รับโปรโมชั่นและโบนัสของ Seabet การยอมรับข้อตกลงนี้และการลงทะเบียนบัญชี Seabet บนเว็บไซต์แสดงว่าคุณยอมรับและยอมรับที่จะผูกพันตามกฎและข้อบังคับที่เกี่ยวข้องกับโปรโมชั่นและโบนัสใด ๆ ที่ Seabet เสนอให้คุณ</p>
+                        <p>โบนัส T&C</p>
+                        <p><b>12.3</b> โปรโมชั่นโบนัสหรือข้อเสนอพิเศษทั้งหมดอยู่ภายใต้ข้อกําหนดด่วนของโบนัสใด ๆ ที่เสนอบนเว็บไซต์และข้อกําหนดและเงื่อนไขเฉพาะโปรโมชั่นหากมีและโบนัสใด ๆ ที่เครดิตเข้าบัญชีของคุณจะต้องใช้โดยปฏิบัติตามข้อกําหนดและเงื่อนไขดังกล่าว โดยการยอมรับโปรโมชั่นโบนัสหรือข้อเสนอพิเศษที่มีอยู่บนเว็บไซต์คุณยินยอมตามข้อกําหนดและเงื่อนไขของโปรโมชั่นโบนัสหรือข้อเสนอพิเศษดังกล่าวและรับทราบว่าการเดิมพันจะต้องวางด้วยยอดคงเหลือเงินสดเสมอก่อนที่จะสามารถใช้ยอดคงเหลือโบนัสในการเดิมพันได้ เราขอสงวนสิทธิ์ในการถอนโปรโมชั่นโบนัสหรือข้อเสนอพิเศษใด ๆ ได้ตลอดเวลา</p>
+                        <p>การเปิดใช้งานและการหมดอายุ</p>
+                        <p><b>12.4</b> โดยการเปิดใช้งานโบนัสหรือโปรโมชั่นคุณยืนยันว่าคุณยอมรับข้อกําหนดและเงื่อนไขที่เกี่ยวข้องด้วย</p>
+                        <p><b>12.5</b> ซีเบทจะไม่ยอมรับหรือให้เกียรติโปรโมชั่น โบนัส หรือข้อเสนอพิเศษใดๆ หลังจากวันหมดอายุของโปรโมชั่น โบนัส หรือข้อเสนอพิเศษ เว้นแต่ซีเบทจะเลือกดําเนินการดังกล่าวสําหรับลูกค้า โปรโมชั่น โบนัส หรือข้อเสนอพิเศษใดๆ ตามดุลยพินิจของตนแต่เพียงผู้เดียว วันหมดอายุจะถูกกําหนดไว้ในกฎเฉพาะหรือข้อกําหนดและเงื่อนไขของโปรโมชั่นโบนัสหรือข้อเสนอพิเศษเฉพาะ นอกจากนี้ Seabet ขอสงวนสิทธิ์ในการเปลี่ยนแปลงหรือแก้ไขนโยบายใด ๆ ที่เกี่ยวข้องกับการรับหรือหมดอายุของโบนัสตามดุลยพินิจของตนแต่เพียงผู้เดียว</p>
+                        <p><b>12.6</b> เมื่อริบหรือยกเลิกการเปิดใช้งานโบนัสจะไม่สามารถใช้ได้กับคุณอีกต่อไป (และไม่สามารถเปิดใช้งานใหม่ได้ตลอดเวลาหลังจากนั้น) จํานวนเงินโบนัสใด ๆ ที่เครดิตเข้าบัญชีซีเบทของคุณแล้วจะยังคงมีให้คุณ</p>
+                        <p>การละเมิดโบนัสและการฉ้อโกง</p>
+                        <p><b>12.7</b> ในกรณีที่ซีเบทเชื่อว่าผู้เล่นของบริการกําลังละเมิดหรือพยายามละเมิดโบนัสหรือโปรโมชั่นอื่น ๆ หรือมีแนวโน้มที่จะได้รับประโยชน์จากการละเมิดหรือการขาดความเชื่อโดยสุจริตจากนโยบายที่ซีเบทนํามาใช้ ซีเบทอาจปฏิเสธ ระงับ หรือถอนโบนัสหรือโปรโมชั่นใด ๆ จากผู้เล่นแต่เพียงผู้เดียว  ซอฟต์แวร์ และ/หรือล็อคบัญชีของผู้เล่นนั้นเป็นการชั่วคราวหรือถาวร</p>
+                        <p><b>12.8</b> คุณสามารถเปิดบัญชีบนเว็บไซต์ได้เพียงหนึ่ง (1) บัญชีเท่านั้น การเปิดบัญชีหลายบัญชีบนเว็บไซต์เพื่อวัตถุประสงค์ในการสะสมโบนัสโปรโมชั่นข้อเสนอพิเศษหรืออื่น ๆ จะถือว่าเป็นพฤติกรรมที่ไม่เหมาะสม</p>
+
+                        <p>สิทธิ Seabet</p>
+                        <p><b>12.9</b> Seabet ขอสงวนสิทธิ์ในการลบโบนัสออกจากบัญชีที่ไม่ได้ใช้งานทั้งหมดหรือบัญชีที่ถูกระบุว่าเป็น "ผู้ละเมิดโบนัส"</p>
+                        <p><b>12.10</b> Seabet ขอสงวนสิทธิ์ในการยกเลิกโบนัสทั้งหมดที่ไม่ได้อ้างสิทธิ์ภายในระยะเวลาการเรียกร้องหรือ 60 วันซึ่งสั้นกว่าของทั้งสอง</p>
+                        <p><b>12.11</b> ซีเบทขอสงวนสิทธิ์ในการยกเลิกโบนัสใด ๆ ตามคําอธิบายแต่เพียงผู้เดียว</p>
+
+                        <h3>13. อํานาจ/ข้อกําหนดในการให้บริการ</h3>
+                        <p><b>13.1</b> คุณยอมรับกฎของเกมที่อธิบายไว้ในเว็บไซต์ Seabet.io Seabet ยังคงมีอํานาจในการออกบํารุงรักษาและปิดบริการ การตัดสินใจของฝ่ายบริหารของ Seabet เกี่ยวกับการใช้บริการหรือการระงับข้อพิพาทถือเป็นที่สิ้นสุดและจะไม่เปิดให้มีการตรวจสอบหรืออุทธรณ์</p>
+
+                        <h3>14. การใช้งานที่ต้องห้าม</h3>
+                        <p>ของใช้ส่วนตัว</p>
+                        <p><b>14.1</b> บริการนี้มีวัตถุประสงค์เพื่อการใช้งานส่วนตัวของผู้ใช้เท่านั้น ผู้ใช้ได้รับอนุญาตให้เดิมพันเพื่อความบันเทิงส่วนตัวเท่านั้น ผู้ใช้ไม่สามารถสร้างบัญชีหลายบัญชีเพื่อวัตถุประสงค์ในการสมรู้ร่วมคิดการเดิมพันกีฬาและ / หรือการใช้บริการในทางที่ผิด</p>
+
+                        <p>การปฏิบัติตาม AML และการคว่ําบาตร</p>
+                        <p><b>14.2</b> Seabet ห้ามและปฏิเสธการใช้บริการสําหรับกิจกรรมที่ผิดกฎหมายทุกรูปแบบรวมถึงการฟอกเงินการจัดหาเงินทุนของผู้ก่อการร้ายหรือการละเมิดการคว่ําบาตรทางการค้าซึ่งสอดคล้องกับกฎหมายข้อบังคับและบรรทัดฐานของเขตอํานาจศาลต่างๆ ด้วยเหตุนี้บริการนี้จึงไม่ได้เสนอให้กับบุคคลหรือหน่วยงานที่อยู่ภายใต้สหรัฐอเมริกาสหภาพยุโรปหรือการคว่ําบาตรหรือรายการเฝ้าดูทั่วโลกอื่น ๆ โดยการใช้บริการคุณรับรองและรับประกันว่าคุณไม่ได้อยู่ภายใต้</p>
+                        <p>เขตอํานาจศาล</p>
+                        <p><b>14.3</b> บุคคลที่อยู่ในหรืออาศัยอยู่ในอัฟกานิสถาน ออสเตรเลีย เบลารุส เบลเยียม โกตดิวัวร์ คิวบา คูราเซา สาธารณรัฐเช็ก สาธารณรัฐประชาธิปไตยคองโก เดนมาร์ก ฝรั่งเศส เยอรมนี กรีซ อิหร่าน อิรัก อิตาลี ไลบีเรีย ลิเบีย ลิทัวเนีย เนเธอร์แลนด์ เกาหลีเหนือ ออนแทรีโอ โปรตุเกส เซอร์เบีย สโลวาเกีย ซูดานใต้ สเปน ซูดาน ซีเรีย สวิตเซอร์แลนด์ สหราชอาณาจักร สหรัฐอเมริกา ซิมบับเว ("เขตอํานาจศาลต้องห้าม") ไม่ได้รับอนุญาตให้ใช้บริการ เพื่อหลีกเลี่ยงข้อสงสัยข้อ จํากัด ข้างต้นเกี่ยวกับการมีส่วนร่วมในการเล่นด้วยเงินจริงจากเขตอํานาจศาลต้องห้ามจะใช้อย่างเท่าเทียมกันกับผู้อยู่อาศัยและพลเมืองของประเทศอื่น ๆ ในขณะที่อยู่ในเขตอํานาจศาลต้องห้าม ความพยายามใด ๆ ที่จะหลีกเลี่ยงข้อ จํากัด ในการเล่นโดยบุคคลใด ๆ ที่อยู่ในเขตอํานาจศาลต้องห้ามหรือเขตอํานาจศาลที่ถูก จํากัด ถือเป็นการละเมิดข้อตกลงนี้ ความพยายามในการหลีกเลี่ยงรวมถึง แต่ไม่ จํากัด เพียงการจัดการข้อมูลที่ Seabet ใช้เพื่อระบุตําแหน่งของคุณและให้ข้อมูลที่เป็นเท็จหรือทําให้เข้าใจผิดเกี่ยวกับที่ตั้งหรือที่อยู่อาศัยของคุณแก่ Seabet</p>
+
+                        <p><b>14.4</b> ความพยายามในการจัดการตําแหน่งจริงของคุณผ่านการใช้ VPN พร็อกซีหรือบริการที่คล้ายกันหรือผ่านการให้ข้อมูลที่ไม่ถูกต้องหรือทําให้เข้าใจผิดเกี่ยวกับที่อยู่อาศัยของคุณโดยมีเจตนาเพื่อหลีกเลี่ยงการปิดกั้นทางภูมิศาสตร์หรือข้อ จํากัด ของเขตอํานาจศาลถือเป็นการละเมิดข้อ 5 ของข้อกําหนดในการให้บริการนี้</p>
+
+                        <h3>15. อุปกรณ์ของคุณ</h3>
+                        <p><b>15.1</b> อุปกรณ์คอมพิวเตอร์หรืออุปกรณ์มือถือและการเชื่อมต่ออินเทอร์เน็ตของคุณอาจส่งผลต่อประสิทธิภาพและ/หรือการทํางานของเว็บไซต์ Seabet ไม่รับประกันว่าเว็บไซต์จะทํางานโดยไม่มีข้อผิดพลาดหรือข้อผิดพลาดหรือให้บริการ Seabet โดยไม่หยุดชะงัก ซีเบทไม่รับผิดชอบต่อความล้มเหลวหรือปัญหาใด ๆ ที่เกิดขึ้นเนื่องจากอุปกรณ์การเชื่อมต่ออินเทอร์เน็ตหรือผู้ให้บริการอินเทอร์เน็ตหรือโทรคมนาคมของคุณ (รวมถึงตัวอย่างเช่นหากคุณไม่สามารถวางเดิมพันหรือเดิมพันหรือดูหรือรับข้อมูลบางอย่างที่เกี่ยวข้องกับเหตุการณ์เฉพาะ)</p>
+                        <p><b>15.2</b> สําหรับลูกค้าที่ใช้อุปกรณ์มือถือในการวางเดิมพัน/เดิมพัน โปรดทราบว่า Seabet จะไม่รับผิดชอบต่อความเสียหายหรือการสูญหายของข้อมูลจากอุปกรณ์มือถือที่ติดตั้งซอฟต์แวร์และจะไม่รับผิดชอบต่อการโทรข้อมูลหรือค่าใช้จ่ายอื่น ๆ ที่เกิดขึ้นในขณะที่ใช้ซอฟต์แวร์</p>
+                        <p><b>15.3</b> เนื่องจากขนาดการแสดงผลที่ จํากัด บนอุปกรณ์มือถือประสบการณ์มือถืออาจแตกต่างจากแพลตฟอร์มอื่นเล็กน้อย ความแตกต่างอาจรวมถึง แต่ไม่ จํากัด เพียงตําแหน่งของข้อมูลบางอย่างบนแพลตฟอร์มและชื่อเกมที่ไม่สามารถมองเห็นได้ในทุกหน้าเกม</p>
+
+                        <h3>16. การใช้งานที่เหมาะสม</h3>
+                        <p><b>16.1</b> เว็บไซต์และบริการสามารถใช้เพื่อการพักผ่อนหย่อนใจโดยการวางเดิมพันและเดิมพันในกิจกรรมและ / หรือผลิตภัณฑ์เกมเท่านั้น</p>
+                        <p><b>16.2</b> คุณต้องไม่ใช้เว็บไซต์เพื่อประโยชน์ของบุคคลที่สามหรือเพื่อวัตถุประสงค์ใด ๆ ที่ผิดกฎหมายหมิ่นประมาทเหยียดหยามหรือลามกอนาจารหรือที่ Seabet พิจารณาว่าเป็นการเลือกปฏิบัติฉ้อโกงไม่สุจริตหรือไม่เหมาะสม Seabet อาจรายงานกิจกรรมใด ๆ ที่เจ้าหน้าที่เห็นว่าน่าสงสัยและ / หรือละเมิดวรรคนี้</p>
+                        <p><b>16.3</b> หากซีเบทมีเหตุอันควรสงสัยว่าท่านมีส่วนเกี่ยวข้องกับการกระทําที่เป็นการฉ้อโกง ทุจริต หรือเป็นความผิดทางอาญา ตามที่กําหนดไว้ภายใต้กฎหมายที่บังคับใช้ ผ่านทางหรือเกี่ยวข้องกับเว็บไซต์หรือบริการ ซีเบทอาจขอลงโทษทางอาญาและตามสัญญาต่อท่าน Seabet จะระงับการชําระเงินให้กับลูกค้าใด ๆ ที่สงสัยว่ามีสิ่งเหล่านี้หรือในกรณีที่สงสัยว่าการชําระเงินเป็นไปเพื่อประโยชน์ของบุคคลที่สาม</p>
+                        <p><b>16.4</b> คุณจะต้องชดใช้ค่าเสียหายและจะต้องรับผิดชดใช้ค่าใช้จ่ายค่าใช้จ่ายหรือความสูญเสียทั้งหมดที่เกิดขึ้นหรือเกิดขึ้นโดยเราและบริษัทในเครือของเรา (รวมถึงการสูญเสียโดยตรงโดยอ้อมหรือเป็นผลสืบเนื่องการสูญเสียกําไรและการสูญเสียชื่อเสียง) ในส่วนที่เกี่ยวกับการเรียกร้องทั้งหมดที่เกิดขึ้นโดยตรงหรือโดยอ้อมจากการกระทําที่ฉ้อฉลไม่สุจริตหรือทางอาญาของคุณในขณะที่ใช้เว็บไซต์หรือบริการ</p>
+                        <p><b>16.5</b> นอกจากนี้ เราขอสงวนสิทธิ์ในการไม่ยอมรับ ดําเนินการ และ/หรือให้เกียรติการเดิมพัน/การเดิมพันในกรณีที่เป็นสิ่งต้องห้าม ผิดกฎหมาย หรือผิดกฎหมายภายใต้กฎหมายหรือข้อบังคับที่บังคับใช้</p>
+
+                        <h3>17. ปัญหาซอฟต์แวร์และเทคโนโลยี</h3>
+                        <p><b>17.1</b> เพื่อให้คุณใช้เว็บไซต์และบริการคุณอาจต้องดาวน์โหลดซอฟต์แวร์บางอย่าง (ตัวอย่างเช่นเกมคาสิโนที่ให้บริการผ่านโปรแกรมเล่นแฟลช) นอกจากนี้ผู้ให้บริการผลิตภัณฑ์บุคคลที่สามบางรายอาจกําหนดให้คุณต้องยอมรับข้อกําหนดและเงื่อนไขเพิ่มเติมที่ควบคุมการใช้ผลิตภัณฑ์ของตนที่มีอยู่ในหรือผ่านเว็บไซต์ หากคุณไม่ยอมรับข้อกําหนดและเงื่อนไขของบุคคลที่สามเหล่านั้นอย่าใช้ซอฟต์แวร์ของบุคคลที่สามที่เกี่ยวข้อง ซีเบทไม่ยอมรับความรับผิดใด ๆ เกี่ยวกับซอฟต์แวร์ของบุคคลที่สาม</p>
+                        <p><b>17.2</b> คุณได้รับอนุญาตให้ใช้ซอฟต์แวร์ใด ๆ และทั้งหมดที่มีให้คุณผ่านทางเว็บไซต์เพื่อวัตถุประสงค์ในการใช้เว็บไซต์และบริการและบันทึกตามขอบเขตที่กฎหมายที่บังคับใช้อนุญาตโดยไม่มีวัตถุประสงค์อื่นใด</p>
+                        <p><b>17.3</b> เราขอมอบสิทธิ์ส่วนบุคคลที่ไม่ผูกขาดและไม่สามารถถ่ายโอนได้ในการใช้เว็บไซต์เพื่อวัตถุประสงค์ในการเข้าถึงและใช้บริการบนเว็บไซต์ตามข้อกําหนดและเงื่อนไขเหล่านี้เท่านั้น สิทธิ์ในการใช้เว็บไซต์ของเราและจะถูกยกเลิกทันทีเมื่อการลงทะเบียนผู้ใช้ของคุณถูกยกเลิกไม่ว่าด้วยเหตุผลใดก็ตามและพิเศษ แต่ไม่ จํากัด เพียงหากคุณใช้สิทธิ์นั้นโดยมีวัตถุประสงค์เพื่อสร้างองค์กรคู่ขนานที่อยู่ในเว็บไซต์ของเราหรือผลิตภัณฑ์ของเราหรือโดยมีวัตถุประสงค์เพื่อใช้บริการอัตโนมัติหรือการวิเคราะห์ซอฟต์แวร์  การจับหรือใช้ข้อมูลที่แสดงในเว็บไซต์ของเรา</p>
+                        <p><b>17.4</b> คุณไม่ได้รับอนุญาตให้:</p>
+                        <p>ก) ติดตั้งหรือโหลดซอฟต์แวร์ที่เป็นส่วนหนึ่งของเว็บไซต์ลงบนเซิร์ฟเวอร์หรืออุปกรณ์เครือข่ายอื่น ๆ หรือทําตามขั้นตอนอื่น ๆ เพื่อให้ซอฟต์แวร์พร้อมใช้งานผ่าน "กระดานข่าว" บริการออนไลน์หรือการโทรเข้าระยะไกลหรือเครือข่ายไปยังบุคคลอื่น</p>
+                        <p>ข) การอนุญาตช่วง มอบหมาย ให้เช่า ให้เช่า ให้ยืม โอน หรือคัดลอก (ยกเว้นที่ระบุไว้อย่างชัดแจ้งในที่อื่นในข้อกําหนดและเงื่อนไขเหล่านี้) สิทธิ์ของคุณในการใช้เว็บไซต์ หรือซอฟต์แวร์ที่เป็นส่วนหนึ่งของเว็บไซต์ หรือสร้างหรือแจกจ่ายสําเนาเดียวกัน</p>
+                        <p>c) เข้า เข้าถึง หรือพยายามเข้าหรือเข้าถึง หรือหลีกเลี่ยงระบบรักษาความปลอดภัยของ Seabet หรือแทรกแซงในทางใดทางหนึ่ง (รวมถึงแต่ไม่จํากัดเพียง หุ่นยนต์หรืออุปกรณ์ที่คล้ายกัน) กับผลิตภัณฑ์หรือเว็บไซต์ หรือพยายามทําการแก้ไขซอฟต์แวร์และ/หรือคุณสมบัติหรือส่วนประกอบใดๆ ของซอฟต์แวร์</p>
+                        <p>d) คัดลอกหรือแปลเอกสารผู้ใช้ใด ๆ ที่ให้ไว้ 'ออนไลน์' หรือในรูปแบบอิเล็กทรอนิกส์</p>
+                        <p>จ) นอกจากนี้ ยกเว้นในขอบเขตขั้นต่ําที่กฎหมายที่บังคับใช้อนุญาตเกี่ยวกับโปรแกรมคอมพิวเตอร์ คุณไม่ได้รับอนุญาตให้: (i) แปล ทําวิศวกรรมย้อนกลับ ถอดรหัส แยกชิ้นส่วน แก้ไข สร้างงานลอกเลียนแบบตาม หรือแก้ไขเว็บไซต์ หรือ (ii) ทําวิศวกรรมย้อนกลับ ถอดรหัส แยกชิ้นส่วน แก้ไข ดัดแปลง แปล พยายามค้นหาซอร์สโค้ดของซอฟต์แวร์ที่เป็นส่วนหนึ่งของเว็บไซต์หรือเพื่อสร้างงานลอกเลียนแบบตามทั้งหมดหรือส่วนใดส่วนหนึ่งของเว็บไซต์</p>
+                        <p><b>17.5</b> คุณไม่ได้เป็นเจ้าของซอฟต์แวร์ที่เป็นส่วนหนึ่งของเว็บไซต์ ซอฟต์แวร์ดังกล่าวเป็นเจ้าของและเป็นทรัพย์สินเฉพาะของ Seabet หรือ บริษัท ผู้ให้บริการซอฟต์แวร์บุคคลที่สาม (ผู้ให้บริการบุคคลที่สามดังกล่าวเรียกว่า "ผู้ให้บริการซอฟต์แวร์") ซอฟต์แวร์และเอกสารประกอบใด ๆ ที่ได้รับใบอนุญาตจาก Seabet เป็นผลิตภัณฑ์ที่เป็นกรรมสิทธิ์ของผู้ให้บริการซอฟต์แวร์และได้รับการคุ้มครองทั่วโลกตามกฎหมายลิขสิทธิ์ การใช้ซอฟต์แวร์ของคุณไม่ได้ทําให้คุณเป็นเจ้าของสิทธิ์ในทรัพย์สินทางปัญญาใด ๆ ในซอฟต์แวร์</p>
+                        <p><b>17.6</b> ซอฟต์แวร์มีให้ "ตามสภาพ" โดยไม่มีการรับประกันเงื่อนไขการดําเนินการหรือการรับรองโดยชัดแจ้งหรือโดยนัยตามกฎหมายหรืออื่น ๆ Seabet ขอยกเว้นข้อกําหนดเงื่อนไขและการรับประกันโดยนัยทั้งหมดรวมถึงความสามารถในการขายคุณภาพที่ขายได้คุณภาพที่น่าพอใจและความเหมาะสมสําหรับวัตถุประสงค์เฉพาะความสมบูรณ์หรือความถูกต้องของบริการหรือซอฟต์แวร์หรือการละเมิดกฎหมายและข้อบังคับที่บังคับใช้ Seabet ไม่รับประกันหรือเงื่อนไขว่า: </p>
+                        <p>(i) ซอฟต์แวร์จะตอบสนองความต้องการของคุณ </p>
+                        <p>(ii) ซอฟต์แวร์จะไม่ละเมิดสิทธิ์ในทรัพย์สินทางปัญญาของบุคคลที่สาม </p>
+                        <p>(iii) การทํางานของซอฟต์แวร์จะปราศจากข้อผิดพลาดหรือไม่หยุดชะงัก (iv) ข้อบกพร่องใด ๆ ในซอฟต์แวร์จะได้รับการแก้ไข หรือ </p>
+                        <p>(v) ซอฟต์แวร์หรือเซิร์ฟเวอร์ไม่มีไวรัส</p>
+
+                        <p><b>17.7</b> ในกรณีที่มีข้อผิดพลาดในการสื่อสารหรือระบบที่เกิดขึ้นเกี่ยวกับการชําระบัญชีหรือคุณสมบัติหรือส่วนประกอบอื่น ๆ ของซอฟต์แวร์ Seabet และผู้ให้บริการซอฟต์แวร์จะไม่รับผิดต่อคุณหรือบุคคลที่สามใด ๆ ที่เกี่ยวข้องกับข้อผิดพลาดดังกล่าว ซีเบทขอสงวนสิทธิ์ในกรณีที่มีข้อผิดพลาดดังกล่าวในการลบผลิตภัณฑ์ที่เกี่ยวข้องทั้งหมดออกจากเว็บไซต์และดําเนินการอื่นใดเพื่อแก้ไขข้อผิดพลาดดังกล่าว</p>
+                        <p><b>17.8</b> คุณรับทราบว่าวิธีที่คุณใช้ซอฟต์แวร์อยู่นอกเหนือการควบคุมของ Seabet ดังนั้น คุณติดตั้งและ/หรือใช้ซอฟต์แวร์โดยยอมรับความเสี่ยงเอง Seabet จะไม่รับผิดต่อคุณหรือบุคคลที่สามใด ๆ เกี่ยวกับการรับและ / หรือการใช้ซอฟต์แวร์ของคุณ</p>
+                        <p><b>17.9</b> ซอฟต์แวร์อาจรวมถึงข้อมูลที่เป็นความลับซึ่งเป็นความลับและมีคุณค่าต่อผู้ให้บริการซอฟต์แวร์และ/หรือซีเบท คุณไม่มีสิทธิ์ใช้หรือเปิดเผยข้อมูลที่เป็นความลับนั้นนอกเหนือจากการปฏิบัติตามข้อกําหนดและเงื่อนไขเหล่านี้อย่างเคร่งครัด</p>
+                        <p><b>17.10</b> ซีเบทจะไม่รับผิดชอบหากเว็บไซต์ไม่สามารถใช้งานได้ไม่ว่าด้วยเหตุผลใดก็ตามในเวลาใด ๆ หรือในช่วงเวลาใด ๆ เราขอสงวนสิทธิ์ในการเปลี่ยนแปลงหรือแก้ไขหรือเปลี่ยนแปลงระงับหรือยุติแง่มุมใด ๆ ของเว็บไซต์และเนื้อหาหรือบริการหรือผลิตภัณฑ์ที่มีอยู่ผ่านเว็บไซต์รวมถึงการเข้าถึงของคุณ</p>
+                        <p><b>17.11</b> คุณต้องไม่ใช้เว็บไซต์ในทางที่ผิดโดยการแนะนําไวรัสโทรจันเวิร์มลอจิกบอมบ์หรือเนื้อหาอื่น ๆ ที่เป็นอันตรายหรือเป็นอันตรายทางเทคโนโลยี โดยเฉพาะอย่างยิ่งคุณต้องไม่เข้าถึงเว็บไซต์โดยปราศจากอํานาจแทรกแซงสร้างความเสียหายหรือรบกวนเว็บไซต์หรือส่วนใดส่วนหนึ่งของเว็บไซต์อุปกรณ์หรือเครือข่ายใด ๆ ที่เว็บไซต์โฮสต์ซอฟต์แวร์ใด ๆ ที่ใช้ในการเชื่อมต่อกับการจัดหาเว็บไซต์หรืออุปกรณ์ซอฟต์แวร์หรือเว็บไซต์ใด ๆ ที่บุคคลที่สามเป็นเจ้าของหรือใช้ คุณต้องไม่โจมตีเว็บไซต์ของเราผ่านการโจมตีแบบปฏิเสธการให้บริการ เราจะไม่รับผิดชอบต่อความสูญเสียหรือความเสียหายใด ๆ ที่เกิดจากการโจมตีแบบปฏิเสธการให้บริการไวรัสหรือวัสดุที่เป็นอันตรายทางเทคโนโลยีอื่น ๆ ที่อาจติดอุปกรณ์คอมพิวเตอร์โปรแกรมคอมพิวเตอร์ข้อมูลหรือเนื้อหาที่เป็นกรรมสิทธิ์อื่น ๆ ที่เกิดขึ้นเนื่องจากการใช้งานเว็บไซต์ซอฟต์แวร์หรือการดาวน์โหลดเนื้อหาใด ๆ ที่โพสต์บนเว็บไซต์หรือบนเว็บไซต์ใด ๆ ที่เชื่อมโยงกับเว็บไซต์</p>
+
+                        <h3>18. เนื้อหาของบุคคลที่สาม</h3>
+                        <p><b>18.1</b> Seabet ได้รับฟีดความเห็นและเนื้อหาจากซัพพลายเออร์หลายราย ผู้ให้บริการผลิตภัณฑ์บุคคลที่สามบางรายอาจกําหนดให้คุณต้องยอมรับข้อกําหนดและเงื่อนไขเพิ่มเติมที่ควบคุมการใช้ฟีดความเห็นและเนื้อหาของพวกเขา หากคุณไม่ยอมรับข้อกําหนดและเงื่อนไขของบุคคลที่สามที่เกี่ยวข้องคุณตกลงที่จะไม่ใช้ฟีดความเห็นหรือเนื้อหาที่เกี่ยวข้อง</p>
+                        <p><b>18.2</b> Seabet ไม่ยอมรับความรับผิดใด ๆ เกี่ยวกับฟีดความเห็นและเนื้อหาของบุคคลที่สาม</p>
+                        <p><b>18.3</b> ในกรณีที่เว็บไซต์มีลิงก์ไปยังเว็บไซต์และแหล่งข้อมูลของบุคคลที่สามลิงก์เหล่านี้มีไว้สําหรับข้อมูลของคุณเท่านั้น ซีเบทไม่มีอํานาจควบคุมเนื้อหาของเว็บไซต์หรือแหล่งข้อมูลเหล่านี้ และไม่รับผิดชอบต่อเนื้อหาหรือความสูญเสียหรือความเสียหายใด ๆ ที่อาจเกิดขึ้นจากการใช้งานของคุณ การรวมลิงก์ไปยังเว็บไซต์ของบุคคลที่สามไม่ถือเป็นการรับรองเว็บไซต์ผลิตภัณฑ์หรือบริการของบุคคลที่สามหากมี</p>
+
+                        <h3>19. ข้อผิดพลาด</h3>
+                        <p><b>19.1</b> ซีเบทจะไม่รับผิดในกรณีที่คุณพยายามหรือได้เปรียบจากข้อผิดพลาดใด ๆ เกี่ยวกับการเดิมพันหรือการเดิมพันบนเว็บไซต์หากคุณจงใจกระทําการโดยไม่สุจริตรวมถึงที่: </p>
+                        <p>(i) มีข้อผิดพลาดที่ชัดเจนในอัตราต่อรองสเปรดแต้มต่อผลรวมเงินสดออก </p>
+                        <p>(ii) Seabet ยังคงยอมรับการเดิมพันหรือการเดิมพันในตลาดปิดหรือระงับ </p>
+                        <p>(iii) Seabet คํานวณหรือจ่ายเงินตามจํานวนการชําระบัญชีไม่ถูกต้อง รวมถึงกรณีที่การเดิมพันถูกแคชออกสําหรับจํานวนเงินที่ชําระเต็มจํานวน หรือการเดิมพันเป็นโมฆะอย่างไม่ถูกต้อง โดยเลือก 'โมฆะหากผู้เล่นไม่เริ่ม' ที่ตําแหน่งการเดิมพัน หรือ </p>
+                        <p>(iv) ข้อผิดพลาดใด ๆ ที่เกิดขึ้นในตัวสร้างตัวเลขสุ่มหรือตารางการจ่ายเงินที่รวมรวมหรือใช้ในเกมหรือผลิตภัณฑ์ใด ๆ</p>
+
+                        <h3>20. เครื่องบด</h3>
+                        <p><b>20.1</b> หากผู้ใช้ละเมิดข้อกําหนดใด ๆ ทั้งหมดหรือบางส่วนที่มีอยู่ในที่นี้ Seabet ขอสงวนสิทธิ์ในการดําเนินการดังกล่าวตามที่เห็นสมควรรวมถึงการยกเลิกข้อตกลงนี้หรือข้อตกลงอื่นใดกับผู้ใช้และ / หรือดําเนินการทางกฎหมายกับผู้ใช้ดังกล่าว</p>
+                        <p><b>20.2</b> คุณตกลงที่จะชดใช้ค่าเสียหายปกป้องและปกป้องซีเบทและผู้ถือหุ้นกรรมการตัวแทนและพนักงานจากและต่อการเรียกร้องความต้องการความรับผิดความเสียหายความสูญเสียต้นทุนและค่าใช้จ่ายทั้งหมดรวมถึงค่าธรรมเนียมทางกฎหมายและค่าใช้จ่ายอื่น ๆ</p>
+                        <p>ก) การที่คุณละเมิดข้อตกลงนี้ทั้งหมดหรือบางส่วน</p>
+                        <p>ข) การละเมิดกฎหมายหรือสิทธิของบุคคลที่สามโดยคุณ และ</p>
+                        <p>c) การใช้โดยคุณของบริการ</p>
+
+
+
+                        <h3>21. ข้อจํากัดและความรับผิด</h3>
+                        <p><b>21.1</b> ไม่ว่าในกรณีใด ๆ รวมถึงความประมาทเลินเล่อ Seabet จะไม่รับผิดชอบต่อความเสียหายพิเศษโดยบังเอิญโดยตรงโดยอ้อมหรือเป็นผลสืบเนื่องใด ๆ (รวมถึง แต่ไม่ จํากัด เพียงความเสียหายจากการสูญเสียผลกําไรทางธุรกิจการหยุดชะงักทางธุรกิจการสูญเสียข้อมูลทางธุรกิจหรือการสูญเสียทางการเงินอื่น ๆ ) ที่เกิดขึ้นจากการใช้งาน (หรือการใช้งานในทางที่ผิด) ของบริการแม้ว่า Seabet จะทราบล่วงหน้าถึงความเป็นไปได้ของความเสียหายดังกล่าวก็ตาม</p>
+                        <p><b>21.2</b> ไม่มีสิ่งใดในข้อตกลงนี้ที่จะยกเว้นหรือจํากัดความรับผิดของ Seabet ต่อการเสียชีวิตหรือการบาดเจ็บส่วนบุคคลอันเป็นผลมาจากความประมาทเลินเล่อของ Seabet</p>
+
+                        <h3>22. ทรัพย์สินทางปัญญา</h3>
+                        <p><b>22.1</b> Seabet และผู้ออกใบอนุญาตเป็นผู้ถือสิทธิ์ทั้งหมดในและต่อบริการและรหัสโครงสร้างและองค์กรรวมถึงลิขสิทธิ์ความลับทางการค้าทรัพย์สินทางปัญญาและสิทธิ์อื่น ๆ คุณไม่สามารถภายในขอบเขตที่กําหนดโดยกฎหมายที่บังคับใช้: </p>
+                        <p>(ก) คัดลอก แจกจ่าย เผยแพร่ ทําวิศวกรรมย้อนกลับ ถอดรหัส แยกส่วน แก้ไข หรือแปลเว็บไซต์ หรือ </p>
+                        <p>(ข) ใช้บริการในลักษณะที่ต้องห้ามตามกฎหมายหรือข้อบังคับที่บังคับใช้ (แต่ละข้อข้างต้นเป็น "การใช้งานโดยไม่ได้รับอนุญาต") </p>
+                        <p>Seabet ขอสงวนสิทธิ์ใด ๆ และทั้งหมดโดยนัยหรืออื่น ๆ ซึ่งไม่ได้มอบให้กับผู้ใช้อย่างชัดแจ้งภายใต้ข้อตกลงนี้และรักษาสิทธิ์กรรมสิทธิ์และผลประโยชน์ทั้งหมดในและต่อบริการ คุณยอมรับว่าคุณจะต้องรับผิดชอบต่อความเสียหายต้นทุนหรือค่าใช้จ่ายใด ๆ ที่เกิดขึ้นจากหรือเกี่ยวข้องกับค่าคอมมิชชั่นของคุณจากการใช้งานที่ไม่ได้รับอนุญาต </p>
+                        <p>ท่านจะต้องแจ้งให้ซีเบททราบทันทีเมื่อทราบถึงการว่าจ้างโดยบุคคลใด ๆ เกี่ยวกับการใช้งานโดยไม่ได้รับอนุญาต และจะให้ความช่วยเหลือตามสมควรแก่ซีเบทเกี่ยวกับการสอบสวนใด ๆ ที่ดําเนินการตามข้อมูลที่คุณให้ไว้ในส่วนนี้</p>
+                        <p><b>22.2</b> คําว่า "Seabet"  ชื่อโดเมนและเครื่องหมายการค้าอื่น ๆ หรือเครื่องหมายบริการที่ Seabet ใช้เป็นส่วนหนึ่งของบริการ ("เครื่องหมายการค้า") เป็นของ Seabet แต่เพียงผู้เดียว นอกจากนี้ เนื้อหาทั้งหมดบนเว็บไซต์ รวมถึงแต่ไม่จํากัดเพียง รูปภาพ รูปภาพ กราฟิก ภาพถ่าย ภาพเคลื่อนไหว วิดีโอ เพลง เสียง และข้อความ ("เนื้อหาของเว็บไซต์") เป็นของ Seabet และได้รับการคุ้มครองโดยลิขสิทธิ์และ/หรือทรัพย์สินทางปัญญาอื่นๆ หรือสิทธิ์อื่นๆ คุณรับทราบว่าการใช้บริการนี้คุณจะไม่ได้รับสิทธิ์ในเนื้อหาของไซต์และ / หรือเครื่องหมายการค้าหรือส่วนใดส่วนหนึ่งของบริการ ไม่ว่าในกรณีใด ๆ คุณไม่สามารถใช้เนื้อหาของเว็บไซต์และ / หรือเครื่องหมายการค้าโดยไม่ได้รับความยินยอมเป็นลายลักษณ์อักษรล่วงหน้าจากซีเบท นอกจากนี้ คุณตกลงที่จะไม่กระทําการใดๆ ที่จะก่อให้เกิดอันตรายหรืออาจเป็นอันตรายต่อสิทธิ์ รวมถึงสิทธิ์ในทรัพย์สินทางปัญญาของซีเบท</p>
+
+                        <h3>23. ข้อพิพาท</h3>
+                        <p><b>23.1</b> หากผู้ใช้ต้องการร้องเรียนโปรดติดต่อทีมบริการลูกค้าของ Seabet ที่ (support@seabet.io) หากข้อพิพาทใด ๆ ไม่ได้รับการแก้ไขตามความพึงพอใจของคุณคุณสามารถดําเนินการแก้ไขในเขตอํานาจศาลกฎหมายที่ใช้บังคับที่ระบุไว้ด้านล่าง</p>
+
+                        <h3>24. การแก้ไขเพิ่มเติม</h3>
+                        <p><b>24.1</b> Seabet ขอสงวนสิทธิ์ในการปรับปรุงหรือแก้ไขข้อตกลงนี้หรือส่วนหนึ่งส่วนใดของข้อตกลงนี้ได้ตลอดเวลาหรือเปลี่ยนแปลงบริการโดยไม่ต้องแจ้งให้ทราบล่วงหน้าและคุณจะผูกพันตามข้อตกลงที่แก้ไขดังกล่าวเมื่อโพสต์ ดังนั้นเราขอแนะนําให้คุณตรวจสอบข้อกําหนดและเงื่อนไขที่มีอยู่ในเวอร์ชันของข้อตกลงที่มีผลบังคับใช้ในเวลาดังกล่าว การใช้บริการต่อไปของคุณจะถือว่าคุณยอมรับข้อตกลงในการแก้ไขข้อตกลงใด ๆ</p>
+
+                        <h3>25. การแยกส่วน</h3>
+                        <p><b>25.1</b> หากข้อกําหนดของข้อตกลงนี้เป็นหรือกลายเป็นสิ่งผิดกฎหมายไม่ถูกต้องหรือไม่สามารถบังคับใช้ได้ในเขตอํานาจศาลใด ๆ ซึ่งจะไม่ส่งผลกระทบต่อความถูกต้องหรือการบังคับใช้ในเขตอํานาจศาลนั้นของข้อกําหนดอื่นใดในที่นี้หรือความถูกต้องหรือการบังคับใช้ในเขตอํานาจศาลอื่น ๆ ของสิ่งนั้นหรือข้อกําหนดอื่น ๆ</p>
+
+                        <h3>26. การมอบหมาย</h3>
+                        <p><b>26.1</b> Seabet ขอสงวนสิทธิ์ในการกําหนดข้อตกลงนี้ทั้งหมดหรือบางส่วนได้ตลอดเวลาโดยไม่ต้องแจ้งให้ทราบล่วงหน้า ผู้ใช้ไม่สามารถโอนสิทธิ์หรือภาระผูกพันใด ๆ ของตนภายใต้ข้อตกลงนี้</p>
+
+                        <h3>27. เบ็ดเตล็ด</h3>
+                        <p><b>27.1</b> การสละสิทธิ์โดย Seabet ต่อการละเมิดข้อกําหนดใด ๆ ของข้อตกลงนี้ (รวมถึงความล้มเหลวของ Seabet ที่จะกําหนดให้มีการปฏิบัติตามหรือปฏิบัติตามข้อกําหนดใด ๆ ของข้อตกลงนี้อย่างเคร่งครัดและแท้จริง) จะถูกตีความว่าเป็นการสละสิทธิ์ของการละเมิดข้อกําหนดดังกล่าวในภายหลังหรือการละเมิดข้อกําหนดอื่นใดของข้อตกลงนี้</p>
+                        <p><b>27.2</b> ไม่มีสิ่งใดในข้อตกลงนี้ที่จะสร้างหรือมอบสิทธิ์หรือผลประโยชน์อื่นใดเพื่อประโยชน์ของบุคคลที่สามที่ไม่ใช่คู่สัญญาของข้อตกลงนี้</p>
+                        <p><b>27.3</b> ไม่มีสิ่งใดในข้อตกลงนี้ที่จะสร้างหรือถือว่าเป็นการสร้างหุ้นส่วน ตัวแทน การจัดการความไว้วางใจ ความสัมพันธ์ที่ไว้วางใจ หรือการร่วมทุนระหว่างคุณกับซีเบท</p>
+                        <p><b>27.4</b> Seabet อาจมอบหมาย โอน เรียกเก็บเงิน ออกใบอนุญาตช่วง หรือจัดการในลักษณะอื่นใดกับข้อตกลงนี้ หรือทําสัญญาช่วงสิทธิและภาระผูกพันใด ๆ ภายใต้ข้อตกลงนี้ให้แก่บุคคลอื่น</p>
+                        <p><b>27.5</b> ข้อตกลงนี้ถือเป็นความเข้าใจและข้อตกลงทั้งหมดระหว่างท่านกับซีเบทเกี่ยวกับบริการ และมีผลแทนที่ข้อตกลง ความเข้าใจ หรือข้อตกลงใดๆ ก่อนหน้านี้ระหว่างท่านกับซีเบท</p>
+
+                        <h3>28. การร้องเรียน</h3>
+                        <p><b>28.1</b> หากคุณมีข้อร้องเรียนเกี่ยวกับบริการของเราคุณสามารถติดต่อฝ่ายสนับสนุนลูกค้าของเราผ่านทางแชทสดหรือทางอีเมล (support@seabet.io) เราจะพยายามแก้ไขเรื่องนี้ทันที</p>
 
                   </div>`,
     responsibleContent: `<div>
-                          <h2>Responsible Gambling</h2>
+                            <h2>การพนันอย่างมีความรับผิดชอบ</h2>
 
-                          <p>In Seabet.io; The platforms and services we provide enable our customers to enjoy gaming and betting. Our goal is to provide you with a safe, secure, regulated environment that provides you with a pleasant and rewarding experience. We encourage our customers to use our services responsibly and reasonably.</p>
-                          <p>All kinds of casino games have been popular for many years, and in Seabet.io games are designed to bring fun to everyone. We also encourage our players to have fun without letting the game interfere with their daily lives and take up time with family and friends. It's important to make sure that the amount spent on the game is only the change or spare money left after all expenses in your life, and it's important that the game is not a means of making a living because you can't guarantee a profit from it.</p>
-                          <p>Although most players will play responsibly and normally. But unfortunately, there are a small number of players who may have the problem of indulging in gambling. </p>
-                          <p>At Seabet.io, the quality of life/psychology of our players is important to us and we take our role in responsible gambling very seriously and advise you :</p>
-                          <ul>
-                            <li>Think of your bets and games as a form of entertainment, using only the money you set aside for entertainment.</li>
-                            <li>Do not place bets or bet more than you can afford.</li>
-                            <li>Don't bet or bet with money you can't afford to lose.</li>
-                            <li>Don't chase your losses.</li>
-                            <li>Don't let your bets and/or games take away time you normally spend on other activities.</li>
-                          </ul>
+                            <p>ในปี Seabet.io; แพลตฟอร์มและบริการที่เรามีให้ช่วยให้ลูกค้าของเราเพลิดเพลินไปกับการเล่นเกมและการเดิมพัน เป้าหมายของเราคือการจัดหาสภาพแวดล้อมที่ปลอดภัยปลอดภัยและมีการควบคุมซึ่งมอบประสบการณ์ที่น่าพึงพอใจและคุ้มค่าแก่คุณ เราสนับสนุนให้ลูกค้าของเราใช้บริการของเราอย่างมีความรับผิดชอบและสมเหตุสมผล</p>
+                            <p>เกมคาสิโนทุกประเภทได้รับความนิยมมาหลายปีแล้วและในเกม Seabet.io ได้รับการออกแบบมาเพื่อนําความสนุกสนานมาสู่ทุกคน นอกจากนี้เรายังสนับสนุนให้ผู้เล่นของเรามีความสนุกสนานโดยไม่ปล่อยให้เกมรบกวนชีวิตประจําวันของพวกเขาและใช้เวลากับครอบครัวและเพื่อน ๆ สิ่งสําคัญคือต้องตรวจสอบให้แน่ใจว่าจํานวนเงินที่ใช้ไปกับเกมเป็นเพียงเงินทอนหรือเงินสํารองที่เหลืออยู่หลังจากค่าใช้จ่ายทั้งหมดในชีวิตของคุณและเป็นสิ่งสําคัญที่เกมไม่ใช่วิธีการหาเลี้ยงชีพเพราะคุณไม่สามารถรับประกันผลกําไรจากมันได้</p>
+                            <p>แม้ว่าผู้เล่นส่วนใหญ่จะเล่นอย่างมีความรับผิดชอบและปกติ แต่น่าเสียดายที่มีผู้เล่นจํานวนน้อยที่อาจมีปัญหาในการดื่มด่ํากับการพนัน </p>
+                            <p>ที่ Seabet.io คุณภาพชีวิต / จิตวิทยาของผู้เล่นของเรามีความสําคัญต่อเราและเรามีบทบาทของเราในการพนันอย่างมีความรับผิดชอบอย่างจริงจังและแนะนําคุณ:</p>
+                            <ul>
+                            <li>คิดว่าการเดิมพันและเกมของคุณเป็นรูปแบบหนึ่งของความบันเทิงโดยใช้เงินที่คุณจัดสรรไว้เพื่อความบันเทิงเท่านั้น</li>
+                            <li>อย่าวางเดิมพันหรือเดิมพันมากกว่าที่คุณสามารถจ่ายได้</li>
+                            <li>อย่าเดิมพันหรือเดิมพันด้วยเงินที่คุณไม่สามารถจะเสียได้</li>
+                            <li>อย่าไล่ล่าความสูญเสียของคุณ</li>
+                            <li>อย่าปล่อยให้การเดิมพันและ / หรือเกมของคุณใช้เวลาที่คุณใช้ในกิจกรรมอื่น ๆ ตามปกติ</li>
+                            </ul>
+                            <p>หากคุณมีข้อกังวลใด ๆ เกี่ยวกับพฤติกรรมการพนันของคุณและรู้สึกว่าคุณไม่สามารถทําตามคําแนะนําเหล่านี้ได้เราขอแนะนําให้คุณขอคําแนะนําจากองค์กรที่ได้รับการรับรองต่อไปนี้ซึ่งสามารถให้ความช่วยเหลือและคําแนะนําได้:</p>
 
-                          <p>If you have any concerns about your gambling habits and feel that you are unable to follow these recommendations, we strongly recommend that you seek advice from the following accredited organisations that can provide help and advice:</p>
+                            <ul>
+                                <li><a target="_blank" href="https://www.gamcare.org.uk/">GamCare</a></li>
+                                <li><a target="_blank" href="https://keepitfun.rank.com/">Keep It Fun</a></li>
+                                <li><a target="_blank" href="https://www.gamblingtherapy.org/">Gambling Therapy</a></li>
+                              </ul>
 
-                          <ul>
-                            <li><a target="_blank" href="https://www.gamcare.org.uk/">GamCare</a></li>
-                            <li><a target="_blank" href="https://keepitfun.rank.com/">Keep It Fun</a></li>
-                            <li><a target="_blank" href="https://www.gamblingtherapy.org/">Gambling Therapy</a></li>
-                          </ul>
+                            <p>นอกจากนี้หากคุณต้องการเรียนรู้เกี่ยวกับกระบวนการยกเว้นตนเองของเราคุณสามารถส่งอีเมล (support@seabet.io) ฝ่ายบริการลูกค้า Seabet.io ที่เป็นมิตรของเรา บางครั้งการหยุดพักสั้น ๆ สามารถช่วยให้คุณชําระความคิดของคุณและหยุดคุณจากการตัดสินใจเดิมพันผื่นที่ไม่ตรงกับปกติของคุณ</p>
+                            <p>เมื่อมีการร้องขอเราจะวางบัญชีของคุณด้วยระยะเวลาการระบายความร้อนอย่างน้อย 24 ชั่วโมง ต่อจากนั้นตัวแทนฝ่ายสนับสนุนของเราจะแจ้งให้คุณทราบถึงการยกเว้นตนเองโดยสมัครใจ 1 สัปดาห์ 1 เดือน 3 เดือน 6 เดือนหรือถาวร</p>
+                            <p>โปรดทราบ; บัญชีที่ปิดภายใต้นโยบายการยกเว้นตนเองของเราไม่สามารถเพิกถอนหรือเปิดใหม่ได้ไม่ว่าด้วยเหตุผลใดก็ตาม อย่างไรก็ตามเมื่อการยกเว้นตนเองของคุณหมดอายุเราจะส่งอีเมลแจ้งให้คุณทราบว่าบัญชีของคุณใช้งานได้อีกครั้ง การยกเว้นตนเองอย่างถาวรจะมีอยู่อย่างไม่มีกําหนด</p>
 
-                          <p>In addition, if you would like to learn about our self-exclusion process, you can email (support{'@'}seabet.io) our friendly Seabet.io customer service. Sometimes a short break can help you settle your thoughts and stop you from making any rash betting decisions that don't match your usual.</p>
-                          <p>Upon request, we will place your account with a cooling-off period of at least 24 hours. Subsequently, one of our support agents will notify you of the available voluntary 1 week, 1 month, 3 months, 6 months, or permanent self-exclusion.</p>
-                          <p>Please note; Accounts closed under our self-exclusion policy cannot be revoked or reopened for any reason. However, once your self-exclusion expires, we will send you an email letting you know that your account is active again. Permanent self-exclusion will exist indefinitely.</p>
+                            <p>ยังไม่บรรลุนิติภาวะ</p>
+                            <p>หากคุณต้องการเล่นการพนันกับเราในปี Seabet.io คุณต้องมีอายุอย่างน้อย 18 ปีหรืออายุขั้นต่ําตามกฎหมายในการเล่นการพนัน (หากน้อยกว่า) ในเขตอํานาจศาลที่คุณถืออยู่ภายใต้กฎหมายที่บังคับใช้กับคุณ</p>
 
-                          <p>Underage</p>
-                          <p>If you wish to gamble with us in Seabet.io, you must be at least 18 years of age or the legal minimum gambling age (if lesser) in the jurisdiction in which you hold under the laws applicable to you.</p>
+                            <p>เราขอแนะนําว่าหากคุณมีผู้เยาว์ในบ้านของคุณโปรดดูลิงก์ต่อไปนี้ไปยังซอฟต์แวร์การควบคุมโดยผู้ปกครองซึ่งอาจเป็นเครื่องมือที่มีประโยชน์ในการควบคุมและ จํากัด สิ่งที่สามารถเข้าถึงได้บนอุปกรณ์ของคุณ</p>
 
-                          <p>We recommend that if you have any minors in your home, check out the following links to parental control software, which can be a useful tool for controlling and limiting what can be accessed on your device.</p>
-
-                          <ul>
-                            <li><a target="_blank" href="https://www.netnanny.com/">https://www.netnanny.com/</a></li>
-                            <li><a target="_blank" href="https://www.cyberpatrol.com/">https://www.cyberpatrol.com/</a></li>
-                          </ul>
+                            <ul>
+                                <li><a target="_blank" href="https://www.netnanny.com/">https://www.netnanny.com/</a></li>
+                                <li><a target="_blank" href="https://www.cyberpatrol.com/">https://www.cyberpatrol.com/</a></li>
+                              </ul>
                         </div>`,
     amlContent: `<div>
-                  <h3>Anti-Money Laundering, Counter-Terrorism Financing Statement</h3>
-                  <h4>1. Company business model</h4>
-                  <p>Seabet currently supports its users in more than 169 countries around the world. As part of its global operations, Seabet has established compliance measures commensurate with its services and products designed to prevent and detect illegal activity on its platform. These include onboarding and compliance screening for their clients and transaction-based controls.</p>
-                  <h4>2. Company Policy Statement</h4>
-                  <p>Seabet expressly prohibits and refuses to use Seabet Products for any form of illegal activity, including money laundering, terrorist financing or trade sanctions violations, consistent with national anti-money laundering (AML) laws, regulations and guidelines.
-                      Seabet continues to monitor the parameters set by the guidelines set by the Financial Action Task Force (FATF) and certain gaming trade organizations and the Curacao Gambling Control Commission and will take such actions as it deems appropriate to reflect changes in the law.
-                      Seabet intends to follow global best practices and prevent Seabet products from being used to facilitate such activities. These best practices include:</p>
-                  <ul>
-                      <li>Adopt written policies and reasonably designed procedures and controls to prevent money laundering, terrorist financing and trade sanctions violations;</li>
-                      <li>Where appropriate, appoint a compliance officer to oversee the implementation of policies, procedures and controls;</li>
-                      <li>Provide relevant education and training to relevant personnel;</li>
-                      <li>Independent review, monitoring and maintenance of policies, procedures and controls.</li>
-                  </ul>
-                  <h3>3. Definitions</h3>
-                  <p>The following defining terms are widely used in the industry:</p>
-                  <p>Money laundering: The process of making illegally obtained proceeds appear legitimate. This process is typically divided into three steps: storage, tiering, and consolidation.</p>
-                  <p>Deposit: The process of depositing illegal proceeds into a traditional financial institution, through deposits or other means.</p>
-                  <p>Stratification: The process of separating the proceeds of criminal activity from their source by using a complex level of financial transactions, such as converting cash into traveler's checks, money orders, wire transfers, letters of credit, stocks, bonds, or the purchase of assets.</p>
-                  <p>Integration: The use of seemingly legitimate transactions to mask illicit gains so that laundered funds can be redistributed to criminals; Integrate the current money laundering funds back to normal use.</p>
-                  <p>Suspicious activity: Activity carried out by a user or non-user using the institution where there are indications that the person making the transaction may be for fraudulent or illegal purposes.</p>
-                  <p>Sanctions: Sanctions are activities undertaken by the international community to prohibit or limit the activities targeted by sanctions. For example, they are used to:</p>
-                  <ul>
-                      <li>Encouraging the target state or regime to change its behavior;</li>
-                      <li>Pressure the target country to comply with the set targets;</li>
-                      <li>As a tool for law enforcement when international peace and security are threatened and diplomatic efforts fail;</li>
-                      <li>Preventing and combating the financing of terrorists or terrorist acts.</li>
-                  </ul>
-
-                  <h3>4. Governance and oversight</h3>
-                  <p>Seabet has appointed a Chief Compliance Officer (CCO) to coordinate the implementation of AML's policies and policy programs. The responsibilities of the Chief Compliance Officer also include developing AML plans, working with other stakeholders to revise AML policies, assessing new regulatory requirements and investigating possible suspicious or unusual activity. Seabet also regularly provides AML training to all employees.</p>
-
-                  <h3>5. Education and training</h3>
-                  <p>Seabet, with the assistance of its legal counsel and under the supervision of its CCO, may provide regular AML, CFT and trade sanctions compliance training to its employees as required.</p>
-
-                  <h3>6. Reports</h3>
-                  <p>Seabet is obliged to report any unusual or suspicious transactions in accordance with national decrees. Customers identified on the sanctions list related to money laundering or terrorist financing or other criminal activities will be reported to the regulator as suspicious activity.</p>
-              </div>
-              `,
+                    <h2>แถลงการณ์ต่อต้านการฟอกเงิน และการต่อต้านการสนับสนุนทางการเงินแก่การก่อการร้าย</h2>
+                    <h3>1. รูปแบบธุรกิจของ บริษัท</h3>
+                    <p>ปัจจุบัน Seabet รองรับผู้ใช้ในกว่า 169 ประเทศทั่วโลก ในฐานะที่เป็นส่วนหนึ่งของการดําเนินงานทั่วโลก Seabet ได้กําหนดมาตรการการปฏิบัติตามข้อกําหนดที่สอดคล้องกับบริการและผลิตภัณฑ์ที่ออกแบบมาเพื่อป้องกันและตรวจจับกิจกรรมที่ผิดกฎหมายบนแพลตฟอร์ม สิ่งเหล่านี้รวมถึงการเตรียมความพร้อมและการคัดกรองการปฏิบัติตามข้อกําหนดสําหรับลูกค้าและการควบคุมตามธุรกรรม</p>
+                    <h3>2. คําแถลงนโยบายบริษัท</h3>
+                    <p>ซีเบทห้ามและปฏิเสธที่จะใช้ผลิตภัณฑ์ของซีเบทสําหรับกิจกรรมที่ผิดกฎหมายทุกรูปแบบ รวมถึงการฟอกเงิน การจัดหาเงินทุนของผู้ก่อการร้าย หรือการละเมิดมาตรการคว่ําบาตรทางการค้า ซึ่งสอดคล้องกับกฎหมาย ข้อบังคับ และแนวทางการต่อต้านการฟอกเงินแห่งชาติ (AML)</p>
+                    <p>Seabet ยังคงตรวจสอบพารามิเตอร์ที่กําหนดโดยแนวทางที่กําหนดโดย Financial Action Task Force (FATF) และองค์กรการค้าเกมบางแห่งและคณะกรรมการควบคุมการพนันคูราเซาและจะดําเนินการตามที่เห็นสมควรเพื่อสะท้อนการเปลี่ยนแปลงในกฎหมาย</p>
+                    <p>Seabet ตั้งใจที่จะปฏิบัติตามแนวทางปฏิบัติที่ดีที่สุดทั่วโลกและป้องกันไม่ให้ผลิตภัณฑ์ Seabet ถูกใช้เพื่ออํานวยความสะดวกในกิจกรรมดังกล่าว แนวทางปฏิบัติที่ดีที่สุดเหล่านี้รวมถึง:</p>
+                    <ul>
+                        <li>ใช้นโยบายที่เป็นลายลักษณ์อักษรและขั้นตอนและการควบคุมที่ออกแบบมาอย่างสมเหตุสมผลเพื่อป้องกันการฟอกเงินการจัดหาเงินทุนของผู้ก่อการร้ายและการละเมิดการคว่ําบาตรทางการค้า</li>
+                        <li>ในกรณีที่เหมาะสม ให้แต่งตั้งเจ้าหน้าที่กํากับดูแลการปฏิบัติตามนโยบาย ขั้นตอน และการควบคุม</li>
+                        <li>ให้การศึกษาและการฝึกอบรมที่เกี่ยวข้องแก่บุคลากรที่เกี่ยวข้อง</li>
+                        <li>การตรวจสอบการตรวจสอบและการบํารุงรักษานโยบายขั้นตอนและการควบคุมที่เป็นอิสระ</li>
+                    </ul>
+                    <h3>3. คำ นิยาม</h3>
+                    <p>คํานิยามต่อไปนี้ใช้กันอย่างแพร่หลายในอุตสาหกรรม:</p>
+                    <p>การฟอกเงิน: กระบวนการสร้างรายได้ที่ได้มาอย่างผิดกฎหมายนั้นถูกต้องตามกฎหมาย กระบวนการนี้โดยทั่วไปจะแบ่งออกเป็นสามขั้นตอน: การจัดเก็บการจัดระดับและการรวม</p>
+                    <p>เงินฝาก: กระบวนการฝากเงินที่ผิดกฎหมายไปยังสถาบันการเงินแบบดั้งเดิมผ่านการฝากเงินหรือวิธีการอื่น</p>
+                    <p>การแบ่งชั้น: กระบวนการแยกเงินของกิจกรรมทางอาญาออกจากแหล่งที่มาโดยใช้ธุรกรรมทางการเงินในระดับที่ซับซ้อนเช่นการแปลงเงินสดเป็นเช็คของนักเดินทางธนาณัติการโอนเงินผ่านธนาคารเลตเตอร์ออฟเครดิตหุ้นพันธบัตรหรือการซื้อสินทรัพย์</p>
+                    <p>บูรณาการ: การใช้ธุรกรรมที่ดูเหมือนถูกต้องตามกฎหมายเพื่อปกปิดผลกําไรที่ผิดกฎหมายเพื่อให้สามารถแจกจ่ายเงินที่ฟอกให้กับอาชญากรได้ นําเงินที่ฟอกเงินในปัจจุบันกลับมาใช้ตามปกติ</p>
+                    <p>กิจกรรมที่น่าสงสัย: กิจกรรมที่ดําเนินการโดยผู้ใช้หรือไม่ใช่ผู้ใช้โดยใช้สถาบันที่มีข้อบ่งชี้ว่าบุคคลที่ทําธุรกรรมอาจมีวัตถุประสงค์เพื่อการฉ้อโกงหรือผิดกฎหมาย</p>
+                    <p>การคว่ําบาตร: การคว่ําบาตรเป็นกิจกรรมที่ดําเนินการโดยประชาคมระหว่างประเทศเพื่อห้ามหรือจํากัดกิจกรรมที่เป็นเป้าหมายของการคว่ําบาตร ตัวอย่างเช่นพวกเขาคุ้นเคยกับ:</p>
+                    <ul>
+                        <li>ส่งเสริมให้รัฐหรือระบอบการปกครองเป้าหมายเปลี่ยนพฤติกรรม</li>
+                        <li>กดดันประเทศเป้าหมายให้ปฏิบัติตามเป้าหมายที่ตั้งไว้</li>
+                        <li>เป็นเครื่องมือในการบังคับใช้กฎหมายเมื่อสันติภาพและความมั่นคงระหว่างประเทศถูกคุกคามและความพยายามทางการทูตล้มเหลว</li>
+                        <li>การป้องกันและปราบปรามการจัดหาเงินทุนของผู้ก่อการร้ายหรือการกระทําของผู้ก่อการร้าย</li>
+                    </ul>
+                    <h3>4. การกํากับดูแลและการกํากับดูแล</h3>
+                    <p>Seabet ได้แต่งตั้งประธานเจ้าหน้าที่ฝ่ายกํากับดูแลการปฏิบัติตามกฎระเบียบ (CCO) เพื่อประสานงานการดําเนินการตามนโยบายและโปรแกรมนโยบายของ AML ความรับผิดชอบของประธานเจ้าหน้าที่ฝ่ายกํากับดูแลยังรวมถึงการพัฒนาแผน AML ทํางานร่วมกับผู้มีส่วนได้ส่วนเสียอื่น ๆ เพื่อแก้ไขนโยบาย AML ประเมินข้อกําหนดด้านกฎระเบียบใหม่และตรวจสอบกิจกรรมที่น่าสงสัยหรือผิดปกติที่อาจเกิดขึ้น Seabet ยังให้การฝึกอบรม AML แก่พนักงานทุกคนเป็นประจํา</p>
+                    <h3>5. การศึกษาและการฝึกอบรม</h3>
+                    <p>Seabet ด้วยความช่วยเหลือของที่ปรึกษากฎหมายและอยู่ภายใต้การดูแลของ CCO อาจจัดให้มีการฝึกอบรมการปฏิบัติตาม AML, CFT และการคว่ําบาตรทางการค้าแก่พนักงานเป็นประจําตามความจําเป็น</p>
+                    <h3>6. Reports</h3>
+                    <p>Seabet มีหน้าที่ต้องรายงานธุรกรรมที่ผิดปกติหรือน่าสงสัยตามพระราชกฤษฎีกาของประเทศ ลูกค้าที่ระบุในรายการคว่ําบาตรที่เกี่ยวข้องกับการฟอกเงินหรือการจัดหาเงินทุนของผู้ก่อการร้ายหรือกิจกรรมทางอาญาอื่น ๆ จะถูกรายงานต่อหน่วยงานกํากับดูแลว่าเป็นกิจกรรมที่น่าสงสัย</p>
+                </div>`,
     selfExclusionContent: `<div>
-                            <h2>Self-Exclusion Policy</h2>
-                            <p>If you feel you are no longer able to control your gambling or gamble safely, we offer you the option to self-exclude from betting with us. To begin the cooling off period as outlined below, please visit your account preferences.</p>
+                              <h2>นโยบายการยกเว้นตนเอง</h2>
+                              <p>หากคุณรู้สึกว่าคุณไม่สามารถควบคุมการพนันหรือการพนันได้อย่างปลอดภัยอีกต่อไปเราขอเสนอทางเลือกให้คุณยกเว้นตนเองจากการเดิมพันกับเรา หากต้องการเริ่มระยะเวลาการระบายความร้อนตามที่ระบุไว้ด้านล่างโปรดไปที่การตั้งค่าบัญชีของคุณ</p>
 
-                            <h3>1. Overview</h3>
-                            <p>For the majority of people, gambling is an enjoyable leisure and entertainment activity. But for some, gambling can have negative impacts. As a result, we have developed this policy to communicate our approach to responsible gambling and minimizing harm to consumers who may be vulnerable to problem gambling.</p>
+                              <h3>1. ภาพรวม</h3>
+                              <p>สําหรับคนส่วนใหญ่การพนันเป็นกิจกรรมสันทนาการและความบันเทิงที่สนุกสนาน แต่สําหรับบางคนการพนันอาจมีผลกระทบด้านลบ ด้วยเหตุนี้ เราจึงได้พัฒนานโยบายนี้เพื่อสื่อสารแนวทางของเราเกี่ยวกับการพนันอย่างมีความรับผิดชอบและลดอันตรายต่อผู้บริโภคที่อาจเสี่ยงต่อการเกิดปัญหาการพนัน</p>
 
-                            <h3>2. What is Responsible Gambling?</h3>
-                            <p>“Responsible Gambling” is a broad concept that aims to ensure gambling is conducted in a manner whereby the potential for harm associated with problem gambling is minimized. It respects the responsibility of individuals for their own actions, but also acknowledges a responsibility on the part of service providers.</p>
+                              <h3>2. การพนันอย่างมีความรับผิดชอบคืออะไร?</h3>
+                              <p>"การพนันอย่างมีความรับผิดชอบ" เป็นแนวคิดกว้าง ๆ ที่มีจุดมุ่งหมายเพื่อให้แน่ใจว่าการพนันจะดําเนินการในลักษณะที่มีโอกาสเกิดอันตรายที่เกี่ยวข้องกับปัญหาการพนันลดลง มันเคารพความรับผิดชอบของบุคคลสําหรับการกระทําของตนเอง แต่ยังยอมรับความรับผิดชอบในส่วนของผู้ให้บริการ</p>
 
-                            <h3>3. What is Problem Gambling?</h3>
-                            <p>Problem gambling occurs when a person loses control over their gambling, particularly the amount of money gambled and the amount of time devoted to gambling.</p>
+                              <h3>3. ปัญหาการพนันคืออะไร?</h3>
+                              <p>ปัญหาการพนันเกิดขึ้นเมื่อบุคคลสูญเสียการควบคุมการพนันโดยเฉพาะอย่างยิ่งจํานวนเงินที่เล่นการพนันและระยะเวลาที่อุทิศให้กับการพนัน</p>
 
-                            <h3>4. Customer Care Principles</h3>
-                            <p>At Seabet.io, we want to be an industry leader in providing a safe environment for our customers. We actively encourage and promote responsible gambling practices and provide tools to assist our customers in maintaining control of their gambling.</p>
+                              <h3>4. หลักการดูแลลูกค้า</h3>
+                              <p>ที่ Seabet.io เราต้องการเป็นผู้นําในอุตสาหกรรมในการจัดหาสภาพแวดล้อมที่ปลอดภัยสําหรับลูกค้าของเรา เราสนับสนุนและส่งเสริมแนวทางการพนันอย่างมีความรับผิดชอบและจัดหาเครื่องมือเพื่อช่วยลูกค้าของเราในการรักษาการควบคุมการพนันของพวกเขา</p>
 
-                            <h3>5. Responsible Gambling Policy</h3>
-                            <p>We are committed to sharing responsibility, with Governments and communities and individuals, for helping customers control their gambling, and helping problem gamblers to identify their problem and seek assistance.</p>
-                            <p>Some of the ways that we do this are: i. allowing our customers to self-exclude (either temporarily or permanently) from betting with us; ii. providing Responsible Gambling information and messages to our customers; iii. training our staff about Responsible Gambling at induction and at least once each year; iv. and referring our customers affected by problem gambling to gambling-related support services.</p>
-                            <p>We aim to achieve the following outcomes:</p>
-                            <ul>
-                              <li>Minimizing the extent of gambling related harm to individuals and the broader community;</li>
-                              <li>Enabling customers to make informed decisions about their gambling practices; </li>
-                              <li>Enabling people adversely affected by gambling to have access to timely and appropriate assistance and information; </li>
-                              <li>Promoting a shared understanding between individuals, communities, the gambling industry and Government of responsible gambling practices; </li>
-                              <li>Ensuring the gambling industry provides safe and supportive environments for the delivery of gambling products and services.</li>
-                            </ul>
+                              <h3>5. นโยบายการพนันอย่างมีความรับผิดชอบ</h3>
+                              <p>เรามุ่งมั่นที่จะแบ่งปันความรับผิดชอบกับรัฐบาลและชุมชนและบุคคลทั่วไปในการช่วยลูกค้าควบคุมการพนันของพวกเขาและช่วยเหลือนักพนันที่มีปัญหาในการระบุปัญหาและขอความช่วยเหลือ</p>
+                              <p>วิธีการบางอย่างที่เราทําเช่นนี้คือ: i. อนุญาตให้ลูกค้าของเราแยกตนเอง (ไม่ว่าจะชั่วคราวหรือถาวร) จากการเดิมพันกับเรา ii. การให้ข้อมูลและข้อความการพนันอย่างมีความรับผิดชอบแก่ลูกค้าของเรา iii. ฝึกอบรมพนักงานของเราเกี่ยวกับการพนันอย่างมีความรับผิดชอบในการปฐมนิเทศและอย่างน้อยปีละครั้ง iv. และแนะนําลูกค้าของเราที่ได้รับผลกระทบจากปัญหาการพนันไปยังบริการสนับสนุนที่เกี่ยวข้องกับการพนัน</p>
+                              <p>เรามุ่งมั่นที่จะบรรลุผลลัพธ์ดังต่อไปนี้:</p>
+                              <ul>
+                              <li>ลดขอบเขตของอันตรายที่เกี่ยวข้องกับการพนันต่อบุคคลและชุมชนในวงกว้าง</li>
 
-                            <h3>6. Minors</h3>
-                            <p>As a responsible operator, we are committed to protecting minors by actively taking steps to exclude minors from placing a wager using our betting platforms. Our services are designed to appeal to, and be used by persons who are at least 18 years old.</p>
+                              <li>ช่วยให้ลูกค้าสามารถตัดสินใจได้อย่างชาญฉลาดเกี่ยวกับแนวทางการพนันของพวกเขา </li>
 
-                            <h3>7. Filtering Options</h3>
-                            <p>Filtering options can be enabled to help prevent persons from entering online casinos or online sports betting websites. If minors have access to the device that you use to access our betting platforms, we encourage you to use filtering software to prevent access to our betting platforms by minors.</p>
+                              <li>ช่วยให้ผู้ที่ได้รับผลกระทบจากการพนันสามารถเข้าถึงความช่วยเหลือและข้อมูลที่เหมาะสมและทันท่วงที </li>
 
-                            <h3>8. Additional Help</h3>
-                            <p>In the case of needed help please contact our support team at support{'@'}seabet.io or on our live chat system and one of our agents will be able to give you the details of associations and help phone numbers available in your country.</p>
+                              <li>ส่งเสริมความเข้าใจร่วมกันระหว่างบุคคลชุมชนอุตสาหกรรมการพนันและรัฐบาลเกี่ยวกับการพนันอย่างมีความรับผิดชอบ </li>
 
-                            <h3>9. Conditions and Processes</h3>
-                            <p>To self-exclude means to stop betting or gambling for a set time. Self-exclusion can be temporary or permanent.</p>
-                            <p>By requesting one of our self-exclusion time periods on offer you agree to the following terms and conditions, which will be effective from the minute you receive a confirmation email of your chosen self-exclusion, this email will be sent to the email address used to register your account only and will display the date of self-exclusion completion.</p>
-                            <p>Requests made via our Chat function will not be actioned. However, a customer support agent will direct you to our customer support email service.</p>
-                            <p>On receipt of an email request for account closure, the requested account and any linked accounts will be placed on our first stage, 24-hr cooling off period which will disable your account or accounts, allowing no gambling activity. Once this time has passed; while your account or accounts remain closed, a customer support agent will inform you of the 1-week, 1-month, 6-months and permanent self-exclusions available. There will be no variation of these time periods. To proceed with this process, we will require an email response. If we do not receive a response within a further 24 - hrs, your account will be reopened and confirmed by email.</p>
+                              <li>สร้างความมั่นใจว่าอุตสาหกรรมการพนันมีสภาพแวดล้อมที่ปลอดภัยและสนับสนุนสําหรับการส่งมอบผลิตภัณฑ์และบริการการพนัน</li>
+                              </ul>
+                              <h3>6. ผู้เยาว์</h3>
+                              <p>ในฐานะผู้ให้บริการที่รับผิดชอบเรามุ่งมั่นที่จะปกป้องผู้เยาว์โดยดําเนินการอย่างแข็งขันเพื่อแยกผู้เยาว์ออกจากการวางเดิมพันโดยใช้แพลตฟอร์มการเดิมพันของเรา บริการของเราออกแบบมาเพื่อดึงดูดและใช้งานโดยบุคคลที่มีอายุอย่างน้อย 18 ปี</p>
 
-                            <p>If after reviewing our self-exclusion options you decide you would like to proceed with a permanent self-exclusion, you will be required to set an exclusion period when prompted. On occasion, we might decide to place an account on a short self-exclusion period if we believe it to be needed and or beneficial to the customer. This will be communicated by email; the above terms and conditions will apply.</p>
+                              <h3>7. ตัวเลือกการกรอง</h3>
+                              <p>ตัวเลือกการกรองสามารถเปิดใช้งานเพื่อช่วยป้องกันไม่ให้บุคคลเข้าสู่คาสิโนออนไลน์หรือเว็บไซต์เดิมพันกีฬาออนไลน์ หากผู้เยาว์สามารถเข้าถึงอุปกรณ์ที่คุณใช้ในการเข้าถึงแพลตฟอร์มการเดิมพันของเราเราขอแนะนําให้คุณใช้ซอฟต์แวร์กรองเพื่อป้องกันการเข้าถึงแพลตฟอร์มการเดิมพันของเราโดยผู้เยาว์</p>
 
-                            <p>You are not permitted to leave any balance in your account during a self-exclusion time period. You will not be able to access your account to withdraw any funds during your requested self-exclusion. If you have an account affected by a self-exclusion that has any active bets, the Cash Out function will be applied at the point of self-exclusion confirmation. Bets will not be void; stakes will not be returned or remain active throughout a self-exclusion time period. Bets will not be reinstated after a self-exclusion completion. While Self Excluded, you are not eligible for any form of benefits, bonuses or reloads.</p>
+                              <h3>8. ความช่วยเหลือเพิ่มเติม</h3>
+                              <p>ในกรณีที่ต้องการความช่วยเหลือโปรดติดต่อทีมสนับสนุนของเราที่ support@seabet.io หรือในระบบแชทสดของเราและตัวแทนของเราจะสามารถให้รายละเอียดของสมาคมและหมายเลขโทรศัพท์ช่วยเหลือที่มีอยู่ในประเทศของคุณ</p>
 
-                            <p>Once a self-exclusion is applied to your account, it will stay in place until the request time has finished, it will not be reversed or decreased for any reason. Permanent self-exclusions will remain closed indefinitely.</p>
+                              <h3>9. เงื่อนไขและกระบวนการ</h3>
+                              <p>การยกเว้นตนเองหมายถึงการหยุดการพนันหรือการพนันตามเวลาที่กําหนด การยกเว้นตนเองอาจเป็นแบบชั่วคราวหรือถาวร</p>
+                              <p>โดยการร้องขอหนึ่งในช่วงเวลาการยกเว้นตนเองของเราตามข้อเสนอคุณยอมรับข้อกําหนดและเงื่อนไขต่อไปนี้ซึ่งจะมีผลตั้งแต่นาทีที่คุณได้รับอีเมลยืนยันการยกเว้นตนเองที่คุณเลือกอีเมลนี้จะถูกส่งไปยังที่อยู่อีเมลที่ใช้ในการลงทะเบียนบัญชีของคุณเท่านั้นและจะแสดงวันที่เสร็จสิ้นการยกเว้นตนเอง</p>
+                              <p>คําขอที่ทําผ่านฟังก์ชันแชทของเราจะไม่ถูกดําเนินการ อย่างไรก็ตามตัวแทนฝ่ายสนับสนุนลูกค้าจะนําคุณไปยังบริการอีเมลสนับสนุนลูกค้าของเรา</p>
+                              <p>เมื่อได้รับคําขอทางอีเมลสําหรับการปิดบัญชีบัญชีที่ร้องขอและบัญชีที่เชื่อมโยงใด ๆ จะถูกวางไว้ในขั้นตอนแรกของเราระยะเวลาการระบายความร้อนตลอด 24 ชั่วโมงซึ่งจะปิดการใช้งานบัญชีหรือบัญชีของคุณทําให้ไม่มีกิจกรรมการพนัน เมื่อเวลานี้ผ่านไป ในขณะที่บัญชีหรือบัญชีของคุณยังคงปิดอยู่ตัวแทนฝ่ายสนับสนุนลูกค้าจะแจ้งให้คุณทราบถึงการยกเว้นตนเอง 1 สัปดาห์ 1 เดือน 6 เดือนและถาวร จะไม่มีการเปลี่ยนแปลงของช่วงเวลาเหล่านี้ ในการดําเนินการตามขั้นตอนนี้เราจะต้องมีการตอบกลับทางอีเมล หากเราไม่ได้รับการตอบกลับภายใน 24 ชั่วโมงบัญชีของคุณจะถูกเปิดใหม่และยืนยันทางอีเมล</p>
 
-                            <p>We will use all reasonable endeavours to ensure compliance with our responsible gambling self-exclusion policy. However, you accept that we will not be held responsible or liable if you attempt to open any new account or indeed succeed. In addition, we will not be held liable or accountable if you continue to deposit and wager using additional accounts which have previously not been disclosed. Any future wagers, Reward funds and entries in any promotions during a requested self-exclusion time will be forfeited, resulting in no return of stakes or payment of winnings. We will not be able to reinstate these if the account is reopened after the self-exclusion period. After self-exclusion you acknowledge that:</p>
+                              <p>หากหลังจากตรวจสอบตัวเลือกการยกเว้นตนเองของเราแล้วคุณตัดสินใจว่าต้องการดําเนินการยกเว้นตนเองอย่างถาวรคุณจะต้องกําหนดระยะเวลาการยกเว้นเมื่อได้รับแจ้ง ในบางครั้งเราอาจตัดสินใจวางบัญชีในช่วงเวลายกเว้นตนเองสั้น ๆ หากเราเชื่อว่าจําเป็นและหรือเป็นประโยชน์ต่อลูกค้า สิ่งนี้จะสื่อสารทางอีเมล ข้อกําหนดและเงื่อนไขข้างต้นจะมีผลบังคับใช้</p>
 
-                            <p>You should not attempt to, deposit or place any wager on any of your accounts from which you have requested to be excluded during your selected self-exclusion.</p>
+                              <p>คุณไม่ได้รับอนุญาตให้ออกจากยอดคงเหลือใด ๆ ในบัญชีของคุณในช่วงเวลาที่ยกเว้นตนเอง คุณจะไม่สามารถเข้าถึงบัญชีของคุณเพื่อถอนเงินใด ๆ ในระหว่างการยกเว้นตนเองที่คุณร้องขอ หากคุณมีบัญชีที่ได้รับผลกระทบจากการยกเว้นตนเองที่มีการเดิมพันที่ใช้งานอยู่ฟังก์ชัน Cash Out จะถูกนําไปใช้ ณ จุดยืนยันการยกเว้นตนเอง การเดิมพันจะไม่เป็นโมฆะ เงินเดิมพันจะไม่ถูกส่งคืนหรือยังคงใช้งานได้ตลอดระยะเวลาการยกเว้นตนเอง การเดิมพันจะไม่ถูกคืนสถานะหลังจากเสร็จสิ้นการยกเว้นตนเอง ในขณะที่ไม่รวมตนเองคุณไม่มีสิทธิ์ได้รับผลประโยชน์โบนัสหรือโหลดซ้ําในรูปแบบใด ๆ</p>
 
-                            <p>You should not attempt or proceed to open any new accounts during your self-exclusion period, or indefinitely if a permanent self-exclusion has been selected.</p>
+                              <p>เมื่อมีการใช้การยกเว้นตนเองกับบัญชีของคุณบัญชีจะยังคงอยู่จนกว่าเวลาคําขอจะเสร็จสิ้นจะไม่ถูกย้อนกลับหรือลดลงไม่ว่าด้วยเหตุผลใดก็ตาม การยกเว้นตนเองอย่างถาวรจะยังคงปิดอย่างไม่มีกําหนด</p>
 
-                            <p>If you succeed in opening a new account during a self-exclusion period, we will endeavour to close any and all such accounts at our earliest detection.</p>
-                            <p>Our responsibility is only to take reasonable steps to prevent you from gambling on any of our products. It is also the customer’s responsibility to refrain from breaching these agreed terms.</p>
+                              <p>เราจะใช้ความพยายามที่สมเหตุสมผลทั้งหมดเพื่อให้แน่ใจว่าสอดคล้องกับนโยบายการยกเว้นตนเองในการเล่นการพนันอย่างมีความรับผิดชอบของเรา อย่างไรก็ตามคุณยอมรับว่าเราจะไม่รับผิดชอบหรือรับผิดหากคุณพยายามเปิดบัญชีใหม่หรือประสบความสําเร็จ นอกจากนี้เราจะไม่รับผิดชอบหรือรับผิดชอบหากคุณยังคงฝากเงินและเดิมพันโดยใช้บัญชีเพิ่มเติมซึ่งไม่เคยเปิดเผยมาก่อน การเดิมพันในอนาคตเงินรางวัลและรายการในโปรโมชั่นใด ๆ ในช่วงเวลาที่ได้รับการยกเว้นด้วยตนเองจะถูกริบส่งผลให้ไม่มีการคืนเงินเดิมพันหรือการจ่ายเงินรางวัล เราจะไม่สามารถคืนสถานะเหล่านี้ได้หากบัญชีถูกเปิดใหม่หลังจากระยะเวลาการยกเว้นตนเอง หลังจากยกเว้นตนเองคุณยอมรับว่า:</p>
 
-                            <p>A self-exclusion request is a voluntary request made by you. If you proceed to act contrary to such a request, nor any of its employees or affiliated persons shall be held accountable or liable for any losses you may suffer. Any losses incurred during yourself-exclusion period will not be refunded.</p>
+                              <p>คุณไม่ควรพยายามฝากเงินหรือวางเดิมพันใด ๆ ในบัญชีใด ๆ ของคุณที่คุณขอให้ได้รับการยกเว้นในระหว่างการยกเว้นตนเองที่คุณเลือก</p>
 
-                            <p>If you act contrary to a self-exclusion request, we retain discretion to terminate or void any wagers you have placed and to take other appropriate action. Also, if we have suspicions or further investigation provides evidence that you have actively attempted to disguise the source of your account or accounts, which affects our ability to block your account or accounts promptly, the company retains discretion to terminate or void any wagers you have placed and to take other appropriate action.</p>
+                              <p>คุณไม่ควรพยายามหรือดําเนินการเปิดบัญชีใหม่ใด ๆ ในช่วงระยะเวลาการยกเว้นตนเองของคุณหรืออย่างไม่มีกําหนดหากมีการเลือกการยกเว้นตนเองอย่างถาวร</p>
 
-                            <p>Once your selected self-exclusion has come to an end, your account will automatically be reopened. However, you will receive an email confirmation of this information which will be sent to your registered email address.</p>
+                              <p>หากคุณประสบความสําเร็จในการเปิดบัญชีใหม่ในช่วงระยะเวลาการยกเว้นตนเองเราจะพยายามปิดบัญชีดังกล่าวทั้งหมดโดยเร็วที่สุด</p>
+                              <p>ความรับผิดชอบของเราเป็นเพียงการดําเนินการตามสมควรเพื่อป้องกันไม่ให้คุณเล่นการพนันในผลิตภัณฑ์ใด ๆ ของเรา นอกจากนี้ยังเป็นความรับผิดชอบของลูกค้าในการละเว้นจากการละเมิดข้อกําหนดที่ตกลงกันเหล่านี้</p>
+
+                              <p>คําขอยกเว้นตนเองเป็นคําขอโดยสมัครใจของคุณ หากคุณดําเนินการขัดขืนคําขอดังกล่าวหรือพนักงานหรือบุคคลในเครือจะต้องรับผิดชอบหรือรับผิดต่อความสูญเสียใด ๆ ที่คุณอาจประสบ ความสูญเสียใด ๆ ที่เกิดขึ้นในช่วงระยะเวลาการยกเว้นตัวเองจะไม่ได้รับการคืนเงิน</p>
+
+                              <p>หากคุณกระทําการขัดต่อคําขอยกเว้นตนเองเราขอสงวนดุลยพินิจที่จะยกเลิกหรือยกเลิกการเดิมพันใด ๆ ที่คุณวางไว้และดําเนินการอื่น ๆ ที่เหมาะสม นอกจากนี้หากเรามีข้อสงสัยหรือการตรวจสอบเพิ่มเติมให้หลักฐานว่าคุณได้พยายามปลอมแปลงแหล่งที่มาของบัญชีหรือบัญชีของคุณซึ่งส่งผลต่อความสามารถของเราในการบล็อกบัญชีหรือบัญชีของคุณทันที บริษัท ยังคงมีดุลยพินิจที่จะยกเลิกหรือยกเลิกการเดิมพันใด ๆ ที่คุณวางไว้และดําเนินการอื่น ๆ ที่เหมาะสม</p>
+
+                              <p>เมื่อการยกเว้นตนเองที่คุณเลือกสิ้นสุดลงบัญชีของคุณจะถูกเปิดใหม่โดยอัตโนมัติ อย่างไรก็ตามคุณจะได้รับอีเมลยืนยันข้อมูลนี้ซึ่งจะถูกส่งไปยังที่อยู่อีเมลที่คุณลงทะเบียนไว้</p>
                           </div>`,
     privacyContent: `<div>
-                      <h2>Privacy Policy </h2>
-                      <p>Seabet.io respects and protects the privacy of all users of our Services. This Privacy Policy ("Policy") details how we collect, store, use and disclose your personal information.</p>
-                      <h3>1. Scope and Application </h3>
-                      <p>This Policy applies to your access to and use of Seabet.io (the "Website") and all websites and applications under the Seabet brand, including all of our mobile applications and tablet applications. In addition, this Policy also applies where we interact with you in other ways.</p>
-                      <h3>2. User's Consent and Modification</h3>
-                      <p>By using Seabet's website, you agree to be bound by this Policy. We reserve the right, in our sole discretion, to modify or change this Policy at any time, and we will post such changes on the Site, and such changes will be effective immediately upon posting. Your continued use of the Site following such changes constitutes your acceptance of such changes. This Policy does not apply to other websites linked to this website.</p>
-                      <h3>3. Personal Information Collected</h3>
-                      <ul>
-                        <li>We may collect and process the following types of personal information:</li>
-                        <li>Name</li>
-                        <li>Email address</li>
-                        <li>User-submitted preference information</li>
-                        <li>Date of birth</li>
-                        <li>Nationality</li>
-                        <li>Physical address</li>
-                        <li>Identification number government</li>
-                        <li>Government-issued ID</li>
-                        <li>Location data</li>
-                        <li>Device information</li>
-                        <li>IP address</li>
-                      </ul>
-                      <p>This information is primarily derived from the information you provide when you register for an account or communicate with us.</p>
-                      <h3>4. Purpose of Collection</h3>
-                      <p>We collect your personal information to:</p>
-                      <ul>
-                        <li>Conduct customer identity verification (KYC)</li>
-                        <li>To enable you to subscribe to our marketing communications</li>
-                        <li>To process your membership application</li>
-                        <li>To provide and improve our services</li>
-                        <li>Identify and verify your identity</li>
-                        <li>Communicate with you</li>
-                        <li>conducting market research and promotional activities</li>
-                        <li>To respond to your questions and requests</li>
-                        <li>To comply with our contractual and legal obligations</li>
-                      </ul>
+                        <h2>นโยบายความเป็นส่วนตัว </h2>
+                        <p>Seabet.io เคารพและปกป้องความเป็นส่วนตัวของผู้ใช้บริการของเราทั้งหมด นโยบายความเป็นส่วนตัวนี้ ("นโยบาย") ให้รายละเอียดเกี่ยวกับวิธีที่เรารวบรวมจัดเก็บใช้และเปิดเผยข้อมูลส่วนบุคคลของคุณ</p>
+                        <h3>1. ขอบเขตและการใช้งาน </h3>
+                        <p>นโยบายนี้ใช้กับการเข้าถึงและการใช้งาน Seabet.io ("เว็บไซต์") และเว็บไซต์และแอปพลิเคชันทั้งหมดภายใต้แบรนด์ซีเบท รวมถึงแอปพลิเคชันมือถือและแท็บเล็ตทั้งหมดของเรา นอกจากนี้นโยบายนี้ยังมีผลบังคับใช้เมื่อเราโต้ตอบกับคุณในรูปแบบอื่น ๆ</p>
+                        <h3>2. ความยินยอมและการแก้ไขของผู้ใช้</h3>
+                        <p>การใช้เว็บไซต์ของซีเบทแสดงว่าคุณตกลงที่จะผูกพันตามนโยบายนี้ เราขอสงวนสิทธิ์ตามดุลยพินิจของเรา แต่เพียงผู้เดียวในการแก้ไขหรือเปลี่ยนแปลงนโยบายนี้ได้ตลอดเวลาและเราจะโพสต์การเปลี่ยนแปลงดังกล่าวบนเว็บไซต์และการเปลี่ยนแปลงดังกล่าวจะมีผลทันทีเมื่อโพสต์ การที่คุณใช้ไซต์ต่อไปหลังจากการเปลี่ยนแปลงดังกล่าวถือว่าคุณยอมรับการเปลี่ยนแปลงดังกล่าว นโยบายนี้ใช้ไม่ได้กับเว็บไซต์อื่นที่เชื่อมโยงกับเว็บไซต์นี้</p>
+                        <h3>3. ข้อมูลส่วนบุคคลที่เก็บรวบรวม</h3>
+                        <ul>
+                        <li>เราอาจรวบรวมและประมวลผลข้อมูลส่วนบุคคลประเภทต่อไปนี้:</li>
+                        <li>ชื่อ</li>
+                        <li>ที่อยู่อีเมล</li>
+                        <li>ข้อมูลการตั้งค่าที่ผู้ใช้ส่งมา</li>
+                        <li>วันเกิด</li>
+                        <li>สัญชาติ</li>
+                        <li>ที่อยู่ทางกายภาพ</li>
+                        <li>หมายเลขประจําตัวประชาชน</li>
+                        <li>บัตรประจําตัวที่ออกโดยรัฐบาล</li>
+                        <li>ข้อมูลตําแหน่ง</li>
+                        <li>ข้อมูลอุปกรณ์</li>
+                        <li>ที่อยู่ IP</li>
+                        </ul>
+                        <p>ข้อมูลนี้ได้มาจากข้อมูลที่คุณให้ไว้เมื่อคุณลงทะเบียนบัญชีหรือสื่อสารกับเราเป็นหลัก</p>
+                        <h3>4. วัตถุประสงค์ของการเก็บรวบรวม</h3>
+                        <p>เรารวบรวมข้อมูลส่วนบุคคลของคุณเพื่อ:</p>
+                        <ul>
+                        <li>ดําเนินการยืนยันตัวตนลูกค้า (KYC)</li>
+                        <li>เพื่อให้คุณสามารถสมัครรับการสื่อสารทางการตลาดของเรา</li>
+                        <li>วิธีดําเนินการสมัครสมาชิกของคุณ</li>
+                        <li>เพื่อให้บริการและปรับปรุงบริการของเรา</li>
+                        <li>ระบุและยืนยันตัวตนของคุณ</li>
+                        <li>สื่อสารกับคุณ</li>
+                        <li>ดําเนินการวิจัยตลาดและกิจกรรมส่งเสริมการขาย</li>
+                        <li>เพื่อตอบคําถามและคําขอของคุณ</li>
+                        <li>เพื่อปฏิบัติตามข้อผูกพันตามสัญญาและกฎหมายของเรา</li>
+                        </ul>
 
-                      <h3>5. Use and Disclosure of Personal Information</h3>
-                      <p>We may use your personal information for marketing activities and may tell you about products or services that we think may be of interest to you by email, text message or telephone. If you no longer wish to receive marketing or promotional information from us, you may unsubscribe at any time by contacting us by email.</p>
-                      <h3>6. Security of Personal Information</h3>
-                      <p>The User shall understand that the transmission of Internet data is not absolutely secure, Seabet.io cannot guarantee the absolute security of the information uploaded by the User to the Platform, and the User shall bear the risk. However, after receiving the transmission of the user's information, Seabet.io will take appropriate measures to prevent the misuse, loss, and unauthorized access, modification and disclosure of the user's personal information. This includes the use of password protection of systems and databases, as well as the use of Secure Sockets Layer (SSL) technology. By using our Services or providing personal information, users agree that we may communicate with you electronically regarding security, privacy, and administrative issues related to the use of the Services. Seabet.io employees, agents and contractors are required to keep members' personal information and transactions confidential. Information posted by users on public platforms or social media environments (e.g., Facebook, Twitter) will be considered public information, Seabet.io the security of such information cannot be guaranteed.</p>
-                      <p>We emphasize that our services are not directed to children and we do not accept accounts or personal information. However, parents or guardians have an obligation to monitor their children's internet activities. Make sure to log out of your account as soon as you're done using the website, especially if you're sharing your device. The User is responsible for the security and access rights of the devices used to access the Website. Ultimately, users maintain the confidentiality of usernames, passwords and account information and are vigilant when using the Internet and our website.</p>
-                      <h3>7. Access to Personal Information</h3>
-                      <p>Users can access the personal information collected by Seabet.io by clicking on the "Settings" link on the website or by sending an email to the support{'@'}Seabet.io. We will respond to the user's access request within a reasonable period of time. If we are unable to comply with your request, we will inform you in writing of the reasons for the denial of access and the complaint mechanism.</p>
-                      <h3>8. Removal of personal data</h3>
-                      <p>If it is no longer possible to lawfully process or store the user's personal data, the user has the right to request its deletion. However, this right is not absolute and if Seabet.io are subject to legal obligations, it will not be able to meet the user's requirements. Please make a request by sending an email to support{'@'}Seabet.io.</p>
-                      <h3>9. Contact</h3>
-                      <p>If you have any questions, requests or complaints about our processing of your personal information, please contact us via email support{'@'}Seabet.io or the website customer support chat function.</p>
+                        <h3>5. การใช้และการเปิดเผยข้อมูลส่วนบุคคล</h3>
+                        <p>เราอาจใช้ข้อมูลส่วนบุคคลของคุณสําหรับกิจกรรมทางการตลาดและอาจบอกคุณเกี่ยวกับผลิตภัณฑ์หรือบริการที่เราคิดว่าคุณอาจสนใจทางอีเมลข้อความหรือโทรศัพท์ หากคุณไม่ต้องการรับข้อมูลการตลาดหรือส่งเสริมการขายจากเราอีกต่อไปคุณสามารถยกเลิกการสมัครได้ตลอดเวลาโดยติดต่อเราทางอีเมล</p>
+                        <h3>6. ความปลอดภัยของ ข้อมูลส่วนบุคคล</h3>
+                        <p>ผู้ใช้จะต้องเข้าใจว่าการส่งข้อมูลทางอินเทอร์เน็ตนั้นไม่ปลอดภัยอย่างแน่นอน Seabet.io ไม่สามารถรับประกันความปลอดภัยอย่างแท้จริงของข้อมูลที่ผู้ใช้อัปโหลดไปยังแพลตฟอร์มและผู้ใช้จะต้องรับความเสี่ยง อย่างไรก็ตามหลังจากได้รับการส่งข้อมูลของผู้ใช้ Seabet.io จะใช้มาตรการที่เหมาะสมเพื่อป้องกันการใช้ในทางที่ผิดการสูญเสียและการเข้าถึงการแก้ไขและการเปิดเผยข้อมูลส่วนบุคคลของผู้ใช้โดยไม่ได้รับอนุญาต ซึ่งรวมถึงการใช้การป้องกันด้วยรหัสผ่านของระบบและฐานข้อมูลรวมถึงการใช้เทคโนโลยี Secure Sockets Layer (SSL) โดยการใช้บริการของเราหรือให้ข้อมูลส่วนบุคคลผู้ใช้ยอมรับว่าเราอาจสื่อสารกับคุณทางอิเล็กทรอนิกส์เกี่ยวกับปัญหาด้านความปลอดภัยความเป็นส่วนตัวและการบริหารที่เกี่ยวข้องกับการใช้บริการ พนักงานตัวแทนและผู้รับเหมา Seabet.io จะต้องเก็บข้อมูลส่วนบุคคลและธุรกรรมของสมาชิกไว้เป็นความลับ ข้อมูลที่โพสต์โดยผู้ใช้บนแพลตฟอร์มสาธารณะหรือสภาพแวดล้อมโซเชียลมีเดีย (เช่น Facebook, Twitter) จะถือเป็นข้อมูลสาธารณะ Seabet.io ไม่สามารถรับประกันความปลอดภัยของข้อมูลดังกล่าวได้</p>
+                        <p>เราเน้นย้ําว่าบริการของเราไม่ได้มุ่งเป้าไปที่เด็กและเราไม่ยอมรับบัญชีหรือข้อมูลส่วนบุคคล อย่างไรก็ตามพ่อแม่หรือผู้ปกครองมีหน้าที่ตรวจสอบกิจกรรมทางอินเทอร์เน็ตของบุตรหลาน ตรวจสอบให้แน่ใจว่าได้ออกจากระบบบัญชีของคุณทันทีที่คุณใช้เว็บไซต์เสร็จแล้วโดยเฉพาะอย่างยิ่งหากคุณกําลังแชร์อุปกรณ์ของคุณ ผู้ใช้มีหน้าที่รับผิดชอบต่อความปลอดภัยและสิทธิ์การเข้าถึงของอุปกรณ์ที่ใช้ในการเข้าถึงเว็บไซต์ ในที่สุดผู้ใช้รักษาความลับของชื่อผู้ใช้รหัสผ่านและข้อมูลบัญชีและระมัดระวังเมื่อใช้อินเทอร์เน็ตและเว็บไซต์ของเรา</p>
+                        <h3>7. การเข้าถึงข้อมูลส่วนบุคคล</h3>
+                        <p>ผู้ใช้สามารถเข้าถึงข้อมูลส่วนบุคคลที่รวบรวมโดย Seabet.io โดยคลิกที่ลิงค์ "การตั้งค่า" บนเว็บไซต์หรือโดยการส่งอีเมลไปยัง support@Seabet.io เราจะตอบสนองต่อคําขอเข้าถึงของผู้ใช้ภายในระยะเวลาที่เหมาะสม หากเราไม่สามารถปฏิบัติตามคําขอของคุณเราจะแจ้งให้คุณทราบเป็นลายลักษณ์อักษรถึงเหตุผลในการปฏิเสธการเข้าถึงและกลไกการร้องเรียน</p>
+                        <h3>8. การลบ ข้อมูลส่วนบุคคล</h3>
+                        <p>หากไม่สามารถประมวลผลหรือจัดเก็บข้อมูลส่วนบุคคลของผู้ใช้ได้อย่างถูกต้องตามกฎหมายผู้ใช้มีสิทธิ์ที่จะขอให้ลบได้ อย่างไรก็ตามสิทธิ์นี้ไม่แน่นอนและหาก Seabet.io อยู่ภายใต้ภาระผูกพันทางกฎหมายจะไม่สามารถตอบสนองความต้องการของผู้ใช้ได้ โปรดส่งคําขอโดยส่งอีเมลไปที่ support@Seabet.io</p>
+                        <h3>9. ติดต่อ</h3>
+                        <p>หากคุณมีคําถามคําขอหรือข้อร้องเรียนเกี่ยวกับการประมวลผลข้อมูลส่วนบุคคลของคุณโปรดติดต่อเราทางอีเมล support@Seabet.io หรือฟังก์ชั่นแชทการสนับสนุนลูกค้าเว็บไซต์</p>
 
 
 
-                      <h3>10. International Data Transfers</h3>
-                      <p>We may transfer, process and store information worldwide, including but not limited to other countries whose data protection laws may differ from those of your location. We will protect your information as much as possible and as required by applicable law.</p>
-                      <h3>11. Root of the legal basis for processing</h3>
-                      <p>According to the Global General Data Protection Regulation, Seabet.io processing of your personal information has the following lawful bases: performance of a contract, legitimate interests, user consent and compliance with a legal obligation.</p>
-                      <h3>12. Privacy Policy Updates</h3>
-                      <p>Seabet.io may periodically review, change, and update this Privacy Policy to reflect our practices and responsibilities. We will post the latest Privacy Policy on the Website Seabet.io. Users should periodically review this Privacy Policy to familiarize themselves with its terms.</p>
+                        <h3>10. การถ่ายโอนข้อมูลระหว่างประเทศ</h3>
+                        <p>เราอาจถ่ายโอนประมวลผลและจัดเก็บข้อมูลทั่วโลกรวมถึง แต่ไม่ จํากัด เพียงประเทศอื่น ๆ ที่มีกฎหมายคุ้มครองข้อมูลอาจแตกต่างจากสถานที่ของคุณ เราจะปกป้องข้อมูลของคุณให้มากที่สุดและตามที่กฎหมายที่บังคับใช้กําหนด</p>
+                        <h3>11. รากของพื้นฐานทางกฎหมายสําหรับการประมวลผล</h3>
+                        <p>ตามระเบียบการคุ้มครองข้อมูลทั่วไปทั่วโลกการประมวลผลข้อมูลส่วนบุคคลของคุณ Seabet.io มีพื้นฐานทางกฎหมายดังต่อไปนี้: การปฏิบัติตามสัญญาผลประโยชน์ที่ชอบด้วยกฎหมายความยินยอมของผู้ใช้และการปฏิบัติตามภาระผูกพันทางกฎหมาย</p>
+                        <h3>12. การปรับปรุงนโยบายความเป็นส่วนตัว</h3>
+                        <p>Seabet.io อาจทบทวน เปลี่ยนแปลง และปรับปรุงนโยบายความเป็นส่วนตัวนี้เป็นระยะๆ เพื่อให้สอดคล้องกับแนวปฏิบัติและความรับผิดชอบของเรา เราจะโพสต์นโยบายความเป็นส่วนตัวล่าสุดบนเว็บไซต์ Seabet.io ผู้ใช้ควรทบทวนนโยบายความเป็นส่วนตัวนี้เป็นระยะเพื่อทําความคุ้นเคยกับข้อกําหนด</p>
                     </div>`,
     fairnessContent: `<div>
-                        <h2>Fairness</h2>
-                        <p>Before you can place bets in fiat currencies, including cryptocurrency, you must register for an account on Seabet.io website. Your use of the Seabet.io (the "Website") and the opening of an account with the Seabet.io shall be deemed to have been read, understood and bound by these Terms and Conditions.</p>
+                          <h2>ความยุติธรรม</h2>
+                          <p>ก่อนที่คุณจะสามารถวางเดิมพันในสกุลเงินเฟียตรวมถึงสกุลเงินดิจิทัลคุณต้องลงทะเบียนบัญชีบนเว็บไซต์ Seabet.io การใช้ Seabet.io ("เว็บไซต์") และการเปิดบัญชีกับ Seabet.io จะถือว่าคุณได้อ่านทําความเข้าใจและผูกพันตามข้อกําหนดและเงื่อนไขเหล่านี้แล้ว</p>
 
-                        <h3>Definition</h3>
-                        <p>Seabet.io – referred to as "we" or "company".</p>
-                        <p>Player – referred to as "you" or "player" or "member" or "customer" or "account holder".</p>
-                        <p>Games – Refers to casinos and other RNG (Random Number Generator) games, which may be available on the Website from time to time.</p>
-                        <p>Website – means a website used by Seabet.io Player through desktop, mobile, or other platforms.</p>
-                        <p>Member Account - A user account required to access and use the Site.</p>
-                        <p>Customer Support - Assistance and support services provided by the Company to its customers.</p>
-                        <p>Event - means a sports or betting event or a match or game within a sport in which a customer can place a bet on the outcome.</p>
-                        <p>Cryptocurrencies - should be further read as "Bitcoin, altcoins, and/or (if applicable) other supported cryptocurrencies." </p>
-                        <p>Fiat Currency - An unsupported monetary physical commodity issued by a government or central bank authority, such as gold or silver (e.g. US dollar, Brazilian real, Japanese yen, people).</p>
-                        <p>Restricted Jurisdictions - Country-specific licenses that are subject to restrictions on our games, therefore, users located in or from those regions are prohibited from registering and playing on the Site. The list of restricted jurisdictions may be updated from time to time and can be accessed via the link below.</p>
+                          <p>นิยาม</p>
+                          <p>Seabet.io – เรียกว่า "เรา" หรือ "บริษัท"</p>
+                          <p>ผู้เล่น – เรียกว่า "คุณ" หรือ "ผู้เล่น" หรือ "สมาชิก" หรือ "ลูกค้า" หรือ "เจ้าของบัญชี"</p>
+                          <p>เกม – หมายถึงคาสิโนและเกม RNG (Random Number Generator) อื่น ๆ ซึ่งอาจมีอยู่ในเว็บไซต์เป็นครั้งคราว</p>
+                          <p>เว็บไซต์ – หมายถึงเว็บไซต์ที่ใช้โดย Seabet.io Player ผ่านเดสก์ท็อป มือถือ หรือแพลตฟอร์มอื่นๆ</p>
+                          <p>บัญชีสมาชิก - บัญชีผู้ใช้ที่จําเป็นในการเข้าถึงและใช้เว็บไซต์</p>
+                          <p>การสนับสนุนลูกค้า - บริการช่วยเหลือและสนับสนุนที่บริษัทจัดหาให้กับลูกค้า</p>
+                          <p>เหตุการณ์ - หมายถึง กีฬาหรือการเดิมพัน หรือการแข่งขันหรือเกมภายในกีฬาที่ลูกค้าสามารถวางเดิมพันกับผลลัพธ์ได้</p>
+                          <p>Cryptocurrencies - ควรอ่านเพิ่มเติมเป็น "Bitcoin, altcoins และ / หรือ (ถ้ามี) cryptocurrencies ที่รองรับอื่น ๆ " </p>
+                          <p>สกุลเงินเฟียต - สินค้าโภคภัณฑ์ทางกายภาพทางการเงินที่ไม่ได้รับการสนับสนุนซึ่งออกโดยรัฐบาลหรือหน่วยงานธนาคารกลางเช่นทองคําหรือเงิน (เช่นดอลลาร์สหรัฐเรียลบราซิลเยนญี่ปุ่นผู้คน)</p>
+                          <p>เขตอํานาจศาลที่ถูก จํากัด - ใบอนุญาตเฉพาะประเทศที่อยู่ภายใต้ข้อ จํากัด ในเกมของเราดังนั้นผู้ใช้ที่อยู่ในหรือจากภูมิภาคเหล่านั้นจะถูกห้ามไม่ให้ลงทะเบียนและเล่นบนไซต์ รายชื่อเขตอํานาจศาลที่ถูก จํากัด อาจได้รับการอัปเดตเป็นครั้งคราวและสามารถเข้าถึงได้ผ่านลิงก์ด้านล่าง</p>
 
-                        <h3>1. General</h3>
-                        <p><b>1.1 </b>These terms and conditions ("Terms and Conditions") apply to betting on sports and using casino-style games accessible through the Website. </p>
+                          <h3>1. ทั่วไป</h3>
+                          <p><b>1.1</b> ข้อกําหนดและเงื่อนไขเหล่านี้ ("ข้อกําหนดและเงื่อนไข") มีผลบังคับใช้กับการเดิมพันกีฬาและการใช้เกมสไตล์คาสิโนที่สามารถเข้าถึงได้ผ่านทางเว็บไซต์ </p>
 
-                        <p><b>1.2 </b> These Terms and Conditions are effective immediately upon completion of the registration process, including checking the box to accept these Terms and Conditions and succeeding</p>
-                        <p>Create an account. By using any part of the Site after creating an account, you agree that these Terms and Conditions apply to the use of the Site.</p>
+                          <p><b>1.2</b> ข้อกําหนดและเงื่อนไขเหล่านี้จะมีผลทันทีเมื่อเสร็จสิ้นขั้นตอนการลงทะเบียน รวมถึงการทําเครื่องหมายในช่องเพื่อยอมรับข้อกําหนดและเงื่อนไขเหล่านี้และประสบความสําเร็จ</p>
+                          <p>สร้างบัญชี โดยการใช้ส่วนใดส่วนหนึ่งของเว็บไซต์หลังจากสร้างบัญชีคุณยอมรับว่าข้อกําหนดและเงื่อนไขเหล่านี้มีผลบังคับใช้กับการใช้งานเว็บไซต์</p>
 
-                        <p><b>1.3 </b>Creating an Account. If you do not agree to any provision of these Terms and Conditions, you must not create an account or continue to use the Site. </p>
+                          <p><b>1.3</b> การสร้างบัญชี หากคุณไม่ยอมรับข้อกําหนดใด ๆ ของข้อกําหนดและเงื่อนไขเหล่านี้คุณจะต้องไม่สร้างบัญชีหรือใช้งานเว็บไซต์ต่อไป </p>
 
-                        <p><b>1.4 </b>We reserve the right to amend these Terms and Conditions at any time without notice. If we make such changes, we may take appropriate steps to remind you of those changes, such as by posting a notice by email or on the Website and the revised Terms and Conditions, but you are solely responsible for checking for any amendments, updates and/or modifications. If we determine that any changes to these Terms are deemed to have a "material" impact on your rights or obligations under these Terms and Conditions, we will use reasonable efforts to notify you by email or by posting on the Website. Your continued use of the Company's Services and Website following any such amendments to the Terms and Conditions will be deemed to be your acceptance of and agreement to be bound by such amendments, updates and/or modifications. </p>
+                          <p><b>1.4</b> เราขอสงวนสิทธิ์ในการแก้ไขข้อกําหนดและเงื่อนไขเหล่านี้ได้ตลอดเวลาโดยไม่ต้องแจ้งให้ทราบล่วงหน้า หากเราทําการเปลี่ยนแปลงดังกล่าวเราอาจดําเนินการตามขั้นตอนที่เหมาะสมเพื่อเตือนคุณถึงการเปลี่ยนแปลงเหล่านั้นเช่นโดยการโพสต์ประกาศทางอีเมลหรือบนเว็บไซต์และข้อกําหนดและเงื่อนไขที่แก้ไขแล้ว แต่คุณเป็นผู้รับผิดชอบ แต่เพียงผู้เดียวในการตรวจสอบการแก้ไขการปรับปรุงและ / หรือการแก้ไขใด ๆ หากเราพิจารณาว่าการเปลี่ยนแปลงใด ๆ ในข้อกําหนดเหล่านี้ถือว่ามีผลกระทบ "อย่างมีนัยสําคัญ" ต่อสิทธิ์หรือภาระผูกพันของคุณภายใต้ข้อกําหนดและเงื่อนไขเหล่านี้เราจะใช้ความพยายามตามสมควรเพื่อแจ้งให้คุณทราบทางอีเมลหรือโดยการโพสต์บนเว็บไซต์ การที่คุณใช้บริการและเว็บไซต์ของบริษัทต่อไปหลังจากการแก้ไขข้อกําหนดและเงื่อนไขดังกล่าวจะถือว่าเป็นการยอมรับและตกลงที่จะผูกพันตามการแก้ไขปรับปรุงและ / หรือแก้ไขดังกล่าว </p>
 
-                        <p><b>1.5 </b>These Terms and Conditions may be published in multiple languages for informational purposes and convenience of player access. In the event of any discrepancy between your relationship and us and translation, the English version of these Terms and Conditions shall prevail for any kind. </p>
+                          <p><b>1.5</b> ข้อกําหนดและเงื่อนไขเหล่านี้อาจมีการเผยแพร่ในหลายภาษาเพื่อวัตถุประสงค์ในการให้ข้อมูลและความสะดวกในการเข้าถึงของผู้เล่น ในกรณีที่มีความแตกต่างระหว่างความสัมพันธ์ของคุณกับเราและการแปลข้อกําหนดและเงื่อนไขฉบับภาษาอังกฤษจะมีผลเหนือกว่าสําหรับประเภทใด ๆ </p>
 
-                        <h3>2. Binding Declarations</h3>
-                        <p><b>2.1 </b>By agreeing to be bound by these Terms and Conditions, you also agree to be bound by the Website Rules and Privacy Policy, which are hereby incorporated by reference, together with the Conditions. In the event of any inconsistency, these Terms and Conditions shall prevail. You hereby represent and warrant that:</p>
+                          <h3>2. ประกาศที่มีผลผูกพัน</h3>
+                          <p><b>2.1</b>  โดยการตกลงที่จะผูกพันตามข้อกําหนดและเงื่อนไขเหล่านี้คุณตกลงที่จะผูกพันตามกฎของเว็บไซต์และนโยบายความเป็นส่วนตัวซึ่งรวมอยู่ในที่นี้โดยการอ้างอิงพร้อมกับเงื่อนไข ในกรณีที่มีความไม่สอดคล้องกันข้อกําหนดและเงื่อนไขเหล่านี้จะมีผลเหนือกว่า คุณรับรองและรับประกันว่า:</p>
 
-                        <p><b>2.1.1 </b>You are at least 18 years of age; </p>
+                          <p><b>2.1.1</b> คุณมีอายุอย่างน้อย 18 ปี </p>
 
-                        <p><b>2.1.2 </b>You are fully capable of entering into legally binding agreements with us and you are not subject to any form of limited legal capacity; </p>
+                          <p><b>2.1.2</b> คุณสามารถ ทําข้อตกลงที่มีผลผูกพันทางกฎหมายกับเราได้อย่างเต็มที่ และคุณไม่อยู่ภายใต้ความสามารถทางกฎหมายที่จํากัดในรูปแบบใดๆ </p>
 
-                        <p><b>2.1.3 </b>You participate in the Game in a strictly personal and non-professional capacity; and participation solely for entertainment and entertainment purposes; </p>
+                          <p><b>2.1.3</b> คุณเข้าร่วมในเกมในฐานะส่วนตัวและไม่ใช่มืออาชีพอย่างเคร่งครัด และ การมีส่วนร่วมเพื่อความบันเทิงและความบันเทิงเท่านั้น </p>
 
-                        <p><b>2.1.4 </b>You represent yourself and not on behalf of any other person; </p>
+                          <p><b>2.1.4</b> คุณรับรองตนเองและไม่ในนามของบุคคลอื่น </p>
 
-                        <p><b>2.1.5 </b>All information provided to us by you during the term of this Agreement is true, complete and correct, and you shall immediately notify us of any changes to such information; </p>
+                          <p><b>2.1.5</b> ข้อมูลทั้งหมดที่คุณให้กับเราในช่วงระยะเวลาของข้อตกลงนี้เป็นความจริงสมบูรณ์และถูกต้องและคุณจะต้องแจ้งให้เราทราบทันทีถึงการเปลี่ยนแปลงใด ๆ ของข้อมูลดังกล่าว </p>
 
-                        <p><b>2.1.6 </b>You are solely responsible for reporting and accounting for any taxes, fees, charges or taxes applicable to you under any local or relevant laws of your place of residence for any winnings you receive from us; </p>
+                          <p><b>2.1.6</b> คุณ เป็นผู้รับผิดชอบแต่เพียงผู้เดียวในการรายงานและจัดทําบัญชีสําหรับภาษีค่าธรรมเนียมค่าใช้จ่ายหรือภาษีใด ๆ ที่เกี่ยวข้องกับคุณภายใต้กฎหมายท้องถิ่นหรือที่เกี่ยวข้องของที่อยู่อาศัยของคุณสําหรับเงินรางวัลใด ๆ ที่คุณได้รับจากเรา </p>
 
-                        <p><b>2.1.7 </b>You understand that by using our Services, you will bear the risk of losing the funds deposited into your Member Account and accept that you are solely responsible for any such losses; </p>
+                          <p><b>2.1.7</b>  คุณเข้าใจว่าการใช้บริการของเราคุณจะรับความเสี่ยงในการสูญเสียเงินที่ฝากเข้าบัญชีสมาชิกของคุณและยอมรับว่าคุณเป็นผู้รับผิดชอบต่อความสูญเสียดังกล่าวแต่เพียงผู้เดียว </p>
 
-                        <p><b>2.1.8 </b>You will not use our Services in any jurisdiction located on our list where our Services are restricted. </p>
+                          <p><b>2.1.8</b> คุณจะไม่ใช้บริการของเราในเขตอํานาจศาลใด ๆ ที่อยู่ในรายการของเราซึ่งบริการของเราถูกจํากัด </p>
 
-                        <p><b>2.1.9 </b>Your jurisdiction allows you to use online sports betting and casino services; </p>
+                          <p><b>2.1.9</b> เขตอํานาจศาลของคุณอนุญาตให้คุณใช้บริการเดิมพันกีฬาออนไลน์และบริการคาสิโน </p>
 
-                        <p><b>2.1.10 </b>In relation to depositing and withdrawing funds to your Member Account, you may only use cryptocurrencies and/or any valid and legal fiat currency that belongs to you; </p>
+                          <p><b>2.1.10</b> ในส่วนที่เกี่ยวข้องกับการฝากและถอนเงินไปยังบัญชีสมาชิกของคุณคุณสามารถใช้สกุลเงินดิจิทัลและ / หรือสกุลเงินคําสั่งที่ถูกต้องและถูกกฎหมายซึ่งเป็นของคุณเท่านั้น </p>
 
-                        <p><b>2.1.11 </b>You accept and acknowledge that the value of Cryptocurrencies may vary substantially depending on the market value. </p>
+                          <p><b>2.1.11</b> คุณยอมรับและรับทราบว่ามูลค่าของ Cryptocurrencies อาจแตกต่างกันอย่างมากขึ้นอยู่กับมูลค่าตลาด </p>
 
-                        <p><b>2.1.12 </b>Computer software, computer graphics, websites and user interfaces that we provide to you are owned by and protected by the Company or its affiliates under copyright laws. You may only use the Software for your own personal entertainment use: in accordance with all rules, terms and conditions established by us and in accordance with all applicable laws, rules and regulations under the Curaçao Gaming License; </p>
+                          <p><b>2.1.12</b> ซอฟต์แวร์คอมพิวเตอร์ คอมพิวเตอร์กราฟิก เว็บไซต์ และอินเทอร์เฟซผู้ใช้ที่เราจัดหาให้แก่คุณเป็นเจ้าของและได้รับการคุ้มครองโดยบริษัทหรือบริษัทในเครือภายใต้กฎหมายลิขสิทธิ์ คุณสามารถใช้ซอฟต์แวร์เพื่อความบันเทิงส่วนตัวของคุณเองเท่านั้น: ตามกฎข้อกําหนดและเงื่อนไขทั้งหมดที่กําหนดโดยเราและเป็นไปตามกฎหมายกฎและข้อบังคับที่เกี่ยวข้องทั้งหมดภายใต้ใบอนุญาตการเล่นเกมคูราเซา </p>
 
-                        <p><b>2.1.13 </b>You understand that cryptocurrencies are not considered legal tender or currency and therefore the Website they are considered virtual funds with no intrinsic value. </p>
+                          <p><b>2.1.13</b> คุณเข้าใจว่าสกุลเงินดิจิทัลไม่ถือว่าเป็นเงินหรือสกุลเงินที่ถูกกฎหมายดังนั้นเว็บไซต์จึงถือว่าเป็นเงินเสมือนที่ไม่มีมูลค่าที่แท้จริง </p>
 
-                        <p><b>2.1.14 </b> You confirm that you are not an officer, director, employee, consultant or agent of the Company or work for any company in connection with the Company or for a relative or spouse of any of the foregoing; </p>
+                          <p><b>2.1.14</b>  ท่านยืนยันว่าท่านไม่ใช่เจ้าหน้าที่ กรรมการ พนักงาน ที่ปรึกษา หรือตัวแทนของบริษัท หรือทํางานให้กับบริษัทใด ๆ ที่เกี่ยวข้องกับบริษัท หรือญาติหรือคู่สมรสของสิ่งที่กล่าวมาข้างต้น </p>
 
-                        <p><b>2.1.15 </b>You have not been diagnosed or classified as a compulsive or problem gambler. We are not responsible for gambling if such problems arise while using our services, but will endeavour to inform you of the relevant assistance available. We reserve the right to implement a cooling-off period if we believe such actions would be beneficial. </p>
+                          <p><b>2.1.15</b> คุณยังไม่ได้รับการวินิจฉัยหรือจัดให้เป็นนักพนันที่บังคับหรือมีปัญหา เราจะไม่รับผิดชอบต่อการพนันหากปัญหาดังกล่าวเกิดขึ้นขณะใช้บริการของเรา แต่จะพยายามแจ้งให้คุณทราบถึงความช่วยเหลือที่เกี่ยวข้องที่มีอยู่ เราขอสงวนสิทธิ์ในการใช้ระยะเวลาการระบายความร้อนหากเราเชื่อว่าการกระทําดังกล่าวจะเป็นประโยชน์ </p>
 
-                        <p><b>2.1.16 </b> If you are a Politically Exposed Person or a member of a family of a Politically Exposed Person, you accept and acknowledge that we may need to review or suspend your account without prior notice in order for us to fulfil any due diligence obligations we may be into. You acknowledge that any decision regarding the status of your account is made solely at our sole discretion, which may include permanently closing your account; </p>
+                          <p><b>2.1.16</b> หากคุณเป็นบุคคลที่เปิดเผยทางการเมืองหรือเป็นสมาชิกของครอบครัวของบุคคลที่เปิดเผยทางการเมืองคุณยอมรับและรับทราบว่าเราอาจจําเป็นต้องตรวจสอบหรือระงับบัญชีของคุณโดยไม่ต้องแจ้งให้ทราบล่วงหน้าเพื่อให้เราสามารถปฏิบัติตามภาระผูกพันในการตรวจสอบวิเคราะห์สถานะใด ๆ ที่เราอาจดําเนินการ คุณรับทราบว่าการตัดสินใจใด ๆ เกี่ยวกับสถานะของบัญชีของคุณขึ้นอยู่กับดุลยพินิจของเรา แต่เพียงผู้เดียวซึ่งอาจรวมถึงการปิดบัญชีของคุณอย่างถาวร </p>
 
-                        <p><b>2.1.17 </b>You have only one account with us and agree not to open any account with us; </p>
+                          <p><b>2.1.17</b> คุณมีบัญชีเดียวกับเราเพียงบัญชีเดียวและตกลงที่จะไม่เปิดบัญชีใด ๆ กับเรา </p>
 
-                        <p><b>2.1.18 </b>You accept and acknowledge that we reserve the right to detect and prevent the use of prohibited technologies, including but not limited to fraud easy detection, automated registration and registration, gameplay and screen capture technologies. These steps may include, but are not limited to, checking player deviceability, detecting geolocation and IP masking, transactions, and blockchain analytics; </p>
+                          <p><b>2.1.18</b> คุณยอมรับและรับทราบว่าเราขอสงวนสิทธิ์ในการตรวจจับและป้องกันการใช้เทคโนโลยีต้องห้ามรวมถึง แต่ไม่ จํากัด เพียงการตรวจจับการฉ้อโกงการลงทะเบียนและการลงทะเบียนอัตโนมัติการเล่นเกมและเทคโนโลยีการจับภาพหน้าจอ ขั้นตอนเหล่านี้อาจรวมถึง แต่ไม่ จํากัด เพียงการตรวจสอบความสามารถของผู้เล่นการตรวจจับตําแหน่งทางภูมิศาสตร์และการปิดบัง IP ธุรกรรมและการวิเคราะห์บล็อกเชน </p>
 
-                        <p><b>2.1.19 </b>You accept that we terminate and/or change the use of the Website and refuse and/or restrict bets; </p>
+                          <p><b>2.1.19</b> คุณยอมรับว่าเรายุติและ/หรือเปลี่ยนแปลงการใช้งานเว็บไซต์และปฏิเสธและ/หรือจํากัดการเดิมพัน </p>
 
-                        <h3>3. Register and open your member account</h3>
-                        <p><b>3.1 </b>In order to be able to place bets on our website, you must first register for an account with us in person ("Member Account"). </p>
+                          <h3>3. ลงทะเบียนและเปิดบัญชีสมาชิกของคุณ</h3>
+                          <p><b>3.1</b> เพื่อให้สามารถวางเดิมพันบนเว็บไซต์ของเราคุณต้องลงทะเบียนบัญชีกับเราด้วยตนเองก่อน ("บัญชีสมาชิก") </p>
 
-                        <p><b>3.2 </b>You may not register and we do not accept from limited jurisdiction. It is your responsibility to determine whether your access to and use of our website complies with any rules, laws and regulations applicable to you, and you warrant that gambling is not illegal with us in the territory in which you live. By registering for an account, we and using the Site, you confirm that you are not located in or from a restricted jurisdiction and do not use any third-party software to access our website from a restricted jurisdiction. </p>
+                          <p><b>3.2</b> คุณไม่สามารถลงทะเบียนและเราไม่ยอมรับจากเขตอํานาจศาลที่ จํากัด เป็นความรับผิดชอบของคุณในการพิจารณาว่าการเข้าถึงและการใช้งานเว็บไซต์ของเราเป็นไปตามกฎกฎหมายและข้อบังคับใด ๆ ที่บังคับใช้กับคุณหรือไม่และคุณรับประกันว่าการพนันจะไม่ผิดกฎหมายกับเราในดินแดนที่คุณอาศัยอยู่ โดยการลงทะเบียนสําหรับบัญชีเราและใช้เว็บไซต์คุณยืนยันว่าคุณไม่ได้อยู่ในหรือจากเขตอํานาจศาลที่ถูก จํากัด และไม่ได้ใช้ซอฟต์แวร์ของบุคคลที่สามเพื่อเข้าถึงเว็บไซต์ของเราจากเขตอํานาจศาลที่ถูก จํากัด </p>
 
-                        <p><b>3.3 </b>If you are located in or from a restricted jurisdiction and you open or use the Website: we may close your account immediately;  any winnings and rewards will be forfeited and the balance refunded (subject to a reasonable fee), as well as any returns, bonuses you have earned or accrued rewards will be forfeited by you and may be withdrawn by us; You will return to us any such funds withdrawn upon request. </p>
+                          <p><b>3.3</b> หากคุณอยู่ในหรือจากเขตอํานาจศาลที่ถูก จํากัด และคุณเปิดหรือใช้เว็บไซต์: เราอาจปิดบัญชีของคุณทันที  เงินรางวัลและรางวัลใด ๆ จะถูกริบและยอดคงเหลือที่คืนมา (ขึ้นอยู่กับค่าธรรมเนียมที่สมเหตุสมผล) รวมถึงผลตอบแทนโบนัสที่คุณได้รับหรือรางวัลสะสมจะถูกริบโดยคุณและอาจถูกถอนออกโดยเรา คุณจะคืนเงินดังกล่าวที่ถอนมาให้เราเมื่อมีการร้องขอ </p>
 
-                        <p><b>3.4 </b>If you attempt to open more than one Member Account, we reserve the right to block, suspend or close your Member Account, as well as freeze any funds credited to your Account. </p>
+                          <p><b>3.4</b> หากคุณพยายามเปิดบัญชีสมาชิกมากกว่าหนึ่งบัญชีเราขอสงวนสิทธิ์ในการบล็อกระงับหรือปิดบัญชีสมาชิกของคุณรวมถึงระงับเงินใด ๆ ที่เข้าบัญชีของคุณ </p>
 
-                        <p><b>3.5 </b>If you become aware that you have more than one Registered Member Account, you must notify us immediately. Failure to do so may result in your member account being frozen. </p>
+                          <p><b>3.5</b> หากคุณทราบว่าคุณมีบัญชีสมาชิกที่ลงทะเบียนมากกว่าหนึ่งบัญชีคุณต้องแจ้งให้เราทราบทันที การไม่ทําเช่นนั้นอาจส่งผลให้บัญชีสมาชิกของคุณถูกระงับ </p>
 
-                        <p><b>3.6 </b> We expect you to inform us immediately of any inaccuracies relating to your account, or any calculation errors relating to any bets placed by you. We reserve the right to void any bet affected by such errors and reverse accordingly. </p>
+                          <p><b>3.6</b> เราคาดหวังให้คุณ แจ้งให้เราทราบทันทีถึงความไม่ถูกต้องใด ๆ ที่เกี่ยวข้องกับบัญชีของคุณหรือข้อผิดพลาดในการคํานวณใด ๆ ที่เกี่ยวข้องกับการเดิมพันใด ๆ ที่คุณวางไว้ เราขอสงวนสิทธิ์ในการยกเลิกการเดิมพันใด ๆ ที่ได้รับผลกระทบจากข้อผิดพลาดดังกล่าวและย้อนกลับตามนั้น </p>
 
-                        <p><b>3.7 </b>If you do not use an account with a positive balance for a period of 3 months, you will be notified by us. If you do not use your balance within 1 month of our notification, we may remove the balance from your account to protect your funds. If this happens, please contact us at support{'@'}seabet.io Reopen your account and get your funds back. </p>
+                          <p><b>3.7</b> หากคุณไม่ได้ใช้บัญชีที่มียอดคงเหลือเป็นบวกเป็นระยะเวลา 3 เดือน คุณจะได้รับแจ้งจากเรา หากคุณไม่ได้ใช้ยอดคงเหลือของคุณภายใน 1 เดือนหลังจากได้รับแจ้งเราอาจลบยอดคงเหลือออกจากบัญชีของคุณเพื่อปกป้องเงินของคุณ หากเกิดเหตุการณ์นี้ขึ้น โปรดติดต่อเราที่ support@seabet.io เปิดบัญชีของคุณอีกครั้งและรับเงินคืน </p>
 
-                        <p><b>3.8 </b>If your account balance is positive and has been inactive for more than 12 months, we reserve the right to deduct a monthly administration fee equivalent to 5% from your balance</p>
+                          <p><b>3.8</b> หากยอดเงินในบัญชีของคุณเป็นบวกและไม่มีการใช้งานมานานกว่า 12 เดือน เราขอสงวนสิทธิ์ในการหักค่าธรรมเนียมการจัดการรายเดือนเท่ากับ 5% จากยอดคงเหลือของคุณ</p>
 
-                        <p><b>3.9 </b>You must enter all required information in the registration form, including a valid email address. If you do not enter a valid email address, we will not be able to provide you with assistance in recovering any "forgotten passwords". You are solely responsible for ensuring that the information you provide is true, complete and correct. </p>
+                          <p><b>3.9</b> คุณต้องป้อนข้อมูลที่จําเป็นทั้งหมดในแบบฟอร์มการลงทะเบียนรวมถึงที่อยู่อีเมลที่ถูกต้อง หากคุณไม่ป้อนที่อยู่อีเมลที่ถูกต้องเราจะไม่สามารถให้ความช่วยเหลือในการกู้คืน "รหัสผ่านที่ลืม"  ได้คุณเป็นผู้รับผิดชอบแต่เพียงผู้เดียวในการตรวจสอบให้แน่ใจว่าข้อมูลที่คุณให้เป็นความจริงสมบูรณ์และถูกต้อง </p>
 
-                        <p><b>3.10 </b>We reserve the right to carry out "KYC" (Know Your Customer) verification procedures and if we determine that you have provided false or misleading information. </p>
+                          <p><b>3.10</b> เราขอสงวนสิทธิ์ในการดําเนินการตามขั้นตอนการตรวจสอบ "KYC" (รู้จักลูกค้าของคุณ) และหากเราพิจารณาว่าคุณได้ให้ข้อมูลที่เป็นเท็จหรือทําให้เข้าใจผิด </p>
 
-                        <p><b>3.11 </b>As part of the registration process, you are obliged to complete the login process to the Website. You'll need to choose a username that isn't offensive or contentious. You are responsible for the security of your login details and are strictly prohibited from divulging them to anyone. You will be responsible for any misuse of your Member Account by a third party as a result of your disclosure, whether intentional, accidental or actively or passively provided to any third party. </p>
+                          <p><b>3.11</b> ในขั้นตอนการลงทะเบียนคุณมีหน้าที่ต้องดําเนินการเข้าสู่ระบบเว็บไซต์ให้เสร็จสมบูรณ์ คุณจะต้องเลือกชื่อผู้ใช้ที่ไม่ก้าวร้าวหรือขัดแย้ง คุณต้องรับผิดชอบต่อความปลอดภัยของรายละเอียดการเข้าสู่ระบบของคุณและห้ามมิให้เปิดเผยให้ใครทราบโดยเด็ดขาด คุณจะต้องรับผิดชอบต่อการใช้บัญชีสมาชิกของคุณในทางที่ผิดโดยบุคคลที่สามอันเป็นผลมาจากการเปิดเผยของคุณไม่ว่าจะโดยเจตนาโดยบังเอิญหรืออย่างแข็งขันหรือมอบให้กับบุคคลที่สาม </p>
 
-                        <p><b>3.12 </b>If you change your password, you will not be able to withdraw funds for 24 hours for security reasons. </p>
+                          <p><b>3.12</b> หากคุณเปลี่ยนรหัสผ่าน คุณจะไม่สามารถถอนเงินได้เป็นเวลา 48 ชั่วโมงด้วยเหตุผลด้านความปลอดภัย </p>
 
-                        <h3>4. Security</h3>
-                        <p><b>4.1 </b>When registering through the Website, you will be required to select a password to authenticate your membership account using the Website. </p>
+                          <h3>4. ความปลอดภัย</h3>
+                          <p><b>4.1</b> เมื่อลงทะเบียนผ่านเว็บไซต์ คุณจะต้องเลือกรหัสผ่านเพื่อรับรองความถูกต้องของบัญชีสมาชิกของคุณโดยใช้เว็บไซต์ </p>
 
-                        <p><b>4.2 </b>You agree to keep your password confidential and to defend against any misuse of your password. Under no circumstances will we refund any losses suffered as a result of a third party's use of your account and, in addition, you are solely responsible for any third party's use of your login details and shall hold us harmless from the consequences arising and condemnable. </p>
+                          <p><b>4.2</b> คุณตกลงที่จะเก็บรหัสผ่านของคุณไว้เป็นความลับและเพื่อป้องกันการใช้รหัสผ่านในทางที่ผิด ไม่ว่าในกรณีใด ๆ เราจะไม่คืนเงินความสูญเสียใด ๆ ที่เกิดขึ้นอันเป็นผลมาจากการใช้บัญชีของคุณของบุคคลที่สามและนอกจากนี้คุณต้องรับผิดชอบ แต่เพียงผู้เดียวสําหรับการใช้รายละเอียดการเข้าสู่ระบบของคุณของบุคคลที่สามและจะทําให้เราไม่เป็นอันตรายจากผลที่ตามมาที่เกิดขึ้นและประณามได้ </p>
 
-                        <p><b>4.3 </b>You agree that if you believe that your account information is being misused by a third party, so that we can suspend your account. We recommend that you disable any automatic password memory in your browser, use two-step verification and other such measures to limit the risk of unauthorized use of your account. </p>
+                          <p><b>4.3</b> คุณยอมรับว่าหากคุณเชื่อว่าข้อมูลบัญชีของคุณถูกใช้ในทางที่ผิดโดยบุคคลที่สามเพื่อให้เราสามารถระงับบัญชีของคุณได้ เราขอแนะนําให้คุณปิดใช้งานหน่วยความจํารหัสผ่านอัตโนมัติในเบราว์เซอร์ของคุณ ใช้การตรวจสอบยืนยันสองขั้นตอน และมาตรการอื่นๆ เพื่อจํากัดความเสี่ยงจากการใช้บัญชีของคุณโดยไม่ได้รับอนุญาต </p>
 
-                        <h3>5. Deposits</h3>
-                        <p><b>5.1 </b>You may only participate in any game if you have sufficient funds in your Member Account for such participation. </p>
+                          <h3>5. เงินฝาก</h3>
+                          <p><b>5.1</b> คุณสามารถเข้าร่วมในเกมใดก็ได้หากคุณมีเงินเพียงพอในบัญชีสมาชิกของคุณสําหรับการเข้าร่วมดังกล่าว </p>
 
-                        <p><b>5.2 </b>You may deposit in cryptocurrency or fiat currency. The minimum deposit amount can be found in our deposit center. All minimum deposit amounts specified are per trade. Smaller deposits will not be added up. Any deposit amount below the specified minimum deposit amount is invalid and will not be credited to your user account balance or returned to the source. If the deposit does not meet the minimum deposit listed by us, the company is not responsible for the requirements. </p>
+                          <p><b>5.2</b> คุณสามารถฝากเงินในสกุลเงินดิจิทัลหรือสกุลเงินเฟียต จํานวนเงินฝากขั้นต่ําสามารถพบได้ในศูนย์ฝากของเรา จํานวนเงินฝากขั้นต่ําทั้งหมดที่ระบุเป็นจํานวนต่อการซื้อขาย เงินฝากขนาดเล็กจะไม่ถูกเพิ่ม จํานวนเงินฝากใด ๆ ที่ต่ํากว่าจํานวนเงินฝากขั้นต่ําที่ระบุไม่ถูกต้องและจะไม่ถูกโอนไปยังยอดคงเหลือในบัญชีผู้ใช้ของคุณหรือส่งคืนไปยังแหล่งที่มา หากเงินฝากไม่เป็นไปตามเงินฝากขั้นต่ําที่เราระบุไว้ บริษัท จะไม่รับผิดชอบต่อข้อกําหนด </p>
 
-                        <p><b>5.3 </b>To deposit funds into your Member Account, you can do so from a crypto wallet and an account under your control. Deposits can only be made with your own funds. </p>
+                          <p><b>5.3</b> ในการฝากเงินเข้าบัญชีสมาชิกของคุณคุณสามารถทําได้จากกระเป๋าเงินดิจิตอลและบัญชีภายใต้การควบคุมของคุณ การฝากเงินสามารถทําได้ด้วยเงินของคุณเองเท่านั้น </p>
 
-                        <p><b>5.4 </b>The Website cannot guarantee that all currencies are natively supported in the Game. </p>
+                          <p><b>5.4</b> เว็บไซต์ไม่สามารถรับประกันได้ว่าสกุลเงินทั้งหมดได้รับการสนับสนุนโดยกําเนิดในเกม </p>
 
-                        <p><b>5.5 </b>At the time of your first deposit and throughout the life of your account, we reserve the right to use other procedures and methods to verify your identity when processing your deposit. Verification will involve personal identification. We may also need additional documentation confirming ownership of your payment method and address, as part of the verification process. </p>
+                          <p><b>5.5</b> ในช่วงเวลาของการฝากเงินครั้งแรกของคุณและตลอดอายุบัญชีของคุณเราขอสงวนสิทธิ์ในการใช้ขั้นตอนและวิธีการอื่น ๆ เพื่อยืนยันตัวตนของคุณเมื่อดําเนินการฝากเงินของคุณ การยืนยันจะเกี่ยวข้องกับการระบุตัวตนส่วนบุคคล นอกจากนี้ เราอาจต้องการเอกสารเพิ่มเติมเพื่อยืนยันความเป็นเจ้าของวิธีการชําระเงินและที่อยู่ของคุณ ซึ่งเป็นส่วนหนึ่งของกระบวนการยืนยัน </p>
 
-                        <p><b>5.6 </b>Some payment methods may include additional fees. In this case, the fee will be clear and visible in the cashier. </p>
+                          <p><b>5.6</b> วิธีการชําระเงินบางวิธีอาจมีค่าธรรมเนียมเพิ่มเติม ในกรณีนี้ค่าธรรมเนียมจะชัดเจนและมองเห็นได้ในแคชเชียร์ </p>
 
-                        <p><b>5.7 </b>Your bank or payment service provider may charge you additional monetary fees during the deposit process in accordance with their terms and conditions and your user conversion agreement. </p>
+                          <p><b>5.7</b> ธนาคารหรือผู้ให้บริการชําระเงินของคุณอาจเรียกเก็บค่าธรรมเนียมทางการเงินเพิ่มเติมในระหว่างขั้นตอนการฝากเงินตามข้อกําหนดและเงื่อนไขและข้อตกลงการแปลงผู้ใช้ของคุณ </p>
 
-                        <h3>6. Withdrawals</h3>
-                        <p><b>6.1 </b>All withdrawals shall be processed in accordance with our withdrawal policy below. Crypto withdrawals will be requested when the cryptocurrency wallet address you entered is valid. To withdraw money, you first need to verify your registered email address from your account profile. To withdraw any deposited funds, we need to do at least 3 blockchain confirmations of the deposit there before requesting a withdrawal. Fiat withdrawals should be credited to your personal fiat account request at the time a valid withdrawal is made. Fiat currency withdrawals can take up to 3 business days from the time they are approved by the payment service provider. </p>
+                          <h3>6. การถอนเงิน</h3>
+                          <p><b>6.1</b> การถอนเงินทั้งหมดจะได้รับการดําเนินการตามนโยบายการถอนเงินของเราด้านล่าง การถอนเงิน Crypto จะถูกร้องขอเมื่อที่อยู่กระเป๋าเงินดิจิตอลที่คุณป้อนถูกต้อง ในการถอนเงินก่อนอื่นคุณต้องยืนยันที่อยู่อีเมลที่ลงทะเบียนไว้จากโปรไฟล์บัญชีของคุณ ในการถอนเงินที่ฝากใด ๆ เราจําเป็นต้องทําการยืนยันการฝากเงินอย่างน้อย 3 ครั้งก่อนที่จะขอถอนเงิน การถอนเงินเฟียตควรโอนเข้าบัญชีเฟียตส่วนตัวของคุณในเวลาที่ทําการถอนเงินที่ถูกต้อง การถอนเงินสกุลเงินเฟียตอาจใช้เวลาถึง 3 วันทําการนับจากเวลาที่ได้รับการอนุมัติจากผู้ให้บริการชําระเงิน </p>
 
-                        <p><b>6.2 </b>The minimum withdrawal amount can be found in our Withdrawal Centre. All specified amounts are per transaction. </p>
+                          <p><b>6.2</b> จํานวนเงินถอนขั้นต่ําสามารถพบได้ในศูนย์ถอนเงินของเรา จํานวนเงินที่ระบุทั้งหมดเป็นจํานวนต่อธุรกรรม </p>
 
-                        <p><b>6.3 </b>The amount of any winnings that are incorrectly credited to your Account remains property and is automatically deducted from your Account in the event of an error detection. If the entry is incorrect, you are obliged to notify us immediately. Any bonus erroneously credited to your account and subsequently withdrawn by you (without prejudice to other remedies and actions that may be legally available) constitutes a valid legally enforceable debt owed by you to the Company in the amount of such erroneously vested winnings. In such cases, we reserve the right to initiate debt recovery proceedings if you fail to voluntarily discharge outstanding debts. </p>
+                          <p><b>6.3</b> จํานวนเงินที่ชนะใด ๆ ที่เครดิตไม่ถูกต้องในบัญชีของคุณจะยังคงเป็นทรัพย์สินและจะถูกหักออกจากบัญชีของคุณโดยอัตโนมัติในกรณีที่ตรวจพบข้อผิดพลาด หากรายการไม่ถูกต้องคุณจะต้องแจ้งให้เราทราบทันที โบนัสใด ๆ ที่เครดิตเข้าบัญชีของคุณอย่างไม่ถูกต้องและถอนออกในภายหลังโดยคุณ (โดยไม่กระทบต่อการเยียวยาและการกระทําอื่น ๆ ที่อาจถูกต้องตามกฎหมาย) ถือเป็นหนี้ที่บังคับใช้ตามกฎหมายที่ถูกต้องซึ่งคุณค้างชําระกับ บริษัท ในจํานวนเงินที่ชนะที่ผิดพลาดดังกล่าว ในกรณีดังกล่าวเราขอสงวนสิทธิ์ในการเริ่มกระบวนการกู้คืนหนี้หากคุณไม่สามารถปลดหนี้ที่ค้างชําระโดยสมัครใจ </p>
 
-                        <p><b>6.4 </b>For fiat and cryptocurrency withdrawals, the Site reserves the right to require 1x wagering equal to the amount deposited prior to the acceptance of the withdrawal request. </p>
+                          <p><b>6.4</b> สําหรับการถอนเงินเฟียตและสกุลเงินดิจิทัลเว็บไซต์ขอสงวนสิทธิ์ในการเดิมพัน 1x เท่ากับจํานวนเงินที่ฝากก่อนที่จะยอมรับคําขอถอนเงิน </p>
 
-                        <p><b>6.5 </b>We reserve the right to block/delay the processing of withdrawal requests until a request is made for a copy of a valid photo ID, proof of address and/or debit card for our satisfaction (KYC). </p>
+                          <p><b>6.5</b> เราขอสงวนสิทธิ์ในการบล็อก/ชะลอการดําเนินการตามคําขอถอนเงินจนกว่าจะมีการร้องขอสําเนาบัตรประจําตัวที่มีรูปถ่ายหลักฐานที่อยู่และ / หรือบัตรเดบิตเพื่อความพึงพอใจของเรา (KYC) </p>
 
-                        <p><b>6.6 </b> The Website reserves the right to perform additional KYC verification procedures on any Content to withdraw cryptocurrencies exceeding €2500 or its equivalent, subject to our regulated gaming license, and further reserves the right to perform such verification procedures in the event of lesser withdrawals, as required by our gaming license. Account holders who wish to recover are advised to contact Customer Support for funds held in closed, locked or excluded accounts. </p>
+                          <p><b>6.6</b> เว็บไซต์ขอสงวนสิทธิ์ในการดําเนินการ ขั้นตอนการตรวจสอบ KYC เพิ่มเติมเกี่ยวกับเนื้อหาใด ๆ เพื่อถอนสกุลเงินดิจิทัลที่มีมูลค่าเกิน 2,500 ยูโรหรือเทียบเท่าภายใต้ใบอนุญาตการเล่นเกมที่ได้รับการควบคุมของเราและขอสงวนสิทธิ์ในการดําเนินการตามขั้นตอนการตรวจสอบดังกล่าวในกรณีที่มีการถอนเงินน้อยกว่าตามที่กําหนดโดยใบอนุญาตการเล่นเกมของเรา เจ้าของบัญชีที่ต้องการกู้คืนควรติดต่อฝ่ายสนับสนุนลูกค้าสําหรับเงินที่เก็บไว้ในบัญชีที่ปิดล็อคหรือยกเว้น </p>
 
-                        <p><b>6.7 </b>All transactions shall be checked to prevent money laundering. The Site may suspend, freeze or close your member account and withhold funds (if required to do so) under the Prevention of Money Laundering Act or any other legal basis required by the Money Laundering Prevention Act or any other legal basis required by the Money Laundering Prevention Act. Withdrawals may be subject to enhanced due diligence rather than wagering, and if you fail to process a withdrawal, we reserve the right not to process a withdrawal to comply with such additional due diligence requirements. </p>
+                          <p><b>6.7</b> ธุรกรรมทั้งหมดจะต้องได้รับการตรวจสอบเพื่อป้องกันการฟอกเงิน เว็บไซต์อาจระงับระงับหรือปิดบัญชีสมาชิกของคุณและระงับเงิน (หากจําเป็นต้องทําเช่นนั้น) ภายใต้พระราชบัญญัติป้องกันการฟอกเงินหรือพื้นฐานทางกฎหมายอื่น ๆ ที่กําหนดโดยพระราชบัญญัติป้องกันการฟอกเงินหรือพื้นฐานทางกฎหมายอื่น ๆ ที่กําหนดโดยพระราชบัญญัติป้องกันการฟอกเงินการถอนเงินอาจขึ้นอยู่กับการตรวจสอบวิเคราะห์สถานะที่เพิ่มขึ้นมากกว่าการเดิมพัน  เราขอสงวนสิทธิ์ที่จะไม่ดําเนินการถอนเงินเพื่อให้สอดคล้องกับข้อกําหนดการตรวจสอบวิเคราะห์สถานะเพิ่มเติมดังกล่าว </p>
 
-                        <p><b>6.8 </b>We reserve the right to apply the wagering requirement amount of at least 5 (five) times the deposit if we suspect that a User is using our Services as a mixer. Use of our Services for any purpose other than entertainment is strictly prohibited. </p>
+                          <p><b>6.8</b> เราขอสงวนสิทธิ์ในการใช้จํานวนเงินที่ต้องการเดิมพันอย่างน้อย 5 (ห้า) เท่าของเงินฝากหากเราสงสัยว่าผู้ใช้ใช้บริการของเราเป็นมิกเซอร์ การใช้บริการของเราเพื่อวัตถุประสงค์อื่นนอกเหนือจากความบันเทิงเป็นสิ่งต้องห้ามโดยเด็ดขาด </p>
 
-                        <p><b>6.9 </b>You acknowledge that funds in your Account are immediately depleted while playing the Game and that we do not offer returns, refunds or retroactive cancellation of your Account. </p>
+                          <p><b>6.9</b> คุณรับทราบว่าเงินในบัญชีของคุณหมดลงทันทีขณะเล่นเกม และเราไม่เสนอการคืนสินค้า การคืนเงิน หรือการยกเลิกบัญชีของคุณย้อนหลัง </p>
 
-                        <p><b>6.10 </b>In the event of a large number of withdrawal requests, we may elect to process up to 1,000,000 USDT per week or equivalent in another currency until fully settled. </p>
+                          <p><b>6.10</b> ในกรณีที่มีคําขอถอนเงินจํานวนมากเราอาจเลือกที่จะดําเนินการสูงถึง 1,000,000 USDT ต่อสัปดาห์หรือเทียบเท่าในสกุลเงินอื่นจนกว่าจะชําระเต็มจํานวน </p>
 
-                        <p><b>6.11 </b>We reserve the right to deduct any incurred transaction or other fees from any transaction fees or other charges the amount you withdraw.</p>
+                          <p><b>6.11</b> เราขอสงวนสิทธิ์ในการหักธุรกรรมที่เกิดขึ้นหรือค่าธรรมเนียมอื่น ๆ จากค่าธรรมเนียมการทําธุรกรรมหรือค่าใช้จ่ายอื่น ๆ ตามจํานวนเงินที่คุณถอน</p>
 
-                        <p><b>6.12 </b>You accept that certain promotions may be subject to withdrawal restrictions and/or requirements that need to be met before funds can be credited to the promotion. Such terms shall be officially posted and made available as part of the Promotion. If you choose to withdraw before the applicable wagering requirements are met, we will deduct the full bonus amount and the amount associated with the use of the bonus before any withdrawal is approved. This website reserves the right to impose its own rights, discretion, geographic restrictions on individual reward programs. </p>
+                          <p><b>6.12</b> คุณยอมรับว่าโปรโมชั่นบางอย่างอาจอยู่ภายใต้ข้อจํากัดการถอนและ/หรือข้อกําหนดที่ต้องปฏิบัติตามก่อนจึงจะสามารถโอนเงินเข้ารายการส่งเสริมการขายได้ ข้อกําหนดดังกล่าวจะถูกโพสต์อย่างเป็นทางการและเผยแพร่เป็นส่วนหนึ่งของโปรโมชั่น หากคุณเลือกที่จะถอนก่อนที่จะเป็นไปตามข้อกําหนดการเดิมพันที่เกี่ยวข้องเราจะหักจํานวนโบนัสเต็มจํานวนและจํานวนเงินที่เกี่ยวข้องกับการใช้โบนัสก่อนที่การถอนเงินจะได้รับการอนุมัติ เว็บไซต์นี้ขอสงวนสิทธิ์ในการกําหนดสิทธิ์ดุลยพินิจข้อ จํากัด ทางภูมิศาสตร์ในโปรแกรมรางวัลแต่ละรายการ </p>
 
-                        <p><b>6.13 </b>Please note that some payment methods may include additional fees. In this case, the fee will be clearly visible on the cashier. </p>
+                          <p><b>6.13</b> โปรดทราบว่าวิธีการชําระเงินบางวิธีอาจมีค่าธรรมเนียมเพิ่มเติม ในกรณีนี้ค่าธรรมเนียมจะมองเห็นได้ชัดเจนในแคชเชียร์ </p>
 
-                        <p><b>6.14 </b>Please note that your bank or payment service provider may charge you additional fees for deposits, withdrawals in currency conversion in accordance with their terms and conditions and your User Agreement. </p>
+                          <p><b>6.14</b> โปรดทราบว่าธนาคารหรือผู้ให้บริการชําระเงินของคุณอาจเรียกเก็บค่าธรรมเนียมเพิ่มเติมสําหรับการฝากถอนเงินในการแปลงสกุลเงินตามข้อกําหนดและเงื่อนไขและข้อตกลงผู้ใช้ของคุณ </p>
 
-                        <h3>7. Funds</h3>
-                        <p><b>7.1 </b>The Client cannot transfer or convert funds between the Wallet and the Currency. </p>
+                          <h3>7. กองทุน</h3>
+                          <p><b>7.1</b> ลูกค้าไม่สามารถโอนหรือแปลงเงินระหว่างกระเป๋าเงินและสกุลเงินได้ </p>
 
-                        <p><b>7.2 </b>You have provided the details required to make a cryptocurrency deposit on the Website on the Deposit page. </p>
+                          <p><b>7.2</b> คุณได้ให้รายละเอียดที่จําเป็นในการฝากเงินคริปโตเคอเรนซีบนเว็บไซต์ในหน้าการฝากเงิน </p>
 
-                        <p><b>7.3 </b>We do not provide credit for the use of our Services. </p>
+                          <p><b>7.3</b> เราไม่ได้ให้เครดิตสําหรับการใช้บริการของเรา </p>
 
-                        <p><b>7.4 </b>You will not receive any interest on the balance you hold on the Website and acknowledge that the Company is not a financial institution. </p>
+                          <p><b>7.4</b> คุณจะไม่ได้รับดอกเบี้ยใด ๆ จากยอดคงเหลือที่คุณถือบนเว็บไซต์และรับทราบว่า บริษัท ไม่ใช่สถาบันการเงิน </p>
 
-                        <p><b>7.5 </b>If your Account is processed two or more times for any reason due to any type of error or withdrawal request, you agree to reimburse the Website in full for any such overdraft amount. </p>
+                          <p><b>7.5</b> หากบัญชีของคุณได้รับการดําเนินการสองครั้งขึ้นไปไม่ว่าด้วยเหตุผลใดก็ตามเนื่องจากข้อผิดพลาดหรือคําขอถอนเงินประเภทใด ๆ คุณตกลงที่จะคืนเงินให้เว็บไซต์เต็มจํานวนสําหรับจํานวนเงินที่เบิกเกินบัญชีดังกล่าว </p>
 
-                        <p><b>7.6 </b>If we determine, in our sole discretion, that you are using  the "double spend" method, the Website will void all bets and bonuses. Specifically, if you win, confirm your deposit blockchain and try to withdraw, all winnings will be forfeited and your account will be forfeited and permanently closed. If you try to download from any connected account. </p>
+                          <p><b>7.6</b> หากเราพิจารณาตามดุลยพินิจของเราแต่เพียงผู้เดียวว่าคุณกําลังใช้วิธีการ "ใช้จ่ายสองครั้ง" เว็บไซต์จะทําให้การเดิมพันและโบนัสทั้งหมดเป็นโมฆะ โดยเฉพาะอย่างยิ่งหากคุณชนะให้ยืนยันบล็อกเชนเงินฝากของคุณและพยายามถอนเงินรางวัลทั้งหมดจะถูกริบและบัญชีของคุณจะถูกริบและปิดอย่างถาวร หากคุณพยายามดาวน์โหลดจากบัญชีที่เชื่อมต่อใดๆ </p>
 
 
-                        <h3>8. Rewards and Promotions</h3>
-                        <p><b>8.1 </b> The Website reserves the right to cancel any promotion, reward or reward program (including but not limited to free monetary rewards, deposit rewards, deposit bonuses and loyalty programs) if we believe that the reward is set incorrectly or is being abused, not used within 72 hours of receipt of your account, unless otherwise stated in the separate terms and conditions of the promotion, reward or special offer and said reward has been paid, we reserve the right to refuse any withdrawal request, and deduct that amount from your account. Whether the reward is set incorrectly or abusively shall be determined by the Website in its sole discretion. </p>
+                          <h3>8. รางวัลและโปรโมชั่น</h3>
+                          <p><b>8.1</b> เว็บไซต์ขอสงวนสิทธิ์ในการยกเลิกโปรโมชั่นรางวัลหรือโปรแกรมรางวัลใด ๆ (รวมถึง แต่ไม่ จํากัด เพียงรางวัลทางการเงินฟรีรางวัลเงินฝากโบนัสเงินฝากและโปรแกรมความภักดี) หากเราเชื่อว่ารางวัลถูกตั้งค่าไม่ถูกต้องหรือถูกละเมิดไม่ได้ใช้ภายใน 72 ชั่วโมงหลังจากได้รับบัญชีของคุณเว้นแต่จะระบุไว้เป็นอย่างอื่นในข้อกําหนดและเงื่อนไขแยกต่างหากของโปรโมชั่น  รางวัลหรือข้อเสนอพิเศษและรางวัลดังกล่าวได้รับการชําระเงินแล้วเราขอสงวนสิทธิ์ในการปฏิเสธคําขอถอนเงินใด ๆ และหักจํานวนเงินนั้นออกจากบัญชีของคุณ ไม่ว่ารางวัลจะถูกตั้งค่าอย่างไม่ถูกต้องหรือไม่เหมาะสมจะถูกกําหนดโดยเว็บไซต์ตามดุลยพินิจของตน แต่เพียงผู้เดียว </p>
 
-                        <p><b>8.2 </b>If you use a Deposit Bonus, you will not accept a bonus that has previously withdrawn your original deposit and you have met the requirements set out in the Deposit Terms and Conditions. </p>
+                          <p><b>8.2</b>  หากคุณใช้โบนัสเงินฝากคุณจะไม่ยอมรับโบนัสที่ถอนเงินฝากเดิมของคุณก่อนหน้านี้และคุณมีคุณสมบัติตรงตามข้อกําหนดที่กําหนดไว้ในข้อกําหนดและเงื่อนไขการฝากเงิน </p>
 
-                        <p><b>8.3 </b> Breach of any of the terms of an offer or promotion, or where there is any evidence that there is a series of bets placed by a customer or group of customers, due to deposit bonuses, enhanced payments, free bets, risk-free bets or any other promotional offer outcome guarantee regardless of the outcome, whether individually or as part of a group, the Customer Profit Website reserves the right to reclaim the bonus elements of such offers and reserves the absolute value of their absolute discretion to settle bets at correct odds, Cancel the Free Bet Bonus and Risk Free Bet or cancel any bet funded by the Deposit Bonus. In addition, this website reserves the right to levy an administration fee on the customer, up to the value of the deposit bonus, free bet bonus, risk-free bet or additional payment to cover the management fee. We further reserve the right to require any client to provide sufficient documentation to our absolute satisfaction with any reward, free bet, risk-free bet or account provided to them. </p>
+                          <p><b>8.3</b> การละเมิดข้อกําหนดใด ๆ ของข้อเสนอหรือโปรโมชั่นหรือในกรณีที่มีหลักฐานใด ๆ ว่ามีการเดิมพันหลายชุดที่วางโดยลูกค้าหรือกลุ่มลูกค้าเนื่องจากโบนัสเงินฝากการชําระเงินที่เพิ่มขึ้นการเดิมพันฟรีการเดิมพันที่ปราศจากความเสี่ยงหรือการรับประกันผลข้อเสนอส่งเสริมการขายอื่น ๆ โดยไม่คํานึงถึงผลลัพธ์ไม่ว่าจะเป็นรายบุคคลหรือเป็นส่วนหนึ่งของกลุ่ม  เว็บไซต์กําไรของลูกค้าขอสงวนสิทธิ์ในการเรียกคืนองค์ประกอบโบนัสของข้อเสนอดังกล่าวและขอสงวนมูลค่าที่แน่นอนของดุลยพินิจที่แน่นอนในการตัดสินการเดิมพันที่อัตราต่อรองที่ถูกต้องยกเลิกโบนัสเดิมพันฟรีและเดิมพันที่ปราศจากความเสี่ยงหรือยกเลิกการเดิมพันใด ๆ ที่ได้รับทุนจากโบนัสเงินฝาก นอกจากนี้เว็บไซต์นี้ขอสงวนสิทธิ์ในการเรียกเก็บค่าธรรมเนียมการจัดการจากลูกค้าขึ้นอยู่กับมูลค่าของโบนัสเงินฝากโบนัสเดิมพันฟรีการเดิมพันที่ปราศจากความเสี่ยงหรือการชําระเงินเพิ่มเติมเพื่อให้ครอบคลุมค่าธรรมเนียมการจัดการ เราขอสงวนสิทธิ์ในการกําหนดให้ลูกค้าทุกคนจัดเตรียมเอกสารที่เพียงพอเพื่อความพึงพอใจสูงสุดของเรากับรางวัลการเดิมพันฟรีการเดิมพันที่ปราศจากความเสี่ยงหรือบัญชีที่ให้ไว้กับพวกเขา </p>
 
-                        <p><b>8.4 </b>All Website offers are intended for casual players and the Website may, at its sole discretion, limit the Customer's eligibility to participate in all or part of the Promotion. </p>
+                          <p><b>8.4</b> ข้อเสนอของเว็บไซต์ทั้งหมดมีไว้สําหรับผู้เล่นทั่วไปและเว็บไซต์อาจ จํากัด สิทธิ์ของลูกค้าในการเข้าร่วมโปรโมชั่นทั้งหมดหรือบางส่วนตามดุลยพินิจของตน </p>
 
-                        <p><b>8.5 </b>The Website reserves the right, at its sole discretion, to modify, cancel, withdraw or reject any Promotion. </p>
+                          <p><b>8.5</b> เว็บไซต์ขอสงวนสิทธิ์ตามดุลยพินิจของตนแต่เพียงผู้เดียวในการแก้ไขยกเลิกถอนหรือปฏิเสธโปรโมชั่นใด ๆ </p>
 
-                        <p><b>8.6 </b>Rewards can only be claimed once per person/account, household, household, address, email address, IP address and computer sharing environment (university, school, public place library, workplace, etc.). The Company reserves the right to close your account and forfeit any existing funds if evidence of abuse/fraud is found. </p>
+                          <p><b>8.6</b>  สามารถขอรับรางวัลได้เพียงครั้งเดียวต่อบุคคล / บัญชีครัวเรือนครัวเรือนที่อยู่ที่อยู่อีเมลที่อยู่ IP และสภาพแวดล้อมการแบ่งปันคอมพิวเตอร์ (มหาวิทยาลัยโรงเรียนห้องสมุดสถานที่สาธารณะสถานที่ทํางาน ฯลฯ ) บริษัท ขอสงวนสิทธิ์ในการปิดบัญชีของคุณและริบเงินที่มีอยู่หากพบหลักฐานการละเมิด / การฉ้อโกง </p>
 
-                        <p><b>8.7 </b>You acknowledge and understand that separate terms and conditions for promotions, rewards and special offers, and supplements to these terms and conditions, exist for the following areas. These terms and conditions are set out on the respective content page of the Website or, as the case may be, provided to you personally. In the event of a conflict between the provisions of such promotions, rewards and special offers, and the terms and conditions of these Terms, the provisions of such promotions, rewards and special offers will control. </p>
+                          <p><b>8.7</b> คุณรับทราบและเข้าใจว่าข้อกําหนดและเงื่อนไขแยกต่างหากสําหรับโปรโมชั่นรางวัลและข้อเสนอพิเศษและส่วนเพิ่มเติมของข้อกําหนดและเงื่อนไขเหล่านี้มีอยู่สําหรับพื้นที่ต่อไปนี้ ข้อกําหนดและเงื่อนไขเหล่านี้ระบุไว้ในหน้าเนื้อหาที่เกี่ยวข้องของเว็บไซต์หรือตามความเหมาะสมที่มอบให้คุณเป็นการส่วนตัว ในกรณีที่มีข้อขัดแย้งระหว่างข้อกําหนดของโปรโมชั่นรางวัลและข้อเสนอพิเศษดังกล่าวและข้อกําหนดและเงื่อนไขของข้อกําหนดเหล่านี้ข้อกําหนดของโปรโมชั่นรางวัลและข้อเสนอพิเศษดังกล่าวจะควบคุม </p>
 
-                        <p><b>8.8 </b>We reserve the right to insist that you wager a certain amount on your own deposit using any bonus funds we have credited to your account. The exact amount is as required as set out in the terms and conditions of the promotion. </p>
+                          <p><b>8.8</b> เราขอสงวนสิทธิ์ในการยืนยันว่าคุณเดิมพันจํานวนหนึ่งจากเงินฝากของคุณเองโดยใช้เงินโบนัสใด ๆ ที่เราได้เครดิตไปยังบัญชีของคุณ จํานวนเงินที่แน่นอนเป็นไปตามที่กําหนดไว้ในข้อกําหนดและเงื่อนไขของโปรโมชั่น </p>
 
-                        <p><b>8.9 </b>Your participation in certain promotions may be subject to withdrawal restrictions and/or certain requirements may be required before funds can be credited to the promotion. These Terms will be officially posted as part of the Promotion and for your reference. If you choose to withdraw if the applicable wagering requirements are not met, we will deduct the full bonus amount from your account and all associated winnings arising from the use of the bonus before we may approve any withdrawal request</p>
-                        <p><b>8.10 </b>Winnings wagered using Free Bets are calculated as "Total Return Less Staked Amount (including Free Bet Amount". The value of your free bets is therefore not included in, nor can it be used as a free bet from you. </p>
+                          <p><b>8.9</b> การเข้าร่วมโปรโมชั่นบางอย่างของคุณอาจอยู่ภายใต้ข้อจํากัดการถอนและ/หรืออาจมีข้อกําหนดบางประการก่อนที่จะสามารถโอนเงินเข้ารายการส่งเสริมการขายได้ ข้อกําหนดเหล่านี้จะถูกโพสต์อย่างเป็นทางการโดยเป็นส่วนหนึ่งของโปรโมชั่นและสําหรับการอ้างอิงของคุณ หากคุณเลือกที่จะถอนหากไม่เป็นไปตามข้อกําหนดการเดิมพันที่เกี่ยวข้องเราจะหักจํานวนโบนัสเต็มจํานวนออกจากบัญชีของคุณและเงินรางวัลที่เกี่ยวข้องทั้งหมดที่เกิดจากการใช้โบนัสก่อนที่เราจะอนุมัติคําขอถอนเงินใด ๆ</p>
+                          <p><b>8.10</b> เงินรางวัลที่เดิมพันโดยใช้การเดิมพันฟรีจะคํานวณเป็น "ผลตอบแทนรวมหักจํานวนเงินที่เดิมพัน (รวมถึงจํานวนเงินเดิมพันฟรี" มูลค่าของการเดิมพันฟรีของคุณจึงไม่รวมอยู่ในและไม่สามารถใช้เป็นเดิมพันฟรีจากคุณได้ </p>
 
-                        <p><b>8.11 </b>Please note that the stake of the Free Bet will not be refunded if the bet is void. </p>
+                          <p><b>8.11</b> โปรดทราบว่าเงินเดิมพันฟรีจะไม่ได้รับคืนหากการเดิมพันเป็นโมฆะ </p>
 
-                        <p><b>8.12 </b>You must receive Rewards on your Member Account unless otherwise stated in a promotion, reward or special offer. When rewards and/or reward programs are not used within 72 hours of receipt, this website reserves the right to cancel any such rewards and/or reward programs and may deduct rewards or similar rewards for bonus or similar rewards or free rotations immediately after 72 hours. </p>
+                          <p><b>8.12</b> คุณต้องได้รับรางวัลในบัญชีสมาชิกของคุณเว้นแต่จะระบุไว้เป็นอย่างอื่นในโปรโมชั่นรางวัลหรือข้อเสนอพิเศษ เมื่อรางวัลและ / หรือโปรแกรมรางวัลไม่ได้ใช้ภายใน 72 ชั่วโมงหลังจากได้รับเว็บไซต์นี้ขอสงวนสิทธิ์ในการยกเลิกรางวัลและ / หรือโปรแกรมรางวัลดังกล่าวและอาจหักรางวัลหรือรางวัลที่คล้ายกันสําหรับโบนัสหรือรางวัลที่คล้ายกันหรือการหมุนเวียนฟรีทันทีหลังจาก 72 ชั่วโมง </p>
 
-                        <p><b>8.13 </b>When exchanging customer opinions, opinions, feedback or actions when offering rewards (including but not limited to free bets or free spins), such incentives will be strictly limited to one survey/promotion per user during the relevant time period. </p>
+                          <p><b>8.13</b>  เมื่อแลกเปลี่ยนความคิดเห็นความคิดเห็นข้อเสนอแนะหรือการกระทําของลูกค้าเมื่อเสนอรางวัล (รวมถึง แต่ไม่ จํากัด เพียงการเดิมพันฟรีหรือฟรีสปิน) สิ่งจูงใจดังกล่าวจะถูก จํากัด ไว้ที่แบบสํารวจ / โปรโมชั่นหนึ่งครั้งต่อผู้ใช้ในช่วงเวลาที่เกี่ยวข้อง </p>
 
-                        <p><b>8.14 </b>Promotions may be published in multiple languages for informational and player access. The English version is the sole legal basis for your relationship with us and in the event of any discrepancy in any type of translation, the English language shall prevail over the version of these Terms and Conditions. </p>
+                          <p><b>8.14</b> โปรโมชั่นอาจมีการเผยแพร่ในหลายภาษาเพื่อให้ข้อมูลและการเข้าถึงของผู้เล่น ฉบับภาษาอังกฤษเป็นพื้นฐานทางกฎหมายแต่เพียงผู้เดียวสําหรับความสัมพันธ์ของคุณกับเราและในกรณีที่มีความคลาดเคลื่อนในการแปลทุกประเภทภาษาอังกฤษจะมีผลเหนือกว่าข้อกําหนดของข้อกําหนดและเงื่อนไขเหล่านี้ </p>
 
-                        <p><b>8.15 </b>Some games may have different maximum winnings. If so, such restrictions will be displayed in the in-game information page. </p>
+                          <p><b>8.15</b> บางเกมอาจมีเงินรางวัลสูงสุดที่แตกต่างกัน หากเป็นเช่นนั้นข้อ จํากัด ดังกล่าวจะแสดงในหน้าข้อมูลในเกม </p>
 
-                        <p><b>8.16 </b>Certain casino games do not include loyalty and reward betting. </p>
+                          <p><b>8.16</b>  เกมคาสิโนบางเกมไม่รวมการเดิมพันด้วยความภักดีและรางวัล </p>
 
-                        <p><b>8.17 </b>For wagering Bonuses, players must surrender the bonus and the specified number of winnings before being able to withdraw. Place a bet</p>
-                        <p>The contribution of Rewards Credits depends on the game category. The breakdown is as follows: Slots – 100% Table Games – 20% Live Dealer Games – 20%</p>
+                          <p><b>8.17</b> สําหรับการเดิมพันโบนัสผู้เล่นจะต้องมอบโบนัสและจํานวนเงินที่ชนะที่ระบุก่อนจึงจะสามารถถอนได้ วางเดิมพัน</p>
+                          <p>การมีส่วนร่วมของเครดิตรางวัลขึ้นอยู่กับหมวดหมู่ของเกม รายละเอียดมีดังนี้: สล็อต – เกมบนโต๊ะ 100% – เกมดีลเลอร์สด 20% – 20%</p>
 
-                        <p><b>8.18 </b>Certain promotions may be cancelled and/or cancelled and may only be available for a specific period and under certain terms. You must ensure that the promotion of content that interests you is still available, that you are eligible, that you understand any of the terms below to apply, and that you have opted in where applicable. </p>
+                          <p><b>8.18</b> โปรโมชั่นบางรายการอาจถูกยกเลิกและ/หรือยกเลิก และอาจมีให้บริการในบางช่วงเวลาและภายใต้เงื่อนไขบางประการเท่านั้น คุณต้องตรวจสอบให้แน่ใจว่าการโปรโมตเนื้อหาที่คุณสนใจยังคงมีอยู่คุณมีสิทธิ์คุณเข้าใจข้อกําหนดใด ๆ ด้านล่างที่จะนําไปใช้และคุณได้เลือกใช้หากมี </p>
 
-                        <h3>9. Close Member Account</h3>
-                        <p><b>9.1 </b>If you wish to close your Member Account, you may contact Customer Support in writing at any time by email. Effective closure of the account will terminate the Terms and Conditions accordingly. If the reason behind the account closure is related to concerns about possible gambling addiction or problem gambling, you should indicate that this was done in writing at the time of the request to close the account. If it is not responsible for the disclosure of gambling problems and/or gives reasons for account closure, you may request to reactivate your account via email. Account reactivation is at our sole discretion. We reserve the right to refuse resurrection. </p>
+                          <h3>9. ปิดบัญชีสมาชิก</h3>
+                          <p><b>9.1</b> หากคุณต้องการปิดบัญชีสมาชิกคุณสามารถติดต่อฝ่ายสนับสนุนลูกค้าเป็นลายลักษณ์อักษรได้ตลอดเวลาทางอีเมล การปิดบัญชีอย่างมีประสิทธิภาพจะยุติข้อกําหนดและเงื่อนไขตามนั้น หากเหตุผลที่อยู่เบื้องหลังการปิดบัญชีเกี่ยวข้องกับความกังวลเกี่ยวกับการติดการพนันที่เป็นไปได้หรือปัญหาการพนันคุณควรระบุว่าสิ่งนี้ทําเป็นลายลักษณ์อักษรในขณะที่ขอปิดบัญชี หากไม่รับผิดชอบต่อการเปิดเผยปัญหาการพนันและ / หรือให้เหตุผลในการปิดบัญชีคุณสามารถขอให้เปิดใช้งานบัญชีของคุณอีกครั้งทางอีเมล การเปิดใช้งานบัญชีใหม่ขึ้นอยู่กับดุลยพินิจของเราแต่เพียงผู้เดียว เราขอสงวนสิทธิ์ในการปฏิเสธการฟื้นคืนชีวิต </p>
 
-                        <p><b>9.2 </b>The Website reserves the right to refuse or close a Member's account at its sole discretion without prior notice or obligation to state or prove the reasons. In the absence of suspected fraud, money laundering or illegal acts, we will transfer your account balance to the cryptocurrency wallet of your choice (based on your account balance) before your account is closed. Your fiat currency account balance will be deposited with your craft. If you use the deposit-only method, we will contact you and find other return methods for funds before the account was closed. </p>
+                          <p><b>9.2</b> เว็บไซต์ขอสงวนสิทธิ์ในการปฏิเสธหรือปิดบัญชีของสมาชิกตามดุลยพินิจของตนแต่เพียงผู้เดียวโดยไม่ต้องแจ้งให้ทราบล่วงหน้าหรือภาระผูกพันในการระบุหรือพิสูจน์เหตุผล ในกรณีที่สงสัยว่ามีการฉ้อโกงการฟอกเงินหรือการกระทําที่ผิดกฎหมายเราจะโอนยอดคงเหลือในบัญชีของคุณไปยังกระเป๋าเงินดิจิตอลที่คุณเลือก (ขึ้นอยู่กับยอดเงินในบัญชีของคุณ) ก่อนที่บัญชีของคุณจะถูกปิด ยอดเงินในบัญชีสกุลเงินเฟียตของคุณจะถูกฝากด้วยฝีมือของคุณ หากคุณใช้วิธีการฝากเงินอย่างเดียวเราจะติดต่อคุณและค้นหาวิธีการคืนสินค้าอื่น ๆ สําหรับเงินก่อนที่บัญชีจะถูกปิด </p>
 
-                        <h3>10. Support Services</h3>
-                        <p><b>10.1 </b>As part of your use of the Website, we may provide you with support service communication channels in a number of ways, which are reviewed and controlled by us. </p>
+                          <h3>10. บริการสนับสนุน</h3>
+                          <p><b>10.1</b> ในฐานะที่เป็นส่วนหนึ่งของการใช้งานเว็บไซต์ของคุณเราอาจจัดหาช่องทางการสื่อสารบริการสนับสนุนให้คุณในหลายวิธีซึ่งได้รับการตรวจสอบและควบคุมโดยเรา </p>
 
-                        <p><b>10.2 </b>We retain reviews and records through any communication channels. Your use of our support services should be for assistance and for your information only. </p>
+                          <p><b>10.2</b> เราเก็บคําวิจารณ์และบันทึกผ่านช่องทางการสื่อสารใด ๆ การใช้บริการสนับสนุนของเราควรมีไว้เพื่อความช่วยเหลือและสําหรับข้อมูลของคุณเท่านั้น </p>
 
-                        <p><b>10.3 </b>We reserve the right to delete or restrict the Live Support Services or to immediately terminate your Member Account and refund your Account balance if you:</p>
-                        <p>(a) make any statement or share any material that is abusive, abusive, defamatory, harassing, explicit or seriously offensive, including but not limited to expressions of profanity, bigotry, racism or hatred;</p>
-                        <p>(b) use one of our Support Services to advertise, promote or otherwise relate to any other online entity;</p>
-                        <p>(c) is reasonably believed to attempt to unfairly exploit our Services, for example, through repeated untrue statements about the same case, transaction or characteristic;</p>
-                        <p>(d) make statements about the Company or any other internet site connected to the Site untrue and/or malicious and/or cause damage to the Company;</p>
-                        <p>(e) use any of our Support Services to collude, engage in illegal conduct or encourage conduct that we believe to be grossly inappropriate. Any statements of suspicious activity may be reported to the competent authorities.</p>
+                          <p><b>10.3</b> เราขอสงวนสิทธิ์ในการลบหรือจํากัดบริการสนับสนุนสดหรือยกเลิกบัญชีสมาชิกของคุณทันทีและคืนเงินยอดคงเหลือในบัญชีของคุณหากคุณ:</p>
+                          <p>(ก) กล่าวถ้อยคําหรือแบ่งปันเนื้อหาใด ๆ ที่ละเมิด เหยียดหยาม หมิ่นประมาท ชัดแจ้ง หรือก้าวร้าวอย่างร้ายแรง รวมถึงแต่ไม่จํากัดเพียงการแสดงออกถึงถ้อยคําหยาบคาย การเหยียดเชื้อชาติ หรือความเกลียดชัง</p>
+                          <p>(ข) ใช้บริการสนับสนุนของเราเพื่อโฆษณา ส่งเสริม หรือเกี่ยวข้องกับหน่วยงานออนไลน์อื่นๆ</p>
+                          <p>(c) มีเหตุอันควรเชื่อได้ว่าพยายามใช้ประโยชน์จากบริการของเราอย่างไม่เป็นธรรม เช่น ผ่านข้อความที่ไม่เป็นความจริงซ้ําๆ เกี่ยวกับกรณี ธุรกรรม หรือลักษณะเดียวกัน</p>
+                          <p>(ง) ทําให้ข้อความเกี่ยวกับบริษัทหรือเว็บไซต์อินเทอร์เน็ตอื่นใดที่เชื่อมต่อกับเว็บไซต์ไม่เป็นความจริง และ/หรือเป็นอันตราย และ/หรือก่อให้เกิดความเสียหายต่อบริษัท</p>
+                          <p>(จ) ใช้บริการสนับสนุนใด ๆ ของเราเพื่อสมรู้ร่วมคิดมีส่วนร่วมในการกระทําที่ผิดกฎหมายหรือส่งเสริมการกระทําที่เราเชื่อว่าไม่เหมาะสมอย่างร้ายแรง ข้อความใด ๆ ของกิจกรรมที่น่าสงสัยอาจถูกรายงานต่อเจ้าหน้าที่ผู้มีอํานาจ</p>
 
-                        <p><b>10.4 </b>Our Support Services are used as a form of communication between you and us and should not be copied or shared with any third party without our prior consent. </p>
+                          <p><b>10.4</b> บริการสนับสนุนของเราถูกใช้เป็นรูปแบบการสื่อสารระหว่างคุณกับเรา และไม่ควรคัดลอกหรือแบ่งปันกับบุคคลที่สามโดยไม่ได้รับความยินยอมจากเราก่อน </p>
 
-                        <h3>11. General Betting Rules</h3>
-                        <p><b>11.1.</b> Bets may only be placed by the Registered Account holder. </p>
+                          <h3>11. กฎการเดิมพันทั่วไป</h3>
+                          <p><b>11.1</b>. การเดิมพันสามารถทําได้โดยเจ้าของบัญชีที่ลงทะเบียนเท่านั้น </p>
 
-                        <p><b>11.2 </b>Bets placed and accepted cannot be amended, reversed or cancelled by you. You can find a list of all bets, their status and details on the website. </p>
+                          <p><b>11.2</b> การเดิมพันที่วางและยอมรับไม่สามารถแก้ไข ย้อนกลับ หรือยกเลิกโดยคุณได้ คุณสามารถดูรายการเดิมพันทั้งหมดสถานะและรายละเอียดได้บนเว็บไซต์ </p>
 
-                        <p><b>11.3 </b>Bets may only be placed via the Internet. </p>
+                          <p><b>11.3</b> สามารถวางเดิมพันผ่านทางอินเทอร์เน็ตเท่านั้น </p>
 
-                        <p><b>11.4 </b>You may place bets only if you have sufficient funds in your account on the Website. </p>
+                          <p><b>11.4</b> คุณสามารถวางเดิมพันได้ก็ต่อเมื่อคุณมีเงินเพียงพอในบัญชีของคุณบนเว็บไซต์ </p>
 
-                        <p><b>11.5 </b>Once a bet has been closed, it will be subject to the version of the Terms and Conditions in force and made available on the Website at the time of acceptance of the bet. </p>
+                          <p><b>11.5</b> เมื่อการเดิมพันถูกปิดแล้วจะอยู่ภายใต้ข้อกําหนดของข้อกําหนดและเงื่อนไขที่มีผลบังคับใช้และเผยแพร่บนเว็บไซต์ในเวลาที่ยอมรับการเดิมพัน </p>
 
-                        <p><b>11.6 </b>Any payout on winning bets will be credited to your account, including the odds of multiplying the stake by the bet. </p>
+                          <p><b>11.6</b> การจ่ายเงินเดิมพันที่ชนะจะถูกโอนเข้าบัญชีของคุณ รวมถึงโอกาสในการคูณเงินเดิมพันด้วยการเดิมพัน </p>
 
-                        <p><b>11.7 </b>When placing a bet, you acknowledge that you have read and fully understood all of these terms and conditions regarding the bet described on the Website. </p>
+                          <p><b>11.7</b> เมื่อวางเดิมพันคุณรับทราบว่าคุณได้อ่านและเข้าใจข้อกําหนดและเงื่อนไขเหล่านี้ทั้งหมดเกี่ยวกับการเดิมพันที่อธิบายไว้บนเว็บไซต์แล้ว </p>
 
-                        <p><b>11.8 </b>The Website administers your account and calculates available funds, pending funds, wagering funds and bonus amounts. These amounts are considered final and will not be modified based on inquiries, external audits or investigations without any apparent error. </p>
+                          <p><b>11.8</b> เว็บไซต์จัดการบัญชีของคุณและคํานวณเงินที่มีอยู่เงินที่รอดําเนินการเงินเดิมพันและจํานวนโบนัส จํานวนเงินเหล่านี้ถือเป็นที่สิ้นสุดและจะไม่ถูกแก้ไขตามการสอบถามการตรวจสอบจากภายนอกหรือการตรวจสอบโดยไม่มีข้อผิดพลาดที่ชัดเจน </p>
 
-                        <p><b>11.9 </b>You are solely responsible for placing bets. </p>
+                          <p><b>11.9</b> คุณเป็นผู้รับผิดชอบแต่เพียงผู้เดียวในการวางเดิมพัน </p>
 
-                        <p><b>11.10 </b>The prize money will be paid to the governing body of the relevant sport or competition in your account upon official confirmation of the final result. </p>
+                          <p><b>11.10</b> เงินรางวัลจะจ่ายให้กับหน่วยงานกํากับดูแลของกีฬาหรือการแข่งขันที่เกี่ยวข้องในบัญชีของคุณเมื่อได้รับการยืนยันอย่างเป็นทางการของผลสุดท้าย </p>
 
-                        <p><b>11.11 </b>Unless otherwise decided by our regulators, the Website reserves the right to revoke any winnings if the result is subject to any investigation for suspected criminal activity, or any action that may affect the outcome. In the event of irregularities in the betting mode or the outcome of the Campaign, confirmed by the Governing Body, third parties or the Website, the Website reserves the right to cancel and/or refund any staked amount on the Campaign at its sole discretion. If any bets have been placed, the Site reserves the right to recalculate the results of the event and forfeit any associated winnings. </p>
+                          <p><b>11.11</b> เว้นแต่หน่วยงานกํากับดูแลของเราจะตัดสินเป็นอย่างอื่นเว็บไซต์ขอสงวนสิทธิ์ในการเพิกถอนการชนะใด ๆ หากผลลัพธ์อยู่ภายใต้การสอบสวนใด ๆ สําหรับกิจกรรมทางอาญาที่น่าสงสัยหรือการกระทําใด ๆ ที่อาจส่งผลต่อผลลัพธ์ ในกรณีที่มีความผิดปกติในโหมดการเดิมพันหรือผลลัพธ์ของแคมเปญซึ่งได้รับการยืนยันจากหน่วยงานกํากับดูแลบุคคลที่สามหรือเว็บไซต์เว็บไซต์ขอสงวนสิทธิ์ในการยกเลิกและ / หรือคืนเงินเดิมพันใด ๆ ในแคมเปญตามดุลยพินิจของตน แต่เพียงผู้เดียว หากมีการวางเดิมพันใด ๆ เว็บไซต์ขอสงวนสิทธิ์ในการคํานวณผลลัพธ์ของเหตุการณ์ใหม่และริบเงินรางวัลที่เกี่ยวข้อง </p>
 
-                        <p><b>11.12 </b>If you are dissatisfied with any matter relating to a bet placed on the Website, please notify the Website to provide it in writing within 7 days of the transaction taking place. Notices issued thereafter within a 7-day period will be ignored. In the unlikely event that discrepancies between the results appear on your device and the results appear in the transaction log of our system, you agree that the results in the transaction log of our system verified by the website officials will be final, conclusive and binding. </p>
+                          <p><b>11.12</b> หากคุณไม่พอใจกับเรื่องใด ๆ ที่เกี่ยวข้องกับการเดิมพันบนเว็บไซต์โปรดแจ้งให้เว็บไซต์แจ้งเป็นลายลักษณ์อักษรภายใน 7 วันหลังจากทําธุรกรรม ประกาศที่ออกหลังจากนั้นภายในระยะเวลา 7 วันจะถูกเพิกเฉย ในกรณีที่ไม่น่าเป็นไปได้ที่ความแตกต่างระหว่างผลลัพธ์จะปรากฏบนอุปกรณ์ของคุณและผลลัพธ์ปรากฏในบันทึกการทําธุรกรรมของระบบของเราคุณยอมรับว่าผลลัพธ์ในบันทึกการทําธุรกรรมของระบบของเราที่ตรวจสอบโดยเจ้าหน้าที่เว็บไซต์จะถือเป็นที่สิ้นสุดและมีผลผูกพัน </p>
 
-                        <p><b>11.13 </b> If the Website discovers that you have placed different bets from your account from time to time, all bets may be placed by the Website. This website reserves the right to take further action as it deems necessary. </p>
+                          <p><b>11.13</b> หากเว็บไซต์พบว่าคุณได้วางเดิมพันที่แตกต่างจากบัญชีของคุณเป็นครั้งคราวเว็บไซต์อาจวางเดิมพันทั้งหมด เว็บไซต์นี้ขอสงวนสิทธิ์ในการดําเนินการเพิ่มเติมตามที่เห็นสมควร </p>
 
-                        <p><b>11.14 </b>If a bet amount exceeding the stated maximum amount is erroneously accepted by the Website, the excess amount will be ignored and the bet amount will be modified and therefore the difference shall be refunded/credited to your Account. </p>
+                          <p><b>11.14</b> หากจํานวนเงินเดิมพันที่เกินจํานวนเงินสูงสุดที่ระบุไว้ได้รับการยอมรับอย่างไม่ถูกต้องโดยเว็บไซต์จํานวนเงินส่วนเกินจะถูกเพิกเฉยและจํานวนเงินเดิมพันจะถูกแก้ไขดังนั้นส่วนต่างจะถูกคืน / เครดิตไปยังบัญชีของคุณ </p>
 
-                        <p><b>11.15 </b>The information provided by this website such as real-time video streams, statistical data, live scores and live bets is a value-added information service. However, this website assumes no responsibility whatsoever, regardless of any inaccuracies or errors in the information.</p>
+                          <p><b>11.15</b> ข้อมูลที่จัดทําโดยเว็บไซต์นี้เช่นสตรีมวิดีโอแบบเรียลไทม์ข้อมูลสถิติคะแนนสดและการเดิมพันสดเป็นบริการข้อมูลที่มีมูลค่าเพิ่ม อย่างไรก็ตามเว็บไซต์นี้จะไม่รับผิดชอบใด ๆ โดยไม่คํานึงถึงความไม่ถูกต้องหรือข้อผิดพลาดในข้อมูล</p>
 
-                        <p><b>11.16 </b>If a match does not start on or after the scheduled start date and/or is abandoned and is not completed (resumed) at the end of the next calendar date, all bets will be void unless any bet market determined to be unconditional in accordance with the relevant rules, in which case the bet may be established. </p>
+                          <p><b>11.16</b> หากการแข่งขันไม่เริ่มต้นในหรือหลังวันที่เริ่มต้นที่กําหนดไว้และ / หรือถูกยกเลิกและไม่เสร็จสมบูรณ์ (ดําเนินการต่อ) เมื่อสิ้นสุดวันที่ปฏิทินถัดไปการเดิมพันทั้งหมดจะถือเป็นโมฆะเว้นแต่ตลาดการเดิมพันใด ๆ ที่พิจารณาว่าไม่มีเงื่อนไขตามกฎที่เกี่ยวข้องซึ่งในกรณีนี้การเดิมพันอาจได้รับการจัดตั้งขึ้น </p>
 
-                        <p><b>11.17 </b>The Website reserves the right to adopt events that apply to specific competitions or may contradict the Sports Betting Rules. Such special rules may publish published odds in conjunction with specific regions, customers, matches and/or events. </p>
+                          <p><b>11.17</b> เว็บไซต์ขอสงวนสิทธิ์ในการนํากิจกรรมที่ใช้กับการแข่งขันเฉพาะหรืออาจขัดแย้งกับกฎการเดิมพันกีฬา กฎพิเศษดังกล่าวอาจเผยแพร่อัตราต่อรองที่เผยแพร่ร่วมกับภูมิภาคลูกค้าการแข่งขันและ / หรือเหตุการณ์ที่เฉพาะเจาะจง </p>
 
-                        <p><b>11.18 </b>Communication is interrupted after a bet is placed and/or you do not receive visual confirmation that a bet has been successfully placed, but the bet has been properly received on our servers and the bet shall be deemed valid and accepted. You will be told if you will win or lose once communication is re-established and the outcome is determined. If a bet is not properly received on our servers due to a communication error, it shall not be considered valid and accepted; Failed bets will be refunded to your account balance. </p>
+                          <p><b>11.18</b> การสื่อสารถูกขัดจังหวะหลังจากวางเดิมพันและ / หรือคุณไม่ได้รับการยืนยันด้วยภาพว่าวางเดิมพันสําเร็จแล้ว แต่การเดิมพันได้รับอย่างถูกต้องบนเซิร์ฟเวอร์ของเราและการเดิมพันจะถือว่าถูกต้องและยอมรับ คุณจะได้รับแจ้งว่าคุณจะชนะหรือแพ้เมื่อมีการสร้างการสื่อสารใหม่และผลลัพธ์จะถูกกําหนด หากการเดิมพันไม่ได้รับอย่างถูกต้องบนเซิร์ฟเวอร์ของเราเนื่องจากข้อผิดพลาดในการสื่อสารจะไม่ถือว่าถูกต้องและยอมรับ การเดิมพันที่ล้มเหลวจะถูกคืนไปยังยอดเงินในบัญชีของคุณ </p>
 
-                        <p><b>11.19 </b>You acknowledge and acknowledge that you may receive confirmation informing you of the potential financial risks following placing a bet (please contact the Website's customer support if there is any uncertainty). Upon receipt of such acknowledgement, you agree that you have been given adequate notice. </p>
+                          <p><b>11.19</b> คุณรับทราบและรับทราบว่าคุณอาจได้รับการยืนยันเพื่อแจ้งให้คุณทราบถึงความเสี่ยงทางการเงินที่อาจเกิดขึ้นหลังจากวางเดิมพัน (โปรดติดต่อฝ่ายสนับสนุนลูกค้าของเว็บไซต์หากมีความไม่แน่นอน) เมื่อได้รับการตอบรับดังกล่าวคุณยอมรับว่าคุณได้รับแจ้งอย่างเพียงพอ </p>
 
-                        <p><b>11.20 </b>In the event of discrepancies in match statistics provided by external sources, the data sources set out in our published General Sports Betting Rules page shall prevail. </p>
-                        <p><b>11.21 </b>The maximum bet limit will depend on the amount allowed by the Website at the time you accept a bet. </p>
+                          <p><b>11.20</b> ในกรณีที่มีความคลาดเคลื่อนในสถิติการแข่งขันที่จัดทําโดยแหล่งข้อมูลภายนอกแหล่งข้อมูลที่กําหนดไว้ในหน้ากฎการเดิมพันกีฬาทั่วไปที่เผยแพร่ของเราจะมีผลเหนือกว่า </p>
+                          <p><b>11.21</b> วงเงินเดิมพันสูงสุดจะขึ้นอยู่กับจํานวนเงินที่เว็บไซต์อนุญาตในเวลาที่คุณยอมรับการเดิมพัน </p>
 
-                        <p><b>11.23 </b>The following relates to the withdrawal function:</p>
+                          <p><b>11.23</b> สิ่งต่อไปนี้เกี่ยวข้องกับฟังก์ชั่นการถอน:</p>
 
-                        <p><b>11.23.1 </b>Withdrawals are available for selected events, fixtures and markets, single and multiple bets, before and during the match. </p>
+                          <p><b>11.23.1</b> สามารถถอนเงินได้สําหรับกิจกรรมการแข่งขันและตลาดที่เลือกการเดิมพันครั้งเดียวและหลายครั้งก่อนและระหว่างการแข่งขัน </p>
 
-                        <p><b>11.23.2 </b>Delay in accepting withdrawal requests. If price or market changes are paused, the withdrawal request may not be successful. </p>
+                          <p><b>11.23.2</b> ความล่าช้าในการยอมรับคําขอถอนเงิน หากการเปลี่ยนแปลงราคาหรือตลาดหยุดชั่วคราวคําขอถอนเงินอาจไม่สําเร็จ </p>
 
-                        <p><b>11.23.3 </b>If a withdrawal request is approved, the corresponding bet will be displayed immediately and settled. The actual final result of the original bet will not affect the withdrawal process.</p>
+                          <p><b>11.23.3</b> หากคําขอถอนเงินได้รับการอนุมัติการเดิมพันที่เกี่ยวข้องจะปรากฏขึ้นทันทีและตัดสิน ผลสุดท้ายที่แท้จริงของการเดิมพันเดิมจะไม่ส่งผลต่อกระบวนการถอนเงิน</p>
 
-                        <p><b>11.23.4 </b>In any event, upon successful withdrawal request, the total amount of the refund will be returned to your Account. </p>
+                          <p><b>11.23.4</b> ในกรณีใด ๆ เมื่อคําขอถอนเงินสําเร็จจํานวนเงินทั้งหมดของการคืนเงินจะถูกส่งกลับไปยังบัญชีของคุณ </p>
 
-                        <p><b>11.23.5 </b>The Website cannot guarantee that your bets will be available for the withdrawal option. If a withdrawal is made prior to the event, we will not cover or stop covering the Live Event, and the withdrawal will not be available once the Event starts or our Live Match will not be covered to stop. When the market is paused, no payouts will be provided. </p>
+                          <p><b>11.23.5</b> เว็บไซต์ไม่สามารถรับประกันได้ว่าการเดิมพันของคุณจะพร้อมใช้งานสําหรับตัวเลือกการถอน หากมีการถอนเงินก่อนกิจกรรมเราจะไม่ครอบคลุมหรือหยุดครอบคลุมเหตุการณ์สดและการถอนเงินจะไม่สามารถใช้ได้เมื่อกิจกรรมเริ่มต้นขึ้นหรือการแข่งขันสดของเราจะไม่ครอบคลุมถึงการหยุด เมื่อตลาดหยุดชั่วคราวจะไม่มีการจ่ายเงิน </p>
 
-                        <p><b>11.23.6 </b>This website reserves the right to fully or partially withdraw the functional divestment of customers or customer groups. We will exercise this right in cases where there is reasonable suspicion that a customer or group of customers is abusing the withdrawal function to take advantage of pre-event price changes, or that the withdrawal feature is regularly used to close bets before the start of the event. </p>
+                          <p><b>11.23.6</b> เว็บไซต์นี้ขอสงวนสิทธิ์ในการเพิกถอนการทํางานของลูกค้าหรือกลุ่มลูกค้าทั้งหมดหรือบางส่วน เราจะใช้สิทธิ์นี้ในกรณีที่มีข้อสงสัยตามสมควรว่าลูกค้าหรือกลุ่มลูกค้าใช้ฟังก์ชันการถอนในทางที่ผิดเพื่อใช้ประโยชน์จากการเปลี่ยนแปลงราคาก่อนเหตุการณ์หรือคุณสมบัติการถอนถูกใช้เป็นประจําเพื่อปิดการเดิมพันก่อนเริ่มกิจกรรม </p>
 
-                        <p><b>11.23.7 </b>If the withdrawal function is not available due to technical reasons, this website will not be responsible for this. In addition, any betting in such cases will maintain its original betting status and this website will also not be held responsible. 。 </p>
+                          <p><b>11.23.7</b> หากฟังก์ชั่นการถอนไม่สามารถใช้ได้เนื่องจากเหตุผลทางเทคนิคเว็บไซต์นี้จะไม่รับผิดชอบต่อสิ่งนี้ นอกจากนี้การเดิมพันใด ๆ ในกรณีดังกล่าวจะรักษาสถานะการเดิมพันเดิมและเว็บไซต์นี้จะไม่รับผิดชอบ 。 </p>
 
-                        <p><b>11.23.8 </b>The Website reserves the right to accept or reject any bets/bets to cash out the sports, competitions, markets or types of bets contained in the Cash Out Feature. </p>
+                          <p><b>11.23.8</b> เว็บไซต์ขอสงวนสิทธิ์ในการยอมรับหรือปฏิเสธการเดิมพัน / การเดิมพันใด ๆ เพื่อถอนเงินจากกีฬาการแข่งขันตลาดหรือประเภทของการเดิมพันที่มีอยู่ในคุณสมบัติการถอนเงิน </p>
 
-                        <p><b>11.24 </b>The maximum prize is quoted in USD as the base currency to secure the world, but the currency equivalent applies to actual spending. Where multiple bets involve events with different maximum bonus limits, the minimum amount will apply. Both maximum bonus limits apply to all of our customers or groups of customers who use different betting accounts to contain bets of the same selection at different prices. There should be reason to believe that several bets have been placed in this way, and the full payment of these bets will add up to only one maximum payout. </p>
+                          <p><b>11.24</b> รางวัลสูงสุดจะเสนอเป็น USD เป็นสกุลเงินหลักเพื่อรักษาความปลอดภัยให้กับโลก แต่สกุลเงินที่เทียบเท่าจะนําไปใช้กับการใช้จ่ายจริง ในกรณีที่การเดิมพันหลายครั้งเกี่ยวข้องกับเหตุการณ์ที่มีขีด จํากัด โบนัสสูงสุดที่แตกต่างกันจะใช้จํานวนเงินขั้นต่ํา ขีดจํากัดโบนัสสูงสุดทั้งสองนี้ใช้กับลูกค้าหรือกลุ่มลูกค้าของเราทั้งหมดที่ใช้บัญชีเดิมพันที่แตกต่างกันเพื่อบรรจุการเดิมพันที่เลือกเดียวกันในราคาที่แตกต่างกัน ควรมีเหตุผลที่จะเชื่อว่ามีการวางเดิมพันหลายครั้งด้วยวิธีนี้และการชําระเงินเต็มจํานวนของการเดิมพันเหล่านี้จะเพิ่มการจ่ายเงินสูงสุดเพียงครั้งเดียว </p>
 
+                          <h3>12. เกมแท้งและแท้ง</h3>
+                          <p><b>12.1</b> บริษัท จะไม่แทรกแซงเกมสําหรับการหยุดทํางานการหยุดชะงักของเซิร์ฟเวอร์ความล่าช้าหรือการหยุดชะงักทางเทคนิคหรือทางการเมืองใด ๆ การคืนเงินสามารถทําได้ตามดุลยพินิจของเว็บไซต์แต่เพียงผู้เดียว </p>
 
-                        <h3>12. Miscarried and Aborted Games</h3>
-                        <p><b>12.1 </b>The Company shall not interfere with the Game for any downtime, server interruptions, lags or any technical or political disruption. Refunds may only be administered at the sole discretion of the Website. </p>
+                          <p><b>12.2</b> บริษัทจะไม่รับผิดชอบต่อความเสียหายหรือความสูญเสียใด ๆ ที่ถือว่าหรือเป็นผลมาจากเว็บไซต์หรือเนื้อหาที่ถูกกล่าวหาว่าเกิดจากหรือเกี่ยวข้องกับเว็บไซต์นั้น ซึ่งรวมถึงข้อ จํากัด ของการดําเนินงานหรือการส่งล่าช้าหรือหยุดชะงักการสูญเสียหรือความเสียหายของข้อมูลการสื่อสารหรือความล้มเหลวของสายการใช้งานเว็บไซต์ในทางที่ผิดหรือเนื้อหาโดยบุคคลใด ๆ หรือข้อผิดพลาดหรือการละเว้นใด ๆ ในเนื้อหา </p>
 
-                        <p><b>12.2 </b> The Company shall not be liable for any damage or loss deemed or resulting from the Website or its content that is alleged to be caused or in connection with it; This includes no limitation of operation or transmission, delay or interruption, loss or corruption of data, communication or line failure, misuse of the Site or its content by any person or any errors or omissions in the content. </p>
+                          <p><b>12.3</b> หากเกมคาสิโนใด ๆ ล่มการเดิมพันทั้งหมดจะถือเป็นโมฆะ </p>
 
-                        <p><b>12.3 </b>If any casino game goes down, all bets are void. </p>
+                          <h3>13. ข้อจํากัดความรับผิด</h3>
+                          <p><b>13.1</b> การเข้าถึงเว็บไซต์และการเข้าร่วมเกมถือเป็นความเสี่ยงของคุณเอง เว็บไซต์และเกมมีให้โดยไม่มีการรับประกันใด ๆ ไม่ว่าจะโดยชัดแจ้งหรือโดยนัย </p>
 
-                        <h3>13. Limitation of Liability</h3>
-                        <p><b>13.1 </b>Your access to the Website and participation in the Games is at your own risk. The Website and the Game are provided without warranty of any kind, either express or implied. </p>
+                          <p><b>13.2</b> โดยปราศจากอคติต่อลักษณะทั่วไปของสิ่งที่กล่าวมาข้างต้นคุณยอมรับว่าเรา:</p>
 
-                        <p><b>13.2 </b>Without prejudice to the generality of the foregoing, you accept that we:</p>
+                          <p><b>13.2.1</b> ไม่รับประกันว่าซอฟต์แวร์ เกม และเว็บไซต์จะเหมาะสมกับวัตถุประสงค์ของตน </p>
 
-                        <p><b>13.2.1 </b>Does not warrant that the Software, Games and Website are fit for their purpose; </p>
+                          <p><b>13.2.2</b> ไม่รับประกันว่าซอฟต์แวร์ เกม และเว็บไซต์ปราศจากข้อผิดพลาด </p>
 
-                        <p><b>13.2.2 </b>Does not warrant that the Software, Games and Website are error-free; </p>
+                          <p><b>13.2.3</b> ไม่มีการรับประกันว่าซอฟต์แวร์ เกม และเว็บไซต์จะถูกขัดจังหวะโดยไม่หยุดชะงัก </p>
 
-                        <p><b>13.2.3 </b>There is no guarantee that the Software, Games and Website will be interrupted without interruption. </p>
+                          <p><b>13.3</b> ยกเว้นที่ระบุไว้อย่างชัดแจ้งในข้อกําหนดและเงื่อนไขเหล่านี้เราจะไม่รับผิดชอบต่อความสูญเสียต้นทุนค่าใช้จ่ายหรือความเสียหายใด ๆ ไม่ว่าจะโดยตรงโดยอ้อมพิเศษเป็นผลสืบเนื่องโดยบังเอิญหรืออื่น ๆ ที่เกิดขึ้นจากการใช้งานเว็บไซต์ของคุณหรือการมีส่วนร่วมของคุณในเกม </p>
 
-                        <p><b>13.3 </b>Except as expressly provided in these Terms and Conditions, we shall not be liable for any loss, cost, expense or damage, whether direct, indirect, special, consequential, incidental or otherwise, arising out of your use of the Website or your participation in the Game. </p>
+                          <p><b>13.4</b> คุณเข้าใจและรับทราบว่าการเดิมพันใด ๆ ที่วางระหว่างความล้มเหลวดังกล่าวจะถือเป็นโมฆะหากเกมหรือความผิดปกตินั้นทํางานร่วมกันได้ เงินที่ระบุจากเกมที่ผิดพลาดจะถือว่าเป็นโมฆะเช่นเดียวกับรอบเกมที่ตามมาโดยไม่คํานึงถึงเกมที่เล่นโดยใช้เงินเหล่านั้น </p>
 
-                        <p><b>13.4 </b>You understand and acknowledge that any bets placed during such failure will be void if the Game or its malfunction is interoperable. Funds stated from faulty games will be deemed void, as well as any subsequent game rounds, regardless of what game is played using those funds. </p>
+                          <p><b>13.5</b> หากการเดิมพันบางส่วนหรือทั้งหมดถูกประกาศเป็นโมฆะเว็บไซต์ขอสงวนสิทธิ์ในการพิจารณาว่ามีข้อผิดพลาดข้อผิดพลาดข้อผิดพลาดในการพิมพ์หรือข้อผิดพลาดทางเทคนิคในตารางการจ่ายเงินอัตราต่อรองหรือซอฟต์แวร์ สําหรับการชนะที่ยังไม่เกิดขึ้นจริงเราจะไม่รับผิดชอบต่อผลของการทําให้การเดิมพันเป็นโมฆะในกรณีนี้ การคืนเงินจะดําเนินการโดย Seabet Management เท่านั้น </p>
 
-                        <p><b>13.5 </b>If part or all of a bet is declared void, the Website reserves the right to consider that there is a clear error, error, typographical error or technical error on the paytable, odds or software. For any unrealized winnings, we are not responsible for the outcome of invalidating the bet in this case. Refunds are only managed by Seabet Management. </p>
+                          <p><b>13.6</b> คุณตกลงที่จะชดใช้ค่าเสียหายและปกป้องเรากรรมการพนักงานพันธมิตรและผู้ให้บริการของเราอย่างเต็มที่โดยไม่เป็นอันตรายจากและต่อค่าใช้จ่ายค่าใช้จ่ายความสูญเสียความเสียหายการเรียกร้องและความรับผิดใด ๆ ที่เกิดขึ้นจากการใช้งานเว็บไซต์หรือการมีส่วนร่วมในเกมของคุณ </p>
 
-                        <p><b>13.6 </b>You hereby agree to fully indemnify and hold us, our directors, employees, partners and service providers harmless from and against any costs, expenses, losses, damages, claims and liabilities arising out of your use of the Website or participation in the Games. </p>
+                          <p><b>13.7</b> บริษัทจะไม่รับผิดชอบต่อความเสียหายหรือความสูญเสียใด ๆ ไม่ว่าจะเป็นในสัญญาการละเมิดการละเมิดการรับประกันหรืออื่น ๆ ถือว่าหรือถูกกล่าวหาว่าเกิดจากหรือถูกกล่าวหาว่าเกิดจากหรือถูกกล่าวหาว่าเกิดจากการเชื่อมต่อกับเว็บไซต์หรือเนื้อหาของเว็บไซต์ ซึ่งรวมถึงแต่ไม่จํากัดเพียงความล่าช้าหรือการหยุดชะงักในการดําเนินงานหรือการส่งข้อมูลการสูญเสียหรือความเสียหายของข้อมูลการสื่อสารหรือความล้มเหลวของสายการใช้งานเว็บไซต์หรือเนื้อหาในทางที่ผิดโดยบุคคลใด ๆ หรือข้อผิดพลาดหรือการละเว้นใด ๆ ในเนื้อหา </p>
 
-                        <p><b>13.7 </b>The Company shall not be liable for any damage or loss, whether in contract, tort, breach of warranty or otherwise, deemed or alleged to be caused or alleged to be caused by or alleged to be caused by a connection with the Website or its content; This includes, but is not limited to, delays or interruptions in operation or transmission, loss or corruption of data, communication or line failures, misuse of the Site or its content by any individual, or any errors or omissions in the content. </p>
+                          <h3>14. นโยบายความเป็นส่วนตัว</h3>
+                          <p><b>14.1</b>  คุณรับทราบและยอมรับว่าเราอาจรวบรวมและใช้ข้อมูลส่วนบุคคลของคุณหากเราเห็นว่าจําเป็นเพื่อให้คุณเข้าถึงและใช้เว็บไซต์และอนุญาตให้คุณเข้าร่วมในเกม </p>
 
-                        <h3>14. Privacy Policy</h3>
-                        <p><b>14.1 </b>You hereby acknowledge and accept that we may collect and otherwise use your personal data if we deem it necessary in order for you to access and use the Website and to allow you to participate in the Games. </p>
+                          <p><b>14.2</b>  เรารับทราบว่าในขณะที่รวบรวมข้อมูลส่วนบุคคลของคุณเราผูกพันตามพระราชบัญญัติคุ้มครองข้อมูลตามที่ระบุไว้ข้างต้น เราจะปกป้องข้อมูลส่วนบุคคลของคุณและเคารพความเป็นส่วนตัวของคุณตามแนวทางปฏิบัติทางธุรกิจที่ดีที่สุดและกฎหมายที่บังคับใช้ </p>
 
-                        <p><b>14.2 </b>We hereby acknowledge that at the time of collecting your personal information, we are bound by the Data Protection Act as set out above. We will protect your personal information and respect your privacy in accordance with best business practices and applicable law. </p>
+                          <p><b>14.3</b> เราจะใช้ข้อมูลส่วนบุคคลของคุณเพื่ออนุญาตให้คุณเข้าร่วมในเกมและดําเนินการที่เกี่ยวข้องกับการมีส่วนร่วมของคุณในเกม เมื่อเปิดบัญชีสมาชิกของคุณคุณรับทราบและยอมรับว่าพนักงานของ บริษัท มีสิทธิ์เข้าถึงข้อมูลส่วนบุคคลของคุณเพื่อปฏิบัติหน้าที่และให้ความช่วยเหลือที่ดีที่สุดแก่คุณรวมถึงบริการ นอกจากนี้เรายังอาจใช้ข้อมูลส่วนบุคคลของคุณเพื่อแจ้งให้คุณทราบถึงการเปลี่ยนแปลงบริการใหม่และโปรโมชั่น คุณสามารถเลือกไม่รับอีเมลการตลาดได้ตลอดเวลา </p>
 
-                        <p><b>14.3 </b>We will use your personal data to allow you to participate in the Games and to perform actions in connection with your participation in the Games. By opening your member account, you acknowledge and accept that Company employees have the right to access your personal data in order to perform their duties and provide you with the best assistance, as well as services. We may also use your personal data to notify you of changes, new services and promotions. You can opt out of receiving marketing emails at any time. </p>
+                          <p><b>14.4</b> ข้อมูลส่วนบุคคลของท่านจะไม่ถูกเปิดเผยต่อบุคคลที่สาม เว้นแต่กฎหมายจะกําหนดให้มีการเปิดเผยข้อมูลดังกล่าวหรือจําเป็นต่อการใช้บริการของเรา ซึ่งในกรณีนี้ท่านจะถือว่าท่านยินยอมให้เปิดเผยข้อมูลดังกล่าวแก่บุคคลที่สาม ข้อมูลส่วนบุคคลอาจถูกเปิดเผยต่อเว็บไซต์นี้ในฐานะพันธมิตรทางธุรกิจหรือซัพพลายเออร์ของเว็บไซต์นี้หรือผู้ให้บริการที่อาจรับผิดชอบต่อบางส่วนของการทํางานโดยรวมหรือการดําเนินงานของเว็บไซต์นี้ พนักงานเว็บไซต์สามารถเข้าถึงข้อมูลส่วนบุคคลของคุณเพื่อปฏิบัติหน้าที่และให้ความช่วยเหลือและบริการที่ดีที่สุดแก่คุณ คุณยินยอมให้มีการเปิดเผยข้อมูลดังกล่าว </p>
 
-                        <p><b>14.4 </b>Your personal data will not be disclosed to third parties unless such disclosure is required by law or necessary to use our services, in which case you are deemed to have consented to the disclosure of such information to third parties. Personal data may be disclosed to this website as a business partner or supplier to this website, or service providers who may be responsible for certain parts of their overall functionality or operation of this website. Website employees have access to your personal data in order to perform their duties and provide you with the best possible assistance and services. You hereby consent to such disclosure. </p>
+                          <p><b>14.5</b> เราจะเก็บรักษาข้อมูลทั้งหมดที่ให้ไว้เป็นข้อมูลส่วนบุคคลอย่างไม่มีกําหนด เว้นแต่เราจะเลือกที่จะทําเช่นนั้นหลังจากสิ้นสุดระยะเวลาการเก็บรักษาข้อมูลแอปพลิเคชันหรือเมื่อเราจําเป็นต้องทําเช่นนั้นตามกฎหมาย </p>
 
-                        <p><b>14.5 </b>We will retain all information provided as Personal Data indefinitely, unless we elect to do so after the expiry of the Application Data retention period or when we are legally required to do so. </p>
+                          <p><b>14.6</b> เพื่อเพิ่มประสิทธิภาพประสบการณ์ของคุณและตรวจสอบและปรับปรุงบริการเว็บไซต์ของเราเรารวบรวมข้อมูลบางอย่างที่ส่งโดยเบราว์เซอร์ของคุณที่เรียกว่า คุกกี้ คุณมีสิทธิ์เลือกว่าจะยอมรับคอลเลกชันคุกกี้ของเราหรือไม่ อย่างไรก็ตามโปรดทราบว่าการปิดใช้งานคุกกี้อาจมีผลกระทบร้ายแรงต่อการเข้าถึงเว็บไซต์ของเราและอาจบล็อกการเยี่ยมชมของคุณทั้งหมด </p>
 
-                        <p><b>14.6 </b>In order to optimise your experience and monitor and improve our website services, we collect certain information sent by your browser, known as cookies. You have the right to choose whether or not to accept our cookie collection. Please note, however, that disabling cookies may have a serious impact on your access to our website and may even block your visit entirely. </p>
+                          <h3>15. การมอบหมาย</h3>
+                          <p><b>15.1</b>  ไม่อนุญาตให้มีการมอบหมายภาระผูกพันของคุณภายใต้ข้อตกลงนี้ คุณไม่สามารถมอบหมายภาระผูกพันของคุณภายใต้ข้อตกลงนี้และสิทธิ์หรือภาระผูกพันใด ๆ ภายใต้ข้อตกลงนี้ให้กับบุคคลหรือนิติบุคคลอื่น ๆ </p>
 
-                        <h3>15. Assignment</h3>
-                        <p><b>15.1 </b>The assignment of your obligations under this Agreement is not permitted. You may not assign your obligations under this Agreement, and any rights or obligations under this Agreement to any other person or entity. </p>
+                          <h3>16. ข้อตกลงทั้งหมด</h3>
+                          <p><b>16.1</b> ข้อกําหนดและเงื่อนไขเหล่านี้ถือเป็นข้อตกลงทั้งหมดระหว่างคุณกับเราในการเคารพเว็บไซต์และยกเว้นในกรณีที่มีการฉ้อโกงจะแทนที่การสื่อสารทางอิเล็กทรอนิกส์ด้วยวาจาหรือลายลักษณ์อักษรและข้อเสนอระหว่างคุณกับเราเพื่อเคารพเว็บไซต์ </p>
 
-                        <h3>16. Entire Agreement</h3>
-                        <p><b>16.1 </b> These Terms and Conditions constitute the entire agreement between you and us to respect the Website and, except in the event of fraud, supersede all prior or contemporaneous electronic, oral or written communications and proposals between you and us to respect the Website. </p>
+                          <h3>17. การแยกออกจากกันได้</h3>
+                          <p><b>17.1</b>  หากข้อกําหนดใด ๆ ของข้อกําหนดและเงื่อนไขเหล่านี้ถือว่าผิดกฎหมายหรือไม่สามารถบังคับใช้ได้ข้อกําหนดจะถูกตัดออกจากข้อกําหนดและเงื่อนไขเหล่านี้และข้อกําหนดอื่น ๆ ทั้งหมดจะยังคงมีผลบังคับใช้อย่างสมบูรณ์และมีผลบังคับใช้โดยไม่ได้รับผลกระทบจากการชดเชยดังกล่าว </p>
 
-                        <h3>17. Severability</h3>
-                        <p><b>17.1 </b>If any provision of these Terms and Conditions is held to be illegal or unenforceable, the provision shall be severed from these Terms and Conditions and all other provisions shall continue in full force and effect without being affected by such severance. </p>
+                          <h3>18. การยกเลิก การระงับ และการปิด</h3>
+                          <p><b>18.1</b> โดยไม่จํากัดความสามารถของเราในการพึ่งพาการเยียวยาอื่น ๆ ที่มีให้เรา เราอาจระงับและ/หรือยกเลิกบัญชีของคุณ ยกเลิกการเดิมพันที่ค้างชําระ และ/หรือริบเงินใด ๆ หรือทั้งหมดในบัญชีของคุณตามดุลยพินิจของเรา:</p>
+                          <p>(i) เมื่อเราสงสัยว่าคุณกําลังใช้เว็บไซต์ของเราเพื่อการฟอกเงินกิจกรรมที่ผิดกฎหมายหรือการฉ้อโกงอื่น ๆ หรือ</p>
+                          <p>(ii) เราสงสัยว่าคุณได้ฝากเงินอย่างผิดกฎหมายหรือได้มาในลักษณะที่เสื่อมราคาอย่างชัดแจ้งและเป็นสาระสําคัญ หรือ</p>
+                          <p>(iii) เราได้รับหลักฐานว่าคุณเป็นส่วนหนึ่งขององค์กรการพนันซึ่งมีหลายฝ่ายมีส่วนร่วมในการวางเดิมพันเพื่อหลีกเลี่ยงกฎของเว็บไซต์ข้อกําหนดและเงื่อนไขเหล่านี้หรือกฎอื่น ๆ ของเว็บไซต์ หรือ</p>
+                          <p>(iv) เราพิจารณาว่าคุณกําลังใช้อุปกรณ์หุ่นยนต์แมงมุมซอฟต์แวร์กิจวัตรประจําวันหรือวิธีการอื่น ๆ (หรือลักษณะใด ๆ ที่กล่าวมาข้างต้น) เพื่อแทรกแซงหรือพยายามแทรกแซงการทํางานที่เหมาะสมของบริการของเราอุปกรณ์ที่เกี่ยวข้องซอฟต์แวร์เว็บไซต์เกมคาสิโนการเดิมพันกีฬาและข้อมูลการเดิมพันหรือธุรกรรมใด ๆ ที่นําเสนอบนเว็บไซต์  โดยเฉพาะอย่างยิ่งที่จะไม่ใช้หรือใช้ปัญญาประดิษฐ์หรือระบบอื่น ๆ (รวมถึงเครื่องจักรคอมพิวเตอร์ซอฟต์แวร์หรือระบบอัตโนมัติอื่น ๆ ที่ออกแบบมาเพื่อฉ้อโกงและ / หรือทําลายระบบเว็บไซต์โดยเฉพาะ) หรือ</p>
+                          <p>(v) เราพิจารณาว่าคุณกําลังสมรู้ร่วมคิดหรือพยายามสมรู้ร่วมคิดกับผู้เล่นรายอื่นเพื่อหลอกลวงเว็บไซต์หรือลูกค้าของไซต์ หรือ</p>
+                          <p>(vi) เราพิจารณาว่าคุณได้ละเมิดข้อกําหนดและเงื่อนไขเหล่านี้</p>
+                          <p>(vii) เราพิจารณาว่าคุณกําลังกระทําการในลักษณะที่ไม่เอื้ออํานวยต่อนักแสดงของเรา หรือ</p>
+                          <p>(viii) เราพิจารณาว่าวิธีที่คุณใช้ไซต์ทําให้คุณได้เปรียบอย่างไม่เป็นธรรมเช่นการเดิมพันตามข้อมูลเชิงลึกหรือความเชี่ยวชาญที่ได้รับจากการมีส่วนร่วมส่วนบุคคลหรือการมีส่วนร่วมในพื้นที่กีฬาเฉพาะ หรือ</p>
+                          <p>(ix) เราสงสัยว่าคุณได้ลงทะเบียนจัดการหรือกํากับกิจกรรมการเดิมพันของคุณในบัญชีผู้ใช้หลายบัญชีพยายามซ่อนกิจกรรมการเดิมพันของคุณหลีกเลี่ยงขีด จํากัด การทําธุรกรรมที่กําหนดโดยเราหรือละเมิดข้อกําหนดและเงื่อนไขการส่งเสริมการขายใด ๆ หรือ</p>
+                          <p>(x) เราสงสัยว่าบัญชีของคุณถูกใช้เพื่อประโยชน์ของบุคคลที่สาม หรือ</p>
+                          <p>(xi) หลักฐานที่ได้รับจากเราว่าการลงทะเบียนบัญชีใหม่คุณได้ละเมิดคําสั่งโดยตรงบนเว็บไซต์ที่จะไม่ดําเนินกิจกรรมการเดิมพันของคุณบนเว็บไซต์ของเรา เว็บไซต์นี้มีสิทธิ์ที่จะยึดเงินฝากใด ๆ จากบัญชีที่ลงทะเบียนโดยผู้ใช้ที่เคยพบว่ามีการละเมิดหรือเพิกเฉยต่อคําเตือนก่อนหน้านี้เกี่ยวกับข้อกําหนดและเงื่อนไขข้างต้น</p>
 
-                        <h3>18. Cancellation, Suspension and Closure</h3>
-                        <p><b>18.1 </b>Without limiting our ability to rely on other remedies available to us, we may suspend and/or terminate your Account, cancel any outstanding bets and/or forfeit any or all of the funds in your Account in our absolute discretion:</p>
-                        <p>(i) when we suspect that you are using our website for money laundering, illegal or other fraudulent activities; or</p>
-                        <p>(ii) we suspect that you have deposited funds illegally or obtained in a way that is manifestly and materially depreciated; or</p>
-                        <p>(iii) we obtain evidence that you are part of a betting syndicate, where multiple parties are involved in placing bets to circumvent the Website Rules, these Terms and Conditions or any other rules of the Website; or</p>
-                        <p>(iv) we determine that you are using any device, robot, spider, software, routine or other method (or anything of the nature of the foregoing) to interfere or attempt to interfere with the proper working of our Services, any related equipment, software, Website, casino games, sports betting and betting information or any transactions offered on the Website, in particular not to use or use any artificial intelligence or other system (including machines, computers, software or any other automated system specifically designed to defraud and/or destroy the Website system); or</p>
-                        <p>(v) we determine that you are colluding or attempting to collude with other players in order to deceive the Site or its customers; or</p>
-                        <p>(vi) we determine that you have breached any provision of these Terms and Conditions;</p>
-                        <p>(vii) we determine that you are acting in a manner that is unfavorable to our Actors; or</p>
-                        <p>(viii) we determine that the way in which you use the Site gives you an unfair advantage, for example, bets based on insight or expertise gained through personal participation or participation in a particular sporting area; or</p>
-                        <p>(ix) we suspect that you have registered, managed or directed your betting activity on multiple user accounts, attempted to hide your betting activity, circumvented transaction limits set by us or breached any terms and conditions of promotion; or</p>
-                        <p>(x) we suspect that your account is being used for the benefit of a third party; or</p>
-                        <p>(xi) evidence obtained by us that by registering for a new account, you have breached a direct order on the Site not to continue your betting activities on our Website. This website has the right to confiscate any deposit from the account registered by the user who previously found to have violated or ignored previous warnings of the above terms and conditions.</p>
+                          <p><b>18.2</b> คุณรับทราบว่าเว็บไซต์เป็นผู้มีอํานาจตัดสินใจขั้นสุดท้ายในความครอบครองของคุณจากการละเมิดกฎข้อกําหนดหรือเงื่อนไขที่ส่งผลให้มีการระงับหรือแบนถาวร</p>
+                          <p>จากการเข้าร่วมในเว็บไซต์ของเรา</p>
 
-                        <p><b>18.2 </b>You acknowledge that the Website is the final decision maker in your possession of a breach of a rule, term or condition resulting in suspension or permanent ban</p>
-                        <p>From participation in our website.</p>
+                          <p><b>18.3</b> ไม่ว่าเราจะระงับและ/หรือยกเลิกบัญชีและแม้จะมีข้อกําหนดอื่นใดในข้อกําหนดและเงื่อนไขเหล่านี้เราอาจตัดสินใจยกเลิกและยกเลิกการเดิมพันใด ๆ ที่ยังไม่เสร็จสมบูรณ์ตามดุลยพินิจของเราหาก:</p>
+                          <p>(i) มีความล้มเหลวทางเทคนิคหรือ </p>
+                          <p>(ii) คุณหรือลูกค้ารายอื่นที่วางเดิมพันกับคุณละเมิดข้อกําหนดและเงื่อนไขเหล่านี้</p>
 
-                        <p><b>18.3 </b>Regardless of whether we suspend and/or terminate the Account, and notwithstanding any other provision in these Terms and Conditions, we may decide to cancel and cancel any bet that has not been completed in our absolute discretion if:</p>
-                        <p>(i) there is a technical failure, or </p>
-                        <p>(ii) you or another customer placing a bet with you breaches any of these Terms and Conditions.</p>
+                          <h3>19. เหตุสุดวิสัย</h3>
+                          <p><b>19.1</b>  เว็บไซต์นี้ล้มเหลวหรือล่าช้าในการปฏิบัติตามภาระผูกพันในการให้บริการหากความล้มเหลวหรือความล่าช้าดังกล่าวเกิดจากเหตุสุดวิสัยในความเห็นของเว็บไซต์นี้รวมถึง แต่ไม่ จํากัด เพียงน้ําท่วมไฟไหม้แผ่นดินไหวหรือปัจจัยทางธรรมชาติอื่น ๆ การกระทําของสงครามโรคระบาดหรือโรคระบาดการจลาจลหรือการโจมตีของผู้ก่อการร้ายไฟฟ้าขัดข้องการล็อคและการนัดหยุดงาน  ความล่าช้าหรือการหยุดชะงักของเครือข่ายอินเทอร์เน็ตและโทรคมนาคมที่เกิดจากปัจจัยมนุษย์หรือธรรมชาติหรือเหตุการณ์อื่น ๆ ที่อยู่นอกเหนือการควบคุมที่เหมาะสมของเว็บไซต์นี้ เว็บไซต์นี้ไม่รับผิดชอบต่อผลที่ตามมาใด ๆ ที่เกิดขึ้นจากเหตุสุดวิสัยดังกล่าว </p>
 
-                        <h3>19. Force Majeure</h3>
-                        <p><b>19.1 </b> This Website fails or delays in performing its service obligations if such failure or delay is caused by force majeure in the opinion of this Website, including but not limited to floods, fires, earthquakes or any other natural factors, acts of war, epidemics or epidemics, riots or terrorist attacks, utility electrical failures, lockouts and strikes, delays or interruptions of Internet and telecommunications networks caused by human or natural factors, or any other such events beyond the reasonable control of this Website. This website does not assume any responsibility for any consequences arising from any such force majeure event. </p>
+                          <h3>20. การผิดนัดชําระหนี้ บทลงโทษ และการเลิกจ้าง</h3>
+                          <p><b>20.1</b> เราขอสงวนสิทธิ์ที่จะไม่เปิดระงับหรือปิดบัญชีสมาชิกของคุณหรือระงับเงินรางวัลของคุณและใช้เงินสําหรับความเสียหายใด ๆ ที่คุณมีสิทธิ์หากคุณละเมิดข้อกําหนดและเงื่อนไขเหล่านี้หรือหากเรามีเหตุอันควรสงสัยว่าคุณได้ละเมิดข้อกําหนดดังกล่าว </p>
 
-                        <h3>20. Default, Penalties and Termination</h3>
-                        <p><b>20.1 </b>We reserve the right not to open, suspend or close your Member Account, or withhold your winnings and use the funds for any damages to which you are entitled, if you breach any provision of these Terms and Conditions or if we have reasonable grounds to suspect that you have breached such provision. </p>
+                          <h3>21. กฎหมายที่ใช้บังคับและเขตอํานาจศาล</h3>
+                          <p><b>21.1</b> ข้อกําหนดและเงื่อนไขเหล่านี้จะอยู่ภายใต้กฎหมายของคูราเซา </p>
 
-                        <h3>21. Applicable Law and Jurisdiction</h3>
-                        <p><b>21.1 </b>These Terms and Conditions shall be governed by the laws of Curacao. </p>
+                          <p><b>21.2</b> คุณรับทราบว่าเกมได้รับการจัดระเบียบและควบคุมโดยอาณาเขตของคูราเซาเว้นแต่จะระบุไว้เป็นอย่างอื่น ความสัมพันธ์ตามสัญญาใด ๆ ระหว่างคุณและ บริษัท จะถือว่าได้เข้าและดําเนินการโดยคู่สัญญาในคูราเซาตามที่อยู่สํานักทะเบียน บริษัท </p>
 
-                        <p><b>21.2 </b>You acknowledge that, unless otherwise stated, the Game is organized and regulated by the territory of Curaçao. Any contractual relationship between you and the Company shall be deemed to have been entered into and performed by the parties in Curaçao, at the Registry of Companies Address. </p>
+                          <p><b>21.3</b> คู่สัญญาตกลงว่าข้อพิพาทการโต้เถียงหรือการเรียกร้องใด ๆ ที่เกิดขึ้นจากหรือเกี่ยวข้องกับข้อกําหนดและเงื่อนไขเหล่านี้หรือการละเมิดการยุติหรือโมฆะจะอยู่ภายใต้เขตอํานาจศาลเฉพาะของศาลคูราเซา </p>
 
-                        <p><b>21.3 </b>The parties agree that any dispute, controversy or claim arising out of or in connection with these Terms and Conditions or its breach, termination or nullity shall be subject to the exclusive jurisdiction of the courts of Curacao. </p>
-
-                        <h3>22. Complaints</h3>
-                        <p><b>22.1 </b>If you have any complaints or complaints about our services, you may contact our customer service team via the chat function available on the Website or at an email address. We will do our best to solve the problem you are facing in the shortest possible time. </p>
-
+                          <h3>22. การร้องเรียน</h3>
+                          <p><b>22.1</b> หากคุณมีข้อร้องเรียนหรือข้อร้องเรียนใด ๆ เกี่ยวกับบริการของเราคุณสามารถติดต่อทีมบริการลูกค้าของเราผ่านฟังก์ชั่นแชทที่มีอยู่บนเว็บไซต์หรือตามที่อยู่อีเมล เราจะพยายามอย่างดีที่สุดเพื่อแก้ปัญหาที่คุณกําลังเผชิญในเวลาที่สั้นที่สุด </p>
                       </div>`
   }
 }
