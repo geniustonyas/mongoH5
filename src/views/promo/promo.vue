@@ -32,7 +32,6 @@ import Sidebar from '@/components/layout/SideBar.vue'
 import Footer from '@/components/layout/Footer.vue'
 
 import { getExchangeRate } from '@/composables/getExchangeRate'
-import { getAssetsFile } from '@/utils'
 import { getPromoApi } from '@/api/promo/index'
 import { getPromoRespItem } from '@/api/promo/types'
 import { useAppStore } from '@/store/modules/app'
