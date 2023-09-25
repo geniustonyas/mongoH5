@@ -52,7 +52,7 @@
                     </div>
                     <div class="cr-input group g-tel">
                       <input v-model="editInfoForm.CountryCode" ref="countryDom" type="tel" class="form-control" :placeholder="t('countryHolder')" autocomplete="off" />
-                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" :placeholder="t('numberHolder')" autocomplete="off" />
+                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control"  autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">
