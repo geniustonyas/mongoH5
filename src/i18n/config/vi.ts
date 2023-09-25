@@ -534,6 +534,7 @@ export default {
   numberHolder: 'Số điện thoại',
   submitInfoSuccess: 'Thông tin của bạn đã được gửi thành công',
   back: 'trở lại',
+  countryCode: 'Mã quốc gia',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

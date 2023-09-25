@@ -47,12 +47,15 @@
                   </div>
                   <div class="cf-row">
                     <div class="cr-label g-tel">
-                      <span>{{ t('telephone') }}</span>
+                      <span>{{ t('countryCode') }}</span>
                       <span>{{ t('telephone') }}</span>
                     </div>
                     <div class="cr-input group g-tel">
-                      <input v-model="editInfoForm.CountryCode" ref="countryDom" type="tel" class="form-control" :placeholder="t('countryHolder')" autocomplete="off" />
-                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" :placeholder="t('numberHolder')" autocomplete="off" />
+                      <select v-model="editInfoForm.CountryCode" ref="countryDom" class="form-control">
+                        <option value="">{{ t('countryCode') }}</option>
+                        <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
+                      </select>
+                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">
@@ -213,7 +216,7 @@ import { editUserInfoApi, getGoogleCodeApi, bindGoogleCodeApi, unBindGoogleCodeA
 import { editUserInfoData, googleCodeData, ediPwdData } from '@/api/home/types'
 import { useUserStore } from '@/store/modules/user'
 import { isPwd, isEmpty } from '@/utils/validate'
-// import { countryCode } from '@/utils/countryCode'
+import { countryCode } from '@/utils/countryCode'
 import { getYearList, copy } from '@/utils'
 //第三方插件
 import { useI18n } from 'vue-i18n'
@@ -258,7 +261,7 @@ let editInfoForm: editUserInfoData = reactive({
   VerificationCode: ''
 })
 editInfoForm.Address = userStore.userInfo.address
-editInfoForm.Zipcode = userStore.userInfo.zipcode
+editInfoForm.Zipcode = userStore.userInfo.zipCode
 editInfoForm.PhoneNumber = userStore.userInfo.phoneNumber
 editInfoForm.CountryCode = userStore.userInfo.countryCode
 

@@ -534,6 +534,7 @@ export default {
   numberHolder: 'Número de Telefone',
   submitInfoSuccess: 'Suas informações foram enviadas com sucesso',
   back: 'Retornar',
+  countryCode: 'Código do país',
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',

@@ -117,7 +117,7 @@ export default {
   currentPwd: '当前密码',
   newPwd: '新密码',
   confirmPwd: '再次确认密码',
-  changePwdLimit: '为确保您的资金安全，当您修改密码后， 24小时内您将无法进行提款操作。',
+  changePwdLimit: '为确保您的资金安全，当您修改密码后， 24小时内您将无法提款至新的钱包地址。',
   disabledGoogle: '谷歌身份验证器已停用',
   activeGoogle: '请使用谷歌身份验证器扫描二维码或输入代码激活。',
   whatGoogleCode: '什么是谷歌身份验证器？',
@@ -221,7 +221,7 @@ export default {
   providers: '运营商',
   allProviders: '全部运营商',
   sortBy: '排序',
-  polular: '流行',
+  polular: '欢迎度',
   promotions: '促销活动',
   aboutUs: '关于我们',
   selectLanguage: '选择语言',
@@ -532,6 +532,7 @@ export default {
   numberHolder: '138xxxxxxxx',
   submitInfoSuccess: '您的信息提交成功',
   back: '返回',
+  countryCode: '国家代码',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

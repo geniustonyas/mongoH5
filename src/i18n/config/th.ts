@@ -531,6 +531,7 @@ export default {
   numberHolder: 'หมายเลขโทรศัพท์',
   submitInfoSuccess: 'ข้อมูลของคุณได้รับการส่งเรียบร้อยแล้ว',
   back: 'กลับ',
+  countryCode: 'รหัสประเทศ',
 
   problem: {
     whatVip: '1. คลับ VIP คืออะไร?',

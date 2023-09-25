@@ -532,6 +532,7 @@ export default {
   numberHolder: '電話番号',
   submitInfoSuccess: 'お客様の情報は正常に送信されました',
   back: '戻る',
+  countryCode: '国名コード',
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',

@@ -38,7 +38,7 @@ export const useUserStore = defineStore('userInfo', () => {
     userName: '',
     vip: '',
     vipCode: '',
-    zipcode: ''
+    zipCode: ''
   })
   const defaultUserInfo = cloneDeep<UserInfoType>(userInfo)
   const refreshUserInfoTimer = ref<null | number>(null)

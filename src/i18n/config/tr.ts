@@ -533,6 +533,7 @@ export default {
   numberHolder: 'Telefon Numarası',
   submitInfoSuccess: 'Bilgileriniz başarıyla gönderildi',
   back: 'geri dönmek',
+  countryCode: 'Ülke kodu',
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',

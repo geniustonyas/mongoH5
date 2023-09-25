@@ -23,5 +23,5 @@ export interface UserInfoType {
   userName: string
   vip: string
   vipCode: string
-  zipcode: string
+  zipCode: string
 }

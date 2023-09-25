@@ -1,6 +1,6 @@
 <template>
   <div :class="appStore.showSideBar ? 'page open-sidebar' : 'page'">
-    <CommonHeader />
+    <CommonHeader :title="t('promotions')" />
     <main class="main">
       <!-- <nav class="m-logo">
         <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>

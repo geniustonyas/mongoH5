@@ -532,6 +532,7 @@ export default {
   numberHolder: 'Phone Number',
   submitInfoSuccess: 'Your information has been successfully submitted',
   back: 'Back',
+  countryCode: 'Country Code',
 
   problem: {
     whatVip: 'What is the VIP Club?',

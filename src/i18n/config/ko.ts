@@ -534,6 +534,7 @@ export default {
   numberHolder: '전화 번호',
   submitInfoSuccess: '귀하의 정보가 성공적으로 제출되었습니다',
   back: '반품',
+  countryCode: '국가 코드',
 
   problem: {
     whatVip: '1.VIP 클럽이란 무엇인가요?',
