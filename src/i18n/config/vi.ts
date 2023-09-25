@@ -538,7 +538,7 @@ export default {
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',
-    whatVips: `<p>Câu lạc bộ VIP của seabet.io là một cộng đồng dành riêng cho khách hàng sử dụng tiền điện tử, cho phép họ tham gia vào tất cả các hoạt động khuyến mãi có sẵn trên trang web bất kỳ lúc nào. Mỗi lần đặt cược, quay và chơi trò chơi đều tích luỹ điểm, từ đó từ từ leo lên trong câu lạc bộ và mở khóa những phần thưởng thú vị trên đường đi. Khi bạn mở khóa các cấp độ VIP, bạn cũng sẽ kiếm được điểm cược Seabet, giúp bạn có được những trải nghiệm và dịch vụ đáng giá hơn.</p>
+    whatVips: `<p>Câu lạc bộ VIP của ${site_name} là một cộng đồng dành riêng cho khách hàng sử dụng tiền điện tử, cho phép họ tham gia vào tất cả các hoạt động khuyến mãi có sẵn trên trang web bất kỳ lúc nào. Mỗi lần đặt cược, quay và chơi trò chơi đều tích luỹ điểm, từ đó từ từ leo lên trong câu lạc bộ và mở khóa những phần thưởng thú vị trên đường đi. Khi bạn mở khóa các cấp độ VIP, bạn cũng sẽ kiếm được điểm cược Seabet, giúp bạn có được những trải nghiệm và dịch vụ đáng giá hơn.</p>
                 <p>Nói một cách đơn giản, điều đó có nghĩa: Bạn chơi trò chơi, và chúng tôi thưởng bạn.</p>`,
     howGetIntegrial: '2.Làm cách nào để kiếm điểm?',
     howGetIntegrials: `<p>Bạn có thể kiếm điểm câu lạc bộ bằng mỗi lần đặt cược, quay máy đánh bạc và chơi trò chơi bàn. Càng nhiều điểm bạn tích luỹ, càng cao cấp độ của bạn trở nên. Khi bạn tiến bộ qua các cấp bậc, bạn sẽ mở khóa nhiều phần thưởng thú vị. Các phần thưởng sẽ càng trở nên tốt hơn khi bạn tiếp tục mở khóa các cấp độ mới.</p>`,
@@ -613,7 +613,7 @@ export default {
           <p>Rút tiền</p>
           <p>Hầu hết các giao dịch rút tiền được xử lý ngay lập tức. Trong trường hợp rút tiền lớn, chúng tôi xử lý các khoản rút tiền này theo cách thủ công nên có thể có một chút chậm trễ.</p>`,
     q4: 'Bạn cung cấp các phương thức thanh toán nào?',
-    a4: `<p>Các tùy chọn tiền tệ có sẵn trên Seabet.io là:</p>
+    a4: `<p>Các tùy chọn tiền tệ có sẵn trên ${site_name} là:</p>
           <p>• Tether (USDT)</p>
           <p>• Bitcoin (BTC)</p>
           <p>• Ethereum (ETH)</p>
@@ -626,7 +626,7 @@ export default {
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
     q5: 'Bạn có áp dụng phí giao dịch không?',
-    a5: `<p>Mặc dù chúng tôi không thu thêm bất kỳ phí nào cho các giao dịch nạp tiền và rút tiền trên Seabet.io, nhưng bạn có thể cần phải trả các khoản phí giao dịch khi sử dụng thanh toán qua blockchain.</p>`
+    a5: `<p>Mặc dù chúng tôi không thu thêm bất kỳ phí nào cho các giao dịch nạp tiền và rút tiền trên ${site_name}, nhưng bạn có thể cần phải trả các khoản phí giao dịch khi sử dụng thanh toán qua blockchain.</p>`
   },
 
   errorCodes: {
@@ -794,7 +794,7 @@ export default {
                       <p>Đăng ký</p>
                       <p><b>4.1</b> Để bạn có thể đặt cược vào Seabet.io, trước tiên bạn phải đăng ký tài khoản cá nhân với chúng tôi ("Tài khoản Seabet").</p>
                       <p><b>4.2</b> Để một người được đăng ký làm người chơi với Seabet và sử dụng Trang web, người đó phải nộp đơn đăng ký và mở tài khoản Seabet. Đơn đăng ký mở Tài khoản Seabet phải được gửi trực tiếp và sẽ yêu cầu Bạn cung cấp một bộ thông tin cá nhân, cụ thể là e-mail, tên đầy đủ, ngày sinh, địa chỉ, v.v.</p>
-                      <p><b>4.3</b> Trong trường hợp thông tin quy định  tại <b>4.2</b>. không được cung cấp và / hoặc không được coi là đầy đủ, chính xác hoặc cập nhật tại bất kỳ thời điểm nào, Seabet có quyền đình chỉ đăng ký Tài khoản Seabet và coi bất kỳ khoản tiền gửi nào có khả năng được chấp nhận tiếp theo vào Tài khoản Seabet của Người chơi là không hợp lệ (và bất kỳ khoản tiền thắng cược nào phát sinh từ khoản tiền gửi đó là vô hiệu). Trong trường hợp Tài khoản Seabet bị đình chỉ, bạn nên liên hệ với bộ phận hỗ trợ khách hàng tại (support@Seabet.io).</p>
+                      <p><b>4.3</b> Trong trường hợp thông tin quy định  tại <b>4.2</b>. không được cung cấp và / hoặc không được coi là đầy đủ, chính xác hoặc cập nhật tại bất kỳ thời điểm nào, Seabet có quyền đình chỉ đăng ký Tài khoản Seabet và coi bất kỳ khoản tiền gửi nào có khả năng được chấp nhận tiếp theo vào Tài khoản Seabet của Người chơi là không hợp lệ (và bất kỳ khoản tiền thắng cược nào phát sinh từ khoản tiền gửi đó là vô hiệu). Trong trường hợp Tài khoản Seabet bị đình chỉ, bạn nên liên hệ với bộ phận hỗ trợ khách hàng tại (support{‘{'@'}’}Seabet.io).</p>
                       <p><b>4.4</b> Tất cả các đương đơn phải từ 18 tuổi trở lên hoặc độ tuổi trưởng thành hợp pháp khác được xác định bởi bất kỳ luật nào áp dụng cho bạn, bất kể độ tuổi nào lớn hơn hay lớn hơn. Seabet có quyền yêu cầu bằng chứng về tuổi từ bất kỳ Người chơi nào và đình chỉ Tài khoản Seabet của họ cho đến khi tài liệu thỏa đáng được cung cấp. Seabet có trách nhiệm đối với cờ bạc dưới tuổi và có trách nhiệm rất nghiêm túc.</p>
                       <p><b>4.5</b> Seabet sẽ không chấp nhận đăng ký từ các cá nhân:</p>
                       <p>a) Dưới 18 tuổi hoặc dưới độ tuổi trưởng thành hợp pháp hoặc đánh bạc trong phạm vi quyền hạn của mình;</p>
@@ -891,7 +891,7 @@ export default {
                       <p>(iv)Bất kỳ lỗi nào trong Trang web và Dịch vụ sẽ được sửa chữa; hoặc </p>
                       <p>(v)Trang web hoặc các máy chủ không có vi-rút.</p>
 
-                      <p><b>6.3</b> Seabet có thể được liên hệ qua email trên (support@seabet.io) hoặc trên trò chuyện trực tiếp 24/7. Trò chuyện trực tiếp có sẵn khi đăng nhập vào Tài khoản Seabet của bạn. Trong trường hợp Seabet, theo quyết định riêng của mình, cho rằng hành vi của Bạn, thông qua trò chuyện trực tiếp, email hoặc cách khác, đã lạm dụng hoặc xúc phạm đối với bất kỳ Seabet hoặc Đại lý hoặc nhân viên của nhà cung cấp dịch vụ bên thứ ba, Seabet sẽ có quyền chặn hoặc chấm dứt Tài khoản Seabet của bạn.</p>
+                      <p><b>6.3</b> Seabet có thể được liên hệ qua email trên (support{'@'}seabet.io) hoặc trên trò chuyện trực tiếp 24/7. Trò chuyện trực tiếp có sẵn khi đăng nhập vào Tài khoản Seabet của bạn. Trong trường hợp Seabet, theo quyết định riêng của mình, cho rằng hành vi của Bạn, thông qua trò chuyện trực tiếp, email hoặc cách khác, đã lạm dụng hoặc xúc phạm đối với bất kỳ Seabet hoặc Đại lý hoặc nhân viên của nhà cung cấp dịch vụ bên thứ ba, Seabet sẽ có quyền chặn hoặc chấm dứt Tài khoản Seabet của bạn.</p>
 
                       <h3>7. TIỀN GỬI</h3>
                       <p><b>7.1</b> Bạn chỉ có thể tham gia vào bất kỳ Trò chơi nào nếu bạn có đủ tiền trong Tài khoản Seabet của mình để tham gia đó. Vì mục đích đó, bạn sẽ sử dụng các phương thức thanh toán có sẵn trên Trang web để gửi tiền của mình. Seabet sẽ không cung cấp cho bạn bất kỳ khoản tín dụng nào để tham gia vào bất kỳ Trò chơi nào.</p>
@@ -934,7 +934,7 @@ export default {
 
                       <p>Rút tiền điện tử</p>
                       <p><b>8.10</b> Rút tiền mã hóa sẽ được thực hiện đến địa chỉ ví tiền điện tử đã nêu của bạn khi thực hiện yêu cầu rút tiền hợp lệ.</p>
-                      <p><b>8.11</b> Seabet có quyền thực hiện các thủ tục xác minh KYC bổ sung cho bất kỳ khoản rút tiền nào. Người chơi muốn lấy lại tiền được giữ trong tài khoản đã đóng, bị khóa hoặc bị loại trừ, nên liên hệ (support@seabet.io).</p>
+                      <p><b>8.11</b> Seabet có quyền thực hiện các thủ tục xác minh KYC bổ sung cho bất kỳ khoản rút tiền nào. Người chơi muốn lấy lại tiền được giữ trong tài khoản đã đóng, bị khóa hoặc bị loại trừ, nên liên hệ (support{'@'}seabet.io).</p>
                       <p><b>8.12</b> Tất cả các giao dịch sẽ được kiểm tra để ngăn chặn rửa tiền. Nếu người chơi biết về bất kỳ hoạt động đáng ngờ nào liên quan đến bất kỳ Trò chơi nào của Trang web, họ phải báo cáo điều này cho Seabet ngay lập tức. Seabet có thể đình chỉ, chặn hoặc đóng Tài khoản Seabet và giữ lại tiền nếu được yêu cầu theo Đạo luật Phòng chống rửa tiền hoặc trên bất kỳ cơ sở pháp lý nào khác theo yêu cầu của bất kỳ cơ quan nhà nước nào. Bạn thừa nhận rằng tiền trong tài khoản của bạn được tiêu thụ ngay lập tức khi chơi và chúng tôi không cung cấp trả lại hàng hóa, hoàn lại tiền hoặc hủy hồi tố tài khoản của bạn.</p>
 
                       <h3>9. BẢO VỆ TIỀN CỦA NGƯỜI CHƠI &; BỒI HOÀN</h3>
@@ -948,7 +948,7 @@ export default {
                       <p><b>10.4</b> Tiền của bạn sẽ được phân bổ cho cược / cược theo thứ tự chúng được đặt và sẽ không có sẵn cho bất kỳ mục đích sử dụng nào khác. Seabet có quyền vô hiệu hóa và / hoặc đảo ngược bất kỳ giao dịch nào được thực hiện sau khi đặt cược / đặt cược liên quan đến số tiền được phân bổ, tại thời điểm đó hoặc hồi tố.</p>
                       <h3>11. XÁC NHẬN ĐẶT CƯỢC/ĐẶT CƯỢC</h3>
                       <p><b>11.1</b> Cược/cược  sẽ chỉ có hiệu lực khi Bạn nhận được xác nhận chấp nhận cược/cược của Bạn. Các cược / cược được đặt không đủ tiền trong tài khoản của Bạn sẽ bị vô hiệu.</p>
-                      <p><b>11.2</b> Cược / cược mà Bạn yêu cầu sẽ chỉ có hiệu lực sau khi được Seabet chấp nhận. Mỗi cược / cược hợp lệ sẽ nhận được một mã giao dịch duy nhất. Chúng tôi sẽ không chịu trách nhiệm về việc giải quyết bất kỳ cược / cược nào không được phát hành với mã giao dịch duy nhất. Nếu Bạn không chắc chắn về tính hợp lệ của cược/cược, vui lòng kiểm tra lịch sử tài khoản của Bạn hoặc liên hệ với Nhóm Hỗ trợ Khách hàng của chúng tôi (support@seabet.io).</p>
+                      <p><b>11.2</b> Cược / cược mà Bạn yêu cầu sẽ chỉ có hiệu lực sau khi được Seabet chấp nhận. Mỗi cược / cược hợp lệ sẽ nhận được một mã giao dịch duy nhất. Chúng tôi sẽ không chịu trách nhiệm về việc giải quyết bất kỳ cược / cược nào không được phát hành với mã giao dịch duy nhất. Nếu Bạn không chắc chắn về tính hợp lệ của cược/cược, vui lòng kiểm tra lịch sử tài khoản của Bạn hoặc liên hệ với Nhóm Hỗ trợ Khách hàng của chúng tôi (support{'@'}seabet.io).</p>
                       <p><b>11.3</b> Nếu có tranh chấp phát sinh liên quan đến nội dung đặt cược, Bạn và Seabet đồng ý rằng cơ sở dữ liệu nhật ký giao dịch Seabet của hệ thống kiểm soát nội bộ sẽ là cơ quan có thẩm quyền cuối cùng trong các vấn đề đó.</p>
                       <h3>12. TIỀN THƯỞNG</h3>
                       <p><b>12.1</b> Seabet, theo quyết định riêng của mình, đôi khi có thể cung cấp một số Tiền thưởng và Khuyến mãi. </p>
@@ -1053,7 +1053,7 @@ export default {
                       <p><b>22.2</b> Thuật ngữ "Seabet  ", tên miền và bất kỳ nhãn hiệu thương mại hoặc nhãn hiệu dịch vụ nào khác được Seabet sử dụng như một phần của Dịch vụ ("Nhãn hiệu thương mại"), chỉ thuộc sở hữu của Seabet. Ngoài ra, tất cả nội dung trên trang web, bao gồm, nhưng không giới hạn, hình ảnh, hình ảnh, đồ họa, hình ảnh, hoạt ảnh, video, âm nhạc, âm thanh và văn bản ("Nội dung trang web") thuộc về Seabet và được bảo vệ bởi bản quyền và / hoặc sở hữu trí tuệ khác hoặc các quyền khác. Bạn thừa nhận rằng bằng cách sử dụng Dịch vụ, bạn không có quyền đối với Nội dung Trang web và / hoặc Nhãn hiệu Thương mại hoặc bất kỳ phần nào trong đó. Trong mọi trường hợp, bạn không được sử dụng Nội dung Trang web và / hoặc Nhãn hiệu Thương mại mà không có sự đồng ý trước bằng văn bản của Seabet. Ngoài ra, bạn đồng ý không làm bất cứ điều gì gây tổn hại hoặc có khả năng gây tổn hại đến các quyền, bao gồm cả quyền sở hữu trí tuệ của Seabet.</p>
 
                       <h3>23. TRANH CHẤP</h3>
-                      <p><b>23.1</b> Nếu Người dùng muốn khiếu nại, vui lòng liên hệ với nhóm dịch vụ khách hàng của Seabet tại (support@seabet.io). Nếu bất kỳ tranh chấp nào không được giải quyết thỏa đáng, bạn có thể theo đuổi các biện pháp khắc phục trong phạm vi quyền hạn của luật điều chỉnh được quy định dưới đây.</p>
+                      <p><b>23.1</b> Nếu Người dùng muốn khiếu nại, vui lòng liên hệ với nhóm dịch vụ khách hàng của Seabet tại (support{'@'}seabet.io). Nếu bất kỳ tranh chấp nào không được giải quyết thỏa đáng, bạn có thể theo đuổi các biện pháp khắc phục trong phạm vi quyền hạn của luật điều chỉnh được quy định dưới đây.</p>
 
                       <h3>24. SỬA ĐỔI</h3>
                       <p><b>24.1</b> Seabet có quyền cập nhật hoặc sửa đổi Thỏa thuận này hoặc bất kỳ phần nào của Thỏa thuận này bất cứ lúc nào hoặc thay đổi Dịch vụ mà không cần thông báo và bạn sẽ bị ràng buộc bởi Thỏa thuận sửa đổi đó khi đăng. Do đó, chúng tôi khuyến khích bạn kiểm tra các điều khoản và điều kiện có trong phiên bản Thỏa thuận có hiệu lực tại thời điểm đó. Việc bạn tiếp tục sử dụng Dịch vụ sẽ được coi là chứng thực cho sự đồng ý của bạn đối với bất kỳ sửa đổi nào đối với Thỏa thuận.</p>
@@ -1072,7 +1072,7 @@ export default {
                       <p><b>27.5</b> Thỏa thuận này cấu thành toàn bộ sự hiểu biết và thỏa thuận giữa bạn và Seabet  về Dịch vụ và thay thế mọi thỏa thuận, hiểu biết hoặc sắp xếp trước đó giữa bạn và Seabet.</p>
 
                       <h3>28. KHIẾU NẠI</h3>
-                      <p><b>28.1</b> Nếu bạn có  khiếu nại liên quan đến các dịch vụ của chúng tôi, bạn có thể liên hệ với bộ phận hỗ trợ khách hàng của chúng tôi qua Trò chuyện trực tiếp hoặc qua email (support@seabet.io). Chúng tôi sẽ nỗ lực để giải quyết vấn đề kịp thời.</p>
+                      <p><b>28.1</b> Nếu bạn có  khiếu nại liên quan đến các dịch vụ của chúng tôi, bạn có thể liên hệ với bộ phận hỗ trợ khách hàng của chúng tôi qua Trò chuyện trực tiếp hoặc qua email (support{'@'}seabet.io). Chúng tôi sẽ nỗ lực để giải quyết vấn đề kịp thời.</p>
 
                   </div>`,
     responsibleContent: `<div>
@@ -1097,7 +1097,7 @@ export default {
                               <li><a target="_blank" href="https://www.gamblingtherapy.org/">Gambling Therapy</a></li>
                             </ul>
 
-                          <p>Ngoài ra, nếu bạn muốn tìm hiểu về quy trình tự loại trừ của chúng tôi, bạn có thể gửi email (support@seabet.io) dịch vụ khách hàng thân thiện Seabet.io của chúng tôi. Đôi khi một khoảng thời gian nghỉ ngơi ngắn có thể giúp bạn giải quyết suy nghĩ của mình và ngăn bạn đưa ra bất kỳ quyết định cá cược hấp tấp nào không phù hợp với thông thường của bạn.</p>
+                          <p>Ngoài ra, nếu bạn muốn tìm hiểu về quy trình tự loại trừ của chúng tôi, bạn có thể gửi email (support{'@'}seabet.io) dịch vụ khách hàng thân thiện Seabet.io của chúng tôi. Đôi khi một khoảng thời gian nghỉ ngơi ngắn có thể giúp bạn giải quyết suy nghĩ của mình và ngăn bạn đưa ra bất kỳ quyết định cá cược hấp tấp nào không phù hợp với thông thường của bạn.</p>
                           <p>Theo yêu cầu, chúng tôi sẽ đặt tài khoản của bạn với thời gian tạm dừng ít nhất là 24 giờ. Sau đó, một trong những nhân viên hỗ trợ của chúng tôi sẽ thông báo cho bạn về việc tự nguyện có sẵn 1 tuần, 1 tháng, 3 tháng, 6 tháng hoặc tự loại trừ vĩnh viễn.</p>
                           <p>Xin lưu ý; Các tài khoản bị đóng theo chính sách tự loại trừ của chúng tôi không thể bị thu hồi hoặc mở lại vì bất kỳ lý do gì. Tuy nhiên, khi tính năng tự loại trừ của bạn hết hạn, chúng tôi sẽ gửi email cho bạn biết rằng tài khoản của bạn đang hoạt động trở lại. Tự loại trừ vĩnh viễn sẽ tồn tại vô thời hạn.</p>
 
@@ -1192,7 +1192,7 @@ export default {
                                 <p>Các tùy chọn lọc có thể được bật để giúp ngăn mọi người vào sòng bạc trực tuyến hoặc các trang web cá cược thể thao trực tuyến. Nếu trẻ vị thành niên có quyền truy cập vào thiết bị mà bạn sử dụng để truy cập các nền tảng cá cược của chúng tôi, chúng tôi khuyến khích bạn sử dụng phần mềm lọc để ngăn trẻ vị thành niên truy cập vào các nền tảng cá cược của chúng tôi.</p>
 
                                 <h3>8. Trợ giúp bổ sung</h3>
-                                <p>Trong trường hợp cần trợ giúp, vui lòng liên hệ với nhóm hỗ trợ của chúng tôi tại support@seabet.io hoặc trên hệ thống trò chuyện trực tiếp của chúng tôi và một trong những đại lý của chúng tôi sẽ có thể cung cấp cho bạn thông tin chi tiết về các hiệp hội và số điện thoại trợ giúp có sẵn ở quốc gia của bạn.</p>
+                                <p>Trong trường hợp cần trợ giúp, vui lòng liên hệ với nhóm hỗ trợ của chúng tôi tại support{'@'}seabet.io hoặc trên hệ thống trò chuyện trực tiếp của chúng tôi và một trong những đại lý của chúng tôi sẽ có thể cung cấp cho bạn thông tin chi tiết về các hiệp hội và số điện thoại trợ giúp có sẵn ở quốc gia của bạn.</p>
 
                                 <h3>9. Điều kiện và quy trình</h3>
                                 <p>Tự loại trừ có nghĩa là ngừng cá cược hoặc đánh bạc trong một thời gian nhất định. Tự loại trừ có thể là tạm thời hoặc vĩnh viễn.</p>
@@ -1264,11 +1264,11 @@ export default {
                         <p>Người dùng phải hiểu rằng việc truyền dữ liệu Internet không an toàn tuyệt đối Seabet.io không thể đảm bảo tính bảo mật tuyệt đối của thông tin do Người dùng tải lên Nền tảng và Người dùng phải chịu rủi ro. Tuy nhiên, sau khi nhận được việc truyền tải thông tin của người dùng, Seabet.io sẽ thực hiện các biện pháp thích hợp để ngăn chặn việc lạm dụng, mất mát và truy cập trái phép, sửa đổi và tiết lộ thông tin cá nhân của người dùng. Điều này bao gồm việc sử dụng mật khẩu bảo vệ hệ thống và cơ sở dữ liệu, cũng như sử dụng công nghệ Lớp cổng bảo mật (SSL). Bằng cách sử dụng Dịch vụ của chúng tôi hoặc cung cấp thông tin cá nhân, người dùng đồng ý rằng chúng tôi có thể liên lạc với bạn bằng điện tử về các vấn đề bảo mật, quyền riêng tư và quản trị liên quan đến việc sử dụng Dịch vụ. Seabet.io nhân viên, đại lý và nhà thầu được yêu cầu giữ bí mật thông tin cá nhân và giao dịch của thành viên. Thông tin được đăng bởi người dùng trên các nền tảng công cộng hoặc môi trường truyền thông xã hội (ví dụ: Facebook, Twitter) sẽ được coi là thông tin công khai Seabet.io tính bảo mật của thông tin đó không thể được đảm bảo.</p>
                         <p>Chúng tôi nhấn mạnh rằng các dịch vụ của chúng tôi không hướng đến trẻ em và chúng tôi không chấp nhận tài khoản hoặc thông tin cá nhân. Tuy nhiên, cha mẹ hoặc người giám hộ có nghĩa vụ giám sát các hoạt động internet của con cái họ. Đảm bảo đăng xuất khỏi tài khoản của bạn ngay sau khi bạn sử dụng xong trang web, đặc biệt nếu bạn đang chia sẻ thiết bị của mình. Người dùng chịu trách nhiệm về bảo mật và quyền truy cập của các thiết bị được sử dụng để truy cập Trang web. Cuối cùng, người dùng duy trì tính bảo mật của tên người dùng, mật khẩu và thông tin tài khoản và cảnh giác khi sử dụng Internet và trang web của chúng tôi.</p>
                         <h3>7. Truy cập thông tin cá nhân</h3>
-                        <p>Người dùng có thể truy cập thông tin cá nhân do Seabet.io thu thập bằng cách nhấp vào liên kết "Cài đặt" trên trang web hoặc bằng cách gửi email đến support@Seabet.io. Chúng tôi sẽ trả lời yêu cầu truy cập của người dùng trong một khoảng thời gian hợp lý. Nếu chúng tôi không thể tuân thủ yêu cầu của bạn, chúng tôi sẽ thông báo cho bạn bằng văn bản về lý do từ chối truy cập và cơ chế khiếu nại.</p>
+                        <p>Người dùng có thể truy cập thông tin cá nhân do Seabet.io thu thập bằng cách nhấp vào liên kết "Cài đặt" trên trang web hoặc bằng cách gửi email đến support{'@'}Seabet.io. Chúng tôi sẽ trả lời yêu cầu truy cập của người dùng trong một khoảng thời gian hợp lý. Nếu chúng tôi không thể tuân thủ yêu cầu của bạn, chúng tôi sẽ thông báo cho bạn bằng văn bản về lý do từ chối truy cập và cơ chế khiếu nại.</p>
                         <h3>8. Xóa dữ liệu cá nhân</h3>
-                        <p>Nếu không còn có thể xử lý hoặc lưu trữ hợp pháp dữ liệu cá nhân của người dùng, người dùng có quyền yêu cầu xóa. Tuy nhiên, quyền này không phải là tuyệt đối và nếu Seabet.io phải tuân theo các nghĩa vụ pháp lý, nó sẽ không thể đáp ứng yêu cầu của người dùng. Vui lòng gửi yêu cầu bằng cách gửi email đến support@Seabet.io.</p>
+                        <p>Nếu không còn có thể xử lý hoặc lưu trữ hợp pháp dữ liệu cá nhân của người dùng, người dùng có quyền yêu cầu xóa. Tuy nhiên, quyền này không phải là tuyệt đối và nếu Seabet.io phải tuân theo các nghĩa vụ pháp lý, nó sẽ không thể đáp ứng yêu cầu của người dùng. Vui lòng gửi yêu cầu bằng cách gửi email đến support{'@'}Seabet.io.</p>
                         <h3>9. Sự tiếp xúc</h3>
-                        <p>Nếu bạn có bất kỳ câu hỏi, yêu cầu hoặc khiếu nại nào về việc chúng tôi xử lý thông tin cá nhân của bạn, vui lòng liên hệ với chúng tôi qua email support@Seabet.io hoặc chức năng trò chuyện hỗ trợ khách hàng của trang web.</p>
+                        <p>Nếu bạn có bất kỳ câu hỏi, yêu cầu hoặc khiếu nại nào về việc chúng tôi xử lý thông tin cá nhân của bạn, vui lòng liên hệ với chúng tôi qua email support{'@'}Seabet.io hoặc chức năng trò chuyện hỗ trợ khách hàng của trang web.</p>
 
 
 
@@ -1361,7 +1361,7 @@ export default {
 
                         <p><b>3.6</b> Chúng tôi hy vọng bạn thông báo cho chúng tôi ngay lập tức về bất kỳ sự không chính xác nào liên quan đến tài khoản của bạn hoặc bất kỳ lỗi tính toán nào liên quan đến bất kỳ cược nào do bạn đặt. Chúng tôi có quyền vô hiệu hóa bất kỳ cược nào bị ảnh hưởng bởi các lỗi đó và đảo ngược tương ứng. </p>
 
-                        <p><b>3.7</b> Nếu bạn không sử dụng tài khoản có số dư dương trong thời gian 3 tháng, bạn sẽ được chúng tôi thông báo. Nếu bạn không sử dụng số dư của mình trong vòng 1 tháng kể từ khi chúng tôi thông báo, chúng tôi có thể xóa số dư khỏi tài khoản của bạn để bảo vệ tiền của bạn. Nếu điều này xảy ra, vui lòng liên hệ với chúng tôi tại support@seabet.io Mở lại tài khoản và lấy lại tiền. </p>
+                        <p><b>3.7</b> Nếu bạn không sử dụng tài khoản có số dư dương trong thời gian 3 tháng, bạn sẽ được chúng tôi thông báo. Nếu bạn không sử dụng số dư của mình trong vòng 1 tháng kể từ khi chúng tôi thông báo, chúng tôi có thể xóa số dư khỏi tài khoản của bạn để bảo vệ tiền của bạn. Nếu điều này xảy ra, vui lòng liên hệ với chúng tôi tại support{'@'}seabet.io Mở lại tài khoản và lấy lại tiền. </p>
 
                         <p><b>3.8</b>  Nếu số dư tài khoản của bạn dương và không hoạt động trong hơn 12 tháng, chúng tôi có quyền khấu trừ phí quản lý hàng tháng tương đương 5% từ số dư của bạn</p>
 
