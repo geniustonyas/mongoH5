@@ -55,7 +55,7 @@
                         <option value="">{{ t('countryCode') }}</option>
                         <option v-for="(item, index) of countryCode" :key="index" :value="`${item.country_code} (+${item.phone_code})`">{{ `${item.country_code} (+${item.phone_code})` }}</option>
                       </select>
-                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control" autocomplete="off" />
+                      <input v-model="editInfoForm.PhoneNumber" ref="phoneDom" type="tel" class="form-control"  autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">
