@@ -191,9 +191,6 @@ window.addEventListener('storage', async (event) => {
       localStorage.removeItem('twitterId')
       localStorage.removeItem('twitterSign')
       openWindow.close()
-    } else {
-      showToast(t('tips.invalidThirdUser'))
-      openWindow.close()
     }
   }
 })
