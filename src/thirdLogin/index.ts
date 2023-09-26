@@ -93,10 +93,6 @@ export const facebookLogin = () => {
   )
 }
 
-export const twitterInit = () => {
-  hello.init({ twitter: API_KEY })
-}
-
 // twitter登录， 已经改为后端对接登录模式
 export const twitterLogin = () => {
   const callBackUrl = encodeURIComponent(`${location.origin}/#/user/authCallback`)
