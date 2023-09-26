@@ -103,7 +103,7 @@ import { useRoute, useRouter } from 'vue-router'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { getAssetsFile } from '@/utils'
-import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
+import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { checkUserBindGoogleApi } from '@/api/user/index'
 import { isEmail, isPwd, isUname } from '@/utils/validate'
@@ -188,7 +188,6 @@ const handleLogin = () => {
 }
 
 facebookInit()
-twitterInit()
 </script>
 
 <style type="text/css">

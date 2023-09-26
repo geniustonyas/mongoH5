@@ -129,7 +129,7 @@ import { useRouter } from 'vue-router'
 
 import UserHeader from '@/components/layout/UserHeader.vue'
 
-import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterInit, twitterLogin } from '@/thirdLogin/index'
+import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile } from '@/utils'
 import { isPwd, isUname, isEmail } from '@/utils/validate'
@@ -368,7 +368,6 @@ onMounted(() => {
 })
 
 facebookInit()
-twitterInit()
 </script>
 <style lang="less">
 .st0 {
