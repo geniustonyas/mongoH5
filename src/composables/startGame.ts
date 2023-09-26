@@ -20,7 +20,7 @@ export function startGame(gameId: string | number, gameType = GameType.Sports, u
   // 体育必须登录
   if (gameType == GameType.Sports) {
     if (userStore.userInfo.id == '') {
-      showLoginBox()
+      router.push({ name: 'reg' })
       return false
     } else {
       getGameUrl(gameId.toString(), url)

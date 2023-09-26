@@ -317,8 +317,8 @@ export default {
     userNameExist: 'Tên người dùng đã tồn tại',
     emailExist: 'Email đã tồn tại',
     emailNotExist: 'Email không tồn tại',
-    isAudit: 'Vui lòng xác nhận bạn đã đủ 18 tuổi và chấp nhận Chính sách Riêng tư',
-    isAgree: 'Vui lòng đọc và đồng ý nhận thông tin về hoạt động thị trường liên quan',
+    isAudit: 'Vui lòng xác nhận bạn đã đủ tuổi và chấp nhận chính sách bảo mật.',
+    isAgree: 'Vui lòng đọc và chấp nhận thông tin về chiến dịch tiếp thị liên quan.',
     regSuccess: 'Đăng ký thành công',
     regFail: 'Đăng ký thất bại',
     loginSuccess: 'Đăng nhập thành công',
@@ -538,7 +538,7 @@ export default {
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',
-    whatVips: `<p>Câu lạc bộ VIP của ${site_name} là một cộng đồng dành riêng cho khách hàng sử dụng tiền điện tử, cho phép họ tham gia vào tất cả các hoạt động khuyến mãi có sẵn trên trang web bất kỳ lúc nào. Mỗi lần đặt cược, quay và chơi trò chơi đều tích luỹ điểm, từ đó từ từ leo lên trong câu lạc bộ và mở khóa những phần thưởng thú vị trên đường đi. Khi bạn mở khóa các cấp độ VIP, bạn cũng sẽ kiếm được điểm cược Seabet, giúp bạn có được những trải nghiệm và dịch vụ đáng giá hơn.</p>
+    whatVips: `<p>Câu lạc bộ VIP của seabet.io là một cộng đồng dành riêng cho khách hàng sử dụng tiền điện tử, cho phép họ tham gia vào tất cả các hoạt động khuyến mãi có sẵn trên trang web bất kỳ lúc nào. Mỗi lần đặt cược, quay và chơi trò chơi đều tích luỹ điểm, từ đó từ từ leo lên trong câu lạc bộ và mở khóa những phần thưởng thú vị trên đường đi. Khi bạn mở khóa các cấp độ VIP, bạn cũng sẽ kiếm được điểm cược Seabet, giúp bạn có được những trải nghiệm và dịch vụ đáng giá hơn.</p>
                 <p>Nói một cách đơn giản, điều đó có nghĩa: Bạn chơi trò chơi, và chúng tôi thưởng bạn.</p>`,
     howGetIntegrial: '2.Làm cách nào để kiếm điểm?',
     howGetIntegrials: `<p>Bạn có thể kiếm điểm câu lạc bộ bằng mỗi lần đặt cược, quay máy đánh bạc và chơi trò chơi bàn. Càng nhiều điểm bạn tích luỹ, càng cao cấp độ của bạn trở nên. Khi bạn tiến bộ qua các cấp bậc, bạn sẽ mở khóa nhiều phần thưởng thú vị. Các phần thưởng sẽ càng trở nên tốt hơn khi bạn tiếp tục mở khóa các cấp độ mới.</p>`,
@@ -613,7 +613,7 @@ export default {
           <p>Rút tiền</p>
           <p>Hầu hết các giao dịch rút tiền được xử lý ngay lập tức. Trong trường hợp rút tiền lớn, chúng tôi xử lý các khoản rút tiền này theo cách thủ công nên có thể có một chút chậm trễ.</p>`,
     q4: 'Bạn cung cấp các phương thức thanh toán nào?',
-    a4: `<p>Các tùy chọn tiền tệ có sẵn trên ${site_name} là:</p>
+    a4: `<p>Các tùy chọn tiền tệ có sẵn trên Seabet.io là:</p>
           <p>• Tether (USDT)</p>
           <p>• Bitcoin (BTC)</p>
           <p>• Ethereum (ETH)</p>
@@ -626,7 +626,7 @@ export default {
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
     q5: 'Bạn có áp dụng phí giao dịch không?',
-    a5: `<p>Mặc dù chúng tôi không thu thêm bất kỳ phí nào cho các giao dịch nạp tiền và rút tiền trên ${site_name}, nhưng bạn có thể cần phải trả các khoản phí giao dịch khi sử dụng thanh toán qua blockchain.</p>`
+    a5: `<p>Mặc dù chúng tôi không thu thêm bất kỳ phí nào cho các giao dịch nạp tiền và rút tiền trên Seabet.io, nhưng bạn có thể cần phải trả các khoản phí giao dịch khi sử dụng thanh toán qua blockchain.</p>`
   },
 
   errorCodes: {

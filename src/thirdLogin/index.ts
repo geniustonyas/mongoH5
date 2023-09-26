@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import { thirdData } from '@/api/user/types'
-import { checkThirdUserApi, googleValidateApi, facebookValidateApi, telegramValidateApi, twitterValidateApi, lineValidateApi } from '@/api/user/index'
+import { checkThirdUserApi, googleValidateApi, facebookValidateApi, telegramValidateApi, lineValidateApi } from '@/api/user/index'
 import { awaitWraper } from '@/utils/index'
 import { useUserStoreHook } from '@/store/modules/user'
 import { useAppStoreHook } from '@/store/modules/app'
@@ -9,8 +9,6 @@ import router from '@/router'
 
 import facebookWebLogin from './plugin/facebookWebLogin'
 import { googleTokenLogin } from 'vue3-google-login'
-//@ts-ignore
-import hello from 'hellojs'
 import { get } from 'lodash-es'
 import { showToast } from 'vant'
 
@@ -19,19 +17,19 @@ const { t } = i18n.global
 const userStore = useUserStoreHook()
 const appStore = useAppStoreHook()
 
+// telegram bot id
 const BOT_ID = '6360341967'
+
 // 谷歌app信息
-// const GOOGLE_CLIENT_ID = '761335815308-g5tbur6tcihf1j6iv7kboqnim1l4tj5a.apps.googleusercontent.com'
 const GOOGLE_CLIENT_ID = '213787019958-ojer4h9l5k216et4f5rp52ektlrjn5cv.apps.googleusercontent.com'
-// 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
+
 // Facebook ID
 const FACEBOOK_APPID = '663909171737293'
-// Twitter
-const API_KEY = 'j0FMRYjdLk1FYeo1s8LXxFE0r'
 
 // Line
 const LINE_CLIENT_ID = '2000085263'
 const LINE_CLIENT_SECRET = '6e1c3b6c5da651f1e9c6d052c351e358'
+
 // 第三方登录接口参数
 const loginData = <thirdData>{
   ThirdPartyType: '',
@@ -99,31 +97,11 @@ export const twitterInit = () => {
   hello.init({ twitter: API_KEY })
 }
 
+// twitter登录， 已经改为后端对接登录模式
 export const twitterLogin = () => {
-  const url = import.meta.env.VITE_THIRD_API + '/auth/twitter'
+  const callBackUrl = encodeURIComponent(`${location.origin}/#/user/authCallback`)
+  const url = import.meta.env.VITE_THIRD_API + `/auth/twitter?date=${Date.now()}&callBackUrl=${callBackUrl}`
   openWindow = window.open(`${url}`, '', 'width=500,height=700,top=0,left=0,titlebar=no, menubar=no, scrollbars=yes, resizable=yes, status=yes, toolbar=no, location=yes')
-  // hello('twitter').login()
-  // // Listen to signin requests
-  // hello.on('auth.login', function (resp: any) {
-  //   // Get Profile
-  //   hello(resp.network)
-  //     .api('/me')
-  //     .then(function (userInfo: any) {
-  //       if (userInfo.id) {
-  //         twitterValidateApi({ userId: userInfo.id })
-  //           .then((resp) => {
-  //             if (resp.data.ischecked) {
-  //               handleThirdLogin({ ThirdPartyType: '3', ThirdPartyId: userInfo.id, ThirdPartyName: 'Twitter' }, resp.data.sign)
-  //             } else {
-  //               showToast(t('tips.invalidThirdUser'))
-  //             }
-  //           })
-  //           .catch((error) => {
-  //             console.log(error)
-  //           })
-  //       }
-  //     })
-  // })
 }
 
 export const telegramLogin = () => {
@@ -152,7 +130,7 @@ export const lineLogin = () => {
   const auth_params = {
     response_type: 'code',
     client_id: LINE_CLIENT_ID,
-    redirect_uri: location.origin + '/user/authCallback', // 在LINE Developers Console上注册的回调 URL 的 URL 编码字符串。您可以添加任何查询参数。
+    redirect_uri: window.location.origin + '#/user/authCallback', // 在LINE Developers Console上注册的回调 URL 的 URL 编码字符串。您可以添加任何查询参数。
     state: 'STATE', // 用于防止跨站点请求伪造的唯一字母数字字符串. 您的网络应用应为每个登录会话生成一个随机值。这不能是 URL 编码的字符串。
     scope: 'profile openid email' // 向用户请求的权限,查询范围可以看官网(https://developers.line.biz/en/docs/line-login/integrate-line-login/#scopes)
   }
@@ -178,7 +156,7 @@ window.addEventListener('message', async (event) => {
         client_id: LINE_CLIENT_ID,
         client_secret: LINE_CLIENT_SECRET,
         // redirect_uri: window.location.origin + '/user/authCallback'
-        redirect_uri: window.location.origin + '/user/login'
+        redirect_uri: window.location.origin + '#/user/login'
       }
       const resp = await axios({
         url: 'https://api.line.me/oauth2/v2.1/token',
@@ -202,6 +180,24 @@ window.addEventListener('message', async (event) => {
       }
     } catch (error) {
       console.log(error)
+    }
+  }
+})
+
+// twitter 监听storage登录
+window.addEventListener('storage', async (event) => {
+  // 判断事件来源是否为目标存储区域（例如 localStorage）
+  if (event.storageArea === localStorage) {
+    const twitterId = localStorage.getItem('twitterId')
+    const sign = localStorage.getItem('twitterSign')
+    if (twitterId && sign) {
+      handleThirdLogin({ ThirdPartyType: '3', ThirdPartyId: twitterId, ThirdPartyName: 'Twitter' }, sign)
+      localStorage.removeItem('twitterId')
+      localStorage.removeItem('twitterSign')
+      openWindow.close()
+    } else {
+      showToast(t('tips.invalidThirdUser'))
+      openWindow.close()
     }
   }
 })

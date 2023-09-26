@@ -27,6 +27,11 @@ export type getAnnouncementListResp = ApiResponseData<{
   items: getAnnouncementListItem[]
 }>
 
+export type getBannerData = {
+  PositionCode?: string
+  platform: number
+}
+
 // 首页排行榜数据
 export type getBannerResp = ApiResponseData<getBannerRespItem[]>
 export type getRemindResp = ApiResponseData<{ vipCode: string }>

@@ -28,10 +28,11 @@ export function getAnnouncementListApi(data: App.getAnnouncementListData) {
 }
 
 // 获取首页banner
-export function getBannerApi() {
+export function getBannerApi(data: App.getBannerData) {
   return request<App.getBannerResp>({
     url: 'Member/GetWebAdvertisement',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
 

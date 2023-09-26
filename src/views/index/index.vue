@@ -160,6 +160,7 @@ import { getExchangeRate } from '@/composables/getExchangeRate'
 import { useI18n } from 'vue-i18n'
 import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
 import { startGame } from '@/composables/startGame'
+import { PlatForm } from '@/utils/constant'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -223,7 +224,7 @@ const rankBetDetails = (item: any) => {
 
 // 获取首页Banner
 const getBanner = () => {
-  getBannerApi()
+  getBannerApi({ platform: PlatForm.H5 })
     .then((resp) => {
       swipeImg.value = resp.data.filter((item) => item.positionCode == '101')
       bannerImg.value = resp.data.filter((item) => item.positionCode == '102')
@@ -239,7 +240,6 @@ const routeTo = (item: getBannerRespItem) => {
     return false
   }
   if (item.targetUrl && (item.targetUrl.indexOf('http') > -1 || item.targetUrl.indexOf('https') > -1)) {
-    console.log(item.targetUrl)
     window.open(item.targetUrl)
   } else {
     router.push({ path: item.targetUrl })
