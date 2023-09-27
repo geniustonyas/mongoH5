@@ -1,14 +1,17 @@
 <template>
-  <router-view v-slot="{ Component, route }">
-    <transition :name="getTransition(route.meta.transition)">
-      <keep-alive :include="['casino', 'slots']">
-        <component :is="Component" :key="route.path" />
-      </keep-alive>
-    </transition>
-  </router-view>
-  <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
-    <Loading />
-  </Overlay>
+  <template v-if="!appStore.maintainStatus">
+    <router-view v-slot="{ Component, route }">
+      <transition :name="getTransition(route.meta.transition)">
+        <keep-alive :include="['casino', 'slots']">
+          <component :is="Component" :key="route.path" />
+        </keep-alive>
+      </transition>
+    </router-view>
+    <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
+      <Loading />
+    </Overlay>
+  </template>
+  <Maintain v-else />
 </template>
 
 <script setup lang="ts">
@@ -18,6 +21,8 @@ import { useAppStore } from '@/store/modules/app'
 import { useI18n } from 'vue-i18n'
 import { useUserStore } from './store/modules/user'
 import { liveChatCall } from '@/composables/startGame'
+
+import Maintain from './components/Maintain.vue'
 
 const appStore = useAppStore()
 const userStore = useUserStore()

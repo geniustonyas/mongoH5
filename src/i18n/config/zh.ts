@@ -533,6 +533,9 @@ export default {
   submitInfoSuccess: '您的信息提交成功',
   back: '返回',
   countryCode: '国家代码',
+  remainTime: '剩余时间',
+  upgrading: '系统升级中',
+  upgradingTxt: '网站正在升级中，给您带来不便，敬请谅解！',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

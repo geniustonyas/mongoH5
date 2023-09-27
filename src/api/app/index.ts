@@ -10,6 +10,16 @@ export function getConfigApi() {
   })
 }
 
+/** 系统是否维护 */
+export function getMainStatusApi() {
+  return request<anyResp>({
+    baseURL: import.meta.env.VITE_THIRD_API,
+    url: 'isMaintain',
+    method: 'get',
+    params: { date: Date.now() }
+  })
+}
+
 // 获取汇率
 export function getExchangeRateApi() {
   return request<anyResp>({

@@ -270,6 +270,7 @@ router.beforeEach((to, from, next) => {
     appStore = useAppStore()
     if (appStore.chat == '') {
       appStore.getConfig()
+      appStore.refreshMainStatus()
     }
   }
   if (token) {

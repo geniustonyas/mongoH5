@@ -1,6 +1,6 @@
 import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
-import { getConfigApi } from '@/api/app/index'
+import { getConfigApi, getMainStatusApi } from '@/api/app/index'
 import store from '@/store'
 import { thirdData } from '@/api/user/types'
 import { cloneDeep } from 'lodash-es'
@@ -19,6 +19,9 @@ export const useAppStore = defineStore('app', () => {
     Sign: ''
   })
   const defaultThirdData = cloneDeep<thirdData>(thirdData)
+  const refreshMaintainStatusTimer = ref<null | number>(null)
+  const maintainStatus = ref(false)
+  const maintainTime = ref<number>(0)
 
   // 获取系统配置
   const getConfig = () => {
@@ -36,6 +39,40 @@ export const useAppStore = defineStore('app', () => {
     })
   }
 
+  // 获取系统维护状态
+  const getMainStatus = () => {
+    return new Promise((resolve, reject) => {
+      getMainStatusApi()
+        .then((resp) => {
+          maintainStatus.value = resp.data.isMaintain
+          maintainTime.value = resp.data.maintainTime
+          resolve(resp)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  // 刷新系统维护状态
+  const refreshMainStatus = () => {
+    return new Promise((resolve, reject) => {
+      getMainStatus()
+        .then((resp) => {
+          if (refreshMaintainStatusTimer.value) {
+            clearInterval(refreshMaintainStatusTimer.value)
+          }
+          refreshMaintainStatusTimer.value = window.setInterval(() => {
+            getMainStatus()
+          }, 10 * 1000)
+          resolve(resp)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
   const resetThirdData = () => {
     Object.assign(thirdData, defaultThirdData)
   }
@@ -48,8 +85,11 @@ export const useAppStore = defineStore('app', () => {
     cdnurl,
     googleEmail,
     thirdData,
+    maintainStatus,
+    maintainTime,
     getConfig,
-    resetThirdData
+    resetThirdData,
+    refreshMainStatus
   }
 })
 export function useAppStoreHook() {
