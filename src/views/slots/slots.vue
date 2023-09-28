@@ -54,14 +54,23 @@
                 <!-- <span>{{ item.pn }}</span> -->
               </div>
               <div class="i-txt">
-                <strong>{{ item.name }}</strong>
-                <span>{{ item.pn }}</span>
+                <div class="it-l">
+                  <strong>{{ item.name }}</strong>
+                  <span>{{ item.pn }}</span>
+                </div>
+                <div class="it-r">
+                  <i class="iconfont icon-shoucang"></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div v-if="pageCount > 1" class="g-btn">
           <a :class="query.page >= pageCount ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="loadMore()">{{ t('loadMore') }}</a>
+        </div>
+        <div class="no-data">
+          <span><i class="iconfont icon-wushoucang"></i>暂无收藏</span>
+          <!--<span><i class="iconfont icon-wlljl"></i>暂无浏览记录</span>-->
         </div>
       </nav>
       <IndexFooter :currency-code="currencyCode" :exchange-rate="exchangeRate" />

@@ -285,9 +285,16 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                         &.red { .bgc(var(--color-red),var(--color-white)); }
                     }
                 }
-                .i-txt {
-                    strong { display: block; font-size: 1.3rem; font-weight: 600; color: var(--color-white); .ellipsis(); margin-top: .5rem; }
-                    span { font-size: 1.1rem; }
+                .i-txt { .flex(); .flex-pack-justify(); .flex-align();
+                    .it-l {
+                        strong { display: block; font-size: 1.3rem; font-weight: 600; color: var(--color-white); .ellipsis(); margin-top: .5rem; }
+                        span { font-size: 1.1rem; }
+                    }
+                    .it-r { .flex-x(0 0 3rem); width: 3rem; text-align: center; cursor: pointer;
+                        i { font-size: 2.4rem;
+                            &.icon-shoucang_fill { color: var(--color-primary); }
+                        }
+                    }
                 }
             }
         }
@@ -362,6 +369,12 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 }
             }
         }
+    }
+    .no-data { height: 30rem; .flex(); .flex-align(); .flex-pack();
+
+        span { text-align: center;
+            i { font-size: 10rem; display: block; margin-bottom: 1.6rem; color: rgba(255,255,255,.2); }
+            font-size: 1.6rem; font-weight: 500; color: var(--color-white); }
     }
 }
 .sports-box {
@@ -1479,16 +1492,11 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 .upgrade-body { .flex(); .flex-align(); .flex-pack();
     .upgrade-box { width: 80rem; padding: 3rem; border: 1px solid rgba(255,255,255,.2); .radius(.5rem); .flex(); .flex-v();
         .ub-t {.flex(); .flex-pack-justify(); .flex-align(); .flex-wrap(wrap);
-            img { height: 4.6rem;  }
-            .ubt-r {
-                width: 100%;
-                margin-top:5rem;
-                text-align: center;
+            img { height: 4.6rem; }
+            .ubt-r { width: 100%; margin-top: 5rem; text-align: center;
                 span { margin-right: 10px; }
                 .flex(); .flex-align();
-                .el-statistic__number {
-                    font-size: 3rem;
-                }
+                .el-statistic__number { font-size: 3rem; }
                 b { font-size: 3rem; color: #fff; vertical-align: middle; }
                 em { font-style: normal; display: inline-block; font-weight: 700; padding: 0 .5rem; vertical-align: middle; font-size: 2rem; position: relative; bottom: .2rem; color: #fff }
             }
