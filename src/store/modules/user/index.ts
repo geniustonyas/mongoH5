@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 
 import { loginApi, thirdLoginApi, getUserProfileApi, loginOutApi, refreshTokenApi, setDefultLangApi } from '@/api/user/index'
 import { getNewMessageCountApi } from '@/api/home/index'
+import { getFavCountApi } from '@/api/game/index'
 
 import router from '@/router'
 import store from '@/store'
@@ -46,6 +47,8 @@ export const useUserStore = defineStore('userInfo', () => {
   const newMessageCountTimer = ref<null | number>(null)
   const newMessageCount = ref<number>(0)
   const lineCode = ref('')
+  const favoritesCount = ref<number>(0)
+  const recentlyPlayCount = ref<number>(0)
 
   // 获取用户信息
   const getUserInfo = (data: getUserProfileData) => {
@@ -74,11 +77,27 @@ export const useUserStore = defineStore('userInfo', () => {
     })
   }
 
+  // 获取最近喜欢游戏
+  const getFavCount = () => {
+    return new Promise((resolve, reject) => {
+      getFavCountApi()
+        .then((resp) => {
+          favoritesCount.value = parseInt(resp.data?.favoritesCount)
+          recentlyPlayCount.value = parseInt(resp.data?.recentlyPlayCount)
+          resolve(resp)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
   // 刷新用户信息.
   const refreshUserInfo = () => {
     return new Promise((resolve, reject) => {
       getUserInfo({ noLoading: true })
         .then((resp) => {
+          getFavCount()
           if (refreshUserInfoTimer.value) {
             clearInterval(refreshUserInfoTimer.value)
           }
@@ -204,10 +223,13 @@ export const useUserStore = defineStore('userInfo', () => {
     refreshToken,
     getNewMessageCount,
     refreshNewMessageCount,
+    favoritesCount,
+    recentlyPlayCount,
     login,
     thirdLogin,
     logout,
-    clearLogin
+    clearLogin,
+    getFavCount
   }
 })
 

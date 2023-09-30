@@ -58,8 +58,8 @@
                   <strong>{{ item.name }}</strong>
                   <span>{{ item.pn }}</span>
                 </div>
-                <div class="it-r">
-                  <i class="iconfont icon-shoucang"></i>
+                <div @click.stop="setFav(item)" class="it-r">
+                  <i :class="item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'" />
                 </div>
               </div>
             </div>
@@ -68,9 +68,8 @@
         <div v-if="pageCount > 1" class="g-btn">
           <a :class="query.page >= pageCount ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="loadMore()">{{ t('loadMore') }}</a>
         </div>
-        <div class="no-data">
-          <span><i class="iconfont icon-wushoucang"></i>暂无收藏</span>
-          <!--<span><i class="iconfont icon-wlljl"></i>暂无浏览记录</span>-->
+        <div v-if="nodata" class="no-data">
+          <span><i class="iconfont icon-wushoucang" />{{ t('nodata') }}</span>
         </div>
       </nav>
       <IndexFooter :currency-code="currencyCode" :exchange-rate="exchangeRate" />
@@ -85,7 +84,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch, onActivated, onDeactivated } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import IndexHeader from '@/components/layout/IndexHeader.vue'
 import IndexFooter from '@/components/layout/IndexFooter.vue'
@@ -93,9 +92,10 @@ import IndexTab from '@/components/layout/IndexTab.vue'
 import Footer from '@/components/layout/Footer.vue'
 import Sidebar from '@/components/layout/SideBar.vue'
 
-import { getGameListApi } from '@/api/game/index'
+import { getGameListApi, setFavApi, cancalFavApi } from '@/api/game/index'
 import { getGameListRespItem, getGameListGsItemResp, getGameListData } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
 import { GameType } from '@/utils/constant'
 import { getExchangeRate } from '@/composables/getExchangeRate'
 
@@ -104,6 +104,8 @@ import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { startGame } from '@/composables/startGame'
 
 const route = useRoute()
+const router = useRouter()
+const userStore = useUserStore()
 const appStore = useAppStore()
 const { t } = useI18n()
 
@@ -140,6 +142,8 @@ let pslist = ref<getGameListRespItem[]>([])
 let cslist = ref<getGameListRespItem[]>([])
 // 游戏列表
 let dataList = ref<getGameListGsItemResp[]>([])
+// 无数据
+const nodata = ref(false)
 
 // 选择运营商
 const selGameProvider = (id: number) => {
@@ -169,6 +173,7 @@ const getGameList = () => {
       pslist.value = resp.data!.ps
       cslist.value = resp.data!.cs
       dataList.value = [...dataList.value, ...resp.data!.gs.items]
+      nodata.value = dataList.value.length == 0
       pageCount.value = parseInt(resp.data!.gs.pages)
     })
     .catch((error) => {
@@ -183,6 +188,22 @@ const loadMore = () => {
     getGameList()
   } else {
     showToast(t('noMore'))
+  }
+}
+
+// 设置收藏或取消收藏
+const setFav = async (gameItem: getGameListGsItemResp) => {
+  if (userStore.userInfo.id == '') {
+    router.push({ name: 'login' })
+  } else {
+    // 是否收藏
+    if (gameItem.fg) {
+      await cancalFavApi({ gameId: gameItem.id })
+    } else {
+      await setFavApi({ gameId: gameItem.id })
+    }
+    gameItem.fg = !gameItem.fg
+    userStore.getFavCount()
   }
 }
 

@@ -63,6 +63,7 @@ export interface getGameListGsResp {
 // 获取游戏列表-返回数据cs数据
 export interface getGameListGsItemResp {
   id: string
+  fg: boolean
   cid: string
   name: string
   type: number
@@ -134,8 +135,36 @@ export interface getGameDetailsRespItem {
   game: getGameDetailsRespGameItem[]
 }
 
+export interface getFavRecentlyListData {
+  page: number
+  pcount: number
+}
+
+export interface getFavData {
+  gameId: string
+}
+
+// 收藏列表返回数据项
+export interface getFavGameListRespItem {
+  id: string
+  fg: boolean
+  cid: string
+  name: string
+  type: number
+  pid: string
+  pn: string
+  min: string
+  max: string
+  img: string
+  rtp: string
+  f: boolean
+  time: string
+}
+
 export type recommendGameResp = ApiResponseData<recommendGameRespItem[]>
 export type getGameListResp = ApiResponseData<{ cs: getGameListRespItem[]; gs: getGameListGsResp; ps: getGameListRespItem[] }>
 export type getRankListResp = ApiResponseData<{ sport: getRankListRespItem[]; casino: getRankListRespItem[]; slots: getRankListRespItem[] }>
 export type getSearchGameResp = ApiResponseData<{ count: string; items: getSearchGameRespItem[] }>
 export type getGameDetailsResp = ApiResponseData<getGameDetailsRespItem>
+export type getFavCountData = ApiResponseData<{ favoritesCount: string; recentlyPlayCount: string }>
+export type getFavGameListResp = ApiResponseData<{ count: string; items: getFavGameListRespItem[]; page: string; pages: string; size: string }>

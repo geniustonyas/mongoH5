@@ -57,3 +57,53 @@ export function getRankListApi() {
     method: 'post'
   })
 }
+
+/** 获取收藏与最近游戏数量 */
+export function getFavCountApi() {
+  return request<Game.getFavCountData>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'game/count',
+    method: 'post',
+    data: { noLoading: true }
+  })
+}
+
+/** 收藏游戏列表 */
+export function getFavGameListApi(data: Game.getFavRecentlyListData) {
+  return request<Game.getFavGameListResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'favorites/list',
+    method: 'post',
+    data
+  })
+}
+
+/** 近期游戏列表 */
+export function getRecentlyGameApi(data: Game.getFavRecentlyListData) {
+  return request<Game.getFavGameListResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'game/recently',
+    method: 'post',
+    data
+  })
+}
+
+/** 收藏 */
+export function setFavApi(data: Game.getFavData) {
+  return request<anyResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'favorites/set',
+    method: 'post',
+    data
+  })
+}
+
+/** 取消收藏 */
+export function cancalFavApi(data: Game.getFavData) {
+  return request<anyResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'favorites/cancel',
+    method: 'post',
+    data
+  })
+}
