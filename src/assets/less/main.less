@@ -1531,6 +1531,34 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     }
 }
 
+.download-box {
+    .db-banner {
+        img { width: 100%; }
+    }
+    .db-info { padding: 1.6rem;
+        h2 { text-align: center; color: var(--color-primary); margin: 1rem 0; }
+        p { color: var(--color-white); }
+    }
+    .db-tabs { width: 86%; margin-left: 7%; padding: .8rem;
+        span { text-align: center; width: 50%; .h-lh(4rem); color: var(--color-white); font-size: 1.5rem;
+            i { font-size: 2.2rem; vertical-align: middle; position: relative; bottom: .2rem; margin-right: .3rem; }
+            &:hover, &:active { color: var(--color-primary); }
+            &.active { .bgc(var(--color-primary),var(--color-primary-txt)); }
+        }
+    }
+
+    .db-conts {
+        .dc-panel {
+            ul {
+                li { padding: 1.6rem; text-align: center; color: var(--color-white);
+                    img { width: 100%; }
+                    span { display: inline-block; font-weight: 600; color: var(--color-primary); font-size: 1.6rem; padding-top: 1rem; }
+                }
+            }
+        }
+    }
+}
+
 /* 调整vant插件样式 */
 .van-config-provider {
     .van-calendar { height: 90%; }

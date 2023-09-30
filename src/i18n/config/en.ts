@@ -533,6 +533,22 @@ export default {
   submitInfoSuccess: 'Your information has been successfully submitted',
   back: 'Back',
   countryCode: 'Country Code',
+  remainTime: 'Remaining Time',
+  upgrading: 'System Upgrade in Progress',
+  upgradingTxt: 'The system is currently undergoing an upgrade. We apologize for any inconvenience and appreciate your understanding!',
+  favariateGame: '',
+  recentlyGame: '近期玩过',
+  downloadTitle: 'Seabet.io Progressive Web App!',
+  downloadDesc:
+    'Welcome to our brand new seabet.io app! Below we have step-by-step instructions for installing the Android app and the iOS Progressive Web App (PWA). Enjoy the fun, fast and fair action anytime, anywhere!',
+  step: 'Step',
+  clickSave: 'In the browser, click the save icon',
+  addDesk: 'Tap “Add to Home Screen”',
+  clickAdd: 'You’ll have the option to rename it. Click “Add”',
+  finishedDown: 'The shortcut is now on your home screen.',
+  addToDesk: 'In the browser, “Add page to”',
+  clickDesk: 'Tap “Home Screen”',
+  clickAddAndroid: 'Click “Add”',
 
   problem: {
     whatVip: 'What is the VIP Club?',

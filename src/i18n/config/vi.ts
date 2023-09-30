@@ -535,6 +535,22 @@ export default {
   submitInfoSuccess: 'Thông tin của bạn đã được gửi thành công',
   back: 'trở lại',
   countryCode: 'Mã quốc gia',
+  remainTime: 'Thời gian còn lại',
+  upgrading: 'Hệ thống đang nâng cấp',
+  upgradingTxt: 'Hệ thống đang được nâng cấp. Chúng tôi xin lỗi vì sự bất tiện và trân trọng sự hiểu biết của bạn!',
+  favariateGame: '最爱游戏',
+  recentlyGame: '近期玩过',
+  downloadTitle: 'Ứng dụng Web Tiến bộ Seabet.io!',
+  downloadDesc:
+    'Chào mừng bạn đến với ứng dụng Seabet.io hoàn toàn mới của chúng tôi! Dưới đây, chúng tôi có hướng dẫn từng bước để cài đặt ứng dụng Android và ứng dụng Web Tiến bộ iOS (PWA). Hãy thưởng thức trò chơi vui vẻ, nhanh chóng và công bằng bất cứ lúc nào, bất cứ đâu!',
+  step: 'Bước',
+  clickSave: 'Trong trình duyệt, nhấp vào biểu tượng lưu trữ.',
+  addDesk: 'Nhấn "Thêm vào Màn hình Chính".',
+  clickAdd: 'Bạn sẽ có tùy chọn đổi tên nó. Nhấp "Thêm".',
+  finishedDown: 'Biểu tượng ngay bây giờ đã xuất hiện trên màn hình chính của bạn',
+  addToDesk: 'Trong trình duyệt, "Thêm trang vào".',
+  clickDesk: 'Nhấn "Màn hình Chính".',
+  clickAddAndroid: 'Nhấp "Thêm".',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

@@ -391,6 +391,8 @@ const getVipInfo = () => {
       const tmpNextItem = vipList.value.find((item: vipListItemResp) => parseInt(item.code) == parseInt(currentData.vipCode) + 1)
       if (tmpNextItem) {
         Object.assign(nextItem, tmpNextItem)
+      } else {
+        nextItem.requiredTotalBetAmount = '80000000'
       }
       // 下一个子等级, 如果当前大等级中有下一个子等级，则获取， 如果没有，则从下一个大等级中获取第一个子等级， 如果都没有，则是当前子等级
       const tmpNextSubItem = currentItem.items.find((item: vipListItemItemsResp) => parseInt(item.code) == parseInt(currentData.vipSubItemCode) + 1)

@@ -235,6 +235,12 @@ const routes = [
     ]
   },
   {
+    path: '/download',
+    name: 'download',
+    component: () => import('@/views/download/download.vue'),
+    meta: { needLogin: false, keepAlive: true }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: '404',
     redirect: { name: 'index' },

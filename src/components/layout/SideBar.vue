@@ -69,7 +69,7 @@
         <div class="menu-item">
           <ul>
             <li>
-              <a @click="showToast(t('comingSoon'))" class="download">
+              <a @click="router.push({ name: 'download' })" class="download">
                 <img :src="getAssetsFile('svg/App.svg')" />
                 <div class="down-app-box">
                   <span>{{ t('downloadApp') }}</span>

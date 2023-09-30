@@ -535,6 +535,22 @@ export default {
   submitInfoSuccess: 'Vos informations ont été soumises avec succès',
   back: 'Retour',
   countryCode: 'Code Pays',
+  remainTime: 'Temps restant',
+  upgrading: 'Mise à jour du système en cours',
+  upgradingTxt: 'Le système est en cours de mise à jour. Nous nous excusons pour tout inconvénient et vous remercions de votre compréhension !',
+  favariateGame: '最爱游戏',
+  recentlyGame: '近期玩过',
+  downloadTitle: 'Application Web Progressive Seabet.io !',
+  downloadDesc:
+    "Bienvenue sur notre toute nouvelle application Seabet.io ! Ci-dessous, nous avons des instructions étape par étape pour installer l'application Android et l'application Web Progressive iOS (PWA). Profitez de l'action amusante, rapide et équitable à tout moment et n'importe où !",
+  step: 'Étape',
+  clickSave: "Dans le navigateur, cliquez sur l'icône d'enregistrement",
+  addDesk: `Appuyez sur "Ajouter à l'écran d'accueil"`,
+  clickAdd: `Vous aurez la possibilité de le renommer. Cliquez sur "Ajouter"`,
+  finishedDown: `Le raccourci est maintenant sur votre écran d'accueil.`,
+  addToDesk: `Dans le navigateur, "Ajouter la page à"`,
+  clickDesk: `Appuyez sur "Écran d'accueil"`,
+  clickAddAndroid: `Cliquez sur "Ajouter"`,
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",

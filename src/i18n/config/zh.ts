@@ -536,6 +536,18 @@ export default {
   remainTime: '剩余时间',
   upgrading: '系统升级中',
   upgradingTxt: '网站正在升级中，给您带来不便，敬请谅解！',
+  favariateGame: '最爱游戏',
+  recentlyGame: '近期玩过',
+  downloadTitle: 'Seabet.io 渐进式网页应用程序！',
+  downloadDesc: '欢迎使用我们全新的seabet.io应用程序！以下是安装安卓应用程序和iOS渐进式网页应用程序（PWA）的逐步说明。随时随地享受有趣、快速和公平的娱乐！',
+  step: '步骤',
+  clickSave: '在浏览器中，点击保存图标',
+  addDesk: '点击“添加到主屏幕”',
+  clickAdd: '您可以选择重命名它。点击“添加”',
+  finishedDown: '快捷方式现在位于您的主屏幕上',
+  addToDesk: '在浏览器中，“添加到页面”',
+  clickDesk: '点击“主屏幕”',
+  clickAddAndroid: '点击“添加”',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',
