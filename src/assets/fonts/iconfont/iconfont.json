@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1420800",
+      "name": "IOS",
+      "font_class": "ios",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "12586801",
+      "name": "安卓",
+      "font_class": "android",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
       "icon_id": "15841363",
       "name": "无记录",
       "font_class": "wlljl",
