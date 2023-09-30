@@ -54,6 +54,32 @@
           </Vue3SlideUpDown>
         </div>
 
+        <div v-if="userStore.userInfo.id" class="menu-item collect-box">
+          <div class="cb-grade">
+            <p><img :src="getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`)" />{{ t('homePage.nextReward') }}</p>
+            <div class="schedule-bar">
+              <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
+            </div>
+            <span
+              ><b>{{ rewardProgressWidth }}</b
+              ><em>|</em>100</span
+            >
+            <em class="em-bg" :style="{ backgroundImage: 'url(' + getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`) + ')' }" />
+          </div>
+          <div>
+            <a @click="router.push({ name: 'favorites' })">
+              <span><img :src="getAssetsFile('svg/sidebar_favourites.svg')" />{{ t('favariateGame') }}</span>
+              <label>{{ userStore.favoritesCount }}</label>
+            </a>
+          </div>
+          <div>
+            <a @click="router.push({ name: 'recently' })">
+              <span><img :src="getAssetsFile('svg/sidebar_recent.svg')" />{{ t('recentlyGame') }}</span>
+              <label>{{ userStore.recentlyPlayCount }}</label>
+            </a>
+          </div>
+        </div>
+
         <!-- 俱乐部 -->
         <div class="menu-item show">
           <ul>
@@ -115,7 +141,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
@@ -127,12 +153,15 @@ import { languages } from '@/i18n/index'
 import { getAssetsFile, moneyFormat } from '@/utils'
 import { providerListData, providerListItemTypes } from '@/utils/config'
 import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
 import { startGame, liveChatCall } from '@/composables/startGame'
 //第三方插件
+import BigNumber from 'bignumber.js'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast } from 'vant'
 import { GameType } from '@/utils/constant'
 
+const userStore = useUserStore()
 const appStore = useAppStore()
 const router = useRouter()
 const { t, locale } = useI18n()
@@ -172,4 +201,13 @@ const showLanguage = () => {
     langDom.value.showLangPick = true
   }
 }
+
+// 下一奖励进度
+const rewardProgressWidth = computed(() => {
+  let width = '0'
+  if (userStore.userInfo.nextVipRequiredTotalBetAmount != '' && userStore.userInfo.totalBetAmount != '') {
+    width = new BigNumber(parseInt(userStore.userInfo.totalBetAmount)).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
+  }
+  return width
+})
 </script>

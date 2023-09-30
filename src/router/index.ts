@@ -241,6 +241,18 @@ const routes = [
     meta: { needLogin: false, keepAlive: true }
   },
   {
+    path: '/favorites',
+    name: 'favorites',
+    component: () => import('@/views/game/favorites.vue'),
+    meta: { needLogin: true, savePosition: true }
+  },
+  {
+    path: '/recently',
+    name: 'recently',
+    component: () => import('@/views/game/rencently.vue'),
+    meta: { needLogin: true, savePosition: true }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: '404',
     redirect: { name: 'index' },

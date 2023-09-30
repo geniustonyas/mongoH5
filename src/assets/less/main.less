@@ -234,6 +234,30 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             }
         }
     }
+
+    .collect-box { padding: 1rem 2rem 1rem .8rem; 
+        a { .flex(); .flex-pack-justify(); padding: 1rem; font-size: 1.4rem; .bg(var(--color-tabs)); .radius(.8rem);
+            &:hover { .bgc(rgba(255,255,255,.1),var(--color-primary)); }
+            span {
+                img { width: 2.4rem; height: 2.4rem; vertical-align: middle; position: relative; bottom: .2rem; margin-right: .8rem; }
+            }
+            label { color: var(--color-white) }
+        }
+        .cb-grade { position: relative; overflow: hidden; .bg(var(--color-tabs)); .radius(.8rem); padding: 1rem;
+            &:before { content: ""; position: absolute; bottom: 0; right: -2rem; width: 50%; height: 90%; background-repeat: no-repeat; background-size: cover; background-position: center; opacity: 0.05; .grayscale(); }
+            p { font-size: 1.4rem; .flex(); .flex-align();
+                img { width: 2.4rem; height: auto; vertical-align: middle; position: relative; bottom: .1rem; margin-right: .8rem; }
+            }
+            .schedule-bar { height: .5rem; margin-top: .8rem; margin-bottom: .3rem;
+                .sb-line { height: .5rem; }
+            }
+            span { color: var(--color-white); font-size: 1.2rem;
+                em { display: inline-block; padding: 0 1rem; }
+                b { color: var(--color-primary); }
+            }
+            .em-bg { position: absolute; bottom: 0; right: -2rem; width: 50%; height: 90%; background-repeat: no-repeat; background-size: cover; background-position: center; opacity: 0.05; .grayscale(); }
+        }
+    }
 }
 .sm-main { .flex-x(); .scroll-touch(); .size(100%,100%); }
 /*游戏列表*/

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <CommonHeader :title="downloadApp" />
+    <CommonHeader :title="t('downloadApp')" />
     <main class="main">
       <div class="download-box">
         <div class="db-banner">

@@ -1,5 +1,5 @@
 <template>
-  <div :class="appStore.showSideBar ? 'page open-sidebar' : 'page'">
+  <div class="page">
     <CommonHeader :title="t('promotions')" />
     <main class="main">
       <!-- <nav class="m-logo">
