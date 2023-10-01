@@ -235,7 +235,8 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         }
     }
 
-    .collect-box { padding: 1rem 2rem 1rem .8rem; 
+    .collect-box { padding: 1rem 0;
+        div:not(:last-child) { margin-bottom: 1rem; }
         a { .flex(); .flex-pack-justify(); padding: 1rem; font-size: 1.4rem; .bg(var(--color-tabs)); .radius(.8rem);
             &:hover { .bgc(rgba(255,255,255,.1),var(--color-primary)); }
             span {
@@ -255,7 +256,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 em { display: inline-block; padding: 0 1rem; }
                 b { color: var(--color-primary); }
             }
-            .em-bg { position: absolute; bottom: 0; right: -2rem; width: 50%; height: 90%; background-repeat: no-repeat; background-size: cover; background-position: center; opacity: 0.05; .grayscale(); }
+            .em-bg { position: absolute; bottom: 0; right: -2rem; width: 30%; height: 100%; background-repeat: no-repeat; background-size: cover; background-position: center; opacity: 0.05; .grayscale(); }
         }
     }
 }
@@ -444,7 +445,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         }
     }
     .l-line { margin: 3rem 0; height: .1rem; width: 100%; .bg(var(--color-menu)); position: relative; .flex(); .flex-pack();
-        span { display: inline-block; width: 4rem; .h-lh(3rem); .radius(3rem); .bg(var(--color-background)); z-index: 1; margin-top: -1.4rem; text-align: center; }
+        span { display: inline-block; .h-lh(3rem); .radius(3rem); .bg(var(--color-background)); z-index: 1; margin-top: -1.4rem; text-align: center; }
     }
 }
 /*会员中心*/
@@ -1428,10 +1429,10 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         li { margin-bottom: 1.6rem; }
         .rewards-card { .bg(var(--color-menu)); .flex(); .flex-v(); .radius(.5rem); overflow: hidden;
             .rc-t { padding: 1rem; .flex();
-                .rct-l {.flex-x(1);
-                    img { width: 100%; }
+                .rct-l {.flex-x(2);
+                    img { width: 100%; height: 8rem; }
                 }
-                .rct-r {.flex-x(2); padding-left: 1rem;
+                .rct-r {.flex-x(1); padding-left: 1rem;
                     h3 { font-size: 1.6rem; color: var(--color-white); margin-bottom: 1rem; }
                     p { font-size: 1.3rem; }
                 }
@@ -1653,6 +1654,11 @@ body[lang='fr'] {
 body[lang='tr'] {
     .m-win .mw-menu { .scroll-touch(auto,hidden);
         span { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
+    }
+}
+body[lang='vi'], body[lang='fr'], body[lang='ja'], body[lang='es'], body[lang='pt'], body[lang='de'] {
+    .inner-tabs { .flex-pack-justify();
+        span { font-size: 1.2rem; .flex-x(auto); }
     }
 }
 body[lang='en'], body[lang='pt'], body[lang='tr'], body[lang='th'] {
