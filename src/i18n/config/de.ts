@@ -508,7 +508,7 @@ export default {
   outTime: 'Hotel Check-out-Zeit',
   sabaSportDesc: {
     0: 'Alle Sportveranstaltungen',
-    1: 'Unterstützt alle digitalen Geräte iOS, Android, MacOS und Windows',
+    1: 'Unterstützt alle digitalen Geräte MacOS und Windows',
     2: 'Sicherheitsverschlüsselung',
     3: 'Echtzeit-Quoten',
     4: 'Unabhängiges Backend'
@@ -1125,12 +1125,12 @@ export default {
                             </ul>
                           </div>`,
     amlContent: `<div>
-                    <h3>Erklärung zur Bekämpfung von Geldwäsche und Terrorismusfinanzierung</h3>
+                    <h2>Erklärung zur Bekämpfung von Geldwäsche und Terrorismusfinanzierung</h2>
 
-                    <h4>1. Geschäftsmodell des Unternehmens</h4>
+                    <h3>1. Geschäftsmodell des Unternehmens</h3>
                     <p>Seabet unterstützt seine Nutzer derzeit in mehr als 169 Ländern auf der ganzen Welt. Im Rahmen seiner globalen Aktivitäten hat Seabet Compliance-Maßnahmen eingeführt, die seinen Dienstleistungen und Produkten entsprechen, um illegale Aktivitäten auf seiner Plattform zu verhindern und aufzudecken. Dazu gehören das Onboarding und das Compliance-Screening für ihre Kunden sowie transaktionsbasierte Kontrollen.</p>
 
-                    <h4>2. Erklärung zur Unternehmenspolitik</h4>
+                    <h3>2. Erklärung zur Unternehmenspolitik</h3>
                     <p>Seabet verbietet und verweigert ausdrücklich die Verwendung von Seabet-Produkten für jede Form von illegalen Aktivitäten, einschließlich Geldwäsche, Terrorismusfinanzierung oder Verstößen gegen Handelssanktionen, in Übereinstimmung mit den nationalen Gesetzen, Vorschriften und Richtlinien zur Bekämpfung der Geldwäsche (AML).</p>
                     <p>Seabet überwacht weiterhin die Parameter, die durch die Richtlinien der Financial Action Task Force (FATF) und bestimmter Glücksspielhandelsorganisationen sowie der Curacao Gambling Control Commission festgelegt wurden, und wird die Maßnahmen ergreifen, die es für angemessen hält, um Gesetzesänderungen widerzuspiegeln.</p>
                     <p>Seabet beabsichtigt, globale Best Practices zu befolgen und zu verhindern, dass Seabet-Produkte zur Erleichterung solcher Aktivitäten verwendet werden. Zu diesen Best Practices gehören:</p>
@@ -1141,7 +1141,7 @@ export default {
                         <li>Unabhängige Überprüfung, Überwachung und Aufrechterhaltung von Richtlinien, Verfahren und Kontrollen.</li>
                     </ul>
 
-                    <h4>3. Sonstiges Definitionen</h4>
+                    <h3>3. Sonstiges Definitionen</h3>
                     <p>Die folgenden definierenden Begriffe sind in der Branche weit verbreitet:</p>
                     <p>Geldwäsche: Der Prozess, illegal erlangte Erlöse legitim erscheinen zu lassen. Dieser Prozess ist in der Regel in drei Schritte unterteilt: Speicherung, Tiering und Konsolidierung.</p>
                     <p>Einzahlung: Der Prozess der Einzahlung illegaler Erlöse bei einem traditionellen Finanzinstitut durch Einlagen oder andere Mittel.</p>
@@ -1156,13 +1156,13 @@ export default {
                         <li>Verhütung und Bekämpfung der Finanzierung von Terroristen oder terroristischen Handlungen.</li>
                     </ul>
 
-                    <h4>4. Sonstiges Governance und Aufsicht</h4>
+                    <h3>4. Sonstiges Governance und Aufsicht</h3>
                     <p>Seabet hat einen Chief Compliance Officer (CCO) ernannt, der die Umsetzung der Richtlinien und Programme von AML koordiniert. Zu den Aufgaben des Chief Compliance Officer gehören auch die Entwicklung von AML-Plänen, die Zusammenarbeit mit anderen Stakeholdern zur Überarbeitung von AML-Richtlinien, die Bewertung neuer regulatorischer Anforderungen und die Untersuchung möglicher verdächtiger oder ungewöhnlicher Aktivitäten. Seabet bietet auch regelmäßig AML-Schulungen für alle Mitarbeiter an.</p>
 
-                    <h4>5. Aus- und Weiterbildung</h4>
+                    <h3>5. Aus- und Weiterbildung</h3>
                     <p>Seabet kann mit Unterstützung seines Rechtsberaters und unter der Aufsicht seines CCO seinen Mitarbeitern bei Bedarf regelmäßige Schulungen zur Einhaltung von AML-, CFT- und Handelssanktionen anbieten.</p>
 
-                    <h4>6. Sonstiges Reports</h4>
+                    <h3>6. Sonstiges Reports</h3>
                     <p>Seabet ist verpflichtet, ungewöhnliche oder verdächtige Transaktionen in Übereinstimmung mit den nationalen Verordnungen zu melden. Kunden, die auf der Sanktionsliste im Zusammenhang mit</p>
                 </div>`,
     selfExclusionContent: `<div>

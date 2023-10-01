@@ -496,7 +496,7 @@ export default {
   backPromo: 'Voltar para as promoções',
   noSupportFullScreen: 'Seu navegador não suporta tela cheia',
   pointsExchange: 'Trocar',
-  view: 'ver',
+  view: 'Ver',
   oprate: 'visualizar',
   directlyLogin: 'Ou faça login diretamente',
   fastDeposit: 'Depositar Agora',
@@ -510,7 +510,7 @@ export default {
   outTime: 'Horário de Check-out no Hotel',
   sabaSportDesc: {
     0: 'Todos os Eventos Esportivos',
-    1: 'Compatível com todos os dispositivos digitais: iOS, Android, MacOS e Windows',
+    1: 'Compatível com todos os dispositivos digitais: MacOS e Windows',
     2: 'Segurança de Criptografia',
     3: 'Odds em Tempo Real',
     4: 'Backend Independente'
@@ -1118,10 +1118,10 @@ export default {
                             </ul>
                         </div>`,
     amlContent: `<div>
-                  <h3>Declaração de Financiamento contra Lavagem de Dinheiro e Combate ao Terrorismo</h3>
-                  <h4>1. Modelo de negócios da empresa</h4>
+                  <h2>Declaração de Financiamento contra Lavagem de Dinheiro e Combate ao Terrorismo</h2>
+                  <h3>1. Modelo de negócios da empresa</h3>
                   <p>Atualmente, a Seabet oferece suporte a seus usuários em mais de 169 países ao redor do mundo. Como parte de suas operações globais, a Seabet estabeleceu medidas de conformidade compatíveis com seus serviços e produtos projetados para prevenir e detectar atividades ilegais em sua plataforma. Isso inclui integração e triagem de conformidade para seus clientes e controles baseados em transações.</p>
-                  <h4>2. Declaração de política da empresa</h4>
+                  <h3>2. Declaração de política da empresa</h3>
                   <p>A Seabet proíbe expressamente e se recusa a usar os Produtos Seabet para qualquer forma de atividade ilegal, incluindo lavagem de dinheiro, financiamento do terrorismo ou violações de sanções comerciais, de acordo com as leis, regulamentos e diretrizes nacionais antilavagem de dinheiro (AML).
                       A Seabet continua monitorando os parâmetros estabelecidos pelas diretrizes definidas pela Força-Tarefa de Ação Financeira (GAFI) e certas organizações comerciais de jogos e pela Comissão de Controle de Jogos de Curaçao e tomará as medidas que considerar apropriadas para refletir as mudanças na lei.
                       A Seabet pretende seguir as melhores práticas globais e evitar que os produtos da Seabet sejam usados para facilitar tais atividades. Essas práticas recomendadas incluem:</p>
@@ -1145,11 +1145,11 @@ export default {
                       <li>Como uma ferramenta para aplicação da lei quando a paz e a segurança internacionais são ameaçadas e os esforços diplomáticosfalham;</li>
                       <li>Prevenir e combater o financiamento de terroristas ou atos terroristas.</li>
                   </ul>
-                  <h4>4. Governança e supervisão</h4>
+                  <h3>4. Governança e supervisão</h3>
                   <p>A Seabet nomeou um Chief Compliance Officer (CCO) para coordenar a implementação das políticas e programas de políticas da AML. As responsabilidades do Diretor de Conformidade também incluem o desenvolvimento de planos de AML, trabalhando com outras partes interessadas para revisar as políticas de AML, avaliando novos requisitos regulatórios e investigando possíveis atividades suspeitas ou incomuns. A Seabet também fornece regularmente treinamento AML para todos os funcionários.</p>
-                  <h4>5. Educação e treinamento</h4>
+                  <h3>5. Educação e treinamento</h3>
                   <p>A Seabet, com a assistência de seu consultor jurídico e sob a supervisão de seu CCO, pode fornecer treinamento regular de conformidade com AML, CFT e sanções comerciais para seus funcionários, conforme necessário.</p>
-                  <h4>6. Relatórios</h4>
+                  <h3>6. Relatórios</h3>
                   <p>A Seabet é obrigada a relatar quaisquer transações incomuns ou suspeitas de acordo com os decretos nacionais. Os clientes identificados na lista de sanções relacionadas à lavagem de dinheiro ou financiamento do terrorismo ou outras atividades criminosas serão denunciados ao regulador como atividades suspeitas.</p>
               </div>`,
     selfExclusionContent: `<div>

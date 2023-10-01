@@ -183,7 +183,7 @@ export default {
   walletDetailsBig: 'WALLET DETAILS',
   waitingResults: 'review in progress',
   withdrawUsdt: 'Withdraw {curreny}',
-  amount: 'amount',
+  amount: 'Amount',
   minWithdrawAmount: 'Minimum withdrawal amount',
   next: 'Next',
   youWithdrawAddress: 'YOUR WITHDRAW ADDRESS',
@@ -494,8 +494,8 @@ export default {
   backPromo: 'Back to promotions',
   noSupportFullScreen: 'Your browser does not support full screen',
   pointsExchange: 'Exhange',
-  view: 'more',
-  oprate: 'view',
+  view: 'More',
+  oprate: 'View',
   remain: 'Remain',
   directlyLogin: 'Or Log in directly',
   fastDeposit: 'Deposit Now',
@@ -509,7 +509,7 @@ export default {
   outTime: 'Hotel check Out time',
   sabaSportDesc: {
     0: 'All Sporting Events',
-    1: 'Supports All Digital Devices Ios Andriod, Macos and Windows',
+    1: 'Supports All Digital Devices Macos and Windows',
     2: 'Security Encryption',
     3: 'Real-Time Odds',
     4: 'Independent Backend'
@@ -519,7 +519,7 @@ export default {
     1: 'Highest Odds',
     2: 'Customize Betting UI',
     3: 'Precise Settlement System',
-    4: 'hundreds of betting options'
+    4: 'Hundreds of betting options'
   },
   pickDate: 'Select Date',
   inputGotime: 'Please select departure time',
@@ -1135,10 +1135,10 @@ export default {
                           </ul>
                         </div>`,
     amlContent: `<div>
-                  <h3>Anti-Money Laundering, Counter-Terrorism Financing Statement</h3>
-                  <h4>1. Company business model</h4>
+                  <h2>Anti-Money Laundering, Counter-Terrorism Financing Statement</h2>
+                  <h3>1. Company business model</h3>
                   <p>Seabet currently supports its users in more than 169 countries around the world. As part of its global operations, Seabet has established compliance measures commensurate with its services and products designed to prevent and detect illegal activity on its platform. These include onboarding and compliance screening for their clients and transaction-based controls.</p>
-                  <h4>2. Company Policy Statement</h4>
+                  <h3>2. Company Policy Statement</h3>
                   <p>Seabet expressly prohibits and refuses to use Seabet Products for any form of illegal activity, including money laundering, terrorist financing or trade sanctions violations, consistent with national anti-money laundering (AML) laws, regulations and guidelines.
                       Seabet continues to monitor the parameters set by the guidelines set by the Financial Action Task Force (FATF) and certain gaming trade organizations and the Curacao Gambling Control Commission and will take such actions as it deems appropriate to reflect changes in the law.
                       Seabet intends to follow global best practices and prevent Seabet products from being used to facilitate such activities. These best practices include:</p>

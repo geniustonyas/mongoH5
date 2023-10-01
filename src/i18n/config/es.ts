@@ -395,7 +395,7 @@ export default {
   startNow: 'Iniciar Ahora',
   withdrawStatus: { 1: 'Procesando', 2: 'Completado', 3: 'Rechazado' },
   time: 'Tiempo',
-  betAmount: 'Cantidad apostad',
+  betAmount: 'Cantidad Apostad',
   support2: 'Soporte',
   btiSportIntro:
     'Con años de experiencia en la operación de plataformas deportivas, la plataforma de apuestas deportivas Seabet ofrece a los jugadores una experiencia de apuestas deportivas inmersiva y optimizada.',
@@ -476,8 +476,8 @@ export default {
   learnMore: 'Más información',
   comingSoon: 'próximamente...',
   affiliate: 'Afiliado',
-  rewardActivities: 'Actividades de recompensa',
-  rewardRecords: 'Registros de recompensa',
+  rewardActivities: 'Actividades de Recompensa',
+  rewardRecords: 'Registros de Recompensa',
   applyPromo: 'Aplicar recompensas',
   rewardStatus: { 0: 'Procesando', 1: 'Aprobado', 2: 'Rechazado' },
   betTime: 'Hora de la apuesta',
@@ -490,12 +490,12 @@ export default {
   minMaxBet: 'Apuesta mínima-máxima',
   volatility: 'Volatilidad',
   volatilitys: { 1: 'Baja', 2: 'Baja-Media', 3: 'Media', 4: 'Media-Alta', 5: 'Alta', 6: 'Muy alta', 7: 'Muy baja' },
-  myPoints: 'Mis puntos',
+  myPoints: 'Mis Puntos',
   backPromo: 'Volver a promociones',
   noSupportFullScreen: 'Tu navegador no admite pantalla completa',
   pointsExchange: 'Intercambio',
-  view: 'más',
-  oprate: 'ver',
+  view: 'Más',
+  oprate: 'Ver',
   remain: 'Restante',
   directlyLogin: 'O Inicie sesión directamente',
   fastDeposit: 'Depositar ahora',
@@ -509,7 +509,7 @@ export default {
   outTime: 'Hora de salida del hotel',
   sabaSportDesc: {
     0: 'Todos los eventos deportivos',
-    1: 'Compatible con todos los dispositivos digitales: iOS, Android, MacOS y Windows',
+    1: 'Compatible con todos los dispositivos digitales: MacOS y Windows',
     2: 'Encriptación de seguridad',
     3: 'Cuotas en tiempo real',
     4: 'Backend independiente'
@@ -519,7 +519,7 @@ export default {
     1: 'Las mejores cuotas',
     2: 'Personalizar la interfaz de apuestas',
     3: 'Liquidación precisa',
-    4: 'cientos de opciones de apuestas'
+    4: 'Cientos de opciones de apuestas'
   },
   pickDate: 'Seleccionar Fecha',
   inputGotime: 'Por favor, seleccione la hora de salida',
@@ -1126,10 +1126,10 @@ export default {
                               </ul>
                         </div>`,
     amlContent: `<div>
-                  <h3>Declaración contra el lavado de dinero y el financiamiento del terrorismo</h3>
-                  <h4>1. Modelo de negocio de la empresa</h4>
+                  <h2>Declaración contra el lavado de dinero y el financiamiento del terrorismo</h2>
+                  <h3>1. Modelo de negocio de la empresa</h3>
                   <p>Seabet actualmente brinda soporte a sus usuarios en más de 169 países alrededor del mundo. Como parte de sus operaciones globales, Seabet ha implementado medidas de cumplimiento diseñadas para prevenir y detectar actividades ilegales en su plataforma. Estas incluyen la incorporación y evaluación de cumplimiento para sus clientes, así como controles basados en transacciones.</p>
-                  <h4>2. Declaración de política de la empresa</h4>
+                  <h3>2. Declaración de política de la empresa</h3>
                   <p>Seabet prohíbe y rechaza explícitamente el uso de sus productos para cualquier forma de actividad ilegal, incluyendo el lavado de dinero, el financiamiento del terrorismo o violaciones de sanciones comerciales, de acuerdo con las leyes, regulaciones y directrices nacionales contra el lavado de dinero (AML). Seabet sigue monitoreando los parámetros establecidos por el Grupo de Acción Financiera Internacional (GAFI) y otras organizaciones comerciales de juegos, así como la Comisión de Control de Juegos de Curazao, y tomará las medidas que considere apropiadas para reflejar los cambios en la legislación. Seabet tiene la intención de seguir las mejores prácticas globales y evitar que sus productos sean utilizados para facilitar tales actividades. Estas mejores prácticas incluyen:</p>
                   <ul>
                       <li>Adoptar políticas escritas, procedimientos y controles razonablemente diseñados para prevenir el lavado de dinero, el financiamiento del terrorismo y las violaciones de sanciones comerciales;</li>
@@ -1137,7 +1137,7 @@ export default {
                       <li>Proporcionar educación y capacitación relevante al personal pertinente;</li>
                       <li>Realizar revisiones independientes, monitoreo y mantenimiento de políticas, procedimientos y controles.</li>
                   </ul>
-                  <h4>3. Definiciones</h4>
+                  <h3>3. Definiciones</h3>
                   <p>Los siguientes términos definitorios son ampliamente utilizados en la industria:</p>
                   <p>Lavado de dinero: El proceso de hacer que las ganancias obtenidas ilegalmente parezcan legítimas. Este proceso generalmente implica tres etapas: colocación, estratificación e integración.</p>
                   <p>Colocación: El acto de depositar fondos ilegales en una institución financiera tradicional;</p>
@@ -1145,11 +1145,11 @@ export default {
                   <p>Integración: El uso de transacciones aparentemente legítimas para mezclar fondos ilícitos con recursos legales, con el fin de reintroducirlos en el sistema financiero legal;</p>
                   <p>Actividad sospechosa: Actividad realizada por un usuario o no usuario que utiliza la institución financiera donde existen indicios de que la transacción puede estar motivada por fraude o actividades ilegales;</p>
                   <p>Sanciones: Medidas adoptadas por la comunidad internacional para prohibir o restringir ciertas actividades. Se utilizan para alentar un cambio de comportamiento, presionar a un país objetivo para que cumpla con los objetivos establecidos, como una herramienta de aplicación de la ley cuando se amenaza la paz y seguridad internacionales y han fallado los esfuerzos diplomáticos, así como prevenir y combatir el financiamiento del terrorismo o actos terroristas.</p>
-                  <h4>4. Gobernanza y supervisión</h4>
+                  <h3>4. Gobernanza y supervisión</h3>
                   <p>Seabet ha designado a un Director de Cumplimiento (CCO) para coordinar la implementación de las políticas y programas de AML. Las responsabilidades del Director de Cumplimiento también incluyen el desarrollo de planes AML, trabajar con otras partes interesadas para revisar las políticas de AML, evaluar nuevos requisitos regulatorios e investigar posibles actividades sospechosas o inusuales. Seabet también proporciona regularmente capacitación en AML a todos sus empleados.</p>
-                  <h4>5. Educación y formación</h4>
+                  <h3>5. Educación y formación</h3>
                   <p>Seabet, con la asistencia de su asesor legal y bajo la supervisión de su CCO, puede proporcionar capacitación periódica en cumplimiento de AML, financiamiento del terrorismo y sanciones comerciales a sus empleados según sea necesario.</p>
-                  <h4>6. Informes</h4>
+                  <h3>6. Informes</h3>
                   <p>Seabet está obligado a informar cualquier transacción inusual o sospechosa de acuerdo con los decretos nacionales. Los clientes identificados en listas de sanciones relacionadas con el lavado de dinero, financiamiento del terrorismo u otras actividades delictivas, serán reportados al regulador como actividad sospechosa.</p>
               </div>`,
     selfExclusionContent: `<div>

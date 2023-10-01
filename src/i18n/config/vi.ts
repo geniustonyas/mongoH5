@@ -70,7 +70,7 @@ export default {
     fixInfo: 'Vui lòng cung cấp đầy đủ thông tin của bạn'
   },
   myprfile: 'Hồ sơ của tôi',
-  clubLevel: 'Cấp độ câu lạc bộ',
+  clubLevel: 'cấp độ',
   userLevels: {
     '101': 'Sắt',
     '102': 'Đồng',
@@ -81,7 +81,7 @@ export default {
     '107': 'Kim cương'
   },
   homePage: {
-    currentMultiplier: 'Bội số điểm hiện tại',
+    currentMultiplier: 'Hệ số điểm',
     nextReward: 'Phần thưởng cấp độ tiếp theo',
     showProgress: 'Hiển thị tiến trình của tôi'
   },
@@ -511,7 +511,7 @@ export default {
   outTime: 'Thời gian trả phòng khách sạn',
   sabaSportDesc: {
     0: 'Tất cả các sự kiện thể thao',
-    1: 'Hỗ trợ tất cả các thiết bị số IOS và Android, Macos và Windows',
+    1: 'Hỗ trợ tất cả các thiết bị số Macos và Windows',
     2: 'Mã hóa bảo mật',
     3: 'Tỷ lệ cược thời gian thực',
     4: 'Hệ thống backend độc lập'
@@ -1126,12 +1126,12 @@ export default {
                           </ul>
                         </div>`,
     amlContent: `<div>
-                    <h3>Báo cáo tài chính chống rửa tiền, chống khủng bố</h3>
+                    <h2>Báo cáo tài chính chống rửa tiền, chống khủng bố</h2>
 
-                    <h4>1. Mô hình kinh doanh công ty</h4>
+                    <h3>1. Mô hình kinh doanh công ty</h3>
                     <p>Seabet hiện hỗ trợ người dùng tại hơn 169 quốc gia trên thế giới. Là một phần của hoạt động toàn cầu, Seabet đã thiết lập các biện pháp tuân thủ tương xứng với các dịch vụ và sản phẩm được thiết kế để ngăn chặn và phát hiện hoạt động bất hợp pháp trên nền tảng của mình. Chúng bao gồm giới thiệu và sàng lọc tuân thủ cho khách hàng của họ và kiểm soát dựa trên giao dịch.</p>
 
-                    <h4>2. Tuyên bố chính sách công ty</h4>
+                    <h3>2. Tuyên bố chính sách công ty</h3>
                     <p>Seabet nghiêm cấm và từ chối sử dụng Sản phẩm Seabet cho bất kỳ hình thức hoạt động bất hợp pháp nào, bao gồm rửa tiền, tài trợ khủng bố hoặc vi phạm lệnh trừng phạt thương mại, phù hợp với luật, quy định và hướng dẫn chống rửa tiền quốc gia (AML).</p>
                     <p>Seabet tiếp tục theo dõi các thông số được thiết lập bởi các hướng dẫn do Lực lượng đặc nhiệm hành động tài chính (FATF) và một số tổ chức thương mại trò chơi nhất định và Ủy ban kiểm soát cờ bạc Curacao đặt ra và sẽ thực hiện các hành động như vậy nếu thấy phù hợp để phản ánh những thay đổi trong luật.</p>
                     <p>Seabet dự định tuân theo các thông lệ tốt nhất toàn cầu và ngăn chặn các sản phẩm của Seabet được sử dụng để tạo điều kiện thuận lợi cho các hoạt động đó. Những phương pháp hay nhất này bao gồm:</p>
@@ -1142,7 +1142,7 @@ export default {
                       <li>Xem xét độc lập, giám sát và duy trì các chính sách, thủ tục và kiểm soát.</li>
                     </ul>
 
-                    <h4>3. Định nghĩa</h4>
+                    <h3>3. Định nghĩa</h3>
                     <p>Các thuật ngữ xác định sau đây được sử dụng rộng rãi trong ngành:</p>
                     <p>Rửa tiền: Quá trình kiếm tiền thu được bất hợp pháp có vẻ hợp pháp. Quá trình này thường được chia thành ba bước: lưu trữ, phân tầng và hợp nhất.</p>
                     <p>Tiền gửi: Quá trình gửi tiền bất hợp pháp vào một tổ chức tài chính truyền thống, thông qua tiền gửi hoặc các phương tiện khác.</p>
@@ -1159,13 +1159,13 @@ export default {
 
 
 
-                    <h4>4. Biện pháp chống rửa tiền và chống khủng bố</h4>
+                    <h3>4. Biện pháp chống rửa tiền và chống khủng bố</h3>
                     <p>Seabet đã bổ nhiệm một Giám đốc tuân thủ (CCO) để điều phối việc thực hiện các chính sách và chương trình chính sách của AML. Trách nhiệm của Giám đốc Tuân thủ cũng bao gồm phát triển các kế hoạch AML, làm việc với các bên liên quan khác để sửa đổi các chính sách AML, đánh giá các yêu cầu quy định mới và điều tra hoạt động đáng ngờ hoặc bất thường có thể xảy ra. Seabet cũng thường xuyên cung cấp đào tạo AML cho tất cả nhân viên.</p>
 
-                    <h4>5. Hệ thống tuân thủ và xử lý vi phạm</h4>
+                    <h3>5. Hệ thống tuân thủ và xử lý vi phạm</h3>
                     <p>Seabet, với sự hỗ trợ của cố vấn pháp lý và dưới sự giám sát của CCO, có thể cung cấp đào tạo tuân thủ AML, CFT và trừng phạt thương mại thường xuyên cho nhân viên của mình theo yêu cầu.</p>
 
-                    <h4>6. Cổng điệntử R</h4>
+                    <h3>6. Cổng điệntử R</h3>
                     <p>Seabet có nghĩa vụ báo cáo bất kỳ giao dịch bất thường hoặc đáng ngờ nào theo các nghị định quốc gia. Khách hàng được xác định trong danh sách trừng phạt liên quan đến rửa tiền hoặc tài trợ khủng bố hoặc các hoạt động tội phạm khác sẽ được báo cáo cho cơ quan quản lý là hoạt động đáng ngờ.</p>
                   </div>`,
     selfExclusionContent: `<div>

@@ -495,7 +495,7 @@ export default {
   backPromo: 'Promosyonlara Geri Dön',
   noSupportFullScreen: 'Tarayıcınız tam ekranı desteklemiyor',
   pointsExchange: 'Değişim',
-  view: 'daha fazla',
+  view: 'Daha fazla',
   oprate: 'görüntüle',
   remain: 'Kalan',
   directlyLogin: 'Veya doğrudan giriş yapın',
@@ -510,7 +510,7 @@ export default {
   outTime: 'Otel Çıkış Zamanı',
   sabaSportDesc: {
     0: 'Tüm Spor Etkinlikleri',
-    1: 'Tüm Dijital Cihazları Destekler: IOS, Android, Macos ve Windows',
+    1: 'Tüm Dijital Cihazları Destekler: Macos ve Windows',
     2: 'Güvenlik Şifreleme',
     3: 'Anlık Oranlar',
     4: 'Bağımsız Arka Uç'
@@ -1126,12 +1126,12 @@ export default {
                             </ul>
                         </div>`,
     amlContent: `<div>
-                      <h3>Kara Para Aklamayla Mücadele, Terörizmin Finansmanıyla Mücadele Beyanı</h3>
+                      <h2>Kara Para Aklamayla Mücadele, Terörizmin Finansmanıyla Mücadele Beyanı</h2>
 
-                      <h4>1. Şirket iş modeli</h4>
+                      <h3>1. Şirket iş modeli</h3>
                       <p>Seabet şu anda dünya çapında 169'dan fazla ülkede kullanıcılarını desteklemektedir. Seabet, küresel operasyonlarının bir parçası olarak, platformundaki yasadışı faaliyetleri önlemek ve tespit etmek için tasarlanmış hizmetleri ve ürünleriyle orantılı uyumluluk önlemleri oluşturmuştur. Bunlar, müşterileri için işe alım ve uyumluluk taramasını ve işlem tabanlı kontrolleri içerir.</p>
 
-                      <h4>2. Şirket Politikası Beyanı</h4>
+                      <h3>2. Şirket Politikası Beyanı</h3>
                       <p>Seabet, Seabet Ürünlerini kara para aklama, terörizmin finansmanı veya ticari yaptırım ihlalleri de dahil olmak üzere, ulusal kara para aklamayla mücadele (AML) yasaları, yönetmelikleri ve yönergelerine uygun olarak her türlü yasadışı faaliyet için kullanmayı açıkça yasaklar ve reddeder.</p>
                       <p>Seabet, Finansal Eylem Görev Gücü (FATF) ve bazı oyun ticaret kuruluşları ve Curacao Kumar Kontrol Komisyonu tarafından belirlenen kurallar tarafından belirlenen parametreleri izlemeye devam etmektedir ve yasadaki değişiklikleri yansıtmak için uygun gördüğü eylemleri gerçekleştirecektir.</p>
                       <p>Seabet, küresel en iyi uygulamaları takip etmeyi ve Seabet ürünlerinin bu tür faaliyetleri kolaylaştırmak için kullanılmasını önlemeyi amaçlamaktadır. Bu en iyi uygulamalar şunları içerir:</p>
@@ -1142,7 +1142,7 @@ export default {
                           <li>Politikaların, prosedürlerin ve kontrollerin bağımsız olarak gözden geçirilmesi, izlenmesi ve sürdürülmesi.</li>
                       </ul>
 
-                      <h4>3. Tanımlar</h4>
+                      <h3>3. Tanımlar</h3>
                       <p>Aşağıdaki tanımlayıcı terimler sektörde yaygın olarak kullanılmaktadır:</p>
                       <p>Kara para aklama: Yasadışı olarak elde edilen gelirleri elde etme süreci meşru görünmektedir. Bu işlem genellikle üç adıma ayrılır: depolama, katmanlama ve konsolidasyon.</p>
                       <p>Mevduat: Yasadışı gelirleri geleneksel bir finansal kuruma, mevduat veya başka yollarla yatırma işlemi.</p>
@@ -1158,13 +1158,13 @@ export default {
                       </ul>
                       </ul>
 
-                      <h4>4. Yönetişim ve gözetim</h4>
+                      <h3>4. Yönetişim ve gözetim</h3>
                       <p>Seabet, AML'nin politikalarının ve politika programlarının uygulanmasını koordine etmek için bir Baş Uyum Görevlisi (CCO) atamıştır. Baş Uyumluluk Görevlisi'nin sorumlulukları arasında AML planları geliştirmek, AML politikalarını gözden geçirmek için diğer paydaşlarla birlikte çalışmak, yeni düzenleyici gereklilikleri değerlendirmek ve olası şüpheli veya olağandışı etkinlikleri araştırmak yer almaktadır. Seabet ayrıca tüm çalışanlara düzenli olarak AML eğitimi vermektedir.</p>
 
-                      <h4>5. Eğitim ve öğretim</h4>
+                      <h3>5. Eğitim ve öğretim</h3>
                       <p>Seabet, hukuk müşavirinin yardımı ve CCO'sunun gözetimi altında, gerektiğinde çalışanlarına düzenli AML, CFT ve ticari yaptırımlara uyum eğitimi verebilir.</p>
 
-                      <h4>6. Rbağlantı noktaları</h4>
+                      <h3>6. Rbağlantı noktaları</h3>
                       <p>Seabet, olağandışı veya şüpheli işlemleri ulusal kararnamelere uygun olarak bildirmekle yükümlüdür. Kara para aklama, terörizmin finansmanı veya diğer suç faaliyetleriyle ilgili yaptırım listesinde tanımlanan müşteriler, düzenleyiciye şüpheli faaliyet olarak bildirilecektir.</p>
                   </div>`,
     selfExclusionContent: `<div>

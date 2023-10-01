@@ -99,7 +99,7 @@ export default {
   club: 'Club',
   tiers: 'Niveaux',
   clubTips: 'Vos récompenses seront réinitialisées chaque mois. Assurez-vous de les réclamer avant la fin du mois pour ne rien manquer.',
-  currentPoints: 'Montant actuel de la mise',
+  currentPoints: 'Montant Actuel de la Mise',
   currentPointsMultiplier: 'Multiplicateur de Points Actuel',
   receiveReward: 'Réclamer la Récompense',
   alreadyReceived: 'Déjà Réclamé',
@@ -396,7 +396,7 @@ export default {
   startNow: 'Commencer Maintenant',
   withdrawStatus: { 1: 'En cours de traitement', 2: 'Confirmé', 3: 'Rejeté' },
   time: 'Temps',
-  betAmount: 'Montant misé',
+  betAmount: 'Montant Misé',
   support2: 'Support',
   btiSportIntro:
     "Avec des années d'expérience dans l'exploitation de plateformes sportives, la plateforme de paris sportifs Seabet offre aux joueurs une expérience immersive et optimisée de paris sportifs.",
@@ -477,10 +477,10 @@ export default {
   learnMore: 'En savoir plus',
   comingSoon: 'bientôt disponible...',
   affiliate: 'Affilié',
-  rewardActivities: 'Activités de récompense',
-  rewardRecords: 'Historique des récompenses',
-  applyPromo: 'Appliquer les récompenses',
-  applyNow: 'Appliquer maintenant',
+  rewardActivities: 'Activités de Récompense',
+  rewardRecords: 'Historique des Récompenses',
+  applyPromo: 'Appliquer les Récompenses',
+  applyNow: 'Appliquer Maintenant',
   rewardStatus: { 0: 'En traitement', 1: 'Accepté', 2: 'Rejeté' },
   betTime: 'Temps de mise',
   betOrderNo: 'Numéro de commande de mise',
@@ -492,11 +492,11 @@ export default {
   minMaxBet: 'Mise Min-Max',
   volatility: 'Volatilité',
   volatilitys: { 1: 'Faible', 2: 'Faible à moyen', 3: 'Moyenne', 4: 'Moyenne-Élevée', 5: 'Élevée', 6: 'Très élevée', 7: 'Très faible' },
-  myPoints: 'Mes points',
+  myPoints: 'Mes Points',
   backPromo: 'Retour aux promotions',
   noSupportFullScreen: 'Votre navigateur ne prend pas en charge le mode plein écran',
   pointsExchange: 'Échange de points',
-  view: 'plus',
+  view: 'Plus',
   oprate: 'voir',
   remain: 'Restant',
   directlyLogin: 'Ou connectez-vous directement',
@@ -511,7 +511,7 @@ export default {
   outTime: "Heure de départ à l'hôtel",
   sabaSportDesc: {
     0: 'Tous les événements sportifs',
-    1: 'Prise en charge de tous les appareils numériques iOS, Android, macOS et Windows',
+    1: 'Prise en charge de tous les appareils numériques macOS et Windows',
     2: 'Cryptage de sécurité',
     3: 'Cotes en temps réel',
     4: 'Backend indépendant'
@@ -1127,12 +1127,12 @@ export default {
                           </ul>
                         </div>`,
     amlContent: `<div>
-                    <h3>Lutte contre le blanchiment d'argent, État sur le financement de la lutte contre le terrorisme</h3>
+                    <h2>Lutte contre le blanchiment d'argent, État sur le financement de la lutte contre le terrorisme</h2>
 
-                    <h4>1. Modèle d'affaires de l'entreprise</h4>
+                    <h3>1. Modèle d'affaires de l'entreprise</h3>
                     <p>Seabet soutient actuellement ses utilisateurs dans plus de 169 pays à travers le monde. Dans le cadre de ses opérations mondiales, Seabet a mis en place des mesures de conformité proportionnées à ses services et produits conçus pour prévenir et détecter les activités illégales sur sa plateforme. Il s'agit notamment de l'intégration et du filtrage de la conformité de leurs clients et des contrôles basés sur les transactions.</p>
 
-                    <h4>2. Énoncé de politique de l'entreprise</h4>
+                    <h3>2. Énoncé de politique de l'entreprise</h3>
                     <p>Seabet interdit et refuse expressément d'utiliser les Produits Seabet pour toute forme d'activité illégale, y compris le blanchiment d'argent, le financement du terrorisme ou les violations des sanctions commerciales, conformément aux lois, réglementations et directives nationales de lutte contre le blanchiment d'argent (AML). Seabet continue de surveiller les paramètres fixés par les directives établies par le Groupe d'action financière (GAFI) et certaines organisations commerciales de jeux et la Commission de contrôle des jeux de Curaçao et prendra les mesures qu'il jugera appropriées pour refléter les changements dans la loi.</p>
 
                     <p>Seabet a l'intention de suivre les meilleures pratiques mondiales et d'empêcher que les produits Seabet ne soient utilisés pour faciliter de telles activités. Ces pratiques exemplaires sont les suivantes :</p>
@@ -1143,7 +1143,7 @@ export default {
                     <li>Examen, surveillance et maintien indépendants des politiques, des procédures et des contrôles.</li>
                     </ul>
 
-                    <h4>3. Définitions</h4>
+                    <h3>3. Définitions</h3>
                     <p>Les termes de définition suivants sont largement utilisés dans l'industrie:</p>
                     <p>Blanchiment d'argent : Le processus consistant à faire des produits obtenus illégalement semble légitime. Ce processus est généralement divisé en trois étapes : stockage, hiérarchisation et consolidation.</p>
                     <p>Dépôt : Processus consistant à déposer des produits illégaux dans une institution financière traditionnelle, par le biais de dépôts ou d'autres moyens.</p>
@@ -1158,13 +1158,13 @@ export default {
                       <li>Action préventive et lutte contre le financement du terrorisme ou des actes terroristes.</li>
                     </ul>
 
-                    <h4>4. Gouvernance et surveillance</h4>
+                    <h3>4. Gouvernance et surveillance</h3>
                     <p>Seabet a nommé un Chief Compliance Officer (CCO) pour coordonner la mise en œuvre des politiques et des programmes politiques d'AML. Les responsabilités du chef de la conformité comprennent également l'élaboration de plans de lutte contre le blanchiment d'argent, la collaboration avec d'autres parties prenantes pour réviser les politiques en matière de lutte contre le blanchiment d'argent, l'évaluation des nouvelles exigences réglementaires et les enquêtes sur les activités suspectes ou inhabituelles possibles. Seabet offre également régulièrement des formations AML à tous les employés.</p>
 
-                    <h4>5. Éducation et formation</h4>
+                    <h3>5. Éducation et formation</h3>
                     <p>Seabet, avec l'aide de son conseiller juridique et sous la supervision de son CCO, peut fournir régulièrement une formation sur la conformité en matière de LBC, de financement du terrorisme et de sanctions commerciales à ses employés, selon les besoins.</p>
 
-                    <h4>6. Reports</h4>
+                    <h3>6. Reports</h3>
                     <p>Seabet est tenu de signaler toute transaction inhabituelle ou suspecte conformément aux décrets nationaux. Les clients figurant sur la liste des sanctions liées au blanchiment d'argent, au financement du terrorisme ou à d'autres activités criminelles seront signalés à l'organisme de réglementation comme activités suspectes.</p>
                 </div>`,
     selfExclusionContent: `<div>
