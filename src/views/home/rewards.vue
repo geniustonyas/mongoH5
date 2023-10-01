@@ -25,7 +25,7 @@
                       </div>
                       <div class="rct-r">
                         <h3>{{ item.name }}</h3>
-                        <p>{{ item.intro }}</p>
+                        <!-- <p>{{ item.intro }}</p> -->
                       </div>
                     </div>
                     <div class="rc-b">

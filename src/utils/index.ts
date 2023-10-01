@@ -89,6 +89,7 @@ export function loadJs(url: string) {
 // 格式化两位小数
 export function moneyFormat(value: any) {
   let ret = ''
+  value = value.toLocaleString()
   const num = parseFloat(value)
   if (isNaN(num)) {
     ret = '--'

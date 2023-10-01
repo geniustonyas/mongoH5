@@ -445,7 +445,7 @@ export default {
   male: 'Männlich',
   female: 'Weiblich',
   documentType: 'Dokumententyp',
-  documentNumber: 'Dokumentennummer',
+  documentNumber: 'Dokumenten Nummer',
   airlineCompany: 'Fluggesellschaft',
   placeOfDeparture: 'Abflugort',
   destination: 'Ziel',
@@ -694,7 +694,7 @@ export default {
     // html内容
     vipContent: ` <div class="vip-clubhouse-box">
                       <div class="vc-rows">
-                        <div class="vr-title">1.Einführung in den VIP Club/div>
+                        <div class="vr-title">1.Einführung in den VIP Club</div>
                         <div class="vr-conts">
                           <p>Willkommen im Seabet VIP Club!</p>
                           <p>Bei Seabet setzen wir uns dafür ein, die Qualität des Spielens zu verbessern und das bestmögliche Spielerlebnis zu bieten. Wir freuen uns, unseren brandneuen VIP-Club vorzustellen, der darauf ausgerichtet ist, unsere treuen Mitglieder zu belohnen, die Zeit damit verbringen, Spiele auf unserer Website zu spielen.</p>
@@ -765,7 +765,6 @@ export default {
                       <div class="vc-rows">
                         <div class="vr-title">5.Wie werde ich Mitglied im VIP-Club?</div>
                         <div class="vr-conts">
-                          <p>So werden Sie Mitglied im VIP-Club von Seabet:</p>
                           <dl>
                             <dd>
                             Setzen Sie weiterhin Wetten: Der Schlüssel zur Mitgliedschaft im VIP-Club besteht darin, kontinuierlich Wetten auf verschiedene Sportveranstaltungen und Casinospiele abzugeben. Seabet belohnt Ihre Beständigkeit. Als führende Kryptowährungs-Glücksspielplattform sollten Sie regelmäßig Ihre digitalen Vermögenswerte verwenden, um Wetten auf Sportveranstaltungen und Casinospiele bei Seabet abzugeben. Sie können auch versuchen, mit USDT zu wetten und Ihre Mittel weiterhin zu nutzen.
@@ -891,7 +890,7 @@ export default {
                       <p>aa) Wenn Sie ein Athlet, Trainer, Manager, Eigentümer, Schiedsrichter oder eine Person mit ausreichender Befugnis sind, den Ausgang eines Ereignisses zu beeinflussen, wetten Sie nicht auf ein Ereignis, das von der betreffenden Sportart oder dem Ereignis des Dachverbands beaufsichtigt wird;</p>
                       <p>bb) Wenn Sie Eigentümer (eine Person, die ein direkter oder indirekter rechtlicher oder wirtschaftlicher Eigentümer von 10 Prozent oder mehr ist) eines Sportverbandes oder einer Mitgliedsmannschaft sind, wetten Sie nicht auf ein Ereignis, das vom Sportverband beaufsichtigt wird, oder auf ein Ereignis, an dem ein Mitgliedsteam dieses Sport- oder Veranstaltungsdachverbands teilnimmt;</p>
                       <p>cc) Wenn Sie an einer Sportart oder Veranstaltung teilnehmen, sind Sie nicht an der Zusammenstellung von Wettquoten für den Wettbewerb, an dem Sie teilnehmen, beteiligt.</p>
-                      <p><b>5.2</b> Im Falle eines Verstoßes gegen eine der in <b>5.1</b> genannten Zusicherungen, Gewährungen oder Vereinbarungen behält sich Seabet das Recht vor, Ihr Seabet-Konto nach eigenem Ermessen zu schließen oder zu sperren und alle Wetten für ungültig zu erklären, soweit dies gesetzlich zulässig ist.</p>
+                      <p><b>5.2</b> Im Falle eines Verstoßes gegen eine der in genannten Zusicherungen, Gewährungen oder Vereinbarungen behält sich Seabet das Recht vor, Ihr Seabet-Konto nach eigenem Ermessen zu schließen oder zu sperren und alle Wetten für ungültig zu erklären, soweit dies gesetzlich zulässig ist.</p>
 
                       <h3>6. SEABET-GARANTIEN</h3>
                       <p><b>6.1</b> Seabet garantiert, dass sie:</p>
@@ -1042,8 +1041,7 @@ export default {
                       <p><b>19.1</b> Seabet haftet nicht für den Fall, dass Sie versuchen, sich einen Vorteil aus Fehlern in Bezug auf Wetten oder Einsätze auf der Website zu verschaffen, wenn Sie vorsätzlich in böser Absicht gehandelt haben, einschließlich wenn: </p>
                       <p>(i) es gibt einen offensichtlichen Fehler bei den relevanten Quoten, Spreads, Handicaps, Summen, Cash-Out; </p>
                       <p>(ii) Seabet weiterhin Wetten oder Wetten auf geschlossene oder ausgesetzte Märkte annimmt; </p>
-                      <p>(iii) Seabet einen Abrechnungsbetrag falsch berechnet oder auszahlt, einschließlich der Fälle, in denen eine Wette für den vollen Abrechnungsbetrag mit der Cash-Out-Option ausgewertet wird oder eine Wette fälschlicherweise für ungültig erklärt wird, wenn bei der Wettabgabe "Ungültig, wenn der Spieler nicht startet" ausgewählt wurde; oder </p>
-                      <p>(iv) Fehler in einem Zufallszahlengenerator oder in Auszahlungstabellen auftreten, die in einem Spiel oder Produkt enthalten, integriert oder verwendet werden.</p>
+                      <p>(iii) Seabet einen Abrechnungsbetrag falsch berechnet oder auszahlt, einschließlich der Fälle, in denen eine Wette für den vollen Abrechnungsbetrag mit der Cash-Out-Option ausgewertet wird oder eine Wette fälschlicherweise für ungültig erklärt wird, wenn bei der Wettabgabe "Ungültig, wenn der Spieler nicht startet" ausgewählt wurde; oder Fehler in einem Zufallszahlengenerator oder in Auszahlungstabellen auftreten, die in einem Spiel oder Produkt enthalten, integriert oder verwendet werden.</p>
 
                       <h3>20. VERSTOSS</h3>
                       <p><b>20.1</b> Unbeschadet anderer Rechte behält sich Seabet das Recht vor, im Falle eines vollständigen oder teilweisen Verstoßes eines Nutzers gegen eine hierin enthaltene Bestimmung Maßnahmen zu ergreifen, einschließlich der Kündigung dieser Vereinbarung oder einer anderen mit dem Nutzer bestehenden Vereinbarung und/oder der Einleitung rechtlicher Schritte gegen diesen Nutzer.</p>
@@ -1232,7 +1230,7 @@ export default {
                               <p>Sobald Ihr gewählter Selbstausschluss beendet ist, wird Ihr Konto automatisch wieder geöffnet. Sie erhalten jedoch eine E-Mail-Bestätigung dieser Informationen, die an Ihre registrierte E-Mail-Adresse gesendet wird.</p>
                           </div>`,
     privacyContent: `<div>
-                        <h2>spaDatenschutzerklärung </h2>
+                        <h2>Datenschutzerklärung </h2>
                         <p>Seabet.io respektiert und schützt die Privatsphäre aller Nutzer unserer Dienste. Diese Datenschutzrichtlinie ("Richtlinie") beschreibt, wie wir Ihre personenbezogenen Daten erfassen, speichern, verwenden und offenlegen.</p>
                         <h3>1. Sonstiges Geltungsbereich und Geltungsbereich </h3>
                         <p>Diese Richtlinie gilt für Ihren Zugriff auf und Ihre Nutzung von Seabet.io (die "Website") und alle Websites und Anwendungen unter der Marke Seabet, einschließlich aller unserer mobilen Anwendungen und Tablet-Anwendungen. Darüber hinaus gilt diese Richtlinie auch, wenn wir auf andere Weise mit Ihnen interagieren.</p>
@@ -1350,7 +1348,7 @@ export default {
 
                           <p><b>2.1.15</b> Sie wurden nicht als zwanghafter oder problematischer Spieler diagnostiziert oder eingestuft. Wir sind nicht für Glücksspiele verantwortlich, wenn solche Probleme bei der Nutzung unserer Dienste auftreten, werden uns jedoch bemühen, Sie über die entsprechende verfügbare Unterstützung zu informieren. Wir behalten uns das Recht vor, eine Bedenkzeit einzuführen, wenn wir der Meinung sind, dass solche Maßnahmen von Vorteil wären. </p>
 
-                          <p><b>2.1.15</b> Wenn Sie eine politisch exponierte  Person oder ein Familienmitglied einer politisch exponierten Person sind, akzeptieren und erkennen Sie an, dass wir Ihr Konto möglicherweise ohne vorherige Ankündigung überprüfen oder sperren müssen, damit wir unsere Sorgfaltspflichten erfüllen können. Sie erkennen an, dass jede Entscheidung über den Status Ihres Kontos ausschließlich nach unserem alleinigen Ermessen getroffen wird, was die dauerhafte Schließung Ihres Kontos beinhalten kann; </p>
+                          <p><b>2.1.16</b> Wenn Sie eine politisch exponierte  Person oder ein Familienmitglied einer politisch exponierten Person sind, akzeptieren und erkennen Sie an, dass wir Ihr Konto möglicherweise ohne vorherige Ankündigung überprüfen oder sperren müssen, damit wir unsere Sorgfaltspflichten erfüllen können. Sie erkennen an, dass jede Entscheidung über den Status Ihres Kontos ausschließlich nach unserem alleinigen Ermessen getroffen wird, was die dauerhafte Schließung Ihres Kontos beinhalten kann; </p>
 
                           <p><b>2.1.17</b> Sie haben nur ein Konto bei uns und erklären sich damit einverstanden, kein Konto bei uns zu eröffnen; </p>
 

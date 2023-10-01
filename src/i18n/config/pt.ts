@@ -448,7 +448,7 @@ export default {
   male: 'Masculino',
   female: 'Feminino',
   documentType: 'Tipo de Documento',
-  idNumber: 'Número de Documento',
+  documentNumber: 'Número de Documento',
   airlineCompany: 'Companhia Aérea',
   placeOfDeparture: 'Local de Partida',
   destination: 'Destino',
@@ -616,12 +616,11 @@ export default {
   },
   faqs: {
     q1: 'Como faço um depósito?',
-    a1: `<p>PIX</p>
-          <p>1. Escolha a criptomoeda que você selecionou e clique em depositar.</p>
+    a1: ` <p>1. Escolha a criptomoeda que você selecionou e clique em depositar.</p>
           <p>2. Copie o endereço de depósito único e use-o na sua carteira (ou digitalize o código QR).</p>
           <p>3. Após a confirmação da transação, você receberá uma notificação.</p>`,
     q2: 'Quanto tempo leva o processamento dos depósitos/saques?',
-    a2: `p>Depósito</p>
+    a2: `<p>Depósito</p>
         <p>A maioria dos depósitos de criptomoedas é processada a uma velocidade relâmpago. No entanto, pode haver alguns atrasos de serviços de terceiros.</p>
         <p>Retirada</p>
         <p>A maioria das retiradas é processada instantaneamente. No caso de retiradas de grande valor, processamos essas retiradas manualmente, portanto, pode haver um leve atraso.</p>`,
@@ -751,7 +750,7 @@ export default {
                     <div class="vr-conts">
                       <dl>
                         <dd>Bônus de Avanço de Nível: Receba bônus ao alcançar o próximo nível. Quanto mais alto o nível que você alcançar, maior será o bônus.</dd>
-                        <ddOfertas Exclusivas Personalizadas: Não está interessado em promoções regulares? Sem problemas. Assim que você atingir o nível VIP correspondente, nós iremos criar ofertas especialmente adaptadas aos seus interesses, exclusivamente para você.</dd>
+                        <dd>Ofertas Exclusivas Personalizadas: Não está interessado em promoções regulares? Sem problemas. Assim que você atingir o nível VIP correspondente, nós iremos criar ofertas especialmente adaptadas aos seus interesses, exclusivamente para você.</dd>
                         <dd>Experiência de Entretenimento Personalizada: Seja em grandes eventos esportivos, concertos, shows de música ou uma viagem luxuosa, como membro VIP sênior, todas as suas despesas pessoais serão cobertas pela confiável Seabet, e nós organizaremos seu itinerário.</dd>
                         <dd>Serviço VIP Exclusivo: Você terá um representante de serviço VIP dedicado que irá apoiar e atender às suas necessidades de apostas.</dd>
                         <dd>Acumulação de Pontos Mais Rápida: Os níveis VIP acumulam pontos em uma taxa mais rápida em comparação com os membros regulares. Níveis mais altos acumulam mais pontos, levando a uma variedade maior de prêmios para resgate.</dd>
@@ -761,7 +760,6 @@ export default {
                   <div class="vc-rows">
                     <div class="vr-title">5.Como se Tornar um Membro VIP</div>
                     <div class="vr-conts">
-                      <p>Como se tornar um membro VIP do Clube VIP da Seabet:</p>
                       <dl>
                         <dd>
                         Continue Apostando: A chave para se tornar um VIP é colocar consistentemente apostas em vários eventos esportivos e jogos de cassino. A Seabet recompensa sua consistência. Como um dos principais sites de apostas com criptomoedas, use regularmente seus ativos digitais para fazer apostas em eventos esportivos e jogos de cassino oferecidos pela Seabet. Você também pode experimentar apostar com USDT e continuar usando seus fundos.
@@ -886,7 +884,7 @@ export default {
                       <p>aa) Se for um atleta, treinador, dirigente, proprietário, árbitro ou qualquer pessoa com autoridade suficiente para influenciar o resultado de um evento, não apostará em qualquer evento supervisionado pelo desporto ou evento relevante do órgão regulador;</p>
                       <p>bb) Se for proprietário (uma pessoa que seja um beneficiário legal ou efetivo, direto ou indireto, de 10 por cento ou mais) de um órgão regulador do desporto ou de uma equipa membro, não apostará em qualquer evento supervisionado pelo organismo regulador do desporto ou em qualquer evento em que participe uma equipa membro desse desporto ou entidade reguladora do evento;</p>
                       <p>cc) Se estiver envolvido num desporto ou evento, não estará envolvido na compilação de odds de apostas para a competição em que está envolvido.</p>
-                      <p><b>5.2</b> Em caso de violação de qualquer uma das representações, garantias ou pactos mencionados em <b>5.1</b>, a Seabet reserva-se o direito de fechar ou suspender a Sua conta Seabet a seu próprio critério e anular quaisquer apostas na medida aplicável por lei.</p>
+                      <p><b>5.2</b> Em caso de violação de qualquer uma das representações, garantias ou pactos mencionados em, a Seabet reserva-se o direito de fechar ou suspender a Sua conta Seabet a seu próprio critério e anular quaisquer apostas na medida aplicável por lei.</p>
 
                       <h3>6. GARANTIAS SEABET</h3>
                       <p><b>6.1</b> A Seabet garante que:</p>
@@ -1037,8 +1035,7 @@ export default {
                       <p><b>19.1</b> A Seabet não será responsável no caso de Você tentar ou obter uma vantagem de quaisquer erros em relação a apostas ou apostas no site se Você estiver deliberadamente agindo de má-fé, incluindo quando: </p>
                       <p>i) existe um erro manifesto nas odds, spreads, handicap, totais, levantamentos; </p>
                       <p>(ii) A Seabet continua a aceitar apostas ou apostas em mercados fechados ou suspensos; </p>
-                      <p>(iii) A Seabet calcula ou paga incorretamente um valor de liquidação, incluindo quando uma aposta é eliminada pelo valor total da liquidação, ou uma aposta é anulada incorretamente, onde 'Anular se o jogador não começar' foi selecionado na colocação da aposta; quer </p>
-                      <p>(iv) qualquer erro ocorre num gerador de números aleatórios ou mesas de pagamento incluídas, incorporadas ou utilizadas em qualquer jogo ou produto.</p>
+                      <p>(iii) A Seabet calcula ou paga incorretamente um valor de liquidação, incluindo quando uma aposta é eliminada pelo valor total da liquidação, ou uma aposta é anulada incorretamente, onde 'Anular se o jogador não começar' foi selecionado na colocação da aposta; quer qualquer erro ocorre num gerador de números aleatórios ou mesas de pagamento incluídas, incorporadas ou utilizadas em qualquer jogo ou produto.</p>
 
                       <h3>20. VIOLAÇÃO</h3>
                       <p><b>20.1</b> Sem prejuízo de quaisquer outros direitos, se um utilizador violar, no todo ou em parte, qualquer disposição aqui contida, a Seabet reserva-se o direito de tomar as medidas que considerar adequadas, incluindo rescindir este Acordo ou qualquer outro acordo em vigor com o Utilizador e/ou tomar medidas legais contra esse Utilizador.</p>
@@ -1224,13 +1221,13 @@ export default {
                             <p>Assim que a autoexclusão selecionada chegar ao fim, a sua conta será reaberta automaticamente. No entanto, receberá um e-mail de confirmação desta informação que será enviado para o seu endereço de e-mail registado.</p>
                           </div>`,
     privacyContent: `<div>
-                        <h2>spaPolítica de Privacidade </h2>
+                        <h2>Política de Privacidade </h2>
                         <p>Seabet.io respeita e protege a privacidade de todos os utilizadores dos nossos Serviços. Esta Política de Privacidade ("Política") detalha como coletamos, armazenamos, usamos e divulgamos suas informações pessoais.</p>
-                        <p>1º. Âmbito de aplicação e aplicação </p>
+                        <p>1. Âmbito de aplicação e aplicação </p>
                         <p>Esta Política aplica-se ao seu acesso e uso de Seabet.io (o "Site") e todos os sites e aplicativos sob a marca Seabet, incluindo todos os nossos aplicativos móveis e aplicativos para tablets. Além disso, esta Política também se aplica quando interagimos consigo de outras formas.</p>
                         <h3>2. Consentimento e Modificação do Utilizador</h3>
                         <p>Ao usar o site da Seabet, você concorda em ficar vinculado a esta Política. Reservamo-nos o direito, a nosso exclusivo critério, de modificar ou alterar esta Política a qualquer momento, e publicaremos tais alterações no Site, e tais alterações entrarão em vigor imediatamente após a publicação. O uso continuado do Site após tais alterações constitui a sua aceitação de tais alterações. Esta Política não se aplica a outros sites vinculados a este site.</p>
-                        <p>3º. Informações Pessoais Recolhidas</p>
+                        <p>3. Informações Pessoais Recolhidas</p>
                         <ul>
                             <li>Podemos recolher e processar os seguintes tipos de informações pessoais:</li>
                             <li>Designação</li>
@@ -1246,7 +1243,7 @@ export default {
                             <li>Endereço IP</li>
                         </ul>
                         <p>Essas informações são derivadas principalmente das informações que você fornece quando se registra para uma conta ou se comunica conosco.</p>
-                        <p>4º. Finalidade da Recolha</p>
+                        <p>4. Finalidade da Recolha</p>
                         <p>Recolhemos os seus dados pessoais para:</p>
                         <ul>
                             <li>Realizar verificação de identidade do cliente (KYC)</li>
@@ -1260,16 +1257,16 @@ export default {
                             <li>Para cumprir as nossas obrigações contratuais e legais</li>
                         </ul>
 
-                        <p>5º. Uso e Divulgação de Informações Pessoais</p>
+                        <p>5. Uso e Divulgação de Informações Pessoais</p>
                         <p>Podemos usar suas informações pessoais para atividades de marketing e podemos informá-lo sobre produtos ou serviços que achamos que podem ser de seu interesse por e-mail, mensagem de texto ou telefone. Se você não deseja mais receber informações promocionais ou de marketing de nós, você pode cancelar a inscrição a qualquer momento, entrando em contato conosco por e-mail.</p>
                         <h3>6. Segurança das Informações Pessoais</h3>
                         <p>O Utilizador compreenderá que a transmissão de dados da Internet não é absolutamente segura, Seabet.io não pode garantir a segurança absoluta da informação carregada pelo Utilizador na Plataforma, devendo o Utilizador suportar o risco. No entanto, após receber a transmissão das informações do usuário, Seabet.io tomará as medidas apropriadas para evitar o uso indevido, perda e acesso não autorizado, modificação e divulgação das informações pessoais do usuário. Isso inclui o uso de proteção por senha de sistemas e bancos de dados, bem como o uso da tecnologia Secure Sockets Layer (SSL). Ao usar nossos Serviços ou fornecer informações pessoais, os usuários concordam que podemos nos comunicar com você eletronicamente em relação a questões de segurança, privacidade e administrativas relacionadas ao uso dos Serviços. Seabet.io funcionários, agentes e contratados são obrigados a manter as informações pessoais e transações dos membros confidenciais. As informações publicadas pelos utilizadores em plataformas públicas ou ambientes de redes sociais (por exemplo, Facebook, Twitter) serão consideradas informações públicas, Seabet.io a segurança dessas informações não pode ser garantida.</p>
                         <p>Salientamos que os nossos serviços não são dirigidos a crianças e não aceitamos contas ou informações pessoais. No entanto, os pais ou encarregados de educação têm a obrigação de monitorizar as atividades dos seus filhos na Internet. Certifique-se de sair da sua conta assim que terminar de usar o site, especialmente se estiver compartilhando seu dispositivo. O Utilizador é responsável pela segurança e direitos de acesso dos dispositivos utilizados para aceder ao Website. Em última análise, os usuários mantêm a confidencialidade de nomes de usuário, senhas e informações de conta e estão vigilantes ao usar a Internet e nosso site.</p>
-                        <p>7º. Acesso a Informações Pessoais</p>
+                        <p>7. Acesso a Informações Pessoais</p>
                         <p>Os usuários podem acessar as informações pessoais coletadas por Seabet.io clicando no link "Configurações" no site ou enviando um e-mail para o support{'@'}Seabet.io. Responderemos ao pedido de acesso do utilizador dentro de um período de tempo razoável. Se não conseguirmos satisfazer o seu pedido, informá-lo-emos por escrito das razões da recusa de acesso e do mecanismo de reclamação.</p>
-                        <p>8º. Remoção de dados pessoais</p>
+                        <p>8. Remoção de dados pessoais</p>
                         <p>Se já não for possível tratar ou armazenar legalmente os dados pessoais do utilizador, este tem o direito de solicitar a sua eliminação. No entanto, este direito não é absoluto e, se Seabet.io estiver sujeito a obrigações legais, não será capaz de satisfazer os requisitos do utilizador. Por favor, faça um pedido enviando um e-mail para support{'@'}Seabet.io.</p>
-                        <p>9º. Contato</p>
+                        <p>9. Contato</p>
                         <p>Se você tiver alguma dúvida, solicitação ou reclamação sobre nosso processamento de suas informações pessoais, entre em contato conosco via e-mail support{'@'}Seabet.io ou a função de chat de suporte ao cliente do site.</p>
 
 
@@ -1278,7 +1275,7 @@ export default {
                         <p>Podemos transferir, processar e armazenar informações em todo o mundo, incluindo, entre outros, outros países cujas leis de proteção de dados podem diferir das da sua localização. Protegeremos as suas informações tanto quanto possível e conforme exigido pela legislação aplicável.</p>
                         <h3>11. Raiz da base jurídica para o tratamento</h3>
                         <p>De acordo com o Regulamento Geral de Proteção de Dados Global, Seabet.io tratamento das suas informações pessoais tem as seguintes bases legais: execução de um contrato, interesses legítimos, consentimento do utilizador e cumprimento de uma obrigação legal.</p>
-                        <p>12º. Atualizações da Política de Privacidade</p>
+                        <p>12. Atualizações da Política de Privacidade</p>
                         <p>Seabet.io pode rever, alterar e atualizar periodicamente esta Política de Privacidade para refletir nossas práticas e responsabilidades. Publicaremos a Política de Privacidade mais recente no site Seabet.io. Os utilizadores devem rever periodicamente esta Política de Privacidade para se familiarizarem com os seus termos.</p>
                     </div>`,
     fairnessContent: `<div>
@@ -1445,7 +1442,7 @@ export default {
 
                         <p><b>8.2</b> Se utilizar um Bónus de Depósito, não aceitará um bónus que tenha levantado previamente o seu depósito original e que tenha cumprido os requisitos estabelecidos nos Termos e Condições de Depósito. </p>
 
-                        <p><b>8.3</b> violação  de qualquer um dos termos de uma oferta ou promoção, ou quando houver qualquer evidência de que existe uma série de apostas feitas por um cliente ou grupo de clientes, devido a bónus de depósito, pagamentos melhorados, apostas grátis, apostas sem risco ou qualquer outra garantia de resultado de oferta promocional, independentemente do resultado, seja individualmente ou como parte de um grupo,  o Website de Lucro do Cliente reserva-se o direito de recuperar os elementos de bónus de tais ofertas e reserva-se o valor absoluto do seu critério absoluto para liquidar apostas com odds corretas, Cancelar o Bónus de Aposta Grátis e a Aposta Sem Risco ou cancelar qualquer aposta financiada pelo Bónus de Depósito. Além disso, este site reserva-se o direito de cobrar uma taxa de administração ao cliente, até ao valor do bónus de depósito, bónus de aposta grátis, aposta sem risco ou pagamento adicional para cobrir a taxa de gestão. Reservamo-nos ainda o direito de exigir que qualquer cliente forneça documentação suficiente para nossa satisfação absoluta com qualquer recompensa, aposta grátis, aposta sem risco ou conta fornecida a eles. </p>
+                        <p><b>8.3</b> Violação  de qualquer um dos termos de uma oferta ou promoção, ou quando houver qualquer evidência de que existe uma série de apostas feitas por um cliente ou grupo de clientes, devido a bónus de depósito, pagamentos melhorados, apostas grátis, apostas sem risco ou qualquer outra garantia de resultado de oferta promocional, independentemente do resultado, seja individualmente ou como parte de um grupo,  o Website de Lucro do Cliente reserva-se o direito de recuperar os elementos de bónus de tais ofertas e reserva-se o valor absoluto do seu critério absoluto para liquidar apostas com odds corretas, Cancelar o Bónus de Aposta Grátis e a Aposta Sem Risco ou cancelar qualquer aposta financiada pelo Bónus de Depósito. Além disso, este site reserva-se o direito de cobrar uma taxa de administração ao cliente, até ao valor do bónus de depósito, bónus de aposta grátis, aposta sem risco ou pagamento adicional para cobrir a taxa de gestão. Reservamo-nos ainda o direito de exigir que qualquer cliente forneça documentação suficiente para nossa satisfação absoluta com qualquer recompensa, aposta grátis, aposta sem risco ou conta fornecida a eles. </p>
 
                         <p><b>8.4</b> Todas as ofertas do Website destinam-se a jogadores casuais e o Website pode, a seu exclusivo critério, limitar a elegibilidade do Cliente para participar na totalidade ou em parte da Promoção. </p>
 
@@ -1570,9 +1567,9 @@ export default {
 
                         <p><b>13.2</b> Sem prejuízo da generalidade do acima exposto, aceita que:</p>
 
-                        <p><b>13.2.1</b> não garante que o Software, os Jogos e o Website sejam adequados à sua finalidade; </p>
+                        <p><b>13.2.1</b> Não garante que o Software, os Jogos e o Website sejam adequados à sua finalidade; </p>
 
-                        <p><b>13.2.2</b> não garante que o Software, os Jogos e o Website estejam isentos de erros; </p>
+                        <p><b>13.2.2</b> Não garante que o Software, os Jogos e o Website estejam isentos de erros; </p>
 
                         <p><b>13.2.3</b> Não há garantia de que o Software, Jogos e Website serão interrompidos sem interrupção. </p>
 

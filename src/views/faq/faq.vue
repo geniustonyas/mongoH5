@@ -48,7 +48,7 @@
             <div class="l-cont" v-html="t('faqs.a5')" />
           </Vue3SlideUpDown>
         </li>
-        <li v-if="t('faqs.q6') != ''">
+        <!-- <li v-if="t('faqs.q6') != ''">
           <div class="l-title" @click="showQuestion6 = !showQuestion6">
             <span>{{ t('faqs.q6') }}</span
             ><i class="iconfont icon-down" />
@@ -92,7 +92,7 @@
           <Vue3SlideUpDown v-model="showQuestion10">
             <div class="l-cont" v-html="t('faqs.a10')" />
           </Vue3SlideUpDown>
-        </li>
+        </li> -->
       </ul>
     </main>
   </div>
@@ -118,9 +118,9 @@ const showQuestion2 = ref(false)
 const showQuestion3 = ref(false)
 const showQuestion4 = ref(false)
 const showQuestion5 = ref(false)
-const showQuestion6 = ref(false)
-const showQuestion7 = ref(false)
-const showQuestion8 = ref(false)
-const showQuestion9 = ref(false)
-const showQuestion10 = ref(false)
+// const showQuestion6 = ref(false)
+// const showQuestion7 = ref(false)
+// const showQuestion8 = ref(false)
+// const showQuestion9 = ref(false)
+// const showQuestion10 = ref(false)
 </script>

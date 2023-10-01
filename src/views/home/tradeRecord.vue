@@ -29,67 +29,6 @@
           </div>
         </div>
         <div class="mb-conts">
-          <!-- <div v-if="dataList.length > 0" class="mc-box">
-            <div v-if="tab == 'bet'" class="record-list">
-              <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
-                <List
-                  v-model:loading="listLoading"
-                  :offset="20"
-                  :finished="finished"
-                  :immediate-check="false"
-                  v-model:error="error"
-                  :error-text="t('loadingFail')"
-                  :finished-text="t('noMore')"
-                  @load="loadData"
-                >
-                  <div v-for="(item, index) of dataList" class="rl-item" :key="index">
-                    <div class="i-row">
-                      <div class="r-col">{{ item.createTime }}</div>
-                      <div class="r-col">
-                        <b>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</b>
-                      </div>
-                    </div>
-                    <div class="i-row">
-                      <div class="r-col">{{ item.providerName }}</div>
-                    </div>
-                    <div class="i-row">
-                      <div class="r-col">{{ item.gameItemName }}</div>
-                      <div class="r-col">
-                        <span :class="`${orderStatusCss[item.orderStatus]} c-status`">{{ t(`tradeStatus[${item.orderStatus}]`) }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </List>
-              </PullRefresh>
-            </div>
-            <div v-if="tab == 'win'" class="record-list">
-              <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
-                <List
-                  v-model="listLoading"
-                  :offset="20"
-                  :finished="finished"
-                  :immediate-check="false"
-                  v-model:error="error"
-                  :error-text="t('loadingFail')"
-                  :finished-text="t('noMore')"
-                  @load="loadData"
-                >
-                  <div v-for="(item, index) of dataList" class="rl-item" :key="index">
-                    <div class="i-row">
-                      <div class="r-col">{{ item.createTime }}</div>
-                      <div class="r-col">
-                        <b>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</b>
-                      </div>
-                    </div>
-                    <div class="i-row">
-                      <div class="r-col">{{ item.gameName }}</div>
-                      <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
-                    </div>
-                  </div>
-                </List>
-              </PullRefresh>
-            </div>
-          </div> -->
           <div v-if="dataList.length > 0" class="mc-box">
             <div class="record-list">
               <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">

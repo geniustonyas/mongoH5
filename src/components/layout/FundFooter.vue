@@ -3,7 +3,7 @@
     <dt>{{ t('rewards') }}</dt>
     <dd>
       <a @click="router.push({ name: 'rewards' })">
-        <span> <i class="iconfont icon-rewards" />{{ t('promoCode') }}</span>
+        <span> <i class="iconfont icon-rewards" />{{ t('rewardsBig') }}</span>
         <i class="iconfont icon-right" />
       </a>
     </dd>

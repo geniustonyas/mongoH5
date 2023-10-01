@@ -217,9 +217,9 @@ export default {
   sportsBet: 'Sports Bet',
   liveCasinoBet: 'Live Casino Bet',
   slotBet: 'Slots Bet',
-  more: 'more',
-  loadMore: 'load more',
-  providers: 'providers',
+  more: 'More',
+  loadMore: 'Load more',
+  providers: 'Providers',
   allProviders: 'All Game Providers',
   sortBy: 'Sort by',
   polular: 'Popular',
@@ -446,11 +446,11 @@ export default {
   male: 'Male',
   female: 'Female',
   documentType: 'Document Type',
-  idNumber: 'Document number',
+  documentNumber: 'Document number',
   airlineCompany: 'Airline',
   placeOfDeparture: 'Place of Departure',
   destination: 'Destination',
-  onewayOrRoundtrip: 'whether round trip',
+  onewayOrRoundtrip: 'Whether round trip',
   oneway: 'One way',
   roundtrip: 'Round trip',
   engineroomType: 'Flight Class',
@@ -551,12 +551,12 @@ export default {
   clickAddAndroid: 'Click “Add”',
 
   problem: {
-    whatVip: 'What is the VIP Club?',
+    whatVip: '1. What is the VIP Club?',
     whatVips: `<p>The seabet.io VIP Club is a dedicated community open to cryptocurrency customers, allowing them to enjoy all the promotional activities available on the website at any time. Every bet, spin, and game you play will accumulate points, gradually leveling up in the club and unlocking exciting rewards along the way. As you unlock VIP levels, you will also earn Seabet betting points, which will provide you with even more rewarding experiences and services.</p>
                 <p>In simple terms, it means: You play games, and we reward you.</p>`,
-    howGetIntegrial: 'How to Earn Points?',
+    howGetIntegrial: '2. How to Earn Points?',
     howGetIntegrials: `<p>You earn club points with every bet, slot machine spin, and table game you play. The more points you collect, the higher your level becomes. As you progress through the ranks, you will unlock a variety of exciting rewards. The rewards will keep getting better as you continue to unlock new levels.</p>`,
-    whatVipLevel: 'What are VIP Levels?',
+    whatVipLevel: '3. What are VIP Levels?',
     whatVipLevels: `<p>VIP levels determine the value and type of rewards you can claim. As you progress through the club and level up, your rewards will also increase.</p>
                     <table>
                       <tr>
@@ -595,14 +595,14 @@ export default {
                         <td>6</td>
                       </tr>
                     </table>`,
-    howComputeInterial: 'How are Points Calculated?',
+    howComputeInterial: '4. How are Points Calculated?',
     howComputeInterials: `<p>Whether it's sports betting or playing casino games, using cryptocurrency will earn you points. To calculate the points you earn with each bet, we convert your bet amount to USDT at the real-time market exchange rate during settlement. This ensures that all point collections, regardless of the cryptocurrency used, are fair. Due to fluctuating conversion rates, we follow the principle of rounding to the nearest whole number when calculating points.</p>
                           <p>The formula for earning Seabet points is: Player's betting amount * 0.01 * corresponding level's point coefficient. For example, if a player is at the Platinum level and bets 5000, according to the point calculation formula, the player will earn 5000 * 0.01 * 1.3 = 65 points. Seabet points have a wide range of uses, and players can redeem equivalent gifts and services from the points store.</p>`,
-    whyMergedReward: 'Why are My Rewards Merged?',
+    whyMergedReward: '5. Why are My Rewards Merged?',
     whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
-    resetVip: 'When will My VIP Level Reset?',
+    resetVip: '6. When will My VIP Level Reset?',
     resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
-    everyGetInterial: 'Can I Earn Club Points with Every Bet?',
+    everyGetInterial: '7. Can I Earn Club Points with Every Bet?',
     everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
                         <p>Horse Racing</p>
                         <p>Esports Sports</p>
@@ -775,7 +775,6 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">5、How to Become a VIP Member</div>
                       <div class="vr-conts">
-                        <p>How to become a VIP member of Seabet's VIP Club:</p>
                         <dl>
                           <dd>
                             Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. ${site_name} rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by ${site_name}. You can also try betting with USDT and continue using your funds
@@ -901,7 +900,7 @@ export default {
                     <p>aa) If You are an athlete, coach, manager, owner, referee, or anyone with sufficient authority to influence the outcome of an event You will not bet on any event overseen by the relevant sport or event of the governing body;</p>
                     <p>bb) If You are an owner (a person who is a direct or indirect legal or beneficial owner of 10 percent or greater) of a sport governing body or member team You will not bet on any event overseen by the sport governing body or any event in which a member team of that sport or event governing body participates;</p>
                     <p>cc) If You are involved in a sport or event, You will not be involved in compiling betting odds for the competition in which You are involved.</p>
-                    <p><b>5.2 </b>In case of a breach of any of the representations, warrants or covenants mentioned in <b>5.1,</b> Seabet reserves the right to close or suspend Your Seabet account at its own discretion and void any bets to the extent applicable by law.</p>
+                    <p><b>5.2 </b>In case of a breach of any of the representations, warrants or covenants mentioned in Seabet reserves the right to close or suspend Your Seabet account at its own discretion and void any bets to the extent applicable by law.</p>
 
                     <h3>6. SEABET WARRANTIES</h3>
                     <p><b>6.1 </b>Seabet warrants that they will:</p>
@@ -1052,8 +1051,7 @@ export default {
                     <p><b>19.1 </b>Seabet will not be liable in the event You try to or obtain an advantage from any errors in respect of bets or wagers on the Website if You were deliberately acting in bad-faith, including where: </p>
                     <p>(i) there is an obvious error in the relevant odds, spreads, handicap, totals, cash-out; </p>
                     <p>(ii) Seabet continues to accept bets or wagers on closed or suspended markets; </p>
-                    <p>(iii) Seabet incorrectly calculates or pays a settlement amount, including where a bet is Cashed Out for the full settlement amount, or a bet is made void incorrectly, where ‘Void if player does not start’ was selected at bet placement; or </p>
-                    <p>(iv) any error occurs in a random number generator or pay tables included, incorporated or used in any game or product.</p>
+                    <p>(iii) Seabet incorrectly calculates or pays a settlement amount, including where a bet is Cashed Out for the full settlement amount, or a bet is made void incorrectly, where ‘Void if player does not start’ was selected at bet placement; or any error occurs in a random number generator or pay tables included, incorporated or used in any game or product.</p>
 
                     <h3>20. BREACH</h3>
                     <p><b>20.1 </b>Without prejudice to any other rights, if a user breaches in whole or in part any provision contained herein, Seabet reserves the right to take such action as it sees fit, including terminating this Agreement or any other agreement in place with the User and/or taking legal action against such User.</p>
@@ -1504,7 +1502,7 @@ export default {
                         <p><b>10.2 </b>We retain reviews and records through any communication channels. Your use of our support services should be for assistance and for your information only. </p>
 
                         <p><b>10.3 </b>We reserve the right to delete or restrict the Live Support Services or to immediately terminate your Member Account and refund your Account balance if you:</p>
-                        <p>(a) make any statement or share any material that is abusive, abusive, defamatory, harassing, explicit or seriously offensive, including but not limited to expressions of profanity, bigotry, racism or hatred;</p>
+                        <p>(a) make any statement or share any material that is abusive, defamatory, harassing, explicit or seriously offensive, including but not limited to expressions of profanity, bigotry, racism or hatred;</p>
                         <p>(b) use one of our Support Services to advertise, promote or otherwise relate to any other online entity;</p>
                         <p>(c) is reasonably believed to attempt to unfairly exploit our Services, for example, through repeated untrue statements about the same case, transaction or characteristic;</p>
                         <p>(d) make statements about the Company or any other internet site connected to the Site untrue and/or malicious and/or cause damage to the Company;</p>

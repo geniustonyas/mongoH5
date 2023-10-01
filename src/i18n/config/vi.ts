@@ -767,7 +767,6 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">Làm thế nào để trở thành thành viên VIP</div>
                       <div class="vr-conts">
-                        <p>Làm thế nào để trở thành thành viên VIP của Câu lạc bộ VIP của Seabet:</p>
                         <dl>
                           <dd>
                           Tiếp tục cá cược: Chìa khóa để trở thành VIP là luôn đặt cược vào các sự kiện thể thao và trò chơi sòng bạc khác nhau. Seabet thưởng cho sự nhất quán của bạn. Là một trang web cờ bạc tiền điện tử hàng đầu, hãy thường xuyên sử dụng tài sản kỹ thuật số của bạn để đặt cược vào bất kỳ sự kiện thể thao và trò chơi sòng bạc nào do Seabet cung cấp. Bạn cũng có thể thử đặt cược với USDT và tiếp tục sử dụng tiền của mình.
@@ -810,7 +809,7 @@ export default {
                       <p>Đăng ký</p>
                       <p><b>4.1</b> Để bạn có thể đặt cược vào Seabet.io, trước tiên bạn phải đăng ký tài khoản cá nhân với chúng tôi ("Tài khoản Seabet").</p>
                       <p><b>4.2</b> Để một người được đăng ký làm người chơi với Seabet và sử dụng Trang web, người đó phải nộp đơn đăng ký và mở tài khoản Seabet. Đơn đăng ký mở Tài khoản Seabet phải được gửi trực tiếp và sẽ yêu cầu Bạn cung cấp một bộ thông tin cá nhân, cụ thể là e-mail, tên đầy đủ, ngày sinh, địa chỉ, v.v.</p>
-                      <p><b>4.3</b> Trong trường hợp thông tin quy định  tại <b>4.2</b>. không được cung cấp và / hoặc không được coi là đầy đủ, chính xác hoặc cập nhật tại bất kỳ thời điểm nào, Seabet có quyền đình chỉ đăng ký Tài khoản Seabet và coi bất kỳ khoản tiền gửi nào có khả năng được chấp nhận tiếp theo vào Tài khoản Seabet của Người chơi là không hợp lệ (và bất kỳ khoản tiền thắng cược nào phát sinh từ khoản tiền gửi đó là vô hiệu). Trong trường hợp Tài khoản Seabet bị đình chỉ, bạn nên liên hệ với bộ phận hỗ trợ khách hàng tại (support{‘{'@'}’}Seabet.io).</p>
+                      <p><b>4.3</b> Trong trường hợp thông tin quy định  tại <b>4.2</b>. không được cung cấp và / hoặc không được coi là đầy đủ, chính xác hoặc cập nhật tại bất kỳ thời điểm nào, Seabet có quyền đình chỉ đăng ký Tài khoản Seabet và coi bất kỳ khoản tiền gửi nào có khả năng được chấp nhận tiếp theo vào Tài khoản Seabet của Người chơi là không hợp lệ (và bất kỳ khoản tiền thắng cược nào phát sinh từ khoản tiền gửi đó là vô hiệu). Trong trường hợp Tài khoản Seabet bị đình chỉ, bạn nên liên hệ với bộ phận hỗ trợ khách hàng tại (support{'@'}Seabet.io).</p>
                       <p><b>4.4</b> Tất cả các đương đơn phải từ 18 tuổi trở lên hoặc độ tuổi trưởng thành hợp pháp khác được xác định bởi bất kỳ luật nào áp dụng cho bạn, bất kể độ tuổi nào lớn hơn hay lớn hơn. Seabet có quyền yêu cầu bằng chứng về tuổi từ bất kỳ Người chơi nào và đình chỉ Tài khoản Seabet của họ cho đến khi tài liệu thỏa đáng được cung cấp. Seabet có trách nhiệm đối với cờ bạc dưới tuổi và có trách nhiệm rất nghiêm túc.</p>
                       <p><b>4.5</b> Seabet sẽ không chấp nhận đăng ký từ các cá nhân:</p>
                       <p>a) Dưới 18 tuổi hoặc dưới độ tuổi trưởng thành hợp pháp hoặc đánh bạc trong phạm vi quyền hạn của mình;</p>
@@ -893,7 +892,7 @@ export default {
                       <p>aa) Nếu Bạn là vận động viên, huấn luyện viên, người quản lý, chủ sở hữu, trọng tài hoặc bất kỳ ai có đủ thẩm quyền để ảnh hưởng đến kết quả của một sự kiện, Bạn sẽ không đặt cược vào bất kỳ sự kiện nào được giám sát bởi môn thể thao hoặc sự kiện có liên quan của cơ quan chủ quản;</p>
                       <p>bb) Nếu Bạn là chủ sở hữu (người là chủ sở hữu hợp pháp hoặc thụ hưởng trực tiếp hoặc gián tiếp từ 10 phần trăm trở lên) của cơ quan quản lý thể thao hoặc đội thành viên, Bạn sẽ không đặt cược vào bất kỳ sự kiện nào được giám sát bởi cơ quan quản lý thể thao hoặc bất kỳ sự kiện nào trong đó một đội thành viên của cơ quan quản lý môn thể thao hoặc sự kiện đó tham gia;</p>
                       <p>cc) Nếu Bạn tham gia vào một môn thể thao hoặc sự kiện, Bạn sẽ không tham gia vào việc tổng hợp tỷ lệ cá cược cho cuộc thi mà Bạn tham gia.</p>
-                      <p><b>5.2</b> Trong trường hợp vi phạm bất kỳ  tuyên bố, bảo đảm hoặc giao ước nào được đề cập trong <b>5.1</b>, Seabet có quyền đóng hoặc đình chỉ tài khoản Seabet của bạn theo quyết định riêng của mình và vô hiệu hóa bất kỳ cược nào trong phạm vi được pháp luật áp dụng.</p>
+                      <p><b>5.2</b> Trong trường hợp vi phạm bất kỳ  tuyên bố, bảo đảm hoặc giao ước nào được đề cập trong, Seabet có quyền đóng hoặc đình chỉ tài khoản Seabet của bạn theo quyết định riêng của mình và vô hiệu hóa bất kỳ cược nào trong phạm vi được pháp luật áp dụng.</p>
 
                       <h3>6. BẢO HÀNH SEABET</h3>
                       <p><b>6.1</b> Seabet đảm bảo rằng họ sẽ:</p>
@@ -1044,8 +1043,7 @@ export default {
                       <p><b>19.1</b> Seabet sẽ không chịu trách nhiệm trong trường hợp Bạn cố gắng hoặc có được lợi thế từ bất kỳ lỗi nào liên quan đến cược hoặc cược trên Trang web nếu Bạn cố tình hành động thiếu thiện chí, bao gồm: </p>
                       <p>(i) có một lỗi rõ ràng trong tỷ lệ cược, chênh lệch, handicap, tổng, rút tiền mặt có liên quan; </p>
                       <p>(ii) Seabet tiếp tục chấp nhận đặt cược hoặc đặt cược trên các thị trường đóng cửa hoặc bị đình chỉ; </p>
-                      <p>(iii) Seabet tính toán hoặc thanh toán không chính xác số tiền thanh toán, bao gồm cả trường hợp đặt cược được rút tiền mặt cho toàn bộ số tiền thanh toán hoặc đặt cược bị vô hiệu không chính xác, trong đó 'Vô hiệu nếu người chơi không bắt đầu' đã được chọn tại đặt cược; hoặc </p>
-                      <p>(iv) bất kỳ lỗi nào xảy ra trong trình tạo số ngẫu nhiên hoặc bảng thanh toán được bao gồm, kết hợp hoặc sử dụng trong bất kỳ trò chơi hoặc sản phẩm nào.</p>
+                      <p>(iii) Seabet tính toán hoặc thanh toán không chính xác số tiền thanh toán, bao gồm cả trường hợp đặt cược được rút tiền mặt cho toàn bộ số tiền thanh toán hoặc đặt cược bị vô hiệu không chính xác, trong đó 'Vô hiệu nếu người chơi không bắt đầu' đã được chọn tại đặt cược; hoặc bất kỳ lỗi nào xảy ra trong trình tạo số ngẫu nhiên hoặc bảng thanh toán được bao gồm, kết hợp hoặc sử dụng trong bất kỳ trò chơi hoặc sản phẩm nào.</p>
 
                       <h3>20. VI PHẠM</h3>
                       <p><b>20.1</b> Không ảnh hưởng đến bất kỳ quyền nào khác,  nếu người dùng vi phạm toàn bộ hoặc một phần bất kỳ điều khoản nào trong tài liệu này, Seabet có quyền thực hiện hành động đó khi thấy phù hợp, bao gồm chấm dứt Thỏa thuận này hoặc bất kỳ thỏa thuận nào khác với Người dùng và / hoặc thực hiện hành động pháp lý chống lại Người dùng đó.</p>
@@ -1459,7 +1457,7 @@ export default {
 
                         <p><b>8.2</b> Nếu bạn sử dụng Tiền thưởng Tiền gửi, bạn sẽ không chấp nhận tiền thưởng đã rút tiền gửi ban đầu trước đó của bạn và bạn đã đáp ứng các yêu cầu được nêu trong Điều khoản và Điều kiện Gửi tiền. </p>
 
-                        <p><b>8.3</b> vi phạm bất kỳ điều khoản  nào của ưu đãi hoặc khuyến mãi, hoặc khi có bất kỳ bằng chứng nào cho thấy có một loạt các cược được đặt bởi khách hàng hoặc nhóm khách hàng, do tiền thưởng tiền gửi, thanh toán nâng cao, cược miễn phí, cược không rủi ro hoặc bất kỳ đảm bảo kết quả ưu đãi khuyến mại nào khác bất kể kết quả, cho dù là cá nhân hay là một phần của nhóm,  Trang web Lợi nhuận của Khách hàng có quyền lấy lại các yếu tố tiền thưởng của các ưu đãi đó và bảo lưu giá trị tuyệt đối theo quyết định tuyệt đối của họ để giải quyết cược với tỷ lệ cược chính xác, Hủy Tiền thưởng Đặt cược Miễn phí và Đặt cược Không rủi ro hoặc hủy bất kỳ cược nào được tài trợ bởi Tiền thưởng Tiền gửi. Ngoài ra, trang web này có quyền thu phí quản lý đối với khách hàng, tối đa bằng giá trị của tiền thưởng tiền gửi, tiền thưởng đặt cược miễn phí, đặt cược không rủi ro hoặc thanh toán bổ sung để trang trải phí quản lý. Chúng tôi tiếp tục bảo lưu quyền yêu cầu bất kỳ khách hàng nào cung cấp đầy đủ tài liệu để chúng tôi hài lòng tuyệt đối với bất kỳ phần thưởng, đặt cược miễn phí, đặt cược không rủi ro hoặc tài khoản nào được cung cấp cho họ. </p>
+                        <p><b>8.3</b> Vi phạm bất kỳ điều khoản  nào của ưu đãi hoặc khuyến mãi, hoặc khi có bất kỳ bằng chứng nào cho thấy có một loạt các cược được đặt bởi khách hàng hoặc nhóm khách hàng, do tiền thưởng tiền gửi, thanh toán nâng cao, cược miễn phí, cược không rủi ro hoặc bất kỳ đảm bảo kết quả ưu đãi khuyến mại nào khác bất kể kết quả, cho dù là cá nhân hay là một phần của nhóm,  Trang web Lợi nhuận của Khách hàng có quyền lấy lại các yếu tố tiền thưởng của các ưu đãi đó và bảo lưu giá trị tuyệt đối theo quyết định tuyệt đối của họ để giải quyết cược với tỷ lệ cược chính xác, Hủy Tiền thưởng Đặt cược Miễn phí và Đặt cược Không rủi ro hoặc hủy bất kỳ cược nào được tài trợ bởi Tiền thưởng Tiền gửi. Ngoài ra, trang web này có quyền thu phí quản lý đối với khách hàng, tối đa bằng giá trị của tiền thưởng tiền gửi, tiền thưởng đặt cược miễn phí, đặt cược không rủi ro hoặc thanh toán bổ sung để trang trải phí quản lý. Chúng tôi tiếp tục bảo lưu quyền yêu cầu bất kỳ khách hàng nào cung cấp đầy đủ tài liệu để chúng tôi hài lòng tuyệt đối với bất kỳ phần thưởng, đặt cược miễn phí, đặt cược không rủi ro hoặc tài khoản nào được cung cấp cho họ. </p>
 
                         <p><b>8.4</b> Tất cả các ưu đãi của Trang web đều dành cho người chơi thông thường và Trang web có thể, theo quyết định riêng của mình, giới hạn tính đủ điều kiện của Khách hàng để tham gia vào tất cả hoặc một phần của Chương trình khuyến mãi. </p>
 
@@ -1586,9 +1584,9 @@ export default {
 
                         <p><b>13.2</b> Không ảnh hưởng đến tính tổng quát của những điều đã nói ở trên, bạn chấp nhận rằng chúng tôi:</p>
 
-                        <p><b>13.2.1</b> không đảm bảo rằng Phần mềm, Trò chơi và Trang web phù hợp với mục đích của chúng; </p>
+                        <p><b>13.2.1</b> Không đảm bảo rằng Phần mềm, Trò chơi và Trang web phù hợp với mục đích của chúng; </p>
 
-                        <p><b>13.2.2</b> không đảm bảo rằng Phần mềm, Trò chơi và Trang web không có lỗi; </p>
+                        <p><b>13.2.2</b> Không đảm bảo rằng Phần mềm, Trò chơi và Trang web không có lỗi; </p>
 
                         <p><b>13.2.3</b> Không có gì đảm bảo rằng Phần mềm, Trò chơi và Trang web sẽ bị gián đoạn mà không bị gián đoạn. </p>
 

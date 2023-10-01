@@ -767,7 +767,6 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">5.Comment Devenir Membre VIP</div>
                       <div class="vr-conts">
-                        <p>Comment devenir membre VIP du Club VIP de Seabet :</p>
                         <dl>
                           <dd>
                           Pariez Régulièrement : La clé pour devenir VIP est de placer régulièrement des paris sur divers événements sportifs et jeux de casino. Seabet récompense votre assiduité. En tant que site de jeu de crypto-monnaie de premier plan, utilisez régulièrement vos actifs numériques pour parier sur tous les événements sportifs et jeux de casino proposés par Seabet. Vous pouvez également essayer de parier avec des USDT et continuer à utiliser vos fonds.
@@ -893,7 +892,7 @@ export default {
                       <p>aa) Si vous êtes un athlète, un entraîneur, un manager, un propriétaire, un arbitre ou toute personne ayant suffisamment d'autorité pour influencer le résultat d'un événement, vous ne parierez sur aucun événement supervisé par le sport ou l'événement concerné de l'instance dirigeante ;</p>
                       <p>bb) Si vous êtes propriétaire (une personne qui est un propriétaire légal direct ou indirect ou bénéficiaire de 10% ou plus) d'un organisme directeur sportif ou d'une équipe membre, vous ne parierez sur aucun événement supervisé par l'instance dirigeante du sport ou sur tout événement auquel participe une équipe membre de cet organisme directeur sportif ou événementiel;</p>
                       <p>cc) Si vous êtes impliqué dans un sport ou un événement, vous ne serez pas impliqué dans la compilation des cotes de paris pour la compétition dans laquelle vous êtes impliqué.</p>
-                      <p><b>5.2</b> En cas de violation de l'une des déclarations, mandats ou engagements mentionnés en <b>5.1</b>, Seabet se réserve le droit de fermer ou de suspendre votre compte Seabet à sa seule discrétion et d'annuler tout pari dans la mesure applicable par la loi.</p>
+                      <p><b>5.2</b> En cas de violation de l'une des déclarations, mandats ou engagements mentionnés en, Seabet se réserve le droit de fermer ou de suspendre votre compte Seabet à sa seule discrétion et d'annuler tout pari dans la mesure applicable par la loi.</p>
 
                       <h3>6. GARANTIES SEABET</h3>
                       <p><b>6.1</b> Seabet garantit qu'ils :</p>
@@ -1044,8 +1043,7 @@ export default {
                       <p><b>19.1</b> Seabet ne sera pas responsable dans le cas où vous essayez ou obtenez un avantage à partir d'erreurs en ce qui concerne les paris ou les paris sur le site Web si vous avez délibérément agi de mauvaise foi, y compris lorsque : </p>
                       <p>(i) il y a une erreur évidente dans les cotes, les spreads, le handicap, les totaux, le retrait pertinents; </p>
                       <p>(ii) Seabet continue d'accepter des paris ou des paris sur des marchés fermés ou suspendus ; </p>
-                      <p>(iii) Seabet calcule ou paie incorrectement un montant de règlement, y compris lorsqu'un pari est encaissé pour le montant total du règlement, ou qu'un pari est annulé de manière incorrecte, où « Nul si le joueur ne commence pas » a été sélectionné lors du placement du pari ; ou </p>
-                      <p>(iv) toute erreur se produit dans un générateur de nombres aléatoires ou des tables de paiement incluses, incorporées ou utilisées dans un jeu ou un produit.</p>
+                      <p>(iii) Seabet calcule ou paie incorrectement un montant de règlement, y compris lorsqu'un pari est encaissé pour le montant total du règlement, ou qu'un pari est annulé de manière incorrecte, où « Nul si le joueur ne commence pas » a été sélectionné lors du placement du pari ; ou toute erreur se produit dans un générateur de nombres aléatoires ou des tables de paiement incluses, incorporées ou utilisées dans un jeu ou un produit.</p>
 
                       <h3>20. VIOLATION</h3>
                       <p><b>20.1</b> Sans préjudice de tout autre droit,  si un utilisateur enfreint en tout ou en partie une disposition contenue dans les présentes, Seabet se réserve le droit de prendre les mesures qu'il juge appropriées, y compris la résiliation du présent Contrat ou de tout autre accord en place avec l'Utilisateur et/ou intenter une action en justice contre cet Utilisateur.</p>
@@ -1233,7 +1231,7 @@ export default {
                               <p>Une fois que l'auto-exclusion que vous avez sélectionnée a pris fin, votre compte sera automatiquement rouvert. Cependant, vous recevrez un e-mail de confirmation de ces informations qui sera envoyé à votre adresse e-mail enregistrée.</p>
                           </div>`,
     privacyContent: `<div>
-                        <h2>spaPolitique de confidentialité </h2>
+                        <h2>Politique de confidentialité </h2>
                         <p>Seabet.io respecte et protège la vie privée de tous les utilisateurs de nos Services. Cette politique de confidentialité (« Politique ») détaille la façon dont nous recueillons, stockons, utilisons et divulguons vos informations personnelles.</p>
                         <h3>1. Portée et application </h3>
                         <p>Cette Politique s'applique à votre accès et à votre utilisation  de Seabet.io (le « Site Web ») et de tous les sites Web et applications de la marque Seabet, y compris toutes nos applications mobiles et tablettes. En outre, cette politique s'applique également lorsque nous interagissons avec vous d'autres manières.</p>
@@ -1454,7 +1452,7 @@ export default {
 
                         <p><b>8.2</b> Si vous utilisez un bonus de dépôt, vous n'accepterez pas un bonus qui a déjà retiré votre dépôt initial et que vous avez satisfait aux exigences énoncées dans les conditions générales de dépôt. </p>
 
-                        <p><b>8.3</b> violation de l'une des conditions d'une offre ou d'une promotion, ou lorsqu'il existe des preuves qu'il existe une série de paris placés par un client ou un groupe de clients, en raison de bonus de dépôt, de paiements améliorés, de paris gratuits, de paris sans risque ou de toute autre garantie de résultat de l'offre promotionnelle, quel que soit le résultat, que ce soit individuellement ou dans le cadre d'un groupe,  le site Web Customer Profit se réserve le droit de récupérer les éléments bonus de ces offres et se réserve la valeur absolue de leur discrétion absolue pour régler les paris à des cotes correctes, annuler le bonus de pari gratuit et le pari sans risque ou annuler tout pari financé par le bonus de dépôt. En outre, ce site se réserve le droit de prélever des frais d'administration sur le client, jusqu'à concurrence de la valeur du bonus de dépôt, du bonus de pari gratuit, du pari sans risque ou du paiement supplémentaire pour couvrir les frais de gestion. Nous nous réservons en outre le droit d'exiger de tout client qu'il fournisse une documentation suffisante à notre entière satisfaction avec toute récompense, pari gratuit, pari sans risque ou compte qui lui est fourni. </p>
+                        <p><b>8.3</b> Violation de l'une des conditions d'une offre ou d'une promotion, ou lorsqu'il existe des preuves qu'il existe une série de paris placés par un client ou un groupe de clients, en raison de bonus de dépôt, de paiements améliorés, de paris gratuits, de paris sans risque ou de toute autre garantie de résultat de l'offre promotionnelle, quel que soit le résultat, que ce soit individuellement ou dans le cadre d'un groupe,  le site Web Customer Profit se réserve le droit de récupérer les éléments bonus de ces offres et se réserve la valeur absolue de leur discrétion absolue pour régler les paris à des cotes correctes, annuler le bonus de pari gratuit et le pari sans risque ou annuler tout pari financé par le bonus de dépôt. En outre, ce site se réserve le droit de prélever des frais d'administration sur le client, jusqu'à concurrence de la valeur du bonus de dépôt, du bonus de pari gratuit, du pari sans risque ou du paiement supplémentaire pour couvrir les frais de gestion. Nous nous réservons en outre le droit d'exiger de tout client qu'il fournisse une documentation suffisante à notre entière satisfaction avec toute récompense, pari gratuit, pari sans risque ou compte qui lui est fourni. </p>
 
                         <p><b>8.4</b> Toutes les offres du Site sont destinées aux joueurs occasionnels et le Site Web peut, à sa seule discrétion, limiter l'éligibilité du Client à participer à tout ou partie de la Promotion. </p>
 
@@ -1580,9 +1578,9 @@ export default {
 
                         <p><b>13.2</b> Sans préjudice de la généralité de ce qui précède, vous acceptez que nous :</p>
 
-                        <p><b>13.2.1</b> ne garantit pas que le Logiciel, les Jeux et le Site Web sont adaptés à leur usage ; </p>
+                        <p><b>13.2.1</b> Ne garantit pas que le Logiciel, les Jeux et le Site Web sont adaptés à leur usage ; </p>
 
-                        <p><b>13.2.2</b> ne garantit pas que le Logiciel, les Jeux et le Site Web sont exempts d'erreurs ; </p>
+                        <p><b>13.2.2</b> Ne garantit pas que le Logiciel, les Jeux et le Site Web sont exempts d'erreurs ; </p>
 
                         <p><b>13.2.3</b> Il n'y a aucune garantie que le Logiciel, les Jeux et le Site Web seront interrompus sans interruption. </p>
 

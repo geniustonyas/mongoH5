@@ -766,7 +766,6 @@ export default {
                     <div class="vc-rows">
                       <div class="vr-title">5.VIP Üyesi Nasıl Olunur</div>
                       <div class="vr-conts">
-                        <p>Seabet'in VIP Kulübü'nün bir üyesi olmanın yolları:</p>
                         <dl>
                           <dd>
                             Bahis Yapmaya Devam Edin: VIP olmanın anahtarı, çeşitli spor etkinliklerine ve kumarhane oyunlarına sürekli bahis yapmaktır. Seabet, sürekliğinizi ödüllendirir. Top kripto para kumarhane sitesi olarak dijital varlıklarınızı düzenli olarak kullanarak Seabet tarafından sunulan herhangi bir spor etkinliğine ve kumarhane oyunlarına bahis yapın. Ayrıca USDT ile bahis yapmayı deneyebilir ve fonlarınızı kullanmaya devam edebilirsiniz.
@@ -892,7 +891,7 @@ export default {
                       <p>aa) Bir sporcu, antrenör, yönetici, mal sahibi, hakem veya bir etkinliğin sonucunu etkilemek için yeterli yetkiye sahip herhangi biriyseniz, ilgili spor veya yönetim organının etkinliği tarafından denetlenen herhangi bir etkinliğe bahis yapmayacaksınız;</p>
                       <p>bb) Bir spor yönetim organının veya üye takımının sahibiyseniz (yüzde 10 veya daha fazlasının doğrudan veya dolaylı yasal veya intifa hakkı sahibi olan bir kişi) Spor yönetim organı tarafından denetlenen herhangi bir etkinliğe veya o spor veya etkinlik yönetim organının bir üye takımının katıldığı herhangi bir etkinliğe bahis oynamayacaksınız;</p>
                       <p>cc) Bir spor veya etkinlikte yer alıyorsanız, dahil olduğunuz yarışma için bahis oranlarının derlenmesine dahil olmayacaksınız.</p>
-                      <p><b>5.2</b> <b>5.1</b>'de belirtilen beyanların, garantilerin veya sözleşmelerin herhangi birinin ihlali durumunda, Seabet, Seabet hesabınızı kendi takdirine bağlı olarak kapatma veya askıya alma ve yasaların geçerli olduğu ölçüde bahisleri geçersiz kılma hakkını saklı tutar.</p>
+                      <p><b>5.2</b>'de belirtilen beyanların, garantilerin veya sözleşmelerin herhangi birinin ihlali durumunda, Seabet, Seabet hesabınızı kendi takdirine bağlı olarak kapatma veya askıya alma ve yasaların geçerli olduğu ölçüde bahisleri geçersiz kılma hakkını saklı tutar.</p>
 
                       <h3>6. SEABET GARANTİLERİ</h3>
                       <p><b>6.1</b> Seabet, şunları yapacağını garanti eder:</p>
@@ -1043,8 +1042,7 @@ export default {
                       <p><b>19.1</b> Seabet, aşağıdakiler de dahil olmak üzere, kasıtlı olarak kötü niyetle hareket ettiyseniz, Web Sitesindeki bahisler veya bahislerle ilgili herhangi bir hatadan yararlanmaya veya bunlardan avantaj elde etmeye çalışmanız durumunda sorumlu olmayacaktır: </p>
                       <p>(i) ilgili oranlarda, spreadlerde, handikaplarda, toplamlarda, nakit çıkışında bariz bir hata olması; </p>
                       <p>(ii) Seabet, kapalı veya askıya alınmış pazarlarda bahis veya bahis kabul etmeye devam eder; </p>
-                      <p>(iii) Seabet'in, bir bahsin tam ödeme tutarı için Nakde Çevrildiği veya bir bahsin yanlış bir şekilde geçersiz kılındığı, bahis yerleştirmede 'Oyuncu başlamazsa geçersiz kılındığı' durumlar da dahil olmak üzere bir uzlaşma tutarını yanlış hesaplaması veya ödemesi; veya </p>
-                      <p>(iv) herhangi bir oyuna veya ürüne dahil olan, dahil edilen veya kullanılan rastgele sayı üretecinde veya ödeme tablolarında herhangi bir hata meydana gelmesi.</p>
+                      <p>(iii) Seabet'in, bir bahsin tam ödeme tutarı için Nakde Çevrildiği veya bir bahsin yanlış bir şekilde geçersiz kılındığı, bahis yerleştirmede 'Oyuncu başlamazsa geçersiz kılındığı' durumlar da dahil olmak üzere bir uzlaşma tutarını yanlış hesaplaması veya ödemesi; veya herhangi bir oyuna veya ürüne dahil olan, dahil edilen veya kullanılan rastgele sayı üretecinde veya ödeme tablolarında herhangi bir hata meydana gelmesi.</p>
 
                       <h3>20. İHLAL</h3>
                       <p><b>20.1</b> Diğer haklara halel getirmeksizin, bir kullanıcı burada yer alan herhangi bir hükmü kısmen veya tamamen ihlal ederse, Seabet, bu Sözleşmeyi veya Kullanıcı ile yürürlükte olan başka bir sözleşmeyi feshetmek ve / veya bu Kullanıcıya karşı yasal işlem yapmak da dahil olmak üzere uygun gördüğü şekilde işlem yapma hakkını saklı tutar.</p>

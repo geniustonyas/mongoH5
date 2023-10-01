@@ -613,7 +613,7 @@ export default {
                         <p>Asia Gaming - Fish Hunter</p>`
   },
   faqs: {
-    q1: '¿Cómo hago un depósito?<',
+    q1: '¿Cómo hago un depósito?',
     a1: `<p>1. Selecciona la criptomoneda de tu elección, luego haz clic en Depositar.</p>
         <p>2. Copia la dirección de depósito único y utilícela en tu billetera (o escanee el código QR).</p>
         <p>3. Una vez que se confirme tu transacción, recibirá una notificación.</p>`,
@@ -623,7 +623,8 @@ export default {
         <p>3. Ingresa la dirección de tu billetera.</p>
         <p>4. Haz clic en el botón Retirar.</p>`,
     q3: '¿Cuánto tardan los depósitos/retiros?',
-    a3: `<p>La mayoría de los depósitos criptográficos se procesan a la velocidad del rayo. Sin embargo, puede haber algunos retrasos de los servicios de terceros. Para los depósitos de BTCXE, tu transacción puede tardar hasta 30 minutos en procesarse debido al tiempo necesario para la conversión de fondos fiduciarios a BTC.</p>
+    a3: `<p>Depósito</p>
+        <p>La mayoría de los depósitos criptográficos se procesan a la velocidad del rayo. Sin embargo, puede haber algunos retrasos de los servicios de terceros. Para los depósitos de BTCXE, tu transacción puede tardar hasta 30 minutos en procesarse debido al tiempo necesario para la conversión de fondos fiduciarios a BTC.</p>
         <p>Retiro</p>
         <p>La mayoría de los retiros se procesan instantáneamente. En el caso de grandes retiros, procesamos estos retiros manualmente, por lo que puede haber un ligero retraso.</p>`,
     q4: '¿Qué monedas y métodos de pago ofrecen?',
@@ -766,7 +767,6 @@ export default {
                   <div class="vc-rows">
                     <div class="vr-title">5.Cómo Convertirse en Miembro VIP</div>
                     <div class="vr-conts">
-                      <p>Cómo convertirse en miembro VIP del Club VIP de Seabet:</p>
                       <dl>
                         <dd>
                         Sigue Apostando: La clave para convertirse en VIP es apostar de manera constante en diversos eventos deportivos y juegos de casino. Seabet recompensa tu consistencia. Como uno de los principales sitios de apuestas con criptomonedas, utiliza regularmente tus activos digitales para realizar apuestas en cualquier evento deportivo y juegos de casino ofrecidos por Seabet. También puedes probar a apostar con USDT y seguir utilizando tus fondos.
@@ -891,7 +891,7 @@ export default {
                       <p>aa) Si usted es un atleta, entrenador, gerente, propietario, árbitro o cualquier persona con autoridad suficiente para influir en el resultado de un evento, no apostará en ningún evento supervisado por el deporte o evento relevante del organismo rector;</p>
                       <p>bb) Si usted es propietario (una persona que es un propietario legal o beneficiario directo o indirecto del 10 por ciento o más) de un organismo rector deportivo o equipo miembro, no apostará en ningún evento supervisado por el organismo rector del deporte ni en ningún evento en el que participe un equipo miembro de ese deporte o evento rector;</p>
                       <p>cc) Si está involucrado en un deporte o evento, no participará en la compilación de probabilidades de apuestas para la competencia en la que está involucrado.</p>
-                      <p><b>5.2</b> En caso de incumplimiento de cualquiera de las declaraciones, garantías o pactos mencionados en <b>5.1</b>, Seabet se reserva el derecho de cerrar o suspender su cuenta Seabet a su propia discreción y anular cualquier apuesta en la medida aplicable por la ley.</p>
+                      <p><b>5.2</b> En caso de incumplimiento de cualquiera de las declaraciones, garantías o pactos mencionados en, Seabet se reserva el derecho de cerrar o suspender su cuenta Seabet a su propia discreción y anular cualquier apuesta en la medida aplicable por la ley.</p>
 
                       <h3>6. GARANTÍAS DE SEABET</h3>
                       <p><b>6.1</b> Seabet garantiza que:</p>
@@ -1042,8 +1042,7 @@ export default {
                       <p><b>19.1</b> Seabet no será responsable en caso de que intente u obtenga una ventaja de cualquier error con respecto a las apuestas en el sitio web si actuó deliberadamente de mala fe, incluso cuando: </p>
                       <p>i) existe un error evidente en las cuotas, los diferenciales, la desventaja, los totales y el retiro de efectivos; </p>
                       <p>(ii) Seabet continúa aceptando apuestas en mercados cerrados o suspendidos; </p>
-                      <p>(iii) Seabet calcula o paga incorrectamente un importe de liquidación, incluso cuando una apuesta se cobra por el importe total de la liquidación, o una apuesta se anula incorrectamente, cuando se seleccionó "Nulo si el jugador no comienza" en la colocación de la apuesta; o </p>
-                      <p>(iv) cualquier error se produzca en un generador de números aleatorios o tablas de pago incluidas, incorporadas o utilizadas en cualquier juego o producto.</p>
+                      <p>(iii) Seabet calcula o paga incorrectamente un importe de liquidación, incluso cuando una apuesta se cobra por el importe total de la liquidación, o una apuesta se anula incorrectamente, cuando se seleccionó "Nulo si el jugador no comienza" en la colocación de la apuesta; o cualquier error se produzca en un generador de números aleatorios o tablas de pago incluidas, incorporadas o utilizadas en cualquier juego o producto.</p>
 
                       <h3>20. INCUMPLIMIENTO</h3>
                       <p><b>20.1</b> Sin perjuicio de cualquier otro derecho,  si un usuario incumple total o parcialmente cualquier disposición contenida en este documento, Seabet se reserva el derecho de tomar las medidas que considere oportunas, incluida la terminación de este Acuerdo o cualquier otro acuerdo vigente con el Usuario y / o emprender acciones legales contra dicho Usuario.</p>
@@ -1221,7 +1220,7 @@ export default {
                             <p>Una vez que la autoexclusión seleccionada haya llegado a su fin, su cuenta se volverá a abrir automáticamente. Sin embargo, recibirá una confirmación por correo electrónico de esta información que se enviará a su dirección de correo electrónico registrada.</p>
                           </div>`,
     privacyContent: `<div>
-                        <h2>spaPolítica de privacidad </h2>
+                        <h2>Política de privacidad </h2>
                         <p>Seabet.io respeta y protege la privacidad de todos los usuarios de nuestros Servicios. Esta Política de privacidad ("Política") detalla cómo recopilamos, almacenamos, usamos y divulgamos su información personal.</p>
                         <h3>1. Ámbito de aplicación </h3>
                         <p>Esta Política se aplica a su acceso y uso de Seabet.io (el "Sitio web") y todos los sitios web y aplicaciones bajo la marca Seabet, incluidas todas nuestras aplicaciones móviles y aplicaciones para tabletas. Además, esta Política también se aplica cuando interactuamos con usted de otras maneras.</p>
@@ -1442,7 +1441,7 @@ export default {
 
                         <p><b>8.2</b> Si utiliza un Bono de depósito, no aceptará un bono que haya retirado previamente su depósito original y que haya cumplido con los requisitos establecidos en los Términos y condiciones del depósito. </p>
 
-                        <p><b>8.3</b> incumplimiento de cualquiera de los términos  de una oferta o promoción, o cuando haya alguna evidencia de que hay una serie de apuestas realizadas por un cliente o grupo de clientes, debido a bonos de depósito, pagos mejorados, apuestas gratuitas, apuestas sin riesgo o cualquier otra garantía de resultado de oferta promocional, independientemente del resultado, ya sea individualmente o como parte de un grupo,  El sitio web de Customer Profit se reserva el derecho de reclamar los elementos de bonificación de dichas ofertas y se reserva el valor absoluto de su absoluta discreción para liquidar apuestas con cuotas correctas, cancelar el bono de apuesta gratis y arriesgar apuestas gratuitas o cancelar cualquier apuesta financiada por el bono de depósito. Además, este sitio web se reserva el derecho de cobrar una tarifa de administración al cliente, hasta el valor del bono de depósito, bono de apuesta gratis, apuesta sin riesgo o pago adicional para cubrir la tarifa de administración. Además, nos reservamos el derecho de exigir a cualquier cliente que proporcione documentación suficiente para nuestra absoluta satisfacción con cualquier recompensa, apuesta gratis, apuesta sin riesgo o cuenta que se les proporcione. </p>
+                        <p><b>8.3</b> Incumplimiento de cualquiera de los términos  de una oferta o promoción, o cuando haya alguna evidencia de que hay una serie de apuestas realizadas por un cliente o grupo de clientes, debido a bonos de depósito, pagos mejorados, apuestas gratuitas, apuestas sin riesgo o cualquier otra garantía de resultado de oferta promocional, independientemente del resultado, ya sea individualmente o como parte de un grupo,  El sitio web de Customer Profit se reserva el derecho de reclamar los elementos de bonificación de dichas ofertas y se reserva el valor absoluto de su absoluta discreción para liquidar apuestas con cuotas correctas, cancelar el bono de apuesta gratis y arriesgar apuestas gratuitas o cancelar cualquier apuesta financiada por el bono de depósito. Además, este sitio web se reserva el derecho de cobrar una tarifa de administración al cliente, hasta el valor del bono de depósito, bono de apuesta gratis, apuesta sin riesgo o pago adicional para cubrir la tarifa de administración. Además, nos reservamos el derecho de exigir a cualquier cliente que proporcione documentación suficiente para nuestra absoluta satisfacción con cualquier recompensa, apuesta gratis, apuesta sin riesgo o cuenta que se les proporcione. </p>
 
                         <p><b>8.4</b> Todas las ofertas del sitio web están destinadas a jugadores ocasionales y el sitio web puede, a su entera discreción, limitar la elegibilidad del cliente para participar en la totalidad o parte de la promoción. </p>
 
@@ -1568,9 +1567,9 @@ export default {
 
                         <p><b>13.2</b> Sin perjuicio de la generalidad de lo anterior, usted acepta que:</p>
 
-                        <p><b>13.2.1</b> no garantiza que el Software, los Juegos y el Sitio web sean adecuados para su propósito; </p>
+                        <p><b>13.2.1</b> No garantiza que el Software, los Juegos y el Sitio web sean adecuados para su propósito; </p>
 
-                        <p><b>13.2.2</b> no garantiza que el Software, los Juegos y el Sitio web estén libres de errores; </p>
+                        <p><b>13.2.2</b> No garantiza que el Software, los Juegos y el Sitio web estén libres de errores; </p>
 
                         <p><b>13.2.3</b> No hay garantía de que el Software, los Juegos y el Sitio Web se interrumpan sin interrupción. </p>
 
