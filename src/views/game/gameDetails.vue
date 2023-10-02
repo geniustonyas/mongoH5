@@ -46,6 +46,7 @@
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="`https://seabet.imgix.net/${item.imageName}?auto=compress,format&w=200&h=152&q=50&dpr=2`" />
+
               </div>
               <div class="i-txt">
                 <strong>{{ item.name }}</strong>

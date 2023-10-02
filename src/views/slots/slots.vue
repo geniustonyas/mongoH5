@@ -52,8 +52,11 @@
                 <!-- <img v-lazy="appStore.cdnurl + item.img" /> -->
                 <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=200&h=152&q=50&dpr=2`" />
                 <!-- <span>{{ item.pn }}</span> -->
+                <div class="sp_sc" @click.stop="setFav(item)">
+                  <i :class="item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'" />
+                </div>
               </div>
-              <div class="i-txt">
+              <!--<div class="i-txt">
                 <div class="it-l">
                   <strong>{{ item.name }}</strong>
                   <span>{{ item.pn }}</span>
@@ -61,7 +64,11 @@
                 <div @click.stop="setFav(item)" class="it-r">
                   <i :class="item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'" />
                 </div>
-              </div>
+              </div>-->
+              <div class="i-txt">
+                <strong>{{ item.name }}</strong>
+                <span>{{ item.pn }}</span>
+              </div> 
             </div>
           </div>
         </div>
@@ -82,158 +89,158 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch, onActivated, onDeactivated } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useRoute, useRouter } from 'vue-router'
+  import { ref, reactive, computed, watch, onActivated, onDeactivated } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { useRoute, useRouter } from 'vue-router'
 
-import IndexHeader from '@/components/layout/IndexHeader.vue'
-import IndexFooter from '@/components/layout/IndexFooter.vue'
-import IndexTab from '@/components/layout/IndexTab.vue'
-import Footer from '@/components/layout/Footer.vue'
-import Sidebar from '@/components/layout/SideBar.vue'
+  import IndexHeader from '@/components/layout/IndexHeader.vue'
+  import IndexFooter from '@/components/layout/IndexFooter.vue'
+  import IndexTab from '@/components/layout/IndexTab.vue'
+  import Footer from '@/components/layout/Footer.vue'
+  import Sidebar from '@/components/layout/SideBar.vue'
 
-import { getGameListApi, setFavApi, cancalFavApi } from '@/api/game/index'
-import { getGameListRespItem, getGameListGsItemResp, getGameListData } from '@/api/game/types'
-import { useAppStore } from '@/store/modules/app'
-import { useUserStore } from '@/store/modules/user'
-import { GameType } from '@/utils/constant'
-import { getExchangeRate } from '@/composables/getExchangeRate'
+  import { getGameListApi, setFavApi, cancalFavApi } from '@/api/game/index'
+  import { getGameListRespItem, getGameListGsItemResp, getGameListData } from '@/api/game/types'
+  import { useAppStore } from '@/store/modules/app'
+  import { useUserStore } from '@/store/modules/user'
+  import { GameType } from '@/utils/constant'
+  import { getExchangeRate } from '@/composables/getExchangeRate'
 
-import { showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon } from 'vant'
-import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-import { startGame } from '@/composables/startGame'
+  import { showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon } from 'vant'
+  import { Vue3SlideUpDown } from 'vue3-slide-up-down'
+  import { startGame } from '@/composables/startGame'
 
-const route = useRoute()
-const router = useRouter()
-const userStore = useUserStore()
-const appStore = useAppStore()
-const { t } = useI18n()
+  const route = useRoute()
+  const router = useRouter()
+  const userStore = useUserStore()
+  const appStore = useAppStore()
+  const { t } = useI18n()
 
-// 汇率相关
-const { currencyCode, exchangeRate } = getExchangeRate()
+  // 汇率相关
+  const { currencyCode, exchangeRate } = getExchangeRate()
 
-// 游戏列表显示or隐藏筛选条件
-let showGameOption = ref(false)
-// 列表显示or表格显示
-let gridShow = ref(true)
-// 游戏列表排序规则
-const sortBy = computed(() => {
-  return [
-    { text: t('polular'), value: 3 },
-    { text: 'A-Z', value: 1 },
-    { text: 'RTP', value: 2 }
-  ]
-})
+  // 游戏列表显示or隐藏筛选条件
+  let showGameOption = ref(false)
+  // 列表显示or表格显示
+  let gridShow = ref(true)
+  // 游戏列表排序规则
+  const sortBy = computed(() => {
+    return [
+      { text: t('polular'), value: 3 },
+      { text: 'A-Z', value: 1 },
+      { text: 'RTP', value: 2 }
+    ]
+  })
 
-// 游戏列表查询参数
-let query = reactive<getGameListData>({
-  ps: [],
-  cs: [],
-  gts: [GameType.Slots],
-  ct: 1,
-  sortBy: 3,
-  page: 1
-})
-// 游戏列表分页
-let pageCount = ref(0)
-// 运营商分类
-let pslist = ref<getGameListRespItem[]>([])
-// 游戏分类-暂时没用
-let cslist = ref<getGameListRespItem[]>([])
-// 游戏列表
-let dataList = ref<getGameListGsItemResp[]>([])
-// 无数据
-const nodata = ref(false)
+  // 游戏列表查询参数
+  let query = reactive<getGameListData>({
+    ps: [],
+    cs: [],
+    gts: [GameType.Slots],
+    ct: 1,
+    sortBy: 3,
+    page: 1
+  })
+  // 游戏列表分页
+  let pageCount = ref(0)
+  // 运营商分类
+  let pslist = ref<getGameListRespItem[]>([])
+  // 游戏分类-暂时没用
+  let cslist = ref<getGameListRespItem[]>([])
+  // 游戏列表
+  let dataList = ref<getGameListGsItemResp[]>([])
+  // 无数据
+  const nodata = ref(false)
 
-// 选择运营商
-const selGameProvider = (id: number) => {
-  showGameOption.value = true
-  const index = query.ps.indexOf(id)
-  if (index > -1) {
-    query.ps.splice(index, 1)
-  } else {
-    query.ps.push(id)
-  }
-  query.page = 1
-  dataList.value = []
-  getGameList()
-}
-
-// 游戏列表排序
-const sortGame = () => {
-  query.page = 1
-  dataList.value = []
-  getGameList()
-}
-
-// 获取游戏列表
-const getGameList = () => {
-  getGameListApi(query)
-    .then((resp) => {
-      pslist.value = resp.data!.ps
-      cslist.value = resp.data!.cs
-      dataList.value = [...dataList.value, ...resp.data!.gs.items]
-      nodata.value = dataList.value.length == 0
-      pageCount.value = parseInt(resp.data!.gs.pages)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-
-// 加载更多
-const loadMore = () => {
-  if (query.page <= pageCount.value) {
-    query.page++
-    getGameList()
-  } else {
-    showToast(t('noMore'))
-  }
-}
-
-// 设置收藏或取消收藏
-const setFav = async (gameItem: getGameListGsItemResp) => {
-  if (userStore.userInfo.id == '') {
-    router.push({ name: 'login' })
-  } else {
-    // 是否收藏
-    if (gameItem.fg) {
-      await cancalFavApi({ gameId: gameItem.id })
+  // 选择运营商
+  const selGameProvider = (id: number) => {
+    showGameOption.value = true
+    const index = query.ps.indexOf(id)
+    if (index > -1) {
+      query.ps.splice(index, 1)
     } else {
-      await setFavApi({ gameId: gameItem.id })
+      query.ps.push(id)
     }
-    gameItem.fg = !gameItem.fg
-    userStore.getFavCount()
-  }
-}
-
-const scrollRef = ref<HTMLElement | null>(null)
-const scrollTop = ref(0)
-onActivated(() => {
-  if (scrollRef.value) {
-    scrollRef.value.scrollTop = scrollTop.value
-  }
-})
-
-onDeactivated(() => {
-  if (scrollRef.value) {
-    scrollTop.value = scrollRef.value.scrollTop
-  }
-})
-
-// 观察路由请求参数providerId变化
-watch(
-  () => route.query.providerId,
-  (val) => {
-    if (val) {
-      showGameOption.value = true
-      query.ps = [parseInt(route.query.providerId as string)]
-    } else {
-      query.ps = []
-    }
+    query.page = 1
     dataList.value = []
     getGameList()
-  },
-  { immediate: true }
-)
+  }
+
+  // 游戏列表排序
+  const sortGame = () => {
+    query.page = 1
+    dataList.value = []
+    getGameList()
+  }
+
+  // 获取游戏列表
+  const getGameList = () => {
+    getGameListApi(query)
+      .then((resp) => {
+        pslist.value = resp.data!.ps
+        cslist.value = resp.data!.cs
+        dataList.value = [...dataList.value, ...resp.data!.gs.items]
+        nodata.value = dataList.value.length == 0
+        pageCount.value = parseInt(resp.data!.gs.pages)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  // 加载更多
+  const loadMore = () => {
+    if (query.page <= pageCount.value) {
+      query.page++
+      getGameList()
+    } else {
+      showToast(t('noMore'))
+    }
+  }
+
+  // 设置收藏或取消收藏
+  const setFav = async (gameItem: getGameListGsItemResp) => {
+    if (userStore.userInfo.id == '') {
+      router.push({ name: 'login' })
+    } else {
+      // 是否收藏
+      if (gameItem.fg) {
+        await cancalFavApi({ gameId: gameItem.id })
+      } else {
+        await setFavApi({ gameId: gameItem.id })
+      }
+      gameItem.fg = !gameItem.fg
+      userStore.getFavCount()
+    }
+  }
+
+  const scrollRef = ref<HTMLElement | null>(null)
+  const scrollTop = ref(0)
+  onActivated(() => {
+    if (scrollRef.value) {
+      scrollRef.value.scrollTop = scrollTop.value
+    }
+  })
+
+  onDeactivated(() => {
+    if (scrollRef.value) {
+      scrollTop.value = scrollRef.value.scrollTop
+    }
+  })
+
+  // 观察路由请求参数providerId变化
+  watch(
+    () => route.query.providerId,
+    (val) => {
+      if (val) {
+        showGameOption.value = true
+        query.ps = [parseInt(route.query.providerId as string)]
+      } else {
+        query.ps = []
+      }
+      dataList.value = []
+      getGameList()
+    },
+    { immediate: true }
+  )
 </script>

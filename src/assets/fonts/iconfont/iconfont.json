@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "31878337",
+      "name": "刷新时间",
+      "font_class": "zuijin",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
       "icon_id": "1420800",
       "name": "IOS",
       "font_class": "ios",

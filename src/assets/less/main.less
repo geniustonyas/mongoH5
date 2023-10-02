@@ -233,6 +233,11 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 .icon-down { .transform(90deg); }
             }
         }
+        &.fav{
+            span{
+                i{font-size:1.4rem; margin-right:.7rem;}
+            }
+        }
     }
 
     .collect-box { padding: 1rem 0;
@@ -240,11 +245,12 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         a { .flex(); .flex-pack-justify(); padding: 1rem; font-size: 1.4rem; .bg(var(--color-tabs)); .radius(.8rem);
             &:hover { .bgc(rgba(255,255,255,.1),var(--color-primary)); }
             span {
-                img { width: 2.4rem; height: 2.4rem; vertical-align: middle; position: relative; bottom: .2rem; margin-right: .8rem; }
+                /*img { width: 2.4rem; height: 2.4rem; vertical-align: middle; position: relative; bottom: .2rem; margin-right: .8rem; }*/
+                i{color:var(--color-white); vertical-align:middle; position:relative; bottom:.1rem; margin-right:.4rem;}
             }
             label { color: var(--color-white) }
         }
-        .cb-grade { position: relative; overflow: hidden; .bg(var(--color-tabs)); .radius(.8rem); padding: 1rem;
+        .cb-grade { position: relative; overflow: hidden; .bg(var(--color-menu)); .radius(.8rem); padding: 1rem;
             &:before { content: ""; position: absolute; bottom: 0; right: -2rem; width: 50%; height: 90%; background-repeat: no-repeat; background-size: cover; background-position: center; opacity: 0.05; .grayscale(); }
             p { font-size: 1.4rem; .flex(); .flex-align();
                 img { width: 2.4rem; height: auto; vertical-align: middle; position: relative; bottom: .1rem; margin-right: .8rem; }
@@ -303,15 +309,22 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     .g-list { margin: 2rem -1.5rem 0 0; .flex(); .flex-wrap(wrap);
         .item { width: 50%; .flex-x(0 0 50%); margin-bottom: 2rem;
             .i-bd { margin-right: 1.5rem; .flex(); .flex-v(); overflow: hidden;
-                .i-img { position: relative; width: 100%; height: -moz-calc((50vw - 3rem)*0.8); height: -webkit-calc((50vw - 3rem)*0.8); height: calc((50vw - 3rem)*0.8); overflow: hidden;
-                    img { .size(100%, 100%); .radius(1rem); object-fit: cover; }
+                .i-img { position: relative; width: 100%; height: -moz-calc((50vw - 3rem)*0.8); height: -webkit-calc((50vw - 3rem)*0.8); height: calc((50vw - 3rem)*0.8); .radius(1rem);overflow: hidden;
+                          &:before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 40%; .bg-gradient(to top,transparent,rgba(0,0,0,.45)); }
+               
+                    img { .size(100%, 100%);  object-fit: cover; }
                     span { display: inline-block; position: absolute; left: .5rem; top: .5rem; padding: .2rem .7rem; font-size: 1rem; .radius();
                         &.dark { .bgc(var(--color-black),var(--color-white)); }
                         &.red { .bgc(var(--color-red),var(--color-white)); }
                     }
+                    .sp_sc{ position:absolute; top:0; right:0;  .h-lh(4.8rem); width:4.8rem; text-align:center;   
+                            i{font-size:2.4rem; color:var(--color-white);
+                                &.icon-shoucang_fill { color: var(--color-primary); }
+                            }
+                    }
                 }
-                .i-txt { .flex(); .flex-pack-justify(); .flex-align();
-                    .it-l {
+                .i-txt { /*.flex(); .flex-pack-justify(); .flex-align();*/
+                  /*  .it-l {
                         strong { display: block; font-size: 1.3rem; font-weight: 600; color: var(--color-white); .ellipsis(); margin-top: .5rem; }
                         span { font-size: 1.1rem; }
                     }
@@ -319,7 +332,9 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                         i { font-size: 2.4rem;
                             &.icon-shoucang_fill { color: var(--color-primary); }
                         }
-                    }
+                    }*/
+                   strong { display: block; font-size: 1.3rem; font-weight: 600; color: var(--color-white); .ellipsis(); margin-top: .5rem; }
+                        span { font-size: 1.1rem; }
                 }
             }
         }
