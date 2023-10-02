@@ -52,7 +52,7 @@
                 <p>{{ t('clickDesk') }}</p>
               </li>
               <li>
-                <img :src="getAssetsFile('download/d_i_3.png')" />
+                <img :src="getAssetsFile('download/d_a_3.png')" />
                 <span>{{ t('step') }}3</span>
                 <p>{{ t('clickAddAndroid') }}</p>
               </li>
