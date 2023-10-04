@@ -42,7 +42,7 @@ import CommonHeader from '@/components/layout/CommonHeader.vue'
 import IndexFooter from '@/components/layout/IndexFooter.vue'
 import Footer from '@/components/layout/Footer.vue'
 
-import { getFavGameListApi, setFavApi, cancalFavApi } from '@/api/game/index'
+import { getFavGameListApi, cancalFavApi } from '@/api/game/index'
 import { getFavGameListRespItem, getFavRecentlyListData } from '@/api/game/types'
 import { useUserStore } from '@/store/modules/user'
 import { getExchangeRate } from '@/composables/getExchangeRate'
