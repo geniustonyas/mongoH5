@@ -46,7 +46,9 @@
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="`https://seabet.imgix.net/${item.imageName}?auto=compress,format&w=200&h=152&q=50&dpr=2`" />
-
+                <div v-if="userStore.userInfo.id" class="sp_sc" @click.stop="setFav(item)">
+                  <i :class="item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'" />
+                </div>
               </div>
               <div class="i-txt">
                 <strong>{{ item.name }}</strong>
@@ -67,14 +69,14 @@ import { useRoute } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
-// import { useUserStore } from '@/store/modules/user'
-import { getGameDetailsApi } from '@/api/game/index'
-import { getGameDetailsRespItem } from '@/api/game/types'
+import { useUserStore } from '@/store/modules/user'
+import { getGameDetailsApi, setFavApi, cancalFavApi } from '@/api/game/index'
+import { getGameDetailsRespItem, getFavGameListRespItem } from '@/api/game/types'
 import { startGame } from '@/composables/startGame'
 import router from '@/router'
 import { GameType } from '@/utils/constant'
 
-// const userStore = useUserStore()
+const userStore = useUserStore()
 const route = useRoute()
 const { t } = useI18n()
 
@@ -102,6 +104,22 @@ const getGameDetails = () => {
     .catch((error) => {
       console.log(error)
     })
+}
+
+// 设置收藏或取消收藏
+const setFav = async (gameItem: getFavGameListRespItem) => {
+  if (userStore.userInfo.id == '') {
+    router.push({ name: 'login' })
+  } else {
+    // 是否收藏
+    if (gameItem.fg) {
+      await cancalFavApi({ gameId: gameItem.id })
+    } else {
+      await setFavApi({ gameId: gameItem.id })
+    }
+    gameItem.fg = !gameItem.fg
+    userStore.getFavCount()
+  }
 }
 
 if (route.params.id) {

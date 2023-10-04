@@ -9,16 +9,13 @@
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=200&h=160&q=50&dpr=2`" />
-                <!-- <span>{{ item.pn }}</span> -->
+                <div v-if="userStore.userInfo.id" class="sp_sc" @click.stop="setFav(item)">
+                  <i class="iconfont icon-shoucang_fill" />
+                </div>
               </div>
               <div class="i-txt">
-                <div class="it-l">
-                  <strong>{{ item.name }}</strong>
-                  <span>{{ item.pn }}</span>
-                </div>
-                <div @click.stop="setFav(item)" class="it-r">
-                  <i :class="item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'" />
-                </div>
+                <strong>{{ item.name }}</strong>
+                <span>{{ item.pn }}</span>
               </div>
             </div>
           </div>
@@ -90,12 +87,10 @@ const setFav = async (gameItem: getFavGameListRespItem) => {
     router.push({ name: 'login' })
   } else {
     // 是否收藏
-    if (gameItem.fg) {
-      await cancalFavApi({ gameId: gameItem.id })
-    } else {
-      await setFavApi({ gameId: gameItem.id })
-    }
-    gameItem.fg = !gameItem.fg
+    await cancalFavApi({ gameId: gameItem.id })
+    // 取消收藏后从dataList中删除该项
+    const index = dataList.value.findIndex((item) => item.id == gameItem.id)
+    dataList.value.splice(index, 1)
     userStore.getFavCount()
   }
 }

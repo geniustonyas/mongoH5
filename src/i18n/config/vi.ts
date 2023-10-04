@@ -538,8 +538,8 @@ export default {
   remainTime: 'Thời gian còn lại',
   upgrading: 'Hệ thống đang nâng cấp',
   upgradingTxt: 'Hệ thống đang được nâng cấp. Chúng tôi xin lỗi vì sự bất tiện và trân trọng sự hiểu biết của bạn!',
-  favariateGame: '最爱游戏',
-  recentlyGame: '近期玩过',
+  favariateGame: 'Yêu thích',
+  recentlyGame: 'Đã chơi gần đây',
   downloadTitle: 'Ứng dụng Web Tiến bộ Seabet.io!',
   downloadDesc:
     'Chào mừng bạn đến với ứng dụng Seabet.io hoàn toàn mới của chúng tôi! Dưới đây, chúng tôi có hướng dẫn từng bước để cài đặt ứng dụng Android và ứng dụng Web Tiến bộ iOS (PWA). Hãy thưởng thức trò chơi vui vẻ, nhanh chóng và công bằng bất cứ lúc nào, bất cứ đâu!',

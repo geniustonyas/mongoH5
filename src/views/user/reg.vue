@@ -18,7 +18,7 @@
         <div class="l-line">
           <span> {{ t('or') }} </span>
         </div>
-        <Form class="custom-form">
+        <Form class="custom-form" @submit="handleReg">
           <div class="cf-row">
             <div class="cr-label">
               <span>{{ t('userName') }}</span>
@@ -136,7 +136,7 @@ import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/index'
 
 import { useI18n } from 'vue-i18n'
-import { showToast, Form } from 'vant'
+import { showToast, Form, Field } from 'vant'
 import { onMounted } from 'vue'
 
 const router = useRouter()

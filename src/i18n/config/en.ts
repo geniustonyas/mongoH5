@@ -536,8 +536,8 @@ export default {
   remainTime: 'Remaining Time',
   upgrading: 'System Upgrade in Progress',
   upgradingTxt: 'The system is currently undergoing an upgrade. We apologize for any inconvenience and appreciate your understanding!',
-  favariateGame: '',
-  recentlyGame: '近期玩过',
+  favariateGame: 'Favourites',
+  recentlyGame: 'Recently played',
   downloadTitle: 'Seabet.io Progressive Web App!',
   downloadDesc:
     'Welcome to our brand new seabet.io app! Below we have step-by-step instructions for installing the Android app and the iOS Progressive Web App (PWA). Enjoy the fun, fast and fair action anytime, anywhere!',

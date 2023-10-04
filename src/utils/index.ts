@@ -4,6 +4,7 @@ import { showToast } from 'vant'
 import i18n from '@/i18n'
 import { useUserStore } from '@/store/modules/user'
 import router from '@/router'
+import BigNumber from 'bignumber.js'
 
 // 获取url中全部参数的对象
 export function getUrlAllParams() {
@@ -97,7 +98,12 @@ export function moneyFormat(value: any) {
     if (num.toString().indexOf('.') == -1) {
       ret = num + '.00'
     } else {
-      num.toString().split('.')[1].length < 2 ? (ret = num + '0') : (ret = num.toString())
+      const tmp = num.toString().split('.')
+      if (tmp[1].length < 2) {
+        ret = num + '0'
+      } else {
+        ret = value
+      }
     }
   }
   return ret

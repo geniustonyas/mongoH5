@@ -17,27 +17,22 @@
       </nav>
       <!-- 游戏菜单列表 -->
       <nav class="sm-menulist">
-
         <div class="menu-item fav">
           <ul>
             <li>
               <a @click="router.push({ name: 'favorites' })">
-                <span><i class="iconfont icon-shoucang"></i>{{ t('favariateGame') }}</span>
+                <span><i class="iconfont icon-shoucang" />{{ t('favariateGame') }}</span>
                 <!--<label>{{ userStore.favoritesCount }}</label>-->
               </a>
             </li>
             <li>
               <a @click="router.push({ name: 'recently' })">
-                <span><i class="iconfont icon-zuijin"></i>{{ t('recentlyGame') }}</span>
+                <span><i class="iconfont icon-zuijin" />{{ t('recentlyGame') }}</span>
                 <!--<label>{{ userStore.recentlyPlayCount }}</label>-->
               </a>
             </li>
           </ul>
         </div>
-
-
-
-
 
         <!-- 体育 -->
         <div :class="collapseSport ? 'menu-item show' : 'menu-item'">
@@ -107,14 +102,15 @@
             <li>
               <a @click="router.push({ name: 'clubHouse' })"><img :src="getAssetsFile('svg/ClubHouse.svg')" />{{ t('club') }}</a>
             </li>
-            <li class="collect-box" v-if="userStore.userInfo.id">
+            <li class="collect-box" v-if="userStore.userInfo.id" @click="router.push({ name: 'clubHouse' })">
               <div class="cb-grade">
                 <p><img :src="getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`)" />{{ t('homePage.nextReward') }}</p>
                 <div class="schedule-bar">
                   <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
                 </div>
                 <span>
-                  <b>{{ rewardProgressWidth }}</b><em>|</em>100
+                  <b>{{ parseInt(userStore.userInfo.totalBetAmount) }}</b
+                  ><em>|</em>{{ parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount) }}
                 </span>
                 <em class="em-bg" :style="{ backgroundImage: 'url(' + getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`) + ')' }" />
               </div>
@@ -174,73 +170,73 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, computed } from 'vue'
-  import { useRouter } from 'vue-router'
-  import { useI18n } from 'vue-i18n'
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
-  import IndexHeader from '@/components/layout/IndexHeader.vue'
-  import Language from '@/components/Language.vue'
+import IndexHeader from '@/components/layout/IndexHeader.vue'
+import Language from '@/components/Language.vue'
 
-  // 引用方法
-  import { languages } from '@/i18n/index'
-  import { getAssetsFile, moneyFormat } from '@/utils'
-  import { providerListData, providerListItemTypes } from '@/utils/config'
-  import { useAppStore } from '@/store/modules/app'
-  import { useUserStore } from '@/store/modules/user'
-  import { startGame, liveChatCall } from '@/composables/startGame'
-  //第三方插件
-  import BigNumber from 'bignumber.js'
-  import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-  import { showToast } from 'vant'
-  import { GameType } from '@/utils/constant'
+// 引用方法
+import { languages } from '@/i18n/index'
+import { getAssetsFile, moneyFormat } from '@/utils'
+import { providerListData, providerListItemTypes } from '@/utils/config'
+import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
+import { startGame, liveChatCall } from '@/composables/startGame'
+//第三方插件
+import BigNumber from 'bignumber.js'
+import { Vue3SlideUpDown } from 'vue3-slide-up-down'
+import { showToast } from 'vant'
+import { GameType } from '@/utils/constant'
 
-  const userStore = useUserStore()
-  const appStore = useAppStore()
-  const router = useRouter()
-  const { t, locale } = useI18n()
-  const providerList = providerListData()
+const userStore = useUserStore()
+const appStore = useAppStore()
+const router = useRouter()
+const { t, locale } = useI18n()
+const providerList = providerListData()
 
-  const props = defineProps({
-    currencyCode: { type: String, required: true, default: '' },
-    exchangeRate: { type: String, required: true, default: '' }
-  })
+const props = defineProps({
+  currencyCode: { type: String, required: true, default: '' },
+  exchangeRate: { type: String, required: true, default: '' }
+})
 
-  // 语言选择组件dom
-  let langDom = ref()
+// 语言选择组件dom
+let langDom = ref()
 
-  // 侧边框游戏提供商列表
-  const sportProviderList = ref<providerListItemTypes[]>([])
-  const casinoProviderList = ref<providerListItemTypes[]>([])
-  const slotsProviderList = ref<providerListItemTypes[]>([])
-  // 过滤游戏提供商列表
-  sportProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'sports')
-  casinoProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'casino')
-  slotsProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'slots')
+// 侧边框游戏提供商列表
+const sportProviderList = ref<providerListItemTypes[]>([])
+const casinoProviderList = ref<providerListItemTypes[]>([])
+const slotsProviderList = ref<providerListItemTypes[]>([])
+// 过滤游戏提供商列表
+sportProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'sports')
+casinoProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'casino')
+slotsProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'slots')
 
-  // 侧边框游戏菜单展开折叠
-  let collapseSport = ref(true)
-  let collapseLiveCashno = ref(true)
-  let collapseSlots = ref(true)
+// 侧边框游戏菜单展开折叠
+let collapseSport = ref(true)
+let collapseLiveCashno = ref(true)
+let collapseSlots = ref(true)
 
-  // 跳转到游戏
-  const routeToGame = (routeName: string, query: any) => {
-    router.push({ name: routeName, query: query })
-    appStore.showSideBar = !appStore.showSideBar
+// 跳转到游戏
+const routeToGame = (routeName: string, query: any) => {
+  router.push({ name: routeName, query: query })
+  appStore.showSideBar = !appStore.showSideBar
+}
+
+// 显示语言选择框
+const showLanguage = () => {
+  if (langDom.value) {
+    langDom.value.showLangPick = true
   }
+}
 
-  // 显示语言选择框
-  const showLanguage = () => {
-    if (langDom.value) {
-      langDom.value.showLangPick = true
-    }
+// 下一奖励进度
+const rewardProgressWidth = computed(() => {
+  let width = '0'
+  if (userStore.userInfo.nextVipRequiredTotalBetAmount != '' && userStore.userInfo.totalBetAmount != '') {
+    width = new BigNumber(parseInt(userStore.userInfo.totalBetAmount)).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
   }
-
-  // 下一奖励进度
-  const rewardProgressWidth = computed(() => {
-    let width = '0'
-    if (userStore.userInfo.nextVipRequiredTotalBetAmount != '' && userStore.userInfo.totalBetAmount != '') {
-      width = new BigNumber(parseInt(userStore.userInfo.totalBetAmount)).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
-    }
-    return width
-  })
+  return width
+})
 </script>

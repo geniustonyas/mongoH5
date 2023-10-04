@@ -54,15 +54,13 @@
               <div class="i-img">
                 <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=200&h=160&q=50&dpr=2`" />
                 <!-- <span>{{ item.pn }}</span> -->
-              </div>
-              <div class="i-txt">
-                <div class="it-l">
-                  <strong>{{ item.name }}</strong>
-                  <span>{{ item.pn }}</span>
-                </div>
-                <div @click.stop="setFav(item)" class="it-r">
+                <div v-if="userStore.userInfo.id" class="sp_sc" @click.stop="setFav(item)">
                   <i :class="item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'" />
                 </div>
+              </div>
+              <div class="i-txt">
+                <strong>{{ item.name }}</strong>
+                <span>{{ item.pn }}</span>
               </div>
             </div>
           </div>
