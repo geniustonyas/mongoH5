@@ -27,6 +27,10 @@
               <label>{{ t('volatility') }}</label
               ><span>{{ t('volatilitys.' + detailsData.volatility) }}</span>
             </div>
+            <div class="item" v-if="detailsData.volatility != '0'">
+              <label>{{ t('volatility') }}</label
+              ><span>{{ t('volatilitys.' + detailsData.volatility) }}</span>
+            </div>
             <div class="btns">
               <a class="btn btn-primary" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/url', true)">{{ t('startNow') }}</a>
               <a v-if="parseInt(detailsData.gameType) === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/demo', true)">
@@ -71,7 +75,7 @@ import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { useUserStore } from '@/store/modules/user'
 import { getGameDetailsApi, setFavApi, cancalFavApi } from '@/api/game/index'
-import { getGameDetailsRespItem, getFavGameListRespItem } from '@/api/game/types'
+import { getGameDetailsRespItem, getFavGameListRespItem, getGameDetailsRespGameItem } from '@/api/game/types'
 import { startGame } from '@/composables/startGame'
 import router from '@/router'
 import { GameType } from '@/utils/constant'
@@ -107,7 +111,7 @@ const getGameDetails = () => {
 }
 
 // 设置收藏或取消收藏
-const setFav = async (gameItem: getFavGameListRespItem) => {
+const setFav = async (gameItem: getFavGameListRespItem | getGameDetailsRespGameItem) => {
   if (userStore.userInfo.id == '') {
     router.push({ name: 'login' })
   } else {

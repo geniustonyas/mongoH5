@@ -107,6 +107,7 @@ export interface getSearchGameRespItem {
 export interface getGameDetailsRespGameItem {
   name: string
   id: string
+  fg: boolean
   gameType: string
   providerCode: string
   providerId: string

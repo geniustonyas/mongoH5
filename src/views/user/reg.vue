@@ -18,13 +18,14 @@
         <div class="l-line">
           <span> {{ t('or') }} </span>
         </div>
-        <Form class="custom-form" @submit="handleReg">
+        <div class="custom-form">
           <div class="cf-row">
             <div class="cr-label">
               <span>{{ t('userName') }}</span>
             </div>
             <div class="cr-input">
               <input v-model.trim="regForm.UserName" ref="userNameDom" type="text" class="form-control" :placeholder="t('regPage.holderUserName')" @blur="checkUserExist()" autocomplete="off" />
+              <div v-if="userNameMsg" class="tip">{{ userNameMsg }}</div>
             </div>
           </div>
           <div class="cf-row">
@@ -34,6 +35,7 @@
             <div class="cr-input">
               <input v-model.trim="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" autocomplete="off" />
               <span class="captcha" @click="sendEmail()">{{ regCount === 0 ? t('sendEmail') : regCount }}</span>
+              <div class="tip">错误信息提示</div>
             </div>
           </div>
           <div class="cf-row">
@@ -42,6 +44,7 @@
             </div>
             <div class="cr-input">
               <input v-model.trim="regForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" :placeholder="t('tips.inputEmailcapcha')" autocomplete="off" />
+              <div class="tip">错误信息提示</div>
             </div>
           </div>
           <div class="cf-row">
@@ -53,6 +56,7 @@
               <span :class="showPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showPwd = !showPwd" />
               </span>
+              <div class="tip">错误信息提示</div>
             </div>
           </div>
           <div class="cf-row">
@@ -64,6 +68,7 @@
               <span :class="showConfirmPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showConfirmPwd = !showConfirmPwd" />
               </span>
+              <div class="tip">错误信息提示</div>
             </div>
           </div>
 
@@ -75,12 +80,14 @@
               <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.termCondition') }}</a>
               {{ t('and') }}
               <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('regPage.privacyPolicy') }}</a>
+              <div class="tip">错误信息提示</div>
             </div>
           </div>
           <div class="cf-row">
             <div ref="isAgreeDom" class="cr-mark cm-checkbox">
               <input v-model="isAgree" type="checkbox" />
               {{ t('regPage.isAgree') }}
+              <div class="tip">错误信息提示</div>
             </div>
           </div>
           <div class="cf-row">
@@ -96,7 +103,7 @@
               </a>
             </div>
           </div>
-        </Form>
+        </div>
       </div>
     </main>
     <div class="mask-box" id="other-signin" v-show="showThirdLoginBox">
@@ -136,7 +143,7 @@ import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/index'
 
 import { useI18n } from 'vue-i18n'
-import { showToast, Form, Field } from 'vant'
+import { showToast } from 'vant'
 import { onMounted } from 'vue'
 
 const router = useRouter()
@@ -164,6 +171,14 @@ let confirmPwdDom = ref<HTMLInputElement | null>(null)
 let isAuditDom = ref<HTMLInputElement | null>(null)
 let isAgreeDom = ref<HTMLInputElement | null>(null)
 let verificationCodeDom = ref<HTMLInputElement | null>(null)
+
+const userNameMsg = ref('')
+const emailMsg = ref('')
+const captchaMsg = ref('')
+const pwdMsg = ref('')
+const confirmPwdMsg = ref('')
+const isAgreeMsg = ref('')
+const isAuditMsg = ref('')
 
 let regForm = reactive({
   UserName: '',
