@@ -360,4 +360,7 @@ const clearData = () => {
 checkedCurrency.value = currenyList.map((item) => item.code)
 
 getTradeRecordList()
+setInterval(() => {
+  getTradeRecordList()
+}, 30 * 1000)
 </script>
