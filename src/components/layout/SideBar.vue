@@ -17,16 +17,16 @@
       </nav>
       <!-- 游戏菜单列表 -->
       <nav class="sm-menulist">
-        <div class="menu-item fav">
+        <div v-if="userStore.userInfo.id" class="menu-item fav">
           <ul>
             <li>
-              <a @click="router.push({ name: 'favorites' })">
+              <a @click="routeToGame('favorites', null)">
                 <span><i class="iconfont icon-shoucang" />{{ t('favariateGame') }}</span>
                 <!--<label>{{ userStore.favoritesCount }}</label>-->
               </a>
             </li>
             <li>
-              <a @click="router.push({ name: 'recently' })">
+              <a @click="routeToGame('recently', null)">
                 <span><i class="iconfont icon-zuijin" />{{ t('recentlyGame') }}</span>
                 <!--<label>{{ userStore.recentlyPlayCount }}</label>-->
               </a>
@@ -70,32 +70,6 @@
             </ul>
           </Vue3SlideUpDown>
         </div>
-
-        <!--<div v-if="userStore.userInfo.id" class="menu-item collect-box">
-          <div class="cb-grade">
-            <p><img :src="getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`)" />{{ t('homePage.nextReward') }}</p>
-            <div class="schedule-bar">
-              <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
-            </div>
-            <span
-              ><b>{{ rewardProgressWidth }}</b
-              ><em>|</em>100</span
-            >
-            <em class="em-bg" :style="{ backgroundImage: 'url(' + getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`) + ')' }" />
-          </div>
-          <div>
-            <a @click="router.push({ name: 'favorites' })">
-              <span><i class="iconfont icon-shoucang"></i>{{ t('favariateGame') }}</span>
-              <label>{{ userStore.favoritesCount }}</label>
-            </a>
-          </div>
-          <div>
-            <a @click="router.push({ name: 'recently' })">
-              <span><i class="iconfont icon-zuijin"></i>{{ t('recentlyGame') }}</span>
-              <label>{{ userStore.recentlyPlayCount }}</label>
-            </a>
-          </div>
-        </div>-->
         <!-- 俱乐部 -->
         <div class="menu-item show">
           <ul>
