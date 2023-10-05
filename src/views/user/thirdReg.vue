@@ -315,7 +315,7 @@ onMounted(() => {
   // 如果没有参数， 则跳转回登录页
   if (appStore.thirdData.ThirdPartyType == '' || appStore.thirdData.ThirdPartyId == '' || appStore.thirdData.ThirdPartyName == '' || appStore.thirdData.Sign == '') {
     showToast(t('errorCodes.1005'))
-    router.back()
+    // router.back()
   }
 
   // 如果是google登录，则设置表单邮箱为google邮箱，并且禁用邮箱输入框

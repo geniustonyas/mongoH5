@@ -60,7 +60,7 @@
               <span>{{ t('password') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" @blur="checkPwd()" autocomplete="off" />
+              <input v-model.trim="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" autocomplete="off" @blur="checkPwd()" />
               <span :class="showPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showPwd = !showPwd" />
               </span>
@@ -72,7 +72,7 @@
               <span>{{ t('confirmPwd') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" @blur="checkConfirmPwd()" autocomplete="off" />
+              <input v-model.trim="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" autocomplete="off" @blur="checkConfirmPwd()" />
               <span :class="showConfirmPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showConfirmPwd = !showConfirmPwd" />
               </span>

@@ -550,6 +550,8 @@ export default {
   addToDesk: '브라우저에서 "페이지 추가"를 선택하세요.',
   clickDesk: '"홈 화면"을 탭하세요.',
   clickAddAndroid: '"추가"를 클릭합니다.',
+  hitratio: '적중률',
+  paylines: '페이 라인',
 
   problem: {
     whatVip: '1.VIP 클럽이란 무엇인가요?',

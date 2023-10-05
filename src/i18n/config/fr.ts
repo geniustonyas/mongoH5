@@ -551,6 +551,8 @@ export default {
   addToDesk: `Dans le navigateur, "Ajouter la page à"`,
   clickDesk: `Appuyez sur "Écran d'accueil"`,
   clickAddAndroid: `Cliquez sur "Ajouter"`,
+  hitratio: 'Taux de succès',
+  paylines: 'Ligne de paiement',
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",

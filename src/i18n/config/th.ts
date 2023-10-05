@@ -548,6 +548,8 @@ export default {
   addToDesk: 'ในเบราว์เซอร์ เลือก "เพิ่มหน้าไปยัง"',
   clickDesk: 'แตะ "หน้าหลัก"',
   clickAddAndroid: 'คลิก "เพิ่ม"',
+  hitratio: 'ฮิตเรโช',
+  paylines: 'รูปแบบการชนะ',
 
   problem: {
     whatVip: '1. คลับ VIP คืออะไร?',

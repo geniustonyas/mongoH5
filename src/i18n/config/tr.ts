@@ -549,6 +549,8 @@ export default {
   addToDesk: 'Tarayıcıda "Sayfayı Ekle"',
   clickDesk: '"Ana Ekran" a dokunun',
   clickAddAndroid: '"Ekleyin" i tıklayın',
+  hitratio: 'İsabet oranı',
+  paylines: 'Ödeme Çizgileri',
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',

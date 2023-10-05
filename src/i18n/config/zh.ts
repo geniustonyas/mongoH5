@@ -548,6 +548,8 @@ export default {
   addToDesk: '在浏览器中，“添加到页面”',
   clickDesk: '点击“主屏幕”',
   clickAddAndroid: '点击“添加”',
+  hitratio: '命中率',
+  paylines: '支付线',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

@@ -134,6 +134,8 @@ export interface getGameDetailsRespItem {
   id: string
   imageName: string
   game: getGameDetailsRespGameItem[]
+  hitRatio: string
+  paylines: string
 }
 
 export interface getFavRecentlyListData {

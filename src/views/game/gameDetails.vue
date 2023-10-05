@@ -23,13 +23,13 @@
               <label>{{ t('minMaxBet') }}</label
               ><span>{{ parseFloat(detailsData.minBetAmount).toFixed(2) }} - {{ parseFloat(detailsData.maxBetAmount).toFixed(2) }} USDT</span>
             </div>
-            <div class="item" v-if="detailsData.volatility != '0'">
-              <label>{{ t('volatility') }}</label
-              ><span>{{ t('volatilitys.' + detailsData.volatility) }}</span>
+            <div class="item" v-if="detailsData.hitRatio != '0'">
+              <label>{{ t('hitratio') }}</label
+              ><span>{{ detailsData.hitRatio }}%</span>
             </div>
-            <div class="item" v-if="detailsData.volatility != '0'">
-              <label>{{ t('volatility') }}</label
-              ><span>{{ t('volatilitys.' + detailsData.volatility) }}</span>
+            <div class="item" v-if="detailsData.paylines != '0'">
+              <label>{{ t('paylines') }}</label
+              ><span>{{ detailsData.paylines }}</span>
             </div>
             <div class="btns">
               <a class="btn btn-primary" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/url', true)">{{ t('startNow') }}</a>
@@ -98,7 +98,9 @@ const detailsData = reactive<getGameDetailsRespItem>({
   name: '',
   id: '',
   imageName: '',
-  game: []
+  game: [],
+  hitRatio: '',
+  paylines: ''
 })
 const getGameDetails = () => {
   getGameDetailsApi({ Id: route.params.id as string })

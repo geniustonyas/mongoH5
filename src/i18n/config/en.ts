@@ -549,6 +549,8 @@ export default {
   addToDesk: 'In the browser, “Add page to”',
   clickDesk: 'Tap “Home Screen”',
   clickAddAndroid: 'Click “Add”',
+  hitratio: 'Hitratio',
+  paylines: 'Paylines',
 
   problem: {
     whatVip: '1. What is the VIP Club?',

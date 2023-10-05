@@ -548,6 +548,8 @@ export default {
   addToDesk: 'Im Browser "Zur Startseite hinzufügen"',
   clickDesk: '"Startbildschirm" antippen',
   clickAddAndroid: '"Zur Startseite hinzufügen" anklicken',
+  hitratio: 'Trefferquote',
+  paylines: 'Gewinnlinien',
 
   problem: {
     whatVip: '1.Was ist der VIP-Club?',

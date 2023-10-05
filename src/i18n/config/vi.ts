@@ -551,6 +551,8 @@ export default {
   addToDesk: 'Trong trình duyệt, "Thêm trang vào".',
   clickDesk: 'Nhấn "Màn hình Chính".',
   clickAddAndroid: 'Nhấp "Thêm".',
+  hitratio: 'Tỷ lệ trúng',
+  paylines: 'Thanh toán',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',
