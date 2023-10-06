@@ -52,8 +52,8 @@
                 <!-- <img v-lazy="appStore.cdnurl + item.img" /> -->
                 <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=200&h=152&q=50&dpr=2`" />
                 <!-- <span>{{ item.pn }}</span> -->
-                <div v-if="userStore.userInfo.id" class="sp_sc" @click.stop="setFav(item)">
-                  <i :class="item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'" />
+                <div v-if="userStore.userInfo.id" class="sp_sc">
+                  <i :class="item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'" @click.stop="setFav(item)" />
                 </div>
               </div>
               <div class="i-txt">

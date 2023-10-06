@@ -1166,7 +1166,7 @@ export default {
                     <h3>5. Éducation et formation</h3>
                     <p>Seabet, avec l'aide de son conseiller juridique et sous la supervision de son CCO, peut fournir régulièrement une formation sur la conformité en matière de LBC, de financement du terrorisme et de sanctions commerciales à ses employés, selon les besoins.</p>
 
-                    <h3>6. Reports</h3>
+                    <h3>6. Rapports</h3>
                     <p>Seabet est tenu de signaler toute transaction inhabituelle ou suspecte conformément aux décrets nationaux. Les clients figurant sur la liste des sanctions liées au blanchiment d'argent, au financement du terrorisme ou à d'autres activités criminelles seront signalés à l'organisme de réglementation comme activités suspectes.</p>
                 </div>`,
     selfExclusionContent: `<div>

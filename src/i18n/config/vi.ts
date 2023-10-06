@@ -108,7 +108,7 @@ export default {
   // Câu lạc bộ VIP
   vipClub: 'Câu lạc bộ VIP',
   // Cửa hàng điểm
-  mallStore: 'Cửa hàng điểm',
+  mallStore: 'Cửa hàng đổi quà',
   // Cài đặt tài khoản
   generalInformation: 'Thông tin chung',
   changePassword: 'Thay đổi mật khẩu',
@@ -206,8 +206,8 @@ export default {
   // Trang chủ
   readMore: 'Đọc thêm',
   sports: 'Thể thao',
-  liveCasino: 'Sòng casino trực tiếp',
-  slots: 'Máy đánh bạc',
+  liveCasino: 'Casino trực tuyến',
+  slots: 'SLOT GAME',
   sbSport: 'Thể thao Saba',
   fbSport: 'Thể thao FB',
   downloadApp: 'Download APP',
@@ -215,7 +215,7 @@ export default {
   globalPaymentSolutions: 'Giải pháp thanh toán toàn cầu',
   otherPayment: 'Phương thức thanh toán khác',
   sportsBet: 'Cược thể thao',
-  liveCasinoBet: 'Cược sòng casino trực tiếp',
+  liveCasinoBet: 'casino trực tuyến ',
   slotBet: 'Cược máy đánh bạc',
   more: 'Thêm',
   loadMore: 'Tải thêm',
@@ -244,7 +244,7 @@ export default {
   betUser: 'Người đặt cược',
   multiplier: 'Bội số',
   paymentAmount: 'Số tiền thanh toán',
-  invisibility: 'Che giấu',
+  invisibility: 'ẩn',
   currencyLang: {
     usdt: 'USDT',
     btc: 'BTC',
@@ -263,7 +263,7 @@ export default {
   // Cửa hàng điểm
   points: 'Điểm',
   pointsNum: 'Số điểm',
-  earnPoints: 'Kiếm điểm',
+  earnPoints: 'đổi  điểm',
   pointType: 'Loại',
   spentPoints: 'Sử dụng điểm',
   afterPoints: 'Số điểm sau giao dịch',
@@ -432,7 +432,7 @@ export default {
   unlockNewReward: 'Các phần thưởng mới đã được mở khóa!',
   unlockNewRewardTip: 'Chúc mừng! Bạn vừa mở khóa một phần thưởng mới. Nhấn vào đây để chọn loại phần thưởng của bạn',
   dymondReward: 'Phần thưởng của bạn sẽ được mở khóa khi bạn đạt được cấp độ này',
-  siteTitle: 'Trang cá cược thể thao và casino tiền điện tử hàng đầu | Cá cược Bitcoin',
+  siteTitle: 'Trang cá cược thể thao và casino  tiền mã hóa hàng đầu | Cá cược Bitcoin',
   unlockAllReward: 'Chúc mừng! Bạn đã mở khóa tất cả các phần thưởng.',
   newGame: 'Trò chơi mới',
   oneDay: '24 giờ',
@@ -472,7 +472,7 @@ export default {
   passport: 'Hộ chiếu',
   militaryId: 'Thẻ quân sự',
   diplomaticCard: 'Hộ chiếu ngoại giao',
-  moonpayExchange: 'Mua tiền điện tử bằng thẻ tín dụng/ghi nợ',
+  moonpayExchange: 'Mua  tiền mã hóa bằng thẻ tín dụng/ghi nợ',
   learnMore: 'Tìm hiểu thêm',
   comingSoon: 'Sắp ra mắt...',
   affiliate: 'Liên kết',
@@ -556,12 +556,12 @@ export default {
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',
-    whatVips: `<p>Câu lạc bộ VIP của seabet.io là một cộng đồng dành riêng cho khách hàng sử dụng tiền điện tử, cho phép họ tham gia vào tất cả các hoạt động khuyến mãi có sẵn trên trang web bất kỳ lúc nào. Mỗi lần đặt cược, quay và chơi trò chơi đều tích luỹ điểm, từ đó từ từ leo lên trong câu lạc bộ và mở khóa những phần thưởng thú vị trên đường đi. Khi bạn mở khóa các cấp độ VIP, bạn cũng sẽ kiếm được điểm cược Seabet, giúp bạn có được những trải nghiệm và dịch vụ đáng giá hơn.</p>
+    whatVips: `<p>Câu lạc bộ VIP của seabet.io là một cộng đồng dành riêng cho khách hàng sử dụng  tiền mã hóa, cho phép họ tham gia vào tất cả các hoạt động khuyến mãi có sẵn trên trang web bất kỳ lúc nào. Mỗi lần đặt cược, quay và chơi trò chơi đều tích luỹ điểm, từ đó từ từ leo lên trong câu lạc bộ và mở khóa những phần thưởng thú vị trên đường đi. Khi bạn mở khóa các cấp độ VIP, bạn cũng sẽ kiếm được điểm cược Seabet, giúp bạn có được những trải nghiệm và dịch vụ đáng giá hơn.</p>
                 <p>Nói một cách đơn giản, điều đó có nghĩa: Bạn chơi trò chơi, và chúng tôi thưởng bạn.</p>`,
     howGetIntegrial: '2.Làm cách nào để kiếm điểm?',
-    howGetIntegrials: `<p>Bạn có thể kiếm điểm câu lạc bộ bằng mỗi lần đặt cược, quay máy đánh bạc và chơi trò chơi bàn. Càng nhiều điểm bạn tích luỹ, càng cao cấp độ của bạn trở nên. Khi bạn tiến bộ qua các cấp bậc, bạn sẽ mở khóa nhiều phần thưởng thú vị. Các phần thưởng sẽ càng trở nên tốt hơn khi bạn tiếp tục mở khóa các cấp độ mới.</p>`,
+    howGetIntegrials: `<p>Bạn có thể kiếm điểm câu lạc bộ bằng mỗi lần đặt cược, chơi slot game và chơi trò chơi bàn. Càng nhiều điểm bạn tích luỹ, càng cao cấp độ của bạn trở nên. Trong quá trình thăng cấp bậc ,bạn sẽ tiến đến mở khỏa và phần thưởng nhiều hơn nữa đang chờ đợi bạn ..</p>`,
     whatVipLevel: '3.Các cấp độ VIP là gì?',
-    whatVipLevels: `<p>Các cấp độ VIP xác định giá trị và loại phần thưởng bạn có thể đòi hỏi. Khi bạn tiến bộ qua câu lạc bộ và leo cấp, phần thưởng của bạn cũng sẽ tăng lên.</p>
+    whatVipLevels: `<p>Các cấp độ VIP xác định giá trị và loại phần thưởng bạn có thể đòi hỏi. Trong quá trình bạn lên cấp bậc tại câu lạc bộ, phần thưởng của bạn cũng sẽ tăng lên .</p>
                     <table>
                       <tr>
                         <th>Cấp độ VIP</th>
@@ -600,12 +600,12 @@ export default {
                       </tr>
                     </table>`,
     howComputeInterial: '4.Cách tính điểm như thế nào?',
-    howComputeInterials: `<p>Cho dù đó là cược thể thao hay chơi các trò chơi sòng bạc, việc sử dụng tiền điện tử sẽ giúp bạn kiếm điểm. Để tính điểm bạn kiếm được từ mỗi lần đặt cược, chúng tôi sẽ chuyển đổi số tiền cược của bạn thành USDT tại tỷ giá hối đoái thị trường thời gian thực trong quá trình thanh toán. Điều này đảm bảo rằng tất cả việc tích lũy điểm, bất kể loại tiền điện tử được sử dụng, đều công bằng. Do tỷ giá chuyển đổi biến động, chúng tôi tuân theo nguyên tắc làm tròn đến số nguyên gần nhất khi tính điểm.</p>
-                          <p>Công thức để kiếm điểm Seabet là: Số tiền cược của người chơi * 0,01 * hệ số điểm của cấp độ tương ứng. Ví dụ, nếu một người chơi ở cấp độ Platinum và đặt cược 5000, theo công thức tính điểm, người chơi sẽ kiếm được 5000 * 0,01 * 1,3 = 65 điểm. Điểm Seabet có một loạt các ứng dụng và người chơi có thể đổi quà tặng và dịch vụ tương đương từ cửa hàng điểm.</p>`,
+    howComputeInterials: `<p>Cho dù đó là cược thể thao hay chơi các trò chơi sòng bạc, việc sử dụng  tiền mã hóa sẽ giúp bạn kiếm điểm. Để tính điểm bạn kiếm được từ mỗi lần đặt cược, chúng tôi sẽ chuyển đổi số tiền cược của bạn thành USDT tại tỷ giá hối đoái theo giá thị trường tại thời điểm đó trong qua trình thanh toán. Điều này đảm bảo rằng tất cả việc tích lũy điểm, bất kể loại  tiền mã hóa được sử dụng, đều công bằng. Do tỷ giá chuyển đổi biến động, chúng tôi tuân theo nguyên tắc làm tròn đến số nguyên gần nhất khi tính điểm.</p>
+                          <p>Công thức để kiếm điểm Seabet là: Số tiền cược của người chơi * 0,01 * hệ số điểm của cấp độ tương ứng. Ví dụ, nếu một người chơi ở cấp độ bạch kim và đặt cược 5000, theo công thức tính điểm, người chơi sẽ kiếm được 5000 * 0,01 * 1,3 = 65 điểm. Điểm Seabet có một loạt các ứng dụng và người chơi có thể đổi quà tặng và dịch vụ tương đương  tại cửa hàng đổi quà.</p>`,
     whyMergedReward: '5.Tại sao phần thưởng của tôi được gộp lại?',
     whyMergedRewards: `<p>Phần thưởng của bạn được gộp lại vì một lần đặt cược có thể mở khóa nhiều phần thưởng. Để làm cho nó tiện lợi cho bạn, chúng tôi cộng tổng giá trị của các phần thưởng và hiển thị chúng như một phần thưởng duy nhất.</p>`,
     resetVip: '6.Khi nào cấp độ VIP của tôi sẽ được đặt lại?',
-    resetVips: `<p>Cấp độ VIP của bạn sẽ được đặt lại về mức 0 vào đầu mỗi tháng. Sau đó, bạn có thể bắt đầu lại từ mức Đồng và đòi hỏi tất cả các phần thưởng của cấp độ tiếp theo. Điểm tích luỹ của bạn sẽ vẫn được giữ lại để bạn có thể đổi thêm nhiều phần thưởng và dịch vụ khác.</p>`,
+    resetVips: `<p>Cấp độ VIP của bạn sẽ được đặt lại về mức 0 vào đầu mỗi tháng. Sau đó, bạn có thể bắt đầu lại từ cấp độ Đồng và nhận lại lần nữa  tất cả các phần thưởng của cấp độ tiếp theo. Điểm tích luỹ của bạn sẽ vẫn được giữ lại để bạn có thể đổi thêm nhiều phần thưởng và dịch vụ khác.</p>`,
     everyGetInterial: '7.Tôi có thể kiếm điểm câu lạc bộ với mỗi lần đặt cược không?',
     everyGetInterials: `<p>8.Không, điểm câu lạc bộ chỉ tích lũy khi bạn đặt cược bằng tiền thật. Ngoài ra, một số loại sự kiện và trò chơi cụ thể không được tính trong câu lạc bộ, do đó, các cược được đặt trên chúng sẽ không đem lại điểm cho bạn. Các loại sự kiện này bao gồm:</p>
                         <p>Đua ngựa</p>
@@ -617,17 +617,17 @@ export default {
   },
   faqs: {
     q1: 'Làm cách nào để nạp tiền?',
-    a1: `<p>1. Chọn tiền điện tử mà bạn muốn dùng, sau đó nhấp vào Nạp tiền.</p>
+    a1: `<p>1. Chọn  tiền mã hóa mà bạn muốn dùng, sau đó nhấp vào Nạp tiền.</p>
         <p>2. Sao chép địa chỉ gửi tiền một lần và sử dụng nó trong ví của bạn (hoặc quét mã QR).</p>
         <p>3. Khi giao dịch của bạn được xác nhận, bạn sẽ nhận được thông báo.</p>`,
     q2: 'Làm cách nào để rút tiền?',
-    a2: `<p>1. Chọn loại tiền điện tử bạn muốn rút, sau đó nhấp vào Rút tiền.</p>
+    a2: `<p>1. Chọn loại  tiền mã hóa bạn muốn rút, sau đó nhấp vào Rút tiền.</p>
         <p>2. Nhập số tiền bạn muốn rút.</p>
         <p>3. Nhập địa chỉ ví của bạn.</p>
         <p>4. Nhấp vào nút Rút tiền.</p>`,
     q3: 'Nạp/rút tiền mất bao lâu?',
     a3: `<p>Tiền gửi</p>
-          <p>Hầu hết các khoản tiền gửi tiền điện tử được xử lý với tốc độ cực nhanh. Tuy nhiên, có thể có một số chậm trễ từ các dịch vụ của bên thứ ba.</p>
+          <p>Hầu hết các khoản tiền gửi  tiền mã hóa được xử lý với tốc độ cực nhanh. Tuy nhiên, có thể có một số chậm trễ từ các dịch vụ của bên thứ ba.</p>
           <p>Rút tiền</p>
           <p>Hầu hết các giao dịch rút tiền được xử lý ngay lập tức. Trong trường hợp rút tiền lớn, chúng tôi xử lý các khoản rút tiền này theo cách thủ công nên có thể có một chút chậm trễ.</p>`,
     q4: 'Bạn cung cấp các phương thức thanh toán nào?',
@@ -710,33 +710,33 @@ export default {
                       <div class="vr-conts">
                         <p>Đội ngũ quản lý khách hàng chuyên nghiệp đảm bảo tất cả các nhu cầu của bạn và đáp ứng các tiêu chuẩn cao nhất của ngành. Thành viên VIP có thể tận hưởng tiền thưởng độc quyền, lời mời tham dự các sự kiện nổi tiếng và nhiều phần thưởng tùy chỉnh để cung cấp cho bạn trải nghiệm chơi game nhanh chóng, thú vị và hiệu quả.</p>
                         <dl>
-                            <dt>Quản lý độc quyền VIP:</dt>
-                            <dd>Tận tâm giải quyết nhu cầu của bạn</dd>
-                            <dd>Trải nghiệm chơi trò chơi riêng tư phù hợp dành riêng cho bạn</dd>
+                            <dt>Quản lý Độc quyền VIP</dt>
+                            <dd>Cam kết đáp ứng nhu cầu của bạn</dd>
+                            <dd>Trải nghiệm chơi game riêng tư được tùy chỉnh dành riêng cho bạn</dd>
                         </dl>
                         <dl>
-                          <dt>Phần thưởng cao:</dt>
-                          <dd>Ưu đãi độc quyền được thiết kế cho bạn</dd>
-                          <dd>Tiền thưởng không đặt cược</dd>
-                          <dd>Tích lũy điểm nhanh chóng</dd>
+                            <dt>Phần thưởng cao cấp</dt>
+                            <dd>Các ưu đãi độc quyền được thiết kế dành riêng cho bạn</dd>
+                            <dd>Không cần đặt cược</dd>
+                            <dd>Tích luỹ điểm nhanh chóng</dd>
                         </dl>
                         <dl>
-                          <dt>Giới hạn đặt cược cao nhất trong ngành:</dt>
-                          <dd>Tiền gửi và rút tiền hàng ngày không giới hạn bằng tiền điện tử</dd>
+                            <dt>Giới hạn cược cao nhất trong ngành</dt>
+                            <dd>Không giới hạn tiền gửi và rút hàng ngày thông qua tiền mã hóa</dd>
                         </dl>
                         <dl>
-                          <dt>Chương trình khuyến mãi dành riêng cho VIP:</dt>
-                          <dd>Phân biệt với các chương trình khuyến mãi thành viên thường xuyên</dd>
+                            <dt>Ưu đãi độc quyền cho VIP</dt>
+                            <dd>Các chương trình khuyến mãi riêng biệt so với thành viên thông thường</dd>
                           <dd>Duy trì trải nghiệm chơi game tốt nhất cho bạn</dd>
-                          <dd>Dành riêng cho người dùng VIP</dd>
-                          <dd>Ưu đãi được cá nhân hóa</dd>
-                          <dd>Dịch vụ giải trí tùy chỉnh dành riêng cho bạn</dd>
+                          <dd>Chỉ hiển thị cho người dùng VIP</dd>
+                            <dd>Các ưu đãi cá nhân hóa</dd>
+                            <dd>Dịch vụ giải trí được tùy chỉnh dành riêng cho bạn</dd>
                         </dl>
                         <dl>
-                          <dt>Dịch vụ ưu tiên 24/7:</dt>
-                          <dd>Không cần phải xếp hàng hay chờ đợi</dd>
-                          <dd>Nhu cầu của bạn là ưu tiên hàng đầu của chúng tôi</dd>
-                          <dd>Nhiều phương thức liên hệ truyền thông xã hội, người quản lý khách hàng tận tâm cung cấp dịch vụ trực tuyến.</dd>
+                            <dt>Dịch vụ Ưu tiên 24/7</dt>
+                            <dd>Không cần xếp hàng, không phải chờ đợi</dd>
+                            <dd>Nhu cầu của bạn là ưu tiên hàng đầu của chúng tôi</dd>
+                            <dd>Nhiều lựa chọn trên mạng xã hội để liên hệ, quản lý khách hàng riêng biệt sẵn sàng trực tuyến</dd>
                         </dl>
                       </div>
                     </div>
@@ -767,20 +767,20 @@ export default {
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">Làm thế nào để trở thành thành viên VIP</div>
+                      <div class="r-title">Cách trở thành thành viên VIP của chúng tôi</div>
                       <div class="vr-conts">
                         <dl>
                           <dd>
-                          Tiếp tục cá cược: Chìa khóa để trở thành VIP là luôn đặt cược vào các sự kiện thể thao và trò chơi sòng bạc khác nhau. Seabet thưởng cho sự nhất quán của bạn. Là một trang web cờ bạc tiền điện tử hàng đầu, hãy thường xuyên sử dụng tài sản kỹ thuật số của bạn để đặt cược vào bất kỳ sự kiện thể thao và trò chơi sòng bạc nào do Seabet cung cấp. Bạn cũng có thể thử đặt cược với USDT và tiếp tục sử dụng tiền của mình.
+                            Tiếp tục Đặt cược: Chìa khóa để trở thành VIP là duy trì việc đặt cược liên tục trên các sự kiện thể thao và trò chơi sòng bạc khác nhau. Seabet đánh giá cao sự kiên nhẫn của bạn. Là một trang web cá cược  tiền mã hóa hàng đầu, hãy thường xuyên sử dụng tài sản kỹ thuật số của bạn để đặt cược vào bất kỳ sự kiện và trò chơi sòng bạc nào mà Seabet cung cấp. Bạn cũng có thể thử đặt cược bằng USDT và tiếp tục sử dụng tài khoản của bạn.
                           </dd>
                           <dd>
-                          Tham gia vào các sự kiện thường xuyên: Các hoạt động quảng cáo của Seabet bao gồm các sự kiện và cuộc thi khác nhau mà bạn có thể tham gia bất cứ lúc nào. Tham gia thường xuyên vào bất kỳ sự kiện nào trong số này sẽ tăng cơ hội nhận được lời mời tham gia Câu lạc bộ VIP. Hơn nữa, bạn có thể tích cực hơn trong các tính năng câu lạc bộ khác do Seabet cung cấp.
+                            Tham gia các Sự kiện Thường xuyên: Các sự kiện quảng bá của Seabet bao gồm các hoạt động và cuộc thi khác nhau mà bạn có thể tham gia bất kỳ lúc nào. Thường xuyên tham gia bất kỳ hoạt động nào trong số này sẽ tăng cơ hội của bạn để nhận lời mời gia nhập Câu lạc bộ VIP. Hơn nữa, bạn cũng có thể trở nên nhiều hoạt động hơn trong các tính năng khác của Câu lạc bộ của Seabet.
                           </dd>
+                        
+                          <dd>Chờ lời mời: Điều cuối cùng bạn cần làm là đợi chúng tôi gửi lời mời cho bạn. Tiếp tục chơi trò chơi và tham gia vào các sự kiện dành cho người cược lớn. Sau một số vòng cược sòng bạc và đặt cược thể thao, sau khi được xem xét xứng đáng để trở thành thành viên Câu lạc bộ VIP, bạn sẽ nhận được lời mời ngay lập tức.</dd>
+                          
                           <dd>
-                          Chờ đợi lời mời: Điều cuối cùng bạn cần làm là đợi chúng tôi gửi cho bạn lời mời. Tiếp tục chơi game và tham gia vào các sự kiện con lăn cao. Sau một vài vòng đánh bạc sòng bạc và cá cược thể thao, một khi bạn được coi là xứng đáng trở thành thành viên Câu lạc bộ VIP, bạn sẽ nhận được lời mời ngay lập tức.
-                          </dd>
-                          <dd>
-                          Trải nghiệm cuộc sống sang trọng với tư cách là VIP của Seabet: Đưa trải nghiệm đánh bạc USDT của bạn lên một cấp độ hoàn toàn mới trong khi tận hưởng các đặc quyền hàng đầu với tư cách là thành viên Câu lạc bộ VIP Seabet. Là một người chơi có giá trị, bạn sẽ trải nghiệm cá cược vui vẻ, nhanh chóng và công bằng nhất khi tham gia vào cá cược thể thao và trò chơi sòng bạc.
+                            Hãy Trải nghiệm Cuộc sống Cao cấp với Seabet VIP: Nâng cao trải nghiệm cược USDT của bạn lên một tầm cao mới trong khi tận hưởng các đặc quyền hàng đầu của việc trở thành thành viên Câu lạc bộ VIP của Seabet. Khi bạn tham gia cược thể thao và trò chơi sòng bạc, với tư cách là một người chơi được đánh giá cao, bạn có cơ hội trải nghiệm sự kết hợp tốt nhất giữa việc cược vui vẻ, nhanh chóng và công bằng.
                           </dd>
                         </dl>
                       </div>
@@ -871,14 +871,14 @@ export default {
 
                       <p>Quỹ &; Thuế</p>
                       <p>h) Bạn hoàn toàn chịu trách nhiệm báo cáo và hạch toán bất kỳ khoản thuế nào áp dụng cho bạn theo luật liên quan đối với bất kỳ khoản tiền thắng cược nào mà bạn nhận được từ chúng tôi;</p>
-                      <p>i) Bạn hoàn toàn chịu trách nhiệm về bất kỳ khoản thuế hiện hành nào có thể phải trả đối với tiền điện tử được trao cho bạn thông qua việc bạn sử dụng Dịch vụ;</p>
-                      <p>j) Có nguy cơ mất tiền điện tử khi sử dụng Dịch vụ và Seabet không chịu trách nhiệm với bạn về bất kỳ tổn thất nào như vậy;</p>
+                      <p>i) Bạn hoàn toàn chịu trách nhiệm về bất kỳ khoản thuế hiện hành nào có thể phải trả đối với  tiền mã hóa được trao cho bạn thông qua việc bạn sử dụng Dịch vụ;</p>
+                      <p>j) Có nguy cơ mất  tiền mã hóa khi sử dụng Dịch vụ và Seabet không chịu trách nhiệm với bạn về bất kỳ tổn thất nào như vậy;</p>
                       <p>k) Bạn sẽ không gửi tiền có nguồn gốc từ hoạt động tội phạm hoặc trái phép khác;</p>
                       <p>l) Bạn sẽ không gửi tiền bằng các phương thức thanh toán không thuộc về Bạn;</p>
                       <p>m) Tất cả số tiền gửi sẽ được sử dụng riêng cho các Dịch vụ có sẵn trên Trang web;</p>
                       <p>n) Bạn sẽ không rút tiền hoặc cố gắng rút tiền về phương thức thanh toán không thuộc về Bạn;</p>
                       <p>o) Bạn hiểu rằng bằng cách tham gia vào các Dịch vụ có sẵn trên Trang web, Bạn có nguy cơ mất tiền gửi.</p>
-                      <p>p) Bạn chấp nhận và thừa nhận rằng giá trị của tiền điện tử có thể thay đổi đáng kể tùy thuộc vào giá trị thị trường;</p>
+                      <p>p) Bạn chấp nhận và thừa nhận rằng giá trị của  tiền mã hóa có thể thay đổi đáng kể tùy thuộc vào giá trị thị trường;</p>
                       <p>q) Seabet không được coi là tổ chức tài chính;</p>
 
                       <p>Khác</p>
@@ -914,7 +914,7 @@ export default {
                       <p><b>7.1</b> Bạn chỉ có thể tham gia vào bất kỳ Trò chơi nào nếu bạn có đủ tiền trong Tài khoản Seabet của mình để tham gia đó. Vì mục đích đó, bạn sẽ sử dụng các phương thức thanh toán có sẵn trên Trang web để gửi tiền của mình. Seabet sẽ không cung cấp cho bạn bất kỳ khoản tín dụng nào để tham gia vào bất kỳ Trò chơi nào.</p>
                       <p><b>7.2</b> Bạn phải gửi tiền vào Tài khoản Seabet của bạn bằng các phương thức thanh toán có sẵn tại www. Seabet.io.</p>
                       <p><b>7.3</b> Bạn  phải đảm bảo rằng các khoản tiền mà Bạn gửi vào Tài khoản Seabet của bạn không bị nhiễm bất kỳ hành vi bất hợp pháp nào và đặc biệt, không bắt nguồn từ bất kỳ hoạt động hoặc nguồn bất hợp pháp nào.</p>
-                      <p><b>7.4</b> Để gửi tiền vào Tài khoản Seabet của bạn, bạn có thể chuyển tiền từ ví tiền điện tử dưới sự kiểm soát của bạn hoặc thông qua bất kỳ phương thức thanh toán nào khác có sẵn trên Seabet.io. Tiền gửi chỉ có thể được thực hiện bằng tiền của riêng bạn.</p>
+                      <p><b>7.4</b> Để gửi tiền vào Tài khoản Seabet của bạn, bạn có thể chuyển tiền từ ví  tiền mã hóa dưới sự kiểm soát của bạn hoặc thông qua bất kỳ phương thức thanh toán nào khác có sẵn trên Seabet.io. Tiền gửi chỉ có thể được thực hiện bằng tiền của riêng bạn.</p>
                       <p><b>7.5</b> Bạn  chỉ nên gửi tiền vào tài khoản của Bạn cho mục đích Bạn sử dụng số tiền đó để đặt cược / đặt cược trên Trang web. Seabet có quyền đình chỉ hoặc đóng tài khoản của bạn nếu chúng tôi tin tưởng một cách hợp lý rằng Bạn đang gửi tiền mà không có ý định đặt cược thể thao và / hoặc chơi game. Trong những trường hợp như vậy, chúng tôi cũng có thể báo cáo hoạt động này cho các cơ quan có liên quan.</p>
                       <p><b>7.6</b> Bạn  thừa nhận và hiểu rằng việc nạp tiền vào Tài khoản Seabet của Bạn chỉ có thể được nạp tiền bằng các phương thức thanh toán do Bạn sở hữu.</p>
                       <p><b>7.7</b> Bạn  cũng hiểu, đồng ý và thừa nhận rằng nếu Seabet phát hiện, phát hiện và / hoặc xác định rằng Bạn:</p>
@@ -949,13 +949,13 @@ export default {
                       <p><b>8.8</b> Nếu Bạn có nhiều lần rút tiền  đang chờ xử lý, Seabet có quyền từ chối tất cả các lần rút tiền và yêu cầu Bạn thực hiện một lần rút tiền với tổng của tất cả nhiều lần rút tiền.</p>
                       <p><b>8.9</b> Seabet sẽ không tính bất kỳ khoản phí nào khi rút tiền. Tuy nhiên, Bạn nên kiểm tra xem phương thức thanh toán Bạn sử dụng có áp dụng bất kỳ khoản phí bổ sung nào không. Seabet sẽ không chịu trách nhiệm cho bất kỳ khoản hoa hồng hoặc phí xử lý nào được tính cho Bạn bởi các bên thứ ba như ngân hàng của Bạn vì điều này nằm ngoài tầm kiểm soát của chúng tôi.</p>
 
-                      <p>Rút tiền điện tử</p>
-                      <p><b>8.10</b> Rút tiền mã hóa sẽ được thực hiện đến địa chỉ ví tiền điện tử đã nêu của bạn khi thực hiện yêu cầu rút tiền hợp lệ.</p>
+                      <p>Rút  tiền mã hóa</p>
+                      <p><b>8.10</b> Rút tiền mã hóa sẽ được thực hiện đến địa chỉ ví  tiền mã hóa đã nêu của bạn khi thực hiện yêu cầu rút tiền hợp lệ.</p>
                       <p><b>8.11</b> Seabet có quyền thực hiện các thủ tục xác minh KYC bổ sung cho bất kỳ khoản rút tiền nào. Người chơi muốn lấy lại tiền được giữ trong tài khoản đã đóng, bị khóa hoặc bị loại trừ, nên liên hệ (support{'@'}seabet.io).</p>
                       <p><b>8.12</b> Tất cả các giao dịch sẽ được kiểm tra để ngăn chặn rửa tiền. Nếu người chơi biết về bất kỳ hoạt động đáng ngờ nào liên quan đến bất kỳ Trò chơi nào của Trang web, họ phải báo cáo điều này cho Seabet ngay lập tức. Seabet có thể đình chỉ, chặn hoặc đóng Tài khoản Seabet và giữ lại tiền nếu được yêu cầu theo Đạo luật Phòng chống rửa tiền hoặc trên bất kỳ cơ sở pháp lý nào khác theo yêu cầu của bất kỳ cơ quan nhà nước nào. Bạn thừa nhận rằng tiền trong tài khoản của bạn được tiêu thụ ngay lập tức khi chơi và chúng tôi không cung cấp trả lại hàng hóa, hoàn lại tiền hoặc hủy hồi tố tài khoản của bạn.</p>
 
                       <h3>9. BẢO VỆ TIỀN CỦA NGƯỜI CHƠI &; BỒI HOÀN</h3>
-                      <p><b>9.1</b> Bất kỳ khoản tiền nào Bạn gửi với chúng tôi trong Tài khoản Seabet của Bạn, cùng với bất kỳ khoản tiền  thắng cược nào, được giữ cho Bạn trong các tài khoản ngân hàng / ví tiền điện tử riêng biệt của khách hàng cho mục đích duy nhất và cụ thể để Bạn đặt cược thể thao và chơi trò chơi và giải quyết bất kỳ khoản phí hoặc lệ phí nào mà Bạn có thể phải chịu liên quan đến việc sử dụng Dịch vụ của chúng tôi. Điều này có nghĩa là tiền của Bạn được bảo vệ khỏi việc sử dụng cho bất kỳ mục đích nào khác.</p>
+                      <p><b>9.1</b> Bất kỳ khoản tiền nào Bạn gửi với chúng tôi trong Tài khoản Seabet của Bạn, cùng với bất kỳ khoản tiền  thắng cược nào, được giữ cho Bạn trong các tài khoản ngân hàng / ví  tiền mã hóa riêng biệt của khách hàng cho mục đích duy nhất và cụ thể để Bạn đặt cược thể thao và chơi trò chơi và giải quyết bất kỳ khoản phí hoặc lệ phí nào mà Bạn có thể phải chịu liên quan đến việc sử dụng Dịch vụ của chúng tôi. Điều này có nghĩa là tiền của Bạn được bảo vệ khỏi việc sử dụng cho bất kỳ mục đích nào khác.</p>
                       <p><b>9.2</b> Nếu chúng tôi phải chịu bất kỳ khoản  bồi hoàn, đảo ngược hoặc từ chối thanh toán hoặc bất kỳ tổn thất nào mà Seabet phải chịu do hậu quả của việc đó do các nguyên nhân liên quan đến Tài khoản Seabet của Bạn, chúng tôi có quyền tính phí Bạn cho các khoản tiền liên quan phát sinh.</p>
                       <p><b>9.3</b> Chúng tôi có thể, bất cứ lúc nào, đặt bất kỳ số dư dương nào trên tài khoản của Bạn so với bất kỳ số tiền nào Bạn nợ Seabet.</p>
                       <h3>10. ĐẶT CƯỢC/ĐẶT CƯỢC</h3>
@@ -1297,7 +1297,7 @@ export default {
                       </div>`,
     fairnessContent: `<div>
                         <h2>Công bằng</h2>
-                        <p>Trước khi bạn có thể đặt cược bằng tiền tệ pháp định, bao gồm cả tiền điện tử, bạn phải đăng ký tài khoản trên trang web Seabet.io. Việc bạn sử dụng Seabet.io ("Trang web") và mở tài khoản với Seabet.io sẽ được coi là đã đọc, hiểu và bị ràng buộc bởi các Điều khoản và Điều kiện này.</p>
+                        <p>Trước khi bạn có thể đặt cược bằng tiền tệ pháp định, bao gồm cả  tiền mã hóa, bạn phải đăng ký tài khoản trên trang web Seabet.io. Việc bạn sử dụng Seabet.io ("Trang web") và mở tài khoản với Seabet.io sẽ được coi là đã đọc, hiểu và bị ràng buộc bởi các Điều khoản và Điều kiện này.</p>
 
                         <p>Định nghĩa</p>
                         <p>Seabet.io - được gọi là "chúng tôi" hoặc "công ty".</p>
@@ -1307,7 +1307,7 @@ export default {
                         <p>Tài khoản Thành viên - Tài khoản người dùng cần thiết để truy cập và sử dụng Trang web.</p>
                         <p>Hỗ trợ khách hàng - Các dịch vụ hỗ trợ và hỗ trợ do Công ty cung cấp cho khách hàng của mình.</p>
                         <p>Sự kiện - có nghĩa là một sự kiện thể thao hoặc cá cược hoặc một trận đấu hoặc trò chơi trong một môn thể thao mà khách hàng có thể đặt cược vào kết quả.</p>
-                        <p>Tiền điện tử - nên được đọc thêm là "Bitcoin, altcoin và / hoặc (nếu có) các loại tiền điện tử được hỗ trợ khác."   </p>
+                        <p> tiền mã hóa - nên được đọc thêm là "Bitcoin, altcoin và / hoặc (nếu có) các loại  tiền mã hóa được hỗ trợ khác."   </p>
                         <p>Tiền tệ pháp định - Một hàng hóa vật chất tiền tệ không được hỗ trợ do chính phủ hoặc cơ quan ngân hàng trung ương phát hành, chẳng hạn như vàng hoặc bạc (ví dụ: đô la Mỹ, real Brazil, yên Nhật, người).</p>
                         <p>Khu vực pháp lý bị hạn chế - Giấy phép dành riêng cho quốc gia tuân theo các hạn chế đối với trò chơi của chúng tôi, do đó, người dùng ở hoặc từ các khu vực đó bị cấm đăng ký và chơi trên Trang web. Danh sách các khu vực pháp lý bị hạn chế có thể được cập nhật theo thời gian và có thể được truy cập qua liên kết bên dưới.</p>
 
@@ -1344,13 +1344,13 @@ export default {
 
                         <p><b>2.1.9</b> Quyền tài phán của bạn cho phép bạn sử dụng các dịch vụ cá cược thể thao và sòng bạc trực tuyến; </p>
 
-                        <p><b>2.1.10</b> Liên quan đến việc gửi và rút tiền vào Tài khoản Thành viên của bạn, bạn chỉ có thể sử dụng tiền điện tử và / hoặc bất kỳ loại tiền tệ pháp định hợp lệ và hợp pháp nào thuộc về bạn; </p>
+                        <p><b>2.1.10</b> Liên quan đến việc gửi và rút tiền vào Tài khoản Thành viên của bạn, bạn chỉ có thể sử dụng  tiền mã hóa và / hoặc bất kỳ loại tiền tệ pháp định hợp lệ và hợp pháp nào thuộc về bạn; </p>
 
                         <p><b>2.1.11</b> Bạn chấp nhận và thừa nhận rằng giá trị của Tiền Kỹ Thuật Số có thể thay đổi đáng kể tùy thuộc vào giá trị thị trường. </p>
 
                         <p><b>2.1.12</b>  Phần mềm máy tính, đồ họa máy tính, trang web và giao diện người dùng mà chúng tôi cung cấp cho bạn được sở hữu và bảo vệ bởi Công ty hoặc các chi nhánh của Công ty theo luật bản quyền. Bạn chỉ có thể sử dụng Phần mềm cho mục đích giải trí cá nhân của riêng bạn: phù hợp với tất cả các quy tắc, điều khoản và điều kiện do chúng tôi thiết lập và phù hợp với tất cả các luật, quy tắc và quy định hiện hành theo Giấy phép trò chơi Curaçao; </p>
 
-                        <p><b>2.1.13</b> Bạn hiểu rằng tiền điện tử không được coi là tiền tệ hoặc tiền tệ hợp pháp và do đó Trang web chúng được coi là tiền ảo không có giá trị nội tại. </p>
+                        <p><b>2.1.13</b> Bạn hiểu rằng  tiền mã hóa không được coi là tiền tệ hoặc tiền tệ hợp pháp và do đó Trang web chúng được coi là tiền ảo không có giá trị nội tại. </p>
 
                         <p><b>2.1.14</b> Bạn xác nhận rằng bạn không phải là cán bộ, giám đốc, nhân viên, nhà tư vấn hoặc đại lý của Công Ty hoặc làm việc cho bất kỳ công ty nào liên quan đến Công Ty hoặc cho người thân hoặc vợ / chồng của bất kỳ điều nào đã nói ở trên; </p>
 
@@ -1399,9 +1399,9 @@ export default {
                         <h3>5. Tiền gửi</h3>
                         <p><b>5.1</b> Bạn chỉ có thể tham gia vào bất kỳ trò chơi nào nếu bạn có đủ tiền trong Tài khoản Thành viên của mình để tham gia như vậy. </p>
 
-                        <p><b>5.2</b> Bạn có thể gửi tiền bằng tiền điện tử hoặc tiền pháp định. Số tiền gửi tối thiểu có thể được tìm thấy trong trung tâm gửi tiền của chúng tôi. Tất cả số tiền ký quỹ tối thiểu được chỉ định là cho mỗi giao dịch. Các khoản tiền gửi nhỏ hơn sẽ không được cộng lại. Bất kỳ số tiền gửi nào dưới số tiền gửi tối thiểu được chỉ định đều không hợp lệ và sẽ không được ghi có vào số dư tài khoản người dùng của bạn hoặc được trả lại nguồn. Nếu khoản tiền gửi không đáp ứng khoản tiền gửi tối thiểu được chúng tôi liệt kê, công ty không chịu trách nhiệm về các yêu cầu. </p>
+                        <p><b>5.2</b> Bạn có thể gửi tiền bằng  tiền mã hóa hoặc tiền pháp định. Số tiền gửi tối thiểu có thể được tìm thấy trong trung tâm gửi tiền của chúng tôi. Tất cả số tiền ký quỹ tối thiểu được chỉ định là cho mỗi giao dịch. Các khoản tiền gửi nhỏ hơn sẽ không được cộng lại. Bất kỳ số tiền gửi nào dưới số tiền gửi tối thiểu được chỉ định đều không hợp lệ và sẽ không được ghi có vào số dư tài khoản người dùng của bạn hoặc được trả lại nguồn. Nếu khoản tiền gửi không đáp ứng khoản tiền gửi tối thiểu được chúng tôi liệt kê, công ty không chịu trách nhiệm về các yêu cầu. </p>
 
-                        <p><b>5.3</b> Để gửi tiền vào Tài khoản Thành viên của bạn, bạn có thể làm như vậy từ ví tiền điện tử và tài khoản dưới sự kiểm soát của bạn. Tiền gửi chỉ có thể được thực hiện bằng tiền của riêng bạn. </p>
+                        <p><b>5.3</b> Để gửi tiền vào Tài khoản Thành viên của bạn, bạn có thể làm như vậy từ ví  tiền mã hóa và tài khoản dưới sự kiểm soát của bạn. Tiền gửi chỉ có thể được thực hiện bằng tiền của riêng bạn. </p>
 
                         <p><b>5.4</b> Trang web không thể đảm bảo rằng tất cả các loại tiền tệ đều được hỗ trợ nguyên bản trong Trò chơi. </p>
 
@@ -1412,17 +1412,17 @@ export default {
                         <p><b>5.7</b> Ngân hàng hoặc nhà cung cấp dịch vụ thanh toán của bạn có thể tính thêm phí tiền tệ cho bạn trong quá trình gửi tiền theo các điều khoản và điều kiện của họ và thỏa thuận chuyển đổi người dùng của bạn. </p>
 
                         <h3>6. Rút tiền</h3>
-                        <p><b>6.1</b> Tất cả các khoản rút tiền sẽ được xử lý theo chính sách rút tiền của chúng tôi bên dưới. Rút tiền mã hóa sẽ được yêu cầu khi địa chỉ ví tiền điện tử bạn đã nhập hợp lệ. Để rút tiền, trước tiên bạn cần xác minh địa chỉ email đã đăng ký từ hồ sơ tài khoản của mình. Để rút bất kỳ khoản tiền gửi nào, chúng tôi cần thực hiện ít nhất 3 xác nhận blockchain về khoản tiền gửi ở đó trước khi yêu cầu rút tiền. Rút tiền pháp định phải được ghi có vào yêu cầu tài khoản fiat cá nhân của bạn tại thời điểm rút tiền hợp lệ. Việc rút tiền pháp định có thể mất tối đa 3 ngày làm việc kể từ khi được nhà cung cấp dịch vụ thanh toán chấp thuận. </p>
+                        <p><b>6.1</b> Tất cả các khoản rút tiền sẽ được xử lý theo chính sách rút tiền của chúng tôi bên dưới. Rút tiền mã hóa sẽ được yêu cầu khi địa chỉ ví  tiền mã hóa bạn đã nhập hợp lệ. Để rút tiền, trước tiên bạn cần xác minh địa chỉ email đã đăng ký từ hồ sơ tài khoản của mình. Để rút bất kỳ khoản tiền gửi nào, chúng tôi cần thực hiện ít nhất 3 xác nhận blockchain về khoản tiền gửi ở đó trước khi yêu cầu rút tiền. Rút tiền pháp định phải được ghi có vào yêu cầu tài khoản fiat cá nhân của bạn tại thời điểm rút tiền hợp lệ. Việc rút tiền pháp định có thể mất tối đa 3 ngày làm việc kể từ khi được nhà cung cấp dịch vụ thanh toán chấp thuận. </p>
 
                         <p><b>6.2</b>  Số tiền rút tối thiểu có thể được tìm thấy trong Trung tâm rút tiền của chúng tôi. Tất cả số tiền được chỉ định là cho mỗi giao dịch. </p>
 
                         <p><b>6.3</b> Số tiền thắng cược bất kỳ khoản tiền thắng cược nào được ghi có không chính xác vào Tài khoản của bạn vẫn là tài sản và được tự động khấu trừ từ Tài khoản của bạn trong trường hợp phát hiện lỗi. Nếu mục nhập không chính xác, bạn có nghĩa vụ thông báo cho chúng tôi ngay lập tức. Bất kỳ khoản tiền thưởng nào được ghi có sai vào tài khoản của bạn và sau đó bạn rút lại (không ảnh hưởng đến các biện pháp khắc phục và hành động khác có thể có sẵn hợp pháp) tạo thành một khoản nợ có hiệu lực pháp lý hợp lệ mà bạn nợ Công ty với số tiền thắng cược sai lầm đó. Trong những trường hợp như vậy, chúng tôi có quyền bắt đầu thủ tục thu hồi nợ nếu bạn không tự nguyện thanh toán các khoản nợ chưa thanh toán. </p>
 
-                        <p><b>6.4</b> Đối với rút tiền pháp định và tiền điện tử, Trang web có quyền yêu cầu đặt cược gấp 1 lần bằng số tiền đã gửi trước khi chấp nhận yêu cầu rút tiền. </p>
+                        <p><b>6.4</b> Đối với rút tiền pháp định và  tiền mã hóa, Trang web có quyền yêu cầu đặt cược gấp 1 lần bằng số tiền đã gửi trước khi chấp nhận yêu cầu rút tiền. </p>
 
                         <p><b>6.5</b>  Chúng tôi có quyền chặn / trì hoãn việc xử lý các yêu cầu rút tiền cho đến khi có yêu cầu bản sao giấy tờ tùy thân có ảnh hợp lệ, bằng chứng địa chỉ và / hoặc thẻ ghi nợ để chúng tôi hài lòng (KYC). </p>
 
-                        <p><b>6.6</b> Trang web có quyền thực hiện các quy trình xác minh KYC bổ sung trên bất kỳ Nội dung nào để rút tiền điện tử vượt quá € 2500 hoặc tương đương, theo giấy phép trò chơi được quy định của chúng tôi và tiếp tục có quyền thực hiện các thủ tục xác minh đó trong trường hợp rút tiền ít hơn, theo yêu cầu của giấy phép trò chơi của chúng tôi. Chủ tài khoản muốn khôi phục nên liên hệ với bộ phận Hỗ trợ khách hàng để biết tiền được giữ trong các tài khoản đóng, bị khóa hoặc bị loại trừ. </p>
+                        <p><b>6.6</b> Trang web có quyền thực hiện các quy trình xác minh KYC bổ sung trên bất kỳ Nội dung nào để rút  tiền mã hóa vượt quá € 2500 hoặc tương đương, theo giấy phép trò chơi được quy định của chúng tôi và tiếp tục có quyền thực hiện các thủ tục xác minh đó trong trường hợp rút tiền ít hơn, theo yêu cầu của giấy phép trò chơi của chúng tôi. Chủ tài khoản muốn khôi phục nên liên hệ với bộ phận Hỗ trợ khách hàng để biết tiền được giữ trong các tài khoản đóng, bị khóa hoặc bị loại trừ. </p>
 
                         <p><b>6.7</b> Tất cả các giao dịch sẽ được kiểm tra để ngăn chặn rửa tiền. Trang web có thể đình chỉ, đóng băng hoặc đóng tài khoản thành viên của bạn và giữ lại tiền (nếu được yêu cầu làm như vậy) theo Đạo luật Phòng chống rửa tiền hoặc bất kỳ cơ sở pháp lý nào khác theo yêu cầu của Đạo luật Phòng chống Rửa tiền hoặc bất kỳ cơ sở pháp lý nào khác theo yêu cầu của Đạo luật Phòng chống Rửa tiền. Việc rút tiền có thể phải được tăng cường thẩm định thay vì đặt cược,  Và nếu bạn không xử lý rút tiền, chúng tôi có quyền không xử lý rút tiền để tuân thủ các yêu cầu thẩm định bổ sung đó. </p>
 
@@ -1443,7 +1443,7 @@ export default {
                         <h3>7. Quỹ</h3>
                         <p><b>7.1</b> Khách hàng không thể chuyển hoặc chuyển đổi tiền giữa Ví và Tiền tệ. </p>
 
-                        <p><b>7.2</b> Bạn đã cung cấp các chi tiết cần thiết để nạp tiền điện tử trên Trang web trên trang Gửi tiền. </p>
+                        <p><b>7.2</b> Bạn đã cung cấp các chi tiết cần thiết để nạp  tiền mã hóa trên Trang web trên trang Gửi tiền. </p>
 
                         <p><b>7.3</b> Chúng tôi không cung cấp tín dụng cho việc sử dụng Dịch vụ của chúng tôi. </p>
 
@@ -1494,7 +1494,7 @@ export default {
                         <h3>9. Đóng tài khoản thành viên</h3>
                         <p><b>9.1</b> Nếu bạn muốn đóng Tài khoản Thành viên của mình, bạn có thể liên hệ với bộ phận Hỗ trợ Khách hàng bằng văn bản bất cứ lúc nào qua email. Việc đóng tài khoản có hiệu lực sẽ chấm dứt các Điều khoản và Điều kiện tương ứng. Nếu lý do đằng sau việc đóng tài khoản có liên quan đến những lo ngại về chứng nghiện cờ bạc có thể xảy ra hoặc vấn đề cờ bạc, bạn nên cho biết rằng điều này đã được thực hiện bằng văn bản tại thời điểm yêu cầu đóng tài khoản. Nếu nó không chịu trách nhiệm về việc tiết lộ các vấn đề cờ bạc và / hoặc đưa ra lý do đóng tài khoản, bạn có thể yêu cầu kích hoạt lại tài khoản của mình qua email. Việc kích hoạt lại tài khoản là theo quyết định riêng của chúng tôi. Chúng tôi có quyền từ chối phục sinh. </p>
 
-                        <p><b>9.2</b> Trang web có quyền từ chối hoặc đóng tài khoản của Thành viên theo quyết định riêng của mình mà không cần thông báo trước hoặc có nghĩa vụ phải nêu hoặc chứng minh lý do. Trong trường hợp không có nghi ngờ gian lận, rửa tiền hoặc hành vi bất hợp pháp, chúng tôi sẽ chuyển số dư tài khoản của bạn sang ví tiền điện tử bạn chọn (dựa trên số dư tài khoản của bạn) trước khi tài khoản của bạn bị đóng. Số dư tài khoản tiền tệ pháp định của bạn sẽ được gửi vào thủ công của bạn. Nếu bạn sử dụng phương thức chỉ nạp tiền, chúng tôi sẽ liên hệ với bạn và tìm các phương thức trả lại tiền khác trước khi tài khoản bị đóng. </p>
+                        <p><b>9.2</b> Trang web có quyền từ chối hoặc đóng tài khoản của Thành viên theo quyết định riêng của mình mà không cần thông báo trước hoặc có nghĩa vụ phải nêu hoặc chứng minh lý do. Trong trường hợp không có nghi ngờ gian lận, rửa tiền hoặc hành vi bất hợp pháp, chúng tôi sẽ chuyển số dư tài khoản của bạn sang ví  tiền mã hóa bạn chọn (dựa trên số dư tài khoản của bạn) trước khi tài khoản của bạn bị đóng. Số dư tài khoản tiền tệ pháp định của bạn sẽ được gửi vào thủ công của bạn. Nếu bạn sử dụng phương thức chỉ nạp tiền, chúng tôi sẽ liên hệ với bạn và tìm các phương thức trả lại tiền khác trước khi tài khoản bị đóng. </p>
 
 
 
