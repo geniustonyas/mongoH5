@@ -23,6 +23,10 @@
               <label>{{ t('minMaxBet') }}</label
               ><span>{{ parseFloat(detailsData.minBetAmount).toFixed(2) }} - {{ parseFloat(detailsData.maxBetAmount).toFixed(2) }} USDT</span>
             </div>
+            <div class="item" v-if="detailsData.volatility != '0'">
+              <label>{{ t('volatility') }}</label
+              ><span>{{ t('volatilitys.' + detailsData.volatility) }}</span>
+            </div>
             <div class="item" v-if="detailsData.hitRatio != '0'">
               <label>{{ t('hitratio') }}</label
               ><span>{{ detailsData.hitRatio }}%</span>
