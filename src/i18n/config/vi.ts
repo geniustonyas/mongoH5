@@ -560,7 +560,7 @@ export default {
     whatVips: `<p>Câu lạc bộ VIP của seabet.io là một cộng đồng dành riêng cho khách hàng sử dụng  tiền mã hóa, cho phép họ tham gia vào tất cả các hoạt động khuyến mãi có sẵn trên trang web bất kỳ lúc nào. Mỗi lần đặt cược, quay và chơi trò chơi đều tích luỹ điểm, từ đó từ từ leo lên trong câu lạc bộ và mở khóa những phần thưởng thú vị trên đường đi. Khi bạn mở khóa các cấp độ VIP, bạn cũng sẽ kiếm được điểm cược Seabet, giúp bạn có được những trải nghiệm và dịch vụ đáng giá hơn.</p>
                 <p>Nói một cách đơn giản, điều đó có nghĩa: Bạn chơi trò chơi, và chúng tôi thưởng bạn.</p>`,
     howGetIntegrial: '2.Làm cách nào để kiếm điểm?',
-    howGetIntegrials: `<p>Bạn có thể kiếm điểm câu lạc bộ bằng mỗi lần đặt cược, chơi slot game và chơi trò chơi bàn. Càng nhiều điểm bạn tích luỹ, càng cao cấp độ của bạn trở nên. Trong quá trình thăng cấp bậc ,bạn sẽ tiến đến mở khỏa và phần thưởng nhiều hơn nữa đang chờ đợi bạn ..</p>`,
+    howGetIntegrials: `<p>Bạn có thể kiếm điểm câu lạc bộ bằng mỗi lần đặt cược, chơi slot game và chơi trò chơi bàn. Tích lũy điểm càng nhiều đạt được cấp bậc càng cao. Trong quá trình thăng cấp bậc ,bạn sẽ tiến đến mở khỏa và phần thưởng nhiều hơn nữa đang chờ đợi bạn ..</p>`,
     whatVipLevel: '3.Các cấp độ VIP là gì?',
     whatVipLevels: `<p>Các cấp độ VIP xác định giá trị và loại phần thưởng bạn có thể đòi hỏi. Trong quá trình bạn lên cấp bậc tại câu lạc bộ, phần thưởng của bạn cũng sẽ tăng lên .</p>
                     <table>
