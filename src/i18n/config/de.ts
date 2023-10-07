@@ -360,6 +360,7 @@ export default {
     selectDocType: 'Klicken Sie hier, um den Dokumententyp auszuwählen',
     inputDocType: 'Bitte wählen Sie einen Dokumententyp aus',
     inputDdocNumber: 'Bitte geben Sie die Ausweisnummer ein',
+    inputPassportNo: 'Bitte geben Sie die Ausweisnummer ein',
     airlineCompany: 'Bitte geben Sie die Fluggesellschaft ein',
     inputDeparture: 'Bitte geben Sie den Abflugort ein',
     inputDestination: 'Bitte geben Sie das Ziel ein',
@@ -514,7 +515,7 @@ export default {
     4: 'Unabhängiges Backend'
   },
   seabetSportDesc: {
-    0: 'Unabhängig entwickelt',
+    0: 'Unabhängig Entwickelt',
     1: 'Höchste Quoten',
     2: 'Anpassbare Wettschnittstelle',
     3: 'Präzises Abrechnungssystem',

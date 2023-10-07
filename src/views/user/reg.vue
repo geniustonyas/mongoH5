@@ -34,7 +34,7 @@
             </div>
             <div class="cr-input">
               <input v-model.trim="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" autocomplete="off" />
-              <span class="captcha" @click="sendEmail()">{{ regCount === 0 ? t('sendEmail') : regCount }}</span>
+              <span v-if="!showloading" class="captcha" @click="sendEmail()">{{ regCount === 0 ? t('sendEmail') : regCount }}</span>
               <div v-if="errorMsg.emailMsg" class="tip">{{ errorMsg.emailMsg }}</div>
             </div>
           </div>
@@ -60,7 +60,7 @@
               <span>{{ t('password') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" autocomplete="off" @blur="checkPwd()" />
+              <input v-model.trim="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" autocomplete="off" :placeholder="t('password')" @blur="checkPwd()" />
               <span :class="showPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showPwd = !showPwd" />
               </span>
@@ -72,7 +72,15 @@
               <span>{{ t('confirmPwd') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" autocomplete="off" @blur="checkConfirmPwd()" />
+              <input
+                v-model.trim="confirmPwd"
+                ref="confirmPwdDom"
+                :type="showConfirmPwd ? 'text' : 'password'"
+                class="form-control"
+                autocomplete="off"
+                :placeholder="t('confirmPwd')"
+                @blur="checkConfirmPwd()"
+              />
               <span :class="showConfirmPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showConfirmPwd = !showConfirmPwd" />
               </span>

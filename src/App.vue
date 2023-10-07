@@ -7,9 +7,9 @@
         </keep-alive>
       </transition>
     </router-view>
-    <!-- <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
-      <Loading />
-    </Overlay> -->
+    <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
+      <!-- <Loading /> -->
+    </Overlay>
   </template>
   <Maintain v-else />
 </template>

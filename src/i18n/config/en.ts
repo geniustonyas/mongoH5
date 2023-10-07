@@ -363,6 +363,7 @@ export default {
     selectDocType: 'Click to select the document type',
     inputDocType: 'Please select a document type',
     inputDdocNumber: 'Please type in the ID number',
+    inputPassportNo: 'Please type in the ID number',
     airlineCompany: 'Please type in the airline',
     inputDeparture: 'Please type in the departure',
     inputDestination: 'Please type in the destination',

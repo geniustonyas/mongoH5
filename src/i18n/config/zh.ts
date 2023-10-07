@@ -362,6 +362,7 @@ export default {
     selectDocType: '点击选择证件类型',
     inputDocType: '请选择证件类型',
     inputDdocNumber: '请输入证件号码',
+    inputPassportNo: '请输入证件号码',
     airlineCompany: '请输入航空公司',
     inputDeparture: '请输入出发地',
     inputDestination: '请输入目的地',

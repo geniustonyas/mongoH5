@@ -11,7 +11,7 @@
             <div class="cr-input">
               <input v-model.trim="resetForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" />
               <!-- <Loading v-show="showloading" size="20px" class="captcha" /> -->
-              <span class="captcha" @click="sendEmail()">{{ forgetCount === 0 ? t('sendEmail') : forgetCount }}</span>
+              <span v-if="!showloading" class="captcha" @click="sendEmail()">{{ forgetCount === 0 ? t('sendEmail') : forgetCount }}</span>
             </div>
           </div>
           <div class="cf-row">
@@ -27,7 +27,7 @@
               <span>{{ t('password') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="resetForm.PassWord" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" placeholder="" />
+              <input v-model.trim="resetForm.PassWord" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" :placeholder="t('password')" />
               <span :class="showPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showPwd = !showPwd" />
               </span>
@@ -38,7 +38,7 @@
               <span>{{ t('confirmPwd') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" placeholder="" />
+              <input v-model.trim="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" :placeholder="t('confirmPwd')" />
               <span :class="showConfirmPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showConfirmPwd = !showConfirmPwd" />
               </span>

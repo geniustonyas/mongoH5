@@ -362,6 +362,7 @@ export default {
     selectDocType: 'Nhấn để chọn loại tài liệu',
     inputDocType: 'Vui lòng chọn loại tài liệu',
     inputDdocNumber: 'Vui lòng nhập số ID',
+    inputPassportNo: 'Vui lòng nhập số ID',
     airlineCompany: 'Vui lòng nhập tên hãng hàng không',
     inputDeparture: 'Vui lòng nhập nơi khởi hành',
     inputDestination: 'Vui lòng nhập điểm đến',

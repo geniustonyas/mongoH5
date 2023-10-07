@@ -362,6 +362,7 @@ export default {
     selectDocType: 'Belge türünü seçmek için tıklayın',
     inputDocType: 'Lütfen bir belge türü seçin',
     inputDdocNumber: 'Kimlik numarasını giriniz',
+    inputPassportNo: 'Kimlik numarasını giriniz',
     airlineCompany: 'Lütfen havayolu şirketini giriniz',
     inputDeparture: 'Kalkış noktasını giriniz',
     inputDestination: 'Varış noktasını giriniz',

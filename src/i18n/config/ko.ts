@@ -363,6 +363,7 @@ export default {
     selectDocType: '문서 유형 선택을 클릭하세요',
     inputDocType: '문서 유형을 선택하세요',
     inputDdocNumber: 'ID 번호를 입력하세요',
+    inputPassportNo: 'ID 번호를 입력하세요',
     airlineCompany: '항공사를 입력하세요',
     inputDeparture: '출발지를 입력하세요',
     inputDestination: '도착지를 입력하세요',
@@ -689,9 +690,9 @@ export default {
     // html제목
     vipTitle: 'VIP 클럽',
     rulesTitle: '이용약관',
-    responsibleTitle: '도박책임',
+    responsibleTitle: '책임감 있는 게이밍',
     amlTitle: '자금세탁방지정책',
-    selfExclusionTitle: '자기배제',
+    selfExclusionTitle: '자체제외',
     privacyTitle: '프라이버시정책',
     fairnessTitle: '공평성',
 

@@ -23,7 +23,7 @@
             </div>
             <div class="cr-input">
               <input v-model.trim="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" />
-              <span v-if="!isGoogle" class="captcha" @click="sendEmail()">{{ thirdRegCount === 0 ? t('sendEmail') : thirdRegCount }}</span>
+              <span v-if="!isGoogle" v-show="!showloading" class="captcha" @click="sendEmail()">{{ thirdRegCount === 0 ? t('sendEmail') : thirdRegCount }}</span>
               <div v-if="errorMsg.emailMsg" class="tip">{{ errorMsg.emailMsg }}</div>
             </div>
           </div>

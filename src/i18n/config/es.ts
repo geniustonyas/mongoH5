@@ -361,6 +361,7 @@ export default {
     selectDocType: 'Haz clic para seleccionar el tipo de documento',
     inputDocType: 'Por favor, selecciona un tipo de documento',
     inputDdocNumber: 'Por favor, ingresa el número de identificación',
+    inputPassportNo: 'Por favor, ingresa el número de identificación',
     airlineCompany: 'Por favor, ingresa la aerolínea',
     inputDeparture: 'Por favor, ingresa el lugar de partida',
     inputDestination: 'Por favor, ingresa el destino',

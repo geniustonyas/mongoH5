@@ -362,6 +362,7 @@ export default {
     selectDocType: 'Clique para selecionar o tipo de documento',
     inputDocType: 'Por favor, selecione o tipo de documento',
     inputDdocNumber: 'Por favor, insira o número do documento',
+    inputPassportNo: 'Por favor, insira o número do documento',
     airlineCompany: 'Por favor, insira a companhia aérea',
     inputDeparture: 'Por favor, insira o local de partida',
     inputDestination: 'Por favor, insira o destino',
@@ -621,13 +622,18 @@ export default {
     a1: ` <p>1. Escolha a criptomoeda que você selecionou e clique em depositar.</p>
           <p>2. Copie o endereço de depósito único e use-o na sua carteira (ou digitalize o código QR).</p>
           <p>3. Após a confirmação da transação, você receberá uma notificação.</p>`,
-    q2: 'Quanto tempo leva o processamento dos depósitos/saques?',
-    a2: `<p>Depósito</p>
+    q2: 'Como fazer uma retirada de criptomoeda?',
+    a2: `<p>1. Escolha a criptomoeda que deseja sacar e clique em "Retirar".</p>
+        <p>2. Insira o valor que deseja sacar.</p>
+        <p>3. Insira o endereço da sua carteira.</p>
+        <p>4. Clique no botão "Retirar".</p>`,
+    q3: 'Quanto tempo leva o processamento dos depósitos/saques?',
+    a3: `<p>Depósito</p>
         <p>A maioria dos depósitos de criptomoedas é processada a uma velocidade relâmpago. No entanto, pode haver alguns atrasos de serviços de terceiros.</p>
         <p>Retirada</p>
         <p>A maioria das retiradas é processada instantaneamente. No caso de retiradas de grande valor, processamos essas retiradas manualmente, portanto, pode haver um leve atraso.</p>`,
-    q3: 'Quais métodos de pagamento vocês oferecem?',
-    a3: `<p>As opções de moeda disponíveis no Seabet.io são:</p>
+    q4: 'Quais métodos de pagamento vocês oferecem?',
+    a4: `<p>As opções de moeda disponíveis no Seabet.io são:</p>
           <p>• Tether (USDT)</p>
           <p>• Bitcoin (BTC)</p>
           <p>• Ethereum (ETH)</p>
@@ -639,8 +645,8 @@ export default {
           <p>• Cardano (ADA)</p>
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>`,
-    q4: 'Há cobrança de taxas nas transações?',
-    a4: `<p>Embora não cobremos nenhuma taxa por depósitos e retiradas no Seabet.io, é possível que você precise pagar taxas de transação ao usar pagamentos com blockchain.</p>`
+    q5: 'Há cobrança de taxas nas transações?',
+    a5: `<p>Embora não cobremos nenhuma taxa por depósitos e retiradas no Seabet.io, é possível que você precise pagar taxas de transação ao usar pagamentos com blockchain.</p>`
   },
 
   errorCodes: {
@@ -1225,11 +1231,11 @@ export default {
     privacyContent: `<div>
                         <h2>Política de Privacidade </h2>
                         <p>Seabet.io respeita e protege a privacidade de todos os utilizadores dos nossos Serviços. Esta Política de Privacidade ("Política") detalha como coletamos, armazenamos, usamos e divulgamos suas informações pessoais.</p>
-                        <p>1. Âmbito de aplicação e aplicação </p>
+                        <h2>1. Âmbito de aplicação e aplicação </h2>
                         <p>Esta Política aplica-se ao seu acesso e uso de Seabet.io (o "Site") e todos os sites e aplicativos sob a marca Seabet, incluindo todos os nossos aplicativos móveis e aplicativos para tablets. Além disso, esta Política também se aplica quando interagimos consigo de outras formas.</p>
                         <h3>2. Consentimento e Modificação do Utilizador</h3>
                         <p>Ao usar o site da Seabet, você concorda em ficar vinculado a esta Política. Reservamo-nos o direito, a nosso exclusivo critério, de modificar ou alterar esta Política a qualquer momento, e publicaremos tais alterações no Site, e tais alterações entrarão em vigor imediatamente após a publicação. O uso continuado do Site após tais alterações constitui a sua aceitação de tais alterações. Esta Política não se aplica a outros sites vinculados a este site.</p>
-                        <p>3. Informações Pessoais Recolhidas</p>
+                        <h3>3. Informações Pessoais Recolhidas</h3>
                         <ul>
                             <li>Podemos recolher e processar os seguintes tipos de informações pessoais:</li>
                             <li>Designação</li>
@@ -1245,7 +1251,7 @@ export default {
                             <li>Endereço IP</li>
                         </ul>
                         <p>Essas informações são derivadas principalmente das informações que você fornece quando se registra para uma conta ou se comunica conosco.</p>
-                        <p>4. Finalidade da Recolha</p>
+                        <h3>4. Finalidade da Recolha</h3>
                         <p>Recolhemos os seus dados pessoais para:</p>
                         <ul>
                             <li>Realizar verificação de identidade do cliente (KYC)</li>
@@ -1259,16 +1265,16 @@ export default {
                             <li>Para cumprir as nossas obrigações contratuais e legais</li>
                         </ul>
 
-                        <p>5. Uso e Divulgação de Informações Pessoais</p>
+                        <h3>5. Uso e Divulgação de Informações Pessoais</h3>
                         <p>Podemos usar suas informações pessoais para atividades de marketing e podemos informá-lo sobre produtos ou serviços que achamos que podem ser de seu interesse por e-mail, mensagem de texto ou telefone. Se você não deseja mais receber informações promocionais ou de marketing de nós, você pode cancelar a inscrição a qualquer momento, entrando em contato conosco por e-mail.</p>
                         <h3>6. Segurança das Informações Pessoais</h3>
                         <p>O Utilizador compreenderá que a transmissão de dados da Internet não é absolutamente segura, Seabet.io não pode garantir a segurança absoluta da informação carregada pelo Utilizador na Plataforma, devendo o Utilizador suportar o risco. No entanto, após receber a transmissão das informações do usuário, Seabet.io tomará as medidas apropriadas para evitar o uso indevido, perda e acesso não autorizado, modificação e divulgação das informações pessoais do usuário. Isso inclui o uso de proteção por senha de sistemas e bancos de dados, bem como o uso da tecnologia Secure Sockets Layer (SSL). Ao usar nossos Serviços ou fornecer informações pessoais, os usuários concordam que podemos nos comunicar com você eletronicamente em relação a questões de segurança, privacidade e administrativas relacionadas ao uso dos Serviços. Seabet.io funcionários, agentes e contratados são obrigados a manter as informações pessoais e transações dos membros confidenciais. As informações publicadas pelos utilizadores em plataformas públicas ou ambientes de redes sociais (por exemplo, Facebook, Twitter) serão consideradas informações públicas, Seabet.io a segurança dessas informações não pode ser garantida.</p>
                         <p>Salientamos que os nossos serviços não são dirigidos a crianças e não aceitamos contas ou informações pessoais. No entanto, os pais ou encarregados de educação têm a obrigação de monitorizar as atividades dos seus filhos na Internet. Certifique-se de sair da sua conta assim que terminar de usar o site, especialmente se estiver compartilhando seu dispositivo. O Utilizador é responsável pela segurança e direitos de acesso dos dispositivos utilizados para aceder ao Website. Em última análise, os usuários mantêm a confidencialidade de nomes de usuário, senhas e informações de conta e estão vigilantes ao usar a Internet e nosso site.</p>
-                        <p>7. Acesso a Informações Pessoais</p>
+                        <h3>7. Acesso a Informações Pessoais</h3>
                         <p>Os usuários podem acessar as informações pessoais coletadas por Seabet.io clicando no link "Configurações" no site ou enviando um e-mail para o support{'@'}Seabet.io. Responderemos ao pedido de acesso do utilizador dentro de um período de tempo razoável. Se não conseguirmos satisfazer o seu pedido, informá-lo-emos por escrito das razões da recusa de acesso e do mecanismo de reclamação.</p>
-                        <p>8. Remoção de dados pessoais</p>
+                        <h3>8. Remoção de dados pessoais</h3>
                         <p>Se já não for possível tratar ou armazenar legalmente os dados pessoais do utilizador, este tem o direito de solicitar a sua eliminação. No entanto, este direito não é absoluto e, se Seabet.io estiver sujeito a obrigações legais, não será capaz de satisfazer os requisitos do utilizador. Por favor, faça um pedido enviando um e-mail para support{'@'}Seabet.io.</p>
-                        <p>9. Contato</p>
+                        <h3>9. Contato</h3>
                         <p>Se você tiver alguma dúvida, solicitação ou reclamação sobre nosso processamento de suas informações pessoais, entre em contato conosco via e-mail support{'@'}Seabet.io ou a função de chat de suporte ao cliente do site.</p>
 
 
@@ -1277,7 +1283,7 @@ export default {
                         <p>Podemos transferir, processar e armazenar informações em todo o mundo, incluindo, entre outros, outros países cujas leis de proteção de dados podem diferir das da sua localização. Protegeremos as suas informações tanto quanto possível e conforme exigido pela legislação aplicável.</p>
                         <h3>11. Raiz da base jurídica para o tratamento</h3>
                         <p>De acordo com o Regulamento Geral de Proteção de Dados Global, Seabet.io tratamento das suas informações pessoais tem as seguintes bases legais: execução de um contrato, interesses legítimos, consentimento do utilizador e cumprimento de uma obrigação legal.</p>
-                        <p>12. Atualizações da Política de Privacidade</p>
+                        <h3>12. Atualizações da Política de Privacidade</h3>
                         <p>Seabet.io pode rever, alterar e atualizar periodicamente esta Política de Privacidade para refletir nossas práticas e responsabilidades. Publicaremos a Política de Privacidade mais recente no site Seabet.io. Os utilizadores devem rever periodicamente esta Política de Privacidade para se familiarizarem com os seus termos.</p>
                     </div>`,
     fairnessContent: `<div>
