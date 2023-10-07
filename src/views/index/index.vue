@@ -126,11 +126,11 @@
     </div>
     <div v-show="newRewardVipCode != 0" class="popup-new-reward">
       <div class="close" @click="newRewardVipCode = 0"><i class="iconfont icon-close" /></div>
-      <div class="pnr-top">
+      <div class="pnr-top" @click="router.push({ name: 'clubHouse' })">
         <img :src="getAssetsFile(`grade/${newRewardVipCode}.png`)" />
         <h3>{{ t('unlockNewReward') }}</h3>
       </div>
-      <div class="pnr-cont" @click="router.push({ name: 'clubHouse' })">{{ t('unlockNewRewardTip') }}</div>
+      <div class="pnr-cont">{{ t('unlockNewRewardTip') }}</div>
     </div>
   </div>
 </template>

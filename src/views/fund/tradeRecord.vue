@@ -29,6 +29,67 @@
           </div>
         </div>
         <div class="mb-conts">
+          <!-- <div v-if="dataList.length > 0" class="mc-box">
+            <div v-if="tab == 'bet'" class="record-list">
+              <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
+                <List
+                  v-model:loading="listLoading"
+                  :offset="20"
+                  :finished="finished"
+                  :immediate-check="false"
+                  v-model:error="error"
+                  :error-text="t('loadingFail')"
+                  :finished-text="t('noMore')"
+                  @load="loadData"
+                >
+                  <div v-for="(item, index) of dataList" class="rl-item" :key="index">
+                    <div class="i-row">
+                      <div class="r-col">{{ item.createTime }}</div>
+                      <div class="r-col">
+                        <b>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</b>
+                      </div>
+                    </div>
+                    <div class="i-row">
+                      <div class="r-col">{{ item.providerName }}</div>
+                    </div>
+                    <div class="i-row">
+                      <div class="r-col">{{ item.gameItemName }}</div>
+                      <div class="r-col">
+                        <span :class="`${orderStatusCss[item.orderStatus]} c-status`">{{ t(`tradeStatus[${item.orderStatus}]`) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </List>
+              </PullRefresh>
+            </div>
+            <div v-if="tab == 'win'" class="record-list">
+              <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
+                <List
+                  v-model="listLoading"
+                  :offset="20"
+                  :finished="finished"
+                  :immediate-check="false"
+                  v-model:error="error"
+                  :error-text="t('loadingFail')"
+                  :finished-text="t('noMore')"
+                  @load="loadData"
+                >
+                  <div v-for="(item, index) of dataList" class="rl-item" :key="index">
+                    <div class="i-row">
+                      <div class="r-col">{{ item.createTime }}</div>
+                      <div class="r-col">
+                        <b>{{ moneyFormat(item.amount) }} {{ item.currencyCode }}</b>
+                      </div>
+                    </div>
+                    <div class="i-row">
+                      <div class="r-col">{{ item.gameName }}</div>
+                      <div class="r-col">{{ t('balance') }}：{{ moneyFormat(item.afterBalance) }} {{ item.currencyCode }}</div>
+                    </div>
+                  </div>
+                </List>
+              </PullRefresh>
+            </div>
+          </div> -->
           <div v-if="dataList.length > 0" class="mc-box">
             <div class="record-list">
               <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
@@ -76,7 +137,6 @@
         :style="{ height: '500px' }"
         round
         :show-confirm="false"
-        :show-mark="false"
         :formatter="dayFormatter"
         @confirm="customDate"
       />
@@ -136,7 +196,7 @@
               </a>
             </dd>
             <dd>
-              <a @click="liveChatCall('maximize')">
+              <a @click="router.push({ name: 'support' })">
                 <span> <i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }} </span>
                 <i class="iconfont icon-right" />
               </a>
@@ -162,7 +222,7 @@ import { currenyListData, currenyListTypes } from '@/utils/config'
 import { HisotyReocrdType } from '@/utils/constant'
 import dynamicObject from '@/types/dynamicObject'
 import { useI18n } from 'vue-i18n'
-import { liveChatCall } from '@/composables/startGame'
+
 import { moneyFormat } from '@/utils/index'
 import dayjs from 'dayjs'
 import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List, Popup, showConfirmDialog } from 'vant'
@@ -266,8 +326,6 @@ const selCurrency = (item: currenyListTypes) => {
 // 选择币种后查询交易列表
 const confirmCurreny = () => {
   currenyDom?.value!.toggle()
-  query.PageIndex = '1'
-  dataList.value = []
   getTradeRecordList()
 }
 
@@ -360,7 +418,4 @@ const clearData = () => {
 checkedCurrency.value = currenyList.map((item) => item.code)
 
 getTradeRecordList()
-setInterval(() => {
-  getTradeRecordList()
-}, 30 * 1000)
 </script>
