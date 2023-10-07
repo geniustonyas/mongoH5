@@ -77,7 +77,7 @@
             <label>{{ t('payto') }}</label>
             <input v-model="withdrawForm.PayeeAddress" ref="addressDom" type="text" :placeholder="t('walletAddress')" />
           </div>
-          <div class="ff-rmark">{{ t('checkWithdrawAddress') }}</div>
+          <div class="ff-rmark"><i class="iconfont icon-info" />{{ t('checkWithdrawAddress') }}</div>
         </div>
         <div v-show="step == 2" class="fund-btn">
           <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('previewWithdraw') }}</a>
