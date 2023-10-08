@@ -3,7 +3,7 @@
   <nav class="m-rate">
     1
     <b>{{ props.currencyCode }}</b>
-    = {{ moneyFormat(props.exchangeRate) }}
+    = {{ props.exchangeRate }}
     <b>USDT</b>
   </nav>
 
@@ -151,7 +151,7 @@ import { useI18n } from 'vue-i18n'
 import Language from '@/components/Language.vue'
 
 import { currenyListData } from '@/utils/config'
-import { moneyFormat, getAssetsFile } from '@/utils'
+import { getAssetsFile } from '@/utils'
 import { languages } from '@/i18n/index'
 
 const site_name = import.meta.env.VITE_APP_SITE_NAME

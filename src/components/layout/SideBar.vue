@@ -135,7 +135,7 @@
       <nav class="m-rate">
         1
         <b>{{ props.currencyCode }}</b>
-        = {{ moneyFormat(props.exchangeRate) }}
+        = {{ props.exchangeRate }}
         <b>USDT</b>
       </nav>
     </section>
@@ -153,7 +153,7 @@ import Language from '@/components/Language.vue'
 
 // 引用方法
 import { languages } from '@/i18n/index'
-import { getAssetsFile, moneyFormat } from '@/utils'
+import { getAssetsFile } from '@/utils'
 import { providerListData, providerListItemTypes } from '@/utils/config'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'

@@ -136,6 +136,7 @@ export interface getGameDetailsRespItem {
   game: getGameDetailsRespGameItem[]
   hitRatio: string
   paylines: string
+  fg: boolean
 }
 
 export interface getFavRecentlyListData {

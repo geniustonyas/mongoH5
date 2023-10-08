@@ -18,8 +18,8 @@
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=200&h=160&q=50&dpr=2`" />
-                <div v-if="userStore.userInfo.id" class="sp_sc" @click.stop="setFav(item)">
-                  <i class="iconfont icon-shoucang_fill" />
+                <div v-if="userStore.userInfo.id" class="sp_sc">
+                  <i class="iconfont icon-shoucang_fill" @click.stop="setFav(item)" />
                 </div>
               </div>
               <div class="i-txt">

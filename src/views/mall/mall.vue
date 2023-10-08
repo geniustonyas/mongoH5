@@ -284,7 +284,7 @@
                 v-model="exhangeGoodsParams.AirTicketOrder.DocumentNumber"
                 name="docNumber"
                 :label="t('documentNumber')"
-                :placeholder="t('tips.inputDdocNumber')"
+                :placeholder="exhangeGoodsParams.AirTicketOrder.DocumentType == t('passport') ? t('tips.inputPassportNo') : t('tips.inputDdocNumber')"
                 :rules="[{ required: true, message: t('tips.inputDdocNumber') }]"
               />
               <Field

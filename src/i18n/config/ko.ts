@@ -11,7 +11,7 @@ export default {
   confirm: '확인',
   confirmd: '확인됨',
   all: '전부',
-  save: '보존',
+  save: '저장',
   cancel: '취소',
   close: '닫음',
   start: '시작',
@@ -27,7 +27,7 @@ export default {
   noMore: '더이상 없음',
   login: '로그인',
   otherMethod: '다른방식',
-  reg: '등록',
+  reg: '회원가입',
   userName: '유저네임',
   email: '이메일',
   sendEmail: '인증메일발송',
@@ -36,8 +36,8 @@ export default {
   password: '비밀번호',
   forgetPassword: '비밀번호를 잊으셨나요?',
   resetPwd: '비밀번호 재설정',
-  noUser: '유져 없음',
-  createUser: '유져 생성',
+  noUser: '',
+  createUser: '→회원가입 하기',
   googleCode: '구글코드',
   inputGoole: '구글코드입력',
   partner: '공식파트너：',
@@ -83,7 +83,7 @@ export default {
   homePage: {
     currentMultiplier: '현재포인트배수',
     nextReward: '다음레벨의 보너스',
-    showProgress: '나의 진행상황을 보여줌'
+    showProgress: '현재 나의 레벨'
   },
   userAccount: '유져어카운터',
   wallet: '지갑',
@@ -137,9 +137,9 @@ export default {
   recentTransaction: '최근거래',
   // 검색
   searchHolder: '게임、광장',
-  searchMore: '더욱많은 검색',
+  searchMore: '더 많은 검색',
   searchRecommend: '검색추천',
-  enter: '들어가다',
+  enter: '입장',
   // fund
   fundAccount: '자금계좌',
   activeBalance: '잔액',
@@ -222,9 +222,9 @@ export default {
   providers: '제공업체',
   allProviders: '모든제공업체',
   sortBy: '정렬',
-  polular: '인기',
+  polular: '인기순',
   promotions: '프로모션',
-  aboutUs: '우리에 대해',
+  aboutUs: 'Seabet.io정보',
   selectLanguage: '언어선택',
   ruleTerms: '이용약관',
   responsibleGambling: '책임있는 갬블링',
@@ -233,7 +233,7 @@ export default {
   privacyPolicy: '프라이버시 정책',
   fairness: '공평성',
   game: '게임',
-  followUs: '우리를 지켜봐 주세요',
+  followUs: '저희를 팔로우 해주세요',
   language: '언어',
   helpCenter: '지원센터',
   acceptCrypto: '이용가능한 암호화폐',
@@ -244,7 +244,7 @@ export default {
   betUser: '베팅유저',
   multiplier: '배당율',
   paymentAmount: '결재금액',
-  invisibility: '투명화',
+  invisibility: '숨기기',
   currencyLang: {
     usdt: '테더',
     btc: '비트코인',
@@ -363,6 +363,7 @@ export default {
     selectDocType: '문서 유형 선택을 클릭하세요',
     inputDocType: '문서 유형을 선택하세요',
     inputDdocNumber: 'ID 번호를 입력하세요',
+    inputPassportNo: 'ID 번호를 입력하세요',
     airlineCompany: '항공사를 입력하세요',
     inputDeparture: '출발지를 입력하세요',
     inputDestination: '도착지를 입력하세요',
@@ -389,7 +390,7 @@ export default {
   earnPointsAndTrack: '포인트획득 및 추적',
   viewPointsRecord: '모든 포인트 소비기록 보기',
   buyNow: '즉시교환',
-  youWillGet: '당신은 얻을 것입니다',
+  youWillGet: '이하 금액으로',
   bonusValue: '칩가치',
   wageringRequirement: '베팅요건',
   enableVisible: '시크릿모드 활성화',
@@ -425,7 +426,7 @@ export default {
   orderTypes: { 1: '입금', 2: '출금', 3: '베팅', 4: '승리' },
   blockChain: '블록체인',
   betAndEarn: '베팅 & 수익',
-  placeAndEarn: '플레이스 & 승리',
+  placeAndEarn: '베팅&승리',
   spinAndEarn: '스핀 & 승리',
   enabledGoogle: 'Google 인증이 활성화되었습니다',
   stopGoogle: 'Google 인증이 활성화되어 있습니다. 이 기능을 해제하려면 코드를 입력하고 "코드 제출"을 클릭하십시오.',
@@ -533,7 +534,7 @@ export default {
   countryHolder: '국가 코드',
   numberHolder: '전화 번호',
   submitInfoSuccess: '귀하의 정보가 성공적으로 제출되었습니다',
-  back: '반품',
+  back: '돌아가기',
   countryCode: '국가 코드',
   remainTime: '남은 시간',
   upgrading: '시스템 업그레이드 진행 중',
@@ -555,12 +556,12 @@ export default {
 
   problem: {
     whatVip: '1.VIP 클럽이란 무엇인가요?',
-    whatVips: `<p>seabet.io VIP 클럽은 암호화폐 고객을 위한 전용 커뮤니티로, 언제든지 웹 사이트에서 제공하는 모든 프로모션 활동을 즐길 수 있도록 해줍니다. 당신이 베팅, 스핀, 그리고 게임을 할 때마다 점수가 쌓이며, 클럽 내에서 점차 레벨을 올리고 여러 흥미로운 보상을 언락하게 됩니다. VIP 레벨을 언락함에 따라 Seabet 베팅 포인트도 얻게 되어 더 다양한 보상과 서비스를 누릴 수 있습니다.</p>
-                <p>간단히 말해, 이것은 게임을 하고 우리가 보상을 제공하는 것을 의미합니다.</p>`,
+    whatVips: `<p>Seabet.io VIP 클럽은 암호화폐 고객을 위한 전용 커뮤니티로,  언제든지 웹 사이트에서 제공하는 모든 프로모션 활동을 즐길 수 있습니다.  베팅, 스핀, 그리고 게임을 할 때마다 포인트가 쌓이며, 클럽 내에서 점차 레벨을 올리면서 각종 보너스를 받을 수 있습니다.  VIP 레벨이 상승함에 따라 Seabet 베팅 포인트 획득과 함께 더 다양한 리워드와 서비스를 누릴 수 있습니다.</p>
+                <p>간단히 말해,  게임을 하시면 우리는 리워드(보너스)를 제공하는 것을 의미합니다.</p>`,
     howGetIntegrial: '2.포인트를 어떻게 얻을 수 있나요?',
-    howGetIntegrials: `<p>모든 베팅, 슬롯 머신 스핀 및 테이블 게임을 플레이할 때마다 클럽 포인트를 얻을 수 있습니다. 포인트를 더 많이 모을수록 레벨이 높아집니다. 계급을 통해 진행함에 따라 다양한 흥미로운 보상을 언락할 수 있습니다. 새로운 레벨을 언락할수록 보상은 계속해서 더 좋아집니다.</p>`,
+    howGetIntegrials: `<p>모든 베팅, 슬롯 머신 스핀 및 테이블 게임을 플레이 할 때마다 클럽 포인트를 얻을 수 있습니다. 포인트를 많이 모을수록 레벨이 높아집니다.  레벨이 상승하면 더욱 다양하고 흥미로운 보너스를 받을수 있습니다. 레벨이 올라갈수록  보너스는 더 좋아집니다.</p>`,
     whatVipLevel: '3.VIP 레벨이란 무엇인가요?',
-    whatVipLevels: `<p>VIP 레벨은 당신이 요구할 수 있는 보상의 가치와 유형을 결정합니다. 클럽을 진행하고 레벨을 올릴수록 보상도 증가합니다.</p>
+    whatVipLevels: `<p>VIP 레벨은 플레이어가 요구할 수 있는 보너스의 가치와 유형을 결정합니다.  VIP 레벨이 올라갈수록 보너스도 계속 증가합니다.</p>
                     <table>
                       <tr>
                         <th>VIP 레벨</th>
@@ -689,9 +690,9 @@ export default {
     // html제목
     vipTitle: 'VIP 클럽',
     rulesTitle: '이용약관',
-    responsibleTitle: '도박책임',
+    responsibleTitle: '책임감 있는 게이밍',
     amlTitle: '자금세탁방지정책',
-    selfExclusionTitle: '자기배제',
+    selfExclusionTitle: '자체제외',
     privacyTitle: '프라이버시정책',
     fairnessTitle: '공평성',
 
@@ -701,8 +702,8 @@ export default {
                       <div class="vr-title">一.  VIP 클럽 소개</div>
                       <div class="vr-conts">
                         <p>Seabet VIP 클럽에 오신 것을 환영합니다!</p>
-                        <p>Seabet은 게임의 품질을 향상시키고 최고의 게임 경험을 제공하기 위해 최선을 다하고 있습니다. 웹사이트에서 게임을 하는 충성도 높은 회원들에게 보상을 제공하기 위해 고안된 새로운 VIP 클럽을 소개하게 되어 기쁩니다.</p>
-                        <p>Seabet.io 에서 제공하는 게임이나 스포츠 이벤트에 베팅하기만 하면 순위가 올라감에 따라 독점 보상을 잠금 해제할 수 있습니다.</p>
+                        <p>Seabet은 게임의 품질을 높이고, 보다 나은 즐거움을 제공하기 위해 노력하고 있습니다.  본사이트에서는 활발한 활동을 하시는 회원들을 우대하기 위한 VIP 클럽이 준비되어 있습니다.</p>
+                        <p>Seabet.io에서 제공하는 게임이나 스포츠 이벤트에 베팅을 하면서 회원레벨이 올라갈수록 더 많은 보너스나 리워드를 획득 하실 수 있습니다.</p>
                       </div>
                     </div>
                     <div class="vc-rows">
@@ -710,38 +711,38 @@ export default {
                       <div class="vr-conts">
                         <p>전문 고객 관리자 팀은 모든 요구 사항을 보장하고 업계 최고 표준을 충족합니다. VIP 회원은 독점 보너스, 유명 이벤트 초대 및 다양한 맞춤형 보상을 통해 빠르고 즐겁고 효율적인 게임 경험을 제공할 수 있습니다.</p>
                         <dl>
-                          <dt>VIP 전속 매니저 :</dt>
-                          <dd>귀하의 요구 사항을 해결하는 데 전념</dd>
-                          <dd>나만을 위한 맞춤형 개인 게임 경험</dd>
+                            <dt>개인 VIP  매니저</dt>
+                            <dd>요청사항 해결에 헌신하는 전속 매니져.</dd>
+                            <dd>개인 맞춤형 게임 서비스 제공</dd>
                         </dl>
                         <dl>
-                          <dt>높은 보상:</dt>
-                          <dd>당신을 위해 설계된 독점적 인 제안</dd>
-                          <dd>베팅 없는 보너스</dd>
-                          <dd>포인트의 빠른 축적</dd>
+                            <dt>고액의 보너스</dt>
+                            <dd>맞춤 디자인된 특전</dd>
+                            <dd>베팅 필요 없는 보너스</dd>
+                            <dd>빠른 포인트 누적</dd>
                         </dl>
                         <dl>
                           <dt>업계 최고 베팅 한도:</dt>
-                          <dd>암호화폐로 무제한 일일 입출금</dd>
+                            <dd>암호화폐를 통한 무제한 일일 입출금</dd>
                         </dl>
                         <dl>
-                          <dt>VIP 독점 프로모션:</dt>
+                          <dt>VIP 전용 프로모션:</dt>
                           <dd>정회원 프로모션과 구별</dd>
-                          <dd>최고의 게임 경험 유지</dd>
-                          <dd>VIP 사용자 전용</dd>
-                          <dd>개인화된 제안</dd>
-                          <dd>당신만을 위한 맞춤형 엔터테인먼트 서비스</dd>
+                          <dd>일반 회원과 구분되는 프로모션 제공</dd>
+                            <dd>VIP 사용자만 볼 수 있음</dd>
+                          <dd>회원 맞춤형 보너스 있음.</dd>
+                          <dd>맞춤형 엔터테인먼트 서비스</dd>
                         </dl>
                         <dl>
-                          <dt>24/7 우선 서비스:</dt>
-                          <dd>대기하거나 기다릴 필요가 없습니다.</dd>
-                          <dd>귀하의 요구가 최우선입니다</dd>
-                          <dd>다양한 소셜 미디어 연락 방법, 온라인 서비스를 제공하는 전담 고객 관리자.</dd>
+                            <dt>365일, 24시간 우대 서비스</dt>
+                            <dd>대기할 필요 없습니다.</dd>
+                            <dd>VIP플레이어 요구사항은 최우선 대응.</dd>
+                            <dd>다양한 소셜 미디어 연락 옵션 있으며, 온라인에서 이용 가능한 개인 VIP 고객 매니저가 서비스.</dd>
                         </dl>
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">三.레벨 구조</div>
+                      <div class="vr-title">三.레벨 설정</div>
                       <div class="vr-conts">
                         <p>전체 게임 여정을 포괄적으로 다루는 6개의 VIP 레벨:</p>
                         <dl>
@@ -755,7 +756,7 @@ export default {
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">四.VIP 클럽 회원을 위한 혜택</div>
+                      <div class="vr-title">四.VIP 클럽 회원 혜택</div>
                       <div class="vr-conts">
                         <dl>
                           <dd>레벨 업 보너스: 다음 레벨에 도달하면 보너스를 받습니다. 레벨이 높을수록 보너스가 커집니다.</dd>
@@ -770,14 +771,12 @@ export default {
                       <div class="vr-title">五.VIP 회원이 되는 방법</div>
                       <div class="vr-conts">
                         <dl>
+                          <dd>지속적인 베팅: VIP가 되는 핵심은 다양한 스포츠 이벤트와 카지노 게임에 지속적으로 베팅하는 것입니다. Seabet은 귀하의 일관성에 대해 보상합니다. 최고의 암호화폐 게임 웹사이트로서 Seabet이 제공하는 이벤트와 카지노 게임에 대한 베팅에 정기적으로 디지털 자산을 사용하십시오. 또한 USDT로 베팅을 시도하고 자금을 지속적으로 사용하시면 됩니다.</dd>
                           <dd>
-                          계속 베팅하기: VIP가 되기 위한 핵심은 다양한 스포츠 이벤트와 카지노 게임에 지속적으로 베팅하는 것입니다. Seabet은 귀하의 일관성을 보상합니다. 최고의 암호화폐 도박 사이트로서 정기적으로 디지털 자산을 사용하여 Seabet에서 제공하는 모든 스포츠 이벤트 및 카지노 게임에 베팅하십시오. USDT로 베팅을 시도하고 자금을 계속 사용할 수도 있습니다.
+                          정기적인 이벤트 참여: Seabet의 프로모션 이벤트에는 언제든지 참여할 수 있는 다양한 활동과 토너먼트대회가 포함되어 있습니다. 이러한 활동에 정기적으로 참여하면 VIP 클럽 초대장을 받을 기회가 증가하며, Seabet의 다른 클럽에서도 더 활발하게 활동할 수 있습니다
                           </dd>
-                          <dd>
-                          정기 이벤트 참여: Seabet의 프로모션 활동에는 언제든지 참여할 수 있는 다양한 이벤트 및 대회가 포함됩니다. 이러한 이벤트에 정기적으로 참여하면 VIP 클럽 초대를 받을 가능성이 높아집니다. 또한 Seabet에서 제공하는 다른 클럽 기능에서 더 활발하게 활동할 수 있습니다.
-                          </dd>
-                          <dd>초대 대기: 마지막으로 해야 할 일은 초대장을 보낼 때까지 기다리는 것입니다. 계속해서 게임을 하고 하이 롤러 이벤트에 참여하십시오. 몇 차례의 카지노 도박 및 스포츠 베팅 후 VIP 클럽 회원이 될 자격이 있다고 판단되면 즉시 초대장을 받게됩니다.</dd>
-                          <dd>Seabet VIP로서 호화로운 생활을 경험하십시오: Seabet VIP 클럽 회원으로서 최고의 특권을 누리면서 USDT 도박 경험을 완전히 새로운 차원으로 끌어올리십시오. 소중한 플레이어로서 스포츠 베팅 및 카지노 게임에 참여할 때 최고의 재미, 빠르고 공정한 베팅을 경험하게 될 것입니다.
+                          <dd>초대장 기다리기: 마지막으로 할 일은 저희로부터 초대장을 기다리는 것입니다. 지속적으로 게임을 하고 하이롤러 이벤트에 참여하십시오. 몇 차례의 카지노 게임과 스포츠 베팅 후, VIP 클럽 회원 자격을 받을 만한 가치가 있다고 판단되면 즉시 초대장을 받게 됩니다.</dd>
+                          <dd>Seabet VIP로서 품격 높은 경험 하기: Seabet VIP 클럽 회원으로서의 특전을 즐기면서 USDT 게임의 즐거움을 새로운 차원으로 끌어올릴 수 있습니다. 스포츠 베팅과 카지노 게임에 참여할 때 VIP 플레이어로서 즐겁고, 신속하고 공정한 베팅을 즐길 수 있습니다.
                           </dd>
                         </dl>
                       </div>
@@ -1161,7 +1160,7 @@ export default {
                     <h3>5. 교육과 훈련</h3>
                     <p>Seabet은 법률 고문의 도움과 CCO의 감독하에 필요에 따라 직원에게 정기적인 AML, CFT 및 무역 제재 준수 교육을 제공할 수 있습니다.</p>
 
-                    <h3>6. Reports</h3>
+                    <h3>6. 보고서</h3>
                     <p>Seabet은 국가 법령에 따라 비정상적이거나 의심스러운 거래를 보고할 의무가 있습니다. 자금 세탁, 테러 자금 조달 또는 기타 범죄 활동과 관련된 제재 목록에서 확인된 고객은 의심스러운 활동으로 규제 기관에 보고됩니다.</p>
                   </div>`,
     selfExclusionContent: `<div>
@@ -1289,7 +1288,7 @@ export default {
                     </div>`,
     fairnessContent: `<div>
                         <h2>공정</h2>
-                        <p>암호화폐를 포함한 법정 화폐로 베팅하려면 먼저 웹사이트에서 계정을 등록해야 Seabet.io. 귀하의 Seabet.io(이하 "웹사이트") 사용 및 Seabet.io 계정 개설은 본 이용 약관을 읽고 이해한 것으로 간주됩니다.</p>
+                        <p>암호화폐를 포함한 법정 화폐로 베팅하려면 먼저 Seabet.io에서 계정을 등록해야 합니다. 귀하의 Seabet.io(이하 "웹사이트") 사용함에 있어Seabet.io 계정 개설함과 동시에 본 이용 약관을 읽고 이해한 것으로 간주됩니다.</p>
 
                         <p>정의</p>
                         <p>Seabet.io – "당사" 또는 "회사"라고 합니다.</p>

@@ -363,6 +363,7 @@ export default {
     selectDocType: 'Click to select the document type',
     inputDocType: 'Please select a document type',
     inputDdocNumber: 'Please type in the ID number',
+    inputPassportNo: 'Please type in the ID number',
     airlineCompany: 'Please type in the airline',
     inputDeparture: 'Please type in the departure',
     inputDestination: 'Please type in the destination',
@@ -696,7 +697,7 @@ export default {
   html: {
     // html标题
     vipTitle: 'VIP Club',
-    rulesTitle: 'Rules & Terms ',
+    rulesTitle: 'Rules and Terms',
     responsibleTitle: 'Responsible Gambling',
     amlTitle: 'AML Policy',
     selfExclusionTitle: 'Self Exclusion',
@@ -719,7 +720,7 @@ export default {
                         <p>Professional Customer Manager Team Ensures All Your Needs and Meets Industry's Highest Standards. VIP members can enjoy exclusive bonuses, invitations to renowned events, and a variety of customized rewards to provide you with fast, enjoyable, and efficient gaming experiences.</p>
                         <dl>
                           <dt>VIP Exclusive Manager：</dt>
-                          <dd>Devoted to addressing your needs</dd>
+                          <dd>Dedicated to addressing your needs</dd>
                           <dd>Tailored private gaming experiences just for you</dd>
                         </dl>
                         <dl>
