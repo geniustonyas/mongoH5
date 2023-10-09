@@ -25,6 +25,7 @@ const GOOGLE_CLIENT_ID = '213787019958-ojer4h9l5k216et4f5rp52ektlrjn5cv.apps.goo
 
 // Facebook ID
 const FACEBOOK_APPID = '663909171737293'
+// const FACEBOOK_APPID = '1082486833129089'
 
 // Line
 const LINE_CLIENT_ID = '2000085263'

@@ -16,7 +16,7 @@ export function getMainStatusApi() {
     baseURL: import.meta.env.VITE_THIRD_API,
     url: 'isMaintain',
     method: 'get',
-    params: { date: Date.now() }
+    params: { date: Date.now(), noLoading: true }
   })
 }
 
