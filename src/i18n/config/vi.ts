@@ -130,7 +130,7 @@ export default {
   makeAllRead: 'Đánh dấu tất cả đã đọc',
   noMessage: 'Bạn không có thông báo nào',
   // Phần thưởng
-  claimReward: 'Nhận phần thưởng',
+  claimReward: 'Mã khuyến mãi',
   claimNewReward: 'Nhận phần thưởng mới',
   rewardCode: 'Mã phần thưởng',
   claim: 'Nhận',
@@ -376,7 +376,8 @@ export default {
     inputOrderId: 'Vui lòng nhập số vé',
     orderNoholder: "Vui lòng sử dụng ',' để phân tách nhiều đơn đặt cược.",
     applySuccess: 'Áp dụng thành công',
-    applyFail: 'Áp dụng thất bại'
+    applyFail: 'Áp dụng thất bại',
+    pwdName: 'Tên người dùng và mật khẩu của bạn phải khác'
   },
 
   rewardsBig: 'Phần thưởng',
@@ -512,7 +513,7 @@ export default {
   outTime: 'Thời gian trả phòng khách sạn',
   sabaSportDesc: {
     0: 'Tất cả các sự kiện thể thao',
-    1: 'Hỗ trợ tất cả các thiết bị số Macos và Windows',
+    1: 'Hỗ trợ tất cả các thiết bị số',
     2: 'Mã hóa bảo mật',
     3: 'Tỷ lệ cược thời gian thực',
     4: 'Hệ thống backend độc lập'
@@ -699,7 +700,7 @@ export default {
     // html内容
     vipContent: ` <div class="vip-clubhouse-box">
                     <div class="vc-rows">
-                      <div class="vr-title">Giới thiệu Câu lạc bộ VIP</div>
+                      <div class="vr-title">1. Giới thiệu Câu lạc bộ VIP</div>
                       <div class="vr-conts">
                         <p>Chào mừng bạn đến với Seabet VIP Club!</p>
                         <p>Tại Seabet, chúng tôi cam kết nâng cao chất lượng chơi game và cung cấp trải nghiệm chơi game tốt nhất. Chúng tôi rất vui mừng được giới thiệu Câu lạc bộ VIP hoàn toàn mới của chúng tôi, được thiết kế để thưởng cho các thành viên trung thành của chúng tôi, những người dành thời gian chơi trò chơi trên trang web của chúng tôi.</p>
@@ -707,7 +708,7 @@ export default {
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">Dịch vụ cá nhân hóa</div>
+                      <div class="vr-title">2. Dịch vụ cá nhân hóa</div>
                       <div class="vr-conts">
                         <p>Đội ngũ quản lý khách hàng chuyên nghiệp đảm bảo tất cả các nhu cầu của bạn và đáp ứng các tiêu chuẩn cao nhất của ngành. Thành viên VIP có thể tận hưởng tiền thưởng độc quyền, lời mời tham dự các sự kiện nổi tiếng và nhiều phần thưởng tùy chỉnh để cung cấp cho bạn trải nghiệm chơi game nhanh chóng, thú vị và hiệu quả.</p>
                         <dl>
@@ -742,7 +743,7 @@ export default {
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">Cấu trúc cấp độ</div>
+                      <div class="vr-title">3. Cấu trúc cấp độ</div>
                       <div class="vr-conts">
                         <p>Sáu cấp độ VIP bao gồm toàn diện toàn bộ hành trình chơi game của bạn:</p>
                         <dl>
@@ -756,7 +757,7 @@ export default {
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="vr-title">Lợi ích dành cho thành viên câu lạc bộ VIP</div>
+                      <div class="vr-title">4. Lợi ích dành cho thành viên câu lạc bộ VIP</div>
                       <div class="vr-conts">
                         <dl>
                           <dd>Tiền thưởng tăng cấp: Nhận tiền thưởng khi đạt đến cấp độ tiếp theo. Cấp độ bạn đạt được càng cao, tiền thưởng càng lớn.</dd>
@@ -768,7 +769,7 @@ export default {
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="r-title">Cách trở thành thành viên VIP của chúng tôi</div>
+                      <div class="r-title">5. Cách trở thành thành viên VIP của chúng tôi</div>
                       <div class="vr-conts">
                         <dl>
                           <dd>
@@ -1555,25 +1556,25 @@ export default {
                         <p><b>11.20</b> Trong trường hợp có sự khác biệt trong thống kê trận đấu được cung cấp bởi các nguồn bên ngoài, các nguồn dữ liệu được nêu trong trang Quy tắc cá cược thể thao chung được công bố của chúng tôi sẽ được ưu tiên áp dụng. </p>
                         <p><b>11.21</b> Giới hạn đặt cược tối đa sẽ phụ thuộc vào số tiền được Trang web cho phép tại thời điểm bạn chấp nhận đặt cược. </p>
 
-                        <p><b>11.23</b> Những điều sau đây liên quan đến chức năng rút tiền:</p>
+                        <p><b>11.22</b> Những điều sau đây liên quan đến chức năng rút tiền:</p>
 
-                        <p><b>11.23.1</b> Rút tiền có sẵn cho các sự kiện, đồ đạc và thị trường được chọn, cược đơn và nhiều, trước và trong trận đấu. </p>
+                        <p><b>11.22.1</b> Rút tiền có sẵn cho các sự kiện, đồ đạc và thị trường được chọn, cược đơn và nhiều, trước và trong trận đấu. </p>
 
-                        <p><b>11.23.2</b> Chậm trễ trong việc chấp nhận yêu cầu rút tiền. Nếu thay đổi giá hoặc thị trường bị tạm dừng, yêu cầu rút tiền có thể không thành công. </p>
+                        <p><b>11.22.2</b> Chậm trễ trong việc chấp nhận yêu cầu rút tiền. Nếu thay đổi giá hoặc thị trường bị tạm dừng, yêu cầu rút tiền có thể không thành công. </p>
 
-                        <p><b>11.23.3</b> Nếu yêu cầu rút tiền được chấp thuận, cược tương ứng sẽ được hiển thị ngay lập tức và được thanh toán. Kết quả cuối cùng thực tế của cược ban đầu sẽ không ảnh hưởng đến quá trình rút tiền.</p>
+                        <p><b>11.22.3</b> Nếu yêu cầu rút tiền được chấp thuận, cược tương ứng sẽ được hiển thị ngay lập tức và được thanh toán. Kết quả cuối cùng thực tế của cược ban đầu sẽ không ảnh hưởng đến quá trình rút tiền.</p>
 
-                        <p><b>11.23.4</b> Trong mọi trường hợp, khi yêu cầu rút tiền thành công, tổng số tiền hoàn trả sẽ được trả lại vào Tài khoản của bạn. </p>
+                        <p><b>11.22.4</b> Trong mọi trường hợp, khi yêu cầu rút tiền thành công, tổng số tiền hoàn trả sẽ được trả lại vào Tài khoản của bạn. </p>
 
-                        <p><b>11.23.5</b> Trang web không thể đảm bảo rằng cược của bạn sẽ có sẵn cho tùy chọn rút tiền. Nếu rút tiền được thực hiện trước sự kiện, chúng tôi sẽ không bao gồm hoặc ngừng bảo hiểm Sự kiện Trực tiếp và việc rút tiền sẽ không có sẵn sau khi Sự kiện bắt đầu hoặc Trận đấu Trực tiếp của chúng tôi sẽ không được bảo hiểm để dừng lại. Khi thị trường tạm dừng, sẽ không có khoản thanh toán nào được cung cấp. </p>
+                        <p><b>11.22.5</b> Trang web không thể đảm bảo rằng cược của bạn sẽ có sẵn cho tùy chọn rút tiền. Nếu rút tiền được thực hiện trước sự kiện, chúng tôi sẽ không bao gồm hoặc ngừng bảo hiểm Sự kiện Trực tiếp và việc rút tiền sẽ không có sẵn sau khi Sự kiện bắt đầu hoặc Trận đấu Trực tiếp của chúng tôi sẽ không được bảo hiểm để dừng lại. Khi thị trường tạm dừng, sẽ không có khoản thanh toán nào được cung cấp. </p>
 
-                        <p><b>11.23.6</b> Website này có quyền thu hồi toàn bộ hoặc một phần việc thoái vốn chức năng của khách hàng hoặc nhóm khách hàng. Chúng tôi sẽ thực hiện quyền này trong trường hợp có nghi ngờ hợp lý rằng khách hàng hoặc nhóm khách hàng đang lạm dụng chức năng rút tiền để lợi dụng sự thay đổi giá trước sự kiện hoặc tính năng rút tiền thường xuyên được sử dụng để đóng cược trước khi bắt đầu sự kiện. </p>
+                        <p><b>11.22.6</b> Website này có quyền thu hồi toàn bộ hoặc một phần việc thoái vốn chức năng của khách hàng hoặc nhóm khách hàng. Chúng tôi sẽ thực hiện quyền này trong trường hợp có nghi ngờ hợp lý rằng khách hàng hoặc nhóm khách hàng đang lạm dụng chức năng rút tiền để lợi dụng sự thay đổi giá trước sự kiện hoặc tính năng rút tiền thường xuyên được sử dụng để đóng cược trước khi bắt đầu sự kiện. </p>
 
-                        <p><b>11.23.7</b> Nếu chức năng rút tiền không khả dụng vì lý do kỹ thuật, trang web này sẽ không chịu trách nhiệm về việc này. Ngoài ra, bất kỳ cá cược nào trong những trường hợp như vậy sẽ duy trì trạng thái cá cược ban đầu và trang web này cũng sẽ không chịu trách nhiệm. 。 </p>
+                        <p><b>11.22.7</b> Nếu chức năng rút tiền không khả dụng vì lý do kỹ thuật, trang web này sẽ không chịu trách nhiệm về việc này. Ngoài ra, bất kỳ cá cược nào trong những trường hợp như vậy sẽ duy trì trạng thái cá cược ban đầu và trang web này cũng sẽ không chịu trách nhiệm. 。 </p>
 
-                        <p><b>11.23.8</b> Trang web có quyền chấp nhận hoặc từ chối bất kỳ cược / cược nào để rút tiền từ các môn thể thao, cuộc thi, thị trường hoặc các loại cược có trong Tính năng Rút tiền. </p>
+                        <p><b>11.22.8</b> Trang web có quyền chấp nhận hoặc từ chối bất kỳ cược / cược nào để rút tiền từ các môn thể thao, cuộc thi, thị trường hoặc các loại cược có trong Tính năng Rút tiền. </p>
 
-                        <p><b>11.24</b> Giải thưởng tối đa được tính bằng USD làm đồng tiền yết giá để đảm bảo an toàn cho thế giới, nhưng đơn vị tiền tệ tương đương áp dụng cho chi tiêu thực tế. Trong trường hợp nhiều cược liên quan đến các sự kiện với giới hạn tiền thưởng tối đa khác nhau, số tiền tối thiểu sẽ được áp dụng. Cả hai giới hạn tiền thưởng tối đa đều áp dụng cho tất cả khách hàng hoặc nhóm khách hàng của chúng tôi sử dụng các tài khoản cá cược khác nhau để chứa các cược của cùng một lựa chọn ở các mức giá khác nhau. Cần có lý do để tin rằng một số cược đã được đặt theo cách này và khoản thanh toán đầy đủ của các cược này sẽ chỉ cộng lại một khoản thanh toán tối đa. </p>
+                        <p><b>11.23</b> Giải thưởng tối đa được tính bằng USD làm đồng tiền yết giá để đảm bảo an toàn cho thế giới, nhưng đơn vị tiền tệ tương đương áp dụng cho chi tiêu thực tế. Trong trường hợp nhiều cược liên quan đến các sự kiện với giới hạn tiền thưởng tối đa khác nhau, số tiền tối thiểu sẽ được áp dụng. Cả hai giới hạn tiền thưởng tối đa đều áp dụng cho tất cả khách hàng hoặc nhóm khách hàng của chúng tôi sử dụng các tài khoản cá cược khác nhau để chứa các cược của cùng một lựa chọn ở các mức giá khác nhau. Cần có lý do để tin rằng một số cược đã được đặt theo cách này và khoản thanh toán đầy đủ của các cược này sẽ chỉ cộng lại một khoản thanh toán tối đa. </p>
 
                         <h3>12. Trò chơi bị sảy thai và hủy bỏ</h3>
                         <p><b>12.1</b> Công ty sẽ không can thiệp vào Trò chơi đối với bất kỳ thời gian chết, gián đoạn máy chủ, độ trễ hoặc bất kỳ gián đoạn kỹ thuật hoặc chính trị nào. Hoàn tiền chỉ có thể được quản lý theo quyết định riêng của Trang web. </p>

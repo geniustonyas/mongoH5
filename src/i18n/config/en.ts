@@ -130,7 +130,7 @@ export default {
   makeAllRead: 'Set all as read',
   noMessage: 'You don not have any notification messages',
   // 奖励
-  claimReward: 'Claim reward',
+  claimReward: 'Pormo Code',
   claimNewReward: 'Claim a new reward',
   rewardCode: 'Reward Code',
   claim: 'Receive',
@@ -377,7 +377,8 @@ export default {
     inputOrderId: 'Please enter the ticket number',
     orderNoholder: "Please use ',' to separate multiple bet order.",
     applySuccess: 'Apply Successed',
-    applyFail: 'Apply Failed'
+    applyFail: 'Apply Failed',
+    pwdName: 'Your username and password must be different'
   },
 
   rewardsBig: 'REWARDS',
@@ -510,7 +511,7 @@ export default {
   outTime: 'Hotel check Out time',
   sabaSportDesc: {
     0: 'All Sporting Events',
-    1: 'Supports All Digital Devices Macos and Windows',
+    1: 'Supports All Digital Devices',
     2: 'Security Encryption',
     3: 'Real-Time Odds',
     4: 'Independent Backend'
@@ -797,7 +798,7 @@ export default {
                   </div>`,
 
     rulesContent: `<div>
-                    <h2>Terms and Conditions</h2>
+                    <h2>Rules and Terms</h2>
                     <h3>1. SEABET.IO</h3>
                     <h3>2. IMPORTANT NOTICE</h3>
                     <p><b>2.1 </b>BY REGISTERING ON WWW.SEABET.IO (THE “WEBSITE”), YOU ENTER INTO A CONTRACTED, AND AGREE TO BE BOUND BY: </p>
@@ -1302,7 +1303,7 @@ export default {
                         <h2>Fairness</h2>
                         <p>Before you can place bets in fiat currencies, including cryptocurrency, you must register for an account on Seabet.io website. Your use of the Seabet.io (the "Website") and the opening of an account with the Seabet.io shall be deemed to have been read, understood and bound by these Terms and Conditions.</p>
 
-                        <h3>Definition</h3>
+                        <p>Definition</p>
                         <p>Seabet.io – referred to as "we" or "company".</p>
                         <p>Player – referred to as "you" or "player" or "member" or "customer" or "account holder".</p>
                         <p>Games – Refers to casinos and other RNG (Random Number Generator) games, which may be available on the Website from time to time.</p>
@@ -1555,25 +1556,25 @@ export default {
                         <p><b>11.20 </b>In the event of discrepancies in match statistics provided by external sources, the data sources set out in our published General Sports Betting Rules page shall prevail. </p>
                         <p><b>11.21 </b>The maximum bet limit will depend on the amount allowed by the Website at the time you accept a bet. </p>
 
-                        <p><b>11.23 </b>The following relates to the withdrawal function:</p>
+                        <p><b>11.22 </b>The following relates to the withdrawal function:</p>
 
-                        <p><b>11.23.1 </b>Withdrawals are available for selected events, fixtures and markets, single and multiple bets, before and during the match. </p>
+                        <p><b>11.22.1 </b>Withdrawals are available for selected events, fixtures and markets, single and multiple bets, before and during the match. </p>
 
-                        <p><b>11.23.2 </b>Delay in accepting withdrawal requests. If price or market changes are paused, the withdrawal request may not be successful. </p>
+                        <p><b>11.22.2 </b>Delay in accepting withdrawal requests. If price or market changes are paused, the withdrawal request may not be successful. </p>
 
-                        <p><b>11.23.3 </b>If a withdrawal request is approved, the corresponding bet will be displayed immediately and settled. The actual final result of the original bet will not affect the withdrawal process.</p>
+                        <p><b>11.22.3 </b>If a withdrawal request is approved, the corresponding bet will be displayed immediately and settled. The actual final result of the original bet will not affect the withdrawal process.</p>
 
-                        <p><b>11.23.4 </b>In any event, upon successful withdrawal request, the total amount of the refund will be returned to your Account. </p>
+                        <p><b>11.22.4 </b>In any event, upon successful withdrawal request, the total amount of the refund will be returned to your Account. </p>
 
-                        <p><b>11.23.5 </b>The Website cannot guarantee that your bets will be available for the withdrawal option. If a withdrawal is made prior to the event, we will not cover or stop covering the Live Event, and the withdrawal will not be available once the Event starts or our Live Match will not be covered to stop. When the market is paused, no payouts will be provided. </p>
+                        <p><b>11.22.5 </b>The Website cannot guarantee that your bets will be available for the withdrawal option. If a withdrawal is made prior to the event, we will not cover or stop covering the Live Event, and the withdrawal will not be available once the Event starts or our Live Match will not be covered to stop. When the market is paused, no payouts will be provided. </p>
 
-                        <p><b>11.23.6 </b>This website reserves the right to fully or partially withdraw the functional divestment of customers or customer groups. We will exercise this right in cases where there is reasonable suspicion that a customer or group of customers is abusing the withdrawal function to take advantage of pre-event price changes, or that the withdrawal feature is regularly used to close bets before the start of the event. </p>
+                        <p><b>11.22.6 </b>This website reserves the right to fully or partially withdraw the functional divestment of customers or customer groups. We will exercise this right in cases where there is reasonable suspicion that a customer or group of customers is abusing the withdrawal function to take advantage of pre-event price changes, or that the withdrawal feature is regularly used to close bets before the start of the event. </p>
 
-                        <p><b>11.23.7 </b>If the withdrawal function is not available due to technical reasons, this website will not be responsible for this. In addition, any betting in such cases will maintain its original betting status and this website will also not be held responsible. 。 </p>
+                        <p><b>11.22.7 </b>If the withdrawal function is not available due to technical reasons, this website will not be responsible for this. In addition, any betting in such cases will maintain its original betting status and this website will also not be held responsible. 。 </p>
 
-                        <p><b>11.23.8 </b>The Website reserves the right to accept or reject any bets/bets to cash out the sports, competitions, markets or types of bets contained in the Cash Out Feature. </p>
+                        <p><b>11.22.8 </b>The Website reserves the right to accept or reject any bets/bets to cash out the sports, competitions, markets or types of bets contained in the Cash Out Feature. </p>
 
-                        <p><b>11.24 </b>The maximum prize is quoted in USD as the base currency to secure the world, but the currency equivalent applies to actual spending. Where multiple bets involve events with different maximum bonus limits, the minimum amount will apply. Both maximum bonus limits apply to all of our customers or groups of customers who use different betting accounts to contain bets of the same selection at different prices. There should be reason to believe that several bets have been placed in this way, and the full payment of these bets will add up to only one maximum payout. </p>
+                        <p><b>11.23 </b>The maximum prize is quoted in USD as the base currency to secure the world, but the currency equivalent applies to actual spending. Where multiple bets involve events with different maximum bonus limits, the minimum amount will apply. Both maximum bonus limits apply to all of our customers or groups of customers who use different betting accounts to contain bets of the same selection at different prices. There should be reason to believe that several bets have been placed in this way, and the full payment of these bets will add up to only one maximum payout. </p>
 
 
                         <h3>12. Miscarried and Aborted Games</h3>

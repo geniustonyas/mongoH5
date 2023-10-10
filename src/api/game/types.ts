@@ -42,6 +42,7 @@ export interface getGameDetailsData {
 export interface getGameUrlData {
   id: string | number
   platform: string | number
+  domain: string
 }
 
 // 获取游戏列表返回数据

@@ -131,7 +131,7 @@ export default {
   makeAllRead: 'Tout Marquer comme Lu',
   noMessage: 'Aucune notification.',
   // Récompenses
-  claimReward: 'Réclamer la Récompense',
+  claimReward: 'Code Promo',
   claimNewReward: 'Réclamer une Nouvelle Récompense',
   rewardCode: 'Code de Récompense',
   claim: 'Réclamer',
@@ -376,7 +376,8 @@ export default {
     inputOrderId: 'Veuillez saisir le numéro de billet',
     orderNoholder: "Veuillez utiliser ',' pour séparer plusieurs commandes de mise",
     applySuccess: 'Demande acceptée',
-    applyFail: 'Échec de la demande'
+    applyFail: 'Échec de la demande',
+    pwdName: `Votre nom d'utilisateur et votre mot de passe doivent être différents`
   },
 
   rewardsBig: 'Récompenses',
@@ -512,7 +513,7 @@ export default {
   outTime: "Heure de départ à l'hôtel",
   sabaSportDesc: {
     0: 'Tous les événements sportifs',
-    1: 'Prise en charge de tous les appareils numériques macOS et Windows',
+    1: 'Prise en charge de tous les appareils numériques',
     2: 'Cryptage de sécurité',
     3: 'Cotes en temps réel',
     4: 'Backend indépendant'
@@ -1548,25 +1549,25 @@ export default {
                         <p><b>11.20</b> En cas de divergences dans les statistiques de match fournies par des sources externes, les sources de données indiquées dans notre page Règles générales des paris sportifs publiées prévaudront. </p>
                         <p><b>11.21</b> La limite de mise maximale dépendra du montant autorisé par le site Web au moment où vous acceptez un pari. </p>
 
-                        <p><b>11.23</b> Ce qui suit a trait à la fonction de retrait :</p>
+                        <p><b>11.22</b> Ce qui suit a trait à la fonction de retrait :</p>
 
-                        <p><b>11.23.1</b> Des retraits sont disponibles pour certains événements, rencontres et marchés, paris simples et multiples, avant et pendant le match. </p>
+                        <p><b>11.22.1</b> Des retraits sont disponibles pour certains événements, rencontres et marchés, paris simples et multiples, avant et pendant le match. </p>
 
-                        <p><b>11.23.2</b> Retard dans l'acceptation des demandes de retrait. Si les changements de prix ou de marché sont suspendus, la demande de retrait peut ne pas aboutir. </p>
+                        <p><b>11.22.2</b> Retard dans l'acceptation des demandes de retrait. Si les changements de prix ou de marché sont suspendus, la demande de retrait peut ne pas aboutir. </p>
 
-                        <p><b>11.23.3</b> Si une demande de retrait est approuvée, le pari correspondant sera affiché immédiatement et réglé. Le résultat final réel du pari initial n'affectera pas le processus de retrait.</p>
+                        <p><b>11.22.3</b> Si une demande de retrait est approuvée, le pari correspondant sera affiché immédiatement et réglé. Le résultat final réel du pari initial n'affectera pas le processus de retrait.</p>
 
-                        <p><b>11.23.4</b> Dans tous les cas, une fois la demande de retrait réussie, le montant total du remboursement sera retourné sur votre compte. </p>
+                        <p><b>11.22.4</b> Dans tous les cas, une fois la demande de retrait réussie, le montant total du remboursement sera retourné sur votre compte. </p>
 
-                        <p><b>11.23.5</b> Le Site ne peut garantir que vos paris seront disponibles pour l'option de retrait. Si un retrait est effectué avant l'événement, nous ne couvrirons pas ou n'arrêterons pas de couvrir l'événement en direct, et le retrait ne sera pas disponible une fois l'événement commencé ou notre match en direct ne sera pas couvert pour s'arrêter. Lorsque le marché est suspendu, aucun paiement ne sera fourni. </p>
+                        <p><b>11.22.5</b> Le Site ne peut garantir que vos paris seront disponibles pour l'option de retrait. Si un retrait est effectué avant l'événement, nous ne couvrirons pas ou n'arrêterons pas de couvrir l'événement en direct, et le retrait ne sera pas disponible une fois l'événement commencé ou notre match en direct ne sera pas couvert pour s'arrêter. Lorsque le marché est suspendu, aucun paiement ne sera fourni. </p>
 
-                        <p><b>11.23.6</b> Ce site Web se réserve le droit de retirer totalement ou partiellement la cession fonctionnelle de clients ou de groupes de clients. Nous exercerons ce droit dans les cas où il existe des motifs raisonnables de soupçonner qu'un client ou un groupe de clients abuse de la fonction de retrait pour profiter des changements de prix antérieurs à l'événement, ou que la fonction de retrait est régulièrement utilisée pour clôturer des paris avant le début de l'événement. </p>
+                        <p><b>11.22.6</b> Ce site Web se réserve le droit de retirer totalement ou partiellement la cession fonctionnelle de clients ou de groupes de clients. Nous exercerons ce droit dans les cas où il existe des motifs raisonnables de soupçonner qu'un client ou un groupe de clients abuse de la fonction de retrait pour profiter des changements de prix antérieurs à l'événement, ou que la fonction de retrait est régulièrement utilisée pour clôturer des paris avant le début de l'événement. </p>
 
-                        <p><b>11.23.7</b> Si la fonction de retrait n'est pas disponible pour des raisons techniques, ce site Web n'en sera pas responsable. En outre, tout pari dans de tels cas conservera son statut de pari d'origine et ce site Web ne sera pas non plus tenu responsable. 。 </p>
+                        <p><b>11.22.7</b> Si la fonction de retrait n'est pas disponible pour des raisons techniques, ce site Web n'en sera pas responsable. En outre, tout pari dans de tels cas conservera son statut de pari d'origine et ce site Web ne sera pas non plus tenu responsable. 。 </p>
 
-                        <p><b>11.23.8</b> Le site Web se réserve le droit d'accepter ou de rejeter tout pari / pari pour encaisser les sports, les compétitions, les marchés ou les types de paris contenus dans la fonction de retrait. </p>
+                        <p><b>11.22.8</b> Le site Web se réserve le droit d'accepter ou de rejeter tout pari / pari pour encaisser les sports, les compétitions, les marchés ou les types de paris contenus dans la fonction de retrait. </p>
 
-                        <p><b>11.24</b> Le prix maximum est indiqué en USD comme devise de base pour sécuriser le monde, mais l'équivalent en devise s'applique aux dépenses réelles. Lorsque plusieurs paris impliquent des événements avec différentes limites maximales de bonus, le montant minimum s'appliquera. Les deux limites maximales de bonus s'appliquent à tous nos clients ou groupes de clients qui utilisent différents comptes de paris pour contenir des paris de la même sélection à des prix différents. Il devrait y avoir des raisons de croire que plusieurs paris ont été placés de cette manière, et le paiement intégral de ces paris ne totalisera qu'un seul paiement maximum. </p>
+                        <p><b>11.23</b> Le prix maximum est indiqué en USD comme devise de base pour sécuriser le monde, mais l'équivalent en devise s'applique aux dépenses réelles. Lorsque plusieurs paris impliquent des événements avec différentes limites maximales de bonus, le montant minimum s'appliquera. Les deux limites maximales de bonus s'appliquent à tous nos clients ou groupes de clients qui utilisent différents comptes de paris pour contenir des paris de la même sélection à des prix différents. Il devrait y avoir des raisons de croire que plusieurs paris ont été placés de cette manière, et le paiement intégral de ces paris ne totalisera qu'un seul paiement maximum. </p>
 
 
                         <h3>12. Jeux avortés et avortés</h3>

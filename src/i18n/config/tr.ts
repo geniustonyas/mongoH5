@@ -130,7 +130,7 @@ export default {
   makeAllRead: 'Tümünü Okundu Olarak İşaretle',
   noMessage: 'Herhangi bir bildirim yok',
   // Ödüller
-  claimReward: 'Ödülü Al',
+  claimReward: 'Promo Kodu',
   claimNewReward: 'Yeni Ödülü Al',
   rewardCode: 'Ödül Kodu',
   claim: 'Al',
@@ -376,7 +376,8 @@ export default {
     inputOrderId: 'Bilet numarasını giriniz',
     orderNoholder: "Birden fazla bahis siparişini ayırmak için ',' kullanın",
     applySuccess: 'Başvuru Başarılı',
-    applyFail: 'Başvuru Başarısız'
+    applyFail: 'Başvuru Başarısız',
+    pwdName: 'Kullanıcı adınız ve şifreniz farklı olmalıdır'
   },
 
   rewardsBig: 'Ödüller',
@@ -511,7 +512,7 @@ export default {
   outTime: 'Otel Çıkış Zamanı',
   sabaSportDesc: {
     0: 'Tüm Spor Etkinlikleri',
-    1: 'Tüm Dijital Cihazları Destekler: Macos ve Windows',
+    1: 'Tüm Dijital Cihazları Destekler',
     2: 'Güvenlik Şifreleme',
     3: 'Anlık Oranlar',
     4: 'Bağımsız Arka Uç'
@@ -1552,25 +1553,25 @@ export default {
                         <p><b>11.20</b> Dış kaynaklar tarafından sağlanan maç istatistiklerinde tutarsızlık olması durumunda, yayınlanan Genel Spor Bahisleri Kuralları sayfamızda belirtilen veri kaynakları geçerli olacaktır. </p>
                         <p><b>11.21</b> Maksimum bahis limiti, bir bahsi kabul ettiğiniz sırada Web Sitesi tarafından izin verilen miktara bağlı olacaktır. </p>
 
-                        <p><b>11.23</b> Aşağıdakiler para çekme işleviyle ilgilidir:</p>
+                        <p><b>11.22</b> Aşağıdakiler para çekme işleviyle ilgilidir:</p>
 
-                        <p><b>11.23.1</b> Para çekme işlemleri, seçilen etkinlikler, fikstürler ve pazarlar, tekli ve çoklu bahisler, maç öncesi ve sırasında kullanılabilir. </p>
+                        <p><b>11.22.1</b> Para çekme işlemleri, seçilen etkinlikler, fikstürler ve pazarlar, tekli ve çoklu bahisler, maç öncesi ve sırasında kullanılabilir. </p>
 
-                        <p><b>11.23.2</b> Para çekme taleplerinin kabulünde gecikme. Fiyat veya piyasa değişiklikleri duraklatılırsa, para çekme talebi başarılı olmayabilir. </p>
+                        <p><b>11.22.2</b> Para çekme taleplerinin kabulünde gecikme. Fiyat veya piyasa değişiklikleri duraklatılırsa, para çekme talebi başarılı olmayabilir. </p>
 
-                        <p><b>11.23.3</b> Para çekme talebi onaylanırsa, ilgili bahis derhal görüntülenecek ve sonuçlandırılacaktır. Orijinal bahsin gerçek nihai sonucu, para çekme işlemini etkilemeyecektir.</p>
+                        <p><b>11.22.3</b> Para çekme talebi onaylanırsa, ilgili bahis derhal görüntülenecek ve sonuçlandırılacaktır. Orijinal bahsin gerçek nihai sonucu, para çekme işlemini etkilemeyecektir.</p>
 
-                        <p><b>11.23.4</b> Her halükarda, başarılı para çekme talebi üzerine, geri ödemenin toplam tutarı Hesabınıza iade edilecektir. </p>
+                        <p><b>11.22.4</b> Her halükarda, başarılı para çekme talebi üzerine, geri ödemenin toplam tutarı Hesabınıza iade edilecektir. </p>
 
-                        <p><b>11.23.5</b> Web sitesi, bahislerinizin para çekme seçeneği için uygun olacağını garanti edemez. Etkinlikten önce bir para çekme işlemi yapılırsa, Canlı Etkinliği kapsamazız veya kapsamı durdurmayız ve Etkinlik başladıktan sonra para çekme işlemi kullanılamaz veya Canlı Maçımızın durdurulması kapsanmaz. Piyasa duraklatıldığında, herhangi bir ödeme sağlanmaz. </p>
+                        <p><b>11.22.5</b> Web sitesi, bahislerinizin para çekme seçeneği için uygun olacağını garanti edemez. Etkinlikten önce bir para çekme işlemi yapılırsa, Canlı Etkinliği kapsamazız veya kapsamı durdurmayız ve Etkinlik başladıktan sonra para çekme işlemi kullanılamaz veya Canlı Maçımızın durdurulması kapsanmaz. Piyasa duraklatıldığında, herhangi bir ödeme sağlanmaz. </p>
 
-                        <p><b>11.23.6</b> Bu web sitesi, müşterilerin veya müşteri gruplarının işlevsel elden çıkarmalarını tamamen veya kısmen geri çekme hakkını saklı tutar. Bu hakkı, bir müşterinin veya müşteri grubunun etkinlik öncesi fiyat değişikliklerinden yararlanmak için para çekme işlevini kötüye kullandığına veya para çekme özelliğinin etkinlik başlamadan önce bahisleri kapatmak için düzenli olarak kullanıldığına dair makul şüphenin olduğu durumlarda kullanacağız. </p>
+                        <p><b>11.22.6</b> Bu web sitesi, müşterilerin veya müşteri gruplarının işlevsel elden çıkarmalarını tamamen veya kısmen geri çekme hakkını saklı tutar. Bu hakkı, bir müşterinin veya müşteri grubunun etkinlik öncesi fiyat değişikliklerinden yararlanmak için para çekme işlevini kötüye kullandığına veya para çekme özelliğinin etkinlik başlamadan önce bahisleri kapatmak için düzenli olarak kullanıldığına dair makul şüphenin olduğu durumlarda kullanacağız. </p>
 
-                        <p><b>11.23.7</b> Para çekme işlevi teknik nedenlerden dolayı kullanılamıyorsa, bu web sitesi bundan sorumlu olmayacaktır. Buna ek olarak, bu gibi durumlarda herhangi bir bahis orijinal bahis durumunu koruyacak ve bu web sitesi de sorumlu tutulmayacaktır. 。 </p>
+                        <p><b>11.22.7</b> Para çekme işlevi teknik nedenlerden dolayı kullanılamıyorsa, bu web sitesi bundan sorumlu olmayacaktır. Buna ek olarak, bu gibi durumlarda herhangi bir bahis orijinal bahis durumunu koruyacak ve bu web sitesi de sorumlu tutulmayacaktır. 。 </p>
 
-                        <p><b>11.23.8</b> Web Sitesi, Cash Out Özelliğinde yer alan sporları, yarışmaları, pazarları veya bahis türlerini nakde çevirmek için herhangi bir bahsi / bahsi kabul etme veya reddetme hakkını saklı tutar. </p>
+                        <p><b>11.22.8</b> Web Sitesi, Cash Out Özelliğinde yer alan sporları, yarışmaları, pazarları veya bahis türlerini nakde çevirmek için herhangi bir bahsi / bahsi kabul etme veya reddetme hakkını saklı tutar. </p>
 
-                        <p><b>11.24</b> Maksimum ödül, dünyayı güvence altına almak için temel para birimi olarak USD cinsinden belirtilir, ancak para birimi eşdeğeri gerçek harcamalar için geçerlidir. Birden fazla bahisin farklı maksimum bonus limitlerine sahip etkinlikleri içerdiği durumlarda, minimum tutar geçerli olacaktır. Her iki maksimum bonus limiti de, farklı fiyatlarla aynı seçimden bahisleri içermek için farklı bahis hesapları kullanan tüm müşterilerimiz veya müşteri grupları için geçerlidir. Birkaç bahsin bu şekilde yerleştirildiğine inanmak için bir neden olmalıdır ve bu bahislerin tam ödemesi yalnızca bir maksimum ödemeye kadar çıkacaktır. </p>
+                        <p><b>11.23</b> Maksimum ödül, dünyayı güvence altına almak için temel para birimi olarak USD cinsinden belirtilir, ancak para birimi eşdeğeri gerçek harcamalar için geçerlidir. Birden fazla bahisin farklı maksimum bonus limitlerine sahip etkinlikleri içerdiği durumlarda, minimum tutar geçerli olacaktır. Her iki maksimum bonus limiti de, farklı fiyatlarla aynı seçimden bahisleri içermek için farklı bahis hesapları kullanan tüm müşterilerimiz veya müşteri grupları için geçerlidir. Birkaç bahsin bu şekilde yerleştirildiğine inanmak için bir neden olmalıdır ve bu bahislerin tam ödemesi yalnızca bir maksimum ödemeye kadar çıkacaktır. </p>
 
 
                         <h3>12. Yanlış Oynanan ve İptal Edilen Oyunlar</h3>

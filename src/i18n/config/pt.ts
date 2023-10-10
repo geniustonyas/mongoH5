@@ -130,7 +130,7 @@ export default {
   makeAllRead: 'Marcar Todas Como Lidas',
   noMessage: 'Nenhuma mensagem disponível',
   // Recompensas
-  claimReward: 'Resgatar Recompensa',
+  claimReward: 'Código Promoção',
   claimNewReward: 'Resgatar Nova Recompensa',
   rewardCode: 'Código de Recompensa',
   claim: 'Resgatar',
@@ -376,7 +376,8 @@ export default {
     inputOrderId: 'Por favor, insira o número do pedido',
     orderNoholder: "Número do pedido ',' separe múltiplos com vírgula",
     applySuccess: 'Solicitação bem-sucedida',
-    applyFail: 'Solicitação falhou'
+    applyFail: 'Solicitação falhou',
+    pwdName: 'Seu nome de usuário e senha devem ser diferentes'
   },
 
   rewardsBig: 'Recompensas',
@@ -511,7 +512,7 @@ export default {
   outTime: 'Horário de Check-out no Hotel',
   sabaSportDesc: {
     0: 'Todos os Eventos Esportivos',
-    1: 'Compatível com todos os dispositivos digitais: MacOS e Windows',
+    1: 'Compatível com todos os dispositivos digitais',
     2: 'Segurança de Criptografia',
     3: 'Odds em Tempo Real',
     4: 'Backend Independente'
@@ -1231,7 +1232,7 @@ export default {
     privacyContent: `<div>
                         <h2>Política de Privacidade </h2>
                         <p>Seabet.io respeita e protege a privacidade de todos os utilizadores dos nossos Serviços. Esta Política de Privacidade ("Política") detalha como coletamos, armazenamos, usamos e divulgamos suas informações pessoais.</p>
-                        <h2>1. Âmbito de aplicação e aplicação </h2>
+                        <h3>1. Âmbito de aplicação e aplicação </h3>
                         <p>Esta Política aplica-se ao seu acesso e uso de Seabet.io (o "Site") e todos os sites e aplicativos sob a marca Seabet, incluindo todos os nossos aplicativos móveis e aplicativos para tablets. Além disso, esta Política também se aplica quando interagimos consigo de outras formas.</p>
                         <h3>2. Consentimento e Modificação do Utilizador</h3>
                         <p>Ao usar o site da Seabet, você concorda em ficar vinculado a esta Política. Reservamo-nos o direito, a nosso exclusivo critério, de modificar ou alterar esta Política a qualquer momento, e publicaremos tais alterações no Site, e tais alterações entrarão em vigor imediatamente após a publicação. O uso continuado do Site após tais alterações constitui a sua aceitação de tais alterações. Esta Política não se aplica a outros sites vinculados a este site.</p>
@@ -1542,25 +1543,25 @@ export default {
                         <p><b>11.20</b> Em caso de discrepâncias nas estatísticas de jogos fornecidas por fontes externas, prevalecerão as fontes de dados estabelecidas na nossa página de Regras Gerais de Apostas Desportivas. </p>
                         <p><b>11.21</b> O limite máximo de apostas dependerá do montante permitido pelo Website no momento em que aceita uma aposta. </p>
 
-                        <p><b>11.23</b> Relativamente à função de levantamento:</p>
+                        <p><b>11.22</b> Relativamente à função de levantamento:</p>
 
-                        <p><b>11.23.1</b> Os levantamentos estão disponíveis para eventos, jogos e mercados selecionados, apostas simples e múltiplas, antes e durante o jogo. </p>
+                        <p><b>11.22.1</b> Os levantamentos estão disponíveis para eventos, jogos e mercados selecionados, apostas simples e múltiplas, antes e durante o jogo. </p>
 
-                        <p><b>11.23.2</b> Atraso na aceitação de pedidos de levantamento. Se as alterações de preço ou de mercado forem pausadas, o pedido de levantamento poderá não ser bem-sucedido. </p>
+                        <p><b>11.22.2</b> Atraso na aceitação de pedidos de levantamento. Se as alterações de preço ou de mercado forem pausadas, o pedido de levantamento poderá não ser bem-sucedido. </p>
 
-                        <p><b>11.23.3</b> Se um pedido de levantamento for aprovado, a aposta correspondente será exibida imediatamente e liquidada. O resultado final real da aposta original não afetará o processo de levantamento.</p>
+                        <p><b>11.22.3</b> Se um pedido de levantamento for aprovado, a aposta correspondente será exibida imediatamente e liquidada. O resultado final real da aposta original não afetará o processo de levantamento.</p>
 
-                        <p><b>11.23.4</b> Em qualquer caso, após o pedido de levantamento bem-sucedido, o valor total do reembolso será devolvido à sua Conta. </p>
+                        <p><b>11.22.4</b> Em qualquer caso, após o pedido de levantamento bem-sucedido, o valor total do reembolso será devolvido à sua Conta. </p>
 
-                        <p><b>11.23.5</b> O Website não pode garantir que as suas apostas estarão disponíveis para a opção de levantamento. Se uma retirada for feita antes do evento, não cobriremos ou deixaremos de cobrir o Evento ao Vivo, e a retirada não estará disponível assim que o Evento começar ou nossa partida ao vivo não será coberta para parar. Quando o mercado estiver pausado, nenhum pagamento será fornecido. </p>
+                        <p><b>11.22.5</b> O Website não pode garantir que as suas apostas estarão disponíveis para a opção de levantamento. Se uma retirada for feita antes do evento, não cobriremos ou deixaremos de cobrir o Evento ao Vivo, e a retirada não estará disponível assim que o Evento começar ou nossa partida ao vivo não será coberta para parar. Quando o mercado estiver pausado, nenhum pagamento será fornecido. </p>
 
-                        <p><b>11.23.6</b> Este site reserva-se o direito de retirar total ou parcialmente o desinvestimento funcional de clientes ou grupos de clientes. Exerceremos este direito nos casos em que haja suspeita razoável de que um cliente ou grupo de clientes está a abusar da função de levantamento para tirar partido de alterações de preço anteriores ao evento, ou que a funcionalidade de levantamento é regularmente utilizada para fechar apostas antes do início do evento. </p>
+                        <p><b>11.22.6</b> Este site reserva-se o direito de retirar total ou parcialmente o desinvestimento funcional de clientes ou grupos de clientes. Exerceremos este direito nos casos em que haja suspeita razoável de que um cliente ou grupo de clientes está a abusar da função de levantamento para tirar partido de alterações de preço anteriores ao evento, ou que a funcionalidade de levantamento é regularmente utilizada para fechar apostas antes do início do evento. </p>
 
-                        <p><b>11.23.7</b> Se a função de retirada não estiver disponível devido a razões técnicas, este site não será responsável por isso. Além disso, qualquer aposta nesses casos manterá seu status de aposta original e este site também não será responsabilizado. 。 </p>
+                        <p><b>11.22.7</b> Se a função de retirada não estiver disponível devido a razões técnicas, este site não será responsável por isso. Além disso, qualquer aposta nesses casos manterá seu status de aposta original e este site também não será responsabilizado. 。 </p>
 
-                        <p><b>11.23.8</b> O Website reserva-se o direito de aceitar ou rejeitar quaisquer apostas/apostas para levantar os desportos, competições, mercados ou tipos de apostas contidos na Funcionalidade de Levantamento. </p>
+                        <p><b>11.22.8</b> O Website reserva-se o direito de aceitar ou rejeitar quaisquer apostas/apostas para levantar os desportos, competições, mercados ou tipos de apostas contidos na Funcionalidade de Levantamento. </p>
 
-                        <p><b>11.24</b> O prémio máximo é cotado em USD como moeda base para garantir o mundo, mas o equivalente em moeda aplica-se aos gastos reais. Quando apostas múltiplas envolvem eventos com diferentes limites máximos de bónus, aplicar-se-á o montante mínimo. Ambos os limites máximos de bónus aplicam-se a todos os nossos clientes ou grupos de clientes que utilizam contas de apostas diferentes para conter apostas da mesma seleção a preços diferentes. Deve haver razões para acreditar que várias apostas foram feitas desta forma, e o pagamento total dessas apostas somará apenas um pagamento máximo. </p>
+                        <p><b>11.23</b> O prémio máximo é cotado em USD como moeda base para garantir o mundo, mas o equivalente em moeda aplica-se aos gastos reais. Quando apostas múltiplas envolvem eventos com diferentes limites máximos de bónus, aplicar-se-á o montante mínimo. Ambos os limites máximos de bónus aplicam-se a todos os nossos clientes ou grupos de clientes que utilizam contas de apostas diferentes para conter apostas da mesma seleção a preços diferentes. Deve haver razões para acreditar que várias apostas foram feitas desta forma, e o pagamento total dessas apostas somará apenas um pagamento máximo. </p>
 
 
                         <h3>12. Jogos Abortados e Abortados</h3>

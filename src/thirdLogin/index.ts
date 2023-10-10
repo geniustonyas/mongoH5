@@ -24,7 +24,7 @@ const BOT_ID = '6360341967'
 const GOOGLE_CLIENT_ID = '213787019958-ojer4h9l5k216et4f5rp52ektlrjn5cv.apps.googleusercontent.com'
 
 // Facebook ID
-const FACEBOOK_APPID = '663909171737293'
+const FACEBOOK_APPID = '354611000247668'
 // const FACEBOOK_APPID = '1082486833129089'
 
 // Line
@@ -127,7 +127,7 @@ export const lineLogin = () => {
   const auth_params = {
     response_type: 'code',
     client_id: LINE_CLIENT_ID,
-    redirect_uri: window.location.origin + '#/user/authCallback', // 在LINE Developers Console上注册的回调 URL 的 URL 编码字符串。您可以添加任何查询参数。
+    redirect_uri: window.location.origin + '/#/user/authCallback/', // 在LINE Developers Console上注册的回调 URL 的 URL 编码字符串。您可以添加任何查询参数。
     state: 'STATE', // 用于防止跨站点请求伪造的唯一字母数字字符串. 您的网络应用应为每个登录会话生成一个随机值。这不能是 URL 编码的字符串。
     scope: 'profile openid email' // 向用户请求的权限,查询范围可以看官网(https://developers.line.biz/en/docs/line-login/integrate-line-login/#scopes)
   }
@@ -152,8 +152,7 @@ window.addEventListener('message', async (event) => {
         code: event.data.lineCode, // 从 LINE 平台收到的授权码
         client_id: LINE_CLIENT_ID,
         client_secret: LINE_CLIENT_SECRET,
-        // redirect_uri: window.location.origin + '/user/authCallback'
-        redirect_uri: window.location.origin + '#/user/login'
+        redirect_uri: window.location.origin + '/#/user/authCallback'
       }
       const resp = await axios({
         url: 'https://api.line.me/oauth2/v2.1/token',

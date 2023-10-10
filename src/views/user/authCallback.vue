@@ -9,11 +9,15 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 // line登录
-if (route.query.code && route.query.code.length > 0) {
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+const code = urlParams.get('code')
+if (code && code.length > 0) {
+  console.log(window.opener)
   window.opener.postMessage(
     {
       name: 'code',
-      lineCode: route.query.code
+      lineCode: code
     },
     window.location.origin
   )

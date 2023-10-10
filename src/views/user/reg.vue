@@ -328,6 +328,8 @@ const checkCaptcha = () => {
 const checkPwd = () => {
   if (regForm.Password == '' || !isPwd(regForm.Password)) {
     errorMsg.pwdMsg = t('tips.isPwd')
+  } else if (regForm.Password == regForm.UserName) {
+    errorMsg.pwdMsg = t('tips.pwdName')
   } else {
     errorMsg.pwdMsg = ''
   }

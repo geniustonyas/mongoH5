@@ -130,7 +130,7 @@ export default {
   makeAllRead: 'Alle als gelesen markieren',
   noMessage: 'Sie haben keine Nachrichten.',
   // 奖励
-  claimReward: 'Belohnung einfordern',
+  claimReward: 'Promo-Code',
   claimNewReward: 'Neue Belohnung einfordern',
   rewardCode: 'Belohnungscode',
   claim: 'Einfordern',
@@ -374,7 +374,8 @@ export default {
     inputOrderId: 'Bitte geben Sie die Ticketnummer ein',
     orderNoholder: "Bitte verwenden Sie ',' zur Trennung mehrerer Wettbestellungen",
     applySuccess: 'Die Bewerbung war erfolgreich',
-    applyFail: 'Die Bewerbung ist fehlgeschlagen'
+    applyFail: 'Die Bewerbung ist fehlgeschlagen',
+    pwdName: 'Ihr Benutzername und Ihr Passwort müssen unterschiedlich sein'
   },
 
   rewardsBig: 'Belohnungen',
@@ -509,13 +510,13 @@ export default {
   outTime: 'Hotel Check-out-Zeit',
   sabaSportDesc: {
     0: 'Alle Sportveranstaltungen',
-    1: 'Unterstützt alle digitalen Geräte MacOS und Windows',
+    1: 'Unterstützt alle digitalen',
     2: 'Sicherheitsverschlüsselung',
     3: 'Echtzeit-Quoten',
     4: 'Unabhängiges Backend'
   },
   seabetSportDesc: {
-    0: 'Unabhängig Entwickelt',
+    0: 'Unabhängig<br/>Entwickelt',
     1: 'Höchste Quoten',
     2: 'Anpassbare Wettschnittstelle',
     3: 'Präzises Abrechnungssystem',
@@ -1547,25 +1548,25 @@ export default {
                           <p><b>11.20</b> Im Falle von Diskrepanzen in den Spielstatistiken, die von externen Quellen bereitgestellt werden, haben die Datenquellen Vorrang, die auf unserer veröffentlichten Seite Allgemeine Sportwettenregeln aufgeführt sind. </p>
                           <p><b>11.21</b> Das maximale Einsatzlimit hängt von dem Betrag ab, der von der Website zum Zeitpunkt der Annahme einer Wette zugelassen wird. </p>
 
-                          <p><b>11.23</b> In Bezug auf die Auszahlungsfunktion gilt Folgendes:</p>
+                          <p><b>11.22</b> In Bezug auf die Auszahlungsfunktion gilt Folgendes:</p>
 
-                          <p><b>11.23.1</b> Auszahlungen sind für ausgewählte Ereignisse, Begegnungen und Märkte, Einzel- und Mehrfachwetten, vor und während des Spiels möglich. </p>
+                          <p><b>11.22.1</b> Auszahlungen sind für ausgewählte Ereignisse, Begegnungen und Märkte, Einzel- und Mehrfachwetten, vor und während des Spiels möglich. </p>
 
-                          <p><b>11.23.2</b> Verzögerung bei der Annahme von Auszahlungsanträgen. Wenn Preis- oder Marktänderungen pausiert werden, ist der Auszahlungsantrag möglicherweise nicht erfolgreich. </p>
+                          <p><b>11.22.2</b> Verzögerung bei der Annahme von Auszahlungsanträgen. Wenn Preis- oder Marktänderungen pausiert werden, ist der Auszahlungsantrag möglicherweise nicht erfolgreich. </p>
 
-                          <p><b>11.23.3</b> Wenn ein Auszahlungsantrag genehmigt wird, wird die entsprechende Wette sofort angezeigt und abgerechnet. Das tatsächliche Endergebnis der ursprünglichen Wette hat keinen Einfluss auf den Auszahlungsprozess.</p>
+                          <p><b>11.22.3</b> Wenn ein Auszahlungsantrag genehmigt wird, wird die entsprechende Wette sofort angezeigt und abgerechnet. Das tatsächliche Endergebnis der ursprünglichen Wette hat keinen Einfluss auf den Auszahlungsprozess.</p>
 
-                          <p><b>11.23.4</b> In jedem Fall wird nach erfolgreichem Auszahlungsantrag der Gesamtbetrag der Rückerstattung auf Ihr Konto zurückgebucht. </p>
+                          <p><b>11.22.4</b> In jedem Fall wird nach erfolgreichem Auszahlungsantrag der Gesamtbetrag der Rückerstattung auf Ihr Konto zurückgebucht. </p>
 
-                          <p><b>11.23.5</b> Die Website kann nicht garantieren, dass Ihre Wetten für die Auszahlungsoption verfügbar sind. Wenn ein Rückzug vor dem Event erfolgt, werden wir die Berichterstattung über das Live-Event nicht abdecken oder einstellen, und der Rückzug ist nicht mehr verfügbar, sobald das Event beginnt oder unser Live-Match nicht mehr beendet wird. Wenn der Markt pausiert ist, werden keine Auszahlungen gewährt. </p>
+                          <p><b>11.22.5</b> Die Website kann nicht garantieren, dass Ihre Wetten für die Auszahlungsoption verfügbar sind. Wenn ein Rückzug vor dem Event erfolgt, werden wir die Berichterstattung über das Live-Event nicht abdecken oder einstellen, und der Rückzug ist nicht mehr verfügbar, sobald das Event beginnt oder unser Live-Match nicht mehr beendet wird. Wenn der Markt pausiert ist, werden keine Auszahlungen gewährt. </p>
 
-                          <p><b>11.23.6</b> Diese Website behält sich das Recht vor, die funktionale Veräußerung von Kunden oder Kundengruppen ganz oder teilweise zurückzuziehen. Wir werden von diesem Recht Gebrauch machen, wenn der begründete Verdacht besteht, dass ein Kunde oder eine Gruppe von Kunden die Auszahlungsfunktion missbraucht, um Preisänderungen vor dem Ereignis auszunutzen, oder dass die Auszahlungsfunktion regelmäßig verwendet wird, um Wetten vor Beginn des Ereignisses zu schließen. </p>
+                          <p><b>11.22.6</b> Diese Website behält sich das Recht vor, die funktionale Veräußerung von Kunden oder Kundengruppen ganz oder teilweise zurückzuziehen. Wir werden von diesem Recht Gebrauch machen, wenn der begründete Verdacht besteht, dass ein Kunde oder eine Gruppe von Kunden die Auszahlungsfunktion missbraucht, um Preisänderungen vor dem Ereignis auszunutzen, oder dass die Auszahlungsfunktion regelmäßig verwendet wird, um Wetten vor Beginn des Ereignisses zu schließen. </p>
 
-                          <p><b>11.23.7</b> Sollte die Auszahlungsfunktion aus technischen Gründen nicht zur Verfügung stehen, ist diese Website dafür nicht verantwortlich. Darüber hinaus behalten alle Wetten in solchen Fällen ihren ursprünglichen Wettstatus bei, und diese Website kann auch nicht verantwortlich gemacht werden. 。 </p>
+                          <p><b>11.22.7</b> Sollte die Auszahlungsfunktion aus technischen Gründen nicht zur Verfügung stehen, ist diese Website dafür nicht verantwortlich. Darüber hinaus behalten alle Wetten in solchen Fällen ihren ursprünglichen Wettstatus bei, und diese Website kann auch nicht verantwortlich gemacht werden. 。 </p>
 
-                          <p><b>11.23.8</b> Die Website behält sich das Recht vor, Wetten anzunehmen oder abzulehnen, um die in der Cash-Out-Funktion enthaltenen Sportarten, Wettbewerbe, Märkte oder Wettarten auszuzahlen. </p>
+                          <p><b>11.22.8</b> Die Website behält sich das Recht vor, Wetten anzunehmen oder abzulehnen, um die in der Cash-Out-Funktion enthaltenen Sportarten, Wettbewerbe, Märkte oder Wettarten auszuzahlen. </p>
 
-                          <p><b>11.24</b> Der Höchstpreis wird in USD als Basiswährung angegeben, um die Welt zu sichern, aber der Währungsäquivalent gilt für die tatsächlichen Ausgaben. Wenn es sich bei Mehrfachwetten um Ereignisse mit unterschiedlichen maximalen Bonuslimits handelt, gilt der Mindestbetrag. Beide maximalen Bonuslimits gelten für alle unsere Kunden oder Kundengruppen, die verschiedene Wettkonten verwenden, um Wetten der gleichen Auswahl zu unterschiedlichen Preisen zu enthalten. Es sollte Grund zu der Annahme geben, dass mehrere Wetten auf diese Weise platziert wurden, und die vollständige Auszahlung dieser Wetten summiert sich zu nur einer maximalen Auszahlung. </p>
+                          <p><b>11.23</b> Der Höchstpreis wird in USD als Basiswährung angegeben, um die Welt zu sichern, aber der Währungsäquivalent gilt für die tatsächlichen Ausgaben. Wenn es sich bei Mehrfachwetten um Ereignisse mit unterschiedlichen maximalen Bonuslimits handelt, gilt der Mindestbetrag. Beide maximalen Bonuslimits gelten für alle unsere Kunden oder Kundengruppen, die verschiedene Wettkonten verwenden, um Wetten der gleichen Auswahl zu unterschiedlichen Preisen zu enthalten. Es sollte Grund zu der Annahme geben, dass mehrere Wetten auf diese Weise platziert wurden, und die vollständige Auszahlung dieser Wetten summiert sich zu nur einer maximalen Auszahlung. </p>
 
 
                           <h3>12. Fehlgeschlagene und abgebrochene Spiele</h3>
@@ -1580,9 +1581,9 @@ export default {
 
                           <p><b>13.2</b> Unbeschadet der Allgemeingültigkeit des Vorstehenden akzeptieren Sie, dass wir:</p>
 
-                          <p><b>13.2.1</b> garantiert nicht, dass die Software, die Spiele und die Website für ihren Zweck geeignet sind; </p>
+                          <p><b>13.2.1</b> Garantiert nicht, dass die Software, die Spiele und die Website für ihren Zweck geeignet sind; </p>
 
-                          <p><b>13.2.2</b> garantiert nicht, dass die Software, die Spiele und die Website fehlerfrei sind; </p>
+                          <p><b>13.2.2</b> Garantiert nicht, dass die Software, die Spiele und die Website fehlerfrei sind; </p>
 
                           <p><b>13.2.3</b> Es gibt keine Garantie dafür, dass die Software, die Spiele und die Website ohne Unterbrechung unterbrochen werden. </p>
 

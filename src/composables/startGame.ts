@@ -55,7 +55,8 @@ export function showLoginBox() {
 
 // 获取游戏链接
 export function getGameUrl(gameId: string, gameUrl = 'game/url') {
-  getGameUrlApi({ id: gameId, platform: PlatForm.H5 }, gameUrl)
+  const domain = window.location.hostname
+  getGameUrlApi({ id: gameId, platform: PlatForm.H5, domain: domain }, gameUrl)
     .then((resp) => {
       window.location.href = resp.data
     })

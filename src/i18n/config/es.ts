@@ -130,7 +130,7 @@ export default {
   makeAllRead: 'Marcar Todos como Leídos',
   noMessage: 'No tienes ninguna notificación en este momento',
   // Recompensas
-  claimReward: 'Reclamar Recompensa',
+  claimReward: 'Promo Código',
   claimNewReward: 'Reclamar Nueva Recompensa',
   rewardCode: 'Código de Recompensa',
   claim: 'Reclamar',
@@ -375,7 +375,8 @@ export default {
     inputOrderId: 'Por favor, ingresa el número de boleto',
     orderNoholder: "Por favor, utiliza ',' para separar múltiples órdenes de apuesta.",
     applySuccess: 'Solicitud exitosa',
-    applyFail: 'Solicitud fallida'
+    applyFail: 'Solicitud fallida',
+    pwdName: 'Tu nombre de usuario y tu contraseña deben ser diferentes'
   },
 
   rewardsBig: 'Recompensas',
@@ -510,7 +511,7 @@ export default {
   outTime: 'Hora de salida del hotel',
   sabaSportDesc: {
     0: 'Todos los eventos deportivos',
-    1: 'Compatible con todos los dispositivos digitales: MacOS y Windows',
+    1: 'Compatible con todos los dispositivos digitales',
     2: 'Encriptación de seguridad',
     3: 'Cuotas en tiempo real',
     4: 'Backend independiente'
@@ -1537,25 +1538,25 @@ export default {
                         <p><b>11.20</b> En caso de discrepancias en las estadísticas de los partidos proporcionadas por fuentes externas, prevalecerán las fuentes de datos establecidas en nuestra página publicada de Reglas generales de apuestas deportivas. </p>
                         <p><b>11.21</b> El límite máximo de apuesta dependerá de la cantidad permitida por el sitio web en el momento en que acepte una apuesta. </p>
 
-                        <p><b>11.23</b> Lo siguiente se refiere a la función de retirada:</p>
+                        <p><b>11.22</b> Lo siguiente se refiere a la función de retirada:</p>
 
-                        <p><b>11.23.1</b> Los retiros están disponibles para eventos, partidos y mercados seleccionados, apuestas simples y múltiples, antes y durante el partido. </p>
+                        <p><b>11.22.1</b> Los retiros están disponibles para eventos, partidos y mercados seleccionados, apuestas simples y múltiples, antes y durante el partido. </p>
 
-                        <p><b>11.23.2</b> Retraso en la aceptación de solicitudes de retiro. Si los cambios de precio o de mercado están en pausa, es posible que la solicitud de retiro no tenga éxito. </p>
+                        <p><b>11.22.2</b> Retraso en la aceptación de solicitudes de retiro. Si los cambios de precio o de mercado están en pausa, es posible que la solicitud de retiro no tenga éxito. </p>
 
-                        <p><b>11.23.3</b> Si se aprueba una solicitud de retiro, la apuesta correspondiente se mostrará inmediatamente y se liquidará. El resultado final real de la apuesta original no afectará el proceso de retiro.</p>
+                        <p><b>11.22.3</b> Si se aprueba una solicitud de retiro, la apuesta correspondiente se mostrará inmediatamente y se liquidará. El resultado final real de la apuesta original no afectará el proceso de retiro.</p>
 
-                        <p><b>11.23.4</b> En cualquier caso, tras la solicitud de retiro exitosa, el monto total del reembolso será devuelto a su Cuenta. </p>
+                        <p><b>11.22.4</b> En cualquier caso, tras la solicitud de retiro exitosa, el monto total del reembolso será devuelto a su Cuenta. </p>
 
-                        <p><b>11.23.5</b> El sitio web no puede garantizar que sus apuestas estén disponibles para la opción de retiro. Si se realiza un retiro antes del evento, no cubriremos ni dejaremos de cubrir el Evento en vivo, y el retiro no estará disponible una vez que comience el Evento o nuestro Partido en vivo no esté cubierto para detenerse. Cuando el mercado esté en pausa, no se proporcionarán pagos. </p>
+                        <p><b>11.22.5</b> El sitio web no puede garantizar que sus apuestas estén disponibles para la opción de retiro. Si se realiza un retiro antes del evento, no cubriremos ni dejaremos de cubrir el Evento en vivo, y el retiro no estará disponible una vez que comience el Evento o nuestro Partido en vivo no esté cubierto para detenerse. Cuando el mercado esté en pausa, no se proporcionarán pagos. </p>
 
-                        <p><b>11.23.6</b> Este sitio web se reserva el derecho de retirar total o parcialmente la desinversión funcional de clientes o grupos de clientes. Ejerceremos este derecho en los casos en que exista una sospecha razonable de que un cliente o grupo de clientes está abusando de la función de retiro para aprovechar los cambios de precios previos al evento, o que la función de retiro se usa regularmente para cerrar apuestas antes del inicio del evento. </p>
+                        <p><b>11.22.6</b> Este sitio web se reserva el derecho de retirar total o parcialmente la desinversión funcional de clientes o grupos de clientes. Ejerceremos este derecho en los casos en que exista una sospecha razonable de que un cliente o grupo de clientes está abusando de la función de retiro para aprovechar los cambios de precios previos al evento, o que la función de retiro se usa regularmente para cerrar apuestas antes del inicio del evento. </p>
 
-                        <p><b>11.23.7</b> Si la función de retiro no está disponible debido a razones técnicas, este sitio web no será responsable de esto. Además, cualquier apuesta en tales casos mantendrá su estado de apuesta original y este sitio web tampoco será responsable. 。 </p>
+                        <p><b>11.22.7</b> Si la función de retiro no está disponible debido a razones técnicas, este sitio web no será responsable de esto. Además, cualquier apuesta en tales casos mantendrá su estado de apuesta original y este sitio web tampoco será responsable. 。 </p>
 
-                        <p><b>11.23.8</b> El sitio web se reserva el derecho de aceptar o rechazar cualquier apuesta / apuesta para retirar los deportes, competiciones, mercados o tipos de apuestas contenidas en la función de retiro. </p>
+                        <p><b>11.22.8</b> El sitio web se reserva el derecho de aceptar o rechazar cualquier apuesta / apuesta para retirar los deportes, competiciones, mercados o tipos de apuestas contenidas en la función de retiro. </p>
 
-                        <p><b>11.24</b> El premio máximo se cotiza en USD como la moneda base para asegurar el mundo, pero el equivalente en moneda se aplica al gasto real. Cuando las apuestas múltiples involucran eventos con diferentes límites máximos de bonificación, se aplicará la cantidad mínima. Ambos límites máximos de bonificación se aplican a todos nuestros clientes o grupos de clientes que utilizan diferentes cuentas de apuestas para contener apuestas de la misma selección a diferentes precios. Debe haber razones para creer que se han realizado varias apuestas de esta manera, y el pago completo de estas apuestas sumará solo un pago máximo. </p>
+                        <p><b>11.23</b> El premio máximo se cotiza en USD como la moneda base para asegurar el mundo, pero el equivalente en moneda se aplica al gasto real. Cuando las apuestas múltiples involucran eventos con diferentes límites máximos de bonificación, se aplicará la cantidad mínima. Ambos límites máximos de bonificación se aplican a todos nuestros clientes o grupos de clientes que utilizan diferentes cuentas de apuestas para contener apuestas de la misma selección a diferentes precios. Debe haber razones para creer que se han realizado varias apuestas de esta manera, y el pago completo de estas apuestas sumará solo un pago máximo. </p>
 
 
                         <h3>12. Juegos abortados y abortados</h3>

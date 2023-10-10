@@ -1368,7 +1368,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         }
         select { text-align: center; }
         .cr-input { position: relative;
-            .disabled { .bgc(var(--color-background),#999); }
+            .disabled { .bgc(var(--color-background), --color-text) }
             input[type='email']{padding-right:8rem;}
             &.group { .flex();
                 .form-control { .flex-x(); margin-right: 1rem; min-width: inherit; padding: 0;
@@ -1452,7 +1452,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         .rewards-card { .bg(var(--color-menu)); .flex(); .flex-v(); .radius(.5rem); overflow: hidden;
             .rc-t { padding: 1rem; .flex();
                 .rct-l {.flex-x(2);
-                    img { width: 100%; height: 8rem; }
+                    img { width: 100%; height: 12rem; }
                 }
                 .rct-r {.flex-x(1); padding-left: 1rem;
                     h3 { font-size: 1.6rem; color: var(--color-white); margin-bottom: 1rem; }
