@@ -13,7 +13,6 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const code = urlParams.get('code')
 if (code && code.length > 0) {
-  console.log(window.opener)
   window.opener.postMessage(
     {
       name: 'code',
