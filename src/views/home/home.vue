@@ -119,7 +119,6 @@ import { getAssetsFile } from '@/utils'
 
 import BigNumber from 'bignumber.js'
 import { useI18n } from 'vue-i18n'
-import { showToast } from 'vant'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -135,14 +134,6 @@ const rewardProgressWidth = computed(() => {
 })
 
 const handleLogout = () => {
-  userStore
-    .logout()
-    .then((resp) => {
-      showToast(t('tips.logoutSuccess'))
-      console.log(resp)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  router.push({ name: 'logout' })
 }
 </script>

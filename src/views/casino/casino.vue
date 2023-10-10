@@ -55,7 +55,7 @@
                 <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=200&h=160&q=50&dpr=2`" />
                 <!-- <span>{{ item.pn }}</span> -->
                 <div v-if="userStore.userInfo.id" class="sp_sc">
-                  <i :class="item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'" @click.stop="setFav(item)" />
+                  <i :class="isFavClass(item)" @click.stop="setFav(item)" />
                 </div>
               </div>
               <div class="i-txt">
@@ -174,6 +174,17 @@ const getGameList = () => {
     })
 }
 
+const isFavClass = (item: getGameListGsItemResp) => {
+  let css = item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'
+  if (appStore.detailsFav.includes(item.id)) {
+    css = 'iconfont icon-shoucang_fill'
+  }
+  if (appStore.detailsCancelFav.includes(item.id)) {
+    css = 'iconfont icon-shoucang'
+  }
+  return css
+}
+
 // 设置收藏或取消收藏
 const setFav = async (gameItem: getGameListGsItemResp) => {
   if (userStore.userInfo.id == '') {
@@ -209,6 +220,8 @@ onActivated(() => {
 })
 
 onDeactivated(() => {
+  appStore.detailsCancelFav = []
+  appStore.detailsFav = []
   if (scrollRef.value) {
     scrollTop.value = scrollRef.value.scrollTop
   }

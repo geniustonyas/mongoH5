@@ -309,8 +309,8 @@ const exchangeReward = () => {
     return false
   }
   exchangeRewardApi({ RewardCode: rewardCode.value })
-    .then(() => {
-      showToast(t('tips.receivedRewardSuccess'))
+    .then((resp) => {
+      showToast(t('receivedSuccess', { amount: moneyFormat(resp.data) }))
       showAddBox.value = false
       query.PageIndex = 1
       rewardList.value = []

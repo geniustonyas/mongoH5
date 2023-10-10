@@ -207,7 +207,7 @@
 
 <script setup lang="ts">
 import { reactive, ref, onMounted, nextTick } from 'vue'
-// import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
@@ -224,7 +224,7 @@ import QrcodeVue from 'qrcode.vue'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { showToast, ConfigProvider, Switch } from 'vant'
 
-// const router = useRouter()
+const router = useRouter()
 const site_name = import.meta.env.VITE_APP_SITE_NAME
 const userStore = useUserStore()
 const { t } = useI18n()
@@ -376,7 +376,7 @@ const changePwd = () => {
   editPasswordApi(editPwdForm)
     .then(() => {
       showToast(t('tips.editPwdSuccess'))
-      userStore.logout()
+      router.push({ name: 'logout' })
     })
     .catch((error) => {
       console.log(error)

@@ -22,6 +22,8 @@ export const useAppStore = defineStore('app', () => {
   const refreshMaintainStatusTimer = ref<null | number>(null)
   const maintainStatus = ref(false)
   const maintainTime = ref<number>(0)
+  const detailsFav = ref<string[]>([])
+  const detailsCancelFav = ref<string[]>([])
 
   // 获取系统配置
   const getConfig = () => {
@@ -87,6 +89,8 @@ export const useAppStore = defineStore('app', () => {
     thirdData,
     maintainStatus,
     maintainTime,
+    detailsFav,
+    detailsCancelFav,
     getConfig,
     resetThirdData,
     refreshMainStatus

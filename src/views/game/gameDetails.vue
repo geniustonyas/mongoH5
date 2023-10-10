@@ -79,6 +79,7 @@ import { useRoute } from 'vue-router'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { useUserStore } from '@/store/modules/user'
+import { useAppStore } from '@/store/modules/app'
 import { getGameDetailsApi, setFavApi, cancalFavApi } from '@/api/game/index'
 import { getGameDetailsRespItem, getFavGameListRespItem, getGameDetailsRespGameItem } from '@/api/game/types'
 import { startGame } from '@/composables/startGame'
@@ -86,6 +87,7 @@ import router from '@/router'
 import { GameType } from '@/utils/constant'
 
 const userStore = useUserStore()
+const appStore = useAppStore()
 const route = useRoute()
 const { t } = useI18n()
 
@@ -124,10 +126,25 @@ const setFav = async (gameItem: getFavGameListRespItem | getGameDetailsRespGameI
     router.push({ name: 'login' })
   } else {
     // 是否收藏
+    const isFavIndex = appStore.detailsFav.indexOf(gameItem.id)
+    const calcelFavIndex = appStore.detailsCancelFav.indexOf(gameItem.id)
     if (gameItem.fg) {
+      // 取消收藏
       await cancalFavApi({ gameId: gameItem.id })
+      if (isFavIndex != -1) {
+        appStore.detailsFav.splice(isFavIndex, 1)
+      }
+      if (calcelFavIndex == -1) {
+        appStore.detailsCancelFav.push(gameItem.id)
+      }
     } else {
       await setFavApi({ gameId: gameItem.id })
+      if (isFavIndex == -1) {
+        appStore.detailsFav.push(gameItem.id)
+      }
+      if (calcelFavIndex != -1) {
+        appStore.detailsCancelFav.splice(calcelFavIndex, 1)
+      }
     }
     gameItem.fg = !gameItem.fg
     userStore.getFavCount()

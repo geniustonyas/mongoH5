@@ -83,6 +83,12 @@ const routes = [
         meta: { needLogin: false, keepAlive: false }
       },
       {
+        path: 'logout',
+        name: 'logout',
+        component: () => import('@/views/user/logout.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
         path: 'reg',
         name: 'reg',
         component: () => import('@/views/user/reg.vue'),
@@ -166,12 +172,6 @@ const routes = [
         component: () => import('@/views/home/tradeRecord.vue'),
         meta: { needLogin: true, keepAlive: false }
       },
-      // {
-      //   path: 'wallet',
-      //   name: 'wallet',
-      //   component: () => import('@/views/home/wallet.vue'),
-      //   meta: { needLogin: true, keepAlive: false }
-      // },
       {
         path: 'rewards',
         name: 'rewards',

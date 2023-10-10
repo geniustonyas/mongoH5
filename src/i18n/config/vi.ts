@@ -769,7 +769,7 @@ export default {
                       </div>
                     </div>
                     <div class="vc-rows">
-                      <div class="r-title">5. Cách trở thành thành viên VIP của chúng tôi</div>
+                      <div class="vr-title">5. Cách trở thành thành viên VIP của chúng tôi</div>
                       <div class="vr-conts">
                         <dl>
                           <dd>

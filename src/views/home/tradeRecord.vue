@@ -170,7 +170,7 @@ import type { DropdownItemInstance } from 'vant'
 import { cloneDeep } from 'lodash-es'
 
 const router = useRouter()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const currenyList = currenyListData()
 
 // 筛选 - 日期控件参数
@@ -199,18 +199,44 @@ const query = reactive({
   noLoading: false
 })
 
-// 区块链浏览器映射
-const explorer = reactive({
-  Binance: 'https://bscscan.com/tx/',
-  Bitcoin: 'https://www.blockchain.com/explorer/transactions/btc/',
-  Cardano: 'https://blockchair.com/cardano/transaction/',
-  Dogecoin: 'https://blockchair.com/dogecoin/transaction/',
-  Ethereum: 'https://etherscan.io/tx/',
-  Litecoin: 'https://blockchair.com/litecoin/transaction/',
-  Ripple: 'https://blockchair.com/ripple/transaction/',
-  Toncoin: 'https://etherscan.io/tx/',
-  Tron: 'https://tronscan.org/#/transaction/'
-})
+// // 区块链浏览器映射
+// const explorer = reactive({
+//   Binance: 'https://bscscan.com/tx/',
+//   Bitcoin: 'https://www.blockchain.com/explorer/transactions/btc/',
+//   Cardano: 'https://blockchair.com/cardano/transaction/',
+//   Dogecoin: 'https://blockchair.com/dogecoin/transaction/',
+//   Ethereum: 'https://etherscan.io/tx/',
+//   Litecoin: 'https://blockchair.com/litecoin/transaction/',
+//   Ripple: 'https://blockchair.com/ripple/transaction/',
+//   Toncoin: 'https://etherscan.io/tx/',
+//   Tron: 'https://tronscan.org/#/transaction/'
+// })
+
+const coinMap = {
+  Binance: 'bnb',
+  Bitcoin: 'bitcoin',
+  Cardano: 'cardano',
+  Dogecoin: 'dogecoin',
+  Ethereum: 'ethereum',
+  Litecoin: 'litecoin',
+  Ripple: 'ripple',
+  Toncoin: 'ethereum',
+  Tron: 'ethereum'
+}
+
+const langMap = {
+  ja: 'https://blockchair.com/ja',
+  es: 'https://blockchair.com/es',
+  pt: 'https://blockchair.com/pt',
+  tr: 'https://blockchair.com/tr',
+  th: 'https://blockchair.com',
+  en: 'https://blockchair.com',
+  de: 'https://blockchair.com/de',
+  zh: 'https://blockchair.com/zh',
+  fr: 'https://blockchair.com/fr',
+  ko: 'https://blockchair.com/ko',
+  vi: 'https://blockchair.com'
+}
 
 const orderStatusCss = ref<dynamicObject>(['', 'incomplete', 'confirmed', 'deleted'])
 const dataList = ref<getHistoryRecordItems[]>([])
@@ -335,7 +361,14 @@ const customDate = (time: any) => {
 
 const openExplorer = (detailsData: getHistoryRecordDetails) => {
   if (detailsData.blockchainCode) {
-    const wd = window.open(explorer[detailsData.blockchainCode] + detailsData.txId)
+    let url = ''
+    if (detailsData.blockchainCode != 'Tron') {
+      //@ts-ignore
+      url = langMap[locale.value] + '/' + coinMap[detailsData.blockchainCode] + '/transaction/' + detailsData.txId
+    } else {
+      url = 'https://tronscan.org/#/transaction/' + detailsData.txId
+    }
+    const wd = window.open(url)
     if (!wd) {
       showConfirmDialog({
         title: t(''),
@@ -343,7 +376,7 @@ const openExplorer = (detailsData: getHistoryRecordDetails) => {
       })
         .then(() => {
           if (detailsData.blockchainCode) {
-            window.open(explorer[detailsData.blockchainCode] + detailsData.txId)
+            window.open(url)
           }
         })
         .catch(() => {

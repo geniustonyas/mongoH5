@@ -277,7 +277,7 @@ import CommonHeader from '@/components/layout/CommonHeader.vue'
 import { getVipInfoApi, receiveRewardApi } from '@/api/home/index'
 import { currentDataResp, vipListItemResp, vipListItemItemsResp } from '@/api/home/types'
 // import { dynamicObject } from '@/types/api'
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, moneyFormat } from '@/utils'
 import dynamicObject from '@/types/dynamicObject'
 
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
@@ -414,7 +414,7 @@ const getVipInfo = () => {
 const receiveReward = (code: string) => {
   receiveRewardApi({ VipSubItemCode: code })
     .then((resp) => {
-      showToast(t('tips.receivedRewardSuccess'))
+      showToast(t('receivedSuccess', { amount: moneyFormat(resp.data) }))
       console.log(resp)
       getVipInfo()
     })
