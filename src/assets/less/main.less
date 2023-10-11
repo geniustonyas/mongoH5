@@ -542,27 +542,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 .mybets-box { padding-top: 3.6rem;
     .line-tabs { position: fixed; top: 4.8rem; left: 0; width: 100%; }
 }
-/*会员中心-奖金*/
-.rewards-box { padding: 1rem;
-    .rb-title { padding: 1rem 0; }
-    .rb-list {
-        li { .bg(var(--color-menu)); .radius(.5rem); padding: 1rem; .flex(); .flex-pack-justify(); .flex-align(); margin-bottom: .5rem;
-            strong { color: var(--color-white); font-weight: 700; font-size: 1.6rem; margin: .3rem 0; display: block; }
-            .l-l { text-align: left; }
-            .l-r { text-align: right;
-                span { position: relative; font-size: 1rem; .radius(); padding: .1rem 1rem .1rem .5rem; .bg(var(--color-dark-gray));
-                    &:before { content: ""; position: absolute; top: 0.8rem; right: 0.3rem; display: inline-block; .size(.5rem,.5rem); .radius(.5rem); .bg(transparent); }
-                    &.confirmed {
-                        &:before { .bg(var(--color-green)); }
-                    }
-                    &.incomplete {
-                        &:before { .bg(var(--color-red)); }
-                    }
-                }
-            }
-        }
-    }
-}
+
 /*充值，提现，投注，结算记录*/
 .record-box { .flex(); .flex-v(); height: 100%; overflow: hidden;
     .rb-head {
@@ -1441,6 +1421,9 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                         &:before { .bg(var(--color-green)); }
                     }
                     &.incomplete {
+                        &:before { .bg(var(--color-primary)); }
+                    }
+                    &.deleted {
                         &:before { .bg(var(--color-red)); }
                     }
                 }
