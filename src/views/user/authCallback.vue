@@ -13,13 +13,8 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const code = urlParams.get('code')
 if (code && code.length > 0) {
-  window.opener.postMessage(
-    {
-      name: 'code',
-      lineCode: code
-    },
-    window.location.origin
-  )
+  localStorage.setItem('lineCode', code)
+  window.close()
 }
 
 // twitter登录

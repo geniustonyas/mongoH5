@@ -169,7 +169,7 @@ export default {
   deposits: '입금',
   withdrawals: '출금',
   bets: '베팅',
-  wins: '보너스당첨',
+  wins: '보너스',
   currencyFilter: '화폐별 필터링',
   dateFilter: '일자별 필터링',
   winLose: '승패',

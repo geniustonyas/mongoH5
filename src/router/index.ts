@@ -281,12 +281,6 @@ const router = createRouter({
 
 // 验证是否需要登录
 router.beforeEach((to, from, next) => {
-  if (!to.matched.length) {
-    next({ name: '404' })
-  } else {
-    next()
-  }
-
   const token = getToken()
   let userStore: any = null
   let appStore: any = null

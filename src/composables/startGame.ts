@@ -34,7 +34,7 @@ export function startGame(gameId: string | number, gameType = GameType.Sports, u
         getGameUrl(gameId.toString(), url)
       }
     } else {
-      router.push({ name: 'gameDetails', params: { id: gameId } })
+      router.push({ name: 'gameDetails', params: { id: gameId }, query: { gameType: gameType } })
     }
   }
 }

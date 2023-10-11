@@ -169,7 +169,7 @@ export default {
   deposits: 'Nạp tiền',
   withdrawals: 'Rút tiền',
   bets: 'Cược',
-  wins: 'Thắng',
+  wins: 'Thưởng',
   currencyFilter: 'Lọc theo loại tiền mã hóa',
   dateFilter: 'Lọc theo ngày',
   winLose: 'Thắng / Thua',

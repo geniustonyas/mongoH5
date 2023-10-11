@@ -39,7 +39,6 @@
           <h2 @click="collapseSport = !collapseSport">{{ t('sports') }}<i class="iconfont icon-down" /></h2>
           <Vue3SlideUpDown v-model="collapseSport">
             <ul>
-              <!-- <li v-for="(item, index) of sportProviderList" :key="index" @click="router.push({ name: 'gameDetails', params: { id: item.id } })"> -->
               <li v-for="(item, index) of sportProviderList" :key="index" @click="startGame(item.id, GameType.Sports)">
                 <a><img v-lazy="item.img" />{{ item.name }}</a>
               </li>

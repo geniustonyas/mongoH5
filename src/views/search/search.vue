@@ -19,7 +19,6 @@
         <div class="gamebox search">
           <div v-if="searchResult.length > 0" class="g-list row">
             <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item.id, parseInt(item.type))">
-              <!-- <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item.id)"> -->
               <div class="i-bd">
                 <div class="i-img">
                   <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=140&h=100&q=50&dpr=2`" />
@@ -86,7 +85,6 @@ import { getSearchGameApi, getGameRecommendApi } from '@/api/game/index'
 import { getSearchGameRespItem, recommendGameRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
 import { providerListData, providerListItemTypes } from '@/utils/config'
-// import { startGame } from '@/composables/startGame'
 
 import { ConfigProvider } from 'vant'
 import { debounce } from 'lodash-es'

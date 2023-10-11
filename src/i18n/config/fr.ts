@@ -170,7 +170,7 @@ export default {
   deposits: 'Dépôts',
   withdrawals: 'Retraits',
   bets: 'Mises',
-  wins: 'Gains',
+  wins: 'Prime',
   currencyFilter: 'Filtrer par Monnaie',
   dateFilter: 'Filtrer par Date',
   winLose: 'Gagnant / Perdant',

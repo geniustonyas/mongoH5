@@ -169,7 +169,7 @@ export default {
   deposits: 'Einzahlung',
   withdrawals: 'Auszahlung',
   bets: 'Wetten',
-  wins: 'Gewonnen',
+  wins: 'Bonus',
   currencyFilter: 'Währung',
   dateFilter: 'FILTERN NACH DATUM',
   winLose: 'Gewinnen oder verlieren',

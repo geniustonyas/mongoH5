@@ -183,10 +183,11 @@ window.addEventListener('message', async (event) => {
   }
 })
 
-// twitter 监听storage登录
+// 监听storage处理line和twitter登录
 window.addEventListener('storage', async (event) => {
   // 判断事件来源是否为目标存储区域（例如 localStorage）
   if (event.storageArea === localStorage) {
+    // twitter登录
     const twitterId = localStorage.getItem('twitterId')
     const sign = localStorage.getItem('twitterSign')
     if (twitterId && sign) {
@@ -194,6 +195,43 @@ window.addEventListener('storage', async (event) => {
       localStorage.removeItem('twitterId')
       localStorage.removeItem('twitterSign')
       openWindow.close()
+    }
+    // line登录
+    const lineCode = localStorage.getItem('lineCode')
+    if (lineCode) {
+      try {
+        const data = {
+          grant_type: 'authorization_code', // 固定值
+          code: lineCode, // 从 LINE 平台收到的授权码
+          client_id: LINE_CLIENT_ID,
+          client_secret: LINE_CLIENT_SECRET,
+          redirect_uri: window.location.origin + '/#/user/authCallback'
+        }
+        const resp = await axios({
+          url: 'https://api.line.me/oauth2/v2.1/token',
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          data: data
+        })
+        const userInfo = await axios({
+          url: 'https://api.line.me/oauth2/v2.1/userinfo',
+          // @ts-ignore
+          headers: { Authorization: `Bearer ${resp.data.access_token}` }
+        })
+        const result = await lineValidateApi({ userId: userInfo.data.sub })
+        if (result.data.ischecked) {
+          handleThirdLogin({ ThirdPartyType: '1', ThirdPartyId: userInfo.data.sub, ThirdPartyName: 'Line' }, result.data.sign)
+          openWindow.close()
+        } else {
+          showToast(t('tips.invalidThirdUser'))
+          openWindow.close()
+        }
+      } catch (error) {
+        openWindow.close()
+        console.log(error)
+      }
     }
   }
 })

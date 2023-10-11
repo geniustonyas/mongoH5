@@ -169,7 +169,7 @@ export default {
   deposits: 'Deposit',
   withdrawals: 'Withdraw {curreny}',
   bets: 'Bets',
-  wins: 'Wins',
+  wins: 'Bonus',
   currencyFilter: 'Currency',
   dateFilter: 'FILTER BY DATE',
   winLose: 'win or lose',

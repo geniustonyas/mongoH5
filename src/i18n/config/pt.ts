@@ -169,7 +169,7 @@ export default {
   deposits: 'Depósitos',
   withdrawals: 'Retiradas',
   bets: 'Apostas',
-  wins: 'Vitórias',
+  wins: 'Bônus',
   currencyFilter: 'Filtrar por Moeda',
   dateFilter: 'Filtrar por Data',
   winLose: 'Vitória/Perda',

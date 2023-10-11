@@ -169,7 +169,7 @@ export default {
   deposits: 'Yatırımlar',
   withdrawals: 'Çekimler',
   bets: 'Bahisler',
-  wins: 'Kazançlar',
+  wins: 'Bonus',
   currencyFilter: 'Para Birimi Filtresi',
   dateFilter: 'Tarih Filtresi',
   winLose: 'Kazan/Kaybet',

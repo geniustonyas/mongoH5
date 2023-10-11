@@ -169,7 +169,7 @@ export default {
   deposits: '入金',
   withdrawals: '出金',
   bets: 'ベット',
-  wins: 'ウィン',
+  wins: 'ボーナス',
   currencyFilter: '通貨毎フィルター',
   dateFilter: '日付毎フィルター',
   winLose: '勝ち負け',

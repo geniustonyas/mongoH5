@@ -169,7 +169,7 @@ export default {
   deposits: 'Depósitos',
   withdrawals: 'Retiros',
   bets: 'Apuestas',
-  wins: 'Ganancias',
+  wins: 'El Extra',
   currencyFilter: 'Filtrar por Moneda',
   dateFilter: 'Filtrar por Fecha',
   winLose: 'Ganar/Perder',

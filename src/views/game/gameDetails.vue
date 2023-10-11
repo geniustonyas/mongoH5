@@ -38,7 +38,7 @@
             </div>
             <div class="btns">
               <a class="btn btn-primary" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/url', true)">{{ t('startNow') }}</a>
-              <a v-if="parseInt(detailsData.gameType) === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/demo', true)">
+              <a v-if="parseInt(gameType) === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/demo', true)">
                 {{ t('demoMode') }}
               </a>
             </div>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div v-if="detailsData.game.length > 0" class="g-list">
-          <div v-for="(item, index) of detailsData.game" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id } })">
+          <div v-for="(item, index) of detailsData.game" :key="index" class="item" @click="router.push({ name: 'gameDetails', params: { id: item.id }, query: { gameType: item.gameType } })">
             <div class="i-bd">
               <div class="i-img">
                 <img v-lazy="`https://seabet.imgix.net/${item.imageName}?auto=compress,format&w=200&h=152&q=50&dpr=2`" />
@@ -90,6 +90,8 @@ const userStore = useUserStore()
 const appStore = useAppStore()
 const route = useRoute()
 const { t } = useI18n()
+
+const gameType = route.query.gameType as string
 
 // 获取游戏列表
 const detailsData = reactive<getGameDetailsRespItem>({
