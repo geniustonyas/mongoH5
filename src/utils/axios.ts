@@ -89,7 +89,7 @@ function createRequestFunction(service: AxiosInstance) {
         'Content-Type': get(config, 'headers.Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
       },
       withCredentials: true, // 发送cookies,authorization header或TLS客户端等资格证书, 主要用于跨域.
-      timeout: 5000,
+      timeout: 60 * 1000,
       baseURL: import.meta.env.VITE_BASE_API,
       data: {}
     }

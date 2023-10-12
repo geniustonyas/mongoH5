@@ -20,7 +20,7 @@
           </div>
           <div class="ff-group">
             <label>{{ t('amount') }}</label>
-            <input v-model="withdrawForm.Amount" type="number" ref="amountDom" :placeholder="t('inputAmount')" autocomplete="off" />
+            <input v-model="withdrawForm.Amount" type="text" ref="amountDom" :placeholder="t('inputAmount')" autocomplete="off" />
           </div>
           <ul class="ff-amounts">
             <li :class="{ active: percent == 0.25 }">

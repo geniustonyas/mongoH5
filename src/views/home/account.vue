@@ -71,7 +71,7 @@
                       <span>{{ t('zipCode') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editInfoForm.Zipcode" ref="zipcodeDom" type="number" class="form-control" placeholder="" autocomplete="off" />
+                      <input v-model="editInfoForm.Zipcode" ref="zipcodeDom" type="text" class="form-control" placeholder="" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row" v-if="userStore.userInfo.isBindGoogleAuth">
@@ -79,7 +79,7 @@
                       <span>{{ t('googleCode') }}</span>
                     </div>
                     <div class="cr-input">
-                      <input v-model="editInfoForm.VerificationCode" ref="editVerificationCodeDom" type="number" class="form-control" placeholder="" autocomplete="off" />
+                      <input v-model="editInfoForm.VerificationCode" ref="editVerificationCodeDom" type="text" class="form-control" placeholder="" autocomplete="off" />
                     </div>
                   </div>
                   <div class="cf-row">
