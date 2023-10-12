@@ -148,12 +148,13 @@ export function getWalletNonce(params: any) {
 }
 
 /** 验证telegram用户是否真实 */
-export function telegramValidateApi(params: any) {
+export function telegramValidateApi(data: any) {
   return request<anyResp>({
+    headers: { 'Content-Type': 'application/json' },
     url: 'telegram',
-    method: 'get',
+    method: 'post',
     baseURL: import.meta.env.VITE_THIRD_API,
-    params
+    data
   })
 }
 

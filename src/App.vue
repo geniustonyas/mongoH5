@@ -18,7 +18,7 @@
 import { watch } from 'vue'
 // import { Overlay, Loading } from 'vant'
 import { useAppStore } from '@/store/modules/app'
-// import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n'
 import { useUserStore } from './store/modules/user'
 import { liveChatCall } from '@/composables/startGame'
 
@@ -26,7 +26,7 @@ import Maintain from './components/Maintain.vue'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
-// const { t } = useI18n()
+const { t } = useI18n()
 
 const getTransition = (transition: unknown): string | undefined => {
   if (typeof transition === 'string') {
@@ -34,6 +34,8 @@ const getTransition = (transition: unknown): string | undefined => {
   }
   return undefined
 }
+
+document.title = t('siteTitle')
 
 watch(
   () => userStore.userInfo.userName,

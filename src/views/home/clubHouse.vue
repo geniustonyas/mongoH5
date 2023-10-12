@@ -14,13 +14,13 @@
             <b>{{ currentData.vipName }}</b>
           </div>
           <div class="c-icon">
-            <Circle v-model:current-rate="currentRate" :rate="progressWidth(nextItem.requiredTotalBetAmount)" :speed="100" size="125px" :stroke-width="30" layer-color="#333" color="#f7cc00" />
+            <Circle v-model:current-rate="currentRate" :rate="progressWidth(nextSubItem.requiredTotalBetAmount)" :speed="100" size="125px" :stroke-width="30" layer-color="#333" color="#f7cc00" />
             <div class="cricle_img">
               <img :src="getAssetsFile(`grade/${currentData.vipCode}.png`)" />
             </div>
           </div>
           <div class="c_points">
-            <b>{{ currentData.totalBetAmount }}<em>|</em>{{ nextItem.requiredTotalBetAmount }}</b>
+            <b>{{ currentData.totalBetAmount }}<em>|</em>{{ nextSubItem.requiredTotalBetAmount }}</b>
             {{ t('currentPoints') }}
           </div>
           <div class="c-grade">
@@ -133,7 +133,7 @@
                           <div class="schedule-bar">
                             <template v-if="nextSubItem.code == items.code">
                               <div class="sb-line" :style="{ width: progressWidth(nextSubItem.requiredTotalBetAmount) + '%' }" />
-                              <span>{{ parseInt(currentData.totalBetAmount) + ' / ' + parseInt(items.requiredTotalBetAmount) }}</span>
+                              <span>{{ currentData.totalBetAmount + ' / ' + parseInt(items.requiredTotalBetAmount) }}</span>
                             </template>
                             <span v-else>{{ parseInt(items.requiredTotalBetAmount) }}</span>
                           </div>
@@ -356,7 +356,7 @@ const showQuestion7 = ref(false)
 const progressWidth = computed(() => (requiredTotalBetAmount: string) => {
   let width = '0'
   if (requiredTotalBetAmount != '') {
-    width = new BigNumber(parseInt(currentData.totalBetAmount)).dividedBy(parseInt(requiredTotalBetAmount)).multipliedBy(100).toFixed(2)
+    width = new BigNumber(currentData.totalBetAmount).dividedBy(parseInt(requiredTotalBetAmount)).multipliedBy(100).toFixed(2)
   } else {
     width = '100'
   }

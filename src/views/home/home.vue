@@ -59,7 +59,7 @@
               <div class="m-t">{{ t('homePage.nextReward') }}</div>
               <div class="schedule-bar">
                 <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
-                <span>{{ parseInt(userStore.userInfo.totalBetAmount) }}/{{ parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount) }}</span>
+                <span>{{ userStore.userInfo.totalBetAmount }}/{{ parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount) }}</span>
               </div>
             </template>
           </div>
@@ -128,7 +128,7 @@ const { t } = useI18n()
 const rewardProgressWidth = computed(() => {
   let width = '0'
   if (userStore.userInfo.nextVipRequiredTotalBetAmount != '' && userStore.userInfo.totalBetAmount != '') {
-    width = new BigNumber(parseInt(userStore.userInfo.totalBetAmount)).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
+    width = new BigNumber(userStore.userInfo.totalBetAmount).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
   }
   return width
 })

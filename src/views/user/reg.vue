@@ -24,8 +24,8 @@
               <span>{{ t('userName') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="regForm.UserName" ref="userNameDom" type="text" class="form-control" :placeholder="t('regPage.holderUserName')" @blur="checkUserExist()" autocomplete="off" />
-              <div v-if="errorMsg.userNameMsg" class="tip">{{ errorMsg.userNameMsg }}</div>
+              <input v-model.trim="regForm.UserName" ref="userNameDom" type="text" class="form-control" :placeholder="t('regPage.holderUserName')" autocomplete="off" />
+              <div id="userNameTip" class="tip" />
             </div>
           </div>
           <div class="cf-row">
@@ -35,7 +35,7 @@
             <div class="cr-input">
               <input v-model.trim="regForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist()" autocomplete="off" />
               <span v-if="!showloading" class="captcha" @click="sendEmail()">{{ regCount === 0 ? t('sendEmail') : regCount }}</span>
-              <div v-if="errorMsg.emailMsg" class="tip">{{ errorMsg.emailMsg }}</div>
+              <div id="emailTip" class="tip" />
             </div>
           </div>
           <div class="cf-row">
@@ -43,16 +43,8 @@
               <span>{{ t('emailCaptcha') }}</span>
             </div>
             <div class="cr-input">
-              <input
-                v-model.trim="regForm.VerificationCode"
-                ref="verificationCodeDom"
-                type="text"
-                class="form-control"
-                :placeholder="t('tips.inputEmailcapcha')"
-                autocomplete="off"
-                @blur="checkCaptcha()"
-              />
-              <div v-if="errorMsg.captchaMsg" class="tip">{{ errorMsg.captchaMsg }}</div>
+              <input v-model.trim="regForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" :placeholder="t('tips.inputEmailcapcha')" autocomplete="off" />
+              <div id="captchaTip" class="tip" />
             </div>
           </div>
           <div class="cf-row">
@@ -60,11 +52,11 @@
               <span>{{ t('password') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" autocomplete="off" :placeholder="t('password')" @blur="checkPwd()" />
+              <input v-model.trim="regForm.Password" ref="pwdDom" :type="showPwd ? 'text' : 'password'" class="form-control" autocomplete="off" :placeholder="t('password')" />
               <span :class="showPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showPwd = !showPwd" />
               </span>
-              <div v-if="errorMsg.pwdMsg" class="tip">{{ errorMsg.pwdMsg }}</div>
+              <div id="pwdTip" class="tip" />
             </div>
           </div>
           <div class="cf-row">
@@ -72,38 +64,30 @@
               <span>{{ t('confirmPwd') }}</span>
             </div>
             <div class="cr-input">
-              <input
-                v-model.trim="confirmPwd"
-                ref="confirmPwdDom"
-                :type="showConfirmPwd ? 'text' : 'password'"
-                class="form-control"
-                autocomplete="off"
-                :placeholder="t('confirmPwd')"
-                @blur="checkConfirmPwd()"
-              />
+              <input v-model.trim="confirmPwd" ref="confirmPwdDom" :type="showConfirmPwd ? 'text' : 'password'" class="form-control" autocomplete="off" :placeholder="t('confirmPwd')" />
               <span :class="showConfirmPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showConfirmPwd = !showConfirmPwd" />
               </span>
-              <div v-if="errorMsg.confirmPwdMsg" class="tip">{{ errorMsg.confirmPwdMsg }}</div>
+              <div id="confirmPwdTip" class="tip" />
             </div>
           </div>
 
           <!-- 是否接受协议 -->
           <div class="cf-row">
             <div class="cr-mark cm-checkbox">
-              <input v-model="isAudit" ref="isAuditDom" type="checkbox" @blur="checkAudit" />
+              <input v-model="isAudit" ref="isAuditDom" type="checkbox" />
               {{ t('regPage.isAdult') }}
               <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.termCondition') }}</a>
               {{ t('and') }}
               <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('regPage.privacyPolicy') }}</a>
-              <div v-if="errorMsg.isAuditMsg" class="tip">{{ errorMsg.isAuditMsg }}</div>
+              <div id="privacyTip" class="tip" />
             </div>
           </div>
           <div class="cf-row">
             <div ref="isAgreeDom" class="cr-mark cm-checkbox">
-              <input v-model="isAgree" type="checkbox" @blur="checkAgree" />
+              <input v-model="isAgree" type="checkbox" />
               {{ t('regPage.isAgree') }}
-              <div v-if="errorMsg.isAgreeMsg" class="tip">{{ errorMsg.isAgreeMsg }}</div>
+              <div id="agreeTip" class="tip" />
             </div>
           </div>
           <div class="cf-row">
@@ -161,7 +145,6 @@ import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/in
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 import { onMounted } from 'vue'
-import { cloneDeep } from 'lodash-es'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -190,16 +173,7 @@ let isAgreeDom = ref<HTMLInputElement | null>(null)
 let verificationCodeDom = ref<HTMLInputElement | null>(null)
 
 // 错误信息
-const errorMsg = reactive({
-  userNameMsg: '',
-  emailMsg: '',
-  captchaMsg: '',
-  pwdMsg: '',
-  confirmPwdMsg: '',
-  isAgreeMsg: '',
-  isAuditMsg: ''
-})
-const defaultMsg = cloneDeep(errorMsg)
+let errorMsg = ref('')
 
 let regForm = reactive({
   UserName: '',
@@ -223,26 +197,31 @@ const sendEmail = async () => {
   if (regCount.value > 0) {
     return false
   }
+  const dm = document.getElementById('emailTip')
   if (!isEmail(regForm.Email)) {
-    // showToast(t('tips.isEmail'))
-    errorMsg.emailMsg = t('tips.isEmail')
+    errorMsg.value = t('tips.isEmail')
+    dm!.innerHTML = errorMsg.value
     return false
   } else {
-    errorMsg.emailMsg = ''
+    errorMsg.value = ''
+    dm!.innerHTML = ''
   }
   const isExistEmail = await checkEmailExist()
   if (isExistEmail) {
-    errorMsg.emailMsg = t('tips.emailExist')
+    errorMsg.value = t('tips.emailExist')
+    dm!.innerHTML = errorMsg.value
     return false
   } else {
-    errorMsg.emailMsg = ''
+    dm!.innerHTML = ''
+    errorMsg.value = ''
   }
   showloading.value = true
   sendEmailApi({ EmailCheckCodeType: 0, Email: regForm.Email })
     .then((resp) => {
       showloading.value = false
       showToast(t('tips.sendSuccess'))
-      errorMsg.emailMsg = ''
+      errorMsg.value = ''
+      dm!.innerHTML = errorMsg.value
       regCount.value = 60
       regTimer.value = window.setInterval(() => {
         regCount.value--
@@ -260,55 +239,34 @@ const sendEmail = async () => {
     })
 }
 
-// 检查用户名是否占用
-const checkUserExist = async () => {
-  try {
-    if (regForm.UserName == '') {
-      errorMsg.userNameMsg = t('tips.inputAccount')
-      return false
-    } else {
-      errorMsg.userNameMsg = ''
-    }
-    if (!isUname(regForm.UserName)) {
-      errorMsg.userNameMsg = t('tips.isAccount')
-      return false
-    } else {
-      errorMsg.userNameMsg = ''
-    }
-    const isExistUserResp = await checkUserApi({ UserName: regForm.UserName, noLoading: true })
-    if (isExistUserResp.data) {
-      errorMsg.userNameMsg = t('tips.userNameExist')
-      return false
-    } else {
-      errorMsg.userNameMsg = ''
-    }
-    return true
-  } catch (error: any) {
-    return false
-  }
-}
-
 // 检查邮箱是否占用
 const checkEmailExist = async () => {
   try {
+    const dm = document.getElementById('emailTip')
     if (regForm.Email == '') {
-      errorMsg.emailMsg = t('tips.inputEmail')
+      errorMsg.value = t('tips.inputEmail')
+      dm!.innerHTML = errorMsg.value
       return true
     } else {
-      errorMsg.emailMsg = ''
+      dm!.innerHTML = ''
+      errorMsg.value = ''
     }
     if (!isEmail(regForm.Email)) {
-      errorMsg.emailMsg = t('tips.isEmail')
+      errorMsg.value = t('tips.isEmail')
+      dm!.innerHTML = errorMsg.value
       return true
     } else {
-      errorMsg.emailMsg = ''
+      dm!.innerHTML = ''
+      errorMsg.value = ''
     }
     const isExistEmailResp = await checkEmailApi({ Keyword: regForm.Email, noLoading: true })
     if (isExistEmailResp.data) {
-      errorMsg.emailMsg = t('tips.emailExist')
+      errorMsg.value = t('tips.emailExist')
+      dm!.innerHTML = errorMsg.value
       return true
     } else {
-      errorMsg.emailMsg = ''
+      errorMsg.value = ''
+      dm!.innerHTML = ''
     }
     return false
   } catch (error: any) {
@@ -317,62 +275,105 @@ const checkEmailExist = async () => {
   }
 }
 
-const checkCaptcha = () => {
-  if (regForm.VerificationCode == '') {
-    errorMsg.captchaMsg = t('tips.inputEmailcapcha')
-  } else {
-    errorMsg.captchaMsg = ''
-  }
-}
-
-const checkPwd = () => {
-  if (regForm.Password == '' || !isPwd(regForm.Password)) {
-    errorMsg.pwdMsg = t('tips.isPwd')
-  } else if (regForm.Password == regForm.UserName) {
-    errorMsg.pwdMsg = t('tips.pwdName')
-  } else {
-    errorMsg.pwdMsg = ''
-  }
-}
-
-const checkConfirmPwd = () => {
-  if (regForm.Password != confirmPwd.value) {
-    errorMsg.confirmPwdMsg = t('tips.pwdNotMatch')
-  } else {
-    errorMsg.confirmPwdMsg = ''
-  }
-}
-
-const checkAudit = () => {
-  if (!isAudit.value) {
-    errorMsg.isAuditMsg = t('tips.isAudit')
-  } else {
-    errorMsg.isAuditMsg = ''
-  }
-}
-
-const checkAgree = () => {
-  if (!isAgree.value) {
-    errorMsg.isAgreeMsg = t('tips.isAgree')
-  } else {
-    errorMsg.isAgreeMsg = ''
-  }
-}
-
 /** 注册逻辑 */
 const handleReg = async () => {
-  Object.assign(errorMsg, defaultMsg)
-  await checkUserExist()
-  await checkEmailExist()
-  checkCaptcha()
-  checkPwd()
-  checkConfirmPwd()
-  checkAudit()
-  checkAgree()
+  errorMsg.value = ''
+  const allTip = document.getElementsByClassName('tip')
+  console.log()
+  for (var i = 0; i < allTip.length; i++) {
+    allTip[i].innerHTML = ''
+  }
 
-  if (errorMsg.userNameMsg || errorMsg.emailMsg || errorMsg.captchaMsg || errorMsg.pwdMsg || errorMsg.confirmPwdMsg || errorMsg.isAuditMsg || errorMsg.isAgreeMsg) {
+  const userEl = document.getElementById('userNameTip')
+  const captchaEl = document.getElementById('captchaTip')
+  const pwdEl = document.getElementById('pwdTip')
+  const confirmPwdEl = document.getElementById('confirmPwdTip')
+  const privacyEl = document.getElementById('privacyTip')
+  const agreeEl = document.getElementById('agreeTip')
+
+  userEl!.innerHTML = ''
+  if (regForm.UserName == '') {
+    errorMsg.value = t('tips.inputAccount')
+    userEl!.innerHTML = errorMsg.value
+    return false
+  } else {
+    errorMsg.value = ''
+    userEl!.innerHTML = ''
+  }
+  if (!isUname(regForm.UserName)) {
+    errorMsg.value = t('tips.isAccount')
+    userEl!.innerHTML = errorMsg.value
+    return false
+  } else {
+    errorMsg.value = ''
+    userEl!.innerHTML = ''
+  }
+  const isExistUserResp = await checkUserApi({ UserName: regForm.UserName, noLoading: true })
+  if (isExistUserResp.data) {
+    errorMsg.value = t('tips.userNameExist')
+    userEl!.innerHTML = errorMsg.value
+    return false
+  } else {
+    errorMsg.value = ''
+    userEl!.innerHTML = ''
+  }
+  await checkEmailExist()
+  if (errorMsg.value != '') {
     return false
   }
+  if (regForm.VerificationCode == '') {
+    errorMsg.value = t('tips.inputEmailcapcha')
+    captchaEl!.innerHTML = errorMsg.value
+    return false
+  } else {
+    errorMsg.value = ''
+    captchaEl!.innerHTML = ''
+  }
+
+  // 验证密码
+  if (regForm.Password == '' || !isPwd(regForm.Password)) {
+    errorMsg.value = t('tips.isPwd')
+    pwdEl!.innerHTML = errorMsg.value
+    return false
+  } else if (regForm.Password == regForm.UserName) {
+    errorMsg.value = t('tips.pwdName')
+    pwdEl!.innerHTML = errorMsg.value
+    return false
+  } else {
+    errorMsg.value = ''
+    pwdEl!.innerHTML = ''
+  }
+
+  // 确认密码
+  if (regForm.Password != confirmPwd.value) {
+    errorMsg.value = t('tips.pwdNotMatch')
+    confirmPwdEl!.innerHTML = errorMsg.value
+    return false
+  } else {
+    errorMsg.value = ''
+    confirmPwdEl!.innerHTML = ''
+  }
+
+  // 是否成年
+  if (!isAudit.value) {
+    errorMsg.value = t('tips.isAudit')
+    privacyEl!.innerHTML = errorMsg.value
+    return false
+  } else {
+    errorMsg.value = ''
+    privacyEl!.innerHTML = ''
+  }
+
+  // 同意协议
+  if (!isAgree.value) {
+    errorMsg.value = t('tips.isAgree')
+    agreeEl!.innerHTML = errorMsg.value
+    return false
+  } else {
+    errorMsg.value = ''
+    agreeEl!.innerHTML = ''
+  }
+
   try {
     await regApi(regForm)
     userStore

@@ -4,7 +4,6 @@ import { showToast } from 'vant'
 import i18n from '@/i18n'
 import { useUserStore } from '@/store/modules/user'
 import router from '@/router'
-import BigNumber from 'bignumber.js'
 
 // 获取url中全部参数的对象
 export function getUrlAllParams() {

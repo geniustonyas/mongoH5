@@ -82,8 +82,8 @@
                   <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
                 </div>
                 <span>
-                  <b>{{ parseInt(userStore.userInfo.totalBetAmount) }}</b
-                  ><em>|</em>{{ parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount) }}
+                  <b>{{ userStore.userInfo.totalBetAmount }}</b
+                  ><em>|</em>{{ userStore.userInfo.subCode == '10706' ? 80000000 : parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount) }}
                 </span>
                 <em class="em-bg" :style="{ backgroundImage: 'url(' + getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`) + ')' }" />
               </div>
@@ -208,7 +208,7 @@ const showLanguage = () => {
 const rewardProgressWidth = computed(() => {
   let width = '0'
   if (userStore.userInfo.nextVipRequiredTotalBetAmount != '' && userStore.userInfo.totalBetAmount != '') {
-    width = new BigNumber(parseInt(userStore.userInfo.totalBetAmount)).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
+    width = new BigNumber(userStore.userInfo.totalBetAmount).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
   }
   return width
 })
