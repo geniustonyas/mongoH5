@@ -244,8 +244,8 @@ const handleThirdLogin = async (data: thirdData, sign: string, email = '') => {
   loginData.Sign = sign
   Object.assign(loginData, data)
   if (isExist) {
-    const isBindGoogleAuth = await awaitWraper(checkUserBindGoogleApi({ UserName: data.ThirdPartyId, noLoading: true }))
-    if (isBindGoogleAuth) {
+    const isBindGoogleAuth = await checkUserBindGoogleApi({ UserName: data.ThirdPartyId, noLoading: true })
+    if (isBindGoogleAuth.data) {
       //@ts-ignore
       router.push({ name: 'googleCode', query: loginData })
     } else {
