@@ -475,7 +475,7 @@ export default {
   diplomaticCard: 'Passport',
   moonpayExchange: 'Buy crypto with Credit/Debit Card',
   learnMore: 'Learn More',
-  comingSoon: 'coming soon...',
+  comingSoon: 'Coming soon...',
   affiliate: 'Affiliate',
   rewardActivities: 'Reward Activities',
   rewardRecords: 'Reward Records',
