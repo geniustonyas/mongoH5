@@ -79,7 +79,7 @@
               <div class="cb-grade">
                 <p><img :src="getAssetsFile(`grade/${userStore.userInfo.vipCode}.png`)" />{{ t('homePage.nextReward') }}</p>
                 <div class="schedule-bar">
-                  <div class="sb-line" :style="{ width: rewardProgressWidth + '%' }" />
+                  <div class="sb-line" :style="{ width: userStore.userInfo.subCode == '10706' ? '100%' : rewardProgressWidth + '%' }" />
                 </div>
                 <span>
                   <b>{{ userStore.userInfo.totalBetAmount }}</b
