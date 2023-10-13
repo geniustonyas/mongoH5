@@ -682,7 +682,8 @@ export default {
     1029: 'Falha ao enviar e-mail',
     1030: 'Quantidade de produto insuficiente',
     1031: 'Pontos disponíveis insuficientes',
-    1033: 'O código de verificação por e-mail está incorreto'
+    1033: 'O código de verificação por e-mail está incorreto',
+    1035: 'Jogo em manutenção'
   },
 
   html: {

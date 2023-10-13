@@ -682,7 +682,8 @@ export default {
     1031: 'Yetersiz kullanılabilir puan',
     1101: 'Kullanılabilir bakiye yetersiz',
     1032: 'Fonlarınızın güvenliğini sağlamak için şifrenizi değiştirdikten sonra 24 saat boyunca para çekme işlemi yapamayacaksınız.',
-    1033: 'E-posta doğrulama kodu yanlış'
+    1033: 'E-posta doğrulama kodu yanlış',
+    1035: 'Oyun bakımdayken'
   },
 
   // 条款协议等内容

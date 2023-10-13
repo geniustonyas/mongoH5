@@ -691,7 +691,8 @@ export default {
     1031: 'Insufficient available points',
     1101: 'Insufficient available balance',
     1032: 'To ensure the security of your funds, after you change your password, you will be unable to make withdrawals for 24 hours.',
-    1033: 'Email verification code is incorrect'
+    1033: 'Email verification code is incorrect',
+    1035: 'Game under maintenance'
   },
 
   // 条款协议等内容

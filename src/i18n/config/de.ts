@@ -681,7 +681,8 @@ export default {
     1031: 'Unzureichende verfügbare Punkte',
     1101: 'Unzureichendes verfügbares Guthaben',
     1032: 'Um die Sicherheit Ihrer Gelder zu gewährleisten, können Sie nach der Änderung Ihres Passworts 24 Stunden lang keine Abhebungen vornehmen.',
-    1033: 'Der E-Mail-Bestätigungscode ist falsch'
+    1033: 'Der E-Mail-Bestätigungscode ist falsch',
+    1035: 'Spiel in Wartung'
   },
 
   // 条款协议等内容

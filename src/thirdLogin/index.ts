@@ -1,7 +1,6 @@
 import axios from 'axios'
-
 import { thirdData } from '@/api/user/types'
-import { checkThirdUserApi, googleValidateApi, facebookValidateApi, telegramValidateApi, lineValidateApi } from '@/api/user/index'
+import { checkThirdUserApi, checkUserBindGoogleApi, googleValidateApi, facebookValidateApi, telegramValidateApi, lineValidateApi } from '@/api/user/index'
 import { awaitWraper } from '@/utils/index'
 import { useUserStoreHook } from '@/store/modules/user'
 import { useAppStoreHook } from '@/store/modules/app'
@@ -228,7 +227,9 @@ window.addEventListener('storage', async (event) => {
           showToast(t('tips.invalidThirdUser'))
           openWindow.close()
         }
+        localStorage.removeItem('lineCode')
       } catch (error) {
+        localStorage.removeItem('lineCode')
         openWindow.close()
         console.log(error)
       }
@@ -243,11 +244,17 @@ const handleThirdLogin = async (data: thirdData, sign: string, email = '') => {
   loginData.Sign = sign
   Object.assign(loginData, data)
   if (isExist) {
-    const loginRes = await awaitWraper(userStore.thirdLogin(loginData))
-    if (loginRes[0]) {
-      showToast(loginRes[0])
+    const isBindGoogleAuth = await awaitWraper(checkUserBindGoogleApi({ UserName: data.ThirdPartyId, noLoading: true }))
+    if (isBindGoogleAuth) {
+      //@ts-ignore
+      router.push({ name: 'googleCode', query: loginData })
     } else {
-      router.push({ name: 'index' })
+      const loginRes = await awaitWraper(userStore.thirdLogin(loginData))
+      if (loginRes[0]) {
+        showToast(loginRes[0])
+      } else {
+        router.push({ name: 'index' })
+      }
     }
   } else {
     // 如果是google登录则设置邮箱

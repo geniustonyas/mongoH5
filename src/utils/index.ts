@@ -101,7 +101,7 @@ export function moneyFormat(value: any) {
       if (tmp[1].length < 2) {
         ret = num + '0'
       } else {
-        ret = value
+        ret = num.toString()
       }
     }
   }

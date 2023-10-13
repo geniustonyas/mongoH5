@@ -55,6 +55,7 @@ export interface thirdData {
   ThirdPartyType: string
   ThirdPartyId: string
   ThirdPartyName: string
+  VerificationCode?: string
   Sign?: string
 }
 

@@ -684,7 +684,8 @@ export default {
     1031: 'Points disponibles insuffisants',
     1101: 'Solde disponible insuffisant',
     1032: 'Pour assurer la sécurité de vos fonds, après avoir changé votre mot de passe, vous ne pourrez pas effectuer de retraits pendant 24 heures.',
-    1033: 'Le code de vérification par e-mail est incorrect'
+    1033: 'Le code de vérification par e-mail est incorrect',
+    1035: 'Jeu en maintenance'
   },
 
   html: {

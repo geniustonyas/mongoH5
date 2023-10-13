@@ -101,6 +101,12 @@ const routes = [
         meta: { needLogin: false, keepAlive: false }
       },
       {
+        path: 'googleCode',
+        name: 'googleCode',
+        component: () => import('@/views/user/googleCode.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      },
+      {
         path: 'thirdReg',
         name: 'thirdReg',
         component: () => import('@/views/user/thirdReg.vue'),

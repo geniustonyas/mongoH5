@@ -683,7 +683,8 @@ export default {
     1031: 'Puntos disponibles insuficientes',
     1101: 'Saldo disponible insuficiente',
     1032: 'Para garantizar la seguridad de sus fondos, después de cambiar su contraseña, no podrá realizar retiros durante 24 horas.',
-    1033: 'El código de verificación por correo electrónico es incorrecto'
+    1033: 'El código de verificación por correo electrónico es incorrecto',
+    1035: 'Juego en mantenimiento'
   },
 
   // Términos y Contenidos HTML
