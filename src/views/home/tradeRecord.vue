@@ -391,7 +391,7 @@ const clearData = () => {
 }
 
 checkedCurrency.value = currenyList.map((item) => item.code)
-
+getTradeRecordList()
 // getTradeRecordList()
 // setInterval(() => {
 //   getTradeRecordList()

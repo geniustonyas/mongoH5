@@ -355,7 +355,7 @@ export default {
     exchangeSuccess: 'Troca bem-sucedida',
     openWindow: 'Abrindo uma janela para você jogar em breve. Desejamos a você um bom jogo!',
     openExchange: 'Abrindo uma janela para você acessar a bolsa de valores em breve',
-    unBindGoogleSuccess: 'Desvinculação bem-sucedida',
+    unBindGoogleSuccess: 'Desvinculação bem-sucedida do Google Authenticator.',
     openExplorer: 'Abrindo uma janela para você consultar transações em breve',
 
     inputTrueName: 'Por favor, insira seu nome',
@@ -1262,7 +1262,7 @@ export default {
                             <li>Para fornecer e melhorar os nossos serviços</li>
                             <li>Identificar e verificar a sua identidade</li>
                             <li>Comunique-se com você</li>
-                            <li>realização de pesquisas de mercado e atividades promocionais</li>
+                            <li>Realização de pesquisas de mercado e atividades promocionais</li>
                             <li>Para responder às suas perguntas e pedidos</li>
                             <li>Para cumprir as nossas obrigações contratuais e legais</li>
                         </ul>

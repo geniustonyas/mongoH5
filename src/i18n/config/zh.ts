@@ -355,7 +355,7 @@ export default {
     exhangeSuccess: '兑换成功',
     openWindow: '即将为您打开窗口进行游戏，祝您游戏愉快',
     openExchange: '即将为您打开窗口进入交易所',
-    unBindGoogleSuccess: '解绑成功',
+    unBindGoogleSuccess: '成功解绑谷歌验证码',
     openExplorer: '即将为您打开窗口查询交易',
 
     inputTrueName: '请输入姓名',

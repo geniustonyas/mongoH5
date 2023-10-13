@@ -355,7 +355,7 @@ export default {
     exhangeSuccess: 'Trao đổi thành công',
     openWindow: 'Cửa sổ sẽ được mở để bạn chơi trò chơi sớm, chúc bạn có một trò chơi vui vẻ',
     openExchange: 'Sắp mở cửa sổ mới để bạn tham gia trao đổi',
-    unBindGoogleSuccess: 'Hủy ràng buộc thành công',
+    unBindGoogleSuccess: 'Google Authenticator đã được ngắt kết nối thành công.',
     openExplorer: 'Cửa sổ sẽ được mở để bạn tra cứu giao dịch',
 
     inputTrueName: 'Vui lòng nhập tên của bạn',

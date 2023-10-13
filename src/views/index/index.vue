@@ -123,9 +123,9 @@
         </div>
       </div>
     </div>
-    <div v-show="newRewardVipCode != 0" class="popup-new-reward">
-      <div class="close" @click="newRewardVipCode = 0"><i class="iconfont icon-close" /></div>
-      <div class="pnr-top" @click="router.push({ name: 'clubHouse' })">
+    <div v-show="newRewardVipCode != 0" class="popup-new-reward" @click.stop="router.push({ name: 'clubHouse' })">
+      <div class="close" @click.stop="newRewardVipCode = 0"><i class="iconfont icon-close" /></div>
+      <div class="pnr-top">
         <img :src="getAssetsFile(`grade/${newRewardVipCode}.png`)" />
         <h3>{{ t('unlockNewReward') }}</h3>
       </div>

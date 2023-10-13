@@ -355,7 +355,7 @@ export default {
     exhangeSuccess: 'Échange réussi',
     openWindow: "La fenêtre s'ouvrira bientôt pour que vous puissiez jouer au jeu, nous vous souhaitons un bon jeu.",
     openExchange: "Nous sommes sur le point d'ouvrir une nouvelle fenêtre pour que vous puissiez effectuer l'échange",
-    unBindGoogleSuccess: 'Désactivation réussie',
+    unBindGoogleSuccess: 'Google Authenticator a été désactivé avec succès.',
     openExplorer: 'La fenêtre sera ouverte pour que vous puissiez consulter les transactions',
 
     inputTrueName: 'Veuillez saisir votre nom',

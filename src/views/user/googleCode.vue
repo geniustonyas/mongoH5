@@ -51,17 +51,17 @@ const loginData = <thirdData>reactive({
   Sign: ''
 })
 const errorMsg = ref('')
-const handleLogin = async() => {
+const handleLogin = async () => {
   if (loginData.VerificationCode == '') {
     errorMsg.value = t('tips.googleCode')
     return false
   }
   Object.assign(loginData, route.query)
   const loginRes = await awaitWraper(userStore.thirdLogin(loginData))
-    if (loginRes[0]) {
-      showToast(loginRes[0])
-    } else {
-      router.push({ name: 'index' })
-    }
+  if (loginRes[0]) {
+    showToast(loginRes[0])
+  } else {
+    router.push({ name: 'index' })
+  }
 }
 </script>

@@ -66,9 +66,9 @@
         <div v-if="pageCount > 1" class="g-btn">
           <a :class="query.page >= pageCount ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="loadMore()">{{ t('loadMore') }}</a>
         </div>
-        <div v-if="nodata" class="no-data">
+        <!-- <div v-if="nodata" class="no-data">
           <span><i class="iconfont icon-wushoucang" />{{ t('nodata') }}</span>
-        </div>
+        </div> -->
       </nav>
       <IndexFooter :currency-code="currencyCode" :exchange-rate="exchangeRate" />
     </main>
@@ -229,6 +229,7 @@ onDeactivated(() => {
   appStore.detailsFav = []
   if (scrollRef.value) {
     scrollTop.value = scrollRef.value.scrollTop
+    console.log(scrollTop.value)
   }
 })
 
@@ -236,14 +237,16 @@ onDeactivated(() => {
 watch(
   () => route.query.providerId,
   (val) => {
-    if (val) {
-      showGameOption.value = true
-      query.ps = [parseInt(route.query.providerId as string)]
-    } else {
-      query.ps = []
+    if (!(router.options.history.state.forward && router.options.history.state.forward.indexOf('gameDetails') != -1)) {
+      if (val) {
+        showGameOption.value = true
+        query.ps = [parseInt(route.query.providerId as string)]
+      } else {
+        query.ps = []
+      }
+      dataList.value = []
+      getGameList()
     }
-    dataList.value = []
-    getGameList()
   },
   { immediate: true }
 )

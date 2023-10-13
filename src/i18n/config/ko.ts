@@ -356,7 +356,7 @@ export default {
     exhangeSuccess: '교환 성공',
     openWindow: '창이 곧 열릴 예정이며, 즐거운 게임 되시길 바랍니다.',
     openExchange: '새 창을 열어 교환하실 수 있습니다.',
-    unBindGoogleSuccess: '구글 계정 연동 해제 성공',
+    unBindGoogleSuccess: 'Google Authenticator가 성공적으로 연결 해제되었습니다.',
     openExplorer: '창이 열려 거래 내역을 조회하실 수 있습니다.',
 
     inputTrueName: '이름을 입력하세요',

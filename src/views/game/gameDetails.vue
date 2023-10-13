@@ -21,20 +21,23 @@
               <label>RTP</label><span>{{ detailsData.defaultRTPName }}</span>
             </div>
             <div class="item">
-              <label>{{ t('minMaxBet') }}</label
-              ><span>{{ parseFloat(detailsData.minBetAmount).toFixed(2) }} - {{ parseFloat(detailsData.maxBetAmount).toFixed(2) }} USDT</span>
+              <label>{{ t('minMaxBet') }}</label>
+              <span>
+                {{ detailsData.minBetAmount != '' && detailsData.maxBetAmount != '' ? parseFloat(detailsData.minBetAmount).toFixed(2) + ' - ' + parseFloat(detailsData.maxBetAmount).toFixed(2) : '' }}
+                USDT
+              </span>
             </div>
             <div class="item" v-if="detailsData.volatility != '0'">
-              <label>{{ t('volatility') }}</label
-              ><span>{{ t('volatilitys.' + detailsData.volatility) }}</span>
+              <label>{{ t('volatility') }}</label>
+              <span>{{ detailsData.volatility != '' ? t('volatilitys.' + detailsData.volatility) : '' }}</span>
             </div>
             <div class="item" v-if="detailsData.hitRatio != '0'">
-              <label>{{ t('hitratio') }}</label
-              ><span>{{ detailsData.hitRatio }}%</span>
+              <label>{{ t('hitratio') }}</label>
+              <span v-show="detailsData.hitRatio">{{ detailsData.hitRatio }}%</span>
             </div>
             <div class="item" v-if="detailsData.paylines != '0'">
-              <label>{{ t('paylines') }}</label
-              ><span>{{ detailsData.paylines }}</span>
+              <label>{{ t('paylines') }}</label>
+              <span v-show="detailsData.paylines != ''">{{ detailsData.paylines }}</span>
             </div>
             <div class="btns">
               <a class="btn btn-primary" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/url', true)">{{ t('startNow') }}</a>

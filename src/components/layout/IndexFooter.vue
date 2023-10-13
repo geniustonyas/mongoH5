@@ -57,7 +57,7 @@
         <a target="_blank" href="https://www.facebook.com/seabet.io/">Facebook <i class="iconfont icon-share" /></a>
       </dd>
       <dd>
-        <a target="_blank" href="https://twitter.com/seabetio">Twitter <i class="iconfont icon-share" /></a>
+        <a target="_blank" href="https://twitter.com/bet_sea6635">Twitter <i class="iconfont icon-share" /></a>
       </dd>
       <dd>
         <a target="_blank" href="https://www.instagram.com/seabet.io/">Instagram <i class="iconfont icon-share" /></a>
@@ -66,7 +66,7 @@
         <a target="_blank" href="https://www.youtube.com/channel/UC3L5HrPC4elNgHkrvMSFjCQ">Youtube <i class="iconfont icon-share" /></a>
       </dd>
       <dd>
-        <a target="_blank" href="https://www.tiktok.com/@seabet.io?lang=en">Tiktok <i class="iconfont icon-share" /></a>
+        <a target="_blank" href="https://www.tiktok.com/@seabio00?lang=en">Tiktok <i class="iconfont icon-share" /></a>
       </dd>
     </dl>
     <dl>

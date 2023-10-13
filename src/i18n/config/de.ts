@@ -158,7 +158,7 @@ export default {
   supportSettings: 'Unterstützung und Einstellungen',
   walletSettings: 'Brieftaschen-Einstellungen',
   faq: 'Hilfe',
-  liveSupport: 'Live-Support',
+  liveSupport: 'Live Support',
   chooseCrypto: 'Wählen Sie Ihre bevorzugte Währung',
   cryptoCurrency: 'Krypto',
   bank: 'FIAT',
@@ -353,7 +353,7 @@ export default {
     exhangeSuccess: 'Erfolgreicher Umtausch',
     openWindow: 'In Kürze wird das Fenster für Sie geöffnet, um das Spiel zu spielen. Wir wünschen Ihnen viel Spaß beim Spielen',
     openExchange: 'Ich werde in Kürze ein neues Fenster für Sie öffnen, damit Sie den Umtausch vornehmen können',
-    unBindGoogleSuccess: 'Erfolgreich gelöst',
+    unBindGoogleSuccess: 'Google Authenticator wurde erfolgreich getrennt.',
     openExplorer: 'Das Fenster wird für Sie geöffnet, um Transaktionen abzufragen',
 
     inputTrueName: 'Bitte geben Sie Ihren Namen ein',

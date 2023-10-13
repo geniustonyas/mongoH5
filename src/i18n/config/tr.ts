@@ -355,7 +355,7 @@ export default {
     exhangeSuccess: 'Başarıyla değiştirildi',
     openWindow: 'Oyunu oynamak için yakında bir pencere açılacaktır, iyi oyunlar dileriz',
     openExchange: 'Değişim yapmak için yeni bir pencere açılacak',
-    unBindGoogleSuccess: 'Bağlantı başarıyla kaldırıldı',
+    unBindGoogleSuccess: 'Google Authenticator başarılı bir şekilde bağlantısı kaldırıldı.',
     openExplorer: 'İşlemleri sorgulamak için yeni bir pencere açılacaktır',
 
     inputTrueName: 'Adınızı giriniz',

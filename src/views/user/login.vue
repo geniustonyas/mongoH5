@@ -50,7 +50,7 @@
           </div>
           <div class="cf-row" v-show="useGoogleAuthenticatore">
             <div class="cr-label">
-              <span>{{ $t('loginPage.useGoogle') }}</span>
+              <span>{{ $t('googleCode') }}</span>
             </div>
             <div class="cr-input">
               <input ref="verificationCode" v-model.trim="loginForm.VerificationCode" type="text" class="form-control" placeholder="" autocomplete="off" />

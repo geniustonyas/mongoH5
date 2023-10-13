@@ -355,7 +355,7 @@ export default {
     exhangeSuccess: '交換に成功しました',
     openWindow: 'ゲームをプレイするためにウィンドウが開かれます。楽しいゲームをお楽しみください。',
     openExchange: '交換画面を開く準備が整いました',
-    unBindGoogleSuccess: '正常にバインド解除されました',
+    unBindGoogleSuccess: 'Google Authenticatorの解除に成功しました',
     openExplorer: 'トランザクションを照会するためにウィンドウが開かれます',
 
     inputTrueName: 'お名前を入力してください',

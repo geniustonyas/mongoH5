@@ -404,7 +404,7 @@ const bindGoogle = () => {
     unBindGoogleCodeApi(bindGoogleCodeForm)
       .then(() => {
         userStore.getUserInfo({ noLoading: false })
-        showToast(t('tips.bindGoogleSuccess'))
+        showToast(t('tips.unBindGoogleSuccess'))
       })
       .catch((error) => {
         console.log(error)

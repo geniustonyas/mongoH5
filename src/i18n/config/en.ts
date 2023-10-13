@@ -356,7 +356,7 @@ export default {
     exhangeSuccess: 'Exhange successfully',
     openWindow: 'The window will be opened for you to play the game soon, wish you a happy game.',
     openExchange: 'About to open a new window for you to enter the exchange',
-    unBindGoogleSuccess: 'Unbind successfully',
+    unBindGoogleSuccess: 'Google Authenticator has been successfully unlinked',
     openExplorer: 'The window will be opened for you to inquire about transactions',
 
     inputTrueName: 'Please type in your name',
