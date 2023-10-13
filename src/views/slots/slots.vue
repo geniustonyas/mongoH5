@@ -237,7 +237,18 @@ onDeactivated(() => {
 watch(
   () => route.query.providerId,
   (val) => {
-    if (!(router.options.history.state.forward && router.options.history.state.forward.indexOf('gameDetails') != -1)) {
+    if (dataList.value.length != 0) {
+      if (!(router.options.history.state.forward && router.options.history.state.forward.indexOf('gameDetails') != -1)) {
+        if (val) {
+          showGameOption.value = true
+          query.ps = [parseInt(route.query.providerId as string)]
+        } else {
+          query.ps = []
+        }
+        dataList.value = []
+        getGameList()
+      }
+    } else {
       if (val) {
         showGameOption.value = true
         query.ps = [parseInt(route.query.providerId as string)]
