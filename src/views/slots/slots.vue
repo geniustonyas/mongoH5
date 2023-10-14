@@ -238,27 +238,27 @@ watch(
   () => route.query.providerId,
   (val) => {
     if (dataList.value.length != 0) {
-      if (!(router.options.history.state.forward && router.options.history.state.forward.indexOf('gameDetails') != -1)) {
+      const forward = router.options.history.state.forward as string
+      if (!(forward && forward.indexOf('gameDetails') != -1)) {
         if (val) {
           showGameOption.value = true
           query.ps = [parseInt(route.query.providerId as string)]
-        } else {
-          query.ps = []
+          dataList.value = []
+          getGameList()
         }
-        dataList.value = []
-        getGameList()
       }
     } else {
       if (val) {
         showGameOption.value = true
         query.ps = [parseInt(route.query.providerId as string)]
-      } else {
-        query.ps = []
+        dataList.value = []
+        getGameList()
       }
-      dataList.value = []
-      getGameList()
     }
-  },
-  { immediate: true }
+  }
 )
+if (route.query.providerId) {
+  query.ps = [parseInt(route.query.providerId as string)]
+}
+getGameList()
 </script>

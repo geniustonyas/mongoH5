@@ -405,6 +405,7 @@ const bindGoogle = () => {
       .then(() => {
         userStore.getUserInfo({ noLoading: false })
         showToast(t('tips.unBindGoogleSuccess'))
+        bindGoogleCodeForm.VerificationCode = ''
       })
       .catch((error) => {
         console.log(error)
@@ -414,6 +415,7 @@ const bindGoogle = () => {
       .then(() => {
         userStore.getUserInfo({ noLoading: false })
         showToast(t('tips.bindGoogleSuccess'))
+        bindGoogleCodeForm.VerificationCode = ''
       })
       .catch((error) => {
         console.log(error)

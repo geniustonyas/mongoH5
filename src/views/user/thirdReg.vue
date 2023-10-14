@@ -28,7 +28,7 @@
             </div>
           </div>
           <!-- 邮箱验证码 -->
-          <div v-if="!isGoogle" class="cf-row">
+          <div v-show="!isGoogle" class="cf-row">
             <div class="cr-label">
               <span>{{ t('emailCaptcha') }}</span>
             </div>
@@ -274,7 +274,9 @@ const handleReg = async () => {
     return false
   } else {
     errorMsg.value = ''
-    captchaEl!.innerHTML = ''
+    if (captchaEl) {
+      captchaEl!.innerHTML = ''
+    }
   }
 
   // 是否成年
@@ -300,6 +302,7 @@ const handleReg = async () => {
   Object.assign(regForm, appStore.thirdData)
   Object.assign(loginForm, appStore.thirdData)
   const regResult = await awaitWraper(thirdRegApi(regForm))
+  console.log(regResult)
   if (regResult[0]) {
     showToast(t('tips.regFail'))
     return false
