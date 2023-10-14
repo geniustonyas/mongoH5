@@ -98,7 +98,7 @@
                       <div class="ic-t sbg1">
                         <div class="ic-info">
                           <b><i class="iconfont icon-tether" />{{ item.amount }}</b>
-                          <span>{{ item.intro }} x {{ t('multiplier') }}</span>
+                          <span>{{ item.intro }}</span>
                         </div>
                         <div class="ic-bg" />
                         <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hwlbks" focusable="false" viewBox="0 65 500 400" aria-hidden="true" id="quick-buy-pattern">

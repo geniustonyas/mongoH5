@@ -35,7 +35,7 @@
               <li>
                 <img :src="getAssetsFile('download/d_i_4.png')" />
                 <span>{{ t('step') }}4</span>
-                <p>{{ t('finishedDown') }}</p>
+                <p>{{ t('iosFinish') }}</p>
               </li>
             </ul>
           </div>

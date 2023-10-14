@@ -546,9 +546,10 @@ export default {
   downloadDesc:
     'Bem-vindo ao nosso novo aplicativo Seabet.io! Abaixo temos instruções passo a passo para instalar o aplicativo Android e o Progressive Web App (PWA) para iOS. Aproveite a diversão, a rapidez e a justiça a qualquer momento e em qualquer lugar!',
   step: 'Passo',
-  clickSave: 'No navegador, clique no ícone de salvar',
-  addDesk: 'Toque em "Adicionar à Tela Inicial"',
-  clickAdd: 'Você terá a opção de renomeá-lo. Clique em "Adicionar"',
+  clickSave: 'Toque no botão “Compartilhar” localizado na barra de ferramentas',
+  addDesk: `Selecione no menu a opção“Adicionar à tela inicia”`,
+  clickAdd: `Clique em “Adicionar”a instalação está concluída`,
+  iosFinish: `Inicie o aplicativo SEABET.IO na tela inicial do seu dispositivo iOS`,
   finishedDown: 'O atalho agora está na sua tela inicial.',
   addToDesk: 'No navegador, selecione "Adicionar página a"',
   clickDesk: 'Toque em "Tela Inicial"',

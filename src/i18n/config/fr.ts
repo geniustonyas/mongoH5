@@ -546,9 +546,10 @@ export default {
   downloadDesc:
     "Bienvenue sur notre toute nouvelle application Seabet.io ! Ci-dessous, nous avons des instructions étape par étape pour installer l'application Android et l'application Web Progressive iOS (PWA). Profitez de l'action amusante, rapide et équitable à tout moment et n'importe où !",
   step: 'Étape',
-  clickSave: "Dans le navigateur, cliquez sur l'icône d'enregistrement",
-  addDesk: `Appuyez sur "Ajouter à l'écran d'accueil"`,
-  clickAdd: `Vous aurez la possibilité de le renommer. Cliquez sur "Ajouter"`,
+  clickSave: `Appuyez sur le bouton “Partager” de la barre d'outils`,
+  addDesk: `Sélectionnez “Ajouter à l'écran d'accueil” dans le menu`,
+  clickAdd: `Cliquez sur “Ajouter” l'installation est terminée`,
+  iosFinish: `Lancez l'application SEABET.IO depuis l'écran d'accueil de votre appareil iOS.`,
   finishedDown: `Le raccourci est maintenant sur votre écran d'accueil.`,
   addToDesk: `Dans le navigateur, "Ajouter la page à"`,
   clickDesk: `Appuyez sur "Écran d'accueil"`,
