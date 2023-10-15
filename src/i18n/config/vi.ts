@@ -546,9 +546,10 @@ export default {
   downloadDesc:
     'Chào mừng bạn đến với ứng dụng Seabet.io hoàn toàn mới của chúng tôi! Dưới đây, chúng tôi có hướng dẫn từng bước để cài đặt ứng dụng Android và ứng dụng Web Tiến bộ iOS (PWA). Hãy thưởng thức trò chơi vui vẻ, nhanh chóng và công bằng bất cứ lúc nào, bất cứ đâu!',
   step: 'Bước',
-  clickSave: 'Trong trình duyệt, nhấp vào biểu tượng lưu trữ.',
-  addDesk: 'Nhấn "Thêm vào Màn hình Chính".',
-  clickAdd: 'Bạn sẽ có tùy chọn đổi tên nó. Nhấp "Thêm".',
+  clickSave: 'Nhấp vào nút “Chia sẻ ”trên thanh công cụ',
+  addDesk: 'Chọn "Thêm vào màn hình chính" từ menu',
+  clickAdd: 'Nhấp vào "Thêm" để hoàn tất cài đặt',
+  iosFinish: 'Khởi chạy ứng dụng SEABET.IO từ màn hình chính thiết bị iOS của bạn',
   finishedDown: 'Biểu tượng ngay bây giờ đã xuất hiện trên màn hình chính của bạn',
   addToDesk: 'Trong trình duyệt, "Thêm trang vào".',
   clickDesk: 'Nhấn "Màn hình Chính".',

@@ -28,7 +28,7 @@ export default {
   login: 'ログイン',
   otherMethod: '他の方法',
   reg: '登録',
-  userName: 'ユーザネーム',
+  userName: 'ユーザー名',
   email: 'メールアドレス',
   sendEmail: '送信する',
   sended: '送信済み',
@@ -54,10 +54,10 @@ export default {
   zipCode: '郵便番号',
   loginPage: {
     useGoogle: 'Google認証システムを使用する',
-    userNameOrEmail: 'ユーザネームあるいはメールアドレス'
+    userNameOrEmail: 'ユーザー名またはEメール'
   },
   regPage: {
-    holderUserName: 'ユーザネーム作成',
+    holderUserName: 'ユーザー名登録',
     holderEmail: `例:you{'@'}example.com`,
     holderTelephone: '電話(+66 xxxxxxxxxxx)',
     isAdult: 'あなたは18歳以上であり、利用規約に同意します',
@@ -87,7 +87,7 @@ export default {
   },
   userAccount: 'ユーザアカウント',
   wallet: 'ウォレット',
-  myBets: 'ベット履歴',
+  myBets: '取引履歴',
   rewards: 'ボーナス',
   notifications: '通知',
   // 検索
@@ -141,7 +141,7 @@ export default {
   searchRecommend: 'あなたへのお勧め',
   enter: '進む',
   // fund
-  fundAccount: '資金アカウント',
+  fundAccount: 'ウォレット',
   activeBalance: '残高',
   balance: '残高',
   deposit: '入金',
@@ -154,7 +154,7 @@ export default {
   promoCode: 'プロモーションコード',
   currentBalance: '現在の残高',
   myRewards: 'ボーナス',
-  transactionHistory: '取引履歴記録',
+  transactionHistory: '取引履歴',
   supportSettings: 'サポート設定',
   walletSettings: 'ウォレット設定',
   faq: 'ヘルプ',
@@ -235,8 +235,8 @@ export default {
   followUs: 'Follow Us',
   language: '言語',
   helpCenter: 'ヘルプセンター',
-  acceptCrypto: '対応する仮想通貨',
-  licencesSecurity: 'ライセンスとセキュリティ',
+  acceptCrypto: '使用できる仮想通貨',
+  licencesSecurity: 'ライセンス＆セキュリティ',
   gameBig: 'ゲーム',
   userBig: 'ユーザー',
   payoutBig: 'お支払い',
@@ -381,14 +381,14 @@ export default {
   },
 
   rewardsBig: 'ボーナス',
-  myStats: 'ボーナス履歴',
+  myStats: 'ポイント履歴',
   exclusiveRewards: '特別なリワード',
   quickBuys: 'すぐ交換',
-  earned: '獲得',
-  spent: '消化',
+  earned: '獲得済み',
+  spent: '使用済み',
   pointsHistory: 'ポイント記録',
   earnPointsAndTrack: '獲得したポイントを確認できます',
-  viewPointsRecord: 'ポイント獲得・消化履歴を確認できます',
+  viewPointsRecord: 'ポイントの獲得・使用履歴を確認できます',
   buyNow: 'すぐ交換',
   youWillGet: '下記と交換できます',
   bonusValue: 'チップの価値',
@@ -484,7 +484,7 @@ export default {
   rewardStatus: { 0: '処理中', 1: '承認済み', 2: '拒否済み' },
   betTime: 'ベット時間',
   betOrderNo: 'ベット注文番号',
-  startEarning: '稼ぎ始める',
+  startEarning: 'して獲得しよう',
   historyType: 'タイプ',
   rewardName: 'ボーナス名',
   startTime: '開始時間',
@@ -543,9 +543,10 @@ export default {
   downloadTitle: 'Seabet.io プログレッシブウェブアプリ！',
   downloadDesc: 'Seabet.ioアプリへようこそ！以下に、AndroidアプリとiOSプログレッシブウェブアプリ（PWA）のインストール手順をステップバイステップで説明します。いつでもどこでも楽しみましょう',
   step: 'ステップ',
-  clickSave: 'ブラウザで保存アイコンをクリックしてください。',
-  addDesk: '「ホーム画面に追加」をタップしてください。',
-  clickAdd: '名前を変更するオプションが表示されます。"追加"をクリックしてください。',
+  clickSave: 'ツールバーの「共有」ボタンをタップします',
+  addDesk: 'メニューから「ホーム画面に追加」を選択',
+  clickAdd: '「追加」をクリックするとインストールが完了します',
+  iosFinish: 'iOS デバイスのホーム画面から SEABET.IO アプリを起動します',
   finishedDown: 'ショートカットは今、ホーム画面にあります。',
   addToDesk: 'ブラウザで「ページを追加」してください。',
   clickDesk: '「ホーム画面」をタップしてください。',
@@ -610,20 +611,20 @@ export default {
                         <p>競馬</p>
                         <p>eスポーツゲーム</p>
                         <p>スポーツブックマスターズ</p>
-                        <p>また、以下のカジノゲームもクラブ対象外のため、ベットしてもポイントは獲得できません</p>
+                        <p>また、以下のカジノゲームもクラブ対象外のため、ベットしてもポイントは獲得できません。</p>
                         <p>NetEnt - Blackjack Touch, Blackjack Touch - Single Deck, Jacks or Better Double Up</p>
                         <p>Microgaming - Max Damage, Atlantic City Blackjack Gold, Vegas Strip Blackjack, Vegas Strip Blackjack Gold, Premier Euro Bonus Blackjack Gold, European Blackjack Gold, European Blackjack Redeal Gold, Perfect Pairs European Blackjack Gold, Premier Euro Blackjack Gold, Premier Hi Lo 13 Euro Blackjack Gold, Premier High Streak Euro Blackjack Gold, Big 5 Blackjack Gold, Jacks or Better, Spanish 21 Blackjack Gold, Spanish Blackjack</p>
                         <p>Asia Gaming - Fish Hunter</p>`
   },
   faqs: {
-    q1: '仮想通貨の入金方法',
+    q1: '入金するにはどうすればよいですか？',
     a1: `<p>1.ご希望の仮想通貨を選択し、「入金」をクリックします。</p>
-        <p>2.ワンタイムデポジットのアドレスをコピーし、ウォレットに貼り付けます。（またはQRコードをスキャンします。））</p>
-        <p>3. トランザクションが完了すると、通知が届きます。</p>`,
-    q2: '仮想通貨の出金方法',
+        <p>2.ワンタイムデポジットのアドレスをコピーし、ウォレットに貼り付けます。（またはQRコードをスキャンします。）</p>
+        <p>3. 取引が完了すると、通知が届きます。</p>`,
+    q2: '出金するにはどうすればよいですか？',
     a2: `<p>1. 出金したい仮想通貨を選択し、 「出金」をクリックします。</p>
           <p>2. 出金したい金額を入力します。</p>
-          <p>3. ご希望の入金方法をクリックし、手順に従って必要事項を入力し「続ける」をクリックします。</p>
+          <p>3. ご自身のウォレットアドレスを入力します。</p>
           <p>4. 出金ボタンをクリックします。</p>`,
     q3: '入金・出金にはどれくらい時間がかかりますか？',
     a3: `<P>入金</P>
@@ -632,21 +633,19 @@ export default {
           <P>ほとんどの出金は即座に処理されます。大口のお引き出しの場合は、手動で処理されるため、若干の遅れが生じる場合がございます。</P>`,
     q4: 'どの支払い方法を提供していますか？',
     a4: `<P>現在、Seabet.ioでご利用可能な通貨は以下の通りです:</P>
-          <P>• ユーロターダコイン (USDT)</P>
-          <P>• ビットコイン (BTC)</P>
-          <P>• イーサリアム(ETH)</P>
-          <P>• トロン(TRX)</P>
-          <P>• ライトコイン (LTC)</P>
-          <P>• トロン (TRX)</P>
-          <P>• バイナンスUSD</P>
-          <P>• バイナンスコイン</P>
-          <P>• リップル(XRP)</P>
-          <P>• ライトコイン(LTC)</P>
-          <P>• カルダノ(ADA)</P>
-          <P>• ドージコイン(DOGE)</P>
-          <P>• パブリックネットワーク(TON)</P>`,
-    q5: '出金に手数料はかかりますか？',
-    a5: `<P>Seabet.ioの入金および出金には手数料はかかりませんが、ブロックチェーン支払いを使用する際にはトランザクション手数料がかかる場合があります。</P>`
+          <P>• テザー（USDT）</P>
+          <P>• ビットコイン（BTC）</P>
+          <P>• イーサリアム（ETH）</P>
+          <P>• バイナンスUSD（BUSD)</P>
+          <P>• トロン（TRX）</P>
+          <P>• リップル（XRP）</P>
+          <P>• バイナンスコイン（BNB)</P>
+          <P>• ライトコイン（LTC）</P>
+          <P>• カルダノ（ADA）</P>
+          <P>• ドージコイン（DOGE）</P>
+          <P>• ザオープンネットワーク（TON）</P>`,
+    q5: '入出金に手数料はかかりますか？',
+    a5: `<P>Seabet.io への入出金には取引手数料はかかりませんが、ブロックチェーンの使用には取引手数料の支払いが必要になる場合があります</P>`
   },
 
   errorCodes: {
@@ -787,14 +786,14 @@ export default {
                   </div>`,
 
     rulesContent: `<div>
-                    <h2>規約と条件</h2>
+                    <h2>利用規約</h2>
                     <h3>1. Seabet.io</h3>
                     <h3>2. 重要なお知らせ</h3>
                     <p><b>2.1 </b>WWW.SEABET.IO(「ウェブサイト」)に登録することにより 、お客様は契約を締結し、以下に拘束されることに同意するものとします：</p>
-                    <p>(I) (I) 本利用規約。 </p>
-                    <p>(II) (III) 当社のクッキーポリシー</p>
-                    <p>(III) 当社のクッキーポリシーおよび </p>
-                    <p>(IV)(IV) これらの利用規約 (「利用規約」または「契約」)に言及されている当社の賭博/ゲームに適用される規則に同意し理解したものとみなされます。</p>
+                    <p>(I) (I) 本利用規約 </p>
+                    <p>(II) (III) 当社のプライバシーポリシー</p>
+                    <p>(III) 当社のクッキーポリシー </p>
+                    <p>(IV)(IV) これらの利用規約 (「利用規約」または「契約」)に記載されている当社のギャンブル/ゲームに適用される規則に同意し、理解したものとみなされます。</p>
 
                     <p><b>2.2 </b>本利用規約を注意深く読み、その内容を完全に理解してください。本利用規約の受諾に起因するお客様の権利と義務について疑問がある場合は、ウェブサイトにアクセスする前に、管轄区域の法律顧問に相談してください。本利用規約に同意しない場合は、ウェブサイトのいかなる部分(サブドメイン、ソースコード、および/またはウェブサイトAPIを含むがこれらに限定されない)を使用、訪問、およびアクセスしないでください。</p>
                     <h3>3. 総則</h3>
