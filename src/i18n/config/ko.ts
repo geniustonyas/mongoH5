@@ -545,7 +545,7 @@ export default {
   downloadTitle: 'Seabet.io 프로그레시브 웹 앱!',
   downloadDesc: 'Seabet.io 앱에 오신 것을 환영합니다! 아래에서 Android 앱 및 iOS 프로그레시브 웹 앱 (PWA)을 설치하는 단계별 지침이 있습니다. 언제 어디서나 즐거운, 빠르고 공정한 게임을 즐기세요!',
   step: '단계',
-  clickSave: '브라우저에서 저장 아이콘을 클릭합니다.',
+  clickSave: `화면아래쪽 도구모음에서 '공유' 버튼을 눌러 주세요.`,
   addDesk: `메뉴에서 '홈 화면에 추가'를 선택하세요.`,
   clickAdd: `"추가"를 클릭하면 설치가 완료됩니다.`,
   iosFinish: 'iOS 기기의 홈 화면에서 SEABET.IO 앱을 실행하세요.',
