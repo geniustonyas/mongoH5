@@ -251,19 +251,21 @@ watch(
             scrollRef.value.scrollTop = 0
           }
         } else {
-          if (providerId.value) {
+          console.log(providerId.value)
+          if (providerId.value && providerId.value != '') {
             providerId.value = ''
             query.ps = []
+            dataList.value = []
             showGameOption.value = false
             getGameList()
           }
-          console.log(oldProviderId)
         }
       }
     } else {
       if (newRoute != 'gameDetails' && oldRoute == 'slots') {
         providerId.value = ''
         query.ps = []
+        dataList.value = []
         showGameOption.value = false
         getGameList()
       }

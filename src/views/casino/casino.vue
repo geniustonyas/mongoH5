@@ -248,6 +248,7 @@ watch(
           if (providerId.value) {
             providerId.value = ''
             query.ps = []
+            dataList.value = []
             showGameOption.value = false
             getGameList()
           }
@@ -258,6 +259,7 @@ watch(
       if (newRoute != 'gameDetails' && oldRoute == 'casino') {
         providerId.value = ''
         query.ps = []
+        dataList.value = []
         showGameOption.value = false
         getGameList()
       }
