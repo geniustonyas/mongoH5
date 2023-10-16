@@ -277,6 +277,10 @@ getBanner()
 getAnnouncementList()
 getRankList()
 getRemind()
+
+window.setInterval(() => {
+  getRankList()
+}, 10 * 1000)
 </script>
 
 <style>
