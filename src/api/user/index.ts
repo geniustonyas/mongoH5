@@ -81,6 +81,15 @@ export function checkEmailApi(data: User.CheckData) {
   })
 }
 
+/** 检查用户是否是第三方 */
+export function checkEmailThirdReg(data: User.CheckData) {
+  return request<anyResp>({
+    url: 'Member/CheckIsThirdPartyRegister',
+    method: 'post',
+    data
+  })
+}
+
 /**获取用户信息 */
 export function getUserProfileApi(data: User.getUserProfileData) {
   return request<User.GetUserProfileResp>({

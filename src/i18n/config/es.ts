@@ -554,6 +554,7 @@ export default {
   clickAddAndroid: 'Haz clic en "Agregar"',
   hitratio: 'Relación de aciertos',
   paylines: 'Paylines',
+  nopwd: 'Tu cuenta está registrada a través de las redes sociales. No hay opción de contraseña.',
 
   problem: {
     whatVip: '1.¿Qué es el Club VIP?',

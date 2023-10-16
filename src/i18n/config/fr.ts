@@ -556,6 +556,7 @@ export default {
   clickAddAndroid: `Cliquez sur "Ajouter"`,
   hitratio: 'Taux de succès',
   paylines: 'Ligne de paiement',
+  nopwd: 'Changement du mot de passe a été refusé',
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",

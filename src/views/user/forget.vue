@@ -9,9 +9,10 @@
               <span>{{ t('email') }}</span>
             </div>
             <div class="cr-input">
-              <input v-model.trim="resetForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" />
+              <input v-model.trim="resetForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist" />
               <!-- <Loading v-show="showloading" size="20px" class="captcha" /> -->
               <span v-if="!showloading" class="captcha" @click="sendEmail()">{{ forgetCount === 0 ? t('sendEmail') : forgetCount }}</span>
+              <div id="emailTip" class="tip" />
             </div>
           </div>
           <div class="cf-row">
@@ -20,6 +21,7 @@
             </div>
             <div class="cr-input">
               <input v-model.trim="resetForm.VerificationCode" ref="verificationCodeDom" type="text" class="form-control" :placeholder="t('tips.inputEmailcapcha')" />
+              <div id="captchaTip" class="tip" />
             </div>
           </div>
           <div class="cf-row">
@@ -31,6 +33,7 @@
               <span :class="showPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showPwd = !showPwd" />
               </span>
+              <div id="pwdTip" class="tip" />
             </div>
           </div>
           <div class="cf-row">
@@ -42,6 +45,7 @@
               <span :class="showConfirmPwd ? 'password-addon' : 'password-addon show'">
                 <i class="iconfont icon-xianshi" @click="showConfirmPwd = !showConfirmPwd" />
               </span>
+              <div id="confirmPwdTip" class="tip" />
             </div>
           </div>
           <!--
@@ -79,7 +83,7 @@ import { useRouter } from 'vue-router'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 // import { useUserStore } from '@/store/modules/user'
-import { resetPwdApi, sendEmailApi, checkEmailApi } from '@/api/user/index'
+import { resetPwdApi, sendEmailApi, checkEmailApi, checkEmailThirdReg } from '@/api/user/index'
 import { isPwd, isEmail } from '@/utils/validate'
 
 import { useI18n } from 'vue-i18n'
@@ -110,21 +114,31 @@ let verificationCodeDom = ref<HTMLInputElement | null>(null)
 let pwdDom = ref<HTMLInputElement | null>(null)
 let confirmPwdDom = ref<HTMLInputElement | null>(null)
 
+// 错误信息
+const errorMsg = ref('')
+
 // 发送验证码
 const sendEmail = async () => {
   if (forgetCount.value > 0) {
     return false
   }
+  const dm = document.getElementById('emailTip')
   if (!isEmail(resetForm.Email)) {
-    showToast(t('tips.isEmail'))
-    emailDom.value?.focus()
+    errorMsg.value = t('tips.isEmail')
+    dm!.innerHTML = errorMsg.value
     return false
+  } else {
+    errorMsg.value = ''
+    dm!.innerHTML = ''
   }
-  const isExistEmail = await checkEmailApi({ Keyword: resetForm.Email, noLoading: true })
-  if (!isExistEmail.data) {
-    showToast(t('tips.emailNotExist'))
-    emailDom.value?.focus()
+  const isExistEmail = await checkEmailExist()
+  if (!isExistEmail) {
+    errorMsg.value = t('tips.emailNotExist')
+    dm!.innerHTML = errorMsg.value
     return false
+  } else {
+    dm!.innerHTML = ''
+    errorMsg.value = ''
   }
   showloading.value = true
   sendEmailApi({ EmailCheckCodeType: 1, Email: resetForm.Email })
@@ -149,33 +163,98 @@ const sendEmail = async () => {
     })
 }
 
+// 检查邮箱
+const checkEmailExist = async () => {
+  try {
+    const dm = document.getElementById('emailTip')
+    if (resetForm.Email == '') {
+      errorMsg.value = t('tips.inputEmail')
+      dm!.innerHTML = errorMsg.value
+      return true
+    } else {
+      dm!.innerHTML = ''
+      errorMsg.value = ''
+    }
+    if (!isEmail(resetForm.Email)) {
+      errorMsg.value = t('tips.isEmail')
+      dm!.innerHTML = errorMsg.value
+      return true
+    } else {
+      dm!.innerHTML = ''
+      errorMsg.value = ''
+    }
+    const isExistEmailResp = await checkEmailApi({ Keyword: resetForm.Email, noLoading: true })
+    if (!isExistEmailResp.data) {
+      errorMsg.value = t('tips.emailNotExist')
+      dm!.innerHTML = errorMsg.value
+      return true
+    } else {
+      errorMsg.value = ''
+      dm!.innerHTML = ''
+    }
+    const isThirdReg = await checkEmailThirdReg({ UserName: resetForm.Email, noLoading: true })
+    if (isThirdReg.data) {
+      errorMsg.value = t('nopwd')
+      dm!.innerHTML = errorMsg.value
+      return true
+    } else {
+      errorMsg.value = ''
+      dm!.innerHTML = ''
+    }
+    return isExistEmailResp.data
+  } catch (error: any) {
+    // ElMessage({ type: 'error', message: error })
+    return true
+  }
+}
+
 /** 重置密码 */
-const resetPassword = () => {
-  if (resetForm.Email == '') {
-    showToast(t('tips.inputEmail'))
-    emailDom.value?.focus()
+const resetPassword = async () => {
+  errorMsg.value = ''
+  const allTip = document.getElementsByClassName('tip')
+  console.log()
+  for (var i = 0; i < allTip.length; i++) {
+    allTip[i].innerHTML = ''
+  }
+
+  await checkEmailExist()
+  if (errorMsg.value != '') {
     return false
   }
-  if (!isEmail(resetForm.Email)) {
-    showToast(t('tips.isEmail'))
-    emailDom.value?.focus()
-    return false
-  }
+  const captchaEl = document.getElementById('captchaTip')
+  const pwdEl = document.getElementById('pwdTip')
+  const confirmPwdEl = document.getElementById('confirmPwdTip')
+  // 验证码
   if (resetForm.VerificationCode == '') {
-    showToast(t('tips.inputEmailcapcha'))
-    verificationCodeDom.value?.focus()
+    errorMsg.value = t('tips.inputEmailcapcha')
+    captchaEl!.innerHTML = errorMsg.value
     return false
+  } else {
+    errorMsg.value = ''
+    captchaEl!.innerHTML = ''
   }
-  if (!isPwd(resetForm.PassWord)) {
-    showToast(t('tips.isPwd'))
-    pwdDom.value?.focus()
+  // 验证密码
+  if (resetForm.PassWord == '' || !isPwd(resetForm.PassWord)) {
+    errorMsg.value = t('tips.isPwd')
+    pwdEl!.innerHTML = errorMsg.value
     return false
+  } else {
+    errorMsg.value = ''
+    pwdEl!.innerHTML = ''
   }
+
+  // 确认密码
   if (resetForm.PassWord != confirmPwd.value) {
-    showToast(t('tips.pwdNotMatch'))
-    confirmPwdDom.value?.focus()
+    console.log(resetForm.Password)
+    console.log(confirmPwd.value)
+    errorMsg.value = t('tips.pwdNotMatch')
+    confirmPwdEl!.innerHTML = errorMsg.value
     return false
+  } else {
+    errorMsg.value = ''
+    confirmPwdEl!.innerHTML = ''
   }
+
   resetPwdApi(resetForm)
     .then(() => {
       showToast(t('tips.resetSuccess'))

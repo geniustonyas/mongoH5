@@ -554,6 +554,7 @@ export default {
   clickAddAndroid: 'Click “Add”',
   hitratio: 'Hitratio',
   paylines: 'Paylines',
+  nopwd: 'Your account is registered through social media. There is no password option.',
 
   problem: {
     whatVip: '1. What is the VIP Club?',

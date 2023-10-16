@@ -553,6 +553,7 @@ export default {
   clickAddAndroid: 'ショートカットは今、ホーム画面にあります。',
   hitratio: 'ヒット率',
   paylines: 'ペイライン',
+  nopwd: 'Bitte setze das Passwort auf deiner Social Media Plattform zurück',
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',

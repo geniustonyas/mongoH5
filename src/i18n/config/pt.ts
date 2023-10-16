@@ -556,6 +556,7 @@ export default {
   clickAddAndroid: 'Clique em "Adicionar"',
   hitratio: 'Frequência de acerto',
   paylines: 'Linhas de pagamento',
+  nopwd: 'Você fez seu registro por meio de mídias sociais. Não é possível criar outra senha.',
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',

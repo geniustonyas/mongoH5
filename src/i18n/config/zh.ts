@@ -553,6 +553,7 @@ export default {
   clickAddAndroid: '点击“添加”',
   hitratio: '命中率',
   paylines: '支付线',
+  nopwd: '您使用社交媒体注册，因此无需密码登录。',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

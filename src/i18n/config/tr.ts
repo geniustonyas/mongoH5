@@ -554,6 +554,7 @@ export default {
   clickAddAndroid: '"Ekleyin" i tıklayın',
   hitratio: 'İsabet oranı',
   paylines: 'Ödeme Çizgileri',
+  nopwd: 'Kaydınız sosyal medya aracılığıyla yapıldığı için herhangi bir ek şifre opsiyonu bulunmamaktadır.',
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',

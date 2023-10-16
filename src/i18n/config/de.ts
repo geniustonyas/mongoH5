@@ -544,7 +544,7 @@ export default {
     'Willkommen bei unserer brandneuen Seabet.io-App! Nachfolgend finden Sie Schritt-für-Schritt-Anleitungen zur Installation der Android-App und der iOS Progressive Web App (PWA). Genießen Sie den Spaß, die Schnelligkeit und die Fairness jederzeit und überall!',
   step: 'Schritt',
   clickSave: 'Tippe auf die Schaltfläche “Teilen” in der Toolbar',
-  addDesk: '"Zum Startbildschirm hinzufügen" auswählen',
+  addDesk: 'Wähle “Zum Startbildschirm hinzufügen”aus dem Menü',
   clickAdd: `Klicken Sie auf “Hinzufügen” die Installation ist abgeschlossen`,
   iosFinish: `Starte die SEABET.IO-App auf dem Startbildschirm deines iOS`,
   finishedDown: 'Die Verknüpfung befindet sich nun auf Ihrem Startbildschirm.',
@@ -553,7 +553,8 @@ export default {
   clickAddAndroid: '"Zur Startseite hinzufügen" anklicken',
   hitratio: 'Trefferquote',
   paylines: 'Gewinnlinien',
-
+  nopwd: 'Bitte setze das Passwort auf deiner Social Media Plattform zurück',
+  
   problem: {
     whatVip: '1.Was ist der VIP-Club?',
     whatVips: `<p>Der Seabet.io VIP-Club ist eine engagierte Gemeinschaft für Kunden von Kryptowährungen, die es ihnen ermöglicht, jederzeit an allen auf der Website verfügbaren Werbeaktivitäten teilzunehmen. Jede Wette, jeder Spin und jedes Spiel, das Sie spielen, sammelt Punkte, wodurch Sie sich nach und nach im Club aufsteigen und unterwegs aufregende Belohnungen freischalten. Wenn Sie VIP-Levels freischalten, verdienen Sie auch Seabet-Wett-Punkte, die Ihnen noch lohnendere Erlebnisse und Dienstleistungen bieten.</p>

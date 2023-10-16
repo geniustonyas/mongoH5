@@ -553,6 +553,7 @@ export default {
   clickAddAndroid: 'คลิก "เพิ่ม"',
   hitratio: 'ฮิตเรโช',
   paylines: 'รูปแบบการชนะ',
+  nopwd: 'บัญชีของคุณลงทะเบียนผ่านโซเชียลมีเดีย ดังนั้นไม่มีตัวเลือกของรหัสผ่าน',
 
   problem: {
     whatVip: '1. คลับ VIP คืออะไร?',

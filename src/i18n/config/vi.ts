@@ -556,6 +556,7 @@ export default {
   clickAddAndroid: 'Nhấp "Thêm".',
   hitratio: 'Tỷ lệ trúng',
   paylines: 'Thanh toán',
+  nopwd: 'Vui lòng đặt lại mật khẩu trên các nền truyền thông xã hội của bạn',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

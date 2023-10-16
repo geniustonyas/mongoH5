@@ -555,6 +555,7 @@ export default {
   clickAddAndroid: '"추가"를 클릭합니다.',
   hitratio: '적중률',
   paylines: '페이 라인',
+  nopwd: '계정이 소셜 미디어를 통해 등록되어 있습니다. 암호 입력은 불가합니다.',
 
   problem: {
     whatVip: '1.VIP 클럽이란 무엇인가요?',
