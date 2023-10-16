@@ -5,6 +5,7 @@ import { awaitWraper } from '@/utils/index'
 import { useUserStoreHook } from '@/store/modules/user'
 import { useAppStoreHook } from '@/store/modules/app'
 import router from '@/router'
+import { checkEmailApi } from '@/api/user'
 
 import facebookWebLogin from './plugin/facebookWebLogin'
 import { googleTokenLogin } from 'vue3-google-login'
@@ -45,8 +46,8 @@ export const googleLogin = () => {
   }).then((response) => {
     googleValidateApi({ access_token: response.access_token })
       .then((resp) => {
-        if (resp.data?.userInfo?.id) {
-          handleThirdLogin({ ThirdPartyType: '4', ThirdPartyId: resp.data?.userInfo?.id, ThirdPartyName: 'Google' }, resp.data.sign, resp.data?.userInfo?.email)
+        if (resp.data?.userInfo?.email) {
+          handleThirdLogin({ ThirdPartyType: '4', ThirdPartyId: resp.data?.userInfo?.email, ThirdPartyName: 'Google' }, resp.data.sign, resp.data?.userInfo?.email)
         } else {
           showToast(t('tips.invalidThirdUser'))
         }
@@ -260,6 +261,18 @@ const handleThirdLogin = async (data: thirdData, sign: string, email = '') => {
     // 如果是google登录则设置邮箱
     if (loginData.ThirdPartyType == '4') {
       appStore.googleEmail = email
+      const isExistEmailResp = await checkEmailApi({ Keyword: loginData.ThirdPartyId, noLoading: true })
+      if (isExistEmailResp.data) {
+        const loginRes = await awaitWraper(userStore.thirdLogin(loginData))
+        if (loginRes[0]) {
+          showToast(loginRes[0])
+        } else {
+          router.push({ name: 'index' })
+        }
+      } else {
+        appStore.thirdData = loginData
+        router.push({ name: 'thirdReg' })
+      }
     }
     appStore.thirdData = loginData
     router.push({ name: 'thirdReg' })

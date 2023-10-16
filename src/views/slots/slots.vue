@@ -107,6 +107,8 @@ const userStore = useUserStore()
 const appStore = useAppStore()
 const { t } = useI18n()
 
+const providerId = ref('')
+
 // 汇率相关
 const { currencyCode, exchangeRate } = getExchangeRate()
 
@@ -229,36 +231,49 @@ onDeactivated(() => {
   appStore.detailsFav = []
   if (scrollRef.value) {
     scrollTop.value = scrollRef.value.scrollTop
-    console.log(scrollTop.value)
   }
 })
 
 // 观察路由请求参数providerId变化
 watch(
-  () => route.query.providerId,
-  (val) => {
-    if (dataList.value.length != 0) {
-      const forward = router.options.history.state.forward as string
-      if (!(forward && forward.indexOf('gameDetails') != -1)) {
-        if (val) {
+  () => [route.query.providerId, route.name],
+  // @ts-ignore
+  ([newProviderId, newRoute], [oldProviderId, oldRoute]) => {
+    if (newRoute == 'slots') {
+      if (oldRoute != 'gameDetails') {
+        if (newProviderId) {
+          providerId.value = parseInt(newProviderId as string)
+          query.ps = [providerId.value]
           showGameOption.value = true
-          query.ps = [parseInt(route.query.providerId as string)]
           dataList.value = []
           getGameList()
+          scrollRef.value.scrollTop = 0
+        } else {
+          if (providerId.value) {
+            providerId.value = ''
+            query.ps = []
+            showGameOption.value = false
+            getGameList()
+          }
+          console.log(oldProviderId)
         }
       }
     } else {
-      if (val) {
-        showGameOption.value = true
-        query.ps = [parseInt(route.query.providerId as string)]
-        dataList.value = []
+      if (newRoute != 'gameDetails' && oldRoute == 'slots') {
+        providerId.value = ''
+        query.ps = []
+        showGameOption.value = false
         getGameList()
       }
     }
   }
 )
+
+// 第一次进入列表  获取一次数据
 if (route.query.providerId) {
-  query.ps = [parseInt(route.query.providerId as string)]
+  providerId.value = route.query.providerId as string
+  query.ps = [parseInt(providerId.value)]
+  showGameOption.value = true
 }
 getGameList()
 </script>

@@ -27,15 +27,15 @@
                 USDT
               </span>
             </div>
-            <div class="item" v-if="detailsData.volatility != '0'">
+            <div class="item" v-if="detailsData.volatility != '0' && gameType != GameType.slots">
               <label>{{ t('volatility') }}</label>
               <span>{{ detailsData.volatility != '' ? t('volatilitys.' + detailsData.volatility) : '' }}</span>
             </div>
-            <div class="item" v-if="detailsData.hitRatio != '0'">
+            <div class="item" v-if="detailsData.hitRatio != '0' && gameType != GameType.slots">
               <label>{{ t('hitratio') }}</label>
               <span v-show="detailsData.hitRatio">{{ detailsData.hitRatio }}%</span>
             </div>
-            <div class="item" v-if="detailsData.paylines != '0'">
+            <div class="item" v-if="detailsData.paylines != '0' && gameType != GameType.slots">
               <label>{{ t('paylines') }}</label>
               <span v-show="detailsData.paylines != ''">{{ detailsData.paylines }}</span>
             </div>
@@ -94,7 +94,7 @@ const appStore = useAppStore()
 const route = useRoute()
 const { t } = useI18n()
 
-const gameType = route.query.gameType as string
+const gameType = parseInt(route.query.gameType as string)
 
 // 获取游戏列表
 const detailsData = reactive<getGameDetailsRespItem>({
