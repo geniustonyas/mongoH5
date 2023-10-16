@@ -273,8 +273,9 @@ const handleThirdLogin = async (data: thirdData, sign: string, email = '') => {
         appStore.thirdData = loginData
         router.push({ name: 'thirdReg' })
       }
+    } else {
+      appStore.thirdData = loginData
+      router.push({ name: 'thirdReg' })
     }
-    appStore.thirdData = loginData
-    router.push({ name: 'thirdReg' })
   }
 }
