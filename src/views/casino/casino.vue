@@ -106,7 +106,7 @@ const userStore = useUserStore()
 const appStore = useAppStore()
 const { t } = useI18n()
 
-const providerId = ref('')
+const providerId = ref<string | number>('')
 
 // 汇率相关
 const { currencyCode, exchangeRate } = getExchangeRate()
@@ -242,7 +242,8 @@ watch(
           showGameOption.value = true
           dataList.value = []
           getGameList()
-          scrollRef.value.scrollTop = 0
+          if (scrollRef.value)
+            scrollRef.value.scrollTop = 0
         } else {
           if (providerId.value) {
             providerId.value = ''

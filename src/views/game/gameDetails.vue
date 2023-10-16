@@ -27,21 +27,21 @@
                 USDT
               </span>
             </div>
-            <div class="item" v-if="detailsData.volatility != '0' && gameType != GameType.slots">
+            <div class="item" v-if="detailsData.volatility != '0' && gameType == GameType.Slots">
               <label>{{ t('volatility') }}</label>
               <span>{{ detailsData.volatility != '' ? t('volatilitys.' + detailsData.volatility) : '' }}</span>
             </div>
-            <div class="item" v-if="detailsData.hitRatio != '0' && gameType != GameType.slots">
+            <div class="item" v-if="detailsData.hitRatio != '0' && gameType == GameType.Slots">
               <label>{{ t('hitratio') }}</label>
               <span v-show="detailsData.hitRatio">{{ detailsData.hitRatio }}%</span>
             </div>
-            <div class="item" v-if="detailsData.paylines != '0' && gameType != GameType.slots">
+            <div class="item" v-if="detailsData.paylines != '0' && gameType == GameType.Slots">
               <label>{{ t('paylines') }}</label>
               <span v-show="detailsData.paylines != ''">{{ detailsData.paylines }}</span>
             </div>
             <div class="btns">
-              <a class="btn btn-primary" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/url', true)">{{ t('startNow') }}</a>
-              <a v-if="parseInt(gameType) === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/demo', true)">
+              <a class="btn btn-primary" @click="startGame(detailsData.id, gameType, 'game/url', true)">{{ t('startNow') }}</a>
+              <a v-if="gameType === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, gameType, 'game/demo', true)">
                 {{ t('demoMode') }}
               </a>
             </div>

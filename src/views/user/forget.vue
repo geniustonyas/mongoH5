@@ -245,8 +245,6 @@ const resetPassword = async () => {
 
   // 确认密码
   if (resetForm.PassWord != confirmPwd.value) {
-    console.log(resetForm.Password)
-    console.log(confirmPwd.value)
     errorMsg.value = t('tips.pwdNotMatch')
     confirmPwdEl!.innerHTML = errorMsg.value
     return false
