@@ -11,7 +11,7 @@
             <div class="cr-input">
               <input v-model.trim="resetForm.Email" ref="emailDom" type="email" class="form-control" :placeholder="t('regPage.holderEmail')" @blur="checkEmailExist" />
               <!-- <Loading v-show="showloading" size="20px" class="captcha" /> -->
-              <span v-if="!showloading" class="captcha" @click="sendEmail()">{{ forgetCount === 0 ? t('sendEmail') : forgetCount }}</span>
+              <span v-if="!showloading" :forgetCount="forgetCount" class="captcha" @click="sendEmail()">{{ forgetCount == 0 ? t('sendEmail') : forgetCount }}</span>
               <div id="emailTip" class="tip" />
             </div>
           </div>
@@ -48,15 +48,10 @@
               <div id="confirmPwdTip" class="tip" />
             </div>
           </div>
-          <!--
-          <div class="cf-row" v-show="useGoogleAuthenticatore">
-            <div class="cr-label">
-              <span>Google Authenticator</span>
-            </div>
-            <div class="cr-input">
-              <input ref="verificationCode" v-model="resetForm.VerificationCode" type="text" class="form-control" placeholder="" />
-            </div>
-          </div> -->
+          
+          <div class="cf-row">
+            <div class="cr-mark">{{ t('changePwdLimit') }}</div>
+          </div>
           <div class="cf-row">
             <div class="cr-btns">
               <a class="btn btn-primary full" @click="resetPassword()">{{ $t('resetPwd') }}</a>
@@ -119,26 +114,13 @@ const errorMsg = ref('')
 
 // 发送验证码
 const sendEmail = async () => {
+  const dm = document.getElementById('emailTip')
   if (forgetCount.value > 0) {
     return false
   }
-  const dm = document.getElementById('emailTip')
-  if (!isEmail(resetForm.Email)) {
-    errorMsg.value = t('tips.isEmail')
-    dm!.innerHTML = errorMsg.value
-    return false
-  } else {
-    errorMsg.value = ''
-    dm!.innerHTML = ''
-  }
-  const isExistEmail = await checkEmailExist()
-  if (!isExistEmail) {
-    errorMsg.value = t('tips.emailNotExist')
-    dm!.innerHTML = errorMsg.value
-    return false
-  } else {
-    dm!.innerHTML = ''
-    errorMsg.value = ''
+  await checkEmailExist()
+  if(errorMsg.value != '') {
+    return false  
   }
   showloading.value = true
   sendEmailApi({ EmailCheckCodeType: 1, Email: resetForm.Email })
