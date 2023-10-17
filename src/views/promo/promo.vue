@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onActivated, onDeactivated } from 'vue'
 import { useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'

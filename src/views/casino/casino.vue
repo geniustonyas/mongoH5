@@ -238,6 +238,7 @@ watch(
       if (oldRoute != 'gameDetails') {
         if (newProviderId) {
           providerId.value = parseInt(newProviderId as string)
+          query.page = 1
           query.ps = [providerId.value]
           showGameOption.value = true
           dataList.value = []
@@ -247,17 +248,18 @@ watch(
         } else {
           if (providerId.value) {
             providerId.value = ''
+            query.page = 1
             query.ps = []
             dataList.value = []
             showGameOption.value = false
             getGameList()
           }
-          console.log(oldProviderId)
         }
       }
     } else {
       if (newRoute != 'gameDetails' && oldRoute == 'casino') {
         providerId.value = ''
+        query.page = 1
         query.ps = []
         dataList.value = []
         showGameOption.value = false
@@ -269,6 +271,7 @@ watch(
 
 // 第一次进入列表  获取一次数据
 if (route.query.providerId) {
+  query.page = 1
   providerId.value = route.query.providerId as string
   query.ps = [parseInt(providerId.value)]
   showGameOption.value = true

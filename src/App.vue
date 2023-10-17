@@ -2,7 +2,7 @@
   <template v-if="!appStore.maintainStatus">
     <router-view v-slot="{ Component, route }">
       <transition :name="getTransition(route.meta.transition)">
-        <keep-alive :include="['casino', 'slots']">
+        <keep-alive :include="['casino', 'slots', 'index', 'search', 'promoList', 'promo']">
           <component :is="Component" :key="route.path" />
         </keep-alive>
       </transition>

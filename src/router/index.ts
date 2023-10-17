@@ -134,14 +134,14 @@ const routes = [
   },
   {
     path: '/promo',
+    name: 'promo',
+    component: () => import('@/views/promo/promo.vue'),
+    meta: { needLogin: false, keepAlive: false }
+  },
+  {
+    path: '/promoDetails',
     component: AppMain,
     children: [
-      {
-        path: '',
-        name: 'promo',
-        component: () => import('@/views/promo/promo.vue'),
-        meta: { needLogin: false, keepAlive: false }
-      },
       {
         path: ':id(\\d+)',
         name: 'promoDetails',

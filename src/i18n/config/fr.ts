@@ -480,7 +480,7 @@ export default {
   comingSoon: 'bientôt disponible...',
   affiliate: 'Affilié',
   rewardActivities: 'Activités de Récompense',
-  rewardRecords: 'Historique des Récompenses',
+  rewardRecords: 'Historique',
   applyPromo: 'Appliquer les Récompenses',
   applyNow: 'Appliquer Maintenant',
   rewardStatus: { 0: 'En traitement', 1: 'Accepté', 2: 'Rejeté' },

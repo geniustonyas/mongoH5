@@ -1,7 +1,9 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <transition :name="getTransition(route.meta.transition)">
-      <component :is="Component" :key="route.path" />
+      <keep-alive :include="['casino', 'slots', 'index', 'search', 'promoList', 'promo']">
+        <component :is="Component" :key="route.path" />
+      </keep-alive>
     </transition>
   </router-view>
 </template>

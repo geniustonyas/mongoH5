@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onActivated, onDeactivated } from 'vue'
 import { useRouter } from 'vue-router'
 
 import Footer from '@/components/layout/Footer.vue'
@@ -136,6 +136,15 @@ const getGameRecommend = () => {
       console.log(error)
     })
 }
+
+
+onActivated(() => {
+  keywords.value = ''
+  searchResult.value = []
+})
+
+onDeactivated(() => {
+})
 
 getGameRecommend()
 </script>

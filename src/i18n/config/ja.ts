@@ -696,7 +696,7 @@ export default {
     amlTitle: 'アンチマネーロンダリング方針',
     selfExclusionTitle: '自己排除',
     privacyTitle: 'プライバシーポリシー',
-    fairnessTitle: '公表性',
+    fairnessTitle: '公平性',
 
     // html内容
     vipContent: `<div class="vip-clubhouse-box">
