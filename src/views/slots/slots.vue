@@ -252,7 +252,6 @@ watch(
             scrollRef.value.scrollTop = 0
           }
         } else {
-          console.log(providerId.value)
           if (providerId.value && providerId.value != '') {
             providerId.value = ''
             query.page = 1

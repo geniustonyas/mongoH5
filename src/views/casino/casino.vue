@@ -255,9 +255,12 @@ watch(
             getGameList()
           }
         }
+      } else {
+
       }
     } else {
       if (newRoute != 'gameDetails' && oldRoute == 'casino') {
+        
         providerId.value = ''
         query.page = 1
         query.ps = []
