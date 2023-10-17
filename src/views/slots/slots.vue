@@ -244,6 +244,7 @@ watch(
         if (newProviderId) {
           providerId.value = parseInt(newProviderId as string)
           query.page = 1
+          pageCount.value = 0
           query.ps = [providerId.value]
           showGameOption.value = true
           dataList.value = []
@@ -255,6 +256,7 @@ watch(
           if (providerId.value && providerId.value != '') {
             providerId.value = ''
             query.page = 1
+            pageCount.value = 0
             query.ps = []
             dataList.value = []
             showGameOption.value = false
@@ -266,6 +268,7 @@ watch(
       if (newRoute != 'gameDetails' && oldRoute == 'slots') {
         providerId.value = ''
         query.page = 1
+        pageCount.value = 0
         query.ps = []
         dataList.value = []
         showGameOption.value = false
