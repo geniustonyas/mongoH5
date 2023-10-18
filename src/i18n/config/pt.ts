@@ -101,7 +101,7 @@ export default {
   clubTips: 'Suas recompensas serão redefinidas a cada mês. Certifique-se de resgatá-las antes do final do mês.',
   currentPoints: 'Valor Atual da Aposta',
   currentPointsMultiplier: 'Multiplicador de Pontos Atual',
-  receiveReward: 'Receber Recompensa',
+  receiveReward: 'Escolher prêmio',
   alreadyReceived: 'Já Recebido',
   mergedReards: 'Recompensas acumuladas para resgate no próximo nível',
   noReward: 'Nenhuma recompensa disponível. Alcance o próximo nível para desbloquear sua primeira recompensa.',

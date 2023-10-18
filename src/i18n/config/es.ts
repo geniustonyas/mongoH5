@@ -101,7 +101,7 @@ export default {
   clubTips: 'Cada mes, tus recompensas se restablecerán. Asegúrate de reclamar tus recompensas antes de que termine el mes.',
   currentPoints: 'Monto de Apuesta Actual',
   currentPointsMultiplier: 'Multiplicador de Puntos Actuales',
-  receiveReward: 'Reclamar Recompensa',
+  receiveReward: 'Obtener',
   alreadyReceived: 'Ya Reclamado',
   mergedReards: 'Se han acumulado recompensas para el próximo nivel y pueden reclamarse en conjunto',
   noReward: 'No hay recompensas por el momento. Alcanza el siguiente nivel para desbloquear tu primera recompensa.',

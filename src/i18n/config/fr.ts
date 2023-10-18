@@ -101,7 +101,7 @@ export default {
   clubTips: 'Vos récompenses seront réinitialisées chaque mois. Assurez-vous de les réclamer avant la fin du mois pour ne rien manquer.',
   currentPoints: 'Montant Actuel de la Mise',
   currentPointsMultiplier: 'Multiplicateur de Points Actuel',
-  receiveReward: 'Réclamer la Récompense',
+  receiveReward: 'Recevoir',
   alreadyReceived: 'Déjà Réclamé',
   mergedReards: 'Récompenses cumulées pour le niveau suivant',
   noReward: 'Pas encore de récompense. Atteignez le niveau supérieur pour débloquer votre première récompense.',
