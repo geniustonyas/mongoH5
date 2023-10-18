@@ -207,11 +207,11 @@ const isFavClass = (item: getGameListGsItemResp) => {
 const selectTitle = () => {
   let title = t('allProviders')
   if (query.ps.length > 0 && pslist.value.length > 0) {
-    const tmp = pslist.value.find((item) => item.id == query.ps[0])
+    const tmp = pslist.value.find((item) => parseInt(item.id) == query.ps[0])
     if (tmp) {
       title = tmp.name
-      if(query.ps.length > 1) {
-        title += ' (' + query.ps.length +')'
+      if (query.ps.length > 1) {
+        title += ' (' + query.ps.length + ')'
       }
     }
     // query.ps.forEach(ps => {
@@ -273,6 +273,7 @@ watch(
           getGameList()
           if (scrollRef.value) {
             scrollRef.value.scrollTop = 0
+            console.log(oldProviderId)
           }
         } else {
           if (providerId.value && providerId.value != '') {

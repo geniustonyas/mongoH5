@@ -107,7 +107,7 @@ const appStore = useAppStore()
 const { t } = useI18n()
 
 const providerId = ref<string | number>('')
-const providerSelect = ref<HTMLElement>(null)
+const providerSelect = ref<HTMLElement | null>(null)
 // 汇率相关
 const { currencyCode, exchangeRate } = getExchangeRate()
 
@@ -192,11 +192,11 @@ const isFavClass = (item: getGameListGsItemResp) => {
 const selectTitle = () => {
   let title = t('allProviders')
   if (query.ps.length > 0 && pslist.value.length > 0) {
-    const tmp = pslist.value.find((item) => item.id == query.ps[0])
+    const tmp = pslist.value.find((item) => parseInt(item.id) == query.ps[0])
     if (tmp) {
       title = tmp.name
-      if(query.ps.length > 1) {
-        title += ' (' + query.ps.length +')'
+      if (query.ps.length > 1) {
+        title += ' (' + query.ps.length + ')'
       }
     }
     // query.ps.forEach(ps => {
@@ -266,8 +266,9 @@ watch(
           showGameOption.value = true
           dataList.value = []
           getGameList()
-          if (scrollRef.value)
+          if (scrollRef.value) {
             scrollRef.value.scrollTop = 0
+          }
         } else {
           if (providerId.value) {
             providerId.value = ''
@@ -279,12 +280,9 @@ watch(
             getGameList()
           }
         }
-      } else {
-
       }
     } else {
       if (newRoute != 'gameDetails' && oldRoute == 'casino') {
-        
         providerId.value = ''
         query.page = 1
         pageCount.value = 0
