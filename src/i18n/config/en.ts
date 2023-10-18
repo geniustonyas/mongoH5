@@ -701,7 +701,7 @@ export default {
   html: {
     // html标题
     vipTitle: 'VIP Club',
-    rulesTitle: 'Rules and Terms',
+    rulesTitle: 'Terms and Conditions',
     responsibleTitle: 'Responsible Gambling',
     amlTitle: 'AML Policy',
     selfExclusionTitle: 'Self Exclusion',
@@ -801,7 +801,7 @@ export default {
                   </div>`,
 
     rulesContent: `<div>
-                    <h2>Rules and Terms</h2>
+                    <h2>Terms and Conditions</h2>
                     <h3>1. SEABET.IO</h3>
                     <h3>2. IMPORTANT NOTICE</h3>
                     <p><b>2.1 </b>BY REGISTERING ON WWW.SEABET.IO (THE “WEBSITE”), YOU ENTER INTO A CONTRACTED, AND AGREE TO BE BOUND BY: </p>

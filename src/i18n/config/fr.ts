@@ -395,7 +395,7 @@ export default {
   wageringRequirement: 'Exigence de Mise',
   enableVisible: 'Activer le Mode Invisible',
   hiddenYourBet: 'Vos paris ne seront pas visibles dans les flux publics de paris ni dans les aperçus de paris',
-  startNow: 'Commencer Maintenant',
+  startNow: 'Commencer',
   withdrawStatus: { 1: 'En cours de traitement', 2: 'Confirmé', 3: 'Rejeté' },
   time: 'Temps',
   betAmount: 'Montant Misé',
