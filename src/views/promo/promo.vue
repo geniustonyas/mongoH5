@@ -6,10 +6,10 @@
         <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>
       </nav> -->
       <div class="promo-box">
-        <ul v-if="promoList.length > 0" class="pb-list">
+        <ul v-if="promoList.length > 0" class="pb-list" v-lazy-container="{ selector: 'img', error: getAssetsFile('seabet1.png'), loading: getAssetsFile('seabet1.png') }">
           <li v-for="(item, index) of promoList" :key="index">
             <a @click="router.push({ name: 'promoDetails', params: { id: item.id } })">
-              <img v-lazy="appStore.cdnurl + item.image" />
+              <img :data-src="appStore.cdnurl + item.image" />
               <h3>{{ item.title }}</h3>
               <p>{{ item.intro }}</p>
               <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onActivated, onDeactivated } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
@@ -36,6 +36,7 @@ import { getPromoApi } from '@/api/promo/index'
 import { getPromoRespItem } from '@/api/promo/types'
 import { useAppStore } from '@/store/modules/app'
 
+import { getAssetsFile } from '@/utils/index'
 import { useI18n } from 'vue-i18n'
 
 // 汇率相关

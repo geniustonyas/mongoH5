@@ -48,7 +48,7 @@
               <div id="confirmPwdTip" class="tip" />
             </div>
           </div>
-          
+
           <div class="cf-row">
             <div class="cr-mark">{{ t('changePwdLimit') }}</div>
           </div>
@@ -119,8 +119,8 @@ const sendEmail = async () => {
     return false
   }
   await checkEmailExist()
-  if(errorMsg.value != '') {
-    return false  
+  if (errorMsg.value != '') {
+    return false
   }
   showloading.value = true
   sendEmailApi({ EmailCheckCodeType: 1, Email: resetForm.Email })

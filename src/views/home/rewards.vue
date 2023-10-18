@@ -38,10 +38,10 @@
                       </div>
                       <div class="rct-r">
                         <h3>{{ item.name }}</h3>
-                          <a class="btn btn-primary" @click="claimPromo(item)">{{ t('applyNow') }}</a>
+                        <a class="btn btn-primary" @click="claimPromo(item)">{{ t('applyNow') }}</a>
                       </div>
-                    </div>               
-                  </div> 
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>

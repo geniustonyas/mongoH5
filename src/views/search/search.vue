@@ -137,14 +137,12 @@ const getGameRecommend = () => {
     })
 }
 
-
 onActivated(() => {
   keywords.value = ''
   searchResult.value = []
 })
 
-onDeactivated(() => {
-})
+onDeactivated(() => {})
 
 getGameRecommend()
 </script>
