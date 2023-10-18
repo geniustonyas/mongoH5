@@ -130,7 +130,7 @@ export default {
   makeAllRead: 'Set all as read',
   noMessage: 'You don not have any notification messages',
   // 奖励
-  claimReward: 'Pormo Code',
+  claimReward: 'Promo Code',
   claimNewReward: 'Claim a new reward',
   rewardCode: 'Reward Code',
   claim: 'Receive',

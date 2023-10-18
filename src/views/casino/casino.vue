@@ -27,7 +27,7 @@
                 <label class="form-label">{{ t('providers') }}</label>
                 <ConfigProvider theme="dark">
                   <DropdownMenu v-if="pslist.length > 0" direction="down">
-                    <DropdownItem :title="t('allProviders')" ref="currenyDom">
+                    <DropdownItem :title="selectTitle()" ref="providerSelect">
                       <div class="drop-item" v-for="(item, index) of pslist" :key="index" @click="selGameProvider(parseInt(item.id))">
                         <span :attr="item.id" :class="{ active: query.ps.includes(parseInt(item.id)) }">{{ item.name }}({{ item.count }})</span>
                         <span><Icon v-show="query.ps.includes(parseInt(item.id))" name="success" class="active" /></span>
@@ -107,7 +107,7 @@ const appStore = useAppStore()
 const { t } = useI18n()
 
 const providerId = ref<string | number>('')
-
+const providerSelect = ref<HTMLElement>(null)
 // 汇率相关
 const { currencyCode, exchangeRate } = getExchangeRate()
 
@@ -176,6 +176,7 @@ const getGameList = () => {
     })
 }
 
+// 是否被收藏
 const isFavClass = (item: getGameListGsItemResp) => {
   let css = item.fg ? 'iconfont icon-shoucang_fill' : 'iconfont icon-shoucang'
   if (appStore.detailsFav.includes(item.id)) {
@@ -185,6 +186,27 @@ const isFavClass = (item: getGameListGsItemResp) => {
     css = 'iconfont icon-shoucang'
   }
   return css
+}
+
+// 下拉框标题
+const selectTitle = () => {
+  let title = t('allProviders')
+  if (query.ps.length > 0 && pslist.value.length > 0) {
+    const tmp = pslist.value.find((item) => item.id == query.ps[0])
+    if (tmp) {
+      title = tmp.name
+      if(query.ps.length > 1) {
+        title += ' (' + query.ps.length +')'
+      }
+    }
+    // query.ps.forEach(ps => {
+    //   let index = pslist.value.findIndex((item) => item.id == ps)
+    //   if (index != -1) {
+    //     title += pslist.value[index].name + ' '
+    //   }
+    // })
+  }
+  return title
 }
 
 // 设置收藏或取消收藏
