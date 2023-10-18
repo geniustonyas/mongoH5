@@ -268,6 +268,7 @@ watch(
           getGameList()
           if (scrollRef.value) {
             scrollRef.value.scrollTop = 0
+            console.log(oldProviderId)
           }
         } else {
           if (providerId.value) {
