@@ -16,14 +16,14 @@ const { t } = i18n.global
  * @param url 游戏url
  * @param startNow 是否立即开始游戏, 默认为false, 用于游戏详情中的启动游戏
  */
-export function startGame(gameId: string | number, gameType = GameType.Sports, url = 'game/url', startNow = false) {
+export function startGame(gameId: string | number, gameType = GameType.Sports, url = 'game/url', startNow = false, provider = 0) {
   // 体育必须登录
   if (gameType == GameType.Sports) {
     if (userStore.userInfo.id == '') {
       router.push({ name: 'reg' })
       return false
     } else {
-      getGameUrl(gameId.toString(), url)
+      getGameUrl(gameId.toString(), url, provider)
     }
   } else {
     if (startNow) {
@@ -31,7 +31,7 @@ export function startGame(gameId: string | number, gameType = GameType.Sports, u
         router.push({ name: 'reg' })
         return false
       } else {
-        getGameUrl(gameId.toString(), url)
+        getGameUrl(gameId.toString(), url, provider)
       }
     } else {
       router.push({ name: 'gameDetails', params: { id: gameId }, query: { gameType: gameType } })
@@ -54,11 +54,15 @@ export function showLoginBox() {
 }
 
 // 获取游戏链接
-export function getGameUrl(gameId: string, gameUrl = 'game/url') {
+export function getGameUrl(gameId: string, gameUrl = 'game/url', provider: number | string) {
   const domain = window.location.hostname
   getGameUrlApi({ id: gameId, platform: PlatForm.H5, domain: 'https://' + domain }, gameUrl)
     .then((resp) => {
-      window.location.href = resp.data
+      if (provider == 11) {
+        router.push({ name: 'gameIframe', query: { url: resp.data } })
+      } else {
+        window.location.href = resp.data
+      }
     })
     .catch((error) => {
       console.log(error)

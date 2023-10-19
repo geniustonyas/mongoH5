@@ -44,6 +44,12 @@ const routes = [
         name: 'gameDetails',
         component: () => import('@/views/game/gameDetails.vue'),
         meta: { needLogin: false, keepAlive: false }
+      },
+      {
+        path: 'gameIframe',
+        name: 'gameIframe',
+        component: () => import('@/views/game/gameIframe.vue'),
+        meta: { needLogin: false, keepAlive: false }
       }
     ]
   },

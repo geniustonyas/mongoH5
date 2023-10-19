@@ -40,8 +40,8 @@
               <span v-show="detailsData.paylines != ''">{{ detailsData.paylines }}</span>
             </div>
             <div class="btns">
-              <a class="btn btn-primary" @click="startGame(detailsData.id, gameType, 'game/url', true)">{{ t('startNow') }}</a>
-              <a v-if="gameType === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, gameType, 'game/demo', true)">
+              <a class="btn btn-primary" @click="startGame(detailsData.id, gameType, 'game/url', true, detailsData.providerId)">{{ t('startNow') }}</a>
+              <a v-if="gameType === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, gameType, 'game/demo', true, detailsData.providerId)">
                 {{ t('demoMode') }}
               </a>
             </div>

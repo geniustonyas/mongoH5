@@ -153,9 +153,11 @@ import Language from '@/components/Language.vue'
 import { currenyListData } from '@/utils/config'
 import { getAssetsFile } from '@/utils'
 import { languages } from '@/i18n/index'
+import { useAppStore } from '@/store/modules/app'
 
 const site_name = import.meta.env.VITE_APP_SITE_NAME
 
+const appStore = useAppStore()
 const router = useRouter()
 const { t, locale } = useI18n()
 
