@@ -4,7 +4,7 @@
       <img :src="getAssetsFile('logo.svg')" />
       <div class="ubt-r">
         <span>{{ t('remainTime') }} </span>
-        <CountDown :time="appStpre.maintainTime" format="HH : mm : ss">
+        <CountDown :time="appStore.maintainTime" format="HH : mm : ss">
           <template #default="timeData">
             <b class="block">{{ timeData.hours < 10 ? '0' + timeData.hours : timeData.hours }}</b>
             <em class="colon">:</em>
@@ -30,19 +30,19 @@
         <div class="ubl-b">
           <p>{{ t('followUs') }}</p>
           <div>
-            <a target="_blank" href="https://www.facebook.com/seabet.io/">
+            <a target="_blank" :href="appStore.followUrl.facebook">
               <i class="iconfont icon-facebook" />
             </a>
-            <a target="_blank" href="https://twitter.com/seabetio">
+            <a target="_blank" :href="appStore.followUrl.twitter">
               <i class="iconfont icon-twitter" />
             </a>
-            <a target="_blank" href="https://www.instagram.com/seabet.io/">
+            <a target="_blank" :href="appStore.followUrl.instagram">
               <i class="iconfont icon-instagram" />
             </a>
-            <a target="_blank" href="https://www.youtube.com/channel/UC3L5HrPC4elNgHkrvMSFjCQ">
+            <a target="_blank" :href="appStore.followUrl.youtube">
               <i class="iconfont icon-youtube" />
             </a>
-            <a target="_blank" href="https://www.tiktok.com/@seabet.io?lang=en">
+            <a target="_blank" :href="appStore.followUrl.tiktok">
               <i class="iconfont icon-tiktok" />
             </a>
           </div>
@@ -64,12 +64,12 @@ import { liveChatCall } from '@/composables/startGame'
 
 import { CountDown } from 'vant'
 
-const appStpre = useAppStore()
+const appStore = useAppStore()
 const { t } = useI18n()
 
 // 观察维护状态，如果维护时间结束则刷新当前页面
 watch(
-  () => appStpre.maintainStatus,
+  () => appStore.maintainStatus,
   (val: Boolean) => {
     if (!val) {
       window.location.href = window.location.protocol + '//' + window.location.host
@@ -80,7 +80,6 @@ watch(
 onMounted(() => {
   nextTick(() => {
     const node = document.getElementById('app')
-    console.log(node)
     if (node) {
       node.classList.remove('upgrade-body')
       node.classList.add('upgrade-body')

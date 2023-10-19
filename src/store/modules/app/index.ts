@@ -24,6 +24,13 @@ export const useAppStore = defineStore('app', () => {
   const maintainTime = ref<number>(0)
   const detailsFav = ref<string[]>([])
   const detailsCancelFav = ref<string[]>([])
+  const followUrl = reactive({
+    facebook: 'https://www.facebook.com/seabet.io/',
+    twitter: 'https://twitter.com/bet_sea6635',
+    instagram: 'https://www.instagram.com/seabet.io/',
+    youtube: 'https://www.youtube.com/channel/UC3L5HrPC4elNgHkrvMSFjCQ',
+    tiktok: 'https://www.tiktok.com/@seabio00?lang=en'
+  })
 
   // 获取系统配置
   const getConfig = () => {
@@ -91,6 +98,7 @@ export const useAppStore = defineStore('app', () => {
     maintainTime,
     detailsFav,
     detailsCancelFav,
+    followUrl,
     getConfig,
     resetThirdData,
     refreshMainStatus
