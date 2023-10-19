@@ -22,6 +22,7 @@ export interface recommendGameRespItem {
 // 搜索游戏
 export interface getSearchGameData {
   Keywords: string
+  platform: number
 }
 
 // 获取游戏列表
@@ -32,10 +33,12 @@ export interface getGameListData {
   ct: number
   sortBy: number
   page: number
+  platform: number
 }
 
 export interface getGameDetailsData {
   Id: string
+  platform: number
 }
 
 // 推荐游戏列表
@@ -143,6 +146,7 @@ export interface getGameDetailsRespItem {
 export interface getFavRecentlyListData {
   page: number
   pcount: number
+  platform?: number
 }
 
 export interface getFavData {

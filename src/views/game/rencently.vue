@@ -61,7 +61,7 @@ import { getFavGameListRespItem, getFavRecentlyListData } from '@/api/game/types
 import { useUserStore } from '@/store/modules/user'
 import { useAppStore } from '@/store/modules/app'
 import { getExchangeRate } from '@/composables/getExchangeRate'
-import { PlatForm } from '@utils/constant'
+import { PlatForm } from '@/utils/constant'
 
 import { showToast } from 'vant'
 import { startGame } from '@/composables/startGame'

@@ -61,7 +61,7 @@ import { getFavGameListRespItem, getFavRecentlyListData } from '@/api/game/types
 import { useUserStore } from '@/store/modules/user'
 import { useAppStore } from '@/store/modules/app'
 import { getExchangeRate } from '@/composables/getExchangeRate'
-import { PlatForm } from '@utils/constant'
+import { PlatForm } from '@/utils/constant'
 
 import { showToast } from 'vant'
 import { startGame } from '@/composables/startGame'
@@ -109,7 +109,7 @@ const setFav = async (gameItem: getFavGameListRespItem) => {
     // 取消收藏后从dataList中删除该项
     const index = dataList.value.findIndex((item) => item.id == gameItem.id)
     dataList.value.splice(index, 1)
-    nodata.value = dataList.value == 0
+    nodata.value = dataList.value.length == 0
     userStore.getFavCount()
   }
 }
