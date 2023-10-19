@@ -1,6 +1,6 @@
 <template>
-  <div style="width: 100%; height: 100vh">
-    <iframe style="width: 100%; height: 100vh" id="gameIframe" allow="camera;microphone;fullscreen" v-show="gameUrl != ''" :src="gameUrl" />
+  <div class="page">
+    <iframe style="width: 100%; height: 100%" id="gameIframe" allow="camera;microphone;fullscreen" v-show="gameUrl != ''" :src="gameUrl" />
   </div>
 </template>
 
