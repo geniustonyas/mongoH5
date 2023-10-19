@@ -15,7 +15,7 @@ const gameUrl = ref('')
 if (!route.query.url || route.query.url == '') {
   router.back()
 }
-gameUrl.value = route.query.url
+gameUrl.value = route.query.url as string
 
 onMounted(() => {
   if (gameUrl.value && gameUrl.value != '') {
@@ -39,9 +39,11 @@ const GameCommunicator = {
    * 注意origin必须和游戏iframe的url域名一致
    * @@param {iframe} element
    */
-  init: function (element, url) {
+  init: function (element: any, url: string) {
     window.addEventListener('message', this.processGameMessage.bind(this))
+    //@ts-ignore
     this.source = element.contentWindow
+    //@ts-ignore
     this.origin = url
   },
   /**
@@ -50,14 +52,15 @@ const GameCommunicator = {
    * Example of adding an Engage event listener: GameCommunicator.postMessage({ messageType: "addEventListener", eventType: "roundStarted" })
    * Example of calling Engage function: GameCommunicator.postMessage({ messageType: "request", eventType: "spin" })
    */
-  postMessage: function (data) {
+  postMessage: function (data: any) {
+    //@ts-ignore
     this.source.postMessage(data, this.origin)
   },
   /**
    * Receives the messages the PNG game dispatches
    * @@param {object} e
    * */
-  processGameMessage: function (e) {
+  processGameMessage: function (e: any) {
     switch (e.data.type) {
       case 'reloadGame':
         window.location.reload()

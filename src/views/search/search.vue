@@ -85,6 +85,7 @@ import { getSearchGameApi, getGameRecommendApi } from '@/api/game/index'
 import { getSearchGameRespItem, recommendGameRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
 import { providerListData, providerListItemTypes } from '@/utils/config'
+import { PlatForm } from '@/utils/constant'
 
 import { ConfigProvider } from 'vant'
 import { debounce } from 'lodash-es'
@@ -116,7 +117,7 @@ watch(keywords, () => {
 
 // 获取搜索结果, 防抖, 500ms, 3个字符以上才搜索, 否则不搜索, 3个字符以下清空搜索结果
 const getSearchGame = debounce(function () {
-  getSearchGameApi({ Keywords: keywords.value })
+  getSearchGameApi({ Keywords: keywords.value, platform: PlatForm.H5 })
     .then((resp) => {
       searchResult.value = resp.data.items
       nodata.value = resp.data.items.length == 0
@@ -128,7 +129,7 @@ const getSearchGame = debounce(function () {
 
 // 获取推荐游戏,
 const getGameRecommend = () => {
-  getGameRecommendApi({ id: 1, platform: 1 })
+  getGameRecommendApi({ id: 1, platform: PlatForm.H5 })
     .then((resp) => {
       recommendList.value = resp.data
     })

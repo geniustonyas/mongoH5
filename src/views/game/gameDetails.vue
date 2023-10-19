@@ -87,7 +87,7 @@ import { getGameDetailsApi, setFavApi, cancalFavApi } from '@/api/game/index'
 import { getGameDetailsRespItem, getFavGameListRespItem, getGameDetailsRespGameItem } from '@/api/game/types'
 import { startGame } from '@/composables/startGame'
 import router from '@/router'
-import { GameType } from '@/utils/constant'
+import { GameType, PlatForm } from '@/utils/constant'
 
 const userStore = useUserStore()
 const appStore = useAppStore()
@@ -116,7 +116,7 @@ const detailsData = reactive<getGameDetailsRespItem>({
   fg: false
 })
 const getGameDetails = () => {
-  getGameDetailsApi({ Id: route.params.id as string })
+  getGameDetailsApi({ Id: route.params.id as string, platform: PlatForm.H5 })
     .then((resp) => {
       Object.assign(detailsData, resp.data)
     })

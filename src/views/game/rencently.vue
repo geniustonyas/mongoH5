@@ -61,6 +61,7 @@ import { getFavGameListRespItem, getFavRecentlyListData } from '@/api/game/types
 import { useUserStore } from '@/store/modules/user'
 import { useAppStore } from '@/store/modules/app'
 import { getExchangeRate } from '@/composables/getExchangeRate'
+import { PlatForm } from '@utils/constant'
 
 import { showToast } from 'vant'
 import { startGame } from '@/composables/startGame'
@@ -76,7 +77,8 @@ const { currencyCode, exchangeRate } = getExchangeRate()
 // 游戏列表查询参数
 let query = reactive<getFavRecentlyListData>({
   page: 1,
-  pcount: 30
+  pcount: 30,
+  platform: PlatForm.H5
 })
 // 游戏列表分页
 let pageCount = ref(0)

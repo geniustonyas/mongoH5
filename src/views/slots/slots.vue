@@ -94,7 +94,7 @@ import { getGameListApi, setFavApi, cancalFavApi } from '@/api/game/index'
 import { getGameListRespItem, getGameListGsItemResp, getGameListData } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
-import { GameType } from '@/utils/constant'
+import { GameType, PlatForm } from '@/utils/constant'
 import { getExchangeRate } from '@/composables/getExchangeRate'
 
 import { showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon } from 'vant'
@@ -132,7 +132,8 @@ let query = reactive<getGameListData>({
   gts: [GameType.Slots],
   ct: 1,
   sortBy: 3,
-  page: 1
+  page: 1,
+  platform: PlatForm.H5
 })
 // 游戏列表分页
 let pageCount = ref(0)
