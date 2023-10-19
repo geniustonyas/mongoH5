@@ -2,8 +2,10 @@
   <div class="upgrade-box">
     <div class="ub-t">
       <img :src="getAssetsFile('logo.svg')" />
-      <div class="ubt-r">
-        <span>{{ t('remainTime') }} </span>
+    </div>
+    <div class="ub-m">
+      <div class="um-t">
+        <p>{{ t('remainTime') }}</p>
         <CountDown :time="appStore.maintainTime" format="HH : mm : ss">
           <template #default="timeData">
             <b class="block">{{ timeData.hours < 10 ? '0' + timeData.hours : timeData.hours }}</b>
@@ -14,46 +16,51 @@
           </template>
         </CountDown>
       </div>
+      <div class="um-b">
+        <img :src="getAssetsFile('update.png')" />
+        <h2>{{ t('upgrading') }}</h2>
+        <p>{{ t('upgradingTxt') }}</p>
+        <a class="iconfont" @click="liveChatCall('maximize')">
+          <i class="iconfont icon-support" />
+          <span>{{ t('liveSupport') }}</span>
+        </a>
+      </div>
     </div>
     <div class="ub-b">
-      <div class="ub-l">
-        <div class="ubl-t">
-          <h2>{{ t('upgrading') }}</h2>
-          <p>{{ t('upgradingTxt') }}</p>
-        </div>
-        <div class="ubl-m">
-          <a class="iconfont" @click="liveChatCall('maximize')">
-            <i class="iconfont icon-support" />
-            <span>{{ t('liveSupport') }}</span>
+      <p>
+        <span>{{ t('followUs') }}</span>
+      </p>
+      <ul>
+        <li>
+          <a target="_blank" :href="appStore.followUrl.facebook">
+            <i class="iconfont icon-facebook" />
           </a>
-        </div>
-        <div class="ubl-b">
-          <p>{{ t('followUs') }}</p>
-          <div>
-            <a target="_blank" :href="appStore.followUrl.facebook">
-              <i class="iconfont icon-facebook" />
-            </a>
-            <a target="_blank" :href="appStore.followUrl.twitter">
-              <i class="iconfont icon-twitter" />
-            </a>
-            <a target="_blank" :href="appStore.followUrl.instagram">
-              <i class="iconfont icon-instagram" />
-            </a>
-            <a target="_blank" :href="appStore.followUrl.youtube">
-              <i class="iconfont icon-youtube" />
-            </a>
-            <a target="_blank" :href="appStore.followUrl.tiktok">
-              <i class="iconfont icon-tiktok" />
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="ub-r">
-        <img :src="getAssetsFile('update.png')" />
-      </div>
+        </li>
+        <li>
+          <a target="_blank" :href="appStore.followUrl.twitter">
+            <i class="iconfont icon-twitter" />
+          </a>
+        </li>
+        <li>
+          <a target="_blank" :href="appStore.followUrl.instagram">
+            <i class="iconfont icon-instagram" />
+          </a>
+        </li>
+        <li>
+          <a target="_blank" :href="appStore.followUrl.youtube">
+            <i class="iconfont icon-youtube" />
+          </a>
+        </li>
+        <li>
+          <a target="_blank" :href="appStore.followUrl.tiktok">
+            <i class="iconfont icon-tiktok" />
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { watch, onMounted, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
