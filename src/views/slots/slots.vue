@@ -130,10 +130,9 @@ let query = reactive<getGameListData>({
   ps: [],
   cs: [],
   gts: [GameType.Slots],
-  ct: 1,
+  ct: PlatForm.H5,
   sortBy: 3,
-  page: 1,
-  platform: PlatForm.H5
+  page: 1
 })
 // 游戏列表分页
 let pageCount = ref(0)
