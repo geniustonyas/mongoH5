@@ -417,8 +417,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             font-size: 1.6rem; font-weight: 500; color: var(--color-white); }
     }
 }
-.sports-box {
-    .sb-a { padding: 1rem;
+.sports-box { /*    .sb-a { padding: 1rem;
         .item { position: relative; margin-bottom: 1.6rem; padding: 1.2rem; .radius(.8rem); .bg(var(--color-tabs)); .boxshadow(1px,2px,5px,#1c1c1c);
             &:before { content: ""; position: absolute; right: 0; top: 0; height: 100%; width: 50%; .bg(rgba(36,36,36,.96)); z-index: 2; }
             .i-l { position: absolute; top: 10%; right: 0; width: 30%; height: 80%; background-position: center; background-repeat: no-repeat; background-size: contain; z-index: 1; }
@@ -430,6 +429,23 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 .ir-c { margin-top: 1.6rem;
                     a { width: 40%; }
                 }
+            }
+        }
+    }*/ .sb-items {
+        .item { margin: 1rem; padding: 1.2rem 34% 1.2rem 1.2rem; .radius(.8rem); background-repeat: no-repeat; background-size: cover; background-position: center;
+            &.seabet { background-image: url(../imgs/sports/bg_seabet.jpg); }
+            &.saba { background-image: url(../imgs/sports/bg_saba.jpg); }
+            .is-a { font-size: 2.4rem; color: var(--color-white); font-weight: 700;
+                span { color: var(--color-primary); margin-right: 1rem; }
+            }
+            .is-b { font-size: 1.2rem; }
+            .is-c {
+                li { font-size: 1.2rem; margin-top: .3rem;
+                    img { display: inline-block; width: 1.4rem; vertical-align: middle; margin-right: 1rem; }
+                }
+            }
+            .is-d { padding-top: 1rem;
+                a {.bgc(var(--color-primary),var(--color-primary-txt)); font-weight: 700; .radius(.8rem); padding: 0rem 1rem; .h-lh(3rem); display: inline-block; font-size: 1.3rem; }
             }
         }
     }
@@ -1516,7 +1532,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         }
     }
 }
- .upgrade-box { .size(100%,100%); .flex(); .flex-v();
+.upgrade-box { .size(100%,100%); .flex(); .flex-v();
     .ub-t { .flex(); .flex-align(); .flex-pack(); padding: 1rem;
         img { height: 4.2rem; }
     }
