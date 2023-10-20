@@ -3,34 +3,8 @@
     <IndexHeader />
     <main class="main" ref="mainDom">
       <IndexTab tab="sports" />
-
-      <!-- 体育 -->
-      <!--<div class="sports-box">
-        <div class="sb-a">
-          <div class="item">
-            <div class="i-l" v-lazy:background-image="getAssetsFile('svg/seabetSport.svg')" />
-            <div class="i-r">
-              <div class="ir-a"><img v-lazy="getAssetsFile('svg/seabetSport.svg')" />{{ t('provider.btiSports') }}</div>
-              <div class="ir-b">{{ t('btiSportIntro') }}</div>
-              <div class="ir-c">
-                <a class="btn btn-primary" @click="startGame('2110', GameType.Sports)">{{ t('startNow') }}</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-l" v-lazy:background-image="getAssetsFile('svg/SabaSports.svg')" />
-            <div class="i-r">
-              <div class="ir-a"><img v-lazy="getAssetsFile('svg/SabaSports.svg')" />{{ t('provider.sabaSports') }}</div>
-              <div class="ir-b">{{ t('sabaSportIntro') }}</div>
-              <div class="ir-c">
-                <a class="btn btn-primary" @click="startGame('1439', GameType.Sports)">{{ t('startNow') }}</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>-->
-
-
+ 
+      <!-- 体育 -->       
       <div class="sports-box">
         <div class="sb-a">
           <div class="item">
@@ -53,45 +27,6 @@
           </div>
         </div>
       </div>
-
-
-      <!--<div class="sports-box">
-        <div class="sb-items">
-
-          <div class="item seabet">
-            <div class="is-a"><span>Seabet</span>Sports</div>
-            <div class="is-b">{{ t('btiSportIntro') }}</div>
-            <ul class="is-c">
-              <li><img :src="getAssetsFile('sports/seabet_icon_1.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/seabet_icon_2.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/seabet_icon_3.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/seabet_icon_4.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/seabet_icon_5.svg')" />xxxxxx</li>
-            </ul>
-            <div class="is-d">
-              <a>PLAY NOW</a>
-            </div>
-          </div>
-          <div class="item saba">
-            <div class="is-a"><span>Seabet</span>Sports</div>
-            <div class="is-b">{{ t('sabaSportIntro') }}</div>
-            <ul class="is-c">
-              <li><img :src="getAssetsFile('sports/saba_icon_1.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/saba_icon_2.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/saba_icon_3.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/saba_icon_4.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/saba_icon_5.svg')" />xxxxxx</li>
-            </ul>
-            <div class="is-d">
-              <a>PLAY NOW</a>
-            </div>
-          </div>
-
-        </div>
-      </div>-->
-
-
-
       <IndexFooter :currency-code="currencyCode" :exchange-rate="exchangeRate" />
     </main>
     <Footer />
@@ -102,24 +37,23 @@
 </template>
 
 <script setup lang="ts">
-  import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n'
 
-  import IndexHeader from '@/components/layout/IndexHeader.vue'
-  import IndexFooter from '@/components/layout/IndexFooter.vue'
-  import IndexTab from '@/components/layout/IndexTab.vue'
-  import Footer from '@/components/layout/Footer.vue'
-  import Sidebar from '@/components/layout/SideBar.vue'
+import IndexHeader from '@/components/layout/IndexHeader.vue'
+import IndexFooter from '@/components/layout/IndexFooter.vue'
+import IndexTab from '@/components/layout/IndexTab.vue'
+import Footer from '@/components/layout/Footer.vue'
+import Sidebar from '@/components/layout/SideBar.vue'
+import { getAssetsFile } from '@/utils'
+import { startGame } from '@/composables/startGame'
 
-  import { startGame } from '@/composables/startGame'
+import { useAppStore } from '@/store/modules/app'
+import { getExchangeRate } from '@/composables/getExchangeRate'
+import { GameType } from '@/utils/constant'
 
-  import { useAppStore } from '@/store/modules/app'
-  import { getAssetsFile } from '@/utils'
-  import { getExchangeRate } from '@/composables/getExchangeRate'
-  import { GameType } from '@/utils/constant'
+const appStore = useAppStore()
+const { t } = useI18n()
 
-  const appStore = useAppStore()
-  const { t } = useI18n()
-
-  // 汇率相关
-  const { currencyCode, exchangeRate } = getExchangeRate()
+// 汇率相关
+const { currencyCode, exchangeRate } = getExchangeRate()
 </script>
