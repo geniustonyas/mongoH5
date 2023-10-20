@@ -33,7 +33,6 @@ export interface getGameListData {
   ct: number
   sortBy: number
   page: number
-  platform: number
 }
 
 export interface getGameDetailsData {
