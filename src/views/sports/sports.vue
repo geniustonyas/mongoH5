@@ -32,36 +32,34 @@
 
       <div class="sports-box">
         <div class="sb-items">
-
           <div class="item seabet">
-            <div class="is-a"><span>Seabet</span>Sports</div>
+            <div class="is-a">Seabet Sports</div>
             <div class="is-b">{{ t('btiSportIntro') }}</div>
-            <ul class="is-c">
-              <li><img :src="getAssetsFile('sports/seabet_icon_1.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/seabet_icon_2.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/seabet_icon_3.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/seabet_icon_4.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/seabet_icon_5.svg')" />xxxxxx</li>
-            </ul>
+            <!-- <ul class="is-c">
+              <li><img :src="getAssetsFile('sports/seabet_icon_1.svg')" />{{ t('seabetSportDesc.0') }}</li>
+              <li><img :src="getAssetsFile('sports/seabet_icon_2.svg')" />{{ t('seabetSportDesc.1') }}</li>
+              <li><img :src="getAssetsFile('sports/seabet_icon_3.svg')" />{{ t('seabetSportDesc.2') }}</li>
+              <li><img :src="getAssetsFile('sports/seabet_icon_4.svg')" />{{ t('seabetSportDesc.3') }}</li>
+              <li><img :src="getAssetsFile('sports/seabet_icon_5.svg')" />{{ t('seabetSportDesc.4') }}</li>
+            </ul> -->
             <div class="is-d">
-              <a>PLAY NOW</a>
+              <a @click="startGame('2110', GameType.Sports)">{{ t('startNow') }}</a>
             </div>
           </div>
           <div class="item saba">
-            <div class="is-a"><span>Seabet</span>Sports</div>
+            <div class="is-a">Saba Sports</div>
             <div class="is-b">{{ t('sabaSportIntro') }}</div>
-            <ul class="is-c">
-              <li><img :src="getAssetsFile('sports/saba_icon_1.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/saba_icon_2.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/saba_icon_3.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/saba_icon_4.svg')" />xxxxxx</li>
-              <li><img :src="getAssetsFile('sports/saba_icon_5.svg')" />xxxxxx</li>
-            </ul>
+            <!-- <ul class="is-c">
+              <li><img :src="getAssetsFile('sports/saba_icon_1.svg')" />{{ t('sabaSportDesc.0') }}</li>
+              <li><img :src="getAssetsFile('sports/saba_icon_2.svg')" />{{ t('sabaSportDesc.1') }}</li>
+              <li><img :src="getAssetsFile('sports/saba_icon_3.svg')" />{{ t('sabaSportDesc.2') }}</li>
+              <li><img :src="getAssetsFile('sports/saba_icon_4.svg')" />{{ t('sabaSportDesc.3') }}</li>
+              <li><img :src="getAssetsFile('sports/saba_icon_5.svg')" />{{ t('sabaSportDesc.4') }}</li>
+            </ul> -->
             <div class="is-d">
-              <a>PLAY NOW</a>
+              <a @click="startGame('1439', GameType.Sports)">{{ t('startNow') }}</a>
             </div>
           </div>
-
         </div>
         <!--<ul class="sb-items">
           <li class="i-seabet">
@@ -87,24 +85,24 @@
 </template>
 
 <script setup lang="ts">
-  import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n'
 
-  import IndexHeader from '@/components/layout/IndexHeader.vue'
-  import IndexFooter from '@/components/layout/IndexFooter.vue'
-  import IndexTab from '@/components/layout/IndexTab.vue'
-  import Footer from '@/components/layout/Footer.vue'
-  import Sidebar from '@/components/layout/SideBar.vue'
+import IndexHeader from '@/components/layout/IndexHeader.vue'
+import IndexFooter from '@/components/layout/IndexFooter.vue'
+import IndexTab from '@/components/layout/IndexTab.vue'
+import Footer from '@/components/layout/Footer.vue'
+import Sidebar from '@/components/layout/SideBar.vue'
 
-  import { startGame } from '@/composables/startGame'
+import { startGame } from '@/composables/startGame'
 
-  import { useAppStore } from '@/store/modules/app'
-  import { getAssetsFile } from '@/utils'
-  import { getExchangeRate } from '@/composables/getExchangeRate'
-  import { GameType } from '@/utils/constant'
+import { useAppStore } from '@/store/modules/app'
+import { getAssetsFile } from '@/utils'
+import { getExchangeRate } from '@/composables/getExchangeRate'
+import { GameType } from '@/utils/constant'
 
-  const appStore = useAppStore()
-  const { t } = useI18n()
+const appStore = useAppStore()
+const { t } = useI18n()
 
-  // 汇率相关
-  const { currencyCode, exchangeRate } = getExchangeRate()
+// 汇率相关
+const { currencyCode, exchangeRate } = getExchangeRate()
 </script>
