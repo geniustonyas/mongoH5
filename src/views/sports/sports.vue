@@ -30,7 +30,32 @@
         </div>
       </div>-->
 
+
       <div class="sports-box">
+        <div class="sb-a">
+          <div class="item">
+            <div class="i-r">
+              <div class="ir-a"><img v-lazy="getAssetsFile('svg/seabetSport.svg')" />{{ t('provider.btiSports') }}</div>
+              <div class="ir-b">{{ t('btiSportIntro') }}</div>
+              <div class="ir-c">
+                <a class="btn btn-primary" @click="startGame('2110', GameType.Sports)">{{ t('startNow') }}</a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="i-r">
+              <div class="ir-a"><img v-lazy="getAssetsFile('svg/SabaSports.svg')" />{{ t('provider.sabaSports') }}</div>
+              <div class="ir-b">{{ t('sabaSportIntro') }}</div>
+              <div class="ir-c">
+                <a class="btn btn-primary" @click="startGame('1439', GameType.Sports)">{{ t('startNow') }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--<div class="sports-box">
         <div class="sb-items">
 
           <div class="item seabet">
@@ -63,19 +88,9 @@
           </div>
 
         </div>
-        <!--<ul class="sb-items">
-          <li class="i-seabet">
-            <div class="is-a"><span>Seabet</span>Sports</div>
-            <div class="is-b">{{ t('btiSportIntro') }}</div>
-            <div class="is-c">
+      </div>-->
 
-            </div>
-          </li>
-          <li class="i-saba">
-            b
-          </li>
-        </ul>-->
-      </div>
+
 
       <IndexFooter :currency-code="currencyCode" :exchange-rate="exchangeRate" />
     </main>
