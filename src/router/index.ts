@@ -199,6 +199,49 @@ const routes = [
     ]
   },
   {
+    path: '/affiliate',
+    component: AppMain,
+    redirect: { name: 'overview' },
+    children: [
+      {
+        path: 'overview',
+        name: 'overview',
+        component: () => import('@/views/affiliate/overview.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'advantage',
+        name: 'advantage',
+        component: () => import('@/views/affiliate/advantage.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'retention',
+        name: 'retention',
+        component: () => import('@/views/affiliate/retention.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'member',
+        name: 'member',
+        component: () => import('@/views/affiliate/member.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'commission',
+        name: 'commission',
+        component: () => import('@/views/affiliate/commission.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'finance',
+        name: 'commission',
+        component: () => import('@/views/affiliate/finance.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      }
+    ]
+  },
+  {
     path: '/terms',
     component: AppMain,
     children: [
