@@ -207,19 +207,19 @@ const routes = [
         path: 'overview',
         name: 'overview',
         component: () => import('@/views/affiliate/overview.vue'),
-        meta: { needLogin: true, keepAlive: false }
+        meta: { needLogin: false, keepAlive: false }
       },
       {
         path: 'advantage',
         name: 'advantage',
         component: () => import('@/views/affiliate/advantage.vue'),
-        meta: { needLogin: true, keepAlive: false }
+        meta: { needLogin: false, keepAlive: false }
       },
       {
         path: 'retention',
         name: 'retention',
         component: () => import('@/views/affiliate/retention.vue'),
-        meta: { needLogin: true, keepAlive: false }
+        meta: { needLogin: false, keepAlive: false }
       },
       {
         path: 'member',
