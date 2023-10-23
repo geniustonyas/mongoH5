@@ -200,7 +200,7 @@ const routes = [
   },
   {
     path: '/affiliate',
-    component: AppMain,
+    component: AppAffiliate,
     redirect: { name: 'overview' },
     children: [
       {
@@ -222,9 +222,27 @@ const routes = [
         meta: { needLogin: false, keepAlive: false }
       },
       {
-        path: 'member',
-        name: 'member',
-        component: () => import('@/views/affiliate/member.vue'),
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import('@/views/affiliate/dashboard.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'memberInfo',
+        name: 'memberInfo',
+        component: () => import('@/views/affiliate/memberInfo.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'memberRecord',
+        name: 'memberRecord',
+        component: () => import('@/views/affiliate/memberRecord.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'memberDeposit',
+        name: 'memberDeposit',
+        component: () => import('@/views/affiliate/memberDeposit.vue'),
         meta: { needLogin: true, keepAlive: false }
       },
       {
@@ -235,7 +253,7 @@ const routes = [
       },
       {
         path: 'finance',
-        name: 'commission',
+        name: 'finance',
         component: () => import('@/views/affiliate/finance.vue'),
         meta: { needLogin: true, keepAlive: false }
       }
