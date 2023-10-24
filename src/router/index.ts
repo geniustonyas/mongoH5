@@ -200,7 +200,6 @@ const routes = [
   },
   {
     path: '/affiliate',
-    component: AppAffiliate,
     redirect: { name: 'overview' },
     children: [
       {
