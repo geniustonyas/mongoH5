@@ -6,6 +6,195 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "21732507",
+      "name": "线上金融",
+      "font_class": "wangluofei",
+      "unicode": "e742",
+      "unicode_decimal": 59202
+    },
+    {
+      "icon_id": "4077655",
+      "name": "投票人数",
+      "font_class": "xinzhuce",
+      "unicode": "e9cb",
+      "unicode_decimal": 59851
+    },
+    {
+      "icon_id": "22214497",
+      "name": "新增会员",
+      "font_class": "xinzenghuiyuan",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "31602148",
+      "name": "首存人数",
+      "font_class": "shoucunrenshu",
+      "unicode": "e83c",
+      "unicode_decimal": 59452
+    },
+    {
+      "icon_id": "32683098",
+      "name": "icon-活跃会员",
+      "font_class": "huoyuehuiyuan",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "2376100",
+      "name": "成员列表",
+      "font_class": "cyjl",
+      "unicode": "e6d8",
+      "unicode_decimal": 59096
+    },
+    {
+      "icon_id": "4973711",
+      "name": "仪表盘",
+      "font_class": "yibiaopan",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "5814628",
+      "name": "数据-投资人库",
+      "font_class": "cydc",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "31648268",
+      "name": "会员列表",
+      "font_class": "cyxx",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "31266868",
+      "name": "手续费",
+      "font_class": "zongshuying",
+      "unicode": "e693",
+      "unicode_decimal": 59027
+    },
+    {
+      "icon_id": "6626217",
+      "name": "优惠券",
+      "font_class": "fanshui",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "1789402",
+      "name": "手续费率",
+      "font_class": "shouxufei",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "3660800",
+      "name": "配置居住服务费",
+      "font_class": "changgaunfei",
+      "unicode": "e7f6",
+      "unicode_decimal": 59382
+    },
+    {
+      "icon_id": "6223739",
+      "name": "净利润",
+      "font_class": "jinglirun",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "10690216",
+      "name": "平台红利",
+      "font_class": "pingtaihongli",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "16151569",
+      "name": "总手续费",
+      "font_class": "shouxufei1",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "18185889",
+      "name": "icon_J_返现",
+      "font_class": "fanshui11111",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "28553601",
+      "name": "ic:A股资金调整:双色18",
+      "font_class": "zhtz",
+      "unicode": "e7c1",
+      "unicode_decimal": 59329
+    },
+    {
+      "icon_id": "2380101",
+      "name": "表格",
+      "font_class": "biaoge",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "21842037",
+      "name": "表格",
+      "font_class": "biaoge1",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "9717991",
+      "name": "佣金提成总额",
+      "font_class": "yongjin1",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "5786208",
+      "name": "成员管理",
+      "font_class": "xiaji",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "14036048",
+      "name": "项目消耗",
+      "font_class": "yongjin",
+      "unicode": "e764",
+      "unicode_decimal": 59236
+    },
+    {
+      "icon_id": "15570303",
+      "name": "收费记账统计",
+      "font_class": "caiwu",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    },
+    {
+      "icon_id": "1440880",
+      "name": "常见问题",
+      "font_class": "changjianwenti",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "2297497",
+      "name": "概述",
+      "font_class": "gaishu",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "11029750",
+      "name": "行业优势",
+      "font_class": "youshi",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
       "icon_id": "31878337",
       "name": "刷新时间",
       "font_class": "zuijin",
