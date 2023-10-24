@@ -7,7 +7,7 @@ import { useI18n } from 'vue-i18n'
 import BigNumber from 'bignumber.js'
 import { useUserStore } from '@/store/modules/user'
 import { useAppStore } from '@/store/modules/app'
-import { getAssetsFile, routeTo } from '@/utils'
+import { getAssetsFile } from '@/utils'
 
 const router = useRouter()
 const route = useRoute()
