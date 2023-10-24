@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <CommonHeader :title="siteName + ' ' + t(`html.vipTitle`)" />
-    <main class="main term-box" v-html="t(`html.vipContent`)" />
+    <main class="main term-box vip-clu-box" v-html="t(`html.vipContent`)" />
   </div>
 </template>
 

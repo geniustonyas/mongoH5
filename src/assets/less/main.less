@@ -494,7 +494,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     .mp-list { padding: 0 1.5rem 1.5rem 1.5rem;
         .btn { .h-lh(4rem); width: 100%; margin-top: 2rem; }
     }
-    .p-t{margin-top:1.6rem;}
+    .p-t { margin-top: 1.6rem; }
 }
 /*会员中心-账户*/
 .account-box {
@@ -895,10 +895,13 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 }
 
 .search-result { padding: 1.5rem }
-.vip-clubhouse-box { position: relative;
-    &:after { content: ""; position: absolute; left: -1rem; top: -1rem; width: 100vw; height: 100%; .bg(rgba(0,0,0,.65)); }
-    &:before { content: ""; position: absolute; left: -1rem; top: -1rem; width: 100vw; height: 100%; background-image: url(../imgs/vip-bg.jpg); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; z-index: -1; }
-    .vc-rows { margin: 1rem; position: relative; z-index: 1;
+.vip-clu-box { position: relative; background-image: url(../imgs/vip-bg.jpg); background-repeat: no-repeat; background-size: cover; background-position: center;
+    &:after { content: ""; position: fixed; left: 0; top: 0; width: 100%; height: 100%; .bg(rgba(0,0,0,.65)); }
+}
+.vip-clubhouse-box { position: relative; z-index: 1;
+
+
+    .vc-rows { margin: 1rem;
         .vr-title { color: var(--color-white); font-weight: 600; font-size: 1.6rem; }
         .vr-conts {
             p { padding: .5rem;
