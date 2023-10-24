@@ -38,9 +38,11 @@
       </div>
       <dl class="provider-list">
         <dt>{{ t('searchMore') }}</dt>
-        <dd v-for="(item, index) of searchMoreList" :key="index" @click="router.push({ name: item.tab, query: { providerId: item.id } })">
-          <a><img v-lazy="item.img" />{{ item.name }}</a>
-        </dd>
+        <template v-for="(item, index) of searchMoreList">
+          <dd v-if="item.show" :key="index" @click="router.push({ name: item.tab, query: { providerId: item.id } })">
+            <a><img v-lazy="item.img" />{{ item.name }}</a>
+          </dd>
+        </template>
       </dl>
 
       <!-- 推荐游戏列表 -->
