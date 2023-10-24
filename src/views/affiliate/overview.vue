@@ -5,32 +5,8 @@
     </header>
     <main class="main">
       <div class="myprofile-box">
-        <div class="mp-steel">
-          啊啊啊
-        </div>
         <div class="mp-list">
-          <p>报表</p>
-          <ul class="list-group">
-            <li :class="{ active: route.name == 'member' }">
-              <a @click="router.push({ name: 'member' })">
-                <span><i class="iconfont icon-xiaji" />成员管理</span>
-                <i class="iconfont icon-right" />
-              </a>
-            </li>
-            <li :class="{ active: route.name == 'commission' }">
-              <a @click="router.push({ name: 'commission' })">
-                <span><i class="iconfont icon-yongjin1" />佣金报表</span>
-                <i class="iconfont icon-right" />
-              </a>
-            </li>
-            <li :class="{ active: route.name == 'finance' }">
-              <a @click="router.push({ name: 'finance' })">
-                <span><i class="iconfont icon-caiwu" />财务报表</span>
-                <i class="iconfont icon-right" />
-              </a>
-            </li>
-          </ul>
-          <p>支持</p>
+          <p class="p-t">支持</p>
           <ul class="list-group">
             <li :class="{ active: route.name == 'overview' }">
               <a @click="router.push({ name: 'overview' })">
@@ -51,6 +27,48 @@
               </a>
             </li>
           </ul>
+          <p class="p-t">报表</p>
+          <ul class="list-group">
+
+            <li :class="{ active: route.name == 'dashboard' }">
+              <a @click="router.push({ name: 'dashboard' })">
+                <span><i class="iconfont icon-yibiaopan" />仪表盘</span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+            <li :class="{ active: route.name == 'memberInfo' }">
+              <a @click="router.push({ name: 'memberInfo' })">
+                <span><i class="iconfont icon-cyxx" />成员信息</span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+            <li :class="{ active: route.name == 'memberRecord' }">
+              <a @click="router.push({ name: 'memberRecord' })">
+                <span><i class="iconfont icon-cyjl" />成员记录</span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+            <li :class="{ active: route.name == 'memberDeposit' }">
+              <a @click="router.push({ name: 'memberDeposit' })">
+                <span><i class="iconfont icon-cydc" />成员代存</span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+ 
+            <li :class="{ active: route.name == 'commission' }">
+              <a @click="router.push({ name: 'commission' })">
+                <span><i class="iconfont icon-yongjin1" />佣金报表</span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+            <li :class="{ active: route.name == 'finance' }">
+              <a @click="router.push({ name: 'finance' })">
+                <span><i class="iconfont icon-caiwu" />财务报表</span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+          </ul>
+
         </div>
       </div>
     </main>
