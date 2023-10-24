@@ -182,9 +182,9 @@ const sportProviderList = ref<providerListItemTypes[]>([])
 const casinoProviderList = ref<providerListItemTypes[]>([])
 const slotsProviderList = ref<providerListItemTypes[]>([])
 // 过滤游戏提供商列表
-sportProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'sports')
-casinoProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'casino')
-slotsProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'slots')
+sportProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'sports' && item.show)
+casinoProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'casino' && item.show)
+slotsProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'slots' && item.show)
 
 // 侧边框游戏菜单展开折叠
 let collapseSport = ref(true)
