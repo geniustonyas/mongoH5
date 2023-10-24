@@ -200,8 +200,14 @@ const routes = [
   },
   {
     path: '/affiliate',
-    redirect: { name: 'overview' },
+    component: AppMain,
     children: [
+      {
+        path: '',
+        name: 'affiliate',
+        component: () => import('@/views/affiliate/affiliate.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      },
       {
         path: 'overview',
         name: 'overview',
