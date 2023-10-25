@@ -1303,20 +1303,18 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             }
         }
     }
-    .ar-e { padding:0 1.6rem 1.6rem 1.6rem;
-        .a-l { margin-right:-.5rem; margin-bottom:.5rem;
-            .btn {.radius(.4rem);  .flex-x(); margin-right:.5rem; color:var(--color-white); font-size:1.3rem;}
-            .flex();
-           
-        }
+    .ar-e { padding: 0 1.6rem 1.6rem 1.6rem;
+        .a-l { margin-right: -.5rem; margin-bottom: .5rem;
+            .btn {.radius(.4rem); .flex-x(); margin-right: .5rem; color: var(--color-white); font-size: 1.3rem; }
+            .flex(); }
         .a-r { .flex(); .flex-pack-justify(); .flex-align();
-             .form-control { .flex-x(3); .radius(.4rem); border-color: rgba(255,255,255,.05); .bg(rgba(255,255,255,.05)); margin-right:.5rem;
+            .form-control { .flex-x(3); .radius(.4rem); border-color: rgba(255,255,255,.05); .bg(rgba(255,255,255,.05)); margin-right: .5rem;
                 &:focus { border-color: var(--color-primary) !important; }
             }
-             a{ .flex-x(); .h-lh(4rem); .radius(.4rem);}
+            a { .flex-x(); .h-lh(4rem); .radius(.4rem); }
         }
     }
-        .ar-m { margin: 1.6rem; position: relative; background-color: rgba(247, 204, 0, 0.05); color: var(--color-primary); font-size: 1.3rem; padding: 1.6rem; line-height: 2.6rem; .radius(0.8rem);
+    .ar-m { margin: 1.6rem; position: relative; background-color: rgba(247, 204, 0, 0.05); color: var(--color-primary); font-size: 1.3rem; padding: 1.6rem; line-height: 2.6rem; .radius(0.8rem);
         i { vertical-align: middle; position: relative; margin-right: .2rem; font-size: 1.8rem; }
     }
 }
@@ -1346,15 +1344,14 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     }
     .agent-report-box .ar-a { padding-top: 0; }
 }
-.report-finance-box {  
+.report-finance-box {
     ul { .flex(); .flex-wrap(wrap); margin-right: -1rem;
         li { width: 50%; .flex-x(0 0 50%);
 
-            .l-bd { position: relative; height: 11rem; background: rgba(255,255,255,.05); .radius(.8rem); margin-right: 1rem; 
-                    margin-bottom: 1rem; overflow: hidden; 
+            .l-bd { position: relative; height: 11rem; background: rgba(255,255,255,.05); .radius(.8rem); margin-right: 1rem; margin-bottom: 1rem; overflow: hidden;
                 .ib-txt { position: relative; .size(100%,100%); .flex(); .flex-pack-justify(); .flex-align(); padding: 0 2rem;
                     .it-l { .flex(); .flex-v(); text-align: left;
-                        span { margin-bottom: 1rem; font-size:1.3rem; }
+                        span { margin-bottom: 1rem; font-size: 1.3rem; }
                         b { color: var(--color-white); font-size: 1.6rem; font-weight: 700; font-family: dinMedium }
                     }
                     .it-r { .flex-x(0 0 3.6rem); display: inline-block; width: 3.6rem; height: 3.6rem; line-height: 3.6rem; text-align: center; .radius(.4rem); .bg(rgba(247,204,0,.1)); margin-bottom: 1rem;
@@ -1369,7 +1366,6 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             }
         }
     }
-  
 }
 
 .table-box {
@@ -1436,12 +1432,10 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     &.btn-light { .bgc(var(--color-dark-gray),var(--color-text));
         &:hover, &:focus, &:active { .opacity(80); }
     }
+    .icon-loading { display: inline-block; font-size: 1.9rem; vertical-align: middle; margin-right: 0.5rem; position: relative; bottom: 0.1rem; .animation(load,.8s,linear,1s,infinite,normal); }
 }
-.loading-btn {
-    .flex(); .flex-pack(); .flex-align();
-    :nth-child(1) {
-        margin-right: 1rem;
-    }
+.loading-btn { .flex(); .flex-pack(); .flex-align();
+    :nth-child(1) { margin-right: 1rem; }
 }
 .tab-content {
     .tc-box {
@@ -1965,4 +1959,25 @@ body[lang='en'], body[lang='pt'], body[lang='tr'], body[lang='th'] {
     60% { -webkit-transform: scaleX(1); transform: scaleX(1) }
     80% { -webkit-transform: scale3d(1.1,1.1,1); transform: scale3d(1.1,1.1,1) }
     to { -webkit-transform: scaleX(1); transform: scaleX(1) }
+}
+
+@-webkit-keyframes load {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@-moz-keyframes load {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@-o-keyframes load {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@keyframes load {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

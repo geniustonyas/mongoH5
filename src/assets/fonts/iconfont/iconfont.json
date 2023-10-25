@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "36737743",
+      "name": "loading",
+      "font_class": "loading",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
       "icon_id": "21732507",
       "name": "线上金融",
       "font_class": "wangluofei",
