@@ -96,9 +96,9 @@
 
             <div class="cf-row">
               <div class="cr-btns">
-                <a class="btn btn-primary full loading-btn" @click="exchangeReward()">
+                <a class="btn btn-primary full" @click="exchangeReward()">
+                  <i v-show="btnLoading" class="iconfont icon-loading" />
                   <span>{{ t('claim') }}</span>
-                  <Loading v-show="claimLoading" color="#363636" size="18" />
                 </a>
               </div>
             </div>
@@ -127,9 +127,9 @@
             </div>
             <div class="cf-row">
               <div class="cr-btns">
-                <a class="btn btn-primary full loading-btn" @click="applyReward">
+                <a class="btn btn-primary full" @click="applyReward">
+                  <i v-show="btnLoading" class="iconfont icon-loading" />
                   <span>{{ t('claim') }}</span>
-                  <Loading v-show="btnLoading" color="#363636" size="18" />
                 </a>
               </div>
             </div>
@@ -171,14 +171,13 @@ import { useI18n } from 'vue-i18n'
 import { moneyFormat } from '@/utils'
 import dynamicObject from '@/types/dynamicObject'
 
-import { PullRefresh, List, showToast, Calendar, ConfigProvider, Loading } from 'vant'
+import { PullRefresh, List, showToast, Calendar, ConfigProvider } from 'vant'
 import dayjs from 'dayjs'
 import { cloneDeep } from 'lodash-es'
 
 const { t } = useI18n()
 
 let btnLoading = ref(false)
-let claimLoading = ref(false)
 const tab = ref('activities')
 const rewardStatusCss = ref<dynamicObject>(['incomplete', 'confirmed', 'deleted'])
 let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]
@@ -291,7 +290,8 @@ const claimPromo = (item: getRewardCodeListItem) => {
   currentNeedForm.value = item.needForm
   if (item.needForm) {
     showPromoBox.value = true
-    Object.assign(promoQuery, defaultPromoQuery)
+    promoQuery.Data.BetTime = ''
+    promoQuery.Data.OrderNo = ''
   } else {
     applyReward()
   }
@@ -331,13 +331,13 @@ const applyReward = () => {
 
 // 兑换奖励
 const exchangeReward = () => {
-  if (claimLoading.value) {
+  if (btnLoading.value) {
     return false
   }
-  claimLoading.value = true
+  btnLoading.value = true
   if (rewardCode.value == '') {
     showToast(t('tips.inputExhangeCode'))
-    claimLoading.value = false
+    btnLoading.value = false
     return false
   }
   exchangeRewardApi({ RewardCode: rewardCode.value })
@@ -347,12 +347,12 @@ const exchangeReward = () => {
       query.PageIndex = 1
       rewardList.value = []
       getRewardList()
-      claimLoading.value = false
+      btnLoading.value = false
     })
     .catch((error) => {
       // showToast(t('tips.receivedRewardFail'))
       console.log(error)
-      claimLoading.value = false
+      btnLoading.value = false
     })
 }
 

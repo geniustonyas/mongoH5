@@ -58,11 +58,7 @@
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <!-- <a class="btn btn-primary full" @click="handleLogin()">{{ $t('login') }}</a> -->
-              <a class="btn btn-primary full loading-btn" @click="handleLogin()">
-                <span>{{ t('login') }}</span>
-                <Loading v-show="btnLoading" color="#363636" size="18" />
-              </a>
+              <a class="btn btn-primary full" @click="handleLogin()"><i v-show="btnLoading" class="iconfont icon-loading" />{{ $t('login') }}</a>
             </div>
           </div>
           <div class="cf-row" @click="router.push({ name: 'reg' })">
@@ -113,7 +109,7 @@ import { checkUserBindGoogleApi } from '@/api/user/index'
 import { isEmail, isPwd, isUname } from '@/utils/validate'
 
 import { useI18n } from 'vue-i18n'
-import { showToast, Loading } from 'vant'
+import { showToast } from 'vant'
 
 const router = useRouter()
 const route = useRoute()

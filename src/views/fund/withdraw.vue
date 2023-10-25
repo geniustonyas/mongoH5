@@ -132,9 +132,9 @@
           </div>
         </div>
         <div v-show="step == 3" class="fund-btn">
-          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary loading-btn disabled' : 'btn btn-primary loading-btn'" @click="selTab()">
+          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">
+            <i v-show="btnLoading" class="iconfont icon-loading" />
             <span>{{ t('confirm') }}</span>
-            <Loading v-show="btnLoading" color="#363636" size="24" />
           </a>
         </div>
         <!-- step 4 -->
@@ -231,7 +231,7 @@ import { useI18n } from 'vue-i18n'
 import { liveChatCall } from '@/composables/startGame'
 
 import BigNumber from 'bignumber.js'
-import { showToast, Popup, ConfigProvider, Loading } from 'vant'
+import { showToast, Popup, ConfigProvider } from 'vant'
 
 const userStore = useUserStore()
 const router = useRouter()

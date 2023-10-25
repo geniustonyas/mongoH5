@@ -54,9 +54,9 @@
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <a class="btn btn-primary full loading-btn" @click="resetPassword()">
-                <span>{{ t('resetPwd') }}</span>
-                <Loading v-show="btnLoading" color="#363636" size="18" />
+              <a class="btn btn-primary full" @click="resetPassword()">
+                <i v-show="btnLoading" class="iconfont icon-loading" />
+                {{ t('resetPwd') }}
               </a>
             </div>
           </div>
@@ -85,7 +85,7 @@ import { resetPwdApi, sendEmailApi, checkEmailApi, checkEmailThirdReg } from '@/
 import { isPwd, isEmail } from '@/utils/validate'
 
 import { useI18n } from 'vue-i18n'
-import { showToast, Loading } from 'vant'
+import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
 const router = useRouter()
@@ -118,7 +118,7 @@ const errorMsg = ref('')
 
 // 发送验证码
 const sendEmail = async () => {
-  const dm = document.getElementById('emailTip')
+  // const dm = document.getElementById('emailTip')
   if (forgetCount.value > 0) {
     return false
   }

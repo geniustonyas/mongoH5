@@ -350,7 +350,10 @@
               <Field v-model="exhangeGoodsParams.AirTicketOrder.Otherservices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
             </CellGroup>
             <div class="ticket-btn">
-              <Button class="btn btn-primary" :loading="btnLoading" :loading-text="t('submit')" native-type="submit">{{ t('submit') }}</Button>
+              <Button class="btn btn-primary" native-type="submit">
+                <i v-show="btnLoading" class="iconfont icon-loading" />
+                {{ t('submit') }}
+              </Button>
             </div>
           </Form>
         </div>
@@ -443,7 +446,10 @@
               <Field v-model="exhangeGoodsParams.GroggeryOrder.OtherServices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
             </CellGroup>
             <div class="ticket-btn">
-              <Button class="btn btn-primary" :loading="btnLoading" :loading-text="t('submit')" native-type="submit">{{ t('submit') }}</Button>
+              <Button class="btn btn-primary" native-type="submit">
+                <i v-show="btnLoading" class="iconfont icon-loading" />
+                {{ t('submit') }}
+              </Button>
             </div>
           </Form>
         </div>

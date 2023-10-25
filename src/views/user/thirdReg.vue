@@ -56,7 +56,7 @@
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <a class="btn btn-primary full" @click="handleReg()">{{ t('createUser') }}</a>
+              <a class="btn btn-primary full" @click="handleReg()"><i v-show="btnLoading" class="iconfont icon-loading" />{{ t('createUser') }}</a>
             </div>
           </div>
           <div class="cf-row">

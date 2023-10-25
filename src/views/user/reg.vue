@@ -93,8 +93,8 @@
           <div class="cf-row">
             <div class="cr-btns">
               <a class="btn btn-primary full loading-btn" @click="handleReg()">
-                <span>{{ t('createUser') }}</span>
-                <Loading v-show="btnLoading" color="#363636" size="18" />
+                <i v-show="btnLoading" class="iconfont icon-loading" />
+                {{ t('createUser') }}
               </a>
             </div>
           </div>
@@ -146,7 +146,7 @@ import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/index'
 
 import { useI18n } from 'vue-i18n'
-import { showToast, Loading } from 'vant'
+import { showToast } from 'vant'
 import { onMounted } from 'vue'
 
 const router = useRouter()
