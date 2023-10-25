@@ -36,6 +36,9 @@ const selLanguage = (val: string) => {
     userStore.getUserInfo({ noLoading: true })
     userStore.setDefultLang()
   }
+  const url = window.location.href
+  const newUrl = url.replace(/(\?|&)lang=[^&]+/g, '')
+  history.replaceState(null, '', newUrl)
   window.location.reload()
 }
 
