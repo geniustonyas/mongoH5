@@ -2,7 +2,7 @@
   <div class="page">
     <header class="header">
       <div class="head-menu-lmr">
-        <div class="hml-l"><i class="iconfont icon-return"></i></div>
+        <div class="hml-l"><i class="iconfont icon-return" /></div>
         <div class="hml-m">仪表盘</div>
       </div>
     </header>
@@ -57,19 +57,17 @@
         <div class="ad-h">
           <div class="h-l">数据对比</div>
           <div class="h-r">
-              <div class="radio-tabs"><span class="active">金额</span><span class="">人数</span></div>
+            <div class="radio-tabs"><span class="active">金额</span><span class="">人数</span></div>
           </div>
         </div>
-        <div class="ad-c">
-          柱状图
-        </div>
+        <div class="ad-c">柱状图</div>
       </div>
     </main>
   </div>
 </template>
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-  const { t } = useI18n()
+const { t } = useI18n()
 </script>

@@ -58,7 +58,11 @@
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <a class="btn btn-primary full" @click="handleLogin()">{{ $t('login') }}</a>
+              <!-- <a class="btn btn-primary full" @click="handleLogin()">{{ $t('login') }}</a> -->
+              <a class="btn btn-primary full loading-btn" @click="handleLogin()">
+                <span>{{ t('login') }}</span>
+                <Loading v-show="btnLoading" color="#363636" size="18" />
+              </a>
             </div>
           </div>
           <div class="cf-row" @click="router.push({ name: 'reg' })">
@@ -109,13 +113,14 @@ import { checkUserBindGoogleApi } from '@/api/user/index'
 import { isEmail, isPwd, isUname } from '@/utils/validate'
 
 import { useI18n } from 'vue-i18n'
-import { showToast } from 'vant'
+import { showToast, Loading } from 'vant'
 
 const router = useRouter()
 const route = useRoute()
 const userStore = useUserStore()
 const { t } = useI18n()
 
+let btnLoading = ref(false)
 let showPwd = ref(false)
 let showThirdLoginBox = ref(false)
 let useGoogleAuthenticatore = ref(false)
@@ -149,30 +154,39 @@ const checkIsBindGoogle = () => {
 
 /** 登录逻辑 */
 const handleLogin = () => {
+  if (btnLoading.value) {
+    return false
+  }
+  btnLoading.value = true
   if (loginForm.UserName == '') {
     showToast(t('tips.inputAccount'))
     userName.value?.focus()
+    btnLoading.value = false
     return false
   }
   if (!isUname(loginForm.UserName) && !isEmail(loginForm.UserName)) {
     showToast(t('tips.isAccount'))
     userName.value?.focus()
+    btnLoading.value = false
     return false
   }
   if (loginForm.PassWord == '') {
     showToast(t('tips.inputPassword'))
     password.value?.focus()
+    btnLoading.value = false
     return false
   }
   if (!isPwd(loginForm.PassWord)) {
     showToast(t('tips.isPwd'))
     password.value?.focus()
+    btnLoading.value = false
     return false
   }
   if (useGoogleAuthenticatore.value) {
     if (loginForm.VerificationCode == '' || loginForm.VerificationCode.length != 6) {
       showToast(t('tips.googleCode'))
       verificationCode.value?.focus()
+      btnLoading.value = false
       return false
     }
   }
@@ -180,10 +194,12 @@ const handleLogin = () => {
     .login(loginForm)
     .then(() => {
       const routeName = route.query.routeTo ? route.query.routeTo.toString() : 'index'
+      btnLoading.value = false
       router.push({ name: routeName })
     })
     .catch((error) => {
       console.log(error)
+      btnLoading.value = false
     })
 }
 

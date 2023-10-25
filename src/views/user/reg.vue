@@ -92,7 +92,10 @@
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <a class="btn btn-primary full" @click="handleReg()">{{ t('createUser') }}</a>
+              <a class="btn btn-primary full loading-btn" @click="handleReg()">
+                <span>{{ t('createUser') }}</span>
+                <Loading v-show="btnLoading" color="#363636" size="18" />
+              </a>
             </div>
           </div>
           <div class="cf-row">
@@ -143,7 +146,7 @@ import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/index'
 
 import { useI18n } from 'vue-i18n'
-import { showToast } from 'vant'
+import { showToast, Loading } from 'vant'
 import { onMounted } from 'vue'
 
 const router = useRouter()
@@ -153,7 +156,7 @@ const { t } = useI18n()
 // 发送邮件倒计时60秒
 let regCount = ref(0)
 const regTimer = ref(0)
-
+let btnLoading = ref(false)
 // 是否显示第三方登录框
 let showPwd = ref(false)
 let showThirdLoginBox = ref(false)
@@ -277,9 +280,12 @@ const checkEmailExist = async () => {
 
 /** 注册逻辑 */
 const handleReg = async () => {
+  if (btnLoading.value) {
+    return false
+  }
+  btnLoading.value = true
   errorMsg.value = ''
   const allTip = document.getElementsByClassName('tip')
-  console.log()
   for (var i = 0; i < allTip.length; i++) {
     allTip[i].innerHTML = ''
   }
@@ -295,6 +301,7 @@ const handleReg = async () => {
   if (regForm.UserName == '') {
     errorMsg.value = t('tips.inputAccount')
     userEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -303,6 +310,7 @@ const handleReg = async () => {
   if (!isUname(regForm.UserName)) {
     errorMsg.value = t('tips.isAccount')
     userEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -312,6 +320,7 @@ const handleReg = async () => {
   if (isExistUserResp.data) {
     errorMsg.value = t('tips.userNameExist')
     userEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -319,11 +328,13 @@ const handleReg = async () => {
   }
   await checkEmailExist()
   if (errorMsg.value != '') {
+    btnLoading.value = false
     return false
   }
   if (regForm.VerificationCode == '') {
     errorMsg.value = t('tips.inputEmailcapcha')
     captchaEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -334,10 +345,12 @@ const handleReg = async () => {
   if (regForm.Password == '' || !isPwd(regForm.Password)) {
     errorMsg.value = t('tips.isPwd')
     pwdEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else if (regForm.Password == regForm.UserName) {
     errorMsg.value = t('tips.pwdName')
     pwdEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -348,6 +361,7 @@ const handleReg = async () => {
   if (regForm.Password != confirmPwd.value) {
     errorMsg.value = t('tips.pwdNotMatch')
     confirmPwdEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -358,6 +372,7 @@ const handleReg = async () => {
   if (!isAudit.value) {
     errorMsg.value = t('tips.isAudit')
     privacyEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -368,6 +383,7 @@ const handleReg = async () => {
   if (!isAgree.value) {
     errorMsg.value = t('tips.isAgree')
     agreeEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -381,15 +397,18 @@ const handleReg = async () => {
       .then(() => {
         showToast(t('tips.regSuccess'))
         router.push({ name: 'index' })
+        btnLoading.value = false
         return false
       })
       .catch((error) => {
         showToast(error)
+        btnLoading.value = false
         router.push({ name: 'login' })
         return false
       })
   } catch (error: any) {
     // showToast(error)
+    btnLoading.value = false
     return false
   }
 }

@@ -2,19 +2,22 @@
   <div class="page">
     <header class="header">
       <div class="head-menu-lmr">
-        <div class="hml-l"><i class="iconfont icon-return"></i></div>
+        <div class="hml-l"><i class="iconfont icon-return" /></div>
         <div class="hml-m">成员信息</div>
       </div>
     </header>
     <main class="main">
-
       <div class="agent-report-box">
         <div class="ar-a">
-          <div class="a-col"> <select class="form-control"><option>是否投注</option></select></div>
-          <div class="a-col"> <input class="form-control" placeholder="注册时间" /></div>
-          <div class="a-col"> <input class="form-control" placeholder="统计时间" /></div>
-          <div class="a-col col-2"> <input class="form-control" placeholder="会员账号" /></div>
-          <div class="a-col"> <a class="btn btn-primary">筛选</a></div>
+          <div class="a-col">
+            <select class="form-control">
+              <option>是否投注</option>
+            </select>
+          </div>
+          <div class="a-col"><input class="form-control" placeholder="注册时间" /></div>
+          <div class="a-col"><input class="form-control" placeholder="统计时间" /></div>
+          <div class="a-col col-2"><input class="form-control" placeholder="会员账号" /></div>
+          <div class="a-col"><a class="btn btn-primary">筛选</a></div>
         </div>
 
         <div class="ar-c">
@@ -154,15 +157,14 @@
               <td>2023-10-10 22:22</td>
             </tr>
           </table>
-
         </div>
       </div>
     </main>
   </div>
 </template>
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-  const { t } = useI18n()
+const { t } = useI18n()
 </script>

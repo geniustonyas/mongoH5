@@ -132,7 +132,10 @@
           </div>
         </div>
         <div v-show="step == 3" class="fund-btn">
-          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('confirm') }}</a>
+          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary loading-btn disabled' : 'btn btn-primary loading-btn'" @click="selTab()">
+            <span>{{ t('confirm') }}</span>
+            <Loading v-show="btnLoading" color="#363636" size="24" />
+          </a>
         </div>
         <!-- step 4 -->
         <div v-show="step == 4" class="fund-form wa">
@@ -228,7 +231,7 @@ import { useI18n } from 'vue-i18n'
 import { liveChatCall } from '@/composables/startGame'
 
 import BigNumber from 'bignumber.js'
-import { showToast, Popup, ConfigProvider } from 'vant'
+import { showToast, Popup, ConfigProvider, Loading } from 'vant'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -237,6 +240,7 @@ const { t } = useI18n()
 const usdtChainList = usdtChainListData()
 const currenyList = currenyListData()
 
+let btnLoading = ref(false)
 const step = ref(1)
 // 快捷提现比例
 const percent = ref(0.25)
@@ -395,9 +399,14 @@ const selTab = () => {
     }
     step.value = 3
   } else if (step.value == 3) {
+    if (btnLoading.value) {
+      return false
+    }
+    btnLoading.value = true
     if (userStore.userInfo.isBindGoogleAuth && withdrawForm.VerificationCode == '') {
       showToast(t('tips.googleCode'))
       googleCodeDom.value?.focus()
+      btnLoading.value = false
       return false
     }
     withdrawOrderApi(withdrawForm)
@@ -406,16 +415,20 @@ const selTab = () => {
           .then((resp) => {
             showToast(t('tips.withdrawSuccess'))
             Object.assign(withdrawDetail, resp.data)
+            btnLoading.value = false
           })
           .catch((error) => {
+            btnLoading.value = false
             console.log(error)
           })
         userStore.getUserInfo({ noLoading: true })
         step.value = 4
+        btnLoading.value = false
       })
       .catch((error) => {
         // showToast(t('tips.withdrawFail'))
         console.log(error)
+        btnLoading.value = false
       })
   }
 }

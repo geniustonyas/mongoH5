@@ -54,7 +54,10 @@
           </div>
           <div class="cf-row">
             <div class="cr-btns">
-              <a class="btn btn-primary full" @click="resetPassword()">{{ $t('resetPwd') }}</a>
+              <a class="btn btn-primary full loading-btn" @click="resetPassword()">
+                <span>{{ t('resetPwd') }}</span>
+                <Loading v-show="btnLoading" color="#363636" size="18" />
+              </a>
             </div>
           </div>
           <div class="cf-row">
@@ -82,13 +85,14 @@ import { resetPwdApi, sendEmailApi, checkEmailApi, checkEmailThirdReg } from '@/
 import { isPwd, isEmail } from '@/utils/validate'
 
 import { useI18n } from 'vue-i18n'
-import { showToast } from 'vant'
+import { showToast, Loading } from 'vant'
 import 'vant/es/toast/style'
 
 const router = useRouter()
 // const userStore = useUserStore()
 const { t } = useI18n()
 
+let btnLoading = ref(false)
 // 发送邮件倒计时60秒
 let forgetCount = ref(0)
 const forgetTimer = ref(0)
@@ -192,15 +196,19 @@ const checkEmailExist = async () => {
 
 /** 重置密码 */
 const resetPassword = async () => {
+  if (btnLoading.value) {
+    return false
+  }
+  btnLoading.value = true
   errorMsg.value = ''
   const allTip = document.getElementsByClassName('tip')
-  console.log()
   for (var i = 0; i < allTip.length; i++) {
     allTip[i].innerHTML = ''
   }
 
   await checkEmailExist()
   if (errorMsg.value != '') {
+    btnLoading.value = false
     return false
   }
   const captchaEl = document.getElementById('captchaTip')
@@ -210,6 +218,7 @@ const resetPassword = async () => {
   if (resetForm.VerificationCode == '') {
     errorMsg.value = t('tips.inputEmailcapcha')
     captchaEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -219,6 +228,7 @@ const resetPassword = async () => {
   if (resetForm.PassWord == '' || !isPwd(resetForm.PassWord)) {
     errorMsg.value = t('tips.isPwd')
     pwdEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -229,6 +239,7 @@ const resetPassword = async () => {
   if (resetForm.PassWord != confirmPwd.value) {
     errorMsg.value = t('tips.pwdNotMatch')
     confirmPwdEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -239,11 +250,13 @@ const resetPassword = async () => {
     .then(() => {
       showToast(t('tips.resetSuccess'))
       router.push({ name: 'login' })
+      btnLoading.value = false
       return false
     })
     .catch((error) => {
       // showToast(t(error))
       console.log(error)
+      btnLoading.value = false
       return false
     })
 }

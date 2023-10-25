@@ -2,14 +2,18 @@
   <div class="page">
     <header class="header">
       <div class="head-menu-lmr">
-        <div class="hml-l"><i class="iconfont icon-return"></i></div>
+        <div class="hml-l"><i class="iconfont icon-return" /></div>
         <div class="hml-m">佣金报表</div>
       </div>
     </header>
     <main class="main">
       <div class="agent-report-box">
         <div class="ar-a">
-          <div class="a-col col-2"><select class="form-control"><option>2023-10</option></select></div>
+          <div class="a-col col-2">
+            <select class="form-control">
+              <option>2023-10</option>
+            </select>
+          </div>
           <div class="a-col"><a class="btn btn-primary">筛选</a></div>
         </div>
         <div class="ar-d">
@@ -62,13 +66,13 @@
             <div class="di-r"><b>200</b></div>
           </div>
         </div>
-      </div> 
+      </div>
     </main>
   </div>
 </template>
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-  const { t } = useI18n()
+const { t } = useI18n()
 </script>

@@ -2,7 +2,7 @@
   <div class="page">
     <header class="header">
       <div class="head-menu-lmr">
-        <div class="hml-l"><i class="iconfont icon-return"></i></div>
+        <div class="hml-l"><i class="iconfont icon-return" /></div>
         <div class="hml-m">财务报表</div>
       </div>
     </header>
@@ -25,7 +25,7 @@
           <div class="report-finance-box">
             <ul>
               <li>
-                <div class="l-bd"> 
+                <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>存款</span>
@@ -41,7 +41,7 @@
                 </div>
               </li>
               <li>
-                <div class="l-bd"> 
+                <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
                       <div class="it-l">
@@ -56,7 +56,7 @@
                 </div>
               </li>
               <li>
-                <div class="l-bd"> 
+                <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>奖励</span>
@@ -72,7 +72,7 @@
                 </div>
               </li>
               <li>
-                <div class="l-bd"> 
+                <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>网络费用</span>
@@ -88,7 +88,7 @@
                 </div>
               </li>
               <li>
-                <div class="l-bd"> 
+                <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>总输赢</span>
@@ -104,7 +104,7 @@
                 </div>
               </li>
               <li>
-                <div class="l-bd"> 
+                <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>存款手续费</span>
@@ -120,7 +120,7 @@
                 </div>
               </li>
               <li>
-                <div class="l-bd"> 
+                <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>净输赢</span>
@@ -136,15 +136,13 @@
           </div>
         </div>
         <div class="ar-m"><i class="iconfont icon-info" /> 提示：总输赢、净输赢中正数表示公司盈利，负数表示公司亏损，每天数据只做普通参考，并不做实际佣金派发标准。</div>
-
-  
       </div>
     </main>
   </div>
 </template>
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-  const { t } = useI18n()
+const { t } = useI18n()
 </script>

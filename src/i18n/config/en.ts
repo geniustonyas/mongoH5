@@ -491,7 +491,7 @@ export default {
   endTime: 'End Time',
   minMaxBet: 'Min-Max Bet',
   volatility: 'Volatility',
-  volatilitys: { 1: 'Low', 2: 'Low-Medium', 3: 'Medium', 4: 'Medium-High', 5: 'High', 6: 'Very hign', 7: 'Very low' },
+  volatilitys: { 1: 'Low', 2: 'Low-Medium', 3: 'Medium', 4: 'Medium-High', 5: 'High', 6: 'Very High', 7: 'Very Low' },
   myPoints: 'My Points',
   backPromo: 'Back to promotions',
   noSupportFullScreen: 'Your browser does not support full screen',
@@ -552,7 +552,7 @@ export default {
   addToDesk: 'In the browser, “Add page to”',
   clickDesk: 'Tap “Home Screen”',
   clickAddAndroid: 'Click “Add”',
-  hitratio: 'Hitratio',
+  hitratio: 'Hit-ratio',
   paylines: 'Paylines',
   nopwd: 'Your account is registered through social media. There is no password option.',
 

@@ -350,7 +350,7 @@
               <Field v-model="exhangeGoodsParams.AirTicketOrder.Otherservices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
             </CellGroup>
             <div class="ticket-btn">
-              <Button class="btn btn-primary" native-type="submit">{{ t('submit') }}</Button>
+              <Button class="btn btn-primary" :loading="btnLoading" :loading-text="t('submit')" native-type="submit">{{ t('submit') }}</Button>
             </div>
           </Form>
         </div>
@@ -443,7 +443,7 @@
               <Field v-model="exhangeGoodsParams.GroggeryOrder.OtherServices" name="otherService" :label="t('otherService')" :placeholder="t('otherService')" />
             </CellGroup>
             <div class="ticket-btn">
-              <Button class="btn btn-primary" native-type="submit">{{ t('submit') }}</Button>
+              <Button class="btn btn-primary" :loading="btnLoading" :loading-text="t('submit')" native-type="submit">{{ t('submit') }}</Button>
             </div>
           </Form>
         </div>
@@ -487,6 +487,8 @@ let tab = ref('rewards')
 
 const exchangeTicket = ref('exchangeTicket')
 const exchangeHotel = ref('exchangeHotel')
+
+const btnLoading = ref(false)
 
 // 商品詳情
 const currentGoodsItem = reactive<getGoodsListItem>({
@@ -628,11 +630,19 @@ const exhangeGoods = () => {
     if (currentGoodsItem.productType == 0 || currentGoodsItem.productType == 1) {
       data = { Id: currentGoodsItem.id }
     } else if (currentGoodsItem.productType == 3) {
+      if (btnLoading.value) {
+        return false
+      }
+      btnLoading.value = true
       data = { Id: currentGoodsItem.id, AirTicketOrder: exhangeGoodsParams.AirTicketOrder }
       if (data.AirTicketOrder?.OnewayOrRoundtrip) {
         data.AirTicketOrder.OnewayOrRoundtrip = t(data.AirTicketOrder?.OnewayOrRoundtrip)
       }
     } else if (currentGoodsItem.productType == 4) {
+      if (btnLoading.value) {
+        return false
+      }
+      btnLoading.value = true
       data = { Id: currentGoodsItem.id, GroggeryOrder: exhangeGoodsParams.GroggeryOrder }
     }
 
@@ -642,9 +652,11 @@ const exhangeGoods = () => {
         showToast(msg)
         showGoodsDetails.value = false
         userStore.getUserInfo({ noLoading: true })
+        btnLoading.value = false
       })
       .catch((error) => {
         console.log(error)
+        btnLoading.value = false
       })
   }
 }

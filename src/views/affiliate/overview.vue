@@ -2,15 +2,15 @@
   <div class="page">
     <header class="header">
       <div class="head-menu-lmr">
-        <div class="hml-l"><i class="iconfont icon-return"></i></div>
+        <div class="hml-l"><i class="iconfont icon-return" /></div>
         <div class="hml-m">概要</div>
       </div>
     </header>
     <main class="main">
       <div class="agent-overview">
-          <div class="banner">
-    <img src="http://d1uck6akni5eri.cloudfront.net/d1d707cbb8f14f28b323ccc6d410f216.jpg" />
-  </div>
+        <div class="banner">
+          <img src="http://d1uck6akni5eri.cloudfront.net/d1d707cbb8f14f28b323ccc6d410f216.jpg" />
+        </div>
         <div class="ao-row">
           <div class="r-title">SEABET.IO</div>
           <div class="r-cont">{{ t('overviewDesc') }}</div>
@@ -45,11 +45,11 @@
                     <option>https:www.seabet2.io?ag=11</option>
                   </select>-->
                   <a>https:www.seabet1.io?ag=11</a>
-                  <span><i class="iconfont icon-fuzhi"></i></span>
+                  <span><i class="iconfont icon-fuzhi" /></span>
                 </div>
               </div>
               <div class="s-r">
-                <a class="btn btn-primary">下载横幅<i class="iconfont icon-share"></i></a>
+                <a class="btn btn-primary">下载横幅<i class="iconfont icon-share" /></a>
               </div>
             </div>
           </div>
@@ -59,31 +59,31 @@
   </div>
 </template>
 <script setup lang="ts">
-  import { computed } from 'vue'
-  import { useRouter, useRoute } from 'vue-router'
-  import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
-  import BigNumber from 'bignumber.js'
-  import { useUserStore } from '@/store/modules/user'
-  import { useAppStore } from '@/store/modules/app'
-  import { getAssetsFile } from '@/utils'
+import BigNumber from 'bignumber.js'
+import { useUserStore } from '@/store/modules/user'
+import { useAppStore } from '@/store/modules/app'
+import { getAssetsFile } from '@/utils'
 
-  const router = useRouter()
-  const route = useRoute()
-  const userStore = useUserStore()
-  const appStore = useAppStore()
-  const { t } = useI18n()
+const router = useRouter()
+const route = useRoute()
+const userStore = useUserStore()
+const appStore = useAppStore()
+const { t } = useI18n()
 
-  // 下一奖励进度
-  const rewardProgressWidth = computed(() => {
-    let width = '0'
-    if (userStore.userInfo.nextVipRequiredTotalBetAmount != '' && userStore.userInfo.totalBetAmount != '') {
-      width = new BigNumber(userStore.userInfo.totalBetAmount).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
-    }
-    return width
-  })
-
-  const handleLogout = () => {
-    router.push({ name: 'logout' })
+// 下一奖励进度
+const rewardProgressWidth = computed(() => {
+  let width = '0'
+  if (userStore.userInfo.nextVipRequiredTotalBetAmount != '' && userStore.userInfo.totalBetAmount != '') {
+    width = new BigNumber(userStore.userInfo.totalBetAmount).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
   }
+  return width
+})
+
+const handleLogout = () => {
+  router.push({ name: 'logout' })
+}
 </script>

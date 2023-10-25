@@ -98,6 +98,7 @@ const isGoogle = ref(false)
 // 发送邮件倒计时60秒
 let thirdRegCount = ref(0)
 const thirdRegTimer = ref(0)
+let btnLoading = ref(false)
 
 let showloading = ref(false)
 // let day = ref<string | number>('')
@@ -226,9 +227,12 @@ const checkEmailExist = async () => {
 
 /** 登录逻辑 */
 const handleReg = async () => {
+  if (btnLoading.value) {
+    return false
+  }
+  btnLoading.value = true
   errorMsg.value = ''
   const allTip = document.getElementsByClassName('tip')
-  console.log()
   for (var i = 0; i < allTip.length; i++) {
     allTip[i].innerHTML = ''
   }
@@ -242,6 +246,7 @@ const handleReg = async () => {
   if (regForm.UserName == '') {
     errorMsg.value = t('tips.inputAccount')
     userEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -250,6 +255,7 @@ const handleReg = async () => {
   if (!isUname(regForm.UserName)) {
     errorMsg.value = t('tips.isAccount')
     userEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -259,6 +265,7 @@ const handleReg = async () => {
   if (isExistUserResp.data) {
     errorMsg.value = t('tips.userNameExist')
     userEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -266,11 +273,13 @@ const handleReg = async () => {
   }
   await checkEmailExist()
   if (errorMsg.value != '') {
+    btnLoading.value = false
     return false
   }
   if (regForm.VerificationCode == '' && !isGoogle.value) {
     errorMsg.value = t('tips.inputEmailcapcha')
     captchaEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -283,6 +292,7 @@ const handleReg = async () => {
   if (!isAudit.value) {
     errorMsg.value = t('tips.isAudit')
     privacyEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -293,6 +303,7 @@ const handleReg = async () => {
   if (!isAgree.value) {
     errorMsg.value = t('tips.isAgree')
     agreeEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
     return false
   } else {
     errorMsg.value = ''
@@ -302,8 +313,8 @@ const handleReg = async () => {
   Object.assign(regForm, appStore.thirdData)
   Object.assign(loginForm, appStore.thirdData)
   const regResult = await awaitWraper(thirdRegApi(regForm))
-  console.log(regResult)
   if (regResult[0]) {
+    btnLoading.value = false
     showToast(t('tips.regFail'))
     return false
   } else {
@@ -313,12 +324,14 @@ const handleReg = async () => {
         showToast(t('tips.regSuccess'))
         router.push({ name: 'index' })
         appStore.resetThirdData()
+        btnLoading.value = false
         return false
       })
       .catch((error) => {
         // showToast(error)
         console.log(error)
         router.push({ name: 'login' })
+        btnLoading.value = false
         return false
       })
   }

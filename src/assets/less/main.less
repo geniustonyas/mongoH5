@@ -1437,6 +1437,12 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         &:hover, &:focus, &:active { .opacity(80); }
     }
 }
+.loading-btn {
+    .flex(); .flex-pack(); .flex-align();
+    :nth-child(1) {
+        margin-right: 1rem;
+    }
+}
 .tab-content {
     .tc-box {
         &.active { display: block; }
