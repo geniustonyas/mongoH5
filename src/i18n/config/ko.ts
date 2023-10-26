@@ -605,7 +605,7 @@ export default {
     '我们不会宣传针对儿童或成人网站的广告。我们反对限制性广告；任何使用这些方式的会员都将被禁止进入我们的计划，并且为了保护我们的网站我们保留对使用这些网站的任何会员采取法律行动的权利。请参阅我们的规则与条款以获取更多信息。',
   report: '报表',
   memberManager: '成员管理',
-  Commissioneport: '佣金报表',
+  commissioneport: '佣金报表',
   financeReport: '财务报表',
   affiliateSupport: '支持',
   advantageTitle: 'SEABET.IO优势',

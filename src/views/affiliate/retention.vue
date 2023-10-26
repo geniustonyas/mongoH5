@@ -1,11 +1,6 @@
 ﻿<template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l"><i class="iconfont icon-return" /></div>
-        <div class="hml-m">常见问题</div>
-      </div>
-    </header>
+    <CommonHeader :title="t('affiliateQuestion')" />
     <main class="main">
       <!--<div class="clubhouse-box">
         <div class="cb_help"><div class="lm-title">常见问题</div><ul class="faq-box"><li><div class="l-title"><span>1. 什么是VIP俱乐部?</span><i class="iconfont icon-down" /></div>--><!----><!--</li><li><div class="l-title"><span>2. 如何获得积分?</span><i class="iconfont icon-down" /></div>--><!----><!--</li><li><div class="l-title"><span>3. 什么是VIP等级?</span><i class="iconfont icon-down" /></div>--><!----><!--</li>--><!--v-if--><!--</ul><div class="lm-bottom"><a class="btn btn-primary">了解更多</a></div></div>
@@ -157,6 +152,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 const { t } = useI18n()
 </script>

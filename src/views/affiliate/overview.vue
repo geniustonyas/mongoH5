@@ -1,11 +1,6 @@
 ﻿<template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l"><i class="iconfont icon-return" /></div>
-        <div class="hml-m">概要</div>
-      </div>
-    </header>
+    <CommonHeader :title="t('overview')" />
     <main class="main">
       <div class="agent-overview">
         <div class="banner">
@@ -62,6 +57,8 @@
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+
+import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import BigNumber from 'bignumber.js'
 import { useUserStore } from '@/store/modules/user'

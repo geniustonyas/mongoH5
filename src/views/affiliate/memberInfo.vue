@@ -1,11 +1,6 @@
 ﻿<template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l"><i class="iconfont icon-return" /></div>
-        <div class="hml-m">成员信息</div>
-      </div>
-    </header>
+    <CommonHeader :title="t('memberInfo')" />
     <main class="main">
       <div class="agent-report-box">
         <div class="ar-a">
@@ -165,6 +160,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 const { t } = useI18n()
 </script>

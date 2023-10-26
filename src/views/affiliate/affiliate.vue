@@ -54,7 +54,7 @@
               </li>
               <li :class="{ active: route.name == 'commission' }">
                 <a @click="router.push({ name: 'commission' })">
-                  <span><i class="iconfont icon-yongjin1" />{{ t('Commissioneport') }}</span>
+                  <span><i class="iconfont icon-yongjin1" />{{ t('commissioneport') }}</span>
                   <i class="iconfont icon-right" />
                 </a>
               </li>

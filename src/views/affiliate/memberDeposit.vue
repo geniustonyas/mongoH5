@@ -1,80 +1,92 @@
 ﻿<template>
   <div class="page">
-    <header class="header">
-      <div class="head-menu-lmr">
-        <div class="hml-l"><i class="iconfont icon-return" /></div>
-        <div class="hml-m">成员代存</div>
-      </div>
-    </header>
+    <CommonHeader :title="t('memberDeposit')" />
     <main class="main">
       <div class="agent-deposit">
-        <div class="line-tabs"><span class="active">额度代存</span><span class="">代存记录</span></div>
+        <div class="line-tabs">
+          <span :class="{ active: tab == 'deposit' }" @click="toggleTab()">{{ t('agentDepositLimit') }}</span>
+          <span :class="{ active: tab == 'depositRecord' }" @click="toggleTab()">{{ t('agentDepositRecord') }}</span>
+        </div>
         <div class="ine-conts">
-          <div class="cont">
+          <div :class="tab == 'deposit' ? 'cont active' : 'cont'">
             <div class="ad-escrow">
               <div class="ae-a">
                 <div class="a-l">
                   <span><i class="iconfont icon-wallet" /></span>
                 </div>
                 <div class="a-r">
-                  <span>可用额度</span>
-                  <p><b>******</b><i class="iconfont icon-yincang" /></p>
+                  <span>{{ t('canUseLimit') }}</span>
+                  <p>
+                    <b>{{ showAmount ? '158.90' : '******' }}</b>
+                    <i :class="showAmount ? 'iconfont icon-xianshi' : 'iconfont icon-yincang'" @click="showAmount = !showAmount" />
+                  </p>
                 </div>
               </div>
               <div class="ae-b">
                 <div class="custom-form">
                   <div class="cf-row">
                     <div class="col-2">
-                      <div class="cr-label"><span>下级账号</span></div>
+                      <div class="cr-label">
+                        <span>{{ t('childAccount') }}</span>
+                      </div>
                       <div class="cr-input">
-                        <input type="text" class="form-control" placeholder="请输入下级账号" autocomplete="off" />
+                        <input type="text" class="form-control" :placeholder="t('inputChildAccount')" autocomplete="off" />
                       </div>
                     </div>
                   </div>
                   <div class="cf-row">
                     <div class="col-2">
-                      <div class="cr-label"><span>代存金额</span></div>
+                      <div class="cr-label"><span>{{ t('agentDepositAmount') }}</span></div>
                       <div class="cr-input">
-                        <input type="text" class="form-control" placeholder="请输入代存金额" autocomplete="off" />
+                        <input type="text" class="form-control" :placeholder="t('inputAgentDepositAmount')" autocomplete="off" />
                       </div>
                     </div>
-                    <p class="cr-tips"><b>1.00≤</b>单次代存金额<b>≤50,000.00</b>，当日限额<b>10,000,000.00</b></p>
+                    <p class="cr-tips">
+                      <b>1.00</b> ≤
+                      {{ t('singleAgentDepositAmount') }}
+                      ≤<b>50,000.00</b>,
+                      {{ t('agentDepositDayLimit') }}<b>10,000,000.00</b>
+                    </p>
                   </div>
                   <div class="cf-row">
                     <div class="col-2">
-                      <div class="cr-label"><span>提款流水倍数</span></div>
-                      <div class="cr-input ci-group"><input type="text" class="form-control" placeholder="请输入提款流水倍数" autocomplete="off" /><span class="password-addon">倍</span></div>
+                      <div class="cr-label"><span>{{ t('withdrawFlowMult') }}</span></div>
+                      <div class="cr-input ci-group"><input type="text" class="form-control" :placeholder="t('inputWithdrawFlowMult')" autocomplete="off" /><span class="password-addon">倍</span></div>
                     </div>
-                    <p class="cr-tips"><b>1≤</b>提款流水倍数<b>≤8</b></p>
+                    <p class="cr-tips">
+                      <b>1</b>≤
+                      {{ t('withdrawFlowMult') }}
+                      ≤<b>8</b>
+                    </p>
                   </div>
                   <div class="cf-row">
                     <div class="col-2">
-                      <div class="cr-label"><span>备注</span></div>
-                      <div class="cr-input"><input type="password" class="form-control" placeholder="请输入备注" autocomplete="off" /></div>
+                      <div class="cr-label"><span>{{ t('remark') }}</span></div>
+                      <div class="cr-input"><input type="password" class="form-control" :placeholder="t('inputRemark')" autocomplete="off" /></div>
                     </div>
                   </div>
                   <div class="cf-row">
                     <div class="col-2">
-                      <div class="cr-label"><span>登录密码</span></div>
-                      <div class="cr-input"><input type="password" class="form-control" placeholder="请输入登录密码" autocomplete="off" /></div>
+                      <div class="cr-label"><span>{{ t('loginPwd') }}</span></div>
+                      <div class="cr-input"><input type="password" class="form-control" :placeholder="t('inputLoginPwd')" autocomplete="off" /></div>
                     </div>
                   </div>
-                  <div class="cf-row"><a class="btn btn-primary">保存提交</a></div>
+                  <div class="cf-row"><a class="btn btn-primary">{{ t('submit') }}</a></div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="cont active">
+          <div :class="tab == 'depositRecord' ? 'cont active' : 'cont'">
             <div class="agent-report-box">
               <div class="ar-a">
                 <div class="a-col col-50">
                   <select class="form-control">
-                    <option>状态</option>
+                    <option>{{ t('status') }}</option>
                   </select>
                 </div>
-                <div class="a-col col-50"><input class="form-control" placeholder="操作时间" /></div>
-                <div class="a-col col-2"><input class="form-control" placeholder="会员账号" /></div>
-                <div class="a-col"><a class="btn btn-primary">筛选</a></div>
+                <div class="a-col col-50"><input class="form-control" :placeholder="t('memberAccount')" /></div>
+                <div class="a-col col-2"><input class="form-control" :placeholder="t('optime')" /></div>
+                <div class="a-col"><a class="btn btn-primary">{{ t('filter') }}</a></div>
               </div>
               <div class="ar-c">
                 <ul>
@@ -145,5 +157,12 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import CommonHeader from '@/components/layout/CommonHeader.vue'
+
 const { t } = useI18n()
+const tab = ref('deposit')
+const showAmount = ref(false)
+const toggleTab = () => {
+  tab.value = tab.value === 'deposit' ? 'depositRecord' : 'deposit'
+}
 </script>

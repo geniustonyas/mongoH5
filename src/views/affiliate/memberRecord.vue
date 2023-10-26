@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <CommonHeader :title="t('transactionHistory')" />
+    <CommonHeader :title="t('agentDepositRecord')" />
     <main class="main">
       <div class="record-box">
         <div class="rb-head">

@@ -106,6 +106,11 @@
   <nav class="m-security">
     <dl>
       <dt>{{ t('licencesSecurity') }}</dt>
+      <dd class="pacor">
+        <a href="#">
+          <img :src="getAssetsFile('svg/ls-0.svg')" />
+        </a>
+      </dd>
       <dd>
         <a href="#">
           <img :src="getAssetsFile('svg/ls-1.svg')" />
