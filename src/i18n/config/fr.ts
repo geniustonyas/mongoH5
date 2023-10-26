@@ -663,7 +663,7 @@ export default {
   withdrawFlowMult: '提款流水倍数',
   inputWithdrawFlowMult: '请输入提款流水倍数',
   multiple: '倍',
-  remark: '备注',
+  remark: 'Remarque',
   inputRemark: '请输入备注',
   loginPwd: '登录密码',
   inputLoginPwd: '请输入登录密码',

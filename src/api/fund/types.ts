@@ -146,6 +146,7 @@ export interface getHistoryRecordItems {
   afterBalance: string
   orderStatus: string
   category: number
+  remark?: string
 }
 
 export interface getTradeDetailsData {
@@ -170,6 +171,7 @@ export interface getHistoryRecordDetails {
   txId?: string
   toAddress?: string
   blockchainCode?: string
+  remark?: string
 }
 
 export type getDepositAddressResp = ApiResponseData<getDepositAddressResponse>

@@ -596,6 +596,8 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                     }
                 }
             }
+
+            &.wrap { .wordwrap() }
         }
     }
 }
@@ -1518,6 +1520,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         dt { padding: 1rem 0; font-size: 1.2rem; }
         dd { .flex(); .flex-pack-justify(); .ellipsis(); color: var(--color-white); padding: 1rem 0;
             span { max-width: 70%; .ellipsis(); }
+            .nowrap { .wordwrap(); max-width: 70%; }
         }
         .center { text-align: center; margin: 0 auto; display: inline-block; }
     }

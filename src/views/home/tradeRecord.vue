@@ -55,6 +55,10 @@
                         <span :class="`${orderStatusCss[item.orderStatus]} c-status`">{{ t(`withdrawStatus[${item.orderStatus}]`) }}</span>
                       </div>
                     </div>
+                    <!-- <div v-if="item.remark && item.remark != ''" class="i-row wrap">
+                      {{ t('remark') }}：
+                      {{ item.remark }}
+                    </div> -->
                   </div>
                 </List>
               </PullRefresh>
@@ -111,6 +115,10 @@
             <dd>
               {{ t('finalBalance') }}:
               <span>{{ moneyFormat(detailsData.afterBalance) }}&nbsp;{{ detailsData.currencyCode }}</span>
+            </dd>
+            <dd v-if="detailsData.remark && detailsData.remark != ''">
+              {{ t('remark') }}:
+              <p class="nowrap">{{ detailsData.remark }}</p>
             </dd>
           </dl>
           <template v-if="detailsData.txId && detailsData.txId != ''">
