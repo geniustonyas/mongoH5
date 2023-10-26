@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="page">
-    <CommonHeader :title="t('finance')" />
+    <CommonHeader :title="t('financeReport')" />
     <main class="main">
       <div class="agent-report-box">
         <div class="ar-e">
@@ -86,7 +86,7 @@
                 <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
-                      <span>{{ t('totalwinLose') }}</span>
+                      <span>{{ t('totalWinLose') }}</span>
                       <b>-2330</b>
                     </div>
                     <div class="it-r">

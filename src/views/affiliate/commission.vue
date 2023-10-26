@@ -35,7 +35,7 @@
             <div class="di-r">--</div>
           </div>
           <div class="d-item">
-            <div class="di-l">{{ t('reward') }}</div>
+            <div class="di-l">{{ t('rewards') }}</div>
             <div class="di-r">--</div>
           </div>
           <div class="d-item">
