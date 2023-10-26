@@ -36,7 +36,9 @@
                   </div>
                   <div class="cf-row">
                     <div class="col-2">
-                      <div class="cr-label"><span>{{ t('agentDepositAmount') }}</span></div>
+                      <div class="cr-label">
+                        <span>{{ t('agentDepositAmount') }}</span>
+                      </div>
                       <div class="cr-input">
                         <input type="text" class="form-control" :placeholder="t('inputAgentDepositAmount')" autocomplete="off" />
                       </div>
@@ -50,7 +52,9 @@
                   </div>
                   <div class="cf-row">
                     <div class="col-2">
-                      <div class="cr-label"><span>{{ t('withdrawFlowMult') }}</span></div>
+                      <div class="cr-label">
+                        <span>{{ t('withdrawFlowMult') }}</span>
+                      </div>
                       <div class="cr-input ci-group"><input type="text" class="form-control" :placeholder="t('inputWithdrawFlowMult')" autocomplete="off" /><span class="password-addon">倍</span></div>
                     </div>
                     <p class="cr-tips">
@@ -61,17 +65,23 @@
                   </div>
                   <div class="cf-row">
                     <div class="col-2">
-                      <div class="cr-label"><span>{{ t('remark') }}</span></div>
+                      <div class="cr-label">
+                        <span>{{ t('remark') }}</span>
+                      </div>
                       <div class="cr-input"><input type="password" class="form-control" :placeholder="t('inputRemark')" autocomplete="off" /></div>
                     </div>
                   </div>
                   <div class="cf-row">
                     <div class="col-2">
-                      <div class="cr-label"><span>{{ t('loginPwd') }}</span></div>
+                      <div class="cr-label">
+                        <span>{{ t('loginPwd') }}</span>
+                      </div>
                       <div class="cr-input"><input type="password" class="form-control" :placeholder="t('inputLoginPwd')" autocomplete="off" /></div>
                     </div>
                   </div>
-                  <div class="cf-row"><a class="btn btn-primary">{{ t('submit') }}</a></div>
+                  <div class="cf-row">
+                    <a class="btn btn-primary">{{ t('submit') }}</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -86,7 +96,9 @@
                 </div>
                 <div class="a-col col-50"><input class="form-control" :placeholder="t('memberAccount')" /></div>
                 <div class="a-col col-2"><input class="form-control" :placeholder="t('optime')" /></div>
-                <div class="a-col"><a class="btn btn-primary">{{ t('filter') }}</a></div>
+                <div class="a-col">
+                  <a class="btn btn-primary">{{ t('filter') }}</a>
+                </div>
               </div>
               <div class="ar-c">
                 <ul>
