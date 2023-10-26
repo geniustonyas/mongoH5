@@ -118,7 +118,7 @@
             </dd>
             <dd v-if="detailsData.remark && detailsData.remark != ''">
               {{ t('remark') }}:
-              <p class="nowrap">{{ detailsData.remark }}</p>
+              <p stye="">{{ detailsData.remark }}</p>
             </dd>
           </dl>
           <template v-if="detailsData.txId && detailsData.txId != ''">
