@@ -46,6 +46,10 @@ watch(
     }
   }
 )
+
+if (window.top && window.self !== window.top) {
+  window.top.location = window.self.location
+}
 </script>
 
 <style>

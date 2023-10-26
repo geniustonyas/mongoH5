@@ -58,7 +58,7 @@ export function getGameUrl(gameId: string, gameUrl = 'game/url', provider: numbe
   const domain = window.location.hostname
   getGameUrlApi({ id: gameId, platform: PlatForm.H5, domain: 'https://' + domain }, gameUrl)
     .then((resp) => {
-      if (provider == 11) {
+      if (provider == 11 || provider == 15) {
         router.push({ name: 'gameIframe', query: { url: resp.data } })
       } else {
         window.location.href = resp.data

@@ -102,7 +102,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import UserHeader from '@/components/layout/UserHeader.vue'
 
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, loadJs } from '@/utils'
 import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
 import { checkUserBindGoogleApi } from '@/api/user/index'
@@ -199,6 +199,7 @@ const handleLogin = () => {
     })
 }
 
+loadJs('https://telegram.org/js/telegram-widget.js')
 facebookInit()
 </script>
 
