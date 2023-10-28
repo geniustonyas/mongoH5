@@ -6,44 +6,44 @@
         <div class="ad-a">
           <div class="a-t">
             <span>{{ t('winLoseMonth') }}(USDT)</span>
-            <b>2,9422</b>
+            <b>{{ dashboardData.commission.netWinlose }}</b>
           </div>
           <div class="a-b">
             <ul>
               <li>
                 <div class="l-bd">
                   <span>{{ t('childMember') }}</span>
-                  <b>0</b>
+                  <b>{{ dashboardData.members }}</b>
                 </div>
               </li>
               <li>
                 <div class="l-bd">
                   <span>{{ t('firshRecharge') }}</span>
-                  <b>0</b>
+                  <b>{{ dashboardData.first }}</b>
                 </div>
               </li>
               <li>
                 <div class="l-bd">
                   <span>{{ t('newRegMonth') }}</span>
-                  <b>0</b>
+                  <b>{{ dashboardData.reg }}</b>
                 </div>
               </li>
               <li>
                 <div class="l-bd">
                   <span>{{ t('newRegValid') }}</span>
-                  <b>0</b>
+                  <b>{{ dashboardData.commission.newPlayers }}</b>
                 </div>
               </li>
               <li>
                 <div class="l-bd">
                   <span>{{ t('activityMemberMonth') }}</span>
-                  <b>0</b>
+                  <b>{{ dashboardData.commission.activePlayers }}</b>
                 </div>
               </li>
               <li>
                 <div class="l-bd">
                   <span>{{ t('winLoseMonth') }}</span>
-                  <b>35%</b>
+                  <b>{{ dashboardData.commission.netWinlose }}</b>
                 </div>
               </li>
             </ul>
@@ -63,11 +63,12 @@
     </main>
   </div>
 </template>
-<script setup>
-import { ref, nextTick, onBeforeUnmount } from 'vue'
+<script setup lang="ts">
+import { ref, reactive, nextTick, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { getAmountCountChart } from '@/api/affiliate'
+import { getDashboardApi } from '@/api/affiliate'
+import { getDashboardRespItem, chartItem } from '@/api/affiliate/types'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
@@ -79,14 +80,44 @@ import { CanvasRenderer } from 'echarts/renderers'
 
 const { t } = useI18n()
 
+const dashboardData = reactive({
+  members: 0,
+  first: 0,
+  reg: 0,
+  commission: {
+    year: 0,
+    month: 0,
+    activePlayers: 0,
+    newPlayers: 0,
+    winlose: 0,
+    network: 0,
+    reward: 0,
+    fee: 0,
+    netWinlose: 0,
+    rate: 0,
+    comm: 0,
+    last: 0,
+    actComm: 0,
+  },
+  chart: {
+    labels: [],
+    datasets: <chartItem[]>[]
+  }
+})
+
 // 切换图表
 const chartTab = ref('countChart')
-let bannerChart = null
+let bannerChart: any = null
 
 // 切换chart
 const toggleChart = () => {
   chartTab.value = chartTab.value == 'countChart' ? 'amountChart' : 'countChart'
-  initBannerChart()
+  getDashboardApi({ t: 1 }).then((resp: getDashboardRespItem) => {
+    Object.assign(dashboardData, resp.data)
+    initBannerChart()
+  }).catch((err) => {
+    console.log(err)
+  })
 }
 
 // 初始化横幅大bannner
@@ -126,7 +157,7 @@ const initBannerChart = () => {
       },
       xAxis: {
         type: 'category',
-        data: ['10-01', '10-02', '10-03', '10-04', '10-05', '10-06', '10-07', '10-08', '10-09', '10-10', '10-11', '10-12', '10-13', '10-14', '10-15']
+        data: dashboardData.chart.labels
       },
       yAxis: {
         type: 'value'
@@ -134,7 +165,7 @@ const initBannerChart = () => {
       series: [
         {
           name: t('deposit'),
-          data: [820, 932, 901, 934, 1290, 1330, 1320, 900, 1000, 1200, 1300, 1400, 1500, 1600, 1700],
+          data: dashboardData.chart.datasets[0].data,
           type: 'line',
           itemStyle: {
             color: 'green'
@@ -142,7 +173,7 @@ const initBannerChart = () => {
         },
         {
           name: t('withdraw'),
-          data: [200, 300, 400, 401, 533, 230, 400, 683, 709, 488, 343, 632, 900, 1255, 1675],
+          data: dashboardData.chart.datasets[1].data,
           type: 'line',
           itemStyle: {
             color: '#f7cc00'
@@ -175,7 +206,7 @@ const initBannerChart = () => {
       },
       xAxis: {
         type: 'category',
-        data: ['10-01', '10-02', '10-03', '10-04', '10-05', '10-06', '10-07', '10-08', '10-09', '10-10', '10-11', '10-12', '10-13', '10-14', '10-15']
+        data: dashboardData.chart.labels
       },
       yAxis: {
         type: 'value'
@@ -183,7 +214,7 @@ const initBannerChart = () => {
       series: [
         {
           name: t('regCount'),
-          data: [820, 932, 901, 934, 1290, 1330, 1320, 900, 1000, 1200, 1300, 1400, 1500, 1600, 1700],
+          data: dashboardData.chart.datasets[2].data,
           type: 'bar',
           barWidth: 10,
           itemStyle: {
@@ -192,7 +223,7 @@ const initBannerChart = () => {
         },
         {
           name: t('firshRechargeCount'),
-          data: [200, 300, 400, 401, 533, 230, 400, 683, 709, 488, 343, 632, 900, 1255, 1675],
+          data: dashboardData.chart.datasets[3].data,
           type: 'bar',
           barWidth: 10
         }

@@ -1249,6 +1249,13 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     .ad-c { .bg(rgba(255,255,255,.03)); min-height: 30rem; }
 }
 .agent-report-box {
+    .agent-sel {
+    //     border-color: rgba(255, 255, 255, 0.05);
+    // background-color: rgba(255, 255, 255, 0.05);
+        .van-dropdown-menu__bar { border-color: rgba(255, 255, 255, 0.05); border: 0.1rem solid rgba(255, 255, 255, 0.1); .bg(rgba(255,255,255,.05)); .h-lh(4rem) }
+        .van-dropdown-menu__title { color: gray }
+        .van-dropdown-menu__title--active { color: var(--color-text;) }
+    }
     .ar-a { padding: 1.6rem 1rem 1.6rem 1.6rem; .flex(); .flex-wrap(wrap);
         .a-col { width: 33.333%; .flex-x( 0 0 33.333%); padding-right: .5rem; padding-bottom: .5rem;
             .form-control {.radius(.4rem); border-color: rgba(255,255,255,.05); .bg(rgba(255,255,255,.05));
@@ -1310,7 +1317,9 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     }
     .ar-e { padding: 0 1.6rem 1.6rem 1.6rem;
         .a-l { margin-right: -.5rem; margin-bottom: .5rem;
-            .btn {.radius(.4rem); .flex-x(); margin-right: .5rem; color: var(--color-white); font-size: 1.3rem; }
+            .btn {.radius(.4rem); .flex-x(); margin-right: .5rem; color: var(--color-white); font-size: 1.3rem; 
+                &.active { color: var(--color-primary) }
+            }
             .flex(); }
         .a-r { .flex(); .flex-pack-justify(); .flex-align();
             .form-control { .flex-x(3); .radius(.4rem); border-color: rgba(255,255,255,.05); .bg(rgba(255,255,255,.05)); margin-right: .5rem;

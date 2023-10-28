@@ -136,7 +136,7 @@
 
 <script setup lang="ts">
 // vue自带
-import { ref, reactive } from 'vue'
+import { ref, reactive, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 // 自定义组件
 import IndexHeader from '@/components/layout/IndexHeader.vue'
@@ -168,6 +168,7 @@ const { t } = useI18n()
 
 const newRewardVipCode = ref(0)
 
+const refreshRankTimer = ref(0)
 // 汇率相关
 const { currencyCode, exchangeRate } = getExchangeRate()
 
@@ -278,9 +279,18 @@ getAnnouncementList()
 getRankList()
 getRemind()
 
-window.setInterval(() => {
-  getRankList()
-}, 10 * 1000)
+if (refreshRankTimer.value && refreshRankTimer.value > 0) {
+  window.clearInterval(refreshRankTimer.value)
+  refreshRankTimer.value = window.setInterval(() => {
+    getRankList()
+  }, 10 * 1000)
+}
+
+onBeforeUnmount(() => {
+  if (refreshRankTimer.value && refreshRankTimer.value > 0) {
+    window.clearInterval(refreshRankTimer.value)
+  }
+})
 </script>
 
 <style>
