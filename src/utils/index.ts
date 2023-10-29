@@ -61,6 +61,7 @@ export function copy(selector: string, tips = '', clipboard: any = null) {
 // 动态加载外部第三方js
 export function loadJs(url: string) {
   return new Promise((resolve, reject) => {
+    console.log(url)
     let isLoaded = false
     const scripts = document.scripts
     for (let i = 0; i < scripts.length; i++) {

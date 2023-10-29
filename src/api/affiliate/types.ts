@@ -46,14 +46,16 @@ export interface getMemberInfoData {
 
 // 成员信息数据项数组
 export interface getMemberInfoRespItem {
-  memberUserName: string
-  registerTime: string
-  memberUserId: number
-  lastAccessTime: string
-  gameBetAmount: number
-  withdrawAmount: number
-  depositAmount: number
-  memberVip: number
+  name: string
+  regTime: string
+  memberId: number
+  lastTime: string
+  win: number
+  withdraw: number
+  deposit: number
+  vip?: number
+  reward: number
+  fee: number
 }
 
 // 获取佣金数据
@@ -97,7 +99,6 @@ export interface getFinanceDataRespItem {
 }
 
 export type getDashboardResp = ApiResponseData<getDashboardRespItem>
-export type getAmountCountChartResp = ApiResponseData<{ items: getMemberInfoRespItem[]; pageIndex: string; pageSize: string; pageCount: string; recordCount: string }>
-export type getMemberInfoDataResp = ApiResponseData<{ items: getMemberInfoRespItem[]; page: string; size: string; pages: string; recordCount: string }>
+export type getMemberInfoDataResp = ApiResponseData<{ items: getMemberInfoRespItem[]; page: string; size: string; pages: string; count: string }>
 export type getCommissionDataResp = ApiResponseData<getCommissionDataRespItem>
 export type getFinanceDataResp = ApiResponseData<getFinanceDataRespItem>

@@ -99,6 +99,13 @@
             </div>
           </div>
           <div class="cf-row">
+            <div style="width: 100%; margin: 0 auto">
+              <!-- <vue-turnstile site-key="0x4AAAAAAAMU1A85ouvvsc7L" v-model="token" /> -->
+              <!-- <div ref="turnstileBox" id="turnstile-box" /> -->
+            </div>
+            <div>{{ token }}</div>
+          </div>
+          <div class="cf-row">
             <div class="cr-bo" @click="router.push({ name: 'login' })">
               {{ t('hasAccount') }}
               <a>
@@ -141,16 +148,19 @@ import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
 import { useUserStore } from '@/store/modules/user'
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, loadJs } from '@/utils'
 import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/index'
+import { useAppStore } from '@/store/modules/app'
 
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
 import { onMounted } from 'vue'
 
+const token = ref('')
 const router = useRouter()
 const userStore = useUserStore()
+const appStore = useAppStore()
 const { t } = useI18n()
 
 // 发送邮件倒计时60秒
@@ -428,7 +438,35 @@ onMounted(() => {
       }
     }, 1000)
   }
+
+  // if (window.turnstile === null || !window.turnstile) {
+  //   const script = document.createElement('script')
+  //   script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
+  //   script.async = true
+  //   script.defer = true
+  //   document.head.appendChild(script)
+  // } else {
+  //   console.log(appStore.widgetId)
+  // }
+  // renderTurnstile()
 })
+
+// const widgetId = ref('')
+// const renderTurnstile = () => {
+//   //@ts-ignore
+//   appStore.widgetId = window.onloadTurnstileCallback = () => {
+//     window?.turnstile?.render('#turnstile-box', {
+//       sitekey: '0x4AAAAAAAMU1A85ouvvsc7L',
+//       callback: (response: string) => verify(response)
+//       // 'expired-callback': context.emit('expire'),
+//       // 'error-callback': context.emit('fail')
+//     })
+//   }
+// }
+
+// const verify = (token: string) => {
+//   console.log(token)
+// }
 
 facebookInit()
 </script>

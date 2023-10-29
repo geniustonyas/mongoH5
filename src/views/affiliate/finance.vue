@@ -20,14 +20,14 @@
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>{{ t('deposit') }}</span>
-                      <b>29442</b>
+                      <b>{{ financeData.deposit }}</b>
                     </div>
                     <div class="it-r">
                       <i class="iconfont icon-chongbi1" />
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="showDepositBox = true">{{ t('readMore') }}</a>
+                    <a>{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -37,12 +37,15 @@
                     <div class="it-l">
                       <div class="it-l">
                         <span>{{ t('withdraw') }}</span>
-                        <b>29442</b>
+                        <b>{{ financeData.withdraw }}</b>
                       </div>
                     </div>
                     <div class="it-r">
                       <i class="iconfont icon-tibi1" />
                     </div>
+                  </div>
+                  <div class="ib-more">
+                    <a>{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -51,7 +54,7 @@
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>{{ t('rewards') }}</span>
-                      <b>0</b>
+                      <b>{{ financeData.reward }}</b>
                     </div>
                     <div class="it-r">
                       <i class="iconfont icon-pingtaihongli" />
@@ -67,14 +70,11 @@
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>{{ t('netFee') }}</span>
-                      <b>0</b>
+                      <b>{{ financeData.network }}</b>
                     </div>
                     <div class="it-r">
                       <i class="iconfont icon-wangluofei" />
                     </div>
-                  </div>
-                  <div class="ib-more">
-                    <a>{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -83,7 +83,7 @@
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>{{ t('totalWinLose') }}</span>
-                      <b>-2330</b>
+                      <b>{{ financeData.winlose }}</b>
                     </div>
                     <div class="it-r">
                       <i class="iconfont icon-zongshuying" />
@@ -98,8 +98,8 @@
                 <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
-                      <span>{{ t('depositFee') }}</span>
-                      <b>0</b>
+                      <span>{{ t('ctfee') }}</span>
+                      <b>{{ financeData.fee }}</b>
                     </div>
                     <div class="it-r">
                       <i class="iconfont icon-shouxufei" />
@@ -115,7 +115,7 @@
                   <div class="ib-txt">
                     <div class="it-l">
                       <span>{{ t('jingWinLose') }}</span>
-                      <b>0</b>
+                      <b>{{ financeData.netwin }}</b>
                     </div>
                     <div class="it-r">
                       <i class="iconfont icon-jinglirun" />

@@ -13,7 +13,7 @@
 
       <!-- 跑马灯开始 -->
       <ConfigProvider theme="dark">
-        <NoticeBar left-icon="volume-o" :text="marqueeContent" @click="loginTo('message')" />
+        <NoticeBar :speed="30" left-icon="volume-o" :text="marqueeContent" @click="loginTo('message')" />
       </ConfigProvider>
 
       <!-- 支付解决方案 -->

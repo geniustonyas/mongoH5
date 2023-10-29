@@ -160,7 +160,7 @@ export const providerListData = () => {
     { id: '1', type: 'slots', tab: 'slots', show: true, name: t('provider.pragmaticPlay'), img: getAssetsFile('svg/PragmaticPlay.svg') },
     { id: '11', type: 'slots', tab: 'slots', show: true, name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg') },
     { id: '9', type: 'slots', tab: 'slots', show: true, name: t('provider.netEnt'), img: getAssetsFile('svg/NetEnt.svg') },
-    { id: '15', type: 'slots', tab: 'slots', show: false, name: t('provider.microgaming'), img: getAssetsFile('svg/Mg.svg') }
+    { id: '15', type: 'slots', tab: 'slots', show: true, name: t('provider.microgaming'), img: getAssetsFile('svg/Mg.svg') }
   ]
 }
 

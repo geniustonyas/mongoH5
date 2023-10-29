@@ -160,7 +160,8 @@ const initBannerChart = () => {
         data: dashboardData.chart.labels
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        minInterval: 1
       },
       series: [
         {
@@ -209,7 +210,8 @@ const initBannerChart = () => {
         data: dashboardData.chart.labels
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        minInterval: 1,
       },
       series: [
         {

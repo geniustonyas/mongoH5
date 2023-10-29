@@ -23,150 +23,54 @@
           </div>
         </div>
 
-        <div class="ar-c">
-          <ul>
-            <li>
-              <div class="l-bd">
-                <div class="d-a">
-                  <div class="da-l"><span>bb001</span>-<b>白银</b></div>
-                </div>
-                <div class="d-b">
-                  <div class="db-col">
-                    <span>{{ t('deposit') }}</span>
-                    <b>1000</b>
-                  </div>
-                  <div class="db-col">
-                    <span>{{ t('withdraw') }}</span>
-                    <b>200</b>
-                  </div>
-                  <div class="db-col">
-                    <span>{{ t('totalWinLose') }}</span>
-                    <b>8,2711</b>
-                  </div>
-                </div>
-                <div class="d-c">
-                  <div class="dc-col">
-                    <p>{{ t('regTime') }}</p>
-                    2023-10-10 11:22
-                  </div>
-                  <div class="dc-col">
-                    <p>{{ t('statTime') }}</p>
-                    2023-10-10 11:22
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="l-bd">
-                <div class="d-a">
-                  <div class="da-l"><span>bb001</span>-<b>白银</b></div>
-                </div>
-                <div class="d-b">
-                  <div class="db-col">
-                    <span>存款</span>
-                    <b>1000</b>
-                  </div>
-                  <div class="db-col">
-                    <span>提款</span>
-                    <b>200</b>
-                  </div>
-                  <div class="db-col">
-                    <span>总输赢</span>
-                    <b>8,2711</b>
-                  </div>
-                </div>
-                <div class="d-c">
-                  <div class="dc-col">
-                    <p>注册时间</p>
-                    2023-10-10 11:22
-                  </div>
-                  <div class="dc-col">
-                    <p>统计时间</p>
-                    2023-10-10 11:22
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="l-bd">
-                <div class="d-a">
-                  <div class="da-l"><span>bb001</span>-<b>白银</b></div>
-                </div>
-                <div class="d-b">
-                  <div class="db-col">
-                    <span>存款</span>
-                    <b>1000</b>
-                  </div>
-                  <div class="db-col">
-                    <span>提款</span>
-                    <b>200</b>
-                  </div>
-                  <div class="db-col">
-                    <span>总输赢</span>
-                    <b>8,2711</b>
-                  </div>
-                </div>
-                <div class="d-c">
-                  <div class="dc-col">
-                    <p>注册时间</p>
-                    2023-10-10 11:22
-                  </div>
-                  <div class="dc-col">
-                    <p>统计时间</p>
-                    2023-10-10 11:22
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="ar-b">
-          <table>
-            <tr>
-              <th>{{ t('memberAccount') }}</th>
-              <th>{{ t('level') }}</th>
-              <th>{{ t('deposit') }}</th>
-              <th>{{ t('withdraw') }}</th>
-              <th>{{ t('totalWinLose') }}</th>
-              <th>{{ t('regTime') }}</th>
-              <th>{{ t('lastLoginTime') }}</th>
-            </tr>
-            <tr>
-              <td>bb001</td>
-              <td>白银</td>
-              <td><b>1400</b></td>
-              <td><b>400</b></td>
-              <td><b class="green">400</b></td>
-              <td>2023-10-10 22:22</td>
-              <td>2023-10-10 22:22</td>
-            </tr>
-            <tr>
-              <td>bb001</td>
-              <td>白银</td>
-              <td><b>1400</b></td>
-              <td><b>400</b></td>
-              <td><b class="green">400</b></td>
-              <td>2023-10-10 22:22</td>
-              <td>2023-10-10 22:22</td>
-            </tr>
-            <tr>
-              <td>bb001</td>
-              <td>白银</td>
-              <td><b>1400</b></td>
-              <td><b>400</b></td>
-              <td><b class="green">400</b></td>
-              <td>2023-10-10 22:22</td>
-              <td>2023-10-10 22:22</td>
-            </tr>
-          </table>
-        </div>
+        <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
+          <List
+            v-model:loading="listLoading"
+            :offset="20"
+            :finished="finished"
+            :immediate-check="false"
+            v-model:error="error"
+            :error-text="t('loadingFail')"
+            :finished-text="t('noMore')"
+            @load="loadData"
+          >
+            <div class="ar-b">
+              <table>
+                <tr>
+                  <th>{{ t('memberAccount') }}</th>
+                  <th>{{ t('level') }}</th>
+                  <th>{{ t('deposit') }}</th>
+                  <th>{{ t('withdraw') }}</th>
+                  <th>{{ t('totalWinLose') }}</th>
+                  <th>{{ t('regTime') }}</th>
+                  <th>{{ t('lastLoginTime') }}</th>
+                </tr>
+                <tr v-for="(item, index) of dataList" class="rl-item" :key="index">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.vip ? t('userLevels.' + item.vip) : t('userLevels.101') }}</td>
+                  <td>
+                    <b>{{ moneyFormat(item.deposit) }}</b>
+                  </td>
+                  <td>
+                    <b>{{ moneyFormat(item.withdraw) }}</b>
+                  </td>
+                  <td>
+                    <b v-if="item.win > 0" class="green">{{ moneyFormat(item.win) }}</b>
+                    <b v-else-if="item.win < 0" class="red">{{ moneyFormat(item.win) }}</b>
+                    <b v-else>{{ moneyFormat(item.win) }}</b>
+                  </td>
+                  <td>{{ dayjs(item.registerTime).format('YYYY-MM-DD') }}</td>
+                  <td>{{ dayjs(item.lastAccessTime).format('YYYY-MM-DD') }}</td>
+                </tr>
+              </table>
+            </div>
+          </List>
+        </PullRefresh>
       </div>
     </main>
     <ConfigProvider theme="dark">
       <Calendar
         v-model:show="showRegDatePicker"
-        :default-date="defaultDate"
         type="range"
         :min-date="minDate"
         :max-date="maxDate"
@@ -201,13 +105,14 @@
 import { ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { moneyFormat } from '@/utils/index'
 import { getMemberInfoApi } from '@/api/affiliate'
 import { getMemberInfoDataResp, getMemberInfoRespItem } from '@/api/affiliate/types'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import dayjs from 'dayjs'
-import { DropdownMenu, DropdownItem, ConfigProvider, Calendar } from 'vant'
+import { DropdownMenu, DropdownItem, ConfigProvider, Calendar, PullRefresh, List, } from 'vant'
 
 const { t } = useI18n()
 
@@ -218,7 +123,7 @@ const isBetOption = ref([
 ])
 
 // 默认日期
-let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]
+let defaultDate = [dayjs().startOf('month').toDate(), dayjs().add(1, 'day').toDate()]
 // 筛选 - 日期控件参数
 const minDate = dayjs().subtract(1, 'months').toDate()
 const maxDate = dayjs().toDate()
@@ -252,7 +157,7 @@ const query = reactive({
   end: '',
   bet: null,
   page: 1,
-  pcount: 30
+  pcount: 20
 })
 
 // 列表刷新下拉等参数
@@ -276,7 +181,8 @@ const getMemberInfo = () => {
       refreshing.value = false
       finished.value = resp.data.items.length < query.pcount
       listLoading.value = false
-    }).catch((error: any) => {
+    })
+    .catch((error: any) => {
       listLoading.value = false
       refreshing.value = false
       console.log(error)

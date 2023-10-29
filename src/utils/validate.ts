@@ -35,7 +35,7 @@ export function isNickName(arg: any): boolean {
  * @returns {Boolean}
  */
 export function isPwd(arg: any): boolean {
-  return /^[a-zA-Z0-9]{6,16}$/.test(arg)
+  return /^(?=.*[a-zA-Z0-9\W_]).{6,16}$/.test(arg)
 }
 
 /** 验证验证码

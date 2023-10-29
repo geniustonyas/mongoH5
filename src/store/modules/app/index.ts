@@ -31,6 +31,7 @@ export const useAppStore = defineStore('app', () => {
     youtube: 'https://www.youtube.com/channel/UC3L5HrPC4elNgHkrvMSFjCQ',
     tiktok: 'https://www.tiktok.com/@seabio00?lang=en'
   })
+  const widgetId = ref('')
 
   // 获取系统配置
   const getConfig = () => {
@@ -99,6 +100,7 @@ export const useAppStore = defineStore('app', () => {
     detailsFav,
     detailsCancelFav,
     followUrl,
+    widgetId,
     getConfig,
     resetThirdData,
     refreshMainStatus

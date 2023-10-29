@@ -14,6 +14,9 @@ dependencies:
   bignumber.js:
     specifier: ^9.1.1
     version: 9.1.1
+  cfturnstile-vue3:
+    specifier: ^1.0.0
+    version: 1.0.0
   clipboard:
     specifier: ^2.0.11
     version: 2.0.11
@@ -1194,6 +1197,12 @@ packages:
       tslib: 2.5.2
       upper-case-first: 2.0.2
     dev: true
+
+  /cfturnstile-vue3@1.0.0:
+    resolution: {integrity: sha512-R0cJ2OnnxeCIkihxEkb5KSbEncrqU2UchYGhtsXHiJTluS1C9oLMB54I9qQUd6puk/8zlhor5udO1ACgDOMAUA==}
+    dependencies:
+      vue: 3.3.2
+    dev: false
 
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
