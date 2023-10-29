@@ -59,8 +59,8 @@
                     <b v-else-if="item.win < 0" class="red">{{ moneyFormat(item.win) }}</b>
                     <b v-else>{{ moneyFormat(item.win) }}</b>
                   </td>
-                  <td>{{ dayjs(item.registerTime).format('YYYY-MM-DD') }}</td>
-                  <td>{{ dayjs(item.lastAccessTime).format('YYYY-MM-DD') }}</td>
+                  <td>{{ dayjs(item.regTime).format('YYYY-MM-DD') }}</td>
+                  <td>{{ dayjs(item.lastTime).format('YYYY-MM-DD') }}</td>
                 </tr>
               </table>
             </div>
@@ -107,17 +107,17 @@ import { useI18n } from 'vue-i18n'
 
 import { moneyFormat } from '@/utils/index'
 import { getMemberInfoApi } from '@/api/affiliate'
-import { getMemberInfoDataResp, getMemberInfoRespItem } from '@/api/affiliate/types'
+import { getMemberInfoDataResp, getMemberInfoRespItem, getDashboardResp } from '@/api/affiliate/types'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import dayjs from 'dayjs'
-import { DropdownMenu, DropdownItem, ConfigProvider, Calendar, PullRefresh, List, } from 'vant'
+import { DropdownMenu, DropdownItem, ConfigProvider, Calendar, PullRefresh, List } from 'vant'
 
 const { t } = useI18n()
 
 const isBetOption = ref([
-  { text: t('isBet'), value: null },
+  { text: t('isBet'), value: -1 },
   { text: t('no'), value: 0 },
   { text: t('yes'), value: 1 }
 ])

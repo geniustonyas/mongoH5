@@ -112,7 +112,7 @@ let bannerChart: any = null
 // 切换chart
 const toggleChart = () => {
   chartTab.value = chartTab.value == 'countChart' ? 'amountChart' : 'countChart'
-  getDashboardApi({ t: 1 }).then((resp: getDashboardRespItem) => {
+  getDashboardApi({ t: 1 }).then((resp: any) => {
     Object.assign(dashboardData, resp.data)
     initBannerChart()
   }).catch((err) => {

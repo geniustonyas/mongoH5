@@ -88,7 +88,7 @@ import { ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { getCommissionDataApi } from '@/api/affiliate'
-import { getCommissionDataRespItem } from '@/api/affiliate/types'
+import { getCommissionDataRespItem, getCommissionDataResp } from '@/api/affiliate/types'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
@@ -131,7 +131,7 @@ const commissionData = reactive<getCommissionDataRespItem>({
 
 const getCommissionData = () => {
   getCommissionDataApi(query)
-    .then((resp: getCommissionDataRespItem) => {
+    .then((resp: getCommissionDataResp) => {
       Object.assign(commissionData, resp.data)
     })
     .catch((err: any) => {

@@ -153,7 +153,7 @@ import { ref, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { getFinanceDataApi } from '@/api/affiliate'
-import { getFinanceDataRespItem } from '@/api/affiliate/types'
+import { getFinanceDataRespItem, getFinanceDataResp } from '@/api/affiliate/types'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
@@ -211,7 +211,7 @@ const financeData = reactive<getFinanceDataRespItem>({
 
 const getFinanceData = () => {
   getFinanceDataApi({ start: query.start, end: dayjs(query.end).add(1, 'day').format('YYYY-MM-DD') })
-    .then((resp: getFinanceDataRespItem) => {
+    .then((resp: getFinanceDataResp) => {
       Object.assign(financeData, resp.data)
     })
     .catch((err: any) => {
