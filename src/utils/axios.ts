@@ -57,11 +57,13 @@ function createService() {
         } else if (t('errorCodes.' + code) != '') {
           if ([1013].includes(code)) {
             showToast(t('errorCodes.' + code, { data: data.message }))
+          } else if ([1036].includes(code)) {
+            console.log(code)
           } else {
             showToast(t('errorCodes.' + code))
           }
         }
-        return Promise.reject(data.message)
+        return Promise.reject(data)
       }
     },
     (error) => {

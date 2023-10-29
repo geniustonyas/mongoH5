@@ -40,24 +40,31 @@
           <div class="cf-row">
             <div class="cr-mark cm-checkbox">
               <input v-model="isAudit" ref="isAuditDom" type="checkbox" />
-              {{ t('regPage.isAdult') }}
-              <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.termCondition') }}</a>
-              {{ t('and') }}
-              <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('regPage.privacyPolicy') }}</a>
-              <div id="privacyTip" class="tip" />
+              <div class="desc">
+                {{ t('regPage.isAdult') }}
+                <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.termCondition') }}</a>
+                {{ t('and') }}
+                <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('regPage.privacyPolicy') }}</a>
+                <div id="privacyTip" class="tip" />
+              </div>
             </div>
           </div>
           <div class="cf-row">
             <div ref="isAgreeDom" class="cr-mark cm-checkbox">
               <input v-model="isAgree" type="checkbox" />
-              {{ t('regPage.isAgree') }}
-              <div id="agreeTip" class="tip" />
+              <div class="desc">
+                {{ t('regPage.isAgree') }}
+                <div id="agreeTip" class="tip" />
+              </div>
             </div>
           </div>
           <div class="cf-row">
             <div class="cr-btns">
               <a class="btn btn-primary full" @click="handleReg()"><i v-show="btnLoading" class="iconfont icon-loading" />{{ t('createUser') }}</a>
             </div>
+          </div>
+          <div v-if="appStore.robotCheck" class="cf-row">
+            <div ref="turnstileBox" id="turnstile-box" />
           </div>
           <div class="cf-row">
             <div class="cr-bo">
@@ -72,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, nextTick } from 'vue'
+import { ref, reactive, onMounted, nextTick, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 
 import UserHeader from '@/components/layout/UserHeader.vue'
@@ -88,7 +95,7 @@ import { showToast } from 'vant'
 import 'vant/es/toast/style'
 
 const router = useRouter()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const userStore = useUserStore()
 const appStore = useAppStore()
@@ -131,7 +138,8 @@ let regForm = reactive({
   ThirdPartyId: '',
   ThirdPartyName: '',
   Sign: '',
-  VerificationCode: ''
+  VerificationCode: '',
+  Token: ''
 })
 let loginForm = {
   ThirdPartyType: '',
@@ -310,12 +318,25 @@ const handleReg = async () => {
     agreeEl!.innerHTML = ''
   }
 
+  if (regForm.Token == '') {
+    // errorMsg.value = t('tips.isRobot')
+    reRobotCheck()
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+  }
+
   Object.assign(regForm, appStore.thirdData)
   Object.assign(loginForm, appStore.thirdData)
   const regResult = await awaitWraper(thirdRegApi(regForm))
   if (regResult[0]) {
+    if (regResult[0].code && regResult[0].code == '1036') {
+      reRobotCheck()
+    } else {
+      showToast(t('tips.regFail'))
+    }
     btnLoading.value = false
-    showToast(t('tips.regFail'))
     return false
   } else {
     userStore
@@ -368,7 +389,56 @@ onMounted(() => {
       }
     }, 1000)
   }
+
+  reRobotCheck()
 })
+
+onBeforeUnmount(() => {
+  if (appStore.widgetId) {
+    //@ts-ignore
+    window.turnstile.remove(appStore.widgetId)
+  }
+})
+
+const reRobotCheck = () => {
+  // 如果开启了人机验证
+  if (appStore.robotCheck) {
+    //@ts-ignore
+    if (window.turnstile === null || !window.turnstile) {
+      const script = document.createElement('script')
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
+      script.async = true
+      script.defer = true
+      document.head.appendChild(script)
+      //@ts-ignore
+      window.onloadTurnstileCallback = () => {
+        //@ts-ignore
+        appStore.widgetId = window?.turnstile?.render('#turnstile-box', {
+          sitekey: '0x4AAAAAAAMV9yl4RvTQfcIH',
+          callback: (response: string) => verify(response),
+          language: locale.value
+        })
+      }
+    } else {
+      nextTick(() => {
+        if (appStore.widgetId) {
+          //@ts-ignore
+          window.turnstile.remove(appStore.widgetId)
+        }
+        //@ts-ignore
+        appStore.widgetId = window?.turnstile?.render('#turnstile-box', {
+          sitekey: '0x4AAAAAAAMV9yl4RvTQfcIH',
+          callback: (response: string) => verify(response),
+          language: locale.value
+        })
+      })
+    }
+  }
+}
+
+const verify = (token: string) => {
+  regForm.Token = token
+}
 </script>
 <style lang="less">
 .st0 {

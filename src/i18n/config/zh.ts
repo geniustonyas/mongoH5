@@ -1377,8 +1377,8 @@ export default {
                           <li>出生日期</li>
                           <li>国籍</li>
                           <li>实际住址</li>
-                          <li>识别号码政</li>
-                          <li>府签发的身份证件</li>
+                          <li>识别号码</li>
+                          <li>政府签发的身份证件</li>
                           <li>位置数据</li>
                           <li>设备信息</li>
                           <li>IP地址</li>

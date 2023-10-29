@@ -11,6 +11,7 @@ export const useAppStore = defineStore('app', () => {
   const chat = ref('')
   const email = ref('')
   const cdnurl = ref('')
+  const robotCheck = ref(false)
   const googleEmail = ref('')
   const thirdData = <thirdData>reactive({
     ThirdPartyType: '',
@@ -41,6 +42,10 @@ export const useAppStore = defineStore('app', () => {
           chat.value = resp.data.find((item: any) => item.pKey == 'chat').value1
           email.value = resp.data.find((item: any) => item.pKey == 'email').value1
           cdnurl.value = resp.data.find((item: any) => item.pKey == 'CDNURL').value1
+          const tmp = resp.data.find((item: any) => item.pKey == 'RobotCheck')
+          if (tmp) {
+            robotCheck.value = tmp.value1 == '1'
+          }
           resolve(resp)
         })
         .catch((error: any) => {
@@ -93,6 +98,7 @@ export const useAppStore = defineStore('app', () => {
     chat,
     email,
     cdnurl,
+    robotCheck,
     googleEmail,
     thirdData,
     maintainStatus,

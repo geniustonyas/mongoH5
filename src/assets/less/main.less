@@ -468,6 +468,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     .l-line { margin: 3rem 0; height: .1rem; width: 100%; .bg(var(--color-menu)); position: relative; .flex(); .flex-pack();
         span { display: inline-block; .h-lh(3rem); .radius(3rem); .bg(var(--color-background)); z-index: 1; margin-top: -1.4rem; text-align: center; }
     }
+    #turnstile-box { .flex(); .flex-align(); .flex-pack() }
 }
 /*会员中心*/
 .myprofile-box {
@@ -1624,8 +1625,9 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             }
         }
         .cr-mark { margin-bottom: 1.5rem;
-            &.cm-checkbox {
-                input[type='checkbox'] { .size(1.6rem,1.6rem); vertical-align: middle; margin-right: .5rem; margin-bottom: .1rem; }
+            &.cm-checkbox { .flex(); 
+                input[type='checkbox'] { .flex-x(0 0 1.6rem); .size(1.6rem,1.6rem); vertical-align: middle; margin-right: .5rem; margin-bottom: .1rem; }
+                .desc { .flex-x() }
             }
             a { color: var(--color-primary); display: inline-block; padding: 0 .2rem; }
         }

@@ -76,18 +76,22 @@
           <div class="cf-row">
             <div class="cr-mark cm-checkbox">
               <input v-model="isAudit" ref="isAuditDom" type="checkbox" />
-              {{ t('regPage.isAdult') }}
-              <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.termCondition') }}</a>
-              {{ t('and') }}
-              <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('regPage.privacyPolicy') }}</a>
-              <div id="privacyTip" class="tip" />
+              <div class="desc">
+                {{ t('regPage.isAdult') }}
+                <a @click="router.push({ name: 'terms', params: { type: 'rules' } })">{{ t('regPage.termCondition') }}</a>
+                {{ t('and') }}
+                <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('regPage.privacyPolicy') }}</a>
+                <div id="privacyTip" class="tip" />
+              </div>
             </div>
           </div>
           <div class="cf-row">
             <div ref="isAgreeDom" class="cr-mark cm-checkbox">
               <input v-model="isAgree" type="checkbox" />
-              {{ t('regPage.isAgree') }}
-              <div id="agreeTip" class="tip" />
+              <div class="desc">
+                {{ t('regPage.isAgree') }}
+                <div id="agreeTip" class="tip" />
+              </div>
             </div>
           </div>
           <div class="cf-row">
@@ -98,12 +102,8 @@
               </a>
             </div>
           </div>
-          <div class="cf-row">
-            <div style="width: 100%; margin: 0 auto">
-              <!-- <vue-turnstile site-key="0x4AAAAAAAMU1A85ouvvsc7L" v-model="token" /> -->
-              <!-- <div ref="turnstileBox" id="turnstile-box" /> -->
-            </div>
-            <div>{{ token }}</div>
+          <div v-if="appStore.robotCheck" class="cf-row">
+            <div ref="turnstileBox" id="turnstile-box" />
           </div>
           <div class="cf-row">
             <div class="cr-bo" @click="router.push({ name: 'login' })">
@@ -141,7 +141,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, nextTick, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 
 import UserHeader from '@/components/layout/UserHeader.vue'
@@ -155,13 +155,11 @@ import { useAppStore } from '@/store/modules/app'
 
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
-import { onMounted } from 'vue'
 
-const token = ref('')
 const router = useRouter()
 const userStore = useUserStore()
 const appStore = useAppStore()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 // 发送邮件倒计时60秒
 let regCount = ref(0)
@@ -197,7 +195,8 @@ let regForm = reactive({
   AgentId: '',
   DateOfBirth: '',
   RegisterUrl: document.domain,
-  VerificationCode: ''
+  VerificationCode: '',
+  Token: ''
 })
 
 const setShowThirdLoginBox = () => {
@@ -400,21 +399,39 @@ const handleReg = async () => {
     agreeEl!.innerHTML = ''
   }
 
+  if (regForm.Token == '') {
+    // errorMsg.value = t('tips.isRobot')
+    reRobotCheck()
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+  }
+
   try {
-    await regApi(regForm)
-    userStore
-      .login({ UserName: regForm.UserName, PassWord: regForm.Password })
-      .then(() => {
-        showToast(t('tips.regSuccess'))
-        router.push({ name: 'index' })
-        btnLoading.value = false
-        return false
+    regApi(regForm)
+      .then((resp) => {
+        console.log(resp)
+        userStore
+          .login({ UserName: regForm.UserName, PassWord: regForm.Password })
+          .then(() => {
+            showToast(t('tips.regSuccess'))
+            router.push({ name: 'index' })
+            btnLoading.value = false
+            return false
+          })
+          .catch((error) => {
+            showToast(error)
+            btnLoading.value = false
+            router.push({ name: 'login' })
+            return false
+          })
       })
       .catch((error) => {
-        showToast(error)
         btnLoading.value = false
-        router.push({ name: 'login' })
-        return false
+        if (error.code && error.code == '1036') {
+          reRobotCheck()
+        }
       })
   } catch (error: any) {
     // showToast(error)
@@ -439,35 +456,57 @@ onMounted(() => {
     }, 1000)
   }
 
-  // if (window.turnstile === null || !window.turnstile) {
-  //   const script = document.createElement('script')
-  //   script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
-  //   script.async = true
-  //   script.defer = true
-  //   document.head.appendChild(script)
-  // } else {
-  //   console.log(appStore.widgetId)
-  // }
-  // renderTurnstile()
+  reRobotCheck()
 })
 
-// const widgetId = ref('')
-// const renderTurnstile = () => {
-//   //@ts-ignore
-//   appStore.widgetId = window.onloadTurnstileCallback = () => {
-//     window?.turnstile?.render('#turnstile-box', {
-//       sitekey: '0x4AAAAAAAMU1A85ouvvsc7L',
-//       callback: (response: string) => verify(response)
-//       // 'expired-callback': context.emit('expire'),
-//       // 'error-callback': context.emit('fail')
-//     })
-//   }
-// }
+onBeforeUnmount(() => {
+  if (appStore.widgetId) {
+    //@ts-ignore
+    window.turnstile.remove(appStore.widgetId)
+  }
+})
 
-// const verify = (token: string) => {
-//   console.log(token)
-// }
+const reRobotCheck = () => {
+  // 如果开启了人机验证
+  if (appStore.robotCheck) {
+    //@ts-ignore
+    if (window.turnstile === null || !window.turnstile) {
+      const script = document.createElement('script')
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
+      script.async = true
+      script.defer = true
+      document.head.appendChild(script)
+      //@ts-ignore
+      window.onloadTurnstileCallback = () => {
+        //@ts-ignore
+        appStore.widgetId = window?.turnstile?.render('#turnstile-box', {
+          sitekey: '0x4AAAAAAAMV9yl4RvTQfcIH',
+          callback: (response: string) => verify(response),
+          language: locale.value
+        })
+      }
+    } else {
+      nextTick(() => {
+        if (appStore.widgetId) {
+          //@ts-ignore
+          window.turnstile.remove(appStore.widgetId)
+        }
+        //@ts-ignore
+        appStore.widgetId = window?.turnstile?.render('#turnstile-box', {
+          sitekey: '0x4AAAAAAAMV9yl4RvTQfcIH',
+          callback: (response: string) => verify(response),
+          language: locale.value
+        })
+      })
+    }
+  }
+}
 
+const verify = (token: string) => {
+  regForm.Token = token
+}
+
+loadJs('https://telegram.org/js/telegram-widget.js')
 facebookInit()
 </script>
 <style lang="less">
