@@ -150,6 +150,7 @@ const selGameProvider = (id: number) => {
     query.ps.push(id)
   }
   query.page = 1
+  pageCount.value = 0
   dataList.value = []
   getGameList()
 }
@@ -157,6 +158,7 @@ const selGameProvider = (id: number) => {
 // 游戏列表排序
 const sortGame = () => {
   query.page = 1
+  pageCount.value = 0
   dataList.value = []
   getGameList()
 }
@@ -298,6 +300,7 @@ watch(
 // 第一次进入列表  获取一次数据
 if (route.query.providerId) {
   query.page = 1
+  pageCount.value = 0
   providerId.value = route.query.providerId as string
   query.ps = [parseInt(providerId.value)]
   showGameOption.value = true

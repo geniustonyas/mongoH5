@@ -169,6 +169,7 @@ const { t } = useI18n()
 const newRewardVipCode = ref(0)
 
 const refreshRankTimer = ref(0)
+const refreshRemindTimer = ref(0)
 // 汇率相关
 const { currencyCode, exchangeRate } = getExchangeRate()
 
@@ -286,9 +287,19 @@ if (refreshRankTimer.value && refreshRankTimer.value > 0) {
   }, 10 * 1000)
 }
 
+if (refreshRemindTimer.value && refreshRemindTimer.value > 0) {
+  window.clearInterval(refreshRemindTimer.value)
+  refreshRemindTimer.value = window.setInterval(() => {
+    getRemind()
+  }, 30 * 1000)
+}
+
 onBeforeUnmount(() => {
   if (refreshRankTimer.value && refreshRankTimer.value > 0) {
     window.clearInterval(refreshRankTimer.value)
+  }
+  if (refreshRemindTimer.value && refreshRemindTimer.value > 0) {
+    window.clearInterval(refreshRemindTimer.value)
   }
 })
 </script>
