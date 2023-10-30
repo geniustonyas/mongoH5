@@ -605,7 +605,7 @@ export default {
     '我们不会宣传针对儿童或成人网站的广告。我们反对限制性广告；任何使用这些方式的会员都将被禁止进入我们的计划，并且为了保护我们的网站我们保留对使用这些网站的任何会员采取法律行动的权利。请参阅我们的规则与条款以获取更多信息。',
   report: '报表',
   memberManager: '成员管理',
-  commissioneport: '佣金报表',
+  commissionReport: '佣金报表',
   financeReport: '财务报表',
   affiliateSupport: '支持',
   advantageTitle: 'SEABET.IO优势',
@@ -689,6 +689,9 @@ export default {
   winLoseTip: '提示：总输赢、净输赢中正数表示公司盈利，负数表示公司亏损，每天数据只做普通参考，并不做实际佣金派发标准。',
   recommendLink: '推荐链接',
   downloadBanner: '下载横幅',
+  childAccountNotExist: '下级账号不存在',
+  depositAmountLimit: '代存金额超过单笔限额',
+  withdrawFlowMultLimit: '提款流水倍数超过限额',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',
