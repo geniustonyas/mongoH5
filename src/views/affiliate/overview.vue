@@ -33,18 +33,18 @@
 
             <div class="share">
               <div class="s-l">
-                <p>推荐链接</p>
+                <p>{{ t('recommendLink') }}</p>
                 <div class="s-txt">
                   <!--<select>
                     <option>https:www.seabet1.io?ag=11</option>
                     <option>https:www.seabet2.io?ag=11</option>
                   </select>-->
-                  <a>https:www.seabet1.io?ag=11</a>
-                  <span><i class="iconfont icon-fuzhi" /></span>
+                  <a>{{ recommendUrl }}</a>
+                  <span ref="copyDom" :data-clipboard-text="recommendUrl"><i class="iconfont icon-fuzhi" /></span>
                 </div>
               </div>
               <div class="s-r">
-                <a class="btn btn-primary">下载横幅<i class="iconfont icon-share" /></a>
+                <a class="btn btn-primary">{{ t('downloadBanner') }}<i class="iconfont icon-share" /></a>
               </div>
             </div>
           </div>
@@ -54,33 +54,23 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, onMounted, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
-import BigNumber from 'bignumber.js'
 import { useUserStore } from '@/store/modules/user'
-import { useAppStore } from '@/store/modules/app'
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, copy } from '@/utils'
 
-const router = useRouter()
-const route = useRoute()
 const userStore = useUserStore()
-const appStore = useAppStore()
 const { t } = useI18n()
 
-// 下一奖励进度
-const rewardProgressWidth = computed(() => {
-  let width = '0'
-  if (userStore.userInfo.nextVipRequiredTotalBetAmount != '' && userStore.userInfo.totalBetAmount != '') {
-    width = new BigNumber(userStore.userInfo.totalBetAmount).dividedBy(parseInt(userStore.userInfo.nextVipRequiredTotalBetAmount)).multipliedBy(100).toFixed(2)
-  }
-  return width
-})
+const recommendUrl = window.location.origin + '/#/user/reg?agentId=' + userStore.userInfo.id
+const copyDom = ref<HTMLElement | null>(null)
 
-const handleLogout = () => {
-  router.push({ name: 'logout' })
-}
+onMounted(() => {
+  nextTick(() => {
+    copy(copyDom.value)
+  })
+})
 </script>

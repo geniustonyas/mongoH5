@@ -36,6 +36,7 @@ export interface RegData {
   DateOfBirth?: string
   RegisterUrl: string
   VerificationCode: string
+  Token?: string
 }
 
 // 获取用户信息

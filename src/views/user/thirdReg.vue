@@ -126,12 +126,13 @@ let isAuditDom = ref<HTMLInputElement | null>(null)
 let isAgreeDom = ref<HTMLInputElement | null>(null)
 let verificationCodeDom = ref<HTMLInputElement | null>(null)
 
+const agentId = localStorage.getItem('agentId')
 let regForm = reactive({
   UserName: '',
   CountryCode: '',
   // PhoneNumber: '',
   Email: '',
-  AgentId: '',
+  AgentId: agentId || '',
   // DateOfBirth: '',
   RegisterUrl: document.domain,
   ThirdPartyType: '',

@@ -186,13 +186,14 @@ let verificationCodeDom = ref<HTMLInputElement | null>(null)
 // 错误信息
 let errorMsg = ref('')
 
+const agentId = localStorage.getItem('agentId')
 let regForm = reactive({
   UserName: '',
   Password: '',
   CountryCode: '',
   PhoneNumber: '',
   Email: '',
-  AgentId: '',
+  AgentId: agentId || '',
   DateOfBirth: '',
   RegisterUrl: document.domain,
   VerificationCode: '',

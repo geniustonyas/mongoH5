@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { watch } from 'vue'
+import { useRoute } from 'vue-router'
 // import { Overlay, Loading } from 'vant'
 import { useAppStore } from '@/store/modules/app'
 import { useI18n } from 'vue-i18n'
@@ -26,6 +27,7 @@ import Maintain from './components/Maintain.vue'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
+const route = useRoute()
 const { t } = useI18n()
 
 const getTransition = (transition: unknown): string | undefined => {
@@ -49,6 +51,10 @@ watch(
 
 if (window.top && window.self !== window.top) {
   window.top.location = window.self.location
+}
+
+if (route.query.agentId && route.query.agentId != '') {
+  localStorage.setItem('agentId', route.query.agentId as string)
 }
 </script>
 
