@@ -40,3 +40,23 @@ export function getFinanceDataApi(data: Affiliate.getFinanceData) {
     data
   })
 }
+
+// 额度代存
+export function memberDepositApi(data: Affiliate.memberDepositData) {
+  return request<anyResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'affiliate/deposit',
+    method: 'post',
+    data
+  })
+}
+
+// 代存记录
+export function getDepositRecordApi(data: Affiliate.getDepositRecordData) {
+  return request<Affiliate.getDepositRecordResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'affiliate/depositlist',
+    method: 'post',
+    data
+  })
+}

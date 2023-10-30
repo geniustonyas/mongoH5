@@ -98,7 +98,37 @@ export interface getFinanceDataRespItem {
   netwin: number
 }
 
+// 额度代存请求
+export interface memberDepositData {
+  name: string
+  amount: number | string
+  times: number | string
+  remark: string
+  pwd: string
+}
+
+// 代存记录请求
+export interface getDepositRecordData {
+  name: string
+  start: string
+  end: string
+  s: null | number
+  page: number
+  pcount: number
+}
+
+// 代存记录返回数据项
+export interface getDepositRecordRespItem {
+  id: number
+  memberAccount: string
+  amount: number
+  status: number
+  remark: string
+  optime: string
+}
+
 export type getDashboardResp = ApiResponseData<getDashboardRespItem>
 export type getMemberInfoDataResp = ApiResponseData<{ items: getMemberInfoRespItem[]; page: string; size: string; pages: string; count: string }>
 export type getCommissionDataResp = ApiResponseData<getCommissionDataRespItem>
 export type getFinanceDataResp = ApiResponseData<getFinanceDataRespItem>
+export type getDepositRecordResp = ApiResponseData<{ items: getDepositRecordRespItem[]; page: string; size: string; pages: string; count: string }>

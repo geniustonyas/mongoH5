@@ -155,7 +155,7 @@ const query = reactive({
   endreg: '',
   start: '',
   end: '',
-  bet: null,
+  bet: -1,
   page: 1,
   pcount: 20
 })

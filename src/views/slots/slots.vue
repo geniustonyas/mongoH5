@@ -154,6 +154,7 @@ const selGameProvider = (id: number) => {
   } else {
     query.ps.push(id)
   }
+  pageCount.value = 0
   query.page = 1
   dataList.value = []
   getGameList()
@@ -162,6 +163,7 @@ const selGameProvider = (id: number) => {
 // 游戏列表排序
 const sortGame = () => {
   query.page = 1
+  pageCount.value = 0
   dataList.value = []
   getGameList()
 }

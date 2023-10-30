@@ -318,13 +318,14 @@ const handleReg = async () => {
     agreeEl!.innerHTML = ''
   }
 
-  if (regForm.Token == '') {
-    // errorMsg.value = t('tips.isRobot')
-    reRobotCheck()
-    btnLoading.value = false
-    return false
-  } else {
-    errorMsg.value = ''
+  if (appStore.robotCheck) {
+    if (regForm.Token == '') {
+      reRobotCheck()
+      btnLoading.value = false
+      return false
+    } else {
+      errorMsg.value = ''
+    }
   }
 
   Object.assign(regForm, appStore.thirdData)

@@ -4,8 +4,8 @@
     <main class="main">
       <div class="agent-deposit">
         <div class="line-tabs">
-          <span :class="{ active: tab == 'deposit' }" @click="toggleTab()">{{ t('agentDepositLimit') }}</span>
-          <span :class="{ active: tab == 'depositRecord' }" @click="toggleTab()">{{ t('agentDepositRecord') }}</span>
+          <span :class="{ active: tab == 'deposit' }" @click="toggleTab('deposit')">{{ t('agentDepositLimit') }}</span>
+          <span :class="{ active: tab == 'depositRecord' }" @click="toggleTab('depositRecord')">{{ t('agentDepositRecord') }}</span>
         </div>
         <div class="ine-conts">
           <div :class="tab == 'deposit' ? 'cont active' : 'cont'">
@@ -17,7 +17,7 @@
                 <div class="a-r">
                   <span>{{ t('canUseLimit') }}</span>
                   <p>
-                    <b>{{ showAmount ? '158.90' : '******' }}</b>
+                    <b>{{ showAmount ? moneyFormat(balance) : '********' }}</b>
                     <i :class="showAmount ? 'iconfont icon-xianshi' : 'iconfont icon-yincang'" @click="showAmount = !showAmount" />
                   </p>
                 </div>
@@ -30,7 +30,8 @@
                         <span>{{ t('childAccount') }}</span>
                       </div>
                       <div class="cr-input">
-                        <input type="text" class="form-control" :placeholder="t('inputChildAccount')" autocomplete="off" />
+                        <input v-model="depositForm.name" type="text" class="form-control" :placeholder="t('inputChildAccount')" autocomplete="off" />
+                        <div id="accountTip" class="tip" />
                       </div>
                     </div>
                   </div>
@@ -40,14 +41,15 @@
                         <span>{{ t('agentDepositAmount') }}</span>
                       </div>
                       <div class="cr-input">
-                        <input type="text" class="form-control" :placeholder="t('inputAgentDepositAmount')" autocomplete="off" />
+                        <input v-model="depositForm.amount" type="text" class="form-control" :placeholder="t('inputAgentDepositAmount')" autocomplete="off" />
+                        <div id="amountTip" class="tip" />
                       </div>
                     </div>
                     <p class="cr-tips">
-                      <b>1.00</b> ≤
+                      <b>1.00 ≤</b>
                       {{ t('singleAgentDepositAmount') }}
-                      ≤<b>50,000.00</b>,
-                      {{ t('agentDepositDayLimit') }}<b>10,000,000.00</b>
+                      <b>≤ 50,000.00</b>
+                      ,{{ t('agentDepositDayLimit') }}<b>10,000,000.00</b>
                     </p>
                   </div>
                   <div class="cf-row">
@@ -55,12 +57,16 @@
                       <div class="cr-label">
                         <span>{{ t('withdrawFlowMult') }}</span>
                       </div>
-                      <div class="cr-input ci-group"><input type="text" class="form-control" :placeholder="t('inputWithdrawFlowMult')" autocomplete="off" /><span class="password-addon">倍</span></div>
+                      <div class="cr-input ci-group">
+                        <input v-model="depositForm.times" type="text" class="form-control" :placeholder="t('inputWithdrawFlowMult')" autocomplete="off" />
+                        <span class="password-addon">{{ t('multiple') }}</span>
+                        <div id="multipleTip" class="tip" />
+                      </div>
                     </div>
                     <p class="cr-tips">
-                      <b>1</b>≤
+                      <b>1 ≤</b>
                       {{ t('withdrawFlowMult') }}
-                      ≤<b>8</b>
+                      <b>≤ 8</b>
                     </p>
                   </div>
                   <div class="cf-row">
@@ -68,7 +74,10 @@
                       <div class="cr-label">
                         <span>{{ t('remark') }}</span>
                       </div>
-                      <div class="cr-input"><input type="password" class="form-control" :placeholder="t('inputRemark')" autocomplete="off" /></div>
+                      <div class="cr-input">
+                        <input v-model="depositForm.remark" type="password" class="form-control" :placeholder="t('inputRemark')" autocomplete="off" />
+                        <div id="remarkTip" class="tip" />
+                      </div>
                     </div>
                   </div>
                   <div class="cf-row">
@@ -76,11 +85,14 @@
                       <div class="cr-label">
                         <span>{{ t('loginPwd') }}</span>
                       </div>
-                      <div class="cr-input"><input type="password" class="form-control" :placeholder="t('inputLoginPwd')" autocomplete="off" /></div>
+                      <div class="cr-input">
+                        <input v-model="depositForm.pwd" type="password" class="form-control" :placeholder="t('inputLoginPwd')" autocomplete="off" />
+                        <div id="pwdTip" class="tip" />
+                      </div>
                     </div>
                   </div>
                   <div class="cf-row">
-                    <a class="btn btn-primary">{{ t('submit') }}</a>
+                    <a class="btn btn-primary" @click="memberDeposit">{{ t('submit') }}</a>
                   </div>
                 </div>
               </div>
@@ -90,14 +102,20 @@
             <div class="agent-report-box">
               <div class="ar-a">
                 <div class="a-col col-50">
-                  <select class="form-control">
-                    <option>{{ t('status') }}</option>
-                  </select>
+                  <ConfigProvider theme="dark" class="agent-sel">
+                    <DropdownMenu direction="down">
+                      <DropdownItem v-model="status" ref="categoryDom" :options="options" @change="selStatus" />
+                    </DropdownMenu>
+                  </ConfigProvider>
                 </div>
-                <div class="a-col col-50"><input class="form-control" :placeholder="t('memberAccount')" /></div>
-                <div class="a-col col-2"><input class="form-control" :placeholder="t('optime')" /></div>
+                <div class="a-col col-50">
+                  <input v-model="query.name" class="form-control" :placeholder="t('memberAccount')" />
+                </div>
+                <div class="a-col col-2">
+                  <input class="form-control" :value="query.start != '' ? query.start + ' - ' + query.end : ''" :placeholder="t('optime')" @focus="showDatePicker = true" />
+                </div>
                 <div class="a-col">
-                  <a class="btn btn-primary">{{ t('filter') }}</a>
+                  <a class="btn btn-primary" @click="getDepositRecord">{{ t('filter') }}</a>
                 </div>
               </div>
               <div class="ar-c">
@@ -162,19 +180,283 @@
           </div>
         </div>
       </div>
+      <ConfigProvider theme="dark">
+        <Calendar
+          v-model:show="showDatePicker"
+          :default-date="defaultDate"
+          type="range"
+          :min-date="minDate"
+          :max-date="maxDate"
+          color="#f7cc00"
+          :allow-same-day="true"
+          :style="{ height: '500px' }"
+          round
+          :show-confirm="false"
+          :show-mark="false"
+          :formatter="dayFormatter"
+          @confirm="customRegDate"
+        />
+      </ConfigProvider>
     </main>
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+
+import { getBalanceApi } from '@/api/fund/index'
+import { memberDepositApi, getDepositRecordApi } from '@/api/affiliate'
+import { memberDepositData, getDepositRecordData, getDepositRecordRespItem } from '@/api/affiliate/types'
+import { moneyFormat } from '@/utils/index'
+import { isUname, isPwd } from '@/utils/validate'
+
+import { ConfigProvider, DropdownMenu, DropdownItem, Calendar } from 'vant'
+import dayjs from 'dayjs'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 const { t } = useI18n()
+
 const tab = ref('deposit')
 const showAmount = ref(false)
-const toggleTab = () => {
-  tab.value = tab.value === 'deposit' ? 'depositRecord' : 'deposit'
+
+const status = ref(-1)
+const options = computed(() => {
+  return [
+    { text: t('status'), value: -1 },
+    { text: t('agentDepositStatus.0'), value: 5 },
+    { text: t('agentDepositStatus.1'), value: 1 }
+  ]
+})
+const balance = ref('')
+
+const btnLoading = ref(false)
+const errorMsg = ref('')
+const depositForm = reactive<memberDepositData>({
+  name: '',
+  amount: '',
+  times: '',
+  remark: '',
+  pwd: ''
+})
+const defaultDepositForm = {
+  name: '',
+  amount: '',
+  times: '',
+  remark: '',
+  pwd: ''
 }
+
+const showDatePicker = ref(false)
+// 默认日期
+let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]
+// 筛选 - 日期控件参数
+const minDate = dayjs().subtract(1, 'months').toDate()
+const maxDate = dayjs().toDate()
+
+const query = reactive<getDepositRecordData>({
+  name: '',
+  start: '',
+  end: '',
+  s: null,
+  page: 1,
+  pcount: 20
+})
+const defaultQuery = {
+  name: '',
+  start: '',
+  end: '',
+  s: null,
+  page: 1,
+  pcount: 20
+}
+let nodata = ref(false)
+let recordCount = ref(0)
+const dataList = ref<getDepositRecordRespItem[]>([])
+
+const selStatus = (val: number) => {
+  query.s = val == -1 ? null : val
+  console.log(val)
+}
+
+// 日期控件去掉日历格子下文字信息
+const dayFormatter = (day: any) => {
+  day.bottomInfo = ''
+  return day
+}
+const customRegDate = (time: any) => {
+  query.start = dayjs(time[0]).format('YYYY-MM-DD')
+  query.end = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
+  showDatePicker.value = false
+}
+
+// 获取余额列表
+const getBalanceList = () => {
+  getBalanceApi()
+    .then((resp) => {
+      if (resp.data.length > 0) {
+        const tmp = resp.data.find((item) => item.name == 'USDT')
+        if (tmp) {
+          balance.value = tmp.balance
+        }
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+// 提交代存请求
+const memberDeposit = async () => {
+  if (btnLoading.value) {
+    return false
+  }
+  btnLoading.value = true
+
+  errorMsg.value = ''
+  const allTip = document.getElementsByClassName('tip')
+  for (var i = 0; i < allTip.length; i++) {
+    allTip[i].innerHTML = ''
+  }
+  const accountEl = document.getElementById('accountTip')
+  const amountEl = document.getElementById('amountTip')
+  const multipleEl = document.getElementById('multipleTip')
+  const remarkEl = document.getElementById('remarkTip')
+  const pwdEl = document.getElementById('pwdTip')
+
+  if (depositForm.name == '') {
+    errorMsg.value = t('inputChildAccount')
+    accountEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    accountEl!.innerHTML = ''
+  }
+  if (!isUname(depositForm.name)) {
+    errorMsg.value = t('tips.isAccount')
+    accountEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    accountEl!.innerHTML = ''
+  }
+
+  // const isExistUserResp = await checkUserApi({ UserName: depositForm.UserName, noLoading: true })
+  // if (isExistUserResp.data) {
+  //   errorMsg.value = t('childAccountNotExist')
+  //   accountEl!.innerHTML = errorMsg.value
+  //   btnLoading.value = false
+  //   return false
+  // } else {
+  //   errorMsg.value = ''
+  //   accountEl!.innerHTML = ''
+  // }
+
+  if (depositForm.amount == '') {
+    errorMsg.value = t('inputAgentDepositAmount')
+    amountEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    amountEl!.innerHTML = ''
+  }
+  if (parseFloat(depositForm.amount.toString()) < 1 || parseFloat(depositForm.amount.toString()) > 50000) {
+    errorMsg.value = t('depositAmountLimit')
+    amountEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    amountEl!.innerHTML = ''
+  }
+
+  if (depositForm.times == '') {
+    errorMsg.value = t('inputWithdrawFlowMult')
+    multipleEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    multipleEl!.innerHTML = ''
+  }
+  if (parseFloat(depositForm.times.toString()) > 8 || parseFloat(depositForm.times.toString()) < 1) {
+    errorMsg.value = t('withdrawFlowMultLimit')
+    multipleEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    multipleEl!.innerHTML = ''
+  }
+
+  if (depositForm.remark == '') {
+    errorMsg.value = t('inputRemark')
+    remarkEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    remarkEl!.innerHTML = ''
+  }
+
+  if (depositForm.pwd == '') {
+    errorMsg.value = t('inputLoginPwd')
+    pwdEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    pwdEl!.innerHTML = ''
+  }
+
+  if (!isPwd(depositForm.pwd)) {
+    errorMsg.value = t('tips.isPwd')
+    pwdEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    pwdEl!.innerHTML = ''
+  }
+
+  memberDepositApi(depositForm)
+    .then((resp: any) => {
+      console.log(resp)
+      Object.assign(depositForm, defaultDepositForm)
+      btnLoading.value = false
+    })
+    .catch((error: any) => {
+      console.log(error)
+      btnLoading.value = false
+    })
+}
+
+// 获取代存记录
+const getDepositRecord = () => {
+  getDepositRecordApi(query)
+    .then((resp: any) => {
+      dataList.value = resp.data.items
+      recordCount.value = parseInt(resp.data.count)
+      nodata.value = dataList.value.length == 0
+    })
+    .catch((error: any) => {
+      console.log(error)
+    })
+}
+
+// 切换tab
+const toggleTab = (tb: string) => {
+  tab.value = tb
+  if (tab.value == 'depositRecord') {
+    getDepositRecord()
+  } else {
+    status.value = -1
+    Object.assign(query, defaultQuery)
+  }
+}
+
+getBalanceList()
 </script>
