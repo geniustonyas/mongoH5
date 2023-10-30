@@ -66,6 +66,8 @@
             </div>
           </List>
         </PullRefresh>
+
+        <Nodata v-show="nodata" :message="t('nodata')" />
       </div>
     </main>
     <ConfigProvider theme="dark">
@@ -107,9 +109,10 @@ import { useI18n } from 'vue-i18n'
 
 import { moneyFormat } from '@/utils/index'
 import { getMemberInfoApi } from '@/api/affiliate'
-import { getMemberInfoDataResp, getMemberInfoRespItem, getDashboardResp } from '@/api/affiliate/types'
+import { getMemberInfoDataResp, getMemberInfoRespItem } from '@/api/affiliate/types'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
+import Nodata from '@/components/Nodata.vue'
 
 import dayjs from 'dayjs'
 import { DropdownMenu, DropdownItem, ConfigProvider, Calendar, PullRefresh, List } from 'vant'

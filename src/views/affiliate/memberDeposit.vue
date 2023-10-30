@@ -119,62 +119,40 @@
                 </div>
               </div>
               <div class="ar-c">
-                <ul>
-                  <li>
-                    <div class="l-bd">
-                      <div class="d-a">
-                        <div class="da-l"><span>bb001</span>-<b>白银</b></div>
-                        <div class="da-r">1711273443074514946</div>
-                      </div>
-                      <div class="d-d">
-                        <div class="dd-l">
-                          <span>操作时间</span>
-                          2023-10-10 11:22
+                <ul v-if="dataList.length > 0">
+                  <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
+                    <List
+                      v-model:loading="listLoading"
+                      :offset="20"
+                      :finished="finished"
+                      :immediate-check="false"
+                      v-model:error="error"
+                      :error-text="t('loadingFail')"
+                      :finished-text="t('noMore')"
+                      @load="loadData"
+                    >
+                      <li v-for="(item, index) of dataList" :key="index">
+                        <div class="l-bd">
+                          <div class="d-a">
+                            <div class="da-l"><span>bb001</span>-<b>白银</b></div>
+                            <div class="da-r">1711273443074514946</div>
+                          </div>
+                          <div class="d-d">
+                            <div class="dd-l">
+                              <span>操作时间</span>
+                              2023-10-10 11:22
+                            </div>
+                            <div class="dd-r">
+                              <b>1000</b>
+                              <span class="txt-green">成功</span>
+                            </div>
+                          </div>
                         </div>
-                        <div class="dd-r">
-                          <b>1000</b>
-                          <span class="txt-green">成功</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="l-bd">
-                      <div class="d-a">
-                        <div class="da-l"><span>bb001</span>-<b>白银</b></div>
-                        <div class="da-r">1711273443074514946</div>
-                      </div>
-                      <div class="d-d">
-                        <div class="dd-l">
-                          <span>操作时间</span>
-                          2023-10-10 11:22
-                        </div>
-                        <div class="dd-r">
-                          <b>1000</b>
-                          <span class="txt-green">成功</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="l-bd">
-                      <div class="d-a">
-                        <div class="da-l"><span>bb001</span>-<b>白银</b></div>
-                        <div class="da-r">1711273443074514946</div>
-                      </div>
-                      <div class="d-d">
-                        <div class="dd-l">
-                          <span>操作时间</span>
-                          2023-10-10 11:22
-                        </div>
-                        <div class="dd-r">
-                          <b>1000</b>
-                          <span class="txt-green">成功</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
+                      </li>
+                    </List>
+                  </PullRefresh>
                 </ul>
+                <Nodata v-show="nodata" :message="t('nodata')" />
               </div>
             </div>
           </div>
@@ -214,6 +192,7 @@ import { ConfigProvider, DropdownMenu, DropdownItem, Calendar } from 'vant'
 import dayjs from 'dayjs'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
+import Nodata from '@/components/Nodata.vue'
 
 const { t } = useI18n()
 
@@ -270,13 +249,16 @@ const defaultQuery = {
   page: 1,
   pcount: 20
 }
+// 列表刷新下拉等参数
+let listLoading = ref(false)
+let refreshing = ref(false)
+let finished = ref(false)
+let error = ref(false)
 let nodata = ref(false)
-let recordCount = ref(0)
 const dataList = ref<getDepositRecordRespItem[]>([])
 
 const selStatus = (val: number) => {
   query.s = val == -1 ? null : val
-  console.log(val)
 }
 
 // 日期控件去掉日历格子下文字信息
@@ -438,11 +420,19 @@ const memberDeposit = async () => {
 const getDepositRecord = () => {
   getDepositRecordApi(query)
     .then((resp: any) => {
-      dataList.value = resp.data.items
-      recordCount.value = parseInt(resp.data.count)
+      if (refreshing.value) {
+        dataList.value = resp.data.items
+      } else {
+        dataList.value.push(...resp.data.items)
+      }
       nodata.value = dataList.value.length == 0
+      refreshing.value = false
+      finished.value = resp.data.items.length < query.pcount
+      listLoading.value = false
     })
     .catch((error: any) => {
+      listLoading.value = false
+      refreshing.value = false
       console.log(error)
     })
 }
