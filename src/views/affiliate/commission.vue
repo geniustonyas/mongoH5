@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="page">
-    <CommonHeader :title="t('commissioneport')" />
+    <CommonHeader :title="t('commissionReport')" />
     <main class="main">
       <div class="agent-report-box">
         <div class="ar-a">

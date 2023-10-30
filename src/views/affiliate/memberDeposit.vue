@@ -437,6 +437,18 @@ const getDepositRecord = () => {
     })
 }
 
+// 刷新
+const fresh = () => {
+  query.page = 1
+  getDepositRecord()
+}
+
+// 上拉加载更多数据
+const loadData = () => {
+  query.page += 1
+  getDepositRecord()
+}
+
 // 切换tab
 const toggleTab = (tb: string) => {
   tab.value = tb
