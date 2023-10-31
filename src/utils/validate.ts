@@ -1,11 +1,3 @@
-/** 是否为数字
- * @param {String} arg
- * @returns {Boolean}
- */
-export function isNaN(arg: any): boolean {
-  return typeof arg === 'number' && !isNaN(arg)
-}
-
 /** 验证手机
  * @param {String} arg
  * @returns {Boolean}

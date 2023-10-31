@@ -345,6 +345,16 @@ const memberDeposit = async () => {
     errorMsg.value = ''
     amountEl!.innerHTML = ''
   }
+  //@ts-ignore
+  if (isNaN(depositForm.amount)) {
+    errorMsg.value = t('mustBeNumber', { tmp: t('amount') })
+    amountEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    amountEl!.innerHTML = ''
+  }
   if (parseFloat(depositForm.amount.toString()) < 1 || parseFloat(depositForm.amount.toString()) > 50000) {
     errorMsg.value = t('depositAmountLimit')
     amountEl!.innerHTML = errorMsg.value
@@ -357,6 +367,16 @@ const memberDeposit = async () => {
 
   if (depositForm.times == '') {
     errorMsg.value = t('inputWithdrawFlowMult')
+    multipleEl!.innerHTML = errorMsg.value
+    btnLoading.value = false
+    return false
+  } else {
+    errorMsg.value = ''
+    multipleEl!.innerHTML = ''
+  }
+  //@ts-ignore
+  if (isNaN(depositForm.times)) {
+    errorMsg.value = t('mustBeNumber', { tmp: t('withdrawFlowMult') })
     multipleEl!.innerHTML = errorMsg.value
     btnLoading.value = false
     return false
