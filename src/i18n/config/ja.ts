@@ -415,6 +415,8 @@ export default {
     8: '返金',
     9: 'VIPリワード',
     10: '交換商品',
+    11: 'アフィリエイトインセンティブ',
+    12: '手数料',
     17: '出金失敗'
   },
   beforeBalance: '変更前',
@@ -692,6 +694,8 @@ export default {
   withdrawFlowMultLimit: '提款流水倍数超过限额',
   agentDepositSuccess: '代存成功',
   mustBeNumber: '{ tmp }必须是数字',
+  inputAccountStart: '输入会员账号开始搜索',
+  weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',

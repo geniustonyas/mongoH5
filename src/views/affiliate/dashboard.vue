@@ -97,10 +97,11 @@ const dashboardData = reactive({
     rate: 0,
     comm: 0,
     last: 0,
-    actComm: 0,
+    actComm: 0
   },
   chart: {
     labels: [],
+    //@ts-ignore
     datasets: <chartItem[]>[]
   }
 })
@@ -112,12 +113,14 @@ let bannerChart: any = null
 // 切换chart
 const toggleChart = () => {
   chartTab.value = chartTab.value == 'countChart' ? 'amountChart' : 'countChart'
-  getDashboardApi({ t: 1 }).then((resp: any) => {
-    Object.assign(dashboardData, resp.data)
-    initBannerChart()
-  }).catch((err) => {
-    console.log(err)
-  })
+  getDashboardApi({ t: 1 })
+    .then((resp: any) => {
+      Object.assign(dashboardData, resp.data)
+      initBannerChart()
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 // 初始化横幅大bannner
@@ -157,11 +160,15 @@ const initBannerChart = () => {
       },
       xAxis: {
         type: 'category',
-        data: dashboardData.chart.labels
+        data: dashboardData.chart.labels.map((item) => t('weeks.' + item))
       },
       yAxis: {
         type: 'value',
-        minInterval: 1
+        minInterval: 1, //最小刻度是1
+        splitNumber: 5, //段数是5
+        min: 0, //最小是0
+        interval: computeYaxis(dashboardData.chart.datasets[0].data, dashboardData.chart.datasets[1].data).interval,
+        max: computeYaxis(dashboardData.chart.datasets[0].data, dashboardData.chart.datasets[1].data).max
       },
       series: [
         {
@@ -188,7 +195,7 @@ const initBannerChart = () => {
         top: 50,
         bottom: 50,
         left: 50,
-        right: 50
+        right: 15
       },
       backgroundColor: '#171717',
       tooltip: {
@@ -207,11 +214,15 @@ const initBannerChart = () => {
       },
       xAxis: {
         type: 'category',
-        data: dashboardData.chart.labels
+        data: dashboardData.chart.labels.map((item) => t('weeks.' + item))
       },
       yAxis: {
         type: 'value',
-        minInterval: 1,
+        minInterval: 1, //最小刻度是1
+        splitNumber: 5, //段数是5
+        min: 0, //最小是0
+        interval: computeYaxis(dashboardData.chart.datasets[2].data, dashboardData.chart.datasets[3].data).interval,
+        max: computeYaxis(dashboardData.chart.datasets[2].data, dashboardData.chart.datasets[3].data).max
       },
       series: [
         {
@@ -246,6 +257,18 @@ onBeforeUnmount(() => {
     bannerChart.dispose()
   }
 })
+
+// 根据Y轴最大值来设置刻度
+const computeYaxis = (data1: number[], data2: number[]) => {
+  let max = 0
+  max = Math.max.apply(null, data1) > Math.max.apply(null, data2) ? Math.max.apply(null, data1) : Math.max.apply(null, data2)
+  let interval = Math.ceil(max / 5) || 1
+  let maxVal = Math.ceil(max / 5) * 5 || 5
+  return {
+    interval,
+    max: maxVal
+  }
+}
 
 // 初始化图标
 toggleChart()

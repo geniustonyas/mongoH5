@@ -416,6 +416,8 @@ export default {
     8: 'Quà tặng khuyến mãi',
     9: 'Phần thưởng VIP',
     10: 'Đổi quà',
+    11: 'Kích thích liên kết',
+    12: 'Hoa hồng" hoặc',
     17: 'Rút tiền thất bại'
   },
   beforeBalance: 'Sau thay đổi',
@@ -694,6 +696,8 @@ export default {
   withdrawFlowMultLimit: '提款流水倍数超过限额',
   agentDepositSuccess: '代存成功',
   mustBeNumber: '{ tmp }必须是数字',
+  inputAccountStart: '输入会员账号开始搜索',
+  weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

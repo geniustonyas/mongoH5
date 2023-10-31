@@ -19,54 +19,55 @@
           </div>
           <div class="a-col col-2"><input v-model="query.name" class="form-control" :placeholder="t('memberAccount')" /></div>
           <div class="a-col">
-            <a class="btn btn-primary" @click="getMemberInfo">{{ t('filter') }}</a>
+            <a class="btn btn-primary" @click="filterGetMemberInfo">{{ t('filter') }}</a>
           </div>
         </div>
 
-        <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
-          <List
-            v-model:loading="listLoading"
-            :offset="20"
-            :finished="finished"
-            :immediate-check="false"
-            v-model:error="error"
-            :error-text="t('loadingFail')"
-            :finished-text="t('noMore')"
-            @load="loadData"
-          >
-            <div class="ar-b">
-              <table>
-                <tr>
-                  <th>{{ t('memberAccount') }}</th>
-                  <th>{{ t('level') }}</th>
-                  <th>{{ t('deposit') }}</th>
-                  <th>{{ t('withdraw') }}</th>
-                  <th>{{ t('totalWinLose') }}</th>
-                  <th>{{ t('regTime') }}</th>
-                  <th>{{ t('lastLoginTime') }}</th>
-                </tr>
-                <tr v-for="(item, index) of dataList" class="rl-item" :key="index">
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.vip ? t('userLevels.' + item.vip) : t('userLevels.101') }}</td>
-                  <td>
-                    <b>{{ moneyFormat(item.deposit) }}</b>
-                  </td>
-                  <td>
-                    <b>{{ moneyFormat(item.withdraw) }}</b>
-                  </td>
-                  <td>
-                    <b v-if="item.win > 0" class="green">{{ moneyFormat(item.win) }}</b>
-                    <b v-else-if="item.win < 0" class="red">{{ moneyFormat(item.win) }}</b>
-                    <b v-else>{{ moneyFormat(item.win) }}</b>
-                  </td>
-                  <td>{{ dayjs(item.regTime).format('YYYY-MM-DD') }}</td>
-                  <td>{{ dayjs(item.lastTime).format('YYYY-MM-DD') }}</td>
-                </tr>
-              </table>
-            </div>
-          </List>
-        </PullRefresh>
-
+        <template v-if="dataList.length > 0">
+          <PullRefresh v-model="refreshing" :success-text="t('refreshSuccess')" @refresh="fresh">
+            <List
+              v-model:loading="listLoading"
+              :offset="20"
+              :finished="finished"
+              :immediate-check="false"
+              v-model:error="error"
+              :error-text="t('loadingFail')"
+              :finished-text="t('noMore')"
+              @load="loadData"
+            >
+              <div class="ar-b">
+                <table>
+                  <tr>
+                    <th>{{ t('memberAccount') }}</th>
+                    <th>{{ t('level') }}</th>
+                    <th>{{ t('deposit') }}</th>
+                    <th>{{ t('withdraw') }}</th>
+                    <th>{{ t('totalWinLose') }}</th>
+                    <th>{{ t('regTime') }}</th>
+                    <th>{{ t('lastLoginTime') }}</th>
+                  </tr>
+                  <tr v-for="(item, index) of dataList" class="rl-item" :key="index">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.vip ? t('userLevels.' + item.vip) : t('userLevels.101') }}</td>
+                    <td>
+                      <b>{{ moneyFormat(item.deposit) }}</b>
+                    </td>
+                    <td>
+                      <b>{{ moneyFormat(item.withdraw) }}</b>
+                    </td>
+                    <td>
+                      <b v-if="item.win > 0" class="green">{{ moneyFormat(item.win) }}</b>
+                      <b v-else-if="item.win < 0" class="red">{{ moneyFormat(item.win) }}</b>
+                      <b v-else>{{ moneyFormat(item.win) }}</b>
+                    </td>
+                    <td>{{ dayjs(item.regTime).format('YYYY-MM-DD') }}</td>
+                    <td>{{ dayjs(item.lastTime).format('YYYY-MM-DD') }}</td>
+                  </tr>
+                </table>
+              </div>
+            </List>
+          </PullRefresh>
+        </template>
         <Nodata v-show="nodata" :message="t('nodata')" />
       </div>
     </main>
@@ -201,6 +202,13 @@ const fresh = () => {
 // 上拉加载更多数据
 const loadData = () => {
   query.page += 1
+  getMemberInfo()
+}
+
+const filterGetMemberInfo = () => {
+  query.page = 1
+  dataList.value = []
+  listLoading.value = true
   getMemberInfo()
 }
 

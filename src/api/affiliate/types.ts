@@ -120,15 +120,15 @@ export interface getDepositRecordData {
 // 代存记录返回数据项
 export interface getDepositRecordRespItem {
   id: number
-  memberAccount: string
+  name: string
   amount: number
   status: number
   remark: string
-  optime: string
+  time: string
 }
 
 export type getDashboardResp = ApiResponseData<getDashboardRespItem>
-export type getMemberInfoDataResp = ApiResponseData<{ items: getMemberInfoRespItem[]; page: string; size: string; pages: string; count: string }>
+export type getMemberInfoDataResp = ApiResponseData<{ items: getMemberInfoRespItem[]; page: number; size: number; pages: number; count: number }>
 export type getCommissionDataResp = ApiResponseData<getCommissionDataRespItem>
 export type getFinanceDataResp = ApiResponseData<getFinanceDataRespItem>
-export type getDepositRecordResp = ApiResponseData<{ items: getDepositRecordRespItem[]; page: string; size: string; pages: string; count: string }>
+export type getDepositRecordResp = ApiResponseData<{ items: getDepositRecordRespItem[]; page: number; size: number; pages: number; count: number }>

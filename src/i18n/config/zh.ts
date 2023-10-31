@@ -415,6 +415,8 @@ export default {
     8: '退款',
     9: 'VIP升级奖励',
     10: '兑换筹码',
+    11: '联盟奖励',
+    12: '佣金',
     17: '提款失败'
   },
   beforeBalance: '账变前余额',
@@ -692,6 +694,8 @@ export default {
   withdrawFlowMultLimit: '提款流水倍数超过限额',
   agentDepositSuccess: '代存成功',
   mustBeNumber: '{ tmp }必须是数字',
+  inputAccountStart: '输入会员账号开始搜索',
+  weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

@@ -416,6 +416,8 @@ export default {
     8: 'İade',
     9: 'VIP Ödülleri',
     10: 'Değişim Ürünleri',
+    11: 'Ortak teşvik',
+    12: 'komisyon',
     17: 'Çekme Başarısız'
   },
   beforeBalance: 'Değişiklik Öncesi Bakiye',
@@ -693,6 +695,8 @@ export default {
   withdrawFlowMultLimit: '提款流水倍数超过限额',
   agentDepositSuccess: '代存成功',
   mustBeNumber: '{ tmp }必须是数字',
+  inputAccountStart: '输入会员账号开始搜索',
+  weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',

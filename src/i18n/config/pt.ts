@@ -418,6 +418,8 @@ export default {
     8: 'Reembolso',
     9: 'Recompensas VIP',
     10: 'Troca de Produtos',
+    11: 'Incentivo afiliado',
+    12: 'Comissão',
     17: 'Falha na Retirada'
   },
   beforeBalance: 'Antes da Mudança',
@@ -695,6 +697,8 @@ export default {
   withdrawFlowMultLimit: '提款流水倍数超过限额',
   agentDepositSuccess: '代存成功',
   mustBeNumber: '{ tmp }必须是数字',
+  inputAccountStart: '输入会员账号开始搜索',
+  weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',

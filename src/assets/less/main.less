@@ -1334,7 +1334,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     }
 }
 .agent-deposit {
-    .ine-conts .cont { padding: 2rem 0; display: none;
+    .ine-conts .cont { padding: 2rem 0;
         &.active { display: block; }
     }
     .ad-escrow { padding: 0 1.6rem;
@@ -1528,9 +1528,8 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     }
     .ff-rows { margin-top: 1rem;
         dt { padding: 1rem 0; font-size: 1.2rem; }
-        dd { .flex(); .flex-pack-justify(); .ellipsis(); color: var(--color-white); padding: 1rem 0;
-            span { max-width: 70%; .ellipsis(); }
-            .nowrap { .wordwrap(); max-width: 70%; white-space: normal; margin-left: 1rem; text-align: right; color: var(--color-red) }
+        dd { .flex(); .flex-pack-justify(); color: var(--color-white); padding: 1rem 0;
+            span { max-width: 70%; .wordwrap() }
         }
         .center { text-align: center; margin: 0 auto; display: inline-block; }
     }

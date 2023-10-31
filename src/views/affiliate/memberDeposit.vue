@@ -8,7 +8,7 @@
           <span :class="{ active: tab == 'depositRecord' }" @click="toggleTab('depositRecord')">{{ t('agentDepositRecord') }}</span>
         </div>
         <div class="ine-conts">
-          <div :class="tab == 'deposit' ? 'cont active' : 'cont'">
+          <div v-if="tab == 'deposit'" class="cont">
             <div class="ad-escrow">
               <div class="ae-a">
                 <div class="a-l">
@@ -75,7 +75,7 @@
                         <span>{{ t('remark') }}</span>
                       </div>
                       <div class="cr-input">
-                        <input v-model="depositForm.remark" type="password" class="form-control" :placeholder="t('inputRemark')" autocomplete="off" />
+                        <input v-model="depositForm.remark" type="text" class="form-control" :placeholder="t('inputRemark')" autocomplete="off" />
                         <div id="remarkTip" class="tip" />
                       </div>
                     </div>
@@ -98,7 +98,7 @@
               </div>
             </div>
           </div>
-          <div :class="tab == 'depositRecord' ? 'cont active' : 'cont'">
+          <div v-if="tab == 'depositRecord'" class="cont">
             <div class="agent-report-box">
               <div class="ar-a">
                 <div class="a-col col-50">
@@ -115,7 +115,7 @@
                   <input class="form-control" :value="query.start != '' ? query.start + ' - ' + query.end : ''" :placeholder="t('optime')" @focus="showDatePicker = true" />
                 </div>
                 <div class="a-col">
-                  <a class="btn btn-primary" @click="getDepositRecord">{{ t('filter') }}</a>
+                  <a class="btn btn-primary" @click="filterGetDepositRecord">{{ t('filter') }}</a>
                 </div>
               </div>
               <div class="ar-c">
@@ -134,17 +134,21 @@
                       <li v-for="(item, index) of dataList" :key="index">
                         <div class="l-bd">
                           <div class="d-a">
-                            <div class="da-l"><span>bb001</span>-<b>白银</b></div>
-                            <div class="da-r">1711273443074514946</div>
+                            <div class="da-l">
+                              <span>{{ item.name }}</span>
+                              <!-- -<b>白银</b> -->
+                            </div>
+                            <div class="da-r">{{ item.id }}</div>
                           </div>
                           <div class="d-d">
                             <div class="dd-l">
-                              <span>操作时间</span>
-                              2023-10-10 11:22
+                              <span>{{ t('optime') }}</span>
+                              {{ dayjs(item.time).format('YYYY-MM-DD HH:mm:ss') }}
                             </div>
                             <div class="dd-r">
-                              <b>1000</b>
-                              <span class="txt-green">成功</span>
+                              <b>{{ moneyFormat(item.amount) }}</b>
+                              <span v-if="item.status == 1" class="txt-green">{{ t('agentDepositStatus.1') }}</span>
+                              <span v-else class="txt-red">{{ t('agentDepositStatus.0') }}</span>
                             </div>
                           </div>
                         </div>
@@ -188,7 +192,7 @@ import { memberDepositData, getDepositRecordData, getDepositRecordRespItem } fro
 import { moneyFormat } from '@/utils/index'
 import { isUname, isPwd } from '@/utils/validate'
 
-import { ConfigProvider, DropdownMenu, DropdownItem, Calendar } from 'vant'
+import { ConfigProvider, DropdownMenu, DropdownItem, Calendar, PullRefresh, List } from 'vant'
 import dayjs from 'dayjs'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
@@ -228,7 +232,7 @@ const defaultDepositForm = {
 
 const showDatePicker = ref(false)
 // 默认日期
-let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]
+let defaultDate = [dayjs().subtract(1, 'month').toDate(), dayjs().add(1, 'day').toDate()]
 // 筛选 - 日期控件参数
 const minDate = dayjs().subtract(1, 'months').toDate()
 const maxDate = dayjs().toDate()
@@ -239,7 +243,7 @@ const query = reactive<getDepositRecordData>({
   end: '',
   s: null,
   page: 1,
-  pcount: 20
+  pcount: 10
 })
 const defaultQuery = {
   name: '',
@@ -247,7 +251,7 @@ const defaultQuery = {
   end: '',
   s: null,
   page: 1,
-  pcount: 20
+  pcount: 10
 }
 // 列表刷新下拉等参数
 let listLoading = ref(false)
@@ -455,6 +459,13 @@ const getDepositRecord = () => {
       refreshing.value = false
       console.log(error)
     })
+}
+
+const filterGetDepositRecord = () => {
+  query.page = 1
+  dataList.value = []
+  listLoading.value = true
+  getDepositRecord()
 }
 
 // 刷新
