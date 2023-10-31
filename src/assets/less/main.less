@@ -571,6 +571,24 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 }
 .line-options { .flex(); .flex-align(); padding: 1rem;
     .o-item {.flex-x(); .h-lh(3rem); text-align: center; }
+    .agent-sel {
+    //     border-color: rgba(255, 255, 255, 0.05);
+    // background-color: rgba(255, 255, 255, 0.05);
+        .van-dropdown-menu__bar { border-color: rgba(255, 255, 255, 0.05); border: 0.1rem solid rgba(255, 255, 255, 0.1); .bg(rgba(255,255,255,.05)); .h-lh(4rem) }
+        .van-dropdown-menu__title { color: gray }
+        .van-dropdown-menu__title--active { color: var(--color-text;) }
+    }
+    .ar-a { padding: 1.6rem 1rem 1.6rem 1.6rem; .flex(); .flex-wrap(wrap);
+        .a-col { width: 33.333%; .flex-x( 0 0 33.333%); padding-right: .5rem; padding-bottom: .5rem;
+            .form-control {.radius(.4rem); border-color: rgba(255,255,255,.05); .bg(rgba(255,255,255,.05));
+                &:focus { border-color: var(--color-primary) !important; }
+            }
+            &.col-2 { width: 66.666%; .flex-x( 0 0 66.666%); }
+            &.col-50 { width: 50%; .flex-x( 0 0 50%); }
+            .btn {.radius(.4rem); .h-lh(4rem); width: 100%; }
+        }
+    }
+
 }
 .record-list { padding: 0 1rem;
     .rl-item { margin-bottom: 1rem; padding: 1rem; .radius(1rem); .bg(var(--color-menu));

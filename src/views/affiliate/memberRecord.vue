@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <CommonHeader :title="t('agentDepositRecord')" />
+    <CommonHeader :title="t('memberRecord')" />
     <main class="main">
       <div class="record-box">
         <div class="rb-head">
@@ -11,21 +11,33 @@
             <span :class="{ active: query.RecordType == HisotyReocrdType.Reward }" @click="selTab(HisotyReocrdType.Reward)">{{ t('wins') }}</span>
           </div>
           <div class="line-options">
-            <ConfigProvider theme="dark" class="o-item">
-              <DropdownMenu direction="down">
-                <DropdownItem :title="t('currencyFilter')" ref="currenyDom" teleport="body">
-                  <div class="drop-item" v-for="(item, index) of currenyList" :key="index" @click="selCurrency(item)">
-                    <img :src="getAssetsFile(item.icon)" />
-                    <span>{{ item.currenyName }}</span>
-                    <span><Icon v-show="checkedCurrency.includes(item.code)" name="success" class="active" /></span>
-                  </div>
-                  <div class="drop-btn">
-                    <a class="btn btn-primary" @click="confirmCurreny()">{{ t('confirm') }}</a>
-                  </div>
-                </DropdownItem>
-              </DropdownMenu>
-            </ConfigProvider>
-            <div class="o-item" @click="showDatePicker = !showDatePicker">{{ t('dateFilter') }}</div>
+            <div class="ar-a">
+              <div class="a-col col-50">
+                <ConfigProvider theme="dark" class="agent-sel">
+                  <DropdownMenu direction="down">
+                    <DropdownItem :title="t('currencyFilter')" ref="currenyDom" teleport="body">
+                      <div class="drop-item" v-for="(item, index) of currenyList" :key="index" @click="selCurrency(item)">
+                        <img :src="getAssetsFile(item.icon)" />
+                        <span>{{ item.currenyName }}</span>
+                        <span><Icon v-show="checkedCurrency.includes(item.code)" name="success" class="active" /></span>
+                      </div>
+                      <div class="drop-btn">
+                        <a class="btn btn-primary" @click="confirmCurreny()">{{ t('confirm') }}</a>
+                      </div>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </ConfigProvider>
+              </div>
+              <div class="a-col col-50">
+                <input :value="query.StartTime != '' ? query.StartTime + ' - ' + query.EndTime : ''" class="form-control" :placeholder="t('dateFilter')" @focus="showDatePicker = !showDatePicker" />
+              </div>
+              <div class="a-col col-2">
+                <input v-model="query.KeyWord" class="form-control" :placeholder="t('memberAccount')" />
+              </div>
+              <div class="a-col">
+                <a class="btn btn-primary" @click="filterTradeRecord">{{ t('filter') }}</a>
+              </div>
+            </div>
           </div>
         </div>
         <div class="mb-conts">
@@ -61,6 +73,7 @@
             </div>
           </div>
           <Nodata v-show="nodata" :message="t('nodata')" />
+          <Nodata v-show="query.KeyWord == ''" :message="t('inputAccountStart')" />
         </div>
       </div>
     </main>
@@ -165,7 +178,7 @@ import { useI18n } from 'vue-i18n'
 import { liveChatCall } from '@/composables/startGame'
 import { moneyFormat } from '@/utils/index'
 import dayjs from 'dayjs'
-import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List, Popup, showConfirmDialog } from 'vant'
+import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List, Popup, showConfirmDialog, showToast } from 'vant'
 import type { DropdownItemInstance } from 'vant'
 import { cloneDeep } from 'lodash-es'
 
@@ -194,8 +207,9 @@ const query = reactive({
   RecordType: HisotyReocrdType.Deposit,
   StartTime: dayjs(defaultDate[0]).format('YYYY-MM-DD'),
   EndTime: dayjs(defaultDate[1]).format('YYYY-MM-DD'),
-  PageIndex: '1',
-  PageSize: '10',
+  PageIndex: 1,
+  PageSize: 10,
+  KeyWord: '',
   noLoading: false
 })
 
@@ -268,7 +282,7 @@ const defaultDetailsData = cloneDeep(detailsData)
 // 列表切换
 const selTab = (tabs: HisotyReocrdType) => {
   nodata.value = false
-  query.PageIndex = '1'
+  query.PageIndex = 1
   query.noLoading = false
   dataList.value = []
   if (query.RecordType == tabs) {
@@ -292,13 +306,17 @@ const selCurrency = (item: currenyListTypes) => {
 // 选择币种后查询交易列表
 const confirmCurreny = () => {
   currenyDom?.value!.toggle()
-  query.PageIndex = '1'
+  query.PageIndex = 1
   dataList.value = []
   getTradeRecordList()
 }
 
 // 获取记录
 const getTradeRecordList = () => {
+  if (query.KeyWord == '') {
+    showToast(t('inputAccountStart'))
+    return false
+  }
   query.CurrencyCode = checkedCurrency.value.join(',')
   getHistoryRecordApi(query)
     .then((resp) => {
@@ -338,7 +356,7 @@ const getTradeDetail = (item: getHistoryRecordItems) => {
 // 刷新
 const fresh = () => {
   query.noLoading = true
-  query.PageIndex = '1'
+  query.PageIndex = 1
   listLoading.value = true
   getTradeRecordList()
 }
@@ -347,7 +365,7 @@ const fresh = () => {
 const loadData = () => {
   listLoading.value = true
   query.noLoading = true
-  query.PageIndex = (parseInt(query.PageIndex) + 1).toString()
+  query.PageIndex = query.PageIndex + 1
   getTradeRecordList()
 }
 
@@ -386,14 +404,16 @@ const openExplorer = (detailsData: getHistoryRecordDetails) => {
   }
 }
 
+const filterTradeRecord = () => {
+  query.PageIndex = 1
+  dataList.value = []
+  getTradeRecordList()
+}
+
+
 const clearData = () => {
   Object.assign(detailsData, defaultDetailsData)
 }
 
 checkedCurrency.value = currenyList.map((item) => item.code)
-getTradeRecordList()
-// getTradeRecordList()
-// setInterval(() => {
-//   getTradeRecordList()
-// }, 30 * 1000)
 </script>
