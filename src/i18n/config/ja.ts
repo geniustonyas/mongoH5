@@ -690,6 +690,8 @@ export default {
   childAccountNotExist: '下级账号不存在',
   depositAmountLimit: '代存金额超过单笔限额',
   withdrawFlowMultLimit: '提款流水倍数超过限额',
+  agentDepositSuccess: '代存成功',
+  mustBeNumber: '{ tmp }必须是数字',
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',
