@@ -555,7 +555,7 @@ export default {
   clickAddAndroid: 'ショートカットは今、ホーム画面にあります。',
   hitratio: 'ヒット率',
   paylines: 'ペイライン',
-  nopwd: 'Bitte setze das Passwort auf deiner Social Media Plattform zurück',
+  nopwd: 'ソーシャルメディアを使用して登録するため、ログインにパスワードは必要ありません。',
 
   affiliateTitle: '全球联盟会员计划',
   overview: '概述',
@@ -696,6 +696,8 @@ export default {
   mustBeNumber: '{ tmp }必须是数字',
   inputAccountStart: '输入会员账号开始搜索',
   weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
+  releaseStatus: '发放状态',
+  releaseStatusTrans: { 0: '未发放', 1: '已发放', 2: '有结余' },
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',
@@ -826,7 +828,12 @@ export default {
     1101: '利用可能な残高が不足しています',
     1032: '資金の安全性を確保するため、パスワードを変更した後、24時間以内に引き出しを行うことはできません。',
     1033: 'メール確認コードが正しくありません',
-    1035: 'ゲームメンテナンス中'
+    1035: 'ゲームメンテナンス中',
+    1037: '您的账号已被禁用',
+    1038: '下级会员不存',
+    1039: '流水倍数超过限制',
+    1040: '代存金额超出单次限制',
+    1041: '代存金额超出单日限制'
   },
 
   // 利用規約と協議内容等

@@ -328,7 +328,7 @@ const getTradeRecordList = () => {
       // dataList.value[0].amount = '0.000018'
       nodata.value = dataList.value.length == 0
       refreshing.value = false
-      finished.value = resp.data.items.length < parseInt(query.PageSize)
+      finished.value = resp.data.items.length < query.PageSize
       listLoading.value = false
     })
     .catch((error: any) => {
@@ -409,7 +409,6 @@ const filterTradeRecord = () => {
   dataList.value = []
   getTradeRecordList()
 }
-
 
 const clearData = () => {
   Object.assign(detailsData, defaultDetailsData)

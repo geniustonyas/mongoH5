@@ -65,6 +65,7 @@ export interface getCommissionData {
 
 // 获取佣金返回数据项
 export interface getCommissionDataRespItem {
+  status: number
   year: number
   month: number
   payTime?: string

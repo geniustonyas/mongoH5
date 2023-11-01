@@ -131,8 +131,8 @@ export interface getHistoryRecordData {
   RecordType: string
   StartTime: string
   EndTime: string
-  PageIndex: string
-  PageSize: string
+  PageIndex: number | string
+  PageSize: number | string
   KeyWord: string
 }
 

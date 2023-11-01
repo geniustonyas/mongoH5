@@ -698,6 +698,8 @@ export default {
   mustBeNumber: '{ tmp }必须是数字',
   inputAccountStart: '输入会员账号开始搜索',
   weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
+  releaseStatus: '发放状态',
+  releaseStatusTrans: { 0: '未发放', 1: '已发放', 2: '有结余' },
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',
@@ -827,7 +829,12 @@ export default {
     1101: 'Số dư có sẵn không đủ',
     1032: 'Để đảm bảo an toàn cho quỹ của bạn, sau khi bạn thay đổi mật khẩu, bạn sẽ không thể thực hiện rút tiền trong vòng 24 giờ',
     1033: 'Mã xác minh email không chính xác',
-    1035: 'GAME đang bảo trì'
+    1035: 'GAME đang bảo trì',
+    1037: '您的账号已被禁用',
+    1038: '下级会员不存',
+    1039: '流水倍数超过限制',
+    1040: '代存金额超出单次限制',
+    1041: '代存金额超出单日限制'
   },
 
   // 条款协议等内容

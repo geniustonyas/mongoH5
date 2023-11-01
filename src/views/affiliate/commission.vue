@@ -16,9 +16,13 @@
           </div>
         </div>
         <div class="ar-d">
-          <div v-if="commissionData.payTime != ''" class="d-item">
+          <div class="d-item">
+            <div class="i-l">{{ t('releaseStatus') }}</div>
+            <div class="i-r">{{ t('releaseStatusTrans.' + commissionData.status) }}</div>
+          </div>
+          <div class="d-item">
             <div class="di-l">{{ t('releaseTime') }}</div>
-            <div class="di-r">{{ commissionData.payTime }}</div>
+            <div class="di-r">{{ commissionData.payTime || '--' }}</div>
           </div>
           <div class="d-item">
             <div class="di-l">{{ t('activityUser') }}</div>
@@ -113,6 +117,7 @@ const query = reactive({
 })
 
 const commissionData = reactive<getCommissionDataRespItem>({
+  status: 0,
   year: 0,
   month: 0,
   payTime: '',

@@ -699,6 +699,8 @@ export default {
   mustBeNumber: '{ tmp }必须是数字',
   inputAccountStart: '输入会员账号开始搜索',
   weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
+  releaseStatus: '发放状态',
+  releaseStatusTrans: { 0: '未发放', 1: '已发放', 2: '有结余' },
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',
@@ -827,7 +829,12 @@ export default {
     1030: 'Quantidade de produto insuficiente',
     1031: 'Pontos disponíveis insuficientes',
     1033: 'O código de verificação por e-mail está incorreto',
-    1035: 'Jogo em manutenção'
+    1035: 'Jogo em manutenção',
+    1037: '您的账号已被禁用',
+    1038: '下级会员不存',
+    1039: '流水倍数超过限制',
+    1040: '代存金额超出单次限制',
+    1041: '代存金额超出单日限制'
   },
 
   html: {

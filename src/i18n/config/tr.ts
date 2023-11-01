@@ -697,6 +697,8 @@ export default {
   mustBeNumber: '{ tmp }必须是数字',
   inputAccountStart: '输入会员账号开始搜索',
   weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
+  releaseStatus: '发放状态',
+  releaseStatusTrans: { 0: '未发放', 1: '已发放', 2: '有结余' },
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',
@@ -827,7 +829,12 @@ export default {
     1101: 'Kullanılabilir bakiye yetersiz',
     1032: 'Fonlarınızın güvenliğini sağlamak için şifrenizi değiştirdikten sonra 24 saat boyunca para çekme işlemi yapamayacaksınız.',
     1033: 'E-posta doğrulama kodu yanlış',
-    1035: 'Oyun bakımdayken'
+    1035: 'Oyun bakımdayken',
+    1037: '您的账号已被禁用',
+    1038: '下级会员不存',
+    1039: '流水倍数超过限制',
+    1040: '代存金额超出单次限制',
+    1041: '代存金额超出单日限制'
   },
 
   // 条款协议等内容

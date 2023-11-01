@@ -699,6 +699,8 @@ export default {
   mustBeNumber: '{ tmp }必须是数字',
   inputAccountStart: '输入会员账号开始搜索',
   weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
+  releaseStatus: '发放状态',
+  releaseStatusTrans: { 0: '未发放', 1: '已发放', 2: '有结余' },
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",
@@ -829,7 +831,12 @@ export default {
     1101: 'Solde disponible insuffisant',
     1032: 'Pour assurer la sécurité de vos fonds, après avoir changé votre mot de passe, vous ne pourrez pas effectuer de retraits pendant 24 heures.',
     1033: 'Le code de vérification par e-mail est incorrect',
-    1035: 'Jeu en maintenance'
+    1035: 'Jeu en maintenance',
+    1037: '您的账号已被禁用',
+    1038: '下级会员不存',
+    1039: '流水倍数超过限制',
+    1040: '代存金额超出单次限制',
+    1041: '代存金额超出单日限制'
   },
 
   html: {
