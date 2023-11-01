@@ -834,7 +834,8 @@ export default {
     1038: '下级会员不存',
     1039: '流水倍数超过限制',
     1040: '代存金额超出单次限制',
-    1041: '代存金额超出单日限制'
+    1041: '代存金额超出单日限制',
+    1042: 'A sua função de retirada está temporariamente desativada.'
   },
 
   html: {
