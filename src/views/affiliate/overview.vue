@@ -70,6 +70,7 @@ const copyDom = ref<HTMLElement | null>(null)
 
 onMounted(() => {
   nextTick(() => {
+    //@ts-ignore
     copy(copyDom.value)
   })
 })

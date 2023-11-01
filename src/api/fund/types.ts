@@ -133,7 +133,7 @@ export interface getHistoryRecordData {
   EndTime: string
   PageIndex: number | string
   PageSize: number | string
-  KeyWord: string
+  KeyWord?: string
 }
 
 export interface getHistoryRecordItems {
