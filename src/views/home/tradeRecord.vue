@@ -269,7 +269,8 @@ const detailsData = reactive<getHistoryRecordDetails>({
   orderId: '',
   txId: '',
   toAddress: '',
-  blockchainCode: ''
+  blockchainCode: '',
+  remark: ''
 })
 const defaultDetailsData = cloneDeep(detailsData)
 

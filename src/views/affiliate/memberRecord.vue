@@ -125,6 +125,10 @@
               {{ t('finalBalance') }}:
               <span>{{ moneyFormat(detailsData.afterBalance) }}&nbsp;{{ detailsData.currencyCode }}</span>
             </dd>
+            <dd v-if="detailsData.remark && detailsData.remark != ''">
+              {{ t('remark') }}:
+              <span>{{ detailsData.remark }}</span>
+            </dd>
           </dl>
           <template v-if="detailsData.txId && detailsData.txId != ''">
             <div class="txid-cont">
@@ -209,6 +213,7 @@ const query = reactive({
   EndTime: dayjs(defaultDate[1]).format('YYYY-MM-DD'),
   PageIndex: 1,
   PageSize: 10,
+  IsAgent: true,
   KeyWord: '',
   noLoading: false
 })
@@ -275,7 +280,8 @@ const detailsData = reactive<getHistoryRecordDetails>({
   orderId: '',
   txId: '',
   toAddress: '',
-  blockchainCode: ''
+  blockchainCode: '',
+  remark: ''
 })
 const defaultDetailsData = cloneDeep(detailsData)
 
