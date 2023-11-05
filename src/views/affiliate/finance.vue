@@ -27,7 +27,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a>{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'depositDetails' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -45,7 +45,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a>{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'withdrawDetails' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -61,7 +61,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a>{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'rewardDetails' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -90,7 +90,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a>{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'totalWinLose' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -106,7 +106,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a>{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'ctfee' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -151,6 +151,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 
 import { getFinanceDataApi } from '@/api/affiliate'
 import { getFinanceDataRespItem, getFinanceDataResp } from '@/api/affiliate/types'
@@ -160,6 +161,7 @@ import CommonHeader from '@/components/layout/CommonHeader.vue'
 import { Calendar } from 'vant'
 import dayjs from 'dayjs'
 
+const router = useRouter()
 const { t } = useI18n()
 
 const showDatePicker = ref(false)

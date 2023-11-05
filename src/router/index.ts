@@ -258,9 +258,20 @@ const routes = [
       },
       {
         path: 'finance',
-        name: 'finance',
-        component: () => import('@/views/affiliate/finance.vue'),
-        meta: { needLogin: true, keepAlive: false }
+        children: [
+          {
+            path: '',
+            name: 'finance',
+            component: () => import('@/views/affiliate/finance.vue'),
+            meta: { needLogin: true, keepAlive: false },
+          },
+          {
+            path: 'financeDetails',
+            name: 'financeDetails',
+            component: () => import('@/views/affiliate/financeDetails.vue'),
+            meta: { needLogin: true, keepAlive: false }
+          }
+        ]
       }
     ]
   },

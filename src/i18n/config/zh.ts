@@ -682,7 +682,7 @@ export default {
   laskWeek: '上周',
   currentMonth: '本月',
   depositDetails: '存款详情',
-  withdrawDetails: '存款详情',
+  withdrawDetails: '提款详情',
   rewardDetails: '奖励详情',
   winLoseTip: '提示：总输赢、净输赢中正数表示公司盈利，负数表示公司亏损，每天数据只做普通参考，并不做实际佣金派发标准。',
   recommendLink: '推荐链接',
