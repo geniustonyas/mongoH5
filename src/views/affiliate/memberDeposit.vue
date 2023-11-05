@@ -49,7 +49,6 @@
                       <b>1.00 ≤</b>
                       {{ t('singleAgentDepositAmount') }}
                       <b>≤ 50,000.00</b>
-                      ,{{ t('agentDepositDayLimit') }}<b>10,000,000.00</b>
                     </p>
                   </div>
                   <div class="cf-row">
@@ -75,7 +74,10 @@
                         <span>{{ t('remark') }}</span>
                       </div>
                       <div class="cr-input">
-                        <input v-model="depositForm.remark" type="text" class="form-control" :placeholder="t('inputRemark')" autocomplete="off" />
+                        <!-- <input v-model="" type="text" class="form-control" :placeholder="t('inputRemark')" autocomplete="off" /> -->
+                        <select v-model="depositForm.remark" class="form-control">
+                          <option v-for="(item, index) of remarkOptions" :key="index" :value="item.value">{{ item.text }}</option>
+                        </select>
                         <div id="remarkTip" class="tip" />
                       </div>
                     </div>
@@ -135,7 +137,7 @@
                         <div class="l-bd">
                           <div class="d-a">
                             <div class="da-l">
-                              <span>{{ item.name }}</span>
+                              <span>{{ item.payeeName }}</span>
                               <!-- -<b>白银</b> -->
                             </div>
                             <div class="da-r">{{ item.id }}</div>
@@ -151,6 +153,7 @@
                               <span v-else class="txt-red">{{ t('agentDepositStatus.0') }}</span>
                             </div>
                           </div>
+                          <div class="d-e">{{ t('remark') }}: {{ t('remarkContent.' + item.remark) }}</div>
                         </div>
                       </li>
                     </List>
@@ -192,7 +195,7 @@ import { memberDepositData, getDepositRecordData, getDepositRecordRespItem } fro
 import { moneyFormat } from '@/utils/index'
 import { isUname, isPwd } from '@/utils/validate'
 
-import { ConfigProvider, DropdownMenu, DropdownItem, Calendar, PullRefresh, List } from 'vant'
+import { ConfigProvider, DropdownMenu, DropdownItem, Calendar, PullRefresh, List, showToast } from 'vant'
 import dayjs from 'dayjs'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
@@ -203,6 +206,12 @@ const { t } = useI18n()
 const tab = ref('deposit')
 const showAmount = ref(false)
 
+const remarkOptions = [
+  { text: t('selRemark'), value: '' },
+  { text: t('remarkContent.1'), value: '1' },
+  { text: t('remarkContent.2'), value: '2' },
+  { text: t('remarkContent.3'), value: '3' }
+]
 const status = ref(-1)
 const options = computed(() => {
   return [
@@ -433,6 +442,7 @@ const memberDeposit = async () => {
       console.log(resp)
       Object.assign(depositForm, defaultDepositForm)
       btnLoading.value = false
+      showToast(t('agentDepositSuccess'))
     })
     .catch((error: any) => {
       console.log(error)

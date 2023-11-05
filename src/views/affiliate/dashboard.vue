@@ -42,8 +42,8 @@
               </li>
               <li>
                 <div class="l-bd">
-                  <span>{{ t('winLoseMonth') }}</span>
-                  <b>{{ dashboardData.commission.netWinlose }}</b>
+                  <span>{{ t('commissionRate') }}</span>
+                  <b>{{ dashboardData.commission.rate }}</b>
                 </div>
               </li>
             </ul>

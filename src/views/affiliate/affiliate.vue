@@ -52,15 +52,15 @@
                   <i class="iconfont icon-right" />
                 </a>
               </li>
-              <li :class="{ active: route.name == 'commission' }">
-                <a @click="router.push({ name: 'commission' })">
-                  <span><i class="iconfont icon-yongjin1" />{{ t('commissionReport') }}</span>
-                  <i class="iconfont icon-right" />
-                </a>
-              </li>
               <li :class="{ active: route.name == 'finance' }">
                 <a @click="router.push({ name: 'finance' })">
                   <span><i class="iconfont icon-caiwu" />{{ t('financeReport') }}</span>
+                  <i class="iconfont icon-right" />
+                </a>
+              </li>
+              <li :class="{ active: route.name == 'commission' }">
+                <a @click="router.push({ name: 'commission' })">
+                  <span><i class="iconfont icon-yongjin1" />{{ t('commissionReport') }}</span>
                   <i class="iconfont icon-right" />
                 </a>
               </li>

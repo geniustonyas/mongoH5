@@ -56,8 +56,8 @@
                       <b>{{ moneyFormat(item.withdraw) }}</b>
                     </td>
                     <td>
-                      <b v-if="item.win > 0" class="green">{{ moneyFormat(item.win) }}</b>
-                      <b v-else-if="item.win < 0" class="red">{{ moneyFormat(item.win) }}</b>
+                      <b v-if="item.win > 0" class="txt-green">{{ moneyFormat(item.win) }}</b>
+                      <b v-else-if="item.win < 0" class="txt-red">{{ moneyFormat(item.win) }}</b>
                       <b v-else>{{ moneyFormat(item.win) }}</b>
                     </td>
                     <td>{{ dayjs(item.regTime).format('YYYY-MM-DD') }}</td>

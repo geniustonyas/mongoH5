@@ -696,6 +696,8 @@ export default {
   weeks: { 1: '第一周', 2: '第二周', 3: '第三周', 4: '第四周', 5: '第五周', 6: '第六周', 7: '第七周' },
   releaseStatus: '发放状态',
   releaseStatusTrans: { 0: '未发放', 1: '已发放', 2: '有结余' },
+  selRemark: '选择备注',
+  remarkContent: { 1: '礼金', 2: '返利', 3: '其他' },
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

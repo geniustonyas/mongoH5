@@ -121,7 +121,9 @@ export interface getDepositRecordData {
 // 代存记录返回数据项
 export interface getDepositRecordRespItem {
   id: number
-  name: string
+  payeeId: number
+  payeeName: string
+  payerId: number
   amount: number
   status: number
   remark: string
