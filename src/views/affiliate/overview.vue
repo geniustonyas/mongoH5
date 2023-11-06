@@ -35,12 +35,11 @@
               <div class="s-l">
                 <p>{{ t('recommendLink') }}</p>
                 <div class="s-txt">
-                  <!--<select>
-                    <option>https:www.seabet1.io?ag=11</option>
-                    <option>https:www.seabet2.io?ag=11</option>
-                  </select>-->
-                  <a>{{ recommendUrl }}</a>
-                  <span ref="copyDom" :data-clipboard-text="recommendUrl"><i class="iconfont icon-fuzhi" /></span>
+                  <select v-if="recommendUrls.length > 1" v-model="currentUrl" class="form-control">
+                    <option v-for="(item, index) of recommendUrls" :key="index">{{ item }}</option>
+                  </select>
+                  <a v-else>{{ recommendUrls[0] }}</a>
+                  <span ref="copyDom" :data-clipboard-text="currentUrl"><i class="iconfont icon-fuzhi" /></span>
                 </div>
               </div>
               <div class="s-r">
@@ -65,12 +64,17 @@ import { getAssetsFile, copy } from '@/utils'
 const userStore = useUserStore()
 const { t } = useI18n()
 
-const recommendUrl = window.location.origin + '/#/user/reg?agentId=' + userStore.userInfo.id
 const copyDom = ref<HTMLElement | null>(null)
+const recommendUrls = ref<string[]>([])
+recommendUrls.value = [window.location.origin + '/#/user/reg?agentId=' + userStore.userInfo.id]
 
+if (userStore.userInfo.domain && userStore.userInfo.domain != '') {
+  const tmp = userStore.userInfo.domain.split(',')
+  recommendUrls.value = [...recommendUrls.value, ...tmp]
+}
+const currentUrl = ref<string>(recommendUrls.value[0])
 onMounted(() => {
   nextTick(() => {
-    //@ts-ignore
     copy(copyDom.value)
   })
 })

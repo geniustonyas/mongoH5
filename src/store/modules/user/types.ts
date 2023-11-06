@@ -24,4 +24,5 @@ export interface UserInfoType {
   vip: string
   vipCode: string
   zipCode: string
+  domain: string | null
 }

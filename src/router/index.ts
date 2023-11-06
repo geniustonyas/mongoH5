@@ -263,7 +263,7 @@ const routes = [
             path: '',
             name: 'finance',
             component: () => import('@/views/affiliate/finance.vue'),
-            meta: { needLogin: true, keepAlive: false },
+            meta: { needLogin: true, keepAlive: false }
           },
           {
             path: 'financeDetails',
