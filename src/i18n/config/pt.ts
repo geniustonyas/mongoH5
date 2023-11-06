@@ -712,6 +712,10 @@ export default {
   },
   releaseStatus: 'Estado de Lançamento',
   releaseStatusTrans: { 0: 'Não lançado', 1: 'Lançado', 2: 'Tem saldo' },
+  selRemark: '选择备注',
+  remarkContent: { 1: 'Recompensas de Boas-Vindas', 2: 'Bônus de Retorno', 3: 'Recompensas de Sorte', 4: 'Bônus de Boa Sorte', 5: 'Recompensas de Lealdade' },
+  finishCaptcha: '请完成人机验证',
+  captchaVerifyFail: '人机验证失败, 请重新认证',
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',

@@ -706,6 +706,10 @@ export default {
   weeks: { 1: 'Woche 1', 2: 'Woche 2', 3: 'Woche 3', 4: 'Woche 4', 5: 'Woche 5', 6: 'Woche 6', 7: 'Woche 7' },
   releaseStatus: 'Freigabestatus',
   releaseStatusTrans: { 0: 'Nicht freigegeben', 1: 'Freigegeben', 2: 'Hat Guthaben' },
+  selRemark: '选择备注',
+  remarkContent: { 1: 'Willkommensbelohnungen', 2: 'Rückkehrboni', 3: 'Glücksbelohnungen', 4: 'Glücksbonus', 5: 'Treuebelohnungen' },
+  finishCaptcha: '请完成人机验证',
+  captchaVerifyFail: '人机验证失败, 请重新认证',
 
   problem: {
     whatVip: '1.Was ist der VIP-Club?',

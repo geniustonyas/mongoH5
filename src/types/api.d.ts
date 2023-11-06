@@ -16,3 +16,5 @@ interface anyResp {
 interface dynamicObject {
   [idx: string]: any
 }
+
+declare function initNECaptchaWithFallback(param1: any, param2: any, param3: any): any

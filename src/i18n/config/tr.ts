@@ -699,6 +699,10 @@ export default {
   weeks: { 1: 'Hafta 1', 2: 'Hafta 2', 3: 'Hafta 3', 4: 'Hafta 4', 5: 'Hafta 5', 6: 'Hafta 6', 7: 'Hafta 7' },
   releaseStatus: 'Yayın Durumu',
   releaseStatusTrans: { 0: 'Yayınlanmadı', 1: 'Yayınlandı', 2: 'Bakiyesi Var' },
+  selRemark: '选择备注',
+  remarkContent: { 1: 'Hoş Geldin Ödülleri', 2: 'Dönüş Bonusları', 3: 'Şanslı Ödülleri', 4: 'İyi Şans Bonusu', 5: 'Sadakat Ödülleri' },
+  finishCaptcha: '请完成人机验证',
+  captchaVerifyFail: '人机验证失败, 请重新认证',
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',

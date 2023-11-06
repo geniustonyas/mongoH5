@@ -702,6 +702,10 @@ export default {
   weeks: { 1: '第1週', 2: '第2週', 3: '第3週', 4: '第4週', 5: '第5週', 6: '第6週', 7: '第7週' },
   releaseStatus: 'リリース状況',
   releaseStatusTrans: { 0: '未リリース', 1: 'リリース済み', 2: '残高あり' },
+  selRemark: '选择备注',
+  remarkContent: { 1: 'ウェルカムリワード', 2: 'リターンボーナス', 3: 'ラッキーリワード', 4: 'グッドラックボーナス', 5: 'ロイヤルティリワード ' },
+  finishCaptcha: '请完成人机验证',
+  captchaVerifyFail: '人机验证失败, 请重新认证',
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',

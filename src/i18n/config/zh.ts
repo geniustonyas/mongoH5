@@ -697,7 +697,9 @@ export default {
   releaseStatus: '发放状态',
   releaseStatusTrans: { 0: '未发放', 1: '已发放', 2: '有结余' },
   selRemark: '选择备注',
-  remarkContent: { 1: '礼金', 2: '返利', 3: '其他' },
+  remarkContent: { 1: '迎新奖励', 2: '回归奖金', 3: '幸运奖励', 4: '转运奖金', 5: '忠诚度奖励' },
+  finishCaptcha: '请完成人机验证',
+  captchaVerifyFail: '人机验证失败, 请重新认证',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

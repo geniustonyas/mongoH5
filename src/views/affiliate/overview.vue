@@ -43,7 +43,7 @@
                 </div>
               </div>
               <div class="s-r">
-                <a class="btn btn-primary">{{ t('downloadBanner') }}<i class="iconfont icon-share" /></a>
+                <a class="btn btn-primary" href="https://www.dropbox.com/" target="_blank">{{ t('downloadBanner') }}<i class="iconfont icon-share" /></a>
               </div>
             </div>
           </div>
