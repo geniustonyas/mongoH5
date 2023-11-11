@@ -43,7 +43,7 @@
               <li>
                 <div class="l-bd">
                   <span>{{ t('commissionRate') }}</span>
-                  <b>{{ dashboardData.commission.rate }}</b>
+                  <b>{{ dashboardData.commission.rate * 100 }} % </b>
                 </div>
               </li>
             </ul>

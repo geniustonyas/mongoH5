@@ -566,7 +566,7 @@ export default {
   level: '级别',
   monthActivePlayer: '当月活跃玩家',
   commissionRate: '佣金比例',
-  activePlayerDesc: '活跃玩家：当月存款数≥100USDT 或当月投注额≥500USDT',
+  activePlayerDesc: '活跃玩家：当月存款数≥100USDT 或当月投注额≥500USDT（或其他等值虚拟货币）',
   retentionTitle: '问与答',
   retentionSubTitle: '有疑问？来，看这里',
   generalInfo: '一般信息',
@@ -700,6 +700,8 @@ export default {
   remarkContent: { 1: '迎新奖励', 2: '回归奖金', 3: '幸运奖励', 4: '转运奖金', 5: '忠诚度奖励' },
   finishCaptcha: '请完成人机验证',
   captchaVerifyFail: '人机验证失败, 请重新认证',
+  sendNow: '立即发送',
+  mailUs: '有关更多详细信息，请联系我们',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

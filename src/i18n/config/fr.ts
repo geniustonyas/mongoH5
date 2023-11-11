@@ -698,10 +698,12 @@ export default {
   weeks: { 1: 'Semaine 1', 2: 'Semaine 2', 3: 'Semaine 3', 4: 'Semaine 4', 5: 'Semaine 5', 6: 'Semaine 6', 7: 'Semaine 7' },
   releaseStatus: 'Statut de Libération',
   releaseStatusTrans: { 0: 'Non Libéré', 1: 'Libéré', 2: 'A un Solde' },
-  selRemark: '选择备注',
-  remarkContent: { 1: 'Récompenses de Bienvenue', 2: 'Bonus de Retour', 3: 'Récompenses de Chance', 4: 'Bonus de Bonne Chance', 5: '忠诚度奖励' },
-  finishCaptcha: '请完成人机验证',
-  captchaVerifyFail: '人机验证失败, 请重新认证',
+  selRemark: 'Sélectionner une remarque',
+  remarkContent: { 1: 'Récompenses de Bienvenue', 2: 'Bonus de Retour', 3: 'Récompenses de Chance', 4: 'Bonus de Bonne Chance', 5: 'Récompenses de Fidélité' },
+  finishCaptcha: 'Veuillez terminer la vérification humaine.',
+  captchaVerifyFail: 'La vérification humaine a échoué, veuillez réessayer.',
+  sendNow: 'Envoyer Maintenant',
+  mailUs: 'pour plus de détails, veuillezcontactez-nous:',
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",

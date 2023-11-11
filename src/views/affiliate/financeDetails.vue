@@ -1,10 +1,10 @@
 ﻿<template>
   <div class="page">
-    <CommonHeader :title="t(route.query.title)" />
+    <CommonHeader :title="t(route.query.title!.toString())" />
     <main class="main">
       <div class="agent-report-box">
         <div class="ar-a">
-          <div class="a-col">
+          <!-- <div class="a-col">
             <ConfigProvider theme="dark" class="agent-sel">
               <DropdownMenu direction="down">
                 <DropdownItem v-model="query.bet" ref="categoryDom" :options="isBetOption" />
@@ -16,7 +16,7 @@
           </div>
           <div class="a-col">
             <input readonly class="form-control" :value="query.start != '' ? query.start + ' - ' + query.end : ''" :placeholder="t('statTime')" @focus="showStatDatePicker = true" />
-          </div>
+          </div> -->
           <div class="a-col col-2"><input v-model="query.name" class="form-control" :placeholder="t('memberAccount')" /></div>
           <div class="a-col">
             <a class="btn btn-primary" @click="filterGetMemberInfo">{{ t('filter') }}</a>
@@ -40,32 +40,32 @@
                   <tr>
                     <th>{{ t('memberAccount') }}</th>
                     <th>{{ t('level') }}</th>
-                    <th>{{ t('deposit') }}</th>
-                    <th>{{ t('withdraw') }}</th>
-                    <th>{{ t('rewards') }}</th>
-                    <th>{{ t('totalWinLose') }}</th>
-                    <th>{{ t('ctfee') }}</th>
+                    <th v-if="route.query.title == 'depositDetails'">{{ t('deposit') }}</th>
+                    <th v-if="route.query.title == 'withdrawDetails'">{{ t('withdraw') }}</th>
+                    <th v-if="route.query.title == 'rewardDetails'">{{ t('rewards') }}</th>
+                    <th v-if="route.query.title == 'totalWinLose'">{{ t('totalWinLose') }}</th>
+                    <th v-if="route.query.title == 'ctfee'">{{ t('ctfee') }}</th>
                     <th>{{ t('regTime') }}</th>
                     <th>{{ t('lastLoginTime') }}</th>
                   </tr>
                   <tr v-for="(item, index) of dataList" class="rl-item" :key="index">
                     <td>{{ item.name }}</td>
                     <td>{{ item.vip ? t('userLevels.' + item.vip) : t('userLevels.101') }}</td>
-                    <td>
+                    <td v-if="route.query.title == 'depositDetails'">
                       <b>{{ moneyFormat(item.deposit) }}</b>
                     </td>
-                    <td>
+                    <td v-if="route.query.title == 'withdrawDetails'">
                       <b>{{ moneyFormat(item.withdraw) }}</b>
                     </td>
-                    <td>
+                    <td v-if="route.query.title == 'rewardDetails'">
                       <b>{{ moneyFormat(item.reward) }}</b>
                     </td>
-                    <td>
+                    <td v-if="route.query.title == 'totalWinLose'">
                       <b v-if="item.win > 0" class="txt-green">{{ moneyFormat(item.win) }}</b>
                       <b v-else-if="item.win < 0" class="txt-red">{{ moneyFormat(item.win) }}</b>
                       <b v-else>{{ moneyFormat(item.win) }}</b>
                     </td>
-                    <td>
+                    <td v-if="route.query.title == 'ctfee'">
                       <b>{{ moneyFormat(item.fee) }}</b>
                     </td>
                     <td>{{ dayjs(item.regTime).format('YYYY-MM-DD') }}</td>
@@ -125,16 +125,16 @@ import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Nodata from '@/components/Nodata.vue'
 
 import dayjs from 'dayjs'
-import { DropdownMenu, DropdownItem, ConfigProvider, Calendar, PullRefresh, List } from 'vant'
+import { ConfigProvider, Calendar, PullRefresh, List } from 'vant'
 
 const route = useRoute()
 const { t } = useI18n()
 
-const isBetOption = ref([
-  { text: t('isBet'), value: -1 },
-  { text: t('no'), value: 0 },
-  { text: t('yes'), value: 1 }
-])
+// const isBetOption = ref([
+//   { text: t('isBet'), value: -1 },
+//   { text: t('no'), value: 0 },
+//   { text: t('yes'), value: 1 }
+// ])
 
 // 默认日期
 let defaultDate = [dayjs().startOf('month').toDate(), dayjs().add(1, 'day').toDate()]
@@ -173,6 +173,9 @@ const query = reactive({
   page: 1,
   pcount: 20
 })
+
+query.startreg = route.query.start?.toString() || ''
+query.endreg = route.query.end?.toString() || ''
 
 // 列表刷新下拉等参数
 let listLoading = ref(false)

@@ -59,6 +59,10 @@
             </div>
           </div>
           <div class="cf-row">
+            <div id="captcha" />
+            <div id="captEl" class="tip" />
+          </div>
+          <div class="cf-row">
             <div class="cr-btns">
               <a class="btn btn-primary full" @click="handleReg()"><i v-show="btnLoading" class="iconfont icon-loading" />{{ t('createUser') }}</a>
             </div>
@@ -250,8 +254,9 @@ const handleReg = async () => {
   const captchaEl = document.getElementById('captchaTip')
   const privacyEl = document.getElementById('privacyTip')
   const agreeEl = document.getElementById('agreeTip')
+  const captEl = document.getElementById('captEl')
 
-  userEl!.innerHTML = ''
+  userEl!.innerHTML = ''  
   if (regForm.UserName == '') {
     errorMsg.value = t('tips.inputAccount')
     userEl!.innerHTML = errorMsg.value
@@ -321,12 +326,16 @@ const handleReg = async () => {
 
   if (appStore.robotCheck) {
     if (regForm.Token == '') {
-      reRobotCheck()
+      captEl!.innerHTML = t('finishCaptcha')
       btnLoading.value = false
       return false
     } else {
       errorMsg.value = ''
+      captEl!.innerHTML = ''
     }
+  } else {
+    errorMsg.value = ''
+    captEl!.innerHTML = ''
   }
 
   Object.assign(regForm, appStore.thirdData)
@@ -334,7 +343,9 @@ const handleReg = async () => {
   const regResult = await awaitWraper(thirdRegApi(regForm))
   if (regResult[0]) {
     if (regResult[0].code && regResult[0].code == '1036') {
-      reRobotCheck()
+      if (captchaIns) {
+        captchaIns.refresh()
+      }
     } else {
       showToast(t('tips.regFail'))
     }
@@ -357,6 +368,44 @@ const handleReg = async () => {
         btnLoading.value = false
         return false
       })
+  }
+}
+
+let captchaIns: any = null
+const reRobotCheck = () => {
+  if (appStore.robotCheck) {
+    let lang = ''
+    if (locale.value == 'zh') {
+      lang = 'zh-CN'
+    } else if (locale.value == 'en') {
+      lang = 'en-US'
+    } else {
+      lang = locale.value
+    }
+    nextTick(() => {
+      //@ts-ignore
+      initNECaptcha(
+        {
+          element: '#captcha',
+          captchaId: '03259a03bc094208a087fadc9afedc05',
+          width: '320px',
+          mode: 'float',
+          apiVersion: 2,
+          lang: lang,
+          onVerify: function (err: any, data: { validate: string }) {
+            if (err) return // 当验证失败时，内部会自动refresh方法，无需手动再调用一次
+            // 若成功拿到 validate，可向后端发送请求
+            regForm.Token = data.validate
+          }
+        },
+        function onload(instance: any) {
+          captchaIns = instance
+        },
+        function onerror(err: any) {
+          console.warn(err)
+        }
+      )
+    })
   }
 }
 
@@ -392,55 +441,16 @@ onMounted(() => {
     }, 1000)
   }
 
-  reRobotCheck()
+  appStore.getConfig().then(() => {
+    reRobotCheck()
+  })
 })
 
 onBeforeUnmount(() => {
-  if (appStore.widgetId) {
-    //@ts-ignore
-    window.turnstile.remove(appStore.widgetId)
+  if (captchaIns) {
+    captchaIns.refresh()
   }
 })
-
-const reRobotCheck = () => {
-  // 如果开启了人机验证
-  if (appStore.robotCheck) {
-    //@ts-ignore
-    if (window.turnstile === null || !window.turnstile) {
-      const script = document.createElement('script')
-      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback'
-      script.async = true
-      script.defer = true
-      document.head.appendChild(script)
-      //@ts-ignore
-      window.onloadTurnstileCallback = () => {
-        //@ts-ignore
-        appStore.widgetId = window?.turnstile?.render('#turnstile-box', {
-          sitekey: '0x4AAAAAAAMV9yl4RvTQfcIH',
-          callback: (response: string) => verify(response),
-          language: locale.value
-        })
-      }
-    } else {
-      nextTick(() => {
-        if (appStore.widgetId) {
-          //@ts-ignore
-          window.turnstile.remove(appStore.widgetId)
-        }
-        //@ts-ignore
-        appStore.widgetId = window?.turnstile?.render('#turnstile-box', {
-          sitekey: '0x4AAAAAAAMV9yl4RvTQfcIH',
-          callback: (response: string) => verify(response),
-          language: locale.value
-        })
-      })
-    }
-  }
-}
-
-const verify = (token: string) => {
-  regForm.Token = token
-}
 </script>
 <style lang="less">
 .st0 {

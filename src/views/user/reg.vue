@@ -465,7 +465,6 @@ const reRobotCheck = () => {
       lang = locale.value
     }
     nextTick(() => {
-      console.log('123')
       //@ts-ignore
       initNECaptcha(
         {
@@ -489,8 +488,6 @@ const reRobotCheck = () => {
         }
       )
     })
-  } else {
-    console.log('222')
   }
 }
 
@@ -510,7 +507,9 @@ onMounted(() => {
     }, 1000)
   }
 
-  reRobotCheck()
+  appStore.getConfig().then(() => {
+    reRobotCheck()
+  })
 })
 
 onBeforeUnmount(() => {

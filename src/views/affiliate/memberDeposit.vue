@@ -76,7 +76,7 @@
                       <div class="cr-input">
                         <!-- <input v-model="" type="text" class="form-control" :placeholder="t('inputRemark')" autocomplete="off" /> -->
                         <select v-model="depositForm.remark" class="form-control">
-                          <option v-for="(item, index) of remarkOptions" :key="index" :value="item.value">{{ item.text }}</option>
+                          <option v-for="(item, index) of remarkOptions" :key="index" :value="item.text">{{ item.text }}</option>
                         </select>
                         <div id="remarkTip" class="tip" />
                       </div>
@@ -153,7 +153,7 @@
                               <span v-else class="txt-red">{{ t('agentDepositStatus.0') }}</span>
                             </div>
                           </div>
-                          <div class="d-e">{{ t('remark') }}: {{ t('remarkContent.' + item.remark) }}</div>
+                          <div class="d-e">{{ t('remark') }}: {{ item.remark }}</div>
                         </div>
                       </li>
                     </List>
@@ -210,7 +210,9 @@ const remarkOptions = [
   { text: t('selRemark'), value: '' },
   { text: t('remarkContent.1'), value: '1' },
   { text: t('remarkContent.2'), value: '2' },
-  { text: t('remarkContent.3'), value: '3' }
+  { text: t('remarkContent.3'), value: '3' },
+  { text: t('remarkContent.4'), value: '4' },
+  { text: t('remarkContent.5'), value: '5' }
 ]
 const status = ref(-1)
 const options = computed(() => {

@@ -3,12 +3,18 @@
     <CommonHeader :title="t('overview')" />
     <main class="main">
       <div class="agent-overview">
-        <div class="banner">
+        <!-- <div class="banner">
           <img src="http://d1uck6akni5eri.cloudfront.net/d1d707cbb8f14f28b323ccc6d410f216.jpg" />
-        </div>
+        </div> -->
         <div class="ao-row">
           <div class="r-title">SEABET.IO</div>
-          <div class="r-cont">{{ t('overviewDesc') }}</div>
+          <div class="r-cont">{{ t('overviewDesc') }}
+            <div class="sub-cont">有关更新详细信息，请联系我们</div>
+            <div class="contact">
+              <span class="ac-l">affiliate@seabet.io</span>
+              <a href="mailto:xxx@xx.com" class="ac-r">立即发送<i class="iconfont icon-email_full" /></a>
+            </div>
+          </div>
         </div>
         <div class="ao-row">
           <div class="r-title">{{ t('bePartner') }}</div>
@@ -43,7 +49,7 @@
                 </div>
               </div>
               <div class="s-r">
-                <a class="btn btn-primary" href="https://www.dropbox.com/" target="_blank">{{ t('downloadBanner') }}<i class="iconfont icon-share" /></a>
+                <a class="btn btn-primary" href="https://www.dropbox.com/scl/fo/pb09zvjl36685keabpqxa/h?rlkey=e39s9cqg8hdocgt4ypymq99dk&dl=0" target="_blank">{{ t('downloadBanner') }}<i class="iconfont icon-share" /></a>
               </div>
             </div>
           </div>
@@ -66,7 +72,7 @@ const { t } = useI18n()
 
 const copyDom = ref<HTMLElement | null>(null)
 const recommendUrls = ref<string[]>([])
-recommendUrls.value = [window.location.origin + '/#/user/reg?agentId=' + userStore.userInfo.id]
+recommendUrls.value = ['https://www.seabet.io/#/user/reg?agentId=' + userStore.userInfo.id]
 
 if (userStore.userInfo.domain && userStore.userInfo.domain != '') {
   const tmp = userStore.userInfo.domain.split(',')
@@ -75,6 +81,7 @@ if (userStore.userInfo.domain && userStore.userInfo.domain != '') {
 const currentUrl = ref<string>(recommendUrls.value[0])
 onMounted(() => {
   nextTick(() => {
+    //@ts-ignore
     copy(copyDom.value)
   })
 })

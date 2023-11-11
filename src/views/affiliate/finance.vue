@@ -27,7 +27,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'depositDetails' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'depositDetails', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -45,7 +45,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'withdrawDetails' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'withdrawDetails', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -61,7 +61,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'rewardDetails' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'rewardDetails', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -90,7 +90,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'totalWinLose' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'totalWinLose', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -106,7 +106,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'ctfee' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'ctfee', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>

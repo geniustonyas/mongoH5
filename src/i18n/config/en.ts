@@ -702,10 +702,12 @@ export default {
   weeks: { 1: 'Week 1', 2: 'Week 2', 3: 'Week 3', 4: 'Week 4', 5: 'Week 5', 6: 'Week 6', 7: 'Week 7' },
   releaseStatus: 'Release Status',
   releaseStatusTrans: { 0: 'Not Released', 1: 'Released', 2: 'Has Balance' },
-  selRemark: '选择备注',
+  selRemark: 'Select Remark',
   remarkContent: { 1: 'Welcome Rewards', 2: 'Return Bonuses', 3: 'Lucky Rewards', 4: 'Good Luck Bonus', 5: 'Loyalty Rewards' },
-  finishCaptcha: '请完成人机验证',
-  captchaVerifyFail: '人机验证失败, 请重新认证',
+  finishCaptcha: 'Please complete the human verification.',
+  captchaVerifyFail: 'Human verification failed, please reverify.',
+  sendNow: 'Send Now',
+  mailUs: 'for more details, pleasecontact us:',
 
   problem: {
     whatVip: '1. What is the VIP Club?',

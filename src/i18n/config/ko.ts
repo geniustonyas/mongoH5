@@ -700,10 +700,12 @@ export default {
   weeks: { 1: '1주', 2: '2주', 3: '3주', 4: '4주', 5: '5주', 6: '6주', 7: '7주' },
   releaseStatus: '발표 상태',
   releaseStatusTrans: { 0: '발표 안 됨', 1: '발표됨', 2: '잔고 있음' },
-  selRemark: '选择备注',
+  selRemark: '비고 선택',
   remarkContent: { 1: '환영 보상', 2: '리턴 보너스', 3: '행운의 보상', 4: '행운 보너스', 5: '충성 보상' },
-  finishCaptcha: '请完成人机验证',
-  captchaVerifyFail: '人机验证失败, 请重新认证',
+  finishCaptcha: '인간 확인을 완료하세요.',
+  captchaVerifyFail: '인간 확인 실패, 다시 확인해주세요.',
+  sendNow: '지금 전송',
+  mailUs: '자세히 알려주세요!고객센터:',
 
   problem: {
     whatVip: '1.VIP 클럽이란 무엇인가요?',

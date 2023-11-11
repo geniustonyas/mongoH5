@@ -707,10 +707,12 @@ export default {
   weeks: { 1: 'Tuần 1', 2: 'Tuần 2', 3: 'Tuần 3', 4: 'Tuần 4', 5: 'Tuần 5', 6: 'Tuần 6', 7: 'Tuần 7' },
   releaseStatus: 'Trạng thái phát hành',
   releaseStatusTrans: { 0: 'Chưa phát hành', 1: 'Đã phát hành', 2: 'Còn dư' },
-  selRemark: '选择备注',
+  selRemark: 'Chọn Ghi chú',
   remarkContent: { 1: 'Phần Thưởng Chào Mừng', 2: 'Tiền Thưởng Trở Lại', 3: 'Phần Thưởng May Mắn', 4: 'Tiền Thưởng Tốt May Mắn', 5: 'Phần Thưởng Lòng Trung Thành' },
-  finishCaptcha: '请完成人机验证',
-  captchaVerifyFail: '人机验证失败, 请重新认证',
+  finishCaptcha: 'Vui lòng hoàn thành xác minh con người.',
+  captchaVerifyFail: 'Xác minh con người thất bại, vui lòng thử lại.',
+  sendNow: 'Gửi Ngay',
+  mailUs: 'để biết thêm chi tiết, xin vui lòngliên hệ chúng tôi:',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

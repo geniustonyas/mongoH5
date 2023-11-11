@@ -12,67 +12,67 @@
               <ul class="faq-box faq-page">
                 <li>
                   <div class="l-title" @click="showQuestion1 = !showQuestion1">
-                    <span>{{ t('commissionQ1') }}</span>
+                    <span>{{ t('retentionQ1') }}</span>
                     <i class="iconfont icon-down" />
                   </div>
                   <Vue3SlideUpDown v-model="showQuestion1">
                     <div class="l-cont">
-                      <p>{{ t('commissionA1') }}</p>
+                      <p>{{ t('retentionA1') }}</p>
                     </div>
                   </Vue3SlideUpDown>
                 </li>
                 <li>
                   <div class="l-title" @click="showQuestion2 = !showQuestion2">
-                    <span>{{ t('commissionQ2') }}</span>
+                    <span>{{ t('retentionQ2') }}</span>
                     <i class="iconfont icon-down" />
                   </div>
                   <Vue3SlideUpDown v-model="showQuestion2">
                     <div class="l-cont">
-                      <p>{{ t('commissionA2') }}</p>
+                      <p>{{ t('retentionA2') }}</p>
                     </div>
                   </Vue3SlideUpDown>
                 </li>
                 <li>
                   <div class="l-title" @click="showQuestion3 = !showQuestion3">
-                    <span>{{ t('commissionQ3') }}?</span>
+                    <span>{{ t('retentionQ3') }}?</span>
                     <i class="iconfont icon-down" />
                   </div>
                   <Vue3SlideUpDown v-model="showQuestion3">
                     <div class="l-cont">
-                      <p>{{ t('commissionA3') }}</p>
+                      <p>{{ t('retentionA3') }}</p>
                     </div>
                   </Vue3SlideUpDown>
                 </li>
                 <li>
                   <div class="l-title" @click="showQuestion4 = !showQuestion4">
-                    <span>{{ t('commissionQ4') }}</span>
+                    <span>{{ t('retentionQ4') }}</span>
                     <i class="iconfont icon-down" />
                   </div>
                   <Vue3SlideUpDown v-model="showQuestion4">
                     <div class="l-cont">
-                      <p>{{ t('commissionA4') }}</p>
+                      <p>{{ t('retentionA4') }}</p>
                     </div>
                   </Vue3SlideUpDown>
                 </li>
                 <li>
                   <div class="l-title" @click="showQuestion5 = !showQuestion5">
-                    <span>{{ t('commissionQ5') }}</span>
+                    <span>{{ t('retentionQ5') }}</span>
                     <i class="iconfont icon-down" />
                   </div>
                   <Vue3SlideUpDown v-model="showQuestion5">
                     <div class="l-cont">
-                      <p>{{ t('commissionA5') }}</p>
+                      <p>{{ t('retentionA5') }}</p>
                     </div>
                   </Vue3SlideUpDown>
                 </li>
                 <li>
                   <div class="l-title" @click="showQuestion6 = !showQuestion6">
-                    <span>S{{ t('commissionQ6') }}</span>
+                    <span>{{ t('retentionQ6') }}</span>
                     <i class="iconfont icon-down" />
                   </div>
                   <Vue3SlideUpDown v-model="showQuestion6">
                     <div class="l-cont">
-                      <p>{{ t('commissionA6') }}</p>
+                      <p>{{ t('retentionA6') }}</p>
                     </div>
                   </Vue3SlideUpDown>
                 </li>
