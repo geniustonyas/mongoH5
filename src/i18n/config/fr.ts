@@ -569,7 +569,7 @@ export default {
   level: 'Niveau',
   monthActivePlayer: 'Joueurs actifs mensuels',
   commissionRate: 'Taux de commission',
-  activePlayerDesc: 'Joueur actif : dépôts mensuels ≥ 100 USDT ou paris mensuels ≥ 500 USDT',
+  activePlayerDesc: `Joueurs Actifs : Dépôts mensuels ≥ 100 USDT ou mises mensuelles ≥ 500 USDT (ou équivalent dans d'autres devises virtuelles)`,
   retentionTitle: 'Questions et réponses',
   retentionSubTitle: 'Des questions ? Consultez ici.',
   generalInfo: 'Informations générales',
@@ -703,7 +703,7 @@ export default {
   finishCaptcha: 'Veuillez terminer la vérification humaine.',
   captchaVerifyFail: 'La vérification humaine a échoué, veuillez réessayer.',
   sendNow: 'Envoyer Maintenant',
-  mailUs: 'pour plus de détails, veuillezcontactez-nous:',
+  mailUs: 'Pour plus de détails, veuillezcontactez-nous:',
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",

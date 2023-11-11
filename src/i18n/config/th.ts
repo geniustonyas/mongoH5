@@ -566,7 +566,7 @@ export default {
   level: 'ระดับ',
   monthActivePlayer: 'ผู้เล่นที่เข้าสู่ระบบรายเดือน',
   commissionRate: 'อัตราคอมมิชั่น',
-  activePlayerDesc: 'ผู้เล่นที่เข้าสู่ระบบ: เงินฝากรายเดือน ≥ 100 USDT หรือเดิมพันรายเดือน ≥ 500 USDT',
+  activePlayerDesc: 'ผู้เล่นที่เป็นที่นิยม: เงินฝากรายเดือน ≥ 100 USDT หรือการเดิมพันรายเดือน ≥ 500 USDT (หรือเทียบเท่ากับสกุลเงินเสมือนอื่น)',
   retentionTitle: 'คำถามและคำตอบ',
   retentionSubTitle: 'มีคำถามหรือไม่? ดูที่นี่',
   generalInfo: 'ข้อมูลทั่วไป',

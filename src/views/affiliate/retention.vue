@@ -94,7 +94,7 @@
                 </li>
                 <li>
                   <div class="l-title" @click="showQuestion8 = !showQuestion8">
-                    <span>{{ t('commissionQ1') }}</span>
+                    <span>{{ t('commissionQ2') }}</span>
                     <i class="iconfont icon-down" />
                   </div>
                   <Vue3SlideUpDown v-model="showQuestion8">

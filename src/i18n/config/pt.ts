@@ -571,7 +571,7 @@ export default {
   level: 'Nível',
   monthActivePlayer: 'Jogadores Ativos no Mês',
   commissionRate: 'Taxa de Comissão',
-  activePlayerDesc: 'Jogadores Ativos: Depósitos no mês ≥100 USDT ou apostas no mês ≥500 USDT',
+  activePlayerDesc: 'Jogadores Ativos: Depósitos mensais ≥ 100 USDT ou apostas mensais ≥ 500 USDT (ou equivalente em outras moedas virtuais)',
   retentionTitle: 'Perguntas Frequentes',
   retentionSubTitle: 'Tem Perguntas? Veja aqui',
   generalInfo: 'Informações Gerais',
@@ -717,7 +717,7 @@ export default {
   finishCaptcha: 'Por favor, complete a verificação humana.',
   captchaVerifyFail: 'Verificação humana falhou, por favor, verifique novamente.',
   sendNow: 'Enviar Agora',
-  mailUs: 'para mais detalhes, por favorcontate-nos:',
+  mailUs: 'Para mais detalhes, por favorcontate-nos:',
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',

@@ -567,7 +567,7 @@ export default {
   level: 'レベル',
   monthActivePlayer: '月間アクティブプレイヤー',
   commissionRate: 'コミッション率',
-  activePlayerDesc: 'アクティブプレイヤー：月間のデポジット≥100 USDTまたは月間のベット≥500 USDT',
+  activePlayerDesc: 'アクティブプレイヤー: 月間の入金額≥100 USDT または月間のベット額≥500 USDT（または他の仮想通貨と同等）',
   retentionTitle: 'Q＆A',
   retentionSubTitle: '質問はありますか？ こちらをご覧ください。',
   generalInfo: '一般情報',

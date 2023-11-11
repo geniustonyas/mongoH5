@@ -568,7 +568,7 @@ export default {
   level: '레벨',
   monthActivePlayer: '월간 활성 플레이어',
   commissionRate: '수수료율',
-  activePlayerDesc: '활성 플레이어: 월간 예금 ≥ 100 USDT 또는 월간 베팅 ≥ 500 USDT',
+  activePlayerDesc: '활성 플레이어: 월별 입금 ≥ 100 USDT 또는 월별 베팅 ≥ 500 USDT (또는 다른 가상 통화로 동일한 금액)',
   retentionTitle: 'Q&A',
   retentionSubTitle: '질문이 있나요? 여기를 참조하세요.',
   generalInfo: '일반 정보',

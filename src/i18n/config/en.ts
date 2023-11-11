@@ -567,7 +567,7 @@ export default {
   level: 'Level',
   monthActivePlayer: 'Monthly Active Players',
   commissionRate: 'Commission Rate',
-  activePlayerDesc: 'Active Player: Monthly deposits ≥ 100 USDT or monthly bets ≥ 500 USDT',
+  activePlayerDesc: 'Active Players: Monthly deposits ≥ 100 USDT or monthly bets ≥ 500 USDT (or equivalent in other virtual currencies)',
   retentionTitle: 'Q&A',
   retentionSubTitle: 'Questions? Look here.',
   generalInfo: 'General Information',
@@ -707,7 +707,7 @@ export default {
   finishCaptcha: 'Please complete the human verification.',
   captchaVerifyFail: 'Human verification failed, please reverify.',
   sendNow: 'Send Now',
-  mailUs: 'for more details, pleasecontact us:',
+  mailUs: 'For more details, pleasecontact us:',
 
   problem: {
     whatVip: '1. What is the VIP Club?',

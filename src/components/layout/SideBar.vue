@@ -117,7 +117,7 @@
               <a @click="routeToGame('promo', null)"><i class="iconfont icon-rewards" />{{ t('promotions') }}</a>
             </li>
             <li>
-              <a @click="showToast(t('comingSoon'))"><i class="iconfont icon-hezuo" />{{ t('affiliate') }}</a>
+              <a @click="router.push({ name: 'affiliate' })"><i class="iconfont icon-hezuo" />{{ t('affiliate') }}</a>
             </li>
           </ul>
         </div>

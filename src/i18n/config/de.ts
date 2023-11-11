@@ -567,7 +567,7 @@ export default {
   level: 'Ebene',
   monthActivePlayer: 'Monatliche aktive Spieler',
   commissionRate: 'Provisionsrate',
-  activePlayerDesc: 'Aktiver Spieler: Monatliche Einzahlungen ≥ 100 USDT oder monatliche Wetten ≥ 500 USDT',
+  activePlayerDesc: 'Aktive Spieler: Monatliche Einzahlungen ≥ 100 USDT oder monatliche Einsätze ≥ 500 USDT (oder Äquivalent in anderen virtuellen Währungen)',
   retentionTitle: 'Fragen und Antworten',
   retentionSubTitle: 'Fragen? Schauen Sie hier nach.',
   generalInfo: 'Allgemeine Informationen',

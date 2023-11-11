@@ -9,10 +9,10 @@
         <div class="ao-row">
           <div class="r-title">SEABET.IO</div>
           <div class="r-cont">{{ t('overviewDesc') }}
-            <div class="sub-cont">有关更新详细信息，请联系我们</div>
+            <div class="sub-cont">{{ t('mailUs') }}</div>
             <div class="contact">
               <span class="ac-l">affiliate@seabet.io</span>
-              <a href="mailto:xxx@xx.com" class="ac-r">立即发送<i class="iconfont icon-email_full" /></a>
+              <a href="mailto:affiliate@seabet.io" class="ac-r">{{ t('sendNow') }}<i class="iconfont icon-email_full" /></a>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="mark">{{ t('activePlayerDesc') }}</div>
 
-            <div class="share">
+            <div v-if="userStore.userInfo.id" class="share">
               <div class="s-l">
                 <p>{{ t('recommendLink') }}</p>
                 <div class="s-txt">
@@ -75,8 +75,9 @@ const recommendUrls = ref<string[]>([])
 recommendUrls.value = ['https://www.seabet.io/#/user/reg?agentId=' + userStore.userInfo.id]
 
 if (userStore.userInfo.domain && userStore.userInfo.domain != '') {
-  const tmp = userStore.userInfo.domain.split(',')
-  recommendUrls.value = [...recommendUrls.value, ...tmp]
+  recommendUrls.value = userStore.userInfo.domain.split(',').map((item: string) => {
+    return 'https://' + item
+  })
 }
 const currentUrl = ref<string>(recommendUrls.value[0])
 onMounted(() => {

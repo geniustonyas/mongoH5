@@ -174,8 +174,8 @@ const query = reactive({
   pcount: 20
 })
 
-query.startreg = route.query.start?.toString() || ''
-query.endreg = route.query.end?.toString() || ''
+query.start = route.query.start?.toString() || ''
+query.end = route.query.end?.toString() || ''
 
 // 列表刷新下拉等参数
 let listLoading = ref(false)

@@ -567,7 +567,7 @@ export default {
   level: 'Seviye',
   monthActivePlayer: 'Aylık Aktif Oyuncu',
   commissionRate: 'Komisyon Oranı',
-  activePlayerDesc: 'Aktif Oyuncular: Aylık depozito ≥100 USDT veya aylık bahis ≥500 USDT',
+  activePlayerDesc: 'Aktif Oyuncular: Aylık depozitolar ≥ 100 USDT veya aylık bahisler ≥ 500 USDT (veya diğer sanal para birimlerinde eşdeğer)',
   retentionTitle: 'Sık Sorulan Sorular',
   retentionSubTitle: 'Sorularınız mı var? İşte cevaplar',
   generalInfo: 'Genel Bilgi',
@@ -704,7 +704,7 @@ export default {
   finishCaptcha: 'Lütfen insan doğrulamasını tamamlayın.',
   captchaVerifyFail: 'İnsan doğrulaması başarısız oldu, lütfen tekrar doğrulayın.',
   sendNow: 'Şimdi Gönder',
-  mailUs: 'daha iyi açıkla lütfenbizimle iletişime geçin:',
+  mailUs: 'Daha iyi açıkla lütfenbizimle iletişime geçin:',
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',

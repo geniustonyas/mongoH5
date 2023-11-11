@@ -570,7 +570,7 @@ export default {
   level: 'Cấp độ',
   monthActivePlayer: 'Người chơi Hoạt động hàng tháng',
   commissionRate: 'Tỷ lệ Hoa hồng',
-  activePlayerDesc: 'Người chơi Hoạt động: Tiền gửi hàng tháng ≥ 100 USDT hoặc cược hàng tháng ≥ 500 USDT',
+  activePlayerDesc: 'Người chơi tích cực: Số tiền gửi hàng tháng ≥ 100 USDT hoặc số tiền cược hàng tháng ≥ 500 USDT (hoặc tương đương trong các loại tiền ảo khác)',
   retentionTitle: 'Q&A',
   retentionSubTitle: 'Câu hỏi? Hãy xem ở đây.',
   generalInfo: 'Thông tin chung',
