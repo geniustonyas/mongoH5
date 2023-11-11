@@ -571,12 +571,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 }
 .line-options { .flex(); .flex-align(); padding: 1rem;
     .o-item {.flex-x(); .h-lh(3rem); text-align: center; }
-    .agent-sel {
-    //     border-color: rgba(255, 255, 255, 0.05);
-    // background-color: rgba(255, 255, 255, 0.05);
-        .van-dropdown-menu__bar { border-color: rgba(255, 255, 255, 0.05); border: 0.1rem solid rgba(255, 255, 255, 0.1); .bg(rgba(255,255,255,.05)); .h-lh(4rem) }
-        .van-dropdown-menu__title { color: gray }
-        .van-dropdown-menu__title--active { color: var(--color-text;) }
+    .agent-sel { //     border-color: rgba(255, 255, 255, 0.05); // background-color: rgba(255, 255, 255, 0.05); .van-dropdown-menu__bar { border-color: rgba(255, 255, 255, 0.05); border: 0.1rem solid rgba(255, 255, 255, 0.1); .bg(rgba(255,255,255,.05)); .h-lh(4rem) } .van-dropdown-menu__title { color: gray } .van-dropdown-menu__title--active { color: var(--color-text; ) }
     }
     .ar-a { padding: 1.6rem 1rem 1.6rem 1.6rem; .flex(); .flex-wrap(wrap);
         .a-col { width: 33.333%; .flex-x( 0 0 33.333%); padding-right: .5rem; padding-bottom: .5rem;
@@ -588,7 +583,6 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             .btn {.radius(.4rem); .h-lh(4rem); width: 100%; }
         }
     }
-
 }
 .record-list { padding: 0 1rem;
     .rl-item { margin-bottom: 1rem; padding: 1rem; .radius(1rem); .bg(var(--color-menu));
@@ -1210,13 +1204,10 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 .s-l {
                     p { font-weight: 600; color: var(--color-white); margin-bottom: .5rem; }
                     .s-txt {.h-lh(4rem); border: 0.1rem solid rgba(255, 255, 255, 0.05); .bg(rgba(255, 255, 255, 0.05)); .flex(); .flex-pack-justify(); .radius(); width: 100%;
-                        select { border: none; font-size: 1.6rem; font-weight: 600; color: var(--color-white); margin-left: 1.6rem; background-color: transparent; 
+                        select { border: none; font-size: 1.6rem; font-weight: 600; color: var(--color-white); margin-left: 1.6rem; background-color: transparent;
                             option { .bgc(var(--color-dark-gray), var(--color-white));
                                 &:checked { .bg(var(--color-primary-txt)); }
-                                &::selection {
-                                    background-color: yellow;
-                                    color: red;
-                                }
+                                &::selection { background-color: yellow; color: red; }
                             }
                         }
                         a { padding: 0 1.6rem; font-size: 1.6rem; font-weight: 600; color: var(--color-white); overflow: hidden; }
@@ -1281,12 +1272,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     .ad-c { .bg(rgba(255,255,255,.03)); min-height: 30rem; }
 }
 .agent-report-box {
-    .agent-sel {
-    //     border-color: rgba(255, 255, 255, 0.05);
-    // background-color: rgba(255, 255, 255, 0.05);
-        .van-dropdown-menu__bar { border-color: rgba(255, 255, 255, 0.05); border: 0.1rem solid rgba(255, 255, 255, 0.1); .bg(rgba(255,255,255,.05)); .h-lh(4rem) }
-        .van-dropdown-menu__title { color: gray }
-        .van-dropdown-menu__title--active { color: var(--color-text;) }
+    .agent-sel { //     border-color: rgba(255, 255, 255, 0.05); // background-color: rgba(255, 255, 255, 0.05); .van-dropdown-menu__bar { border-color: rgba(255, 255, 255, 0.05); border: 0.1rem solid rgba(255, 255, 255, 0.1); .bg(rgba(255,255,255,.05)); .h-lh(4rem) } .van-dropdown-menu__title { color: gray } .van-dropdown-menu__title--active { color: var(--color-text; ) }
     }
     .ar-a { padding: 1.6rem 1rem 1.6rem 1.6rem; .flex(); .flex-wrap(wrap);
         .a-col { width: 33.333%; .flex-x( 0 0 33.333%); padding-right: .5rem; padding-bottom: .5rem;
@@ -1335,7 +1321,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                             b { font-family: dinMedium; color: var(--color-white); margin-bottom: .5rem; }
                         }
                     }
-                    .d-e { .border-t(.1rem,rgba(255,255,255,.05)); padding-top: .5rem; margin-top: .5rem; .wordwrap()  }
+                    .d-e { .border-t(.1rem,rgba(255,255,255,.05)); padding-top: .5rem; margin-top: .5rem; .wordwrap() }
                 }
             }
         }
@@ -1350,7 +1336,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     }
     .ar-e { padding: 0 1.6rem 1.6rem 1.6rem;
         .a-l { margin-right: -.5rem; margin-bottom: .5rem;
-            .btn {.radius(.4rem); .flex-x(); margin-right: .5rem; color: var(--color-white); font-size: 1.3rem; 
+            .btn {.radius(.4rem); .flex-x(); margin-right: .5rem; color: var(--color-white); font-size: 1.3rem;
                 &.active { color: var(--color-primary) }
             }
             .flex(); }
@@ -1397,8 +1383,8 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 
             .l-bd { position: relative; height: 11rem; background: rgba(255,255,255,.05); .radius(.8rem); margin-right: 1rem; margin-bottom: 1rem; overflow: hidden;
                 .ib-txt { position: relative; .size(100%,100%); .flex(); .flex-pack-justify(); .flex-align(); padding: 0 2rem;
-                    .it-l { .flex(); .flex-v(); text-align: left;
-                        span { margin-bottom: 1rem; font-size: 1.3rem; }
+                    .it-l { .flex-x(); .flex(); .flex-v(); text-align: left;
+                        span { margin-bottom: 1rem; font-size: 1.3rem; display: inline-block; .wordwrap(); }
                         b { color: var(--color-white); font-size: 1.6rem; font-weight: 700; font-family: dinMedium }
                     }
                     .it-r { .flex-x(0 0 3.6rem); display: inline-block; width: 3.6rem; height: 3.6rem; line-height: 3.6rem; text-align: center; .radius(.4rem); .bg(rgba(247,204,0,.1)); margin-bottom: 1rem;
@@ -1656,7 +1642,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             }
         }
         .cr-mark { margin-bottom: 1.5rem;
-            &.cm-checkbox { .flex(); 
+            &.cm-checkbox { .flex();
                 input[type='checkbox'] { .flex-x(0 0 1.6rem); .size(1.6rem,1.6rem); vertical-align: middle; margin-right: .5rem; margin-bottom: .1rem; }
                 .desc { .flex-x() }
             }
@@ -1913,6 +1899,17 @@ body[lang='es'], body[lang='vi'] {
         a { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
     }
     .header .head-menu-lmr .hml-m { font-size: 1.3rem; .ellipsis(); }
+    .agent-report-box .ar-e .a-l { overflow-y: auto;
+        .btn { font-size: 1rem; .flex-x(0 0 auto); }
+    }
+    .agent-report-box .ar-a .a-col .form-control {
+        &::-webkit-input-placeholder { font-size: 1.1rem; }
+        &:-moz-placeholder { font-size: 1.1rem; }
+        &::-moz-placeholder { font-size: 1.1rem; }
+        &:-ms-input-placeholder { font-size: 1.1rem; }
+    }
+    .agent-dashboard .ad-a .a-b ul li .l-bd span, .agent-dashboard .ad-h .h-r span { font-size: 1rem; }
+    .agent-dashboard .ad-h .h-l { font-size: 1.3rem; }
 }
 body[lang='pt'] {
     .footer .foot-menu a {.ellipsis(); font-size: .8rem; }
@@ -1956,6 +1953,17 @@ body[lang='vi'], body[lang='fr'], body[lang='ja'], body[lang='es'], body[lang='p
 }
 body[lang='en'], body[lang='pt'], body[lang='tr'], body[lang='th'] {
     .header .head-menu-lmr .hml-m { font-size: 1.4rem; .ellipsis(); }
+    .agent-report-box .ar-e .a-l { overflow-y: auto;
+        .btn { font-size: 1rem; .flex-x(0 0 auto); }
+    }
+    .agent-report-box .ar-a .a-col .form-control {
+        &::-webkit-input-placeholder { font-size: 1.1rem; }
+        &:-moz-placeholder { font-size: 1.1rem; }
+        &::-moz-placeholder { font-size: 1.1rem; }
+        &:-ms-input-placeholder { font-size: 1.1rem; }
+    }
+    .agent-dashboard .ad-a .a-b ul li .l-bd span, .agent-dashboard .ad-h .h-r span { font-size: 1rem; }
+    .agent-dashboard .ad-h .h-l { font-size: 1.3rem; }
 }
 .loop-footmenu(@i: 1) when (@i<6) {
     .foot-menu a:nth-child(@{i}) {
