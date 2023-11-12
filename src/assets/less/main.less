@@ -1926,6 +1926,17 @@ body[lang='de'] {
         span { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
     }
     .header .head-menu-lmr .hml-m { font-size: 1.4rem; .ellipsis(); }
+     .agent-report-box .ar-e .a-l { overflow-y: auto;
+        .btn { font-size: 1rem; .flex-x(0 0 auto); }
+    }
+    .agent-report-box .ar-a .a-col .form-control {
+        &::-webkit-input-placeholder { font-size: 1.1rem; }
+        &:-moz-placeholder { font-size: 1.1rem; }
+        &::-moz-placeholder { font-size: 1.1rem; }
+        &:-ms-input-placeholder { font-size: 1.1rem; }
+    }
+    .agent-dashboard .ad-a .a-b ul li .l-bd span, .agent-dashboard .ad-h .h-r span { font-size: 1rem; }
+    .agent-dashboard .ad-h .h-l { font-size: 1.3rem; }
 }
 body[lang='fr'] {
     .m-win .mw-menu { .scroll-touch(auto,hidden);
@@ -1939,6 +1950,17 @@ body[lang='fr'] {
         a { position: absolute; right: 0; }
     }
     .header .head-menu-lmr .hml-m { font-size: 1.4rem; .ellipsis(); }
+     .agent-report-box .ar-e .a-l { overflow-y: auto;
+        .btn { font-size: 1rem; .flex-x(0 0 auto); }
+    }
+    .agent-report-box .ar-a .a-col .form-control {
+        &::-webkit-input-placeholder { font-size: 1.1rem; }
+        &:-moz-placeholder { font-size: 1.1rem; }
+        &::-moz-placeholder { font-size: 1.1rem; }
+        &:-ms-input-placeholder { font-size: 1.1rem; }
+    }
+    .agent-dashboard .ad-a .a-b ul li .l-bd span, .agent-dashboard .ad-h .h-r span { font-size: 1rem; }
+    .agent-dashboard .ad-h .h-l { font-size: 1.3rem; }
 }
 body[lang='tr'] {
     .m-win .mw-menu { .scroll-touch(auto,hidden);
@@ -1964,6 +1986,11 @@ body[lang='en'], body[lang='pt'], body[lang='tr'], body[lang='th'] {
     }
     .agent-dashboard .ad-a .a-b ul li .l-bd span, .agent-dashboard .ad-h .h-r span { font-size: 1rem; }
     .agent-dashboard .ad-h .h-l { font-size: 1.3rem; }
+}
+body[lang='ko'] {
+    .agent-report-box .ar-e .a-l {  
+        .btn { font-size: 1rem;   }
+    }
 }
 .loop-footmenu(@i: 1) when (@i<6) {
     .foot-menu a:nth-child(@{i}) {
