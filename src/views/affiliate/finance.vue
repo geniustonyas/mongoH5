@@ -236,7 +236,7 @@ if (route.query.tab) {
   tab.value = parseInt(route.query.tab as string)
   if (timeItem) {
     query.start = timeItem.value[0]
-    query.end = dayjs(timeItem.value[1]).add(1, 'day').format('YYYY-MM-DD') || ''
+    query.end = dayjs(timeItem.value[1]).format('YYYY-MM-DD') || ''
   }
   getFinanceData()
 } else {

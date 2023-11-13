@@ -707,7 +707,7 @@ export default {
   finishCaptcha: 'Please complete the human verification.',
   captchaVerifyFail: 'Human verification failed, please reverify.',
   sendNow: 'Send Now',
-  mailUs: 'For more details, pleasecontact us:',
+  mailUs: 'For more details, please contact us:',
 
   problem: {
     whatVip: '1. What is the VIP Club?',
