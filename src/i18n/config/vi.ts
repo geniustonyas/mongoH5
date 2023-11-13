@@ -652,6 +652,7 @@ export default {
   activityMemberMonth: 'Thành viên hoạt động trong tháng này',
   winLoseMonth: 'Thắng/thua ròng trong tháng này',
   dataCompare: 'So sánh dữ liệu',
+  dashAmount: 'Số tiền',
   peopleCount: 'Số lượng người',
   regCount: 'Số lần đăng ký',
   firshRechargeCount: 'Số lần nạp lần đầu',
@@ -713,6 +714,7 @@ export default {
   captchaVerifyFail: 'Xác minh con người thất bại, vui lòng thử lại.',
   sendNow: 'Gửi Ngay',
   mailUs: 'để biết thêm chi tiết, xin vui lòngliên hệ chúng tôi:',
+  financeRewards: 'Phần thưởng',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',
@@ -848,7 +850,8 @@ export default {
     1039: 'Hệ số rút tiền vượt quá giới hạn',
     1040: 'Số tiền nạp của đại lý vượt quá giới hạn giao dịch đơn lẻ',
     1041: 'Số tiền nạp của đại lý vượt quá giới hạn hàng ngày',
-    1042: 'Chức năng rút tiền của bạn đã tạm thời bị vô hiệu hóa.'
+    1042: 'Chức năng rút tiền của bạn đã tạm thời bị vô hiệu hóa.',
+    1043: 'Lỗi định dạng địa chỉ ví'
   },
 
   // 条款协议等内容

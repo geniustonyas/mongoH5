@@ -647,6 +647,7 @@ export default {
   activityMemberMonth: 'Active Members This Month',
   winLoseMonth: 'Net Win/Loss This Month',
   dataCompare: 'Data Comparison',
+  dashAmount: 'Amount',
   peopleCount: 'Number of People',
   regCount: 'Number of Registrations',
   firshRechargeCount: 'First Deposit Count',
@@ -708,6 +709,7 @@ export default {
   captchaVerifyFail: 'Human verification failed, please reverify.',
   sendNow: 'Send Now',
   mailUs: 'For more details, please contact us:',
+  financeRewards: 'Rewards',
 
   problem: {
     whatVip: '1. What is the VIP Club?',
@@ -853,7 +855,8 @@ export default {
     1039: 'Withdrawal flow multiplier exceeds the limit',
     1040: 'Agent deposit amount exceeds single transaction limit',
     1041: 'Agent deposit amount exceeds daily limit',
-    1042: 'Your withdrawal function is temporarily disabled.'
+    1042: 'Your withdrawal function is temporarily disabled.',
+    1043: 'Wallet address format error'
   },
 
   // 条款协议等内容

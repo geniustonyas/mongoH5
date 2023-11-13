@@ -646,6 +646,7 @@ export default {
   activityMemberMonth: '이번 달 활동 회원',
   winLoseMonth: '이번 달 순 승/패',
   dataCompare: '데이터 비교',
+  dashAmount: '금액',
   peopleCount: '인원 수',
   regCount: '등록 수',
   firshRechargeCount: '첫 입금 수',
@@ -706,6 +707,7 @@ export default {
   captchaVerifyFail: '인간 확인 실패, 다시 확인해주세요.',
   sendNow: '지금 전송',
   mailUs: '자세히 알려주세요!고객센터:',
+  financeRewards: '보너스',
 
   problem: {
     whatVip: '1.VIP 클럽이란 무엇인가요?',
@@ -842,7 +844,8 @@ export default {
     1039: '출금 플로우 배수가 한도를 초과합니다',
     1040: '에이전트 입금 금액이 단일 거래 한도를 초과합니다',
     1041: '에이전트 입금 금액이 일일 한도를 초과합니다',
-    1042: '인출 기능이 일시 중지되었습니다. '
+    1042: '인출 기능이 일시 중지되었습니다. ',
+    1043: '지갑 주소 형식 오류'
   },
 
   // 条款协议等内容

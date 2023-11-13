@@ -648,6 +648,7 @@ export default {
   activityMemberMonth: '今月のアクティブメンバー',
   winLoseMonth: '今月の純利益/損失',
   dataCompare: 'データの比較',
+  dashAmount: '金額',
   peopleCount: '人数',
   regCount: '登録数',
   firshRechargeCount: '初回入金数',
@@ -708,6 +709,7 @@ export default {
   captchaVerifyFail: '人間の確認に失敗しました。もう一度確認してください。',
   sendNow: '送金する',
   mailUs: '詳細はこちらお問い合わせ先：',
+  financeRewards: 'ボーナス',
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',
@@ -844,7 +846,8 @@ export default {
     1039: '出金フローの倍数が制限を超えています',
     1040: 'エージェントの入金額が単一取引制限を超えています',
     1041: 'エージェントの入金額が日次制限を超えています',
-    1042: 'お引き出し機能は一時的に無効になっています。'
+    1042: 'お引き出し機能は一時的に無効になっています。',
+    1043: 'ウォレットアドレス形式エラー'
   },
 
   // 利用規約と協議内容等

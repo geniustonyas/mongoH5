@@ -642,6 +642,7 @@ export default {
   activityMemberMonth: '本月活跃成员',
   winLoseMonth: '本月净输赢',
   dataCompare: '数据对比',
+  dashAmount: '金额',
   peopleCount: '人数',
   regCount: '注册人数',
   firshRechargeCount: '首存人数',
@@ -702,6 +703,7 @@ export default {
   captchaVerifyFail: '人机验证失败, 请重新认证',
   sendNow: '立即发送',
   mailUs: '有关更多详细信息，请联系我们',
+  financeRewards: '奖励',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',
@@ -838,7 +840,8 @@ export default {
     1039: '流水倍数超过限制',
     1040: '代存金额超出单次限制',
     1041: '代存金额超出单日限制',
-    1042: '您的提款功能已暂时关闭'
+    1042: '您的提款功能已暂时关闭',
+    1043: '钱包地址格式错误'
   },
 
   // 条款协议等内容

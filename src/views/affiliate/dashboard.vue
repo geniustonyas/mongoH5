@@ -53,7 +53,7 @@
           <div class="h-l">{{ t('dataCompare') }}</div>
           <div class="h-r">
             <div class="radio-tabs">
-              <span :class="{ active: chartTab == 'amountChart' }" @click="toggleChart()">{{ t('amount') }}</span>
+              <span :class="{ active: chartTab == 'amountChart' }" @click="toggleChart()">{{ t('dashAmount') }}</span>
               <span :class="{ active: chartTab == 'countChart' }" @click="toggleChart()">{{ t('peopleCount') }}</span>
             </div>
           </div>

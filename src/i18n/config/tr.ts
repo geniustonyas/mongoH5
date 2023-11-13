@@ -645,6 +645,7 @@ export default {
   activityMemberMonth: 'Bu Ay Aktif Üyeler',
   winLoseMonth: 'Bu Ay Kazanç/Kayıp',
   dataCompare: 'Veri Karşılaştırma',
+  dashAmount: 'Miktar',
   peopleCount: 'Kişi Sayısı',
   regCount: 'Kayıt Sayısı',
   firshRechargeCount: 'İlk Yatırım Sayısı',
@@ -705,6 +706,7 @@ export default {
   captchaVerifyFail: 'İnsan doğrulaması başarısız oldu, lütfen tekrar doğrulayın.',
   sendNow: 'Şimdi Gönder',
   mailUs: 'Daha iyi açıkla lütfenbizimle iletişime geçin:',
+  financeRewards: 'Ödüller',
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',
@@ -841,7 +843,8 @@ export default {
     1039: 'Çekme işlemi çarpanı sınırı aşıyor',
     1040: 'Ajan yatırım miktarı tek işlem limitini aşıyor',
     1041: 'Ajan yatırım miktarı günlük limiti aşıyor',
-    1042: 'Çekme işleviniz geçici olarak devre dışı bırakıldı.'
+    1042: 'Çekme işleviniz geçici olarak devre dışı bırakıldı.',
+    1043: 'Cüzdan adresi biçimi hatası'
   },
 
   // 条款协议等内容

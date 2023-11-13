@@ -651,13 +651,14 @@ export default {
   activityMemberMonth: 'Aktive Mitglieder in diesem Monat',
   winLoseMonth: 'Nettogewinn/Verlust in diesem Monat',
   dataCompare: 'Datenvergleich',
+  dashAmount: 'Betrag',
   peopleCount: 'Anzahl der Personen',
   regCount: 'Anzahl der Anmeldungen',
   firshRechargeCount: 'Anzahl der ersten Einzahlungen',
   filter: 'Filter',
   agentDepositLimit: 'Agent Einzahlungslimit',
   canUseLimit: 'Verfügbares Limit',
-  agentDepositRecord: 'Aufzeichnungen der Agenteneinzahlung',
+  agentDepositRecord: 'Protokoll',
   yes: 'Ja',
   no: 'Nein',
   childAccount: 'Downline-Konto',
@@ -667,7 +668,7 @@ export default {
   singleAgentDepositAmount: 'Einziger Agenteneinzahlungsbetrag',
   agentDepositDayLimit: 'Tägliches Limit',
   withdrawFlowMult: 'Auszahlungsflussmultiplikator',
-  inputWithdrawFlowMult: 'Geben Sie den Auszahlungsflussmultiplikator ein',
+  inputWithdrawFlowMult: 'Einzahlungsflow-Faktor',
   multiple: 'Multiplikator',
   remark: 'Bemerkungen',
   inputRemark: 'Bemerkungen eingeben',
@@ -712,6 +713,7 @@ export default {
   captchaVerifyFail: 'Die Captcha-Überprüfung ist fehlgeschlagen. Bitte erneut überprüfen.',
   sendNow: 'Send Now',
   mailUs: 'Für weitere Details siehekontaktiere uns:',
+  financeRewards: 'Belohnungen',
 
   problem: {
     whatVip: '1.Was ist der VIP-Club?',
@@ -848,7 +850,8 @@ export default {
     1039: 'Auszahlungsflussmultiplikator überschreitet das Limit',
     1040: 'Agenteneinzahlungsbetrag überschreitet das Einzeltransaktionslimit',
     1041: 'Agenteneinzahlungsbetrag überschreitet das tä',
-    1042: 'Ihre Auszahlungsfunktion ist vorübergehend deaktiviert.'
+    1042: 'Ihre Auszahlungsfunktion ist vorübergehend deaktiviert.',
+    1043: 'Fehler im Format der Wallet-Adresse'
   },
 
   // 条款协议等内容
