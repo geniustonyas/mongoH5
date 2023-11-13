@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import AppMain from '@/components/layout/AppMain.vue'
+import Affiliate from '@/components/layout/Affiliate.vue'
 import { useUserStore } from '@/store/modules/user'
 import { useAppStore } from '@/store/modules/app'
 import { getToken } from '@/utils/auth'
@@ -258,13 +259,14 @@ const routes = [
       },
       {
         path: 'finance',
+        name: 'finance',
+        component: () => import('@/views/affiliate/finance.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'finance',
+        component: Affiliate,
         children: [
-          {
-            path: '',
-            name: 'finance',
-            component: () => import('@/views/affiliate/finance.vue'),
-            meta: { needLogin: true, keepAlive: false }
-          },
           {
             path: 'financeDetails',
             name: 'financeDetails',

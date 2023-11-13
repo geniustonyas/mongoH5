@@ -75,9 +75,10 @@ const recommendUrls = ref<string[]>([])
 recommendUrls.value = ['https://www.seabet.io/#/user/reg?agentId=' + userStore.userInfo.id]
 
 if (userStore.userInfo.domain && userStore.userInfo.domain != '') {
-  recommendUrls.value = userStore.userInfo.domain.split(',').map((item: string) => {
+  const tmp = userStore.userInfo.domain.split(',').map((item: string) => {
     return 'https://' + item
   })
+  recommendUrls.value = [...recommendUrls.value, ...tmp]
 }
 const currentUrl = ref<string>(recommendUrls.value[0])
 onMounted(() => {

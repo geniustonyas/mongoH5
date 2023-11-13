@@ -681,7 +681,7 @@ export default {
   today: `Aujourd'hui`,
   yestoday: 'Hier',
   currentWeek: 'Semaine en cours',
-  lastWeek: 'Semaine dernière',
+  laskWeek: 'Semaine dernière',
   currentMonth: 'Mois en cours',
   depositDetails: 'Détails des dépôts',
   withdrawDetails: 'Détails des retraits',

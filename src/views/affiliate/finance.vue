@@ -27,7 +27,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'depositDetails', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'depositDetails', tab: tab } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -45,7 +45,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'withdrawDetails', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'withdrawDetails', tab: tab } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -61,7 +61,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'rewardDetails', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'rewardDetails', tab: tab } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -90,7 +90,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'totalWinLose', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'totalWinLose', tab: tab } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -106,7 +106,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'ctfee', start: query.start, end: query.end } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'ctfee', tab: tab } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -151,7 +151,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import { getFinanceDataApi } from '@/api/affiliate'
 import { getFinanceDataRespItem, getFinanceDataResp } from '@/api/affiliate/types'
@@ -161,6 +161,7 @@ import CommonHeader from '@/components/layout/CommonHeader.vue'
 import { Calendar } from 'vant'
 import dayjs from 'dayjs'
 
+const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
 
@@ -228,5 +229,17 @@ const shotQuery = (time: string[], tb: number) => {
   getFinanceData()
 }
 
-shotQuery(shotBtnDate.value[0].value, shotBtnDate.value[0].tab)
+if (route.query.tab) {
+  const timeItem = shotBtnDate.value.find((item: any) => {
+    return item.tab == route.query.tab
+  })
+  tab.value = parseInt(route.query.tab as string)
+  if (timeItem) {
+    query.start = timeItem.value[0]
+    query.end = dayjs(timeItem.value[1]).add(1, 'day').format('YYYY-MM-DD') || ''
+  }
+  getFinanceData()
+} else {
+  shotQuery(shotBtnDate.value[0].value, shotBtnDate.value[0].tab)
+}
 </script>

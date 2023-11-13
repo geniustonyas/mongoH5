@@ -1,22 +1,17 @@
 ﻿<template>
   <div class="page">
-    <CommonHeader :title="t(route.query.title!.toString())" />
+    <header class="header">
+      <div class="head-menu-lmr">
+        <div class="hml-l" @click="$router.replace({ name: 'finance', query: { tab: route.query.tab } })">
+          <!-- <div class="hml-l" @click="$router.back()"> -->
+          <i class="iconfont icon-return" />
+        </div>
+        <div class="hml-m">{{ t(route.query.title as string) }}</div>
+      </div>
+    </header>
     <main class="main">
       <div class="agent-report-box">
         <div class="ar-a">
-          <!-- <div class="a-col">
-            <ConfigProvider theme="dark" class="agent-sel">
-              <DropdownMenu direction="down">
-                <DropdownItem v-model="query.bet" ref="categoryDom" :options="isBetOption" />
-              </DropdownMenu>
-            </ConfigProvider>
-          </div>
-          <div class="a-col">
-            <input readonly class="form-control" :value="query.startreg != '' ? query.startreg + ' - ' + query.endreg : ''" :placeholder="t('regTime')" @focus="showRegDatePicker = true" />
-          </div>
-          <div class="a-col">
-            <input readonly class="form-control" :value="query.start != '' ? query.start + ' - ' + query.end : ''" :placeholder="t('statTime')" @focus="showStatDatePicker = true" />
-          </div> -->
           <div class="a-col col-2"><input v-model="query.name" class="form-control" :placeholder="t('memberAccount')" /></div>
           <div class="a-col">
             <a class="btn btn-primary" @click="filterGetMemberInfo">{{ t('filter') }}</a>
@@ -113,7 +108,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
@@ -121,7 +116,6 @@ import { moneyFormat } from '@/utils/index'
 import { getMemberInfoApi } from '@/api/affiliate'
 import { getMemberInfoDataResp, getMemberInfoRespItem } from '@/api/affiliate/types'
 
-import CommonHeader from '@/components/layout/CommonHeader.vue'
 import Nodata from '@/components/Nodata.vue'
 
 import dayjs from 'dayjs'
@@ -130,11 +124,15 @@ import { ConfigProvider, Calendar, PullRefresh, List } from 'vant'
 const route = useRoute()
 const { t } = useI18n()
 
-// const isBetOption = ref([
-//   { text: t('isBet'), value: -1 },
-//   { text: t('no'), value: 0 },
-//   { text: t('yes'), value: 1 }
-// ])
+const shotBtnDate = computed(() => {
+  return [
+    { tab: 1, text: t('today'), value: [dayjs().format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')] },
+    { tab: 2, text: t('yestoday'), value: [dayjs().subtract(1, 'day').format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')] },
+    { tab: 3, text: t('currentWeek'), value: [dayjs().startOf('week').format('YYYY-MM-DD'), dayjs().endOf('week').format('YYYY-MM-DD')] },
+    { tab: 4, text: t('laskWeek'), value: [dayjs().subtract(1, 'week').startOf('week').format('YYYY-MM-DD'), dayjs().subtract(1, 'week').endOf('week').format('YYYY-MM-DD')] },
+    { tab: 5, text: t('currentMonth'), value: [dayjs().startOf('month').format('YYYY-MM-DD'), dayjs().endOf('month').format('YYYY-MM-DD')] }
+  ]
+})
 
 // 默认日期
 let defaultDate = [dayjs().startOf('month').toDate(), dayjs().add(1, 'day').toDate()]
@@ -174,8 +172,13 @@ const query = reactive({
   pcount: 20
 })
 
-query.start = route.query.start?.toString() || ''
-query.end = route.query.end?.toString() || ''
+const timeItem = shotBtnDate.value.find((item: any) => {
+  return item.tab == route.query.tab
+})
+if (timeItem) {
+  query.start = timeItem.value[0]
+  query.end = dayjs(timeItem.value[1]).add(1, 'day').format('YYYY-MM-DD') || ''
+}
 
 // 列表刷新下拉等参数
 let listLoading = ref(false)
