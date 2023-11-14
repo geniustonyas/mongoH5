@@ -5,7 +5,7 @@
       <div class="agent-report-box">
         <div class="ar-a">
           <div class="a-col col-2">
-            <ConfigProvider theme="dark" class="agent-sel">
+            <ConfigProvider theme="dark" class="agent-sel fs-14">
               <DropdownMenu direction="down">
                 <DropdownItem v-model="query.date" ref="categoryDom" :options="options" />
               </DropdownMenu>
