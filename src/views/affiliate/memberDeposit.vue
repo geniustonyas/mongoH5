@@ -57,8 +57,8 @@
                         <span>{{ t('withdrawFlowMult') }}</span>
                       </div>
                       <div class="cr-input ci-group">
-                        <input v-model="depositForm.times" type="text" class="form-control" :placeholder="t('inputWithdrawFlowMult')" autocomplete="off" />
-                        <span class="password-addon" style="width: 8rem">{{ t('multiple') }}</span>
+                        <input v-model="depositForm.times" type="text" class="form-control" :placeholder="t('inputWithdrawFlowMult')" autocomplete="off"  maxlength="18"/>
+                        <span class="password-addon">{{ t('multiple') }}</span>
                         <div id="multipleTip" class="tip" />
                       </div>
                     </div>
