@@ -592,8 +592,8 @@ export default {
     'Wenn Sie einen Spieler empfehlen, wird dieser Spieler mit Ihrem Partnerkonto verknüpft. Sie erhalten einen bestimmten Prozentsatz der Einnahmen, wenn Ihre Spieler Einnahmen durch Echtgeldspiele generieren.',
   commissionQ2: '2. Wie berechne ich meine Partnergewinne genau?',
   commissionA2:
-    'Jedes Mal, wenn ein Spieler auf unserer Website wettet, erhalten Sie einen bestimmten Prozentsatz der Einnahmen dieses Spielers. Ihr Gewinn = (Gesamtgewinn/Verlust im Spiel - Boni - 15 % Netzwerkgebühren - Einzahlungs/Auszahlungsgebühren) x (Ihr Provisionssatz).',
-  commissionQ2Desc: '● Netzwerkgebühren = 15 % des Gesamtgewinns/Verlusts im Spiel',
+    'Immer wenn ein Spieler auf unserer Website eine Wette platziert, erhalten Sie einen bestimmten Prozentsatz des Umsatzes dieses Spielers. Ihr Gewinn = (Gesamter Gewinn/Verlust im Spiel – Boni – Netzwerkgebühren – Einzahlungs-/Auszahlungsgebühren) x (Ihr Provisionssatz).',
+  commissionQ2Desc: '● Netzwerkgebühren = Gesamter Gewinn/Verlust im Spiel × 10%',
   commissionQ3: '3. Wie kann ich meine Leistung verfolgen?',
   commissionA3:
     'Sie können Ihre Leistung verfolgen, indem Sie sich im Partner-Dashboard anmelden. Auf der Hauptseite finden Sie alle relevanten Informationen. Für eine tiefere Analyse stellen wir verschiedene Spielerdetails und Ihre Tracking-Daten zur Verfügung.',

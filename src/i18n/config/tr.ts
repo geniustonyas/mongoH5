@@ -588,9 +588,9 @@ export default {
   commission: 'Komisyon',
   commissionQ1: '1. Komisyon nasıl kazanılır?',
   commissionA1: 'Bir oyuncuyu yönlendirdiğinizde, bu oyuncu iş ortağı hesabınıza bağlanır. Bu oyuncu gerçek para oyunlarında gelir ürettiğinde, bu gelirin bir yüzdesini alırsınız.',
-  commissionQ2: '2. İş ortağı karlarımı nasıl kesin olarak hesaplayabilirim?',
-  commissionA2: `Oyuncuların sitemizde bahis yaptığı her an, bu oyuncuların gelirlerinin belirli bir yüzdesini alırsınız. Karlarınız = (oyun içi toplam kazanç - bonus - ağ ücretlerinin% 15'i - depozito/çekme ücretleri) x (komisyon yüzdesi).`,
-  commissionQ2Desc: `● Ağ ücretleri = Oyun içi toplam kazancın% 15'i`,
+  commissionQ2: '2. Bağlı ortaklık karlarımı nasıl doğru bir şekilde hesaplarım',
+  commissionA2: `Bir oyuncu web sitemizde bahis yaptığında, oyun içindeki toplam kazanç/kayıptan belirli bir yüzdeyi alırsınız. Karınız = (Oyundaki toplam kazanç/kayıp – Bonuslar – Ağ ücretleri – Yatırma/çekme ücretleri) x (Komisyon yüzdeniz).`,
+  commissionQ2Desc: `● Ağ ücretleri = Oyundaki toplam kazanç/kayıp * 10%`,
   commissionQ3: '3. Performansımı nasıl izleyebilirim?',
   commissionA3:
     'İş ortağı panelinize giriş yaparak performansınızı izleyebilirsiniz. Ana sayfada tüm ilgili bilgiler bulunur ve daha ayrıntılı analizler için oyuncu bilgileri ve izleme verileri sunarız.',

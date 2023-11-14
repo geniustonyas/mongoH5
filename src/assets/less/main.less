@@ -1207,12 +1207,11 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 .s-l {
                     p { font-weight: 600; color: var(--color-white); margin-bottom: .5rem; }
                     .s-txt {.h-lh(4rem); border: 0.1rem solid rgba(255, 255, 255, 0.05); .bg(rgba(255, 255, 255, 0.05)); .flex(); .flex-pack-justify(); .radius(); width: 100%;
-                        // select { border: none; font-size: 1.6rem; font-weight: 600; color: var(--color-white); margin-left: 1.6rem; background-color: transparent;
-                        //     option { .bgc(var(--color-dark-gray), var(--color-white));
-                        //         &:checked { .bg(var(--color-primary-txt)); }
-                        //         &::selection { background-color: yellow; color: red; }
-                        //     }
-                        // }
+                        select { border: none; font-size: 1.6rem; font-weight: 600; color: var(--color-white); margin-left: 1.6rem; background-color: transparent;
+                            option { .bgc(var(--color-black), var(--color-white));
+                                &:checked { .bg(var(--color-primary-txt)); }
+                            }
+                        }
                         a { padding: 0 1.6rem; font-size: 1.6rem; font-weight: 600; color: var(--color-white); overflow: hidden; }
                         span { display: inline-block; width: 4rem; .h-lh(4rem); text-align: center; cursor: pointer; .flex-x(0 0 4rem);
                             i { font-size: 2.2rem; vertical-align: middle; position: relative; bottom: .2rem; }
