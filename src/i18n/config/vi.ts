@@ -593,10 +593,10 @@ export default {
   commissionQ1: '1. Làm cách nào để kiếm hoa hồng?',
   commissionA1:
     'Khi bạn giới thiệu một người chơi, người đó sẽ liên kết với tài khoản liên kết của bạn. Bạn sẽ nhận được một phần trăm nhất định của doanh thu khi người chơi của bạn tạo ra doanh thu thông qua các trò chơi bằng tiền thật.',
-  commissionQ2: '2. Làm cách nào để tính chính xác lợi nhuận liên kết của tôi?',
+  commissionQ2: '2. Cách tính lợi nhuận liên kết của tôi một cách chính xác?',
   commissionA2:
-    'Mỗi lần một người chơi cược trên trang web của chúng tôi, bạn sẽ nhận được một phần trăm nhất định của doanh thu của người chơi đó. Lợi nhuận của bạn = (tổng số trận thắng/thua trong trò chơi - tiền thưởng - 15% phí mạng - phí gửi/rút tiền) x (phần trăm hoa hồng của bạn).',
-  commissionQ2Desc: '● Phí mạng = 15% của tổng số tiền thắng/thua trong trò chơi',
+    'Mỗi khi người chơi đặt cược trên trang web của chúng tôi, bạn sẽ nhận được một tỷ lệ nhất định từ doanh thu của người chơi đó. Lợi nhuận của bạn = (Tổng số chiến thắng/thua trong trò chơi – Tiền thưởng – Phí mạng – Phí gửi/rút tiền) x (Tỷ lệ hoa hồng của bạn).',
+  commissionQ2Desc: '● Phí mạng = Tổng số chiến thắng/thua trong trò chơi × 10%',
   commissionQ3: '3. Làm cách nào để theo dõi hiệu suất của tôi?',
   commissionA3:
     'Bạn có thể theo dõi hiệu suất bằng cách đăng nhập vào bảng điều khiển liên kết. Trên trang chính, bạn sẽ tìm thấy tất cả thông tin liên quan. Để phân tích sâu hơn, chúng tôi cung cấp nhiều chi tiết về người chơi và dữ liệu theo dõi của bạn.',

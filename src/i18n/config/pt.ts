@@ -593,10 +593,10 @@ export default {
   commission: 'Comissão',
   commissionQ1: '1. Como ganhar comissão?',
   commissionA1: 'Quando você indicar um jogador, esse jogador ficará vinculado à sua conta de afiliado. Você receberá uma porcentagem dos ganhos gerados por esse jogador em jogos de dinheiro real.',
-  commissionQ2: '2. Como calcular precisamente meus lucros de afiliado?',
+  commissionQ2: '2. Como calcular com precisão os lucros do meu afiliado ?',
   commissionA2:
-    'Você receberá uma porcentagem dos ganhos gerados sempre que um jogador apostar em nosso site. Seus lucros = (ganhos totais do jogo - bônus - 15% das taxas de rede - taxas de depósito/saque) x (sua porcentagem de comissão).',
-  commissionQ2Desc: '● Taxas de rede = 15% dos ganhos totais do jogo',
+    'Sempre que um jogador faz uma aposta em nosso site, você receberá uma certa porcentagem da receita desse jogador. Seu lucro = (Ganho/perda total no jogo – Bônus – Taxas de rede – Taxas de depósito/saque) x (Sua porcentagem de comissão).',
+  commissionQ2Desc: '● Taxas de rede = Ganho/perda total no jogo * 10%',
   commissionQ3: '3. Como rastrear meu desempenho?',
   commissionA3:
     'Você pode acompanhar seu desempenho fazendo login no painel de afiliados. Na página principal, você encontrará todas as informações relevantes, e forneceremos detalhes sobre jogadores e dados de rastreamento para análises mais aprofundadas.',

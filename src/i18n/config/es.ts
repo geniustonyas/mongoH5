@@ -592,10 +592,10 @@ export default {
   commissionQ1: '1. ¿Cómo gano comisiones?',
   commissionA1:
     'Cuando refieres a un jugador, ese jugador se vincula a tu cuenta de afiliado. Recibirás un porcentaje de los ingresos cuando tus jugadores generen ingresos a través de juegos con dinero real.',
-  commissionQ2: '2. ¿Cómo calculo con precisión mis ganancias de afiliado?',
+  commissionQ2: '2. Cómo calcular con precisión las ganancias de mi afiliado',
   commissionA2:
-    'Cada vez que un jugador apuesta en nuestro sitio web, recibirás un porcentaje de los ingresos de ese jugador. Tu ganancia = (total de ganancias/pérdidas en el juego - bonificaciones - 15% de tarifas de red - tarifas de depósito/retiro) x (tu porcentaje de comisión).',
-  commissionQ2Desc: '● Tarifas de red = 15% del total de ganancias/pérdidas en el juego',
+    'Cada vez que un jugador realiza una apuesta en nuestro sitio web, recibirás un cierto porcentaje de los ingresos de ese jugador. Tu ganancia = (Ganancia/pérdida total en el juego – Bonos – Tarifas de red – Tarifas de depósito/retiro) x (Tu porcentaje de comisión).',
+  commissionQ2Desc: '● Tarifas de red = Ganancia/pérdida total en el juego * 10%',
   commissionQ3: '3. ¿Cómo puedo hacer un seguimiento de mi rendimiento?',
   commissionA3:
     'Puedes hacer un seguimiento del rendimiento iniciando sesión en el panel de afiliados. En la página principal, encontrarás toda la información relevante. Para un análisis más detallado, proporcionamos diversos detalles de jugadores y tus datos de seguimiento.',

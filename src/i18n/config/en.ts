@@ -590,9 +590,9 @@ export default {
   commissionQ1: '1. How do I earn commissions?',
   commissionA1:
     'When you refer a player, that player links to your affiliate account. You will receive a certain percentage of the revenue when your players generate revenue through real-money games.',
-  commissionQ2: '2. How do I accurately calculate my affiliate profits?',
-  commissionA2: `Every time a player bets on our website, you will receive a certain percentage of that player's revenue. Your profit = (total win/loss in-game - bonuses - 15% network fees - deposit/withdrawal fees) x (your commission percentage).`,
-  commissionQ2Desc: '● Network fees = 15% of in-game total win/loss',
+  commissionQ2: '2. How to accurately calculate my affiliate profits?',
+  commissionA2: `Whenever a player places a bet on our website, you will receive a certain percentage of that player's revenue. Your profit = (Total win/loss in the game – Bonuses – Network fees – Deposit/withdrawal fees) x (Your commission percentage).`,
+  commissionQ2Desc: '● Network fees = Total win/loss in the game * 10%',
   commissionQ3: '3. How can I track my performance?',
   commissionA3: `You can track performance by logging into the affiliate dashboard. On the main page, you'll find all relevant information. For deeper analysis, we provide various player details and your tracking data.`,
   commissionQ4: '4. Will negative balances carry over to the next month?',
