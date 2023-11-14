@@ -623,7 +623,7 @@ export default {
   childMemberList: 'Alt Üye Listesi',
   memberAccount: 'Üye Hesabı',
   statTime: 'İstatistik Zamanı',
-  isBet: 'Bahis Yapıldı mı?',
+  isBet: 'Bahis Mi',
   regTime: 'Kayıt Zamanı',
   totalWinLose: 'Toplam Kazanç/Kayıp',
   lastLoginTime: 'Son Giriş',

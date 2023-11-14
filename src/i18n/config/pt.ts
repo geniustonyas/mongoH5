@@ -630,7 +630,7 @@ export default {
   childMemberList: 'Lista de Membros Subordinados',
   memberAccount: 'Conta do Membro',
   statTime: 'Estadísticas',
-  isBet: 'Bahis Mi',
+  isBet: 'Apostou?',
   regTime: 'Registro',
   totalWinLose: 'Total de Ganhos/Perdas',
   lastLoginTime: 'Último Login',

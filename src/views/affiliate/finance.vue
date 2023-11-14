@@ -53,7 +53,7 @@
                 <div class="l-bd">
                   <div class="ib-txt">
                     <div class="it-l">
-                      <span>{{ t('rewards') }}</span>
+                      <span>{{ t('financeRewards') }}</span>
                       <b>{{ financeData.reward }}</b>
                     </div>
                     <div class="it-r">
