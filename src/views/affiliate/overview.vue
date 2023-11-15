@@ -90,8 +90,10 @@ if (userStore.userInfo.domain && userStore.userInfo.domain != '') {
 const currentUrl = ref<string>(recommendUrls.value[0])
 onMounted(() => {
   nextTick(() => {
-    //@ts-ignore
-    copy(copyDom.value)
+    if (userStore.userInfo.id) {
+      //@ts-ignore
+      copy(copyDom.value)
+    }
     //@ts-ignore
     copy(mailDom.value)
   })
