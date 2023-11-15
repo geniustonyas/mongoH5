@@ -2,7 +2,7 @@
   <div class="page">
     <header class="header">
       <div class="head-menu-lmr">
-        <div class="hml-l" @click="$router.replace({ name: 'finance', query: { tab: route.query.tab } })">
+        <div class="hml-l" @click="router.replace({ name: 'finance', query: { tab: route.query.tab } })">
           <!-- <div class="hml-l" @click="$router.back()"> -->
           <i class="iconfont icon-return" />
         </div>
@@ -110,7 +110,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import { moneyFormat } from '@/utils/index'
 import { getMemberInfoApi } from '@/api/affiliate'
@@ -122,6 +122,7 @@ import dayjs from 'dayjs'
 import { ConfigProvider, Calendar, PullRefresh, List } from 'vant'
 
 const route = useRoute()
+const router = useRouter()
 const { t } = useI18n()
 
 const shotBtnDate = computed(() => {

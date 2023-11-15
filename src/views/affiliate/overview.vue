@@ -8,10 +8,11 @@
         </div> -->
         <div class="ao-row">
           <div class="r-title">SEABET.IO</div>
-          <div class="r-cont">{{ t('overviewDesc') }}
+          <div class="r-cont">
+            {{ t('overviewDesc') }}
             <div class="sub-cont">{{ t('mailUs') }}</div>
             <div class="contact">
-              <span class="ac-l">affiliate@seabet.io</span>
+              <span class="ac-l" ref="mailDom" data-clipboard-text="affiliate@seabet.io">affiliate@seabet.io <i class="iconfont icon-fuzhi" /></span>
               <a href="mailto:affiliate@seabet.io" class="ac-r">{{ t('sendNow') }}<i class="iconfont icon-email_full" /></a>
             </div>
           </div>
@@ -19,7 +20,7 @@
         <div class="ao-row">
           <div class="r-title">{{ t('bePartner') }}</div>
           <div class="r-cont">
-            {{ t('howBePartner') }}：
+            {{ t('howBePartner') }}
             <h3>{{ t('commissionDetails') }}</h3>
             <div class="table-box index-tb">
               <dl>
@@ -41,15 +42,20 @@
               <div class="s-l">
                 <p>{{ t('recommendLink') }}</p>
                 <div class="s-txt">
-                  <select v-if="recommendUrls.length > 1" v-model="currentUrl" class="form-control">
-                    <option v-for="(item, index) of recommendUrls" :key="index">{{ item }}</option>
-                  </select>
+                  <template v-if="recommendUrls.length > 1">
+                    <select v-model="currentUrl" class="form-control">
+                      <option v-for="(item, index) of recommendUrls" :key="index">{{ item }}</option>
+                    </select>
+                    <i class="iconfont icon-down" />
+                  </template>
                   <a v-else>{{ recommendUrls[0] }}</a>
                   <span ref="copyDom" :data-clipboard-text="currentUrl"><i class="iconfont icon-fuzhi" /></span>
                 </div>
               </div>
               <div class="s-r">
-                <a class="btn btn-primary" href="https://www.dropbox.com/scl/fo/pb09zvjl36685keabpqxa/h?rlkey=e39s9cqg8hdocgt4ypymq99dk&dl=0" target="_blank">{{ t('downloadBanner') }}<i class="iconfont icon-share" /></a>
+                <a class="btn btn-primary" href="https://www.dropbox.com/scl/fo/pb09zvjl36685keabpqxa/h?rlkey=e39s9cqg8hdocgt4ypymq99dk&dl=0" target="_blank"
+                  >{{ t('downloadBanner') }}<i class="iconfont icon-share"
+                /></a>
               </div>
             </div>
           </div>
@@ -65,12 +71,13 @@ import { useI18n } from 'vue-i18n'
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { useUserStore } from '@/store/modules/user'
-import { getAssetsFile, copy } from '@/utils'
+import { copy } from '@/utils'
 
 const userStore = useUserStore()
 const { t } = useI18n()
 
 const copyDom = ref<HTMLElement | null>(null)
+const mailDom = ref<HTMLElement | null>(null)
 const recommendUrls = ref<string[]>([])
 recommendUrls.value = ['https://www.seabet.io/#/user/reg?agentId=' + userStore.userInfo.id]
 
@@ -78,13 +85,15 @@ if (userStore.userInfo.domain && userStore.userInfo.domain != '') {
   const tmp = userStore.userInfo.domain.split(',').map((item: string) => {
     return 'https://' + item
   })
-  recommendUrls.value = [...recommendUrls.value, ...tmp]
+  recommendUrls.value = [...tmp, ...recommendUrls.value]
 }
 const currentUrl = ref<string>(recommendUrls.value[0])
 onMounted(() => {
   nextTick(() => {
     //@ts-ignore
     copy(copyDom.value)
+    //@ts-ignore
+    copy(mailDom.value)
   })
 })
 </script>

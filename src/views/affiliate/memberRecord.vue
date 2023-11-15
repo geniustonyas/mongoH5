@@ -12,7 +12,7 @@
           </div>
           <div class="line-options">
             <div class="ar-a">
-              <div class="a-col col-50">
+              <!-- <div class="a-col col-50">
                 <ConfigProvider theme="dark" class="agent-sel">
                   <DropdownMenu direction="down">
                     <DropdownItem :title="t('currencyFilter')" ref="currenyDom" teleport="body">
@@ -27,9 +27,15 @@
                     </DropdownItem>
                   </DropdownMenu>
                 </ConfigProvider>
-              </div>
-              <div class="a-col col-50">
-                <input :value="query.StartTime != '' ? query.StartTime + ' - ' + query.EndTime : ''" class="form-control" :placeholder="t('dateFilter')" @focus="showDatePicker = !showDatePicker" />
+              </div> -->
+              <div class="a-col col-100">
+                <input
+                  readonly
+                  :value="query.StartTime != '' ? query.StartTime + ' - ' + query.EndTime : ''"
+                  class="form-control"
+                  :placeholder="t('dateFilter')"
+                  @focus="showDatePicker = !showDatePicker"
+                />
               </div>
               <div class="a-col col-2">
                 <input v-model="query.KeyWord" class="form-control" :placeholder="t('memberAccount')" />

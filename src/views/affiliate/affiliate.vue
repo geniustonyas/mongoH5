@@ -1,6 +1,14 @@
 <template>
   <div class="page">
-    <CommonHeader :title="t('affiliateTitle')" />
+    <header class="header">
+      <div class="head-menu-lmr">
+        <div class="hml-l" @click="router.replace({ name: 'index' })">
+          <!-- <div class="hml-l" @click="$router.back()"> -->
+          <i class="iconfont icon-return" />
+        </div>
+        <div class="hml-m">{{ t('affiliateTitle') }}</div>
+      </div>
+    </header>
     <main class="main">
       <div class="myprofile-box">
         <div class="mp-list">
@@ -78,7 +86,7 @@ import { useI18n } from 'vue-i18n'
 
 import { useUserStore } from '@/store/modules/user'
 
-import CommonHeader from '@/components/layout/CommonHeader.vue'
+// import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 const router = useRouter()
 const route = useRoute()

@@ -1,6 +1,15 @@
 ﻿<template>
   <div class="page">
-    <CommonHeader :title="t('financeReport')" />
+    <!-- <CommonHeader :title="t('financeReport')" /> -->
+    <header class="header">
+      <div class="head-menu-lmr">
+        <div class="hml-l" @click="router.replace({ name: 'affiliate' })">
+          <!-- <div class="hml-l" @click="$router.back()"> -->
+          <i class="iconfont icon-return" />
+        </div>
+        <div class="hml-m">{{ t('financeReport') }}</div>
+      </div>
+    </header>
     <main class="main">
       <div class="agent-report-box">
         <div class="ar-e">
@@ -156,7 +165,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { getFinanceDataApi } from '@/api/affiliate'
 import { getFinanceDataRespItem, getFinanceDataResp } from '@/api/affiliate/types'
 
-import CommonHeader from '@/components/layout/CommonHeader.vue'
+// import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { Calendar } from 'vant'
 import dayjs from 'dayjs'

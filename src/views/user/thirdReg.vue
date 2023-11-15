@@ -256,7 +256,7 @@ const handleReg = async () => {
   const agreeEl = document.getElementById('agreeTip')
   const captEl = document.getElementById('captEl')
 
-  userEl!.innerHTML = ''  
+  userEl!.innerHTML = ''
   if (regForm.UserName == '') {
     errorMsg.value = t('tips.inputAccount')
     userEl!.innerHTML = errorMsg.value

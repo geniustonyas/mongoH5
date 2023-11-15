@@ -640,7 +640,7 @@ export default {
   memberDeposit: 'Üye Depozitosu',
   childMember: 'Alt Üyeler',
   firshRecharge: 'İlk Yatırım Sayısı',
-  newRegMonth: 'Bu Ay Yeni Kayıt Olanlar',
+  newRegMonth: 'Bu Ay Yeni Kayıtlar',
   newRegValid: 'Geçerli Yeni Üyeler',
   activityMemberMonth: 'Bu Ay Aktif Üyeler',
   winLoseMonth: 'Bu Ay Kazanç/Kayıp',

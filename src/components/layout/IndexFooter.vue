@@ -20,6 +20,9 @@
       <dd>
         <a @click="router.push({ name: 'mall' })">{{ t('mallStore') }}</a>
       </dd>
+      <dd>
+        <a @click="router.push({ name: 'affiliate' })">{{ t('affiliate') }}</a>
+      </dd>
     </dl>
     <dl>
       <dt>{{ t('game') }}</dt>
