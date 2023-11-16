@@ -205,8 +205,9 @@ let refreshing = ref(false)
 let finished = ref(false)
 let error = ref(false)
 let nodata = ref(false)
-let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]
+let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().toDate()]
 let selDate = ref('')
+selDate.value = dayjs(defaultDate[0]).format('YYYY-MM-DD') + ' - ' + dayjs(defaultDate[1]).format('YYYY-MM-DD')
 const query = reactive({
   CurrencyCode: '',
   RecordType: HisotyReocrdType.Deposit,

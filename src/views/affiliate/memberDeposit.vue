@@ -249,7 +249,7 @@ const minDate = dayjs().subtract(1, 'months').toDate()
 const maxDate = dayjs().toDate()
 
 const selDate = ref('')
-
+selDate.value = dayjs(defaultDate[0]).format('YYYY-MM-DD') + ' - ' + dayjs(defaultDate[1]).format('YYYY-MM-DD')
 const query = reactive<getDepositRecordData>({
   name: '',
   start: '',
@@ -286,7 +286,7 @@ const dayFormatter = (day: any) => {
 const customRegDate = (time: any) => {
   query.start = dayjs(time[0]).format('YYYY-MM-DD')
   query.end = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
-  selDate.value = dayjs(time[0]).format('YYYY-MM-DD') + ' ~ ' + dayjs(time[1]).format('YYYY-MM-DD')
+  selDate.value = dayjs(time[0]).format('YYYY-MM-DD') + ' - ' + dayjs(time[1]).format('YYYY-MM-DD')
   showDatePicker.value = false
 }
 
