@@ -54,12 +54,12 @@
                   <i class="iconfont icon-right" />
                 </a>
               </li>
-              <li :class="{ active: route.name == 'memberDeposit' }">
+              <!-- <li :class="{ active: route.name == 'memberDeposit' }">
                 <a @click="router.push({ name: 'memberDeposit' })">
                   <span><i class="iconfont icon-cydc" />{{ t('memberDeposit') }} </span>
                   <i class="iconfont icon-right" />
                 </a>
-              </li>
+              </li> -->
               <li :class="{ active: route.name == 'finance' }">
                 <a @click="router.push({ name: 'finance' })">
                   <span><i class="iconfont icon-caiwu" />{{ t('financeReport') }}</span>

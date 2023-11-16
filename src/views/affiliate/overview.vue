@@ -46,7 +46,6 @@
                     <select v-model="currentUrl" class="form-control">
                       <option v-for="(item, index) of recommendUrls" :key="index">{{ item }}</option>
                     </select>
-                    <i class="iconfont icon-down" />
                   </template>
                   <a v-else>{{ recommendUrls[0] }}</a>
                   <span ref="copyDom" :data-clipboard-text="currentUrl"><i class="iconfont icon-fuzhi" /></span>

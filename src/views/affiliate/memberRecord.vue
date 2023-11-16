@@ -29,13 +29,7 @@
                 </ConfigProvider>
               </div> -->
               <div class="a-col col-100">
-                <input
-                  readonly
-                  :value="query.StartTime != '' ? query.StartTime + ' - ' + query.EndTime : ''"
-                  class="form-control"
-                  :placeholder="t('dateFilter')"
-                  @focus="showDatePicker = !showDatePicker"
-                />
+                <input readonly :value="query.StartTime != '' ? selDate : ''" class="form-control" :placeholder="t('dateFilter')" @focus="showDatePicker = !showDatePicker" />
               </div>
               <div class="a-col col-2">
                 <input v-model="query.KeyWord" class="form-control" :placeholder="t('memberAccount')" />
@@ -180,28 +174,28 @@ import Nodata from '@/components/Nodata.vue'
 
 import { getHistoryRecordApi, getHistoryRecordDetailsApi } from '@/api/fund/index'
 import { getHistoryRecordItems, getHistoryRecordDetails } from '@/api/fund/types'
-import { getAssetsFile, copy } from '@/utils/index'
-import { currenyListData, currenyListTypes } from '@/utils/config'
+import { copy } from '@/utils/index'
+// import { currenyListData, currenyListTypes } from '@/utils/config'
 import { HisotyReocrdType } from '@/utils/constant'
 import dynamicObject from '@/types/dynamicObject'
 import { useI18n } from 'vue-i18n'
 import { liveChatCall } from '@/composables/startGame'
 import { moneyFormat } from '@/utils/index'
 import dayjs from 'dayjs'
-import { Calendar, ConfigProvider, DropdownMenu, DropdownItem, Icon, PullRefresh, List, Popup, showConfirmDialog, showToast } from 'vant'
-import type { DropdownItemInstance } from 'vant'
+import { Calendar, ConfigProvider, PullRefresh, List, Popup, showConfirmDialog, showToast } from 'vant'
+// import type { DropdownItemInstance } from 'vant'
 import { cloneDeep } from 'lodash-es'
 
 const router = useRouter()
 const { t, locale } = useI18n()
-const currenyList = currenyListData()
+// const currenyList = currenyListData()
 
 // 筛选 - 日期控件参数
 const minDate = dayjs().subtract(1, 'months').toDate()
 const maxDate = dayjs().toDate()
 let showDatePicker = ref(false)
 //
-let currenyDom = ref<DropdownItemInstance>()
+// let currenyDom = ref<DropdownItemInstance>()
 //  选择的币种
 let checkedCurrency = ref<string[]>([])
 
@@ -212,11 +206,12 @@ let finished = ref(false)
 let error = ref(false)
 let nodata = ref(false)
 let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]
+let selDate = ref('')
 const query = reactive({
   CurrencyCode: '',
   RecordType: HisotyReocrdType.Deposit,
   StartTime: dayjs(defaultDate[0]).format('YYYY-MM-DD'),
-  EndTime: dayjs(defaultDate[1]).format('YYYY-MM-DD'),
+  EndTime: dayjs(defaultDate[1]).add(1, 'day').format('YYYY-MM-DD'),
   PageIndex: 1,
   PageSize: 10,
   IsAgent: true,
@@ -305,23 +300,23 @@ const selTab = (tabs: HisotyReocrdType) => {
   }
 }
 
-// 选择币种
-const selCurrency = (item: currenyListTypes) => {
-  const index = checkedCurrency.value.indexOf(item.code)
-  if (index > -1) {
-    checkedCurrency.value.splice(index, 1)
-  } else {
-    checkedCurrency.value.push(item.code)
-  }
-}
+// // 选择币种
+// const selCurrency = (item: currenyListTypes) => {
+//   const index = checkedCurrency.value.indexOf(item.code)
+//   if (index > -1) {
+//     checkedCurrency.value.splice(index, 1)
+//   } else {
+//     checkedCurrency.value.push(item.code)
+//   }
+// }
 
-// 选择币种后查询交易列表
-const confirmCurreny = () => {
-  currenyDom?.value!.toggle()
-  query.PageIndex = 1
-  dataList.value = []
-  getTradeRecordList()
-}
+// // 选择币种后查询交易列表
+// const confirmCurreny = () => {
+//   currenyDom?.value!.toggle()
+//   query.PageIndex = 1
+//   dataList.value = []
+//   getTradeRecordList()
+// }
 
 // 获取记录
 const getTradeRecordList = () => {
@@ -384,6 +379,7 @@ const loadData = () => {
 const customDate = (time: any) => {
   query.StartTime = dayjs(time[0]).format('YYYY-MM-DD')
   query.EndTime = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
+  selDate.value = dayjs(time[0]).format('YYYY-MM-DD') + ' - ' + dayjs(time[1]).format('YYYY-MM-DD')
   dataList.value = []
   getTradeRecordList()
   showDatePicker.value = false
@@ -426,5 +422,5 @@ const clearData = () => {
   Object.assign(detailsData, defaultDetailsData)
 }
 
-checkedCurrency.value = currenyList.map((item) => item.code)
+// checkedCurrency.value = currenyList.map((item) => item.code)
 </script>

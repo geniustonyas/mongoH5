@@ -12,10 +12,10 @@
             </ConfigProvider>
           </div>
           <div class="a-col">
-            <input readonly class="form-control" :value="query.startreg != '' ? query.startreg + ' - ' + query.endreg : ''" :placeholder="t('regTime')" @focus="showRegDatePicker = true" />
+            <input readonly class="form-control" :value="query.startreg != '' ? regTime : ''" :placeholder="t('regTime')" @focus="showRegDatePicker = true" />
           </div>
           <div class="a-col">
-            <input readonly class="form-control" :value="query.start != '' ? query.start + ' - ' + query.end : ''" :placeholder="t('statTime')" @focus="showStatDatePicker = true" />
+            <input readonly class="form-control" :value="query.start != '' ? statTime : ''" :placeholder="t('statTime')" @focus="showStatDatePicker = true" />
           </div>
           <div class="a-col col-2"><input v-model="query.name" class="form-control" :placeholder="t('memberAccount')" /></div>
           <div class="a-col">
@@ -139,27 +139,34 @@ const dayFormatter = (day: any) => {
   return day
 }
 
+const regTime = ref('')
 // 选择注册时间回调
 const customRegDate = (time: any) => {
   query.startreg = dayjs(time[0]).format('YYYY-MM-DD')
   query.endreg = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
+  regTime.value = dayjs(time[0]).format('YYYY-MM-DD') + ' - ' + dayjs(time[1]).format('YYYY-MM-DD')
   showRegDatePicker.value = false
 }
 
+const statTime = ref('')
 // 选择统计时间回调
 const customStatDate = (time: any) => {
   query.start = dayjs(time[0]).format('YYYY-MM-DD')
   query.end = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
+  statTime.value = dayjs(time[0]).format('YYYY-MM-DD') + ' - ' + dayjs(time[1]).format('YYYY-MM-DD')
   showStatDatePicker.value = false
 }
 
 const query = reactive({
+  agentId: null,
+  agentName: null,
   name: null,
   startreg: '',
   endreg: '',
   start: '',
   end: '',
   bet: -1,
+  field: null,
   page: 1,
   pcount: 20
 })
