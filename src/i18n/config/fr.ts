@@ -576,7 +576,7 @@ export default {
   retentionQ1: `1. Qu'est-ce que le programme d'affiliation ?`,
   retentionA1: `Le programme d'affiliation Seabet.io est un partenariat entre vous et l'opérateur, où nous vous payons une commission pour tout client potentiel envoyé par le biais de votre site web, de vos médias sociaux, de forums, de liens, etc. Chaque client actif recommandé qui génère des revenus est rentable pour vous.`,
   retentionQ2: `2. Comment puis-je rejoindre le programme d'affiliation ?`,
-  retentionA2: `Sélectionnez simplement "S'inscrire" dans le menu, choisissez la marque avec laquelle vous souhaitez vous inscrire, et complétez l'inscription. Une fois votre compte approuvé, vous pourrez vous connecter et créer des liens de suivi.`,
+  retentionA2: `Aucune inscription n'est requise. Tous les membres inscrits avec succès auront un lien exclusif. Cliquez sur le lien "Programme d'affiliation" dans la barre de menu pour le visualiser.`,
   retentionQ3: `3. Combien de revenus puis-je gagner grâce au programme d'affiliation ?`,
   retentionA3: `Il n'y a pas de limite aux revenus que vous pouvez gagner. Plus vous apportez de clients, plus vous avez de potentiel pour augmenter vos revenus.`,
   retentionQ4: '4. Y a-t-il des frais pour devenir affilié ?',
@@ -838,11 +838,12 @@ export default {
     1033: 'Le code de vérification par e-mail est incorrect',
     1035: 'Jeu en maintenance',
     1037: 'Votre compte a été désactivé',
-    1038: 'Le membre de niveau inférieur ne fait pas de dépôt',
+    1038: `Le membre subalterne n'existe pas.`,
     1039: 'Le coefficient de flux de retrait dépasse la limite',
     1040: `Le montant du dépôt de l'agent dépasse la limite de transaction unique`,
     1041: `Le montant du dépôt de l'agent dépasse la limite quotidienne`,
-    1042: 'Votre fonction de retrait est temporairement désactivée.'
+    1042: 'Votre fonction de retrait est temporairement désactivée.',
+    1043: `Erreur de format d'adresse de portefeuille`
   },
 
   html: {

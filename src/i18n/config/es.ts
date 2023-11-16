@@ -577,8 +577,7 @@ export default {
   retentionA1:
     'El programa de afiliados de Seabet.io es una asociación entre tú y el operador, en la que te pagamos una comisión por cualquier cliente potencial enviado a través de tu sitio web, redes sociales, foros, enlaces, etc. Cada cliente activo referido que genere ingresos es rentable para ti.',
   retentionQ2: '2. ¿Cómo puedo unirme al programa de afiliados?',
-  retentionA2:
-    'Simplemente selecciona "Registrarse" en el menú, elige la marca con la que deseas registrarte y completa el registro. Una vez que tu cuenta sea aprobada, podrás iniciar sesión y crear enlaces de seguimiento.',
+  retentionA2: `No es necesario registrarse. Todos los miembros registrados con éxito tendrán un enlace exclusivo. Haz clic en 'Programa de afiliados' en la barra de menú para verlo. `,
   retentionQ3: '3. ¿Cuánto ingreso puedo ganar con el programa de afiliados?',
   retentionA3: 'No hay límite para los ingresos que puedes ganar. Cuantos más clientes traigas, mayor será el potencial para aumentar tus ingresos.',
   retentionQ4: '4. ¿Tiene algún costo ser afiliado?',
@@ -849,7 +848,7 @@ export default {
     1033: 'El código de verificación por correo electrónico es incorrecto',
     1035: 'Juego en mantenimiento',
     1037: 'Tu cuenta ha sido desactivada',
-    1038: 'El miembro de línea descendente no realiza depósitos',
+    1038: `El miembro subordinado no existe.`,
     1039: 'El multiplicador de flujo de retiro excede el límite',
     1040: 'El monto de depósito del agente supera el límite de transacción única',
     1041: 'El monto de depósito del agente supera el límite diario',

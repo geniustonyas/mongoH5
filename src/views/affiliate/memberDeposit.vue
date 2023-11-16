@@ -114,7 +114,7 @@
                   <input v-model="query.name" class="form-control" :placeholder="t('memberAccount')" />
                 </div>
                 <div class="a-col col-2">
-                  <input class="form-control" :value="query.start != '' ? query.start + ' - ' + query.end : ''" :placeholder="t('optime')" @focus="showDatePicker = true" />
+                  <input readonly class="form-control" :value="query.start != '' ? query.start + ' - ' + query.end : ''" :placeholder="t('optime')" @focus="showDatePicker = true" />
                 </div>
                 <div class="a-col">
                   <a class="btn btn-primary" @click="filterGetDepositRecord">{{ t('filter') }}</a>

@@ -36,7 +36,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'depositDetails', tab: tab } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'depositDetails', tab: tab, field: 'deposit' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -54,7 +54,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'withdrawDetails', tab: tab } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'withdrawDetails', tab: tab, field: 'withdraw' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -70,7 +70,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'rewardDetails', tab: tab } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'rewardDetails', tab: tab, field: 'reward' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -99,7 +99,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'totalWinLose', tab: tab } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'totalWinLose', tab: tab, field: 'win' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -115,7 +115,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'ctfee', tab: tab } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'ctfee', tab: tab, field: 'fee' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -187,7 +187,7 @@ const dayFormatter = (day: any) => {
 }
 const customRegDate = (time: any) => {
   query.start = dayjs(time[0]).format('YYYY-MM-DD')
-  query.end = dayjs(time[1]).add(1, 'day').format('YYYY-MM-DD')
+  query.end = dayjs(time[1]).format('YYYY-MM-DD')
   showDatePicker.value = false
   tab.value = 0
 }
@@ -198,9 +198,13 @@ const tab = ref(0)
 const shotBtnDate = computed(() => {
   return [
     { tab: 1, text: t('today'), value: [dayjs().format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')] },
-    { tab: 2, text: t('yestoday'), value: [dayjs().subtract(1, 'day').format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')] },
-    { tab: 3, text: t('currentWeek'), value: [dayjs().startOf('week').format('YYYY-MM-DD'), dayjs().endOf('week').format('YYYY-MM-DD')] },
-    { tab: 4, text: t('laskWeek'), value: [dayjs().subtract(1, 'week').startOf('week').format('YYYY-MM-DD'), dayjs().subtract(1, 'week').endOf('week').format('YYYY-MM-DD')] },
+    { tab: 2, text: t('yestoday'), value: [dayjs().subtract(1, 'day').format('YYYY-MM-DD'), dayjs().subtract(1, 'day').format('YYYY-MM-DD')] },
+    { tab: 3, text: t('currentWeek'), value: [dayjs().startOf('week').add(1, 'day').format('YYYY-MM-DD'), dayjs().endOf('week').add(1, 'day').format('YYYY-MM-DD')] },
+    {
+      tab: 4,
+      text: t('laskWeek'),
+      value: [dayjs().subtract(1, 'week').startOf('week').add(1, 'day').format('YYYY-MM-DD'), dayjs().subtract(1, 'week').endOf('week').add(1, 'day').format('YYYY-MM-DD')]
+    },
     { tab: 5, text: t('currentMonth'), value: [dayjs().startOf('month').format('YYYY-MM-DD'), dayjs().endOf('month').format('YYYY-MM-DD')] }
   ]
 })

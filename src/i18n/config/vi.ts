@@ -578,7 +578,7 @@ export default {
   retentionA1:
     'Chương trình liên kết Seabet.io là một sự đối tác giữa bạn và nhà điều hành, nơi chúng tôi trả cho bạn một khoản hoa hồng cho bất kỳ khách hàng tiềm năng nào được gửi thông qua trang web, mạng xã hội, diễn đàn, liên kết, v.v. Mỗi khách hàng tiềm năng được giới thiệu tạo doanh thu cho bạn.',
   retentionQ2: '2. Làm cách nào để tham gia chương trình liên kết?',
-  retentionA2: 'Chỉ cần chọn "Đăng ký" từ menu, chọn thương hiệu bạn muốn đăng ký và hoàn tất đăng ký. Khi tài khoản của bạn được phê duyệt, bạn có thể đăng nhập và tạo liên kết theo dõi.',
+  retentionA2: `Không cần đăng ký. Tất cả thành viên đã đăng ký thành công sẽ có một liên kết độc quyền. Nhấp vào 'Chương trình Liên kết' trong thanh menu để xem nó.`,
   retentionQ3: '3. Tôi có thể kiếm bao nhiêu thu nhập từ chương trình liên kết?',
   retentionA3: 'Không giới hạn thu nhập bạn có thể kiếm được. Càng nhiều khách hàng bạn đưa vào, cơ hội tăng thu nhập càng lớn.',
   retentionQ4: '4. Có phí gì để trở thành liên kết không?',
@@ -846,7 +846,7 @@ export default {
     1033: 'Mã xác minh email không chính xác',
     1035: 'GAME đang bảo trì',
     1037: 'Tài khoản của bạn đã bị vô hiệu hóa',
-    1038: 'Thành viên cấp dưới không nạp tiền',
+    1038: 'Thành viên phụ không tồn tại.',
     1039: 'Hệ số rút tiền vượt quá giới hạn',
     1040: 'Số tiền nạp của đại lý vượt quá giới hạn giao dịch đơn lẻ',
     1041: 'Số tiền nạp của đại lý vượt quá giới hạn hàng ngày',

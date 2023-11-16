@@ -160,8 +160,8 @@ const initBannerChart = () => {
         minInterval: 1, //最小刻度是1
         splitNumber: 5, //段数是5
         min: 0, //最小是0
-        interval: computeYaxis(dashboardData.chart.datasets[0].data, dashboardData.chart.datasets[1].data).interval < 10 ? 10 : computeYaxis(dashboardData.chart.datasets[0].data, dashboardData.chart.datasets[1].data).interval,
-        max: computeYaxis(dashboardData.chart.datasets[0].data, dashboardData.chart.datasets[1].data).max < 50 ? 50 : computeYaxis(dashboardData.chart.datasets[0].data, dashboardData.chart.datasets[1].data).max,
+        interval: computeYaxis(dashboardData.chart.datasets[0].data, dashboardData.chart.datasets[1].data).interval,
+        max: computeYaxis(dashboardData.chart.datasets[0].data, dashboardData.chart.datasets[1].data).max,
         splitLine: {
           show: false
         },
@@ -218,10 +218,8 @@ const initBannerChart = () => {
         minInterval: 1, //最小刻度是1
         splitNumber: 5, //段数是5
         min: 0, //最小是0
-        interval:
-          computeYaxis(dashboardData.chart.datasets[2].data, dashboardData.chart.datasets[3].data).interval,
-        max:
-          computeYaxis(dashboardData.chart.datasets[2].data, dashboardData.chart.datasets[3].data).max,
+        interval: computeYaxis(dashboardData.chart.datasets[2].data, dashboardData.chart.datasets[3].data).interval,
+        max: computeYaxis(dashboardData.chart.datasets[2].data, dashboardData.chart.datasets[3].data).max,
         splitLine: {
           show: false
         },
@@ -232,7 +230,7 @@ const initBannerChart = () => {
           show: true
         }
       },
-      
+
       series: [
         {
           name: t('regCount'),

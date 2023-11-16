@@ -579,8 +579,7 @@ export default {
   retentionA1:
     'O programa de afiliados da Seabet.io é uma parceria entre você e o operador, no qual pagamos a você uma comissão por qualquer cliente em potencial enviado por meio do seu site, redes sociais, fóruns, links, etc., que se tornar ativo e gerar receita.',
   retentionQ2: '2. Como participar do programa de afiliados?',
-  retentionA2:
-    'Basta selecionar "Registrar" no menu, escolher a marca que deseja registrar e concluir o registro. Após a aprovação da sua conta, você poderá fazer login e criar links de rastreamento.',
+  retentionA2: `Não é necessário se registrar. Todos os membros registrados com sucesso terão um link exclusivo. Clique em 'Programa de Afiliados' na barra de menu para visualizá-lo.`,
   retentionQ3: '3. Qual é o limite de ganhos no programa de afiliados?',
   retentionA3: 'Não há limite para o quanto você pode ganhar. Quanto mais clientes você trouxer, maior será a possibilidade de aumentar seus ganhos.',
   retentionQ4: '4. Há alguma taxa para se tornar um afiliado?',
@@ -850,7 +849,7 @@ export default {
     1033: 'O código de verificação por e-mail está incorreto',
     1035: 'Jogo em manutenção',
     1037: 'Sua conta foi desativada',
-    1038: 'Membros Subordinados não realizaram depósitos',
+    1038: 'O membro subordinado não existe.',
     1039: 'Múltiplo de Fluxo Excede o Limite',
     1040: 'Valor do Depósito Excede o Limite Único',
     1041: 'Valor do Depósito Excede o Limite Diário',

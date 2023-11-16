@@ -575,8 +575,7 @@ export default {
   retentionA1:
     'Das SEABET.IO Partnerprogramm ist eine Partnerschaft zwischen Ihnen und dem Betreiber, bei der wir Ihnen eine Provision für potenzielle Kunden zahlen, die über Ihre Website, soziale Medien, Foren, Links usw. gesendet werden. Jeder empfohlene aktive Kunde, der Einnahmen generiert, ist profitabel für Sie.',
   retentionQ2: '2. Wie kann ich dem Partnerprogramm beitreten?',
-  retentionA2:
-    'Wählen Sie einfach "Registrieren" im Menü, wählen Sie die Marke aus, mit der Sie sich registrieren möchten, und vervollständigen Sie die Registrierung. Sobald Ihr Konto genehmigt wurde, können Sie sich anmelden und Tracking-Links erstellen.',
+  retentionA2: `Es ist keine Anmeldung erforderlich. Alle erfolgreich registrierten Mitglieder erhalten einen exklusiven Link. Klicken Sie auf das 'Partnerprogramm' in der Menüleiste, um es anzusehen.`,
   retentionQ3: '3. Wie viel Einkommen kann ich aus dem Partnerprogramm erzielen?',
   retentionA3: 'Es gibt keine Begrenzung für das Einkommen, das Sie verdienen können. Je mehr Kunden Sie gewinnen, desto größer ist das Potenzial für die Steigerung Ihres Einkommens.',
   retentionQ4: '4. Gibt es Kosten, um Partner zu werden?',
@@ -846,7 +845,7 @@ export default {
     1033: 'Der E-Mail-Bestätigungscode ist falsch',
     1035: 'Spiel in Wartung',
     1037: 'Ihr Konto wurde deaktiviert',
-    1038: 'Downline-Mitglied tätigt keine Einzahlung',
+    1038: `Das untergeordnete Mitglied existiert nicht.`,
     1039: 'Auszahlungsflussmultiplikator überschreitet das Limit',
     1040: 'Agenteneinzahlungsbetrag überschreitet das Einzeltransaktionslimit',
     1041: 'Agenteneinzahlungsbetrag überschreitet das tä',

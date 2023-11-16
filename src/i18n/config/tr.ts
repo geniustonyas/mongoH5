@@ -575,8 +575,7 @@ export default {
   retentionA1:
     'Seabet.io iş ortağı programı, web siteniz, sosyal medya, forumlar, bağlantılar vb. aracılığıyla gönderilen her potansiyel müşteri için size komisyon öderiz. Yönlendirdiğiniz aktif ve gelir üreten her müşteri size kar getirir.',
   retentionQ2: '2. İş Ortağı Programına nasıl katılırım?',
-  retentionA2:
-    'Sadece menüden "Kaydol" seçeneğini seçin, kaydolmak istediğiniz markayı seçin ve kaydı tamamlayın. Hesabınız onaylandıktan sonra giriş yapabilir ve takip bağlantıları oluşturabilirsiniz.',
+  retentionA2: `Kayıt gerekmez. Başarılı bir şekilde kayıt olan tüm üyelerin özel bir bağlantısı olacak. Görüntülemek için menü çubuğundaki 'İş Ortağı Programı'na tıklayın.`,
   retentionQ3: '3. İş Ortağı Programında ne kadar kazanabilirim?',
   retentionA3: 'Kazanabileceğiniz gelirin bir sınırı yoktur. Daha fazla müşteri getirdikçe gelirinizi artırma olasılığınız o kadar yüksek olur.',
   retentionQ4: '4. İş ortağı olmak için herhangi bir ücret gerekir mi?',
@@ -839,7 +838,7 @@ export default {
     1033: 'E-posta doğrulama kodu yanlış',
     1035: 'Oyun bakımdayken',
     1037: 'Hesabınız devre dışı bırakıldı',
-    1038: 'Alt üye depozito yapmıyor',
+    1038: 'Ast üye mevcut değil.',
     1039: 'Çekme işlemi çarpanı sınırı aşıyor',
     1040: 'Ajan yatırım miktarı tek işlem limitini aşıyor',
     1041: 'Ajan yatırım miktarı günlük limiti aşıyor',

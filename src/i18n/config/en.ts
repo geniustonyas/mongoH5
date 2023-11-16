@@ -575,8 +575,7 @@ export default {
   retentionA1:
     'The Seabet.io affiliate program is a partnership between you and the operator, where we pay you a commission for any potential customers sent through your website, social media, forums, links, etc. Each referred active customer who generates revenue is profitable for you.',
   retentionQ2: '2. How can I join the affiliate program?',
-  retentionA2:
-    'Simply select "Register" from the menu, choose the brand you want to register with, and complete the registration. Once your account is approved, you can log in and create tracking links.',
+  retentionA2: `No registration is required. All successfully registered members will have an exclusive link. Click on the 'Affiliate Program' in the menu bar to view it.`,
   retentionQ3: '3. How much income can I earn from the affiliate program?',
   retentionA3: 'There is no limit to the income you can earn. The more customers you bring in, the greater the potential for increasing your income.',
   retentionQ4: '4. Is there any cost to become an affiliate?',
@@ -851,7 +850,7 @@ export default {
     1033: 'Email verification code is incorrect',
     1035: 'Game under maintenance',
     1037: 'Your account has been disabled',
-    1038: 'Downline member does not deposit',
+    1038: 'Subordinate member does not exist.',
     1039: 'Withdrawal flow multiplier exceeds the limit',
     1040: 'Agent deposit amount exceeds single transaction limit',
     1041: 'Agent deposit amount exceeds daily limit',

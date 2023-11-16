@@ -115,12 +115,14 @@ import { useRoute, useRouter } from 'vue-router'
 import { moneyFormat } from '@/utils/index'
 import { getMemberInfoApi } from '@/api/affiliate'
 import { getMemberInfoDataResp, getMemberInfoRespItem } from '@/api/affiliate/types'
+import { useUserStore } from '@/store/modules/user'
 
 import Nodata from '@/components/Nodata.vue'
 
 import dayjs from 'dayjs'
 import { ConfigProvider, Calendar, PullRefresh, List } from 'vant'
 
+const userStore = useUserStore()
 const route = useRoute()
 const router = useRouter()
 const { t } = useI18n()
@@ -163,12 +165,15 @@ const customStatDate = (time: any) => {
 }
 
 const query = reactive({
+  agentId: userStore.userInfo.id,
+  agentName: null,
   name: null,
   startreg: '',
   endreg: '',
   start: '',
   end: '',
   bet: -1,
+  field: route.query.field as string,
   page: 1,
   pcount: 20
 })

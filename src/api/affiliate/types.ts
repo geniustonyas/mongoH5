@@ -34,12 +34,15 @@ export interface chartItem {
 
 // 获取成员信息数据
 export interface getMemberInfoData {
+  agentId: null | number | string
+  agentName: null | string
   name: null | string
   startreg: string
   endreg: string
   start: string
   end: string
   bet: null | number | string
+  field: null | string
   page: number
   pcount: number
 }
