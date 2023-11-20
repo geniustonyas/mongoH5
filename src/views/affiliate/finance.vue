@@ -169,6 +169,10 @@ import { getFinanceDataRespItem, getFinanceDataResp } from '@/api/affiliate/type
 
 import { Calendar } from 'vant'
 import dayjs from 'dayjs'
+import weekday from 'dayjs/plugin/weekday'
+import 'dayjs/locale/zh-cn'
+dayjs.extend(weekday)
+dayjs.locale('zh-cn')
 
 const route = useRoute()
 const router = useRouter()
@@ -199,11 +203,11 @@ const shotBtnDate = computed(() => {
   return [
     { tab: 1, text: t('today'), value: [dayjs().format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')] },
     { tab: 2, text: t('yestoday'), value: [dayjs().subtract(1, 'day').format('YYYY-MM-DD'), dayjs().subtract(1, 'day').format('YYYY-MM-DD')] },
-    { tab: 3, text: t('currentWeek'), value: [dayjs().startOf('week').add(1, 'day').format('YYYY-MM-DD'), dayjs().endOf('week').add(1, 'day').format('YYYY-MM-DD')] },
+    { tab: 3, text: t('currentWeek'), value: [dayjs().startOf('week').format('YYYY-MM-DD'), dayjs().endOf('week').format('YYYY-MM-DD')] },
     {
       tab: 4,
       text: t('laskWeek'),
-      value: [dayjs().subtract(1, 'week').startOf('week').add(1, 'day').format('YYYY-MM-DD'), dayjs().subtract(1, 'week').endOf('week').add(1, 'day').format('YYYY-MM-DD')]
+      value: [dayjs().subtract(1, 'week').startOf('week').format('YYYY-MM-DD'), dayjs().subtract(1, 'week').endOf('week').add(1, 'day').format('YYYY-MM-DD')]
     },
     { tab: 5, text: t('currentMonth'), value: [dayjs().startOf('month').format('YYYY-MM-DD'), dayjs().endOf('month').format('YYYY-MM-DD')] }
   ]

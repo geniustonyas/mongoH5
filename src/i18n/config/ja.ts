@@ -707,8 +707,8 @@ export default {
   remarkContent: { 1: 'ウェルカムリワード', 2: 'リターンボーナス', 3: 'ラッキーリワード', 4: 'グッドラックボーナス', 5: 'ロイヤルティリワード ' },
   finishCaptcha: '人間の確認を完了してください。',
   captchaVerifyFail: '人間の確認に失敗しました。もう一度確認してください。',
-  sendNow: '送金する',
-  mailUs: '詳細はこちらお問い合わせ先：',
+  sendNow: 'メールを送る',
+  mailUs: '詳細については、お問い合わせください。',
   financeRewards: 'ボーナス',
 
   problem: {
