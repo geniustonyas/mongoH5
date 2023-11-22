@@ -298,6 +298,12 @@ const routes = [
         name: 'vip',
         component: () => import('@/views/vips/vip.vue'),
         meta: { needLogin: false, keepAlive: false }
+      },
+      {
+        path: 'newVip',
+        name: 'newVip',
+        component: () => import('@/views/vips/newVip.vue'),
+        meta: { needLogin: false, keepAlive: false }
       }
     ]
   },
