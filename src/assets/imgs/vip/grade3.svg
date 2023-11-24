@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="832" height="246" viewBox="0 0 832 246">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #cbcbcb;
+        fill-rule: evenodd;
+        filter: url(#filter);
+      }
+    </style>
+    <filter id="filter" x="0" y="1.906" width="831.688" height="244.094" filterUnits="userSpaceOnUse">
+      <feImage preserveAspectRatio="none" x="0" y="1.90625" width="831.688" height="244.094" result="image" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iODMxLjY4OCIgaGVpZ2h0PSIyNDQuMDk0IiB2aWV3Qm94PSIwIDAgODMxLjY4OCAyNDQuMDk0Ij4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiB1cmwoI2xpbmVhci1ncmFkaWVudCk7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhci1ncmFkaWVudCIgeTE9IjEyMi4wNDciIHgyPSI4MzEuNjg4IiB5Mj0iMTIyLjA0NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9Ii0wLjEyNSIgc3RvcC1jb2xvcj0iI2U2ZTZlNiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuMDgiIHN0b3AtY29sb3I9IiNmOWY5ZjkiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjI3NSIgc3RvcC1jb2xvcj0iI2RhZGFkYSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNDU3IiBzdG9wLWNvbG9yPSIjZTNlM2UzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMC42NjEiIHN0b3AtY29sb3I9IiNkZWRlZGUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjgxMiIgc3RvcC1jb2xvcj0iI2Y5ZjlmOSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuOTgyIiBzdG9wLWNvbG9yPSIjYzdjN2M3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMS4xMjUiIHN0b3AtY29sb3I9IiNmZmYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IGNsYXNzPSJjbHMtMSIgd2lkdGg9IjgzMS42ODgiIGhlaWdodD0iMjQ0LjA5NCIvPgo8L3N2Zz4K"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path class="cls-1" d="M30,1.914H801.7a30,30,0,0,1,30,30V216a30,30,0,0,1-30,30H30A30,30,0,0,1,0,216V31.914A30,30,0,0,1,30,1.914Z"/>
+</svg>

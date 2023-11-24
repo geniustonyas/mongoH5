@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        font-size: 50px;
+        font-family: Poppins;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="249.891" cy="250.109" r="247.203"/>
+  <text id="_" data-name="*" class="cls-2" transform="translate(87.784 581.955) scale(12.067)">*</text>
+</svg>
