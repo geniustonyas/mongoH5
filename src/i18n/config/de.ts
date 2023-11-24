@@ -766,7 +766,7 @@ export default {
     whyMergedRewards: `<p>Ihre Belohnungen werden zusammengefasst, weil eine einzelne Wette mehrere Belohnungen freischalten kann. Um es Ihnen bequem zu machen, addieren wir den Wert der Belohnungen zusammen und zeigen sie als eine einzelne Belohnung an.</p>`,
     resetVip: '6.Wann wird mein VIP-Level zurückgesetzt?',
     resetVips: `<p>Ihr VIP-Level wird zu Beginn jedes Monats auf 0 zurückgesetzt. Sie können dann wieder ab dem Bronze-Level beginnen und alle Belohnungen des nächsten Levels beanspruchen. Ihre gesammelten Punkte werden weiterhin für Sie aufbewahrt, damit Sie mehr Belohnungen und Dienstleistungen einlösen können.</p>`,
-    everyGetInterial: '7.Kann ich Clubpunkte bei jeder Wette verdienen?',
+    everyGetInterial: '6.Kann ich Clubpunkte bei jeder Wette verdienen?',
     everyGetInterials: `<p>Nein, Clubpunkte werden nur gesammelt, wenn Sie Wetten mit echtem Geld platzieren. Darüber hinaus sind bestimmte Kategorien von Veranstaltungen und Spielen nicht im Club enthalten, sodass Wetten auf sie Ihnen keine Punkte einbringen. Diese Kategorien umfassen:</p>
                         <p>Pferderennen</p>
                         <p>Esports Sportarten</p>

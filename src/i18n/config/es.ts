@@ -768,7 +768,7 @@ export default {
     whyMergedRewards: `<p>Tus recompensas se combinan porque una sola apuesta puede desbloquear múltiples recompensas. Para hacértelo más conveniente, sumamos el valor de las recompensas y las mostramos como una única recompensa.</p>`,
     resetVip: '6.¿Cuándo se reiniciará mi nivel VIP?',
     resetVips: `<p>Tu nivel VIP se reiniciará a 0 al comienzo de cada mes. Luego podrás comenzar nuevamente desde el nivel Bronce y reclamar todas las recompensas del siguiente nivel. Tus puntos acumulados seguirán conservándose para que puedas canjear más recompensas y servicios.</p>`,
-    everyGetInterial: '7.¿Puedo ganar puntos del club con cada apuesta?',
+    everyGetInterial: '6.¿Puedo ganar puntos del club con cada apuesta?',
     everyGetInterials: `<p>No, los puntos del club solo se acumulan al realizar apuestas con dinero real. Además, ciertas categorías de eventos y juegos no están incluidas en el club, por lo que las apuestas realizadas en ellas no te otorgarán puntos. Estas categorías incluyen:</p>
                         <p>Carreras de caballos</p>
                         <p>Deportes electrónicos</p>

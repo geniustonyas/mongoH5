@@ -282,17 +282,17 @@ getRemind()
 
 if (refreshRankTimer.value && refreshRankTimer.value > 0) {
   window.clearInterval(refreshRankTimer.value)
-  refreshRankTimer.value = window.setInterval(() => {
-    getRankList()
-  }, 10 * 1000)
 }
+refreshRankTimer.value = window.setInterval(() => {
+  getRankList()
+}, 10 * 1000)
 
 if (refreshRemindTimer.value && refreshRemindTimer.value > 0) {
   window.clearInterval(refreshRemindTimer.value)
-  refreshRemindTimer.value = window.setInterval(() => {
-    getRemind()
-  }, 30 * 1000)
 }
+refreshRemindTimer.value = window.setInterval(() => {
+  getRemind()
+}, 30 * 1000)
 
 onBeforeUnmount(() => {
   if (refreshRankTimer.value && refreshRankTimer.value > 0) {

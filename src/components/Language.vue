@@ -20,9 +20,9 @@ import { ref } from 'vue'
 import { selLang, languages } from '@/i18n/index'
 import { ConfigProvider, Popup, Icon } from 'vant'
 import { useI18n } from 'vue-i18n'
-import { useUserStore } from '@/store/modules/user'
+// import { useUserStore } from '@/store/modules/user'
 
-const userStore = useUserStore()
+// const userStore = useUserStore()
 const { t, locale } = useI18n()
 
 const showLangPick = ref(false)
@@ -32,10 +32,10 @@ const selLanguage = (val: string) => {
   selLang(val)
   locale.value = val
   showLangPick.value = !showLangPick.value
-  if (userStore.userInfo.id) {
-    userStore.getUserInfo({ noLoading: true })
-    userStore.setDefultLang()
-  }
+  // if (userStore.userInfo.id) {
+  //   userStore.getUserInfo({ noLoading: true })
+  //   userStore.setDefultLang()
+  // }
   const url = window.location.href
   const newUrl = url.replace(/(\?|&)lang=[^&]+/g, '')
   history.replaceState(null, '', newUrl)

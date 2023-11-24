@@ -759,7 +759,7 @@ export default {
     whyMergedRewards: `<p>Ödülleriniz birleştiriliyor çünkü tek bir bahis birden fazla ödülü açabilir. Sizi rahatlatmak için, ödüllerin değerlerini toplarız ve bunları tek bir ödül olarak gösteririz.</p>`,
     resetVip: '6.VIP seviyem ne zaman sıfırlanacak?',
     resetVips: `<p>VIP seviyeniz her ayın başında sıfırlanacaktır. Daha sonra Bronz seviyesinden tekrar başlayabilir ve bir sonraki seviyenin tüm ödüllerini alabilirsiniz. Biriktirdiğiniz puanlar hala saklanacak ve daha fazla ödül ve hizmet almak için kullanabileceksiniz.</p>`,
-    everyGetInterial: '7. Her Bahisle Kulüp Puanı Kazanabilir miyim?',
+    everyGetInterial: '6. Her Bahisle Kulüp Puanı Kazanabilir miyim?',
     everyGetInterials: `<p>Hayır, kulüp puanları yalnızca gerçek parayla bahis yaparken biriktirilir. Ayrıca, belirli kategori olayları ve oyunları kulüp içinde yer almadığından, bu kategorilere yapılan bahisler size puan kazandırmaz. Bu kategoriler şunları içerir:</p>
                         <p>At Yarışı</p>
                         <p>Esports Sporlar</p>

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-     <CommonHeader :title="siteName + ' ' + t(`html.vipTitle`)" />
+    <CommonHeader :title="siteName + ' ' + t(`html.vipTitle`)" />
     <div class="newvip-box">
       <div class="nb-a">
         <img src="../../assets/imgs/vip/nh1.png" />
@@ -113,7 +113,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock un"></i>
+                          <i class="lock un" />
                         </div>
                         <div class="i-r">
                           <h3>升级奖励</h3>
@@ -124,7 +124,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock un"></i>
+                          <i class="lock un" />
                         </div>
                         <div class="i-r">
                           <h3>充值奖金</h3>
@@ -135,7 +135,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>积分获取</h3>
@@ -154,7 +154,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>升级奖励</h3>
@@ -165,7 +165,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>充值奖金</h3>
@@ -176,7 +176,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>积分获取</h3>
@@ -195,7 +195,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>升级奖励</h3>
@@ -206,7 +206,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>充值奖金</h3>
@@ -217,7 +217,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>积分获取</h3>
@@ -228,7 +228,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>周度奖金</h3>
@@ -247,7 +247,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>升级奖励</h3>
@@ -258,7 +258,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>充值奖金</h3>
@@ -269,7 +269,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>积分获取</h3>
@@ -280,7 +280,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>周度奖金</h3>
@@ -291,7 +291,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>月度奖金</h3>
@@ -310,7 +310,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>升级奖励</h3>
@@ -321,7 +321,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>充值奖金</h3>
@@ -332,7 +332,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>积分获取</h3>
@@ -343,7 +343,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>周度奖金</h3>
@@ -354,7 +354,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>月度奖金</h3>
@@ -373,7 +373,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>升级奖励</h3>
@@ -384,7 +384,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>充值奖金</h3>
@@ -395,7 +395,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>积分获取</h3>
@@ -406,7 +406,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>周度奖金</h3>
@@ -417,7 +417,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>月度奖金</h3>
@@ -428,7 +428,7 @@
                     <div class="b-item">
                       <div class="bi-bd">
                         <div class="i-l">
-                          <i class="lock"></i>
+                          <i class="lock" />
                         </div>
                         <div class="i-r">
                           <h3>特别奖励</h3>
@@ -452,11 +452,11 @@
               <dl>
                 <dd>订阅促销邮箱奖金，将通过促销邮箱发送代码，使用代码在“奖励”页面兑换即可.</dd>
                 <dd>白银VIP的免费旋转，将于次日添加至Play’N GO平台，支持的游戏Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way</dd>
-                <dd>	所有等级的充值奖金限领取一次，需完成10倍的投注金额，可投注于任意游戏. 例：（1000+1000）*10=20000</dd>
+                <dd>所有等级的充值奖金限领取一次，需完成10倍的投注金额，可投注于任意游戏. 例：（1000+1000）*10=20000</dd>
                 <dd>充值奖金需要在存款完成之后，且未投注之前联系在线客服申请.</dd>
                 <dd>积分奖励将根据投注金额于次日自动添加至账户内.</dd>
                 <dd>周度奖金和月度奖金，将于下周或下月开始后48小时内自动添加至账户内.</dd>
-                <dd>所有的奖金计算周期将使用香港时间，Hong Kong, China (UTC+8) </dd>
+                <dd>所有的奖金计算周期将使用香港时间，Hong Kong, China (UTC+8)</dd>
               </dl>
             </div>
           </div>
@@ -467,10 +467,18 @@
             <div class="r-title">如何成为我们的VIP会员</div>
             <div class="r-cont">
               <dl>
-                <dd>继续投注：成为 VIP 的关键是始终投注各种体育赛事和赌场游戏。Seabet 将奖励您的一致性。作为顶级加密博彩网站，请定期使用您的数字资产对 Seabet 提供的任何赛事和赌场游戏进行投注。也可以尝试 USDT 投注，并持续使用您的资金。</dd>
-                <dd>参加定期活动：Seabet 的促销活动包括您可以随时参加的各种活动和竞赛。定期参加其中任何一个活动都会让您更有机会获得 VIP 会所邀请。不仅如此，您还可以在 Seabet 的其他俱乐部功能中更加活跃</dd>
-                <dd>	等待邀请：您需要做的最后一件事就是等待我们向您发送邀请。继续玩游戏并参加豪客赛。经过几次赌场博彩和体育博彩后，一旦您被认为值得成为 VIP 俱乐部会员，您将立即获得邀请。</dd>
-                <dd>作为Seabet会所VIP体验高尚生活：将您的 USDT 博彩体验带入一个全新的世界，同时享受作为 Seabet 贵宾俱乐部会员的顶级福利。当您进行体育博彩和赌场游戏时，作为有价值的玩家享受最好的乐趣、快速和公平的投注。</dd>
+                <dd>
+                  继续投注：成为 VIP 的关键是始终投注各种体育赛事和赌场游戏。Seabet 将奖励您的一致性。作为顶级加密博彩网站，请定期使用您的数字资产对 Seabet 提供的任何赛事和赌场游戏进行投注。也可以尝试
+                  USDT 投注，并持续使用您的资金。
+                </dd>
+                <dd>
+                  参加定期活动：Seabet 的促销活动包括您可以随时参加的各种活动和竞赛。定期参加其中任何一个活动都会让您更有机会获得 VIP 会所邀请。不仅如此，您还可以在 Seabet 的其他俱乐部功能中更加活跃
+                </dd>
+                <dd>等待邀请：您需要做的最后一件事就是等待我们向您发送邀请。继续玩游戏并参加豪客赛。经过几次赌场博彩和体育博彩后，一旦您被认为值得成为 VIP 俱乐部会员，您将立即获得邀请。</dd>
+                <dd>
+                  作为Seabet会所VIP体验高尚生活：将您的 USDT 博彩体验带入一个全新的世界，同时享受作为 Seabet
+                  贵宾俱乐部会员的顶级福利。当您进行体育博彩和赌场游戏时，作为有价值的玩家享受最好的乐趣、快速和公平的投注。
+                </dd>
               </dl>
             </div>
           </div>
@@ -481,8 +489,8 @@
 </template>
 
 <script setup lang="ts">
-  import CommonHeader from '@/components/layout/CommonHeader.vue'
-  import { useI18n } from 'vue-i18n'
+import CommonHeader from '@/components/layout/CommonHeader.vue'
+import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 const siteName = import.meta.env.VITE_APP_SITE_NAME

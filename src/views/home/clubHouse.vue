@@ -3,11 +3,11 @@
     <CommonHeader :title="t('club')" />
     <main class="main">
       <div class="clubhouse-box">
-        <div class="cb_tips" v-show="showTips">
+        <!-- <div class="cb_tips" v-show="showTips">
           <i class="iconfont icon-guanyuwomen" />
           <span>{{ t('clubTips') }}</span>
           <i class="iconfont icon-close" @click="showTips = false" />
-        </div>
+        </div> -->
         <div v-if="vipList.length > 0" class="cb-card">
           <div class="c-name">
             {{ t('tiers') }}
@@ -241,14 +241,14 @@
               </li>
               <li>
                 <div class="l-title" @click="showQuestion6 = !showQuestion6">
-                  <span>{{ t('problem.resetVip') }}</span
+                  <span>{{ t('problem.everyGetInterial') }}</span
                   ><i class="iconfont icon-down" />
                 </div>
                 <Vue3SlideUpDown v-model="showQuestion6">
-                  <div class="l-cont" v-html="t('problem.resetVips')" />
+                  <div class="l-cont" v-html="t('problem.everyGetInterials')" />
                 </Vue3SlideUpDown>
               </li>
-              <li>
+              <!-- <li>
                 <div class="l-title" @click="showQuestion7 = !showQuestion7">
                   <span>{{ t('problem.everyGetInterial') }}</span>
                   <i class="iconfont icon-down" />
@@ -256,7 +256,7 @@
                 <Vue3SlideUpDown v-model="showQuestion7">
                   <div class="l-cont" v-html="t('problem.everyGetInterials')" />
                 </Vue3SlideUpDown>
-              </li>
+              </li> -->
             </template>
           </ul>
           <div v-if="!showMore" class="lm-bottom">
@@ -288,7 +288,7 @@ import BigNumber from 'bignumber.js'
 // const router = useRouter()
 const { t } = useI18n()
 
-let showTips = ref(true)
+// let showTips = ref(true)
 
 let currentData = reactive<currentDataResp>({
   totalBetAmount: '',
@@ -350,7 +350,7 @@ const showQuestion3 = ref(false)
 const showQuestion4 = ref(false)
 const showQuestion5 = ref(false)
 const showQuestion6 = ref(false)
-const showQuestion7 = ref(false)
+// const showQuestion7 = ref(false)
 
 // 下一奖励进度
 const progressWidth = computed(() => (requiredTotalBetAmount: string) => {

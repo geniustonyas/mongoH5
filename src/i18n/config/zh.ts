@@ -757,7 +757,7 @@ export default {
     whyMergedRewards: `<p>您的奖励被合并是因为您的一次投注有可能解锁多个奖励。为了方便您使用，我们将奖励价值相加，并显示为一种奖励。</p>`,
     resetVip: '6. 我的VIP等级何时重置?',
     resetVips: '<p>您的VIP等级将在每个月初重置为0。然后，您可以从青铜等级开始再次领取下一级别的所有奖励。您积分仍将被保留，以兑换更多的奖励及服务。</p>',
-    everyGetInterial: '7. 是否每个投注都可收集俱乐部积分?',
+    everyGetInterial: '6. 是否每个投注都可收集俱乐部积分?',
     everyGetInterials: `<p>不是。只有用真钱投注才会累积俱乐部积分。</p>
                         <p>赛马</p>
                         <p>电竞游戏</p>

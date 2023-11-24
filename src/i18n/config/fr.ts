@@ -759,7 +759,7 @@ export default {
     whyMergedRewards: `<p>Vos récompenses sont fusionnées parce qu'un seul pari peut débloquer plusieurs récompenses. Pour vous faciliter les choses, nous additionnons la valeur des récompenses et les affichons sous forme d'une seule récompense.</p>`,
     resetVip: '6.Quand mon niveau VIP sera-t-il réinitialisé ?',
     resetVips: `<p>Votre niveau VIP sera réinitialisé à 0 au début de chaque mois. Vous pourrez alors recommencer depuis le niveau Bronze et réclamer toutes les récompenses du niveau suivant. Vos points accumulés seront toujours conservés pour que vous puissiez échanger davantage de récompenses et de services.</p>`,
-    everyGetInterial: '7.Puis-je gagner des points de club à chaque mise ?',
+    everyGetInterial: '6.Puis-je gagner des points de club à chaque mise ?',
     everyGetInterials: `<p>Non, les points de club ne sont accumulés que lorsque vous placez des paris avec de l'argent réel. De plus, certaines catégories d'événements et de jeux ne sont pas incluses dans le club, de sorte que les paris placés sur eux ne vous rapporteront pas de points. Ces catégories incluent :</p>
                         <p>Les courses de chevaux</p>
                         <p>Les sports électroniques</p>

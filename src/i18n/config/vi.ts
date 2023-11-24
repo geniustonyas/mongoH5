@@ -768,7 +768,7 @@ export default {
     whyMergedRewards: `<p>Phần thưởng của bạn được gộp lại vì một lần đặt cược có thể mở khóa nhiều phần thưởng. Để làm cho nó tiện lợi cho bạn, chúng tôi cộng tổng giá trị của các phần thưởng và hiển thị chúng như một phần thưởng duy nhất.</p>`,
     resetVip: '6.Khi nào cấp độ VIP của tôi sẽ được đặt lại?',
     resetVips: `<p>Cấp độ VIP của bạn sẽ được đặt lại về mức 0 vào đầu mỗi tháng. Sau đó, bạn có thể bắt đầu lại từ cấp độ Đồng và nhận lại lần nữa  tất cả các phần thưởng của cấp độ tiếp theo. Điểm tích luỹ của bạn sẽ vẫn được giữ lại để bạn có thể đổi thêm nhiều phần thưởng và dịch vụ khác.</p>`,
-    everyGetInterial: '7.Tôi có thể kiếm điểm câu lạc bộ với mỗi lần đặt cược không?',
+    everyGetInterial: '6.Tôi có thể kiếm điểm câu lạc bộ với mỗi lần đặt cược không?',
     everyGetInterials: `<p>8.Không, điểm câu lạc bộ chỉ tích lũy khi bạn đặt cược bằng tiền thật. Ngoài ra, một số loại sự kiện và trò chơi cụ thể không được tính trong câu lạc bộ, do đó, các cược được đặt trên chúng sẽ không đem lại điểm cho bạn. Các loại sự kiện này bao gồm:</p>
                         <p>Đua ngựa</p>
                         <p>Thể thao điện tử</p>

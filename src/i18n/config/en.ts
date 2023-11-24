@@ -762,7 +762,7 @@ export default {
     whyMergedRewards: `<p>Your rewards are merged because a single bet may unlock multiple rewards. To make it convenient for you, we add up the value of the rewards and display them as a single reward.</p>`,
     resetVip: '6. When will My VIP Level Reset?',
     resetVips: `<p>Your VIP level will reset to 0 at the beginning of each month. You can then start again from the Bronze level and claim all the rewards of the next level. Your accumulated points will still be retained for you to redeem more rewards and services.</p>`,
-    everyGetInterial: '7. Can I Earn Club Points with Every Bet?',
+    everyGetInterial: '6. Can I Earn Club Points with Every Bet?',
     everyGetInterials: `<p>No, club points are only accumulated when placing bets with real money. Additionally, certain categories of events and games are not included in the club, so bets placed on them will not earn you points. These categories include:</p>
                         <p>Horse Racing</p>
                         <p>Esports Sports</p>
