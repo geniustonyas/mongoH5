@@ -5,28 +5,16 @@
       <div class="nb-a">
        <div class="a-bg">
           <img src="../../assets/imgs/vip/nh1.png" />
-       </div>
-
-
+       </div> 
         <div class="a-introduce">
-          <!--<div class="a-t">Seabet VIP俱乐部</div>-->
           <div class="a-c">
-            <p>欢迎来到<b>Seabet</b>尊贵会员俱乐部</p>
             <p>在Seabet，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。</p>
-            <p>只需投注您所喜爱的游戏/体育赛事等任意一款由Seabet.io提供的游戏服务并通过等级的上升即可解锁独家奖励。</p>
           </div>
         </div>
 
       </div>
       <div class="nb-x">
         <div class="nb-b">
-          <!--<div class="b-introduce">
-            <div class="bi-c">
-              <p>欢迎来到<b>Seabet</b>尊贵会员俱乐部</p>
-              <p>在Seabet，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。</p>
-              <p>只需投注您所喜爱的游戏/体育赛事等任意一款由Seabet.io提供的游戏服务并通过等级的上升即可解锁独家奖励。</p>
-            </div>
-          </div>-->
           <div class="b-perks">
             <div class="item">
               <div class="i-bd">
@@ -43,7 +31,7 @@
                   <dt>高额奖励</dt>
                   <dd>专为您设计的优惠</dd>
                   <dd>免下注奖励</dd>
-                  <dd>高快速的积分获取速度</dd>
+                  <!--<dd>高快速的积分获取速度</dd>-->
                 </dl>
               </div>
             </div>
@@ -61,8 +49,8 @@
                   <dt>VIP专属促销</dt>
                   <dd>区别于普通会员的促销优惠</dd>
                   <dd>仅VIP用户可见</dd>
-                  <dd>个性化优惠</dd>
-                  <dd>为您定制专属于您的娱乐服务</dd>
+                  <!--<dd>个性化优惠</dd>
+                  <dd>为您定制专属于您的娱乐服务</dd>-->
                 </dl>
               </div>
             </div>
@@ -72,15 +60,14 @@
                   <dt>7*24小时优先服务</dt>
                   <dd>无需排队，无需等待</dd>
                   <dd>我们首先关注您的需求</dd>
-                  <dd>多种社交媒体联系方式，专属客户经理在线服务</dd>
+                  <!--<dd>多种社交媒体联系方式，专属客户经理在线服务</dd>-->
                 </dl>
               </div>
             </div>
           </div>
           <div class="b-reward">
             <div class="br-title">
-              <h2>VIP奖励明细</h2>
-              <p>提升等级以后去独家权限，享受丰厚奖励和个性化礼物！加入我们的精英玩家社区，尽情体验在线游戏的最佳内容。</p>
+              <h2>VIP奖励明细</h2> 
             </div>
             <div class="br-cont">
               <div class="bc-levels">
