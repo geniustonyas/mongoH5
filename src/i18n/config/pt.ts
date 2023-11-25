@@ -204,8 +204,8 @@ export default {
   // Página Inicial
   readMore: 'Leia Mais',
   sports: 'Esportes',
-  liveCasino: 'Cassino Ao Vivo',
-  slots: 'Caça-Níqueis',
+  liveCasino: 'Cassino',
+  slots: 'Slots',
   sbSport: 'Esportes SB',
   fbSport: 'Esportes FB',
   downloadApp: 'Download APP',

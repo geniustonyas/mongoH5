@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7090080",
+      "name": "站内信",
+      "font_class": "email",
+      "unicode": "e719",
+      "unicode_decimal": 59161
+    },
+    {
       "icon_id": "36737743",
       "name": "loading",
       "font_class": "loading",

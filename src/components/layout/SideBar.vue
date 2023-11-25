@@ -119,6 +119,9 @@
             <li>
               <a @click="router.push({ name: 'affiliate' })"><i class="iconfont icon-hezuo" />{{ t('affiliate') }}</a>
             </li>
+            <li>
+              <a href="http://eepurl.com/iEDr2A" target="_blank"><i class="iconfont icon-email" />订阅邮箱</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -160,7 +163,7 @@ import { startGame, liveChatCall } from '@/composables/startGame'
 //第三方插件
 import BigNumber from 'bignumber.js'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
-import { showToast } from 'vant'
+// import { showToast } from 'vant'
 import { GameType } from '@/utils/constant'
 
 const userStore = useUserStore()

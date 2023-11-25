@@ -178,6 +178,18 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         td:first-child { width: 40%; .ellipsis(); }
     }
 }
+.m-mail {
+    margin: 2rem;
+    .mail-title { font-size: 1.8rem; color: var(--color-white); font-weight: bold }
+    .mail-cont { height: 4rem; margin-top: 1.5rem; .bgc(var(--color-white), var(--color-text)); .radius(2rem); .flex(); .flex-align();  .flex-pack-justify(); padding-left:1rem;
+        input { border: none;  background-color: transparent; color: var(--color-dark); .h-lh(4rem); .flex-x();  }
+        .btn { .h-lh(4rem) }
+    }
+    .tip { color: red }
+    .mail-tip { font-size: 1.4rem; color: var(--color-text); margin-top: 1.5rem;
+        a { color: var(--color-primary) }
+    }
+}
 .m-rate { .bg(var(--color-dark-gray)); .h-lh(4rem); text-align: center; .radius(4rem); margin: 2rem; font-weight: 700;
     b { color: var(--color-white); display: inline-block; margin: .2rem; }
     .m-lang { .flex(); .flex-pack-justify(); font-weight: normal;
@@ -2058,7 +2070,7 @@ body[lang='es'], body[lang='vi'] {
         span { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
     }
     .m-menu { .scroll-touch(auto,hidden);
-        a { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
+        a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
     }
     .header .head-menu-lmr .hml-m { font-size: 1.3rem; .ellipsis(); }
     .agent-report-box .ar-e .a-l { overflow-y: auto;
@@ -2085,7 +2097,7 @@ body[lang='pt'] {
         span { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
     }
     .m-menu { .flex-pack-justify();
-        a { font-size: 1rem; white-space: nowrap; padding: .5rem; }
+        a { font-size: 1.3rem; white-space: nowrap; padding: .5rem; }
     }
 }
 body[lang='de'] {
@@ -2117,7 +2129,7 @@ body[lang='fr'] {
         span { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
     }
     .m-menu { .scroll-touch(auto,hidden);
-        a { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
+        a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
     }
     .m-card .mc-t { position: relative;
         .mt-l { margin-right: 12rem; }
