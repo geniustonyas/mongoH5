@@ -3,7 +3,7 @@
     <form action="https://seabet.us21.list-manage.com/subscribe/post?u=247cec6e7f3911f704f182c83&id=4bd16eb882&f_id=0009eee6f0" method="POST" ref="formDom" target="_blank">
       <div class="mail-title">让我们保持联系</div>
       <div class="mail-cont">
-        <input v-model="email" type="email" name="EMAIL" class="required email" id="mce-EMAIL" />
+        <input v-model="email" type="email" name="EMAIL" class="required email" id="mce-EMAIL" :placeholder="t('emailAddress')" />
         <span class="btn btn-primary" @click="subscript">订阅</span>
       </div>
       <div id="emailTip" class="tip" />

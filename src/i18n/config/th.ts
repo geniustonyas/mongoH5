@@ -704,6 +704,7 @@ export default {
   sendNow: 'ส่งเลย',
   mailUs: 'กรุณาสอบถามรายละเอียดเพิ่มเติมติดต่อเรา:',
   financeRewards: 'รางวัล',
+  emailAddress: '电子邮件地址',
 
   problem: {
     whatVip: '1. คลับ VIP คืออะไร?',

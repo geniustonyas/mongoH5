@@ -709,6 +709,7 @@ export default {
   sendNow: 'Send Now',
   mailUs: 'For more details, please contact us:',
   financeRewards: 'Rewards',
+  emailAddress: '电子邮件地址',
 
   problem: {
     whatVip: '1. What is the VIP Club?',

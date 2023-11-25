@@ -3,15 +3,14 @@
     <CommonHeader :title="siteName + ' ' + t(`html.vipTitle`)" />
     <div class="newvip-box">
       <div class="nb-a">
-       <div class="a-bg">
-          <img src="../../assets/imgs/vip/nh1.png" />
-       </div> 
+        <div class="a-bg">
+          <img :src="getAssetsFile('vip/nh1.png')" />
+        </div>
         <div class="a-introduce">
           <div class="a-c">
             <p>在Seabet，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。</p>
           </div>
         </div>
-
       </div>
       <div class="nb-x">
         <div class="nb-b">
@@ -67,37 +66,37 @@
           </div>
           <div class="b-reward">
             <div class="br-title">
-              <h2>VIP奖励明细</h2> 
+              <h2>VIP奖励明细</h2>
             </div>
             <div class="br-cont">
               <div class="bc-levels">
                 <div class="l-item active">
-                  <img src="../../assets/imgs/grade/102.png" />
+                  <img :src="getAssetsFile('grade/102.png')" />
                   <h2>青铜</h2>
                   <!--<span>青铜1</span>-->
                 </div>
                 <div class="l-item">
-                  <img src="../../assets/imgs/grade/103.png" />
+                  <img :src="getAssetsFile('grade/103.png')" />
                   <h2>白银</h2>
                   <!--<span>白银1-5</span>-->
                 </div>
                 <div class="l-item">
-                  <img src="../../assets/imgs/grade/104.png" />
+                  <img :src="getAssetsFile('grade/104.png')" />
                   <h2>黄金</h2>
                   <!--<span>黄金1-8</span>-->
                 </div>
                 <div class="l-item">
-                  <img src="../../assets/imgs/grade/105.png" />
+                  <img :src="getAssetsFile('grade/105.png')" />
                   <h2>铂金</h2>
                   <!--<span>铂金1-10</span>-->
                 </div>
                 <div class="l-item">
-                  <img src="../../assets/imgs/grade/106.png" />
+                  <img :src="getAssetsFile('grade/106.png')" />
                   <h2>钛金</h2>
                   <!--<span>钛金1-10</span>-->
                 </div>
                 <div class="l-item">
-                  <img src="../../assets/imgs/grade/107.png" />
+                  <img :src="getAssetsFile('grade/107.png')" />
                   <h2>钻石</h2>
                   <!--<span>钻石1-6</span>-->
                 </div>
@@ -444,7 +443,7 @@
         <div class="nb-c">
           <div class="rows">
             <div class="r-banner">
-              <img src="../../assets/imgs/vip/nh2.jpg" />
+              <img :src="getAssetsFile('vip/nh2.jpg')" />
             </div>
             <div class="r-title">VIP俱乐部福利细节</div>
             <div class="r-cont">
@@ -461,7 +460,7 @@
           </div>
           <div class="rows">
             <div class="r-banner">
-              <img src="../../assets/imgs/vip/nh3.jpg" />
+              <img :src="getAssetsFile('vip/nh3.jpg')" />
             </div>
             <div class="r-title">如何成为我们的VIP会员</div>
             <div class="r-cont">
@@ -488,9 +487,11 @@
 </template>
 
 <script setup lang="ts">
-  import CommonHeader from '@/components/layout/CommonHeader.vue'
-  import { useI18n } from 'vue-i18n'
+import CommonHeader from '@/components/layout/CommonHeader.vue'
+import { useI18n } from 'vue-i18n'
 
-  const { t } = useI18n()
-  const siteName = import.meta.env.VITE_APP_SITE_NAME
+import { getAssetsFile } from '@/utils/index'
+
+const { t } = useI18n()
+const siteName = import.meta.env.VITE_APP_SITE_NAME
 </script>

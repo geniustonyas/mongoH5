@@ -707,6 +707,7 @@ export default {
   sendNow: '지금 전송',
   mailUs: '더욱 상세한 정보에 대해서는, 이하 메일주소로 연락 부탁드립니다:',
   financeRewards: '보너스',
+  emailAddress: '电子邮件地址',
 
   problem: {
     whatVip: '1.VIP 클럽이란 무엇인가요?',

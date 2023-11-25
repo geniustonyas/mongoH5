@@ -706,6 +706,7 @@ export default {
   sendNow: 'Envoyer Maintenant',
   mailUs: 'Pour plus de détails, veuillezcontactez-nous:',
   financeRewards: 'Récompenses',
+  emailAddress: '电子邮件地址',
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",

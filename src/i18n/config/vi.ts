@@ -715,6 +715,7 @@ export default {
   sendNow: 'Gửi Ngay',
   mailUs: 'để biết thêm chi tiết, xin vui lòngliên hệ chúng tôi:',
   financeRewards: 'Phần thưởng',
+  emailAddress: '电子邮件地址',
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

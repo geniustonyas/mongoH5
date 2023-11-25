@@ -178,11 +178,10 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         td:first-child { width: 40%; .ellipsis(); }
     }
 }
-.m-mail {
-    margin: 2rem;
+.m-mail { padding: 3rem 2rem; .bg(var(--color-black));
     .mail-title { font-size: 1.8rem; color: var(--color-white); font-weight: bold }
-    .mail-cont { height: 4rem; margin-top: 1.5rem; .bgc(var(--color-white), var(--color-text)); .radius(2rem); .flex(); .flex-align();  .flex-pack-justify(); padding-left:1rem;
-        input { border: none;  background-color: transparent; color: var(--color-dark); .h-lh(4rem); .flex-x();  }
+    .mail-cont { height: 4rem; margin-top: 1.5rem; .bgc(var(--color-dark-gray), var(--color-text)); .radius(2rem); .flex(); .flex-align();  .flex-pack-justify(); padding-left:1rem;
+        input { border: none;  background-color: transparent; color: var(--color-white); .h-lh(4rem); .flex-x();  }
         .btn { .h-lh(4rem) }
     }
     .tip { color: red }

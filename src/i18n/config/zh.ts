@@ -704,6 +704,7 @@ export default {
   sendNow: '立即发送',
   mailUs: '有关更多详细信息，请联系我们',
   financeRewards: '奖励',
+  emailAddress: '电子邮件地址',
 
   problem: {
     whatVip: '1. 什么是VIP俱乐部?',

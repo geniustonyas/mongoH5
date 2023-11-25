@@ -710,6 +710,7 @@ export default {
   sendNow: 'メールを送る',
   mailUs: '詳細については、お問い合わせください。',
   financeRewards: 'ボーナス',
+  emailAddress: '电子邮件地址',
 
   problem: {
     whatVip: '1.VIPクラブとは何ですか？',

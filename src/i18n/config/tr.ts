@@ -706,6 +706,7 @@ export default {
   sendNow: 'Şimdi Gönder',
   mailUs: 'Daha iyi açıkla lütfenbizimle iletişime geçin:',
   financeRewards: 'Ödüller',
+  emailAddress: '电子邮件地址',
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',
