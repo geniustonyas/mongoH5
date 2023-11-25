@@ -9,7 +9,7 @@
 
 
         <div class="a-introduce">
-          <div class="a-t">Seabet VIP俱乐部</div>
+          <!--<div class="a-t">Seabet VIP俱乐部</div>-->
           <div class="a-c">
             <p>欢迎来到<b>Seabet</b>尊贵会员俱乐部</p>
             <p>在Seabet，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。</p>
