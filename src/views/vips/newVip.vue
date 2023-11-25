@@ -3,18 +3,30 @@
     <CommonHeader :title="siteName + ' ' + t(`html.vipTitle`)" />
     <div class="newvip-box">
       <div class="nb-a">
-        <img src="../../assets/imgs/vip/nh1.png" />
-        <div class="a-t">Seabet VIP俱乐部</div>
+       <div class="a-bg">
+          <img src="../../assets/imgs/vip/nh1.png" />
+       </div>
+
+
+        <div class="a-introduce">
+          <div class="a-t">Seabet VIP俱乐部</div>
+          <div class="a-c">
+            <p>欢迎来到<b>Seabet</b>尊贵会员俱乐部</p>
+            <p>在Seabet，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。</p>
+            <p>只需投注您所喜爱的游戏/体育赛事等任意一款由Seabet.io提供的游戏服务并通过等级的上升即可解锁独家奖励。</p>
+          </div>
+        </div>
+
       </div>
       <div class="nb-x">
         <div class="nb-b">
-          <div class="b-introduce">
+          <!--<div class="b-introduce">
             <div class="bi-c">
               <p>欢迎来到<b>Seabet</b>尊贵会员俱乐部</p>
               <p>在Seabet，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。</p>
               <p>只需投注您所喜爱的游戏/体育赛事等任意一款由Seabet.io提供的游戏服务并通过等级的上升即可解锁独家奖励。</p>
             </div>
-          </div>
+          </div>-->
           <div class="b-perks">
             <div class="item">
               <div class="i-bd">
@@ -75,38 +87,38 @@
                 <div class="l-item active">
                   <img src="../../assets/imgs/grade/102.png" />
                   <h2>青铜</h2>
-                  <span>青铜1</span>
+                  <!--<span>青铜1</span>-->
                 </div>
                 <div class="l-item">
                   <img src="../../assets/imgs/grade/103.png" />
                   <h2>白银</h2>
-                  <span>白银1-5</span>
+                  <!--<span>白银1-5</span>-->
                 </div>
                 <div class="l-item">
                   <img src="../../assets/imgs/grade/104.png" />
                   <h2>黄金</h2>
-                  <span>黄金1-8</span>
+                  <!--<span>黄金1-8</span>-->
                 </div>
                 <div class="l-item">
                   <img src="../../assets/imgs/grade/105.png" />
                   <h2>铂金</h2>
-                  <span>铂金1-10</span>
+                  <!--<span>铂金1-10</span>-->
                 </div>
                 <div class="l-item">
                   <img src="../../assets/imgs/grade/106.png" />
                   <h2>钛金</h2>
-                  <span>钛金1-10</span>
+                  <!--<span>钛金1-10</span>-->
                 </div>
                 <div class="l-item">
                   <img src="../../assets/imgs/grade/107.png" />
                   <h2>钻石</h2>
-                  <span>钻石1-6</span>
+                  <!--<span>钻石1-6</span>-->
                 </div>
               </div>
               <div class="bc-upgrade">
                 <div class="u-item active">
                   <div class="u-a">
-                    <div class="a-grade lv2">青铜</div>
+                    <div class="a-grade lv2">青铜1</div>
                     <div class="a-amount">100 USDT<b>投注金额</b></div>
                   </div>
                   <div class="u-b">
@@ -147,7 +159,7 @@
                 </div>
                 <div class="u-item">
                   <div class="u-a">
-                    <div class="a-grade lv3">白银</div>
+                    <div class="a-grade lv3">白银1-5</div>
                     <div class="a-amount">500-1万USDT<b>投注金额</b></div>
                   </div>
                   <div class="u-b">
@@ -188,7 +200,7 @@
                 </div>
                 <div class="u-item">
                   <div class="u-a">
-                    <div class="a-grade lv4">黄金</div>
+                    <div class="a-grade lv4">黄金1-8</div>
                     <div class="a-amount">1.5万-19万USDT<b>投注金额</b></div>
                   </div>
                   <div class="u-b">
@@ -240,7 +252,7 @@
                 </div>
                 <div class="u-item">
                   <div class="u-a">
-                    <div class="a-grade lv5">铂金</div>
+                    <div class="a-grade lv5">铂金1-10</div>
                     <div class="a-amount">30万-160万USDT<b>投注金额</b></div>
                   </div>
                   <div class="u-b">
@@ -303,7 +315,7 @@
                 </div>
                 <div class="u-item">
                   <div class="u-a">
-                    <div class="a-grade lv6">钛金</div>
+                    <div class="a-grade lv6">钛金1-10</div>
                     <div class="a-amount">190万-500万USDT<b>投注金额</b></div>
                   </div>
                   <div class="u-b">
@@ -366,7 +378,7 @@
                 </div>
                 <div class="u-item">
                   <div class="u-a">
-                    <div class="a-grade lv7">钻石</div>
+                    <div class="a-grade lv7">钻石1-6</div>
                     <div class="a-amount">600万+<b>投注金额</b></div>
                   </div>
                   <div class="u-b">
@@ -489,9 +501,9 @@
 </template>
 
 <script setup lang="ts">
-import CommonHeader from '@/components/layout/CommonHeader.vue'
-import { useI18n } from 'vue-i18n'
+  import CommonHeader from '@/components/layout/CommonHeader.vue'
+  import { useI18n } from 'vue-i18n'
 
-const { t } = useI18n()
-const siteName = import.meta.env.VITE_APP_SITE_NAME
+  const { t } = useI18n()
+  const siteName = import.meta.env.VITE_APP_SITE_NAME
 </script>
