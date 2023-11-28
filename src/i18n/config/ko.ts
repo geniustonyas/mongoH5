@@ -73,8 +73,8 @@ export default {
     '101': '강철',
     '102': '브론즈',
     '103': '실버',
-    '104': '플래티넘',
-    '105': '백금',
+    '104': '골드',
+    '105': '플래티넘',
     '106': '티타늄',
     '107': '다이아몬드'
   },
@@ -780,14 +780,14 @@ export default {
         '4': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 3%</span>의 주간 보너스를 받으십시오.</p>` }
       },
       '106': {
-        '0': { title: '업그레이드 보너스', content: `타이탄 10, 총 상금:<span>18,555 USDT</span>` },
+        '0': { title: '업그레이드 보너스', content: `티타늄 10, 총 상금:<span>18,555 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>3,000 USDT</span> 입금시 <span>3,000 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.5</span></p>` },
         '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 8%</span>의 주간 보너스를 받으십시오.</p>` },
         '4': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` }
       },
       '107': {
-        '0': { title: '업그레이드 보너스', content: `타이탄 6, 총 상금：<span>105,555 USDT</span>` },
+        '0': { title: '업그레이드 보너스', content: `다이아몬드 6, 총 상금：<span>105,555 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>10,000 USDT</span> 입금시 <span>10,000 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*2</span></p>` },
         '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 10%</span>의 주간 보너스를 받으십시오.</p>` },

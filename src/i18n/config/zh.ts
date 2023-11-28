@@ -795,7 +795,7 @@ export default {
     },
     vipRewardDetailTitle: 'VIP俱乐部福利细节',
     vipRewardDetailContent: `<dd>订阅促销邮箱奖金，将通过促销邮箱发送代码，使用代码在“奖励”页面兑换即可.</dd>
-                            <dd>白银VIP的免费旋转，将于次日添加至Play’N GO平台，支持的游戏Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way</dd>
+                            <dd>白银VIP的免费旋转，在“奖励”页面点击申请即可，将添加至Play’N GO平台，支持的游戏为：Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way</dd>
                             <dd>所有等级的充值奖金限领取一次，需完成10倍的投注金额，可投注于任意游戏. 例：（1000+1000）*10=20000</dd>
                             <dd>充值奖金需要在存款完成之后，且未投注之前联系在线客服申请.</dd>
                             <dd>积分奖励将根据投注金额于次日自动添加至账户内.</dd>
