@@ -803,7 +803,7 @@ export default {
     },
     vipRewardDetailTitle: 'VIP-Club-Vorteile im Detail',
     vipRewardDetailContent: `<dd>Boni für das Abonnieren von Werbe-E-Mails werden über die Werbe-E-Mail mit einem Code gesendet. Verwenden Sie den Code, um ihn auf der Seite "Belohnungen" einzulösen.</dd>
-                            <dd>Freispiele für Silver VIP werden am nächsten Tag auf der Play’N GO-Plattform hinzugefügt und unterstützen Spiele wie Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Freispiele für Silber-VIPs können auf der 'Belohnungen'-Seite beansprucht werden. Verfügbar auf der Play'N GO Plattform, berechtigte Spiele: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
                             <dd>Aufladeboni für alle Stufen können nur einmal beansprucht werden und erfordern die Erfüllung des 10-fachen Wettbetrags, der auf jedes Spiel anwendbar ist. Beispiel: (1000+1000)*10=20000.</dd>
                             <dd>Aufladeboni müssen nach Abschluss der Einzahlung und vor jeder Wette über den Online-Kundenservice beantragt werden.</dd>
                             <dd>Punkteprämien werden basierend auf dem Wetteinsatz am nächsten Tag automatisch dem Konto hinzugefügt.</dd>

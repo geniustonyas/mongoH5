@@ -799,7 +799,7 @@ export default {
     },
     vipRewardDetailTitle: 'VIP Club Benefits Details',
     vipRewardDetailContent: `<dd>Subscription promotion email bonuses will be sent through the promotional email with a code. Use the code to redeem on the "Rewards" page.</dd>
-                            <dd>Freispiele für Silber-VIPs können auf der 'Belohnungen'-Seite beansprucht werden. Verfügbar auf der Play'N GO Plattform, berechtigte Spiele: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Free spins for Silver VIPs can be claimed on the 'Rewards' page. Available in Play'N GO'platform， Eligible games: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
                             <dd>Recharge bonuses for all levels are limited to one claim, requiring completion of a 10x wagering amount, applicable to any game. Example: (1000+1000)*10=20000.</dd>
                             <dd>Recharge bonuses need to be applied through online customer service after deposit completion and before any betting.</dd>
                             <dd>Points rewards will be automatically added to the account the next day based on the betting amount.</dd>
