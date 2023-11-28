@@ -719,7 +719,114 @@ export default {
   sendNow: 'Enviar Agora',
   mailUs: 'Para mais detalhes, por favorcontate-nos:',
   financeRewards: 'Prêmios',
-  emailAddress: '电子邮件地址',
+  emailAddress: 'Email Address',
+  keepContact: 'Vamos manter o contato',
+  subscribe: 'ASSINAR',
+  subscribeEmail: 'Email Subscription',
+  outAny: 'Você pode sair quando quiser.',
+  subBefore: '(Ao clicar em “Assinar”, você concorda que leu, entendeu e consentiu com a ',
+  subAfter: 'quanto ao uso dos seus dados pessoais.)',
+  vip: {
+    seabetVip: 'eabet VIPClube',
+    vipWelH5: `"Na Seabet, estamos empenhados em melhorar a qualidade dos jogos e proporcionar a melhor experiência de jogo possível. Lançamos um novo Clube de Membros VIP para recompensar nossos membros que passam tempo jogando em nosso site e são leais a nossa plataforma."`,
+    vipWel: `<p>Bem-vindo ao Clube de Membros VIP da Seabet</p>
+            <p>"Na Seabet, estamos empenhados em melhorar a qualidade dos jogos e proporcionar a melhor experiência de jogo possível. Lançamos um novo Clube de Membros VIP para recompensar nossos membros que passam tempo jogando em nosso site e são leais a nossa plataforma."</p>
+            <p>Apenas aposte em qualquer um dos serviços de jogos/esportes que você gosta, fornecidos pela Seabet.io, e desbloqueie recompensas exclusivas à medida que avança de nível.</p>`,
+    vipManage: `<dt>Gerente VIP Exclusivo</dt>
+                <dd>Personalizado para você</dd>
+                <dd>Jogos sob medida</dd>`,
+    vipHighReward: ` <dt>Recompensas Altas</dt>
+                      <dd>Bônus sem aposta</dd>
+                      <dd>Pontos rápidos</dd>`,
+    highLimit: `<dt>Aposta Personalizada</dt>
+                <dd>Transações ilimitadas</dd>
+                <dd>Limites altos</dd>`,
+    vipPromotion: `<dt>Promos só VIP</dt>
+                    <dd>Ofertas exclusivas</dd>
+                    <dd>Acesso VIP</dd>`,
+    noQueue: `<dt>Serviço 24/7</dt>
+              <dd>Suporte multilíngue</dd>
+              <dd>Gerente pessoal</dd>`,
+    vipRewardDetailsTitle: 'Detalhamento das Recompensas VIP',
+    vipRewardDetails: `<h2>Detalhamento das Recompensas VIP</h2>
+                      <p>Suba de nível para obter acesso exclusivo a generosas recompensas e presentes personalizados!</p>`,
+    subTitle: {
+      '102': 'Bronze 1',
+      '103': 'Prata 1-5',
+      '104': 'Ouro 1-8',
+      '105': 'Platina 1-10',
+      '106': 'Titânio 1-10',
+      '107': 'Diamante 1-6'
+    },
+    usdtAmount: 'Quantia apostada',
+    amount: {
+      '102': '$100 USDT',
+      '103': '$500-$10K USDT',
+      '104': '$15K-$190K USDT',
+      '105': '$300K-$1.6M USDT',
+      '106': '$1.9M-$5.09M USDT',
+      '107': '$6M+ USDT'
+    },
+    rewards: {
+      '102': {
+        '0': { title: 'Bônus de Nível', content: `Prêmio total: <span>5 USDT</span>` },
+        '1': { title: 'Bônus de assinatura', content: `Assine o e-mail promocional e receba 10 USDT gratuitamente` },
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1</span></p>` }
+      },
+      '103': {
+        '0': { title: 'Bônus de Nível', content: `Prata 5, Prêmio total: <span>135 USDT</span>` },
+        '1': { title: 'Rodadas Grátis', content: `<span>30</span> rodadas grátis nos jogos de caça-níqueis` },
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1.1</span></p>` }
+      },
+      '104': {
+        '0': { title: 'Bônus de Nível', content: `Ouro 8, Prêmio total: <span>1,255 USDT</span>` },
+        '1': { title: 'Bônus de Recarga', content: `Deposite <span>300 USDT</span>, e receba <span>300 USDT</span>` },
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*1.2</span></p>` },
+        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
+      },
+      '105': {
+        '0': { title: 'Bônus de Nível', content: `Platina 10, Prêmio total: <span>6,025 USDT</span>` },
+        '1': { title: 'Bônus de Recarga', content: `Deposite <span>1,000 USDT</span>, e receba <span>1,000 USDT</span>` },
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*1.3</span></p>` },
+        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '4': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*3%</span> aproximadamente com base no valor da sua aposta.</p>` }
+      },
+      '106': {
+        '0': { title: 'Bônus de Nível', content: `Titânio 10, Prêmio total: <span>18,555 USDT</span>` },
+        '1': { title: 'Bônus de Recarga', content: `Deposite <span>3,000 USDT</span>, e receba <span>3,000 USDT</span>` },
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*1.5</span></p>` },
+        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '4': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
+      },
+      '107': {
+        '0': { title: 'Bônus de Nível', content: `Diamante 6, Prêmio total: <span>105,555 USDT</span>` },
+        '1': { title: 'Bônus de Recarga', content: `Deposite <span>10,000 USDT</span>, e receba <span>10,000 USDT</span>` },
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*2</span></p>` },
+        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*10%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '4': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '5': { title: 'Recompensa Especia', content: `<p>Diamante 6, recompensa especial de Honra Suprema de <span>20,000 USDT</span></p>` }
+      }
+    },
+    vipRewardDetailTitle: 'Detalhes dos Benefícios do Clube VIP',
+    vipRewardDetailContent: `<dd>Bônus de e-mail de promoção por assinatura serão enviados por e-mail promocional com um código. Use o código para resgatar na página "Recompensas".</dd>
+                            <dd>Rodadas grátis para VIPs Prata podem ser reivindicadas na página 'Recompensas'. Disponíveis na plataforma Play'N GO, jogos elegíveis: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Os bônus de recarga para todos os níveis são limitados a uma solicitação, exigindo a conclusão de um valor de aposta 10 vezes, aplicável a qualquer jogo. Exemplo: (1000+1000)*10=20000</dd>
+                            <dd>Os bônus de recarga precisam ser solicitados através do atendimento ao cliente online após a conclusão do depósito e antes de qualquer aposta.</dd>
+                            <dd>As recompensas em pontos serão automaticamente adicionadas à conta no dia seguinte, com base no valor das apostas.</dd>
+                            <dd>Os bônus semanais e mensais serão adicionados automaticamente à conta dentro de 48 horas após o início da próxima semana ou mês.</dd>
+                            <dd>Todos os períodos de cálculo de bônus usarão o Horário de Hong Kong, Hong Kong, China (UTC+8).</dd>`,
+    howBeVipTitle: 'Como Tornar-se Nosso Membro VIP',
+    howBeVipContent: `<dd>
+                          Continuar a Apostar: A chave para se tornar um VIP é apostar consistentemente em vários eventos esportivos e jogos de cassino. A Seabet recompensa a sua consistência. Como um dos principais sites de apostas com criptomoedas, use regularmente os seus ativos digitais para apostar em qualquer um dos eventos e jogos de cassino fornecidos pela Seabet. Você também pode experimentar as apostas USDT e continuar a usar seus fundos.
+                        </dd>
+                        <dd>
+                        Participar de Eventos Regulares: Os eventos promocionais da Seabet incluem várias atividades e concursos que você pode participar a qualquer momento. Participar regularmente de qualquer uma dessas atividades aumentará suas chances de receber um convite para o Clube VIP. Além disso, você também pode se tornar mais ativo em outras funcionalidades dos clubes da Seabet.
+                        </dd>
+                        <dd>Aguardar o Convite: A última coisa que você precisa fazer é esperar que enviemos um convite para você. Continue jogando e participando de eventos para grandes apostadores. Após algumas rodadas de apostas em cassinos e apostas esportivas, assim que for considerado digno de se tornar um membro do Clube VIP, você receberá um convite imediatamente.</dd>
+                        <dd>
+                          Experimente a Vida de Luxo como um VIP da Seabet: Leve a sua experiência de apostas em USDT a um novo patamar enquanto desfruta dos privilégios de ser um membro do Clube VIP da Seabet. Quando você participa de apostas esportivas e jogos de cassino, como um jogador valorizado, você tem a oportunidade de desfrutar do que há de melhor em diversão, rapidez e justiça nas apostas.
+                        </dd>`
+  },
 
   problem: {
     whatVip: '1.O que é o Clube VIP?',

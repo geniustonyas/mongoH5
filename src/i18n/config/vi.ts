@@ -72,11 +72,11 @@ export default {
   userLevels: {
     '101': 'Sắt',
     '102': 'Đồng',
-    '103': 'Bạc',
-    '104': 'Vàng',
-    '105': 'Bạch kim',
-    '106': 'Titan',
-    '107': 'Kim cương'
+    '103': 'Cấp bậc bạc',
+    '104': 'Cấp bậc vàng',
+    '105': 'Cấp độ bạch kim',
+    '106': 'Cấp độ Titan',
+    '107': 'Cấp bậc kim cương'
   },
   homePage: {
     currentMultiplier: 'Hệ số điểm',
@@ -715,7 +715,114 @@ export default {
   sendNow: 'Gửi Ngay',
   mailUs: 'để biết thêm chi tiết, xin vui lòngliên hệ chúng tôi:',
   financeRewards: 'Phần thưởng',
-  emailAddress: '电子邮件地址',
+  emailAddress: 'Địa chỉ Email',
+  keepContact: 'Hãy giữ liên lạc',
+  subscribe: 'Đăng ký',
+  subscribeEmail: ' đăng ký  Email',
+  outAny: 'Bạn có thể chọn không tham gia bất cứ lúc nào.',
+  subBefore: '（Bằng cách nhấp vào “Đăng ký”, bạn đồng ý rằng bạn đã đọc, hiểu và đồng ý với ',
+  subAfter: 'liên quan đến việc sử dụng dữ liệu cá nhân của bạn.）',
+  vip: {
+    seabetVip: 'Hội viên VIP Seabet',
+    vipWelH5: `Tại Seabet, chúng tôi cam kết nâng cao chất lượng trò chơi và cung cấp trải nghiệm chơi game tốt nhất. Chúng tôi cho ra mắt câu lạc bộ VIP hoàn toàn mới để thưởng cho những thành viên của chúng tôi, người dành thời gian chơi trò chơi trên trang web của chúng tôi một cách trung thành.`,
+    vipWel: `<p>Chào mừng đến với Seabet VIP Club</p>
+              <p>Tại Seabet, chúng tôi cam kết nâng cao chất lượng trò chơi và cung cấp trải nghiệm chơi game tốt nhất. Chúng tôi cho ra mắt câu lạc bộ VIP hoàn toàn mới để thưởng cho những thành viên của chúng tôi, người dành thời gian chơi trò chơi trên trang web của chúng tôi một cách trung thành.</p>
+              <p>Chỉ cần đặt cược trên bất kỳ trò chơi hoặc sự kiện thể thao nào được cung cấp bởi Seabet.io, và sau khi bạn lên cấp bậc sẽ mở khóa nhận được những phần thưởng độc quyền.</p>`,
+    vipManage: `<dt>Quản lý Độc quyền VIP</dt>
+                <dd>Được cá nhân hóa theo nhu cầu</dd>
+                <dd>Trải nghiệm chơi game tùy chỉnh</dd>`,
+    vipHighReward: ` <dt>Phần thưởng cao</dt>
+                      <dd>Khuyến mãi không cần đặt cược</dd>
+                      <dd>Tích lũy điểm nhanh</dd>`,
+    highLimit: `<dt>Trải nghiệm đặt cược tùy chỉnh</dt>
+                <dd>Giao dịch không giới hạn</dd>
+                <dd>Giới hạn cược tối đa cao hơn</dd>`,
+    vipPromotion: `<dt>Khuyến mãi độc quyền VIP</dt>
+                    <dd>Ưu đãi cá nhân</dd>
+                    <dd>Chỉ dành cho VIP</dd>`,
+    noQueue: `<dt>Dịch vụ hàng đầu 24/7</dt>
+              <dd>Hỗ trợ đa ngôn ngữ nhanh chóng</dd>
+              <dd>Quản lý tài khoản cá nhân</dd>`,
+    vipRewardDetailsTitle: 'Chi tiết Phần thưởng VIP',
+    vipRewardDetails: `<h2>Chi tiết Phần thưởng VIP</h2>
+                      <p>Nâng cấp để có quyền truy cập độc quyền vào những phần thưởng hào phóng và quà tặng cá nhân hóa!</p>`,
+    subTitle: {
+      '102': 'Đồng 1',
+      '103': 'Cấp bậc bạc 1-5',
+      '104': 'Cấp bậc vàng 1-8',
+      '105': 'Cấp độ bạch kim 1-10',
+      '106': 'Cấp độ Titan 1-10',
+      '107': 'Cấp bậc kim cương 1-6'
+    },
+    usdtAmount: 'Số tiền đặt cược',
+    amount: {
+      '102': '$100 USDT',
+      '103': '$500-$10K USDT',
+      '104': '$15K-$190K USDT',
+      '105': '$300K-$1.6M USDT',
+      '106': '$1.9M-$5.09M USDT',
+      '107': '$6M+ USDT'
+    },
+    rewards: {
+      '102': {
+        '0': { title: 'Thưởng Thăng cấp', content: `Tổng giải thưởng: <span>5 USDT</span>` },
+        '1': { title: 'Tiền thưởng đăng ký', content: `Đăng ký nhận thư khuyến mãi, nhận ngay<span>10 USDT</span>miễn phí` },
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1</span></p>` }
+      },
+      '103': {
+        '0': { title: 'Thưởng Thăng cấp', content: `Cấp bậc bạc 5, Tổng giải thưởng：<span>135 USDT</span>` },
+        '1': { title: 'Vòng quay miễn phí', content: `Quay miễn phí<span>30</span>lần trên trò chơi máy đánh bạc` },
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.1</span></p>` }
+      },
+      '104': {
+        '0': { title: 'Thưởng Thăng cấp', content: `Cấp bậc vàng 8, Tổng giải thưởng：<span>1,255 USDT</span>` },
+        '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>300 USDT</span>, nhận thưởng<span>300 USDT</span>` },
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.2</span></p>` },
+        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
+      },
+      '105': {
+        '0': { title: 'Thưởng Thăng cấp', content: `Cấp độ bạch kim 10, Tổng giải thưởng：<span>6,025 USDT</span>` },
+        '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>1,000 USDT</span>, nhận thưởng<span>1,000 USDT</span>` },
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.3</span></p>` },
+        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '4': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 3%</span>dựa trên số tiền đặt cược của bạn.</p>` }
+      },
+      '106': {
+        '0': { title: 'Thưởng Thăng cấp', content: `Cấp độ Titan 10, Tổng giải thưởng：<span>18,555 USDT</span>` },
+        '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>3,000 USDT</span>, nhận thưởng<span>3,000 USDT</span>` },
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.5</span></p>` },
+        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '4': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
+      },
+      '107': {
+        '0': { title: 'Thưởng Thăng cấp', content: `Cấp bậc kim cương 6, Tổng giải thưởng：<span>105,555 USDT</span>` },
+        '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>10,000 USDT</span>, nhận thưởng<span>10,000 USDT</span>` },
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*2</span></p>` },
+        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 10%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '4': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '5': { title: 'Thưởng đặc biệt', content: `<p>Cấp bậc kim cương 6, Thưởng đặc biệt danh dự<span>20,000</span> USDT` }
+      }
+    },
+    vipRewardDetailTitle: 'Chi tiết Ưu đãi của Hội viên VIP',
+    vipRewardDetailContent: `<dd>Tiền thưởng qua email khuyến mãi sẽ được gửi qua email khuyến mãi với một mã code. Sử dụng mã code để đổi quà trên trang "Phần thưởng".</dd>
+                            <dd>Các vòng quay miễn phí dành cho VIP Bạc có thể được yêu cầu trên trang 'Phần thưởng'. Có sẵn trên nền tảng Play'N GO, trò chơi hợp lệ:Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Tiền thưởng nạp tiền cho tất cả các cấp độ chỉ có thể đòi hỏi một lần, yêu cầu hoàn thành mức cược 10 lần, áp dụng cho bất kỳ trò chơi nào. Ví dụ: (1000+1000)*10=20000</dd>
+                            <dd>Tiền thưởng nạp tiền cần được áp dụng qua dịch vụ khách hàng trực tuyến sau khi hoàn tất tiền gửi và trước khi đặt cược.</dd>
+                            <dd>Phần thưởng điểm sẽ tự động được thêm vào tài khoản vào ngày tiếp theo dựa trên số tiền cược.</dd>
+                            <dd>Tiền thưởng hàng tuần và hàng tháng sẽ tự động được thêm vào tài khoản trong vòng 48 giờ sau khi bắt đầu tuần hoặc tháng tiếp theo.</dd>
+                            <dd>Tất cả các giai đoạn tính toán tiền thưởng sẽ sử dụng Giờ Hong Kong, Trung Quốc (UTC+8).</dd>`,
+    howBeVipTitle: 'Cách trở thành thành viên VIP của chúng tôi',
+    howBeVipContent: `<dd>
+                        Tiếp tục Đặt cược: Chìa khóa để trở thành VIP là duy trì việc đặt cược liên tục trên các sự kiện thể thao và trò chơi sòng bạc khác nhau. Seabet đánh giá cao sự kiên nhẫn của bạn. Là một trang web cá cược  tiền mã hóa hàng đầu, hãy thường xuyên sử dụng tài sản kỹ thuật số của bạn để đặt cược vào bất kỳ sự kiện và trò chơi sòng bạc nào mà Seabet cung cấp. Bạn cũng có thể thử đặt cược bằng USDT và tiếp tục sử dụng tài khoản của bạn.
+                      </dd>
+                      <dd>
+                        Tham gia các Sự kiện Thường xuyên: Các sự kiện quảng bá của Seabet bao gồm các hoạt động và cuộc thi khác nhau mà bạn có thể tham gia bất kỳ lúc nào. Thường xuyên tham gia bất kỳ hoạt động nào trong số này sẽ tăng cơ hội của bạn để nhận lời mời gia nhập Câu lạc bộ VIP. Hơn nữa, bạn cũng có thể trở nên nhiều hoạt động hơn trong các tính năng khác của Câu lạc bộ của Seabet.
+                      </dd>
+                      <dd>Chờ lời mời: Điều cuối cùng bạn cần làm là đợi chúng tôi gửi lời mời cho bạn. Tiếp tục chơi trò chơi và tham gia vào các sự kiện dành cho người cược lớn. Sau một số vòng cược sòng bạc và đặt cược thể thao, sau khi được xem xét xứng đáng để trở thành thành viên Câu lạc bộ VIP, bạn sẽ nhận được lời mời ngay lập tức.</dd>
+                      <dd>
+                        Hãy Trải nghiệm Cuộc sống Cao cấp với Seabet VIP: Nâng cao trải nghiệm cược USDT của bạn lên một tầm cao mới trong khi tận hưởng các đặc quyền hàng đầu của việc trở thành thành viên Câu lạc bộ VIP của Seabet. Khi bạn tham gia cược thể thao và trò chơi sòng bạc, với tư cách là một người chơi được đánh giá cao, bạn có cơ hội trải nghiệm sự kết hợp tốt nhất giữa việc cược vui vẻ, nhanh chóng và công bằng.
+                      </dd>`
+  },
 
   problem: {
     whatVip: '1.Câu lạc bộ VIP？',

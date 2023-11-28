@@ -706,7 +706,114 @@ export default {
   sendNow: 'Envoyer Maintenant',
   mailUs: 'Pour plus de détails, veuillezcontactez-nous:',
   financeRewards: 'Récompenses',
-  emailAddress: '电子邮件地址',
+  emailAddress: 'Email Address',
+  keepContact: 'Gardons le contact',
+  subscribe: 'SUBSCRIBE',
+  subscribeEmail: 'Email Subscription',
+  outAny: 'Vous pouvez vous désinscrire à tout moment.',
+  subBefore: `(En cliquant sur « S'abonner », vous reconnaissez avoir lu, compris et accepté la `,
+  subAfter: `, en particulier en ce qui concerne l'utilisation des données personnelles.)`,
+  vip: {
+    seabetVip: 'Club VIP Seabet',
+    vipWelH5: `Chez Seabet, nous nous engageons à améliorer la qualité du jeu et à offrir la meilleure expérience de jeu. Nous avons lancé un tout nouveau Club VIP pour récompenser nos membres qui passent du temps à jouer sur notre site en toute fidélité.`,
+    vipWel: `<p>Bienvenue au Club VIP de Seabet</p>
+            <p>Chez Seabet, nous nous engageons à améliorer la qualité du jeu et à offrir la meilleure expérience de jeu. Nous avons lancé un tout nouveau Club VIP pour récompenser nos membres qui passent du temps à jouer sur notre site en toute fidélité.</p>
+            <p>Il vous suffit de parier sur n'importe quel jeu ou événement sportif proposé par Seabet.io, et à mesure que vous progressez dans les niveaux, vous débloquerez des récompenses exclusives.</p>`,
+    vipManage: `<dt>Gestionnaire VIP</dt>
+                <dd>Adapté à vos besoins</dd>
+                <dd>Jeux personnalisés</dd>`,
+    vipHighReward: ` <dt>Hautes récompenses</dt>
+                      <dd>Bonus sans pari</dd>
+                      <dd>Points rapides</dd>`,
+    highLimit: `<dt>Pari sur mesure</dt>
+                <dd>Transactions illimitées</dd>
+                <dd>Limites hautes</dd>`,
+    vipPromotion: `<dt>Promos VIP exclusives</dt>
+                    <dd>Offres personnalisées</dd>
+                    <dd>Accès VIP seul</dd>`,
+    noQueue: `<dt>Service top 24/7</dt>
+              <dd>Support multilingue</dd>
+              <dd>Manager personnel</dd>`,
+    vipRewardDetailsTitle: 'Répartition des récompenses VIP',
+    vipRewardDetails: `<h2>Répartition des récompenses VIP</h2>
+                      <p>Passez au niveau supérieur pour obtenir un accès exclusif à de généreuses récompenses et à des cadeaux personnalisés !</p>`,
+    subTitle: {
+      '102': 'Bronze 1',
+      '103': 'Argent 1-5',
+      '104': 'Or 1-8',
+      '105': 'Platine 1-10',
+      '106': 'Titanium 1-10',
+      '107': 'Diamant 1-6'
+    },
+    usdtAmount: 'Montant du pari',
+    amount: {
+      '102': '$100 USDT',
+      '103': '$500-$10K USDT',
+      '104': '$15K-$190K USDT',
+      '105': '$300K-$1.6M USDT',
+      '106': '$1.9M-$5.09M USDT',
+      '107': '$6M+ USDT'
+    },
+    rewards: {
+      '102': {
+        '0': { title: 'Bonus de Montée de Niveau', content: `Prix total: <span>5 USDT</span>` },
+        '1': { title: `Bonus d'abonnement`, content: `Abonnez-vous à l'e-mail promotionnel, recevez <span>10 USDT</span> gratuitement` },
+        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1</span></p>` }
+      },
+      '103': {
+        '0': { title: 'Bonus de Montée de Niveau', content: `Argent 5, Prix total: <span>135 USDT</span>` },
+        '1': { title: 'Tours Gratuits', content: `<span>30</span> tours gratuits sur les jeux de machines à sous` },
+        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1.1</span></p>` }
+      },
+      '104': {
+        '0': { title: 'Bonus de Montée de Niveau', content: `Or 8, Prix total: <span>1,255 USDT</span>` },
+        '1': { title: 'Bonus de Recharge', content: `Déposez <span>300 USDT</span>, obtenez un bonus de <span>300 USDT</span>` },
+        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1.2</span></p>` },
+        '3': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*5%</span> approximativement en fonction du montant de votre pari.</p>` }
+      },
+      '105': {
+        '0': { title: 'Bonus de Montée de Niveau', content: `Platine 10, Prix total: <span>6,025 USDT</span>` },
+        '1': { title: 'Bonus de Recharge', content: `Déposez <span>1,000 USDT</span>, obtenez un bonus de <span>1,000 USDT</span>` },
+        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1.3</span></p>` },
+        '3': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*5%</span> approximativement en fonction du montant de votre pari.</p>` },
+        '4': { title: 'Remise mensuelle en argent', content: `<p>Recevez votre bonus mensuel de Mise <span>*1%*3%</span> approximativement en fonction du montant de votre pari.</p>` }
+      },
+      '106': {
+        '0': { title: 'Bonus de Montée de Niveau', content: `Titane 10, Prix total: <span>18,555 USDT</span>` },
+        '1': { title: 'Bonus de Recharge', content: `Déposez <span>3,000 USDT</span>, obtenez un bonus de <span>3,000 USDT</span>` },
+        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1.5</span></p>` },
+        '3': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*8%</span> approximativement en fonction du montant de votre pari.</p>` },
+        '4': { title: 'Remise mensuelle en argent', content: `<p>Recevez votre bonus mensuel de Mise <span>*1%*5%</span> approximativement en fonction du montant de votre pari.</p>` }
+      },
+      '107': {
+        '0': { title: 'Bonus de Montée de Niveau', content: `Diamant 6, Prix total: <span>105,555 USDT</span>` },
+        '1': { title: 'Bonus de Recharge', content: `Déposez <span>10,000 USDT</span>, obtenez un bonus de <span>10,000 USDT</span>` },
+        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*2</span></p>` },
+        '3': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*10%</span> approximativement en fonction du montant de votre pari.</p>` },
+        '4': { title: 'Remise mensuelle en argent', content: `<p>Recevez votre bonus mensuel de Mise <span>*1%*8%</span> approximativement en fonction du montant de votre pari.</p>` },
+        '5': { title: 'Récompense Spéciale', content: `<p>Diamant 6, récompense spéciale d'honneur suprême de <span>20,000 USDT</span></p>` }
+      }
+    },
+    vipRewardDetailTitle: 'Détails des avantages du Club VIP',
+    vipRewardDetailContent: `<dd>Les bonus d'e-mail promotionnels d'abonnement seront envoyés par e-mail promotionnel avec un code. Utilisez le code pour le racheter sur la page "Récompenses".</dd>
+                            <dd>Les VIP Argent peuvent réclamer des tours gratuits sur la page 'Récompenses'. Disponibles sur la plateforme Play'N GO, jeux éligibles :Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Les bonus de recharge pour tous les niveaux sont limités à une demande, nécessitant l'achèvement d'un montant de mise de 10 fois, applicable à n'importe quel jeu. Exemple : (1000+1000)*10=20000</dd>
+                            <dd>Les bonus de recharge doivent être demandés via le service client en ligne après l'achèvement du dépôt et avant tout pari.</dd>
+                            <dd>Les récompenses en points seront automatiquement ajoutées au compte le lendemain en fonction du montant des mises.</dd>
+                            <dd>Les bonus hebdomadaires et mensuels seront automatiquement ajoutés au compte dans les 48 heures suivant le début de la semaine ou du mois suivant.</dd>
+                            <dd>Toutes les périodes de calcul des bonus utiliseront l'heure de Hong Kong, Hong Kong, Chine (UTC+8).</dd>`,
+    howBeVipTitle: 'Comment devenir membre VIP chez nous',
+    howBeVipContent: ` <dd>
+                          Paris continus : La clé pour devenir VIP est de placer régulièrement des paris sur divers événements sportifs et jeux de casino. Seabet récompense votre régularité. En tant que site de jeux de crypto-monnaie de premier plan, utilisez régulièrement vos actifs numériques pour parier sur n'importe lequel des événements et jeux de casino proposés par Seabet. Vous pouvez également essayer les paris en USDT et continuer à utiliser vos fonds
+                        </dd>
+                        <dd>
+                          Participer aux événements réguliers : Les événements promotionnels de Seabet comprennent diverses activités et concours auxquels vous pouvez participer à tout moment. Participer régulièrement à l'une de ces activités augmentera vos chances de recevoir une invitation au Club VIP. De plus, vous pouvez également devenir plus actif dans les autres fonctionnalités du club de Seabet.
+                        </dd>
+                        <dd>Attente de l'invitation : La dernière étape consiste à attendre que nous vous envoyions une invitation. Continuez à jouer à des jeux et à participer à des événements pour gros parieurs. Après quelques tours de jeux de casino et de paris sportifs, dès que vous serez jugé digne de devenir membre du Club VIP, vous recevrez immédiatement une invitation。</dd>
+                        <dd>
+                          Vivez la belle vie en tant que membre VIP de Seabet : Élevez votre expérience de jeu en USDT à un tout autre niveau tout en profitant des privilèges haut de gamme d'être membre du Club VIP de Seabet. Lorsque vous participez aux paris sportifs et aux jeux de casino, en tant que joueur précieux, vous avez droit au meilleur en termes de divertissement, de rapidité et d'équité dans les paris.
+                        </dd>`
+  },
 
   problem: {
     whatVip: "1.Qu'est-ce que le Club VIP ?",

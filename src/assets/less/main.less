@@ -182,7 +182,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     .mail-title { font-size: 1.8rem; color: var(--color-white); font-weight: bold }
     .mail-cont { height: 4rem; margin-top: 1.5rem; .bgc(var(--color-dark-gray), var(--color-text)); .radius(2rem); .flex(); .flex-align();  .flex-pack-justify(); padding-left:1rem;
         input { border: none;  background-color: transparent; color: var(--color-white); .h-lh(4rem); .flex-x();  }
-        .btn { .h-lh(4rem) }
+        .btn { .h-lh(4rem); min-width: 7rem; }
     }
     .tip { color: red }
     .mail-tip { font-size: 1.4rem; color: var(--color-text); margin-top: 1.5rem;
@@ -1037,16 +1037,15 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                     }
                 }
                 .bc-upgrade { margin: 0 1rem 1rem 1rem;
-                    .u-item { display: none; padding: 1.2rem; padding-bottom: .2rem; .bg(var(--color-tabs));
-                        &.active { display: block; }
+                    .u-item { padding: 1.2rem; padding-bottom: .2rem; .bg(var(--color-tabs));
                         .u-a { margin-top: 2.4rem; margin-bottom: 1.2rem; .flex(); .flex-align();
                             .a-grade { .h-lh(2.2rem); width: 7.4rem; font-size: 1rem; text-align: center; .radius(.4rem); font-weight: 600; color: var(--color-black); background-repeat: no-repeat; background-size: cover; background-position: center;
-                                &.lv2 { background-image: url(../imgs/vip/grade2.svg); }
-                                &.lv3 { background-image: url(../imgs/vip/grade3.svg); }
-                                &.lv4 { background-image: url(../imgs/vip/grade4.svg); }
-                                &.lv5 { background-image: url(../imgs/vip/grade5.svg); }
-                                &.lv6 { background-image: url(../imgs/vip/grade6.svg); }
-                                &.lv7 { background-image: url(../imgs/vip/grade7.svg); }
+                                &.lv102 { background-image: url(../imgs/vip/grade2.svg); }
+                                &.lv103 { background-image: url(../imgs/vip/grade3.svg); }
+                                &.lv104 { background-image: url(../imgs/vip/grade4.svg); }
+                                &.lv105 { background-image: url(../imgs/vip/grade5.svg); }
+                                &.lv106 { background-image: url(../imgs/vip/grade6.svg); }
+                                &.lv107 { background-image: url(../imgs/vip/grade7.svg); }
                             }
                             .a-amount { font-size: 1.2rem; color: var(--color-white); padding: 0 .5rem; }
                         }

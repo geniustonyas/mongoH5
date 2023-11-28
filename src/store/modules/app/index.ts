@@ -32,6 +32,7 @@ export const useAppStore = defineStore('app', () => {
     youtube: 'https://www.youtube.com/channel/UC3L5HrPC4elNgHkrvMSFjCQ',
     tiktok: 'https://www.tiktok.com/@seabet.io?lang=en'
   })
+  const subscribeUrl = ref('https://mailchi.mp/a58be33afa0a/seabet-subscription')
   const widgetId = ref('')
 
   // 获取系统配置
@@ -106,6 +107,7 @@ export const useAppStore = defineStore('app', () => {
     detailsFav,
     detailsCancelFav,
     followUrl,
+    subscribeUrl,
     widgetId,
     getConfig,
     resetThirdData,

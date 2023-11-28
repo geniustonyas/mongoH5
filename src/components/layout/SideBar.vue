@@ -120,7 +120,7 @@
               <a @click="router.push({ name: 'affiliate' })"><i class="iconfont icon-hezuo" />{{ t('affiliate') }}</a>
             </li>
             <li>
-              <a href="http://eepurl.com/iEDr2A" target="_blank"><i class="iconfont icon-email" />订阅邮箱</a>
+              <a :href="appStore.subscribeUrl" target="_blank"><i class="iconfont icon-email" />{{ t('subscribeEmail') }}</a>
             </li>
           </ul>
         </div>

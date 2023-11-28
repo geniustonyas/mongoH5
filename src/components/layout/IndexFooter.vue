@@ -1,16 +1,17 @@
 <template>
   <nav class="m-mail">
     <form action="https://seabet.us21.list-manage.com/subscribe/post?u=247cec6e7f3911f704f182c83&id=4bd16eb882&f_id=0009eee6f0" method="POST" ref="formDom" target="_blank">
-      <div class="mail-title">让我们保持联系</div>
+      <div class="mail-title">{{ t('keepContact') }}</div>
       <div class="mail-cont">
         <input v-model="email" type="email" name="EMAIL" class="required email" id="mce-EMAIL" :placeholder="t('emailAddress')" />
-        <span class="btn btn-primary" @click="subscript">订阅</span>
+        <span class="btn btn-primary" @click="subscript">{{ t('subscribe') }}</span>
       </div>
       <div id="emailTip" class="tip" />
       <div class="mail-tip">
-        您可以随时选择退订。 <br />
-        （通过单击“订阅”，您同意您已阅读、理解并同意关于使用您的个人数据的
-        <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('privacyPolicy') }} </a>。）
+        {{ t('outAny') }} <br />
+        {{ t('subBefore') }}
+        <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('privacyPolicy') }} </a>
+        {{ t('subAfter') }}
       </div>
     </form>
   </nav>
@@ -93,7 +94,7 @@
         <a @click="router.push({ name: 'terms', params: { type: 'fairness' } })">{{ t('fairness') }}</a>
       </dd>
       <dd>
-        <a href="http://eepurl.com/iEDr2A" target="_blank">订阅邮箱</a>
+        <a :href="appStore.subscribeUrl" target="_blank">{{ t('subscribeEmail') }}</a>
       </dd>
       <!-- <dd>
         <a @click="router.push({ name: 'support' })">{{ t('liveSupport') }}<i class="iconfont icon-share" /></a>

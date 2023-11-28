@@ -709,7 +709,116 @@ export default {
   sendNow: 'Send Now',
   mailUs: 'For more details, please contact us:',
   financeRewards: 'Rewards',
-  emailAddress: '电子邮件地址',
+  emailAddress: 'Email Address',
+  keepContact: 'Let’s keep in touch',
+  subscribe: 'SUBSCRIBE',
+  subscribeEmail: 'Email Subscription',
+  outAny: 'You can opt out anytime you want.',
+  subBefore: '(By clicking “Subscribe", you agree that you have read, understand, and consent to the ',
+  subAfter: 'with regards to the use of your personal data.)',
+  vip: {
+    seabetVip: 'Seabet VIP-Club',
+    vipWelH5: `At Seabet, we are committed to enhancing the quality of gaming and providing the best gaming experience. We have introduced a brand new VIP Club to reward our members who spend time playing games on our website faithfully.`,
+    vipWel: `<p>Welcome to the <b>Seabet</b> VIP Club</p>
+              <p>At Seabet, we are committed to enhancing the quality of gaming and providing the best gaming experience. We have introduced a brand new VIP Club to reward our members who spend time playing games on our website faithfully.</p>
+              <p>Simply place bets on any game or sports event provided by Seabet.io, and as you progress through the ranks, you will unlock exclusive rewards.</p>`,
+    vipManage: `<dt>VIP Exclusive Manager</dt>
+                <dd>Tailored for your needs</dd>
+                <dd>Customized gaming experiences</dd>`,
+    vipHighReward: ` <dt>High Rewards</dt>
+                      <dd>No-wager bonuses</dd>
+                      <dd>Rapid accumulation of points</dd>`,
+    highLimit: `<dt>Customized Betting Experience</dt>
+                <dd>Unlimited Transaction</dd>
+                <dd>Higher max bet limits</dd>`,
+    vipPromotion: `<dt>Exclusive VIP Promos</dt>
+                    <dd>Custom offers</dd>
+                    <dd>VIP-only access</dd>`,
+    noQueue: `<dt>24/7 Top Service</dt>
+              <dd>Quick multilingual support</dd>
+              <dd>Personal account manager</dd>`,
+    vipRewardDetailsTitle: 'VIP Reward Breakdown',
+    vipRewardDetails: `<h2>VIP Reward Breakdown</h2>
+                      <p>Level up to get exclusive access to generous rewards and personalized gifts! Join our community of elite players and enjoy the best that online gaming has to offer!</p>`,
+    subTitle: {
+      '102': 'Bronze 1',
+      '103': 'Silver 1-5',
+      '104': 'Gold 1-8',
+      '105': 'Platinum 1-10',
+      '106': 'Titanium 1-10',
+      '107': 'Diamond 1-6'
+    },
+    usdtAmount: 'Wager amount',
+    amount: {
+      '102': '$100 USDT',
+      '103': '$500-$10K USDT',
+      '104': '$15K-$190K USDT',
+      '105': '$300K-$1.6M USDT',
+      '106': '$1.9M-$5.09M USDT',
+      '107': '$6M+ USDT'
+    },
+    rewards: {
+      '102': {
+        '0': { title: 'Level Up Bonus', content: `Total prize: <span>5USDT</span>` },
+        '1': { title: 'Subscription Bonus', content: `Subscribe to the promotional email, receive <span>10 USDT</span> for free` },
+        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1</span></p>` }
+      },
+      '103': {
+        '0': { title: 'Level Up Bonus', content: `Silver 5, Total prize: <span>135 USDT</span>` },
+        '1': { title: 'Free Spins', content: `<span>30</span> free spins on slot games` },
+        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1.1</span></p>` }
+      },
+      '104': {
+        '0': { title: 'Level Up Bonus', content: `Gold 8, Total prize: <span>1,255 USDT</span>` },
+        '1': { title: 'Recharge Bonus', content: `Deposit <span>300 USDT</span>, Get <span>300 USDT</span> Bonus` },
+        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1.2</span></p>` },
+        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*5%</span> approximately based on your wager amount.</p>` }
+      },
+      '105': {
+        '0': { title: 'Level Up Bonus', content: `Platinum 10, Total prize: <span>6,025 USDT</span>` },
+        '1': { title: 'Recharge Bonus', content: `Deposit <span>1,000 USDT</span>, Get <span>1,000 USDT</span> Bonus` },
+        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1.3</span></p>` },
+        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*5%</span> approximately based on your wager amount.</p>` },
+        '4': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wager <span>*1%*3%</span> approximately based on your wager amount.</p>` }
+      },
+      '106': {
+        '0': { title: 'Level Up Bonus', content: `Titanium 10, Total prize: <span>18,555 USDT</span>` },
+        '1': { title: 'Recharge Bonus', content: `Deposit <span>3,000 USDT</span>, Get <span>3,000 USDT</span> Bonus` },
+        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1.5</span></p>` },
+        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*8%</span> approximately based on your wager amount.</p>` },
+        '4': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wager <span>*1%*5%</span> approximately based on your wager amount.</p>` }
+      },
+      '107': {
+        '0': { title: 'Level Up Bonus', content: `Diamond 6, Total prize: <span>105,555 USDT</span>` },
+        '1': { title: 'Recharge Bonus', content: `Deposit <span>10,000 USDT</span>, Get <span>10,000 USDT</span> Bonus` },
+        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*2</span></p>` },
+        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*10%</span> approximately based on your wager amount.</p>` },
+        '4': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wager <span>*1%*8%</span> approximately based on your wager amount.</p>` },
+        '5': { title: 'Special Reward', content: `<p>Diamond 6, Supreme Honor special bonus <span>20,000 USDT</span></p>` }
+      }
+    },
+    vipRewardDetailTitle: 'VIP Club Benefits Details',
+    vipRewardDetailContent: `<dd>Subscription promotion email bonuses will be sent through the promotional email with a code. Use the code to redeem on the "Rewards" page.</dd>
+                            <dd>Freispiele für Silber-VIPs können auf der 'Belohnungen'-Seite beansprucht werden. Verfügbar auf der Play'N GO Plattform, berechtigte Spiele: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Recharge bonuses for all levels are limited to one claim, requiring completion of a 10x wagering amount, applicable to any game. Example: (1000+1000)*10=20000.</dd>
+                            <dd>Recharge bonuses need to be applied through online customer service after deposit completion and before any betting.</dd>
+                            <dd>Points rewards will be automatically added to the account the next day based on the betting amount.</dd>
+                            <dd>Weekly and monthly bonuses will be automatically added to the account within 48 hours after the start of the next week or month.</dd>
+                            <dd>All bonus calculation periods will use Hong Kong Time, Hong Kong, China (UTC+8).</dd>`,
+    howBeVipTitle: 'How to Become Our VIP Member',
+    howBeVipContent: `<dd>
+                          Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. SEABET rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by SEABET. You can also try betting with USDT and continue using your funds.
+                        </dd>
+                        <dd>
+                          Participate in Regular Events: SEABET's promotional activities include various events and competitions that you can participate in at any time. Regular participation in any of these events will increase your chances of receiving an invitation to the VIP Club. Moreover, you can be more active in other club features offered by SEABET.
+                        </dd>
+                        <dd>
+                          Await the Invitation: The final thing you need to do is wait for us to send you an invitation. Continue playing games and participating in high roller events. After a few rounds of casino gambling and sports betting, once you are deemed worthy of becoming a VIP Club member, you will receive an invitation immediately.
+                        </dd>
+                        <dd>
+                          Experience the Luxury Life as a SEABET VIP: Take your USDT gambling experience to a whole new level while enjoying top-notch privileges as a SEABET VIP Club member. As a valued player, you'll experience the best fun, fast, and fair betting when engaging in sports betting and casino games.
+                        </dd>`
+  },
 
   problem: {
     whatVip: '1. What is the VIP Club?',

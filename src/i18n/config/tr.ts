@@ -72,11 +72,11 @@ export default {
   userLevels: {
     '101': 'Demir',
     '102': 'Bronz',
-    '103': 'Gümüş',
-    '104': 'Altın',
-    '105': 'Platin',
-    '106': 'Titanyum',
-    '107': 'Elmas'
+    '103': 'Silver',
+    '104': 'Gold',
+    '105': 'Platinum',
+    '106': 'Titanium',
+    '107': 'Diamond'
   },
   homePage: {
     currentMultiplier: 'Mevcut Puan Çarpanı',
@@ -706,7 +706,114 @@ export default {
   sendNow: 'Şimdi Gönder',
   mailUs: 'Daha iyi açıkla lütfenbizimle iletişime geçin:',
   financeRewards: 'Ödüller',
-  emailAddress: '电子邮件地址',
+  emailAddress: 'E-posta adresi',
+  keepContact: 'İletişimde kalalım',
+  subscribe: 'ABONE OL',
+  subscribeEmail: 'Email Subscription',
+  outAny: 'Dilediğin zaman vazgeçebilirsin.',
+  subBefore: '("Abone Ol" seçeneğine tıklayarak, kişisel verilerinin kullanımıyla ilgili olarak',
+  subAfter: ' okuduğunu, anladığını ve onayladığını kabul etmiş olursun.)',
+  vip: {
+    seabetVip: 'Seabet VIP Kulübü',
+    vipWelH5: `Seabet olarak, oyun kalitesini artırmaya ve en iyi oyun deneyimini sunmaya adanmışız. Web sitemizde oyun oynayan üyelerimizi ödüllendirmek için yepyeni bir VIP Kulüp tanıttık.`,
+    vipWel: `<p>Seabet VIP Kulübü'ne hoş geldiniz</p>
+            <p>Seabet olarak, oyun kalitesini artırmaya ve en iyi oyun deneyimini sunmaya adanmışız. Web sitemizde oyun oynayan üyelerimizi ödüllendirmek için yepyeni bir VIP Kulüp tanıttık.</p>
+            <p>Sadece Seabet.io tarafından sunulan herhangi bir oyun veya spor etkinliğine bahis yapın ve kademe kademe ilerledikçe özel ödüllerin kilidini açacaksınız.</p>`,
+    vipManage: `<dt>VIP Özel Yönetici</dt>
+                <dd>İhtiyaçlara özel</dd>
+                <dd>Özel oyun deneyimleri</dd>`,
+    vipHighReward: ` <dt>Yüksek Ödüller</dt>
+                      <dd>Bahissiz bonuslar</dd>
+                      <dd>Hızlı puan kümülatif</dd>`,
+    highLimit: `<dt>Özelleştirilmiş Bahis</dt>
+                <dd>Limitsiz İşlem</dd>
+                <dd>Yüksek maksimum bahis</dd>`,
+    vipPromotion: `<dt>Özel VIP Promosyonları</dt>
+                    <dd>Kişiye özel teklifler</dd>
+                    <dd>VIP'e özel erişim</dd>`,
+    noQueue: `<dt>24/7 Üst Düzey Hizmet</dt>
+              <dd>Hızlı çok dilli destek</dd>
+              <dd>Kişisel hesap yöneticisi</dd>`,
+    vipRewardDetailsTitle: 'VIP Ödül Dökümü',
+    vipRewardDetails: `<h2>VIP Ödül Dökümü</h2>
+                      <p>Cömert ödüllere ve kişiselleştirilmiş hediyelere özel erişim için seviye yükselin!</p>`,
+    subTitle: {
+      '102': 'Bronz 1',
+      '103': 'Silver 1-5',
+      '104': 'Gold 1-8',
+      '105': 'Platinum 1-10',
+      '106': 'Titanium 1-10',
+      '107': 'Diamond 1-6'
+    },
+    usdtAmount: 'Bahis Miktarı',
+    amount: {
+      '102': '$100 USDT',
+      '103': '$500-$10K USDT',
+      '104': '$15K-$190K USDT',
+      '105': '$300K-$1.6M USDT',
+      '106': '$1.9M-$5.09M USDT',
+      '107': '$6M+ USDT'
+    },
+    rewards: {
+      '102': {
+        '0': { title: 'Seviye Atlama Bonusu', content: `Toplam ödül: <span>5 USDT</span>` },
+        '1': { title: 'Abonelik Bonusu', content: `Promosyon e-postasına abone ol, ücretsiz <span>10 USDT</span> al` },
+        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis<span>*1%*1</span></p>` }
+      },
+      '103': {
+        '0': { title: 'Seviye Atlama Bonusu', content: `Silver 5, Toplam ödül: <span>135 USDT</span>` },
+        '1': { title: 'Ücretsiz Döndürmeler', content: `Slot oyunlarında ücretsiz <span>30</span> dönüş` },
+        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis<span>*1%*1.1</span></p>` }
+      },
+      '104': {
+        '0': { title: 'Seviye Atlama Bonusu', content: `Gold 8, Toplam ödül: <span>1,255 USDT</span>` },
+        '1': { title: 'Yatırım Bonusu', content: `<span>300 USDT</span> yatır, <span>300 USDT</span> bonus al` },
+        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis <span>*1%*1.2</span></p>` },
+        '3': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*5%</span> bonusunuzu alın.</p>` }
+      },
+      '105': {
+        '0': { title: 'Seviye Atlama Bonusu', content: `Platinum 10, Toplam ödül: <span>6,025 USDT</span>` },
+        '1': { title: 'Yatırım Bonusu', content: `<span>1,000 USDT</span> yatır, <span>1,000 USDT</span> bonus al` },
+        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis <span>*1%*1.3</span></p>` },
+        '3': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*5%</span> bonusunuzu alın.</p>` },
+        '4': { title: 'Aylık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre aylık Bahis <span>*1%*3%</span> bonusunuzu alın.</p>` }
+      },
+      '106': {
+        '0': { title: 'Seviye Atlama Bonusu', content: `Titanium 10, Toplam ödül: <span>18,555 USDT</span>` },
+        '1': { title: 'Yatırım Bonusu', content: `<span>3,000 USDT</span> yatır, <span>3,000 USDT</span> bonus al` },
+        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis <span>*1%*1.5</span></p>` },
+        '3': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*8%</span> bonusunuzu alın.</p>` },
+        '4': { title: 'Aylık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre aylık Bahis <span>*1%*5%</span> bonusunuzu alın.</p>` }
+      },
+      '107': {
+        '0': { title: 'Seviye Atlama Bonusu', content: `Diamond 6, Toplam ödül: <span>105,555 USDT</span>` },
+        '1': { title: 'Yatırım Bonusu', content: `<span>1,0000 USDT</span> yatır, <span>1,0000 USDT</span> bonus al` },
+        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis <span>*1%*2</span></p>` },
+        '3': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*10%</span> bonusunuzu alın.</p>` },
+        '4': { title: 'Aylık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre aylık Bahis <span>*1%*8%</span> bonusunuzu alın.</p>` },
+        '5': { title: 'Özel Ödül', content: `<p>Diamond 6, <span>20,000</span> USDT Özel Onur Ödülü</p>` }
+      }
+    },
+    vipRewardDetailTitle: 'VIP Kulüp Faydaları Detayları',
+    vipRewardDetailContent: `<dd>Abonelik promosyon e-posta bonusları, bir kodla birlikte promosyon e-postası aracılığıyla gönderilecektir. Kodu "Ödüller" sayfasında kullanarak çeşitlendirebilirsiniz.</dd>
+                            <dd>Gümüş VIP'ler için ücretsiz dönüşler, 'Ödüller' sayfasından talep edilebilir. Play'N GO platformunda kullanılabilir, uygun oyunlar: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Tüm seviyeler için yeniden yükleme bonusları sadece bir kez talep edilebilir ve herhangi bir oyun için geçerli olan 10 kat bahis miktarının tamamlanmasını gerektirir. Örnek: (1000+1000)*10=20000.</dd>
+                            <dd>Yeniden yükleme bonusları, depozitoyu tamamladıktan ve herhangi bir bahis yapmadan önce çevrimiçi müşteri hizmetleri aracılığıyla başvuruda bulunmanız gerekmektedir.</dd>
+                            <dd>Puan ödülleri, bahis miktarına dayalı olarak ertesi gün otomatik olarak hesaba eklenecektir.</dd>
+                            <dd>Haftalık ve aylık bonuslar, gelecek hafta veya ayın başlangıcından sonraki 48 saat içinde otomatik olarak hesaba eklenecektir.</dd>
+                            <dd>Tüm bonus hesaplama dönemleri Hong Kong Saati, Hong Kong, Çin (UTC+8) kullanılarak gerçekleştirilecektir.</dd>`,
+    howBeVipTitle: 'Nasıl VIP Üyemiz Olunu',
+    howBeVipContent: `<dd>
+                        Sürekli Bahis Yapma: VIP olmanın anahtarı, çeşitli spor etkinliklerine ve kumarhane oyunlarına düzenli olarak bahis yapmaktır. Seabet, sürekliliğinizi ödüllendirir. Üst düzey bir kripto kumar web sitesi olarak, dijital varlıklarınızı düzenli olarak Seabet tarafından sunulan etkinliklerden ve kumarhane oyunlarından herhangi birine bahis yapmak için kullanın. Ayrıca USDT bahis deneyebilir ve fonlarınızı kullanmaya devam edebilirsiniz.
+                      </dd>
+                      <dd>
+                        Düzenli Etkinliklere Katılın: Seabet'in promosyon etkinlikleri, her zaman katılabileceğiniz çeşitli etkinlikler ve yarışmalar içerir. Bu etkinliklerden herhangi birine düzenli olarak katılmak, VIP Kulübü'ne davet alma şansınızı artırır. Ayrıca, Seabet'in diğer kulüp özelliklerinde daha aktif olabilirsiniz.
+                      </dd>
+                      <dd>Daveti Bekleme: Yapmanız gereken son şey, size davetiye göndermemizi beklemektir. Oyun oynamaya devam edin ve yüksek bahisçi etkinliklerine katılın. Birkaç tur kumarhane oyunu ve spor bahislerinden sonra, VIP Kulüp üyesi olmaya değer görüldüğünüzde, hemen bir davetiye alacaksınız.</dd>
+                      <dd>
+                        Seabet VIP Olarak Yüksek Hayatı Deneyimleyin: Seabet VIP Kulüp üyesi olarak sahip olduğunuz üst düzey ayrıcalıkların tadını çıkarırken USDT kumar deneyiminizi tamamen yeni bir seviyeye taşıyın. Spor bahisleri ve kumarhane oyunlarına katıldığınızda, değerli bir oyuncu olarak eğlencenin, hızın ve adil bahislerin en iyisini yaşama fırsatını elde edersiniz.
+                      </dd>`
+  },
 
   problem: {
     whatVip: '1.VIP Kulübü nedir?',
