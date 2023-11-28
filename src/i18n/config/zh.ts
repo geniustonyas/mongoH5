@@ -709,9 +709,9 @@ export default {
   keepContact: '让我们保持联系',
   subscribe: '订阅',
   subscribeEmail: '订阅邮箱',
-  outAny: '您可以随时选择退出。',
+  outAny: '您可以随时选择退出.',
   subBefore: '（通过单击“订阅”，您同意您已阅读、理解并同意关于使用您的个人数据的',
-  subAfter: '。）',
+  subAfter: '.）',
   vip: {
     seabetVip: 'Seabet VIP俱乐部',
     vipWelH5: '在Seabet，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。',

@@ -75,7 +75,7 @@ export default {
     '103': 'Argent',
     '104': 'Or',
     '105': 'Platine',
-    '106': 'Titanium',
+    '106': 'Titane',
     '107': 'Diamant'
   },
   homePage: {
@@ -742,7 +742,7 @@ export default {
       '103': 'Argent 1-5',
       '104': 'Or 1-8',
       '105': 'Platine 1-10',
-      '106': 'Titanium 1-10',
+      '106': 'Titane 1-10',
       '107': 'Diamant 1-6'
     },
     usdtAmount: 'Montant du pari',

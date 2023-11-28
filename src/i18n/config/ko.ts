@@ -431,7 +431,7 @@ export default {
   spinAndEarn: '스핀 & 승리',
   enabledGoogle: 'Google 인증이 활성화되었습니다',
   stopGoogle: 'Google 인증이 활성화되어 있습니다. 이 기능을 해제하려면 코드를 입력하고 "코드 제출"을 클릭하십시오.',
-  unlockNewReward: '새로운 보상이 해제되었습니다!',
+  unlockNewReward: ' 새로운 보너스가 나왔습니다!',
   unlockNewRewardTip: '축하 드립니다! 새로운 보너스를 받으실 수 있습니다. 보너스 타입을 선택 하시려면 여기를 클릭해 주세요.',
   dymondReward: '이 수준에 도달하면 보상이 해제됩니다',
   siteTitle: '최고의 암호화폐 스포츠 베팅 및 카지노 사이트 | 비트코인 베팅',
