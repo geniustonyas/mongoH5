@@ -167,7 +167,7 @@
   </nav>
 
   <!-- 语言选择组件 -->
-  <Language ref="langDom" />
+  <FooterLanguage ref="langDom" />
 </template>
 
 <script setup lang="ts">
@@ -175,7 +175,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
-import Language from '@/components/Language.vue'
+import FooterLanguage from '@/components/FooterLanguage.vue'
 
 import { currenyListData } from '@/utils/config'
 import { getAssetsFile } from '@/utils'
