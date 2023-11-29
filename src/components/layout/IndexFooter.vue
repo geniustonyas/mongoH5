@@ -31,7 +31,7 @@
         <a @click="router.push({ name: 'promo' })">{{ t('promotions') }}</a>
       </dd>
       <dd>
-        <a @click="router.push({ name: 'vip' })">{{ t('vipClub') }}</a>
+        <a @click="router.push({ name: 'newVip' })">{{ t('vipClub') }}</a>
       </dd>
       <dd>
         <a @click="router.push({ name: 'mall' })">{{ t('mallStore') }}</a>

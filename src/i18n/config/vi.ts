@@ -747,7 +747,7 @@ export default {
     vipRewardDetails: `<h2>Chi tiết Phần thưởng VIP</h2>
                       <p>Nâng cấp để có quyền truy cập độc quyền vào những phần thưởng hào phóng và quà tặng cá nhân hóa!</p>`,
     subTitle: {
-      '102': 'Đồng 1',
+      '102': 'Cấp bậc đồng 1',
       '103': 'Cấp bậc bạc 1-5',
       '104': 'Cấp bậc vàng 1-8',
       '105': 'Cấp độ bạch kim 1-10',

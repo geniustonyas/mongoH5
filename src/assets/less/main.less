@@ -15,7 +15,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         .sidebar-menu { .opacity(100); z-index: 100; }
     }
 }
-// .picker-box ul { margin-bottom: 4.4rem; }
+.picker-box ul { margin-bottom: 4.4rem; }
 .header, .footer { z-index: 10; }
 .header {
     .head-menu { .flex(); .flex-pack-justify(); padding: 1rem;
@@ -182,7 +182,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     .mail-title { font-size: 1.8rem; color: var(--color-white); font-weight: bold }
     .mail-cont { height: 4rem; margin-top: 1.5rem; .bgc(var(--color-dark-gray), var(--color-text)); .radius(2rem); .flex(); .flex-align();  .flex-pack-justify(); padding-left:1rem;
         input { border: none;  background-color: transparent; color: var(--color-white); .h-lh(4rem); .flex-x();  }
-        .btn { .h-lh(4rem); width: 10rem; }
+        .btn { .h-lh(4rem); width: 11rem; }
     }
     .tip { color: red }
     .mail-tip { font-size: 1.4rem; color: var(--color-text); margin-top: 1.5rem;
@@ -1039,7 +1039,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 .bc-upgrade { margin: 0 1rem 1rem 1rem;
                     .u-item { padding: 1.2rem; padding-bottom: .2rem; .bg(var(--color-tabs));
                         .u-a { margin-top: 2.4rem; margin-bottom: 1.2rem; .flex(); .flex-align();
-                            .a-grade { .h-lh(2.2rem); width: 7.4rem; font-size: 1rem; text-align: center; .radius(.4rem); font-weight: 600; color: var(--color-black); background-repeat: no-repeat; background-size: cover; background-position: center;
+                            .a-grade { .h-lh(2.2rem); padding: 0 .5rem; min-width: 7.2rem; font-size: 1rem; text-align: center; .radius(.4rem); font-weight: 600; color: var(--color-black); background-repeat: no-repeat; background-size: cover; background-position: center;
                                 &.lv102 { background-image: url(../imgs/vip/grade2.svg); }
                                 &.lv103 { background-image: url(../imgs/vip/grade3.svg); }
                                 &.lv104 { background-image: url(../imgs/vip/grade4.svg); }
@@ -2318,6 +2318,13 @@ body[lang='en'], body[lang='pt'], body[lang='tr'], body[lang='th'] {
         .van-dropdown-menu__bar .van-dropdown-menu__title { font-size: 1.1rem !important }
         &.fs-14 { font-size: 1.4rem !important;
             .van-dropdown-menu__bar .van-dropdown-menu__title { font-size: 1.4rem !important; }
+        }
+    }
+}
+body[lang='th'] {
+    .m-mail { 
+        .mail-cont { 
+            .btn { .h-lh(4rem); width: 150px; padding: 0 }
         }
     }
 }

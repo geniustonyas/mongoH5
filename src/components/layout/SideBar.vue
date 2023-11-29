@@ -89,7 +89,7 @@
               </div>
             </li>
             <li>
-              <a @click="router.push({ name: 'vip' })"><img :src="getAssetsFile('svg/VIP.svg')" />{{ t('vipClub') }}</a>
+              <a @click="router.push({ name: 'newVip' })"><img :src="getAssetsFile('svg/VIP.svg')" />{{ t('vipClub') }}</a>
             </li>
           </ul>
         </div>
