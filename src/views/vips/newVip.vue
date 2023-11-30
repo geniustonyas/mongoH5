@@ -56,7 +56,7 @@
               <div class="bc-upgrade">
                 <div class="u-item">
                   <div class="u-a">
-                    <div :class="'a-grade lv' + selItem.code">{{ t('userLevels.' + selItem.code) }}</div>
+                    <div :class="'a-grade lv' + selItem.code">{{ selItem.title }}</div>
                     <div class="a-amount">
                       {{ selItem.amount }}
                       <b>{{ t('vip.usdtAmount') }}</b>

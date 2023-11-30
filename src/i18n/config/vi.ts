@@ -71,7 +71,7 @@ export default {
   clubLevel: 'cấp độ',
   userLevels: {
     '101': 'Sắt',
-    '102': 'Đồng',
+    '102': 'Cấp bậc đồng',
     '103': 'Cấp bậc bạc',
     '104': 'Cấp bậc vàng',
     '105': 'Cấp độ bạch kim',
