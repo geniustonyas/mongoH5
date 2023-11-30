@@ -727,7 +727,7 @@ export default {
   subBefore: '(Ao clicar em “Assinar”, você concorda que leu, entendeu e consentiu com a ',
   subAfter: 'quanto ao uso dos seus dados pessoais.)',
   vip: {
-    seabetVip: 'eabet VIPClube',
+    seabetVip: 'Seabet VIPClube',
     vipWelH5: `"Na Seabet, estamos empenhados em melhorar a qualidade dos jogos e proporcionar a melhor experiência de jogo possível. Lançamos um novo Clube de Membros VIP para recompensar nossos membros que passam tempo jogando em nosso site e são leais a nossa plataforma."`,
     vipWel: `<p>Bem-vindo ao Clube de Membros VIP da Seabet</p>
             <p>"Na Seabet, estamos empenhados em melhorar a qualidade dos jogos e proporcionar a melhor experiência de jogo possível. Lançamos um novo Clube de Membros VIP para recompensar nossos membros que passam tempo jogando em nosso site e são leais a nossa plataforma."</p>
