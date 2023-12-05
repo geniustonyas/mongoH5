@@ -9,6 +9,14 @@ export function getPromoApi() {
   })
 }
 
+/** 获取过期优惠列表 */
+export function getExpiredPromoApi() {
+  return request<Promo.getPromoResp>({
+    url: 'Promo/GetWebExpiredPromoList',
+    method: 'post'
+  })
+}
+
 /** 获取优惠详情 */
 export function getPromoDetailsApi(data: Promo.getPromoDetailsData) {
   return request<Promo.getPromoDetailsResp>({

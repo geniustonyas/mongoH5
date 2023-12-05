@@ -474,7 +474,7 @@ export default {
   moonpayExchange: 'ซื้อสกุลเงินดิจิทัลด้วยบัตรเครดิต/บัตรเดบิต',
   learnMore: 'เรียนรู้เพิ่มเติม',
   comingSoon: 'เร็ว ๆ นี้...',
-  affiliate: 'Affiliate',
+  affiliate: 'พันธมิตร',
   rewardActivities: 'กิจกรรมรางวัล',
   rewardRecords: 'บันทึกรางวัล',
   applyPromo: 'สมัครรางวัล',

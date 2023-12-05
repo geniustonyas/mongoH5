@@ -15,7 +15,18 @@
               <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
             </a>
           </li>
+          <template v-if="expiredPromoList.length > 0 && showExpiredPromoList">
+            <li v-for="(item, index) of expiredPromoList" :key="index" class="gray">
+              <a @click="router.push({ name: 'promoDetails', params: { id: item.id } })">
+                <img :data-src="appStore.cdnurl + item.image" />
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.intro }}</p>
+                <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
+              </a>
+            </li>
+          </template>
         </ul>
+        <div v-if="promoList.length > 0 && !showExpiredPromoList" class="pb-more"><a class="btn btn-primary" @click="getExpiredPromoList">显示已过期优惠</a></div>
       </div>
     </main>
     <Sidebar :currency-code="currencyCode" :exchange-rate="exchangeRate" />
@@ -32,7 +43,7 @@ import Sidebar from '@/components/layout/SideBar.vue'
 import Footer from '@/components/layout/Footer.vue'
 
 import { getExchangeRate } from '@/composables/getExchangeRate'
-import { getPromoApi } from '@/api/promo/index'
+import { getPromoApi, getExpiredPromoApi } from '@/api/promo/index'
 import { getPromoRespItem } from '@/api/promo/types'
 import { useAppStore } from '@/store/modules/app'
 
@@ -47,13 +58,24 @@ const router = useRouter()
 const { t } = useI18n()
 
 const promoList = ref<getPromoRespItem[]>([])
-const nodata = ref(false)
+const expiredPromoList = ref<getPromoRespItem[]>([])
+const showExpiredPromoList = ref(false)
 
 const getPromoList = () => {
   getPromoApi()
     .then((res) => {
       promoList.value = res.data
-      nodata.value = res.data.length == 0
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+const getExpiredPromoList = () => {
+  getExpiredPromoApi()
+    .then((res) => {
+      expiredPromoList.value = res.data
+      showExpiredPromoList.value = true
     })
     .catch((err) => {
       console.log(err)

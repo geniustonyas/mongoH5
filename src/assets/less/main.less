@@ -649,8 +649,13 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 span { color: var(--color-primary); }
                 i { margin-left: .5rem; vertical-align: middle; }
             }
+            &.gray {
+                -webkit-filter: grayscale(100%);
+                filter: grayscale(100%);
+            }
         }
     }
+    .pb-more { width: 100%; .flex(); .flex-align(); .flex-pack();  margin-bottom: 2pb-listrem;}
     .pb-detail {
         img { width: 100%; }
         .pd-title, h2 { color: var(--color-primary); padding: 1rem; text-align: center; }
