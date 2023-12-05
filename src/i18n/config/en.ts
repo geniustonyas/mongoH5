@@ -716,6 +716,9 @@ export default {
   outAny: 'You can opt out anytime you want.',
   subBefore: '(By clicking “Subscribe", you agree that you have read, understand, and consent to the ',
   subAfter: 'with regards to the use of your personal data.)',
+  showExpiredPromo: 'Past Promotions',
+  expiredPromo: 'Past Promotions',
+
   vip: {
     seabetVip: 'Seabet VIP-Club',
     vipWelH5: `At Seabet, we are committed to enhancing the quality of gaming and providing the best gaming experience. We have introduced a brand new VIP Club to reward our members who spend time playing games on our website faithfully.`,
@@ -978,98 +981,6 @@ export default {
     selfExclusionTitle: 'Self Exclusion',
     privacyTitle: 'Privacy Policy',
     fairnessTitle: 'Fairness',
-
-    // html内容
-    vipContent: ` <div class="vip-clubhouse-box">
-                    <div class="vc-rows">
-                      <div class="vr-title">1、VIP Club Introduction</div>
-                      <div class="vr-conts">
-                        <p>Welcome to the Seabet VIP Club!</p>
-                        <p>At Seabet, we are committed to enhancing the quality of gaming and providing the best gaming experience. We are excited to introduce our brand new VIP Club, designed to reward our loyal members who spend time playing games on our website.</p>
-                        <p>Simply place bets on any game or sports event provided by Seabet.io to unlock exclusive rewards as you climb through the ranks.</p>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">2、Personalized Service</div>
-                      <div class="vr-conts">
-                        <p>Professional Customer Manager Team Ensures All Your Needs and Meets Industry's Highest Standards. VIP members can enjoy exclusive bonuses, invitations to renowned events, and a variety of customized rewards to provide you with fast, enjoyable, and efficient gaming experiences.</p>
-                        <dl>
-                          <dt>VIP Exclusive Manager：</dt>
-                          <dd>Dedicated to addressing your needs</dd>
-                          <dd>Tailored private gaming experiences just for you</dd>
-                        </dl>
-                        <dl>
-                          <dt>High Rewards：</dt>
-                          <dd>Exclusive offers designed for you</dd>
-                          <dd>No-wager bonuses</dd>
-                          <dd>Rapid accumulation of points</dd>
-                        </dl>
-                        <dl>
-                          <dt>Industry's Highest Betting Limits：</dt>
-                          <dd>Unlimited daily deposits and withdrawals with cryptocurrencies</dd>
-                        </dl>
-                        <dl>
-                          <dt>VIP Exclusive Promotions：</dt>
-                          <dd>Distinguished from regular member promotions</dd>
-                          <dd>Preserve the best gaming experience for you</dd>
-                          <dd>Exclusive to VIP users</dd>
-                          <dd>Personalized offers</dd>
-                          <dd>Customized entertainment services exclusively for you</dd>
-                        </dl>
-                        <dl>
-                          <dt>24/7 Priority Service：</dt>
-                          <dd>No need to queue or wait</dd>
-                          <dd>Your needs are our top priority</dd>
-                          <dd>Multiple social media contact methods, dedicated customer managers providing online services.</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">3、Level Structure</div>
-                      <div class="vr-conts">
-                        <p>Six VIP levels that comprehensively cover your entire gaming journey:</p>
-                        <dl>
-                          <dd>Bronze: Bronze 1</dd>
-                          <dd>Silver: Silver 1 - Silver 5</dd>
-                          <dd>Gold: Gold 1 - Gold 8</dd>
-                          <dd>Platinum: Platinum 1 - Platinum 10</dd>
-                          <dd>Titanium: Titanium 1 - Titanium 10</dd>
-                          <dd>Diamond: Diamond 1 - Diamond 6</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">4、Benefits for VIP Club Members</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>Level Up Bonuses: Receive bonuses upon reaching the next level. The higher the level you achieve, the greater the bonus.</dd>
-                          <dd>Customized Exclusive Offers: Not interested in regular promotions? No problem. Once you reach the corresponding VIP level, we will specially tailor offers based on your interests, exclusively for you</dd>
-                          <dd>Personalized Entertainment Experience: Whether it's major sports events, concerts, music shows, or a luxurious trip, as a senior VIP member, all your personal expenses will be covered by the trusted SEABET, and we will arrange your itinerary.</dd>
-                          <dd>Exclusive VIP Service: You will be assigned a dedicated VIP service representative who will support and meet your betting needs</dd>
-                          <dd>Faster Points Accumulation: VIP levels earn points at a faster rate compared to regular members. Higher levels earn more points, leading to a wider range of prizes for redemption.</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">5、How to Become a VIP Member</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>
-                            Keep Betting: The key to becoming a VIP is consistently placing bets on various sports events and casino games. SEABET rewards your consistency. As a top cryptocurrency gambling site, regularly use your digital assets to place bets on any sports events and casino games offered by SEABET. You can also try betting with USDT and continue using your funds
-                          </dd>
-                          <dd>
-                            Participate in Regular Events: SEABET's promotional activities include various events and competitions that you can participate in at any time. Regular participation in any of these events will increase your chances of receiving an invitation to the VIP Club. Moreover, you can be more active in other club features offered by SEABET.
-                          </dd>
-                          <dd>
-                            Await the Invitation: The final thing you need to do is wait for us to send you an invitation. Continue playing games and participating in high roller events. After a few rounds of casino gambling and sports betting, once you are deemed worthy of becoming a VIP Club member, you will receive an invitation immediately.
-                          </dd>
-                          <dd>
-                            Experience the Luxury Life as a SEABET VIP: Take your USDT gambling experience to a whole new level while enjoying top-notch privileges as a SEABET VIP Club member. As a valued player, you'll experience the best fun, fast, and fair betting when engaging in sports betting and casino games.
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </div>`,
 
     rulesContent: `<div>
                     <h2>Terms and Conditions</h2>

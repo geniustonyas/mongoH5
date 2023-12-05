@@ -722,6 +722,9 @@ export default {
   outAny: 'Puedes darte de baja en cualquier momento.',
   subBefore: '(Al hacer clic en "Suscribirse", aceptas que has leído, entiendes y aceptas la ',
   subAfter: 'con respecto al uso de tus datos personales.)',
+  showExpiredPromo: 'Promociones anteriores',
+  expiredPromo: 'Promociones anteriores',
+
   vip: {
     seabetVip: 'Club VIP de Seabet',
     vipWelH5: `En Seabet, estamos comprometidos a mejorar la calidad de los juegos y ofrecer la mejor experiencia de juego. Hemos introducido un nuevo Club VIP para recompensar a nuestros miembros que pasan tiempo jugando en nuestro sitio web de manera fiel.`,
@@ -975,97 +978,6 @@ export default {
     privacyTitle: 'Política de Privacidad',
     fairnessTitle: 'Equidad',
 
-    // Contenido HTML
-    vipContent: `<div class="vip-clubhouse-box">
-                  <div class="vc-rows">
-                    <div class="vr-title">1.Introducción al Club VIP</div>
-                    <div class="vr-conts">
-                      <p>¡Bienvenido al Club VIP de Seabet!</p>
-                      <p>En Seabet, estamos comprometidos a mejorar la calidad del juego y brindar la mejor experiencia de juego. Estamos emocionados de presentar nuestro nuevo Club VIP, diseñado para recompensar a nuestros miembros leales que pasan tiempo jugando en nuestro sitio web.</p>
-                      <p>Simplemente realiza apuestas en cualquier juego o evento deportivo proporcionado por Seabet.io para desbloquear recompensas exclusivas a medida que avanzas en los niveles.</p>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">2.Servicio Personalizado</div>
-                    <div class="vr-conts">
-                      <p>Nuestro equipo profesional de Gerentes de Atención al Cliente se asegura de cubrir todas tus necesidades y cumplir con los más altos estándares de la industria. Los miembros VIP pueden disfrutar de bonificaciones exclusivas, invitaciones a eventos de renombre y una variedad de recompensas personalizadas para brindarte experiencias de juego rápidas, agradables y eficientes.</p>
-                      <dl>
-                        <dt>VGerente Exclusivo VIP:</dt>
-                        <dd>Comprometido en atender tus necesidades</dd>
-                        <dd>Experiencias de juego privadas diseñadas especialmente para ti</dd>
-                      </dl>
-                      <dl>
-                        <dt>Recompensas Generosas:</dt>
-                        <dd>Ofertas exclusivas diseñadas para ti</dd>
-                        <dd>Bonos sin requisito de apuesta</dd>
-                        <dd>Acumulación rápida de puntos</dd>
-                      </dl>
-                      <dl>
-                        <dt>Límites de Apuesta Más Altos de la Industria:</dt>
-                        <dd>Unlimited daily deposits and withdrawals with cryptocurrencies</dd>
-                      </dl>
-                      <dl>
-                        <dt>Promociones Exclusivas VIP:</dt>
-                        <dd>Distinguished from regular member promotions</dd>
-                        <dd>Preserve the best gaming experience for you</dd>
-                        <dd>Exclusive to VIP users</dd>
-                        <dd>Personalized offers</dd>
-                        <dd>Customized entertainment services exclusively for you</dd>
-                      </dl>
-                      <dl>
-                        <dt>24/7 Priority Service：</dt>
-                        <dd>Sin necesidad de hacer fila ni esperar</dd>
-                        <dd>Tus necesidades son nuestra principal prioridad</dd>
-                        <dd>Múltiples métodos de contacto en redes sociales, gerentes de atención al cliente dedicados que ofrecen servicios en línea.</dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">3.Estructura de Niveles</div>
-                    <div class="vr-conts">
-                      <p>Seis niveles VIP que cubren de manera integral todo tu viaje de juego:</p>
-                      <dl>
-                        <dd>Bronce: Bronce 1</dd>
-                        <dd>Plata: Plata 1 - Plata 5</dd>
-                        <dd>Oro: Oro 1 - Oro 8</dd>
-                        <dd>Platino: Platino 1 - Platino 10</dd>
-                        <dd>Titanio: Titanio 1 - Titanio 10</dd>
-                        <dd>Diamante: Diamante 1 - Diamante 6</dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">4.Beneficios para los Miembros del Club VIP</div>
-                    <div class="vr-conts">
-                      <dl>
-                        <dd>Bonificaciones al Subir de Nivel: Recibe bonificaciones al alcanzar el siguiente nivel. Cuanto más alto sea el nivel que alcances, mayor será la bonificación.</dd>
-                        <dd>Ofertas Exclusivas Personalizadas: ¿No estás interesado en las promociones regulares? No hay problema. Una vez que llegues al nivel VIP correspondiente, adaptaremos ofertas especialmente diseñadas según tus intereses, exclusivamente para ti.</dd>
-                        <dd>Experiencia de Entretenimiento Personalizada: Ya sea en eventos deportivos importantes, conciertos, espectáculos de música o un viaje de lujo, como miembro VIP senior, todos tus gastos personales serán cubiertos por Seabet, y organizaremos tu itinerario.</dd>
-                        <dd>Servicio VIP Exclusivo: Se te asignará un representante de servicio VIP dedicado que apoyará y satisfará tus necesidades de apuestas.</dd>
-                        <dd>Acumulación más Rápida de Puntos: Los niveles VIP acumulan puntos a una velocidad más rápida en comparación con los miembros regulares. Los niveles más altos acumulan más puntos, lo que conduce a una amplia gama de premios para canjear.</dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">5.Cómo Convertirse en Miembro VIP</div>
-                    <div class="vr-conts">
-                      <dl>
-                        <dd>
-                        Sigue Apostando: La clave para convertirse en VIP es apostar de manera constante en diversos eventos deportivos y juegos de casino. Seabet recompensa tu consistencia. Como uno de los principales sitios de apuestas con criptomonedas, utiliza regularmente tus activos digitales para realizar apuestas en cualquier evento deportivo y juegos de casino ofrecidos por Seabet. También puedes probar a apostar con USDT y seguir utilizando tus fondos.
-                        </dd>
-                        <dd>
-                        Participa en Eventos Regulares: Las actividades promocionales de Seabet incluyen varios eventos y competiciones en los que puedes participar en cualquier momento. La participación regular en cualquiera de estos eventos aumentará tus posibilidades de recibir una invitación al Club VIP. Además, puedes ser más activo en otras funciones del club ofrecidas por Seabet.
-                        </dd>
-                        <dd>
-                        Espera la Invitación: Lo último que debes hacer es esperar a que te enviemos una invitación. Continúa jugando y participando en eventos de alto nivel. Después de algunas rondas de juegos de casino y apuestas deportivas, una vez que se te considere digno de convertirte en miembro del Club VIP, recibirás una invitación de inmediato.
-                        </dd>
-                        <dd>
-                          Experimenta la Vida de Lujo como VIP de Seabet: Lleva tu experiencia de apuestas con USDT a un nivel completamente nuevo mientras disfrutas de privilegios de primer nivel como miembro del Club VIP de Seabet. Como jugador valorado, experimentarás la mejor diversión, apuestas rápidas y justas al participar en apuestas deportivas y juegos de casino.
-                        </dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>`,
     rulesContent: `<div>
                       <p>Términos y Condiciones</p>
                       <h3>1. SEABET. IO</h3>
