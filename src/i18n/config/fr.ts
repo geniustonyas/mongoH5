@@ -506,7 +506,7 @@ export default {
   demoMode: "Mode d'essai",
   trueMode: 'Miser maintenant',
   gameStatic: 'Statistique du jeu',
-  receivedSuccess: '{ amount } USDT Réclamé',
+  receivedSuccess: '{ amount } { currency }Réclamé',
   goTime: 'Heure de départ',
   backTime: "Heure d'arrivée",
   inTime: "Heure d'enregistrement à l'hôtel",

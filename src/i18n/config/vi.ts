@@ -506,7 +506,7 @@ export default {
   demoMode: 'Chơi thử',
   trueMode: 'Cược ngay',
   gameStatic: 'Thống kê trò chơi',
-  receivedSuccess: 'Nhận { amount } USDT thành công',
+  receivedSuccess: 'Nhận { amount } { currency } thành công',
   goTime: 'Thời gian khởi hành',
   backTime: 'Thời gian trở về',
   inTime: 'Thời gian nhận phòng khách sạn',

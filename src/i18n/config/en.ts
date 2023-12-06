@@ -504,7 +504,7 @@ export default {
   demoMode: 'Trial Play',
   trueMode: 'Bet Now',
   gameStatic: 'Game statistic',
-  receivedSuccess: '{ amount } USDT Claimed',
+  receivedSuccess: '{ amount } { currency }Claimed',
   goTime: 'Departure time',
   backTime: 'Arrival time',
   inTime: 'Hotel Check in time',

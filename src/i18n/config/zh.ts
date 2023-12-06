@@ -504,7 +504,7 @@ export default {
   demoMode: '乐趣试玩',
   trueMode: '真钱模式',
   gameStatic: '游戏数据统计',
-  receivedSuccess: '{ amount } USDT 已领取成功',
+  receivedSuccess: '{ amount } { currency }已领取成功',
   goTime: '出行时间',
   backTime: '返程时间',
   inTime: '入住时间',

@@ -505,7 +505,7 @@ export default {
   demoMode: 'Deneme Oyunu',
   trueMode: 'Şimdi Bahis Yap',
   gameStatic: 'Oyun İstatistiği',
-  receivedSuccess: '{ amount } USDT Talep Edildi',
+  receivedSuccess: '{ amount } { currency }Talep Edildi',
   goTime: 'Kalkış Saati',
   backTime: 'Varış Saati',
   inTime: 'Otel Giriş Zamanı',

@@ -503,7 +503,7 @@ export default {
   demoMode: 'Versuchs-Modus',
   trueMode: 'Jetzt wetten',
   gameStatic: 'Spielstatistiken',
-  receivedSuccess: '{ amount } USDT beansprucht',
+  receivedSuccess: '{ amount } { currency }beansprucht',
   goTime: 'Abfahrtszeit',
   backTime: 'Ankunftszeit',
   inTime: 'Hotel-Check-in-Zeit',

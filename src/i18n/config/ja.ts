@@ -504,7 +504,7 @@ export default {
   demoMode: 'トライアルモード',
   trueMode: 'リアルマネーモード',
   gameStatic: 'ゲームデータ統計',
-  receivedSuccess: '{ amount } USDT 受け取り成功',
+  receivedSuccess: '{ amount } { currency }受け取り成功',
   goTime: '出発時間',
   backTime: '帰りの時間',
   inTime: 'ホテルのチェックイン時間',
