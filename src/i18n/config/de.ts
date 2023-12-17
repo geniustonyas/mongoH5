@@ -287,7 +287,8 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
-    sexy: 'Sexy Baccarat'
+    sexy: 'Sexy Baccarat',
+    pgSoft: 'PG Soft'
   },
 
   // 数据验证提示
@@ -503,8 +504,7 @@ export default {
   demoMode: 'Versuchs-Modus',
   trueMode: 'Jetzt wetten',
   gameStatic: 'Spielstatistiken',
-  receivedSuccess: '{ amount } USDT beansprucht',
-  receivedSuccess2: '{ amount } { currency } beansprucht',
+  receivedSuccess: '{ amount } { currency }beansprucht',
   goTime: 'Abfahrtszeit',
   backTime: 'Ankunftszeit',
   inTime: 'Hotel-Check-in-Zeit',

@@ -290,7 +290,8 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
-    sexy: 'Sexy Baccarat'
+    sexy: 'Sexy Baccarat',
+    pgSoft: 'PG Soft'
   },
   tips: {
     // ผู้ใช้ - เข้าสู่ระบบและลงทะเบียน
