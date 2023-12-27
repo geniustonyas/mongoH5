@@ -716,6 +716,8 @@ export default {
   subAfter: '.）',
   showExpiredPromo: '显示已过期优惠',
   expiredPromo: '显示已过期优惠',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
 
   vip: {
     seabetVip: 'Seabet VIP俱乐部',

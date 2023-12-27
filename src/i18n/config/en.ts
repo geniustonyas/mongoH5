@@ -720,6 +720,8 @@ export default {
   subAfter: 'with regards to the use of your personal data.)',
   showExpiredPromo: 'Past Promotions',
   expiredPromo: 'Past Promotions',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
 
   vip: {
     seabetVip: 'Seabet VIP-Club',

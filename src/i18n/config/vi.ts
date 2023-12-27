@@ -726,6 +726,8 @@ export default {
   subAfter: 'liên quan đến việc sử dụng dữ liệu cá nhân của bạn.）',
   showExpiredPromo: 'Khuyến mại trước đây',
   expiredPromo: 'Khuyến mại trước đây',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
 
   vip: {
     seabetVip: 'Hội viên VIP Seabet',

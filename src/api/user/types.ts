@@ -76,6 +76,10 @@ export interface thirdRegData {
   VerificationCode: string
 }
 
+export interface subscribeData {
+  email: string
+}
+
 // 返回类型
 export type LoginResp = ApiResponseData<{ id: number; userName: string; registerTime: string; token: string; tokenExpires: number }>
 export type GetUserProfileResp = ApiResponseData<UserInfoType>

@@ -721,6 +721,8 @@ export default {
   subAfter: 'を読み、理解し、個人データの使用について同意したことになります.）',
   showExpiredPromo: '過去のキャンペーン',
   expiredPromo: '過去のキャンペーン',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
 
   vip: {
     seabetVip: 'Seabet VIPクラブ',

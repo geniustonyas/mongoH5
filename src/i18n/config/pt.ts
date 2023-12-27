@@ -730,6 +730,8 @@ export default {
   subAfter: 'quanto ao uso dos seus dados pessoais.)',
   showExpiredPromo: 'Promoções Encerradas',
   expiredPromo: 'Promoções Encerradas',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
 
   vip: {
     seabetVip: 'Seabet VIPClube',

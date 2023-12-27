@@ -715,6 +715,8 @@ export default {
   subAfter: 'เกี่ยวกับการใช้ข้อมูลส่วนบุคคลของคุณ.）',
   showExpiredPromo: ' โปรโมชันที่ผ่านมา',
   expiredPromo: ' โปรโมชันที่ผ่านมา',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
 
   vip: {
     seabetVip: 'คลับ VIP ของ Seabet',

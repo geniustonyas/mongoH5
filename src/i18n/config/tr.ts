@@ -717,6 +717,8 @@ export default {
   subAfter: ' okuduğunu, anladığını ve onayladığını kabul etmiş olursun.)',
   showExpiredPromo: 'Geçmiş Promosyonlar',
   expiredPromo: 'Geçmiş Promosyonlar',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
 
   vip: {
     seabetVip: 'Seabet VIP Kulübü',

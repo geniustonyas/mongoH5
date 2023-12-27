@@ -59,6 +59,7 @@ export function getGameUrl(gameId: string, gameUrl = 'game/url', provider: numbe
   getGameUrlApi({ id: gameId, platform: PlatForm.H5, domain: 'https://' + domain }, gameUrl)
     .then((resp) => {
       if (provider == 11 || provider == 15 || provider == 13) {
+        // if (provider == 11 || provider == 15 || provider == 13) {
         if (provider == 13) {
           localStorage.setItem('pgsoftUrl', resp.data)
         }

@@ -718,6 +718,8 @@ export default {
   subAfter: '을 읽고 이해하며 동의한 것으로 간주됩니다.）',
   showExpiredPromo: '지난 프로션',
   expiredPromo: '지난 프로션',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
 
   vip: {
     seabetVip: 'Seabet VIP 클럽',
