@@ -241,7 +241,7 @@ const depositTab = ref('digital')
 const fundTab = ref('deposit')
 
 // 是否显示完整地址
-const showAddress = ref(false)
+const showAddress = ref(true)
 
 // 余额列表
 const showCurrencyItemBox = ref(false)
@@ -281,7 +281,7 @@ const depositInfo = reactive({
   minDepositAmount: 0
 })
 const defaultDepositInfo = cloneDeep(depositInfo)
-const showDepositQrcode = ref(false)
+const showDepositQrcode = ref(true)
 
 // 替换币种名称
 const currenyName = (code: string) => {
@@ -299,7 +299,7 @@ const getBalanceList = () => {
         selCurrency(item ? item : resp.data[0])
         digitalList.value = resp.data.filter((item) => item.currencyType != '20')
         // bankList.value = resp.data.filter((item) => item.currencyType == '20')
-        showDepositQrcode.value = false
+        showDepositQrcode.value = true
       }
     })
     .catch((error) => {
