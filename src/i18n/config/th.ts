@@ -159,7 +159,7 @@ export default {
   liveSupport: 'ติดต่อพนักงาน',
   chooseCrypto: 'เลือกเหรียญดิจิทัลที่คุณต้องการ',
   cryptoCurrency: 'เหรียญดิจิทัล',
-  bank: 'ธนาคาร',
+  bank: 'เงิน',
   chooseDepositChain: 'เลือกเครือข่ายฝากเงิน',
   confirmDepositAddress: 'โปรดยืนยันที่อยู่ฝากเงินก่อนดำเนินการธุรกรรม',
   recommendExchange: 'ซื้อเหรียญดิจิทัลจากแพลตฟอร์มซื้อขายที่เราแนะนำ',
@@ -256,7 +256,8 @@ export default {
     doge: 'ด็อกคอยน์',
     ton: 'TON Crystal',
     usd: 'ดอลลาร์สหรัฐ',
-    cny: 'หยวนจีน'
+    cny: 'หยวนจีน',
+    brl: 'BRL'
   },
   // ร้านค้าแต้ม
   points: 'แต้ม',
@@ -717,6 +718,21 @@ export default {
   expiredPromo: ' โปรโมชันที่ผ่านมา',
   subscribeSuccess: '订阅成功',
   subscribeFail: '订阅失败',
+  depositLimit: '充值限额',
+  depositNewWindow: '即将为您打开新窗口进行支付',
+  inputDepositAmount: '请输入充值金额',
+  depositAmountOver: '充值金额不能大于最高限额',
+  depositAmountUnder: '充值金额不小于最低限额',
+  providerInfo: 'กรุณาระบุข้อมูลส่วนตัวของท่าน ข้อมูลทั้งหมดได้รับการเข้ารหัสและรักษาความปลอดภัย',
+  fiatCpfHolder: 'ใส่ CPF',
+  fiatName: 'ชื่อบัญชี',
+  fiatNameHolder: 'กรอกชื่อ',
+  fiatPixType: 'รหัสธนาคาร',
+  fiatPixTypeHolder: 'รหัสธนาคาร',
+  fiatPixAccount: 'บัญชี',
+  fiatPixAccountHolder: 'ใส่บัญชี',
+  withdrawInfo: '提款信息',
+  fundCurrency: 'สกุลเงิน',
 
   vip: {
     seabetVip: 'คลับ VIP ของ Seabet',

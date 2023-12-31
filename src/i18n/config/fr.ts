@@ -160,7 +160,7 @@ export default {
   liveSupport: 'Support en Ligne',
   chooseCrypto: 'Choisissez votre Cryptomonnaie préférée',
   cryptoCurrency: 'Cryptomonnaie',
-  bank: 'Banque',
+  bank: 'Devise',
   chooseDepositChain: 'Choisissez le Réseau de Dépôt',
   confirmDepositAddress: 'Veuillez confirmer votre adresse de dépôt avant de procéder à la transaction.',
   recommendExchange: "Achetez des cryptos sur les plateformes d'échange recommandées.",
@@ -257,7 +257,8 @@ export default {
     doge: 'Dogecoin',
     ton: 'Free TON',
     usd: 'Dollar US',
-    cny: 'Yuan Renminbi'
+    cny: 'Yuan Renminbi',
+    brl: 'BRL'
   },
   // Boutique de Points
   points: 'Points',
@@ -719,6 +720,21 @@ export default {
   expiredPromo: 'Promotions passées',
   subscribeSuccess: '订阅成功',
   subscribeFail: '订阅失败',
+  depositLimit: '充值限额',
+  depositNewWindow: '即将为您打开新窗口进行支付',
+  inputDepositAmount: '请输入充值金额',
+  depositAmountOver: '充值金额不能大于最高限额',
+  depositAmountUnder: '充值金额不小于最低限额',
+  providerInfo: 'Veuillez entrer vos détails personnels. Toutes vos données sont sécurisées et cryptées.',
+  fiatCpfHolder: 'Entrez le CPF',
+  fiatName: 'Nom du Compte',
+  fiatNameHolder: 'Entrez le Nom',
+  fiatPixType: 'Code Bancaire',
+  fiatPixTypeHolder: 'Choisir Code Bancaire',
+  fiatPixAccount: 'Compte',
+  fiatPixAccountHolder: 'Saisir Compte',
+  withdrawInfo: '提款信息',
+  fundCurrency: 'Devise',
 
   vip: {
     seabetVip: 'Club VIP Seabet',

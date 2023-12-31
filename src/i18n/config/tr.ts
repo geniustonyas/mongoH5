@@ -256,7 +256,8 @@ export default {
     doge: 'DogeCoin',
     ton: 'TON Crystal',
     usd: 'ABD Doları',
-    cny: 'Çin Yuanı'
+    cny: 'Çin Yuanı',
+    brl: 'BRL'
   },
   // Puan Mağazası
   points: 'Puanlar',
@@ -719,6 +720,21 @@ export default {
   expiredPromo: 'Geçmiş Promosyonlar',
   subscribeSuccess: '订阅成功',
   subscribeFail: '订阅失败',
+  depositLimit: '充值限额',
+  depositNewWindow: '即将为您打开新窗口进行支付',
+  inputDepositAmount: '请输入充值金额',
+  depositAmountOver: '充值金额不能大于最高限额',
+  depositAmountUnder: '充值金额不小于最低限额',
+  providerInfo: 'Lütfen kişisel bilgilerinizi girin. Tüm bilgiler şifrelenir ve güvenle muhafaza edilir.',
+  fiatCpfHolder: 'CPF girin',
+  fiatName: 'Hesap Adı',
+  fiatNameHolder: 'Adını Girin',
+  fiatPixType: 'Banka Kodu',
+  fiatPixTypeHolder: 'Banka Kodunu Seç',
+  fiatPixAccount: 'Hesap',
+  fiatPixAccountHolder: 'Hesap Girin',
+  withdrawInfo: '提款信息',
+  fundCurrency: 'Para birimi',
 
   vip: {
     seabetVip: 'Seabet VIP Kulübü',

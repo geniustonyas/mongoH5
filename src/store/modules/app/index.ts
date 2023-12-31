@@ -12,6 +12,9 @@ export const useAppStore = defineStore('app', () => {
   const email = ref('')
   const cdnurl = ref('')
   const robotCheck = ref(false)
+  const withdrawCurrencyCode = ref('')
+  const withdrawCurrencyType = ref('')
+  const withdrawBlockchainCode = ref('')
   const googleEmail = ref('')
   const thirdData = <thirdData>reactive({
     ThirdPartyType: '',
@@ -102,6 +105,9 @@ export const useAppStore = defineStore('app', () => {
     robotCheck,
     googleEmail,
     thirdData,
+    withdrawCurrencyCode,
+    withdrawCurrencyType,
+    withdrawBlockchainCode,
     maintainStatus,
     maintainTime,
     detailsFav,

@@ -159,7 +159,7 @@ export default {
   liveSupport: '라이브서포트',
   chooseCrypto: '선호통화 선택',
   cryptoCurrency: '암호화폐',
-  bank: '은행',
+  bank: '법정화폐',
   chooseDepositChain: '입금체인선택',
   confirmDepositAddress: '거래를 집행하기전 회원님의 입금 지갑주소를 확인해 주세요.',
   recommendExchange: '우리가 추천하는 거래소로부터 암호화폐 구입',
@@ -256,7 +256,8 @@ export default {
     doge: '도지코인',
     ton: '톤코인',
     usd: '미국달러',
-    cny: '인민폐'
+    cny: '인민폐',
+    brl: '브라질 헤알'
   },
   // 포인트 쇼핑센터
   points: '포인트',
@@ -720,6 +721,21 @@ export default {
   expiredPromo: '지난 프로션',
   subscribeSuccess: '订阅成功',
   subscribeFail: '订阅失败',
+  depositLimit: '充值限额',
+  depositNewWindow: '即将为您打开新窗口进行支付',
+  inputDepositAmount: '请输入充值金额',
+  depositAmountOver: '充值金额不能大于最高限额',
+  depositAmountUnder: '充值金额不小于最低限额',
+  providerInfo: '개인 정보를 입력하세요. 모든 데이터는 암호화되며 안전합니다.',
+  fiatCpfHolder: 'CPF를 입력하세요',
+  fiatName: '계정 이름',
+  fiatNameHolder: '이름 입력',
+  fiatPixType: '은행 코드',
+  fiatPixTypeHolder: '은행 코드 선택',
+  fiatPixAccount: '계정',
+  fiatPixAccountHolder: '계정 입력',
+  withdrawInfo: '提款信息',
+  fundCurrency: '화폐',
 
   vip: {
     seabetVip: 'Seabet VIP 클럽',

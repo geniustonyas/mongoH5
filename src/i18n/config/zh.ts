@@ -159,7 +159,7 @@ export default {
   liveSupport: '在线客服',
   chooseCrypto: '选择您偏好的货币',
   cryptoCurrency: '加密货币',
-  bank: '银行',
+  bank: '法定货币',
   chooseDepositChain: '选择存款网络',
   confirmDepositAddress: '请在执行交易前确认您的存款地址',
   recommendExchange: '从我们推荐的交易所购买加密货币',
@@ -255,7 +255,8 @@ export default {
     doge: '狗狗币',
     ton: '公开网络',
     usd: '美元',
-    cny: '人民币'
+    cny: '人民币',
+    brl: '巴西雷亚尔 '
   },
   // 积分商城
   points: '积分',
@@ -718,6 +719,21 @@ export default {
   expiredPromo: '显示已过期优惠',
   subscribeSuccess: '订阅成功',
   subscribeFail: '订阅失败',
+  depositLimit: '充值限额',
+  depositNewWindow: '即将为您打开新窗口进行支付',
+  inputDepositAmount: '请输入充值金额',
+  depositAmountOver: '充值金额不能大于最高限额',
+  depositAmountUnder: '充值金额不小于最低限额',
+  providerInfo: '请提供您的个人信息。所有数据已加密。',
+  fiatCpfHolder: '输入CPF',
+  fiatName: '姓名',
+  fiatNameHolder: '输入姓名',
+  fiatPixType: 'PIX类型',
+  fiatPixTypeHolder: '请选择PIX类型',
+  fiatPixAccount: 'PIX账号',
+  fiatPixAccountHolder: '输入PIX账号',
+  withdrawInfo: '提款信息',
+  fundCurrency: '货币',
 
   vip: {
     seabetVip: 'Seabet VIP俱乐部',
@@ -912,7 +928,8 @@ export default {
           <p>• @:currencyLang.ltc </p>
           <p>• @:currencyLang.ada </p>
           <p>• @:currencyLang.doge </p>
-          <p>• @:currencyLang.ton </p>`,
+          <p>• @:currencyLang.ton </p>
+          <p>• @:currencyLang.brl </p>`,
     q5: '你们对交易收取费用吗？',
     a5: `<p>虽然我们不对 Seabet.io 的存款和取款收取任何交易费用，但您可能需要为使用区块链支付交易费用。</p>`
   },

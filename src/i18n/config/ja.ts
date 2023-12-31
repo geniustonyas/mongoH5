@@ -159,7 +159,7 @@ export default {
   liveSupport: 'チャットサポート',
   chooseCrypto: '好みの仮想通貨の選択',
   cryptoCurrency: '仮想通貨',
-  bank: '銀行',
+  bank: '法定通貨',
   chooseDepositChain: '送金チェインの選択',
   confirmDepositAddress: '取引の際に必ず入金先のウォレットアドレスをご確認ください。',
   recommendExchange: 'お勧めの取引場で仮想通貨を購入する',
@@ -255,7 +255,8 @@ export default {
     doge: 'ドージコイン',
     ton: 'トンコイン',
     usd: 'US＄',
-    cny: '人民元'
+    cny: '人民元',
+    brl: 'ブラジルレアル'
   },
   // ポイントストア
   points: 'ポイント',
@@ -723,6 +724,21 @@ export default {
   expiredPromo: '過去のキャンペーン',
   subscribeSuccess: '订阅成功',
   subscribeFail: '订阅失败',
+  depositLimit: '充值限额',
+  depositNewWindow: '即将为您打开新窗口进行支付',
+  inputDepositAmount: '请输入充值金额',
+  depositAmountOver: '充值金额不能大于最高限额',
+  depositAmountUnder: '充值金额不小于最低限额',
+  providerInfo: '個人情報を入力してください。データはすべて暗号化されますので、安全です。',
+  fiatCpfHolder: 'CPFを入力',
+  fiatName: 'アカウント名',
+  fiatNameHolder: '名前入力',
+  fiatPixType: '銀行コード',
+  fiatPixTypeHolder: '銀行コード選択',
+  fiatPixAccount: 'アカウント',
+  fiatPixAccountHolder: 'アカウント入力',
+  withdrawInfo: '提款信息',
+  fundCurrency: '通貨',
 
   vip: {
     seabetVip: 'Seabet VIPクラブ',

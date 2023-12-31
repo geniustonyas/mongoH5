@@ -159,7 +159,7 @@ export default {
   liveSupport: 'Hỗ trợ trực tuyến',
   chooseCrypto: 'Chọn loại tiền mã hóa bạn muốn',
   cryptoCurrency: 'Tiền mã hóa',
-  bank: 'Ngân hàng',
+  bank: 'Tiền Pháp Định',
   chooseDepositChain: 'Chọn mạng nạp tiền',
   confirmDepositAddress: 'Vui lòng xác nhận địa chỉ nạp tiền của bạn trước khi thực hiện giao dịch.',
   recommendExchange: 'Mua tiền mã hóa từ sàn giao dịch mà chúng tôi đề xuất',
@@ -256,7 +256,8 @@ export default {
     doge: 'DOGE',
     ton: 'TON',
     usd: 'USD',
-    cny: 'CNY'
+    cny: 'CNY',
+    brl: 'BRL'
   },
   // Cửa hàng điểm
   points: 'Điểm',
@@ -728,6 +729,21 @@ export default {
   expiredPromo: 'Khuyến mại trước đây',
   subscribeSuccess: '订阅成功',
   subscribeFail: '订阅失败',
+  depositLimit: '充值限额',
+  depositNewWindow: '即将为您打开新窗口进行支付',
+  inputDepositAmount: '请输入充值金额',
+  depositAmountOver: '充值金额不能大于最高限额',
+  depositAmountUnder: '充值金额不小于最低限额',
+  providerInfo: 'Vui lòng ghi rõ chi tiết cá nhân của bạn. Tất cả dữ liệu sễ được mã hóa và bảo mật.',
+  fiatCpfHolder: 'Nhập CPF',
+  fiatName: 'Tên Tài Khoản',
+  fiatNameHolder: 'Nhập Tên',
+  fiatPixType: 'Mã Ngân Hàng',
+  fiatPixTypeHolder: 'Chọn Mã Ngân Hàng',
+  fiatPixAccount: 'Tài Khoản',
+  fiatPixAccountHolder: 'Nhập Tài Khoản',
+  withdrawInfo: '提款信息',
+  fundCurrency: 'Tiền tệ',
 
   vip: {
     seabetVip: 'Hội viên VIP Seabet',

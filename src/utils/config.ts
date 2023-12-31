@@ -116,6 +116,14 @@ export const currenyListData = () => {
       icon: 'coin/doge.svg',
       chain: 'Dogecoin',
       explorer: ''
+    },
+    {
+      code: 'BRL',
+      currenyName: t('currencyLang.brl'),
+      unit: 'BRL',
+      currenyType: '20',
+      icon: 'coin/brl.svg',
+      explorer: ''
     }
     // {
     //   code: 'TON',
