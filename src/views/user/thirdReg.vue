@@ -240,7 +240,7 @@ const checkEmailExist = async () => {
 }
 
 const fb_id = localStorage.getItem('fb_id')
-if (fb_id && (window.location.hostname.indexOf('seabet88.io') > -1 || window.location.hostname.indexOf('seabet77.io') > -1)) {
+if (fb_id) {
   !(function (f, b, e, v, n, t, s) {
     if (f.fbq) return
     n = f.fbq = function () {
@@ -375,7 +375,7 @@ const handleReg = async () => {
     btnLoading.value = false
     return false
   } else {
-    if (fb_id && (window.location.hostname.indexOf('seabet88.io') > -1 || window.location.hostname.indexOf('seabet77.io') > -1)) {
+    if (fb_id) {
       fbq('track', 'CompleteRegistration')
     }
     userStore

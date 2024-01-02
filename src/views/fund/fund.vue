@@ -480,7 +480,7 @@ const fiatDeposit = () => {
       if (!wd) {
         showConfirmDialog({
           title: t(''),
-          message: t('tips.depositNewWindow')
+          message: t('depositNewWindow')
         })
           .then(() => {
             window.open(resp.data.fiatPayUrl)

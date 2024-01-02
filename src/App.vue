@@ -63,7 +63,7 @@ if (route.query.agentId && route.query.agentId != '') {
   localStorage.setItem('agentId', route.query.agentId as string)
 }
 
-if (route.query.fb_dynamic_pixel && route.query.fb_dynamic_pixel != '' && (window.location.hostname.indexOf('seabet88.io') > -1 || window.location.hostname.indexOf('seabet77.io') > -1)) {
+if (route.query.fb_dynamic_pixel && route.query.fb_dynamic_pixel != '') {
   const fb_id = localStorage.getItem('fb_id')
   if (fb_id != route.query.fb_dynamic_pixel) {
     localStorage.setItem('fb_id', route.query.fb_dynamic_pixel as string)
@@ -75,7 +75,7 @@ if (route.query.fb_dynamic_pixel && route.query.fb_dynamic_pixel != '' && (windo
 const fb_over_time = localStorage.getItem('fb_over_time')
 const fb_id = localStorage.getItem('fb_id')
 let fb_timer = null
-if (fb_over_time && fb_id && (window.location.hostname.indexOf('seabet88.io') > -1 || window.location.hostname.indexOf('seabet77.io') > -1)) {
+if (fb_over_time && fb_id) {
   const over_time = dayjs(fb_over_time).toDate()
   const now = new Date()
   if (over_time > now) {
