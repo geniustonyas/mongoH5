@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5005157",
+      "name": "皇冠",
+      "font_class": "huangguan",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
       "icon_id": "7090080",
       "name": "站内信",
       "font_class": "email",

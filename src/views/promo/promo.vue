@@ -22,8 +22,8 @@
           class="pb-list"
           v-lazy-container="{ selector: 'img', error: getAssetsFile('seabet1.png'), loading: getAssetsFile('seabet1.png') }"
         >
-          <li v-for="(item, index) of expiredPromoList" :key="index" class="expire">
-            <a @click="router.push({ name: 'promoDetails', params: { id: item.id } })">
+          <li v-for="(item, index) of expiredPromoList" :key="index" class="expire" @click.stop="router.push({ name: 'promoDetails', params: { id: item.id } })">
+            <a>
               <img :data-src="appStore.cdnurl + item.image" />
               <h3>{{ item.title }}</h3>
               <p>{{ item.intro }}</p>

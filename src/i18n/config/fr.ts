@@ -781,45 +781,58 @@ export default {
       '102': {
         '0': { title: 'Bonus de Montée de Niveau', content: `Prix total: <span>5 USDT</span>` },
         '1': { title: `Bonus d'abonnement`, content: `Abonnez-vous à l'e-mail promotionnel, recevez <span>10 USDT</span> gratuitement` },
-        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1</span></p>` }
+        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenez <span>10%</span> de bonus à chaque dépôt</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recevez votre bonus de  <span>5%</span> environ en fonction de vos pertes quotidiennes</p>` }
       },
       '103': {
         '0': { title: 'Bonus de Montée de Niveau', content: `Argent 5, Prix total: <span>135 USDT</span>` },
         '1': { title: 'Tours Gratuits', content: `<span>30</span> tours gratuits sur les jeux de machines à sous` },
-        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1.1</span></p>` }
+        '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1.1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenez <span>11%</span> de bonus à chaque dépôt</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recevez votre bonus de  <span>5%</span> environ en fonction de vos pertes quotidiennes</p>` }
       },
       '104': {
         '0': { title: 'Bonus de Montée de Niveau', content: `Or 8, Prix total: <span>1,255 USDT</span>` },
         '1': { title: 'Bonus de Recharge', content: `Déposez <span>300 USDT</span>, obtenez un bonus de <span>300 USDT</span>` },
         '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1.2</span></p>` },
-        '3': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*5%</span> approximativement en fonction du montant de votre pari.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenez <span>11%</span> de bonus à chaque dépôt</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recevez votre bonus de  <span>6%</span> environ en fonction de vos pertes quotidiennes</p>` },
+        '5': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*5%</span> approximativement en fonction du montant de votre pari.</p>` }
       },
       '105': {
         '0': { title: 'Bonus de Montée de Niveau', content: `Platine 10, Prix total: <span>6,025 USDT</span>` },
         '1': { title: 'Bonus de Recharge', content: `Déposez <span>1,000 USDT</span>, obtenez un bonus de <span>1,000 USDT</span>` },
         '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1.3</span></p>` },
-        '3': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*5%</span> approximativement en fonction du montant de votre pari.</p>` },
-        '4': { title: 'Remise mensuelle en argent', content: `<p>Recevez votre bonus mensuel de Mise <span>*1%*3%</span> approximativement en fonction du montant de votre pari.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenez <span>12%</span> de bonus à chaque dépôt</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recevez votre bonus de  <span>7%</span> environ en fonction de vos pertes quotidiennes</p>` },
+        '5': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*5%</span> approximativement en fonction du montant de votre pari.</p>` },
+        '6': { title: 'Remise mensuelle en argent', content: `<p>Recevez votre bonus mensuel de Mise <span>*1%*3%</span> approximativement en fonction du montant de votre pari.</p>` }
       },
       '106': {
         '0': { title: 'Bonus de Montée de Niveau', content: `Titane 10, Prix total: <span>18,555 USDT</span>` },
         '1': { title: 'Bonus de Recharge', content: `Déposez <span>3,000 USDT</span>, obtenez un bonus de <span>3,000 USDT</span>` },
         '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*1.5</span></p>` },
-        '3': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*8%</span> approximativement en fonction du montant de votre pari.</p>` },
-        '4': { title: 'Remise mensuelle en argent', content: `<p>Recevez votre bonus mensuel de Mise <span>*1%*5%</span> approximativement en fonction du montant de votre pari.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenez <span>12%</span> de bonus à chaque dépôt</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recevez votre bonus de  <span>8%</span> environ en fonction de vos pertes quotidiennes</p>` },
+        '5': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*8%</span> approximativement en fonction du montant de votre pari.</p>` },
+        '6': { title: 'Remise mensuelle en argent', content: `<p>Recevez votre bonus mensuel de Mise <span>*1%*5%</span> approximativement en fonction du montant de votre pari.</p>` }
       },
       '107': {
         '0': { title: 'Bonus de Montée de Niveau', content: `Diamant 6, Prix total: <span>105,555 USDT</span>` },
         '1': { title: 'Bonus de Recharge', content: `Déposez <span>10,000 USDT</span>, obtenez un bonus de <span>10,000 USDT</span>` },
         '2': { title: 'Gain de Points', content: `<p>Pari quotidien <span>*1%*2</span></p>` },
-        '3': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*10%</span> approximativement en fonction du montant de votre pari.</p>` },
-        '4': { title: 'Remise mensuelle en argent', content: `<p>Recevez votre bonus mensuel de Mise <span>*1%*8%</span> approximativement en fonction du montant de votre pari.</p>` },
-        '5': { title: 'Récompense Spéciale', content: `<p>Diamant 6, récompense spéciale d'honneur suprême de <span>20,000 USDT</span></p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenez <span>15%</span> de bonus à chaque dépôt</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recevez votre bonus de  <span>10%</span> environ en fonction de vos pertes quotidiennes</p>` },
+        '5': { title: 'Remise hebdomadaire', content: `<p>Recevez votre bonus hebdomadaire de Mise <span>*1%*10%</span> approximativement en fonction du montant de votre pari.</p>` },
+        '6': { title: 'Remise mensuelle en argent', content: `<p>Recevez votre bonus mensuel de Mise <span>*1%*8%</span> approximativement en fonction du montant de votre pari.</p>` },
+        '7': { title: 'Récompense Spéciale', content: `<p>Diamant 6, récompense spéciale d'honneur suprême de <span>20,000 USDT</span></p>` }
       }
     },
     vipRewardDetailTitle: 'Détails des avantages du Club VIP',
     vipRewardDetailContent: `<dd>Les bonus d'e-mail promotionnels d'abonnement seront envoyés par e-mail promotionnel avec un code. Utilisez le code pour le racheter sur la page "Récompenses".</dd>
                             <dd>Les VIP Argent peuvent réclamer des tours gratuits sur la page 'Récompenses'. Disponibles sur la plateforme Play'N GO, jeux éligibles :Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Consultez la page des promos pour le Bonus de Dépôt Slots et le Rebond des Pertes Slots.</dd>
                             <dd>Les bonus de recharge pour tous les niveaux sont limités à une demande, nécessitant l'achèvement d'un montant de mise de 10 fois, applicable à n'importe quel jeu. Exemple : (1000+1000)*10=20000</dd>
                             <dd>Les bonus de recharge doivent être demandés via le service client en ligne après l'achèvement du dépôt et avant tout pari.</dd>
                             <dd>Les récompenses en points seront automatiquement ajoutées au compte le lendemain en fonction du montant des mises.</dd>

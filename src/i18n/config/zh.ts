@@ -780,45 +780,58 @@ export default {
       '102': {
         '0': { title: '升级奖金', content: `晋级奖金<span>5 USDT</span>` },
         '1': { title: '订阅奖金', content: `订阅促销邮箱，免费领取<span>10 USDT</span>` },
-        '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1</span></p>` }
+        '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1</span></p>` },
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>10%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>5%</span>的奖金</p>` }
       },
       '103': {
         '0': { title: '升级奖金', content: `白银5奖金总额：<span>135 USDT</span>` },
         '1': { title: '免费旋转', content: `老虎机游戏免费旋转<span>30</span>次` },
-        '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.1</span></p>` }
+        '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.1</span></p>` },
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>11%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>5%</span>的奖金</p>` }
       },
       '104': {
         '0': { title: '升级奖金', content: `黄金8奖金总额：<span>1,255 USDT</span>` },
         '1': { title: '充值奖金', content: `存<span>300 USDT</span>送<span>300 USDT</span>` },
         '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.2</span></p>` },
-        '3': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 5%</span>的奖金</p>` }
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>11%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>6%</span>的奖金</p>` },
+        '5': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 5%</span>的奖金</p>` }
       },
       '105': {
         '0': { title: '升级奖金', content: `铂金10奖金总额：<span>6,025 USDT</span>` },
         '1': { title: '充值奖金', content: `存<span>1,000 USDT</span>送<span>1,000 USDT</span>` },
         '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.3</span></p>` },
-        '3': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 5%</span>的奖金</p>` },
-        '4': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 3%</span>的奖金</p>` }
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>12%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>7%</span>的奖金</p>` },
+        '5': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 5%</span>的奖金</p>` },
+        '6': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 3%</span>的奖金</p>` }
       },
       '106': {
         '0': { title: '升级奖金', content: `钛金10奖金总额：<span>18,555 USDT</span>` },
         '1': { title: '充值奖金', content: `存<span>3,000 USDT</span>送<span>3,000 USDT</span>` },
         '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.5</span></p>` },
-        '3': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 8%</span>的奖金</p>` },
-        '4': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 5%</span>的奖金</p>` }
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>12%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>8%</span>的奖金</p>` },
+        '5': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 8%</span>的奖金</p>` },
+        '6': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 5%</span>的奖金</p>` }
       },
       '107': {
         '0': { title: '升级奖金', content: `钻石6奖金总额：<span>105,555 USDT</span>` },
         '1': { title: '充值奖金', content: `存<span>10,000 USDT</span>送<span>10,000 USDT</span>` },
         '2': { title: '积分获取', content: `<p>每日投注<span>*1%*2</span></p>` },
-        '3': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 10%</span>的奖金</p>` },
-        '4': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 8%</span>的奖金</p>` },
-        '5': { title: '特别奖励', content: `<p>钻石6，至尊荣誉特别奖金<span>20,000</span> USDT</p>` }
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>15%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>10%</span>的奖金</p>` },
+        '5': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 10%</span>的奖金</p>` },
+        '6': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 8%</span>的奖金</p>` },
+        '7': { title: '特别奖励', content: `<p>钻石6，至尊荣誉特别奖金<span>20,000</span> USDT</p>` }
       }
     },
     vipRewardDetailTitle: 'VIP俱乐部福利细节',
     vipRewardDetailContent: `<dd>订阅促销邮箱奖金，将通过促销邮箱发送代码，使用代码在“奖励”页面兑换即可.</dd>
                             <dd>白银VIP的免费旋转，在“奖励”页面点击申请即可，将添加至Play’N GO平台，支持的游戏为：Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way</dd>
+                            <dd>老虎机笔笔存送和老虎机输值返还，更多详情请查阅促销页面.</dd>
                             <dd>所有等级的充值奖金限领取一次，需完成10倍的投注金额，可投注于任意游戏. 例：（1000+1000）*10=20000</dd>
                             <dd>充值奖金需要在存款完成之后，且未投注之前联系在线客服申请.</dd>
                             <dd>积分奖励将根据投注金额于次日自动添加至账户内.</dd>

@@ -790,46 +790,59 @@ export default {
       '102': {
         '0': { title: 'Thưởng Thăng cấp', content: `Tổng giải thưởng: <span>5 USDT</span>` },
         '1': { title: 'Tiền thưởng đăng ký', content: `Đăng ký nhận thư khuyến mãi, nhận ngay<span>10 USDT</span>miễn phí` },
-        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1</span></p>` }
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1</span></p>` },
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>10%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>5%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` }
       },
       '103': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp bậc bạc 5, Tổng giải thưởng：<span>135 USDT</span>` },
         '1': { title: 'Vòng quay miễn phí', content: `Quay miễn phí<span>30</span>lần trên trò chơi máy đánh bạc` },
-        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.1</span></p>` }
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.1</span></p>` },
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>11%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>5%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` }
       },
       '104': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp bậc vàng 8, Tổng giải thưởng：<span>1,255 USDT</span>` },
         '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>300 USDT</span>, nhận thưởng<span>300 USDT</span>` },
         '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.2</span></p>` },
-        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>11%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>6%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` },
+        '5': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
       },
       '105': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp độ bạch kim 10, Tổng giải thưởng：<span>6,025 USDT</span>` },
         '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>1,000 USDT</span>, nhận thưởng<span>1,000 USDT</span>` },
         '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.3</span></p>` },
-        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` },
-        '4': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 3%</span>dựa trên số tiền đặt cược của bạn.</p>` }
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>12%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>7%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` },
+        '5': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '6': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 3%</span>dựa trên số tiền đặt cược của bạn.</p>` }
       },
       '106': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp độ Titan 10, Tổng giải thưởng：<span>18,555 USDT</span>` },
         '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>3,000 USDT</span>, nhận thưởng<span>3,000 USDT</span>` },
         '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.5</span></p>` },
-        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
-        '4': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>12%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>8%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` },
+        '5': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '6': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
       },
       '107': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp bậc kim cương 6, Tổng giải thưởng：<span>105,555 USDT</span>` },
         '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>10,000 USDT</span>, nhận thưởng<span>10,000 USDT</span>` },
         '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*2</span></p>` },
-        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 10%</span>dựa trên số tiền đặt cược của bạn.</p>` },
-        '4': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
-        '5': { title: 'Thưởng đặc biệt', content: `<p>Cấp bậc kim cương 6, Thưởng đặc biệt danh dự<span>20,000</span> USDT` }
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>15%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>10%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` },
+        '5': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 10%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '6': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '7': { title: 'Thưởng đặc biệt', content: `<p>Cấp bậc kim cương 6, Thưởng đặc biệt danh dự<span>20,000</span> USDT` }
       }
     },
     vipRewardDetailTitle: 'Chi tiết Ưu đãi của Hội viên VIP',
     vipRewardDetailContent: `<dd>Tiền thưởng qua email khuyến mãi sẽ được gửi qua email khuyến mãi với một mã code. Sử dụng mã code để đổi quà trên trang "Phần thưởng".</dd>
                             <dd>Các vòng quay miễn phí dành cho VIP Bạc có thể được yêu cầu trên trang 'Phần thưởng'. Có sẵn trên nền tảng Play'N GO, trò chơi hợp lệ:Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
                             <dd>Tiền thưởng nạp tiền cho tất cả các cấp độ chỉ có thể đòi hỏi một lần, yêu cầu hoàn thành mức cược 10 lần, áp dụng cho bất kỳ trò chơi nào. Ví dụ: (1000+1000)*10=20000</dd>
+                            <dd>Vui lòng kiểm tra trang khuyến mãi để biết thêm chi tiết về Ưu đãi Tiền gửi Slots & Hoàn trả Tiền thua cược Slots.</dd>
                             <dd>Tiền thưởng nạp tiền cần được áp dụng qua dịch vụ khách hàng trực tuyến sau khi hoàn tất tiền gửi và trước khi đặt cược.</dd>
                             <dd>Phần thưởng điểm sẽ tự động được thêm vào tài khoản vào ngày tiếp theo dựa trên số tiền cược.</dd>
                             <dd>Tiền thưởng hàng tuần và hàng tháng sẽ tự động được thêm vào tài khoản trong vòng 48 giờ sau khi bắt đầu tuần hoặc tháng tiếp theo.</dd>

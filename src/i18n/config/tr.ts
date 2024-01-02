@@ -781,45 +781,58 @@ export default {
       '102': {
         '0': { title: 'Seviye Atlama Bonusu', content: `Toplam ödül: <span>5 USDT</span>` },
         '1': { title: 'Abonelik Bonusu', content: `Promosyon e-postasına abone ol, ücretsiz <span>10 USDT</span> al` },
-        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis<span>*1%*1</span></p>` }
+        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis<span>*1%*1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<pHer para yatırma işleminizde <span>10%</span> bonus kazanın</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Günlük kayıplarınıza göre yaklaşık <span>5%</span> oranında bonusunuzu alın</p>` }
       },
       '103': {
         '0': { title: 'Seviye Atlama Bonusu', content: `Silver 5, Toplam ödül: <span>135 USDT</span>` },
         '1': { title: 'Ücretsiz Döndürmeler', content: `Slot oyunlarında ücretsiz <span>30</span> dönüş` },
-        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis<span>*1%*1.1</span></p>` }
+        '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis<span>*1%*1.1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<pHer para yatırma işleminizde <span>11%</span> bonus kazanın</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Günlük kayıplarınıza göre yaklaşık <span>5%</span> oranında bonusunuzu alın</p>` }
       },
       '104': {
         '0': { title: 'Seviye Atlama Bonusu', content: `Gold 8, Toplam ödül: <span>1,255 USDT</span>` },
         '1': { title: 'Yatırım Bonusu', content: `<span>300 USDT</span> yatır, <span>300 USDT</span> bonus al` },
         '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis <span>*1%*1.2</span></p>` },
-        '3': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*5%</span> bonusunuzu alın.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<pHer para yatırma işleminizde <span>11%</span> bonus kazanın</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Günlük kayıplarınıza göre yaklaşık <span>6%</span> oranında bonusunuzu alın</p>` },
+        '5': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*5%</span> bonusunuzu alın.</p>` }
       },
       '105': {
         '0': { title: 'Seviye Atlama Bonusu', content: `Platinum 10, Toplam ödül: <span>6,025 USDT</span>` },
         '1': { title: 'Yatırım Bonusu', content: `<span>1,000 USDT</span> yatır, <span>1,000 USDT</span> bonus al` },
         '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis <span>*1%*1.3</span></p>` },
-        '3': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*5%</span> bonusunuzu alın.</p>` },
-        '4': { title: 'Aylık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre aylık Bahis <span>*1%*3%</span> bonusunuzu alın.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<pHer para yatırma işleminizde <span>12%</span> bonus kazanın</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Günlük kayıplarınıza göre yaklaşık <span>7%</span> oranında bonusunuzu alın</p>` },
+        '5': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*5%</span> bonusunuzu alın.</p>` },
+        '6': { title: 'Aylık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre aylık Bahis <span>*1%*3%</span> bonusunuzu alın.</p>` }
       },
       '106': {
         '0': { title: 'Seviye Atlama Bonusu', content: `Titanium 10, Toplam ödül: <span>18,555 USDT</span>` },
         '1': { title: 'Yatırım Bonusu', content: `<span>3,000 USDT</span> yatır, <span>3,000 USDT</span> bonus al` },
         '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis <span>*1%*1.5</span></p>` },
-        '3': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*8%</span> bonusunuzu alın.</p>` },
-        '4': { title: 'Aylık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre aylık Bahis <span>*1%*5%</span> bonusunuzu alın.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<pHer para yatırma işleminizde <span>12%</span> bonus kazanın</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Günlük kayıplarınıza göre yaklaşık <span>8%</span> oranında bonusunuzu alın</p>` },
+        '5': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*8%</span> bonusunuzu alın.</p>` },
+        '6': { title: 'Aylık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre aylık Bahis <span>*1%*5%</span> bonusunuzu alın.</p>` }
       },
       '107': {
         '0': { title: 'Seviye Atlama Bonusu', content: `Diamond 6, Toplam ödül: <span>105,555 USDT</span>` },
         '1': { title: 'Yatırım Bonusu', content: `<span>1,0000 USDT</span> yatır, <span>1,0000 USDT</span> bonus al` },
         '2': { title: 'Puan Kazanma', content: `<p>Günlük bahis <span>*1%*2</span></p>` },
-        '3': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*10%</span> bonusunuzu alın.</p>` },
-        '4': { title: 'Aylık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre aylık Bahis <span>*1%*8%</span> bonusunuzu alın.</p>` },
-        '5': { title: 'Özel Ödül', content: `<p>Diamond 6, <span>20,000</span> USDT Özel Onur Ödülü</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<pHer para yatırma işleminizde <span>15%</span> bonus kazanın</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Günlük kayıplarınıza göre yaklaşık <span>10%</span> oranında bonusunuzu alın</p>` },
+        '5': { title: 'Haftalık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre haftalık Bahis <span>*1%*10%</span> bonusunuzu alın.</p>` },
+        '6': { title: 'Aylık Para İade', content: `<p>Yaklaşık bahis tutarınıza göre aylık Bahis <span>*1%*8%</span> bonusunuzu alın.</p>` },
+        '7': { title: 'Özel Ödül', content: `<p>Diamond 6, <span>20,000</span> USDT Özel Onur Ödülü</p>` }
       }
     },
     vipRewardDetailTitle: 'VIP Kulüp Faydaları Detayları',
     vipRewardDetailContent: `<dd>Abonelik promosyon e-posta bonusları, bir kodla birlikte promosyon e-postası aracılığıyla gönderilecektir. Kodu "Ödüller" sayfasında kullanarak çeşitlendirebilirsiniz.</dd>
                             <dd>Gümüş VIP'ler için ücretsiz dönüşler, 'Ödüller' sayfasından talep edilebilir. Play'N GO platformunda kullanılabilir, uygun oyunlar: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Slot Yatırım Bonusu ve Slot Kayıp İadesi hakkında daha fazla bilgi için lütfen promosyon sayfasını kontrol edin.</dd>
                             <dd>Tüm seviyeler için yeniden yükleme bonusları sadece bir kez talep edilebilir ve herhangi bir oyun için geçerli olan 10 kat bahis miktarının tamamlanmasını gerektirir. Örnek: (1000+1000)*10=20000.</dd>
                             <dd>Yeniden yükleme bonusları, depozitoyu tamamladıktan ve herhangi bir bahis yapmadan önce çevrimiçi müşteri hizmetleri aracılığıyla başvuruda bulunmanız gerekmektedir.</dd>
                             <dd>Puan ödülleri, bahis miktarına dayalı olarak ertesi gün otomatik olarak hesaba eklenecektir.</dd>

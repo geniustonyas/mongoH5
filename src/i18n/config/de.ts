@@ -788,45 +788,58 @@ export default {
       '102': {
         '0': { title: 'Level Up Bonus', content: `Total prize: <span>5USDT</span>` },
         '1': { title: 'Abonnement-Bonus', content: `Abonnieren Sie den Werbe-E-Mail-Newsletter und erhalten Sie kostenlos <span>10 USDT</span>` },
-        '2': { title: 'Punkte sammeln', content: `<p>Tägliche Einsätze <span>*1%*1</span></p>` }
+        '2': { title: 'Punkte sammeln', content: `<p>Tägliche Einsätze <span>*1%*1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Erhalten Sie <span>10%</span> Bonus bei jeder Einzahlung</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Erhalten Sie Ihren Bonus von ca.  <span>5%</span> basierend auf Ihren täglichen Verlusten</p>` }
       },
       '103': {
         '0': { title: 'Level Up Bonus', content: `Silver 5, Total prize: <span>135 USDT</span>` },
         '1': { title: 'Freispiele', content: `<span>30</span> kostenlose Drehungen an Spielautomaten` },
-        '2': { title: 'Punkte sammeln', content: `<p>Tägliche Einsätze <span>*1%*1.1</span></p>` }
+        '2': { title: 'Punkte sammeln', content: `<p>Tägliche Einsätze <span>*1%*1.1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Erhalten Sie <span>11%</span> Bonus bei jeder Einzahlung</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Erhalten Sie Ihren Bonus von ca.  <span>5%</span> basierend auf Ihren täglichen Verlusten</p>` }
       },
       '104': {
         '0': { title: 'Level Up Bonus', content: `Gold 8, Total prize: <span>1,255 USDT</span>` },
         '1': { title: 'Einzahlungsbonus', content: `<span>300 USDT</span> einzahlen, <span>300 USDT</span> Bonus erhalten` },
         '2': { title: 'Punkte sammeln', content: `<p>Tägliche Einsätze <span>*1%*1.2</span></p>` },
-        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wette <span>*1%*5%</span> approximately based on your wager amount.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Erhalten Sie <span>11%</span> Bonus bei jeder Einzahlung</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Erhalten Sie Ihren Bonus von ca.  <span>6%</span> basierend auf Ihren täglichen Verlusten</p>` },
+        '5': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wette <span>*1%*5%</span> approximately based on your wager amount.</p>` }
       },
       '105': {
         '0': { title: 'Level Up Bonus', content: `Platinum 10, Total prize: <span>6,025 USDT</span>` },
         '1': { title: 'Einzahlungsbonus', content: `<span>1,000 USDT</span> einzahlen, <span>1,000 USDT</span> Bonus erhalten` },
         '2': { title: 'Punkte sammeln', content: `<p>Tägliche Einsätze <span>*1%*1.3</span></p>` },
-        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wette <span>*1%*5%</span> approximately based on your wager amount.</p>` },
-        '4': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wette <span>*1%*3%</span> approximately based on your wager amount.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Erhalten Sie <span>12%</span> Bonus bei jeder Einzahlung</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Erhalten Sie Ihren Bonus von ca.  <span>7%</span> basierend auf Ihren täglichen Verlusten</p>` },
+        '5': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wette <span>*1%*5%</span> approximately based on your wager amount.</p>` },
+        '6': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wette <span>*1%*3%</span> approximately based on your wager amount.</p>` }
       },
       '106': {
         '0': { title: 'Level Up Bonus', content: `Titanium 10, Total prize: <span>18,555 USDT</span>` },
         '1': { title: 'Einzahlungsbonus', content: `<span>3,000 USDT</span> einzahlen, <span>3,000USDT</span> Bonus erhalten` },
         '2': { title: 'Punkte sammeln', content: `<p>Tägliche Einsätze <span>*1%*1.5</span></p>` },
-        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wette <span>*1%*8%</span> approximately based on your wager amount.</p>` },
-        '4': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wette <span>*1%*5%</span> approximately based on your wager amount.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Erhalten Sie <span>12%</span> Bonus bei jeder Einzahlung</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Erhalten Sie Ihren Bonus von ca.  <span>8%</span> basierend auf Ihren täglichen Verlusten</p>` },
+        '5': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wette <span>*1%*8%</span> approximately based on your wager amount.</p>` },
+        '6': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wette <span>*1%*5%</span> approximately based on your wager amount.</p>` }
       },
       '107': {
         '0': { title: 'Level Up Bonus', content: `Diamond 6, Total prize: <span>105,555 USDT</span>` },
         '1': { title: 'Einzahlungsbonus', content: `<span>10,000 USDT</span> einzahlen, <span>10,000 USDT</span> Bonus erhalten` },
         '2': { title: 'Punkte sammeln', content: `<p>Tägliche Einsätze <span>*1%*2</span></p>` },
-        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wette <span>*1%*10%</span> approximately based on your wager amount.</p>` },
-        '4': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wette <span>*1%*8%</span> approximately based on your wager amount.</p>` },
-        '5': { title: 'Spezialprämi', content: `<p>Diamond 6, exklusive Ehrenspezialprämie <span>20,000 USDT</span></p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Erhalten Sie <span>15%</span> Bonus bei jeder Einzahlung</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Erhalten Sie Ihren Bonus von ca.  <span>10%</span> basierend auf Ihren täglichen Verlusten</p>` },
+        '5': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wette <span>*1%*10%</span> approximately based on your wager amount.</p>` },
+        '6': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wette <span>*1%*8%</span> approximately based on your wager amount.</p>` },
+        '7': { title: 'Spezialprämi', content: `<p>Diamond 6, exklusive Ehrenspezialprämie <span>20,000 USDT</span></p>` }
       }
     },
     vipRewardDetailTitle: 'VIP-Club-Vorteile im Detail',
     vipRewardDetailContent: `<dd>Boni für das Abonnieren von Werbe-E-Mails werden über die Werbe-E-Mail mit einem Code gesendet. Verwenden Sie den Code, um ihn auf der Seite "Belohnungen" einzulösen.</dd>
                             <dd>Freispiele für Silber-VIPs können auf der 'Belohnungen'-Seite beansprucht werden. Verfügbar auf der Play'N GO Plattform, berechtigte Spiele: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Bitte überprüfen Sie die Aktionsseite für weitere Details zum Slots Einzahlungsbonus & Slots Verlust-Rückerstattung.</dd>
                             <dd>Aufladeboni für alle Stufen können nur einmal beansprucht werden und erfordern die Erfüllung des 10-fachen Wettbetrags, der auf jedes Spiel anwendbar ist. Beispiel: (1000+1000)*10=20000.</dd>
                             <dd>Aufladeboni müssen nach Abschluss der Einzahlung und vor jeder Wette über den Online-Kundenservice beantragt werden.</dd>
                             <dd>Punkteprämien werden basierend auf dem Wetteinsatz am nächsten Tag automatisch dem Konto hinzugefügt.</dd>

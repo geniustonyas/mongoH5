@@ -794,45 +794,58 @@ export default {
       '102': {
         '0': { title: 'Bônus de Nível', content: `Prêmio total: <span>5 USDT</span>` },
         '1': { title: 'Bônus de assinatura', content: `Assine o e-mail promocional e receba 10 USDT gratuitamente` },
-        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1</span></p>` }
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>10%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>5%</span>  aproximadamente com base em suas perdas diárias</p>` }
       },
       '103': {
         '0': { title: 'Bônus de Nível', content: `Prata 5, Prêmio total: <span>135 USDT</span>` },
         '1': { title: 'Rodadas Grátis', content: `<span>30</span> rodadas grátis nos jogos de caça-níqueis` },
-        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1.1</span></p>` }
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1.1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>11%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>5%</span>  aproximadamente com base em suas perdas diárias</p>` }
       },
       '104': {
         '0': { title: 'Bônus de Nível', content: `Ouro 8, Prêmio total: <span>1,255 USDT</span>` },
         '1': { title: 'Bônus de Recarga', content: `Deposite <span>300 USDT</span>, e receba <span>300 USDT</span>` },
         '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*1.2</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>11%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>6%</span>  aproximadamente com base em suas perdas diárias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
       },
       '105': {
         '0': { title: 'Bônus de Nível', content: `Platina 10, Prêmio total: <span>6,025 USDT</span>` },
         '1': { title: 'Bônus de Recarga', content: `Deposite <span>1,000 USDT</span>, e receba <span>1,000 USDT</span>` },
         '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*1.3</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` },
-        '4': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*3%</span> aproximadamente com base no valor da sua aposta.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>12%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>7%</span>  aproximadamente com base em suas perdas diárias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '6': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*3%</span> aproximadamente com base no valor da sua aposta.</p>` }
       },
       '106': {
         '0': { title: 'Bônus de Nível', content: `Titânio 10, Prêmio total: <span>18,555 USDT</span>` },
         '1': { title: 'Bônus de Recarga', content: `Deposite <span>3,000 USDT</span>, e receba <span>3,000 USDT</span>` },
         '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*1.5</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
-        '4': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>12%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>8%</span>  aproximadamente com base em suas perdas diárias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '6': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
       },
       '107': {
         '0': { title: 'Bônus de Nível', content: `Diamante 6, Prêmio total: <span>105,555 USDT</span>` },
         '1': { title: 'Bônus de Recarga', content: `Deposite <span>10,000 USDT</span>, e receba <span>10,000 USDT</span>` },
         '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*2</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*10%</span> aproximadamente com base no valor da sua aposta.</p>` },
-        '4': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
-        '5': { title: 'Recompensa Especia', content: `<p>Diamante 6, recompensa especial de Honra Suprema de <span>20,000 USDT</span></p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>15%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>10%</span>  aproximadamente com base em suas perdas diárias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*10%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '6': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '7': { title: 'Recompensa Especia', content: `<p>Diamante 6, recompensa especial de Honra Suprema de <span>20,000 USDT</span></p>` }
       }
     },
     vipRewardDetailTitle: 'Detalhes dos Benefícios do Clube VIP',
     vipRewardDetailContent: `<dd>Bônus de e-mail de promoção por assinatura serão enviados por e-mail promocional com um código. Use o código para resgatar na página "Recompensas".</dd>
                             <dd>Rodadas grátis para VIPs Prata podem ser reivindicadas na página 'Recompensas'. Disponíveis na plataforma Play'N GO, jogos elegíveis: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Por favor, verifique a página de promoções para mais detalhes sobre Slots Deposit Bonus ＆ Slots Loss Rebate.</dd>
                             <dd>Os bônus de recarga para todos os níveis são limitados a uma solicitação, exigindo a conclusão de um valor de aposta 10 vezes, aplicável a qualquer jogo. Exemplo: (1000+1000)*10=20000</dd>
                             <dd>Os bônus de recarga precisam ser solicitados através do atendimento ao cliente online após a conclusão do depósito e antes de qualquer aposta.</dd>
                             <dd>As recompensas em pontos serão automaticamente adicionadas à conta no dia seguinte, com base no valor das apostas.</dd>

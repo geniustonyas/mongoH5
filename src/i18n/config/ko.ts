@@ -782,45 +782,58 @@ export default {
       '102': {
         '0': { title: '업그레이드 보너스', content: `총 상금：<span>5USDT</span>` },
         '1': { title: '구독 보너스', content: `프로모션 이메일구독하고 무료로 <span>10 USDT</span> 받기` },
-        '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1</span></p>` }
+        '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1</span></p>` },
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>10%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>5%</span> 의 보너스를 받습니다.</p>` }
       },
       '103': {
         '0': { title: '업그레이드 보너스', content: `실버 5,총 상금：<span>135 USDT</span>` },
         '1': { title: '무료 스핀', content: `슬롯머신 게임에서 무료로<span>30</span>회 회전` },
-        '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.1</span></p>` }
+        '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.1</span></p>` },
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>11%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>5%</span> 의 보너스를 받습니다.</p>` }
       },
       '104': {
         '0': { title: '업그레이드 보너스', content: `골드 8,총 상금：<span>1,255 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>300 USDT</span> 입금시 <span>300 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.2</span></p>` },
-        '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` }
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>11%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>6%</span> 의 보너스를 받습니다.</p>` },
+        '5': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` }
       },
       '105': {
         '0': { title: '업그레이드 보너스', content: `플래티넘 10,총 상금：<span>6,025 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>1,000 USDT</span> 입금시 <span>1,000 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.3</span></p>` },
-        '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` },
-        '4': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 3%</span>의 주간 보너스를 받으십시오.</p>` }
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>12%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>7%</span> 의 보너스를 받습니다.</p>` },
+        '5': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` },
+        '6': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 3%</span>의 주간 보너스를 받으십시오.</p>` }
       },
       '106': {
         '0': { title: '업그레이드 보너스', content: `티타늄 10, 총 상금:<span>18,555 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>3,000 USDT</span> 입금시 <span>3,000 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.5</span></p>` },
-        '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 8%</span>의 주간 보너스를 받으십시오.</p>` },
-        '4': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` }
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>12%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>8%</span> 의 보너스를 받습니다.</p>` },
+        '5': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 8%</span>의 주간 보너스를 받으십시오.</p>` },
+        '6': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` }
       },
       '107': {
         '0': { title: '업그레이드 보너스', content: `다이아몬드 6, 총 상금：<span>105,555 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>10,000 USDT</span> 입금시 <span>10,000 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*2</span></p>` },
-        '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 10%</span>의 주간 보너스를 받으십시오.</p>` },
-        '4': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 8%</span>의 주간 보너스를 받으십시오.</p>` },
-        '5': { title: '특별보상', content: `<p>다이아몬드 6，최고 명예 특별 보너스<span>20,000 USDT</span>` }
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>15%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>10%</span> 의 보너스를 받습니다.</p>` },
+        '5': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 10%</span>의 주간 보너스를 받으십시오.</p>` },
+        '6': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 8%</span>의 주간 보너스를 받으십시오.</p>` },
+        '7': { title: '특별보상', content: `<p>다이아몬드 6，최고 명예 특별 보너스<span>20,000 USDT</span>` }
       }
     },
     vipRewardDetailTitle: 'VIP 클럽 혜택 세부 정보',
     vipRewardDetailContent: `<dd>프로모션 이메일 구독 보너스는 코드가 포함된 프로모션 이메일을 통해 전송됩니다. 코드를 사용하여 "보상" 페이지에서 교환할 수 있습니다.</dd>
                             <dd>실버 VIP를 위한 무료 스핀은 '보너스' 페이지에서 청구할 수 있습니다. Play'N GO 플랫폼에서 사용 가능하며, 해당 게임은: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>슬롯 입금 보너스 및 슬롯 손실 리베이트에 대한 자세한 내용은 프로모션 페이지를 확인해주세요.</dd>
                             <dd>모든 레벨의 리차지 보너스는 한 번만 청구할 수 있으며 10배의 베팅 금액을 완료해야 합니다. 예: (1000+1000)*10=20000</dd>
                             <dd>리차지 보너스는 입금 완료 후 베팅 전에 온라인 고객 서비스를 통해 신청해야 합니다.</dd>
                             <dd>포인트 보상은 다음 날 베팅 금액을 기준으로 자동으로 계정에 추가됩니다.</dd>

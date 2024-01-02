@@ -784,45 +784,58 @@ export default {
       '102': {
         '0': { title: 'Level Up Bonus', content: `Total prize: <span>5USDT</span>` },
         '1': { title: 'Subscription Bonus', content: `Subscribe to the promotional email, receive <span>10 USDT</span> for free` },
-        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1</span></p>` }
+        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Get <span>10%</span> bonus with every deposit</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receive your bonus of  <span>5%</span> approximately based on your daily losses</p>` }
       },
       '103': {
         '0': { title: 'Level Up Bonus', content: `Silver 5, Total prize: <span>135 USDT</span>` },
         '1': { title: 'Free Spins', content: `<span>30</span> free spins on slot games` },
-        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1.1</span></p>` }
+        '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1.1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Get <span>11%</span> bonus with every deposit</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receive your bonus of  <span>5%</span> approximately based on your daily losses</p>` }
       },
       '104': {
         '0': { title: 'Level Up Bonus', content: `Gold 8, Total prize: <span>1,255 USDT</span>` },
         '1': { title: 'Recharge Bonus', content: `Deposit <span>300 USDT</span>, Get <span>300 USDT</span> Bonus` },
         '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1.2</span></p>` },
-        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*5%</span> approximately based on your wager amount.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Get <span>11%</span> bonus with every deposit</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receive your bonus of  <span>6%</span> approximately based on your daily losses</p>` },
+        '5': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*5%</span> approximately based on your wager amount.</p>` }
       },
       '105': {
         '0': { title: 'Level Up Bonus', content: `Platinum 10, Total prize: <span>6,025 USDT</span>` },
         '1': { title: 'Recharge Bonus', content: `Deposit <span>1,000 USDT</span>, Get <span>1,000 USDT</span> Bonus` },
         '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1.3</span></p>` },
-        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*5%</span> approximately based on your wager amount.</p>` },
-        '4': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wager <span>*1%*3%</span> approximately based on your wager amount.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Get <span>12%</span> bonus with every deposit</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receive your bonus of  <span>7%</span> approximately based on your daily losses</p>` },
+        '5': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*5%</span> approximately based on your wager amount.</p>` },
+        '6': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wager <span>*1%*3%</span> approximately based on your wager amount.</p>` }
       },
       '106': {
         '0': { title: 'Level Up Bonus', content: `Titanium 10, Total prize: <span>18,555 USDT</span>` },
         '1': { title: 'Recharge Bonus', content: `Deposit <span>3,000 USDT</span>, Get <span>3,000 USDT</span> Bonus` },
         '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*1.5</span></p>` },
-        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*8%</span> approximately based on your wager amount.</p>` },
-        '4': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wager <span>*1%*5%</span> approximately based on your wager amount.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Get <span>12%</span> bonus with every deposit</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receive your bonus of  <span>8%</span> approximately based on your daily losses</p>` },
+        '5': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*8%</span> approximately based on your wager amount.</p>` },
+        '6': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wager <span>*1%*5%</span> approximately based on your wager amount.</p>` }
       },
       '107': {
         '0': { title: 'Level Up Bonus', content: `Diamond 6, Total prize: <span>105,555 USDT</span>` },
         '1': { title: 'Recharge Bonus', content: `Deposit <span>10,000 USDT</span>, Get <span>10,000 USDT</span> Bonus` },
         '2': { title: 'Points Earning', content: `<p>Daily Wager <span>*1%*2</span></p>` },
-        '3': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*10%</span> approximately based on your wager amount.</p>` },
-        '4': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wager <span>*1%*8%</span> approximately based on your wager amount.</p>` },
-        '5': { title: 'Special Reward', content: `<p>Diamond 6, Supreme Honor special bonus <span>20,000 USDT</span></p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Get <span>15%</span> bonus with every deposit</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receive your bonus of  <span>10%</span> approximately based on your daily losses</p>` },
+        '5': { title: 'Weekly Cashback', content: `<p>Receive your weekly bonus of Wager <span>*1%*10%</span> approximately based on your wager amount.</p>` },
+        '6': { title: 'Monthly Cashback', content: `<p>Receive your monthly bonus of Wager <span>*1%*8%</span> approximately based on your wager amount.</p>` },
+        '7': { title: 'Special Reward', content: `<p>Diamond 6, Supreme Honor special bonus <span>20,000 USDT</span></p>` }
       }
     },
     vipRewardDetailTitle: 'VIP Club Benefits Details',
     vipRewardDetailContent: `<dd>Subscription promotion email bonuses will be sent through the promotional email with a code. Use the code to redeem on the "Rewards" page.</dd>
                             <dd>Free spins for Silver VIPs can be claimed on the 'Rewards' page. Available in Play'N GO'platform， Eligible games: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Please check the promotions page for more details on Slots Deposit Bonus ＆ Slots Loss Rebate.</dd>
                             <dd>Recharge bonuses for all levels are limited to one claim, requiring completion of a 10x wagering amount, applicable to any game. Example: (1000+1000)*10=20000.</dd>
                             <dd>Recharge bonuses need to be applied through online customer service after deposit completion and before any betting.</dd>
                             <dd>Points rewards will be automatically added to the account the next day based on the betting amount.</dd>
