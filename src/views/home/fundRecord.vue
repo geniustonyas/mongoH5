@@ -149,7 +149,7 @@ const dayFormatter = (day: any) => {
 }
 
 // 选择币种
-const selCurrency = (item: currenyListTypes) => {
+const selCurrency = (item: any) => {
   const index = checkedCurrency.value.indexOf(item.code)
   if (index > -1) {
     checkedCurrency.value.splice(index, 1)

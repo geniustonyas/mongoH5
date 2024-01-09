@@ -649,10 +649,17 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 span { color: var(--color-primary); }
                 i { margin-left: .5rem; vertical-align: middle; }
             }
+<<<<<<< HEAD
             &.gray { -webkit-filter: grayscale(100%); filter: grayscale(100%); }
         }
     }
     .pb-more { width: 100%; .flex(); .flex-align(); .flex-pack(); margin-bottom: 2rem; }
+=======
+        }
+    }
+    .overPromo { .h-lh(3rem); margin: 1rem .5rem 2rem 1rem; color: var(--color-white); font-size: 1.8rem; font-weight: 600; }
+    .pb-more { width: 100%; .flex(); .flex-align(); .flex-pack();  margin-bottom: 2rem;}
+>>>>>>> 9fd124cd2b462ef3852c5bf6c2da4fbcc3b42c3c
     .pb-detail {
         img { width: 100%; }
         .pd-title, h2 { color: var(--color-primary); padding: 1rem; text-align: center; }
@@ -1858,6 +1865,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             &:-ms-input-placeholder { color: var(--color-text); font-weight: 400; }
             &:focus { border-color: var(--color-primary) }
         }
+        .down { position: relative;  right: 10px;  float: right; bottom: 35px; }
     }
     .ff-amounts { .flex(); margin-right: -1rem;
         li { .flex-x(); padding-right: 1rem;
@@ -1912,6 +1920,19 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         }
     }
 }
+
+.fund-fiat-form { padding: 0; border: none;
+    .tip { color: var(--color-red); margin-left: 0rem; font-size: 1.2rem; }
+    .ff-info { margin-top: 2.5rem; color: var(--color-white) }
+    .form-select {
+        .el-input__wrapper { margin: .5rem 0; padding: 0 2rem; .bgc(var(--color-background),var(--color-white)); .h-lh(5rem); .radius(.5rem); .border-a(.1rem,var(--color-dark-gray));
+            input { border:none; background: none; padding:0; margin:0; }
+        }
+    }
+}
+
+.fund-withdraw-form { padding: 3rem; .border-b(0.1rem, var(--color-dark-gray)); }
+
 .fund-btn { .border-b(.1rem,var(--color-dark-gray)); padding: 2rem 3rem;
     .btn { width: 100%; .h-lh(5rem); .radius(.5rem); font-size: 1.6rem; }
     &.wa { border: none; }

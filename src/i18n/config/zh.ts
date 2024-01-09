@@ -159,7 +159,7 @@ export default {
   liveSupport: '在线客服',
   chooseCrypto: '选择您偏好的货币',
   cryptoCurrency: '加密货币',
-  bank: '银行',
+  bank: '法定货币',
   chooseDepositChain: '选择存款网络',
   confirmDepositAddress: '请在执行交易前确认您的存款地址',
   recommendExchange: '从我们推荐的交易所购买加密货币',
@@ -255,7 +255,8 @@ export default {
     doge: '狗狗币',
     ton: '公开网络',
     usd: '美元',
-    cny: '人民币'
+    cny: '人民币',
+    brl: '巴西雷亚尔 '
   },
   // 积分商城
   points: '积分',
@@ -289,7 +290,8 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
-    sexy: 'Sexy Baccarat'
+    sexy: 'Sexy Baccarat',
+    pgSoft: 'PG Soft'
   },
 
   // 数据验证提示
@@ -505,6 +507,7 @@ export default {
   trueMode: '真钱模式',
   gameStatic: '游戏数据统计',
   receivedSuccess: '{ amount } USDT 已领取成功',
+  receivedSuccess2: '{ amount } { currency } 已领取成功',
   goTime: '出行时间',
   backTime: '返程时间',
   inTime: '入住时间',
@@ -712,6 +715,26 @@ export default {
   outAny: '您可以随时选择退出.',
   subBefore: '（通过单击“订阅”，您同意您已阅读、理解并同意关于使用您的个人数据的',
   subAfter: '.）',
+  showExpiredPromo: '显示已过期优惠',
+  expiredPromo: '显示已过期优惠',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
+  depositLimit: '充值限额',
+  depositNewWindow: '即将为您打开新窗口进行支付',
+  inputDepositAmount: '请输入充值金额',
+  depositAmountOver: '充值金额不能大于最高限额',
+  depositAmountUnder: '充值金额不小于最低限额',
+  providerInfo: '请提供您的个人信息。所有数据已加密。',
+  fiatCpfHolder: '输入CPF',
+  fiatName: '姓名',
+  fiatNameHolder: '输入姓名',
+  fiatPixType: 'PIX类型',
+  fiatPixTypeHolder: '请选择PIX类型',
+  fiatPixAccount: 'PIX账号',
+  fiatPixAccountHolder: '输入PIX账号',
+  withdrawInfo: '提款信息',
+  fundCurrency: '货币',
+
   vip: {
     seabetVip: 'Seabet VIP俱乐部',
     vipWelH5: '在Seabet，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。',
@@ -757,45 +780,58 @@ export default {
       '102': {
         '0': { title: '升级奖金', content: `晋级奖金<span>5 USDT</span>` },
         '1': { title: '订阅奖金', content: `订阅促销邮箱，免费领取<span>10 USDT</span>` },
-        '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1</span></p>` }
+        '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1</span></p>` },
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>10%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>5%</span>的奖金</p>` }
       },
       '103': {
         '0': { title: '升级奖金', content: `白银5奖金总额：<span>135 USDT</span>` },
         '1': { title: '免费旋转', content: `老虎机游戏免费旋转<span>30</span>次` },
-        '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.1</span></p>` }
+        '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.1</span></p>` },
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>11%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>5%</span>的奖金</p>` }
       },
       '104': {
         '0': { title: '升级奖金', content: `黄金8奖金总额：<span>1,255 USDT</span>` },
         '1': { title: '充值奖金', content: `存<span>300 USDT</span>送<span>300 USDT</span>` },
         '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.2</span></p>` },
-        '3': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 5%</span>的奖金</p>` }
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>11%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>6%</span>的奖金</p>` },
+        '5': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 5%</span>的奖金</p>` }
       },
       '105': {
         '0': { title: '升级奖金', content: `铂金10奖金总额：<span>6,025 USDT</span>` },
         '1': { title: '充值奖金', content: `存<span>1,000 USDT</span>送<span>1,000 USDT</span>` },
         '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.3</span></p>` },
-        '3': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 5%</span>的奖金</p>` },
-        '4': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 3%</span>的奖金</p>` }
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>12%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>7%</span>的奖金</p>` },
+        '5': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 5%</span>的奖金</p>` },
+        '6': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 3%</span>的奖金</p>` }
       },
       '106': {
         '0': { title: '升级奖金', content: `钛金10奖金总额：<span>18,555 USDT</span>` },
         '1': { title: '充值奖金', content: `存<span>3,000 USDT</span>送<span>3,000 USDT</span>` },
         '2': { title: '积分获取', content: `<p>每日投注<span>*1%*1.5</span></p>` },
-        '3': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 8%</span>的奖金</p>` },
-        '4': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 5%</span>的奖金</p>` }
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>12%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>8%</span>的奖金</p>` },
+        '5': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 8%</span>的奖金</p>` },
+        '6': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 5%</span>的奖金</p>` }
       },
       '107': {
         '0': { title: '升级奖金', content: `钻石6奖金总额：<span>105,555 USDT</span>` },
         '1': { title: '充值奖金', content: `存<span>10,000 USDT</span>送<span>10,000 USDT</span>` },
         '2': { title: '积分获取', content: `<p>每日投注<span>*1%*2</span></p>` },
-        '3': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 10%</span>的奖金</p>` },
-        '4': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 8%</span>的奖金</p>` },
-        '5': { title: '特别奖励', content: `<p>钻石6，至尊荣誉特别奖金<span>20,000</span> USDT</p>` }
+        '3': { title: '老虎机笔笔存送', content: `<p>每一笔存款都可获得<span>15%</span>额外奖金</p>` },
+        '4': { title: '老虎机输值返还', content: `<p>根据您每日的损失，获得<span>10%</span>的奖金</p>` },
+        '5': { title: '每周现金返还', content: `<p>根据您的投注金额，您将获得每周投注<span>*1%* 10%</span>的奖金</p>` },
+        '6': { title: '每月现金返还', content: `<p>根据您的投注金额，您将获得每月投注<span>*1%* 8%</span>的奖金</p>` },
+        '7': { title: '特别奖励', content: `<p>钻石6，至尊荣誉特别奖金<span>20,000</span> USDT</p>` }
       }
     },
     vipRewardDetailTitle: 'VIP俱乐部福利细节',
     vipRewardDetailContent: `<dd>订阅促销邮箱奖金，将通过促销邮箱发送代码，使用代码在“奖励”页面兑换即可.</dd>
                             <dd>白银VIP的免费旋转，在“奖励”页面点击申请即可，将添加至Play’N GO平台，支持的游戏为：Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way</dd>
+                            <dd>老虎机笔笔存送和老虎机输值返还，更多详情请查阅促销页面.</dd>
                             <dd>所有等级的充值奖金限领取一次，需完成10倍的投注金额，可投注于任意游戏. 例：（1000+1000）*10=20000</dd>
                             <dd>充值奖金需要在存款完成之后，且未投注之前联系在线客服申请.</dd>
                             <dd>积分奖励将根据投注金额于次日自动添加至账户内.</dd>
@@ -905,7 +941,8 @@ export default {
           <p>• @:currencyLang.ltc </p>
           <p>• @:currencyLang.ada </p>
           <p>• @:currencyLang.doge </p>
-          <p>• @:currencyLang.ton </p>`,
+          <p>• @:currencyLang.ton </p>
+          <p>• @:currencyLang.brl </p>`,
     q5: '你们对交易收取费用吗？',
     a5: `<p>虽然我们不对 Seabet.io 的存款和取款收取任何交易费用，但您可能需要为使用区块链支付交易费用。</p>`
   },
@@ -965,98 +1002,6 @@ export default {
     selfExclusionTitle: '自我排除',
     privacyTitle: '隐私政策',
     fairnessTitle: '公平性',
-
-    // html内容
-    vipContent: `<div class="vip-clubhouse-box">
-                    <div class="vc-rows">
-                      <div class="vr-title">1. VIP俱乐部介绍</div>
-                      <div class="vr-conts">
-                        <p>欢迎来到SEABET尊贵会员俱乐部</p>
-                        <p>在SEABET，我们致力于提升游戏品质，并提供最佳的游戏体验。我们推出了一个全新的尊贵会员俱乐部，以奖励在我们网站花费时间游戏并忠实于我们网站的会员朋友。</p>
-                        <p>只需投注您所喜爱的游戏、体育赛事等任意一款由SEABET提供的游戏服务并通过等级的上升即可解锁独家奖励。</p>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">2. 个性化服务</div>
-                      <div class="vr-conts">
-                        <p>专业的客户经理团队确保您的一切需求并始终达到行业最高标准，VIP会员可享受独家奖金、受邀参加著名活动以及为您制定快速、有趣、高效的游戏体验，为您量身定制的多种多样的奖励机制。</p>
-                        <dl>
-                          <dt>VIP专属经理：</dt>
-                          <dd>只关注您的需求</dd>
-                          <dd>专为您量身定制的私人游戏体验</dd>
-                        </dl>
-                        <dl>
-                          <dt>高额奖励：</dt>
-                          <dd>专为您设计的优惠</dd>
-                          <dd>免下注奖励</dd>
-                          <dd>高快速的积分获取速度</dd>
-                        </dl>
-                        <dl>
-                          <dt>业内最高投注限额：</dt>
-                          <dd>通过加密货币每日无限次的存款和取款</dd>
-                        </dl>
-                        <dl>
-                          <dt>VIP专属促销：</dt>
-                          <dd>区别于普通会员的促销优惠</dd>
-                          <dd>为您保留最好的游戏体验</dd>
-                          <dd>仅VIP用户可见</dd>
-                          <dd>个性化优惠</dd>
-                          <dd>为您定制专属于您的娱乐服务</dd>
-                        </dl>
-                        <dl>
-                          <dt>7*24小时优先服务：</dt>
-                          <dd>无需排队，无需等待</dd>
-                          <dd>我们首先关注您的需求</dd>
-                          <dd>多种社交媒体联系方式，专属客户经理在线服务</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">3. 等级设置</div>
-                      <div class="vr-conts">
-                        <p>六种VIP等级，完整涵盖了您整个的游戏旅程</p>
-                        <dl>
-                          <dd>青铜：青铜1</dd>
-                          <dd>白银：白银1-白银5</dd>
-                          <dd>黄金：黄金1-黄金8</dd>
-                          <dd>铂金：铂金1-铂金10</dd>
-                          <dd>钛金：钛金1-钛金10</dd>
-                          <dd>钻石：钻石1-钻石6</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">4. IP俱乐部成员能够享受到的福利</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>升级奖金：在每达到下个级别后获取奖金，所达到的级别越高，奖金越多</dd>
-                          <dd>定制只属于您的优惠：对常规优惠不感兴趣？没关系，当您达到相应的VIP等级后，我们将会为您特别定制您所感兴趣的优惠内容，仅属于您个人的优惠内容</dd>
-                          <dd>私人定制级娱乐体验：无论是各大赛事、演唱会、音乐会还是一场豪华旅行，当您成为我们的高级VIP会员，您的一切个人花销均由您所信赖的SEABET提供，您的行程由我们来安排</dd>
-                          <dd>专属VIP服务：为您分配一名支持并满足您的投注需求的专属VIP服务代表</dd>
-                          <dd>更快速的积分获取：不同的VIP等级所获取的积分速度对比普通会员更快，更高的等级获取的积分也会更多，所能兑换的奖品也将更丰富</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">5. 如何成为我们的VIP会员</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>
-                            继续投注：成为 VIP 的关键是始终投注各种体育赛事和赌场游戏。SEABET 将奖励您的一致性。作为顶级加密博彩网站，请定期使用您的数字资产对 SEABET 提供的任何赛事和赌场游戏进行投注。也可以尝试
-                            USDT 投注，并持续使用您的资金。
-                          </dd>
-                          <dd>
-                            参加定期活动：SEABET 的促销活动包括您可以随时参加的各种活动和竞赛。定期参加其中任何一个活动都会让您更有机会获得 VIP 会所邀请。不仅如此，您还可以在 SEABET 的其他俱乐部功能中更加活跃
-                          </dd>
-                          <dd>等待邀请：您需要做的最后一件事就是等待我们向您发送邀请。继续玩游戏并参加豪客赛。经过几次赌场博彩和体育博彩后，一旦您被认为值得成为 VIP 俱乐部会员，您将立即获得邀请。</dd>
-                          <dd>
-                            作为SEABET会所VIP体验高尚生活：将您的 USDT 博彩体验带入一个全新的世界，同时享受作为 SEABET
-                            贵宾俱乐部会员的顶级福利。当您进行体育博彩和赌场游戏时，作为有价值的玩家享受最好的乐趣、快速和公平的投注。
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </div>`,
 
     rulesContent: `<div>
                     <h2>规则和条款</h2>

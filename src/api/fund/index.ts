@@ -30,6 +30,7 @@ export function setDefaultCurrencyApi(data: Fund.setDefaultCurrencyData) {
 /** 获取充值地址 */
 export function getDepositAddressApi(data: Fund.getDepositAddressData) {
   return request<anyResp>({
+    // url: 'deposit/crypto/address',
     url: 'Member/GetDepositChannelInfo',
     method: 'post',
     data
@@ -39,6 +40,7 @@ export function getDepositAddressApi(data: Fund.getDepositAddressData) {
 /** 创建提现订单 */
 export function withdrawOrderApi(data: Fund.withdrawOrderData) {
   return request<anyResp>({
+    headers: { 'Content-Type': 'application/json' },
     url: 'Member/CreateWithdrawOrder',
     method: 'post',
     data
@@ -76,6 +78,25 @@ export function getDepositMethodApi() {
   return request<anyResp>({
     url: 'Member/GetDepositMethods',
     method: 'post'
+  })
+}
+
+/** 获取法币充值渠道 */
+export function getFiatChannelsApi(data: Fund.setDefaultCurrencyData) {
+  return request<Fund.getFiatChannelsResp>({
+    url: 'deposit/fiat/channels',
+    method: 'post',
+    data
+  })
+}
+
+/** 获取法币充值渠道 */
+export function fiatDepositApi(data: Fund.fiatDepositData) {
+  return request<anyResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'deposit/fiat/create',
+    method: 'post',
+    data
   })
 }
 

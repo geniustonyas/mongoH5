@@ -1,6 +1,7 @@
 <template>
   <nav class="m-mail">
-    <form action="https://seabet.us21.list-manage.com/subscribe/post?u=247cec6e7f3911f704f182c83&id=4bd16eb882&f_id=0009eee6f0" method="POST" ref="formDom" target="_blank">
+    <form method="GET" ref="formDom" target="_blank">
+      <!-- <div> -->
       <div class="mail-title">{{ t('keepContact') }}</div>
       <div class="mail-cont">
         <input v-model="email" type="email" name="EMAIL" class="required email" id="mce-EMAIL" :placeholder="t('emailAddress')" />
@@ -13,6 +14,7 @@
         <a @click="router.push({ name: 'terms', params: { type: 'privacy' } })">{{ t('privacyPolicy') }} </a>
         {{ t('subAfter') }}
       </div>
+      <!-- </div> -->
     </form>
   </nav>
   <!-- 汇率 -->
@@ -118,9 +120,11 @@
   <nav class="m-accepted">
     <dl>
       <dt>{{ t('acceptCrypto') }}</dt>
-      <dd v-for="(item, index) of currencyList" :key="index">
-        <a href="#"><img :src="getAssetsFile(item.icon)" /></a>
-      </dd>
+      <template v-for="(item, index) of currencyList">
+        <dd v-if="item.currenyType != '20'" :key="index">
+          <a href="#"><img :src="getAssetsFile(item.icon)" /></a>
+        </dd>
+      </template>
     </dl>
   </nav>
 
@@ -177,11 +181,14 @@ import { useI18n } from 'vue-i18n'
 
 import FooterLanguage from '@/components/FooterLanguage.vue'
 
+// import { subscribeApi } from '@/api/user'
 import { currenyListData } from '@/utils/config'
 import { getAssetsFile } from '@/utils'
 import { languages } from '@/i18n/index'
 import { useAppStore } from '@/store/modules/app'
 import { isEmail } from '@/utils/validate'
+
+// import { showToast } from 'vant'
 
 const site_name = import.meta.env.VITE_APP_SITE_NAME
 
@@ -221,7 +228,18 @@ const subscript = () => {
     errorMsg.value = ''
     dm!.innerHTML = ''
     //@ts-ignore
+    formDom.value.action = appStore.subscribeUrl + '?email=' + email.value
+    //@ts-ignore
     formDom.value.submit()
+    // subscribeApi({ email: email.value })
+    //   .then((resp) => {
+    //     console.log(resp)
+    //     showToast(t('subscribeSuccess'))
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //     showToast(t('subscribeFail'))
+    //   })
   }
 }
 </script>

@@ -14,6 +14,29 @@ export interface getDepositAddressData {
   CurrencyCode: string
 }
 
+// 法币通道列表
+export interface getFiatChannelsRespItems {
+  id: number
+  name: string
+  currencyCode: string
+  currencyUnit: string
+  min: number
+  max: number
+  expire: number
+}
+
+// 创建法币充值订单
+export interface fiatDepositData {
+  channelId: number | string
+  amount: number | string
+  fields: {
+    bankfullname: string
+    banknumber: string
+    bankname: string
+    bankzhiname: string
+  }
+}
+
 // 创建充值订单请求
 export interface depositData {
   CurrencyCode: string | number
@@ -36,6 +59,12 @@ export interface withdrawOrderData {
   VerificationCode: string
   PayeeAddress: string
   Amount: string | number
+  PayeeData: {
+    bankfullname: string
+    banknumber: string
+    bankname: string
+    bankzhiname: string
+  }
 }
 
 // 提现交易详情参数
@@ -131,9 +160,11 @@ export interface getHistoryRecordData {
   RecordType: string
   StartTime: string
   EndTime: string
-  PageIndex: number | string
-  PageSize: number | string
+  PageIndex: string | number
+  PageSize: string | number
+  IsAgent?: boolean
   KeyWord?: string
+  ChildId?: string
 }
 
 export interface getHistoryRecordItems {
@@ -183,3 +214,4 @@ export type getBalanceItemResp = ApiResponseData<getBalanceItemResponse[]>
 export type getFundChangeRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getFundChangeRecordRespItems[] }>
 export type getHistoryRecordResp = ApiResponseData<{ pageCount: string; pageIndex: string; pageSize: string; recordCount: string; items: getHistoryRecordItems[] }>
 export type getHistoryRecordDetailsResp = ApiResponseData<getHistoryRecordDetails>
+export type getFiatChannelsResp = ApiResponseData<getFiatChannelsRespItems[]>

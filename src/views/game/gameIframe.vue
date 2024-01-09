@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <iframe style="width: 100%; height: 100%; border: none" id="gameIframe" allow="camera;microphone;fullscreen" v-show="gameUrl != ''" :src="gameUrl" />
+    <iframe v-if="provider == '13'" style="width: 100%; height: 100vh; border: none" id="gameIframe" allow="camera;microphone;fullscreen" v-show="gameUrl != ''" />
+    <iframe v-else style="width: 100%; height: 100%; border: none" id="gameIframe" allow="camera;microphone;fullscreen" v-show="gameUrl != ''" :src="gameUrl" />
   </div>
 </template>
 
@@ -12,9 +13,11 @@ const route = useRoute()
 const router = useRouter()
 
 const gameUrl = ref('')
+const provider = ref('')
 if (!route.query.url || route.query.url == '') {
   router.back()
 }
+provider.value = route.query.provider as string
 gameUrl.value = route.query.url as string
 
 onMounted(() => {
@@ -22,11 +25,20 @@ onMounted(() => {
     nextTick(() => {
       const iframeDom = document.getElementById('gameIframe')
       if (iframeDom) {
-        const tmpUrl = new URL(gameUrl.value)
-        iframeDom.onload = function () {
-          GameCommunicator.init(document.getElementById('gameIframe'), tmpUrl.origin)
-          GameCommunicator.postMessage({ messageType: 'addEventListener', eventType: 'reloadGame' })
-          GameCommunicator.postMessage({ messageType: 'addEventListener', eventType: 'backToLobby' })
+        if (provider.value == '13') {
+          const html = localStorage.getItem('pgsoftUrl')
+          //@ts-ignore
+          const doc = iframeDom.contentDocument || iframeDom.contentWindow.document
+          doc.open()
+          doc.write(html)
+          doc.close()
+        } else {
+          const tmpUrl = new URL(gameUrl.value)
+          iframeDom.onload = function () {
+            GameCommunicator.init(document.getElementById('gameIframe'), tmpUrl.origin)
+            GameCommunicator.postMessage({ messageType: 'addEventListener', eventType: 'reloadGame' })
+            GameCommunicator.postMessage({ messageType: 'addEventListener', eventType: 'backToLobby' })
+          }
         }
       }
     })

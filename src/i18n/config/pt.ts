@@ -1,6 +1,6 @@
 export default {
   home: 'Página Inicial',
-  search: 'Pesquisar',
+  search: 'Procurar',
   promo: 'Promoção',
   support: 'Suporte',
   onlineSupport: 'Suporte Online',
@@ -9,7 +9,7 @@ export default {
   confirm: 'Confirmar',
   confirmd: 'Confirmado',
   all: 'Todos',
-  save: 'Salvar',
+  save: 'Submeter',
   cancel: 'Cancelar',
   close: 'Fechar',
   start: 'Iniciar',
@@ -23,10 +23,10 @@ export default {
   refreshSuccess: 'Atualização bem-sucedida',
   loadingFail: 'Falha no carregamento',
   noMore: 'Não há mais...',
-  login: 'Login',
+  login: 'Entrar',
   otherMethod: 'Outro método',
-  reg: 'Registrar',
-  userName: 'Nome de Usuário',
+  reg: 'Registrar-se',
+  userName: 'Usuário',
   email: 'E-mail',
   sendEmail: 'Send',
   sended: 'Enviado',
@@ -44,7 +44,7 @@ export default {
   month: 'Mês',
   year: 'Ano',
   birthday: 'Data de Nascimento',
-  telephone: 'Telefone',
+  telephone: 'Número de telefone',
   country: 'País',
   hasAccount: 'Já possui uma conta?',
   logout: 'Sair',
@@ -55,7 +55,7 @@ export default {
     userNameOrEmail: 'Nome de Usuário ou E-mail'
   },
   regPage: {
-    holderUserName: 'Crie seu Nome de Usuário',
+    holderUserName: 'Nomeie sua conta',
     holderEmail: `Por exemplo: você{'@'}example.com`,
     holderTelephone: 'Telefone (+66 xxxxxxxxxxx)',
     isAdult: 'Eu confirmo que tenho mais de 18 anos e aceito os',
@@ -87,7 +87,7 @@ export default {
   wallet: 'Carteira',
   myBets: 'Meu Histórico de Apostas',
   rewards: 'Recompensas',
-  notifications: 'Mensagens de Notificação',
+  notifications: 'Notificações',
   // Pesquisa
   noSearchResult: 'Desculpe, não foram encontrados resultados para "{ keyword }". Tente outras palavras-chave.',
   searchResultNum: '{ searchResult } resultados encontrados',
@@ -109,23 +109,23 @@ export default {
   mallStore: 'Loja de Pontos',
   // Configurações da Conta
   generalInformation: 'Informações Gerais',
-  changePassword: 'Alterar Senha',
-  googleAuthenticator: 'Autenticador Google',
+  changePassword: 'Mudar Senha',
+  googleAuthenticator: 'Google Authenticator',
   privacySetting: 'Configurações de Privacidade',
-  currentPwd: 'Senha Atual',
-  newPwd: 'Nova Senha',
-  confirmPwd: 'Confirmar Nova Senha',
-  changePwdLimit: 'Para garantir a segurança dos seus fundos, você não poderá sacar para um novo endereço de carteira dentro de 24 horas após a alteração da sua senha.',
-  disabledGoogle: 'Autenticador Google Desativado',
-  activeGoogle: 'Digitalize o código QR ou insira o código para ativar o Autenticador Google.',
-  whatGoogleCode: 'O que é o Autenticador Google?',
+  currentPwd: 'Digite sua senha atual',
+  newPwd: 'Digite a nova senha',
+  confirmPwd: 'Repetir senha',
+  changePwdLimit: 'Por questões de segurança, se você trocar sua senha, ficará impossibilitado de realizar saques nas próximas 24 horas.',
+  disabledGoogle: 'O Google Authenticator está desativado',
+  activeGoogle: 'Para ativar, escaneie o QR code ou insira o código manualmente',
+  whatGoogleCode: 'O que é o Google Authenticator ?',
   typeCode: 'Digite o Código',
-  submitCode: 'Enviar Código',
-  keyValue: 'Chave',
+  submitCode: 'Submeter código',
+  keyValue: 'Número da chave',
   // Notificações
   notice: 'Avisos',
   mail: 'Mensagens Internas',
-  makeAllRead: 'Marcar Todas Como Lidas',
+  makeAllRead: 'Marcar todos como lido',
   noMessage: 'Nenhuma mensagem disponível',
   // Recompensas
   claimReward: 'Código Promoção',
@@ -134,7 +134,7 @@ export default {
   claim: 'Resgatar',
   recentTransaction: 'Transações Recentes',
   // Pesquisa
-  searchHolder: 'Jogos, Fornecedores',
+  searchHolder: 'Nome do jogo，Provedor',
   searchMore: 'Buscar Mais',
   searchRecommend: 'Recomendado para Você',
   enter: 'Entrar',
@@ -156,10 +156,10 @@ export default {
   supportSettings: 'Suporte e Configurações',
   walletSettings: 'Configurações da Carteira',
   faq: 'Perguntas Frequentes',
-  liveSupport: 'Suporte ao Vivo',
+  liveSupport: 'Suporte Ao Vivo',
   chooseCrypto: 'Escolha sua Criptomoeda Preferida',
   cryptoCurrency: 'Criptomoeda',
-  bank: 'Banco',
+  bank: 'Fiat',
   chooseDepositChain: 'Escolha a Rede de Depósito',
   confirmDepositAddress: 'Confirme seu Endereço de Depósito antes de prosseguir com a transação.',
   recommendExchange: 'Compre Criptomoedas em nossas corretoras recomendadas',
@@ -208,19 +208,19 @@ export default {
   slots: 'Slots',
   sbSport: 'Esportes SB',
   fbSport: 'Esportes FB',
-  downloadApp: 'Download APP',
-  androidApple: 'Android/IOS',
+  downloadApp: 'Baixe O App',
+  androidApple: 'Para Android E IOS',
   globalPaymentSolutions: 'Soluções Globais de Pagamento',
   otherPayment: 'Outros Métodos de Pagamento',
   sportsBet: 'Apostas Esportivas',
   liveCasinoBet: 'Apostas no Cassino Ao Vivo',
   slotBet: 'Apostas em Caça-Níqueis',
   more: 'Mais',
-  loadMore: 'Carregar Mais',
-  providers: 'Fornecedores',
-  allProviders: 'Todos os Fornecedores',
+  loadMore: 'Mostrar mais',
+  providers: 'Provedores',
+  allProviders: 'Todos os Provedores',
   sortBy: 'Ordenar por',
-  polular: 'Popularidade',
+  polular: 'Popular',
   promotions: 'Promoções',
   aboutUs: 'Sobre Nós',
   selectLanguage: 'Selecionar Idioma',
@@ -231,7 +231,7 @@ export default {
   privacyPolicy: 'Política de Privacidade',
   fairness: 'Justiça',
   game: 'Jogo',
-  followUs: 'Siga-nos',
+  followUs: 'Comunidade',
   language: 'Idioma',
   helpCenter: 'Central de Ajuda',
   acceptCrypto: 'Aceitamos Criptomoedas',
@@ -256,7 +256,8 @@ export default {
     doge: 'Dogecoin',
     ton: 'TON Crystal',
     usd: 'Dólar Americano',
-    cny: 'Renminbi Chinês'
+    cny: 'Renminbi Chinês',
+    brl: 'Real brasileiro                                                                                                        '
   },
   // Loja de Pontos
   points: 'Pontos',
@@ -290,7 +291,8 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
-    sexy: 'Sexy Baccarat'
+    sexy: 'Sexy Baccarat',
+    pgSoft: 'PG Soft'
   },
   // Dicas de validação de dados
   tips: {
@@ -391,8 +393,8 @@ export default {
   youWillGet: 'Você receberá',
   bonusValue: 'Valor do Bônus',
   wageringRequirement: 'Requisito de Apostas',
-  enableVisible: 'Habilitar Modo Invisível',
-  hiddenYourBet: 'Suas apostas não aparecerão nas atividades públicas e visualizações de apostas',
+  enableVisible: 'Ativar Modo Anônimo',
+  hiddenYourBet: 'Suas apostas não aparecerão no feed de apostas público e na visualização da aposta',
   startNow: 'Iniciar Agora',
   // Termos e Conteúdos de HTML
   withdrawStatus: { 1: 'Processando', 2: 'Confirmado', 3: 'Rejeitado' },
@@ -430,8 +432,8 @@ export default {
   betAndEarn: 'Aposte e Ganhe',
   placeAndEarn: 'Coloque e Ganhe',
   spinAndEarn: 'Gire e Ganhe',
-  enabledGoogle: 'O Google Authenticator está habilitado',
-  stopGoogle: 'O Google Authenticator está habilitado. Se desejar desativar esta função, insira o código e clique em "Enviar Código" para           desativar.',
+  enabledGoogle: 'O Google Authenticator está ativado',
+  stopGoogle: 'Para desativar, insira o código do Google Authenticator e clique em "Submeter código".',
   unlockNewReward: 'Novas recompensas foram desbloqueadas!',
   unlockNewRewardTip: 'Parabéns! Acabou de desbloquear uma nova recompensa. Clique aqui para selecionar o tipo de recompensa.',
   dymondReward: 'As suas recompensas serão desbloqueadas quando atingir este nível',
@@ -500,12 +502,13 @@ export default {
   pointsExchange: 'Trocar',
   view: 'Ver',
   oprate: 'visualizar',
-  directlyLogin: 'Ou faça login diretamente',
+  directlyLogin: 'OU',
   fastDeposit: 'Depositar Agora',
-  demoMode: 'Jogo de Teste',
-  trueMode: 'Apostar Agora',
-  gameStatic: 'Estatísticas do jogo',
-  receivedSuccess: '{ amount } USDT Reivindicado',
+  demoMode: 'Diversão',
+  trueMode: 'Jogo Real',
+  gameStatic: 'Informações do jogo',
+  receivedSuccess: '{ amount }  USDT Reivindicado',
+  receivedSuccess2: '{ amount } { currency } Reivindicado',
   goTime: 'Horário de partida',
   backTime: 'Horário de chegada',
   inTime: 'Horário de Check-in no Hotel',
@@ -554,7 +557,7 @@ export default {
   addToDesk: 'No navegador, selecione "Adicionar página a"',
   clickDesk: 'Toque em "Tela Inicial"',
   clickAddAndroid: 'Clique em "Adicionar"',
-  hitratio: 'Frequência de acerto',
+  hitratio: '% Frequência de acerto',
   paylines: 'Linhas de pagamento',
   nopwd: 'Você fez seu registro por meio de mídias sociais. Não é possível criar outra senha.',
 
@@ -726,6 +729,26 @@ export default {
   outAny: 'Você pode sair quando quiser.',
   subBefore: '(Ao clicar em “Assinar”, você concorda que leu, entendeu e consentiu com a ',
   subAfter: 'quanto ao uso dos seus dados pessoais.)',
+  showExpiredPromo: 'Promoções Encerradas',
+  expiredPromo: 'Promoções Encerradas',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
+  depositLimit: 'Limite de Depósito',
+  depositNewWindow: 'Estamos prestes a abrir uma nova janela para o seu pagamento.',
+  inputDepositAmount: 'Por favor, insira o valor da recarga.',
+  depositAmountOver: 'O valor da recarga não pode exceder o limite máximo.',
+  depositAmountUnder: 'O valor da recarga não pode ser inferior ao limite mínimo.',
+  providerInfo: 'Por gentileza, especifique seus dados pessoais. Todas as informações estão criptografadas e seguras.',
+  fiatCpfHolder: 'Insira o CPF',
+  fiatName: 'Nome da Conta',
+  fiatNameHolder: 'Insira o Nome',
+  fiatPixType: 'Código do Banco',
+  fiatPixTypeHolder: 'Selecionarb Código Bancário',
+  fiatPixAccount: 'Conta',
+  fiatPixAccountHolder: 'Inserir Conta',
+  withdrawInfo: 'Informação de Saque',
+  fundCurrency: 'Moeda',
+
   vip: {
     seabetVip: 'Seabet VIPClube',
     vipWelH5: `"Na Seabet, estamos empenhados em melhorar a qualidade dos jogos e proporcionar a melhor experiência de jogo possível. Lançamos um novo Clube de Membros VIP para recompensar nossos membros que passam tempo jogando em nosso site e são leais a nossa plataforma."`,
@@ -771,45 +794,58 @@ export default {
       '102': {
         '0': { title: 'Bônus de Nível', content: `Prêmio total: <span>5 USDT</span>` },
         '1': { title: 'Bônus de assinatura', content: `Assine o e-mail promocional e receba 10 USDT gratuitamente` },
-        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1</span></p>` }
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>10%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>5%</span>  aproximadamente com base em suas perdas diárias</p>` }
       },
       '103': {
         '0': { title: 'Bônus de Nível', content: `Prata 5, Prêmio total: <span>135 USDT</span>` },
         '1': { title: 'Rodadas Grátis', content: `<span>30</span> rodadas grátis nos jogos de caça-níqueis` },
-        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1.1</span></p>` }
+        '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária<span>*1%*1.1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>11%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>5%</span>  aproximadamente com base em suas perdas diárias</p>` }
       },
       '104': {
         '0': { title: 'Bônus de Nível', content: `Ouro 8, Prêmio total: <span>1,255 USDT</span>` },
         '1': { title: 'Bônus de Recarga', content: `Deposite <span>300 USDT</span>, e receba <span>300 USDT</span>` },
         '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*1.2</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>11%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>6%</span>  aproximadamente com base em suas perdas diárias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
       },
       '105': {
         '0': { title: 'Bônus de Nível', content: `Platina 10, Prêmio total: <span>6,025 USDT</span>` },
         '1': { title: 'Bônus de Recarga', content: `Deposite <span>1,000 USDT</span>, e receba <span>1,000 USDT</span>` },
         '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*1.3</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` },
-        '4': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*3%</span> aproximadamente com base no valor da sua aposta.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>12%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>7%</span>  aproximadamente com base em suas perdas diárias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '6': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*3%</span> aproximadamente com base no valor da sua aposta.</p>` }
       },
       '106': {
         '0': { title: 'Bônus de Nível', content: `Titânio 10, Prêmio total: <span>18,555 USDT</span>` },
         '1': { title: 'Bônus de Recarga', content: `Deposite <span>3,000 USDT</span>, e receba <span>3,000 USDT</span>` },
         '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*1.5</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
-        '4': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>12%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>8%</span>  aproximadamente com base em suas perdas diárias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '6': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*5%</span> aproximadamente com base no valor da sua aposta.</p>` }
       },
       '107': {
         '0': { title: 'Bônus de Nível', content: `Diamante 6, Prêmio total: <span>105,555 USDT</span>` },
         '1': { title: 'Bônus de Recarga', content: `Deposite <span>10,000 USDT</span>, e receba <span>10,000 USDT</span>` },
         '2': { title: 'Ganho de Pontos', content: `<p>Aposta diária <span>*1%*2</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*10%</span> aproximadamente com base no valor da sua aposta.</p>` },
-        '4': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
-        '5': { title: 'Recompensa Especia', content: `<p>Diamante 6, recompensa especial de Honra Suprema de <span>20,000 USDT</span></p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Ganhe <span>15%</span> de bônus em cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Receba seu bônus de  <span>10%</span>  aproximadamente com base em suas perdas diárias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Receba seu bônus semanal de Aposta <span>*1%*10%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '6': { title: 'Cashback Mensal', content: `<p>Receba seu bônus mensal de Aposta <span>*1%*8%</span> aproximadamente com base no valor da sua aposta.</p>` },
+        '7': { title: 'Recompensa Especia', content: `<p>Diamante 6, recompensa especial de Honra Suprema de <span>20,000 USDT</span></p>` }
       }
     },
     vipRewardDetailTitle: 'Detalhes dos Benefícios do Clube VIP',
     vipRewardDetailContent: `<dd>Bônus de e-mail de promoção por assinatura serão enviados por e-mail promocional com um código. Use o código para resgatar na página "Recompensas".</dd>
                             <dd>Rodadas grátis para VIPs Prata podem ser reivindicadas na página 'Recompensas'. Disponíveis na plataforma Play'N GO, jogos elegíveis: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>Por favor, verifique a página de promoções para mais detalhes sobre Slots Deposit Bonus ＆ Slots Loss Rebate.</dd>
                             <dd>Os bônus de recarga para todos os níveis são limitados a uma solicitação, exigindo a conclusão de um valor de aposta 10 vezes, aplicável a qualquer jogo. Exemplo: (1000+1000)*10=20000</dd>
                             <dd>Os bônus de recarga precisam ser solicitados através do atendimento ao cliente online após a conclusão do depósito e antes de qualquer aposta.</dd>
                             <dd>As recompensas em pontos serão automaticamente adicionadas à conta no dia seguinte, com base no valor das apostas.</dd>
@@ -975,97 +1011,6 @@ export default {
     privacyTitle: 'Política de Privacidade',
     fairnessTitle: 'Equidade',
 
-    // Conteúdo HTML
-    vipContent: `<div class="vip-clubhouse-box">
-                  <div class="vc-rows">
-                    <div class="vr-title">1.Introdução ao Clube VIP</div>
-                    <div class="vr-conts">
-                      <p>Bem-vindo ao Clube VIP da Seabet!</p>
-                      <p>Na Seabet, estamos comprometidos em aprimorar a qualidade dos jogos e proporcionar a melhor experiência de jogo. Estamos empolgados em apresentar nosso novo Clube VIP, projetado para recompensar nossos membros leais que passam tempo jogando em nosso site.</p>
-                      <p>Basta fazer apostas em qualquer jogo ou evento esportivo fornecido pela Seabet.io para desbloquear recompensas exclusivas à medida que você avança pelos níveis.</p>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">2.Serviço Personalizado</div>
-                    <div class="vr-conts">
-                      <p>Nossa equipe profissional de Gestores de Clientes está dedicada a atender todas as suas necessidades e cumprir os mais altos padrões da indústria. Membros VIP podem desfrutar de bônus exclusivos, convites para eventos renomados e uma variedade de recompensas personalizadas para proporcionar uma experiência de jogo rápida, agradável e eficiente.</p>
-                      <dl>
-                        <dt>Gestor VIP Exclusivo:</dt>
-                        <dd>Comprometido em atender às suas necessidades</dd>
-                        <dd>Experiências de jogo privadas feitas especialmente para você</dd>
-                      </dl>
-                      <dl>
-                        <dt>Recompensas Generosas:</dt>
-                        <dd>Ofertas exclusivas feitas para você</dd>
-                        <dd>Bônus sem requisitos de aposta</dd>
-                        <dd>Acúmulo rápido de pontos</dd>
-                      </dl>
-                      <dl>
-                        <dt>Limites de Aposta Mais Altos da Indústria：</dt>
-                        <dd>Depósitos e retiradas diárias ilimitadas com criptomoedas</dd>
-                      </dl>
-                      <dl>
-                        <dt>Promoções Exclusivas para VIPs:</dt>
-                        <dd>Diferenciadas das promoções para membros regulares</dd>
-                        <dd>Preservam a melhor experiência de jogo para você</dd>
-                        <dd>Exclusivas para usuários VIP</dd>
-                        <dd>Ofertas personalizadas</dd>
-                        <dd>Serviços de entretenimento personalizados exclusivamente para você</dd>
-                      </dl>
-                      <dl>
-                        <dt>Serviço Prioritário 24/7:</dt>
-                        <dd>Sem necessidade de fila ou espera</dd>
-                        <dd>Suas necessidades são a nossa principal prioridade</dd>
-                        <dd>Múltiplos métodos de contato em redes sociais, gestores de clientes dedicados oferecendo serviços online.</dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">3.Estrutura de Níveis</div>
-                    <div class="vr-conts">
-                      <p>Seis níveis VIP que abrangem abrangentemente toda a sua jornada de jogos:</p>
-                      <dl>
-                        <dd>Bronze: Bronze 1</dd>
-                        <dd>Prata: Prata 1 - Prata 5</dd>
-                        <dd>Ouro: Ouro 1 - Ouro 8</dd>
-                        <dd>Platina: Platina 1 - Platina 10</dd>
-                        <dd>Titânio: Titânio 1 - Titânio 10</dd>
-                        <dd>Diamante: Diamante 1 - Diamante 6</dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">4.Benefícios para Membros do Clube VIP</div>
-                    <div class="vr-conts">
-                      <dl>
-                        <dd>Bônus de Avanço de Nível: Receba bônus ao alcançar o próximo nível. Quanto mais alto o nível que você alcançar, maior será o bônus.</dd>
-                        <dd>Ofertas Exclusivas Personalizadas: Não está interessado em promoções regulares? Sem problemas. Assim que você atingir o nível VIP correspondente, nós iremos criar ofertas especialmente adaptadas aos seus interesses, exclusivamente para você.</dd>
-                        <dd>Experiência de Entretenimento Personalizada: Seja em grandes eventos esportivos, concertos, shows de música ou uma viagem luxuosa, como membro VIP sênior, todas as suas despesas pessoais serão cobertas pela confiável Seabet, e nós organizaremos seu itinerário.</dd>
-                        <dd>Serviço VIP Exclusivo: Você terá um representante de serviço VIP dedicado que irá apoiar e atender às suas necessidades de apostas.</dd>
-                        <dd>Acumulação de Pontos Mais Rápida: Os níveis VIP acumulam pontos em uma taxa mais rápida em comparação com os membros regulares. Níveis mais altos acumulam mais pontos, levando a uma variedade maior de prêmios para resgate.</dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">5.Como se Tornar um Membro VIP</div>
-                    <div class="vr-conts">
-                      <dl>
-                        <dd>
-                        Continue Apostando: A chave para se tornar um VIP é colocar consistentemente apostas em vários eventos esportivos e jogos de cassino. A Seabet recompensa sua consistência. Como um dos principais sites de apostas com criptomoedas, use regularmente seus ativos digitais para fazer apostas em eventos esportivos e jogos de cassino oferecidos pela Seabet. Você também pode experimentar apostar com USDT e continuar usando seus fundos.
-                        </dd>
-                        <dd>
-                        Participe de Eventos Regulares: As atividades promocionais da Seabet incluem vários eventos e competições nas quais você pode participar a qualquer momento. A participação regular em qualquer um desses eventos aumentará suas chances de receber um convite para o Clube VIP. Além disso, você pode ser mais ativo em outras características do clube oferecidas pela Seabet.
-                        </dd>
-                        <dd>
-                        Aguarde o Convite: A última coisa que você precisa fazer é aguardar o convite que enviaremos a você. Continue jogando jogos e participando de eventos de alto risco. Após algumas rodadas de jogos de cassino e apostas esportivas, uma vez que você seja considerado digno de se tornar membro do Clube VIP, você receberá um convite imediatamente.
-                        </dd>
-                        <dd>
-                        Viva a Vida de Luxo como um VIP da Seabet: Leve sua experiência de apostas com USDT para um novo patamar enquanto desfruta de privilégios de primeira classe como membro do Clube VIP da Seabet. Como um jogador valorizado, você experimentará a melhor diversão, apostas rápidas e justas ao se envolver em apostas esportivas e jogos de cassino.
-                        </dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>`,
     rulesContent: `<div>
                       <h2>Termos e Condições</h2>
                       <h3>1. SEABET. IO</h3>

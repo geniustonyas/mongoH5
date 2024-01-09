@@ -159,7 +159,7 @@ export default {
   liveSupport: 'Hỗ trợ trực tuyến',
   chooseCrypto: 'Chọn loại tiền mã hóa bạn muốn',
   cryptoCurrency: 'Tiền mã hóa',
-  bank: 'Ngân hàng',
+  bank: 'Tiền Pháp Định',
   chooseDepositChain: 'Chọn mạng nạp tiền',
   confirmDepositAddress: 'Vui lòng xác nhận địa chỉ nạp tiền của bạn trước khi thực hiện giao dịch.',
   recommendExchange: 'Mua tiền mã hóa từ sàn giao dịch mà chúng tôi đề xuất',
@@ -256,7 +256,8 @@ export default {
     doge: 'DOGE',
     ton: 'TON',
     usd: 'USD',
-    cny: 'CNY'
+    cny: 'CNY',
+    brl: 'BRL'
   },
   // Cửa hàng điểm
   points: 'Điểm',
@@ -290,7 +291,8 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
-    sexy: 'Sexy Baccarat'
+    sexy: 'Sexy Baccarat',
+    pgSoft: 'PG Soft'
   },
   // Gợi ý kiểm tra dữ liệu
   tips: {
@@ -503,10 +505,11 @@ export default {
   remain: 'Còn lại',
   directlyLogin: 'Hoặc đăng nhập trực tiếp',
   fastDeposit: 'Nạp tiền ngay',
-  demoMode: 'Chơi thử',
-  trueMode: 'Cược ngay',
+  demoMode: 'Chơi Vu',
+  trueMode: 'Chơi Thật',
   gameStatic: 'Thống kê trò chơi',
   receivedSuccess: 'Nhận { amount } USDT thành công',
+  receivedSuccess2: 'Nhận { amount } { currency } thành công',
   goTime: 'Thời gian khởi hành',
   backTime: 'Thời gian trở về',
   inTime: 'Thời gian nhận phòng khách sạn',
@@ -722,6 +725,26 @@ export default {
   outAny: 'Bạn có thể chọn không tham gia bất cứ lúc nào.',
   subBefore: '（Bằng cách nhấp vào “Đăng ký”, bạn đồng ý rằng bạn đã đọc, hiểu và đồng ý với ',
   subAfter: 'liên quan đến việc sử dụng dữ liệu cá nhân của bạn.）',
+  showExpiredPromo: 'Khuyến mại trước đây',
+  expiredPromo: 'Khuyến mại trước đây',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
+  depositLimit: 'Giới Hạn Gửi Tiền',
+  depositNewWindow: 'Chúng tôi sắp mở cửa sổ mới cho bạn tiến hành nạp tiền.',
+  inputDepositAmount: 'Vui lòng nhập số tiền nạp.',
+  depositAmountOver: 'Số tiền nạp không được vượt quá giới hạn tối đa.',
+  depositAmountUnder: ' Số tiền nạp không được ít hơn giới hạn tối thiểu.',
+  providerInfo: 'Vui lòng ghi rõ chi tiết cá nhân của bạn. Tất cả dữ liệu sễ được mã hóa và bảo mật.',
+  fiatCpfHolder: 'Nhập CPF',
+  fiatName: 'Tên Tài Khoản',
+  fiatNameHolder: 'Nhập Tên',
+  fiatPixType: 'Mã Ngân Hàng',
+  fiatPixTypeHolder: 'Chọn Mã Ngân Hàng',
+  fiatPixAccount: 'Tài Khoản',
+  fiatPixAccountHolder: 'Nhập Tài Khoản',
+  withdrawInfo: 'Thông Tin Rút Tiền',
+  fundCurrency: 'Tiền tệ',
+
   vip: {
     seabetVip: 'Hội viên VIP Seabet',
     vipWelH5: `Tại Seabet, chúng tôi cam kết nâng cao chất lượng trò chơi và cung cấp trải nghiệm chơi game tốt nhất. Chúng tôi cho ra mắt câu lạc bộ VIP hoàn toàn mới để thưởng cho những thành viên của chúng tôi, người dành thời gian chơi trò chơi trên trang web của chúng tôi một cách trung thành.`,
@@ -767,46 +790,59 @@ export default {
       '102': {
         '0': { title: 'Thưởng Thăng cấp', content: `Tổng giải thưởng: <span>5 USDT</span>` },
         '1': { title: 'Tiền thưởng đăng ký', content: `Đăng ký nhận thư khuyến mãi, nhận ngay<span>10 USDT</span>miễn phí` },
-        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1</span></p>` }
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1</span></p>` },
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>10%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>5%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` }
       },
       '103': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp bậc bạc 5, Tổng giải thưởng：<span>135 USDT</span>` },
         '1': { title: 'Vòng quay miễn phí', content: `Quay miễn phí<span>30</span>lần trên trò chơi máy đánh bạc` },
-        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.1</span></p>` }
+        '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.1</span></p>` },
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>11%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>5%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` }
       },
       '104': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp bậc vàng 8, Tổng giải thưởng：<span>1,255 USDT</span>` },
         '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>300 USDT</span>, nhận thưởng<span>300 USDT</span>` },
         '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.2</span></p>` },
-        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>11%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>6%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` },
+        '5': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
       },
       '105': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp độ bạch kim 10, Tổng giải thưởng：<span>6,025 USDT</span>` },
         '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>1,000 USDT</span>, nhận thưởng<span>1,000 USDT</span>` },
         '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.3</span></p>` },
-        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` },
-        '4': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 3%</span>dựa trên số tiền đặt cược của bạn.</p>` }
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>12%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>7%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` },
+        '5': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '6': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 3%</span>dựa trên số tiền đặt cược của bạn.</p>` }
       },
       '106': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp độ Titan 10, Tổng giải thưởng：<span>18,555 USDT</span>` },
         '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>3,000 USDT</span>, nhận thưởng<span>3,000 USDT</span>` },
         '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*1.5</span></p>` },
-        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
-        '4': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>12%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>8%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` },
+        '5': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '6': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 5%</span>dựa trên số tiền đặt cược của bạn.</p>` }
       },
       '107': {
         '0': { title: 'Thưởng Thăng cấp', content: `Cấp bậc kim cương 6, Tổng giải thưởng：<span>105,555 USDT</span>` },
         '1': { title: 'Thưởng Nạp tiền', content: `Nạp<span>10,000 USDT</span>, nhận thưởng<span>10,000 USDT</span>` },
         '2': { title: 'Điểm tích lũy', content: `<p>Mỗi ngày cược<span>*1%*2</span></p>` },
-        '3': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 10%</span>dựa trên số tiền đặt cược của bạn.</p>` },
-        '4': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
-        '5': { title: 'Thưởng đặc biệt', content: `<p>Cấp bậc kim cương 6, Thưởng đặc biệt danh dự<span>20,000</span> USDT` }
+        '3': { title: 'Tiền thưởng máy đánh bạc', content: `<p>Nhận <span>15%</span> tiền thưởng với mỗi lần gửi tiền</p>` },
+        '4': { title: 'Hoàn trả khi mất cược khe', content: `<p>Nhận tiền thưởng khoảng <span>10%</span> dựa trên khoản lỗ hàng ngày của bạn</p>` },
+        '5': { title: 'Hoàn trả mỗi Tuần', content: `<p>Nhận tiền thưởng mỗi tuần với Đặt cược<span>*1%* 10%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '6': { title: 'Hoàn trả mỗi Tháng', content: `<p>Nhận tiền thưởng mỗi tháng với Đặt cược<span>*1%* 8%</span>dựa trên số tiền đặt cược của bạn.</p>` },
+        '7': { title: 'Thưởng đặc biệt', content: `<p>Cấp bậc kim cương 6, Thưởng đặc biệt danh dự<span>20,000</span> USDT` }
       }
     },
     vipRewardDetailTitle: 'Chi tiết Ưu đãi của Hội viên VIP',
     vipRewardDetailContent: `<dd>Tiền thưởng qua email khuyến mãi sẽ được gửi qua email khuyến mãi với một mã code. Sử dụng mã code để đổi quà trên trang "Phần thưởng".</dd>
                             <dd>Các vòng quay miễn phí dành cho VIP Bạc có thể được yêu cầu trên trang 'Phần thưởng'. Có sẵn trên nền tảng Play'N GO, trò chơi hợp lệ:Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
                             <dd>Tiền thưởng nạp tiền cho tất cả các cấp độ chỉ có thể đòi hỏi một lần, yêu cầu hoàn thành mức cược 10 lần, áp dụng cho bất kỳ trò chơi nào. Ví dụ: (1000+1000)*10=20000</dd>
+                            <dd>Vui lòng kiểm tra trang khuyến mãi để biết thêm chi tiết về Ưu đãi Tiền gửi Slots & Hoàn trả Tiền thua cược Slots.</dd>
                             <dd>Tiền thưởng nạp tiền cần được áp dụng qua dịch vụ khách hàng trực tuyến sau khi hoàn tất tiền gửi và trước khi đặt cược.</dd>
                             <dd>Phần thưởng điểm sẽ tự động được thêm vào tài khoản vào ngày tiếp theo dựa trên số tiền cược.</dd>
                             <dd>Tiền thưởng hàng tuần và hàng tháng sẽ tự động được thêm vào tài khoản trong vòng 48 giờ sau khi bắt đầu tuần hoặc tháng tiếp theo.</dd>
@@ -972,98 +1008,6 @@ export default {
     selfExclusionTitle: 'Tự loại trừ',
     privacyTitle: 'Chính sách riêng tư',
     fairnessTitle: 'Sự công bằng',
-    // Nội dung HTML
-    // html内容
-    vipContent: ` <div class="vip-clubhouse-box">
-                    <div class="vc-rows">
-                      <div class="vr-title">1. Giới thiệu Câu lạc bộ VIP</div>
-                      <div class="vr-conts">
-                        <p>Chào mừng bạn đến với Seabet VIP Club!</p>
-                        <p>Tại Seabet, chúng tôi cam kết nâng cao chất lượng chơi game và cung cấp trải nghiệm chơi game tốt nhất. Chúng tôi rất vui mừng được giới thiệu Câu lạc bộ VIP hoàn toàn mới của chúng tôi, được thiết kế để thưởng cho các thành viên trung thành của chúng tôi, những người dành thời gian chơi trò chơi trên trang web của chúng tôi.</p>
-                        <p>Chỉ cần đặt cược vào bất kỳ trò chơi hoặc sự kiện thể thao nào do Seabet.io cung cấp để mở khóa các phần thưởng độc quyền khi bạn leo qua các cấp bậc.</p>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">2. Dịch vụ cá nhân hóa</div>
-                      <div class="vr-conts">
-                        <p>Đội ngũ quản lý khách hàng chuyên nghiệp đảm bảo tất cả các nhu cầu của bạn và đáp ứng các tiêu chuẩn cao nhất của ngành. Thành viên VIP có thể tận hưởng tiền thưởng độc quyền, lời mời tham dự các sự kiện nổi tiếng và nhiều phần thưởng tùy chỉnh để cung cấp cho bạn trải nghiệm chơi game nhanh chóng, thú vị và hiệu quả.</p>
-                        <dl>
-                            <dt>Quản lý Độc quyền VIP</dt>
-                            <dd>Cam kết đáp ứng nhu cầu của bạn</dd>
-                            <dd>Trải nghiệm chơi game riêng tư được tùy chỉnh dành riêng cho bạn</dd>
-                        </dl>
-                        <dl>
-                            <dt>Phần thưởng cao cấp</dt>
-                            <dd>Các ưu đãi độc quyền được thiết kế dành riêng cho bạn</dd>
-                            <dd>Không cần đặt cược</dd>
-                            <dd>Tích luỹ điểm nhanh chóng</dd>
-                        </dl>
-                        <dl>
-                            <dt>Giới hạn cược cao nhất trong ngành</dt>
-                            <dd>Không giới hạn tiền gửi và rút hàng ngày thông qua tiền mã hóa</dd>
-                        </dl>
-                        <dl>
-                            <dt>Ưu đãi độc quyền cho VIP</dt>
-                            <dd>Các chương trình khuyến mãi riêng biệt so với thành viên thông thường</dd>
-                          <dd>Duy trì trải nghiệm chơi game tốt nhất cho bạn</dd>
-                          <dd>Chỉ hiển thị cho người dùng VIP</dd>
-                            <dd>Các ưu đãi cá nhân hóa</dd>
-                            <dd>Dịch vụ giải trí được tùy chỉnh dành riêng cho bạn</dd>
-                        </dl>
-                        <dl>
-                            <dt>Dịch vụ Ưu tiên 24/7</dt>
-                            <dd>Không cần xếp hàng, không phải chờ đợi</dd>
-                            <dd>Nhu cầu của bạn là ưu tiên hàng đầu của chúng tôi</dd>
-                            <dd>Nhiều lựa chọn trên mạng xã hội để liên hệ, quản lý khách hàng riêng biệt sẵn sàng trực tuyến</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">3. Cấu trúc cấp độ</div>
-                      <div class="vr-conts">
-                        <p>Sáu cấp độ VIP bao gồm toàn diện toàn bộ hành trình chơi game của bạn:</p>
-                        <dl>
-                          <dd>Đồng: Đồng 1</dd>
-                          <dd>Bạc: Bạc 1 - Bạc 5</dd>
-                          <dd>Vàng: Vàng 1 - Vàng 8</dd>
-                          <dd>Bạch kim: Bạch kim 1 - Bạch kim 10</dd>
-                          <dd>Titan: Titanium 1 - Titanium 10</dd>
-                          <dd>Kim cương: Kim cương 1 - Kim cương 6</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">4. Lợi ích dành cho thành viên câu lạc bộ VIP</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>Tiền thưởng tăng cấp: Nhận tiền thưởng khi đạt đến cấp độ tiếp theo. Cấp độ bạn đạt được càng cao, tiền thưởng càng lớn.</dd>
-                          <dd>Ưu đãi độc quyền tùy chỉnh: Không quan tâm đến các chương trình khuyến mãi thường xuyên? Không vấn đề gì. Khi bạn đạt đến cấp độ VIP tương ứng, chúng tôi sẽ đặc biệt điều chỉnh các ưu đãi dựa trên sở thích của bạn, dành riêng cho bạn.</dd>
-                          <dd>Trải nghiệm giải trí được cá nhân hóa: Cho dù đó là các sự kiện thể thao lớn, buổi hòa nhạc, chương trình âm nhạc hay một chuyến đi sang trọng, với tư cách là thành viên VIP cao cấp, tất cả các chi phí cá nhân của bạn sẽ được Seabet đáng tin cậy chi trả và chúng tôi sẽ sắp xếp hành trình của bạn.</dd>
-                          <dd>Dịch vụ VIP độc quyền: Bạn sẽ được chỉ định một đại diện dịch vụ VIP chuyên dụng, người sẽ hỗ trợ và đáp ứng nhu cầu cá cược của bạn.</dd>
-                          <dd>Tích lũy điểm nhanh hơn: Các cấp độ VIP kiếm được điểm với tốc độ nhanh hơn so với các thành viên thông thường. Các cấp độ cao hơn kiếm được nhiều điểm hơn, dẫn đến một loạt các giải thưởng để đổi.</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">5. Cách trở thành thành viên VIP của chúng tôi</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>
-                            Tiếp tục Đặt cược: Chìa khóa để trở thành VIP là duy trì việc đặt cược liên tục trên các sự kiện thể thao và trò chơi sòng bạc khác nhau. Seabet đánh giá cao sự kiên nhẫn của bạn. Là một trang web cá cược  tiền mã hóa hàng đầu, hãy thường xuyên sử dụng tài sản kỹ thuật số của bạn để đặt cược vào bất kỳ sự kiện và trò chơi sòng bạc nào mà Seabet cung cấp. Bạn cũng có thể thử đặt cược bằng USDT và tiếp tục sử dụng tài khoản của bạn.
-                          </dd>
-                          <dd>
-                            Tham gia các Sự kiện Thường xuyên: Các sự kiện quảng bá của Seabet bao gồm các hoạt động và cuộc thi khác nhau mà bạn có thể tham gia bất kỳ lúc nào. Thường xuyên tham gia bất kỳ hoạt động nào trong số này sẽ tăng cơ hội của bạn để nhận lời mời gia nhập Câu lạc bộ VIP. Hơn nữa, bạn cũng có thể trở nên nhiều hoạt động hơn trong các tính năng khác của Câu lạc bộ của Seabet.
-                          </dd>
-                        
-                          <dd>Chờ lời mời: Điều cuối cùng bạn cần làm là đợi chúng tôi gửi lời mời cho bạn. Tiếp tục chơi trò chơi và tham gia vào các sự kiện dành cho người cược lớn. Sau một số vòng cược sòng bạc và đặt cược thể thao, sau khi được xem xét xứng đáng để trở thành thành viên Câu lạc bộ VIP, bạn sẽ nhận được lời mời ngay lập tức.</dd>
-                          
-                          <dd>
-                            Hãy Trải nghiệm Cuộc sống Cao cấp với Seabet VIP: Nâng cao trải nghiệm cược USDT của bạn lên một tầm cao mới trong khi tận hưởng các đặc quyền hàng đầu của việc trở thành thành viên Câu lạc bộ VIP của Seabet. Khi bạn tham gia cược thể thao và trò chơi sòng bạc, với tư cách là một người chơi được đánh giá cao, bạn có cơ hội trải nghiệm sự kết hợp tốt nhất giữa việc cược vui vẻ, nhanh chóng và công bằng.
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </div>`,
 
     rulesContent: `<div>
                       <h2>Điều khoản và điều kiện</h2>

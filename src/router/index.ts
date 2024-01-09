@@ -294,12 +294,6 @@ const routes = [
     component: AppMain,
     children: [
       {
-        path: 'vip',
-        name: 'vip',
-        component: () => import('@/views/vips/vip.vue'),
-        meta: { needLogin: false, keepAlive: false }
-      },
-      {
         path: 'newVip',
         name: 'newVip',
         component: () => import('@/views/vips/newVip.vue'),

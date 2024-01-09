@@ -159,7 +159,7 @@ export default {
   liveSupport: '라이브서포트',
   chooseCrypto: '선호통화 선택',
   cryptoCurrency: '암호화폐',
-  bank: '은행',
+  bank: '법정화폐',
   chooseDepositChain: '입금체인선택',
   confirmDepositAddress: '거래를 집행하기전 회원님의 입금 지갑주소를 확인해 주세요.',
   recommendExchange: '우리가 추천하는 거래소로부터 암호화폐 구입',
@@ -256,7 +256,8 @@ export default {
     doge: '도지코인',
     ton: '톤코인',
     usd: '미국달러',
-    cny: '인민폐'
+    cny: '인민폐',
+    brl: '브라질 헤알'
   },
   // 포인트 쇼핑센터
   points: '포인트',
@@ -290,7 +291,8 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
-    sexy: 'Sexy Baccarat'
+    sexy: 'Sexy Baccarat',
+    pgSoft: 'PG Soft'
   },
 
   // 데이터검증 프롬프트
@@ -502,10 +504,11 @@ export default {
   remain: '남음',
   directlyLogin: '또는 직접 로그인',
   fastDeposit: '빠른 입금',
-  demoMode: '체험 모드',
-  trueMode: '리얼머니 모드',
+  demoMode: '체험판 플레이',
+  trueMode: '실제 플레이',
   gameStatic: '게임 데이터 통계',
   receivedSuccess: '{ amount } USDT 성공적으로 수령',
+  receivedSuccess2: '{ amount } { currency } 성공적으로 수령',
   goTime: '출발 시간',
   backTime: '돌아오는 시간',
   inTime: '호텔 체크인 시간',
@@ -714,6 +717,26 @@ export default {
   outAny: '원할 때 언제든지 탈퇴할 수 있습니다.',
   subBefore: '(“구독하기”를 클릭함으로써 귀하는 개인 데이터 사용과 관련된',
   subAfter: '을 읽고 이해하며 동의한 것으로 간주됩니다.）',
+  showExpiredPromo: '지난 프로션',
+  expiredPromo: '지난 프로션',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
+  depositLimit: '입금 한도',
+  depositNewWindow: '결제를 위해 새 창을 열 것입니다.',
+  inputDepositAmount: '충전 금액을 입력하세요.',
+  depositAmountOver: '충전 금액은 최대 한도를 초과할 수 없습니다.',
+  depositAmountUnder: '충전 금액은 최소 제한 이하일 수 없습니다.',
+  providerInfo: '개인 정보를 입력하세요. 모든 데이터는 암호화되며 안전합니다.',
+  fiatCpfHolder: 'CPF를 입력하세요',
+  fiatName: '계정 이름',
+  fiatNameHolder: '이름 입력',
+  fiatPixType: '은행 코드',
+  fiatPixTypeHolder: '은행 코드 선택',
+  fiatPixAccount: '계정',
+  fiatPixAccountHolder: '계정 입력',
+  withdrawInfo: '출금 정보',
+  fundCurrency: '화폐',
+
   vip: {
     seabetVip: 'Seabet VIP 클럽',
     vipWelH5: `Seabet은 게임의 품질을 높이고, 보다 나은 즐거움을 제공하기 위해 노력하고 있습니다.  본사이트에서는 활발한 활동을 하시는 회원들을 우대하기 위한 VIP 클럽이 준비되어 있습니다.`,
@@ -759,45 +782,58 @@ export default {
       '102': {
         '0': { title: '업그레이드 보너스', content: `총 상금：<span>5USDT</span>` },
         '1': { title: '구독 보너스', content: `프로모션 이메일구독하고 무료로 <span>10 USDT</span> 받기` },
-        '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1</span></p>` }
+        '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1</span></p>` },
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>10%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>5%</span> 의 보너스를 받습니다.</p>` }
       },
       '103': {
         '0': { title: '업그레이드 보너스', content: `실버 5,총 상금：<span>135 USDT</span>` },
         '1': { title: '무료 스핀', content: `슬롯머신 게임에서 무료로<span>30</span>회 회전` },
-        '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.1</span></p>` }
+        '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.1</span></p>` },
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>11%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>5%</span> 의 보너스를 받습니다.</p>` }
       },
       '104': {
         '0': { title: '업그레이드 보너스', content: `골드 8,총 상금：<span>1,255 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>300 USDT</span> 입금시 <span>300 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.2</span></p>` },
-        '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` }
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>11%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>6%</span> 의 보너스를 받습니다.</p>` },
+        '5': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` }
       },
       '105': {
         '0': { title: '업그레이드 보너스', content: `플래티넘 10,총 상금：<span>6,025 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>1,000 USDT</span> 입금시 <span>1,000 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.3</span></p>` },
-        '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` },
-        '4': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 3%</span>의 주간 보너스를 받으십시오.</p>` }
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>12%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>7%</span> 의 보너스를 받습니다.</p>` },
+        '5': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` },
+        '6': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 3%</span>의 주간 보너스를 받으십시오.</p>` }
       },
       '106': {
         '0': { title: '업그레이드 보너스', content: `티타늄 10, 총 상금:<span>18,555 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>3,000 USDT</span> 입금시 <span>3,000 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*1.5</span></p>` },
-        '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 8%</span>의 주간 보너스를 받으십시오.</p>` },
-        '4': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` }
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>12%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>8%</span> 의 보너스를 받습니다.</p>` },
+        '5': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 8%</span>의 주간 보너스를 받으십시오.</p>` },
+        '6': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 5%</span>의 주간 보너스를 받으십시오.</p>` }
       },
       '107': {
         '0': { title: '업그레이드 보너스', content: `다이아몬드 6, 총 상금：<span>105,555 USDT</span>` },
         '1': { title: '입금보너스', content: `<span>10,000 USDT</span> 입금시 <span>10,000 USDT</span> 보너스` },
         '2': { title: '포인트 획득', content: `<p>매일 투자 <span>*1%*2</span></p>` },
-        '3': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 10%</span>의 주간 보너스를 받으십시오.</p>` },
-        '4': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 8%</span>의 주간 보너스를 받으십시오.</p>` },
-        '5': { title: '특별보상', content: `<p>다이아몬드 6，최고 명예 특별 보너스<span>20,000 USDT</span>` }
+        '3': { title: '슬롯 입금 보너스', content: `<p>입금할 때마다 <span>15%</span> 보너스를 받으세요</p>` },
+        '4': { title: '슬롯 손실 환급', content: `<p>일일 손실량에 따라 대략  <span>10%</span> 의 보너스를 받습니다.</p>` },
+        '5': { title: '주간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 10%</span>의 주간 보너스를 받으십시오.</p>` },
+        '6': { title: '월간캐쉬백', content: `<p>베팅 금액을 기준으로 대략 롤링<span>*1%* 8%</span>의 주간 보너스를 받으십시오.</p>` },
+        '7': { title: '특별보상', content: `<p>다이아몬드 6，최고 명예 특별 보너스<span>20,000 USDT</span>` }
       }
     },
     vipRewardDetailTitle: 'VIP 클럽 혜택 세부 정보',
     vipRewardDetailContent: `<dd>프로모션 이메일 구독 보너스는 코드가 포함된 프로모션 이메일을 통해 전송됩니다. 코드를 사용하여 "보상" 페이지에서 교환할 수 있습니다.</dd>
                             <dd>실버 VIP를 위한 무료 스핀은 '보너스' 페이지에서 청구할 수 있습니다. Play'N GO 플랫폼에서 사용 가능하며, 해당 게임은: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>슬롯 입금 보너스 및 슬롯 손실 리베이트에 대한 자세한 내용은 프로모션 페이지를 확인해주세요.</dd>
                             <dd>모든 레벨의 리차지 보너스는 한 번만 청구할 수 있으며 10배의 베팅 금액을 완료해야 합니다. 예: (1000+1000)*10=20000</dd>
                             <dd>리차지 보너스는 입금 완료 후 베팅 전에 온라인 고객 서비스를 통해 신청해야 합니다.</dd>
                             <dd>포인트 보상은 다음 날 베팅 금액을 기준으로 자동으로 계정에 추가됩니다.</dd>
@@ -959,93 +995,6 @@ export default {
     selfExclusionTitle: '자체제외',
     privacyTitle: '프라이버시정책',
     fairnessTitle: '공평성',
-
-    // html内容
-    vipContent: `<div class="vip-clubhouse-box">
-                    <div class="vc-rows">
-                      <div class="vr-title">1.  VIP 클럽 소개</div>
-                      <div class="vr-conts">
-                        <p>Seabet VIP 클럽에 오신 것을 환영합니다!</p>
-                        <p>Seabet은 게임의 품질을 높이고, 보다 나은 즐거움을 제공하기 위해 노력하고 있습니다.  본사이트에서는 활발한 활동을 하시는 회원들을 우대하기 위한 VIP 클럽이 준비되어 있습니다.</p>
-                        <p>Seabet.io에서 제공하는 게임이나 스포츠 이벤트에 베팅을 하면서 회원레벨이 올라갈수록 더 많은 보너스나 리워드를 획득 하실 수 있습니다.</p>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">2. 개인 맞춤형 서비스</div>
-                      <div class="vr-conts">
-                        <p>전문 고객 관리자 팀은 모든 요구 사항을 보장하고 업계 최고 표준을 충족합니다. VIP 회원은 독점 보너스, 유명 이벤트 초대 및 다양한 맞춤형 보상을 통해 빠르고 즐겁고 효율적인 게임 경험을 제공할 수 있습니다.</p>
-                        <dl>
-                            <dt>개인 VIP  매니저</dt>
-                            <dd>요청사항 해결에 헌신하는 전속 매니져.</dd>
-                            <dd>개인 맞춤형 게임 서비스 제공</dd>
-                        </dl>
-                        <dl>
-                            <dt>고액의 보너스</dt>
-                            <dd>맞춤 디자인된 특전</dd>
-                            <dd>베팅 필요 없는 보너스</dd>
-                            <dd>빠른 포인트 누적</dd>
-                        </dl>
-                        <dl>
-                          <dt>업계 최고 베팅 한도:</dt>
-                            <dd>암호화폐를 통한 무제한 일일 입출금</dd>
-                        </dl>
-                        <dl>
-                          <dt>VIP 전용 프로모션:</dt>
-                          <dd>정회원 프로모션과 구별</dd>
-                          <dd>일반 회원과 구분되는 프로모션 제공</dd>
-                            <dd>VIP 사용자만 볼 수 있음</dd>
-                          <dd>회원 맞춤형 보너스 있음.</dd>
-                          <dd>맞춤형 엔터테인먼트 서비스</dd>
-                        </dl>
-                        <dl>
-                            <dt>365일, 24시간 우대 서비스</dt>
-                            <dd>대기할 필요 없습니다.</dd>
-                            <dd>VIP플레이어 요구사항은 최우선 대응.</dd>
-                            <dd>다양한 소셜 미디어 연락 옵션 있으며, 온라인에서 이용 가능한 개인 VIP 고객 매니저가 서비스.</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">3. 레벨 설정</div>
-                      <div class="vr-conts">
-                        <p>전체 게임 여정을 포괄적으로 다루는 6개의 VIP 레벨:</p>
-                        <dl>
-                          <dd>브론즈: 브론즈 1</dd>
-                          <dd>실버: 실버 1 - 실버 5</dd>
-                          <dd>골드: 골드 1 - 골드 8</dd>
-                          <dd>플래티넘: 플래티넘 1 - 플래티넘 10</dd>
-                          <dd>티타늄: 티타늄 1 - 티타늄 10</dd>
-                          <dd>다이아몬드: 다이아몬드 1 - 다이아몬드 6</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">4. VIP 클럽 회원 혜택</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>레벨 업 보너스: 다음 레벨에 도달하면 보너스를 받습니다. 레벨이 높을수록 보너스가 커집니다.</dd>
-                          <dd>맞춤형 독점 제안: 정기 프로모션에 관심이 없으신가요? 문제 없어요. 해당 VIP 레벨에 도달하면 귀하의 관심사에 따라 특별히 귀하를 위해 제안을 맞춤화합니다.</dd>
-                          <dd>개인화된 엔터테인먼트 경험: 주요 스포츠 행사, 콘서트, 음악 쇼 또는 호화로운 여행 등 시니어 VIP 회원으로서 모든 개인 경비는 신뢰할 수 있는 Seabet에서 부담하며 일정을 조정해 드립니다.</dd>
-                          <dd>독점적인 VIP 서비스: 귀하의 베팅 요구 사항을 지원하고 충족할 전담 VIP 서비스 담당자가 배정됩니다.</dd>
-                          <dd>더 빠른 포인트 적립: VIP 레벨은 일반 회원에 비해 더 빠른 속도로 포인트를 적립합니다. 레벨이 높을수록 더 많은 포인트를 획득하여 더 넓은 범위의 교환을 받을 수 있습니다.</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">5. VIP 회원이 되는 방법</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>지속적인 베팅: VIP가 되는 핵심은 다양한 스포츠 이벤트와 카지노 게임에 지속적으로 베팅하는 것입니다. Seabet은 귀하의 일관성에 대해 보상합니다. 최고의 암호화폐 게임 웹사이트로서 Seabet이 제공하는 이벤트와 카지노 게임에 대한 베팅에 정기적으로 디지털 자산을 사용하십시오. 또한 USDT로 베팅을 시도하고 자금을 지속적으로 사용하시면 됩니다.</dd>
-                          <dd>
-                          정기적인 이벤트 참여: Seabet의 프로모션 이벤트에는 언제든지 참여할 수 있는 다양한 활동과 토너먼트대회가 포함되어 있습니다. 이러한 활동에 정기적으로 참여하면 VIP 클럽 초대장을 받을 기회가 증가하며, Seabet의 다른 클럽에서도 더 활발하게 활동할 수 있습니다
-                          </dd>
-                          <dd>초대장 기다리기: 마지막으로 할 일은 저희로부터 초대장을 기다리는 것입니다. 지속적으로 게임을 하고 하이롤러 이벤트에 참여하십시오. 몇 차례의 카지노 게임과 스포츠 베팅 후, VIP 클럽 회원 자격을 받을 만한 가치가 있다고 판단되면 즉시 초대장을 받게 됩니다.</dd>
-                          <dd>Seabet VIP로서 품격 높은 경험 하기: Seabet VIP 클럽 회원으로서의 특전을 즐기면서 USDT 게임의 즐거움을 새로운 차원으로 끌어올릴 수 있습니다. 스포츠 베팅과 카지노 게임에 참여할 때 VIP 플레이어로서 즐겁고, 신속하고 공정한 베팅을 즐길 수 있습니다.
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </div>`,
 
     rulesContent: `<div>
                     <h2>이용약관</h2>

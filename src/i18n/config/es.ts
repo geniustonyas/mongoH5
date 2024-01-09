@@ -25,7 +25,7 @@ export default {
   noMore: 'No hay más...',
   login: 'Iniciar sesión',
   otherMethod: 'Otro Método',
-  reg: 'Registro',
+  reg: 'Registrarse',
   userName: 'Nombre de Usuario',
   email: 'Correo Electrónico',
   sendEmail: 'Send',
@@ -159,7 +159,7 @@ export default {
   liveSupport: 'Soporte en Vivo',
   chooseCrypto: 'Selecciona tu Moneda Preferida',
   cryptoCurrency: 'Criptomoneda',
-  bank: 'Banco',
+  bank: 'Fíat',
   chooseDepositChain: 'Selecciona la Red de Depósito',
   confirmDepositAddress: 'Confirma tu Dirección de Depósito antes de realizar la transacción.',
   recommendExchange: 'Compra criptomonedas en los exchanges recomendados.',
@@ -255,7 +255,8 @@ export default {
     doge: 'DOGE',
     ton: 'TON',
     usd: 'USD',
-    cny: 'CNY'
+    cny: 'CNY',
+    brl: 'BRL'
   },
   // Tienda de Puntos
   points: 'Puntos',
@@ -288,7 +289,8 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
-    sexy: 'Sexy Baccarat'
+    sexy: 'Sexy Baccarat',
+    pgSoft: 'PG Soft'
   },
 
   // Consejos de validación de datos
@@ -501,10 +503,11 @@ export default {
   remain: 'Restante',
   directlyLogin: 'O Inicie sesión directamente',
   fastDeposit: 'Depositar ahora',
-  demoMode: 'Juego de prueba',
-  trueMode: 'Apostar ahora',
+  demoMode: 'Jugar por Diversión',
+  trueMode: 'Jugar de Verdad',
   gameStatic: 'Estadísticas del juego',
   receivedSuccess: '{ amount } USDT Recibido exitosamente',
+  receivedSuccess2: '{ amount } { currency } Recibido exitosamente',
   goTime: 'Hora de salida',
   backTime: 'Hora de llegada',
   inTime: 'Hora de registro en el hotel',
@@ -722,6 +725,26 @@ export default {
   outAny: 'Puedes darte de baja en cualquier momento.',
   subBefore: '(Al hacer clic en "Suscribirse", aceptas que has leído, entiendes y aceptas la ',
   subAfter: 'con respecto al uso de tus datos personales.)',
+  showExpiredPromo: 'Promociones anteriores',
+  expiredPromo: 'Promociones anteriores',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
+  depositLimit: 'Limite de Depósito',
+  depositNewWindow: 'Estamos a punto de abrir una nueva ventana para su pago.',
+  inputDepositAmount: 'Por favor, ingrese el monto de recarga.',
+  depositAmountOver: 'El monto de recarga no puede exceder el límite máximo.',
+  depositAmountUnder: 'El monto de recarga no debe ser inferior al límite mínimo.',
+  providerInfo: 'Por favor, especifica tus datos personales. Todos los datos están encriptados y son seguros.',
+  fiatCpfHolder: 'Ingresa el CPF          ',
+  fiatName: 'Nombre de la Cuenta',
+  fiatNameHolder: 'Ingrese el Nombre',
+  fiatPixType: 'Código do Banco',
+  fiatPixTypeHolder: 'Elegir Código de Banco',
+  fiatPixAccount: 'Cuenta',
+  fiatPixAccountHolder: 'Ingresar Cuenta',
+  withdrawInfo: 'Información de Retiro',
+  fundCurrency: 'Divisa',
+
   vip: {
     seabetVip: 'Club VIP de Seabet',
     vipWelH5: `En Seabet, estamos comprometidos a mejorar la calidad de los juegos y ofrecer la mejor experiencia de juego. Hemos introducido un nuevo Club VIP para recompensar a nuestros miembros que pasan tiempo jugando en nuestro sitio web de manera fiel.`,
@@ -767,45 +790,58 @@ export default {
       '102': {
         '0': { title: 'Bono de Ascenso de Nivel', content: `Premio total: <span>5 USDT</span>` },
         '1': { title: 'Bono de suscripción', content: `Suscríbete al correo promocional y recibe <span>10 USDT</span> gratis` },
-        '2': { title: 'Ganancia de Puntos', content: `<p>Apuesta diaria <span>*1%*1</span></p>` }
+        '2': { title: 'Ganancia de Puntos', content: `<p>Apuesta diaria <span>*1%*1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenga un bono del <span>10%</span> con cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recibe tu bono del <span>5%</span> aproximadamente en base a tus pérdidas diarias</p>` }
       },
       '103': {
         '0': { title: 'Bono de Ascenso de Nivel', content: `Plata 5, Premio total: <span>135 USDT</span>` },
         '1': { title: 'Giros Gratis', content: `<span>30</span> giros gratis en juegos de tragamonedas` },
-        '2': { title: 'Ganancia de Puntos', content: `<p>Apuesta diaria <span>*1%*1.1</span></p>` }
+        '2': { title: 'Ganancia de Puntos', content: `<p>Apuesta diaria <span>*1%*1.1</span></p>` },
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenga un bono del <span>11%</span> con cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recibe tu bono del <span>5%</span> aproximadamente en base a tus pérdidas diarias</p>` }
       },
       '104': {
         '0': { title: 'Bono de Ascenso de Nivel', content: `Oro 8, Premio total: <span>1,255 USDT</span>` },
         '1': { title: 'Bono de Recarga', content: `Deposita <span>300 USDT</span>, y recibe <span>300 USDT</span>` },
         '2': { title: 'Ganancia de Puntos', content: `<p>Apuesta diaria <span>*1%*1.2</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Reciba su bono semanal de Apuesta <span>*1%*5%</span> aproximadamente basado en el monto de su apuesta.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenga un bono del <span>11%</span> con cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recibe tu bono del <span>6%</span> aproximadamente en base a tus pérdidas diarias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Reciba su bono semanal de Apuesta <span>*1%*5%</span> aproximadamente basado en el monto de su apuesta.</p>` }
       },
       '105': {
         '0': { title: 'Bono de Ascenso de Nivel', content: `Platino 10, Premio total: <span>6,025 USDT</span>` },
         '1': { title: 'Bono de Recarga', content: `Deposita <span>1,000 USDT</span>, y recibe <span>1,000 USDT</span>` },
         '2': { title: 'Ganancia de Puntos', content: `<p>Apuesta diaria <span>*1%*1.3</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Reciba su bono semanal de Apuesta <span>*1%*5%</span> aproximadamente basado en el monto de su apuesta.</p>` },
-        '4': { title: 'Cashback Mensual', content: `<p>Reciba su bono mensual de Apuesta <span>*1%*3%</span> aproximadamente basado en el monto de su apuesta.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenga un bono del <span>12%</span> con cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recibe tu bono del <span>7%</span> aproximadamente en base a tus pérdidas diarias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Reciba su bono semanal de Apuesta <span>*1%*5%</span> aproximadamente basado en el monto de su apuesta.</p>` },
+        '6': { title: 'Cashback Mensual', content: `<p>Reciba su bono mensual de Apuesta <span>*1%*3%</span> aproximadamente basado en el monto de su apuesta.</p>` }
       },
       '106': {
         '0': { title: 'Bono de Ascenso de Nivel', content: `Titanio 10, Premio total: <span>18,555 USDT</span>` },
         '1': { title: 'Bono de Recarga', content: `Deposita <span>3,000 USDT</span>, y recibe <span>3,000 USDT</span>` },
         '2': { title: 'Ganancia de Puntos', content: `<p>Apuesta diaria <span>*1%*1.5</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Reciba su bono semanal de Apuesta <span>*1%*8%</span> aproximadamente basado en el monto de su apuesta.</p>` },
-        '4': { title: 'Cashback Mensual', content: `<p>Reciba su bono mensual de Apuesta <span>*1%*5%</span> aproximadamente basado en el monto de su apuesta.</p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenga un bono del <span>12%</span> con cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recibe tu bono del <span>8%</span> aproximadamente en base a tus pérdidas diarias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Reciba su bono semanal de Apuesta <span>*1%*8%</span> aproximadamente basado en el monto de su apuesta.</p>` },
+        '6': { title: 'Cashback Mensual', content: `<p>Reciba su bono mensual de Apuesta <span>*1%*5%</span> aproximadamente basado en el monto de su apuesta.</p>` }
       },
       '107': {
         '0': { title: 'Bono de Ascenso de Nivel', content: `Diamante 6, Premio total: <span>105,555 USDT</span>` },
         '1': { title: 'Bono de Recarga', content: `Deposita <span>10,000 USDT</span>, y recibe <span>10,000 USDT</span>` },
         '2': { title: 'Ganancia de Puntos', content: `<p>Apuesta diaria <span>*1%*2</span></p>` },
-        '3': { title: 'Cashback Semanal', content: `<p>Reciba su bono semanal de Apuesta <span>*1%*10%</span> aproximadamente basado en el monto de su apuesta.</p>` },
-        '4': { title: 'Cashback Mensual', content: `<p>Reciba su bono mensual de Apuesta <span>*1%*8%</span> aproximadamente basado en el monto de su apuesta.</p>` },
-        '5': { title: 'Recompensa Especial', content: `<p>Diamante 6, recompensa especial de Honra Suprema de <span>20,000 USDT</span></p>` }
+        '3': { title: 'Slots Deposit Bonus', content: `<p>Obtenga un bono del <span>15%</span> con cada depósito</p>` },
+        '4': { title: 'Slots Loss Rebate', content: `<p>Recibe tu bono del <span>10%</span> aproximadamente en base a tus pérdidas diarias</p>` },
+        '5': { title: 'Cashback Semanal', content: `<p>Reciba su bono semanal de Apuesta <span>*1%*10%</span> aproximadamente basado en el monto de su apuesta.</p>` },
+        '6': { title: 'Cashback Mensual', content: `<p>Reciba su bono mensual de Apuesta <span>*1%*8%</span> aproximadamente basado en el monto de su apuesta.</p>` },
+        '7': { title: 'Recompensa Especial', content: `<p>Diamante 6, recompensa especial de Honra Suprema de <span>20,000 USDT</span></p>` }
       }
     },
     vipRewardDetailTitle: 'Detalles de los Beneficios del Club VIP',
     vipRewardDetailContent: `<dd>Los bonos de correo electrónico de promoción por suscripción se enviarán a través del correo electrónico promocional con un código. Utiliza el código para canjearlo en la página de "Recompensas".</dd>
                             <dd>Giros gratis para VIPs Plata se pueden reclamar en la página de 'Recompensas'. Disponibles en la plataforma Play'N GO, juegos elegibles: Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way./dd>
+                            <dd>Por favor, revise la página de promociones para más información sobre Slots Deposit Bonus ＆ Slots Loss Rebate.</dd>
                             <dd>Los bonos de recarga para todos los niveles están limitados a una solicitud, requiriendo la realización de una cantidad de apuestas 10 veces, aplicable a cualquier juego. Ejemplo: (1000+1000)*10=20000.</dd>
                             <dd>Los bonos de recarga deben solicitarse a través del servicio de atención al cliente en línea después de completar el depósito y antes de realizar cualquier apuesta.</dd>
                             <dd>Las recompensas en puntos se añadirán automáticamente a la cuenta al día siguiente en función del monto apostado.</dd>
@@ -975,97 +1011,6 @@ export default {
     privacyTitle: 'Política de Privacidad',
     fairnessTitle: 'Equidad',
 
-    // Contenido HTML
-    vipContent: `<div class="vip-clubhouse-box">
-                  <div class="vc-rows">
-                    <div class="vr-title">1.Introducción al Club VIP</div>
-                    <div class="vr-conts">
-                      <p>¡Bienvenido al Club VIP de Seabet!</p>
-                      <p>En Seabet, estamos comprometidos a mejorar la calidad del juego y brindar la mejor experiencia de juego. Estamos emocionados de presentar nuestro nuevo Club VIP, diseñado para recompensar a nuestros miembros leales que pasan tiempo jugando en nuestro sitio web.</p>
-                      <p>Simplemente realiza apuestas en cualquier juego o evento deportivo proporcionado por Seabet.io para desbloquear recompensas exclusivas a medida que avanzas en los niveles.</p>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">2.Servicio Personalizado</div>
-                    <div class="vr-conts">
-                      <p>Nuestro equipo profesional de Gerentes de Atención al Cliente se asegura de cubrir todas tus necesidades y cumplir con los más altos estándares de la industria. Los miembros VIP pueden disfrutar de bonificaciones exclusivas, invitaciones a eventos de renombre y una variedad de recompensas personalizadas para brindarte experiencias de juego rápidas, agradables y eficientes.</p>
-                      <dl>
-                        <dt>VGerente Exclusivo VIP:</dt>
-                        <dd>Comprometido en atender tus necesidades</dd>
-                        <dd>Experiencias de juego privadas diseñadas especialmente para ti</dd>
-                      </dl>
-                      <dl>
-                        <dt>Recompensas Generosas:</dt>
-                        <dd>Ofertas exclusivas diseñadas para ti</dd>
-                        <dd>Bonos sin requisito de apuesta</dd>
-                        <dd>Acumulación rápida de puntos</dd>
-                      </dl>
-                      <dl>
-                        <dt>Límites de Apuesta Más Altos de la Industria:</dt>
-                        <dd>Unlimited daily deposits and withdrawals with cryptocurrencies</dd>
-                      </dl>
-                      <dl>
-                        <dt>Promociones Exclusivas VIP:</dt>
-                        <dd>Distinguished from regular member promotions</dd>
-                        <dd>Preserve the best gaming experience for you</dd>
-                        <dd>Exclusive to VIP users</dd>
-                        <dd>Personalized offers</dd>
-                        <dd>Customized entertainment services exclusively for you</dd>
-                      </dl>
-                      <dl>
-                        <dt>24/7 Priority Service：</dt>
-                        <dd>Sin necesidad de hacer fila ni esperar</dd>
-                        <dd>Tus necesidades son nuestra principal prioridad</dd>
-                        <dd>Múltiples métodos de contacto en redes sociales, gerentes de atención al cliente dedicados que ofrecen servicios en línea.</dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">3.Estructura de Niveles</div>
-                    <div class="vr-conts">
-                      <p>Seis niveles VIP que cubren de manera integral todo tu viaje de juego:</p>
-                      <dl>
-                        <dd>Bronce: Bronce 1</dd>
-                        <dd>Plata: Plata 1 - Plata 5</dd>
-                        <dd>Oro: Oro 1 - Oro 8</dd>
-                        <dd>Platino: Platino 1 - Platino 10</dd>
-                        <dd>Titanio: Titanio 1 - Titanio 10</dd>
-                        <dd>Diamante: Diamante 1 - Diamante 6</dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">4.Beneficios para los Miembros del Club VIP</div>
-                    <div class="vr-conts">
-                      <dl>
-                        <dd>Bonificaciones al Subir de Nivel: Recibe bonificaciones al alcanzar el siguiente nivel. Cuanto más alto sea el nivel que alcances, mayor será la bonificación.</dd>
-                        <dd>Ofertas Exclusivas Personalizadas: ¿No estás interesado en las promociones regulares? No hay problema. Una vez que llegues al nivel VIP correspondiente, adaptaremos ofertas especialmente diseñadas según tus intereses, exclusivamente para ti.</dd>
-                        <dd>Experiencia de Entretenimiento Personalizada: Ya sea en eventos deportivos importantes, conciertos, espectáculos de música o un viaje de lujo, como miembro VIP senior, todos tus gastos personales serán cubiertos por Seabet, y organizaremos tu itinerario.</dd>
-                        <dd>Servicio VIP Exclusivo: Se te asignará un representante de servicio VIP dedicado que apoyará y satisfará tus necesidades de apuestas.</dd>
-                        <dd>Acumulación más Rápida de Puntos: Los niveles VIP acumulan puntos a una velocidad más rápida en comparación con los miembros regulares. Los niveles más altos acumulan más puntos, lo que conduce a una amplia gama de premios para canjear.</dd>
-                      </dl>
-                    </div>
-                  </div>
-                  <div class="vc-rows">
-                    <div class="vr-title">5.Cómo Convertirse en Miembro VIP</div>
-                    <div class="vr-conts">
-                      <dl>
-                        <dd>
-                        Sigue Apostando: La clave para convertirse en VIP es apostar de manera constante en diversos eventos deportivos y juegos de casino. Seabet recompensa tu consistencia. Como uno de los principales sitios de apuestas con criptomonedas, utiliza regularmente tus activos digitales para realizar apuestas en cualquier evento deportivo y juegos de casino ofrecidos por Seabet. También puedes probar a apostar con USDT y seguir utilizando tus fondos.
-                        </dd>
-                        <dd>
-                        Participa en Eventos Regulares: Las actividades promocionales de Seabet incluyen varios eventos y competiciones en los que puedes participar en cualquier momento. La participación regular en cualquiera de estos eventos aumentará tus posibilidades de recibir una invitación al Club VIP. Además, puedes ser más activo en otras funciones del club ofrecidas por Seabet.
-                        </dd>
-                        <dd>
-                        Espera la Invitación: Lo último que debes hacer es esperar a que te enviemos una invitación. Continúa jugando y participando en eventos de alto nivel. Después de algunas rondas de juegos de casino y apuestas deportivas, una vez que se te considere digno de convertirte en miembro del Club VIP, recibirás una invitación de inmediato.
-                        </dd>
-                        <dd>
-                          Experimenta la Vida de Lujo como VIP de Seabet: Lleva tu experiencia de apuestas con USDT a un nivel completamente nuevo mientras disfrutas de privilegios de primer nivel como miembro del Club VIP de Seabet. Como jugador valorado, experimentarás la mejor diversión, apuestas rápidas y justas al participar en apuestas deportivas y juegos de casino.
-                        </dd>
-                      </dl>
-                    </div>
-                  </div>
-                </div>`,
     rulesContent: `<div>
                       <p>Términos y Condiciones</p>
                       <h3>1. SEABET. IO</h3>

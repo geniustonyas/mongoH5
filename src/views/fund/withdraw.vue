@@ -43,7 +43,7 @@
           <a :class="withdrawForm.Amount == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('next') }}</a>
         </div>
         <!-- step 2 -->
-        <div v-show="step == 2" class="fund-form">
+        <div v-show="step == 2" class="fund-fiat-form fund-form fund-withdraw-form">
           <div class="ff-title">{{ t('walletDetails') }}</div>
           <div class="ff-balance">
             {{ t('currentBalance') }}:
@@ -51,36 +51,65 @@
             {{ withdrawBalanceItem.unit }}
           </div>
 
-          <div class="fb-row">
-            <div class="row-body">
-              <div class="r-title">{{ t('youWithdrawAddress') }}</div>
-              <div class="r-group-card">
-                <div v-show="withdrawBalanceItem.name == 'USDT'" class="gc-t" @click="showBlockChainBox = true">
-                  <div class="t-l">
-                    <div class="t-icon">
-                      <img :src="getAssetsFile('coin/usdt.svg')" />
-                      <em><i :class="selBlockChainItem.icon" /></em>
+          <template v-if="route.query.CurrencyType != '20'">
+            <div class="fb-row">
+              <div class="row-body">
+                <div class="r-title">{{ t('youWithdrawAddress') }}</div>
+                <div class="r-group-card">
+                  <div v-show="withdrawBalanceItem.name == 'USDT'" class="gc-t" @click="showBlockChainBox = true">
+                    <div class="t-l">
+                      <div class="t-icon">
+                        <img :src="getAssetsFile('coin/usdt.svg')" />
+                        <em><i :class="selBlockChainItem.icon" /></em>
+                      </div>
+                      <div class="t-txt">
+                        <span>{{ selBlockChainItem.chainName }}</span>
+                        <small>{{ selBlockChainItem.subtitle }}</small>
+                      </div>
                     </div>
-                    <div class="t-txt">
-                      <span>{{ selBlockChainItem.chainName }}</span>
-                      <small>{{ selBlockChainItem.subtitle }}</small>
+                    <div class="t-r">
+                      <i class="iconfont icon-down" />
                     </div>
-                  </div>
-                  <div class="t-r">
-                    <i class="iconfont icon-down" />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="ff-group">
-            <label>{{ t('payto') }}</label>
-            <input v-model="withdrawForm.PayeeAddress" ref="addressDom" type="text" :placeholder="t('walletAddress')" />
-          </div>
-          <div class="ff-rmark"><i class="iconfont icon-info" />{{ t('checkWithdrawAddress') }}</div>
+            <div class="ff-group">
+              <label>{{ t('payto') }}</label>
+              <input v-model="withdrawForm.PayeeAddress" ref="addressDom" type="text" :placeholder="t('walletAddress')" />
+            </div>
+            <div class="ff-rmark"><i class="iconfont icon-info" />{{ t('checkWithdrawAddress') }}</div>
+          </template>
+          <template v-else>
+            <div class="ff-info">{{ t('providerInfo') }}</div>
+            <div class="ff-group">
+              <label>CPF</label>
+              <input v-model="withdrawForm.PayeeData.banknumber" type="text" ref="banknumberDom" :placeholder="t('fiatCpfHolder')" autocomplete="off" />
+              <div id="banknumberTip" class="tip" />
+            </div>
+
+            <div class="ff-group">
+              <label>{{ t('fiatName') }}</label>
+              <input v-model="withdrawForm.PayeeData.bankfullname" type="text" ref="bankfullnameDom" :placeholder="t('fiatNameHolder')" autocomplete="off" />
+              <div id="bankfullnameTip" class="tip" />
+            </div>
+
+            <div class="ff-group">
+              <label>{{ t('fiatPixType') }}</label>
+              <input v-model="withdrawForm.PayeeData.bankname" readonly type="text" ref="banknameDom" :placeholder="t('fiatPixTypeHolder')" autocomplete="off" @focus="showPixPicker = true" />
+              <i class="iconfont icon-down down" />
+              <div id="banknameTip" class="tip" />
+            </div>
+
+            <div class="ff-group">
+              <label>{{ t('fiatPixAccount') }}</label>
+              <input v-model="withdrawForm.PayeeData.bankzhiname" type="text" ref="bankzhinameDom" :placeholder="t('fiatPixAccountHolder')" autocomplete="off" />
+              <div id="bankzhinameTip" class="tip" />
+            </div>
+          </template>
         </div>
         <div v-show="step == 2" class="fund-btn">
-          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('previewWithdraw') }}</a>
+          <a class="btn btn-primary" @click="selTab()">{{ t('previewWithdraw') }}</a>
         </div>
         <!-- step 3 -->
         <div v-show="step == 3" class="fund-form">
@@ -89,27 +118,78 @@
 
           <div class="fb-row">
             <div class="row-body">
-              <div class="r-title">{{ t('walletAddressBig') }}</div>
-              <div class="r-group-card">
-                <div class="gc-t">
-                  <div class="t-l">
-                    <div class="t-icon">
-                      <img v-if="withdrawForm.CurrencyCode != 'USDT'" :src="getAssetsFile(currenyImg())" />
-                      <template v-else>
-                        <img :src="getAssetsFile('coin/usdt.svg')" />
-                        <em><i :class="withdrawForm.BlockchainCode == 'Tron' ? 'iconfont icon-trx' : 'iconfont icon-eth'" /></em>
-                      </template>
+              <template v-if="route.query.CurrencyType != '20'">
+                <div class="r-title">{{ t('walletAddressBig') }}</div>
+                <div class="r-group-card">
+                  <div class="gc-t">
+                    <div class="t-l">
+                      <div class="t-icon">
+                        <img v-if="withdrawForm.CurrencyCode != 'USDT'" :src="getAssetsFile(currenyImg())" />
+                        <template v-else>
+                          <img :src="getAssetsFile('coin/usdt.svg')" />
+                          <em><i :class="withdrawForm.BlockchainCode == 'Tron' ? 'iconfont icon-trx' : 'iconfont icon-eth'" /></em>
+                        </template>
+                      </div>
+                      <div class="t-txt">
+                        <span>{{ withdrawForm.CurrencyCode }}{{ withdrawForm.CurrencyCode == 'USDT' ? `(${withdrawForm.BlockchainCode})` : '' }}</span>
+                        <small>{{ withdrawForm.PayeeAddress }}</small>
+                      </div>
                     </div>
-                    <div class="t-txt">
-                      <span>{{ withdrawForm.CurrencyCode }}{{ withdrawForm.CurrencyCode == 'USDT' ? `(${withdrawForm.BlockchainCode})` : '' }}</span>
-                      <small>{{ withdrawForm.PayeeAddress }}</small>
+                    <div class="t-r" @click="step = 2">
+                      <i class="iconfont icon-bianji" />
                     </div>
-                  </div>
-                  <div class="t-r" @click="step = 2">
-                    <i class="iconfont icon-bianji" />
                   </div>
                 </div>
-              </div>
+              </template>
+              <template v-else>
+                <div class="r-title">{{ t('withdrawInfo') }}</div>
+                <div class="r-group-card">
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>CPF</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ withdrawForm.PayeeData.banknumber }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>{{ t('fiatName') }}</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ withdrawForm.PayeeData.bankfullname }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>{{ t('fiatPixType') }}</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ withdrawForm.PayeeData.bankname }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>{{ t('fiatPixAccount') }}</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ withdrawForm.PayeeData.bankzhiname }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                </div>
+              </template>
             </div>
           </div>
           <dl class="ff-rows">
@@ -132,7 +212,7 @@
           </div>
         </div>
         <div v-show="step == 3" class="fund-btn">
-          <a :class="withdrawForm.PayeeAddress == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">
+          <a class="btn btn-primary" @click="selTab()">
             <i v-show="btnLoading" class="iconfont icon-loading" />
             <span>{{ t('confirm') }}</span>
           </a>
@@ -149,7 +229,7 @@
               {{ t('currency') }}:
               <span>{{ withdrawDetail.currencyCode }}</span>
             </dd>
-            <dd>
+            <dd v-if="route.query.CurrencyType != '20'">
               {{ t('address') }}:
               <span>{{ withdrawForm.PayeeAddress }}</span>
             </dd>
@@ -211,6 +291,9 @@
             </ul>
           </div>
         </Popup>
+        <Popup v-model:show="showPixPicker" round position="bottom">
+          <Picker :columns="pixType" @confirm="confirmPixType" @cancel="showPixPicker = false" />
+        </Popup>
       </ConfigProvider>
     </main>
   </div>
@@ -231,7 +314,7 @@ import { useI18n } from 'vue-i18n'
 import { liveChatCall } from '@/composables/startGame'
 
 import BigNumber from 'bignumber.js'
-import { showToast, Popup, ConfigProvider } from 'vant'
+import { showToast, Popup, ConfigProvider, Picker } from 'vant'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -239,7 +322,7 @@ const route = useRoute()
 const { t } = useI18n()
 const usdtChainList = usdtChainListData()
 const currenyList = currenyListData()
-
+console.log(route.query.CurrencyType)
 let btnLoading = ref(false)
 const step = ref(1)
 // 快捷提现比例
@@ -273,6 +356,16 @@ const getWithdrawAmountForm = reactive({
   CurrencyCode: route.query?.CurrencyCode as string
 })
 
+const showPixPicker = ref(false)
+// const pixType = ['EMAIL', 'PHONE', 'CPF', 'CNPJ', 'RANDOM']
+const pixType = [
+  { text: 'EMAIL', value: 'EMAIL' },
+  { text: 'PHONE', value: 'PHONE' },
+  { text: 'CPF', value: 'CPF' },
+  { text: 'CNPJ', value: 'CNPJ' },
+  { text: 'RANDOM', value: 'RANDOM' }
+]
+
 // 第二步： 选择提现链
 let showBlockChainBox = ref(false)
 let selBlockChainItem = reactive<usdtChainListTypes>({
@@ -285,6 +378,10 @@ let selBlockChainItem = reactive<usdtChainListTypes>({
 //
 let amountDom = ref<HTMLInputElement | null>(null)
 let addressDom = ref<HTMLInputElement | null>(null)
+let banknumberDom = ref<HTMLInputElement | null>(null)
+let bankfullnameDom = ref<HTMLInputElement | null>(null)
+let banknameDom = ref<HTMLInputElement | null>(null)
+let bankzhinameDom = ref<HTMLInputElement | null>(null)
 let googleCodeDom = ref<HTMLInputElement | null>(null)
 // 提现表单
 const withdrawForm = reactive({
@@ -292,8 +389,19 @@ const withdrawForm = reactive({
   BlockchainCode: '',
   VerificationCode: '',
   PayeeAddress: '',
-  Amount: ''
+  Amount: '',
+  PayeeData: {
+    bankfullname: '',
+    banknumber: '',
+    bankname: '',
+    bankzhiname: ''
+  }
 })
+
+const confirmPixType = (selected: any) => {
+  withdrawForm.PayeeData.bankname = selected.selectedValues[0]
+  showPixPicker.value = false
+}
 
 const currenyName = () => {
   const tmp = currenyList.find((item) => item.code == (route.query?.CurrencyCode as string))
@@ -380,17 +488,41 @@ const selTab = () => {
     }
     step.value = 2
   } else if (step.value == 2) {
-    if (withdrawForm.PayeeAddress == '') {
-      addressDom.value?.focus()
-      showToast(t('tips.inputWithdrawAddress'))
-      return false
-    }
-    withdrawForm.BlockchainCode = withdrawForm.BlockchainCode == '' ? selBlockChainItem.code : withdrawForm.BlockchainCode
-    // 设置提现链
-    if (route.query.CurrencyCode == 'USDT') {
+    if (route.query.CurrencyType != '20') {
+      if (withdrawForm.PayeeAddress == '') {
+        addressDom.value?.focus()
+        showToast(t('tips.inputWithdrawAddress'))
+        return false
+      }
       withdrawForm.BlockchainCode = withdrawForm.BlockchainCode == '' ? selBlockChainItem.code : withdrawForm.BlockchainCode
+      // 设置提现链
+      if (route.query.CurrencyCode == 'USDT') {
+        withdrawForm.BlockchainCode = withdrawForm.BlockchainCode == '' ? selBlockChainItem.code : withdrawForm.BlockchainCode
+      } else {
+        //@ts-ignore
+        withdrawForm.BlockchainCode = currencyChain()
+      }
     } else {
-      withdrawForm.BlockchainCode = currencyChain()
+      if (withdrawForm.PayeeData.banknumber == '') {
+        banknumberDom.value?.focus()
+        showToast(t('fiatCpfHolder'))
+        return false
+      }
+      if (withdrawForm.PayeeData.bankfullname == '') {
+        bankfullnameDom.value?.focus()
+        showToast(t('fiatNameHolder'))
+        return false
+      }
+      if (withdrawForm.PayeeData.bankname == '') {
+        banknameDom.value?.focus()
+        showToast(t('fiatPixTypeHolder'))
+        return false
+      }
+      if (withdrawForm.PayeeData.bankzhiname == '') {
+        bankzhinameDom.value?.focus()
+        showToast(t('fiatPixAccountHolder'))
+        return false
+      }
     }
     step.value = 3
   } else if (step.value == 3) {

@@ -214,3 +214,19 @@ export function thirdRegApi(data: User.thirdRegData) {
     data
   })
 }
+
+/** 订阅邮件 */
+export function subscribeApi(data: User.subscribeData) {
+  return request<anyResp>({
+    baseURL: 'https://api.brevo.com/',
+    url: 'v3/contacts',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      accept: 'application/json',
+      'api-key': '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'
+    },
+    withCredentials: false,
+    data
+  })
+}

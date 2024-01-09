@@ -43,7 +43,7 @@
               <li>
                 <div class="l-bd">
                   <span>{{ t('commissionRate') }}</span>
-                  <b>{{ dashboardData.commission.rate * 100 }} % </b>
+                  <b>{{ rate }} % </b>
                 </div>
               </li>
             </ul>
@@ -69,6 +69,7 @@ import { useI18n } from 'vue-i18n'
 
 import { getDashboardApi } from '@/api/affiliate'
 import { getDashboardRespItem, chartItem } from '@/api/affiliate/types'
+import { moneyFormat } from '@/utils/index'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
 
@@ -77,6 +78,7 @@ import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/compon
 import { LineChart, BarChart } from 'echarts/charts'
 import { UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
+import BigNumber from 'bignumber.js'
 
 const { t } = useI18n()
 
@@ -106,6 +108,8 @@ const dashboardData = reactive({
   }
 })
 
+const rate = ref<number | string>(0)
+
 // 切换图表
 const chartTab = ref('countChart')
 let bannerChart: any = null
@@ -116,6 +120,7 @@ const toggleChart = () => {
   getDashboardApi({ t: 1 })
     .then((resp: any) => {
       Object.assign(dashboardData, resp.data)
+      rate.value = moneyFormat(new BigNumber(resp.data.commission.rate).multipliedBy(100).toNumber())
       initBannerChart()
     })
     .catch((err) => {

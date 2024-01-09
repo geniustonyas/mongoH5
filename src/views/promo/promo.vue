@@ -15,18 +15,25 @@
               <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
             </a>
           </li>
-          <template v-if="expiredPromoList.length > 0 && showExpiredPromoList">
-            <li v-for="(item, index) of expiredPromoList" :key="index" class="gray">
-              <a @click="router.push({ name: 'promoDetails', params: { id: item.id } })">
-                <img :data-src="appStore.cdnurl + item.image" />
-                <h3>{{ item.title }}</h3>
-                <p>{{ item.intro }}</p>
-                <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
-              </a>
-            </li>
-          </template>
         </ul>
-        <div v-if="promoList.length > 0 && !showExpiredPromoList" class="pb-more"><a class="btn btn-primary" @click="getExpiredPromoList">显示已过期优惠</a></div>
+        <div v-if="showExpiredPromoList" class="overPromo">{{ t('expiredPromo') }}</div>
+        <ul
+          v-if="expiredPromoList.length > 0 && showExpiredPromoList"
+          class="pb-list"
+          v-lazy-container="{ selector: 'img', error: getAssetsFile('seabet1.png'), loading: getAssetsFile('seabet1.png') }"
+        >
+          <li v-for="(item, index) of expiredPromoList" :key="index" class="expire" @click.stop="router.push({ name: 'promoDetails', params: { id: item.id } })">
+            <a>
+              <img :data-src="appStore.cdnurl + item.image" />
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.intro }}</p>
+              <span>{{ t('readMore') }}<i class="iconfont icon-right" /></span>
+            </a>
+          </li>
+        </ul>
+        <div v-if="promoList.length > 0 && !showExpiredPromoList" class="pb-more">
+          <a class="btn btn-primary" @click="getExpiredPromoList">{{ t('showExpiredPromo') }}</a>
+        </div>
       </div>
     </main>
     <Sidebar :currency-code="currencyCode" :exchange-rate="exchangeRate" />

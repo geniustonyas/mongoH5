@@ -342,7 +342,7 @@ const exchangeReward = () => {
   }
   exchangeRewardApi({ RewardCode: rewardCode.value })
     .then((resp) => {
-      showToast(t('receivedSuccess', { amount: moneyFormat(resp.data) }))
+      showToast(t('receivedSuccess2', { amount: moneyFormat(resp.data.amount), currency: resp.data.currencyCode }))
       showAddBox.value = false
       query.PageIndex = 1
       rewardList.value = []

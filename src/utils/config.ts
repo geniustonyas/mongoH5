@@ -116,6 +116,14 @@ export const currenyListData = () => {
       icon: 'coin/doge.svg',
       chain: 'Dogecoin',
       explorer: ''
+    },
+    {
+      code: 'BRL',
+      currenyName: t('currencyLang.brl'),
+      unit: 'BRL',
+      currenyType: '20',
+      icon: 'coin/brl.svg',
+      explorer: ''
     }
     // {
     //   code: 'TON',
@@ -157,6 +165,7 @@ export const providerListData = () => {
     { id: '7', type: 'casino', tab: 'casino', show: true, name: t('provider.ezugi'), img: getAssetsFile('svg/Ezugi.svg') },
     { id: '3', type: 'casino', tab: 'casino', show: true, name: t('provider.asiaGaming'), img: getAssetsFile('svg/AsiaGaming.svg') },
     // 电子提供商
+    { id: '13', type: 'slots', tab: 'slots', show: true, name: t('provider.pgSoft'), img: getAssetsFile('svg/pgsoft.svg') },
     { id: '1', type: 'slots', tab: 'slots', show: true, name: t('provider.pragmaticPlay'), img: getAssetsFile('svg/PragmaticPlay.svg') },
     { id: '11', type: 'slots', tab: 'slots', show: true, name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg') },
     { id: '9', type: 'slots', tab: 'slots', show: true, name: t('provider.netEnt'), img: getAssetsFile('svg/NetEnt.svg') },

@@ -159,7 +159,7 @@ export default {
   liveSupport: 'チャットサポート',
   chooseCrypto: '好みの仮想通貨の選択',
   cryptoCurrency: '仮想通貨',
-  bank: '銀行',
+  bank: '法定通貨',
   chooseDepositChain: '送金チェインの選択',
   confirmDepositAddress: '取引の際に必ず入金先のウォレットアドレスをご確認ください。',
   recommendExchange: 'お勧めの取引場で仮想通貨を購入する',
@@ -255,7 +255,8 @@ export default {
     doge: 'ドージコイン',
     ton: 'トンコイン',
     usd: 'US＄',
-    cny: '人民元'
+    cny: '人民元',
+    brl: 'ブラジルレアル'
   },
   // ポイントストア
   points: 'ポイント',
@@ -289,7 +290,8 @@ export default {
     netEnt: 'NetEnt',
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
-    sexy: 'Sexy Baccarat'
+    sexy: 'Sexy Baccarat',
+    pgSoft: 'PG Soft'
   },
 
   // データ入力に関するヒント
@@ -501,10 +503,11 @@ export default {
   remain: '残り',
   directlyLogin: 'または直接ログイン',
   fastDeposit: 'クイック入金',
-  demoMode: 'トライアルモード',
-  trueMode: 'リアルマネーモード',
+  demoMode: '楽しんでプレイ',
+  trueMode: 'リアルプレイ',
   gameStatic: 'ゲームデータ統計',
   receivedSuccess: '{ amount } USDT 受け取り成功',
+  receivedSuccess2: '{ amount } { currency } 受け取り成功',
   goTime: '出発時間',
   backTime: '帰りの時間',
   inTime: 'ホテルのチェックイン時間',
@@ -717,6 +720,26 @@ export default {
   outAny: 'いつでも退会することができます.',
   subBefore: '（「サブスクライブ」をクリックすることにより、あなたは',
   subAfter: 'を読み、理解し、個人データの使用について同意したことになります.）',
+  showExpiredPromo: '過去のキャンペーン',
+  expiredPromo: '過去のキャンペーン',
+  subscribeSuccess: '订阅成功',
+  subscribeFail: '订阅失败',
+  depositLimit: '預金限度',
+  depositNewWindow: 'お支払いのために新しいウィンドウを開こうとしています.',
+  inputDepositAmount: 'チャージ金額を入力してください.',
+  depositAmountOver: 'チャージ金額は最大限度を超えることはできません.',
+  depositAmountUnder: 'チャージ金額は最低限度を下回ってはいけません.',
+  providerInfo: '個人情報を入力してください。データはすべて暗号化されますので、安全です。',
+  fiatCpfHolder: 'CPFを入力',
+  fiatName: 'アカウント名',
+  fiatNameHolder: '名前入力',
+  fiatPixType: '銀行コード',
+  fiatPixTypeHolder: '銀行コード選択',
+  fiatPixAccount: 'アカウント',
+  fiatPixAccountHolder: 'アカウント入力',
+  withdrawInfo: '引き出し情報',
+  fundCurrency: '通貨',
+
   vip: {
     seabetVip: 'Seabet VIPクラブ',
     vipWelH5: `Seabet では、ゲームの品質を向上させ、最高のゲーム体験を提供することに全力で取り組んでいます。当社の Web サイトで、長時間ゲームをプレイして頂いているメンバーの皆様に、特別なリワードを用意した、 VIP クラブをご用意しております。`,
@@ -762,45 +785,58 @@ export default {
       '102': {
         '0': { title: '昇格ボーナス', content: `賞金総額：<span>5 USDT</span>` },
         '1': { title: '購読ボーナス', content: `プロモーションメールを購読して無料で <span>10 USDT</span>` },
-        '2': { title: 'ポイント獲得', content: `<p>日別ベット額 <span>*1%*1</span></p>` }
+        '2': { title: 'ポイント獲得', content: `<p>日別ベット額 <span>*1%*1</span></p>` },
+        '3': { title: 'スロット入金ボーナス', content: `<p>入金ごとに<span>10%</span>のボーナスを獲得</p>` },
+        '4': { title: 'スロット損失リベート', content: `<p>：毎日の損失に基づいて約<span>5%</span>のボーナスを受け取ります</p>` }
       },
       '103': {
         '0': { title: '昇格ボーナス', content: `シルバー 5、賞金総額：<span>135 USDT</span>` },
         '1': { title: '無料スピ', content: `スロットゲームで無料で <span>30</span>回転` },
-        '2': { title: 'ポイント獲得', content: `<p>日別ベット額 <span>*1%*1.1</span></p>` }
+        '2': { title: 'ポイント獲得', content: `<p>日別ベット額 <span>*1%*1.1</span></p>` },
+        '3': { title: 'スロット入金ボーナス', content: `<p>入金ごとに<span>11%</span>のボーナスを獲得</p>` },
+        '4': { title: 'スロット損失リベート', content: `<p>：毎日の損失に基づいて約<span>5%</span>のボーナスを受け取ります</p>` }
       },
       '104': {
         '0': { title: '昇格ボーナス', content: `ゴールド 8、賞金総額：<span>1,255 USDT</span>` },
         '1': { title: 'デポジットボーナス', content: `<span>300 USDT</span> デポジットで <span>300 USDT</span> ボーナス` },
         '2': { title: 'ポイント獲得', content: `<p>日別ベット額 <span>*1%*1.2</span></p>` },
-        '3': { title: 'ウィークリーキャッシュバック', content: `<p>賭け金の額に応じて、およそ賭け<span>*1%* 5%</span> のウィークリーボーナスを受け取ります。</p>` }
+        '3': { title: 'スロット入金ボーナス', content: `<p>入金ごとに<span>11%</span>のボーナスを獲得</p>` },
+        '4': { title: 'スロット損失リベート', content: `<p>：毎日の損失に基づいて約<span>6%</span>のボーナスを受け取ります</p>` },
+        '5': { title: 'ウィークリーキャッシュバック', content: `<p>賭け金の額に応じて、およそ賭け<span>*1%* 5%</span> のウィークリーボーナスを受け取ります。</p>` }
       },
       '105': {
         '0': { title: '昇格ボーナス', content: `プラチナ 10、賞金総額：<span>6,025 USDT</span>` },
         '1': { title: 'デポジットボーナス', content: `<span>1,000 USDT</span> デポジットで <span>1,000 USDT</span>ボーナス` },
         '2': { title: 'ポイント獲得', content: `<p>日別ベット額 <span>*1%*1.3</span></p>` },
-        '3': { title: 'ウィークリーキャッシュバック', content: `<p>賭け金の額に応じて、およそ賭け<span>*1%* 5%</span> のウィークリーボーナスを受け取ります。</p>` },
-        '4': { title: 'マンスリーキャッシュバック', content: `<p>毎月のボーナスは、賭け金の額に応じて賭け<span>*1%* 3%</span>程度を受け取ります。</p>` }
+        '3': { title: 'スロット入金ボーナス', content: `<p>入金ごとに<span>12%</span>のボーナスを獲得</p>` },
+        '4': { title: 'スロット損失リベート', content: `<p>：毎日の損失に基づいて約<span>7%</span>のボーナスを受け取ります</p>` },
+        '5': { title: 'ウィークリーキャッシュバック', content: `<p>賭け金の額に応じて、およそ賭け<span>*1%* 5%</span> のウィークリーボーナスを受け取ります。</p>` },
+        '6': { title: 'マンスリーキャッシュバック', content: `<p>毎月のボーナスは、賭け金の額に応じて賭け<span>*1%* 3%</span>程度を受け取ります。</p>` }
       },
       '106': {
         '0': { title: '昇格ボーナス', content: `チタン 10、賞金総額：<span>18,555 USDT</span>` },
         '1': { title: 'デポジットボーナス', content: `<span>3,000 USDT</span> デポジットで <span>3,000 USDT</span>ボーナス` },
         '2': { title: 'ポイント獲得', content: `<p>日別ベット額 <span>*1%*1.5</span></p>` },
-        '3': { title: 'ウィークリーキャッシュバック', content: `<p>賭け金の額に応じて、およそ賭け<span>*1%* 8%</span> のウィークリーボーナスを受け取ります。</p>` },
-        '4': { title: 'マンスリーキャッシュバック', content: `<p>毎月のボーナスは、賭け金の額に応じて賭け<span>*1%* 5%</span>程度を受け取ります。</p>` }
+        '3': { title: 'スロット入金ボーナス', content: `<p>入金ごとに<span>12%</span>のボーナスを獲得</p>` },
+        '4': { title: 'スロット損失リベート', content: `<p>：毎日の損失に基づいて約<span>8%</span>のボーナスを受け取ります</p>` },
+        '5': { title: 'ウィークリーキャッシュバック', content: `<p>賭け金の額に応じて、およそ賭け<span>*1%* 8%</span> のウィークリーボーナスを受け取ります。</p>` },
+        '6': { title: 'マンスリーキャッシュバック', content: `<p>毎月のボーナスは、賭け金の額に応じて賭け<span>*1%* 5%</span>程度を受け取ります。</p>` }
       },
       '107': {
         '0': { title: '昇格ボーナス', content: `ダイアモンド 6、賞金総額：<span>105,555 USDT</span>` },
         '1': { title: 'デポジットボーナス', content: `<span>10,000 USDT</span> デポジットで <span>10,000 USDT</span>ボーナス` },
         '2': { title: 'ポイント獲得', content: `<p>日別ベット額 <span>*1%*2</span></p>` },
-        '3': { title: 'ウィークリーキャッシュバック', content: `<p>賭け金の額に応じて、およそ賭け<span>*1%* 10%</span> のウィークリーボーナスを受け取ります。</p>` },
-        '4': { title: 'マンスリーキャッシュバック', content: `<p>毎月のボーナスは、賭け金の額に応じて賭け<span>*1%* 8%</span>程度を受け取ります。</p>` },
-        '5': { title: '特別ボーナス', content: `<p>ダイヤモンド6、至尊の名誉特別ボーナス<span>20,000 USDT</span>` }
+        '3': { title: 'スロット入金ボーナス', content: `<p>入金ごとに<span>15%</span>のボーナスを獲得</p>` },
+        '4': { title: 'スロット損失リベート', content: `<p>：毎日の損失に基づいて約<span>10%</span>のボーナスを受け取ります</p>` },
+        '5': { title: 'ウィークリーキャッシュバック', content: `<p>賭け金の額に応じて、およそ賭け<span>*1%* 10%</span> のウィークリーボーナスを受け取ります。</p>` },
+        '6': { title: 'マンスリーキャッシュバック', content: `<p>毎月のボーナスは、賭け金の額に応じて賭け<span>*1%* 8%</span>程度を受け取ります。</p>` },
+        '7': { title: '特別ボーナス', content: `<p>ダイヤモンド6、至尊の名誉特別ボーナス<span>20,000 USDT</span>` }
       }
     },
     vipRewardDetailTitle: 'VIPクラブの特典の詳細',
     vipRewardDetailContent: `<dd>プロモーションメールのボーナスはコードが含まれたプロモーションメールで送信されます。コードを使用して「リワード」ページで引き換えることができます。</dd>
                             <dd>シルバーVIP向けのフリースピンは、「ボーナス」ページで請求できます。Play'N GOプラットフォームで利用可能、対象ゲームは： Moon Princess Trinity/Honey Rush 100/Hotel Yeti-Way.</dd>
+                            <dd>スロットデポジットボーナス＆ロスリベートの詳細は、プロモーションページをご覧ください.</dd>
                             <dd>すべてのレベルのリチャージボーナスは1回のみ請求でき、10倍の賭け金を達成する必要があります。例: (1000+1000)*10=20000</dd>
                             <dd>リチャージボーナスは入金完了後、ベッティング前にオンラインカスタマーサービスを通じて申請する必要があります。</dd>
                             <dd>ポイントリワードは翌日にベッティング金額に基づいて自動的にアカウントに追加されます。</dd>
@@ -967,94 +1003,6 @@ export default {
     selfExclusionTitle: '自己排除',
     privacyTitle: 'プライバシーポリシー',
     fairnessTitle: '公平性',
-
-    // html内容
-    vipContent: `<div class="vip-clubhouse-box">
-                    <div class="vc-rows">
-                      <div class="vr-title">1. Seabet VIPクラブ</div>
-                      <div class="vr-conts">
-                        <p>Seabet VIPクラブへようこそ！</p>
-                        <p>Seabet では、ゲームの品質を向上させ、最高のゲーム体験を提供することに全力で取り組んでいます。当社の Web サイトで、長時間ゲームをプレイして頂いているメンバーの皆様に、特別なリワードを用意した、 VIP クラブをご用意しております。</p>
-                        <p>Seabet.ioで提供されているゲームやスポーツイベントに賭けるだけで、ランクを上げながら独占的なリワードをアンロックできます。</p>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">2. 個別サービス</div>
-                      <div class="vr-conts">
-                        <p>プロのカスタマーマネージャーチームは、すべてのニーズを確保し、業界最高の基準を満たします。VIPメンバーは、独占的なボーナス、有名なイベントへの招待状、さまざまなカスタマイズされたリワードを楽しむことができ、迅速で楽しい、効率的なゲーム体験を提供します。</p>
-                        <dl>
-                          <dt>VIP専属マネージャー：</dt>
-                            <dd>お客様のニーズに応えることに専念</dd>
-                            <dd>お客様の為だけにカスタマイズされたプライベートなカジノ体験をお届けします</dd>
-                        </dl>
-                        <dl>
-                            <dt>高額リワード</dt>
-                            <dd>お客様に合わせた特別なリワード</dd>
-                            <dd>賭け条件のないボーナス</dd>
-                            <dd>ポイントが早く貯まります</dd>
-                        </dl>
-                        <dl>
-                            <dt>業界最高のベットリミット</dt>
-                            <dd>毎日仮想通貨で上限なしの入出金</dd>
-                        </dl>
-                        <dl>
-                            <dt>VIP専用プロモーション</dt>
-                            <dd>通常のメンバーとは異なるプロモーション・オファー</dd>
-                            <dd>VIPユーザーだけが見ることができます</dd>
-                            <dd>パーソナライズされたプロモーション</dd>
-                            <dd>お客様専用にカスタマイズされたエンターテイメントサービス</dd>
-                        </dl>
-                        <dl>
-                            <dt>年中無休の優先サポート</dt>
-                            <dd>並ぶ必要も、待つ必要もありません</dd>
-                            <dd>お客様のニーズは当社の最優先事項です</dd>
-                            <dd>複数のSNS連絡オプションにより、専属VIPマネージャーといつでも連絡可能です</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">3.レベル構造</div>
-                      <div class="vr-conts">
-                        <p>あなたのゲーム全体の旅を包括的にカバーする6つのVIPレベル：</p>
-                        <dl>
-                          <dd>ブロンズ：ブロンズ1</dd>
-                          <dd>シルバー：シルバー1 - シルバー5</dd>
-                          <dd>ゴールド：ゴールド1 - ゴールド8</dd>
-                          <dd>プラチナ：プラチナ1 - プラチナ10</dd>
-                          <dd>チタニウム：チタニウム1 - チタニウム10</dd>
-                          <dd>ダイヤモンド：ダイヤモンド1 - ダイヤモンド6</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">4.VIPクラブメンバーの特典</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>レベルアップボーナス: 次のレベルに到達するとボーナスを受け取れます。 達成するレベルが高いほど、ボーナスも豪華になっていきます。</dd>
-                          <dd>カスタマイズされた特別オファー: 定期的なプロモーションに興味がありませんか? 問題ありません。特定のVIP レベルに達すると、お客様の好みに基づいて、特別なオファーを提供します</dd>
-                          <dd>パーソナライズされたエンターテイメント体験: 上級VIPメンバーの皆様には無償で、主要なスポーツ イベント、コンサート、ミュージカルショー、豪華な旅行など、信頼できる Seabetが、旅程を組みます。</dd>
-                          <dd>特別な VIP サービス: お客様のベッティング ニーズをサポートする専任の VIPマネージャーが割り当てられます。</dd>
-                          <dd><i class="iconfont icon-dui"></i>より速くポイントが貯まります: VIP レベルでは、通常のメンバーと比較してより速い速度でポイントを獲得できます。 レベルが高いほど獲得できるポイントも多くなり、引き換えられる賞品の幅が広がります。</dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="vc-rows">
-                      <div class="vr-title">5.Seabet VIPクラブのVIPメンバーになる方法</div>
-                      <div class="vr-conts">
-                        <dl>
-                          <dd>
-                            継続的な賭け: VIP になるための鍵は、さまざまなスポーツ イベントやカジノ ゲームに継続的に賭けることです。 Seabet はお客様の一貫性を大きく評価します。 業界トップの仮想通貨ギャンブルサイトですので、定期的に仮想通貨を使用して Seabet が提供するイベントやカジノ ゲームに参加してください。
-                          <dd>
-                          定期的なイベントに参加する: Seabet のプロモーション イベントには、いつでも参加できるさまざまなアクティビティやトーナメントが含まれます。 これらのアクティビティに定期的に参加すると、VIP クラブへの招待を受ける可能性が高くなります。
-                          </dd>
-                          <dd>招待状を待つ: 最後にできることは、Seabetからの招待状を待つことです。 ゲームを継続的にプレイし、ハイローラー イベントに積極的に参加してください。 VIP クラブのメンバーに相応しいと判断されると、すぐに招待状が届きます</dd>
-                          <dd>
-                          Seabet VIPとしてハイ ライフを体験: Seabet VIP クラブ メンバーとして一流の特権を楽しみながら、USDT ギャンブル体験をまったく新しいレベルに引き上げましょう。 VIPメンバーとしてスポーツベットやカジノ ゲームに参加すると、楽しく、速く、公平なベッティングを最大限に楽しむことができます
-                          </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </div>`,
 
     rulesContent: `<div>
                     <h2>利用規約</h2>

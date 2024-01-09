@@ -41,7 +41,11 @@
             </div>
             <div class="btns">
               <a class="btn btn-primary" @click="startGame(detailsData.id, gameType, 'game/url', true, parseInt(detailsData.providerId))">{{ t('startNow') }}</a>
-              <a v-if="gameType === GameType.Slots" class="btn btn-primary dark" @click="startGame(detailsData.id, gameType, 'game/demo', true, parseInt(detailsData.providerId))">
+              <a
+                v-if="gameType === GameType.Slots && detailsData.providerId != '13'"
+                class="btn btn-primary dark"
+                @click="startGame(detailsData.id, gameType, 'game/demo', true, parseInt(detailsData.providerId))"
+              >
                 {{ t('demoMode') }}
               </a>
             </div>

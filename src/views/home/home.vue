@@ -82,6 +82,12 @@
               </a>
             </li>
             <li>
+              <a @click="router.push({ name: 'newVip' })">
+                <span><i class="iconfont icon-huangguan" />{{ t('vipClub') }} </span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+            <li>
               <a @click="router.push({ name: 'tradeRecord' })">
                 <span><i class="iconfont icon-zzjl" />{{ t('myBets') }} </span>
                 <i class="iconfont icon-right" />
