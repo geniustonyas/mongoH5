@@ -44,6 +44,104 @@
         </div>
       </nav>
 
+
+      <div class="index-slide-tab">
+        <div class="st-head">
+          <div class="sh-l">
+            <img src="../../assets/imgs/svg/most-popular.svg" />
+            <h3>MOST POPULAR</h3>
+          </div>
+          <div class="sh-r">
+            <div class="slide-btns">
+              <span class="on"><i class="iconfont icon-return"></i></span>
+              <span><i class="iconfont icon-enter"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="st-cont">
+          <div class="gamebox">
+            <div class="g-list">
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/GatesofOlympus.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/GatesofOlympus.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Gates of Olympus</strong><span>Pragmatic Play</span></div></div></div>
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/SugarRush.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/SugarRush.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Sugar Rush</strong><span>Pragmatic Play</span></div></div></div>
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/SweetBonanza.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/SweetBonanza.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Sweet Bonanza</strong><span>Pragmatic Play</span></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="index-slide-tab">
+        <div class="st-head">
+          <div class="sh-l">
+            <img src="../../assets/imgs/svg/slots-icon.svg" />
+            <h3>SLOTS</h3>
+          </div>
+          <div class="sh-r">
+            <div class="slide-btns">
+              <span class="on"><i class="iconfont icon-return"></i></span>
+              <span><i class="iconfont icon-enter"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="st-cont">
+          <div class="gamebox">
+            <div class="g-list">
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/GatesofOlympus.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/GatesofOlympus.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Gates of Olympus</strong><span>Pragmatic Play</span></div></div></div>
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/SugarRush.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/SugarRush.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Sugar Rush</strong><span>Pragmatic Play</span></div></div></div>
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/SweetBonanza.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/SweetBonanza.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Sweet Bonanza</strong><span>Pragmatic Play</span></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="index-slide-tab">
+        <div class="st-head">
+          <div class="sh-l">
+            <img src="../../assets/imgs/svg/game-provider.svg" />
+            <h3>PROVIDER</h3>
+          </div>
+          <div class="sh-r">
+            <div class="slide-btns">
+              <span class="on"><i class="iconfont icon-return"></i></span>
+              <span><i class="iconfont icon-enter"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="st-cont">
+          <div class="gamebox">
+            <div class="g-list">
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/GatesofOlympus.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/GatesofOlympus.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Gates of Olympus</strong><span>Pragmatic Play</span></div></div></div>
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/SugarRush.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/SugarRush.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Sugar Rush</strong><span>Pragmatic Play</span></div></div></div>
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/SweetBonanza.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/SweetBonanza.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Sweet Bonanza</strong><span>Pragmatic Play</span></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="index-slide-tab">
+        <div class="st-head">
+          <div class="sh-l">
+            <img src="../../assets/imgs/svg/live-casino.svg" />
+            <h3>LIVE CASINO</h3>
+          </div>
+          <div class="sh-r">
+            <div class="slide-btns">
+              <span class="on"><i class="iconfont icon-return"></i></span>
+              <span><i class="iconfont icon-enter"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="st-cont">
+          <div class="gamebox">
+            <div class="g-list">
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/GatesofOlympus.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/GatesofOlympus.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Gates of Olympus</strong><span>Pragmatic Play</span></div></div></div>
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/SugarRush.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/SugarRush.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Sugar Rush</strong><span>Pragmatic Play</span></div></div></div>
+              <div class="item"><div class="i-bd"><div class="i-img"><!-- <img v-lazy="appStore.cdnurl + item.img" /> --><img data-src="https://seabet.imgix.net/SweetBonanza.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" src="https://seabet.imgix.net/SweetBonanza.jpg?auto=compress,format&amp;w=200&amp;h=152&amp;q=50&amp;dpr=2" lazy="loaded"><!-- <span>{{ item.pn }}</span> --><!--v-if--></div><div class="i-txt"><strong>Sweet Bonanza</strong><span>Pragmatic Play</span></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <!-- 排行榜数据 -->
       <nav class="m-win">
         <div class="mw-menu">
@@ -64,10 +162,12 @@
               <td>{{ item.gameName }}</td>
               <td>
                 <template v-if="item.memberuserName == ''">
-                  <span class="sp-user"><img :src="getAssetsFile('svg/tb_user.svg')" /></span>{{ t('invisibility') }}
+                  <span class="sp-user"><img :src="getAssetsFile('svg/tb_user.svg')" /></span>
+                  {{ t('invisibility') }}
                 </template>
                 <template v-else>
-                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>{{ item.memberuserName }}
+                  <span class="sp-user"><i class="iconfont icon-user_full" /></span>
+                  {{ item.memberuserName }}
                 </template>
               </td>
               <td>{{ moneyFormat(item.winAmount) }}</td>
@@ -135,177 +235,175 @@
 </template>
 
 <script setup lang="ts">
-// vue自带
-import { ref, reactive, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
-// 自定义组件
-import IndexHeader from '@/components/layout/IndexHeader.vue'
-import IndexTab from '@/components/layout/IndexTab.vue'
-import IndexFooter from '@/components/layout/IndexFooter.vue'
-import Footer from '@/components/layout/Footer.vue'
-import Sidebar from '@/components/layout/SideBar.vue'
+  // vue自带
+  import { ref, reactive, onBeforeUnmount } from 'vue'
+  import { useRouter } from 'vue-router'
+  // 自定义组件
+  import IndexHeader from '@/components/layout/IndexHeader.vue'
+  import IndexTab from '@/components/layout/IndexTab.vue'
+  import IndexFooter from '@/components/layout/IndexFooter.vue'
+  import Footer from '@/components/layout/Footer.vue'
+  import Sidebar from '@/components/layout/SideBar.vue'
 
-// 引用方法
-import { getAnnouncementListApi, getBannerApi, getRemindApi } from '@/api/app/index'
-import { getBannerRespItem } from '@/api/app/types'
-import { getRankListApi } from '@/api/game/index'
-import { getRankListRespItem } from '@/api/game/types'
-import { useAppStore } from '@/store/modules/app'
-import { useUserStore } from '@/store/modules/user'
-import { getAssetsFile, moneyFormat, loginTo } from '@/utils'
-import { getExchangeRate } from '@/composables/getExchangeRate'
+  // 引用方法
+  import { getAnnouncementListApi, getBannerApi, getRemindApi } from '@/api/app/index'
+  import { getBannerRespItem } from '@/api/app/types'
+  import { getRankListApi } from '@/api/game/index'
+  import { getRankListRespItem } from '@/api/game/types'
+  import { useAppStore } from '@/store/modules/app'
+  import { useUserStore } from '@/store/modules/user'
+  import { getAssetsFile, moneyFormat, loginTo } from '@/utils'
+  import { getExchangeRate } from '@/composables/getExchangeRate'
 
-//第三方插件
-import { useI18n } from 'vue-i18n'
-import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
-import { startGame } from '@/composables/startGame'
-import { PlatForm } from '@/utils/constant'
+  //第三方插件
+  import { useI18n } from 'vue-i18n'
+  import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
+  import { startGame } from '@/composables/startGame'
+  import { PlatForm } from '@/utils/constant'
 
-const router = useRouter()
-const appStore = useAppStore()
-const userStore = useUserStore()
-const { t } = useI18n()
+  const router = useRouter()
+  const appStore = useAppStore()
+  const userStore = useUserStore()
+  const { t } = useI18n()
 
-const newRewardVipCode = ref(0)
+  const newRewardVipCode = ref(0)
 
-const refreshRankTimer = ref(0)
-const refreshRemindTimer = ref(0)
-// 汇率相关
-const { currencyCode, exchangeRate } = getExchangeRate()
+  const refreshRankTimer = ref(0)
+  const refreshRemindTimer = ref(0)
+  // 汇率相关
+  const { currencyCode, exchangeRate } = getExchangeRate()
 
-// 跑马灯内容
-let marqueeContent = ref('')
+  // 跑马灯内容
+  let marqueeContent = ref('')
 
-// 首页swiper 和下面banner
-let swipeImg = ref<getBannerRespItem[]>([])
-let bannerImg = ref<getBannerRespItem[]>([])
+  // 首页swiper 和下面banner
+  let swipeImg = ref<getBannerRespItem[]>([])
+  let bannerImg = ref<getBannerRespItem[]>([])
 
-// 排行榜列表数据
-let rankList = reactive({
-  sport: [],
-  casino: [],
-  slots: []
-})
-// 显示排行榜列表投注详情
-let showBetDetailsBox = ref(false)
-let betDetailsItem = reactive<getRankListRespItem>({
-  roundId: '',
-  orderId: '',
-  memberuserName: '',
-  gameName: '',
-  betTime: '',
-  winAmount: '',
-  gameType: 0,
-  betAmount: '',
-  winRate: '',
-  providerId: '',
-  providerCode: '',
-  gameCode: '',
-  gameId: ''
-})
+  // 排行榜列表数据
+  let rankList = reactive({
+    sport: [],
+    casino: [],
+    slots: []
+  })
+  // 显示排行榜列表投注详情
+  let showBetDetailsBox = ref(false)
+  let betDetailsItem = reactive<getRankListRespItem>({
+    roundId: '',
+    orderId: '',
+    memberuserName: '',
+    gameName: '',
+    betTime: '',
+    winAmount: '',
+    gameType: 0,
+    betAmount: '',
+    winRate: '',
+    providerId: '',
+    providerCode: '',
+    gameCode: '',
+    gameId: ''
+  })
 
-// 排行表切换
-let rankTab = ref('sport')
-// 排行榜列表
-const getRankList = () => {
-  getRankListApi()
-    .then((resp) => {
-      Object.assign(rankList, resp.data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-
-// 排行榜投注详情
-const rankBetDetails = (item: any) => {
-  Object.assign(betDetailsItem, item)
-  showBetDetailsBox.value = true
-}
-
-// 获取首页Banner
-const getBanner = () => {
-  getBannerApi({ platform: PlatForm.H5 })
-    .then((resp) => {
-      swipeImg.value = resp.data.filter((item) => item.positionCode == '101')
-      bannerImg.value = resp.data.filter((item) => item.positionCode == '102')
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-
-// 点击banner跳转
-const routeTo = (item: getBannerRespItem) => {
-  if (item.targetUrl == '') {
-    return false
+  // 排行表切换
+  let rankTab = ref('sport')
+  // 排行榜列表
+  const getRankList = () => {
+    getRankListApi()
+      .then((resp) => {
+        Object.assign(rankList, resp.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
-  if (item.targetUrl && (item.targetUrl.indexOf('http') > -1 || item.targetUrl.indexOf('https') > -1)) {
-    window.open(item.targetUrl)
-  } else {
-    router.push({ path: item.targetUrl })
+
+  // 排行榜投注详情
+  const rankBetDetails = (item: any) => {
+    Object.assign(betDetailsItem, item)
+    showBetDetailsBox.value = true
   }
-}
 
-// 获取首页跑马灯
-const getAnnouncementList = () => {
-  getAnnouncementListApi({ PageIndex: 1, PageSize: 3 })
-    .then((resp) => {
-      marqueeContent.value = resp.data!.items.reduce((notice, item, index) => {
-        return notice + (index + 1) + '. ' + item.content + '. '
-      }, '')
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-
-// 解锁新奖励，弹窗提醒
-const getRemind = () => {
-  if (userStore.userInfo.id == '') {
-    newRewardVipCode.value = 0
-    return false
+  // 获取首页Banner
+  const getBanner = () => {
+    getBannerApi({ platform: PlatForm.H5 })
+      .then((resp) => {
+        swipeImg.value = resp.data.filter((item) => item.positionCode == '101')
+        bannerImg.value = resp.data.filter((item) => item.positionCode == '102')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
-  getRemindApi()
-    .then((resp) => {
-      newRewardVipCode.value = parseFloat(resp.data.vipCode)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
 
-getBanner()
-getAnnouncementList()
-getRankList()
-getRemind()
+  // 点击banner跳转
+  const routeTo = (item: getBannerRespItem) => {
+    if (item.targetUrl == '') {
+      return false
+    }
+    if (item.targetUrl && (item.targetUrl.indexOf('http') > -1 || item.targetUrl.indexOf('https') > -1)) {
+      window.open(item.targetUrl)
+    } else {
+      router.push({ path: item.targetUrl })
+    }
+  }
 
-if (refreshRankTimer.value && refreshRankTimer.value > 0) {
-  window.clearInterval(refreshRankTimer.value)
-}
-refreshRankTimer.value = window.setInterval(() => {
+  // 获取首页跑马灯
+  const getAnnouncementList = () => {
+    getAnnouncementListApi({ PageIndex: 1, PageSize: 3 })
+      .then((resp) => {
+        marqueeContent.value = resp.data!.items.reduce((notice, item, index) => {
+          return notice + (index + 1) + '. ' + item.content + '. '
+        }, '')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  // 解锁新奖励，弹窗提醒
+  const getRemind = () => {
+    if (userStore.userInfo.id == '') {
+      newRewardVipCode.value = 0
+      return false
+    }
+    getRemindApi()
+      .then((resp) => {
+        newRewardVipCode.value = parseFloat(resp.data.vipCode)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  getBanner()
+  getAnnouncementList()
   getRankList()
-}, 10 * 1000)
-
-if (refreshRemindTimer.value && refreshRemindTimer.value > 0) {
-  window.clearInterval(refreshRemindTimer.value)
-}
-refreshRemindTimer.value = window.setInterval(() => {
   getRemind()
-}, 30 * 1000)
 
-onBeforeUnmount(() => {
   if (refreshRankTimer.value && refreshRankTimer.value > 0) {
     window.clearInterval(refreshRankTimer.value)
   }
+  refreshRankTimer.value = window.setInterval(() => {
+    getRankList()
+  }, 10 * 1000)
+
   if (refreshRemindTimer.value && refreshRemindTimer.value > 0) {
     window.clearInterval(refreshRemindTimer.value)
   }
-})
+  refreshRemindTimer.value = window.setInterval(() => {
+    getRemind()
+  }, 30 * 1000)
+
+  onBeforeUnmount(() => {
+    if (refreshRankTimer.value && refreshRankTimer.value > 0) {
+      window.clearInterval(refreshRankTimer.value)
+    }
+    if (refreshRemindTimer.value && refreshRemindTimer.value > 0) {
+      window.clearInterval(refreshRemindTimer.value)
+    }
+  })
 </script>
 
 <style>
-.my-swipe {
-  height: 100%;
-}
+  .my-swipe { height: 100%; }
 </style>
