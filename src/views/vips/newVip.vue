@@ -166,7 +166,8 @@ const vipTabs = [
       { title: t('vip.rewards.105.2.title'), content: t('vip.rewards.105.2.content') },
       { title: t('vip.rewards.105.3.title'), content: t('vip.rewards.105.3.content') },
       { title: t('vip.rewards.105.4.title'), content: t('vip.rewards.105.4.content') },
-      { title: t('vip.rewards.105.5.title'), content: t('vip.rewards.105.5.content') }
+      { title: t('vip.rewards.106.5.title'), content: t('vip.rewards.106.5.content') },
+      { title: t('vip.rewards.105.6.title'), content: t('vip.rewards.105.6.content') }
     ]
   },
   {
@@ -179,7 +180,8 @@ const vipTabs = [
       { title: t('vip.rewards.106.2.title'), content: t('vip.rewards.106.2.content') },
       { title: t('vip.rewards.106.3.title'), content: t('vip.rewards.106.3.content') },
       { title: t('vip.rewards.106.4.title'), content: t('vip.rewards.106.4.content') },
-      { title: t('vip.rewards.106.5.title'), content: t('vip.rewards.106.5.content') }
+      { title: t('vip.rewards.106.5.title'), content: t('vip.rewards.106.5.content') },
+      { title: t('vip.rewards.106.6.title'), content: t('vip.rewards.106.6.content') }
     ]
   },
   {
@@ -193,7 +195,8 @@ const vipTabs = [
       { title: t('vip.rewards.107.3.title'), content: t('vip.rewards.107.3.content') },
       { title: t('vip.rewards.107.4.title'), content: t('vip.rewards.107.4.content') },
       { title: t('vip.rewards.107.5.title'), content: t('vip.rewards.107.5.content') },
-      { title: t('vip.rewards.107.6.title'), content: t('vip.rewards.107.6.content') }
+      { title: t('vip.rewards.107.6.title'), content: t('vip.rewards.107.6.content') },
+      { title: t('vip.rewards.107.7.title'), content: t('vip.rewards.107.7.content') }
     ]
   }
 ]

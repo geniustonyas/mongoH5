@@ -76,8 +76,8 @@
             </a>
           </div>
           <div v-else class="rb-r">
-            <a class="btn" @click="router.push({ name: 'reg' })">{{ t('reg') }}</a>
-            <a class="btn btn-primary" @click="router.push({ name: 'login' })">{{ t('login') }}</a>
+            <a class="btn" @click="router.push({ name: 'login' })">{{ t('login') }}</a>
+            <a class="btn btn-primary" @click="router.push({ name: 'reg' })">{{ t('reg') }}</a>
           </div>
         </div>
       </div>

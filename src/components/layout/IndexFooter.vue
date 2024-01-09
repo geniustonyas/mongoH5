@@ -120,9 +120,11 @@
   <nav class="m-accepted">
     <dl>
       <dt>{{ t('acceptCrypto') }}</dt>
-      <dd v-for="(item, index) of currencyList" :key="index">
-        <a href="#"><img :src="getAssetsFile(item.icon)" /></a>
-      </dd>
+      <template v-for="(item, index) of currencyList">
+        <dd v-if="item.currenyType != '20'" :key="index">
+          <a href="#"><img :src="getAssetsFile(item.icon)" /></a>
+        </dd>
+      </template>
     </dl>
   </nav>
 
