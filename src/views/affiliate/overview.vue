@@ -78,11 +78,11 @@ const { t } = useI18n()
 const copyDom = ref<HTMLElement | null>(null)
 const mailDom = ref<HTMLElement | null>(null)
 const recommendUrls = ref<string[]>([])
-recommendUrls.value = ['https://www.seabet.io/#/index?agentId=' + userStore.userInfo.id]
+recommendUrls.value = ['seabet.io/#/?agentId=' + userStore.userInfo.id]
 
 if (userStore.userInfo.domain && userStore.userInfo.domain != '') {
   const tmp = userStore.userInfo.domain.split(',').map((item: string) => {
-    return 'https://' + item
+    return item
   })
   recommendUrls.value = [...tmp, ...recommendUrls.value]
 }

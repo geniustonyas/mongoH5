@@ -157,22 +157,21 @@ export const providerListData = () => {
   const t = i18n.global.t
   return [
     // 体育提供商
-    { id: '2110', type: 'sports', tab: 'sports', show: true, name: t('provider.btiSports'), img: getAssetsFile('svg/seabetSport.svg') },
-    { id: '1439', type: 'sports', tab: 'sports', show: true, name: t('provider.sabaSports'), img: getAssetsFile('svg/SabaSports.svg') },
+    { id: '2110', type: 'sports', tab: 'sports', show: true, name: t('provider.btiSports'), img: getAssetsFile('svg/seabetSport.svg'), indexImg: getAssetsFile('provider/seabetSport.svg') },
+    { id: '1439', type: 'sports', tab: 'sports', show: true, name: t('provider.sabaSports'), img: getAssetsFile('svg/SabaSports.svg'), indexImg: getAssetsFile('provider/SabaSports.svg') },
     // 真人提供商
-    { id: '6', type: 'casino', tab: 'casino', show: true, name: t('provider.evolution'), img: getAssetsFile('svg/Evolution.svg') },
-    { id: '16', type: 'casino', tab: 'casino', show: true, name: t('provider.sexy'), img: getAssetsFile('svg/sexy.svg') },
-    { id: '7', type: 'casino', tab: 'casino', show: true, name: t('provider.ezugi'), img: getAssetsFile('svg/Ezugi.svg') },
-    { id: '3', type: 'casino', tab: 'casino', show: true, name: t('provider.asiaGaming'), img: getAssetsFile('svg/AsiaGaming.svg') },
+    { id: '6', type: 'casino', tab: 'casino', show: true, name: t('provider.evolution'), img: getAssetsFile('svg/Evolution.svg'), indexImg: getAssetsFile('provider/Evolution.svg') },
+    { id: '16', type: 'casino', tab: 'casino', show: true, name: t('provider.sexy'), img: getAssetsFile('svg/sexy.svg'), indexImg: getAssetsFile('provider/sexy.svg') },
+    { id: '7', type: 'casino', tab: 'casino', show: true, name: t('provider.ezugi'), img: getAssetsFile('svg/Ezugi.svg'), indexImg: getAssetsFile('provider/Ezugi.svg') },
+    { id: '3', type: 'casino', tab: 'casino', show: true, name: t('provider.asiaGaming'), img: getAssetsFile('svg/AsiaGaming.svg'), indexImg: getAssetsFile('provider/AsiaGaming.svg') },
     // 电子提供商
-    { id: '13', type: 'slots', tab: 'slots', show: true, name: t('provider.pgSoft'), img: getAssetsFile('svg/pgsoft.svg') },
-    { id: '1', type: 'slots', tab: 'slots', show: true, name: t('provider.pragmaticPlay'), img: getAssetsFile('svg/PragmaticPlay.svg') },
-    { id: '11', type: 'slots', tab: 'slots', show: true, name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg') },
-    { id: '9', type: 'slots', tab: 'slots', show: true, name: t('provider.netEnt'), img: getAssetsFile('svg/NetEnt.svg') },
-    { id: '15', type: 'slots', tab: 'slots', show: true, name: t('provider.microgaming'), img: getAssetsFile('svg/Mg.svg') }
+    { id: '13', type: 'slots', tab: 'slots', show: true, name: t('provider.pgSoft'), img: getAssetsFile('svg/pgsoft.svg'), indexImg: getAssetsFile('provider/pgsoft.svg') },
+    { id: '1', type: 'slots', tab: 'slots', show: true, name: t('provider.pragmaticPlay'), img: getAssetsFile('svg/PragmaticPlay.svg'), indexImg: getAssetsFile('provider/PragmaticPlay.svg') },
+    { id: '11', type: 'slots', tab: 'slots', show: true, name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg'), indexImg: getAssetsFile('provider/Playingo.svg') },
+    { id: '9', type: 'slots', tab: 'slots', show: true, name: t('provider.netEnt'), img: getAssetsFile('svg/NetEnt.svg'), indexImg: getAssetsFile('provider/NetEnt.svg') },
+    { id: '15', type: 'slots', tab: 'slots', show: true, name: t('provider.microgaming'), img: getAssetsFile('svg/Mg.svg'), indexImg: getAssetsFile('provider/microgaming.svg') }
   ]
 }
-
 export const fundCategoryData = () => {
   return [
     { value: '', text: t('categoryFilter') },

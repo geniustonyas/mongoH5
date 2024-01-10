@@ -10,7 +10,7 @@ export function getExchangeRate() {
   getExchangeRateApi()
     .then((resp) => {
       currencyCode.value = resp.data[0].currencyCode
-      exchangeRate.value = resp.data[0].cxchangeRate
+      exchangeRate.value = resp.data[0].cxchangeRate.toString()
     })
     .catch((error) => {
       console.log(error)

@@ -53,3 +53,13 @@ export function getRemindApi() {
     method: 'post'
   })
 }
+
+// 获取首页游戏
+export function getGameListApi(data: App.getGameListData) {
+  return request<App.getGameListResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'Game/GetIndexGameList',
+    method: 'post',
+    data
+  })
+}
