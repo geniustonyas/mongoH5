@@ -125,8 +125,8 @@
         </div>
         <div class="st-cont">
           <div class="gamebox swiper-provider">
-            <div class="g-list swiper-wrapper">
-              <div v-for="(item, index) of providerList" :key="index" class="swiper-slide provider-img" @click="router.push({ name: item.tab, query: { providerId: item.id } })">
+            <div class=" provider-box swiper-wrapper">
+              <div v-for="(item, index) of providerList" :key="index" class="swiper-slide item" @click="router.push({ name: item.tab, query: { providerId: item.id } })">
                 <img class="provider-img" :src="item.indexImg" />
               </div>
             </div>
