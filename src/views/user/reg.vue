@@ -202,8 +202,14 @@ let regForm = reactive({
   DateOfBirth: '',
   RegisterUrl: document.domain,
   VerificationCode: '',
-  Token: ''
+  Token: '',
+  Currency: ''
 })
+
+let currency = localStorage.getItem('Currency')
+if (currency) {
+  regForm.Currency = currency
+}
 
 const setShowThirdLoginBox = () => {
   showThirdLoginBox.value = !showThirdLoginBox.value

@@ -257,7 +257,8 @@ export default {
     ton: 'TON Crystal',
     usd: 'ดอลลาร์สหรัฐ',
     cny: 'หยวนจีน',
-    brl: 'BRL'
+    brl: 'BRL',
+    inr: 'INR'
   },
   // ร้านค้าแต้ม
   points: 'แต้ม',
@@ -733,6 +734,18 @@ export default {
   fiatPixAccountHolder: 'ใส่บัญชี',
   withdrawInfo: 'ข้อมูลการถอนเงิน',
   fundCurrency: 'สกุลเงิน',
+  gameProviders: 'ผู้ให้บริการ',
+  mostPopular: 'เกมยอดนิยม',
+  viewAll: 'ตรวจดูทั้งหมด',
+  accountType: 'ประเภทบัญชี',
+  bankCode: 'ธนาคาร',
+  bankAccountNo: 'หมายเลขบัญชี',
+  bankAccountName: 'ชื่อเจ้าของบัญชี',
+  IFSC: 'IFSC',
+  bankCodeHolde: 'เลือกธนาคาร',
+  bankAccountNoHolder: 'ใส่หมายเลขบัญชีธนาคาร',
+  bankAccountNameHolder: 'ใส่ชื่อเจ้าของบัญชีธนาคาร',
+  fscHolder: 'ใส่ IFSC',
 
   vip: {
     seabetVip: 'คลับ VIP ของ Seabet',

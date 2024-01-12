@@ -257,7 +257,8 @@ export default {
     ton: '톤코인',
     usd: '미국달러',
     cny: '인민폐',
-    brl: '브라질 헤알'
+    brl: '브라질 헤알',
+    inr: 'INR'
   },
   // 포인트 쇼핑센터
   points: '포인트',
@@ -736,6 +737,20 @@ export default {
   fiatPixAccountHolder: '계정 입력',
   withdrawInfo: '출금 정보',
   fundCurrency: '화폐',
+  gameProviders: '제공자',
+  mostPopular: '베스트 오브 베스트 게임',
+  viewAll: '모두 보기',
+  accountType: '계좌 유형',
+  bankCode: '은행 코드',
+  bankAccountNo: '계좌 번호',
+  bankAccountName: '계좌 소유자 이름',
+  ifsc: 'IFSC',
+  bankCodeHolder: '은행 코드 선택',
+  bankAccountNoHolder: '계좌 번호 입력',
+  bankAccountNameHolder: '계좌 소유자 이름 입력',
+  ifscHolder: 'IFSC 입력',
+  indexSlots: '슬롯머신',
+  indexCasino: '라이브카지노',
 
   vip: {
     seabetVip: 'Seabet VIP 클럽',

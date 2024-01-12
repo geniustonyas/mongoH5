@@ -256,7 +256,8 @@ export default {
     ton: '公开网络',
     usd: '美元',
     cny: '人民币',
-    brl: '巴西雷亚尔 '
+    brl: '巴西雷亚尔',
+    inr: '印度卢比'
   },
   // 积分商城
   points: '积分',
@@ -734,6 +735,20 @@ export default {
   fiatPixAccountHolder: '输入PIX账号',
   withdrawInfo: '提款信息',
   fundCurrency: '货币',
+  gameProviders: '游戏提供商',
+  mostPopular: '最受欢迎的游戏',
+  viewAll: '查看全部',
+  accountType: '账户类型',
+  bankCode: '银行编码',
+  bankAccountNo: '账号',
+  bankAccountName: '账号名',
+  ifsc: 'IFSC',
+  bankCodeHolder: '请选择银行编码',
+  bankAccountNoHolder: '请输入银行账号',
+  bankAccountNameHolder: '请输入银行账户名',
+  ifscHolder: '请输入IFSC',
+  indexSlots: '老虎机',
+  indexCasino: '真人娱乐',
 
   vip: {
     seabetVip: 'Seabet VIP俱乐部',

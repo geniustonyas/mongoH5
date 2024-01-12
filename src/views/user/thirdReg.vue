@@ -145,13 +145,19 @@ let regForm = reactive({
   ThirdPartyName: '',
   Sign: '',
   VerificationCode: '',
-  Token: ''
+  Token: '',
+  currency: ''
 })
 let loginForm = {
   ThirdPartyType: '',
   ThirdPartyId: '',
   ThirdPartyName: '',
   Sign: ''
+}
+
+let currency = localStorage.getItem('Currency')
+if (currency) {
+  regForm.Currency = currency
 }
 
 // 错误信息

@@ -256,7 +256,8 @@ export default {
     ton: 'TON',
     usd: 'USD',
     cny: 'CNY',
-    brl: 'BRL'
+    brl: 'BRL',
+    inr: 'INR'
   },
   // 积分商城
   points: 'Punkte',
@@ -742,6 +743,20 @@ export default {
   fiatPixAccountHolder: 'Konto eingeben',
   withdrawInfo: 'Auszahlungsinformationen',
   fundCurrency: 'Currency',
+  gameProviders: 'Anbieter',
+  mostPopular: 'Top bewertete Spiele',
+  viewAll: 'Alles anzeigen',
+  accountType: 'Kontotyp',
+  bankCode: 'Bankleitzahl',
+  bankAccountNo: 'Kontonummer',
+  bankAccountName: 'Kontoinhabername',
+  ifsc: 'IFSC',
+  bankCodeHolder: 'Bankleitzahl auswählen',
+  bankAccountNoHolder: 'Kontonummer eingeben',
+  bankAccountNameHolder: 'Kontoinhabername eingeben',
+  ifscHolder: 'IFSC eingeben',
+  indexSlots: 'Slots',
+  indexCasino: 'LIVE CASINO',
 
   vip: {
     seabetVip: 'Seabet VIP-Club',

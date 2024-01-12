@@ -44,11 +44,11 @@
         </div>
       </nav>
 
-      <div class="index-slide-tab">
+      <!-- <div v-if="hotGameList.length > 0" class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/most-popular.svg')" />
-            <h3>MOST POPULAR</h3>
+            <h3>{{ t('mostPopular') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">
@@ -71,17 +71,24 @@
                   </div>
                 </div>
               </div>
+              <div v-if="hotGameList.length > 0" class="swiper-slide item" @click="router.push({ name: 'slots' })">
+                <div class="i-bd">
+                  <div class="i-img last" v-lazy:background-image="getAssetsFile('other/seeAll.jpg')" />
+                  <div class="i-all-btns">
+                    <div class="ib-bd">{{ t('viewAll') }}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLOT -->
-      <div class="index-slide-tab">
+      <div v-if="slotGameList.length > 0" class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/slots-icon.svg')" />
-            <h3>SLOTS</h3>
+            <h3>{{ t('slots') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">
@@ -104,17 +111,24 @@
                   </div>
                 </div>
               </div>
+              <div v-if="slotGameList.length > 0" class="swiper-slide item" @click="router.push({ name: 'slots' })">
+                <div class="i-bd">
+                  <div class="i-img last" v-lazy:background-image="getAssetsFile('other/seeAll.jpg')" />
+                  <div class="i-all-btns">
+                    <div class="ib-bd">{{ t('viewAll') }}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- PROVIDER -->
       <div class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/game-provider.svg')" />
-            <h3>PROVIDER</h3>
+            <h3>{{ t('gameProviders') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">
@@ -125,7 +139,7 @@
         </div>
         <div class="st-cont">
           <div class="gamebox swiper-provider">
-            <div class=" provider-box swiper-wrapper">
+            <div class="provider-box swiper-wrapper">
               <div v-for="(item, index) of providerList" :key="index" class="swiper-slide item" @click="router.push({ name: item.tab, query: { providerId: item.id } })">
                 <img class="provider-img" :src="item.indexImg" />
               </div>
@@ -134,11 +148,11 @@
         </div>
       </div>
 
-      <div class="index-slide-tab">
+      <div v-if="casinoGameList.length > 0" class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/live-casino.svg')" />
-            <h3>LIVE CASINO</h3>
+            <h3>{{ t('casino') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">
@@ -150,7 +164,7 @@
         <div class="st-cont">
           <div class="gamebox swiper-casino">
             <div class="g-list swiper-wrapper">
-              <div v-for="(item, index) of casinoGameList" :key="index" class="swiper-slide item"  @click.stop="startGame(item.gameItemId, item.gameType)">
+              <div v-for="(item, index) of casinoGameList" :key="index" class="swiper-slide item" @click.stop="startGame(item.gameItemId, item.gameType)">
                 <div class="i-bd">
                   <div class="i-img">
                     <img v-lazy="`https://seabet.imgix.net/${item.imageName}?auto=compress,format&w=200&h=160&q=50&dpr=2`" />
@@ -161,10 +175,18 @@
                   </div>
                 </div>
               </div>
+              <div v-if="casinoGameList.length > 0" class="swiper-slide item" @click="router.push({ name: 'casino' })">
+                <div class="i-bd">
+                  <div class="i-img last" v-lazy:background-image="getAssetsFile('other/seeAll.jpg')" />
+                  <div class="i-all-btns">
+                    <div class="ib-bd">{{ t('viewAll') }}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- 排行榜数据 -->
       <nav class="m-win">
@@ -285,10 +307,11 @@ import { useI18n } from 'vue-i18n'
 import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
 import { startGame } from '@/composables/startGame'
 import { PlatForm } from '@/utils/constant'
+import { orderBy } from 'lodash-es'
 import Swiper from 'swiper/bundle'
 import 'swiper/swiper-bundle.css'
 
-const providerList = providerListData()
+const providerList = orderBy(providerListData(), 'indexSort', 'asc')
 const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -440,7 +463,7 @@ const getGameList = () => {
 }
 
 // 首页游戏翻页
-const navSlide = (swiper, mode = 'next', e) => {
+const navSlide = (swiper: any, mode = 'next', e: any) => {
   nextTick(() => {
     if (mode == 'next') {
       swiper.slideNext()

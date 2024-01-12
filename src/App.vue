@@ -59,6 +59,10 @@ if (window.top && window.self !== window.top) {
   window.top.location = window.self.location
 }
 
+if (route.query.Currency && route.query.Currency != '') {
+  localStorage.setItem('Currency', route.query.Currency as string)
+}
+
 if (route.query.agentId && route.query.agentId != '') {
   localStorage.setItem('agentId', route.query.agentId as string)
 }
