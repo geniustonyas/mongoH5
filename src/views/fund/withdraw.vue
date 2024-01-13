@@ -119,13 +119,13 @@
 
               <div class="ff-group">
                 <label>{{ t('bankAccountNo') }}</label>
-                <input v-model="withdrawForm.PayeeData.accountNo" type="text" ref="accountNoDom" :placeholder="t('bankAccountNoHolder')" autocomplete="off" />
+                <input v-model="withdrawForm.PayeeData.accountno" type="text" ref="accountNoDom" :placeholder="t('bankAccountNoHolder')" autocomplete="off" />
                 <div id="accountNoTip" class="tip" />
               </div>
 
               <div class="ff-group">
                 <label>{{ t('bankAccountName') }}</label>
-                <input v-model="withdrawForm.PayeeData.accountName" type="text" ref="accountNameDom" :placeholder="t('bankAccountNameHolder')" autocomplete="off" />
+                <input v-model="withdrawForm.PayeeData.accountname" type="text" ref="accountNameDom" :placeholder="t('bankAccountNameHolder')" autocomplete="off" />
                 <div id="accountNameTip" class="tip" />
               </div>
 
@@ -237,7 +237,7 @@
                       </div>
                     </div>
                     <div class="t-r">
-                      <span>{{ withdrawForm.PayeeData.accountNo }} </span>
+                      <span>{{ withdrawForm.PayeeData.accountno }} </span>
                       <i @click="step = 2" class="iconfont icon-bianji" />
                     </div>
                   </div>
@@ -248,7 +248,7 @@
                       </div>
                     </div>
                     <div class="t-r">
-                      <span>{{ withdrawForm.PayeeData.accountName }} </span>
+                      <span>{{ withdrawForm.PayeeData.accountname }} </span>
                       <i @click="step = 2" class="iconfont icon-bianji" />
                     </div>
                   </div>
@@ -472,10 +472,10 @@ const withdrawForm = reactive({
     banknumber: '',
     bankname: '',
     bankzhiname: '',
-    accountType: 'PERSONAL_BANK',
-    bankCode: '',
-    accountNo: '',
-    accountName: '',
+    accounttype: 'PERSONAL_BANK',
+    bankcode: '',
+    accountno: '',
+    accountname: '',
     ifsc: ''
   }
 })
@@ -486,12 +486,13 @@ const confirmPixType = (selected: any) => {
 }
 
 const confirmIndiaBanks = (selected: any) => {
-  withdrawForm.PayeeData.bankCode = selected.selectedValues[0]
+  withdrawForm.PayeeData.bankname = selected.selectedOptions[0].text
+  withdrawForm.PayeeData.bankcode = selected.selectedOptions[0].value
   showIndiaBankPicker.value = false
 }
 
 const getIndiaBankName = () => {
-  const item = indiaBank.find((item) => item.value == withdrawForm.PayeeData.bankCode)
+  const item = indiaBank.find((item) => item.value == withdrawForm.PayeeData.bankcode)
   return item ? item.text : ''
 }
 
@@ -617,17 +618,17 @@ const selTab = () => {
           return false
         }
       } else if (route.query.CurrencyCode == 'INR') {
-        if (withdrawForm.PayeeData.bankCode == '') {
+        if (withdrawForm.PayeeData.bankcode == '') {
           bankCodeDom.value?.focus()
           showToast(t('bankCodeHolder'))
           return false
         }
-        if (withdrawForm.PayeeData.accountNo == '') {
+        if (withdrawForm.PayeeData.accountno == '') {
           accountNoDom.value?.focus()
           showToast(t('bankAccountNoHolder'))
           return false
         }
-        if (withdrawForm.PayeeData.accountName == '') {
+        if (withdrawForm.PayeeData.accountname == '') {
           accountNameDom.value?.focus()
           showToast(t('bankAccountNameHolder'))
           return false

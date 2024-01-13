@@ -44,7 +44,7 @@
         </div>
       </nav>
 
-      <!-- <div v-if="hotGameList.length > 0" class="index-slide-tab">
+      <div v-if="hotGameList.length > 0" class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/most-popular.svg')" />
@@ -58,7 +58,10 @@
           </div>
         </div>
         <div class="st-cont">
-          <div class="gamebox swiper-popular">
+          <div v-if="gameListLoading">
+            <div>sketion</div>
+          </div>
+          <div v-else class="gamebox swiper-popular">
             <div class="g-list swiper-wrapper">
               <div v-for="(item, index) of hotGameList" :key="index" class="swiper-slide item" @click.stop="startGame(item.gameItemId, item.gameType)">
                 <div class="i-bd">
@@ -186,7 +189,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <!-- 排行榜数据 -->
       <nav class="m-win">
@@ -338,6 +341,7 @@ let casinoSwiper = ref(null)
 let providerSwiper = ref(null)
 
 // 首页游戏列表
+const gameListLoading = ref(false)
 const hotGameList = ref<getGameListRespItem[]>([])
 const slotGameList = ref<getGameListRespItem[]>([])
 const casinoGameList = ref<getGameListRespItem[]>([])
@@ -424,6 +428,7 @@ const getAnnouncementList = () => {
 
 // 获取首页游戏列表
 const getGameList = () => {
+  gameListLoading.value = true
   getGameListApi({ id: 0, platform: PlatForm.H5 })
     .then((resp) => {
       hotGameList.value = resp.data.hot
@@ -458,6 +463,7 @@ const getGameList = () => {
       })
     })
     .catch((error) => {
+      gameListLoading.value = false
       console.log(error)
     })
 }

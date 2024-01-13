@@ -476,18 +476,20 @@ const fiatDeposit = () => {
       // ElMessage({ type: 'success', message: '提交成功！' })
       Object.assign(fiatDepositForm, defaultFiatDepositForm)
       fiatDepositLoading.value = false
-      const wd = window.open(resp.data.fiatPayUrl)
-      if (!wd) {
-        showConfirmDialog({
-          title: t(''),
-          message: t('depositNewWindow')
-        })
-          .then(() => {
-            window.open(resp.data.fiatPayUrl)
+      if (resp.data.fiatPayUrl && resp.data.fiatPayUrl != '') {
+        const wd = window.open(resp.data.fiatPayUrl)
+        if (!wd) {
+          showConfirmDialog({
+            title: t(''),
+            message: t('depositNewWindow')
           })
-          .catch(() => {
-            return false
-          })
+            .then(() => {
+              window.open(resp.data.fiatPayUrl)
+            })
+            .catch(() => {
+              return false
+            })
+        }
       }
       showFiatDepositBox.value = false
     })

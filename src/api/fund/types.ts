@@ -64,10 +64,10 @@ export interface withdrawOrderData {
     banknumber?: string
     bankname?: string
     bankzhiname?: string
-    accountType?: string
-    bankCode?: string
-    accountNo?: string
-    accountName?: string
+    accounttype?: string
+    bankcode?: string
+    accountno?: string
+    accountname?: string
     ifsc?: string
   }
 }
