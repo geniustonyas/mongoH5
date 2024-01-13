@@ -256,7 +256,8 @@ export default {
     ton: 'トンコイン',
     usd: 'US＄',
     cny: '人民元',
-    brl: 'ブラジルレアル'
+    brl: 'ブラジルレアル',
+    inr: 'INR'
   },
   // ポイントストア
   points: 'ポイント',
@@ -739,6 +740,20 @@ export default {
   fiatPixAccountHolder: 'アカウント入力',
   withdrawInfo: '引き出し情報',
   fundCurrency: '通貨',
+  gameProviders: 'プロバイダー',
+  mostPopular: '５つ星ゲーム',
+  viewAll: 'すべてを見る',
+  accountType: '口座の種類',
+  bankCode: '銀行コード',
+  bankAccountNo: '口座番号',
+  bankAccountName: '口座名義人の名前',
+  ifsc: 'IFSC',
+  bankCodeHolder: '銀行コードを選択',
+  bankAccountNoHolder: '口座番号を入力',
+  bankAccountNameHolder: '口座名義人の名前を入力',
+  ifscHolder: 'IFSCを入力',
+  indexSlots: 'スロット',
+  indexCasino: 'ライブカジノ',
 
   vip: {
     seabetVip: 'Seabet VIPクラブ',

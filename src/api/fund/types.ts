@@ -60,10 +60,15 @@ export interface withdrawOrderData {
   PayeeAddress: string
   Amount: string | number
   PayeeData: {
-    bankfullname: string
-    banknumber: string
-    bankname: string
-    bankzhiname: string
+    bankfullname?: string
+    banknumber?: string
+    bankname?: string
+    bankzhiname?: string
+    accounttype?: string
+    bankcode?: string
+    accountno?: string
+    accountname?: string
+    ifsc?: string
   }
 }
 

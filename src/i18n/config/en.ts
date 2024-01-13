@@ -257,7 +257,8 @@ export default {
     ton: 'Open network',
     usd: 'US dollar',
     cny: 'RMB',
-    brl: 'BRL'
+    brl: 'BRL',
+    inr: 'INR'
   },
   // 积分商城
   points: 'Points',
@@ -738,6 +739,20 @@ export default {
   fiatPixAccountHolder: 'Enter Account',
   withdrawInfo: 'Withdrawal Information',
   fundCurrency: 'Currency',
+  gameProviders: 'Providers',
+  mostPopular: 'Top Rated Games',
+  viewAll: 'See All',
+  accountType: 'Account Type',
+  bankCode: 'Bank Code',
+  bankAccountNo: 'Account Number',
+  bankAccountName: 'Account Holder Name',
+  ifsc: 'IFSC',
+  bankCodeHolder: 'Select Bank Code',
+  bankAccountNoHolder: 'Enter Bank Account Number',
+  bankAccountNameHolder: 'Enter Bank Account Name',
+  ifscHolder: 'Enter IFSC',
+  indexSlots: 'SLOTS',
+  indexCasino: 'LIVE CASINO',
 
   vip: {
     seabetVip: 'Seabet VIP-Club',

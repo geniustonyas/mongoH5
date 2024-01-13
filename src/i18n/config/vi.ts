@@ -257,7 +257,8 @@ export default {
     ton: 'TON',
     usd: 'USD',
     cny: 'CNY',
-    brl: 'BRL'
+    brl: 'BRL',
+    inr: 'INR'
   },
   // Cửa hàng điểm
   points: 'Điểm',
@@ -744,6 +745,20 @@ export default {
   fiatPixAccountHolder: 'Nhập Tài Khoản',
   withdrawInfo: 'Thông Tin Rút Tiền',
   fundCurrency: 'Tiền tệ',
+  gameProviders: 'Nhà Cung Cấp',
+  mostPopular: 'Trò chơi được đánh giá cao nhất',
+  viewAll: 'Xem Tất Cả',
+  accountType: 'Loại tài khoản',
+  bankCode: 'Mã ngân hàng',
+  bankAccountNo: 'Số tài khoản',
+  bankAccountName: 'Tên chủ tài khoản',
+  ifsc: 'IFSC',
+  bankCodeHolder: 'Chọn mã ngân hàng',
+  bankAccountNoHolder: 'Nhập số tài khoản ngân hàng',
+  bankAccountNameHolder: 'Nhập tên chủ tài khoản ngân hàng',
+  ifscHolder: 'Nhập IFSC',
+  indexSlots: 'SLOTS',
+  indexCasino: 'LIVE CASINO',
 
   vip: {
     seabetVip: 'Hội viên VIP Seabet',

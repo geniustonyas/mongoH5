@@ -257,7 +257,8 @@ export default {
     ton: 'TON Crystal',
     usd: 'Dólar Americano',
     cny: 'Renminbi Chinês',
-    brl: 'Real brasileiro                                                                                                        '
+    brl: 'Real brasileiro',
+    inr: 'INR'
   },
   // Loja de Pontos
   points: 'Pontos',
@@ -748,6 +749,20 @@ export default {
   fiatPixAccountHolder: 'Inserir Conta',
   withdrawInfo: 'Informação de Saque',
   fundCurrency: 'Moeda',
+  gameProviders: 'Provedores',
+  mostPopular: 'Melhor dos melhores jogos',
+  viewAll: 'Ver todos',
+  accountType: 'Tipo de Conta',
+  bankCode: 'Código do Banco',
+  bankAccountNo: 'Número da Conta',
+  bankAccountName: 'Nome do Titular da Conta',
+  ifsc: 'IFSC',
+  bankCodeHolder: 'Selecionar Código do Banco',
+  bankAccountNoHolder: 'Inserir Número da Conta Bancária',
+  bankAccountNameHolder: 'Inserir Nome do Titular da Conta Bancária',
+  ifscHolder: 'Inserir IFSC',
+  indexSlots: 'SLOTS',
+  indexCasino: 'LIVE CASINO',
 
   vip: {
     seabetVip: 'Seabet VIPClube',

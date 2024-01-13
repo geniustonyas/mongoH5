@@ -257,7 +257,8 @@ export default {
     ton: 'TON Crystal',
     usd: 'ABD Doları',
     cny: 'Çin Yuanı',
-    brl: 'BRL'
+    brl: 'BRL',
+    inr: 'INR'
   },
   // Puan Mağazası
   points: 'Puanlar',
@@ -735,6 +736,20 @@ export default {
   fiatPixAccountHolder: 'Hesap Girin',
   withdrawInfo: 'Para Çekme Bilgileri',
   fundCurrency: 'Para birimi',
+  gameProviders: 'Sağlayıcılar',
+  mostPopular: 'En Çok Oy Alan Oyunlar',
+  viewAll: 'Hepsine Bakin',
+  accountType: 'Hesap Türü',
+  bankCode: 'Banka Kodu',
+  bankAccountNo: 'Hesap Numarası',
+  bankAccountName: 'Hesap Sahibinin Adı',
+  ifsc: 'IFSC',
+  bankCodeHolder: 'Banka Kodunu Seçin',
+  bankAccountNoHolder: 'Hesap Numarasını Girin',
+  bankAccountNameHolder: 'Hesap Sahibinin Adını Girin',
+  ifscHolder: 'IFSC Girin',
+  indexSlots: 'SLOTS',
+  indexCasino: 'LIVE CASINO',
 
   vip: {
     seabetVip: 'Seabet VIP Kulübü',

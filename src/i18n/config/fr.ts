@@ -258,7 +258,8 @@ export default {
     ton: 'Free TON',
     usd: 'Dollar US',
     cny: 'Yuan Renminbi',
-    brl: 'BRL'
+    brl: 'BRL',
+    inr: 'INR'
   },
   // Boutique de Points
   points: 'Points',
@@ -735,6 +736,20 @@ export default {
   fiatPixAccountHolder: 'Saisir Compte',
   withdrawInfo: 'Informations de Retrait',
   fundCurrency: 'Devise',
+  gameProviders: 'Fournisseurs',
+  mostPopular: 'Jeux les mieux notés',
+  viewAll: 'Voir Tout',
+  accountType: 'Type de Compte',
+  bankCode: 'Code Bancaire',
+  bankAccountNo: 'Numéro de Compte',
+  bankAccountName: 'Nom du Titulaire du Compte',
+  ifsc: 'IFSC',
+  bankCodeHolder: 'Sélectionner le Code Bancaire',
+  bankAccountNoHolder: 'Entrer le Numéro de Compte Bancaire',
+  bankAccountNameHolder: 'Entrer le Nom du Titulaire du Compte Bancaire',
+  ifscHolder: 'Entrer le IFSC',
+  indexSlots: 'SLOTS',
+  indexCasino: 'LIVE CASINO',
 
   vip: {
     seabetVip: 'Club VIP Seabet',

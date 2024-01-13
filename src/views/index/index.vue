@@ -44,11 +44,11 @@
         </div>
       </nav>
 
-      <div class="index-slide-tab">
+      <div v-if="hotGameList.length > 0" class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/most-popular.svg')" />
-            <h3>MOST POPULAR</h3>
+            <h3>{{ t('mostPopular') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">
@@ -58,6 +58,7 @@
           </div>
         </div>
         <div class="st-cont">
+<<<<<<< HEAD
           <!--骨架loading-->
           <div class="load-box">
             <div class="lb-gamebox">
@@ -79,6 +80,12 @@
             </div>
           </div>
           <div class="gamebox swiper-popular">
+=======
+          <div v-if="gameListLoading">
+            <div>sketion</div>
+          </div>
+          <div v-else class="gamebox swiper-popular">
+>>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
             <div class="g-list swiper-wrapper">
               <div v-for="(item, index) of hotGameList" :key="index" class="swiper-slide item" @click.stop="startGame(item.gameItemId, item.gameType)">
                 <div class="i-bd">
@@ -91,17 +98,24 @@
                   </div>
                 </div>
               </div>
+              <div v-if="hotGameList.length > 0" class="swiper-slide item" @click="router.push({ name: 'slots' })">
+                <div class="i-bd">
+                  <div class="i-img last" v-lazy:background-image="getAssetsFile('other/seeAll.jpg')" />
+                  <div class="i-all-btns">
+                    <div class="ib-bd">{{ t('viewAll') }}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLOT -->
-      <div class="index-slide-tab">
+      <div v-if="slotGameList.length > 0" class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/slots-icon.svg')" />
-            <h3>SLOTS</h3>
+            <h3>{{ t('slots') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">
@@ -124,18 +138,25 @@
                   </div>
                 </div>
               </div>
+              <div v-if="slotGameList.length > 0" class="swiper-slide item" @click="router.push({ name: 'slots' })">
+                <div class="i-bd">
+                  <div class="i-img last" v-lazy:background-image="getAssetsFile('other/seeAll.jpg')" />
+                  <div class="i-all-btns">
+                    <div class="ib-bd">{{ t('viewAll') }}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- PROVIDER -->
       <div class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/game-provider.svg')" />
-            <h3>PROVIDER</h3>
+            <h3>{{ t('gameProviders') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">
@@ -163,11 +184,11 @@
         </div>
       </div>
 
-      <div class="index-slide-tab">
+      <div v-if="casinoGameList.length > 0" class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/live-casino.svg')" />
-            <h3>LIVE CASINO</h3>
+            <h3>{{ t('casino') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">
@@ -187,6 +208,14 @@
                   <div class="i-txt">
                     <strong>{{ item.gameName }}</strong>
                     <span>{{ item.providerName }}</span>
+                  </div>
+                </div>
+              </div>
+              <div v-if="casinoGameList.length > 0" class="swiper-slide item" @click="router.push({ name: 'casino' })">
+                <div class="i-bd">
+                  <div class="i-img last" v-lazy:background-image="getAssetsFile('other/seeAll.jpg')" />
+                  <div class="i-all-btns">
+                    <div class="ib-bd">{{ t('viewAll') }}</div>
                   </div>
                 </div>
               </div>
@@ -309,6 +338,7 @@
   import { getExchangeRate } from '@/composables/getExchangeRate'
   import { providerListData } from '@/utils/config'
 
+<<<<<<< HEAD
   //第三方插件
   import { useI18n } from 'vue-i18n'
   import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
@@ -322,6 +352,22 @@
   const appStore = useAppStore()
   const userStore = useUserStore()
   const { t } = useI18n()
+=======
+//第三方插件
+import { useI18n } from 'vue-i18n'
+import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
+import { startGame } from '@/composables/startGame'
+import { PlatForm } from '@/utils/constant'
+import { orderBy } from 'lodash-es'
+import Swiper from 'swiper/bundle'
+import 'swiper/swiper-bundle.css'
+
+const providerList = orderBy(providerListData(), 'indexSort', 'asc')
+const router = useRouter()
+const appStore = useAppStore()
+const userStore = useUserStore()
+const { t } = useI18n()
+>>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
 
   const newRewardVipCode = ref(0)
 
@@ -343,10 +389,18 @@
   let casinoSwiper = ref(null)
   let providerSwiper = ref(null)
 
+<<<<<<< HEAD
   // 首页游戏列表
   const hotGameList = ref<getGameListRespItem[]>([])
   const slotGameList = ref<getGameListRespItem[]>([])
   const casinoGameList = ref<getGameListRespItem[]>([])
+=======
+// 首页游戏列表
+const gameListLoading = ref(false)
+const hotGameList = ref<getGameListRespItem[]>([])
+const slotGameList = ref<getGameListRespItem[]>([])
+const casinoGameList = ref<getGameListRespItem[]>([])
+>>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
 
   // 排行榜列表数据
   let rankList = reactive({
@@ -403,6 +457,7 @@
       })
   }
 
+<<<<<<< HEAD
   // 点击banner跳转
   const routeTo = (item: getBannerRespItem) => {
     if (item.targetUrl == '') {
@@ -414,6 +469,16 @@
       router.push({ path: item.targetUrl })
     }
   }
+=======
+// 获取首页游戏列表
+const getGameList = () => {
+  gameListLoading.value = true
+  getGameListApi({ id: 0, platform: PlatForm.H5 })
+    .then((resp) => {
+      hotGameList.value = resp.data.hot
+      slotGameList.value = resp.data.slot
+      casinoGameList.value = resp.data.casino
+>>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
 
   // 获取首页跑马灯
   const getAnnouncementList = () => {
@@ -463,9 +528,47 @@
           })
         })
       })
+<<<<<<< HEAD
       .catch((error) => {
         console.log(error)
       })
+=======
+    })
+    .catch((error) => {
+      gameListLoading.value = false
+      console.log(error)
+    })
+}
+
+// 首页游戏翻页
+const navSlide = (swiper: any, mode = 'next', e: any) => {
+  nextTick(() => {
+    if (mode == 'next') {
+      swiper.slideNext()
+      if (swiper.isEnd) {
+        e.currentTarget.className = 'on'
+      } else {
+        e.currentTarget.classList.remove('on')
+      }
+      e.currentTarget.previousElementSibling.classList.remove('on')
+    } else {
+      swiper.slidePrev()
+      if (swiper.isBeginning) {
+        e.currentTarget.className = 'on'
+      } else {
+        e.currentTarget.classList.remove('on')
+      }
+      e.currentTarget.nextSibling.classList.remove('on')
+    }
+  })
+}
+
+// 解锁新奖励，弹窗提醒
+const getRemind = () => {
+  if (userStore.userInfo.id == '') {
+    newRewardVipCode.value = 0
+    return false
+>>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
   }
 
   // 首页游戏翻页
