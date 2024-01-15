@@ -43,7 +43,7 @@
                 <p>{{ t('recommendLink') }}</p>
                 <div class="s-txt">
                   <template v-if="recommendUrls.length > 1">
-                    <select v-model="currentUrl" class="form-control">
+                    <select v-model="currentUrl" class="form-control" style="width: 100%">
                       <option v-for="(item, index) of recommendUrls" :key="index">{{ item }}</option>
                     </select>
                   </template>

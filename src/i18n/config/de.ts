@@ -962,7 +962,8 @@ export default {
           <p>• Litecoin (LTC)</p>
           <p>• Cardano (ADA)</p>
           <p>• Dogecoin (DOGE)</p>
-          <p>• The Open Network (TON)</p>`,
+          <p>• The Open Network (TON)</p>
+          <p>• @:currencyLang.brl </p>`,
     q5: 'Erheben wir Gebühren für Transaktionen?',
     a5: `<p>Obwohl wir keine Gebühren für Ein- und Auszahlungen auf Seabet.io erheben, kann es sein, dass Sie Transaktionsgebühren bei der Verwendung von Zahlungen über die Blockchain bezahlen müssen.</p>`
   },

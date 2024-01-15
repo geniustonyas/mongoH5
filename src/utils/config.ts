@@ -124,6 +124,14 @@ export const currenyListData = () => {
       currenyType: '20',
       icon: 'coin/brl.svg',
       explorer: ''
+    },
+    {
+      code: 'INR',
+      currenyName: t('currencyLang.inr'),
+      unit: 'INR',
+      currenyType: '20',
+      icon: 'coin/inr.svg',
+      explorer: ''
     }
     // {
     //   code: 'TON',

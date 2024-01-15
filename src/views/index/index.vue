@@ -44,7 +44,7 @@
         </div>
       </nav>
 
-      <div v-if="hotGameList.length > 0" class="index-slide-tab">
+      <div class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/most-popular.svg')" />
@@ -58,34 +58,28 @@
           </div>
         </div>
         <div class="st-cont">
-<<<<<<< HEAD
-          <!--骨架loading-->
-          <div class="load-box">
-            <div class="lb-gamebox">
-              <div class="lb-item">
-                <div class="lb-s"></div>
-                <div class="lb-s"></div>
-                <div class="lb-s"></div>
-              </div>
-              <div class="lb-item">
-                <div class="lb-s"></div>
-                <div class="lb-s"></div>
-                <div class="lb-s"></div>
-              </div>
-              <div class="lb-item">
-                <div class="lb-s"></div>
-                <div class="lb-s"></div>
-                <div class="lb-s"></div>
+          <div v-if="gameListLoading">
+            <div class="load-box">
+              <div class="lb-gamebox">
+                <div class="lb-item">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+                <div class="lb-item">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+                <div class="lb-item">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
               </div>
             </div>
           </div>
-          <div class="gamebox swiper-popular">
-=======
-          <div v-if="gameListLoading">
-            <div>sketion</div>
-          </div>
           <div v-else class="gamebox swiper-popular">
->>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
             <div class="g-list swiper-wrapper">
               <div v-for="(item, index) of hotGameList" :key="index" class="swiper-slide item" @click.stop="startGame(item.gameItemId, item.gameType)">
                 <div class="i-bd">
@@ -111,7 +105,7 @@
         </div>
       </div>
 
-      <div v-if="slotGameList.length > 0" class="index-slide-tab">
+      <div class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/slots-icon.svg')" />
@@ -125,7 +119,28 @@
           </div>
         </div>
         <div class="st-cont">
-          <div class="gamebox swiper-slot">
+          <div v-if="gameListLoading">
+            <div class="load-box">
+              <div class="lb-gamebox">
+                <div class="lb-item">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+                <div class="lb-item">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+                <div class="lb-item">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else class="gamebox swiper-slot">
             <div class="g-list swiper-wrapper">
               <div v-for="(item, index) of slotGameList" :key="index" class="swiper-slide item" @click.stop="startGame(item.gameItemId, item.gameType)">
                 <div class="i-bd">
@@ -148,7 +163,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -167,14 +181,14 @@
         </div>
         <div class="st-cont">
           <!--骨架loading-->
-          <div class="load-box">
+          <div v-if="gameListLoading" class="load-box">
             <div class="lb-providerbox">
-               <div class="lb-s"><span></span><label></label></div>
-               <div class="lb-s"><span></span><label></label></div>
-               <div class="lb-s"><span></span><label></label></div>
+              <div class="lb-s"><span /><label /></div>
+              <div class="lb-s"><span /><label /></div>
+              <div class="lb-s"><span /><label /></div>
             </div>
           </div>
-          <div class="gamebox swiper-provider">
+          <div v-else class="gamebox swiper-provider">
             <div class="provider-box swiper-wrapper">
               <div v-for="(item, index) of providerList" :key="index" class="swiper-slide item" @click="router.push({ name: item.tab, query: { providerId: item.id } })">
                 <img class="provider-img" :src="item.indexImg" />
@@ -184,11 +198,11 @@
         </div>
       </div>
 
-      <div v-if="casinoGameList.length > 0" class="index-slide-tab">
+      <div class="index-slide-tab">
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/live-casino.svg')" />
-            <h3>{{ t('casino') }}</h3>
+            <h3>{{ t('liveCasino') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">
@@ -198,7 +212,28 @@
           </div>
         </div>
         <div class="st-cont">
-          <div class="gamebox swiper-casino">
+          <div v-if="gameListLoading">
+            <div class="load-box">
+              <div class="lb-gamebox">
+                <div class="lb-item">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+                <div class="lb-item">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+                <div class="lb-item">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else class="gamebox swiper-casino">
             <div class="g-list swiper-wrapper">
               <div v-for="(item, index) of casinoGameList" :key="index" class="swiper-slide item" @click.stop="startGame(item.gameItemId, item.gameType)">
                 <div class="i-bd">
@@ -317,49 +352,34 @@
 </template>
 
 <script setup lang="ts">
-  // vue自带
-  import { ref, reactive, onBeforeUnmount, nextTick } from 'vue'
-  import { useRouter } from 'vue-router'
-  // 自定义组件
-  import IndexHeader from '@/components/layout/IndexHeader.vue'
-  import IndexTab from '@/components/layout/IndexTab.vue'
-  import IndexFooter from '@/components/layout/IndexFooter.vue'
-  import Footer from '@/components/layout/Footer.vue'
-  import Sidebar from '@/components/layout/SideBar.vue'
+// vue自带
+import { ref, reactive, onBeforeUnmount, nextTick } from 'vue'
+import { useRouter } from 'vue-router'
+// 自定义组件
+import IndexHeader from '@/components/layout/IndexHeader.vue'
+import IndexTab from '@/components/layout/IndexTab.vue'
+import IndexFooter from '@/components/layout/IndexFooter.vue'
+import Footer from '@/components/layout/Footer.vue'
+import Sidebar from '@/components/layout/SideBar.vue'
 
-  // 引用方法
-  import { getAnnouncementListApi, getBannerApi, getRemindApi, getGameListApi } from '@/api/app/index'
-  import { getBannerRespItem, getGameListRespItem } from '@/api/app/types'
-  import { getRankListApi } from '@/api/game/index'
-  import { getRankListRespItem } from '@/api/game/types'
-  import { useAppStore } from '@/store/modules/app'
-  import { useUserStore } from '@/store/modules/user'
-  import { getAssetsFile, moneyFormat, loginTo } from '@/utils'
-  import { getExchangeRate } from '@/composables/getExchangeRate'
-  import { providerListData } from '@/utils/config'
+// 引用方法
+import { getAnnouncementListApi, getBannerApi, getRemindApi, getGameListApi } from '@/api/app/index'
+import { getBannerRespItem, getGameListRespItem } from '@/api/app/types'
+import { getRankListApi } from '@/api/game/index'
+import { getRankListRespItem } from '@/api/game/types'
+import { useAppStore } from '@/store/modules/app'
+import { useUserStore } from '@/store/modules/user'
+import { getAssetsFile, moneyFormat, loginTo } from '@/utils'
+import { getExchangeRate } from '@/composables/getExchangeRate'
+import { providerListData } from '@/utils/config'
 
-<<<<<<< HEAD
-  //第三方插件
-  import { useI18n } from 'vue-i18n'
-  import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
-  import { startGame } from '@/composables/startGame'
-  import { PlatForm } from '@/utils/constant'
-  import Swiper from 'swiper/bundle'
-  import 'swiper/swiper-bundle.css'
-
-  const providerList = providerListData()
-  const router = useRouter()
-  const appStore = useAppStore()
-  const userStore = useUserStore()
-  const { t } = useI18n()
-=======
 //第三方插件
 import { useI18n } from 'vue-i18n'
 import { Swipe, SwipeItem, NoticeBar, ConfigProvider } from 'vant'
 import { startGame } from '@/composables/startGame'
 import { PlatForm } from '@/utils/constant'
 import { orderBy } from 'lodash-es'
-import Swiper from 'swiper/bundle'
+import Swiper from 'swiper'
 import 'swiper/swiper-bundle.css'
 
 const providerList = orderBy(providerListData(), 'indexSort', 'asc')
@@ -367,109 +387,113 @@ const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const { t } = useI18n()
->>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
 
-  const newRewardVipCode = ref(0)
+const newRewardVipCode = ref(0)
 
-  const refreshRankTimer = ref(0)
-  const refreshRemindTimer = ref(0)
-  // 汇率相关
-  const { currencyCode, exchangeRate } = getExchangeRate()
+const refreshRankTimer = ref(0)
+const refreshRemindTimer = ref(0)
+// 汇率相关
+const { currencyCode, exchangeRate } = getExchangeRate()
 
-  // 跑马灯内容
-  let marqueeContent = ref('')
+// 跑马灯内容
+let marqueeContent = ref('')
 
-  // 首页swiper 和下面banner
-  let swipeImg = ref<getBannerRespItem[]>([])
-  let bannerImg = ref<getBannerRespItem[]>([])
+// 首页swiper 和下面banner
+let swipeImg = ref<getBannerRespItem[]>([])
+let bannerImg = ref<getBannerRespItem[]>([])
 
-  // 游戏swiper
-  let popularSwiper = ref(null)
-  let slotSwiper = ref(null)
-  let casinoSwiper = ref(null)
-  let providerSwiper = ref(null)
+// 游戏swiper
+let popularSwiper = ref<any>(null)
+let slotSwiper = ref<any>(null)
+let casinoSwiper = ref<any>(null)
+let providerSwiper = ref<any>(null)
 
-<<<<<<< HEAD
-  // 首页游戏列表
-  const hotGameList = ref<getGameListRespItem[]>([])
-  const slotGameList = ref<getGameListRespItem[]>([])
-  const casinoGameList = ref<getGameListRespItem[]>([])
-=======
 // 首页游戏列表
 const gameListLoading = ref(false)
 const hotGameList = ref<getGameListRespItem[]>([])
 const slotGameList = ref<getGameListRespItem[]>([])
 const casinoGameList = ref<getGameListRespItem[]>([])
->>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
 
-  // 排行榜列表数据
-  let rankList = reactive({
-    sport: [],
-    casino: [],
-    slots: []
-  })
-  // 显示排行榜列表投注详情
-  let showBetDetailsBox = ref(false)
-  let betDetailsItem = reactive<getRankListRespItem>({
-    roundId: '',
-    orderId: '',
-    memberuserName: '',
-    gameName: '',
-    betTime: '',
-    winAmount: '',
-    gameType: 0,
-    betAmount: '',
-    winRate: '',
-    providerId: '',
-    providerCode: '',
-    gameCode: '',
-    gameId: ''
-  })
+// 排行榜列表数据
+let rankList = reactive({
+  sport: [],
+  casino: [],
+  slots: []
+})
+// 显示排行榜列表投注详情
+let showBetDetailsBox = ref(false)
+let betDetailsItem = reactive<getRankListRespItem>({
+  roundId: '',
+  orderId: '',
+  memberuserName: '',
+  gameName: '',
+  betTime: '',
+  winAmount: '',
+  gameType: 0,
+  betAmount: '',
+  winRate: '',
+  providerId: '',
+  providerCode: '',
+  gameCode: '',
+  gameId: ''
+})
 
-  // 排行表切换
-  let rankTab = ref('sport')
-  // 排行榜列表
-  const getRankList = () => {
-    getRankListApi()
-      .then((resp) => {
-        Object.assign(rankList, resp.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+// 排行表切换
+let rankTab = ref('sport')
+// 排行榜列表
+const getRankList = () => {
+  getRankListApi()
+    .then((resp) => {
+      Object.assign(rankList, resp.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+// 排行榜投注详情
+const rankBetDetails = (item: any) => {
+  Object.assign(betDetailsItem, item)
+  showBetDetailsBox.value = true
+}
+
+// 获取首页Banner
+const getBanner = () => {
+  getBannerApi({ platform: PlatForm.H5 })
+    .then((resp) => {
+      swipeImg.value = resp.data.filter((item) => item.positionCode == '101')
+      bannerImg.value = resp.data.filter((item) => item.positionCode == '102')
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+// 点击banner跳转
+const routeTo = (item: getBannerRespItem) => {
+  if (item.targetUrl == '') {
+    return false
   }
-
-  // 排行榜投注详情
-  const rankBetDetails = (item: any) => {
-    Object.assign(betDetailsItem, item)
-    showBetDetailsBox.value = true
+  if (item.targetUrl && (item.targetUrl.indexOf('http') > -1 || item.targetUrl.indexOf('https') > -1)) {
+    window.open(item.targetUrl)
+  } else {
+    router.push({ path: item.targetUrl })
   }
+}
 
-  // 获取首页Banner
-  const getBanner = () => {
-    getBannerApi({ platform: PlatForm.H5 })
-      .then((resp) => {
-        swipeImg.value = resp.data.filter((item) => item.positionCode == '101')
-        bannerImg.value = resp.data.filter((item) => item.positionCode == '102')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+// 获取首页跑马灯
+const getAnnouncementList = () => {
+  getAnnouncementListApi({ PageIndex: 1, PageSize: 3 })
+    .then((resp) => {
+      marqueeContent.value = resp.data!.items.reduce((notice, item, index) => {
+        return notice + (index + 1) + '. ' + item.content + '. '
+      }, '')
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
 
-<<<<<<< HEAD
-  // 点击banner跳转
-  const routeTo = (item: getBannerRespItem) => {
-    if (item.targetUrl == '') {
-      return false
-    }
-    if (item.targetUrl && (item.targetUrl.indexOf('http') > -1 || item.targetUrl.indexOf('https') > -1)) {
-      window.open(item.targetUrl)
-    } else {
-      router.push({ path: item.targetUrl })
-    }
-  }
-=======
 // 获取首页游戏列表
 const getGameList = () => {
   gameListLoading.value = true
@@ -478,61 +502,33 @@ const getGameList = () => {
       hotGameList.value = resp.data.hot
       slotGameList.value = resp.data.slot
       casinoGameList.value = resp.data.casino
->>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
+      gameListLoading.value = false
+      // 初始化banner
+      nextTick(() => {
+        popularSwiper.value = new Swiper('.swiper-popular', {
+          spaceBetween: 8,
+          slidesPerView: 'auto',
+          slidesPerGroup: 3
+        })
 
-  // 获取首页跑马灯
-  const getAnnouncementList = () => {
-    getAnnouncementListApi({ PageIndex: 1, PageSize: 3 })
-      .then((resp) => {
-        marqueeContent.value = resp.data!.items.reduce((notice, item, index) => {
-          return notice + (index + 1) + '. ' + item.content + '. '
-        }, '')
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+        slotSwiper.value = new Swiper('.swiper-slot', {
+          spaceBetween: 8,
+          slidesPerView: 3,
+          slidesPerGroup: 3
+        })
 
-  // 获取首页游戏列表
-  const getGameList = () => {
-    getGameListApi({ id: 0, platform: PlatForm.H5 })
-      .then((resp) => {
-        hotGameList.value = resp.data.hot
-        slotGameList.value = resp.data.slot
-        casinoGameList.value = resp.data.casino
+        casinoSwiper.value = new Swiper('.swiper-casino', {
+          spaceBetween: 8,
+          slidesPerView: 3,
+          slidesPerGroup: 3
+        })
 
-        // 初始化banner
-        nextTick(() => {
-          popularSwiper.value = new Swiper('.swiper-popular', {
-            spaceBetween: 8,
-            slidesPerView: 'auto',
-            slidesPerGroup: 3
-          })
-
-          slotSwiper.value = new Swiper('.swiper-slot', {
-            spaceBetween: 8,
-            slidesPerView: 3,
-            slidesPerGroup: 3
-          })
-
-          casinoSwiper.value = new Swiper('.swiper-casino', {
-            spaceBetween: 8,
-            slidesPerView: 3,
-            slidesPerGroup: 3
-          })
-
-          providerSwiper.value = new Swiper('.swiper-provider', {
-            spaceBetween: 8,
-            slidesPerView: 3,
-            slidesPerGroup: 3
-          })
+        providerSwiper.value = new Swiper('.swiper-provider', {
+          spaceBetween: 8,
+          slidesPerView: 3,
+          slidesPerGroup: 3
         })
       })
-<<<<<<< HEAD
-      .catch((error) => {
-        console.log(error)
-      })
-=======
     })
     .catch((error) => {
       gameListLoading.value = false
@@ -568,77 +564,48 @@ const getRemind = () => {
   if (userStore.userInfo.id == '') {
     newRewardVipCode.value = 0
     return false
->>>>>>> 11e38ec8a3ff079c7a5e3b47cb88acdcf31015d8
   }
-
-  // 首页游戏翻页
-  const navSlide = (swiper, mode = 'next', e) => {
-    nextTick(() => {
-      if (mode == 'next') {
-        swiper.slideNext()
-        if (swiper.isEnd) {
-          e.currentTarget.className = 'on'
-        } else {
-          e.currentTarget.classList.remove('on')
-        }
-        e.currentTarget.previousElementSibling.classList.remove('on')
-      } else {
-        swiper.slidePrev()
-        if (swiper.isBeginning) {
-          e.currentTarget.className = 'on'
-        } else {
-          e.currentTarget.classList.remove('on')
-        }
-        e.currentTarget.nextSibling.classList.remove('on')
-      }
+  getRemindApi()
+    .then((resp) => {
+      newRewardVipCode.value = parseFloat(resp.data.vipCode)
     })
-  }
+    .catch((error) => {
+      console.log(error)
+    })
+}
 
-  // 解锁新奖励，弹窗提醒
-  const getRemind = () => {
-    if (userStore.userInfo.id == '') {
-      newRewardVipCode.value = 0
-      return false
-    }
-    getRemindApi()
-      .then((resp) => {
-        newRewardVipCode.value = parseFloat(resp.data.vipCode)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+getBanner()
+getAnnouncementList()
+getRankList()
+getRemind()
+getGameList()
 
-  getBanner()
-  getAnnouncementList()
+if (refreshRankTimer.value && refreshRankTimer.value > 0) {
+  window.clearInterval(refreshRankTimer.value)
+}
+refreshRankTimer.value = window.setInterval(() => {
   getRankList()
-  getRemind()
-  getGameList()
+}, 10 * 1000)
 
+if (refreshRemindTimer.value && refreshRemindTimer.value > 0) {
+  window.clearInterval(refreshRemindTimer.value)
+}
+refreshRemindTimer.value = window.setInterval(() => {
+  getRemind()
+}, 30 * 1000)
+
+onBeforeUnmount(() => {
   if (refreshRankTimer.value && refreshRankTimer.value > 0) {
     window.clearInterval(refreshRankTimer.value)
   }
-  refreshRankTimer.value = window.setInterval(() => {
-    getRankList()
-  }, 10 * 1000)
-
   if (refreshRemindTimer.value && refreshRemindTimer.value > 0) {
     window.clearInterval(refreshRemindTimer.value)
   }
-  refreshRemindTimer.value = window.setInterval(() => {
-    getRemind()
-  }, 30 * 1000)
-
-  onBeforeUnmount(() => {
-    if (refreshRankTimer.value && refreshRankTimer.value > 0) {
-      window.clearInterval(refreshRankTimer.value)
-    }
-    if (refreshRemindTimer.value && refreshRemindTimer.value > 0) {
-      window.clearInterval(refreshRemindTimer.value)
-    }
-  })
+})
 </script>
 
 <style>
-  .my-swipe { height: 100%; }
+.my-swipe {
+  height: 100%;
+}
 </style>
