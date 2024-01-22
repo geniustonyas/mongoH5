@@ -292,7 +292,8 @@ export default {
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
     sexy: 'Sexy Baccarat',
-    pgSoft: 'PG Soft'
+    pgSoft: 'PG Soft',
+    hacksawGaming: 'Hacksaw Gaming'
   },
 
   // 数据验证提示

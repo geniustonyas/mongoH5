@@ -202,6 +202,16 @@ export const providerListData = () => {
       indexImg: getAssetsFile('provider/PragmaticPlay.svg'),
       indexSort: 3
     },
+    {
+      id: '17',
+      type: 'slots',
+      tab: 'slots',
+      show: true,
+      name: t('provider.hacksawGaming'),
+      img: getAssetsFile('svg/hacksawGaming.svg'),
+      indexImg: getAssetsFile('provider/hacksawGaming.svg'),
+      indexSort: 3
+    },
     { id: '11', type: 'slots', tab: 'slots', show: true, name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg'), indexImg: getAssetsFile('provider/Playingo.svg'), indexSort: 5 },
     { id: '9', type: 'slots', tab: 'slots', show: true, name: t('provider.netEnt'), img: getAssetsFile('svg/NetEnt.svg'), indexImg: getAssetsFile('provider/NetEnt.svg'), indexSort: 7 },
     { id: '15', type: 'slots', tab: 'slots', show: true, name: t('provider.microgaming'), img: getAssetsFile('svg/Mg.svg'), indexImg: getAssetsFile('provider/microgaming.svg'), indexSort: 6 }

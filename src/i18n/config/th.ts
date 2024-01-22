@@ -293,7 +293,8 @@ export default {
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
     sexy: 'Sexy Baccarat',
-    pgSoft: 'PG Soft'
+    pgSoft: 'PG Soft',
+    hacksawGaming: 'Hacksaw Gaming'
   },
   tips: {
     // ผู้ใช้ - เข้าสู่ระบบและลงทะเบียน

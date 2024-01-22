@@ -292,7 +292,8 @@ export default {
     playTech: 'PlayTech',
     microgaming: 'Microgaming',
     sexy: 'Sexy Baccarat',
-    pgSoft: 'PG Soft'
+    pgSoft: 'PG Soft',
+    hacksawGaming: 'Hacksaw Gaming'
   },
 
   // データ入力に関するヒント

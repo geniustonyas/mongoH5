@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import AppMain from '@/components/layout/AppMain.vue'
 import Affiliate from '@/components/layout/Affiliate.vue'
+import DeepRoute from '@/components/layout/DeepRoute.vue'
 import { useUserStore } from '@/store/modules/user'
 import { useAppStore } from '@/store/modules/app'
 import { getToken } from '@/utils/auth'
@@ -264,7 +265,7 @@ const routes = [
         meta: { needLogin: true, keepAlive: false }
       },
       {
-        path: 'finance',
+        path: 'financeDetails',
         component: Affiliate,
         children: [
           {
@@ -272,6 +273,42 @@ const routes = [
             name: 'financeDetails',
             component: () => import('@/views/affiliate/financeDetails.vue'),
             meta: { needLogin: true, keepAlive: false }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: '/blog',
+    component: AppMain,
+    children: [
+      {
+        path: '',
+        name: 'blog',
+        component: () => import('@/views/blog/blog.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      },
+      {
+        path: 'blogList',
+        component: Affiliate,
+        children: [
+          {
+            path: '',
+            name: 'blogList',
+            component: () => import('@/views/blog/blogList.vue'),
+            meta: { needLogin: false, keepAlive: false },
+          },
+          {
+            path: 'blogDetails',
+            component: DeepRoute,
+            children: [
+              {
+                path: '',
+                name: 'blogDetails',
+                component: () => import('@/views/blog/blogDetails.vue'),
+                meta: { needLogin: false, keepAlive: false }
+              }
+            ]
           }
         ]
       }

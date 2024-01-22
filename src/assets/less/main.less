@@ -1517,8 +1517,8 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 .s-l {
                     p { font-weight: 600; color: var(--color-white); margin-bottom: .5rem; }
                     .s-txt {.h-lh(4rem); border: 0.1rem solid rgba(255, 255, 255, 0.05); .bg(rgba(255, 255, 255, 0.05)); .flex(); .flex-pack-justify(); .radius(); width: 100%;
-                        select { border: none; font-size: 1.6rem; font-weight: 600; color: var(--color-white); margin-left: 1.6rem; background-color: transparent; appearance: none; -webkit-appearance: none; -moz-appearance: none; background: url( '../imgs/svg/arrow-down.svg') no-repeat scroll right center transparent; background-size: 5%;
-                            option { .bgc(var(--color-black), var(--color-white));
+                        select { border: none; font-size: 1.6rem; font-weight: 600; color: var(--color-white); margin-left: 1.6rem; background-color: transparent; appearance: none; -webkit-appearance: none; -moz-appearance: none; background: url( '../imgs/svg/arrow-down.svg') no-repeat scroll right center transparent; background-size: 5%; width: 100%;
+                            option { .bgc(var(--color-black), var(--color-white)); width: 100%;
                                 &:checked { .bg(var(--color-primary-txt)); }
                             }
                         }
@@ -2223,6 +2223,10 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     }
 }
 
+.blog-box { padding: 5rem;
+    div { text-align: center; color: white; font-size: 2rem; }
+    a { margin-right: 5rem }
+}
 /*骨架loading*/
 .load-box { position: relative; z-index: 999;
     .lb-s { background-image: linear-gradient( 268deg, rgb(21, 21, 19), rgb(36, 36, 36), rgb(21, 21, 19), rgb(36, 36, 36), rgb(21, 21, 19)); background-size: 1000%; -moz-animation: 3s ease 0s infinite normal none running iCdlbf; -webkit-animation: 3s ease 0s infinite normal none running iCdlbf; -o-animation: 3s ease 0s infinite normal none running iCdlbf; animation: 3s ease 0s infinite normal none running iCdlbf; }
