@@ -258,7 +258,8 @@ export default {
     usd: 'USD',
     cny: 'CNY',
     brl: 'BRL',
-    inr: 'INR'
+    inr: 'INR',
+    thb: 'THB'
   },
   // Cửa hàng điểm
   points: 'Điểm',
@@ -294,7 +295,8 @@ export default {
     microgaming: 'Microgaming',
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
-    hacksawGaming: 'Hacksaw Gaming'
+    hacksawGaming: 'Hacksaw Gaming',
+    jili: 'JILI'
   },
   // Gợi ý kiểm tra dữ liệu
   tips: {
@@ -760,6 +762,8 @@ export default {
   ifscHolder: 'Nhập IFSC',
   indexSlots: 'SLOTS',
   indexCasino: 'LIVE CASINO',
+  blog: 'Blog',
+  otherHoArticle: 'Các Bài Viết Phổ Biến Khác',
 
   vip: {
     seabetVip: 'Hội viên VIP Seabet',

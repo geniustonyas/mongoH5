@@ -41,14 +41,9 @@
             <div v-if="userStore.userInfo.id" class="share">
               <div class="s-l">
                 <p>{{ t('recommendLink') }}</p>
-                <div class="s-txt">
-                  <template v-if="recommendUrls.length > 1">
-                    <select v-model="currentUrl" class="form-control" style="width: 100%">
-                      <option v-for="(item, index) of recommendUrls" :key="index">{{ item }}</option>
-                    </select>
-                  </template>
-                  <a v-else>{{ recommendUrls[0] }}</a>
-                  <span ref="copyDom" :data-clipboard-text="currentUrl"><i class="iconfont icon-fuzhi" /></span>
+                <div v-for="(item, index) of recommendUrls" :key="index" class="s-txt">
+                  <a>{{ item }}</a>
+                  <span class="copyDom" :data-clipboard-text="item"><i class="iconfont icon-fuzhi" /></span>
                 </div>
               </div>
               <div class="s-r">
@@ -75,7 +70,6 @@ import { copy } from '@/utils'
 const userStore = useUserStore()
 const { t } = useI18n()
 
-const copyDom = ref<HTMLElement | null>(null)
 const mailDom = ref<HTMLElement | null>(null)
 const recommendUrls = ref<string[]>([])
 recommendUrls.value = ['seabet.io/#/?agentId=' + userStore.userInfo.id]
@@ -86,12 +80,11 @@ if (userStore.userInfo.domain && userStore.userInfo.domain != '') {
   })
   recommendUrls.value = [...tmp, ...recommendUrls.value]
 }
-const currentUrl = ref<string>(recommendUrls.value[0])
 onMounted(() => {
   nextTick(() => {
     if (userStore.userInfo.id) {
       //@ts-ignore
-      copy(copyDom.value)
+      copy(document.getElementsByClassName('copyDom'))
     }
     //@ts-ignore
     copy(mailDom.value)

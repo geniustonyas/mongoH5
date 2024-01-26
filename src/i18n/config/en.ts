@@ -258,7 +258,8 @@ export default {
     usd: 'US dollar',
     cny: 'RMB',
     brl: 'BRL',
-    inr: 'INR'
+    inr: 'INR',
+    thb: 'THB'
   },
   // 积分商城
   points: 'Points',
@@ -294,7 +295,8 @@ export default {
     microgaming: 'Microgaming',
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
-    hacksawGaming: 'Hacksaw Gaming'
+    hacksawGaming: 'Hacksaw Gaming',
+    jili: 'JILI'
   },
 
   // 数据验证提示
@@ -754,6 +756,8 @@ export default {
   ifscHolder: 'Enter IFSC',
   indexSlots: 'SLOTS',
   indexCasino: 'LIVE CASINO',
+  blog: 'Blog',
+  otherHoArticle: 'Other Popular Articles',
 
   vip: {
     seabetVip: 'Seabet VIP-Club',

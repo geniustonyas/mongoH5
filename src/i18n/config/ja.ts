@@ -257,7 +257,8 @@ export default {
     usd: 'US＄',
     cny: '人民元',
     brl: 'ブラジルレアル',
-    inr: 'INR'
+    inr: 'INR',
+    thb: 'THB'
   },
   // ポイントストア
   points: 'ポイント',
@@ -293,7 +294,8 @@ export default {
     microgaming: 'Microgaming',
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
-    hacksawGaming: 'Hacksaw Gaming'
+    hacksawGaming: 'Hacksaw Gaming',
+    jili: 'JILI'
   },
 
   // データ入力に関するヒント
@@ -753,8 +755,10 @@ export default {
   bankAccountNoHolder: '口座番号を入力',
   bankAccountNameHolder: '口座名義人の名前を入力',
   ifscHolder: 'IFSCを入力',
-  indexSlots: 'スロット',
-  indexCasino: 'ライブカジノ',
+  indexSlots: 'SLOTS',
+  indexCasino: 'LIVE CASINO',
+  blog: 'ブログ',
+  otherHoArticle: '他によく読まれている記事',
 
   vip: {
     seabetVip: 'Seabet VIPクラブ',

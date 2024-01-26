@@ -2,7 +2,7 @@
   <nav class="m-mail">
     <form method="GET" ref="formDom" target="_blank">
       <!-- <div> -->
-      <div class="mail-title">{{ t('keepContact') }}</div>
+      <div class="mail-title"><img :src="getAssetsFile('svg/email.svg')" /> {{ t('keepContact') }}</div>
       <div class="mail-cont">
         <input v-model="email" type="email" name="EMAIL" class="required email" id="mce-EMAIL" :placeholder="t('emailAddress')" />
         <span class="btn btn-primary" @click="subscript">{{ t('subscribe') }}</span>

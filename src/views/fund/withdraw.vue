@@ -112,7 +112,7 @@
               <div class="ff-info">{{ t('providerInfo') }}</div>
               <div class="ff-group">
                 <label>{{ t('bankCode') }}</label>
-                <input :value="getIndiaBankName()" type="text" ref="bankCodeDom" :placeholder="t('bankCodeHolder')" autocomplete="off" readonly @focus="showIndiaBankPicker = true" />
+                <input :value="getBankName()" type="text" ref="bankCodeDom" :placeholder="t('bankCodeHolder')" autocomplete="off" readonly @focus="showBankPicker = true" />
                 <i class="iconfont icon-down down" />
                 <div id="bankCodeTip" class="tip" />
               </div>
@@ -133,6 +133,27 @@
                 <label>{{ t('ifsc') }}</label>
                 <input v-model="withdrawForm.PayeeData.ifsc" type="text" ref="ifscDom" :placeholder="t('ifscHolder')" autocomplete="off" />
                 <div id="ifscTip" class="tip" />
+              </div>
+            </template>
+            <template v-if="route.query?.CurrencyCode == 'THB'">
+              <div class="ff-info">{{ t('providerInfo') }}</div>
+              <div class="ff-group">
+                <label>{{ t('bankCode') }}</label>
+                <input :value="getBankName()" type="text" ref="bankCodeDom" :placeholder="t('bankCodeHolder')" autocomplete="off" readonly @focus="showBankPicker = true" />
+                <i class="iconfont icon-down down" />
+                <div id="bankCodeTip" class="tip" />
+              </div>
+
+              <div class="ff-group">
+                <label>{{ t('bankAccountNo') }}</label>
+                <input v-model="withdrawForm.PayeeData.accountno" type="text" ref="accountNoDom" :placeholder="t('bankAccountNoHolder')" autocomplete="off" />
+                <div id="accountNoTip" class="tip" />
+              </div>
+
+              <div class="ff-group">
+                <label>{{ t('bankAccountName') }}</label>
+                <input v-model="withdrawForm.PayeeData.accountname" type="text" ref="accountNameDom" :placeholder="t('bankAccountNameHolder')" autocomplete="off" />
+                <div id="accountNameTip" class="tip" />
               </div>
             </template>
           </template>
@@ -226,7 +247,7 @@
                       </div>
                     </div>
                     <div class="t-r">
-                      <span>{{ getIndiaBankName() }} </span>
+                      <span>{{ getBankName() }} </span>
                       <i @click="step = 2" class="iconfont icon-bianji" />
                     </div>
                   </div>
@@ -260,6 +281,41 @@
                     </div>
                     <div class="t-r">
                       <span>{{ withdrawForm.PayeeData.ifsc }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                </div>
+                <div v-if="route.query?.CurrencyCode == 'THB'" class="r-group-card">
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>{{ t('bankCode') }}</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ getBankName() }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>{{ t('bankAccountNo') }}</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ withdrawForm.PayeeData.accountno }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>{{ t('bankAccountName') }}</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ withdrawForm.PayeeData.accountname }} </span>
                       <i @click="step = 2" class="iconfont icon-bianji" />
                     </div>
                   </div>
@@ -369,8 +425,8 @@
         <Popup v-model:show="showPixPicker" round position="bottom">
           <Picker :columns="pixType" @confirm="confirmPixType" @cancel="showPixPicker = false" />
         </Popup>
-        <Popup v-model:show="showIndiaBankPicker" round position="bottom">
-          <Picker :columns="indiaBank" @confirm="confirmIndiaBanks" @cancel="showIndiaBankPicker = false" />
+        <Popup v-model:show="showBankPicker" round position="bottom">
+          <Picker :columns="bankList" @confirm="confirmBank" @cancel="showBankPicker = false" />
         </Popup>
       </ConfigProvider>
     </main>
@@ -387,7 +443,7 @@ import { useUserStore } from '@/store/modules/user'
 import { getMinWithdrawAmountApi, getBalanceApi, withdrawOrderApi, getTradeDetailApi } from '@/api/fund/index'
 // import { getTradeDetailResponse } from '@/api/fund/type'
 import { getAssetsFile, moneyFormat } from '@/utils'
-import { usdtChainListData, currenyListData, usdtChainListTypes, pixTypeData, indiaBankData } from '@/utils/config'
+import { usdtChainListData, currenyListData, usdtChainListTypes, pixTypeData, indiaBankData, thaiBankData } from '@/utils/config'
 import { useI18n } from 'vue-i18n'
 import { liveChatCall } from '@/composables/startGame'
 
@@ -401,7 +457,14 @@ const { t } = useI18n()
 const usdtChainList = usdtChainListData()
 const currenyList = currenyListData()
 const pixType = pixTypeData()
-const indiaBank = indiaBankData()
+
+let bankList: any = []
+if (route.query?.CurrencyCode == 'INR') {
+  bankList = indiaBankData()
+}
+if (route.query?.CurrencyCode == 'THB') {
+  bankList = thaiBankData()
+}
 
 let btnLoading = ref(false)
 const step = ref(1)
@@ -437,7 +500,7 @@ const getWithdrawAmountForm = reactive({
 })
 
 const showPixPicker = ref(false)
-const showIndiaBankPicker = ref(false)
+const showBankPicker = ref(false)
 
 // 第二步： 选择提现链
 let showBlockChainBox = ref(false)
@@ -485,14 +548,14 @@ const confirmPixType = (selected: any) => {
   showPixPicker.value = false
 }
 
-const confirmIndiaBanks = (selected: any) => {
+const confirmBank = (selected: any) => {
   withdrawForm.PayeeData.bankname = selected.selectedOptions[0].text
   withdrawForm.PayeeData.bankcode = selected.selectedOptions[0].value
-  showIndiaBankPicker.value = false
+  showBankPicker.value = false
 }
 
-const getIndiaBankName = () => {
-  const item = indiaBank.find((item) => item.value == withdrawForm.PayeeData.bankcode)
+const getBankName = () => {
+  const item = bankList.find((item: any) => item.value == withdrawForm.PayeeData.bankcode)
   return item ? item.text : ''
 }
 
@@ -636,6 +699,22 @@ const selTab = () => {
         if (withdrawForm.PayeeData.ifsc == '') {
           ifscDom.value?.focus()
           showToast(t('ifscHolder'))
+          return false
+        }
+      } else if (route.query.CurrencyCode == 'THB') {
+        if (withdrawForm.PayeeData.bankcode == '') {
+          bankCodeDom.value?.focus()
+          showToast(t('bankCodeHolder'))
+          return false
+        }
+        if (withdrawForm.PayeeData.accountno == '') {
+          accountNoDom.value?.focus()
+          showToast(t('bankAccountNoHolder'))
+          return false
+        }
+        if (withdrawForm.PayeeData.accountname == '') {
+          accountNameDom.value?.focus()
+          showToast(t('bankAccountNameHolder'))
           return false
         }
       }

@@ -88,14 +88,20 @@
               </a>
             </li>
             <li>
-              <a @click="router.push({ name: 'tradeRecord' })">
-                <span><i class="iconfont icon-zzjl" />{{ t('myBets') }} </span>
+              <a @click="router.push({ name: 'mall' })">
+                <span><i class="iconfont icon-shangcheng" />{{ t('mallStore') }} </span>
                 <i class="iconfont icon-right" />
               </a>
             </li>
             <li>
               <a @click="router.push({ name: 'rewards' })">
                 <span><i class="iconfont icon-rewards" />{{ t('rewards') }} </span>
+                <i class="iconfont icon-right" />
+              </a>
+            </li>
+            <li>
+              <a @click="router.push({ name: 'tradeRecord' })">
+                <span><i class="iconfont icon-zzjl" />{{ t('myBets') }} </span>
                 <i class="iconfont icon-right" />
               </a>
             </li>

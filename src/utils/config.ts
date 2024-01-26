@@ -132,6 +132,14 @@ export const currenyListData = () => {
       currenyType: '20',
       icon: 'coin/inr.svg',
       explorer: ''
+    },
+    {
+      code: 'THB',
+      currenyName: t('currencyLang.thb'),
+      unit: 'THB',
+      currenyType: '20',
+      icon: 'coin/thb.svg',
+      explorer: ''
     }
     // {
     //   code: 'TON',
@@ -210,6 +218,16 @@ export const providerListData = () => {
       name: t('provider.hacksawGaming'),
       img: getAssetsFile('svg/hacksawGaming.svg'),
       indexImg: getAssetsFile('provider/hacksawGaming.svg'),
+      indexSort: 3
+    },
+    {
+      id: '18',
+      type: 'slots',
+      tab: 'slots',
+      show: true,
+      name: t('provider.jili'),
+      img: getAssetsFile('svg/jili.svg'),
+      indexImg: getAssetsFile('provider/jili.svg'),
       indexSort: 3
     },
     { id: '11', type: 'slots', tab: 'slots', show: true, name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg'), indexImg: getAssetsFile('provider/Playingo.svg'), indexSort: 5 },
@@ -398,6 +416,35 @@ export const indiaBankData = () => {
     { value: 'ICICIC', text: 'ICICI corporate Bank' },
     { value: 'SARASWAT', text: 'Saraswat Bank' },
     { value: 'TELG', text: 'Telangana grameena Bank' }
+  ]
+}
+
+export const thaiBankData = () => {
+  return [
+    { value: 'SCB', text: 'SCB' },
+    { value: 'BAAC', text: 'BAAC' },
+    { value: 'BAY', text: 'BAY' },
+    { value: 'BBL', text: 'BBL' },
+    { value: 'CIMB', text: 'CIMB' },
+    { value: 'CITI', text: 'CITI' },
+    { value: 'DB', text: 'DB' },
+    { value: 'GHB', text: 'GHB' },
+    { value: 'GSB', text: 'GSB' },
+    { value: 'HSBC', text: 'HSBC' },
+    { value: 'ICBC', text: 'ICBC' },
+    { value: 'ISBT', text: 'ISBT' },
+    { value: 'KBANK', text: 'KBANK' },
+    { value: 'KK', text: 'KK' },
+    { value: 'KTB', text: 'KTB' },
+    { value: 'LHBANK', text: 'LHBANK' },
+    { value: 'MHCB', text: 'MHCB' },
+    { value: 'SCBT', text: 'SCBT' },
+    { value: 'SMBC', text: 'SMBC' },
+    { value: 'TTB', text: 'TTB' },
+    { value: 'TBANK', text: 'TBANK' },
+    { value: 'TCRB', text: 'TCRB' },
+    { value: 'TSCO', text: 'TSCO' },
+    { value: 'UOB', text: 'UOB' }
   ]
 }
 

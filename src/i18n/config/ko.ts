@@ -258,7 +258,8 @@ export default {
     usd: '미국달러',
     cny: '인민폐',
     brl: '브라질 헤알',
-    inr: 'INR'
+    inr: 'INR',
+    thb: 'THB'
   },
   // 포인트 쇼핑센터
   points: '포인트',
@@ -294,7 +295,8 @@ export default {
     microgaming: 'Microgaming',
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
-    hacksawGaming: 'Hacksaw Gaming'
+    hacksawGaming: 'Hacksaw Gaming',
+    jili: 'JILI'
   },
 
   // 데이터검증 프롬프트
@@ -750,8 +752,10 @@ export default {
   bankAccountNoHolder: '계좌 번호 입력',
   bankAccountNameHolder: '계좌 소유자 이름 입력',
   ifscHolder: 'IFSC 입력',
-  indexSlots: '슬롯머신',
-  indexCasino: '라이브카지노',
+  indexSlots: 'SLOTS',
+  indexCasino: 'LIVE CASINO',
+  blog: '블로그',
+  otherHoArticle: '다른 인기 기사',
 
   vip: {
     seabetVip: 'Seabet VIP 클럽',

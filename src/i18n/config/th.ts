@@ -258,7 +258,8 @@ export default {
     usd: 'ดอลลาร์สหรัฐ',
     cny: 'หยวนจีน',
     brl: 'BRL',
-    inr: 'INR'
+    inr: 'INR',
+    thb: 'บาท'
   },
   // ร้านค้าแต้ม
   points: 'แต้ม',
@@ -294,7 +295,8 @@ export default {
     microgaming: 'Microgaming',
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
-    hacksawGaming: 'Hacksaw Gaming'
+    hacksawGaming: 'Hacksaw Gaming',
+    jili: 'JILI'
   },
   tips: {
     // ผู้ใช้ - เข้าสู่ระบบและลงทะเบียน
@@ -746,7 +748,11 @@ export default {
   bankCodeHolde: 'เลือกธนาคาร',
   bankAccountNoHolder: 'ใส่หมายเลขบัญชีธนาคาร',
   bankAccountNameHolder: 'ใส่ชื่อเจ้าของบัญชีธนาคาร',
-  fscHolder: 'ใส่ IFSC',
+  ifscHolder: 'ใส่ IFSC',
+  indexSlots: 'SLOTS',
+  indexCasino: 'LIVE CASINO',
+  blog: 'Blog',
+  otherHoArticle: 'บทความยอดนิยมอื่น ๆ',
 
   vip: {
     seabetVip: 'คลับ VIP ของ Seabet',
