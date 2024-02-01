@@ -2225,9 +2225,97 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     }
 }
 
-.blog-box { padding: 5rem;
-    div { text-align: center; color: white; font-size: 2rem; }
-    a { margin-right: 5rem }
+.blog-box { 
+    padding:0 1.2rem;
+    .bb-title{  margin-bottom:2rem;
+        .bt-l{ 
+            img{width:100%; height:auto; .radius(.5rem);}
+        }
+        .bt-r{ 
+            h2{font-size:1.8rem; color:var(--color-white); margin:1rem 0;}
+            p{font-size:1.4rem; }
+        }
+    }
+    .bb-menu{
+        ul{ .flex(); .flex-v();  
+            li{ .flex-x();
+                .bm-bd{ 
+                    margin-bottom:2rem; 
+                    .bgc(#3c3c3c,var(--color-white));
+                    .radius(.5rem);
+                    overflow:hidden;
+                    height:9.6rem;
+                    cursor:pointer;
+                    .flex(); .flex-pack-justify(); .flex-align();
+                    &:hover{
+                        .bg(#444);
+                        .bb-r{
+                            transform: translateX(0.3rem);
+                        }
+                    }
+                    .bb-l{ .flex-x(0 0 9.6rem); .bg(#292929); text-align:center; .h-lh(9.6rem);
+                                                                                img{.size(100%,100%)}
+                    }
+                    .bb-m{.flex-x(); padding-left:1.6rem; font-weight:600; font-size:1.8rem;}
+                    .bb-r{.flex-x(0 0 6rem); text-align:center; font-size:2.4rem; font-weight:600; transition: transform .25s;}
+                }
+            }
+        }
+    }
+    .bb-list{ margin-top:2rem;
+         ul{ .flex(); .flex-v();
+            li{ .flex-x();
+                .bl-bd{ 
+                    margin-bottom:2rem;     
+                    cursor:pointer;
+                    img{position:relative; width:100%; height:auto;  .radius(.5rem); }
+                    h2{font-size:1.8rem; color:var(--color-white); margin:1rem 0;}
+                    p{font-size:1.3rem;}
+                    &:hover{
+                        img{  transform: translateY(-0.3rem);transition: transform .25s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .bb-details{ 
+        .bd-title{font-size:2rem; font-weight:800; color:var(--color-white); margin-bottom:2rem; }
+        .bd-photo{ margin-bottom:2rem; margin-top:1rem;
+            img{width:100%;}
+        }
+        .bd-date{
+            padding:1rem 0; 
+            .flex(); .flex-pack-justify(); .flex-align();
+                                           .d-l{font-size:1.2rem;}
+                                           .d-r{
+                                               a{display:inline-block; width:3.6rem; .h-lh(3.6rem); text-align:center; .radius(3.6rem);
+                                                                                                                       .bg(#0f0f0f);
+                                                                                                                       margin-left:1rem;
+                                                                                                                       cursor:pointer;
+                                                                                                                       &:hover{
+                                                                                                                           .bg(var(--color-black));
+                                                                                                                       }
+                                               }
+                                           }
+        }
+        .bd-cont{
+            margin:1rem 0;
+            h3{font-size:1.8rem; color:var(--color-white); margin:1.6rem 0;}
+            p{padding:1rem 0;}
+        }
+
+    }
+    .bd-hot{  
+       .bh-title{
+            .h-lh(6rem);
+        font-size:1.8rem;
+        font-weight:600;
+        .border-b(.1rem,rgba(255,255,255,.1));
+        color:var(--color-white);
+        margin-top:3rem;
+       }
+    }
 }
 /*骨架loading*/
 .load-box { position: relative; z-index: 999;
