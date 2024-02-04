@@ -2,7 +2,7 @@
   <div class="page">
     <header class="header">
       <div class="head-menu-lmr">
-        <div class="hml-l" @click="router.replace({ name: 'finance', query: { tab: route.query.tab } })">
+        <div class="hml-l" @click="router.replace({ name: 'finance', query: { start: route.query.start, end: route.query.end } })">
           <!-- <div class="hml-l" @click="$router.back()"> -->
           <i class="iconfont icon-return" />
         </div>
@@ -192,6 +192,10 @@ const timeItem = shotBtnDate.value.find((item: any) => {
 if (timeItem) {
   query.start = timeItem.value[0]
   query.end = dayjs(timeItem.value[1]).add(1, 'day').format('YYYY-MM-DD') || ''
+}
+if (route.query.start && route.query.end) {
+  query.start = route.query.start as string
+  query.end = route.query.end as string
 }
 
 // 列表刷新下拉等参数

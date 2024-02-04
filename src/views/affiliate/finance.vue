@@ -36,7 +36,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'depositDetails', tab: tab, field: 'deposit' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'depositDetails', start: query.start, end: query.end, field: 'deposit' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -54,7 +54,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'withdrawDetails', tab: tab, field: 'withdraw' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'withdrawDetails', start: query.start, end: query.end, field: 'withdraw' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -70,7 +70,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'rewardDetails', tab: tab, field: 'reward' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'rewardDetails', start: query.start, end: query.end, field: 'reward' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -99,7 +99,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'totalWinLose', tab: tab, field: 'win' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'totalWinLose', start: query.start, end: query.end, field: 'win' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -115,7 +115,7 @@
                     </div>
                   </div>
                   <div class="ib-more">
-                    <a @click="router.push({ name: 'financeDetails', query: { title: 'ctfee', tab: tab, field: 'fee' } })">{{ t('readMore') }}</a>
+                    <a @click="router.push({ name: 'financeDetails', query: { title: 'ctfee', start: query.start, end: query.end, field: 'fee' } })">{{ t('readMore') }}</a>
                   </div>
                 </div>
               </li>
@@ -167,7 +167,7 @@ import { getFinanceDataRespItem, getFinanceDataResp } from '@/api/affiliate/type
 
 // import CommonHeader from '@/components/layout/CommonHeader.vue'
 
-import { Calendar } from 'vant'
+import { ConfigProvider, Calendar } from 'vant'
 import dayjs from 'dayjs'
 import weekday from 'dayjs/plugin/weekday'
 import 'dayjs/locale/zh-cn'
@@ -182,7 +182,7 @@ const showDatePicker = ref(false)
 // 默认日期
 let defaultDate = [dayjs().subtract(7, 'day').toDate(), dayjs().add(1, 'day').toDate()]
 // 筛选 - 日期控件参数
-const minDate = dayjs().subtract(1, 'months').toDate()
+const minDate = dayjs().subtract(4, 'months').startOf('month').toDate()
 const maxDate = dayjs().toDate()
 // 日期控件去掉日历格子下文字信息
 const dayFormatter = (day: any) => {
@@ -246,15 +246,9 @@ const shotQuery = (time: string[], tb: number) => {
   getFinanceData()
 }
 
-if (route.query.tab) {
-  const timeItem = shotBtnDate.value.find((item: any) => {
-    return item.tab == route.query.tab
-  })
-  tab.value = parseInt(route.query.tab as string)
-  if (timeItem) {
-    query.start = timeItem.value[0]
-    query.end = dayjs(timeItem.value[1]).format('YYYY-MM-DD') || ''
-  }
+if (route.query.start && route.query.end) {
+  query.start = route.query.start as string
+  query.end = route.query.end as string
   getFinanceData()
 } else {
   shotQuery(shotBtnDate.value[0].value, shotBtnDate.value[0].tab)

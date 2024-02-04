@@ -296,14 +296,14 @@ const routes = [
             path: '',
             name: 'blogList',
             component: () => import('@/views/blog/blogList.vue'),
-            meta: { needLogin: false, keepAlive: false },
+            meta: { needLogin: false, keepAlive: false }
           },
           {
             path: 'blogDetails',
             component: DeepRoute,
             children: [
               {
-                path: '',
+                path: ':id(\\d+)',
                 name: 'blogDetails',
                 component: () => import('@/views/blog/blogDetails.vue'),
                 meta: { needLogin: false, keepAlive: false }

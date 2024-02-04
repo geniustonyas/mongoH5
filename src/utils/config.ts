@@ -199,7 +199,7 @@ export const providerListData = () => {
     { id: '7', type: 'casino', tab: 'casino', show: true, name: t('provider.ezugi'), img: getAssetsFile('svg/Ezugi.svg'), indexImg: getAssetsFile('provider/Ezugi.svg'), indexSort: 8 },
     { id: '3', type: 'casino', tab: 'casino', show: true, name: t('provider.asiaGaming'), img: getAssetsFile('svg/AsiaGaming.svg'), indexImg: getAssetsFile('provider/AsiaGaming.svg'), indexSort: 4 },
     // 电子提供商
-    { id: '13', type: 'slots', tab: 'slots', show: true, name: t('provider.pgSoft'), img: getAssetsFile('svg/pgsoft.svg'), indexImg: getAssetsFile('provider/pgsoft.svg'), indexSort: 2 },
+    { id: '13', type: 'slots', tab: 'slots', show: true, name: t('provider.pgSoft'), img: getAssetsFile('svg/pgsoft.svg'), indexImg: getAssetsFile('provider/pgsoft.svg'), indexSort: 2, demo: false },
     {
       id: '1',
       type: 'slots',
@@ -208,7 +208,8 @@ export const providerListData = () => {
       name: t('provider.pragmaticPlay'),
       img: getAssetsFile('svg/PragmaticPlay.svg'),
       indexImg: getAssetsFile('provider/PragmaticPlay.svg'),
-      indexSort: 3
+      indexSort: 3,
+      demo: true
     },
     {
       id: '17',
@@ -218,21 +219,43 @@ export const providerListData = () => {
       name: t('provider.hacksawGaming'),
       img: getAssetsFile('svg/hacksawGaming.svg'),
       indexImg: getAssetsFile('provider/hacksawGaming.svg'),
-      indexSort: 3
+      indexSort: 3,
+      demo: true
     },
-    // {
-    //   id: '18',
-    //   type: 'slots',
-    //   tab: 'slots',
-    //   show: true,
-    //   name: t('provider.jili'),
-    //   img: getAssetsFile('svg/jili.svg'),
-    //   indexImg: getAssetsFile('provider/jili.svg'),
-    //   indexSort: 3
-    // },
-    { id: '11', type: 'slots', tab: 'slots', show: true, name: t('provider.playingo'), img: getAssetsFile('svg/Playingo.svg'), indexImg: getAssetsFile('provider/Playingo.svg'), indexSort: 5 },
-    { id: '9', type: 'slots', tab: 'slots', show: true, name: t('provider.netEnt'), img: getAssetsFile('svg/NetEnt.svg'), indexImg: getAssetsFile('provider/NetEnt.svg'), indexSort: 7 },
-    { id: '15', type: 'slots', tab: 'slots', show: true, name: t('provider.microgaming'), img: getAssetsFile('svg/Mg.svg'), indexImg: getAssetsFile('provider/microgaming.svg'), indexSort: 6 }
+    {
+      id: '18',
+      type: 'slots',
+      tab: 'slots',
+      show: true,
+      name: t('provider.jili'),
+      img: getAssetsFile('svg/jili.svg'),
+      indexImg: getAssetsFile('provider/jili.svg'),
+      indexSort: 3,
+      demo: false
+    },
+    {
+      id: '11',
+      type: 'slots',
+      tab: 'slots',
+      show: true,
+      name: t('provider.playingo'),
+      img: getAssetsFile('svg/Playingo.svg'),
+      indexImg: getAssetsFile('provider/Playingo.svg'),
+      indexSort: 5,
+      demo: true
+    },
+    { id: '9', type: 'slots', tab: 'slots', show: true, name: t('provider.netEnt'), img: getAssetsFile('svg/NetEnt.svg'), indexImg: getAssetsFile('provider/NetEnt.svg'), indexSort: 7, demo: true },
+    {
+      id: '15',
+      type: 'slots',
+      tab: 'slots',
+      show: true,
+      name: t('provider.microgaming'),
+      img: getAssetsFile('svg/Mg.svg'),
+      indexImg: getAssetsFile('provider/microgaming.svg'),
+      indexSort: 6,
+      demo: true
+    }
   ]
 }
 
