@@ -23,7 +23,7 @@
             <div class="item">
               <label>{{ t('minMaxBet') }}</label>
               <span>
-                {{ detailsData.minBetAmount != '' && detailsData.maxBetAmount != '' ? parseFloat(detailsData.minBetAmount).toFixed(2) + ' - ' + parseFloat(detailsData.maxBetAmount).toFixed(2) : '' }}
+                {{ detailsData.minBetAmount != '' && detailsData.maxBetAmount != '' ? detailsData.minBetAmount + ' - ' + detailsData.maxBetAmount : '' }}
                 USDT
               </span>
             </div>
@@ -123,6 +123,18 @@ const getGameDetails = () => {
   getGameDetailsApi({ Id: route.params.id as string, platform: PlatForm.H5 })
     .then((resp) => {
       Object.assign(detailsData, resp.data)
+      if (detailsData.minBetAmount != null && detailsData.minBetAmount != '') {
+        //@ts-ignore
+        detailsData.minBetAmount = detailsData.minBetAmount.match(/^\d+(\.\d{0,4})?/)[0]
+        //@ts-ignore
+        detailsData.minBetAmount = parseFloat(detailsData.minBetAmount)
+      }
+      if (detailsData.maxBetAmount != null && detailsData.maxBetAmount != '') {
+        //@ts-ignore
+        detailsData.maxBetAmount = detailsData.maxBetAmount.match(/^\d+(\.\d{0,4})?/)[0]
+        //@ts-ignore
+        detailsData.maxBetAmount = parseFloat(detailsData.maxBetAmount)
+      }
     })
     .catch((error) => {
       console.log(error)
