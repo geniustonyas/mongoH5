@@ -194,7 +194,7 @@
                   </div>
                   <div class="bbc-mr">
                     <p>{{ moneyFormat(item.balance) }} {{ item.unit }}</p>
-                    <p>{{ moneyFormat(item.usdAmount) }}</p>
+                    <p>$ {{ moneyFormat(item.usdAmount) }}</p>
                   </div>
                 </li>
               </ul>

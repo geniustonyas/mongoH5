@@ -199,6 +199,17 @@ export const providerListData = () => {
     { id: '7', type: 'casino', tab: 'casino', show: true, name: t('provider.ezugi'), img: getAssetsFile('svg/Ezugi.svg'), indexImg: getAssetsFile('provider/Ezugi.svg'), indexSort: 8 },
     { id: '3', type: 'casino', tab: 'casino', show: true, name: t('provider.asiaGaming'), img: getAssetsFile('svg/AsiaGaming.svg'), indexImg: getAssetsFile('provider/AsiaGaming.svg'), indexSort: 4 },
     // 电子提供商
+    {
+      id: '18',
+      type: 'slots',
+      tab: 'slots',
+      show: true,
+      name: t('provider.jili'),
+      img: getAssetsFile('svg/jili.svg'),
+      indexImg: getAssetsFile('provider/jili.svg'),
+      indexSort: 3,
+      demo: false
+    },
     { id: '13', type: 'slots', tab: 'slots', show: true, name: t('provider.pgSoft'), img: getAssetsFile('svg/pgsoft.svg'), indexImg: getAssetsFile('provider/pgsoft.svg'), indexSort: 2, demo: false },
     {
       id: '1',
@@ -221,17 +232,6 @@ export const providerListData = () => {
       indexImg: getAssetsFile('provider/hacksawGaming.svg'),
       indexSort: 3,
       demo: true
-    },
-    {
-      id: '18',
-      type: 'slots',
-      tab: 'slots',
-      show: true,
-      name: t('provider.jili'),
-      img: getAssetsFile('svg/jili.svg'),
-      indexImg: getAssetsFile('provider/jili.svg'),
-      indexSort: 3,
-      demo: false
     },
     {
       id: '11',

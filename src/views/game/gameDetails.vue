@@ -125,13 +125,13 @@ const getGameDetails = () => {
       Object.assign(detailsData, resp.data)
       if (detailsData.minBetAmount != null && detailsData.minBetAmount != '') {
         //@ts-ignore
-        detailsData.minBetAmount = detailsData.minBetAmount.match(/^\d+(\.\d{0,4})?/)[0]
+        detailsData.minBetAmount = detailsData.minBetAmount.toString().match(/^\d+(\.\d{0,4})?/)[0]
         //@ts-ignore
         detailsData.minBetAmount = parseFloat(detailsData.minBetAmount)
       }
       if (detailsData.maxBetAmount != null && detailsData.maxBetAmount != '') {
         //@ts-ignore
-        detailsData.maxBetAmount = detailsData.maxBetAmount.match(/^\d+(\.\d{0,4})?/)[0]
+        detailsData.maxBetAmount = detailsData.maxBetAmount.toString().match(/^\d+(\.\d{0,4})?/)[0]
         //@ts-ignore
         detailsData.maxBetAmount = parseFloat(detailsData.maxBetAmount)
       }
