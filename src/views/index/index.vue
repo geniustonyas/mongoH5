@@ -477,7 +477,15 @@ const routeTo = (item: getBannerRespItem) => {
   if (item.targetUrl && (item.targetUrl.indexOf('http') > -1 || item.targetUrl.indexOf('https') > -1)) {
     window.open(item.targetUrl)
   } else {
-    router.push({ path: item.targetUrl })
+    if (item.targetUrl.indexOf('gameType') > -1 && item.targetUrl.indexOf('providerId') > -1) {
+      const params = new URLSearchParams(item.targetUrl)
+      // routeToGame(params.get('gameType'), params.get('providerId'))
+      //@ts-ignore
+      router.push({ name: params.get('gameType'), query: { providerId: params.get('providerId') } })
+      // appStore.showSideBar = !appStore.showSideBar
+    } else {
+      router.push({ path: item.targetUrl })
+    }
   }
 }
 

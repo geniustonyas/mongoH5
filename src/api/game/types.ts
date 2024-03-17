@@ -124,6 +124,9 @@ export interface getGameDetailsRespGameItem {
 }
 
 export interface getGameDetailsRespItem {
+  currencyCode: string
+  currencyCodes: string[]
+  gameCurrency: string | null
   defaultRTPName: string
   volatility: string
   lines: string
@@ -150,6 +153,10 @@ export interface getFavRecentlyListData {
 
 export interface getFavData {
   gameId: string
+}
+
+export interface setGameDefaultCurrencyData {
+  currency: string
 }
 
 // 收藏列表返回数据项

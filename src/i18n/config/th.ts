@@ -507,6 +507,7 @@ export default {
   fastDeposit: 'ฝากด่วน',
   demoMode: 'โหมดทดลองเล่น',
   trueMode: 'เดิมพันจริง',
+  gameCurrency: 'สกุลเงินในเกม',
   gameStatic: 'สถิติเกม',
   receivedSuccess: '{ amount } USDT ได้รับสำเร็จ',
   receivedSuccess2: '{ amount } { currency } ได้รับสำเร็จ',

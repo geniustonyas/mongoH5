@@ -17,6 +17,24 @@
             </div>
           </div>
           <div class="gd-b">
+            <template v-if="userStore.userInfo.id && detailsData.currencyCodes.length > 1 && detailsData.providerId == '13'">
+              <h3 class="item-title">{{ t('gameCurrency') }}</h3>
+              <div class="item" @click.prevent="showCurrencyBox = true">
+                <span>{{ selectedCurrency }}</span>
+                <i class="iconfont icon-down" />
+                <!-- <ConfigProvider theme="dark">
+                  <DropdownMenu direction="down">
+                    <DropdownItem :title="selectedCurrency" ref="currenyDom">
+                      <div class="drop-item" v-for="(item, index) of detailsData.currencyCodes" :key="index" @click="confirmCurreny(item)">
+                        <span :attr="item" :class="{ active: item == selectedCurrency }">{{ item }}</span>
+                        <span><Icon v-show="item == selectedCurrency" name="success" class="active" /></span>
+                      </div>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </ConfigProvider> -->
+              </div>
+            </template>
+            <h3 class="item-title">{{ t('gameStatic') }}</h3>
             <div class="item" v-if="detailsData.defaultRTPName != ''">
               <label>RTP</label><span>{{ detailsData.defaultRTPName }}</span>
             </div>
@@ -24,7 +42,7 @@
               <label>{{ t('minMaxBet') }}</label>
               <span>
                 {{ detailsData.minBetAmount != '' && detailsData.maxBetAmount != '' ? detailsData.minBetAmount + ' - ' + detailsData.maxBetAmount : '' }}
-                USDT
+                {{ detailsData.currencyCode }}
               </span>
             </div>
             <div class="item" v-if="detailsData.volatility != '0' && gameType == GameType.Slots">
@@ -75,11 +93,26 @@
         </div>
       </div>
     </main>
+
+    <ConfigProvider theme="dark">
+      <Popup v-model:show="showCurrencyBox" position="bottom" round :closeable="true">
+        <div class="picker-box">
+          <div class="pb-title">{{ t('gameCurrency') }}</div>
+          <ul>
+            <li v-for="(item, index) of detailsData.currencyCodes" :key="index" @click="confirmCurreny(item)">
+              <span>{{ item }}</span>
+              <Icon v-if="item == selectedCurrency" name="success" class="active" />
+              <Icon v-else />
+            </li>
+          </ul>
+        </div>
+      </Popup>
+    </ConfigProvider>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
@@ -87,11 +120,12 @@ import CommonHeader from '@/components/layout/CommonHeader.vue'
 
 import { useUserStore } from '@/store/modules/user'
 import { useAppStore } from '@/store/modules/app'
-import { getGameDetailsApi, setFavApi, cancalFavApi } from '@/api/game/index'
+import { getGameDetailsApi, setFavApi, cancalFavApi, setGameDefaultCurrency } from '@/api/game/index'
 import { getGameDetailsRespItem, getFavGameListRespItem, getGameDetailsRespGameItem } from '@/api/game/types'
 import { startGame } from '@/composables/startGame'
 import router from '@/router'
 import { GameType, PlatForm } from '@/utils/constant'
+import { ConfigProvider, Popup, Icon } from 'vant'
 
 const userStore = useUserStore()
 const appStore = useAppStore()
@@ -102,6 +136,9 @@ const gameType = parseInt(route.query.gameType as string)
 
 // 获取游戏列表
 const detailsData = reactive<getGameDetailsRespItem>({
+  currencyCode: '',
+  currencyCodes: [],
+  gameCurrency: null,
   defaultRTPName: '',
   volatility: '',
   lines: '',
@@ -119,6 +156,12 @@ const detailsData = reactive<getGameDetailsRespItem>({
   paylines: '',
   fg: false
 })
+
+// 默认选中的币种
+const currenyDom = ref(null)
+const selectedCurrency = ref('')
+const showCurrencyBox = ref(false)
+
 const getGameDetails = () => {
   getGameDetailsApi({ Id: route.params.id as string, platform: PlatForm.H5 })
     .then((resp) => {
@@ -134,6 +177,22 @@ const getGameDetails = () => {
         detailsData.maxBetAmount = detailsData.maxBetAmount.toString().match(/^\d+(\.\d{0,4})?/)[0]
         //@ts-ignore
         detailsData.maxBetAmount = parseFloat(detailsData.maxBetAmount)
+      }
+
+      // 如果游戏支持的币种与默认币种一致， 则设置显示为默认币种， 否则设置显示为usd或者USDT
+      if (detailsData.gameCurrency != null && detailsData.currencyCodes.includes(detailsData.gameCurrency)) {
+        selectedCurrency.value = detailsData.gameCurrency
+      } else {
+        if (detailsData.currencyCodes.includes(userStore.userInfo.defaultCurrencyCode)) {
+          selectedCurrency.value = userStore.userInfo.defaultCurrencyCode
+        } else {
+          if (detailsData.currencyCodes.includes('USD')) {
+            selectedCurrency.value = 'USD'
+          }
+          if (detailsData.currencyCodes.includes('USDT')) {
+            selectedCurrency.value = 'USDT'
+          }
+        }
       }
     })
     .catch((error) => {
@@ -170,6 +229,19 @@ const setFav = async (gameItem: getFavGameListRespItem | getGameDetailsRespGameI
     gameItem.fg = !gameItem.fg
     userStore.getFavCount()
   }
+}
+
+// 切换币种
+const confirmCurreny = (currency: string) => {
+  selectedCurrency.value = currency
+  setGameDefaultCurrency({ currency: currency })
+    .then(() => {
+      showCurrencyBox.value = false
+      getGameDetails()
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
 if (route.params.id) {

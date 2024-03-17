@@ -107,3 +107,12 @@ export function cancalFavApi(data: Game.getFavData) {
     data
   })
 }
+
+/** 取消收藏 */
+export function setGameDefaultCurrency(data: Game.setGameDefaultCurrencyData) {
+  return request<anyResp>({
+    url: 'game/currency',
+    method: 'post',
+    data
+  })
+}

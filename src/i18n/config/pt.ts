@@ -510,6 +510,7 @@ export default {
   fastDeposit: 'Depositar Agora',
   demoMode: 'Diversão',
   trueMode: 'Jogo Real',
+  gameCurrency: 'Moeda do jogo',
   gameStatic: 'Informações do jogo',
   receivedSuccess: '{ amount }  USDT Reivindicado',
   receivedSuccess2: '{ amount } { currency } Reivindicado',

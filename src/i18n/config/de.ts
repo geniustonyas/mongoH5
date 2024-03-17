@@ -508,6 +508,7 @@ export default {
   fastDeposit: 'Jetzt einzahlen',
   demoMode: 'Demo',
   trueMode: 'Echtgeld',
+  gameCurrency: 'In-Game-Währung',
   gameStatic: 'Spielstatistiken',
   receivedSuccess: '{ amount } USDT beansprucht',
   receivedSuccess2: '{ amount } { currency } beansprucht',

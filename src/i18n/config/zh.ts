@@ -509,6 +509,7 @@ export default {
   fastDeposit: '快速存款',
   demoMode: '乐趣试玩',
   trueMode: '真钱模式',
+  gameCurrency: '游戏内货币',
   gameStatic: '游戏数据统计',
   receivedSuccess: '{ amount } USDT 已领取成功',
   receivedSuccess2: '{ amount } { currency } 已领取成功',

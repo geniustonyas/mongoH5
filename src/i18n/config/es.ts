@@ -509,6 +509,7 @@ export default {
   fastDeposit: 'Depositar ahora',
   demoMode: 'Jugar por Diversión',
   trueMode: 'Jugar de Verdad',
+  gameCurrency: 'Moneda del juego',
   gameStatic: 'Estadísticas del juego',
   receivedSuccess: '{ amount } USDT Recibido exitosamente',
   receivedSuccess2: '{ amount } { currency } Recibido exitosamente',

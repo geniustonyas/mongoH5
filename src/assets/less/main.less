@@ -418,9 +418,33 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                     &.active { .bg(var(--color-background)); }
                 }
             }
+            .item-title {margin-top: 1.5rem; margin-bottom: .5rem; color: var(--color-white); font-size: 1.3rem; }
             .item {
                 label { font-size: 1.2rem; }
                 span { color: var(--color-white) }
+                .van-config-provider { width: 100% }
+                .van-dropdown-menu { border: none;
+                    .drop-item { padding: 1.4rem 1rem; }
+                }
+                .van-dropdown-menu__bar { background: transparent; height: 2rem;
+                    .van-dropdown-menu__title { width: 100%; .h-lh(2rem); color: var(--color-text); font-size: 1.2rem;
+                        padding: 0;
+                        &:after { right: 5px; }
+                    }
+                }
+                .van-dropdown-item {
+                    .van-popup { .bg(var(--van-cell-background));
+                        .drop-item { .border-b(.1rem, var(--color-dark-gray)); margin: 0 1rem;
+                            span { color: var(--color-text); font-size: 1.2rem;
+                                &:nth-of-type(1) { margin: 0; color: var(--color-white) }
+                                &.active { color: var(--color-primary) }
+                            }
+                        }
+                    }
+                }
+                .van-dropdown-item__option--active,
+                .van-dropdown-item__option--active,
+                .van-dropdown-item__icon { color: var(--color-primary) }
             }
             .btns { .flex(); .flex-pack-justify();
                 .btn { width: 100%; .radius(4rem); .h-lh(4rem); margin-top: 1rem;
@@ -1736,7 +1760,9 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         .gamebox { width: 100%; margin: 0; overflow: hidden;
             .g-list { .flex-wrap(); margin: 0rem -1.5rem 0 0;
                 .item { width: 32%; .flex-x(0 0 32%); margin-bottom: 0;
-                    .i-bd { margin-right: 0; }
+                    .i-bd { margin-right: 0;
+                        .i-img { height: -moz-calc((50vw - 7rem)*0.8); height: -webkit-calc((50vw - 7rem)*0.8); height: calc((50vw - 7rem)*0.8); }
+                    }
                 }
             }
 
