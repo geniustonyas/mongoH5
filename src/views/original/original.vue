@@ -3,13 +3,13 @@
     <IndexHeader />
     <main class="main" ref="scrollRef">
       <!-- 切换体育真人老虎机 -->
-      <IndexTab tab="slots" />
+      <IndexTab />
 
       <!-- 老虎机 -->
       <nav class="gamebox">
         <div class="g-head">
           <div class="gh-t">
-            <div class="gh-l">{{ t('slots') }}</div>
+            <div class="gh-l">{{ t('seabetGame') }}</div>
             <div class="gh-r">
               <span class="btn btn-light optgame" @click="gridShow = !gridShow">
                 <i class="iconfont icon-caidan2" />
@@ -24,10 +24,10 @@
               <div class="form-row">
                 <label class="form-label">{{ t('providers') }}</label>
                 <ConfigProvider theme="dark">
-                  <DropdownMenu v-if="pslist.length > 0" direction="down">
+                  <DropdownMenu direction="down">
                     <DropdownItem :title="selectTitle()" ref="currenyDom">
                       <template v-for="(item, index) of pslist" :key="index">
-                        <div v-if="item.id != '19'" class="drop-item" @click="selGameProvider(parseInt(item.id))">
+                        <div v-if="item.id == '19' || item.id == '18'" class="drop-item" @click="selGameProvider(parseInt(item.id))">
                           <span :attr="item.id" :class="{ active: query.ps.includes(parseInt(item.id)) }">{{ item.name }}({{ item.count }})</span>
                           <span><Icon v-show="query.ps.includes(parseInt(item.id))" name="success" class="active" /></span>
                         </div>
@@ -134,7 +134,8 @@ let query = reactive<getGameListData>({
   gts: [GameType.Slots],
   ct: PlatForm.H5,
   sortBy: 3,
-  page: 1
+  page: 1,
+  IsCrash: true
 })
 // 游戏列表分页
 let pageCount = ref(0)
@@ -265,7 +266,7 @@ watch(
   () => [route.query.providerId, route.name],
   // @ts-ignore
   ([newProviderId, newRoute], [oldProviderId, oldRoute]) => {
-    if (newRoute == 'slots') {
+    if (newRoute == 'original') {
       if (oldRoute != 'gameDetails') {
         if (newProviderId) {
           providerId.value = parseInt(newProviderId as string)
@@ -292,7 +293,7 @@ watch(
         }
       }
     } else {
-      if (newRoute != 'gameDetails' && oldRoute == 'slots') {
+      if (newRoute != 'gameDetails' && oldRoute == 'original') {
         providerId.value = ''
         query.page = 1
         pageCount.value = 0

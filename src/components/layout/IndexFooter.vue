@@ -45,6 +45,9 @@
     <dl>
       <dt>{{ t('game') }}</dt>
       <dd>
+        <a @click="router.push({ name: 'original' })">{{ t('seabetGame') }}</a>
+      </dd>
+      <dd>
         <a @click="router.push({ name: 'sports' })">{{ t('sports') }}</a>
       </dd>
       <dd>

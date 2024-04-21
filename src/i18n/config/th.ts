@@ -259,7 +259,8 @@ export default {
     cny: 'หยวนจีน',
     brl: 'BRL',
     inr: 'INR',
-    thb: 'บาท'
+    thb: 'บาท',
+    jpy: 'JPY'
   },
   // ร้านค้าแต้ม
   points: 'แต้ม',
@@ -296,7 +297,8 @@ export default {
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
     hacksawGaming: 'Hacksaw Gaming',
-    jili: 'JILI'
+    jili: 'JILI',
+    spribe: 'Spribe'
   },
   tips: {
     // ผู้ใช้ - เข้าสู่ระบบและลงทะเบียน
@@ -754,6 +756,7 @@ export default {
   indexCasino: 'LIVE CASINO',
   blog: 'Blog',
   otherHoArticle: 'บทความยอดนิยมอื่น ๆ',
+  seabetGame: 'เกมดั้งเดิม',
 
   vip: {
     seabetVip: 'คลับ VIP ของ Seabet',

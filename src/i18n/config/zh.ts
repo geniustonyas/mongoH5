@@ -258,7 +258,8 @@ export default {
     cny: '人民币',
     brl: '巴西雷亚尔',
     inr: '印度卢比',
-    thb: '泰铢'
+    thb: '泰铢',
+    jpy: '日元'
   },
   // 积分商城
   points: '积分',
@@ -295,7 +296,8 @@ export default {
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
     hacksawGaming: 'Hacksaw Gaming',
-    jili: 'JILI'
+    jili: 'JILI',
+    spribe: 'Spribe'
   },
 
   // 数据验证提示
@@ -754,7 +756,8 @@ export default {
   indexSlots: '老虎机',
   indexCasino: '真人娱乐',
   blog: '博客',
-  otherHoArticle: '其他热门 文章',
+  otherHoArticle: '其他热门文章',
+  seabetGame: '原创游戏',
 
   vip: {
     seabetVip: 'Seabet VIP俱乐部',
@@ -963,7 +966,8 @@ export default {
           <p>• @:currencyLang.ada </p>
           <p>• @:currencyLang.doge </p>
           <p>• @:currencyLang.ton </p>
-          <p>• @:currencyLang.brl </p>`,
+          <p>• @:currencyLang.brl </p>
+          <p>• @:currencyLang.jpy </p>`,
     q5: '你们对交易收取费用吗？',
     a5: `<p>虽然我们不对 Seabet.io 的存款和取款收取任何交易费用，但您可能需要为使用区块链支付交易费用。</p>`
   },

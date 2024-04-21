@@ -152,10 +152,11 @@ import { useRouter } from 'vue-router'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
+import { getCookieValue } from '@/utils/index'
 import { useUserStore } from '@/store/modules/user'
 import { getAssetsFile, loadJs } from '@/utils'
 import { isPwd, isUname, isEmail } from '@/utils/validate'
-import { checkUserApi, checkEmailApi, sendEmailApi, regApi } from '@/api/user/index'
+import { checkUserApi, checkEmailApi, sendEmailApi, regApi, facebookRegApi } from '@/api/user/index'
 import { useAppStore } from '@/store/modules/app'
 
 import { useI18n } from 'vue-i18n'
@@ -453,7 +454,13 @@ const handleReg = async () => {
       .then((resp) => {
         console.log(resp)
         if (fb_id) {
-          fbq('track', 'CompleteRegistration')
+          if (fb_id != '387054467539559') {
+            fbq('track', 'CompleteRegistration')
+          } else {
+            facebookReg()
+          }
+          // fbq('track', 'CompleteRegistration')
+          // facebookReg()
         }
         userStore
           .login({ UserName: regForm.UserName, PassWord: regForm.Password })
@@ -483,6 +490,19 @@ const handleReg = async () => {
     btnLoading.value = false
     return false
   }
+}
+
+const facebookReg = () => {
+  const fbc = getCookieValue('_fbc')
+  const fbp = getCookieValue('_fbp')
+  const params = {
+    fb_id: fb_id,
+    email: regForm.Email,
+    userAgent: navigator.userAgent,
+    fbp: fbp,
+    fbc: fbc
+  }
+  facebookRegApi(params)
 }
 
 let captchaIns: any = null

@@ -17,9 +17,9 @@
             </div>
           </div>
           <div class="gd-b">
-            <template v-if="userStore.userInfo.id && detailsData.currencyCodes.length > 1 && detailsData.providerId == '13'">
+            <template v-if="detailsData.currencyCodes.length > 1 && [1, 3, 4, 6, 7, 9, 11, 13, 16, 17, 18].includes(parseInt(detailsData.providerId))">
               <h3 class="item-title">{{ t('gameCurrency') }}</h3>
-              <div class="item" @click.prevent="showCurrencyBox = true">
+              <div class="item" @click.prevent="currencyBox()">
                 <span>{{ selectedCurrency }}</span>
                 <i class="iconfont icon-down" />
                 <!-- <ConfigProvider theme="dark">
@@ -45,24 +45,24 @@
                 {{ detailsData.currencyCode }}
               </span>
             </div>
-            <div class="item" v-if="detailsData.volatility != '0' && gameType == GameType.Slots">
+            <div class="item" v-if="detailsData.volatility != '0' && parseInt(detailsData.gameType) == GameType.Slots">
               <label>{{ t('volatility') }}</label>
               <span>{{ detailsData.volatility != '' ? t('volatilitys.' + detailsData.volatility) : '' }}</span>
             </div>
-            <div class="item" v-if="detailsData.hitRatio != '0' && gameType == GameType.Slots">
+            <div class="item" v-if="detailsData.hitRatio != '0' && parseInt(detailsData.gameType) == GameType.Slots">
               <label>{{ t('hitratio') }}</label>
               <span v-show="detailsData.hitRatio">{{ detailsData.hitRatio }}%</span>
             </div>
-            <div class="item" v-if="detailsData.paylines != '0' && gameType == GameType.Slots">
+            <div class="item" v-if="detailsData.paylines != '0' && parseInt(detailsData.gameType) == GameType.Slots">
               <label>{{ t('paylines') }}</label>
               <span v-show="detailsData.paylines != ''">{{ detailsData.paylines }}</span>
             </div>
             <div class="btns">
-              <a class="btn btn-primary" @click="startGame(detailsData.id, gameType, 'game/url', true, parseInt(detailsData.providerId))">{{ t('startNow') }}</a>
+              <a class="btn btn-primary" @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/url', true, parseInt(detailsData.providerId))">{{ t('startNow') }}</a>
               <a
-                v-if="gameType === GameType.Slots && detailsData.providerId != '13' && detailsData.providerId != '18'"
+                v-if="parseInt(detailsData.gameType) === GameType.Slots && detailsData.providerId != '13' && detailsData.providerId != '18'"
                 class="btn btn-primary dark"
-                @click="startGame(detailsData.id, gameType, 'game/demo', true, parseInt(detailsData.providerId))"
+                @click="startGame(detailsData.id, parseInt(detailsData.gameType), 'game/demo', true, parseInt(detailsData.providerId))"
               >
                 {{ t('demoMode') }}
               </a>
@@ -99,7 +99,7 @@
         <div class="picker-box">
           <div class="pb-title">{{ t('gameCurrency') }}</div>
           <ul>
-            <li v-for="(item, index) of detailsData.currencyCodes" :key="index" @click="confirmCurreny(item)">
+            <li v-for="(item, index) of sortedCurrencyCode" :key="index" @click="confirmCurreny(item)">
               <span>{{ item }}</span>
               <Icon v-if="item == selectedCurrency" name="success" class="active" />
               <Icon v-else />
@@ -158,9 +158,11 @@ const detailsData = reactive<getGameDetailsRespItem>({
 })
 
 // 默认选中的币种
-const currenyDom = ref(null)
+// const currenyDom = ref(null)
 const selectedCurrency = ref('')
 const showCurrencyBox = ref(false)
+const currencyCodeSort = ref(['USD', 'USDT', 'JPY', 'BRL', 'INR', 'THB'])
+const sortedCurrencyCode = ref([])
 
 const getGameDetails = () => {
   getGameDetailsApi({ Id: route.params.id as string, platform: PlatForm.H5 })
@@ -179,20 +181,25 @@ const getGameDetails = () => {
         detailsData.maxBetAmount = parseFloat(detailsData.maxBetAmount)
       }
 
+      if (detailsData.currencyCodes.length > 0) {
+        //@ts-ignore
+        sortedCurrencyCode.value = currencyCodeSort.value.filter((items) => detailsData.currencyCodes.some((item) => item == items))
+      }
+
       // 如果游戏支持的币种与默认币种一致， 则设置显示为默认币种， 否则设置显示为usd或者USDT
       if (detailsData.gameCurrency != null && detailsData.currencyCodes.includes(detailsData.gameCurrency)) {
         selectedCurrency.value = detailsData.gameCurrency
       } else {
-        if (detailsData.currencyCodes.includes(userStore.userInfo.defaultCurrencyCode)) {
-          selectedCurrency.value = userStore.userInfo.defaultCurrencyCode
-        } else {
-          if (detailsData.currencyCodes.includes('USD')) {
-            selectedCurrency.value = 'USD'
-          }
-          if (detailsData.currencyCodes.includes('USDT')) {
-            selectedCurrency.value = 'USDT'
-          }
+        // if (detailsData.currencyCodes.includes(userStore.userInfo.defaultCurrencyCode)) {
+        //   selectedCurrency.value = userStore.userInfo.defaultCurrencyCode
+        // } else {
+        if (detailsData.currencyCodes.includes('USD')) {
+          selectedCurrency.value = 'USD'
         }
+        if (detailsData.currencyCodes.includes('USDT')) {
+          selectedCurrency.value = 'USDT'
+        }
+        // }
       }
     })
     .catch((error) => {
@@ -228,6 +235,14 @@ const setFav = async (gameItem: getFavGameListRespItem | getGameDetailsRespGameI
     }
     gameItem.fg = !gameItem.fg
     userStore.getFavCount()
+  }
+}
+
+const currencyBox = () => {
+  if (userStore.userInfo.id) {
+    showCurrencyBox.value = true
+  } else {
+    router.push({ name: 'login' })
   }
 }
 

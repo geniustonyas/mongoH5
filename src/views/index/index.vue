@@ -48,7 +48,7 @@
         <div class="st-head">
           <div class="sh-l">
             <img :src="getAssetsFile('svg/most-popular.svg')" />
-            <h3>{{ t('mostPopular') }}</h3>
+            <h3>{{ t('seabetGame') }}</h3>
           </div>
           <div class="sh-r">
             <div class="slide-btns">

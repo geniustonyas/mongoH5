@@ -63,8 +63,13 @@ export const useAppStore = defineStore('app', () => {
     return new Promise((resolve, reject) => {
       getMainStatusApi()
         .then((resp) => {
-          maintainStatus.value = resp.data.isMaintain
-          maintainTime.value = resp.data.maintainTime
+          const isTest = localStorage.getItem('isTest')
+          if (!isTest) {
+            maintainStatus.value = resp.data.isMaintain
+            maintainTime.value = resp.data.maintainTime
+          }
+          // maintainStatus.value = resp.data.isMaintain
+          // maintainTime.value = resp.data.maintainTime
           resolve(resp)
         })
         .catch((error) => {

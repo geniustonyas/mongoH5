@@ -259,7 +259,8 @@ export default {
     cny: '인민폐',
     brl: '브라질 헤알',
     inr: 'INR',
-    thb: 'THB'
+    thb: 'THB',
+    jpy: 'JPY'
   },
   // 포인트 쇼핑센터
   points: '포인트',
@@ -296,7 +297,8 @@ export default {
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
     hacksawGaming: 'Hacksaw Gaming',
-    jili: 'JILI'
+    jili: 'JILI',
+    spribe: 'Spribe'
   },
 
   // 데이터검증 프롬프트
@@ -757,6 +759,7 @@ export default {
   indexCasino: 'LIVE CASINO',
   blog: '블로그',
   otherHoArticle: '다른 인기 기사',
+  seabetGame: '오리지널',
 
   vip: {
     seabetVip: 'Seabet VIP 클럽',

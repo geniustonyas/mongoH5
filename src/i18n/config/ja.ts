@@ -258,7 +258,8 @@ export default {
     cny: '人民元',
     brl: 'ブラジルレアル',
     inr: 'INR',
-    thb: 'THB'
+    thb: 'THB',
+    jpy: 'JPY'
   },
   // ポイントストア
   points: 'ポイント',
@@ -295,7 +296,8 @@ export default {
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
     hacksawGaming: 'Hacksaw Gaming',
-    jili: 'JILI'
+    jili: 'JILI',
+    spribe: 'Spribe'
   },
 
   // データ入力に関するヒント
@@ -760,6 +762,7 @@ export default {
   indexCasino: 'LIVE CASINO',
   blog: 'ブログ',
   otherHoArticle: '他によく読まれている記事',
+  seabetGame: 'オリジナル',
 
   vip: {
     seabetVip: 'Seabet VIPクラブ',

@@ -27,6 +27,8 @@ import dayjs from 'dayjs'
 import { currenyListData } from '@/utils/config'
 import { HisotyReocrdType } from '@/utils/constant'
 import { getHistoryRecordApi } from '@/api/fund/index'
+import { getUrlAllParams, getCookieValue } from '@/utils/index'
+import { facebookShopApi } from '@/api/user/index'
 
 import Maintain from './components/Maintain.vue'
 
@@ -44,6 +46,12 @@ const getTransition = (transition: unknown): string | undefined => {
 }
 
 document.title = t('siteTitle')
+
+// 获取参数判断是否绕过维护模式
+const params = getUrlAllParams()
+if (params && params.isTest) {
+  localStorage.setItem('isTest', 1)
+}
 
 watch(
   () => userStore.userInfo.userName,
@@ -121,7 +129,22 @@ if (fb_over_time && fb_id) {
         })
           .then((resp) => {
             if (resp.data.items && resp.data.items.length > 0) {
-              fbq('track', 'Purchase', { currency: 'USD', value: 0 })
+              if (fb_id != '387054467539559') {
+                fbq('track', 'Purchase', { currency: 'USD', value: 0 })
+              } else {
+                const fbp = getCookieValue('_fbp')
+                const fbc = getCookieValue('_fbc')
+                const params = {
+                  email: userStore.userInfo.email,
+                  userAgent: navigator.userAgent,
+                  fbp: fbp,
+                  fbc: fbc,
+                  fb_id: fb_id,
+                  currency: 'USD',
+                  amount: '0'
+                }
+                facebookShopApi(params)
+              }
               // localStorage.removeItem('fb_id')
               localStorage.removeItem('fb_over_time')
               clearInterval(fb_timer)

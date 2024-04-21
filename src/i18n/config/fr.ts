@@ -260,7 +260,8 @@ export default {
     cny: 'Yuan Renminbi',
     brl: 'BRL',
     inr: 'INR',
-    thb: 'THB'
+    thb: 'THB',
+    jpy: 'JPY'
   },
   // Boutique de Points
   points: 'Points',
@@ -297,7 +298,8 @@ export default {
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
     hacksawGaming: 'Hacksaw Gaming',
-    jili: 'JILI'
+    jili: 'JILI',
+    spribe: 'Spribe'
   },
   tips: {
     // Utilisateur - Connexion et Inscription
@@ -756,6 +758,7 @@ export default {
   indexCasino: 'LIVE CASINO',
   blog: 'Blog',
   otherHoArticle: 'Autres Articles Populaires',
+  seabetGame: 'Originaux',
 
   vip: {
     seabetVip: 'Club VIP Seabet',

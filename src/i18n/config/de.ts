@@ -258,7 +258,8 @@ export default {
     cny: 'CNY',
     brl: 'BRL',
     inr: 'INR',
-    thb: 'THB'
+    thb: 'THB',
+    jpy: 'JPY'
   },
   // 积分商城
   points: 'Punkte',
@@ -293,7 +294,8 @@ export default {
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
     hacksawGaming: 'Hacksaw Gaming',
-    jili: 'JILI'
+    jili: 'JILI',
+    spribe: 'Spribe'
   },
 
   // 数据验证提示
@@ -763,6 +765,7 @@ export default {
   indexCasino: 'LIVE CASINO',
   blog: 'Blog',
   otherHoArticle: 'Weitere beliebte Artikel',
+  seabetGame: 'Originals',
 
   vip: {
     seabetVip: 'Seabet VIP-Club',
@@ -969,7 +972,8 @@ export default {
           <p>• Cardano (ADA)</p>
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>
-          <p>• @:currencyLang.brl </p>`,
+          <p>• @:currencyLang.brl </p>
+          <p>• @:currencyLang.jpy </p>`,
     q5: 'Erheben wir Gebühren für Transaktionen?',
     a5: `<p>Obwohl wir keine Gebühren für Ein- und Auszahlungen auf Seabet.io erheben, kann es sein, dass Sie Transaktionsgebühren bei der Verwendung von Zahlungen über die Blockchain bezahlen müssen.</p>`
   },

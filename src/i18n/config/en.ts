@@ -259,7 +259,8 @@ export default {
     cny: 'RMB',
     brl: 'BRL',
     inr: 'INR',
-    thb: 'THB'
+    thb: 'THB',
+    jpy: 'JPY'
   },
   // 积分商城
   points: 'Points',
@@ -296,7 +297,8 @@ export default {
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
     hacksawGaming: 'Hacksaw Gaming',
-    jili: 'JILI'
+    jili: 'JILI',
+    spribe: 'Spribe'
   },
 
   // 数据验证提示
@@ -759,6 +761,7 @@ export default {
   indexCasino: 'LIVE CASINO',
   blog: 'Blog',
   otherHoArticle: 'Other Popular Articles',
+  seabetGame: 'Originals',
 
   vip: {
     seabetVip: 'Seabet VIP-Club',
@@ -976,7 +979,8 @@ export default {
           <p>• Cardano (ADA)</p>
           <p>• Dogecoin (DOGE)</p>
           <p>• The Open Network (TON)</p>
-          <p>• @:currencyLang.brl </p>`,
+          <p>• @:currencyLang.brl </p>
+          <p>• @:currencyLang.jpy </p>`,
     q5: 'Do you apply fees on transactions?',
     a5: `<p>While we do not charge any fees for deposits and withdrawals on Seabet.io, you may incur transaction fees when using blockchain payments.</p>`
   },

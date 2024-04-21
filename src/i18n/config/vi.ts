@@ -259,7 +259,8 @@ export default {
     cny: 'CNY',
     brl: 'BRL',
     inr: 'INR',
-    thb: 'THB'
+    thb: 'THB',
+    jpy: 'JPY'
   },
   // Cửa hàng điểm
   points: 'Điểm',
@@ -296,7 +297,8 @@ export default {
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
     hacksawGaming: 'Hacksaw Gaming',
-    jili: 'JILI'
+    jili: 'JILI',
+    spribe: 'Spribe'
   },
   // Gợi ý kiểm tra dữ liệu
   tips: {
@@ -765,6 +767,7 @@ export default {
   indexCasino: 'LIVE CASINO',
   blog: 'Blog',
   otherHoArticle: 'Các Bài Viết Phổ Biến Khác',
+  seabetGame: 'Nguyên Bản',
 
   vip: {
     seabetVip: 'Hội viên VIP Seabet',

@@ -259,7 +259,8 @@ export default {
     cny: 'Çin Yuanı',
     brl: 'BRL',
     inr: 'INR',
-    thb: 'THB'
+    thb: 'THB',
+    jpy: 'JPY'
   },
   // Puan Mağazası
   points: 'Puanlar',
@@ -296,7 +297,8 @@ export default {
     sexy: 'Sexy Baccarat',
     pgSoft: 'PG Soft',
     hacksawGaming: 'Hacksaw Gaming',
-    jili: 'JILI'
+    jili: 'JILI',
+    spribe: 'Spribe'
   },
   // Veri doğrulama ipuçları
   tips: {
@@ -756,6 +758,7 @@ export default {
   indexCasino: 'LIVE CASINO',
   blog: 'Blog',
   otherHoArticle: 'Diğer Popüler Makaleler',
+  seabetGame: 'Orijinalleri',
 
   vip: {
     seabetVip: 'Seabet VIP Kulübü',

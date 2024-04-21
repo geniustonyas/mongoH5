@@ -37,6 +37,12 @@ const routes = [
     meta: { needLogin: false, keepAlive: true }
   },
   {
+    path: '/original',
+    name: 'original',
+    component: () => import('@/views/original/original.vue'),
+    meta: { needLogin: false, savePosition: true }
+  },
+  {
     path: '/game',
     component: AppMain,
     meta: { needLogin: false, keepAlive: false },

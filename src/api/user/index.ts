@@ -230,3 +230,25 @@ export function subscribeApi(data: User.subscribeData) {
     data
   })
 }
+
+/** facebook 转化api 注册 */
+export function facebookRegApi(data: any) {
+  return request<anyResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'facebookReg',
+    method: 'post',
+    baseURL: import.meta.env.VITE_THIRD_API,
+    data
+  })
+}
+
+/** facebook 转化api 购物 */
+export function facebookShopApi(data: any) {
+  return request<anyResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'facebookShop',
+    method: 'post',
+    baseURL: import.meta.env.VITE_THIRD_API,
+    data
+  })
+}

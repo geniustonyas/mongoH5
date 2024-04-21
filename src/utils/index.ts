@@ -123,3 +123,17 @@ export function loginTo(route: string) {
     router.push({ name: 'login', query: { routeTo: route } })
   }
 }
+
+// 获取cookie
+export function getCookieValue(cookieName: string) {
+  const name = cookieName + '='
+  const decodedCookie = decodeURIComponent(document.cookie)
+  const cookieArray = decodedCookie.split(';')
+  for (let i = 0; i < cookieArray.length; i++) {
+    const currentCookie = cookieArray[i].trim()
+    if (currentCookie.indexOf(name) === 0) {
+      return currentCookie.substring(name.length, currentCookie.length)
+    }
+  }
+  return ''
+}

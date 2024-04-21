@@ -34,6 +34,22 @@
           </ul>
         </div>
 
+        <!-- 原创 -->
+        <div :class="collapseOriginals ? 'menu-item show' : 'menu-item'">
+          <h2 @click="collapseOriginals = !collapseOriginals">{{ t('seabetGame') }}<i class="iconfont icon-down" /></h2>
+          <Vue3SlideUpDown v-model="collapseOriginals">
+            <ul>
+              <!-- <li @click="startGame(item.id, GameType.Sports)"> -->
+              <li>
+                <a @click="routeToGame('original', { providerId: '19' })"><img v-lazy="getAssetsFile('svg/spribe.svg')" />{{ t('provider.spribe') }}</a>
+              </li>
+              <li>
+                <a @click="routeToGame('original', { providerId: '18' })"><img v-lazy="getAssetsFile('svg/jili.svg')" />{{ t('provider.jili') }}</a>
+              </li>
+            </ul>
+          </Vue3SlideUpDown>
+        </div>
+
         <!-- 体育 -->
         <div :class="collapseSport ? 'menu-item show' : 'menu-item'">
           <h2 @click="collapseSport = !collapseSport">{{ t('sports') }}<i class="iconfont icon-down" /></h2>
@@ -63,9 +79,11 @@
           <h2 @click="collapseSlots = !collapseSlots">{{ t('slots') }}<i class="iconfont icon-down" /></h2>
           <Vue3SlideUpDown v-model="collapseSlots">
             <ul>
-              <li v-for="(item, index) of slotsProviderList" :key="index" @click="routeToGame(item.tab, { providerId: item.id })">
-                <a><img v-lazy="item.img" />{{ item.name }}</a>
-              </li>
+              <template v-for="(item, index) of slotsProviderList" :key="index">
+                <li v-if="item.id != '19'" @click="routeToGame(item.tab, { providerId: item.id })">
+                  <a><img v-lazy="item.img" />{{ item.name }}</a>
+                </li>
+              </template>
             </ul>
           </Vue3SlideUpDown>
         </div>
@@ -110,6 +128,9 @@
         <!-- 在线客服 -->
         <div class="menu-item">
           <ul>
+            <li>
+              <a @click="liveChatCall('maximize')"><img :src="getAssetsFile('svg/telegram-left.svg')" /> Telegram </a>
+            </li>
             <li>
               <a @click="liveChatCall('maximize')"><i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }}</a>
             </li>
@@ -190,6 +211,7 @@ casinoProviderList.value = providerList.filter((item: providerListItemTypes) => 
 slotsProviderList.value = providerList.filter((item: providerListItemTypes) => item.type === 'slots' && item.show)
 
 // 侧边框游戏菜单展开折叠
+let collapseOriginals = ref(true)
 let collapseSport = ref(true)
 let collapseLiveCashno = ref(true)
 let collapseSlots = ref(true)

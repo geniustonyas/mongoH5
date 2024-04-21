@@ -33,6 +33,7 @@ export interface getGameListData {
   ct: number
   sortBy: number
   page: number
+  IsCrash?: boolean
 }
 
 export interface getGameDetailsData {

@@ -90,10 +90,11 @@ import { useRouter } from 'vue-router'
 import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { awaitWraper } from '@/utils'
+import { getCookieValue } from '@/utils/index'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { isUname, isEmail } from '@/utils/validate'
-import { checkUserApi, checkEmailApi, thirdRegApi, sendEmailApi } from '@/api/user'
+import { checkUserApi, checkEmailApi, thirdRegApi, sendEmailApi, facebookRegApi } from '@/api/user'
 
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'
@@ -382,7 +383,13 @@ const handleReg = async () => {
     return false
   } else {
     if (fb_id) {
-      fbq('track', 'CompleteRegistration')
+      if (fb_id != '387054467539559') {
+        fbq('track', 'CompleteRegistration')
+      } else {
+        facebookReg()
+      }
+      // fbq('track', 'CompleteRegistration')
+      // facebookReg()
     }
     userStore
       .thirdLogin(loginForm)
@@ -401,6 +408,19 @@ const handleReg = async () => {
         return false
       })
   }
+}
+
+const facebookReg = () => {
+  const fbc = getCookieValue('_fbc')
+  const fbp = getCookieValue('_fbp')
+  const params = {
+    fb_id: fb_id,
+    email: regForm.Email,
+    userAgent: navigator.userAgent,
+    fbp: fbp,
+    fbc: fbc
+  }
+  facebookRegApi(params)
 }
 
 let captchaIns: any = null

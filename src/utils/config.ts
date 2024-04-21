@@ -140,6 +140,14 @@ export const currenyListData = () => {
       currenyType: '20',
       icon: 'coin/thb.svg',
       explorer: ''
+    },
+    {
+      code: 'JPY',
+      currenyName: t('currencyLang.jpy'),
+      unit: 'JPY',
+      currenyType: '20',
+      icon: 'coin/jpy.svg',
+      explorer: ''
     }
     // {
     //   code: 'TON',
@@ -207,6 +215,17 @@ export const providerListData = () => {
       name: t('provider.jili'),
       img: getAssetsFile('svg/jili.svg'),
       indexImg: getAssetsFile('provider/jili.svg'),
+      indexSort: 3,
+      demo: false
+    },
+    {
+      id: '19',
+      type: 'slots',
+      tab: 'original',
+      show: true,
+      name: t('provider.spribe'),
+      img: getAssetsFile('svg/spribe.svg'),
+      indexImg: getAssetsFile('provider/spribe.svg'),
       indexSort: 3,
       demo: false
     },
