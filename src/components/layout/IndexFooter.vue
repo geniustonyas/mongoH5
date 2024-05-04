@@ -78,6 +78,9 @@
     <dl>
       <dt>{{ t('followUs') }}</dt>
       <dd>
+        <a target="_blank" href="https://t.me/seabetprime">Telegram <i class="iconfont icon-share" /></a>
+      </dd>
+      <dd>
         <a target="_blank" :href="appStore.followUrl.facebook">Facebook <i class="iconfont icon-share" /></a>
       </dd>
       <dd>

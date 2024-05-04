@@ -204,8 +204,9 @@ export default {
   // Ana Sayfa
   readMore: 'Daha Fazlasını Gör',
   sports: 'Spor',
-  liveCasino: 'Canlı Casino',
+  liveCasino: 'Canlı Kumarhane',
   slots: 'Slotlar',
+  casino: 'Casino',
   sbSport: 'SB Spor',
   fbSport: 'FB Spor',
   downloadApp: 'Download APP',

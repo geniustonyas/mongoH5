@@ -11,9 +11,9 @@
       </nav>
       <!-- 首页tab切换 -->
       <nav class="m-menu">
+        <a @click="routeToGame('original', null)"> <img :src="getAssetsFile('svg/originals.svg')" />{{ t('seabetGame') }} </a>
         <a @click="routeToGame('sports', null)"> <img :src="getAssetsFile('svg/sports.svg')" />{{ t('sports') }} </a>
-        <a @click="routeToGame('casino', null)"> <img :src="getAssetsFile('svg/livecasino.svg')" />{{ t('liveCasino') }}</a>
-        <a @click="routeToGame('slots', null)"> <img :src="getAssetsFile('svg/slots.svg')" />{{ t('slots') }} </a>
+        <a @click="routeToGame('slots', null)"> <img :src="getAssetsFile('svg/lobby.svg')" />{{ t('casino') }} </a>
       </nav>
       <!-- 游戏菜单列表 -->
       <nav class="sm-menulist">
@@ -36,7 +36,10 @@
 
         <!-- 原创 -->
         <div :class="collapseOriginals ? 'menu-item show' : 'menu-item'">
-          <h2 @click="collapseOriginals = !collapseOriginals">{{ t('seabetGame') }}<i class="iconfont icon-down" /></h2>
+          <h2 @click="collapseOriginals = !collapseOriginals">
+            <span>{{ t('seabetGame') }}</span>
+            <i class="iconfont icon-down" />
+          </h2>
           <Vue3SlideUpDown v-model="collapseOriginals">
             <ul>
               <!-- <li @click="startGame(item.id, GameType.Sports)"> -->
@@ -52,7 +55,10 @@
 
         <!-- 体育 -->
         <div :class="collapseSport ? 'menu-item show' : 'menu-item'">
-          <h2 @click="collapseSport = !collapseSport">{{ t('sports') }}<i class="iconfont icon-down" /></h2>
+          <h2 @click="collapseSport = !collapseSport">
+            <span>{{ t('sports') }}</span>
+            <i class="iconfont icon-down" />
+          </h2>
           <Vue3SlideUpDown v-model="collapseSport">
             <ul>
               <li v-for="(item, index) of sportProviderList" :key="index" @click="startGame(item.id, GameType.Sports)">
@@ -64,7 +70,10 @@
 
         <!-- 真人 -->
         <div :class="collapseLiveCashno ? 'menu-item show' : 'menu-item'">
-          <h2 @click="collapseLiveCashno = !collapseLiveCashno">{{ t('liveCasino') }}<i class="iconfont icon-down" /></h2>
+          <h2 @click="collapseLiveCashno = !collapseLiveCashno">
+            <span>{{ t('liveCasino') }}</span>
+            <i class="iconfont icon-down" />
+          </h2>
           <Vue3SlideUpDown v-model="collapseLiveCashno">
             <ul>
               <li v-for="(item, index) of casinoProviderList" :key="index" @click="routeToGame(item.tab, { providerId: item.id })">
@@ -76,7 +85,10 @@
 
         <!-- 电子 -->
         <div :class="collapseSlots ? 'menu-item show' : 'menu-item'">
-          <h2 @click="collapseSlots = !collapseSlots">{{ t('slots') }}<i class="iconfont icon-down" /></h2>
+          <h2 @click="collapseSlots = !collapseSlots">
+            <span>{{ t('slots') }}</span>
+            <i class="iconfont icon-down" />
+          </h2>
           <Vue3SlideUpDown v-model="collapseSlots">
             <ul>
               <template v-for="(item, index) of slotsProviderList" :key="index">
@@ -129,7 +141,7 @@
         <div class="menu-item">
           <ul>
             <li>
-              <a @click="liveChatCall('maximize')"><img :src="getAssetsFile('svg/telegram-left.svg')" /> Telegram </a>
+              <a href="https://t.me/seabetprime" target="_blank"><img :src="getAssetsFile('svg/telegram-left.svg')" /> Telegram </a>
             </li>
             <li>
               <a @click="liveChatCall('maximize')"><i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }}</a>

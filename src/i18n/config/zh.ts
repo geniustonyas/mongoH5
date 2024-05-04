@@ -205,6 +205,7 @@ export default {
   sports: '体育',
   liveCasino: '真人娱乐',
   slots: '老虎机',
+  casino: '娱乐城',
   sbSport: '沙巴体育',
   fbSport: 'FB体育',
   downloadApp: 'Download APP',

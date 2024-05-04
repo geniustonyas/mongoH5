@@ -2,7 +2,7 @@
   <template v-if="!appStore.maintainStatus">
     <router-view v-slot="{ Component, route }">
       <transition :name="getTransition(route.meta.transition)">
-        <keep-alive :include="['casino', 'slots', 'index', 'search', 'promoList', 'promo', 'finance', 'financeDetails']">
+        <keep-alive :include="['original', 'casino', 'slots', 'index', 'search', 'promoList', 'promo', 'finance', 'financeDetails']">
           <component :is="Component" :key="route.path" />
         </keep-alive>
       </transition>
@@ -29,6 +29,8 @@ import { HisotyReocrdType } from '@/utils/constant'
 import { getHistoryRecordApi } from '@/api/fund/index'
 import { getUrlAllParams, getCookieValue } from '@/utils/index'
 import { facebookShopApi } from '@/api/user/index'
+// import { facebookShopApi, getGoogleAuthUrl } from '@/api/user/index'
+// import { showConfirmDialog, showToast } from 'vant'
 
 import Maintain from './components/Maintain.vue'
 
@@ -159,6 +161,29 @@ if (fb_over_time && fb_id) {
     localStorage.removeItem('fb_over_time')
   }
 }
+
+// google转化测试
+
+// getGoogleAuthUrl()
+//   .then((resp) => {
+//     const wd = window.open(resp.data.url)
+//     console.log(resp.data.url)
+//     if (!wd) {
+//       showConfirmDialog({
+//         title: t(''),
+//         message: t('tips.openWindow')
+//       })
+//         .then(() => {
+//           window.open(resp.data.url)
+//         })
+//         .catch(() => {
+//           return false
+//         })
+//     }
+//   })
+//   .catch((error) => {
+//     console.log(error)
+//   })
 </script>
 
 <style>

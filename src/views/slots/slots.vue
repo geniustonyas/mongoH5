@@ -9,7 +9,10 @@
       <nav class="gamebox">
         <div class="g-head">
           <div class="gh-t">
-            <div class="gh-l">{{ t('slots') }}</div>
+            <div class="gh-l m-menu">
+              <a class="active"><img :src="getAssetsFile('svg/slots.svg')" /> {{ t('slots') }}</a>
+              <a @click="router.push({ name: 'casino' })"> <img :src="getAssetsFile('svg/livecasino.svg')" />{{ t('liveCasino') }}</a>
+            </div>
             <div class="gh-r">
               <span class="btn btn-light optgame" @click="gridShow = !gridShow">
                 <i class="iconfont icon-caidan2" />
@@ -98,6 +101,7 @@ import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
 import { GameType, PlatForm } from '@/utils/constant'
 import { getExchangeRate } from '@/composables/getExchangeRate'
+import { getAssetsFile } from '@/utils'
 
 import { showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon } from 'vant'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
@@ -115,7 +119,7 @@ const providerId = ref<string | number>('')
 const { currencyCode, exchangeRate } = getExchangeRate()
 
 // 游戏列表显示or隐藏筛选条件
-let showGameOption = ref(false)
+let showGameOption = ref(true)
 // 列表显示or表格显示
 let gridShow = ref(true)
 // 游戏列表排序规则
@@ -286,7 +290,7 @@ watch(
             pageCount.value = 0
             query.ps = []
             dataList.value = []
-            showGameOption.value = false
+            // showGameOption.value = false
             getGameList()
           }
         }
@@ -298,7 +302,7 @@ watch(
         pageCount.value = 0
         query.ps = []
         dataList.value = []
-        showGameOption.value = false
+        // showGameOption.value = false
         getGameList()
       }
     }

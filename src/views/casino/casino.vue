@@ -3,13 +3,16 @@
     <IndexHeader />
     <main class="main" ref="scrollRef">
       <!-- 切换体育真人老虎机 -->
-      <IndexTab tab="casino" />
+      <IndexTab tab="slots" />
 
       <!-- 真人 -->
       <nav class="gamebox">
         <div class="g-head">
           <div class="gh-t">
-            <div class="gh-l">{{ t('liveCasino') }}</div>
+            <div class="gh-l m-menu">
+              <a @click="router.push({ name: 'slots' })"><img :src="getAssetsFile('svg/slots.svg')" /> {{ t('slots') }}</a>
+              <a class="active"> <img :src="getAssetsFile('svg/livecasino.svg')" />{{ t('liveCasino') }}</a>
+            </div>
             <div class="gh-r">
               <span class="btn btn-light optgame" @click="gridShow = !gridShow">
                 <i class="iconfont icon-caidan2" />
@@ -98,6 +101,7 @@ import { getExchangeRate } from '@/composables/getExchangeRate'
 import { showToast, ConfigProvider, DropdownMenu, DropdownItem, Icon } from 'vant'
 import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 import { startGame } from '@/composables/startGame'
+import { getAssetsFile } from '@/utils'
 
 const route = useRoute()
 const router = useRouter()
@@ -111,7 +115,7 @@ const providerSelect = ref<HTMLElement | null>(null)
 const { currencyCode, exchangeRate } = getExchangeRate()
 
 // 游戏列表显示or隐藏筛选条件
-let showGameOption = ref(false)
+let showGameOption = ref(true)
 // 列表显示or表格显示
 let gridShow = ref(true)
 // 游戏列表排序规则
@@ -278,7 +282,7 @@ watch(
             pageCount.value = 0
             query.ps = []
             dataList.value = []
-            showGameOption.value = false
+            // showGameOption.value = false
             getGameList()
           }
         }
@@ -290,7 +294,7 @@ watch(
         pageCount.value = 0
         query.ps = []
         dataList.value = []
-        showGameOption.value = false
+        // showGameOption.value = false
         getGameList()
       }
     }

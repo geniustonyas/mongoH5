@@ -204,8 +204,9 @@ export default {
   // 首页
   readMore: '세부내용 보기',
   sports: '스포츠',
-  liveCasino: '라이브카지노',
-  slots: '슬롯머신',
+  liveCasino: '실시간 카지노',
+  slots: '슬롯',
+  casino: '카지노',
   sbSport: 'SB스포츠',
   fbSport: 'FB스포츠',
   downloadApp: 'Download APP',

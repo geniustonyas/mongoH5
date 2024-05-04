@@ -92,7 +92,7 @@
                   </div>
                 </div>
               </div>
-              <div v-if="hotGameList.length > 0" class="swiper-slide item" @click="router.push({ name: 'slots' })">
+              <div v-if="hotGameList.length > 0" class="swiper-slide item" @click="router.push({ name: 'original' })">
                 <div class="i-bd">
                   <div class="i-img last" v-lazy:background-image="getAssetsFile('other/seeAll.jpg')" />
                   <div class="i-all-btns">

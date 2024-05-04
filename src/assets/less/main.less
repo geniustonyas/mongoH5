@@ -289,7 +289,11 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 .gamebox { margin: 1rem;
     .g-head {
         .gh-t { .flex(); .flex-pack-justify(); .flex-align();
-            .gh-l { color: var(--color-white); font-weight: 700; font-size: 1.8rem; }
+            .gh-l { color: var(--color-white); font-weight: 700;  max-width: 30rem; background: none !important;  margin-left: 0; .flex-x();
+                a { font-size: 1.2rem !important; background: none; 
+                    &:nth-child(2) { margin-left: 1rem; }
+                }
+            }
             .gh-r {
                 .btn { width: 4rem; .h-lh(4rem); .radius(); font-weight: 400; margin-left: .5rem; padding: 0;
                     i { font-size: 2.2rem; }
@@ -2396,8 +2400,15 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 }
 
 body[lang='ja'] {
-    .m-menu { .flex-pack-justify();
-        a { .flex-x(none); padding: .5rem; font-size: 1.2rem; white-space: nowrap; }
+    .m-menu { .scroll-touch(auto,hidden);
+        a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
+    }
+    .gh-l {
+        // .flex-align();
+        .flex-pack(flex-start);
+        a {
+            padding: .5rem .8rem;
+        }
     }
     .m-win .mw-menu { .scroll-touch(auto,hidden);
         span { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
@@ -2498,6 +2509,9 @@ body[lang='fr'] {
     }
 }
 body[lang='tr'] {
+    .m-menu { .scroll-touch(auto,hidden);
+        a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
+    }
     .m-win .mw-menu { .scroll-touch(auto,hidden);
         span { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
     }

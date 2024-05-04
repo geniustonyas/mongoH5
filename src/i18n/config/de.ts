@@ -205,6 +205,7 @@ export default {
   sports: 'Sport',
   liveCasino: 'Live Casino',
   slots: 'Slots',
+  casino: 'Casino',
   sbSport: 'SB Sport',
   fbSport: 'FB Sport',
   downloadApp: 'Download APP',

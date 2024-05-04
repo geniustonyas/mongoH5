@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="gd-b">
-            <template v-if="detailsData.currencyCodes.length > 1 && [1, 3, 4, 6, 7, 9, 11, 13, 16, 17, 18].includes(parseInt(detailsData.providerId))">
+            <template v-if="detailsData.currencyCodes.length > 1 && [1, 4, 6, 9, 11, 13, 15, 17, 18, 19].includes(parseInt(detailsData.providerId))">
               <h3 class="item-title">{{ t('gameCurrency') }}</h3>
               <div class="item" @click.prevent="currencyBox()">
                 <span>{{ selectedCurrency }}</span>
@@ -161,7 +161,7 @@ const detailsData = reactive<getGameDetailsRespItem>({
 // const currenyDom = ref(null)
 const selectedCurrency = ref('')
 const showCurrencyBox = ref(false)
-const currencyCodeSort = ref(['USD', 'USDT', 'JPY', 'BRL', 'INR', 'THB'])
+const currencyCodeSort = ref(['USD', 'USDT', 'JPY', 'BRL', 'INR', 'THB', 'CNY', 'KRW', 'EUR', 'VND', 'IDR', 'MYR'])
 const sortedCurrencyCode = ref([])
 
 const getGameDetails = () => {
@@ -183,7 +183,10 @@ const getGameDetails = () => {
 
       if (detailsData.currencyCodes.length > 0) {
         //@ts-ignore
+        // const tmp = currencyCodeSort.value.filter((items) => detailsData.currencyCodes.some((item) => item != items))
+        //@ts-ignore
         sortedCurrencyCode.value = currencyCodeSort.value.filter((items) => detailsData.currencyCodes.some((item) => item == items))
+        // sortedCurrencyCode.value.concat(tmp)
       }
 
       // 如果游戏支持的币种与默认币种一致， 则设置显示为默认币种， 否则设置显示为usd或者USDT

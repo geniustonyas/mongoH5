@@ -3,7 +3,7 @@
     <IndexHeader />
     <main class="main" ref="scrollRef">
       <!-- 切换体育真人老虎机 -->
-      <IndexTab />
+      <IndexTab tab="original" />
 
       <!-- 老虎机 -->
       <nav class="gamebox">
@@ -115,7 +115,7 @@ const providerId = ref<string | number>('')
 const { currencyCode, exchangeRate } = getExchangeRate()
 
 // 游戏列表显示or隐藏筛选条件
-let showGameOption = ref(false)
+let showGameOption = ref(true)
 // 列表显示or表格显示
 let gridShow = ref(true)
 // 游戏列表排序规则
@@ -287,7 +287,6 @@ watch(
             pageCount.value = 0
             query.ps = []
             dataList.value = []
-            showGameOption.value = false
             getGameList()
           }
         }
@@ -299,7 +298,7 @@ watch(
         pageCount.value = 0
         query.ps = []
         dataList.value = []
-        showGameOption.value = false
+        // showGameOption.value = false
         getGameList()
       }
     }

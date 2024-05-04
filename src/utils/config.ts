@@ -203,7 +203,17 @@ export const providerListData = () => {
     },
     // 真人提供商
     { id: '6', type: 'casino', tab: 'casino', show: true, name: t('provider.evolution'), img: getAssetsFile('svg/Evolution.svg'), indexImg: getAssetsFile('provider/Evolution.svg'), indexSort: 1 },
-    { id: '16', type: 'casino', tab: 'casino', show: true, name: t('provider.sexy'), img: getAssetsFile('svg/sexy.svg'), indexImg: getAssetsFile('provider/sexy.svg'), indexSort: 9 },
+    {
+      id: '19',
+      type: 'slots',
+      tab: 'original',
+      show: true,
+      name: t('provider.spribe'),
+      img: getAssetsFile('svg/spribe.svg'),
+      indexImg: getAssetsFile('provider/spribe.svg'),
+      indexSort: 3,
+      demo: false
+    },
     { id: '7', type: 'casino', tab: 'casino', show: true, name: t('provider.ezugi'), img: getAssetsFile('svg/Ezugi.svg'), indexImg: getAssetsFile('provider/Ezugi.svg'), indexSort: 8 },
     { id: '3', type: 'casino', tab: 'casino', show: true, name: t('provider.asiaGaming'), img: getAssetsFile('svg/AsiaGaming.svg'), indexImg: getAssetsFile('provider/AsiaGaming.svg'), indexSort: 4 },
     // 电子提供商
@@ -218,17 +228,7 @@ export const providerListData = () => {
       indexSort: 3,
       demo: false
     },
-    {
-      id: '19',
-      type: 'slots',
-      tab: 'original',
-      show: true,
-      name: t('provider.spribe'),
-      img: getAssetsFile('svg/spribe.svg'),
-      indexImg: getAssetsFile('provider/spribe.svg'),
-      indexSort: 3,
-      demo: false
-    },
+    { id: '16', type: 'casino', tab: 'casino', show: true, name: t('provider.sexy'), img: getAssetsFile('svg/sexy.svg'), indexImg: getAssetsFile('provider/sexy.svg'), indexSort: 9 },
     { id: '13', type: 'slots', tab: 'slots', show: true, name: t('provider.pgSoft'), img: getAssetsFile('svg/pgsoft.svg'), indexImg: getAssetsFile('provider/pgsoft.svg'), indexSort: 2, demo: false },
     {
       id: '1',

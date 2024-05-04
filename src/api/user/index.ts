@@ -252,3 +252,13 @@ export function facebookShopApi(data: any) {
     data
   })
 }
+
+/** google 转化api 获取授权链接 */
+export function getGoogleAuthUrl() {
+  return request<anyResp>({
+    headers: { 'Content-Type': 'application/json' },
+    url: 'googleAdsOauthUrl',
+    method: 'get',
+    baseURL: import.meta.env.VITE_THIRD_API
+  })
+}

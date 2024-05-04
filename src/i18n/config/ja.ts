@@ -205,6 +205,7 @@ export default {
   sports: 'スポーツ',
   liveCasino: 'ライブカジノ',
   slots: 'スロット',
+  casino: 'カジノ',
   sbSport: 'SBスポーツ',
   fbSport: 'FBスポーツ',
   downloadApp: 'Download APP',

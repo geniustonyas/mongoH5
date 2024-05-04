@@ -203,8 +203,9 @@ export default {
   // Inicio
   readMore: 'Leer Más',
   sports: 'Deportes',
-  liveCasino: 'Casino',
-  slots: 'Tragamonedas',
+  liveCasino: 'Casino en Vivo',
+  slots: 'Slots',
+  casino: 'Casino',
   sbSport: 'Deportes de Arena',
   fbSport: 'Deportes de Fútbol',
   downloadApp: 'Download APP',
