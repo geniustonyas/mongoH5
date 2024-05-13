@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="gd-b">
-            <template v-if="detailsData.currencyCodes.length > 1 && [1, 4, 6, 9, 11, 13, 15, 17, 18, 19].includes(parseInt(detailsData.providerId))">
+            <template v-if="detailsData.currencyCodes.length > 1 && [1, 4, 6, 7, 9, 11, 13, 15, 16, 17, 18, 19].includes(parseInt(detailsData.providerId))">
               <h3 class="item-title">{{ t('gameCurrency') }}</h3>
               <div class="item" @click.prevent="currencyBox()">
                 <span>{{ selectedCurrency }}</span>

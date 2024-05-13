@@ -204,7 +204,7 @@ export default {
   // Página Inicial
   readMore: 'Leia Mais',
   sports: 'Esportes',
-  liveCasino: 'Casino en Vivo',
+  liveCasino: 'Cassino Ao Vivo',
   slots: 'Slots',
   casino: 'Cassino',
   sbSport: 'Esportes SB',
@@ -215,7 +215,7 @@ export default {
   otherPayment: 'Outros Métodos de Pagamento',
   sportsBet: 'Apostas Esportivas',
   liveCasinoBet: 'Apostas no Cassino Ao Vivo',
-  slotBet: 'Apostas em Caça-Níqueis',
+  slotBet: 'Apostas em Slots',
   more: 'Mais',
   loadMore: 'Mostrar mais',
   providers: 'Provedores',
