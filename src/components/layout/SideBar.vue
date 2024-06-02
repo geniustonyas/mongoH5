@@ -141,7 +141,7 @@
         <div class="menu-item">
           <ul>
             <li>
-              <a href="https://t.me/seabetprime" target="_blank"><img :src="getAssetsFile('svg/telegram-left.svg')" /> Telegram </a>
+              <a href="https://t.me/+TPO92WpfohFlNzA1" target="_blank"><img :src="getAssetsFile('svg/telegram-left.svg')" /> Telegram </a>
             </li>
             <li>
               <a @click="liveChatCall('maximize')"><i class="iconfont icon-xiaoxi" />{{ t('liveSupport') }}</a>

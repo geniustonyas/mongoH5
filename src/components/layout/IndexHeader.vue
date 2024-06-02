@@ -59,7 +59,7 @@
             <b>{{ userStore.userInfo.userName }}</b>
             <a>
               <label>+</label>
-              <span>{{ Math.floor(parseFloat(userStore.userInfo?.balance) * 1000) / 1000 }}</span>
+              <span>{{ Math.floor(parseFloat(userStore.userInfo?.balance) * 100) / 100 }}</span>
               {{ userStore.userInfo.defaultCurrencyCode }}
             </a>
           </div>
