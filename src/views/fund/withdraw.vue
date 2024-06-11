@@ -20,7 +20,8 @@
           </div>
           <div class="ff-group">
             <label>{{ t('amount') }}</label>
-            <input v-model="withdrawForm.Amount" type="text" ref="amountDom" :placeholder="t('inputAmount')" autocomplete="off" />
+            <input v-model="tmpAmount" type="text" ref="amountDom" :placeholder="t('inputAmount')" autocomplete="off" />
+            <div v-if="route.query?.CurrencyCode == 'VND'" class="amountNote">{{ t('sameAs') }}： {{ tmpAmount == '' ? 0 : parseFloat(tmpAmount) * 1000 }} VND</div>
           </div>
           <ul class="ff-amounts">
             <li :class="{ active: percent == 0.25 }">
@@ -36,11 +37,12 @@
           <div class="ff-rmark">
             <i class="iconfont icon-info" />
             {{ t('minWithdrawAmount') }}
-            <b>{{ moneyFormat(minWithdrawAmount) }} {{ withdrawBalanceItem.unit }}</b>
+            <b v-if="route.query?.CurrencyCode == 'VND'">{{ moneyFormat(parseFloat(minWithdrawAmount) / 1000) }} {{ withdrawBalanceItem.unit }}</b>
+            <b v-else>{{ moneyFormat(minWithdrawAmount) }} {{ withdrawBalanceItem.unit }}</b>
           </div>
         </div>
         <div v-show="step == 1" class="fund-btn">
-          <a :class="withdrawForm.Amount == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('next') }}</a>
+          <a :class="tmpAmount == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('next') }}</a>
         </div>
         <!-- step 2 -->
         <div v-show="step == 2" class="fund-fiat-form fund-form fund-withdraw-form">
@@ -387,7 +389,7 @@
             </dd>
             <dd>
               {{ t('amount') }}:
-              <span>{{ moneyFormat(withdrawForm.Amount) }} {{ withdrawBalanceItem.unit }}</span>
+              <span>{{ moneyFormat(tmpAmount) }} {{ withdrawBalanceItem.unit }}</span>
             </dd>
             <dd v-if="withdrawForm.CurrencyCode == 'USDT'">
               {{ t('network') }}:
@@ -582,6 +584,8 @@ let accountNameDom = ref<HTMLInputElement | null>(null)
 let bankCodeDom = ref<HTMLInputElement | null>(null)
 let ifscDom = ref<HTMLInputElement | null>(null)
 let googleCodeDom = ref<HTMLInputElement | null>(null)
+
+const tmpAmount = ref('')
 // 提现表单
 const withdrawForm = reactive({
   CurrencyCode: route.query?.CurrencyCode as string,
@@ -673,7 +677,10 @@ const computeAmount = (rate: number) => {
   percent.value = rate
   const bigBalance = new BigNumber(withdrawBalanceItem.balance)
   let tmp = bigBalance.times(rate)
-  withdrawForm.Amount = tmp.valueOf()
+  tmpAmount.value = tmp.valueOf()
+  if (route.query?.CurrencyCode == 'VND') {
+    tmpAmount.value = tmp.dividedBy(1000).valueOf()
+  }
 }
 
 // USDT 选择trc20或trc20
@@ -686,6 +693,7 @@ const selBlockChain = (item: usdtChainListTypes) => {
 // 提现
 const selTab = () => {
   if (step.value == 1) {
+    withdrawForm.Amount = (parseFloat(tmpAmount.value) * 1000).toString()
     if (withdrawForm.Amount == '') {
       amountDom.value?.focus()
       showToast(t('tips.inputWithdrawAmount'))
@@ -761,6 +769,22 @@ const selTab = () => {
           return false
         }
       } else if (route.query.CurrencyCode == 'THB') {
+        if (withdrawForm.PayeeData.bankcode == '') {
+          bankCodeDom.value?.focus()
+          showToast(t('bankCodeHolder'))
+          return false
+        }
+        if (withdrawForm.PayeeData.accountno == '') {
+          accountNoDom.value?.focus()
+          showToast(t('bankAccountNoHolder'))
+          return false
+        }
+        if (withdrawForm.PayeeData.accountname == '') {
+          accountNameDom.value?.focus()
+          showToast(t('bankAccountNameHolder'))
+          return false
+        }
+      } else if (route.query.CurrencyCode == 'VND') {
         if (withdrawForm.PayeeData.bankcode == '') {
           bankCodeDom.value?.focus()
           showToast(t('bankCodeHolder'))
