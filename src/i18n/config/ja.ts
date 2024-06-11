@@ -764,6 +764,11 @@ export default {
   blog: 'ブログ',
   otherHoArticle: '他によく読まれている記事',
   seabetGame: 'オリジナル',
+  bankScanQr: ' 銀行QRコードスキャン',
+  bankTransfer: '銀行振込',
+  sameAs: '同等の',
+  bankList: '銀行 (ぎんこう)',
+  rechargeType: '充電方法 (じゅうでんほうほう)',
 
   vip: {
     seabetVip: 'Seabet VIPクラブ',

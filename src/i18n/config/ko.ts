@@ -761,6 +761,11 @@ export default {
   blog: '블로그',
   otherHoArticle: '다른 인기 기사',
   seabetGame: '오리지널',
+  bankScanQr: '은행 QR 코드 스캔',
+  bankTransfer: '은행 이체',
+  sameAs: '동등한',
+  bankList: '은행 (eunhaeng)',
+  rechargeType: '충전 방법 (chungjeon bangbeob)',
 
   vip: {
     seabetVip: 'Seabet VIP 클럽',

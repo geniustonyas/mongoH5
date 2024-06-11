@@ -490,6 +490,56 @@ export const thaiBankData = () => {
   ]
 }
 
+export const vnBankData = () => {
+  return [
+    { value: 'VCB', text: 'VIETCOMBANK' },
+    { value: 'VTB', text: 'VIETINBANK' },
+    { value: 'TCB', text: 'TCB' },
+    { value: 'MB', text: 'MB' },
+    { value: 'ACB', text: 'ACB' },
+    { value: 'VPB', text: 'VPBANK' },
+    { value: 'BIDV', text: 'BIDV' },
+    { value: 'TPB', text: 'TPBANK' },
+    { value: 'HDB', text: 'HDBANK' },
+    { value: 'AGRIBANK', text: 'AGRIBANK' },
+    { value: 'VIB', text: 'VIB' },
+    { value: 'ABB', text: 'ABBANK' },
+    { value: 'BACABANK', text: 'BAC A BANK' },
+    { value: 'DONGABANK', text: 'DONG A BANK' },
+    { value: 'EIB', text: 'EXIMBANK' },
+    { value: 'GPBANK', text: 'GPBANK' },
+    { value: 'HLBANK', text: 'HLBANK' },
+    { value: 'HSBC', text: 'HSBC' },
+    { value: 'IVB', text: 'INDOVINA BANK' },
+    { value: 'KienLongBank', text: 'KienLongBank' },
+    { value: 'LVPB', text: 'LIENVIETPOSTBANK' },
+    { value: 'MSB', text: 'MARITIME BANK' },
+    { value: 'NAMABANK', text: 'NAM A BANK' },
+    { value: 'NCB', text: 'NCB' },
+    { value: 'OCB', text: 'OCB' },
+    { value: 'PGBANK', text: 'PG Bank' },
+    { value: 'PVCOMBANK', text: 'PVCOMBANK' },
+    { value: 'SACOMBANK', text: 'Sacombank' },
+    { value: 'SAIGONBANK', text: 'SAIGONBANK' },
+    { value: 'SCB', text: 'SCB' },
+    { value: 'SEABANK', text: 'SEABANK' },
+    { value: 'SHB', text: 'SHB' },
+    { value: 'SHINABANK', text: 'SHINABANK' },
+    { value: 'VIETABANK', text: 'VIET A BANK' },
+    { value: 'VIETCAPITALBANK', text: 'VIET CAPITAL BANK' }
+  ]
+}
+
+export const vnPayDataList = () => {
+  return [
+    { code: '1', payName: t('bankScanQr'), icon: 'pay/bankQr.png' },
+    { code: '2', payName: t('bankTransfer'), icon: 'pay/bankTran.png' },
+    { code: '3', payName: 'MOMO', icon: 'pay/momo.png' },
+    { code: '4', payName: 'Zalo', icon: 'pay/zalo.png' },
+    { code: '5', payName: 'Viettelpay', icon: 'pay/vietielPay.png' }
+  ]
+}
+
 export interface usdtChainListTypes {
   chainName: string
   subtitle: string

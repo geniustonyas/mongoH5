@@ -769,6 +769,11 @@ export default {
   blog: 'Blog',
   otherHoArticle: 'Các Bài Viết Phổ Biến Khác',
   seabetGame: 'Nguyên Bản',
+  bankScanQr: 'Quét mã QR ngân hàng',
+  bankTransfer: 'Chuyển khoản ngân hàng',
+  sameAs: 'Tương đương với',
+  bankList: 'Ngân hàng',
+  rechargeType: 'Phương thức nạp tiền',
 
   vip: {
     seabetVip: 'Hội viên VIP Seabet',

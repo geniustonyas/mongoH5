@@ -760,6 +760,11 @@ export default {
   blog: 'Blog',
   otherHoArticle: 'Diğer Popüler Makaleler',
   seabetGame: 'Orijinalleri',
+  bankScanQr: 'Banka QR Tarama',
+  bankTransfer: 'Banka Havalesi',
+  sameAs: 'Aynı',
+  bankList: 'Banka',
+  rechargeType: 'Yükleme Yöntemi',
 
   vip: {
     seabetVip: 'Seabet VIP Kulübü',

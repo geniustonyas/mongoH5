@@ -758,6 +758,11 @@ export default {
   blog: 'Blog',
   otherHoArticle: 'บทความยอดนิยมอื่น ๆ',
   seabetGame: 'เกมดั้งเดิม',
+  bankScanQr: 'สแกน QR ของธนาคาร',
+  bankTransfer: 'โอนเงินผ่านธนาคาร',
+  sameAs: 'เทียบเท่า',
+  bankList: 'ธนาคาร',
+  rechargeType: 'วิธีการเติมเงิน',
 
   vip: {
     seabetVip: 'คลับ VIP ของ Seabet',

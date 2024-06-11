@@ -156,6 +156,27 @@
                 <div id="accountNameTip" class="tip" />
               </div>
             </template>
+            <template v-if="route.query?.CurrencyCode == 'VND'">
+              <div class="ff-info">{{ t('providerInfo') }}</div>
+              <div class="ff-group">
+                <label>{{ t('bankCode') }}</label>
+                <input :value="getBankName()" type="text" ref="bankCodeDom" :placeholder="t('bankCodeHolder')" autocomplete="off" readonly @focus="showBankPicker = true" />
+                <i class="iconfont icon-down down" />
+                <div id="bankCodeTip" class="tip" />
+              </div>
+
+              <div class="ff-group">
+                <label>{{ t('bankAccountNo') }}</label>
+                <input v-model="withdrawForm.PayeeData.accountno" type="text" ref="accountNoDom" :placeholder="t('bankAccountNoHolder')" autocomplete="off" />
+                <div id="accountNoTip" class="tip" />
+              </div>
+
+              <div class="ff-group">
+                <label>{{ t('bankAccountName') }}</label>
+                <input v-model="withdrawForm.PayeeData.accountname" type="text" ref="accountNameDom" :placeholder="t('bankAccountNameHolder')" autocomplete="off" />
+                <div id="accountNameTip" class="tip" />
+              </div>
+            </template>
           </template>
         </div>
         <div v-show="step == 2" class="fund-btn">
@@ -320,6 +341,41 @@
                     </div>
                   </div>
                 </div>
+                <div v-if="route.query?.CurrencyCode == 'VND'" class="r-group-card">
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>{{ t('bankCode') }}</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ getBankName() }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>{{ t('bankAccountNo') }}</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ withdrawForm.PayeeData.accountno }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                  <div class="gc-t gc-t-fiat">
+                    <div class="t-l">
+                      <div class="t-txt">
+                        <span>{{ t('bankAccountName') }}</span>
+                      </div>
+                    </div>
+                    <div class="t-r">
+                      <span>{{ withdrawForm.PayeeData.accountname }} </span>
+                      <i @click="step = 2" class="iconfont icon-bianji" />
+                    </div>
+                  </div>
+                </div>
               </template>
             </div>
           </div>
@@ -443,7 +499,7 @@ import { useUserStore } from '@/store/modules/user'
 import { getMinWithdrawAmountApi, getBalanceApi, withdrawOrderApi, getTradeDetailApi } from '@/api/fund/index'
 // import { getTradeDetailResponse } from '@/api/fund/type'
 import { getAssetsFile, moneyFormat } from '@/utils'
-import { usdtChainListData, currenyListData, usdtChainListTypes, pixTypeData, indiaBankData, thaiBankData } from '@/utils/config'
+import { usdtChainListData, currenyListData, usdtChainListTypes, pixTypeData, indiaBankData, thaiBankData, vnBankData } from '@/utils/config'
 import { useI18n } from 'vue-i18n'
 import { liveChatCall } from '@/composables/startGame'
 
@@ -464,6 +520,9 @@ if (route.query?.CurrencyCode == 'INR') {
 }
 if (route.query?.CurrencyCode == 'THB') {
   bankList = thaiBankData()
+}
+if (route.query?.CurrencyCode == 'VND') {
+  bankList = vnBankData()
 }
 
 let btnLoading = ref(false)

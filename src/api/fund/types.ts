@@ -23,12 +23,29 @@ export interface getFiatChannelsRespItems {
   min: number
   max: number
   expire: number
+  methods: getFiatChannelsMethods[]
+}
+
+// 越南支付支付方式
+export interface getFiatChannelsMethods {
+  icon: string
+  code: string
+  name: string
+  items: getFiatChannelsMethodsItems[]
+}
+
+export interface getFiatChannelsMethodsItems {
+  id: number
+  icon?: string
+  code?: string
+  name?: string
 }
 
 // 创建法币充值订单
 export interface fiatDepositData {
   channelId: number | string
   amount: number | string
+  channelItemId: null | number
   fields: {
     bankfullname: string
     banknumber: string

@@ -769,6 +769,11 @@ export default {
   blog: 'Blog',
   otherHoArticle: 'Otros Artículos Populares',
   seabetGame: 'Originales',
+  bankScanQr: 'Escaneo QR del Banco',
+  bankTransfer: 'Transferencia Bancaria',
+  sameAs: 'Equivalente a',
+  bankList: 'Banco',
+  rechargeType: 'Método de recarga',
 
   vip: {
     seabetVip: 'Club VIP de Seabet',

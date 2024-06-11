@@ -787,6 +787,8 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                         }
                     }
                 }
+
+                
             }
             .r-card-txt { position: relative; background-color: rgba(247, 204, 0, 0.05); color: var(--color-primary); font-size: 1.3rem; padding: 1.6rem; .radius(0.8rem);
                 i { font-size: 2rem; vertical-align: middle; position: relative; bottom: .1rem; margin-right: .5rem; }
@@ -795,9 +797,23 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                     &:hover { .bg(rgba(0,0,0,.75)); }
                 }
             }
+            
         }
     }
 }
+
+.r-bank {
+    .vn-bank { .flex(); .flex-wrap(wrap);  .flex-pack(start);
+        li { width: 31%; .flex(); .flex-v(); .flex-align(); padding: 1rem 1rem; margin-right: 1rem; margin-top: 1rem; .bg(var(--color-menu)); .radius(.5rem); 
+            img { width: 3rem; }
+            .bank { width: 5rem; }
+            span { .h-lh(2.5rem); font-size: 1.2rem }
+            &.active { .border-a(.1rem, var(--color-primary)) }
+            &:nth-child(3n) { margin-right: 0; }
+        }
+    }
+}
+
 /* 钱包设置 */
 .wallet-box { padding: 1.5rem; margin-top: 2rem;
     .w-title { font-size: 2rem; color: var(--color-white); }
@@ -1907,6 +1923,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             &:focus { border-color: var(--color-primary) }
         }
         .down { position: relative; right: 10px; float: right; bottom: 35px; }
+        .amountNote { color: var(--color-text); font-size: 1.2rem }
     }
     .ff-amounts { .flex(); margin-right: -1rem;
         li { .flex-x(); padding-right: 1rem;
@@ -1923,6 +1940,15 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
             &:hover { .bg(rgba(0,0,0,.75)); }
         }
     }
+
+    .ff-remark-rows { margin-top: 1.5rem; position: relative; background-color: rgba(247, 204, 0, 0.05); color: var(--color-primary); font-size: 1.3rem; padding: 1.6rem; line-height: 2.6rem; .radius(0.8rem);
+        i { font-size: 2rem; vertical-align: middle; position: relative; bottom: .1rem; margin-right: .5rem; }
+        span { position: absolute; top: 1rem; right: 1rem; display: inline-block; width: 3.6rem; .h-lh(3.6rem); .radius(3.6rem); .bg(rgba(0,0,0,.3)); text-align: center; cursor: pointer;
+            i { font-size: 1.6rem; margin: 0; }
+            &:hover { .bg(rgba(0,0,0,.75)); }
+        }
+    }
+
     .fb-row { padding: 0;
         .row-body {
             .r-group-card .gc-t { .border-a(.1rem,var(--color-dark-gray)); .radius(.5rem); }

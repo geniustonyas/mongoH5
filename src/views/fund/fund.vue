@@ -98,7 +98,6 @@
                   <div v-for="(item, index) of fiatChannels" :key="index" class="bourse" @click="selFiatChannel(item)">
                     <div class="t-l">
                       <div class="t-icon">
-                        <!-- <img :src="item.img" /> -->
                         <img :src="getAssetsFile(`coin/${selCurrencyItem.name.toLocaleLowerCase()}.svg`)" />
                       </div>
                       <div class="t-txt">
@@ -111,6 +110,23 @@
                     </div>
                   </div>
                 </div>
+                <!-- <div class="r-group-card">
+                  <template v-if="selFiatChannelItem">
+                    <div v-for="(item, index) of selFiatChannelItem.methods" :key="index" class="bourse" @click="selVnPayItem(item)">
+                      <div class="t-l">
+                        <div class="t-icon">
+                          <img :src="getAssetsFile(getVnPayData(item.code)?.icon)" />
+                        </div>
+                        <div class="t-txt">
+                          <span class="t-name">{{ getVnPayData(item.code)?.payName }}</span>
+                        </div>
+                      </div>
+                      <div class="t-r">
+                        <i class="iconfont icon-right" />
+                      </div>
+                    </div>
+                  </template>
+                </div> -->
               </template>
             </div>
             <div v-show="fundTab == 'buyCrypto'">
@@ -229,15 +245,39 @@
                 <h3>{{ selCurrencyItem.name }} {{ t('deposit') }}</h3>
               </div>
               <div class="fund-fiat-form fund-form">
+                <div v-if="selFiatChannelItem" class="ff-group">
+                  <label>{{ t('rechargeType') }}</label>
+                  <div class="r-bank">
+                    <ul class="vn-bank">
+                      <li v-for="(item, index) of selFiatChannelItem.methods" :key="index" :class="{ active: item.code == vnPayItem.code }" @click="selVnPayItem(item)">
+                        <img :src="getAssetsFile(getVnPayData(item.code)?.icon)" class="bank" />
+                        <span>{{ getVnPayData(item.code)?.payName }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div v-if="vnPayItem.items.length > 1" class="ff-group">
+                  <label>{{ t('bankList') }}</label>
+                  <div class="r-bank">
+                    <ul class="vn-bank">
+                      <li v-for="(item, index) of vnPayItem.items" :key="index" :class="{ active: item.id == fiatDepositForm.channelItemId }" @click="fiatDepositForm.channelItemId = item.id">
+                        <img :src="getAssetsFile(`pay/${item.name}.png`)" class="bank" />
+                        <span>{{ item.name }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
                 <div class="ff-group">
                   <label>{{ t('amount') }}</label>
-                  <input v-model="fiatDepositForm.amount" type="text" ref="amountDom" :placeholder="t('inputAmount')" autocomplete="off" />
+                  <input v-model="tmpAmount" type="text" ref="amountDom" :placeholder="t('inputAmount')" autocomplete="off" />
                   <div id="amountTip" class="tip" />
+                  <div v-if="selCurrencyItem.name == 'VND'" class="amountNote">{{ t('sameAs') }}： {{ tmpAmount == '' ? 0 : parseFloat(tmpAmount) * 1000 }} VND</div>
                 </div>
                 <div class="ff-rmark">
                   <i class="iconfont icon-info" />
                   {{ t('depositLimit') }}
-                  <b>{{ moneyFormat(selFiatChannelItem.min) }} ~ {{ moneyFormat(selFiatChannelItem.max) }}</b>
+                  <b v-if="selCurrencyItem.name == 'VND'">{{ moneyFormat(selFiatChannelItem.min / 1000) }} ~ {{ moneyFormat(selFiatChannelItem.max / 1000) }}</b>
+                  <b v-else>{{ moneyFormat(selFiatChannelItem.min) }} ~ {{ moneyFormat(selFiatChannelItem.max) }}</b>
                 </div>
               </div>
               <div class="fund-btn">
@@ -259,9 +299,9 @@ import CommonHeader from '@/components/layout/CommonHeader.vue'
 import FundFooter from '@/components/layout/FundFooter.vue'
 // import { getExchangeRateApi } from '@/api/app/index'
 import { getBalanceApi, getDepositAddressApi, setDefaultCurrencyApi, getFiatChannelsApi, fiatDepositApi } from '@/api/fund/index'
-import { getBalanceItemResponse, getFiatChannelsRespItems } from '@/api/fund/types'
+import { getBalanceItemResponse, getFiatChannelsRespItems, getFiatChannelsMethods } from '@/api/fund/types'
 import { getAssetsFile, copy, moneyFormat } from '@/utils'
-import { usdtChainListData, usdtChainListTypes, currenyListData, buyCryptoData } from '@/utils/config'
+import { usdtChainListData, usdtChainListTypes, currenyListData, buyCryptoData, vnPayDataList } from '@/utils/config'
 
 import { useI18n } from 'vue-i18n'
 import QrcodeVue from 'qrcode.vue'
@@ -277,6 +317,7 @@ const { t } = useI18n()
 const usdtChainList = usdtChainListData()
 const currenyList = currenyListData()
 const buyCrypto = buyCryptoData()
+const vnPayData = vnPayDataList()
 
 // 数字货币和银行切换
 const depositTab = ref('digital')
@@ -296,11 +337,14 @@ const selFiatChannelItem = reactive<getFiatChannelsRespItems>({
   currencyUnit: '',
   min: 0,
   max: 0,
-  expire: 0
+  expire: 0,
+  methods: []
 })
 
+const tmpAmount = ref('')
 const fiatDepositForm = reactive({
   channelId: 0,
+  channelItemId: 0,
   amount: '',
   fields: {
     bankfullname: '',
@@ -323,6 +367,14 @@ const selCurrencyItem = reactive<getBalanceItemResponse>({
   unit: '',
   currencyType: '',
   usdAmount: ''
+})
+
+// 越南支付 选择支付方式
+const vnPayItem = reactive<getFiatChannelsMethods>({
+  icon: '',
+  code: '',
+  name: '',
+  items: []
 })
 
 // 如果是USDT 选择转账链
@@ -367,7 +419,7 @@ const getBalanceList = () => {
         const item = resp.data.find((item) => item.name == userStore.userInfo.defaultCurrencyCode)
         selCurrency(item ? item : resp.data[0])
         digitalList.value = resp.data.filter((item) => item.currencyType != '20')
-        bankList.value = resp.data.filter((item) => item.currencyType == '20' && ['INR', 'THB', 'BRL'].includes(item.name))
+        bankList.value = resp.data.filter((item) => item.currencyType == '20' && ['INR', 'THB', 'BRL', 'VND'].includes(item.name))
         showDepositQrcode.value = true
       }
     })
@@ -426,6 +478,22 @@ const selFiatChannel = (item: getFiatChannelsRespItems) => {
   Object.assign(selFiatChannelItem, item)
   fiatDepositForm.channelId = selFiatChannelItem.id
   showFiatDepositBox.value = true
+
+  // if (selCurrencyItem.name == 'VND') {
+  //   Object.assign(selFiatChannelItem, resp.data[0])
+  //   fiatDepositForm.channelId = selFiatChannelItem.id
+  // }
+  if (selFiatChannelItem && selFiatChannelItem.methods) {
+    selVnPayItem(selFiatChannelItem.methods[0])
+  }
+}
+
+// 越南支付选择支付
+const selVnPayItem = (item: getFiatChannelsMethods) => {
+  Object.assign(vnPayItem, item)
+  fiatDepositForm.channelId = selFiatChannelItem.id
+  fiatDepositForm.channelItemId = vnPayItem.items[0].id
+  showFiatDepositBox.value = true
 }
 
 const fiatDepositLoading = ref(false)
@@ -446,7 +514,14 @@ const fiatDeposit = () => {
   // const bankfullnameTip = document.getElementById('bankfullnameTip')
   // const banknameTip = document.getElementById('banknameTip')
   // const bankzhinameTip = document.getElementById('bankzhinameTip')
-
+  if (selCurrencyItem.name == 'VND') {
+    //@ts-ignore
+    fiatDepositForm.amount = tmpAmount.value == '' ? tmpAmount : (parseFloat(tmpAmount.value) * 1000).toString()
+  } else {
+    fiatDepositForm.amount = tmpAmount.value
+    //@ts-ignore
+    fiatDepositForm.channelItemId = null
+  }
   if (fiatDepositForm.amount == '') {
     errorMsg.value = t('inputDepositAmount')
     amountTip!.innerHTML = errorMsg.value
@@ -472,7 +547,6 @@ const fiatDeposit = () => {
 
   fiatDepositApi(fiatDepositForm)
     .then((resp) => {
-      console.log(resp)
       // ElMessage({ type: 'success', message: '提交成功！' })
       Object.assign(fiatDepositForm, defaultFiatDepositForm)
       fiatDepositLoading.value = false
@@ -500,6 +574,7 @@ const fiatDeposit = () => {
 }
 
 const closeFiatDepositBox = () => {
+  tmpAmount.value = ''
   Object.assign(fiatDepositForm, defaultFiatDepositForm)
 }
 
@@ -532,6 +607,15 @@ const openBourse = (url: string) => {
       .catch(() => {
         return false
       })
+  }
+}
+
+const getVnPayData = (code: string) => {
+  const tmp = vnPayData.find((item) => item.code == code)
+  if (tmp) {
+    return tmp
+  } else {
+    return vnPayData[0]
   }
 }
 
