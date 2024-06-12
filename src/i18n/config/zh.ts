@@ -1,5 +1,3 @@
-import Withdraw from "@/views/fund/withdraw.vue";
-
 export default {
   home: '首页',
   search: '搜索',
@@ -764,8 +762,9 @@ export default {
   bankScanQr: '银行扫码',
   bankTransfer: '银行转账',
   sameAs: '相当于',
+  bankList: '银行',
   rechargeType: '充值方式',
-  withdrawType: '提现方式',
+  exhange: '换算',
 
   vip: {
     seabetVip: 'Seabet VIP俱乐部',

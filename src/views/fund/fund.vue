@@ -282,6 +282,7 @@
               </div>
               <div class="fund-btn">
                 <a class="btn btn-primary" @click="fiatDeposit"><i v-show="fiatDepositLoading" class="iconfont icon-loading" />{{ t('submit') }}</a>
+                <div v-if="selCurrencyItem.name == 'VND'" class="amount-exchange">{{ t('exhange') }}： 1 = 1000 VND</div>
               </div>
             </div>
           </Popup>
@@ -574,8 +575,9 @@ const fiatDeposit = () => {
 }
 
 const closeFiatDepositBox = () => {
-  tmpAmount.value = ''
   Object.assign(fiatDepositForm, defaultFiatDepositForm)
+  document.getElementById('amountTip')!.innerHTML = ''
+  tmpAmount.value = ''
 }
 
 // 获取充值地址

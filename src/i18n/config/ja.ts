@@ -769,6 +769,7 @@ export default {
   sameAs: '同等の',
   bankList: '銀行 (ぎんこう)',
   rechargeType: '充電方法 (じゅうでんほうほう)',
+  exhange: '換算',
 
   vip: {
     seabetVip: 'Seabet VIPクラブ',

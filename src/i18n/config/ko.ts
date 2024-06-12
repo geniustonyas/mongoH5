@@ -766,6 +766,7 @@ export default {
   sameAs: '동등한',
   bankList: '은행 (eunhaeng)',
   rechargeType: '충전 방법 (chungjeon bangbeob)',
+  exhange: '변환',
 
   vip: {
     seabetVip: 'Seabet VIP 클럽',

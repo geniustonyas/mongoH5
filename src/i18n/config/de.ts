@@ -772,6 +772,7 @@ export default {
   sameAs: 'Entspricht',
   bankList: 'Bank',
   rechargeType: 'Auflademethode',
+  exhange: 'Umrechnung',
 
   vip: {
     seabetVip: 'Seabet VIP-Club',

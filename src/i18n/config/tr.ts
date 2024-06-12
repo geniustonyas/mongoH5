@@ -765,6 +765,7 @@ export default {
   sameAs: 'Aynı',
   bankList: 'Banka',
   rechargeType: 'Yükleme Yöntemi',
+  exhange: 'Dönüşüm',
 
   vip: {
     seabetVip: 'Seabet VIP Kulübü',

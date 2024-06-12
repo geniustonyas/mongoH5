@@ -768,6 +768,7 @@ export default {
   sameAs: 'Same as',
   bankList: 'Bank',
   rechargeType: 'Recharge Method',
+  exhange: 'Conversion',
 
   vip: {
     seabetVip: 'Seabet VIP-Club',

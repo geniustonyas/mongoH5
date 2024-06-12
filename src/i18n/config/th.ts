@@ -763,6 +763,7 @@ export default {
   sameAs: 'เทียบเท่า',
   bankList: 'ธนาคาร',
   rechargeType: 'วิธีการเติมเงิน',
+  exhange: 'การแปลง',
 
   vip: {
     seabetVip: 'คลับ VIP ของ Seabet',

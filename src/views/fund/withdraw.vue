@@ -21,7 +21,7 @@
           <div class="ff-group">
             <label>{{ t('amount') }}</label>
             <input v-model="tmpAmount" type="text" ref="amountDom" :placeholder="t('inputAmount')" autocomplete="off" />
-            <div v-if="route.query?.CurrencyCode == 'VND'" class="amountNote">{{ t('sameAs') }}： {{ tmpAmount == '' ? 0 : parseFloat(tmpAmount) * 1000 }} VND</div>
+            <div v-if="route.query?.CurrencyCode == 'VND'" class="amountNote">{{ t('sameAs') }}： {{ tmpAmount == '' ? 0 : moneyFormat(parseFloat(tmpAmount) * 1000) }} VND</div>
           </div>
           <ul class="ff-amounts">
             <li :class="{ active: percent == 0.25 }">
@@ -43,6 +43,7 @@
         </div>
         <div v-show="step == 1" class="fund-btn">
           <a :class="tmpAmount == '' ? 'btn btn-primary disabled' : 'btn btn-primary'" @click="selTab()">{{ t('next') }}</a>
+          <div v-if="route.query?.CurrencyCode == 'VND'" class="amount-exchange">{{ t('exhange') }}： 1 = 1000 VND</div>
         </div>
         <!-- step 2 -->
         <div v-show="step == 2" class="fund-fiat-form fund-form fund-withdraw-form">
@@ -405,6 +406,7 @@
             <i v-show="btnLoading" class="iconfont icon-loading" />
             <span>{{ t('confirm') }}</span>
           </a>
+          <div v-if="route.query?.CurrencyCode == 'VND'" class="amount-exchange">{{ t('exhange') }}： 1 = 1000 VND</div>
         </div>
         <!-- step 4 -->
         <div v-show="step == 4" class="fund-form wa">
