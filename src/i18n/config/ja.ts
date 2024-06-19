@@ -257,10 +257,11 @@ export default {
     ton: 'トンコイン',
     usd: 'US＄',
     cny: '人民元',
-    brl: 'ブラジルレアル',
-    inr: 'INR',
-    thb: 'THB',
-    jpy: 'JPY'
+    brl: 'ブラジル',
+    inr: 'インド',
+    thb: 'タイ',
+    jpy: 'JPY',
+    vnd: 'ベトナム'
   },
   // ポイントストア
   points: 'ポイント',

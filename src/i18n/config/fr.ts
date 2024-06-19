@@ -259,10 +259,11 @@ export default {
     ton: 'Free TON',
     usd: 'Dollar US',
     cny: 'Yuan Renminbi',
-    brl: 'BRL',
-    inr: 'INR',
-    thb: 'THB',
-    jpy: 'JPY'
+    brl: 'Brésil',
+    inr: 'Inde',
+    thb: 'Thaïlande',
+    jpy: 'JPY',
+    vnd: 'Viêt Nam'
   },
   // Boutique de Points
   points: 'Points',

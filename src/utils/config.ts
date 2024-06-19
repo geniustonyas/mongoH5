@@ -148,6 +148,14 @@ export const currenyListData = () => {
       currenyType: '20',
       icon: 'coin/jpy.svg',
       explorer: ''
+    },
+    {
+      code: 'VND',
+      currenyName: t('currencyLang.vnd'),
+      unit: 'VND',
+      currenyType: '20',
+      icon: 'coin/vnd.svg',
+      explorer: ''
     }
     // {
     //   code: 'TON',

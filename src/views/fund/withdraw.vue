@@ -695,7 +695,7 @@ const selBlockChain = (item: usdtChainListTypes) => {
 // 提现
 const selTab = () => {
   if (step.value == 1) {
-    withdrawForm.Amount = (parseFloat(tmpAmount.value) * 1000).toString()
+    withdrawForm.Amount = route.query.CurrencyCode == 'VND' ? (parseFloat(tmpAmount.value) * 1000).toString() : tmpAmount.value
     if (withdrawForm.Amount == '') {
       amountDom.value?.focus()
       showToast(t('tips.inputWithdrawAmount'))

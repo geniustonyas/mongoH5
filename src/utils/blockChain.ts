@@ -113,6 +113,41 @@ export const currenyList = [
     unit: 'CNY',
     currenyType: '20',
     icon: 'coin/cny.svg'
+  },
+  {
+    code: 'BRL',
+    currenyName: t('currencyLang.brl'),
+    unit: 'BRL',
+    currenyType: '20',
+    icon: 'coin/brl.svg'
+  },
+  {
+    code: 'INR',
+    currenyName: t('currencyLang.inr'),
+    unit: 'INR',
+    currenyType: '20',
+    icon: 'coin/inr.svg'
+  },
+  {
+    code: 'THD',
+    currenyName: t('currencyLang.thd'),
+    unit: 'THD',
+    currenyType: '20',
+    icon: 'coin/thd.svg'
+  },
+  {
+    code: 'VND',
+    currenyName: t('currencyLang.vnd'),
+    unit: 'VND',
+    currenyType: '20',
+    icon: 'coin/vnd.svg'
+  },
+  {
+    code: 'JPY',
+    currenyName: t('currencyLang.jpy'),
+    unit: 'JPY',
+    currenyType: '20',
+    icon: 'coin/jpy.svg'
   }
 ]
 

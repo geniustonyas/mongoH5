@@ -258,10 +258,11 @@ export default {
     ton: 'TON Crystal',
     usd: 'Dólar Americano',
     cny: 'Renminbi Chinês',
-    brl: 'Real brasileiro',
-    inr: 'INR',
-    thb: 'THB',
-    jpy: 'JPY'
+    brl: 'Brasil',
+    inr: 'Índia',
+    thb: 'Tailândia',
+    jpy: 'JPY',
+    vnd: 'Vietnã'
   },
   // Loja de Pontos
   points: 'Pontos',

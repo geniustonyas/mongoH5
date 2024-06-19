@@ -258,10 +258,11 @@ export default {
     ton: '톤코인',
     usd: '미국달러',
     cny: '인민폐',
-    brl: '브라질 헤알',
-    inr: 'INR',
-    thb: 'THB',
-    jpy: 'JPY'
+    brl: '브라질',
+    inr: '인도',
+    thb: '태국',
+    jpy: 'JPY',
+    vnd: '베트남'
   },
   // 포인트 쇼핑센터
   points: '포인트',

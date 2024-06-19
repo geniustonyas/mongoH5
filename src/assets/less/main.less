@@ -481,8 +481,9 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                     img { width: 1.6rem; vertical-align: middle; margin-right: .5rem; position: relative; bottom: .1rem; }
                 }
                 .ir-b { margin: 3rem auto 5rem 0; width: 75%; }
-                .ir-c { margin-top: 1.6rem;
-                    a { width: 40%; }
+                .ir-c { margin-top: 1.6rem;  .flex(); .flex-align(); .flex-space-around();
+                    a { width: 30%; }
+                   .currency { height: 3rem; width: 40%; .border-a(.1rem, var(--color-primary)); .radius(2rem); background: rgba(0, 0, 0, 0.1); .flex(); .flex-align(); .flex-space-around(); padding: 0 1rem; }
                 }
             }
         }
@@ -2374,6 +2375,11 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         margin-top:3rem;
        }
     }
+}
+
+.back-sport {
+    position: fixed; top: 40%; right: 1rem; .size(3rem, 3rem); .radius(50%); background: rgba(0, 0, 0, 0.5); .flex(); .flex-align(); .flex-pack(); text-align: center;
+    i { color: var(--color-primary); font-size: 2rem; }
 }
 /*骨架loading*/
 .load-box { position: relative; z-index: 999;

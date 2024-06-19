@@ -258,10 +258,11 @@ export default {
     ton: 'TON',
     usd: 'USD',
     cny: 'CNY',
-    brl: 'BRL',
-    inr: 'INR',
-    thb: 'THB',
-    jpy: 'JPY'
+    brl: 'Brasil',
+    inr: 'Ấn Độ',
+    thb: 'Thái Lan',
+    jpy: 'JPY',
+    vnd: 'Việt Nam'
   },
   // Cửa hàng điểm
   points: 'Điểm',

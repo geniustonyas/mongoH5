@@ -55,17 +55,22 @@ export function showLoginBox() {
 
 // 获取游戏链接
 export function getGameUrl(gameId: string, gameUrl = 'game/url', provider: number | string) {
-  const domain = window.location.hostname
+  // const domain = window.location.hostname
+  const domain = 'www.seabet.io'
   getGameUrlApi({ id: gameId, platform: PlatForm.H5, domain: 'https://' + domain }, gameUrl)
     .then((resp) => {
-      if (provider == 11 || provider == 15 || provider == 13) {
-        // if (provider == 11 || provider == 15 || provider == 13) {
-        if (provider == 13) {
-          localStorage.setItem('pgsoftUrl', resp.data)
-        }
-        router.push({ name: 'gameIframe', query: { url: resp.data, provider: provider } })
+      if (gameId == '2110' || gameId == '1439') {
+        router.push({ name: 'gameIframe', query: { url: resp.data, provider: '-1' } })
       } else {
-        window.location.href = resp.data
+        if (provider == 11 || provider == 15 || provider == 13) {
+          // if (provider == 11 || provider == 15 || provider == 13) {
+          if (provider == 13) {
+            localStorage.setItem('pgsoftUrl', resp.data)
+          }
+          router.push({ name: 'gameIframe', query: { url: resp.data, provider: provider } })
+        } else {
+          window.location.href = resp.data
+        }
       }
     })
     .catch((error) => {

@@ -1,5 +1,8 @@
 <template>
   <div class="page">
+    <div v-if="provider == '-1'" class="back-sport" @click="router.push({ name: 'sports' })">
+      <i class="iconfont icon-home" />
+    </div>
     <iframe v-if="provider == '13'" style="width: 100%; height: 100vh; border: none" id="gameIframe" allow="camera;microphone;fullscreen" v-show="gameUrl != ''" />
     <iframe v-else style="width: 100%; height: 100%; border: none" id="gameIframe" allow="camera;microphone;fullscreen" v-show="gameUrl != ''" :src="gameUrl" />
   </div>

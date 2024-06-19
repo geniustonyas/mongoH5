@@ -258,10 +258,11 @@ export default {
     ton: 'Open network',
     usd: 'US dollar',
     cny: 'RMB',
-    brl: 'BRL',
-    inr: 'INR',
-    thb: 'THB',
-    jpy: 'JPY'
+    brl: 'Brazil',
+    inr: 'India',
+    thb: 'Thailand',
+    jpy: 'JPY',
+    vnd: 'Vietnam'
   },
   // 积分商城
   points: 'Points',

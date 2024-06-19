@@ -257,10 +257,11 @@ export default {
     ton: 'TON',
     usd: 'USD',
     cny: 'CNY',
-    brl: 'BRL',
-    inr: 'INR',
-    thb: 'THB',
-    jpy: 'JPY'
+    brl: 'Brasil',
+    inr: 'Indien',
+    thb: 'Thailand',
+    jpy: 'JPY',
+    vnd: 'Vietnam'
   },
   // 积分商城
   points: 'Punkte',

@@ -257,10 +257,11 @@ export default {
     ton: '公开网络',
     usd: '美元',
     cny: '人民币',
-    brl: '巴西雷亚尔',
-    inr: '印度卢比',
-    thb: '泰铢',
-    jpy: '日元'
+    brl: '巴西',
+    inr: '印度',
+    thb: '泰国',
+    jpy: '日本',
+    vnd: '越南'
   },
   // 积分商城
   points: '积分',

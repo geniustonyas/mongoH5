@@ -258,10 +258,11 @@ export default {
     ton: 'TON Crystal',
     usd: 'ABD Doları',
     cny: 'Çin Yuanı',
-    brl: 'BRL',
-    inr: 'INR',
-    thb: 'THB',
-    jpy: 'JPY'
+    brl: 'Brezilya',
+    inr: 'Hindistan',
+    thb: 'Tayland',
+    jpy: 'JPY',
+    vnd: 'Vietnam'
   },
   // Puan Mağazası
   points: 'Puanlar',
