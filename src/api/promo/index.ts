@@ -2,18 +2,20 @@ import { request } from '@/utils/axios'
 import type * as Promo from './types'
 
 /** 获取优惠列表 */
-export function getPromoApi() {
+export function getPromoApi(data: Promo.getPromoData) {
   return request<Promo.getPromoResp>({
     url: 'Promo/GetWebPromoList',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
 
 /** 获取过期优惠列表 */
-export function getExpiredPromoApi() {
+export function getExpiredPromoApi(data: Promo.getPromoData) {
   return request<Promo.getPromoResp>({
     url: 'Promo/GetWebExpiredPromoList',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
 

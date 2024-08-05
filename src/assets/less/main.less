@@ -670,6 +670,13 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 }
 
 /*优惠*/
+.m-categorys { 
+    margin: .5rem; .flex();  padding: .7rem;
+    a { .flex-x(); display: inline-block; font-size: 1.2rem; font-weight: 700; text-align: center; .border-a(.1rem,transparent); .radius(10rem); padding: .2rem 0; color: var(--color-text); margin-right: .5rem;
+        &.active { border-color: var(--color-primary); color: var(--color-white); }
+    }
+    img { height: 1.2rem; margin-right: .2rem; vertical-align: middle; position: relative; bottom: .1rem; }
+}
 .promo-box {
     .pb-list { margin: 1rem 1rem 2rem 1rem;
         li { margin-bottom: 1.5rem; position: relative;
@@ -2436,6 +2443,9 @@ body[lang='ja'] {
     .m-menu { .scroll-touch(auto,hidden);
         a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
     }
+    .m-categorys { .scroll-touch(auto,hidden);
+        a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
+    }
     .gh-l {
         // .flex-align();
         .flex-pack(flex-start);
@@ -2452,11 +2462,14 @@ body[lang='ja'] {
         .captcha { width: 10rem; font-size: 1.2rem; }
     }
 }
-body[lang='es'], body[lang='vi'] {
+body[lang='es'], body[lang='vi'], body[lang='ru'] {
     .m-win .mw-menu { .scroll-touch(auto,hidden);
         span { white-space: nowrap; padding: .5rem; font-size: 1rem; line-height: normal; }
     }
     .m-menu { .scroll-touch(auto,hidden);
+        a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
+    }
+    .m-categorys { .scroll-touch(auto,hidden);
         a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
     }
     .header .head-menu-lmr .hml-m { font-size: 1.3rem; .ellipsis(); }
@@ -2485,6 +2498,9 @@ body[lang='pt'] {
     }
     .m-menu { .flex-pack-justify();
         a { font-size: 1.3rem; white-space: nowrap; padding: .5rem; }
+    }
+    .m-categorys { .scroll-touch(auto,hidden);
+        a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
     }
 }
 body[lang='de'] {
@@ -2518,6 +2534,9 @@ body[lang='fr'] {
     .m-menu { .scroll-touch(auto,hidden);
         a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
     }
+    .m-categorys { .scroll-touch(auto,hidden);
+        a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
+    }
     .m-card .mc-t { position: relative;
         .mt-l { margin-right: 12rem; }
         a { position: absolute; right: 0; }
@@ -2543,6 +2562,9 @@ body[lang='fr'] {
 }
 body[lang='tr'] {
     .m-menu { .scroll-touch(auto,hidden);
+        a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
+    }
+    .m-categorys { .scroll-touch(auto,hidden);
         a { white-space: nowrap; padding: .5rem; font-size: 1.3rem; line-height: normal; }
     }
     .m-win .mw-menu { .scroll-touch(auto,hidden);

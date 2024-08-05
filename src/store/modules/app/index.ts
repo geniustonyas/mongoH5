@@ -33,7 +33,7 @@ export const useAppStore = defineStore('app', () => {
     twitter: 'https://twitter.com/seabet_io',
     instagram: 'https://www.instagram.com/seabet.io/',
     youtube: 'https://www.youtube.com/channel/UC3L5HrPC4elNgHkrvMSFjCQ',
-    tiktok: 'https://www.tiktok.com/@seabet.io?lang=en'
+    tiktok: 'https://www.tiktok.com/@seabet.io9'
   })
   const subscribeUrl = ref('https://subscribe.seabet.io')
   const widgetId = ref('')

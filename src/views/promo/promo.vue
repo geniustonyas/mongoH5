@@ -2,9 +2,12 @@
   <div class="page">
     <CommonHeader :title="t('promotions')" />
     <main class="main">
-      <!-- <nav class="m-logo">
-        <a @click="router.push({ name: 'index' })"><img :src="getAssetsFile('logo.svg')" /></a>
-      </nav> -->
+      <nav class="m-categorys">
+        <a :class="{ active: promoQuery.Categorys == '' }" @click="selPromoType('')">{{ t('all') }}</a>
+        <a :class="{ active: promoQuery.Categorys == '1' }" @click="selPromoType('1')"><img :src="getAssetsFile('svg/originals.svg')" />{{ t('seabetGame') }}</a>
+        <a :class="{ active: promoQuery.Categorys == '2' }" @click="selPromoType('2')"><img :src="getAssetsFile('svg/sports.svg')" />{{ t('sports') }}</a>
+        <a :class="{ active: promoQuery.Categorys == '3' }" @click="selPromoType('3')"><img :src="getAssetsFile('svg/lobby.svg')" />{{ t('casino') }}</a>
+      </nav>
       <div class="promo-box">
         <ul v-if="promoList.length > 0" class="pb-list" v-lazy-container="{ selector: 'img', error: getAssetsFile('seabet1.png'), loading: getAssetsFile('seabet1.png') }">
           <li v-for="(item, index) of promoList" :key="index">
@@ -42,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 import CommonHeader from '@/components/layout/CommonHeader.vue'
@@ -68,8 +71,12 @@ const promoList = ref<getPromoRespItem[]>([])
 const expiredPromoList = ref<getPromoRespItem[]>([])
 const showExpiredPromoList = ref(false)
 
+const promoQuery = reactive({
+  Categorys: ''
+})
+
 const getPromoList = () => {
-  getPromoApi()
+  getPromoApi(promoQuery)
     .then((res) => {
       promoList.value = res.data
     })
@@ -79,7 +86,7 @@ const getPromoList = () => {
 }
 
 const getExpiredPromoList = () => {
-  getExpiredPromoApi()
+  getExpiredPromoApi(promoQuery)
     .then((res) => {
       expiredPromoList.value = res.data
       showExpiredPromoList.value = true
@@ -87,6 +94,11 @@ const getExpiredPromoList = () => {
     .catch((err) => {
       console.log(err)
     })
+}
+
+const selPromoType = (types: string) => {
+  promoQuery.Categorys = types
+  getPromoList()
 }
 
 getPromoList()

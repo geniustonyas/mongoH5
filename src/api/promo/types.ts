@@ -1,3 +1,7 @@
+// 首页banner返回数据项
+export interface getPromoData {
+  Categorys: string
+}
 // 获取优惠活动列表返回数据项
 export interface getPromoRespItem {
   id: string

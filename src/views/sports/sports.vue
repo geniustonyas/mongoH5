@@ -218,7 +218,7 @@ const confirmSeabetCurreny = (currency: string) => {
 
 // 切换币种
 const confirmSabaCurreny = (currency: string) => {
-  seabetCurrency.value = currency
+  sabaCurrency.value = currency
   setGameDefaultCurrency({ currency: currency })
     .then(() => {
       showSabaCurrencyBox.value = false

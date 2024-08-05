@@ -10,6 +10,7 @@ import pt from './config/pt'
 import th from './config/th'
 import tr from './config/tr'
 import vi from './config/vi'
+import ru from './config/ru'
 import zh from './config/zh'
 import { Locale } from 'vant'
 // 引入语言包
@@ -23,6 +24,7 @@ import ptBR from 'vant/es/locale/lang/pt-BR'
 import thTH from 'vant/es/locale/lang/th-TH'
 import trTR from 'vant/es/locale/lang/tr-TR'
 import viVN from 'vant/es/locale/lang/vi-VN'
+import ruRU from 'vant/es/locale/lang/ru-RU'
 import zhCN from 'vant/es/locale/lang/zh-CN'
 
 const messages = {
@@ -36,6 +38,7 @@ const messages = {
   th,
   tr,
   vi,
+  ru,
   zh
 }
 
@@ -50,6 +53,7 @@ const vantLangMap: dynamicObject = {
   th: thTH,
   tr: trTR,
   vi: viVN,
+  ru: ruRU,
   zh: zhCN
 }
 
@@ -92,7 +96,8 @@ export const languages = [
   { value: 'zh', text: '中文' },
   { value: 'fr', text: 'Français' },
   { value: 'ko', text: '한국어' },
-  { value: 'vi', text: 'Tiếng Việt' }
+  { value: 'vi', text: 'Tiếng Việt' },
+  { value: 'ru', text: 'Русский язык' }
   // { value: 'ar', text: 'العربية' }
 ]
 
