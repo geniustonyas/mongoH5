@@ -263,7 +263,8 @@ export default {
     inr: 'Inde',
     thb: 'Thaïlande',
     jpy: 'JPY',
-    vnd: 'Viêt Nam'
+    vnd: 'Viêt Nam',
+    php: 'Philippines'
   },
   // Boutique de Points
   points: 'Points',
@@ -767,6 +768,8 @@ export default {
   bankList: 'Banque',
   rechargeType: 'Méthode de recharge',
   exhange: 'Conversion',
+  license: `<p><a>www.seabet.io</a> est exploité par E Gambling Montenegro d.o.o. (Adresse : Podgorica, Rue Moskovska 65, Reg. No. : 5-0615951) en coopération avec Open Sea Technology Limited(Adresse : Parham Town, Tortola, Îles Vierges britanniques, Boîte Postale 1110).</p></br>
+            <p>E Gambling Montenegro d.o.o. (Adresse : Podgorica, Rue Moskovska 65, Reg. No. : 5-0615951) certifie par la présente que, sous la concession <a>(numéro de série : AA 001907, numéro numérique : 142-03/12 4A et 1ER)</a> et l'approbation <a>(n° : 03/01-121/3)</a>, elle organise et opère des jeux de hasard au Monténégro sur le site <a>www.seabet.io</a>. Cette opération est basée sur l'accord conclu entre E Gambling Montenegro d.o.o. et Open Sea Technology Limited(Adresse : Parham Town, Tortola, Îles Vierges britanniques, Boîte Postale 1110, Reg. No. : 1925170) le 3 août 2024.</p>`,
 
   vip: {
     seabetVip: 'Club VIP Seabet',
@@ -972,7 +975,13 @@ export default {
           <p>• Litecoin (LTC)</p>
           <p>• Cardano (ADA)</p>
           <p>• Dogecoin (DOGE)</p>
-          <p>• The Open Network (TON)</p>`,
+          <p>• The Open Network (TON)</p>
+          <p>• @:currencyLang.brl </p>
+          <p>• @:currencyLang.inr </p>
+          <p>• @:currencyLang.thb </p>
+          <p>• @:currencyLang.jpy </p>
+          <p>• @:currencyLang.vnd </p>
+          <p>• @:currencyLang.php </p>`,
     q5: 'Appliquez-vous des frais sur les transactions ?',
     a5: `<p>Bien que nous ne facturions aucuns frais pour les dépôts et les retraits sur Seabet.io, il se peut que vous deviez payer des frais de transaction lorsque vous utilisez des paiements via la blockchain.</p>`
   },

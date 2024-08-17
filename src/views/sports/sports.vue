@@ -99,7 +99,7 @@ const { t } = useI18n()
 // 汇率相关
 const { currencyCode, exchangeRate } = getExchangeRate()
 
-const currencyCodeSort = ref(['USD', 'USDT', 'JPY', 'INR', 'EUR', 'CNY', 'KRW', 'THB', 'BRL', 'MYR', 'VND', 'IDR'])
+const currencyCodeSort = ref(['USD', 'USDT', 'JPY', 'INR', 'EUR', 'CNY', 'KRW', 'THB', 'BRL', 'MYR', 'VND', 'PHP', 'IDR'])
 const sortedSeabetCurrencyCode = ref([])
 const sortedSabaCurrencyCode = ref([])
 const showSeabetCurrencyBox = ref(false)

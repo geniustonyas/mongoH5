@@ -261,7 +261,8 @@ export default {
     inr: '印度',
     thb: '泰国',
     jpy: '日本',
-    vnd: '越南'
+    vnd: '越南',
+    php: '菲律宾'
   },
   // 积分商城
   points: '积分',
@@ -766,6 +767,12 @@ export default {
   bankList: '银行',
   rechargeType: '充值方式',
   exhange: '换算',
+  copyright: '版权所有',
+  license: `<p><a>www.seabet.io</a>由E Gambling Montenegro d.o.o.（地址：波德戈里察，莫斯科夫斯卡街65号，注册号：5-0615951）
+            与Open Sea Technology Company（地址：英属维尔京群岛，托尔托拉，帕汉姆镇，邮政信箱1110）合作运营。</p><br/>
+            <p>E Gambling Montenegro d.o.o.（地址：波德戈里察，莫斯科夫斯卡街65号，注册号：5-0615951）在此证明，根据特许<a>（序列号：AA 001907，数字号：142-03/12 4A和1ER）</a>和批准<a>（编号：03/01-121/3）</a>，
+          在<a>www.seabet.io</a>网站上组织和运营在黑山的博彩游戏。该操作依据E Gambling Montenegro d.o.o.与Open Sea Technology Company
+          （地址：英属维尔京群岛，托尔托拉，帕汉姆镇，邮政信箱1110，注册号：1925170）于2024年8月3日签订的协议进行。</p>`,
 
   vip: {
     seabetVip: 'Seabet VIP俱乐部',
@@ -975,7 +982,11 @@ export default {
           <p>• @:currencyLang.doge </p>
           <p>• @:currencyLang.ton </p>
           <p>• @:currencyLang.brl </p>
-          <p>• @:currencyLang.jpy </p>`,
+          <p>• @:currencyLang.inr </p>
+          <p>• @:currencyLang.thb </p>
+          <p>• @:currencyLang.jpy </p>
+          <p>• @:currencyLang.vnd </p>
+          <p>• @:currencyLang.php </p>`,
     q5: '你们对交易收取费用吗？',
     a5: `<p>虽然我们不对 Seabet.io 的存款和取款收取任何交易费用，但您可能需要为使用区块链支付交易费用。</p>`
   },

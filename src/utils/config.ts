@@ -156,6 +156,14 @@ export const currenyListData = () => {
       currenyType: '20',
       icon: 'coin/vnd.svg',
       explorer: ''
+    },
+    {
+      code: 'PHP',
+      currenyName: t('currencyLang.php'),
+      unit: 'PHP',
+      currenyType: '20',
+      icon: 'coin/php.svg',
+      explorer: ''
     }
     // {
     //   code: 'TON',
@@ -535,6 +543,36 @@ export const vnBankData = () => {
     { value: 'SHINABANK', text: 'SHINABANK' },
     { value: 'VIETABANK', text: 'VIET A BANK' },
     { value: 'VIETCAPITALBANK', text: 'VIET CAPITAL BANK' }
+  ]
+}
+
+export const phpBankData = () => {
+  return [
+    { value: 'PMP', text: 'PayMaya Philippines' },
+    { value: 'gcash', text: 'Gcash' },
+    { value: 'Unibank', text: 'BDO Unibank' },
+    { value: 'mbt', text: 'Metropolitan Bank & Trust Company' },
+    { value: 'bpi', text: 'BPI Bank' },
+    { value: 'LBOB', text: 'LANDBANK / OFBank' },
+    { value: 'PNB', text: 'Philippine National Bank' },
+    { value: 'SBC', text: 'Security Bank Corporation' },
+    { value: 'RCBC', text: 'RCBC/DiskarTech' },
+    { value: 'CBC', text: 'China Banking Corporation' },
+    { value: 'UBP', text: 'Union Bank of the Philippines' },
+    { value: 'DBP', text: 'Development Bank of the Philippines' },
+    { value: 'MYA', text: 'Maya Bank, Inc.' },
+    { value: 'EWBC', text: 'East West Banking Corporation' },
+    { value: 'AUB', text: 'Asia United Bank Corporation' },
+    { value: 'PBC', text: 'Philippine Bank of Communications' },
+    { value: 'PSB', text: 'Philippine Savings Bank' },
+    { value: 'CTBC', text: 'CTBC Bank (Philippines) Corporation' },
+    { value: 'RBB', text: 'Robinsons Bank Corporation' },
+    { value: 'MBP', text: 'Maybank Philippines, Inc.' },
+    { value: 'SCB', text: 'Standard Chartered Bank Philippines' },
+    { value: 'GP', text: 'GrabPay' },
+    { value: 'UCPB', text: 'United Coconut Planters Bank' },
+    { value: 'Komo', text: 'East West Rural Bank / Komo' },
+    { value: 'LSB', text: 'Legazpi Saving Bank' },
   ]
 }
 

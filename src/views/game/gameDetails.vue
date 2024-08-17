@@ -161,7 +161,7 @@ const detailsData = reactive<getGameDetailsRespItem>({
 // const currenyDom = ref(null)
 const selectedCurrency = ref('')
 const showCurrencyBox = ref(false)
-const currencyCodeSort = ref(['USD', 'USDT', 'JPY', 'INR', 'EUR', 'CNY', 'KRW', 'THB', 'BRL', 'MYR', 'VND', 'IDR'])
+const currencyCodeSort = ref(['USD', 'USDT', 'JPY', 'INR', 'EUR', 'CNY', 'KRW', 'THB', 'BRL', 'MYR', 'VND', 'PHP', 'IDR'])
 const sortedCurrencyCode = ref([])
 
 const getGameDetails = () => {

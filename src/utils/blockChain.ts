@@ -143,6 +143,13 @@ export const currenyList = [
     icon: 'coin/vnd.svg'
   },
   {
+    code: 'PHP',
+    currenyName: t('currencyLang.php'),
+    unit: 'PHP',
+    currenyType: '20',
+    icon: 'coin/php.svg'
+  },
+  {
     code: 'JPY',
     currenyName: t('currencyLang.jpy'),
     unit: 'JPY',

@@ -261,7 +261,8 @@ export default {
     inr: 'India',
     thb: 'Tailandia',
     jpy: 'JPY',
-    vnd: 'Vietnam'
+    vnd: 'Vietnam',
+    php: 'Philippines'
   },
   // Tienda de Puntos
   points: 'Puntos',
@@ -776,6 +777,8 @@ export default {
   bankList: 'Banco',
   rechargeType: 'Método de recarga',
   exhange: 'Conversión',
+  license: `<p><a>www.seabet.io</a> es operado por E Gambling Montenegro d.o.o. (Dirección: Podgorica, Calle Moskovska 65, Reg. No.: 5-0615951) en cooperación con Open Sea Technology Limited(Dirección: Parham Town, Tortola, Islas Vírgenes Británicas, Apartado Postal 1110).</p></br>
+            <p>E Gambling Montenegro d.o.o. (Dirección: Podgorica, Calle Moskovska 65, Reg. No.: 5-0615951) certifica por la presente que, bajo la concesión <a>(número de serie: AA 001907, número numérico: 142-03/12 4A y 1ER)</a> y aprobación <a>(no.: 03/01-121/3)</a>, organiza y opera juegos de azar en Montenegro en el sitio web <a>www.seabet.io</a>. Esta operación se basa en el acuerdo firmado entre E Gambling Montenegro d.o.o. y Open Sea Technology Limited(Dirección: Parham Town, Tortola, Islas Vírgenes Británicas, Apartado Postal 1110, Reg. No.: 1925170) el 3 de agosto de 2024.</p>`,
 
   vip: {
     seabetVip: 'Club VIP de Seabet',
@@ -982,7 +985,13 @@ export default {
           <p>• @:currencyLang.ltc </p>
           <p>• @:currencyLang.ada </p>
           <p>• @:currencyLang.doge </p>
-          <p>• @:currencyLang.ton </p>`,
+          <p>• @:currencyLang.ton </p>
+          <p>• @:currencyLang.brl </p>
+          <p>• @:currencyLang.inr </p>
+          <p>• @:currencyLang.thb </p>
+          <p>• @:currencyLang.jpy </p>
+          <p>• @:currencyLang.vnd </p>
+          <p>• @:currencyLang.php </p>`,
     q5: '¿Aplican comisiones en las transacciones?',
     a5: `<p>Si bien no aplicamos ninguna tarifa de transacción para depósitos y retiros en Seabet.io, puede haber tarifas de transacción que deba pagar al usar la cadena de bloques y/o su banco.</p>`
   },

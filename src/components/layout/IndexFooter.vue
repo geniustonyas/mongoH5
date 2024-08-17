@@ -168,14 +168,18 @@
           <img :src="getAssetsFile('svg/ls-5.svg')" />
         </a>
       </dd>
-      <dd>
-        <a href="#">
-          <img :src="getAssetsFile('svg/ls-6.svg')" />
-        </a>
-      </dd>
     </dl>
   </nav>
 
+  <nav class="logo-footer">
+    <img :src="getAssetsFile('logo.svg')" />
+    <span>&copy;2024 seabet.io {{ t('copyright') }}</span>
+  </nav>
+  <nav class="site-text" v-html="t('license')" />
+
+  <nav class="logo-footer">
+    <img :src="getAssetsFile('svg/e-gaming.svg')" />
+  </nav>
   <!-- 语言选择组件 -->
   <FooterLanguage ref="langDom" />
 </template>

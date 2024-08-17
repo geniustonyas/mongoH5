@@ -262,7 +262,8 @@ export default {
     inr: 'Ấn Độ',
     thb: 'Thái Lan',
     jpy: 'JPY',
-    vnd: 'Việt Nam'
+    vnd: 'Việt Nam',
+    php: 'Philippines'
   },
   // Cửa hàng điểm
   points: 'Điểm',
@@ -776,6 +777,8 @@ export default {
   bankList: 'Ngân hàng',
   rechargeType: 'Phương thức nạp tiền',
   exhange: 'Quy đổi',
+  license: `<p>Trang web <a>www.seabet.io</a> được vận hành bởi E Gambling Montenegro d.o.o. (Địa chỉ: Podgorica, Đường Moskovska 65, Mã số đăng ký: 5-0615951) phối hợp với Công ty Công nghệ Open Sea (Địa chỉ: Parham Town, Tortola, Quần đảo Virgin thuộc Anh, Hộp thư 1110).</p></br>
+            <p>E Gambling Montenegro d.o.o. (Địa chỉ: Podgorica, Đường Moskovska 65, Mã số đăng ký: 5-0615951) chứng nhận rằng, dưới sự nhượng quyền <a>(số sê-ri: AA 001907, số ký hiệu: 142-03/12 4A và 1ER)</a> và phê duyệt <a>(số: 03/01-121/3)</a>, họ tổ chức và vận hành các trò chơi may rủi tại Montenegro trên trang web <a>www.seabet.io</a>. Hoạt động này dựa trên thỏa thuận đã ký kết giữa E Gambling Montenegro d.o.o. và Công ty Công nghệ Open Sea (Địa chỉ: Parham Town, Tortola, Quần đảo Virgin thuộc Anh, Hộp thư 1110, Mã số đăng ký: 1925170) vào ngày 3 tháng 8 năm 2024.</P>`,
 
   vip: {
     seabetVip: 'Hội viên VIP Seabet',
@@ -980,7 +983,13 @@ export default {
           <p>• Litecoin (LTC)</p>
           <p>• Cardano (ADA)</p>
           <p>• Dogecoin (DOGE)</p>
-          <p>• The Open Network (TON)</p>`,
+          <p>• The Open Network (TON)</p>
+          <p>• @:currencyLang.brl </p>
+          <p>• @:currencyLang.inr </p>
+          <p>• @:currencyLang.thb </p>
+          <p>• @:currencyLang.jpy </p>
+          <p>• @:currencyLang.vnd </p>
+          <p>• @:currencyLang.php </p>`,
     q5: 'Bạn có áp dụng phí giao dịch không?',
     a5: `<p>Mặc dù chúng tôi không thu thêm bất kỳ phí nào cho các giao dịch nạp tiền và rút tiền trên Seabet.io, nhưng bạn có thể cần phải trả các khoản phí giao dịch khi sử dụng thanh toán qua blockchain.</p>`
   },

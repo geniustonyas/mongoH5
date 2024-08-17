@@ -420,7 +420,7 @@ const getBalanceList = () => {
         const item = resp.data.find((item) => item.name == userStore.userInfo.defaultCurrencyCode)
         selCurrency(item ? item : resp.data[0])
         digitalList.value = resp.data.filter((item) => item.currencyType != '20')
-        bankList.value = resp.data.filter((item) => item.currencyType == '20' && ['INR', 'THB', 'BRL', 'VND'].includes(item.name))
+        bankList.value = resp.data.filter((item) => item.currencyType == '20' && ['INR', 'THB', 'BRL', 'PHP', 'VND'].includes(item.name))
         showDepositQrcode.value = true
       }
     })

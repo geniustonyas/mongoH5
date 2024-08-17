@@ -97,7 +97,7 @@ export const languages = [
   { value: 'fr', text: 'Français' },
   { value: 'ko', text: '한국어' },
   { value: 'vi', text: 'Tiếng Việt' },
-  { value: 'ru', text: 'Русский язык' }
+  { value: 'ru-ru', text: 'Русский язык' }
   // { value: 'ar', text: 'العربية' }
 ]
 

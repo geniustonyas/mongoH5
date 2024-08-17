@@ -261,7 +261,8 @@ export default {
     inr: 'インド',
     thb: 'タイ',
     jpy: 'JPY',
-    vnd: 'ベトナム'
+    vnd: 'ベトナム',
+    php: 'フィリピン'
   },
   // ポイントストア
   points: 'ポイント',
@@ -771,6 +772,8 @@ export default {
   bankList: '銀行 (ぎんこう)',
   rechargeType: '充電方法 (じゅうでんほうほう)',
   exhange: '換算',
+  license: `<p><a>www.seabet.io</a>は、E Gambling Montenegro d.o.o.（住所: ポドゴリツァ、モスコフスカ通り65、登録番号: 5-0615951）が、Open Sea Technology Limited（住所: 英領バージン諸島、トルトラ、パーハムタウン、郵便箱1110）と協力して運営しています。</p></br>
+            <p>E Gambling Montenegro d.o.o.（住所: ポドゴリツァ、モスコフスカ通り65、登録番号: 5-0615951）は、本証書により、コンセッション<a>（シリアル番号: AA 001907、数値番号: 142-03/12 4Aおよび1ER）</a>および承認<a>（番号: 03/01-121/3）</a>の下で、<a>www.seabet.io</a>ウェブサイト上でモンテネグロにおける賭博ゲームを組織および運営していることを証明します。この運営は、2024年8月3日にE Gambling Montenegro d.o.o.とOpen Sea Technology Company（住所: 英領バージン諸島、トルトラ、パーハムタウン、郵便箱1110、登録番号: 1925170）との間で締結された契約に基づいています。</p>`,
 
   vip: {
     seabetVip: 'Seabet VIPクラブ',
@@ -975,7 +978,13 @@ export default {
           <P>• ライトコイン（LTC）</P>
           <P>• カルダノ（ADA）</P>
           <P>• ドージコイン（DOGE）</P>
-          <P>• ザオープンネットワーク（TON）</P>`,
+          <P>• ザオープンネットワーク（TON）</P>
+          <p>• @:currencyLang.brl </p>
+          <p>• @:currencyLang.inr </p>
+          <p>• @:currencyLang.thb </p>
+          <p>• @:currencyLang.jpy </p>
+          <p>• @:currencyLang.vnd </p>
+          <p>• @:currencyLang.php </p>`,
     q5: '入出金に手数料はかかりますか？',
     a5: `<P>Seabet.io への入出金には取引手数料はかかりませんが、ブロックチェーンの使用には取引手数料の支払いが必要になる場合があります</P>`
   },

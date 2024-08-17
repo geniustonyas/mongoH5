@@ -262,7 +262,8 @@ export default {
     inr: 'Hindistan',
     thb: 'Tayland',
     jpy: 'JPY',
-    vnd: 'Vietnam'
+    vnd: 'Vietnam',
+    php: 'Philippines'
   },
   // Puan Mağazası
   points: 'Puanlar',
@@ -767,6 +768,8 @@ export default {
   bankList: 'Banka',
   rechargeType: 'Yükleme Yöntemi',
   exhange: 'Dönüşüm',
+  license: `<p><a>www.seabet.io</a>, E Gambling Montenegro d.o.o. (Adres: Podgorica, Moskovska Caddesi 65, Kayıt No.: 5-0615951) ile Open Sea Technology Limited(Adres: Parham Town, Tortola, Britanya Virjin Adaları, P.O. Box 1110) iş birliği içinde işletilmektedir.</p></br>
+            <p>E Gambling Montenegro d.o.o. (Adres: Podgorica, Moskovska Caddesi 65, Kayıt No.: 5-0615951), imtiyaz <a>(seri no.: AA 001907, sayısal no.: 142-03/12 4A ve 1ER)</a> ve onay <a>(no.: 03/01-121/3)</a> kapsamında <a>www.seabet.io</a> web sitesinde Karadağ'da şans oyunları düzenlediğini ve işlettiğini bu vesileyle sertifikalandırmaktadır. Bu işlem, 2024 yılı 3 Ağustos tarihinde E Gambling Montenegro d.o.o. ile Open Sea Technology Limited(Adres: Parham Town, Tortola, Britanya Virjin Adaları, P.O. Box 1110, Kayıt No.: 1925170) arasında imzalanan anlaşmaya dayanmaktadır.</p>`,
 
   vip: {
     seabetVip: 'Seabet VIP Kulübü',
@@ -972,7 +975,13 @@ export default {
         <p>• Litecoin (LTC)</p>
         <p>• Cardano (ADA)</p>
         <p>• Dogecoin (DOGE)</p>
-        <p>• The Open Network (TON)</p>`,
+        <p>• The Open Network (TON)</p>
+        <p>• @:currencyLang.brl </p>
+        <p>• @:currencyLang.inr </p>
+        <p>• @:currencyLang.thb </p>
+        <p>• @:currencyLang.jpy </p>
+        <p>• @:currencyLang.vnd </p>
+        <p>• @:currencyLang.php </p>`,
     q5: 'İşlem ücreti kesiyor musunuz?',
     a5: `<p>Seabet.io'daki yatırma ve çekme işlemleri için herhangi bir ücret almıyoruz, ancak blockchain ödemeleri kullanırken işlem ücretleri ödemeniz gerekebilir.</p>`
   },
