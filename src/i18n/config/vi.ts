@@ -777,8 +777,9 @@ export default {
   bankList: 'Ngân hàng',
   rechargeType: 'Phương thức nạp tiền',
   exhange: 'Quy đổi',
-  license: `<p>Trang web <a>www.seabet.io</a> được vận hành bởi E Gambling Montenegro d.o.o. (Địa chỉ: Podgorica, Đường Moskovska 65, Mã số đăng ký: 5-0615951) phối hợp với Công ty Công nghệ Open Sea (Địa chỉ: Parham Town, Tortola, Quần đảo Virgin thuộc Anh, Hộp thư 1110).</p></br>
-            <p>E Gambling Montenegro d.o.o. (Địa chỉ: Podgorica, Đường Moskovska 65, Mã số đăng ký: 5-0615951) chứng nhận rằng, dưới sự nhượng quyền <a>(số sê-ri: AA 001907, số ký hiệu: 142-03/12 4A và 1ER)</a> và phê duyệt <a>(số: 03/01-121/3)</a>, họ tổ chức và vận hành các trò chơi may rủi tại Montenegro trên trang web <a>www.seabet.io</a>. Hoạt động này dựa trên thỏa thuận đã ký kết giữa E Gambling Montenegro d.o.o. và Công ty Công nghệ Open Sea (Địa chỉ: Parham Town, Tortola, Quần đảo Virgin thuộc Anh, Hộp thư 1110, Mã số đăng ký: 1925170) vào ngày 3 tháng 8 năm 2024.</P>`,
+  copyright: 'Đã Đăng Ký Bản Quyền.',
+  license: `<p><a>www.seabet.io</a> được điều hành bởi E Gambling Montenegro d.o.o. (Địa chỉ: Podgorica, Phố Moskovska số 65, Số đăng ký: 5-0615951) hợp tác với Open Sea Technology Limited (Địa chỉ: Parham Town, Tortola, Quần đảo Virgin thuộc Anh, Hộp thư số 1110).</p></br>
+            <p>E Gambling Montenegro d.o.o. (Địa chỉ: Podgorica, Phố Moskovska số 65, Số đăng ký: 5-0615951) xác nhận rằng, theo giấy phép <a>(số sê-ri: AA 001907, số hiệu: 142-03/12 4A và 1ER)</a> và phê duyệt <a>(số: 03/01-121/3)</a>, công ty tổ chức và vận hành các trò chơi cờ bạc ở Montenegro trên trang web www.seabet.io. Hoạt động này dựa trên thỏa thuận đã được ký kết giữa E Gambling Montenegro d.o.o. và Open Sea Technology Limited (Địa chỉ: Parham Town, Tortola, Quần đảo Virgin thuộc Anh, Hộp thư số 1110, Số đăng ký: 1925170) vào ngày 3 tháng 8 năm 2024</p>`,
 
   vip: {
     seabetVip: 'Hội viên VIP Seabet',

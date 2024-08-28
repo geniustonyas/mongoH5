@@ -173,7 +173,7 @@
 
   <nav class="logo-footer">
     <img :src="getAssetsFile('logo.svg')" />
-    <span>&copy;2024 seabet.io {{ t('copyright') }}</span>
+    <span>&copy;2024 seabet.io | {{ t('copyright') }}</span>
   </nav>
   <nav class="site-text" v-html="t('license')" />
 

@@ -768,6 +768,7 @@ export default {
   bankList: 'Banka',
   rechargeType: 'Yükleme Yöntemi',
   exhange: 'Dönüşüm',
+  copyright: 'Tüm Hakları Saklıdır.',
   license: `<p><a>www.seabet.io</a>, E Gambling Montenegro d.o.o. (Adres: Podgorica, Moskovska Caddesi 65, Kayıt No.: 5-0615951) ile Open Sea Technology Limited(Adres: Parham Town, Tortola, Britanya Virjin Adaları, P.O. Box 1110) iş birliği içinde işletilmektedir.</p></br>
             <p>E Gambling Montenegro d.o.o. (Adres: Podgorica, Moskovska Caddesi 65, Kayıt No.: 5-0615951), imtiyaz <a>(seri no.: AA 001907, sayısal no.: 142-03/12 4A ve 1ER)</a> ve onay <a>(no.: 03/01-121/3)</a> kapsamında <a>www.seabet.io</a> web sitesinde Karadağ'da şans oyunları düzenlediğini ve işlettiğini bu vesileyle sertifikalandırmaktadır. Bu işlem, 2024 yılı 3 Ağustos tarihinde E Gambling Montenegro d.o.o. ile Open Sea Technology Limited(Adres: Parham Town, Tortola, Britanya Virjin Adaları, P.O. Box 1110, Kayıt No.: 1925170) arasında imzalanan anlaşmaya dayanmaktadır.</p>`,
 

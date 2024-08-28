@@ -769,6 +769,7 @@ export default {
   bankList: '은행 (eunhaeng)',
   rechargeType: '충전 방법 (chungjeon bangbeob)',
   exhange: '변환',
+  copyright: '모든 저작권을 소유하고 있습니다.',
   license: `<p><a>www.seabet.io</a>는 E Gambling Montenegro d.o.o. (주소: Podgorica, Moskovska 거리 65, 등록 번호: 5-0615951)가 Open Sea Technology Limited(주소: 영국령 버진 아일랜드, 토르톨라, 파르함 타운, P.O. Box 1110)와 협력하여 운영됩니다.</p></br>
             <p>E Gambling Montenegro d.o.o. <a>(주소: Podgorica, Moskovska 거리 65, 등록 번호: 5-0615951)</a>는 이로써 <a>www.seabet.io</a> 웹사이트에서 몬테네그로에서 행운 게임을 조직하고 운영함을 증명합니다. 이 운영은 2024년 8월 3일 E Gambling Montenegro d.o.o.와 Open Sea Technology Limited(주소: 영국령 버진 아일랜드, 토르톨라, 파르함 타운, P.O. Box 1110, 등록 번호: 1925170) 간에 체결된 계약에 기반합니다.</p>`,
 

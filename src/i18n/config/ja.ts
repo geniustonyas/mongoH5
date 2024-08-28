@@ -772,8 +772,9 @@ export default {
   bankList: '銀行 (ぎんこう)',
   rechargeType: '充電方法 (じゅうでんほうほう)',
   exhange: '換算',
+  copyright: '全著作権所有',
   license: `<p><a>www.seabet.io</a>は、E Gambling Montenegro d.o.o.（住所: ポドゴリツァ、モスコフスカ通り65、登録番号: 5-0615951）が、Open Sea Technology Limited（住所: 英領バージン諸島、トルトラ、パーハムタウン、郵便箱1110）と協力して運営しています。</p></br>
-            <p>E Gambling Montenegro d.o.o.（住所: ポドゴリツァ、モスコフスカ通り65、登録番号: 5-0615951）は、本証書により、コンセッション<a>（シリアル番号: AA 001907、数値番号: 142-03/12 4Aおよび1ER）</a>および承認<a>（番号: 03/01-121/3）</a>の下で、<a>www.seabet.io</a>ウェブサイト上でモンテネグロにおける賭博ゲームを組織および運営していることを証明します。この運営は、2024年8月3日にE Gambling Montenegro d.o.o.とOpen Sea Technology Company（住所: 英領バージン諸島、トルトラ、パーハムタウン、郵便箱1110、登録番号: 1925170）との間で締結された契約に基づいています。</p>`,
+            <p>E Gambling Montenegro d.o.o.（住所: ポドゴリツァ、モスコフスカ通り65、登録番号: 5-0615951）は、本証書により、コンセッション<a>（シリアル番号: AA 001907、数値番号: 142-03/12 4Aおよび1ER）</a>および承認<a>（番号: 03/01-121/3）</a>の下で、<a>www.seabet.io</a>ウェブサイト上でモンテネグロにおける賭博ゲームを組織および運営していることを証明します。この運営は、2024年8月3日にE Gambling Montenegro d.o.o.とOpen Sea Technology Limited（住所: 英領バージン諸島、トルトラ、パーハムタウン、郵便箱1110、登録番号: 1925170）との間で締結された契約に基づいています。</p>`,
 
   vip: {
     seabetVip: 'Seabet VIPクラブ',

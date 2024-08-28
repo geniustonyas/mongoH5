@@ -766,6 +766,7 @@ export default {
   bankList: 'ธนาคาร',
   rechargeType: 'วิธีการเติมเงิน',
   exhange: 'การแปลง',
+  copyright: 'สงวนลิขสิทธิ์ทั้งหมด',
   license: `<p><a>www.seabet.io</a> ดำเนินการโดย E Gambling Montenegro d.o.o. (ที่อยู่: Podgorica, Moskovska Street 65, เลขทะเบียน: 5-0615951) ร่วมกับ Open Sea Technology Limited(ที่อยู่: Parham Town, Tortola, หมู่เกาะบริติชเวอร์จิน, ตู้ปณ. 1110)</p></br>
             <p>E Gambling Montenegro d.o.o. (ที่อยู่: Podgorica, Moskovska Street 65, เลขทะเบียน: 5-0615951) ขอยืนยันว่าภายใต้สัมปทาน <a>(หมายเลขซีเรียล: AA 001907 หมายเลขตัวเลข: 142-03/12 4A และ 1ER)</a> และการอนุมัติ <a>(หมายเลข: 03/01-121/3)</a> จัดระเบียบและดำเนินการเกมแห่งโอกาสในมอนเตเนโกรบนเว็บไซต์ <a>www.seabet.io</a> การดำเนินการนี้ขึ้นอยู่กับข้อตกลงระหว่าง E Gambling Montenegro d.o.o. และ Open Sea Technology Limited(ที่อยู่: Parham Town, Tortola, หมู่เกาะบริติชเวอร์จิน ตู้ปณ. 1110 เลขทะเบียน: 1925170) เมื่อวันที่ 3 สิงหาคม 2024</p>`,
 

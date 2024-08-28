@@ -781,6 +781,7 @@ export default {
   bankList: ' Banco',
   rechargeType: 'Método de recarga',
   exhange: 'Conversão',
+  copyright: 'Todos os Direitos Reservados.',
   license: `<p>O site <a>www.seabet.io</a> é operado pela E Gambling Montenegro d.o.o. (Endereço: Podgorica, Rua Moskovska 65, Reg. No.: 5-0615951) em cooperação com a Open Sea Technology Limited(Endereço: Parham Town, Tortola, Ilhas Virgens Britânicas, Caixa Postal 1110).</p></br>
             <p>A E Gambling Montenegro d.o.o. (Endereço: Podgorica, Rua Moskovska 65, Reg. No.: 5-0615951) certifica que, sob a concessão <a>(nº de série: AA 001907, nº numérico: 142-03/12 4A e 1ER)</a> e aprovação <a>(nº.: 03/01-121/3)</a>, organiza e opera jogos de azar em Montenegro no site <a>www.seabet.io</a>. Esta operação é baseada no acordo celebrado entre a E Gambling Montenegro d.o.o. e a Open Sea Technology Limited(Endereço: Parham Town, Tortola, Ilhas Virgens Britânicas, Caixa Postal 1110, Reg. No.: 1925170) em 3 de agosto de 2024.</p>`,
 
