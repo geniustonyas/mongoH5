@@ -62,7 +62,7 @@
           </div>
           <div class="d-item">
             <div class="di-l">{{ t('commissionRate') }}</div>
-            <div class="di-r">{{ commissionData.rate * 100 }}%</div>
+            <div class="di-r">{{ (commissionData.rate * 100).toFixed(2) }}%</div>
           </div>
           <div class="d-item">
             <div class="di-l">{{ t('commission') }}</div>

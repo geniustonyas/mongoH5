@@ -484,7 +484,7 @@ const selFiatChannel = (item: getFiatChannelsRespItems) => {
   //   Object.assign(selFiatChannelItem, resp.data[0])
   //   fiatDepositForm.channelId = selFiatChannelItem.id
   // }
-  if (selFiatChannelItem && selFiatChannelItem.methods) {
+  if (selFiatChannelItem && selFiatChannelItem.methods && selFiatChannelItem.methods.length > 0) {
     selVnPayItem(selFiatChannelItem.methods[0])
   }
 }

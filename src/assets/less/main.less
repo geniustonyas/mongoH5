@@ -505,7 +505,6 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
 /*注册登录*/
 .loginbox { padding: 1.5rem; .bg(var(--color-background));
     .l-partner { .flex(); .flex-pack-justify(); .flex-align();
-        .lp-l { }
         .lp-r { .flex();
             a { display: inline-block; width: 3.6rem; .h-lh(3.6rem); .size(3.6rem,3.6rem); .radius(3.6rem); margin-left: 1rem; .bg(var( --color-menu)); .flex(); .flex-align(); .flex-pack();
                 svg, img { .size(2rem,2rem); }
@@ -776,7 +775,6 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                             span { color: var(--color-white); display: block; margin-bottom: .3rem; }
                         }
                     }
-                    .t-r { }
                 }
                 .gc-m { .flex(); .flex-v(); .flex-align(); .flex-space-around(); padding: 1.5rem; .border-b(.1rem,var(--color-dark-gray));
                     p { margin-bottom: 1.5rem; text-align: center;
@@ -1093,7 +1091,6 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         .b-reward {
             .br-title { padding: 1rem; color: var(--color-white);
                 h2 { font-size: 2rem; font-weight: 800; text-align: center; padding-bottom: 1rem; }
-                p { }
             }
             .br-cont {
                 .bc-levels { .flex();.flex-wrap(); .scroll-touch(auto,hidden); margin: 0 1rem;
@@ -1228,7 +1225,6 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         .b-reward {
             .br-title { padding: 2rem; color: var(--color-white);
                 h2 { font-size: 2.4rem; font-weight: 800; text-align: center; padding-bottom: 1.5rem; }
-                p { }
             }
             .br-cont {
                 .bc-levels { .flex();.flex-wrap(); .scroll-touch(auto,hidden); margin: 0 2rem;
@@ -1482,7 +1478,6 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
         .wb-list {
             li { padding: 1rem 0; .border-t(.1rem,rgba(255,255,255,.1)); .flex(); .flex-pack-justify(); .flex-align();
                 b, label { color: var(--color-white); }
-                .l-l { }
                 .l-r { text-align: right;
                     b { display: block; font-size: 1.6rem; }
                     small { font-size: 1rem; }
@@ -1650,7 +1645,6 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     .ad-c { .bg(rgba(255,255,255,.03)); min-height: 30rem; }
 }
 .agent-report-box {
-    .agent-sel { }
     .ar-a { padding: 1.6rem 1rem 1.6rem 1.6rem; .flex(); .flex-wrap(wrap);
         .a-col { width: 33.333%; .flex-x( 0 0 33.333%); padding-right: .5rem; padding-bottom: .5rem;
             .form-control {.radius(.4rem); border-color: rgba(255,255,255,.05); .bg(#1c1c1e);
@@ -1677,7 +1671,6 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                 .l-bd { .bg(rgba(255,255,255,.05)); padding: 1.6rem 1rem; .radius(.8rem);
                     .d-a { .border-b(.1rem,rgba(255,255,255,.05)); padding-bottom: 1rem; .flex();.flex-pack-justify(); .flex-align();
                         .da-l { font-weight: 600; color: var(--color-white); }
-                        .da-r { }
                     }
 
                     .d-b { .flex();.flex-pack-justify(); padding: 1rem 0;
@@ -1692,9 +1685,7 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
                         }
                     }
                     .d-d {.flex(); .flex-pack-justify(); .flex-align(); padding-top: 1rem;
-                        .dd-l { .flex(); .flex-v();
-                            span { }
-                        }
+                        .dd-l { .flex(); .flex-v(); }
                         .dd-r {.flex(); .flex-v();
                             b { font-family: dinMedium; color: var(--color-white); margin-bottom: .5rem; }
                         }
@@ -1931,6 +1922,13 @@ body { .bgc(var(--color-background),var(--color-text)); .font()!important; }
     }
 }
 .fund-form { padding: 1.5rem; .border-b(0.1rem, var(--color-dark-gray));
+
+    .van-dropdown-menu__bar { background: var(--color-background); box-shadow: 0 0 0 #ccc; height: 5rem; .border-a(.1rem,var(--color-dark-gray)); .radius(.5rem);
+        .van-dropdown-menu__title { width: 100%; .h-lh(5rem); color: var(--color-text); font-size: 1.4rem;
+            &:after { right: 10px; }
+        }
+    }
+
     .ff-title { font-size: 2rem; color: var(--color-white); }
     .ff-balance { margin-bottom: 2rem;
         span { padding: 0 1rem; color: var(--color-white); }
@@ -2473,6 +2471,9 @@ body[lang='ja'] {
     .custom-form .cf-row .cr-input {
         .form-control { padding-right: 10rem; }
         .captcha { width: 10rem; font-size: 1.2rem; }
+    }
+    .picker-box ul li:last-child {
+        span { letter-spacing: -5px }
     }
 }
 body[lang='es'], body[lang='vi'], body[lang='ru'] {
