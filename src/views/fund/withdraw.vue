@@ -18,14 +18,14 @@
             <span>{{ moneyFormat(withdrawBalanceItem.balance) }}</span>
             {{ withdrawBalanceItem.unit }}
           </div>
-          <!-- <div v-if="route.query?.CurrencyCode == 'INR'" class="ff-group">
+          <div v-if="route.query?.CurrencyCode == 'INR'" class="ff-group">
             <label>{{ t('currency') }}</label>
             <ConfigProvider theme="dark">
               <DropdownMenu direction="down">
                 <DropdownItem v-model="currency" :options="inrCurrency" />
               </DropdownMenu>
             </ConfigProvider>
-          </div> -->
+          </div>
           <div class="ff-group">
             <label>{{ t('amount') }}</label>
             <input v-model="tmpAmount" type="text" ref="amountDom" :placeholder="t('inputAmount')" autocomplete="off" />
