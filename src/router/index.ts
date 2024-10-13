@@ -176,67 +176,12 @@ const routes = [
     redirect: { name: 'index' },
     meta: { needLogin: false, keepAlive: false }
   }
-  // {
-  //   path: '/search',
-  //   name: 'search',
-  //   component: () => import('@/views/search/search.vue'),
-  //   meta: { needLogin: false, keepAlive: false }
-  // },
-  // {
-  //   path: '/promo',
-  //   name: 'promo',
-  //   component: () => import('@/views/promo/promo.vue'),
-  //   meta: { needLogin: false, keepAlive: false }
-  // },
-  // {
-  //   path: '/promoDetails',
-  //   component: AppMain,
-  //   children: [
-  //     {
-  //       path: ':id(\\d+)',
-  //       name: 'promoDetails',
-  //       component: () => import('@/views/promo/promoDetails.vue'),
-  //       meta: { needLogin: false, keepAlive: false }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/home',
-  //   component: AppMain,
-  //   children: [
-  //     {
-  //       path: '',
-  //       name: 'home',
-  //       component: () => import('@/views/home/home.vue'),
-  //       meta: { needLogin: true, keepAlive: false }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   name: '404',
-  //   redirect: { name: 'index' },
-  //   meta: { needLogin: false, keepAlive: false }
-  // }
 ]
 
 const router = createRouter({
   history: import.meta.env.VITE_ROUTER_HISTORY === 'hash' ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH) : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
   linkActiveClass: 'active',
   routes
-  // @ts-ignore 注意： scrollBehavior 这个方法只在 history 模式下可用
-  // scrollBehavior(to, from, savedPosition) {
-  //   if (savedPosition) {
-  //     return savedPosition
-  //   } else {
-  //     if (from.meta.keepAlive) {
-  //       from.meta.savedPosition = document.getElementById('main').scrollTop
-  //       console.log(from.meta.savedPosition)
-  //     }
-  //     console.log(to.meta.savedPosition)
-  //     return { el: '#main', x: 0, y: to.meta.savedPosition || 0 }
-  //   }
-  // }
 })
 
 // 验证是否需要登录

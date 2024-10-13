@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { Overlay } from 'vant'
-import { useAppStore } from '@/store/modules/app'
+import { useAppStore } from '@/store/app'
 
 const appStore = useAppStore()
 

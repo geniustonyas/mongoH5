@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 
 import App from './App.vue'
-import store from '@/store'
 import router from './router'
 import { Lazyload } from 'vant'
 
@@ -12,7 +12,7 @@ import './assets/less/main.less'
 const lazyImage = new URL(`./assets/imgs/logo.png`, import.meta.url).href
 
 const app = createApp(App)
-app.use(store)
+app.use(createPinia())
 app.use(Lazyload, {
   loading: lazyImage,
   error: lazyImage
