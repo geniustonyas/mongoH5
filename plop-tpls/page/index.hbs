@@ -7,20 +7,16 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
 
 import IndexHeader from '@/components/layout/IndexHeader.vue'
 import IndexFooter from '@/components/layout/IndexFooter.vue'
 
-import { getBannerApi } from '@/api/app/index'
-import { getBannerRespItem } from '@/api/app/types'
 import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user'
-import { getAssetsFile, moneyFormat } from '@/utils'
+import { getAssetsFile } from '@/utils'
 
 const router = useRouter()
 const route = useRoute()
 const appStore = useAppStore()
 const userStore = useUserStore()
-const { t } = useI18n()
 </script>

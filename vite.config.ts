@@ -2,6 +2,9 @@ import { type ConfigEnv, type UserConfigExport, loadEnv } from 'vite'
 import { resolve } from 'path'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import vue from '@vitejs/plugin-vue'
+import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
+
 // 自动压缩
 import compresssionBuild from 'rollup-plugin-compression'
 import type { ICompressionOptions } from 'rollup-plugin-compression'
@@ -41,7 +44,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       host: '0.0.0.0',
       // host: true,
       /** 端口号 */
-      port: 8081,
+      port: 8088,
       /** 是否自动打开浏览器 */
       open: false,
       /** 跨域设置允许 */
@@ -95,9 +98,9 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     /** Vite 插件 */
     plugins: [
       vue(),
-      // Components({
-      //   resolvers: [VantResolver()]
-      // }),
+      Components({
+        resolvers: [VantResolver()]
+      }),
       compresssionBuild(option),
       createHtmlPlugin({
         inject: {

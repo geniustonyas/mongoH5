@@ -1,151 +1,171 @@
 <template>
-  <div class="page">
-    <header class="header">
-      <div class="head-search">
-        <b>{{ t('search') }}</b>
-        <div class="search-box">
-          <span><i class="iconfont icon-search" /></span>
-          <input v-model="keywords" :placeholder="t('searchHolder')" />
-        </div>
-      </div>
-    </header>
-    <main class="main">
-      <!-- 搜索游戏列表 -->
-      <div v-if="keywords.length > 0" class="search-result">
-        <div class="result-count">
-          <span v-if="nodata || (keywords.length < 2 && keywords.length > 0)" class="noResult">{{ t('noSearchResult', { keyword: keywords }) }}</span>
-          <span v-if="searchResult.length > 0" class="noResult">{{ t('searchResultNum', { searchResult: searchResult.length }) }}</span>
-        </div>
-        <div class="gamebox search">
-          <div v-if="searchResult.length > 0" class="g-list row">
-            <div v-for="(item, index) of searchResult" :key="index" class="item" @click="startGame(item.id, parseInt(item.type))">
-              <div class="i-bd">
-                <div class="i-img">
-                  <img v-lazy="`https://seabet.imgix.net/${item.img}?auto=compress,format&w=140&h=100&q=50&dpr=2`" />
-                  <!-- <span class="red">FEATURED</span> -->
-                </div>
-                <div class="i-txt">
-                  <strong>{{ item.name }}</strong>
-                  <span>{{ item.pname }}</span>
-                </div>
-                <div class="i-btn">
-                  <a>{{ t('enter') }}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <dl class="provider-list">
-        <dt>{{ t('searchMore') }}</dt>
-        <template v-for="(item, index) of searchMoreList">
-          <dd v-if="item.show" :key="index" @click="router.push({ name: item.tab, query: { providerId: item.id } })">
-            <a><img v-lazy="item.img" />{{ item.name }}</a>
-          </dd>
-        </template>
-      </dl>
+  <div>
+    <header class="s-header"><input placeholder="搜索" /><a href="search.html">取消</a></header>
 
-      <!-- 推荐游戏列表 -->
-      <nav class="gamebox search">
-        <div class="g-head">
-          <div class="gh-t">
-            <div class="gh-l">{{ t('searchRecommend') }}</div>
-          </div>
+    <!-- <section class="p-s-b">
+
+<nav class="ps-ssfx">
+    <div class="s-a">
+        <b>热门标签</b>
+    </div>
+    <div class="s-b">
+        <a>自拍<small>热</small></a>
+        <a>身材<small>热</small></a>
+        <a>苗条<small>热</small></a>
+        <a>情趣<small>热</small></a>
+        <a>长发</a>
+        <a>后入</a>
+        <a>少女</a>
+        <a>无码</a>
+        <a>高清</a>
+        <a>娇羞</a>
+        <a>国产</a>
+        <a>淑女</a>
+    </div>
+</nav>
+
+</section> -->
+    <section class="p-s-b">
+      <nav class="ps-ssfx">
+        <div class="s-a">
+          <b>搜索“<span>水</span>”，找到“<span>65</span>”部影片”</b>
         </div>
-        <div v-if="recommendList.length > 0" class="g-list row">
-          <div v-for="(item, index) of recommendList" :key="index" class="item" @click="startGame(item.gameItemId, item.gameType)">
-            <div class="i-bd">
-              <div class="i-img">
-                <img v-lazy="appStore.cdnurl + item.imageName" />
-                <!-- <span class="red">FEATURED</span> -->
+        <div class="s-c">
+          <ul class="m-list">
+            <li>
+              <div class="l-a" style="background-image: url(/assets/imgs/temp/m1.jpg)">
+                <span class="a-a">1080P</span>
+                <span class="a-b">40:44</span>
+                <span class="a-c">国产</span>
               </div>
-              <div class="i-txt">
-                <strong>{{ item.gameName }}</strong>
-                <span>{{ item.providerName }}</span>
+              <div class="l-b">
+                <div class="b-a">流水迢迢,流水迢迢流水迢迢流水迢迢,流水迢迢流水</div>
+                <div class="b-b"><span>国产</span><span>极品</span> <span>美少女</span> <span>娜娜姐姐</span><span>黑丝</span><span>网红</span></div>
+                <div class="b-c">
+                  <span><i class="mvfont mv-kan" />2840</span>
+                  <span><i class="mvfont mv-zan" />220</span>
+                </div>
               </div>
-              <div class="i-btn">
-                <a>{{ t('enter') }}</a>
+            </li>
+            <li>
+              <div class="l-a" style="background-image: url(/assets/imgs/temp/m2.jpg)">
+                <span class="a-b">40:44</span>
+                <span class="a-c">国产</span>
               </div>
-            </div>
-          </div>
+              <div class="l-b">
+                <div class="b-a">流水迢迢,流水迢迢流水迢迢流水迢迢,流水迢迢流水</div>
+                <div class="b-b"><span>国产</span><span>极品</span> <span>美少女</span></div>
+                <div class="b-c">
+                  <span><i class="mvfont mv-kan" />2840</span>
+                  <span><i class="mvfont mv-zan" />220</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="l-a" style="background-image: url(/assets/imgs/temp/m3.jpg)">
+                <span class="a-b">40:44</span>
+                <span class="a-c">国产</span>
+              </div>
+              <div class="l-b">
+                <div class="b-a">流水迢迢,流水迢迢流水迢迢流水迢迢,流水迢迢流水</div>
+                <div class="b-b"><span>国产</span><span>极品</span> <span>美少女</span> <span>娜娜姐姐</span></div>
+                <div class="b-c">
+                  <span><i class="mvfont mv-kan" />2840</span>
+                  <span><i class="mvfont mv-zan" />220</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="l-a" style="background-image: url(/assets/imgs/temp/m4.jpg)">
+                <span class="a-b">40:44</span>
+                <span class="a-c">国产</span>
+              </div>
+              <div class="l-b">
+                <div class="b-a">流水迢迢,流水迢迢流水迢迢流水迢迢,流水迢迢流水</div>
+                <div class="b-b"><span>国产</span><span>极品</span> <span>美少女</span></div>
+                <div class="b-c">
+                  <span><i class="mvfont mv-kan" />2840</span>
+                  <span><i class="mvfont mv-zan" />220</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="l-a" style="background-image: url(/assets/imgs/temp/m5.jpg)">
+                <span class="a-b">40:44</span>
+                <span class="a-c">国产</span>
+              </div>
+              <div class="l-b">
+                <div class="b-a">流水迢迢,流水迢迢流水迢迢流水迢迢,流水迢迢流水</div>
+                <div class="b-b"><span>国产</span><span>极品</span> <span>美少女</span> <span>娜娜姐姐</span></div>
+                <div class="b-c">
+                  <span><i class="mvfont mv-kan" />2840</span>
+                  <span><i class="mvfont mv-zan" />220</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="l-a" style="background-image: url(/assets/imgs/temp/m6.jpg)">
+                <span class="a-a">1080P</span>
+                <span class="a-b">40:44</span>
+                <span class="a-c">国产</span>
+              </div>
+              <div class="l-b">
+                <div class="b-a">流水迢迢,流水迢迢流水迢迢流水迢迢,流水迢迢流水</div>
+                <div class="b-b"><span>国产</span><span>极品</span> <span>美少女</span> <span>娜娜姐姐</span><span>黑丝</span><span>网红</span></div>
+                <div class="b-c">
+                  <span><i class="mvfont mv-kan" />2840</span>
+                  <span><i class="mvfont mv-zan" />220</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="l-a" style="background-image: url(/assets/imgs/temp/m7.jpg)">
+                <span class="a-b">40:44</span>
+                <span class="a-c">国产</span>
+              </div>
+              <div class="l-b">
+                <div class="b-a">流水迢迢,流水迢迢流水迢迢流水迢迢,流水迢迢流水</div>
+                <div class="b-b"><span>国产</span><span>极品</span> <span>美少女</span></div>
+                <div class="b-c">
+                  <span><i class="mvfont mv-kan" />2840</span>
+                  <span><i class="mvfont mv-zan" />220</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="l-a" style="background-image: url(/assets/imgs/temp/m8.jpg)">
+                <span class="a-b">40:44</span>
+                <span class="a-c">国产</span>
+              </div>
+              <div class="l-b">
+                <div class="b-a">流水迢迢,流水迢迢流水迢迢流水迢迢,流水迢迢流水</div>
+                <div class="b-b"><span>国产</span><span>极品</span> <span>美少女</span> <span>娜娜姐姐</span></div>
+                <div class="b-c">
+                  <span><i class="mvfont mv-kan" />2840</span>
+                  <span><i class="mvfont mv-zan" />220</span>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </nav>
-    </main>
-    <ConfigProvider theme="dark">
-      <Footer />
-    </ConfigProvider>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onActivated, onDeactivated } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
-import Footer from '@/components/layout/Footer.vue'
+import IndexHeader from '@/components/layout/IndexHeader.vue'
+import IndexFooter from '@/components/layout/IndexFooter.vue'
 
-import { getSearchGameApi, getGameRecommendApi } from '@/api/game/index'
-import { getSearchGameRespItem, recommendGameRespItem } from '@/api/game/types'
 import { useAppStore } from '@/store/modules/app'
-import { providerListData, providerListItemTypes } from '@/utils/config'
-import { PlatForm } from '@/utils/constant'
+import { useUserStore } from '@/store/modules/user'
+import { getAssetsFile } from '@/utils'
 
-import { ConfigProvider } from 'vant'
-import { debounce } from 'lodash-es'
-import { useI18n } from 'vue-i18n'
-import { startGame } from '@/composables/startGame'
-
-const appStore = useAppStore()
 const router = useRouter()
-const { t } = useI18n()
-const providerList = providerListData()
-
-// 搜索关键词
-let keywords = ref('')
-let searchResult = ref<getSearchGameRespItem[]>([])
-// 推荐游戏列表
-const recommendList = ref<recommendGameRespItem[]>([])
-const nodata = ref(false)
-
-// 搜索更多关键词列表-实际是跳转到首页对应的tab和providerId
-const searchMoreList = ref<providerListItemTypes[]>([])
-searchMoreList.value = providerList.filter((item: providerListItemTypes) => item.type != 'sports')
-
-// 观察关键词变化, 3个字符以上才搜索, 否则不搜索
-watch(keywords, () => {
-  if (keywords.value.length >= 2) {
-    getSearchGame()
-  }
-})
-
-// 获取搜索结果, 防抖, 500ms, 3个字符以上才搜索, 否则不搜索, 3个字符以下清空搜索结果
-const getSearchGame = debounce(function () {
-  getSearchGameApi({ Keywords: keywords.value, platform: PlatForm.H5 })
-    .then((resp) => {
-      searchResult.value = resp.data.items
-      nodata.value = resp.data.items.length == 0
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}, 500)
-
-// 获取推荐游戏,
-const getGameRecommend = () => {
-  getGameRecommendApi({ id: 1, platform: PlatForm.H5 })
-    .then((resp) => {
-      recommendList.value = resp.data
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-}
-
-onActivated(() => {
-  keywords.value = ''
-  searchResult.value = []
-})
-
-onDeactivated(() => {})
-
-getGameRecommend()
+const route = useRoute()
+const appStore = useAppStore()
+const userStore = useUserStore()
 </script>

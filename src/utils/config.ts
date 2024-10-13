@@ -572,7 +572,7 @@ export const phpBankData = () => {
     { value: 'GP', text: 'GrabPay' },
     { value: 'UCPB', text: 'United Coconut Planters Bank' },
     { value: 'Komo', text: 'East West Rural Bank / Komo' },
-    { value: 'LSB', text: 'Legazpi Saving Bank' },
+    { value: 'LSB', text: 'Legazpi Saving Bank' }
   ]
 }
 

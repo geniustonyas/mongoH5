@@ -3,9 +3,7 @@ import { useUserStoreHook } from '@/store/modules/user'
 import { useAppStoreHook } from '@/store/modules/app'
 import { get, merge } from 'lodash-es'
 import { TokenPrefix, getToken } from '@/utils/auth'
-import i18n from '@/i18n'
-const { t } = i18n.global
-import { showToast } from 'vant'
+// import { showToast } from 'vant'
 
 let loadingRequestCount = 0 // loading请求数
 
@@ -52,16 +50,6 @@ function createService() {
       } else {
         if (code == '200') {
           return data
-        } else if (code == '401') {
-          useUserStoreHook().clearLogin()
-        } else if (t('errorCodes.' + code) != '') {
-          if ([1013].includes(code)) {
-            showToast(t('errorCodes.' + code, { data: data.message }))
-          } else if ([1036].includes(code)) {
-            console.log(code)
-          } else {
-            showToast(t('errorCodes.' + code))
-          }
         }
         return Promise.reject(data)
       }

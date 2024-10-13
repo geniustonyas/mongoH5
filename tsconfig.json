@@ -44,5 +44,5 @@
     "vite.config.ts"
   ],
   /** 编译器默认排除的编译文件 */
-  "exclude": ["node_modules", "dist", "src/thirdLogin/plugin/*"]
+  "exclude": ["node_modules", "dist"]
 }

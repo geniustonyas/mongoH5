@@ -68,7 +68,13 @@ module.exports = {
     'vue/require-default-prop': 'off',
     'vue/require-explicit-emits': 'off',
     'vue/multi-word-component-names': 'off',
-    'vue/no-parsing-error': [2, { 'x-invalid-end-tag': false }],
+    'vue/no-parsing-error': [
+      'error',
+      {
+        'x-invalid-end-tag': false,
+        'control-character-in-input-stream': false
+      }
+    ],
     'vue/html-self-closing': [
       'error',
       {

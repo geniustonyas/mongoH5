@@ -1,7 +1,6 @@
 import _ from 'lodash-es'
 import Clipboard from 'clipboard'
 import { showToast } from 'vant'
-import i18n from '@/i18n'
 import { useUserStore } from '@/store/modules/user'
 import router from '@/router'
 
@@ -45,8 +44,7 @@ export function copy(selector: string, tips = '', clipboard: any = null) {
   if (clipboard) {
     clipboard.destroy()
   }
-  const { t } = i18n.global
-  tips = tips == '' ? t('tips.copySuccess') : tips
+  tips = tips == '' ? '复制成功' : tips
   const newClipboard = new Clipboard(selector)
   newClipboard.on('success', () => {
     showToast(tips)
@@ -54,7 +52,7 @@ export function copy(selector: string, tips = '', clipboard: any = null) {
   })
   newClipboard.on('error', () => {
     copy(selector, tips, newClipboard)
-    showToast(t('tips.copyFail'))
+    showToast('复制失败')
   })
 }
 
