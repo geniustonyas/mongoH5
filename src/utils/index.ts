@@ -1,7 +1,7 @@
 import _ from 'lodash-es'
 import Clipboard from 'clipboard'
 import { showToast } from 'vant'
-import { useUserStore } from '@/store/modules/user'
+import { useUserStore } from '@/store/user'
 import router from '@/router'
 
 // 获取url中全部参数的对象
@@ -115,7 +115,7 @@ export function formatAddress(address: string) {
 // 登录后跳转到指定地址
 export function loginTo(route: string) {
   const userStore = useUserStore()
-  if (userStore.userInfo.id != '') {
+  if (userStore.userInfo!.id != '') {
     router.push({ name: route })
   } else {
     router.push({ name: 'login', query: { routeTo: route } })

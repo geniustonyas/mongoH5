@@ -171,5 +171,4 @@
 <script setup lang="ts">
 import { getAssetsFile } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
-import Header from '@/views/theme/themeHeader.vue'
 </script>

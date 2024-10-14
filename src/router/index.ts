@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AppMain from '@/components/layout/AppMain.vue'
-import { useUserStore } from '@/store/modules/user'
-import { useAppStore } from '@/store/modules/app'
-import { getToken } from '@/utils/auth'
+// import { useUserStore } from '@/store/user'
+import { useAppStore } from '@/store/app'
+// import { getToken } from '@/utils/auth'
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'root',
@@ -119,9 +119,9 @@ const routes = [
         meta: { needLogin: true, keepAlive: false }
       },
       {
-        path: 'share',
-        name: 'share',
-        component: () => import('@/views/home/share.vue'),
+        path: 'shareRecord',
+        name: 'shareRecord',
+        component: () => import('@/views/home/shareRecord.vue'),
         meta: { needLogin: true, keepAlive: false }
       }
     ]
@@ -163,9 +163,27 @@ const routes = [
     redirect: { name: 'spare' },
     children: [
       {
+        path: 'download',
+        name: 'download',
+        component: () => import('@/views/pages/download.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      },
+      {
+        path: 'share',
+        name: 'share',
+        component: () => import('@/views/pages/share.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      },
+      {
         path: 'spare',
         name: 'spare',
-        component: () => import('@/views/pages/spare.html'),
+        component: () => import('@/views/pages/spare.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      },
+      {
+        path: 'problem',
+        name: 'problem',
+        component: () => import('@/views/pages/problem.vue'),
         meta: { needLogin: false, keepAlive: false }
       }
     ]
@@ -186,47 +204,48 @@ const router = createRouter({
 
 // 验证是否需要登录
 router.beforeEach((to, from, next) => {
-  const token = getToken()
-  let userStore: any = null
+  // const token = getToken()
+  // let userStore: any = null
   let appStore: any = null
   if (appStore === null) {
     appStore = useAppStore()
-    if (appStore.chat == '') {
-      appStore.getConfig()
-      appStore.refreshMainStatus()
+    if (appStore.tags.length == 0) {
+      appStore.fetConfig()
+      // appStore.refreshMainStatus()
     }
   }
-  if (token) {
-    if (userStore === null) {
-      userStore = useUserStore()
-    }
-    if (userStore.userInfo.id) {
-      next()
-    } else {
-      try {
-        // 如果有token 跳转路由时就调用一下定时任务方法，目的是确保刷新后有数据
-        userStore.refreshToken()
-        userStore.refreshNewMessageCount()
-        userStore
-          .refreshUserInfo()
-          .then(() => {
-            next()
-          })
-          .catch(() => {
-            next({ name: 'login', query: from.query })
-          })
-      } catch (error) {
-        console.log(error)
-        next()
-      }
-    }
-  } else {
-    if (to.meta.needLogin) {
-      next({ name: 'login', query: from.query })
-    } else {
-      next()
-    }
-  }
+  // if (token) {
+  //   if (userStore === null) {
+  //     userStore = useUserStore()
+  //   }
+  //   if (userStore.userInfo.id) {
+  //     next()
+  //   } else {
+  //     try {
+  //       // 如果有token 跳转路由时就调用一下定时任务方法，目的是确保刷新后有数据
+  //       userStore.refreshToken()
+  //       userStore.refreshNewMessageCount()
+  //       userStore
+  //         .refreshUserInfo()
+  //         .then(() => {
+  //           next()
+  //         })
+  //         .catch(() => {
+  //           next({ name: 'login', query: from.query })
+  //         })
+  //     } catch (error) {
+  //       console.log(error)
+  //       next()
+  //     }
+  //   }
+  // } else {
+  //   if (to.meta.needLogin) {
+  //     next({ name: 'login', query: from.query })
+  //   } else {
+  //     next()
+  //   }
+  // }
+  next()
 })
 
 router.afterEach((to, from) => {

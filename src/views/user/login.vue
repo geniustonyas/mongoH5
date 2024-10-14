@@ -104,7 +104,7 @@ import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { getAssetsFile, loadJs } from '@/utils'
 import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
-import { useUserStore } from '@/store/modules/user'
+import { useUserStore } from '@/store/user'
 import { checkUserBindGoogleApi } from '@/api/user/index'
 import { isEmail, isPwd, isUname } from '@/utils/validate'
 

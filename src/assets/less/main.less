@@ -716,14 +716,17 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 
 #index-banner, #mv-banner { position: relative; margin: 1rem; .radius(1rem); overflow: hidden;
-    .swiper-wrapper {
-        a { display: block;
-            img { width: 100%; }
+    .my-swipe {
+        .van-swipe__track {
+            .van-swipe-item { height: 20.4rem; }
+            a { display: block;
+                img { width: 100%; }
+            }
         }
-    }
-    .swiper-pagination { position: absolute; z-index: 3; text-align: right; padding-right: 2rem;
-        .swiper-pagination-bullet { .size(.5rem,.5rem); .bg(var(--color-white)); .opacity(85) }
-        .swiper-pagination-bullet-active { width: 2rem; .bg(var(--color-primary)); .radius();.opacity(100) }
+        .van-swipe__indicators { left: 85%;
+            .van-swipe__indicator { .size(.5rem,.5rem); .bg(var(--color-white)); .opacity(85) }
+            .van-swipe__indicator--active { width: 2rem; .bg(var(--color-primary)) !important; .radius();.opacity(100) }
+        }
     }
 }
 

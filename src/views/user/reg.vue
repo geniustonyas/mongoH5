@@ -153,11 +153,11 @@ import UserHeader from '@/components/layout/UserHeader.vue'
 
 import { telegramLogin, googleLogin, facebookInit, facebookLogin, lineLogin, twitterLogin } from '@/thirdLogin/index'
 import { getCookieValue } from '@/utils/index'
-import { useUserStore } from '@/store/modules/user'
+import { useUserStore } from '@/store/user'
 import { getAssetsFile, loadJs } from '@/utils'
 import { isPwd, isUname, isEmail } from '@/utils/validate'
 import { checkUserApi, checkEmailApi, sendEmailApi, regApi, facebookRegApi } from '@/api/user/index'
-import { useAppStore } from '@/store/modules/app'
+import { useAppStore } from '@/store/app'
 
 import { useI18n } from 'vue-i18n'
 import { showToast } from 'vant'

@@ -3,15 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" onclick="javascript:history.go(-1)"><i class="mvfont mv-left" /></a>
-        <video
-          playsinline
-          controls
-          preload="auto"
-          controlslist="nodownload"
-          controlslist="nofullscreen"
-          poster="http://localhost:50066/assets/imgs/banner/b2.jpg"
-          src="https://media.w3.org/2010/05/sintel/trailer.mp4"
-        />
+        <video playsinline controls preload="auto" controlslist="nodownload" controlslist="nofullscreen" poster="http://localhost:50066/assets/imgs/banner/b2.jpg" src="https://media.w3.org/2010/05/sintel/trailer.mp4" />
       </div>
       <div class="md-b">
         <div class="b-a">

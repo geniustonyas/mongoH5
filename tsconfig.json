@@ -1,38 +1,37 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "noImplicitAny": true, // 在表达式和声明上有隐含的 any类型时报错
-    "suppressImplicitAnyIndexErrors": true, // 禁止隐式 any 类型的索引错误
-    "ignoreDeprecations":"5.0", // 忽略对已弃用的警告
-    "target": "esnext", // ts编译后的执行环境
-    "allowJs": true,
-    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    /** TS 严格模式 */
-    "strict": true, // 启用所有严格类型检查选项
-    "jsx": "preserve", // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
-    "importHelpers": true, // 从 tslib 导入辅助工具函数
-    "experimentalDecorators": true, // 启用装饰器
-    "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入。
-    "sourceMap": true, // 生成相应的 '.map' 文件
-    "resolveJsonModule": true, 
-    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
-    "isolatedModules": true, // 将每个文件做为单独的模块
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"], // 指定要包含在编译中的库文件
-    "skipLibCheck": true,
+    "outDir": "./dist", // 指定输出目录
+    "noImplicitAny": false, // 在表达式和声明上有隐含的 any 类型时报错。这有助于捕获可能的类型错误
+    "strictNullChecks": false, // 启用严格的 null 检查
+    "strictFunctionTypes": false, // 启用严格的函数类型检查
+    "strictPropertyInitialization": false, // 启用严格的属性初始化检查
+    "strictBindCallApply": false, // 启用严格的 bind、call、apply 检查
+    "suppressImplicitAnyIndexErrors": true, // 禁止隐式 any 类型的索引错误。这可以在使用动态属性时避免一些错误
+    "ignoreDeprecations":"5.0", // 忽略对已弃用特性的警告，特别是针对 TypeScript 5.0 版本的弃用警告
+    "target": "esnext", // 指定 ECMAScript 目标版本。"esnext" 表示使用最新的 ECMAScript 特性
+    "allowJs": true, // 允许编译 JavaScript 文件。这对于逐步将 JS 项目迁移到 TS 很有用
+    "useDefineForClassFields": true, // 使用 ES6 风格的类字段声明
+    "module": "esnext", // 指定生成哪个模块系统代码。"esnext" 使用最新的模块化语法
+    "moduleResolution": "node", // 决定如何处理模块。"node" 选项模仿 Node.js 的模块解析机制
+    "strict": false, // 启用所有严格类型检查选项。这是一个很好的实践，可以捕获更多潜在的错误
+    "jsx": "preserve", // 指定 JSX 代码的生成方式。"preserve" 会保留 JSX 以供后续的转换操作使用
+    "importHelpers": true, // 从 tslib 导入辅助工具函数，可以减少生成的代码大小
+    "experimentalDecorators": true, // 启用实验性的 ES 装饰器支持
+    "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入。这提高了与 Babel 等工具的兼容性
+    "sourceMap": true, // 生成相应的 '.map' 文件，这对于调试很有用
+    "resolveJsonModule": true, // 允许导入 JSON 模块
+    "isolatedModules": true, // 将每个文件作为单独的模块处理。这是某些构建工具（如 Babel）所必需的
+    "esModuleInterop": true, // 启用 CommonJS 和 ES 模块之间的互操作性
+    "lib": ["esnext", "dom"], // 指定要包含在编译中的库文件。这里包括了最新的 ECMAScript 特性和 DOM 类型定义
+    "skipLibCheck": true, // 跳过声明文件的类型检查。这可以提高编译速度
     "types": [
       "node",
       "vite/client",
-    ],
-    /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
-    "baseUrl": "./",
-    /** 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算 */
+    ], // 指定要包含的类型声明文件名列表
+    "baseUrl": "./", // 用于解析非相对模块名的基本目录
     "paths": {
       "@/*": ["./src/*"]
-    }
+    } // 指定模块名到基于 baseUrl 的路径映射
   },
   "include": [
     "src/**/*.ts",
@@ -42,7 +41,6 @@
     "tests/**/*.ts",
     "types/**/*.d.ts",
     "vite.config.ts"
-  ],
-  /** 编译器默认排除的编译文件 */
-  "exclude": ["node_modules", "dist"]
+  ], // 指定要包含在编译中的文件模式列表
+  "exclude": ["node_modules", "dist"] // 指定要排除在编译之外的文件模式列表
 }

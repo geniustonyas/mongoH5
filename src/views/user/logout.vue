@@ -8,7 +8,7 @@
 import { useI18n } from 'vue-i18n'
 
 // import { useRouter } from 'vue-router'
-import { useUserStore } from '@/store/modules/user'
+import { useUserStore } from '@/store/user'
 
 import { showToast } from 'vant'
 

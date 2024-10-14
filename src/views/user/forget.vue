@@ -80,7 +80,7 @@ import { useRouter } from 'vue-router'
 
 import UserHeader from '@/components/layout/UserHeader.vue'
 
-// import { useUserStore } from '@/store/modules/user'
+// import { useUserStore } from '@/store/user'
 import { resetPwdApi, sendEmailApi, checkEmailApi, checkEmailThirdReg } from '@/api/user/index'
 import { isPwd, isEmail } from '@/utils/validate'
 
