@@ -11,7 +11,7 @@ export interface ApiResponseData<T> {
 /** 分页数据接口 */
 export interface PaginatedData<T> {
   data: T[]
-  page: number
+  currentPage: number
   pageSize: number
   totalPages: number
   total: number

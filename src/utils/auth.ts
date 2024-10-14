@@ -1,4 +1,4 @@
-const TokenKey = 'seabets'
+const TokenKey = 'MongoTV'
 const TokenPrefix = 'Bearer '
 const isLogin = () => {
   return !!localStorage.getItem(TokenKey)

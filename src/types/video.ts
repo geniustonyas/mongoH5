@@ -1,4 +1,4 @@
-import { PaginatedApiResponseData } from '@/types/api'
+import { PaginatedApiResponseData } from '@/types/api.d'
 
 export interface Video {
   videoId: number
@@ -46,4 +46,4 @@ export interface VideoQueryParams {
   sortBy?: 'clickCounts' | 'goodCounts' | 'favoriteCounts' | 'addTime'
 }
 
-export type videoList = PaginatedApiResponseData<Video>
+export type VideoListResponse = PaginatedApiResponseData<Video>

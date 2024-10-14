@@ -1,4 +1,4 @@
-import type { ApiResponseData } from '@/types/api'
+import type { ApiResponseData } from '@/types/api.d'
 
 export interface UserInfo {
   userId: number

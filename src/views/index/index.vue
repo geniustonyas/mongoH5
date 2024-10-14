@@ -7,7 +7,7 @@
         <Swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <SwipeItem v-for="ad in bannerAds" :key="ad.adId">
             <a :href="ad.url" :target="ad.target === 1 ? '_blank' : '_self'">
-              <img v-lazy="ad.thumbnail" :alt="ad.titles" />
+              <img v-lazy="appStore.systemSettings.customer_cdn_link + ad.thumbnail" :alt="ad.titles" />
             </a>
           </SwipeItem>
         </Swipe>
@@ -31,7 +31,7 @@
         </a>
       </nav>
 
-      <nav class="mv-t-l">
+      <nav v-if="hottestVideos.length > 0" class="mv-t-l">
         <div class="m-a">
           <div class="a-l">
             <i class="mvfont mv-xietiao" />
@@ -42,24 +42,24 @@
           </div>
         </div>
         <div class="m-b">
-          <div v-for="video in hottestVideos" :key="video.id" class="item">
+          <div v-for="video in hottestVideos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
             <!-- 使用视频数据渲染每个项目 -->
-            <div class="i-a" v-lazy:background-image="video.thumbnail">
-              <span class="a-b">{{ video.duration }}</span>
-              <span class="a-c">{{ video.category }}</span>
+            <div class="i-a" v-lazy:background-image="video.poster">
+              <span class="a-b">{{ video.playTime }}</span>
+              <span class="a-c">{{ video.categoryName }}</span>
             </div>
             <div class="i-b">
               <b>{{ video.title }}</b>
               <p>
-                <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
+                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
               </p>
             </div>
           </div>
         </div>
       </nav>
 
-      <nav class="mv-t-l">
+      <nav v-if="topRatedVideos.length > 0" class="mv-t-l">
         <div class="m-a">
           <div class="a-l">
             <i class="mvfont mv-xietiao" />
@@ -70,24 +70,24 @@
           </div>
         </div>
         <div class="m-b">
-          <div v-for="video in topRatedVideos" :key="video.id" class="item">
+          <div v-for="video in topRatedVideos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
             <!-- 使用视频数据渲染每个项目 -->
-            <div class="i-a" v-lazy:background-image="video.thumbnail">
-              <span class="a-b">{{ video.duration }}</span>
-              <span class="a-c">{{ video.category }}</span>
+            <div class="i-a" v-lazy:background-image="video.poster">
+              <span class="a-b">{{ video.playTime }}</span>
+              <span class="a-c">{{ video.categoryName }}</span>
             </div>
             <div class="i-b">
               <b>{{ video.title }}</b>
               <p>
-                <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
+                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
               </p>
             </div>
           </div>
         </div>
       </nav>
 
-      <nav class="mv-t-l">
+      <nav v-if="latestVideos.length > 0" class="mv-t-l">
         <div class="m-a">
           <div class="a-l">
             <i class="mvfont mv-xietiao" />
@@ -98,17 +98,17 @@
           </div>
         </div>
         <div class="m-b">
-          <div v-for="video in latestVideos" :key="video.id" class="item">
+          <div v-for="video in latestVideos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
             <!-- 使用视频数据渲染每个项目 -->
-            <div class="i-a" v-lazy:background-image="video.thumbnail">
-              <span class="a-b">{{ video.duration }}</span>
-              <span class="a-c">{{ video.category }}</span>
+            <div class="i-a" v-lazy:background-image="video.poster">
+              <span class="a-b">{{ video.playTime }}</span>
+              <span class="a-c">{{ video.categoryName }}</span>
             </div>
             <div class="i-b">
               <b>{{ video.title }}</b>
               <p>
-                <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
+                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
               </p>
             </div>
           </div>
@@ -159,23 +159,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getAssetsFile } from '@/utils'
 import { getAdListApi } from '@/api/app'
 import { getVideoListApi } from '@/api/video'
 import { Swipe, SwipeItem } from 'vant'
-import type { VideoQueryParams } from '@/types/video'
+import { useAppStoreHook } from '@/store/app'
+import decryptionService from '@/utils/decryptionService'
+import type { VideoQueryParams, Video } from '@/types/video'
 
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/index/indexHeader.vue'
 
 const router = useRouter()
 
+const appStore = useAppStoreHook()
+
+const decrypt = new decryptionService()
+
 const bannerAds = ref([])
-const latestVideos = ref([])
-const hottestVideos = ref([])
-const topRatedVideos = ref([])
+const latestVideos = ref<Video[]>([])
+const hottestVideos = ref<Video[]>([])
+const topRatedVideos = ref<Video[]>([])
 
 const fetchBannerAds = async () => {
   try {
@@ -194,19 +199,35 @@ const fetchVideos = async (sortBy: 'clickCounts' | 'goodCounts' | 'addTime') => 
       sortBy: sortBy
     }
     const response = await getVideoListApi(params)
-    return response.data || []
+
+    if (response.data.data) {
+      const decryptedVideos = await Promise.all(
+        response.data.data.map(async (video) => ({
+          ...video,
+          poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
+        }))
+      )
+      return decryptedVideos
+    } else {
+      return []
+    }
   } catch (error) {
     console.error(`获取视频列表失败 (${sortBy}):`, error)
     return []
   }
 }
 
-onMounted(async () => {
-  await fetchBannerAds()
-  hottestVideos.value = await fetchVideos('clickCounts')
-  topRatedVideos.value = await fetchVideos('goodCounts')
-  latestVideos.value = await fetchVideos('addTime')
-})
+// 使用立即执行的异步函数来初始化数据
+;(async () => {
+  try {
+    await fetchBannerAds()
+    hottestVideos.value = await fetchVideos('clickCounts')
+    topRatedVideos.value = await fetchVideos('goodCounts')
+    latestVideos.value = await fetchVideos('addTime')
+  } catch (error) {
+    console.error('初始化数据失败:', error)
+  }
+})()
 
 const openDownloadPage = () => {
   const baseUrl = window.location.origin + import.meta.env.BASE_URL

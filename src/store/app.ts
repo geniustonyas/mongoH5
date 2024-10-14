@@ -6,7 +6,11 @@ export const useAppStore = defineStore('app', {
   state: () => {
     return {
       loading: false,
-      systemSettings: {},
+      systemSettings: {
+        customer_cdn_link: '',
+        customer_service_link: '',
+        homepage_announcement: ''
+      },
       tags: [],
       categorys: []
     }
