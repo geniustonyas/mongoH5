@@ -49,5 +49,16 @@ export interface VideoQueryParams {
   endTime?: string
 }
 
+// 新增一个接口来描述分页数据结构
+export interface VideoListData {
+  data: Video[]
+  currentPage: number
+  pageSize: number
+  total: number
+  totalPages: number
+}
+
+// 修改 VideoListResponse 的定义
 export type VideoListResponse = PaginatedApiResponseData<Video>
+
 export type VideoDetailResponse = ApiResponseData<Video>

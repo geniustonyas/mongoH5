@@ -124,7 +124,7 @@ const fetchVideos = async (sortBy: 'clickCounts' | 'goodCounts' | 'favoriteCount
     }
     const response = await getVideoListApi(params)
 
-    if (response.data.data) {
+    if (response.data && response.data.data && Array.isArray(response.data.data)) {
       videos.value = await Promise.all(
         response.data.data.map(async (video) => ({
           ...video,

@@ -10,7 +10,7 @@
       <div class="h-a">
         <div class="a-a">
           <div class="a-l">
-            <img src="/assets/imgs/u_video.png" />
+            <img :src="getAssetsFile('u_video.png')" />
           </div>
           <div class="a-n">登录 / 注册</div>
         </div>
@@ -72,4 +72,5 @@
 
 <script setup lang="ts">
 import Footer from '@/components/layout/Footer.vue'
+import { getAssetsFile } from '@/utils'
 </script>
