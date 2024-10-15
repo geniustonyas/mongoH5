@@ -20,7 +20,7 @@
         </div>
       </div>
     </section>
-    <Footer />
+    <Footer active-menu="shortVideo" />
   </div>
 </template>
 

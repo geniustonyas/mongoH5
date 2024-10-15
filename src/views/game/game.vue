@@ -164,7 +164,7 @@
         </div>
       </div>
     </section>
-    <Footer />
+    <Footer active-menu="game" />
   </div>
 </template>
 

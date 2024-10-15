@@ -45,6 +45,8 @@ export interface VideoQueryParams {
   pageSize?: number
   page?: number
   sortBy?: 'clickCounts' | 'goodCounts' | 'favoriteCounts' | 'addTime'
+  beginTime?: string
+  endTime?: string
 }
 
 export type VideoListResponse = PaginatedApiResponseData<Video>

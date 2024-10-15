@@ -141,7 +141,7 @@
         </div>
       </div>
     </section>
-    <Footer />
+    <Footer active-menu="theme" />
   </div>
 </template>
 

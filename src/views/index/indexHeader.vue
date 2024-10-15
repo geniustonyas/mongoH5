@@ -26,7 +26,7 @@
     <div class="head-menu">
       <div class="hm-a">
         <a @click="router.push({ name: 'index' })" :class="{ active: activeId == '' }">首页</a>
-        <a v-for="category in categoryTop" :key="category.cId" :class="{ active: activeId === category.cId }" @click="router.push({ name: 'category', params: { id: category.cId } })">
+        <a v-for="category in categoryTop" :key="category.cId" :class="{ active: activeId == category.cId }" @click="router.push({ name: 'category', params: { id: category.cId } })">
           {{ category.categoryName }}
         </a>
       </div>
@@ -41,13 +41,22 @@
 import { useRouter } from 'vue-router'
 import { getAssetsFile } from '@/utils'
 import { useAppStoreHook } from '@/store/app'
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { Swipe, SwipeItem } from 'vant'
+import { defineProps, PropType } from 'vue'
+
+// 从父组件接收 activeId prop
+const props = defineProps({
+  activeId: {
+    type: [String, Number] as PropType<string | number>,
+    default: ''
+  }
+})
+
+console.log(props.activeId)
 
 const router = useRouter()
 const appStore = useAppStoreHook()
-
-const activeId = ref('')
 
 const categoryTop = computed(() => {
   return appStore.categorys.filter((category) => !category.pId)

@@ -29,7 +29,7 @@ const routes: RouteRecordRaw[] = [
         meta: { needLogin: false, keepAlive: false }
       },
       {
-        path: 'category',
+        path: 'category/:id',
         name: 'category',
         component: () => import('@/views/index/category.vue'),
         meta: { needLogin: false, keepAlive: false }
@@ -41,7 +41,7 @@ const routes: RouteRecordRaw[] = [
     component: AppMain,
     children: [
       {
-        path: '',
+        path: 'theme',
         name: 'theme',
         component: () => import('@/views/theme/theme.vue'),
         meta: { needLogin: false, keepAlive: false }
@@ -198,7 +198,7 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({
   history: import.meta.env.VITE_ROUTER_HISTORY === 'hash' ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH) : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
-  linkActiveClass: 'active',
+  // linkActiveClass: 'active',
   routes
 })
 

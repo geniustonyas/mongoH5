@@ -1,7 +1,7 @@
 <template>
   <header class="m-header">
     <div class="h-m">
-      <a @click="router.push({ name: 'hot' })" :class="{ active: currentRoute === 'hot' }">热点</a>
+      <a @click="router.push({ name: 'hotVideo' })" :class="{ active: currentRoute === 'hotVideo' }">热点</a>
       <a @click="router.push({ name: 'theme' })" :class="{ active: currentRoute === 'theme' }">主题</a>
       <a @click="router.push({ name: 'actor' })" :class="{ active: currentRoute === 'actor' }">女优</a>
     </div>

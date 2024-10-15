@@ -1,182 +1,49 @@
 <template>
   <div class="page">
-    <Header />
+    <Header :active-id="route.params.id" />
     <main class="main">
       <div class="mv-swiper">
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide swiper-slide-center none-effect">
-              <a href="#"><img src="assets/imgs/banner/mb1.jpg" /></a>
-            </div>
-            <div class="swiper-slide">
-              <a href="#"><img src="assets/imgs/banner/mb2.jpg" /></a>
-            </div>
-            <div class="swiper-slide">
-              <a href="#"><img src="assets/imgs/banner/mb3.jpg" /></a>
-            </div>
-            <div class="swiper-slide">
-              <a href="#"><img src="assets/imgs/banner/mb4.jpg" /></a>
-            </div>
-          </div>
-        </div>
+        <swiper
+          :modules="modules"
+          :slides-per-view="2"
+          :centered-slides="true"
+          :loop="true"
+          :autoplay="{
+            delay: 2500,
+            disableOnInteraction: false
+          }"
+          :space-between="10"
+        >
+          <swiper-slide v-for="ad in bannerAds" :key="ad.adId">
+            <a :href="ad.url" :target="ad.target === 1 ? '_blank' : '_self'">
+              <img :src="appStore.systemSettings.customer_cdn_link + ad.thumbnail" :alt="ad.titles" />
+            </a>
+          </swiper-slide>
+        </swiper>
       </div>
       <section class="m-l-b">
         <nav class="b-a">
-          <span class="active">全部</span>
-          <span>自拍</span>
-          <span>主播</span>
-          <span>剧情</span>
-          <span>探花</span>
-          <span>偷拍</span>
-          <span>迷奸</span>
-          <span>乱伦</span>
-          <span>少妇</span>
-          <span>偷情</span>
-          <span>网爆</span>
-          <span>直播</span>
-          <span>群P</span>
-          <span>调教</span>
-          <span>制服</span>
-          <span>福利姬</span>
-          <span>反差婊</span>
-          <span>秀人网</span>
+          <span v-for="category in categories" :key="category.cId" :class="{ active: selectedCategory === category.cId }" @click="selectCategory(category.cId)">
+            {{ category.categoryName }}
+          </span>
         </nav>
         <nav class="b-b">
-          <span class="active">按最新</span>
-          <span>按最热</span>
-          <span>按好评</span>
+          <span v-for="sort in sortOptions" :key="sort.value" :class="{ active: currentSort == sort.value }" @click="changeSort(sort.value)">
+            {{ sort.label }}
+          </span>
         </nav>
         <nav class="mv-t-l">
           <div class="m-b">
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m1.jpg)">
-                <span class="a-a">1080P</span>
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
+            <div v-for="video in videos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
+              <div class="i-a" v-lazy:background-image="video.poster">
+                <span class="a-b">{{ video.playTime }}</span>
+                <span class="a-c">{{ video.categoryName }}</span>
               </div>
               <div class="i-b">
-                <b>星空-性感台球女教练被硬屌进洞-琳达。</b>
+                <b>{{ video.title }}</b>
                 <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
-                </p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m2.jpg)">
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
-              </div>
-              <div class="i-b">
-                <b>星空-星空大排档暖饱思淫欲 疯狂被胬的老板娘-雯雯。</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
-                </p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m3.jpg)">
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
-              </div>
-              <div class="i-b">
-                <b>天美TMW041情欲荷官任你干-吴芳宜。</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
-                </p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m4.jpg)">
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
-              </div>
-              <div class="i-b">
-                <b>RCTD-233 人生最美好的時候突然變成最糟的惡夢穿上恥辱恥辱婚紗的奴隸新娘 鈴木里美 松永紗奈</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
-                </p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m5.jpg)">
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
-              </div>
-              <div class="i-b">
-                <b>蜜桃-女优面试-林芳。</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
-                </p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m6.jpg)">
-                <span class="a-a">720P</span>
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
-              </div>
-              <div class="i-b">
-                <b>蜜桃-情欲瑜伽 爱液喷发 苏艾文(蜜苏)</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
-                </p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m7.jpg)">
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
-              </div>
-              <div class="i-b">
-                <b>蜜桃-女助教性爱成瘾-张欣妍</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
-                </p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m8.jpg)">
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
-              </div>
-              <div class="i-b">
-                <b>蜜桃-强欲岳母觊觎大屌女婿-李蓉蓉</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
-                </p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m9.jpg)">
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
-              </div>
-              <div class="i-b">
-                <b>上海F奶车模 与土豪援交视频流出</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
-                </p>
-              </div>
-            </div>
-            <div class="item">
-              <div class="i-a" style="background-image: url(assets/imgs/mv/m10.jpg)">
-                <span class="a-b">40:44</span>
-                <span class="a-c">国产</span>
-              </div>
-              <div class="i-b">
-                <b>四川自贡大四学姐蒋雯雯 女神学霸背后是淫贱骚母狗 被主人爆操视频流出</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />2840</span>
-                  <span><i class="mvfont mv-zan" />220</span>
+                  <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
+                  <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
                 </p>
               </div>
             </div>
@@ -184,12 +51,123 @@
         </nav>
       </section>
     </main>
-    <Footer />
+    <Footer active-menu="index" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { getAssetsFile } from '@/utils'
+import { ref, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Autoplay } from 'swiper/modules'
+import { useAppStoreHook } from '@/store/app'
+import { getAdListApi } from '@/api/app'
+import { getVideoListApi } from '@/api/video'
+import decryptionService from '@/utils/decryptionService'
+import type { VideoQueryParams, Video } from '@/types/video'
+
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/index/indexHeader.vue'
+
+import 'swiper/css'
+
+const route = useRoute()
+const router = useRouter()
+const appStore = useAppStoreHook()
+const decrypt = new decryptionService()
+
+const bannerAds = ref([])
+const videos = ref<Video[]>([])
+const selectedCategory = ref('')
+const currentSort = ref<'addTime' | 'clickCounts' | 'goodCounts'>('addTime')
+
+const modules = [Autoplay]
+
+const sortOptions = [
+  { label: '按最新', value: 'addTime' as const },
+  { label: '按最热', value: 'clickCounts' as const },
+  { label: '按好评', value: 'goodCounts' as const }
+]
+
+const categories = computed(() => {
+  const categoryId = route.params.id as string
+  const parentCategory = appStore.categorys.find((cat) => cat.cId === categoryId)
+
+  if (parentCategory && parentCategory.children) {
+    return [{ cId: categoryId, categoryName: '全部' }, ...parentCategory.children]
+  } else {
+    // 如果没有找到对应的父分类或没有子分类，则返回空数组
+    return []
+  }
+})
+
+const fetchBannerAds = async () => {
+  try {
+    const response = await getAdListApi(2)
+    bannerAds.value = response.data || []
+  } catch (error) {
+    console.error('获取banner广告失败:', error)
+  }
+}
+
+const fetchVideos = async () => {
+  try {
+    const params: VideoQueryParams = {
+      page: 1,
+      pageSize: 30,
+      sortBy: currentSort.value,
+      categoryId: selectedCategory.value === route.params.id ? undefined : parseInt(selectedCategory.value, 10)
+    }
+    const response = await getVideoListApi(params)
+
+    if (response.data.data) {
+      videos.value = await Promise.all(
+        response.data.data.map(async (video) => ({
+          ...video,
+          poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
+        }))
+      )
+    }
+  } catch (error) {
+    console.error('获取视频列表失败:', error)
+  }
+}
+
+const selectCategory = (categoryId: string) => {
+  selectedCategory.value = categoryId
+  fetchVideos()
+}
+
+const changeSort = (sortValue: 'addTime' | 'clickCounts' | 'goodCounts') => {
+  currentSort.value = sortValue
+  fetchVideos()
+}
+
+onMounted(async () => {
+  const categoryId = route.params.id as string
+  selectedCategory.value = categoryId
+  await fetchBannerAds()
+  await fetchVideos()
+})
 </script>
+
+<style scoped>
+.mv-swiper {
+  max-height: 18rem;
+}
+.swiper {
+  height: 100%;
+}
+.swiper-slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.swiper-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+</style>

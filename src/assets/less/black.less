@@ -968,10 +968,15 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 
 .mv-swiper { position: relative; margin: 1rem; overflow: hidden;
-    .swiper-container { width: 100%; height: auto; }
+    .swiper-container { width: 100%; height: auto; 
+        .van-swipe__track { height: 12.7rem; 
+            .van-swipe-item { 
+                a { margin: .4rem; display: inline-block; .radius(.5rem); overflow: hidden; }
+                img { width: 100%; }
+            }
+        }
+    }
 
-    .swiper-slide a { margin: .4rem; display: inline-block; .radius(.5rem); overflow: hidden; }
-    .swiper-slide img { width: 100%; }
 }
 
 

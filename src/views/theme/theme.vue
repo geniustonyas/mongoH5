@@ -10,7 +10,7 @@
           </div>
         </div>
         <div :class="['c-l', { expanded: isExpanded(category.tId) }]" ref="contentRefs">
-          <a v-for="tag in category.children" :key="tag.tId">
+          <a v-for="tag in category.children" :key="tag.tId" @click="router.push({ name: 'search', query: { keyword: tag.name } })">
             <span>{{ tag.name }}</span>
             <small
               >收录：<b>{{ tag.video_count }}</b></small
@@ -19,7 +19,7 @@
         </div>
       </div>
     </section>
-    <Footer />
+    <Footer active-menu="theme" />
   </div>
 </template>
 
@@ -29,6 +29,9 @@ import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/theme/themeHeader.vue'
 import { getThemeTagApi } from '@/api/theme'
 import type { ThemeTag } from '@/types/theme'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const themeData = ref<ThemeTag[]>([])
 const expandedCategories = ref<Set<number>>(new Set())

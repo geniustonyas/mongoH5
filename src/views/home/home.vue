@@ -66,7 +66,7 @@
       </div>
     </section>
 
-    <Footer />
+    <Footer active-menu="home" />
   </div>
 </template>
 
