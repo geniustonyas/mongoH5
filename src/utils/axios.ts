@@ -3,7 +3,7 @@ import { useAppStoreHook } from '@/store/app'
 // import { useUserStoreHook } from '@/store/user'
 import { merge } from 'lodash-es'
 import { TokenPrefix, getToken } from '@/utils/auth'
-import { ApiResponseData } from '@/types/api'
+import { ApiResponseData } from '@/types/api.d'
 
 let loadingRequestCount = 0 // loading请求数
 

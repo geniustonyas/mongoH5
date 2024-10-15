@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="d-r">
-        <i class="mvfont mv-kefu1" />
+        <i class="mvfont mv-kefu1" @click="openCustomerService" />
       </div>
     </header>
     <section class="g-l-b">
@@ -169,6 +169,17 @@
 </template>
 
 <script setup lang="ts">
-import { getAssetsFile } from '@/utils'
+import { useAppStoreHook } from '@/store/app'
 import Footer from '@/components/layout/Footer.vue'
+
+const appStore = useAppStoreHook()
+
+const openCustomerService = () => {
+  const customerServiceLink = appStore.systemSettings.customer_service_link
+  if (customerServiceLink) {
+    window.open(customerServiceLink, '_blank')
+  } else {
+    console.warn('客服链接未设置')
+  }
+}
 </script>

@@ -79,9 +79,9 @@ const fetchVideoDetail = async () => {
   try {
     const id = Number(route.params.id)
     const response = await getVideoDetailApi(id)
-    videoDetail.value = response.data
-    if (videoDetail.value) {
-      videoDetail.value.poster = await decrypt.fetchAndDecrypt(`${response.data.posterDomain}${response.data.poster}`)
+    videoDetail.value = response.data as Video
+    if (videoDetail.value && 'posterDomain' in response.data) {
+      videoDetail.value.poster = await decrypt.fetchAndDecrypt(`${response.data.posterDomain}${videoDetail.value.poster}`)
     }
   } catch (error) {
     console.error('获取视频详情失败:', error)
@@ -141,5 +141,7 @@ onMounted(async () => {
 
   // @ts-ignore
   const player = new Player(playerConfig)
+  console.log(player)
 })
 </script>
+
