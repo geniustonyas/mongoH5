@@ -8,3 +8,11 @@ export function getThemeTagApi() {
     method: 'get'
   })
 }
+
+/** 获取演员列表 */
+// export function getActorListApi() {
+//   return request<ActorListResp>({
+//     url: 'api/actorList',
+//     method: 'get'
+//   })
+// }

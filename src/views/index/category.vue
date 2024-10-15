@@ -48,6 +48,18 @@
               </div>
             </div>
           </div>
+          <div class="au-pagination-box">
+            <div class="pb-x">
+              <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage === 1 }">上一页</a>
+            </div>
+            <div class="pb-x">
+              <input v-model="currentPage" @change="fetchVideos" type="number" min="1" :max="totalPages" />
+              <span>/ {{ totalPages }}</span>
+            </div>
+            <div class="pb-x">
+              <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage === totalPages }">下一页</a>
+            </div>
+          </div>
         </nav>
       </section>
     </main>
@@ -56,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
@@ -64,7 +76,7 @@ import { useAppStoreHook } from '@/store/app'
 import { getAdListApi } from '@/api/app'
 import { getVideoListApi } from '@/api/video'
 import decryptionService from '@/utils/decryptionService'
-import type { VideoQueryParams, Video } from '@/types/video'
+import type { VideoQueryParams, Video, VideoListResponse } from '@/types/video'
 
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/index/indexHeader.vue'
@@ -80,6 +92,9 @@ const bannerAds = ref([])
 const videos = ref<Video[]>([])
 const selectedCategory = ref('')
 const currentSort = ref<'addTime' | 'clickCounts' | 'goodCounts'>('addTime')
+const currentPage = ref(1)
+const totalPages = ref(1)
+const pageSize = ref(30)
 
 const modules = [Autoplay]
 
@@ -113,20 +128,22 @@ const fetchBannerAds = async () => {
 const fetchVideos = async () => {
   try {
     const params: VideoQueryParams = {
-      page: 1,
-      pageSize: 30,
+      page: currentPage.value,
+      pageSize: pageSize.value,
       sortBy: currentSort.value,
       categoryId: selectedCategory.value === route.params.id ? undefined : parseInt(selectedCategory.value, 10)
     }
-    const response = await getVideoListApi(params)
+    const response: VideoListResponse = await getVideoListApi(params)
 
-    if (response.data.data) {
+    if (response.data) {
       videos.value = await Promise.all(
         response.data.data.map(async (video) => ({
           ...video,
           poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
         }))
       )
+      currentPage.value = response.data.currentPage
+      totalPages.value = response.data.totalPages
     }
   } catch (error) {
     console.error('获取视频列表失败:', error)
@@ -142,6 +159,18 @@ const changeSort = (sortValue: 'addTime' | 'clickCounts' | 'goodCounts') => {
   currentSort.value = sortValue
   fetchVideos()
 }
+
+const changePage = (newPage: number) => {
+  if (newPage >= 1 && newPage <= totalPages.value) {
+    currentPage.value = newPage
+    fetchVideos()
+  }
+}
+
+watch([selectedCategory, currentSort], () => {
+  currentPage.value = 1
+  fetchVideos()
+})
 
 onMounted(async () => {
   const categoryId = route.params.id as string
@@ -169,5 +198,9 @@ onMounted(async () => {
   max-height: 100%;
   object-fit: contain;
   border-radius: 0.5rem;
+}
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 </style>

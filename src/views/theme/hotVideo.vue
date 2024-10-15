@@ -9,7 +9,7 @@
         <span :class="{ active: activeRank === 'day' }" @click="changeRank('day')">日榜单</span>
       </div>
       <ul>
-        <li v-for="video in videos" :key="video.videoId">
+        <li v-for="video in videos" :key="video.videoId" @click="router.push({ name: 'play', params: { id: video.videoId } })">
           <div class="l-a">
             <img :src="video.poster" />
             <span class="a-a">{{ video.resolution }}</span>
@@ -43,6 +43,9 @@ import type { VideoQueryParams, Video } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/theme/themeHeader.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const decrypt = new decryptionService()
 

@@ -21,118 +21,118 @@
           </div>
         </div>
         <div class="a-l">
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a1.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
               <span class="s-a">85部</span>
             </div>
             <span>森澤佳奈</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a2.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a2.jpg')})` }">
               <span class="s-a">79部</span>
               <span class="s-b"><b>知名女优</b></span>
             </div>
             <span>桃乃木香奈</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a3.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a3.jpg')})` }">
               <span class="s-a">74部</span>
             </div>
             <span>美園和花</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a4.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a4.jpg')})` }">
               <span class="s-a">73部</span>
             </div>
             <span>西宮夢</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a5.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a5.jpg')})` }">
               <span class="s-a">72部</span>
               <span class="s-b"><b>知名女优</b></span>
             </div>
             <span>桜空桃</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a6.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a6.jpg')})` }">
               <span class="s-a">70部</span>
               <span class="s-b">知名</span>
             </div>
             <span>天海翼</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a1.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
               <span class="s-a">85部</span>
             </div>
             <span>森澤佳奈</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a2.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a2.jpg')})` }">
               <span class="s-a">79部</span>
               <span class="s-b"><b>知名女优</b></span>
             </div>
             <span>桃乃木香奈</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a3.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a3.jpg')})` }">
               <span class="s-a">74部</span>
             </div>
             <span>美園和花</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a4.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a4.jpg')})` }">
               <span class="s-a">73部</span>
             </div>
             <span>西宮夢</span>
           </a>
-          <a href="#">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a5.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a5.jpg')})` }">
               <span class="s-a">72部</span>
               <span class="s-b"><b>知名女优</b></span>
             </div>
             <span>桜空桃</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a6.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a6.jpg')})` }">
               <span class="s-a">70部</span>
               <span class="s-b">知名</span>
             </div>
             <span>天海翼</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a1.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
               <span class="s-a">85部</span>
             </div>
             <span>森澤佳奈</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a2.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a2.jpg')})` }">
               <span class="s-a">79部</span>
               <span class="s-b"><b>知名女优</b></span>
             </div>
             <span>桃乃木香奈</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a3.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a3.jpg')})` }">
               <span class="s-a">74部</span>
             </div>
             <span>美園和花</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a4.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a4.jpg')})` }">
               <span class="s-a">73部</span>
             </div>
             <span>西宮夢</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a5.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a5.jpg')})` }">
               <span class="s-a">72部</span>
               <span class="s-b"><b>知名女优</b></span>
             </div>
             <span>桜空桃</span>
           </a>
-          <a href="actor_detail.html">
-            <div class="l-img" style="background-image: url(/assets/imgs/actor/a6.jpg)">
+          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a6.jpg')})` }">
               <span class="s-a">70部</span>
               <span class="s-b">知名</span>
             </div>
@@ -149,4 +149,7 @@
 import { getAssetsFile } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/theme/themeHeader.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 </script>

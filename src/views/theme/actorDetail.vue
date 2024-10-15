@@ -2,11 +2,11 @@
   <div class="page">
     <section class="a-d-b">
       <div class="ab-a">
-        <a href="javascript:void(0)" onclick="javascript:history.go(-1)" class="a-bk"><i class="mvfont mv-left" /></a>
-        <div class="a-x" style="background-image: url(assets/imgs/actor/a1.jpg)">
+        <a href="javascript:void(0)" @click="goBack" class="a-bk"><i class="mvfont mv-left" /></a>
+        <div class="a-x" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
           <div class="x-c">
             <div class="c-bd">
-              <div class="c-i" style="background-image: url(assets/imgs/actor/a1.jpg)">
+              <div class="c-i" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
                 <span class="i-a">知名女优</span>
               </div>
               <div class="c-n">
@@ -63,145 +63,30 @@
         </div>
         <div class="a-y">
           <div class="y-t">
-            <div class="t-l">作品(<b>80</b>部)</div>
+            <div class="t-l">
+              作品(
+              <b> {{ videos.length }} </b>部)
+            </div>
             <div class="t-r">
-              <span class="active">最近更新</span>
-              <span>最多观看</span>
-              <span>最多收藏</span>
+              <span :class="{ active: activeSort === 'addTime' }" @click="changeSort('addTime')">最近更新</span>
+              <span :class="{ active: activeSort === 'clickCounts' }" @click="changeSort('clickCounts')">最多观看</span>
+              <span :class="{ active: activeSort === 'favoriteCounts' }" @click="changeSort('favoriteCounts')">最多收藏</span>
             </div>
           </div>
           <div class="y-m">
             <nav class="mv-t-l">
               <div class="m-b">
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m1.jpg)">
-                    <span class="a-a">1080P</span>
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
+                <div v-for="video in videos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
+                  <div class="i-a" :style="{ backgroundImage: `url(${video.poster})` }">
+                    <span v-if="video.resolution" class="a-a">{{ video.resolution }}</span>
+                    <span class="a-b">{{ video.playTime }}</span>
+                    <span class="a-c">{{ video.categoryName }}</span>
                   </div>
                   <div class="i-b">
-                    <b>星空-性感台球女教练被硬屌进洞-琳达。</b>
+                    <b>{{ video.title }}</b>
                     <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m2.jpg)">
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
-                  </div>
-                  <div class="i-b">
-                    <b>星空-星空大排档暖饱思淫欲 疯狂被胬的老板娘-雯雯。</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m3.jpg)">
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
-                  </div>
-                  <div class="i-b">
-                    <b>天美TMW041情欲荷官任你干-吴芳宜。</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m4.jpg)">
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
-                  </div>
-                  <div class="i-b">
-                    <b>RCTD-233 人生最美好的時候突然變成最糟的惡夢穿上恥辱恥辱婚紗的奴隸新娘 鈴木里美 松永紗奈</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m5.jpg)">
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
-                  </div>
-                  <div class="i-b">
-                    <b>蜜桃-女优面试-林芳。</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m6.jpg)">
-                    <span class="a-a">720P</span>
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
-                  </div>
-                  <div class="i-b">
-                    <b>蜜桃-情欲瑜伽 爱液喷发 苏艾文(蜜苏)</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m7.jpg)">
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
-                  </div>
-                  <div class="i-b">
-                    <b>蜜桃-女助教性爱成瘾-张欣妍</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m8.jpg)">
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
-                  </div>
-                  <div class="i-b">
-                    <b>蜜桃-强欲岳母觊觎大屌女婿-李蓉蓉</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m9.jpg)">
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
-                  </div>
-                  <div class="i-b">
-                    <b>上海F奶车模 与土豪援交视频流出</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="i-a" style="background-image: url(assets/imgs/mv/m10.jpg)">
-                    <span class="a-b">40:44</span>
-                    <span class="a-c">国产</span>
-                  </div>
-                  <div class="i-b">
-                    <b>四川自贡大四学姐蒋雯雯 女神学霸背后是淫贱骚母狗 被主人爆操视频流出</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />2840</span>
-                      <span><i class="mvfont mv-zan" />220</span>
+                      <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
+                      <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
                     </p>
                   </div>
                 </div>
@@ -215,7 +100,56 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { getAssetsFile } from '@/utils'
-import Footer from '@/components/layout/Footer.vue'
-import Header from '@/views/theme/themeHeader.vue'
+import { useRouter } from 'vue-router'
+import { getVideoListApi } from '@/api/video'
+import type { VideoQueryParams, Video } from '@/types/video'
+import decryptionService from '@/utils/decryptionService'
+
+const router = useRouter()
+const decrypt = new decryptionService()
+
+const videos = ref<Video[]>([])
+const activeSort = ref('addTime')
+
+const fetchVideos = async (sortBy: 'clickCounts' | 'goodCounts' | 'favoriteCounts' | 'addTime') => {
+  try {
+    const params: VideoQueryParams = {
+      page: 1,
+      pageSize: 30,
+      sortBy: sortBy
+      // 如果需要，这里可以添加演员ID的过滤条件
+      // actorId: route.params.id // 假设你使用路由参数传递演员ID
+    }
+    const response = await getVideoListApi(params)
+
+    if (response.data.data) {
+      videos.value = await Promise.all(
+        response.data.data.map(async (video) => ({
+          ...video,
+          poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
+        }))
+      )
+    } else {
+      videos.value = []
+    }
+  } catch (error) {
+    console.error(`获取视频列表失败 (${sortBy}):`, error)
+    videos.value = []
+  }
+}
+
+const changeSort = (sortBy: 'clickCounts' | 'goodCounts' | 'favoriteCounts' | 'addTime') => {
+  activeSort.value = sortBy
+  fetchVideos(sortBy)
+}
+
+const goBack = () => {
+  router.go(-1)
+}
+
+onMounted(() => {
+  fetchVideos('addTime')
+})
 </script>
