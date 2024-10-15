@@ -144,4 +144,3 @@ onMounted(async () => {
   console.log(player)
 })
 </script>
-

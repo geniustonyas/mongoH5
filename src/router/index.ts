@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AppMain from '@/components/layout/AppMain.vue'
-// import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
-// import { getToken } from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -12,7 +12,6 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/index',
-    name: 'index',
     component: AppMain,
     meta: { needLogin: false, keepAlive: false },
     children: [
@@ -98,7 +97,7 @@ const routes: RouteRecordRaw[] = [
         path: '',
         name: 'home',
         component: () => import('@/views/home/home.vue'),
-        meta: { needLogin: true, keepAlive: false }
+        meta: { needLogin: false, keepAlive: false }
       },
       {
         path: 'message',
@@ -123,37 +122,6 @@ const routes: RouteRecordRaw[] = [
         name: 'shareRecord',
         component: () => import('@/views/home/shareRecord.vue'),
         meta: { needLogin: true, keepAlive: false }
-      }
-    ]
-  },
-  {
-    path: '/user',
-    component: AppMain,
-    redirect: { name: 'login' },
-    children: [
-      {
-        path: 'login',
-        name: 'login',
-        component: () => import('@/views/user/login.vue'),
-        meta: { needLogin: false, keepAlive: false }
-      },
-      {
-        path: 'logout',
-        name: 'logout',
-        component: () => import('@/views/user/logout.vue'),
-        meta: { needLogin: true, keepAlive: false }
-      },
-      {
-        path: 'reg',
-        name: 'reg',
-        component: () => import('@/views/user/reg.vue'),
-        meta: { needLogin: false, keepAlive: false }
-      },
-      {
-        path: 'forget',
-        name: 'forget',
-        component: () => import('@/views/user/forget.vue'),
-        meta: { needLogin: false, keepAlive: false }
       }
     ]
   },
@@ -203,49 +171,37 @@ const router = createRouter({
 })
 
 // 验证是否需要登录
-router.beforeEach((to, from, next) => {
-  // const token = getToken()
-  // let userStore: any = null
-  let appStore: any = null
-  if (appStore === null) {
-    appStore = useAppStore()
-    if (appStore.tags.length == 0) {
-      appStore.fetConfig()
-      // appStore.refreshMainStatus()
+router.beforeEach(async (to, from, next) => {
+  const token = getToken()
+  const userStore = useUserStore()
+  const appStore = useAppStore()
+
+  // 如果应用配置还未加载，则加载配置
+  if (appStore.tags.length === 0) {
+    await appStore.fetConfig()
+  }
+
+  if (token) {
+    if (!userStore.userInfo.userId) {
+      try {
+        await userStore.fetchUserInfo()
+        next()
+      } catch (error) {
+        userStore.clearLogin()
+        userStore.showLoginDialog = true
+        next(false)
+      }
+    } else {
+      next()
+    }
+  } else {
+    if (to.meta.needLogin) {
+      userStore.showLoginDialog = true
+      next(false)
+    } else {
+      next()
     }
   }
-  // if (token) {
-  //   if (userStore === null) {
-  //     userStore = useUserStore()
-  //   }
-  //   if (userStore.userInfo.id) {
-  //     next()
-  //   } else {
-  //     try {
-  //       // 如果有token 跳转路由时就调用一下定时任务方法，目的是确保刷新后有数据
-  //       userStore.refreshToken()
-  //       userStore.refreshNewMessageCount()
-  //       userStore
-  //         .refreshUserInfo()
-  //         .then(() => {
-  //           next()
-  //         })
-  //         .catch(() => {
-  //           next({ name: 'login', query: from.query })
-  //         })
-  //     } catch (error) {
-  //       console.log(error)
-  //       next()
-  //     }
-  //   }
-  // } else {
-  //   if (to.meta.needLogin) {
-  //     next({ name: 'login', query: from.query })
-  //   } else {
-  //     next()
-  //   }
-  // }
-  next()
 })
 
 router.afterEach((to, from) => {

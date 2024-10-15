@@ -1,27 +1,39 @@
 import type { ApiResponseData } from '@/types/api.d'
 
 export interface UserInfo {
-  userId: number
-  inviteUserId: number
-  userName: string
-  nickName: string
-  realName: string
-  idCardNo: string
-  phone: string
-  email: string
-  lastLoginIp: string
+  userId: number | string
+  inviteUserId: number | string
+  userName: string | null
+  nickName: string | null
+  realName: string | null
+  idCardNo: string | null
+  phone: string | null
+  email: string | null
+  lastLoginIp: string | null
   lastLoginTime: string
   country: string
   region: string
   city: string
   loginIp: string
-  inviteCode: number
-  isVip: number
+  inviteCode: number | string
+  isVip: number | string
   vipExpiryDate: string
-  status: number
-  isDel: number
-  updateTime: string
-  addTime: string
+  // status: number
+  // isDel?: number
+  updateTime?: string
+  addTime?: string
 }
+
+export interface loginForm {
+  userName: string
+  password: string
+}
+
+export interface loginRegData {
+  token: string
+  user?: UserInfo
+}
+
+export type loginRegResp = ApiResponseData<loginRegData>
 
 export type UserInfoResp = ApiResponseData<UserInfo>

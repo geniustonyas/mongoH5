@@ -9,12 +9,13 @@
   <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
     <!-- <Loading /> -->
   </Overlay>
+  <Login />
 </template>
 
 <script setup lang="ts">
 import { Overlay } from 'vant'
 import { useAppStore } from '@/store/app'
-
+import Login from '@/components/login.vue'
 const appStore = useAppStore()
 
 const getTransition = (transition: unknown): string | undefined => {

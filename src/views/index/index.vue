@@ -116,45 +116,6 @@
         </div>
       </nav>
 
-      <div class="au-pop" id="pop-login">
-        <div class="ap-bg" />
-        <div class="ap-bd">
-          <div class="p-login">
-            <div class="pl-c">
-              <div class="l-a">
-                <div class="a-l">
-                  <span class="active">登录</span>
-                  <span>注册</span>
-                </div>
-                <div class="a-r" onclick="closePop(this)">
-                  <span><i class="mvfont mv-close" /></span>
-                </div>
-              </div>
-              <div class="l-b">
-                <div class="au-form-goup">
-                  <ul class="f-a">
-                    <li>
-                      <i class="mvfont mv-user" />
-                      <input placeholder="账号/手机号" />
-                    </li>
-                    <li>
-                      <i class="mvfont mv-password" />
-                      <input placeholder="密码" />
-                    </li>
-                  </ul>
-                  <div class="f-b">
-                    <a href="home.html" class="btn btn1">立即登录</a>
-                  </div>
-                  <div class="f-c">
-                    <a href="#">忘记密码？</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="pop-fixed" id="popNews" v-show="appStore.hasShownAnnouncement">
         <div class="pop-container">
           <div class="pop-bd news">
