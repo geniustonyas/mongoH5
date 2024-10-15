@@ -1,31 +1,22 @@
 <template>
   <header class="m-header">
     <div class="h-m">
-      <a href="hot.html" class="active">热点</a>
-      <a href="theme.html">主题</a>
-      <a href="actor.html">女优</a>
+      <a @click="router.push({ name: 'hot' })" :class="{ active: currentRoute === 'hot' }">热点</a>
+      <a @click="router.push({ name: 'theme' })" :class="{ active: currentRoute === 'theme' }">主题</a>
+      <a @click="router.push({ name: 'actor' })" :class="{ active: currentRoute === 'actor' }">女优</a>
     </div>
     <div class="h-r">
-      <i class="mvfont mv-search" />
+      <i @click="router.push({ name: 'search' })" class="mvfont mv-search" />
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-function handleScroll() {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-  const header = document.querySelector('.header')!
-  const hmB = document.querySelector('.head-menu .hm-b') as HTMLElement
+import { computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
-  if (scrollTop > 100) {
-    hmB.style.display = 'block'
-    header.classList.add('fixed')
-  } else {
-    hmB.style.display = 'none'
-    header.classList.remove('fixed')
-  }
-}
+const router = useRouter()
+const route = useRoute()
 
-// 使用 passive 选项来提高滚动性能
-window.addEventListener('scroll', handleScroll, { passive: true })
+const currentRoute = computed(() => route.name)
 </script>

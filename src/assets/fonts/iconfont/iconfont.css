@@ -1,8 +1,8 @@
 @font-face {
   font-family: "mvfont"; /* Project id 4698642 */
-  src: url('iconfont.woff2?t=1728029054341') format('woff2'),
-       url('iconfont.woff?t=1728029054341') format('woff'),
-       url('iconfont.ttf?t=1728029054341') format('truetype');
+  src: url('iconfont.woff2?t=1728719394691') format('woff2'),
+       url('iconfont.woff?t=1728719394691') format('woff'),
+       url('iconfont.ttf?t=1728719394691') format('truetype');
 }
 
 .mvfont {
@@ -11,6 +11,74 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.mv-bofang2:before {
+  content: "\e657";
+}
+
+.mv-dianji:before {
+  content: "\e87c";
+}
+
+.mv-dianying:before {
+  content: "\e778";
+}
+
+.mv-dianying-full:before {
+  content: "\e9fd";
+}
+
+.mv-duanju:before {
+  content: "\e609";
+}
+
+.mv-erweima:before {
+  content: "\e643";
+}
+
+.mv-email_full:before {
+  content: "\e684";
+}
+
+.mv-telegram:before {
+  content: "\f246";
+}
+
+.mv-email:before {
+  content: "\e719";
+}
+
+.mv-guanwang:before {
+  content: "\ea11";
+}
+
+.mv-ie:before {
+  content: "\e601";
+}
+
+.mv-xiazai1:before {
+  content: "\e63c";
+}
+
+.mv-xiazai2:before {
+  content: "\e606";
+}
+
+.mv-ios:before {
+  content: "\e624";
+}
+
+.mv-android:before {
+  content: "\e639";
+}
+
+.mv-bofang1:before {
+  content: "\f470";
+}
+
+.mv-riqi:before {
+  content: "\e637";
 }
 
 .mv-lishishijian-:before {

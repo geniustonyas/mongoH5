@@ -1,165 +1,51 @@
 <template>
-  <div class="page">
+  <div class="page" v-if="videoDetail">
     <section class="m-d-b">
       <div class="md-a">
-        <a class="a-r" onclick="javascript:history.go(-1)"><i class="mvfont mv-left" /></a>
-        <video playsinline controls preload="auto" controlslist="nodownload" controlslist="nofullscreen" poster="http://localhost:50066/assets/imgs/banner/b2.jpg" src="https://media.w3.org/2010/05/sintel/trailer.mp4" />
+        <a class="a-r" @click="$router.back()"><i class="mvfont mv-left" /></a>
+        <div id="video-player" />
       </div>
       <div class="md-b">
         <div class="b-a">
-          <div class="a-a">玩偶姐姐-爱在夏威夷篇,这个是视频的标题</div>
+          <div class="a-a">{{ videoDetail.title }}</div>
           <div class="a-b">
-            <span><i class="mvfont mv-time" />2024-10-10</span>
-            <span><i class="mvfont mv-kan" />6006</span>
+            <span><i class="mvfont mv-time" />{{ videoDetail.addTime }}</span>
+            <span><i class="mvfont mv-kan" />{{ videoDetail.clickCounts }}</span>
           </div>
-          <div class="a-c"><span>#少女</span><span>#美乳</span><span>#诱惑</span><span>#剧情</span> <span>#调教</span><span>#玩偶姐姐</span><span>#国产</span></div>
+          <div class="a-c">
+            <span v-for="tag in videoDetail.tags" :key="tag">#{{ tag }}</span>
+          </div>
         </div>
         <div class="b-b">
-          <span><i class="mvfont mv-zan" /><b>2044</b></span>
-          <span><i class="mvfont mv-nzan" /><b>65</b></span>
-          <span><i class="mvfont mv-like" /><b>2044</b></span>
-          <span><i class="mvfont mv-zhuanfa1" />分享</span>
+          <span>
+            <i class="mvfont mv-zan" /><b>{{ videoDetail.goodCounts }}</b>
+          </span>
+          <span>
+            <i class="mvfont mv-nzan" /><b>{{ videoDetail.noGoodCounts }}</b>
+          </span>
+          <span>
+            <i class="mvfont mv-like" /><b>{{ videoDetail.favoriteCounts }}</b>
+          </span>
+          <span><i @click="router.push({ name: 'share' })" class="mvfont mv-zhuanfa1" />分享</span>
         </div>
-        <!--<div class="b-c">
-              <i class="mvfont mv-guangbo"></i>
-              <p>请牢记域名:<b> mgvt.cc</b>；发送邮件至：<b>mgtv.cc@gmail.com</b>可获得最新地址</p>
-          </div>-->
-        <div class="ad-box"><img src="assets/imgs/cpt2.png" /></div>
+        <div class="ad-box"><img @click="window.open('https://www.baidu.com')" :src="getAssetsFile('cpt2.png')" /></div>
       </div>
       <nav class="mv-t-l">
         <div class="m-a">
           <div class="a-l"><i class="mvfont mv-xietiao" /><span>猜你喜欢</span></div>
         </div>
         <div class="m-b">
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m1.jpg)">
-              <span class="a-a">1080P</span>
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
+          <div v-for="video in recommendedVideos" :key="video.videoId" class="item" @click="$router.push({ name: 'play', params: { id: video.videoId } })">
+            <div class="i-a" v-lazy:background-image="video.poster">
+              <span v-if="video.resolution" class="a-a">{{ video.resolution }}</span>
+              <span class="a-b">{{ video.playTime }}</span>
+              <span class="a-c">{{ video.categoryName }}</span>
             </div>
             <div class="i-b">
-              <b>边水·会员爽看全集</b>
+              <b>{{ video.title }}</b>
               <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m2.jpg)">
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
-            </div>
-            <div class="i-b">
-              <b>边水·会员爽看全集,会员爽看全集,2242</b>
-              <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m3.jpg)">
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
-            </div>
-            <div class="i-b">
-              <b>边水·会员爽看全集</b>
-              <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m4.jpg)">
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
-            </div>
-            <div class="i-b">
-              <b>边水·会员爽看全集</b>
-              <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m5.jpg)">
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
-            </div>
-            <div class="i-b">
-              <b>边水·会员爽看全集</b>
-              <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m6.jpg)">
-              <span class="a-a">720P</span>
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
-            </div>
-            <div class="i-b">
-              <b>边水·会员爽看全集</b>
-              <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m7.jpg)">
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
-            </div>
-            <div class="i-b">
-              <b>边水·会员爽看全集</b>
-              <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m8.jpg)">
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
-            </div>
-            <div class="i-b">
-              <b>边水·会员爽看全集</b>
-              <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m9.jpg)">
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
-            </div>
-            <div class="i-b">
-              <b>边水·会员爽看全集</b>
-              <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="i-a" style="background-image: url(assets/imgs/temp/m10.jpg)">
-              <span class="a-b">40:44</span>
-              <span class="a-c">国产</span>
-            </div>
-            <div class="i-b">
-              <b>边水·会员爽看全集</b>
-              <p>
-                <span><i class="mvfont mv-kan" />2840</span>
-                <span><i class="mvfont mv-zan" />220</span>
+                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
+                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
               </p>
             </div>
           </div>
@@ -169,9 +55,91 @@
     <main class="main" />
   </div>
 </template>
+
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
+import { ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { getVideoDetailApi, getVideoListApi } from '@/api/video'
+import type { Video, VideoQueryParams } from '@/types/video'
+import decryptionService from '@/utils/decryptionService'
+import { getAssetsFile } from '@/utils'
+import Player from 'xgplayer'
+import HlsJsPlugin from 'xgplayer-hls.js' // 引入HLS插件
+// import FlvJsPlugin from 'xgplayer-flv.js' // 引入FLV插件
+import 'xgplayer/dist/index.min.css'
 
 const route = useRoute()
-console.log(route.params.id)
+const router = useRouter()
+const videoDetail = ref<Video | null>(null)
+const recommendedVideos = ref<Video[]>([])
+
+const decrypt = new decryptionService()
+
+const fetchVideoDetail = async () => {
+  try {
+    const id = Number(route.params.id)
+    const response = await getVideoDetailApi(id)
+    videoDetail.value = response.data
+    if (videoDetail.value) {
+      videoDetail.value.poster = await decrypt.fetchAndDecrypt(`${response.data.posterDomain}${response.data.poster}`)
+    }
+  } catch (error) {
+    console.error('获取视频详情失败:', error)
+  }
+}
+
+const fetchRecommendedVideos = async () => {
+  try {
+    const params: VideoQueryParams = {
+      page: 1,
+      pageSize: 10,
+      sortBy: 'clickCounts'
+    }
+    const response = await getVideoListApi(params)
+    if (response.data.data) {
+      recommendedVideos.value = await Promise.all(
+        response.data.data.map(async (video) => ({
+          ...video,
+          poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
+        }))
+      )
+    }
+  } catch (error) {
+    console.error('获取推荐视频列表失败:', error)
+  }
+}
+
+onMounted(async () => {
+  await fetchVideoDetail()
+  await fetchRecommendedVideos()
+
+  const url = videoDetail.value.playDomain + videoDetail.value.playUrl
+  // const fileExtension = url.split('.').pop().toLowerCase()
+
+  let playerConfig = {
+    id: 'video-player',
+    url: url,
+    poster: videoDetail.value.poster,
+    autoplay: true,
+    controls: true,
+    fluid: true,
+    playsinline: true,
+    'x5-video-player-type': 'h5',
+    'x5-video-player-fullscreen': true,
+    'x5-video-orientation': 'portraint',
+    plugins: [HlsJsPlugin],
+    useHlsJs: true
+  }
+
+  // // 根据文件扩展名设置type
+  // if (fileExtension === 'm3u8') {
+  //   playerConfig.type = 'hls'
+  // } else if (fileExtension === 'flv') {
+  //   playerConfig.type = 'flv'
+  // }
+  // // 如果没有明确的扩展名，让播放器自动检测
+
+  // @ts-ignore
+  const player = new Player(playerConfig)
+})
 </script>

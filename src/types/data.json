@@ -1,0 +1,1076 @@
+{
+  "message": "标签树及视频数量获取成功",
+  "code": 200,
+  "data": [
+      {
+          "tId": 1,
+          "pid": 0,
+          "name": "衣著",
+          "status": 1,
+          "icon": "",
+          "sort": 0,
+          "video_count": 0,
+          "children": [
+              {
+                  "tId": 2,
+                  "pid": 1,
+                  "name": "黑丝",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 73
+              },
+              {
+                  "tId": 3,
+                  "pid": 1,
+                  "name": "过膝袜",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 4,
+                  "pid": 1,
+                  "name": "运动装",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 5,
+                  "pid": 1,
+                  "name": "肉丝",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 2
+              },
+              {
+                  "tId": 6,
+                  "pid": 1,
+                  "name": "丝袜",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 181
+              },
+              {
+                  "tId": 7,
+                  "pid": 1,
+                  "name": "眼镜娘",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 8,
+                  "pid": 1,
+                  "name": "兽耳",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 9,
+                  "pid": 1,
+                  "name": "渔网",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 1
+              },
+              {
+                  "tId": 10,
+                  "pid": 1,
+                  "name": "水着",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 11,
+                  "pid": 1,
+                  "name": "校服",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 1
+              },
+              {
+                  "tId": 12,
+                  "pid": 1,
+                  "name": "旗袍",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 3
+              },
+              {
+                  "tId": 13,
+                  "pid": 1,
+                  "name": "婚纱",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 3
+              },
+              {
+                  "tId": 14,
+                  "pid": 1,
+                  "name": "女仆",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 6
+              },
+              {
+                  "tId": 15,
+                  "pid": 1,
+                  "name": "和服",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 3
+              },
+              {
+                  "tId": 16,
+                  "pid": 1,
+                  "name": "吊带袜",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 17,
+                  "pid": 1,
+                  "name": "兔女郎",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 1
+              },
+              {
+                  "tId": 18,
+                  "pid": 1,
+                  "name": "Cosplay",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 19,
+                  "pid": 1,
+                  "name": "旗袍",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 3
+              }
+          ]
+      },
+      {
+          "tId": 20,
+          "pid": 0,
+          "name": "身材",
+          "status": 1,
+          "icon": "",
+          "sort": 0,
+          "video_count": 15,
+          "children": [
+              {
+                  "tId": 21,
+                  "pid": 20,
+                  "name": "黑肉",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 22,
+                  "pid": 20,
+                  "name": "长身",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 23,
+                  "pid": 20,
+                  "name": "软体",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 24,
+                  "pid": 20,
+                  "name": "贫乳",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 7
+              },
+              {
+                  "tId": 25,
+                  "pid": 20,
+                  "name": "美腿",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 86
+              },
+              {
+                  "tId": 26,
+                  "pid": 20,
+                  "name": "美尻",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 27,
+                  "pid": 20,
+                  "name": "纹身",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 2
+              },
+              {
+                  "tId": 28,
+                  "pid": 20,
+                  "name": "短发",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 19
+              },
+              {
+                  "tId": 29,
+                  "pid": 20,
+                  "name": "白虎",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 96
+              },
+              {
+                  "tId": 30,
+                  "pid": 20,
+                  "name": "熟女",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 75
+              },
+              {
+                  "tId": 31,
+                  "pid": 20,
+                  "name": "巨乳",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 287
+              },
+              {
+                  "tId": 32,
+                  "pid": 20,
+                  "name": "少女",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 109
+              },
+              {
+                  "tId": 33,
+                  "pid": 20,
+                  "name": "娇小",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 1
+              },
+              {
+                  "tId": 34,
+                  "pid": 20,
+                  "name": "处女",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              }
+          ]
+      },
+      {
+          "tId": 35,
+          "pid": 0,
+          "name": "交合",
+          "status": 1,
+          "icon": "",
+          "sort": 0,
+          "video_count": 0,
+          "children": [
+              {
+                  "tId": 36,
+                  "pid": 35,
+                  "name": "颜射",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 18
+              },
+              {
+                  "tId": 37,
+                  "pid": 35,
+                  "name": "脚交",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 38,
+                  "pid": 35,
+                  "name": "肛交",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 13
+              },
+              {
+                  "tId": 39,
+                  "pid": 35,
+                  "name": "痉挛",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 2
+              },
+              {
+                  "tId": 40,
+                  "pid": 35,
+                  "name": "潮吹",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 16
+              },
+              {
+                  "tId": 41,
+                  "pid": 35,
+                  "name": "深喉",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 31
+              },
+              {
+                  "tId": 42,
+                  "pid": 35,
+                  "name": "接吻",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 11
+              },
+              {
+                  "tId": 43,
+                  "pid": 35,
+                  "name": "口爆",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 27
+              },
+              {
+                  "tId": 44,
+                  "pid": 35,
+                  "name": "口交",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 511
+              },
+              {
+                  "tId": 45,
+                  "pid": 35,
+                  "name": "乳交",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 15
+              },
+              {
+                  "tId": 46,
+                  "pid": 35,
+                  "name": "中出",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 120
+              }
+          ]
+      },
+      {
+          "tId": 47,
+          "pid": 0,
+          "name": "玩法",
+          "status": 1,
+          "icon": "",
+          "sort": 0,
+          "video_count": 0,
+          "children": [
+              {
+                  "tId": 48,
+                  "pid": 47,
+                  "name": "露出",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 1
+              },
+              {
+                  "tId": 49,
+                  "pid": 47,
+                  "name": "轮奸",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 4
+              },
+              {
+                  "tId": 50,
+                  "pid": 47,
+                  "name": "调教",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 66
+              },
+              {
+                  "tId": 51,
+                  "pid": 47,
+                  "name": "捆绑",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 43
+              },
+              {
+                  "tId": 52,
+                  "pid": 47,
+                  "name": "瞬间插入",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 53,
+                  "pid": 47,
+                  "name": "痴汉",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 3
+              },
+              {
+                  "tId": 54,
+                  "pid": 47,
+                  "name": "痴女",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 4
+              },
+              {
+                  "tId": 55,
+                  "pid": 47,
+                  "name": "男M",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 56,
+                  "pid": 47,
+                  "name": "泥醉",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 57,
+                  "pid": 47,
+                  "name": "泡姬",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 58,
+                  "pid": 47,
+                  "name": "母乳",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 59,
+                  "pid": 47,
+                  "name": "放尿",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 19
+              },
+              {
+                  "tId": 60,
+                  "pid": 47,
+                  "name": "按摩",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 10
+              },
+              {
+                  "tId": 61,
+                  "pid": 47,
+                  "name": "多P",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 8
+              },
+              {
+                  "tId": 62,
+                  "pid": 47,
+                  "name": "刑具",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              }
+          ]
+      },
+      {
+          "tId": 63,
+          "pid": 0,
+          "name": "剧情",
+          "status": 1,
+          "icon": "",
+          "sort": 0,
+          "video_count": 88,
+          "children": [
+              {
+                  "tId": 64,
+                  "pid": 63,
+                  "name": "黑人",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 10
+              },
+              {
+                  "tId": 65,
+                  "pid": 63,
+                  "name": "丑男",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 66,
+                  "pid": 63,
+                  "name": "诱惑",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 119
+              },
+              {
+                  "tId": 67,
+                  "pid": 63,
+                  "name": "童贞",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 68,
+                  "pid": 63,
+                  "name": "时间停止",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 69,
+                  "pid": 63,
+                  "name": "复仇",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 70,
+                  "pid": 63,
+                  "name": "年龄差",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 71,
+                  "pid": 63,
+                  "name": "巨汉",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 72,
+                  "pid": 63,
+                  "name": "媚药",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 73,
+                  "pid": 63,
+                  "name": "夫目前犯",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 74,
+                  "pid": 63,
+                  "name": "出轨",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 47
+              },
+              {
+                  "tId": 75,
+                  "pid": 63,
+                  "name": "催眠",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 76,
+                  "pid": 63,
+                  "name": "偷拍",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 66
+              },
+              {
+                  "tId": 77,
+                  "pid": 63,
+                  "name": "下雨天",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 78,
+                  "pid": 63,
+                  "name": "乱伦",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 77
+              },
+              {
+                  "tId": 79,
+                  "pid": 63,
+                  "name": "NTR",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              }
+          ]
+      },
+      {
+          "tId": 80,
+          "pid": 0,
+          "name": "角色",
+          "status": 1,
+          "icon": "",
+          "sort": 0,
+          "video_count": 0,
+          "children": [
+              {
+                  "tId": 81,
+                  "pid": 80,
+                  "name": "风俗娘",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 82,
+                  "pid": 80,
+                  "name": "人妻",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 111
+              },
+              {
+                  "tId": 83,
+                  "pid": 80,
+                  "name": "主播",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 3
+              },
+              {
+                  "tId": 84,
+                  "pid": 80,
+                  "name": "OL",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 7
+              },
+              {
+                  "tId": 85,
+                  "pid": 80,
+                  "name": "医生",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 86,
+                  "pid": 80,
+                  "name": "逃犯",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 87,
+                  "pid": 80,
+                  "name": "护士",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 4
+              },
+              {
+                  "tId": 88,
+                  "pid": 80,
+                  "name": "老师",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 2
+              },
+              {
+                  "tId": 89,
+                  "pid": 80,
+                  "name": "空姐",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 6
+              },
+              {
+                  "tId": 90,
+                  "pid": 80,
+                  "name": "球队经理",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 91,
+                  "pid": 80,
+                  "name": "未亡人",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 92,
+                  "pid": 80,
+                  "name": "搜查官",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 93,
+                  "pid": 80,
+                  "name": "情侣",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 6
+              },
+              {
+                  "tId": 94,
+                  "pid": 80,
+                  "name": "家政妇",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 95,
+                  "pid": 80,
+                  "name": "家庭教师",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 96,
+                  "pid": 80,
+                  "name": "偶像",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              }
+          ]
+      },
+      {
+          "tId": 97,
+          "pid": 0,
+          "name": "地点",
+          "status": 1,
+          "icon": "",
+          "sort": 0,
+          "video_count": 0,
+          "children": [
+              {
+                  "tId": 98,
+                  "pid": 97,
+                  "name": "家里",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 99,
+                  "pid": 97,
+                  "name": "电车",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 1
+              },
+              {
+                  "tId": 100,
+                  "pid": 97,
+                  "name": "监狱",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 101,
+                  "pid": 97,
+                  "name": "温泉",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 1
+              },
+              {
+                  "tId": 102,
+                  "pid": 97,
+                  "name": "洗浴场",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 103,
+                  "pid": 97,
+                  "name": "泳池",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 104,
+                  "pid": 97,
+                  "name": "汽车",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 105,
+                  "pid": 97,
+                  "name": "厕所",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 20
+              },
+              {
+                  "tId": 106,
+                  "pid": 97,
+                  "name": "学校",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 4
+              },
+              {
+                  "tId": 107,
+                  "pid": 97,
+                  "name": "图书馆",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 108,
+                  "pid": 97,
+                  "name": "健身房",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 109,
+                  "pid": 97,
+                  "name": "便利店",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              }
+          ]
+      },
+      {
+          "tId": 110,
+          "pid": 0,
+          "name": "其他",
+          "status": 1,
+          "icon": "",
+          "sort": 0,
+          "video_count": 0,
+          "children": [
+              {
+                  "tId": 111,
+                  "pid": 110,
+                  "name": "录像",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 112,
+                  "pid": 110,
+                  "name": "处女作/引退作",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 113,
+                  "pid": 110,
+                  "name": "综艺",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 114,
+                  "pid": 110,
+                  "name": "节日主题",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 115,
+                  "pid": 110,
+                  "name": "感谢祭",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 116,
+                  "pid": 110,
+                  "name": "4小时以上",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              },
+              {
+                  "tId": 117,
+                  "pid": 110,
+                  "name": "老电影",
+                  "status": 1,
+                  "icon": "",
+                  "sort": 0,
+                  "video_count": 0
+              }
+          ]
+      }
+  ],
+  "errors": null
+}

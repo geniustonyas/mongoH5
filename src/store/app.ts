@@ -6,6 +6,7 @@ export const useAppStore = defineStore('app', {
   state: () => {
     return {
       loading: false,
+      hasShownAnnouncement: true, // 用于跟踪公告是否已显示, 默认为true 需要显示
       systemSettings: {
         customer_cdn_link: '',
         customer_service_link: '',
@@ -19,6 +20,10 @@ export const useAppStore = defineStore('app', {
   actions: {
     setLoading(loading: boolean) {
       this.loading = loading
+    },
+
+    setAnnouncementShown() {
+      this.hasShownAnnouncement = false
     },
 
     async fetConfig() {

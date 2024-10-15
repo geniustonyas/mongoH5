@@ -6,7 +6,7 @@ import router from './router'
 import { Lazyload } from 'vant'
 
 import 'vant/lib/index.css'
-import './assets/less/main.less'
+import './assets/less/black.less'
 
 // 懒加载图片
 // const lazyImage = new URL(`./assets/imgs/logo.png`, import.meta.url).href

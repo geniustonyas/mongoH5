@@ -4,10 +4,10 @@
     <main class="main">
       <!--Banner-->
       <nav id="index-banner" class="swiper-container">
-        <Swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <Swipe class="my-swipe" :autoplay="3000" lazy-render>
           <SwipeItem v-for="ad in bannerAds" :key="ad.adId">
             <a :href="ad.url" :target="ad.target === 1 ? '_blank' : '_self'">
-              <img v-lazy="appStore.systemSettings.customer_cdn_link + ad.thumbnail" :alt="ad.titles" />
+              <img :src="appStore.systemSettings.customer_cdn_link + ad.thumbnail" :alt="ad.titles" />
             </a>
           </SwipeItem>
         </Swipe>
@@ -101,6 +101,7 @@
           <div v-for="video in latestVideos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
             <!-- 使用视频数据渲染每个项目 -->
             <div class="i-a" v-lazy:background-image="video.poster">
+              <!-- <span v-if="video.resolution" class="a-a">{{ video.resolution }}</span> -->
               <span class="a-b">{{ video.playTime }}</span>
               <span class="a-c">{{ video.categoryName }}</span>
             </div>
@@ -149,6 +150,21 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pop-fixed" id="popNews" v-show="appStore.hasShownAnnouncement">
+        <div class="pop-container">
+          <div class="pop-bd news">
+            <div class="pn-x" />
+            <div class="pn-a">
+              <h3>系统公告</h3>
+            </div>
+            <div class="pn-b" v-html="appStore.systemSettings.homepage_announcement" />
+            <div class="pn-c">
+              <a @click="appStore.setAnnouncementShown()">我已阅读</a>
             </div>
           </div>
         </div>

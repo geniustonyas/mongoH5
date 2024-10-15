@@ -6,8 +6,17 @@
         <span>芒果TV</span>
       </div>
       <div @click="router.push({ name: 'search' })" class="hs-b">
-        <input placeholder="番号/片名/演员" />
-        <i class="mvfont mv-search1" />
+        <div class="sb-i">
+          <input />
+          <i class="mvfont mv-search1" />
+        </div>
+        <div class="sb-t">
+          <Swipe :autoplay="3000" :vertical="true" :show-indicators="false" :touchable="false" style="height: 50px">
+            <SwipeItem>番号/片名/演员</SwipeItem>
+            <SwipeItem>永久域名:<span>mg51.tv</span></SwipeItem>
+            <SwipeItem>永久域名:<span>mg91.tv</span></SwipeItem>
+          </Swipe>
+        </div>
       </div>
       <div class="hs-c">
         <a @click="router.push({ name: 'history' })"><i class="mvfont mv-lishishijian-" /></a>
@@ -33,6 +42,7 @@ import { useRouter } from 'vue-router'
 import { getAssetsFile } from '@/utils'
 import { useAppStoreHook } from '@/store/app'
 import { ref, computed } from 'vue'
+import { Swipe, SwipeItem } from 'vant'
 
 const router = useRouter()
 const appStore = useAppStoreHook()
@@ -59,3 +69,26 @@ function handleScroll() {
 // 使用 passive 选项来提高滚动性能
 window.addEventListener('scroll', handleScroll, { passive: true })
 </script>
+
+<style scoped>
+.sb-t {
+  overflow: hidden;
+  height: 40px; /* 调整高度以适应您的设计 */
+}
+
+.my-swipe {
+  height: 100%;
+}
+
+:deep(.van-swipe-item) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+}
+
+:deep(.van-swipe-item span) {
+  color: #ff9800; /* 调整颜色以匹配您的设计 */
+}
+</style>
