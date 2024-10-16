@@ -1,5 +1,5 @@
 <template>
-  <div class="page" v-if="videoDetail">
+  <div class="page">
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="$router.back()"><i class="mvfont mv-left" /></a>
@@ -7,24 +7,26 @@
       </div>
       <div class="md-b">
         <div class="b-a">
-          <div class="a-a">{{ videoDetail.title }}</div>
+          <div class="a-a">{{ videoDetail ? videoDetail.title : '' }}</div>
           <div class="a-b">
-            <span><i class="mvfont mv-time" />{{ videoDetail.addTime }}</span>
-            <span><i class="mvfont mv-kan" />{{ videoDetail.clickCounts }}</span>
+            <span><i class="mvfont mv-time" />{{ videoDetail ? videoDetail.addTime : '' }}</span>
+            <span><i class="mvfont mv-kan" />{{ videoDetail ? videoDetail.clickCounts : '' }}</span>
           </div>
           <div class="a-c">
-            <span v-for="tag in videoDetail.tags" :key="tag">#{{ tag }}</span>
+            <template v-if="videoDetail && videoDetail.tags">
+              <span v-for="tag in videoDetail.tags" :key="tag">#{{ tag }}</span>
+            </template>
           </div>
         </div>
         <div class="b-b">
           <span @click="handleLike">
-            <i :class="['mvfont', 'mv-zan', { active: isLiked }]" /><b>{{ videoDetail.goodCounts }}</b>
+            <i :class="['mvfont', 'mv-zan', { active: isLiked }]" /><b>{{ videoDetail ? videoDetail.goodCounts : 0 }}</b>
           </span>
           <span @click="handleDislike">
-            <i :class="['mvfont', 'mv-nzan', { active: isDisliked }]" /><b>{{ videoDetail.noGoodCounts }}</b>
+            <i :class="['mvfont', 'mv-nzan', { active: isDisliked }]" /><b>{{ videoDetail ? videoDetail.noGoodCounts : 0 }}</b>
           </span>
           <span @click="handleFavorite">
-            <i :class="['mvfont', 'mv-like', { active: isFavorited }]" /><b>{{ videoDetail.favoriteCounts }}</b>
+            <i :class="['mvfont', 'mv-like', { active: isFavorited }]" /><b>{{ videoDetail ? videoDetail.favoriteCounts : 0 }}</b>
           </span>
           <span><i @click="handleShare" class="mvfont mv-zhuanfa1" />分享</span>
         </div>
@@ -84,9 +86,9 @@ const fetchVideoDetail = async () => {
   try {
     const id = Number(route.params.id)
     const response = await getVideoDetailApi(id)
-    videoDetail.value = response.data.data
-    if (videoDetail.value && 'posterDomain' in response.data.data) {
-      videoDetail.value.poster = await decrypt.fetchAndDecrypt(`${response.data.data.posterDomain}${videoDetail.value.poster}`)
+    videoDetail.value = response.data as unknown as Video
+    if (videoDetail.value && 'posterDomain' in response.data) {
+      videoDetail.value.poster = await decrypt.fetchAndDecrypt(`${response.data.posterDomain}${videoDetail.value.poster}`)
     }
   } catch (error) {
     console.error('获取视频详情失败:', error)
@@ -115,7 +117,7 @@ const fetchRecommendedVideos = async () => {
 }
 
 const checkLogin = (): boolean => {
-  if (userStore.userInfo.userName === '') {
+  if (userStore.userInfo.userName == '') {
     userStore.showLoginDialog = true
     return false
   }
@@ -134,21 +136,21 @@ const handleAction = async (type: number) => {
     const isActive = response.data.isActive
 
     // 更新本地数据
-    if (type === 2) {
+    if (type == 2) {
       videoDetail.value.goodCounts += isActive ? 1 : -1
       isLiked.value = isActive
       if (isActive && isDisliked.value) {
         videoDetail.value.noGoodCounts--
         isDisliked.value = false
       }
-    } else if (type === 5) {
+    } else if (type == 5) {
       videoDetail.value.noGoodCounts += isActive ? 1 : -1
       isDisliked.value = isActive
       if (isActive && isLiked.value) {
         videoDetail.value.goodCounts--
         isLiked.value = false
       }
-    } else if (type === 3) {
+    } else if (type == 3) {
       videoDetail.value.favoriteCounts += isActive ? 1 : -1
       isFavorited.value = isActive
     }
@@ -170,48 +172,44 @@ onMounted(async () => {
   await fetchVideoDetail()
   await fetchRecommendedVideos()
 
-  const url = videoDetail.value.playDomain + videoDetail.value.playUrl
-  // const fileExtension = url.split('.').pop().toLowerCase()
+  if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
+    const url = videoDetail.value.playDomain + videoDetail.value.playUrl
 
-  let playerConfig = {
-    id: 'video-player',
-    url: url,
-    poster: videoDetail.value.poster,
-    autoplay: true,
-    controls: true,
-    fluid: true,
-    playsinline: true,
-    'x5-video-player-type': 'h5',
-    'x5-video-player-fullscreen': true,
-    'x5-video-orientation': 'portraint',
-    plugins: [HlsJsPlugin],
-    useHlsJs: true
-  }
-
-  // // 根据文件扩展名设置type
-  // if (fileExtension === 'm3u8') {
-  //   playerConfig.type = 'hls'
-  // } else if (fileExtension === 'flv') {
-  //   playerConfig.type = 'flv'
-  // }
-  // // 如果没有明确的扩展名，让播放器自动检测
-
-  // @ts-ignore
-  const player = new Player(playerConfig)
-  // 添加播放开始事件监听器
-  player.on('play', async () => {
-    if (checkLogin()) {
-      const data: addRecordData = {
-        videoId: videoDetail.value.videoId,
-        type: 1 // 播放记录
-      }
-      try {
-        await addRecordApi(data)
-      } catch (error) {
-        console.error('添加播放记录失败:', error)
-      }
+    let playerConfig = {
+      id: 'video-player',
+      url: url,
+      poster: videoDetail.value.poster,
+      autoplay: true,
+      controls: true,
+      fluid: true,
+      playsinline: true,
+      'x5-video-player-type': 'h5',
+      'x5-video-player-fullscreen': true,
+      'x5-video-orientation': 'portraint',
+      plugins: [HlsJsPlugin],
+      useHlsJs: true
     }
-  })
+
+    // @ts-ignore
+    const player = new Player(playerConfig)
+    // 添加播放开始事件监听器
+    player.on('play', async () => {
+      if (checkLogin()) {
+        const data: addRecordData = {
+          videoId: videoDetail.value.videoId,
+          type: 1 // 播放记录
+        }
+        try {
+          await addRecordApi(data)
+        } catch (error) {
+          console.error('添加播放记录失败:', error)
+        }
+      }
+    })
+  } else {
+    console.error('视频详情数据不完整')
+    // 可以在这里添加一些错误处理逻辑，比如显示错误消息给用户
+  }
 })
 </script>
 

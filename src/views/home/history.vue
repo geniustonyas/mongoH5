@@ -34,14 +34,14 @@
     </section>
     <div class="au-pagination-box" v-if="totalPages > 1">
       <div class="pb-x">
-        <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage === 1 }">上一页</a>
+        <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">上一页</a>
       </div>
       <div class="pb-x">
         <input v-model="currentPage" @change="fetchRecords" type="number" min="1" :max="totalPages" />
         <span>/ {{ totalPages }}</span>
       </div>
       <div class="pb-x">
-        <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage === totalPages }">下一页</a>
+        <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">下一页</a>
       </div>
     </div>
   </div>

@@ -72,6 +72,12 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false }
   },
   {
+    path: '/shortVideos',
+    name: 'shortVideos',
+    component: () => import('@/views/shortVideo/shortVideos.vue'),
+    meta: { needLogin: false, keepAlive: false }
+  },
+  {
     path: '/game',
     name: 'game',
     component: () => import('@/views/game/game.vue'),
@@ -165,7 +171,7 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  history: import.meta.env.VITE_ROUTER_HISTORY === 'hash' ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH) : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
+  history: import.meta.env.VITE_ROUTER_HISTORY == 'hash' ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH) : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
   // linkActiveClass: 'active',
   routes
 })
@@ -177,7 +183,7 @@ router.beforeEach(async (to, from, next) => {
   const appStore = useAppStore()
 
   // 如果应用配置还未加载，则加载配置
-  if (appStore.tags.length === 0) {
+  if (appStore.tags.length == 0) {
     await appStore.fetConfig()
   }
 
@@ -204,10 +210,10 @@ router.beforeEach(async (to, from, next) => {
   }
 })
 
-router.afterEach((to, from) => {
-  const toDepth = to.path.split('/').length
-  const fromDepth = from.path.split('/').length
-  to.meta.transition = toDepth == fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'
-})
+// router.afterEach((to, from) => {
+//   const toDepth = to.path.split('/').length
+//   const fromDepth = from.path.split('/').length
+//   to.meta.transition = toDepth == fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'
+// })
 
 export default router

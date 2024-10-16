@@ -53,8 +53,6 @@ const props = defineProps({
   }
 })
 
-console.log(props.activeId)
-
 const router = useRouter()
 const appStore = useAppStoreHook()
 

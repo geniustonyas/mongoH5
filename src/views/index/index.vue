@@ -6,7 +6,7 @@
       <nav id="index-banner" class="swiper-container">
         <Swipe class="my-swipe" :autoplay="3000" lazy-render>
           <SwipeItem v-for="ad in bannerAds" :key="ad.adId">
-            <a :href="ad.url" :target="ad.target === 1 ? '_blank' : '_self'">
+            <a :href="ad.url" :target="ad.target == 1 ? '_blank' : '_self'">
               <img :src="appStore.systemSettings.customer_cdn_link + ad.thumbnail" :alt="ad.titles" />
             </a>
           </SwipeItem>

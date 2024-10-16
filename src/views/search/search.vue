@@ -136,7 +136,7 @@ const goBack = () => {
 
 onMounted(() => {
   const queryKeyword = router.currentRoute.value.query.keyword
-  if (queryKeyword && typeof queryKeyword === 'string') {
+  if (queryKeyword && typeof queryKeyword == 'string') {
     searchKeyword.value = queryKeyword
     searchVideos()
   }

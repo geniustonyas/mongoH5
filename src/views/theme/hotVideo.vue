@@ -3,10 +3,10 @@
     <Header />
     <section class="h-l-b">
       <div class="lb-b">
-        <span :class="{ active: activeRank === 'total' }" @click="changeRank('total')">总榜单</span>
-        <span :class="{ active: activeRank === 'month' }" @click="changeRank('month')">月榜单</span>
-        <span :class="{ active: activeRank === 'week' }" @click="changeRank('week')">周榜单</span>
-        <span :class="{ active: activeRank === 'day' }" @click="changeRank('day')">日榜单</span>
+        <span :class="{ active: activeRank == 'total' }" @click="changeRank('total')">总榜单</span>
+        <span :class="{ active: activeRank == 'month' }" @click="changeRank('month')">月榜单</span>
+        <span :class="{ active: activeRank == 'week' }" @click="changeRank('week')">周榜单</span>
+        <span :class="{ active: activeRank == 'day' }" @click="changeRank('day')">日榜单</span>
       </div>
       <ul>
         <li v-for="video in videos" :key="video.videoId" @click="router.push({ name: 'play', params: { id: video.videoId } })">

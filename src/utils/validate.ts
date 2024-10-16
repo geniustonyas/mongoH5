@@ -59,7 +59,7 @@ export function isEmail(arg: any): boolean {
  * @returns {Boolean}
  */
 export function isEmpty(arg: any): boolean {
-  return typeof arg === 'undefined' || arg == null || arg == '' || arg.length == 0
+  return typeof arg == 'undefined' || arg == null || arg == '' || arg.length == 0
 }
 
 /** 验证微信

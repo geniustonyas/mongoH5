@@ -1,29 +1,64 @@
 <template>
-  <div class="page">
-    <section class="v-l-b">
-      <div class="v-box">
+  <div class="page video-page">
+    <header class="m-header h-video">
+      <div class="h-m">
+        <a @click="router.push({ name: 'shortVideo' })" class="active">抖阴</a>
+        <a @click="router.push({ name: 'shortVideos' })">短剧</a>
+      </div>
+      <div class="h-r">
+        <i class="mvfont mv-search1" />
+      </div>
+    </header>
+
+    <section class="vp-main">
+      <div class="vm-a" />
+      <div class="vm-b">
         <div class="v-a">
-          <video loop src="https://imp.volccdn.com/obj/vcloud-imp-lite/vcloudlite_sv_phone1.mp4" poster="" autoplay webkit-playsinline playsinline class="uni-video-video" />
+          <video
+            id="myVideo"
+            muted
+            autoplay
+            preload="auto"
+            loop
+            x5-video-player-fullscreen="true"
+            x5-playsinline
+            playsinline
+            webkit-playsinline
+          >
+            <source
+              src="https://cdn.xfree.com/xfree-prod/d/a/a/daadc758-02f0-4731-93fb-9cd87dcf5655/converted.mp4"
+              type="video/mp4"
+            />
+          </video>
         </div>
         <div class="v-b">
-          <a><img src="assets/imgs/u_video.png" /><small>免</small></a>
+          <a><img src="assets/imgs/logo-1.png" /><!--<small>免</small>--></a>
           <a><i class="mvfont mv-xihuan" /><b>999</b></a>
           <a><i class="mvfont mv-shoucang" /><b>53</b></a>
-          <a><i class="mvfont mv-zhuanfa" /></a>
+          <a><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
         </div>
         <div class="v-c">
+          <div class="c-g">
+            <img src="assets/imgs/logo-2.png" />芒果TV<span>永久域名：mg91.tv</span>
+          </div>
           <h3>@芒果TV</h3>
           <p>
-            随时随地看视频，这个就是视频的标题，先占个位置
+            <b>随时随地看视频，这个就是视频的标题，先占个位置</b>
             <span>#国产</span><span>#高清</span><span>#老师</span>
           </p>
         </div>
       </div>
     </section>
+
     <Footer active-menu="shortVideo" />
   </div>
 </template>
 
 <script setup lang="ts">
 import Footer from '@/components/layout/Footer.vue'
+import { useAppStore } from '@/store/app'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const appStore = useAppStore()
 </script>

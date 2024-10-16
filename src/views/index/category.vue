@@ -5,7 +5,7 @@
       <div class="mv-swiper">
         <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :space-between="10">
           <swiper-slide v-for="ad in bannerAds" :key="ad.adId">
-            <a :href="ad.url" :target="ad.target === 1 ? '_blank' : '_self'">
+            <a :href="ad.url" :target="ad.target == 1 ? '_blank' : '_self'">
               <img :src="appStore.systemSettings.customer_cdn_link + ad.thumbnail" :alt="ad.titles" />
             </a>
           </swiper-slide>
@@ -13,8 +13,8 @@
       </div>
       <section class="m-l-b">
         <nav class="b-a">
-          <span v-for="category in categories" :key="category.cId" :class="{ active: selectedCategory === category.cId }" @click="selectCategory(category.cId)">
-            {{ category.categoryName }}
+          <span v-for="category in categories" :key="category.cId" :class="{ active: selectedCategory == category.cId }" @click="selectCategory(category.cId)">
+            {{ 'categoryName' in category ? category.categoryName : '全部' }}
           </span>
         </nav>
         <nav class="b-b">
@@ -40,14 +40,14 @@
           </div>
           <div class="au-pagination-box" v-if="totalPages > 1">
             <div class="pb-x">
-              <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage === 1 }">上一页</a>
+              <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">上一页</a>
             </div>
             <div class="pb-x">
-              <input v-model="currentPage" @change="fetchVideos" type="number" min="1" :max="totalPages" />
+              <input v-model="currentPage" @change="handlePageChange" type="number" min="1" :max="totalPages" />
               <span>/ {{ totalPages }}</span>
             </div>
             <div class="pb-x">
-              <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage === totalPages }">下一页</a>
+              <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">下一页</a>
             </div>
           </div>
         </nav>
@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
@@ -94,17 +94,7 @@ const sortOptions = [
   { label: '按好评', value: 'goodCounts' as const }
 ]
 
-const categories = computed(() => {
-  const categoryId = route.params.id as string
-  const parentCategory = appStore.categorys.find((cat) => cat.cId === categoryId)
-
-  if (parentCategory && parentCategory.children) {
-    return [{ cId: categoryId, categoryName: '全部' }, ...parentCategory.children]
-  } else {
-    // 如果没有找到对应的父分类或没有子分类，则返回空数组
-    return []
-  }
-})
+const categories = ref<({ cId: string; categoryName: string } | { cId: string; children: { cId: string; categoryName: string }[] })[]>([])
 
 const fetchBannerAds = async () => {
   try {
@@ -115,13 +105,13 @@ const fetchBannerAds = async () => {
   }
 }
 
-const fetchVideos = async () => {
+const fetchVideos = async (categoryId?: string) => {
   try {
     const params: VideoQueryParams = {
       page: currentPage.value,
       pageSize: pageSize.value,
       sortBy: currentSort.value,
-      categoryId: selectedCategory.value === route.params.id ? undefined : parseInt(selectedCategory.value, 10)
+      categoryId: categoryId ? parseInt(categoryId, 10) : parseInt(route.params.id as string, 10)
     }
     const response = await getVideoListApi(params)
 
@@ -142,7 +132,8 @@ const fetchVideos = async () => {
 
 const selectCategory = (categoryId: string) => {
   selectedCategory.value = categoryId
-  fetchVideos()
+  currentPage.value = 1 // 重置页码
+  fetchVideos(categoryId)
 }
 
 const changeSort = (sortValue: 'addTime' | 'clickCounts' | 'goodCounts') => {
@@ -157,17 +148,35 @@ const changePage = (newPage: number) => {
   }
 }
 
-watch([selectedCategory, currentSort], () => {
-  currentPage.value = 1
-  fetchVideos()
-})
+const updateCategories = (categoryId: string) => {
+  const parentCategory = appStore.categorys.find((cat) => cat.cId == categoryId)
+  if (parentCategory && parentCategory.children) {
+    categories.value = [{ cId: categoryId, categoryName: '全部' }, ...parentCategory.children]
+  } else {
+    categories.value = []
+  }
+}
+
+watch(
+  () => route.params.id,
+  (newId) => {
+    if (newId) {
+      selectedCategory.value = newId as string
+      currentPage.value = 1 // 重置页码
+      updateCategories(newId as string)
+      fetchVideos(newId as string)
+    }
+  },
+  { immediate: true }
+)
 
 onMounted(async () => {
-  const categoryId = route.params.id as string
-  selectedCategory.value = categoryId
   await fetchBannerAds()
-  await fetchVideos()
 })
+
+const handlePageChange = () => {
+  fetchVideos()
+}
 </script>
 
 <style scoped>

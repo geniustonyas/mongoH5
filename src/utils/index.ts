@@ -1,8 +1,8 @@
 import _ from 'lodash-es'
 import Clipboard from 'clipboard'
 import { showToast } from 'vant'
-import { useUserStore } from '@/store/user'
-import router from '@/router'
+// import { useUserStore } from '@/store/user'
+// import router from '@/router'
 
 // 获取url中全部参数的对象
 export function getUrlAllParams() {
@@ -119,7 +119,7 @@ export function getCookieValue(cookieName: string) {
   const cookieArray = decodedCookie.split(';')
   for (let i = 0; i < cookieArray.length; i++) {
     const currentCookie = cookieArray[i].trim()
-    if (currentCookie.indexOf(name) === 0) {
+    if (currentCookie.indexOf(name) == 0) {
       return currentCookie.substring(name.length, currentCookie.length)
     }
   }

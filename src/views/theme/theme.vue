@@ -40,7 +40,7 @@ const contentRefs = ref<HTMLElement[]>([])
 const isExpanded = (id: number) => expandedCategories.value.has(id)
 
 const toggleCategory = (id: number) => {
-  const index = themeData.value.findIndex((category) => category.tId === id)
+  const index = themeData.value.findIndex((category) => category.tId == id)
   const content = contentRefs.value[index]
 
   if (isExpanded(id)) {

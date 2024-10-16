@@ -68,9 +68,9 @@
               <b> {{ videos.length }} </b>部)
             </div>
             <div class="t-r">
-              <span :class="{ active: activeSort === 'addTime' }" @click="changeSort('addTime')">最近更新</span>
-              <span :class="{ active: activeSort === 'clickCounts' }" @click="changeSort('clickCounts')">最多观看</span>
-              <span :class="{ active: activeSort === 'favoriteCounts' }" @click="changeSort('favoriteCounts')">最多收藏</span>
+              <span :class="{ active: activeSort == 'addTime' }" @click="changeSort('addTime')">最近更新</span>
+              <span :class="{ active: activeSort == 'clickCounts' }" @click="changeSort('clickCounts')">最多观看</span>
+              <span :class="{ active: activeSort == 'favoriteCounts' }" @click="changeSort('favoriteCounts')">最多收藏</span>
             </div>
           </div>
           <div class="y-m">
