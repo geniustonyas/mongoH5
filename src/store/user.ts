@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { getUserInfo } from '@/api/user'
 import store from '@/store'
 import type { UserInfo } from '@/types/user'
+import { clearToken } from '@/utils/auth'
 
 export const useUserStore = defineStore('user', {
   state: () => {
@@ -42,9 +43,10 @@ export const useUserStore = defineStore('user', {
         if (response.code == 200 && response.data) {
           this.userInfo = response.data
         } else {
-          throw new Error(response.message || '获取用户信息失败')
+          this.clearLogin()
         }
       } catch (error) {
+        this.clearLogin()
         console.error('获取用户信息失败:', error)
       }
     },
@@ -71,6 +73,7 @@ export const useUserStore = defineStore('user', {
         updateTime: '',
         addTime: ''
       }
+      clearToken()
     }
   }
 })

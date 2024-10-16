@@ -79,12 +79,23 @@ import { useRouter } from 'vue-router'
 import Footer from '@/components/layout/Footer.vue'
 import { getAssetsFile } from '@/utils'
 import { useUserStoreHook } from '@/store/user'
+import { useAppStoreHook } from '@/store/app'
 
 const userStore = useUserStoreHook()
+const appStore = useAppStoreHook()
 const router = useRouter()
 
 const openDownloadPage = () => {
   const baseUrl = window.location.origin + import.meta.env.BASE_URL
   window.open(baseUrl + 'appdownload/index.html', '_blank')
+}
+
+const openCustomerService = () => {
+  const customerServiceLink = appStore.systemSettings.customer_service_link
+  if (customerServiceLink) {
+    window.open(customerServiceLink, '_blank')
+  } else {
+    console.warn('客服链接未设置')
+  }
 }
 </script>

@@ -133,13 +133,13 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'download',
         name: 'download',
-        component: () => import('@/views/pages/download.vue'),
+        component: () => import('../views/pages/download.vue'),
         meta: { needLogin: false, keepAlive: false }
       },
       {
         path: 'share',
         name: 'share',
-        component: () => import('@/views/pages/share.vue'),
+        component: () => import('../views/pages/share.vue'),
         meta: { needLogin: false, keepAlive: false }
       },
       {

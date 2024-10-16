@@ -1,19 +1,9 @@
 <template>
   <div class="page">
-    <Header :active-id="route.params.id" />
+    <Header :active-id="route.params.id as string" />
     <main class="main">
       <div class="mv-swiper">
-        <swiper
-          :modules="modules"
-          :slides-per-view="2"
-          :centered-slides="true"
-          :loop="true"
-          :autoplay="{
-            delay: 2500,
-            disableOnInteraction: false
-          }"
-          :space-between="10"
-        >
+        <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :space-between="10">
           <swiper-slide v-for="ad in bannerAds" :key="ad.adId">
             <a :href="ad.url" :target="ad.target === 1 ? '_blank' : '_self'">
               <img :src="appStore.systemSettings.customer_cdn_link + ad.thumbnail" :alt="ad.titles" />
@@ -48,7 +38,7 @@
               </div>
             </div>
           </div>
-          <div class="au-pagination-box">
+          <div class="au-pagination-box" v-if="totalPages > 1">
             <div class="pb-x">
               <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage === 1 }">上一页</a>
             </div>
@@ -76,7 +66,7 @@ import { useAppStoreHook } from '@/store/app'
 import { getAdListApi } from '@/api/app'
 import { getVideoListApi } from '@/api/video'
 import decryptionService from '@/utils/decryptionService'
-import type { VideoQueryParams, Video, VideoListResponse } from '@/types/video'
+import type { VideoQueryParams, Video } from '@/types/video'
 
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/index/indexHeader.vue'
@@ -133,17 +123,17 @@ const fetchVideos = async () => {
       sortBy: currentSort.value,
       categoryId: selectedCategory.value === route.params.id ? undefined : parseInt(selectedCategory.value, 10)
     }
-    const response: VideoListResponse = await getVideoListApi(params)
+    const response = await getVideoListApi(params)
 
-    if (response.data) {
+    if (response.data && Array.isArray(response.data.data)) {
       videos.value = await Promise.all(
         response.data.data.map(async (video) => ({
           ...video,
           poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
         }))
       )
-      currentPage.value = response.data.currentPage
-      totalPages.value = response.data.totalPages
+      currentPage.value = response.data.data.currentPage
+      totalPages.value = response.data.data.totalPages
     }
   } catch (error) {
     console.error('获取视频列表失败:', error)

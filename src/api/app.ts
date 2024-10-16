@@ -1,9 +1,9 @@
 import { request } from '@/utils/axios'
-import type { AdvertisementsResp, ConfigResp } from '@/types/app'
+import type { AdvertisementsResp, ConfigResponse } from '@/types/app'
 
 /** 获取系统配置 */
 export function getConfigApi() {
-  return request<ConfigResp>({
+  return request<ConfigResponse>({
     url: 'api/getConfig',
     method: 'get'
   })

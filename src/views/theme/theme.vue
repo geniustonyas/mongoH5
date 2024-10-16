@@ -55,7 +55,12 @@ const toggleCategory = (id: number) => {
 const fetchThemeData = async () => {
   try {
     const response = await getThemeTagApi()
-    themeData.value = response.data
+    // 假设 response.data 是 ThemeTag[] 类型
+    if (response.data && Array.isArray(response.data)) {
+      themeData.value = response.data
+    } else {
+      themeData.value = []
+    }
     // 默认所有分类展开
     expandedCategories.value = new Set(themeData.value.map((category) => category.tId))
 

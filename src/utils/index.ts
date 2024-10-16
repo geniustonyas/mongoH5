@@ -112,16 +112,6 @@ export function formatAddress(address: string) {
   return address.length > 25 ? address.replace(address.substring(25, address.length), '...') : address
 }
 
-// 登录后跳转到指定地址
-export function loginTo(route: string) {
-  const userStore = useUserStore()
-  if (userStore.userInfo!.id != '') {
-    router.push({ name: route })
-  } else {
-    router.push({ name: 'login', query: { routeTo: route } })
-  }
-}
-
 // 获取cookie
 export function getCookieValue(cookieName: string) {
   const name = cookieName + '='

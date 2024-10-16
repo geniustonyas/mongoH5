@@ -176,8 +176,7 @@ const fetchVideos = async (sortBy: 'clickCounts' | 'goodCounts' | 'addTime') => 
       sortBy: sortBy
     }
     const response = await getVideoListApi(params)
-
-    if (response.data.data) {
+    if (response.data && Array.isArray(response.data.data)) {
       const decryptedVideos = await Promise.all(
         response.data.data.map(async (video) => ({
           ...video,
@@ -186,6 +185,7 @@ const fetchVideos = async (sortBy: 'clickCounts' | 'goodCounts' | 'addTime') => 
       )
       return decryptedVideos
     } else {
+      console.error('响应数据结构不正确')
       return []
     }
   } catch (error) {

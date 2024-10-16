@@ -40,7 +40,8 @@ function createService() {
       if (loadingRequestCount <= 0) {
         useAppStoreHook().loading = false
       }
-      return response.data
+      const { data } = response
+      return data
     },
     (error) => {
       loadingRequestCount = 0

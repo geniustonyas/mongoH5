@@ -105,7 +105,7 @@ const searchVideos = async () => {
       search: searchKeyword.value
     }
     const response = await getVideoListApi(params)
-    if (response.data.data) {
+    if (response.data.data && Array.isArray(response.data.data)) {
       searchResults.value = await Promise.all(
         response.data.data.map(async (video) => ({
           ...video,

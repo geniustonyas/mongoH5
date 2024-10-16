@@ -10,6 +10,7 @@ const setToken = (token: string) => {
   localStorage.setItem(TokenKey, token)
 }
 const clearToken = () => {
+  console.log(TokenKey)
   localStorage.removeItem(TokenKey)
 }
 export { TokenPrefix, isLogin, getToken, setToken, clearToken }

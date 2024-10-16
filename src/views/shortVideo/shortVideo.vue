@@ -3,7 +3,7 @@
     <section class="v-l-b">
       <div class="v-box">
         <div class="v-a">
-          <video loop="loop" src="https://imp.volccdn.com/obj/vcloud-imp-lite/vcloudlite_sv_phone1.mp4" poster="" autoplay="autoplay" webkit-playsinline="" playsinline="" class="uni-video-video" />
+          <video loop src="https://imp.volccdn.com/obj/vcloud-imp-lite/vcloudlite_sv_phone1.mp4" poster="" autoplay webkit-playsinline playsinline class="uni-video-video" />
         </div>
         <div class="v-b">
           <a><img src="assets/imgs/u_video.png" /><small>免</small></a>
@@ -25,6 +25,5 @@
 </template>
 
 <script setup lang="ts">
-import { getAssetsFile } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 </script>

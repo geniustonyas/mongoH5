@@ -32,4 +32,3 @@ export interface ConfigResponse {
 }
 
 export type AdvertisementsResp = ApiResponseData<Advertisements[]>
-export type ConfigResp = ApiResponseData<ConfigResponse>

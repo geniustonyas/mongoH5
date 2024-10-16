@@ -58,7 +58,29 @@ export interface VideoListData {
   totalPages: number
 }
 
+export interface addRecordData {
+  type: number
+  videoId: number
+}
+
+export interface addRecordDataResp {
+  isActive: boolean
+  message?: string
+}
+
+export interface getRecordData {
+  type: number
+  search: string | null
+  beginTime: string | null
+  endTime: string | null
+  pageSize: number
+  page: number
+  sortOrder: string | null
+}
+
 // 修改 VideoListResponse 的定义
 export type VideoListResponse = PaginatedApiResponseData<Video>
 
 export type VideoDetailResponse = ApiResponseData<Video>
+
+export type addRecordResponse = ApiResponseData<addRecordDataResp>
