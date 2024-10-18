@@ -12,8 +12,8 @@
           <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
           <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
         </div>
-        <div v-if="video.releaseDate" class="p-c">
-          <span><i class="mvfont mv-riqi" />{{ formatDate(video.releaseDate) }}</span>
+        <div v-if="video.addTime" class="p-c">
+          <span><i class="mvfont mv-riqi" />{{ formatDate(video.addTime) }}</span>
         </div>
       </div>
     </div>

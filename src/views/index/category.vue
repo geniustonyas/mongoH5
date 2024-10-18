@@ -3,8 +3,7 @@
     <header class="header">
       <div class="head-search">
         <div class="hs-a">
-          <img @click="router.push({ name: 'index' })" :src="getAssetsFile('logo.svg')" />
-          <span>芒果TV</span>
+          <img @click="router.push({ name: 'index' })" :src="getAssetsFile('logo.png')" />
         </div>
         <div @click="router.push({ name: 'search' })" class="hs-b">
           <div class="sb-i">

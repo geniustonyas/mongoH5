@@ -2,7 +2,7 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a href="javascript:void(0)" onclick="javascript:history.go(-1)"><i class="mvfont mv-left" /></a>
+        <a @click="router.go(-1)"><i class="mvfont mv-left" /></a>
       </div>
       <div class="d-m">短剧</div>
       <div class="d-r">
@@ -38,8 +38,8 @@
         </div>
       </nav>
       <ul class="b-u-l">
-        <li onclick="javascript:window.location='playlet.html'">
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v1.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v1.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -47,8 +47,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li onclick="javascript:window.location='playlet.html'">
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v2.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v2.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -56,8 +56,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li onclick="javascript:window.location='playlet.html'">
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v3.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v3.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -65,8 +65,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li onclick="javascript:window.location='playlet.html'">
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v4.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v4.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -74,8 +74,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li onclick="javascript:window.location='playlet.html'">
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v5.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v5.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -83,8 +83,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li onclick="javascript:window.location='playlet.html'">
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v6.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v6.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -92,8 +92,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v7.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v7.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -101,8 +101,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v8.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v8.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -110,8 +110,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v2.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v2.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -119,8 +119,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v3.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v3.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -128,8 +128,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v4.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v4.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -137,8 +137,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v5.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v5.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -146,8 +146,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v1.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v1.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -155,8 +155,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v3.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v3.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -164,8 +164,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v4.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v4.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -173,8 +173,8 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-        <li>
-          <div class="l-a" style="background-image: url(assets/imgs/mv/v5.jpg)">
+        <li @click="router.push({ name: 'play', params: { id: 1 } })">
+          <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v5.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
           </div>
           <div class="l-b">
@@ -190,6 +190,7 @@
 <script setup lang="ts">
 import { useAppStore } from '@/store/app'
 import { useRouter } from 'vue-router'
+import { getAssetsFile } from '@/utils'
 
 const router = useRouter()
 const appStore = useAppStore()

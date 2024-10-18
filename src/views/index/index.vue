@@ -3,8 +3,7 @@
     <header class="header">
       <div class="head-search">
         <div class="hs-a">
-          <img @click="router.push({ name: 'index' })" :src="getAssetsFile('logo.svg')" />
-          <span>芒果TV</span>
+          <img @click="router.push({ name: 'index' })" :src="getAssetsFile('logo.png')" />
         </div>
         <div @click="router.push({ name: 'search' })" class="hs-b">
           <div class="sb-i">
@@ -12,7 +11,7 @@
             <i class="mvfont mv-search1" />
           </div>
           <div class="sb-t">
-            <Swipe :autoplay="3000" :vertical="true" :show-indicators="false" :touchable="false" style="height: 50px">
+            <Swipe :autoplay="3000" :vertical="true" :show-indicators="false" :touchable="false" style="line-height: 50px">
               <SwipeItem>番号/片名/演员</SwipeItem>
               <SwipeItem>永久域名:<span>mg51.tv</span></SwipeItem>
               <SwipeItem>永久域名:<span>mg91.tv</span></SwipeItem>
