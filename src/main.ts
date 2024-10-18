@@ -9,14 +9,15 @@ import 'vant/lib/index.css'
 import './assets/less/black.less'
 
 // 懒加载图片
-// const lazyImage = new URL(`./assets/imgs/logo.png`, import.meta.url).href
+// const loadingImage = new URL(`./assets/imgs/logo-2.png`, import.meta.url).href
+const errorImage = new URL(`./assets/imgs/logo.png`, import.meta.url).href
 
 const app = createApp(App)
 app.use(store)
-// app.use(Lazyload, {
-//   loading: lazyImage,
-//   error: lazyImage
-// })
+app.use(Lazyload, {
+  // loading: loadingImage,
+  error: errorImage
+})
 app.use(Lazyload)
 app.use(router)
 

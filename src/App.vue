@@ -6,17 +6,17 @@
       </keep-alive>
     </transition>
   </router-view>
-  <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
-    <!-- <Loading /> -->
-  </Overlay>
+  <!-- <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
+    <Loading />
+  </Overlay> -->
   <Login />
 </template>
 
 <script setup lang="ts">
-import { Overlay } from 'vant'
-import { useAppStore } from '@/store/app'
-import Login from '@/components/login.vue'
-const appStore = useAppStore()
+// import { Overlay } from 'vant'
+// import { useAppStore } from '@/store/app'
+import Login from '@/components/Login.vue'
+// const appStore = useAppStore()
 
 const getTransition = (transition: unknown): string | undefined => {
   if (typeof transition === 'string') {
@@ -37,7 +37,18 @@ html,
 body,
 #app {
   width: 100%;
+  height: 100%;
 }
+/* 
+.van-lazy-image {
+  &.van-lazy-image-loading,
+  &.van-lazy-image-error {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+}
+
 .slide-left-enter-active,
 .slide-left-leave-active,
 .slide-right-enter-active,
@@ -60,5 +71,5 @@ body,
 .slide-right-leave-to,
 .slide-left-enter-from {
   transform: translateX(-100%);
-}
+} */
 </style>

@@ -37,20 +37,7 @@
           <div class="a-l"><i class="mvfont mv-xietiao" /><span>猜你喜欢</span></div>
         </div>
         <div class="m-b">
-          <div v-for="video in recommendedVideos" :key="video.videoId" class="item" @click="$router.push({ name: 'play', params: { id: video.videoId } })">
-            <div class="i-a" v-lazy:background-image="video.poster">
-              <span v-if="video.resolution" class="a-a">{{ video.resolution }}</span>
-              <span class="a-b">{{ video.playTime }}</span>
-              <span class="a-c">{{ video.categoryName }}</span>
-            </div>
-            <div class="i-b">
-              <b>{{ video.title }}</b>
-              <p>
-                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
-              </p>
-            </div>
-          </div>
+          <VideoGridItem v-for="video in recommendedVideos" :key="video.videoId" :video="video" @click="$router.push({ name: 'play', params: { id: video.videoId } })" />
         </div>
       </nav>
     </section>
@@ -70,6 +57,7 @@ import Player from 'xgplayer'
 import HlsJsPlugin from 'xgplayer-hls.js' // 引入HLS插件
 // import FlvJsPlugin from 'xgplayer-flv.js' // 引入FLV插件
 import 'xgplayer/dist/index.min.css'
+import VideoGridItem from '@/components/VideoGridItem.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -117,7 +105,7 @@ const fetchRecommendedVideos = async () => {
 }
 
 const checkLogin = (): boolean => {
-  if (userStore.userInfo.userName == '') {
+  if (userStore.userInfo.phone == '') {
     userStore.showLoginDialog = true
     return false
   }
@@ -179,7 +167,7 @@ onMounted(async () => {
       id: 'video-player',
       url: url,
       poster: videoDetail.value.poster,
-      autoplay: true,
+      autoplay: false,
       controls: true,
       fluid: true,
       playsinline: true,

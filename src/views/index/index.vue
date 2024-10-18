@@ -1,6 +1,41 @@
 <template>
   <div class="page">
-    <Header />
+    <header class="header">
+      <div class="head-search">
+        <div class="hs-a">
+          <img @click="router.push({ name: 'index' })" :src="getAssetsFile('logo.svg')" />
+          <span>芒果TV</span>
+        </div>
+        <div @click="router.push({ name: 'search' })" class="hs-b">
+          <div class="sb-i">
+            <input />
+            <i class="mvfont mv-search1" />
+          </div>
+          <div class="sb-t">
+            <Swipe :autoplay="3000" :vertical="true" :show-indicators="false" :touchable="false" style="height: 50px">
+              <SwipeItem>番号/片名/演员</SwipeItem>
+              <SwipeItem>永久域名:<span>mg51.tv</span></SwipeItem>
+              <SwipeItem>永久域名:<span>mg91.tv</span></SwipeItem>
+            </Swipe>
+          </div>
+        </div>
+        <div class="hs-c">
+          <a @click="router.push({ name: 'history' })"><i class="mvfont mv-lishishijian-" /></a>
+          <a @click="router.push({ name: 'home' })"><i class="mvfont mv-touxiang1" /></a>
+        </div>
+      </div>
+      <div class="head-menu">
+        <div class="hm-a">
+          <a class="active">首页</a>
+          <a v-for="category in categoryTop" :key="category.cId" @click="router.push({ name: 'category', params: { id: category.cId } })">
+            {{ category.categoryName }}
+          </a>
+        </div>
+        <div class="hm-b">
+          <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
+        </div>
+      </div>
+    </header>
     <main class="main">
       <!--Banner-->
       <nav id="index-banner" class="swiper-container">
@@ -42,20 +77,7 @@
           </div>
         </div>
         <div class="m-b">
-          <div v-for="video in hottestVideos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
-            <!-- 使用视频数据渲染每个项目 -->
-            <div class="i-a" v-lazy:background-image="video.poster">
-              <span class="a-b">{{ video.playTime }}</span>
-              <span class="a-c">{{ video.categoryName }}</span>
-            </div>
-            <div class="i-b">
-              <b>{{ video.title }}</b>
-              <p>
-                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
-              </p>
-            </div>
-          </div>
+          <VideoGridItem v-for="video in hottestVideos" :key="video.videoId" :video="video" />
         </div>
       </nav>
 
@@ -70,20 +92,7 @@
           </div>
         </div>
         <div class="m-b">
-          <div v-for="video in topRatedVideos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
-            <!-- 使用视频数据渲染每个项目 -->
-            <div class="i-a" v-lazy:background-image="video.poster">
-              <span class="a-b">{{ video.playTime }}</span>
-              <span class="a-c">{{ video.categoryName }}</span>
-            </div>
-            <div class="i-b">
-              <b>{{ video.title }}</b>
-              <p>
-                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
-              </p>
-            </div>
-          </div>
+          <VideoGridItem v-for="video in topRatedVideos" :key="video.videoId" :video="video" />
         </div>
       </nav>
 
@@ -98,21 +107,7 @@
           </div>
         </div>
         <div class="m-b">
-          <div v-for="video in latestVideos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
-            <!-- 使用视频数据渲染每个项目 -->
-            <div class="i-a" v-lazy:background-image="video.poster">
-              <!-- <span v-if="video.resolution" class="a-a">{{ video.resolution }}</span> -->
-              <span class="a-b">{{ video.playTime }}</span>
-              <span class="a-c">{{ video.categoryName }}</span>
-            </div>
-            <div class="i-b">
-              <b>{{ video.title }}</b>
-              <p>
-                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
-              </p>
-            </div>
-          </div>
+          <VideoGridItem v-for="video in latestVideos" :key="video.videoId" :video="video" />
         </div>
       </nav>
 
@@ -136,7 +131,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAdListApi } from '@/api/app'
 import { getVideoListApi } from '@/api/video'
@@ -144,9 +139,10 @@ import { Swipe, SwipeItem } from 'vant'
 import { useAppStoreHook } from '@/store/app'
 import decryptionService from '@/utils/decryptionService'
 import type { VideoQueryParams, Video } from '@/types/video'
+import { getAssetsFile } from '@/utils'
 
 import Footer from '@/components/layout/Footer.vue'
-import Header from '@/views/index/indexHeader.vue'
+import VideoGridItem from '@/components/VideoGridItem.vue'
 
 const router = useRouter()
 
@@ -158,6 +154,10 @@ const bannerAds = ref([])
 const latestVideos = ref<Video[]>([])
 const hottestVideos = ref<Video[]>([])
 const topRatedVideos = ref<Video[]>([])
+
+const categoryTop = computed(() => {
+  return appStore.categorys.filter((category) => !category.pId)
+})
 
 const fetchBannerAds = async () => {
   try {
@@ -172,7 +172,7 @@ const fetchVideos = async (sortBy: 'clickCounts' | 'goodCounts' | 'addTime') => 
   try {
     const params: VideoQueryParams = {
       page: 1,
-      pageSize: 30,
+      pageSize: 20,
       sortBy: sortBy
     }
     const response = await getVideoListApi(params)

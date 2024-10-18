@@ -76,20 +76,7 @@
           <div class="y-m">
             <nav class="mv-t-l">
               <div class="m-b">
-                <div v-for="video in videos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
-                  <div class="i-a" :style="{ backgroundImage: `url(${video.poster})` }">
-                    <span v-if="video.resolution" class="a-a">{{ video.resolution }}</span>
-                    <span class="a-b">{{ video.playTime }}</span>
-                    <span class="a-c">{{ video.categoryName }}</span>
-                  </div>
-                  <div class="i-b">
-                    <b>{{ video.title }}</b>
-                    <p>
-                      <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
-                      <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
-                    </p>
-                  </div>
-                </div>
+                <VideoGridItem v-for="video in videos" :key="video.videoId" :video="video" />
               </div>
             </nav>
           </div>
@@ -106,6 +93,7 @@ import { useRouter } from 'vue-router'
 import { getVideoListApi } from '@/api/video'
 import type { VideoQueryParams, Video } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
+import VideoGridItem from '@/components/VideoGridItem.vue'
 
 const router = useRouter()
 const decrypt = new decryptionService()

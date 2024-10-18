@@ -1,6 +1,39 @@
 <template>
   <div class="page">
-    <Header :active-id="route.params.id as string" />
+    <header class="header">
+      <div class="head-search">
+        <div class="hs-a">
+          <img @click="router.push({ name: 'index' })" :src="getAssetsFile('logo.svg')" />
+          <span>芒果TV</span>
+        </div>
+        <div @click="router.push({ name: 'search' })" class="hs-b">
+          <div class="sb-i">
+            <input />
+            <i class="mvfont mv-search1" />
+          </div>
+          <div class="sb-t">
+            <Swipe :autoplay="3000" :vertical="true" :show-indicators="false" :touchable="false" style="line-height: 50px">
+              <SwipeItem>番号/片名/演员</SwipeItem>
+              <SwipeItem>永久域名:<span>mg51.tv</span></SwipeItem>
+              <SwipeItem>永久域名:<span>mg91.tv</span></SwipeItem>
+            </Swipe>
+          </div>
+        </div>
+        <div class="hs-c">
+          <a @click="router.push({ name: 'history' })"><i class="mvfont mv-lishishijian-" /></a>
+          <a @click="router.push({ name: 'home' })"><i class="mvfont mv-touxiang1" /></a>
+        </div>
+      </div>
+      <div class="category-tabs">
+        <Tabs v-model:active="activeId" @click-tab="handleCategoryChange" class="vant-tabs">
+          <Tab title="首页" name="0" />
+          <Tab v-for="category in categoryTop" :key="category.cId" :title="category.categoryName" :name="category.cId" />
+        </Tabs>
+        <div class="search-icon">
+          <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
+        </div>
+      </div>
+    </header>
     <main class="main">
       <div class="mv-swiper">
         <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :space-between="10">
@@ -24,19 +57,7 @@
         </nav>
         <nav class="mv-t-l">
           <div class="m-b">
-            <div v-for="video in videos" :key="video.videoId" class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
-              <div class="i-a" v-lazy:background-image="video.poster">
-                <span class="a-b">{{ video.playTime }}</span>
-                <span class="a-c">{{ video.categoryName }}</span>
-              </div>
-              <div class="i-b">
-                <b>{{ video.title }}</b>
-                <p>
-                  <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
-                  <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
-                </p>
-              </div>
-            </div>
+            <VideoGridItem v-for="video in videos" :key="video.videoId" :video="video" @click="router.push({ name: 'play', params: { id: video.videoId } })" />
           </div>
           <div class="au-pagination-box" v-if="totalPages > 1">
             <div class="pb-x">
@@ -58,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, computed, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
@@ -67,9 +88,12 @@ import { getAdListApi } from '@/api/app'
 import { getVideoListApi } from '@/api/video'
 import decryptionService from '@/utils/decryptionService'
 import type { VideoQueryParams, Video } from '@/types/video'
+import { getAssetsFile } from '@/utils'
+import { Swipe, SwipeItem } from 'vant'
+import { Tabs, Tab } from 'vant'
 
 import Footer from '@/components/layout/Footer.vue'
-import Header from '@/views/index/indexHeader.vue'
+import VideoGridItem from '@/components/VideoGridItem.vue'
 
 import 'swiper/css'
 
@@ -84,7 +108,9 @@ const selectedCategory = ref('')
 const currentSort = ref<'addTime' | 'clickCounts' | 'goodCounts'>('addTime')
 const currentPage = ref(1)
 const totalPages = ref(1)
-const pageSize = ref(30)
+const pageSize = ref(20)
+
+const activeId = ref<string | number>((route.params.id as any) || 0) // 确保类型为 string 或 number
 
 const modules = [Autoplay]
 
@@ -94,8 +120,15 @@ const sortOptions = [
   { label: '按好评', value: 'goodCounts' as const }
 ]
 
+// 获取一级分类
+const categoryTop = computed(() => {
+  return appStore.categorys.filter((category) => !category.pId)
+})
+
+// 获取二级分类
 const categories = ref<({ cId: string; categoryName: string } | { cId: string; children: { cId: string; categoryName: string }[] })[]>([])
 
+// 获取banner广告
 const fetchBannerAds = async () => {
   try {
     const response = await getAdListApi(2)
@@ -105,13 +138,14 @@ const fetchBannerAds = async () => {
   }
 }
 
+// 获取视频列表
 const fetchVideos = async (categoryId?: string) => {
   try {
     const params: VideoQueryParams = {
       page: currentPage.value,
       pageSize: pageSize.value,
       sortBy: currentSort.value,
-      categoryId: categoryId ? parseInt(categoryId, 10) : parseInt(route.params.id as string, 10)
+      categoryId: categoryId ? parseInt(categoryId, 10) : undefined
     }
     const response = await getVideoListApi(params)
 
@@ -122,29 +156,32 @@ const fetchVideos = async (categoryId?: string) => {
           poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
         }))
       )
-      currentPage.value = response.data.data.currentPage
-      totalPages.value = response.data.data.totalPages
+      currentPage.value = (response.data as any).page || 1
+      totalPages.value = (response.data as any).totalPages || 10
     }
   } catch (error) {
     console.error('获取视频列表失败:', error)
   }
 }
 
+// 选择二级分类
 const selectCategory = (categoryId: string) => {
   selectedCategory.value = categoryId
   currentPage.value = 1 // 重置页码
   fetchVideos(categoryId)
 }
 
+// 选择排序
 const changeSort = (sortValue: 'addTime' | 'clickCounts' | 'goodCounts') => {
   currentSort.value = sortValue
-  fetchVideos()
+  fetchVideos(selectedCategory.value)
 }
 
+// 选择页码
 const changePage = (newPage: number) => {
   if (newPage >= 1 && newPage <= totalPages.value) {
     currentPage.value = newPage
-    fetchVideos()
+    fetchVideos(selectedCategory.value)
   }
 }
 
@@ -157,26 +194,46 @@ const updateCategories = (categoryId: string) => {
   }
 }
 
-watch(
-  () => route.params.id,
-  (newId) => {
-    if (newId) {
-      selectedCategory.value = newId as string
-      currentPage.value = 1 // 重置页码
-      updateCategories(newId as string)
-      fetchVideos(newId as string)
-    }
-  },
-  { immediate: true }
-)
+const handleCategoryChange = ({ name }) => {
+  if (name == '0') {
+    router.push({ name: 'index' })
+  }
+  // activeId.value = name
+  selectedCategory.value = ''
+  currentPage.value = 1 // 重置页码
+  updateCategories(name)
+  fetchVideos(name)
+}
 
 onMounted(async () => {
   await fetchBannerAds()
+  if (route.params.id) {
+    nextTick(() => {
+      activeId.value = parseInt(route.params.id as any)
+      handleCategoryChange({ name: activeId.value })
+    })
+  }
 })
 
 const handlePageChange = () => {
-  fetchVideos()
+  fetchVideos(selectedCategory.value)
 }
+
+function handleScroll() {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+  const header = document.querySelector('.header')!
+  const hmB = document.querySelector('.search-icon') as HTMLElement
+
+  if (scrollTop > 100) {
+    hmB.style.display = 'block'
+    header.classList.add('fixed')
+  } else {
+    hmB.style.display = 'none'
+    header.classList.remove('fixed')
+  }
+}
+// 使用 passive 选项来提高滚动性能
+window.addEventListener('scroll', handleScroll, { passive: true })
 </script>
 
 <style scoped>

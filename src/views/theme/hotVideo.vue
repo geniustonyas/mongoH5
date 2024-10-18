@@ -24,7 +24,7 @@
                 <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
               </div>
               <div class="a-r">
-                <span>{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
+                <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
               </div>
             </div>
           </div>

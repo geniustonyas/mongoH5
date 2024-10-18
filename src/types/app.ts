@@ -31,4 +31,10 @@ export interface ConfigResponse {
   categorys: any[]
 }
 
+// 短信参数
+export interface SmsParams {
+  phone: string
+  type: string
+}
+
 export type AdvertisementsResp = ApiResponseData<Advertisements[]>

@@ -13,8 +13,8 @@
             <img :src="getAssetsFile('u_video.png')" />
           </div>
           <div class="a-n">
-            <span v-if="userStore.userInfo.userName != ''">
-              {{ userStore.userInfo.userName }}
+            <span v-if="userStore.userInfo.phone != ''">
+              {{ userStore.userInfo.phone }}
             </span>
             <span v-else @click="userStore.showLoginDialog = true">登录 / 注册</span>
           </div>

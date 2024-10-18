@@ -16,9 +16,20 @@
           <div class="l-b">
             <div class="au-form-goup">
               <ul class="f-a">
-                <li>
+                <li v-if="isLoginMode">
                   <i class="mvfont mv-user" />
                   <input v-model="formData.userName" placeholder="账号/手机号" />
+                </li>
+                <li v-else>
+                  <i class="mvfont mv-user" />
+                  <input v-model="formData.phone" placeholder="手机号" />
+                </li>
+                <li v-if="!isLoginMode">
+                  <i class="mvfont mv-yzm" />
+                  <input v-model="formData.code" placeholder="手机验证码" maxlength="6" />
+                  <a @click="handleGetCode" :class="{ disabled: countdown > 0 }">
+                    {{ countdown > 0 ? `${countdown}秒后重试` : '获取验证码' }}
+                  </a>
                 </li>
                 <li>
                   <i class="mvfont mv-password" />
@@ -40,29 +51,95 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/store/user'
 import { userLogin, userRegister } from '@/api/user'
+import { getCodeApi } from '@/api/app'
 import { showToast } from 'vant'
 import { setToken } from '@/utils/auth'
 import type { loginForm } from '@/types/user'
+import { isPhone, isPwd } from '@/utils/validate'
 
 const userStore = useUserStore()
 const isLoginMode = ref(true)
 
 const formData = ref<loginForm>({
   userName: '',
-  password: ''
+  password: '',
+  phone: '',
+  code: ''
 })
 
-const handleSubmit = async () => {
-  if (!formData.value.userName || !formData.value.password) {
-    showToast('请输入用户名和密码')
+const countdown = ref(0)
+const timer = ref<ReturnType<typeof setInterval> | null>(null)
+
+onMounted(() => {
+  const storedCountdown = localStorage.getItem('codeCountdown')
+  if (storedCountdown) {
+    const remainingTime = parseInt(storedCountdown) - Math.floor(Date.now() / 1000)
+    if (remainingTime > 0) {
+      startCountdown(remainingTime)
+    } else {
+      localStorage.removeItem('codeCountdown')
+    }
+  }
+})
+
+const startCountdown = (duration: number) => {
+  countdown.value = duration
+  timer.value = setInterval(() => {
+    countdown.value--
+    if (countdown.value <= 0) {
+      clearInterval(timer.value!)
+      localStorage.removeItem('codeCountdown')
+    } else {
+      localStorage.setItem('codeCountdown', (Math.floor(Date.now() / 1000) + countdown.value).toString())
+    }
+  }, 1000)
+}
+
+const handleGetCode = async () => {
+  if (countdown.value > 0) return
+  if (!isPhone(formData.value.phone)) {
+    showToast('请输入正确的手机号')
     return
   }
+  try {
+    const response = await getCodeApi({ phone: formData.value.phone, type: 'register' })
+    if (response.code === 200) {
+      showToast('验证码已发送')
+      startCountdown(60)
+    } else {
+      showToast(response.message || '获取验证码失败')
+    }
+  } catch (error) {
+    showToast(error.response?.data?.message || '获取验证码失败')
+  }
+}
 
-  if (formData.value.userName.length < 6 || formData.value.password.length < 6) {
-    showToast('用户名和密码不能少于6位')
+const handleSubmit = async () => {
+  if (isLoginMode.value) {
+    if (!formData.value.userName || !formData.value.password) {
+      showToast('请输入账号和密码')
+      return
+    }
+  } else {
+    if (!isPhone(formData.value.phone)) {
+      showToast('请输入正确的手机号')
+      return
+    }
+    if (!formData.value.password) {
+      showToast('请输入密码')
+      return
+    }
+    if (!formData.value.code) {
+      showToast('请输入验证码')
+      return
+    }
+  }
+
+  if (!isPwd(formData.value.password)) {
+    showToast('密码格式不正确，请输入6-16位包含字母、数字或特殊字符的密码')
     return
   }
 

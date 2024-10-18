@@ -25,7 +25,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 
 
-.page { width: 100%; height: 100%; max-width: 42.8rem; margin: 0 auto; 
+.page { width: 100%; height: 100%; max-width: 42.8rem; margin: 0 auto;
     &.video-page { height: 100%; overflow: hidden; .flex(); .flex-v(); }
 }
 
@@ -38,28 +38,15 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         .hs-a { position: relative; width: 9.5rem;
             img { height: 2.8rem; }
             svg { display: block; height: 2.6rem; fill: var(--color-primary); }
-            span { 
-                font-weight: 800; font-size: 1.8rem; color: var(--color-white);
-                position: absolute; left: 3rem; top:.2rem; 
-            }
+            span { font-weight: 800; font-size: 1.8rem; color: var(--color-white); position: absolute; left: 3rem; top: -1.2rem; }
         }
         .hs-b { .flex-x(); position: relative; margin-left: 1rem;
 
             .sb-i { cursor: pointer;
                 input { .h-lh(3.6rem); .radius(3.6rem); .bg(rgba(255,255,255,0.1)); width: 100%; border: none; padding: 0 2rem 0 3.5rem; color: var(--color-white); }
-                i { 
-                    position: absolute; left: 1rem;
-                    font-size: 2rem; color: var(--color-light); 
-                }
+                i { position: absolute; left: 1rem; top: -.7rem; font-size: 2rem; color: var(--color-light); }
             }
-            .sb-t { 
-                position: absolute; padding-left: 3.5rem; left: 0; top: 0; 
-                width: 100%; height: 3.6rem; line-height: 3.6rem;
-                overflow: hidden; color: var(--color-light); 
-                .van-swipe-item { color: var(--color-light); 
-                    span { color: var(--color-light); }
-                }
-            }
+            .sb-t { position: absolute; padding-left: 3.5rem; left: 0; top: 0; width: 100%; height: 3.6rem; line-height: 3.6rem; overflow: hidden; color: var(--color-light); }
         }
         .hs-c {
             a { display: inline-block; .h-lh(5rem); padding-left: 1rem; text-align: center; cursor: pointer;
@@ -76,6 +63,27 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             }
         }
         .hm-b { .flex-x(0 0 4rem); text-align: center; width: 4.4rem; position: relative; display: none;
+            &:before { display: block; content: ""; position: absolute; width: 2rem; height: 100%; left: -1.7rem; bottom: 0; pointer-events: none; .bg-gradient(right,var(--color-main-bg),transparent); }
+            i { font-size: 2.4rem; }
+        }
+    }
+    .category-tabs {
+        .van-tabs { color: red ;
+            .van-tabs__wrap {
+                .van-tabs__nav { .bg(var(--color-main-bg));
+                    .van-tab {
+                        .van-tab__text { font-size: 1.6rem;  white-space: nowrap; color: var(--color-light); font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif; }
+                    }
+                    .van-tab--active {
+                        .van-tab__text { font-size: 2rem; font-weight: 600; color: var(--color-white); }
+                    }
+                    .van-tabs__line {
+                        width: 5%; height: .4rem; .bg(#f96518); .radius(.4rem); .bg-gradient(90deg,#f96518,#ff2a14);
+                    }
+                }
+            }
+        }
+        .search-icon { text-align: center; width: 4.4rem; .h-lh(4.4rem); position: relative; left: 90%; top: -4.4rem; .bg(var(--color-main-bg)); display: none;
             &:before { display: block; content: ""; position: absolute; width: 2rem; height: 100%; left: -1.7rem; bottom: 0; pointer-events: none; .bg-gradient(right,var(--color-main-bg),transparent); }
             i { font-size: 2.4rem; }
         }
@@ -128,7 +136,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 
 
-.main { margin-top: 10rem; margin-bottom: 10rem; }
+.main { padding-top: 10rem; padding-bottom: 10rem; }
 
 .footer { bottom: 0;
     &.fixed { -webkit-transform: translateY(42.8rem); transform: translateY(4.8rem); }
@@ -289,8 +297,8 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             i { font-size: 1rem; vertical-align: middle; position: relative; bottom: .1rem; margin-left: .3rem; }
         }
     }
-    .vm-b { position: relative;
-        .v-a {
+    .vm-b { position: relative; height: 100%;
+        .v-a { height: 100%;
             video { width: 100%; height: 100%; border: none; object-fit: cover; }
         }
         .v-b { position: absolute; right: 1rem; bottom: 6rem; .flex(); .flex-v();
@@ -710,7 +718,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
 }
 
-.b-m-b { padding:5rem 0;
+.b-m-b { padding: 5rem 0;
     .b-m {
         .m-row { padding: .5rem 1rem; .flex(); .flex-wrap(); .x-scrollbar();
             span { .bgc(rgba(255, 255, 255, 0.1),var(--color-white)); padding: 0.5rem 1rem; text-align: center; .radius(.4rem); white-space: nowrap; margin-right: 1rem; cursor: pointer; font-size: 1.3rem;
@@ -851,7 +859,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             .a-l { padding-left: 1rem;
                 span { display: inline-block; width: 6rem; .h-lh(4rem); text-align: center;
                     &.active { color: var(--color-primary);
-                        &:before { content: ""; position: absolute; bottom: -.7rem;  background: url(../imgs/by.svg) no-repeat center; background-size: cover; display: inline-block; width: 3.4rem; height: 3.4rem; }
+                        &:before { content: ""; position: absolute; bottom: -.7rem; left: 2.5rem; background: url(../imgs/by.svg) no-repeat center; background-size: cover; display: inline-block; width: 3.4rem; height: 3.4rem; }
                     }
                 }
             }
@@ -950,7 +958,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         }
     }
 }
-
 .au-pagination-box { margin: 2rem 0; .flex(); .flex-align();
     .pb-x { position: relative; .flex-x(); padding: 0 1rem;
         a { display: inline-block; .h-lh(4rem); width: 100%; .radius(.4rem); text-align: center; .bgc(rgba(255, 255, 255, 0.1),var(--color-white)); cursor: pointer; .border-a(.1rem,var(--color-dark)); }
