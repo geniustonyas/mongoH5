@@ -59,19 +59,19 @@ const categoryTop = computed(() => {
   return appStore.categorys.filter((category) => !category.pId)
 })
 
-function handleScroll() {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-  const header = document.querySelector('.header')!
-  const hmB = document.querySelector('.head-menu .hm-b') as HTMLElement
+// function handleScroll() {
+//   const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+//   const header = document.querySelector('.header')!
+//   const hmB = document.querySelector('.head-menu .hm-b') as HTMLElement
 
-  if (scrollTop > 100) {
-    hmB.style.display = 'block'
-    header.classList.add('fixed')
-  } else {
-    hmB.style.display = 'none'
-    header.classList.remove('fixed')
-  }
-}
-// 使用 passive 选项来提高滚动性能
-window.addEventListener('scroll', handleScroll, { passive: true })
+//   if (scrollTop > 100) {
+//     hmB.style.display = 'block'
+//     header.classList.add('fixed')
+//   } else {
+//     hmB.style.display = 'none'
+//     header.classList.remove('fixed')
+//   }
+// }
+// // 使用 passive 选项来提高滚动性能
+// window.addEventListener('scroll', handleScroll, { passive: true })
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="item" @click="router.push({ name: 'play', params: { id: video.videoId } })">
+    <!-- <div class="i-a" :style="{ backgroundImage: `url(${video.poster})` }"> -->
     <div class="i-a" v-lazy:background-image="video.poster">
       <span v-if="video.resolution" class="a-a">{{ video.resolution }}</span>
       <span class="a-b">{{ video.playTime }}</span>

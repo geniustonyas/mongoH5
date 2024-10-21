@@ -56,12 +56,14 @@ import { useUserStore } from '@/store/user'
 import Player from 'xgplayer'
 import HlsJsPlugin from 'xgplayer-hls.js' // 引入HLS插件
 // import FlvJsPlugin from 'xgplayer-flv.js' // 引入FLV插件
+import { useAppStore } from '@/store/app'
 import 'xgplayer/dist/index.min.css'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 
 const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
+const appStore = useAppStore()
 const videoDetail = ref<Video | null>(null)
 const recommendedVideos = ref<Video[]>([])
 const isLiked = ref(false)
@@ -161,7 +163,9 @@ onMounted(async () => {
   await fetchRecommendedVideos()
 
   if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
-    const url = videoDetail.value.playDomain + videoDetail.value.playUrl
+    const url = appStore.systemSettings.customer_cdn_link + videoDetail.value.playUrl
+    // const url = 'https://mogo.ewcdn.com/mogo/pp01/20241018/585423fe4ee87f5f6045fb9b60cd9ac0/19201080/index.m3u8'
+    // const url = 'https://usone.mg-tamk-999.vip/mogo/pp01/20241018/585423fe4ee87f5f6045fb9b60cd9ac0/19201080/index.m3u8'
 
     let playerConfig = {
       id: 'video-player',

@@ -18,7 +18,6 @@ app.use(Lazyload, {
   // loading: loadingImage,
   error: errorImage
 })
-app.use(Lazyload)
 app.use(router)
 
 router.isReady().then(() => {

@@ -39,14 +39,15 @@ export interface Video {
 // 在 video.ts 中直接定义接口
 export interface VideoQueryParams {
   search?: string
-  categoryId?: number
-  tagId?: number
+  categoryId?: number | string
+  tagId?: number | string
   vipExclusive?: 0 | 1
   pageSize?: number
   page?: number
-  sortBy?: 'clickCounts' | 'goodCounts' | 'favoriteCounts' | 'addTime'
+  sortBy?: 'clickCounts' | 'goodCounts' | 'favoriteCounts' | 'addTime' | ''
   beginTime?: string
   endTime?: string
+  signal?: AbortSignal
 }
 
 // 新增一个接口来描述分页数据结构

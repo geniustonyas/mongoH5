@@ -218,21 +218,21 @@ const handlePageChange = () => {
   fetchVideos(selectedCategory.value)
 }
 
-function handleScroll() {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-  const header = document.querySelector('.header')!
-  const hmB = document.querySelector('.search-icon') as HTMLElement
+// function handleScroll() {
+//   const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+//   const header = document.querySelector('.header')!
+//   const hmB = document.querySelector('.search-icon') as HTMLElement
 
-  if (scrollTop > 100) {
-    hmB.style.display = 'block'
-    header.classList.add('fixed')
-  } else {
-    hmB.style.display = 'none'
-    header.classList.remove('fixed')
-  }
-}
-// 使用 passive 选项来提高滚动性能
-window.addEventListener('scroll', handleScroll, { passive: true })
+//   if (scrollTop > 100) {
+//     hmB.style.display = 'block'
+//     header.classList.add('fixed')
+//   } else {
+//     hmB.style.display = 'none'
+//     header.classList.remove('fixed')
+//   }
+// }
+// // 使用 passive 选项来提高滚动性能
+// window.addEventListener('scroll', handleScroll, { passive: true })
 </script>
 
 <style scoped>
