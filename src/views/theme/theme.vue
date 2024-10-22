@@ -2,19 +2,19 @@
   <div class="page">
     <Header />
     <section class="t-l-b">
-      <div v-for="category in themeData" :key="category.tId" class="te-cols">
+      <div v-for="tag in themeData" :key="tag.id" class="te-cols">
         <div class="c-t">
-          <div class="t-l">{{ category.name }}</div>
+          <div class="t-l">{{ tag.title }}</div>
           <div class="t-r">
-            <i :class="['mvfont', 'mv-xia', { up: isExpanded(category.tId) }]" @click.stop="toggleCategory(category.tId)" />
+            <i :class="['mvfont', 'mv-xia', { up: isExpanded(tag.id) }]" @click.stop="toggletag(tag.id)" />
           </div>
         </div>
-        <div :class="['c-l', { expanded: isExpanded(category.tId) }]" ref="contentRefs">
-          <a v-for="tag in category.children" :key="tag.tId" @click="router.push({ name: 'search', query: { keyword: tag.name } })">
-            <span>{{ tag.name }}</span>
-            <small
-              >收录：<b>{{ tag.video_count }}</b></small
-            >
+        <div :class="['c-l', { expanded: isExpanded(tag.id) }]" ref="contentRefs">
+          <a v-for="childTag in tag.items" :key="childTag.id" @click="router.push({ name: 'search', query: { keyword: childTag.title } })">
+            <span>{{ childTag.title }}</span>
+            <small>
+              收录：<b>{{ childTag.targetUrl }}</b>
+            </small>
           </a>
         </div>
       </div>
@@ -27,20 +27,20 @@
 import { ref, onMounted, nextTick } from 'vue'
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/theme/themeHeader.vue'
-import { getThemeTagApi } from '@/api/theme'
-import type { ThemeTag } from '@/types/theme'
+import { getThemeApi } from '@/api/theme'
+import type { ThemeResponse } from '@/types/theme'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const themeData = ref<ThemeTag[]>([])
-const expandedCategories = ref<Set<number>>(new Set())
+const themeData = ref<ThemeResponse[]>([])
+const expandedCategories = ref<Set<string>>(new Set())
 const contentRefs = ref<HTMLElement[]>([])
 
-const isExpanded = (id: number) => expandedCategories.value.has(id)
+const isExpanded = (id: string) => expandedCategories.value.has(id)
 
-const toggleCategory = (id: number) => {
-  const index = themeData.value.findIndex((category) => category.tId == id)
+const toggletag = (id: string) => {
+  const index = themeData.value.findIndex((tag) => tag.id == id)
   const content = contentRefs.value[index]
 
   if (isExpanded(id)) {
@@ -54,7 +54,7 @@ const toggleCategory = (id: number) => {
 
 const fetchThemeData = async () => {
   try {
-    const response = await getThemeTagApi()
+    const response = await getThemeApi()
     // 假设 response.data 是 ThemeTag[] 类型
     if (response.data && Array.isArray(response.data)) {
       themeData.value = response.data
@@ -62,7 +62,7 @@ const fetchThemeData = async () => {
       themeData.value = []
     }
     // 默认所有分类展开
-    expandedCategories.value = new Set(themeData.value.map((category) => category.tId))
+    expandedCategories.value = new Set(themeData.value.map((tag) => tag.id))
 
     // 在下一个 tick 中设置初始高度
     await nextTick()

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { getCategoryApi, getConfigApi, getAdsApi } from '@/api/app'
+import { getThemeApi } from '@/api/theme'
 import store from '@/store'
 
 export const useAppStore = defineStore('app', {
@@ -16,7 +17,7 @@ export const useAppStore = defineStore('app', {
       cdnUrl: '', // cdn地址
       customer_service_link: '', // 客服链接
 
-      tags: [], // 标签
+      theme: [], // 标签
       categorys: [], // 分类
       advertisement: [], // 广告
       clarity: ['普通', '高清', '超清', '蓝光'] // 清晰度
@@ -73,17 +74,28 @@ export const useAppStore = defineStore('app', {
       }
     },
 
+    // 获取主题
+    async fetTheme() {
+      try {
+        const resp = await getThemeApi()
+        this.theme = resp.data || []
+      } catch (error) {
+        console.error('获取主题失败:', error)
+      }
+    },
+
     // 获取配置、分类和广告，并每隔5分钟刷新一次
     async fetchAllData() {
       await this.fetConfig()
       await this.fetCategory()
       await this.fetAdvertisement()
-
+      await this.fetTheme()
       // 每隔5分钟刷新一次数据
       setInterval(async () => {
         await this.fetConfig()
         await this.fetCategory()
         await this.fetAdvertisement()
+        await this.fetTheme()
       }, 5 * 60 * 1000) // 5分钟
     }
   }

@@ -2,7 +2,7 @@
   <div>
     <header class="s-header">
       <input v-model="searchKeyword" placeholder="搜索" @keyup.enter="searchVideos" />
-      <a @click="goBack">取消</a>
+      <a @click="router.back()">取消</a>
     </header>
 
     <!-- 热门标签 -->
@@ -12,7 +12,7 @@
           <b>热门标签</b>
         </div>
         <div class="s-b">
-          <a v-for="tag in hotTags" :key="tag.tId" @click="selectTag(tag.name)"> {{ tag.name }}<small v-if="tag.video_count > 0">热</small> </a>
+          <a v-for="tag in hotTags" :key="tag.id" @click="selectTag(tag.title)"> {{ tag.title }}<small v-if="tag.video_count > 0">热</small> </a>
         </div>
       </nav>
     </section>
@@ -29,20 +29,20 @@
         </div>
         <div class="s-c">
           <ul class="m-list">
-            <li v-for="video in searchResults" :key="video.videoId" @click="goToVideoPlay(video.videoId)">
+            <li v-for="video in searchResults" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
               <div class="l-a" :style="{ backgroundImage: `url(${video.poster})` }">
-                <span v-if="video.resolution" class="a-a">{{ video.resolution }}</span>
-                <span class="a-b">{{ video.playTime }}</span>
-                <span class="a-c">{{ video.categoryName }}</span>
+                <span v-if="video.clarity != '0'" class="a-a">{{ video.clarity }}</span>
+                <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
+                <span class="a-c">{{ video.channelName }}</span>
               </div>
               <div class="l-b">
                 <div class="b-a">{{ video.title }}</div>
                 <div class="b-b">
-                  <span v-for="(tag, index) in video.tags" :key="index">{{ tag }}</span>
+                  <span>{{ video.channelName }}</span>
                 </div>
                 <div class="b-c">
-                  <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
-                  <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
+                  <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+                  <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
                 </div>
               </div>
             </li>
@@ -71,7 +71,7 @@ import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { getVideoListApi } from '@/api/video'
 import decryptionService from '@/utils/decryptionService'
-import type { VideoQueryParams, Video } from '@/types/video'
+import type { Video } from '@/types/video'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -83,14 +83,14 @@ const showHotTags = ref(true)
 const hasSearched = ref(false)
 
 const hotTags = computed(() => {
-  const allTags = appStore.tags.flatMap((category) => category.children || [])
+  const allTags = appStore.theme.flatMap((tag) => tag.items || [])
   return allTags
     .sort(() => 0.5 - Math.random())
     .slice(0, 10)
     .map((tag) => ({
-      tId: tag.tId,
-      name: tag.name,
-      video_count: tag.video_count
+      id: tag.id,
+      title: tag.title,
+      video_count: tag.targetUrl
     }))
 })
 
@@ -99,17 +99,17 @@ const searchVideos = async () => {
   showHotTags.value = false
   hasSearched.value = true
   try {
-    const params: VideoQueryParams = {
-      page: 1,
-      pageSize: 30,
-      search: searchKeyword.value
+    const params = {
+      PageIndex: 1,
+      PageSize: 30,
+      KeyWord: searchKeyword.value
     }
     const response = await getVideoListApi(params)
-    if (response.data.data && Array.isArray(response.data.data)) {
+    if (response.data && Array.isArray(response.data.items)) {
       searchResults.value = await Promise.all(
-        response.data.data.map(async (video) => ({
+        response.data.items.map(async (video) => ({
           ...video,
-          poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
+          poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
         }))
       )
     } else {
@@ -124,14 +124,6 @@ const searchVideos = async () => {
 const selectTag = (tagName: string) => {
   searchKeyword.value = tagName
   searchVideos()
-}
-
-const goToVideoPlay = (videoId: string | number) => {
-  router.push({ name: 'play', params: { id: videoId } })
-}
-
-const goBack = () => {
-  router.go(-1)
 }
 
 onMounted(() => {

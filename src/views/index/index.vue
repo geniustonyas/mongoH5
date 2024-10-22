@@ -174,7 +174,7 @@ import { Tabs, Tab, Swipe, SwipeItem, PullRefresh } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import decryptionService from '@/utils/decryptionService'
-import type { videoListRequest, Video } from '@/types/video'
+import type { VideoListRequest, Video } from '@/types/video'
 import { getAssetsFile } from '@/utils'
 import { Autoplay } from 'swiper/modules'
 import type { SwipeInstance } from 'vant'
@@ -210,7 +210,7 @@ const sortOptions = [
   { label: '按好评', value: 3 }
 ]
 
-const query = reactive<videoListRequest>({
+const query = reactive<VideoListRequest>({
   ChannelId: '',
   SubChannelId: '',
   SortType: 2,
@@ -219,7 +219,7 @@ const query = reactive<videoListRequest>({
   PageSize: 20
 })
 
-const fetchVideos = async (params: videoListRequest) => {
+const fetchVideos = async (params: VideoListRequest) => {
   try {
     const response = await getVideoListApi(params)
     if (response.data && Array.isArray(response.data.items)) {
@@ -394,8 +394,8 @@ function handleScroll() {
 window.addEventListener('scroll', handleScroll, { passive: true })
 </script>
 
-<!-- <style scoped>
+<style scoped>
 .category-content {
   min-height: 550px;
 }
-</style> -->
+</style>
