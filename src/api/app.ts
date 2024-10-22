@@ -1,27 +1,26 @@
-import { request } from '@/utils/axios'
-import type { AdvertisementsResp, ConfigResponse, SmsParams } from '@/types/app'
+import request, { cancelTokenSource } from '@/utils/axios'
 
 /** 获取系统配置 */
 export function getConfigApi() {
-  return request<ConfigResponse>({
-    url: 'api/getConfig',
-    method: 'get'
+  return request({
+    url: 'Web/Config',
+    method: 'post'
+  })
+}
+
+/** 获取所有分类 */
+export function getCategoryApi() {
+  return request({
+    url: 'Web/Channel',
+    method: 'post',
+    cancelToken: cancelTokenSource?.token // 使用取消令牌
   })
 }
 
 /** 获取所有广告 */
-export function getAdListApi(id: number | string) {
-  return request<AdvertisementsResp[]>({
-    url: `api/getAdList/${id}`,
-    method: 'get'
-  })
-}
-
-/** 获取验证码 */
-export function getCodeApi(data: SmsParams) {
+export function getAdsApi() {
   return request({
-    url: `api/sendSms`,
-    method: 'post',
-    data
+    url: `Web/AdsList`,
+    method: 'post'
   })
 }

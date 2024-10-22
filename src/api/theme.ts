@@ -1,18 +1,9 @@
-import { request } from '@/utils/axios'
-import type { ThemeTagResp } from '@/types/theme'
+import request from '@/utils/axios'
 
-/** 获取主题标签 */
-export function getThemeTagApi() {
-  return request<ThemeTagResp>({
-    url: 'api/tagVideoCount',
-    method: 'get'
+/** 获取所有主题 */
+export function getThemeApi() {
+  return request({
+    url: `Web/ThemeList`,
+    method: 'post'
   })
 }
-
-/** 获取演员列表 */
-// export function getActorListApi() {
-//   return request<ActorListResp>({
-//     url: 'api/actorList',
-//     method: 'get'
-//   })
-// }

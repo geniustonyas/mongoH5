@@ -1,53 +1,50 @@
-import { PaginatedApiResponseData, ApiResponseData } from '@/types/api.d'
+import { ApiResponseData } from '@/types/api.d'
+
+export interface IndexVideoResponse {
+  Recommended: Video[]
+  Latest: Video[]
+}
 
 export interface Video {
-  videoId: number
+  id: string
   title: string
-  cId: number
-  description: string | null
-  shortDesc: string | null
-  keyword: string | null
-  resolution: string | null
-  type: number
-  hasEpisodes: number
-  totalEpisodes: number
-  status: number
-  vipExclusive: number
-  director: string | null
-  posterDomain: string
+  channelId: string
+  channelName: string
+  addTime: string
+  clarity: string
+  duration: string
+  imgDomain: string
+  imgUrl: string
+  viewCount: string
+  likeCount: string
   playDomain: string
-  downloadDomain: string | null
-  poster: string
   playUrl: string
-  downloadUrl: string | null
-  viewKey: string
-  playTime: string | null
-  clickCounts: number
-  goodCounts: number
-  noGoodCounts: number
-  favoriteCounts: number
-  userId: number
-  releaseDate: string | null
-  isReviewed: number
-  reviewedAt: string | null
-  updateTime?: string
-  addTime?: string
-  tags: string[]
-  categoryName: string
+  trailerDomain?: string
+  trailerUrl?: string
+  poster?: string
 }
 
 // 在 video.ts 中直接定义接口
-export interface VideoQueryParams {
-  search?: string
-  categoryId?: number | string
-  tagId?: number | string
-  vipExclusive?: 0 | 1
-  pageSize?: number
-  page?: number
-  sortBy?: 'clickCounts' | 'goodCounts' | 'favoriteCounts' | 'addTime' | ''
-  beginTime?: string
-  endTime?: string
-  signal?: AbortSignal
+export interface videoListRequest {
+  PageIndex?: number
+  PageSize?: number
+  KeyWord?: string
+  ChannelId?: number | string
+  SubChannelId?: number | string
+  TagIds?: string
+  SortType?: string | number
+  IsFirst?: boolean
+  ActressId?: number | string
+}
+
+// 修改 VideoListResponse 的定义
+export type VideoListResponse = {
+  items: Video[]
+  newVideos: Video[]
+  pageCount: number
+  pageIndex: number
+  pageSize: number
+  recordCount: number
 }
 
 // 新增一个接口来描述分页数据结构
@@ -78,9 +75,6 @@ export interface getRecordData {
   page: number
   sortOrder: string | null
 }
-
-// 修改 VideoListResponse 的定义
-export type VideoListResponse = PaginatedApiResponseData<Video>
 
 export type VideoDetailResponse = ApiResponseData<Video>
 

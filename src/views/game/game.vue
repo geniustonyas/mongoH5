@@ -175,7 +175,7 @@ import Footer from '@/components/layout/Footer.vue'
 const appStore = useAppStoreHook()
 
 const openCustomerService = () => {
-  const customerServiceLink = appStore.systemSettings.customer_service_link
+  const customerServiceLink = appStore.customer_service_link
   if (customerServiceLink) {
     window.open(customerServiceLink, '_blank')
   } else {

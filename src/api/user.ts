@@ -1,4 +1,4 @@
-import { request } from '@/utils/axios'
+import request from '@/utils/axios'
 import type { loginForm, loginRegResp, UserInfoResp } from '@/types/user'
 
 /** 用户登录 */

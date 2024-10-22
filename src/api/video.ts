@@ -1,12 +1,21 @@
-import { request } from '@/utils/axios'
-import type { VideoQueryParams, VideoListResponse, VideoDetailResponse, addRecordData, getRecordData, addRecordDataResp } from '@/types/video'
+import request, { cancelTokenSource } from '@/utils/axios'
+import type { IndexVideoResponse, videoListRequest, VideoListResponse, VideoDetailResponse, addRecordData, getRecordData, addRecordDataResp } from '@/types/video'
+
+/** 获取首页视频列表 */
+export function getIndexVideoListApi() {
+  return request<IndexVideoResponse>({
+    url: 'Web/IndexVideo',
+    method: 'post',
+    cancelToken: cancelTokenSource?.token
+  })
+}
 
 /** 获取视频列表 */
-export function getVideoListApi(params: VideoQueryParams) {
+export function getVideoListApi(data: videoListRequest) {
   return request<VideoListResponse>({
-    url: 'api/videos',
-    method: 'get',
-    params
+    url: 'Web/VideoList',
+    method: 'post',
+    data: data
   })
 }
 

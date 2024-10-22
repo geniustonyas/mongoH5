@@ -163,7 +163,7 @@ onMounted(async () => {
   await fetchRecommendedVideos()
 
   if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
-    const url = appStore.systemSettings.customer_cdn_link + videoDetail.value.playUrl
+    const url = appStore.cdnUrl + videoDetail.value.playUrl
     // const url = 'https://mogo.ewcdn.com/mogo/pp01/20241018/585423fe4ee87f5f6045fb9b60cd9ac0/19201080/index.m3u8'
     // const url = 'https://usone.mg-tamk-999.vip/mogo/pp01/20241018/585423fe4ee87f5f6045fb9b60cd9ac0/19201080/index.m3u8'
 

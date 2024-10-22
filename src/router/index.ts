@@ -26,13 +26,13 @@ const routes: RouteRecordRaw[] = [
         name: 'recommend',
         component: () => import('@/views/index/recommend.vue'),
         meta: { needLogin: false, keepAlive: false }
-      },
-      {
-        path: 'category/:id',
-        name: 'category',
-        component: () => import('@/views/index/category.vue'),
-        meta: { needLogin: false, keepAlive: false }
       }
+      // {
+      //   path: 'category/:id',
+      //   name: 'category',
+      //   component: () => import('@/views/index/category.vue'),
+      //   meta: { needLogin: false, keepAlive: false }
+      // }
     ]
   },
   {
@@ -190,11 +190,11 @@ router.beforeEach(async (to, from, next) => {
 
   // 如果应用配置还未加载，则加载配置
   if (appStore.tags.length == 0) {
-    await appStore.fetConfig()
+    await appStore.fetchAllData()
   }
 
   if (token) {
-    if (!userStore.userInfo.userId) {
+    if (!userStore.userInfo.phone) {
       try {
         await userStore.fetchUserInfo()
         next()

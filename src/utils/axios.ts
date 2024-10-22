@@ -1,74 +1,71 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
-import { useAppStoreHook } from '@/store/app'
-// import { useUserStoreHook } from '@/store/user'
-import { merge } from 'lodash-es'
+import axios, { CancelTokenSource, InternalAxiosRequestConfig } from 'axios'
 import { TokenPrefix, getToken } from '@/utils/auth'
-import { ApiResponseData } from '@/types/api.d'
+import { useUserStoreHook } from '@/store/user'
+import { showToast } from 'vant'
 
-let loadingRequestCount = 0 // loading请求数
-
-/** 创建请求实例 */
-function createService() {
-  const service = axios.create()
-  // 请求拦截
-  service.interceptors.request.use(
-    (config) => {
-      loadingRequestCount = loadingRequestCount + 1 // 统计请求数
-      if (config.method?.toLowerCase() == 'post') {
-        if (!config.data || !config.data.noLoading) {
-          useAppStoreHook().loading = true
-        }
-      }
-      if (config.method?.toLowerCase() == 'get') {
-        if (!config.params || !config.params.noLoading) {
-          useAppStoreHook().loading = true
-        }
-      }
-      return config
-    },
-    // 发送失败
-    (error) => {
-      loadingRequestCount = 0
-      useAppStoreHook().loading = false
-      Promise.reject(error)
-    }
-  )
-  // 响应拦截
-  service.interceptors.response.use(
-    (response) => {
-      loadingRequestCount--
-      if (loadingRequestCount <= 0) {
-        useAppStoreHook().loading = false
-      }
-      const { data } = response
-      return data
-    },
-    (error) => {
-      loadingRequestCount = 0
-      useAppStoreHook().loading = false
-      return Promise.reject(error)
-    }
-  )
-  return service
+// 扩展 InternalAxiosRequestConfig 接口以包含 shouldCancel 属性
+interface CustomInternalAxiosRequestConfig extends InternalAxiosRequestConfig {
+  shouldCancel?: boolean
 }
 
-/** 创建请求方法 */
-function createRequestFunction(service: AxiosInstance) {
-  return function <T>(config: AxiosRequestConfig): Promise<ApiResponseData<T>> {
-    const configDefault = {
-      headers: {
-        Authorization: `${TokenPrefix}${getToken()}`
-      },
-      // withCredentials: true, // 发送cookies,authorization header或TLS客户端等资格证书, 主要用于跨域.
-      timeout: 60 * 1000,
-      baseURL: import.meta.env.VITE_BASE_API,
-      data: {}
+// 创建一个取消令牌源
+let cancelTokenSource: CancelTokenSource | null = null
+
+const service = axios.create({
+  baseURL: import.meta.env.VITE_BASE_API, // 使用 Vite 的环境变量
+  headers: {
+    Authorization: `${TokenPrefix}${getToken()}`,
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+  },
+  timeout: 8000
+})
+
+// 请求拦截器
+service.interceptors.request.use(
+  (config) => {
+    const customConfig = config as CustomInternalAxiosRequestConfig
+    // 检查配置中是否有 shouldCancel 参数
+    if (customConfig.shouldCancel && cancelTokenSource) {
+      cancelTokenSource.cancel('请求被取消')
     }
-    return service(merge(configDefault, config))
+    // 创建新的取消令牌
+    cancelTokenSource = axios.CancelToken.source()
+    customConfig.cancelToken = cancelTokenSource.token
+    return customConfig as InternalAxiosRequestConfig
+  },
+  (error) => {
+    return Promise.reject(error)
   }
-}
+)
 
-/** 用于网络请求的实例 */
-export const service = createService()
-/** 用于网络请求的方法 */
-export const request = createRequestFunction(service)
+// 响应拦截器
+service.interceptors.response.use(
+  (response) => {
+    const {
+      data,
+      data: { code }
+    } = response
+    if (code === undefined) {
+      return data
+    } else {
+      if (code == '200') {
+        return data
+      } else if (code == '401') {
+        useUserStoreHook().clearLogin()
+      } else {
+        showToast('服务器错误：' + code)
+      }
+      return Promise.reject(data)
+    }
+  },
+
+  (error) => {
+    if (error.response?.status === 401) {
+      useUserStoreHook().clearLogin()
+    }
+    return Promise.reject(error)
+  }
+)
+
+export default service
+export { cancelTokenSource }

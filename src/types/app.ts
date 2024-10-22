@@ -1,5 +1,10 @@
 import type { ApiResponseData } from '@/types/api.d'
 
+export interface Category {
+  cId: number
+  name: string
+}
+
 export enum AdvertisementType {
   Image = 1,
   Video = 2,
