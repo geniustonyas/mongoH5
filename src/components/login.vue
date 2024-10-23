@@ -105,15 +105,15 @@ const handleGetCode = async () => {
     return
   }
   try {
-    const response = await getCodeApi({ phone: formData.value.phone, type: 'register' })
-    if (response.code === 200) {
+    const resp = await getCodeApi({ phone: formData.value.phone, type: 'register' })
+    if (resp.code == 200) {
       showToast('验证码已发送')
       startCountdown(60)
     } else {
-      showToast(response.message || '获取验证码失败')
+      showToast(resp.message || '获取验证码失败')
     }
   } catch (error) {
-    showToast(error.response?.data?.message || '获取验证码失败')
+    showToast(error.resp?.data?.message || '获取验证码失败')
   }
 }
 
@@ -144,26 +144,26 @@ const handleSubmit = async () => {
   }
 
   try {
-    let response
+    let resp
     if (isLoginMode.value) {
-      response = await userLogin(formData.value)
+      resp = await userLogin(formData.value)
     } else {
-      response = await userRegister(formData.value)
+      resp = await userRegister(formData.value)
     }
-    if (response.code == 200 && response.data.token) {
-      setToken(response.data.token)
-      if (response.data.user) {
-        userStore.setUserInfo(response.data.user)
+    if (resp.code == 200 && resp.data.token) {
+      setToken(resp.data.token)
+      if (resp.data.user) {
+        userStore.setUserInfo(resp.data.user)
       } else {
         await userStore.fetchUserInfo()
       }
       showToast(isLoginMode.value ? '登录成功' : '注册成功')
       userStore.showLoginDialog = false
     } else {
-      showToast(response.message || (isLoginMode.value ? '登录失败' : '注册失败'))
+      showToast(resp.message || (isLoginMode.value ? '登录失败' : '注册失败'))
     }
   } catch (error) {
-    showToast(error.response?.data?.message || (isLoginMode.value ? '登录失败' : '注册失败'))
+    showToast(error.resp?.data?.message || (isLoginMode.value ? '登录失败' : '注册失败'))
   }
 }
 </script>

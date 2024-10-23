@@ -1,5 +1,5 @@
 import request, { cancelTokenSource } from '@/utils/axios'
-
+import { SmsParams } from '@/types/app'
 /** 获取系统配置 */
 export function getConfigApi() {
   return request({
@@ -26,9 +26,10 @@ export function getAdsApi() {
 }
 
 /** 获取验证码 */
-export function getCodeApi() {
+export function getCodeApi(data: SmsParams) {
   return request({
     url: 'Web/GetCode',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
