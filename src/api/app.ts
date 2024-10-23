@@ -24,3 +24,11 @@ export function getAdsApi() {
     method: 'post'
   })
 }
+
+/** 获取验证码 */
+export function getCodeApi() {
+  return request({
+    url: 'Web/GetCode',
+    method: 'post'
+  })
+}

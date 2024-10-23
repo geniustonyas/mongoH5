@@ -23,7 +23,7 @@
           <ul>
             <li>
               <a target="_blank" href="https://bbzb24.com/?channelCode=bbzb24">
-                <img src="https://mogo.ewcdn.com/upload/mogo/20241006/84ff6ee5ef4024d1e6028ccbbacd02da/19201080/post.js" />
+                <img src="https://sjtv.xianliao.voto/daohang/bangbang.png" />
                 <span>直播做爱</span>
               </a>
             </li>
