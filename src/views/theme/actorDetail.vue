@@ -2,62 +2,49 @@
   <div class="page">
     <section class="a-d-b">
       <div class="ab-a">
-        <a href="javascript:void(0)" @click="goBack" class="a-bk"><i class="mvfont mv-left" /></a>
-        <div class="a-x" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
+        <a href="javascript:void(0)" @click="router.back()" class="a-bk"><i class="mvfont mv-left" /></a>
+        <div class="a-x" :style="{ backgroundImage: `url(${actor.imgUrl})` }">
           <div class="x-c">
             <div class="c-bd">
-              <div class="c-i" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
+              <div class="c-i" :style="{ backgroundImage: `url(${actor.imgUrl})` }">
                 <span class="i-a">知名女优</span>
               </div>
               <div class="c-n">
-                <h3>森澤佳奈</h3>
-                <span>收录：<b>80</b>部</span>
+                <h3>{{ actor.title }}</h3>
+                <span>
+                  收录：
+                  <b>{{ videos.length }}</b>
+                  部
+                </span>
               </div>
             </div>
           </div>
           <div class="x-i">
             <span>
               <b>生日</b>
-              <small>1992/5/9</small>
+              <small>{{ actor.birthday }}</small>
             </span>
             <span>
               <b>身高</b>
-              <small>160cm</small>
+              <small>{{ actor.height }}</small>
             </span>
             <span>
               <b>胸围</b>
-              <small>83cm(D)</small>
+              <small>{{ actor.chest }}</small>
             </span>
             <span>
               <b>腰围</b>
-              <small>53cm</small>
+              <small>{{ actor.waist }}</small>
             </span>
             <span>
               <b>臀围</b>
-              <small>83cm</small>
+              <small>{{ actor.hip }}</small>
             </span>
           </div>
           <div class="x-n">
-            <h3>森澤佳奈 曾用名</h3>
+            <h3>曾用名</h3>
             <p>
-              <span># Asakura Ayana</span>
-              <span># Ayana Asakura</span>
-              <span># Kana Ayano</span>
-              <span># kana morisawa</span>
-              <span># Kana Morisawa</span>
-              <span># Kanako Iioka</span>
-              <span># Kyouko Iijima</span>
-              <span># Rino Okita</span>
-              <span># Ryoko Fujiwara</span>
-              <span># 森沢かな</span>
-              <span># 森泽佳奈</span>
-              <span># 森澤佳奈</span>
-              <span># 沖田梨乃</span>
-              <span># 浅倉彩菜</span>
-              <span># 綾野かな</span>
-              <span># 藤原遼子</span>
-              <span># 飯岡かなこ</span>
-              <span># 飯島恭子</span>
+              {{ actor.formerName }}
             </p>
           </div>
         </div>
@@ -68,17 +55,19 @@
               <b> {{ videos.length }} </b>部)
             </div>
             <div class="t-r">
-              <span :class="{ active: activeSort == 'addTime' }" @click="changeSort('addTime')">最近更新</span>
-              <span :class="{ active: activeSort == 'clickCounts' }" @click="changeSort('clickCounts')">最多观看</span>
-              <span :class="{ active: activeSort == 'favoriteCounts' }" @click="changeSort('favoriteCounts')">最多收藏</span>
+              <span v-for="option in sortOptions" :key="option.value" :class="{ active: activeSort == option.value }" @click="changeSort(option.value)">{{ option.label }}</span>
             </div>
           </div>
           <div class="y-m">
             <nav class="mv-t-l">
               <div class="m-b">
-                <VideoGridItem v-for="video in videos" :key="video.videoId" :video="video" />
+                <VideoGridItem v-for="video in videos" :key="video.id" :video="video" />
               </div>
             </nav>
+            <div v-if="noData" class="nodata">
+              <div class="d-i" />
+              <div class="d-t">暂无作品</div>
+            </div>
           </div>
         </div>
       </div>
@@ -88,56 +77,76 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { getAssetsFile } from '@/utils'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+import { getActorDetailApi } from '@/api/theme'
 import { getVideoListApi } from '@/api/video'
-import type { VideoQueryParams, Video } from '@/types/video'
-import decryptionService from '@/utils/decryptionService'
+import type { Actor } from '@/types/theme'
+import type { Video, VideoListRequest } from '@/types/video'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 
 const router = useRouter()
-const decrypt = new decryptionService()
+const route = useRoute()
+
+const noData = ref(false)
+
+const sortOptions = [
+  { label: '最近更新', value: '1' },
+  { label: '最多观看', value: '2' },
+  { label: '最多收藏', value: '3' }
+]
+
+const actor = ref<Actor>({
+  id: '',
+  title: '',
+  categoryIds: '',
+  categoryNames: '',
+  imgUrl: '',
+  height: '',
+  birthday: '',
+  chest: '',
+  hip: '',
+  formerName: '',
+  waist: ''
+})
 
 const videos = ref<Video[]>([])
-const activeSort = ref('addTime')
+const activeSort = ref('1')
+const actorId = route.params.id as string
 
-const fetchVideos = async (sortBy: 'clickCounts' | 'goodCounts' | 'favoriteCounts' | 'addTime') => {
+const fetchActorDetail = async () => {
   try {
-    const params: VideoQueryParams = {
-      page: 1,
-      pageSize: 30,
-      sortBy: sortBy
-      // 如果需要，这里可以添加演员ID的过滤条件
-      // actorId: route.params.id // 假设你使用路由参数传递演员ID
-    }
-    const response = await getVideoListApi(params)
-
-    if (response.data && response.data.data && Array.isArray(response.data.data)) {
-      videos.value = await Promise.all(
-        response.data.data.map(async (video) => ({
-          ...video,
-          poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
-        }))
-      )
-    } else {
-      videos.value = []
-    }
+    const response = await getActorDetailApi(actorId)
+    actor.value = response.data
   } catch (error) {
-    console.error(`获取视频列表失败 (${sortBy}):`, error)
-    videos.value = []
+    console.error('获取演员详情失败:', error)
   }
 }
 
-const changeSort = (sortBy: 'clickCounts' | 'goodCounts' | 'favoriteCounts' | 'addTime') => {
-  activeSort.value = sortBy
-  fetchVideos(sortBy)
+const fetchVideos = async () => {
+  try {
+    const params: VideoListRequest = {
+      PageIndex: 1,
+      PageSize: 30,
+      SortType: activeSort.value,
+      ActressId: actorId
+    }
+    const response = await getVideoListApi(params)
+    videos.value = response.data.items
+    noData.value = videos.value.length === 0
+  } catch (error) {
+    console.error(`获取视频列表失败 (${activeSort.value}):`, error)
+    videos.value = []
+    noData.value = true
+  }
 }
 
-const goBack = () => {
-  router.go(-1)
+const changeSort = (sortBy: string) => {
+  activeSort.value = sortBy
+  fetchVideos()
 }
 
 onMounted(() => {
-  fetchVideos('addTime')
+  fetchActorDetail()
+  fetchVideos()
 })
 </script>

@@ -5,138 +5,23 @@
       <div class="ac-cols">
         <div class="a-s">
           <div class="row">
-            <span class="active">全部</span>
-            <span>知名</span>
-            <span>无码</span>
-            <span>日本</span>
-            <span>国产</span>
-            <span>素人</span>
+            <span :class="{ active: query.CategoryId === '' }" @click="handleCategoryChange('')">全部</span>
+            <span v-for="category in appStore.categorys" :key="category.d" :title="category.t" @click="handleCategoryChange(category.d)" :class="{ active: query.CategoryId === category.d }">
+              {{ category.t }}
+            </span>
           </div>
           <div class="row">
-            <span class="active">全部</span>
-            <span>影片数量</span>
-            <span>最多人看</span>
-            <span>最多收藏</span>
-            <span>知名度</span>
+            <span v-for="option in sortOptions" :key="option.value" @click="handleSortChange(option.value)" :class="{ active: query.SortType === option.value }">
+              {{ option.label }}
+            </span>
           </div>
         </div>
         <div class="a-l">
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
+          <a v-for="actor in actorList" :key="actor.id" @click="router.push({ name: 'actorDetail', params: { id: actor.id } })">
             <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
-              <span class="s-a">85部</span>
+              <span class="s-a">{{ actor.videosCount }}部</span>
             </div>
-            <span>森澤佳奈</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a2.jpg')})` }">
-              <span class="s-a">79部</span>
-              <span class="s-b"><b>知名女优</b></span>
-            </div>
-            <span>桃乃木香奈</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a3.jpg')})` }">
-              <span class="s-a">74部</span>
-            </div>
-            <span>美園和花</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a4.jpg')})` }">
-              <span class="s-a">73部</span>
-            </div>
-            <span>西宮夢</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a5.jpg')})` }">
-              <span class="s-a">72部</span>
-              <span class="s-b"><b>知名女优</b></span>
-            </div>
-            <span>桜空桃</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a6.jpg')})` }">
-              <span class="s-a">70部</span>
-              <span class="s-b">知名</span>
-            </div>
-            <span>天海翼</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
-              <span class="s-a">85部</span>
-            </div>
-            <span>森澤佳奈</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a2.jpg')})` }">
-              <span class="s-a">79部</span>
-              <span class="s-b"><b>知名女优</b></span>
-            </div>
-            <span>桃乃木香奈</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a3.jpg')})` }">
-              <span class="s-a">74部</span>
-            </div>
-            <span>美園和花</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a4.jpg')})` }">
-              <span class="s-a">73部</span>
-            </div>
-            <span>西宮夢</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a5.jpg')})` }">
-              <span class="s-a">72部</span>
-              <span class="s-b"><b>知名女优</b></span>
-            </div>
-            <span>桜空桃</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a6.jpg')})` }">
-              <span class="s-a">70部</span>
-              <span class="s-b">知名</span>
-            </div>
-            <span>天海翼</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a1.jpg')})` }">
-              <span class="s-a">85部</span>
-            </div>
-            <span>森澤佳奈</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a2.jpg')})` }">
-              <span class="s-a">79部</span>
-              <span class="s-b"><b>知名女优</b></span>
-            </div>
-            <span>桃乃木香奈</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a3.jpg')})` }">
-              <span class="s-a">74部</span>
-            </div>
-            <span>美園和花</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a4.jpg')})` }">
-              <span class="s-a">73部</span>
-            </div>
-            <span>西宮夢</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a5.jpg')})` }">
-              <span class="s-a">72部</span>
-              <span class="s-b"><b>知名女优</b></span>
-            </div>
-            <span>桜空桃</span>
-          </a>
-          <a @click="router.push({ name: 'actorDetail', params: { id: 1 } })">
-            <div class="l-img" :style="{ backgroundImage: `url(${getAssetsFile('actor/a6.jpg')})` }">
-              <span class="s-a">70部</span>
-              <span class="s-b">知名</span>
-            </div>
-            <span>天海翼</span>
+            <span>{{ actor.title }}</span>
           </a>
         </div>
       </div>
@@ -146,10 +31,54 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { getAssetsFile } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/theme/themeHeader.vue'
 import { useRouter } from 'vue-router'
+import { getActorListApi } from '@/api/theme'
+import { useAppStore } from '@/store/app'
+import type { ActorListRequest, ActorList } from '@/types/theme'
 
 const router = useRouter()
+const appStore = useAppStore()
+
+const sortOptions = [
+  { label: '全部', value: '' },
+  { label: '影片数量', value: '1' },
+  { label: '按最多人看', value: '2' },
+  { label: '按最多收藏', value: '3' },
+  { label: '按知名度', value: '4' }
+]
+
+const actorList = ref<ActorList[]>([])
+
+const query: ActorListRequest = {
+  PageIndex: 1,
+  PageSize: 30,
+  CategoryId: '',
+  SortType: ''
+}
+
+// 获取演员列表
+const getActorList = async () => {
+  const response = await getActorListApi(query)
+  actorList.value = response.data.items
+}
+
+const handleCategoryChange = async (categoryId: string) => {
+  query.CategoryId = categoryId
+  query.PageIndex = 1
+  await getActorList()
+}
+
+const handleSortChange = async (sortType: string) => {
+  query.SortType = sortType
+  query.PageIndex = 1
+  await getActorList()
+}
+
+onMounted(async () => {
+  await getActorList()
+})
 </script>

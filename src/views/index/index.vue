@@ -381,12 +381,14 @@ function handleScroll() {
   const header = document.querySelector('.header')!
   const hmB = document.querySelector('.search-icon') as HTMLElement
 
-  if (scrollTop > 100) {
-    hmB.style.display = 'block'
-    header.classList.add('fixed')
-  } else {
-    hmB.style.display = 'none'
-    header.classList.remove('fixed')
+  if (header && hmB) {
+    if (scrollTop > 100) {
+      hmB.style.display = 'block'
+      header.classList.add('fixed')
+    } else {
+      hmB.style.display = 'none'
+      header.classList.remove('fixed')
+    }
   }
 }
 
