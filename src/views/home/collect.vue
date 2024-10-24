@@ -9,18 +9,18 @@
     <section class="h-m-b">
       <div class="his-box collect">
         <ul v-if="videos.length > 0">
-          <li v-for="video in videos" :key="video.videoId" @click="router.push({ name: 'play', params: { id: video.videoId } })">
+          <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
             <div class="l-a">
               <img :src="video.poster" />
-              <span class="a-a">{{ video.resolution }}</span>
-              <span class="a-b">{{ video.playTime }}</span>
-              <span class="a-c">{{ video.categoryName }}</span>
+              <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+              <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
+              <span class="a-c">{{ video.channelName }}</span>
             </div>
             <div class="l-b">
               <div class="b-a">{{ video.title }}</div>
               <div class="b-b">
-                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
+                <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+                <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
               </div>
               <div class="b-c">{{ formatDate(video.addTime) }}</div>
             </div>
@@ -53,8 +53,10 @@ import { useRouter } from 'vue-router'
 import { getRecordApi } from '@/api/video'
 import type { Video, getRecordData } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
+import { useAppStore } from '@/store/app'
 
 const router = useRouter()
+const appStore = useAppStore()
 const decrypt = new decryptionService()
 
 const videos = ref<Video[]>([])
@@ -74,18 +76,20 @@ const fetchCollections = async () => {
       page: currentPage.value,
       sortOrder: null
     }
-    const response = await getRecordApi(params)
+    const {
+      data: { data }
+    } = await getRecordApi(params)
 
-    if (response.data && Array.isArray(response.data.data)) {
+    if (data && Array.isArray(data)) {
       nodata.value = false
       videos.value = await Promise.all(
-        response.data.data.map(async (video) => ({
+        data.map(async (video) => ({
           ...video,
           poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
         }))
       )
-      currentPage.value = response.data.data.currentPage
-      totalPages.value = response.data.data.totalPages
+      currentPage.value = data.pageIndex
+      totalPages.value = data.pageCount
     } else {
       nodata.value = true
       videos.value = []

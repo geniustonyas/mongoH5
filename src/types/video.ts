@@ -1,3 +1,5 @@
+import { ApiResponseData } from '@/types/api.d'
+
 export interface IndexVideoResponse {
   Recommended: Video[]
   Latest: Video[]
@@ -44,3 +46,51 @@ export type VideoListResponse = {
   pageSize: number
   recordCount: number
 }
+
+// 获取视频详情
+export interface VideoDetailResponse {
+  id: string
+  title: string
+  viewCount: string
+  likeCount: string
+  addTime: string
+  playDomain: string
+  playUrl: string
+  tags: {
+    id: string
+    title: string
+  }[]
+  licks: Video[]
+  poster?: string
+}
+
+// 新增一个接口来描述分页数据结构
+export interface VideoListData {
+  data: Video[]
+  currentPage: number
+  pageSize: number
+  total: number
+  totalPages: number
+}
+
+export interface addRecordData {
+  type: number
+  videoId: number
+}
+
+export interface addRecordDataResp {
+  isActive: boolean
+  message?: string
+}
+
+export interface getRecordData {
+  type: number
+  search: string | null
+  beginTime: string | null
+  endTime: string | null
+  pageSize: number
+  page: number
+  sortOrder: string | null
+}
+
+export type addRecordResponse = ApiResponseData<addRecordDataResp>

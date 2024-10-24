@@ -20,13 +20,13 @@ const routes: RouteRecordRaw[] = [
         name: 'index',
         component: () => import('@/views/index/index.vue'),
         meta: { needLogin: false, keepAlive: false }
-      },
-      {
-        path: 'recommend',
-        name: 'recommend',
-        component: () => import('@/views/index/recommend.vue'),
-        meta: { needLogin: false, keepAlive: false }
       }
+      // {
+      //   path: 'recommend',
+      //   name: 'recommend',
+      //   component: () => import('@/views/index/recommend.vue'),
+      //   meta: { needLogin: false, keepAlive: false }
+      // }
       // {
       //   path: 'category/:id',
       //   name: 'category',

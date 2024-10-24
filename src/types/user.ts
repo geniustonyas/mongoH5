@@ -37,5 +37,3 @@ export interface loginRegData {
 }
 
 export type loginRegResp = ApiResponseData<loginRegData>
-
-export type UserInfoResp = ApiResponseData<UserInfo>

@@ -105,12 +105,12 @@ const handleGetCode = async () => {
     return
   }
   try {
-    const resp = await getCodeApi({ phone: formData.value.phone, type: 'register' })
-    if (resp.code == 200) {
+    const { data } = await getCodeApi({ phone: formData.value.phone, type: 'register' })
+    if (data) {
       showToast('验证码已发送')
       startCountdown(60)
     } else {
-      showToast(resp.message || '获取验证码失败')
+      showToast(data.message || '获取验证码失败')
     }
   } catch (error) {
     showToast(error.resp?.data?.message || '获取验证码失败')

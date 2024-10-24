@@ -1,7 +1,8 @@
-import axios, { CancelTokenSource, InternalAxiosRequestConfig } from 'axios'
+import axios, { AxiosResponse, CancelTokenSource, InternalAxiosRequestConfig } from 'axios'
 import { TokenPrefix, getToken } from '@/utils/auth'
 import { useUserStoreHook } from '@/store/user'
 import { showToast } from 'vant'
+import { ApiResponseData } from '@/types/api.d'
 
 // 扩展 InternalAxiosRequestConfig 接口以包含 shouldCancel 属性
 interface CustomInternalAxiosRequestConfig extends InternalAxiosRequestConfig {
@@ -24,11 +25,9 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     const customConfig = config as CustomInternalAxiosRequestConfig
-    // 检查配置中是否有 shouldCancel 参数
     if (customConfig.shouldCancel && cancelTokenSource) {
       cancelTokenSource.cancel('请求被取消')
     }
-    // 创建新的取消令牌
     cancelTokenSource = axios.CancelToken.source()
     customConfig.cancelToken = cancelTokenSource.token
     return customConfig as InternalAxiosRequestConfig
@@ -40,25 +39,21 @@ service.interceptors.request.use(
 
 // 响应拦截器
 service.interceptors.response.use(
-  (response) => {
-    const {
-      data,
-      data: { code }
-    } = response
-    if (code === undefined) {
-      return data
+  (response: AxiosResponse<ApiResponseData<any>>) => {
+    const data = response.data
+    if (data.code === undefined) {
+      return response // 返回整个 response 对象
     } else {
-      if (code == '200') {
-        return data
-      } else if (code == '401') {
+      if (data.code == '200') {
+        return response // 返回整个 response 对象
+      } else if (data.code == '401') {
         useUserStoreHook().clearLogin()
       } else {
-        showToast('服务器错误：' + code)
+        showToast('服务器错误：' + data.code)
       }
-      return Promise.reject(data)
+      return Promise.reject(response) // 返回整个 response 对象
     }
   },
-
   (error) => {
     if (error.response?.status === 401) {
       useUserStoreHook().clearLogin()

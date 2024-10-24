@@ -42,13 +42,15 @@ export const useAppStore = defineStore('app', {
     // 获取系统配置
     async fetConfig() {
       try {
-        const resp = await getConfigApi()
-        this.searchInputText = resp.data.find((item: any) => item.pKey === 'SEACHDomain')?.value1 || ''
-        this.startAdTime = resp.data.find((item: any) => item.pKey === 'StartAdTime')?.value1 || ''
-        this.cdnUrl = resp.data.find((item: any) => item.pKey === 'CDNURL')?.value1 || ''
-        this.downloadUrl = resp.data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
-        this.prePlayAdTime = resp.data.find((item: any) => item.pKey === 'PrePlayAdTime')?.value1 || ''
-        this.customer_service_link = resp.data.find((item: any) => item.pKey === 'CustomerServiceLink')?.value1 || ''
+        const {
+          data: { data }
+        } = await getConfigApi()
+        this.searchInputText = data.find((item: any) => item.pKey === 'SEACHDomain')?.value1 || ''
+        this.startAdTime = data.find((item: any) => item.pKey === 'StartAdTime')?.value1 || ''
+        this.cdnUrl = data.find((item: any) => item.pKey === 'CDNURL')?.value1 || ''
+        this.downloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
+        this.prePlayAdTime = data.find((item: any) => item.pKey === 'PrePlayAdTime')?.value1 || ''
+        this.customer_service_link = data.find((item: any) => item.pKey === 'CustomerServiceLink')?.value1 || ''
       } catch (error) {
         console.error('获取系统配置失败:', error)
       }
@@ -57,8 +59,10 @@ export const useAppStore = defineStore('app', {
     // 获取分类
     async fetCategory() {
       try {
-        const resp = await getCategoryApi()
-        this.categorys = resp.data || []
+        const {
+          data: { data }
+        } = await getCategoryApi()
+        this.categorys = data || []
       } catch (error) {
         console.error('获取分类失败:', error)
       }
@@ -67,8 +71,10 @@ export const useAppStore = defineStore('app', {
     // 获取广告
     async fetAdvertisement() {
       try {
-        const resp = await getAdsApi()
-        this.advertisement = resp.data || []
+        const {
+          data: { data }
+        } = await getAdsApi()
+        this.advertisement = data || []
       } catch (error) {
         console.error('获取广告失败:', error)
       }
@@ -77,8 +83,10 @@ export const useAppStore = defineStore('app', {
     // 获取主题
     async fetTheme() {
       try {
-        const resp = await getThemeApi()
-        this.theme = resp.data || []
+        const {
+          data: { data }
+        } = await getThemeApi()
+        this.theme = data || []
       } catch (error) {
         console.error('获取主题失败:', error)
       }

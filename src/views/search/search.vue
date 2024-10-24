@@ -104,10 +104,12 @@ const searchVideos = async () => {
       PageSize: 30,
       KeyWord: searchKeyword.value
     }
-    const response = await getVideoListApi(params)
-    if (response.data && Array.isArray(response.data.items)) {
+    const {
+      data: { data }
+    } = await getVideoListApi(params)
+    if (data.items && Array.isArray(data.items)) {
       searchResults.value = await Promise.all(
-        response.data.items.map(async (video) => ({
+        data.items.map(async (video) => ({
           ...video,
           poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
         }))

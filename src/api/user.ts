@@ -1,5 +1,6 @@
 import request from '@/utils/axios'
-import type { loginForm, loginRegResp, UserInfoResp } from '@/types/user'
+import type { loginForm, loginRegResp, UserInfo } from '@/types/user'
+import type { ApiResponseData } from '@/types/api.d'
 
 /** 用户登录 */
 export function userLogin(data: loginForm) {
@@ -21,7 +22,7 @@ export function userRegister(data: loginForm) {
 
 /** 用户信息 */
 export function getUserInfo() {
-  return request<UserInfoResp>({
+  return request<ApiResponseData<UserInfo>>({
     url: 'api/me',
     method: 'get'
   })

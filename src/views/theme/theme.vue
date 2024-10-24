@@ -54,10 +54,12 @@ const toggletag = (id: string) => {
 
 const fetchThemeData = async () => {
   try {
-    const response = await getThemeApi()
+    const {
+      data: { data }
+    } = await getThemeApi()
     // 假设 response.data 是 ThemeTag[] 类型
-    if (response.data && Array.isArray(response.data)) {
-      themeData.value = response.data
+    if (data && Array.isArray(data)) {
+      themeData.value = data
     } else {
       themeData.value = []
     }

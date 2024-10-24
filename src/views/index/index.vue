@@ -221,10 +221,12 @@ const query = reactive<VideoListRequest>({
 
 const fetchVideos = async (params: VideoListRequest) => {
   try {
-    const response = await getVideoListApi(params)
-    if (response.data && Array.isArray(response.data.items)) {
+    const {
+      data: { data }
+    } = await getVideoListApi(params)
+    if (data && Array.isArray(data.items)) {
       const videoList = await Promise.all(
-        response.data.items.map(async (video) => ({
+        data.items.map(async (video) => ({
           ...video,
           poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
         }))
@@ -233,7 +235,7 @@ const fetchVideos = async (params: VideoListRequest) => {
         return videoList
       } else {
         const swiperList = await Promise.all(
-          response.data.newVideos.map(async (video) => ({
+          data.newVideos.map(async (video) => ({
             ...video,
             poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
           }))
@@ -241,8 +243,8 @@ const fetchVideos = async (params: VideoListRequest) => {
 
         categoryVideosMap.value[query.ChannelId] = videoList
         categoryBannerMap.value[query.ChannelId] = swiperList
-        categoryTotalPages.value[query.ChannelId] = response.data.pageCount
-        categoryPageIndex.value[query.ChannelId] = response.data.pageIndex
+        categoryTotalPages.value[query.ChannelId] = data.pageCount
+        categoryPageIndex.value[query.ChannelId] = data.pageIndex
       }
     } else {
       console.error('响应数据结构不正确')
@@ -256,16 +258,18 @@ const fetchVideos = async (params: VideoListRequest) => {
 
 const fetchIndexVideos = async () => {
   try {
-    const response = await getIndexVideoListApi()
+    const {
+      data: { data }
+    } = await getIndexVideoListApi()
     // 解密视频
     recommendedVideos.value = await Promise.all(
-      response.data.Recommended.map(async (video: Video) => ({
+      data.Recommended.map(async (video: Video) => ({
         ...video,
         poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
       }))
     )
     latestVideos.value = await Promise.all(
-      response.data.Latest.map(async (video: Video) => ({
+      data.Latest.map(async (video: Video) => ({
         ...video,
         poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
       }))

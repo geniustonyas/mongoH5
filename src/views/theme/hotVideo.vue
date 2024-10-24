@@ -9,19 +9,19 @@
         <span :class="{ active: activeRank == 'day' }" @click="changeRank('day')">日榜单</span>
       </div>
       <ul>
-        <li v-for="video in videos" :key="video.videoId" @click="router.push({ name: 'play', params: { id: video.videoId } })">
+        <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
           <div class="l-a">
             <img :src="video.poster" />
-            <span class="a-a">{{ video.resolution }}</span>
-            <span class="a-b">{{ video.playTime }}</span>
-            <span class="a-c">{{ video.categoryName }}</span>
+            <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+            <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
+            <span class="a-c">{{ video.channelName }}</span>
           </div>
           <div class="l-b">
             <b>{{ video.title }}</b>
             <div class="b-a">
               <div class="a-l">
-                <span><i class="mvfont mv-kan" />{{ video.clickCounts }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.goodCounts }}</span>
+                <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+                <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
               </div>
               <div class="a-r">
                 <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
@@ -39,13 +39,15 @@
 import { ref, onMounted } from 'vue'
 import dayjs from 'dayjs'
 import { getVideoListApi } from '@/api/video'
-import type { VideoQueryParams, Video } from '@/types/video'
+import type { Video, VideoListRequest } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
 import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/theme/themeHeader.vue'
 import { useRouter } from 'vue-router'
+import { useAppStore } from '@/store/app'
 
 const router = useRouter()
+const appStore = useAppStore()
 
 const decrypt = new decryptionService()
 
@@ -81,13 +83,13 @@ const getDateRange = (rank: string) => {
 
 const fetchVideos = async (rank: string) => {
   try {
-    const { beginTime, endTime } = getDateRange(rank)
-    const params: VideoQueryParams = {
-      page: 1,
-      pageSize: 30,
-      sortBy: 'clickCounts',
-      beginTime,
-      endTime
+    // const { beginTime, endTime } = getDateRange(rank)
+    const params: VideoListRequest = {
+      PageIndex: 1,
+      PageSize: 30,
+      SortType: 'clickCounts',
+      // beginTime,
+      // endTime
     }
     const response = await getVideoListApi(params)
 

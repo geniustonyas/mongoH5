@@ -39,9 +39,9 @@ export const useUserStore = defineStore('user', {
 
     async fetchUserInfo() {
       try {
-        const response = await getUserInfo()
-        if (response.code == 200 && response.data) {
-          this.userInfo = response.data
+        const { data } = await getUserInfo()
+        if (data.code == 200 && data.data) {
+          this.userInfo = data.data
         } else {
           this.clearLogin()
         }

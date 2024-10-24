@@ -62,8 +62,10 @@ const query: ActorListRequest = {
 
 // 获取演员列表
 const getActorList = async () => {
-  const response = await getActorListApi(query)
-  actorList.value = response.data.items
+  const {
+    data: { data }
+  } = await getActorListApi(query)
+  actorList.value = data.items
 }
 
 const handleCategoryChange = async (categoryId: string) => {

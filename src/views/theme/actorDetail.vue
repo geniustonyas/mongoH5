@@ -115,8 +115,10 @@ const actorId = route.params.id as string
 
 const fetchActorDetail = async () => {
   try {
-    const response = await getActorDetailApi(actorId)
-    actor.value = response.data
+    const {
+      data: { data }
+    } = await getActorDetailApi(actorId)
+    actor.value = data
   } catch (error) {
     console.error('获取演员详情失败:', error)
   }
@@ -130,8 +132,10 @@ const fetchVideos = async () => {
       SortType: activeSort.value,
       ActressId: actorId
     }
-    const response = await getVideoListApi(params)
-    videos.value = response.data.items
+    const {
+      data: { data }
+    } = await getVideoListApi(params)
+    videos.value = data.items
     noData.value = videos.value.length === 0
   } catch (error) {
     console.error(`获取视频列表失败 (${activeSort.value}):`, error)
