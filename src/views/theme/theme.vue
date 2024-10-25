@@ -10,22 +10,20 @@
           </div>
         </div>
         <div :class="['c-l', { expanded: isExpanded(tag.id) }]" ref="contentRefs">
-          <a v-for="childTag in tag.items" :key="childTag.id" @click="router.push({ name: 'search', query: { keyword: childTag.title } })">
+          <a v-for="childTag in tag.items" :key="childTag.id" @click="router.push({ name: 'search', query: { keyword: childTag.title, tagId: childTag.id } })">
             <span>{{ childTag.title }}</span>
             <small>
-              收录：<b>{{ childTag.targetUrl }}</b>
+              收录：<b>{{ childTag.videosCount }}</b>
             </small>
           </a>
         </div>
       </div>
     </section>
-    <Footer active-menu="theme" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue'
-import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/theme/themeHeader.vue'
 import { getThemeApi } from '@/api/theme'
 import type { ThemeResponse } from '@/types/theme'
@@ -57,7 +55,6 @@ const fetchThemeData = async () => {
     const {
       data: { data }
     } = await getThemeApi()
-    // 假设 response.data 是 ThemeTag[] 类型
     if (data && Array.isArray(data)) {
       themeData.value = data
     } else {

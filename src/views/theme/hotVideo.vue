@@ -3,45 +3,47 @@
     <Header />
     <section class="h-l-b">
       <div class="lb-b">
-        <span :class="{ active: activeRank == 'total' }" @click="changeRank('total')">总榜单</span>
-        <span :class="{ active: activeRank == 'month' }" @click="changeRank('month')">月榜单</span>
-        <span :class="{ active: activeRank == 'week' }" @click="changeRank('week')">周榜单</span>
-        <span :class="{ active: activeRank == 'day' }" @click="changeRank('day')">日榜单</span>
+        <span v-for="item in rankOptions" :key="item.value" :class="{ active: activeRank == item.value }" @click="changeRank(item.value)">{{ item.label }}</span>
       </div>
-      <ul>
-        <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
-          <div class="l-a">
-            <img :src="video.poster" />
-            <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
-            <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
-            <span class="a-c">{{ video.channelName }}</span>
-          </div>
-          <div class="l-b">
-            <b>{{ video.title }}</b>
-            <div class="b-a">
-              <div class="a-l">
-                <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
-              </div>
-              <div class="a-r">
-                <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <div>
+        <PullRefresh v-model="refreshing" @refresh="fresh">
+          <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
+            <ul v-if="videos.length > 0" class="video-list-box">
+              <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })" class="video-list">
+                <div class="l-a">
+                  <img :src="video.poster" />
+                  <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+                  <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
+                  <span class="a-c">{{ video.channelName }}</span>
+                </div>
+                <div class="l-b">
+                  <b>{{ video.title }}</b>
+                  <div class="b-a">
+                    <div class="a-l">
+                      <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+                      <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                    </div>
+                    <div class="a-r">
+                      <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </List>
+        </PullRefresh>
+      </div>
     </section>
-    <Footer active-menu="theme" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { PullRefresh, List } from 'vant'
 import dayjs from 'dayjs'
-import { getVideoListApi } from '@/api/video'
+import { getVideoListApi, getVideoRankApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
-import Footer from '@/components/layout/Footer.vue'
 import Header from '@/views/theme/themeHeader.vue'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store/app'
@@ -53,65 +55,94 @@ const decrypt = new decryptionService()
 
 const videos = ref<Video[]>([])
 const activeRank = ref('total')
+const rankOptions = ref([
+  { label: '总榜单', value: 'total' },
+  { label: '月榜单', value: '0' },
+  { label: '周榜单', value: '1' },
+  { label: '日榜单', value: '2' }
+])
 
-const getDateRange = (rank: string) => {
-  const now = dayjs()
-  let beginTime: dayjs.Dayjs
-  let endTime = now
+let listLoading = ref(false)
+let refreshing = ref(false)
+let finished = ref(false)
+let error = ref(false)
 
-  switch (rank) {
-    case 'month':
-      beginTime = now.subtract(1, 'month').startOf('month')
-      endTime = now.endOf('month')
-      break
-    case 'week':
-      beginTime = now.startOf('week')
-      endTime = now.endOf('week')
-      break
-    case 'day':
-      beginTime = now.subtract(3, 'day').startOf('day')
-      break
-    default: // total
-      beginTime = dayjs('2000-01-01') // 设置一个较早的日期作为总榜单的开始日期
+let pageIndex = ref(1) // 当前页码
+
+const fetchVideos = async (rank: string, isRefresh = false) => {
+  if (isRefresh) {
+    pageIndex.value = 1
+    finished.value = false
   }
+  if (finished.value) return
 
-  return {
-    beginTime: beginTime.format('YYYY-MM-DD HH:mm:ss'),
-    endTime: endTime.format('YYYY-MM-DD HH:mm:ss')
-  }
-}
-
-const fetchVideos = async (rank: string) => {
   try {
-    // const { beginTime, endTime } = getDateRange(rank)
+    listLoading.value = true
+    const pageSize = rank === 'total' ? 30 : 10 // 根据榜单类型设置每页数量
     const params: VideoListRequest = {
-      PageIndex: 1,
-      PageSize: 30,
-      SortType: 'clickCounts',
-      // beginTime,
-      // endTime
+      PageIndex: pageIndex.value,
+      PageSize: pageSize,
+      SortType: 2
     }
-    const response = await getVideoListApi(params)
 
-    if (response.data.data && Array.isArray(response.data.data)) {
-      videos.value = await Promise.all(
-        response.data.data.map(async (video) => ({
+    let response
+    if (rank === 'total') {
+      response = await getVideoListApi(params)
+    } else {
+      response = await getVideoRankApi({ ...params, RankType: rank })
+    }
+
+    const {
+      data: { data }
+    } = response
+
+    if (data && Array.isArray(data.items)) {
+      const newVideos = await Promise.all(
+        data.items.map(async (video) => ({
           ...video,
-          poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
+          poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
         }))
       )
+      if (isRefresh) {
+        videos.value = newVideos
+      } else {
+        videos.value = [...videos.value, ...newVideos]
+      }
+      if (newVideos.length < pageSize) {
+        finished.value = true
+      }
     } else {
-      videos.value = []
+      if (isRefresh) {
+        videos.value = []
+      }
+      finished.value = true
     }
   } catch (error) {
     console.error(`获取视频列表失败 (${rank}):`, error)
-    videos.value = []
+    if (isRefresh) {
+      videos.value = []
+    }
+    finished.value = true
+  } finally {
+    listLoading.value = false
+    if (isRefresh) {
+      refreshing.value = false
+    }
   }
 }
 
 const changeRank = (rank: string) => {
   activeRank.value = rank
-  fetchVideos(rank)
+  fetchVideos(rank, true)
+}
+
+const loadData = () => {
+  pageIndex.value += 1
+  fetchVideos(activeRank.value)
+}
+
+const fresh = () => {
+  fetchVideos(activeRank.value, true)
 }
 
 onMounted(() => {

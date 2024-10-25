@@ -3,6 +3,7 @@ export interface ThemeResponse {
   title: string
   targetUrl?: string | number
   items?: ThemeResponse[]
+  videosCount?: number | string
 }
 
 export interface ActorListRequest {
@@ -22,6 +23,7 @@ export interface ActorListResponse {
 export interface ActorList {
   id: string | number
   title: string
+  imgUrl: string
   categoryNames: string
   videosCount: string
 }

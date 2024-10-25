@@ -20,13 +20,16 @@
             </Swipe>
           </div>
         </div>
-        <div class="hs-c">
+        <!-- <div class="hs-c">
           <a @click="router.push({ name: 'history' })"><i class="mvfont mv-lishishijian-" /></a>
           <a @click="router.push({ name: 'home' })"><i class="mvfont mv-touxiang1" /></a>
+        </div> -->
+        <div class="hs-c">
+          <a class="c-hot" @click="router.push({ name: 'hotVideo' })"><i class="mvfont mv-zhutirebangbeifen" /></a>
         </div>
       </div>
       <div class="category-tabs">
-        <Tabs v-model:active="activeId" class="vant-tabs" @click-tab="clickTab">
+        <Tabs v-model:active="activeId" class="vant-tabs" @click-tab="clickTab" title-active-color="transparent">
           <Tab title="首页" name="0" />
           <Tab v-for="category in appStore.categorys" :key="category.d" :title="category.t" />
         </Tabs>
@@ -43,9 +46,9 @@
               <!--Banner-->
               <nav id="index-banner" class="swiper-container">
                 <Swipe class="my-swipe" :autoplay="3000" lazy-render>
-                  <SwipeItem v-for="ad in appStore.getAdvertisementById(1).items" :key="ad.id">
+                  <SwipeItem v-for="ad in appStore.getAdvertisementById(2).items" :key="ad.id">
                     <a :href="ad.targetUrl">
-                      <img :src="appStore.cdnUrl + '/' + ad.imgUrl" :alt="ad.title" />
+                      <img :src="appStore.cdnUrl + ad.imgUrl" :alt="ad.title" />
                     </a>
                   </SwipeItem>
                 </Swipe>
@@ -105,7 +108,7 @@
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="category-content">
               <div class="mv-swiper" @touchstart.stop @touchmove.stop>
-                <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :space-between="10">
+                <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
                   <swiper-slide v-for="categoryBanner in categoryBannerMap[category.d]" :key="categoryBanner.id">
                     <a @click="router.push({ name: 'play', params: { id: categoryBanner.id } })">
                       <img :src="categoryBanner.poster" :alt="categoryBanner.title" />
@@ -147,16 +150,23 @@
           </PullRefresh>
         </SwipeItem>
       </Swipe>
-      <div class="pop-fixed" id="popNews" v-if="appStore.showAnnouncement">
-        <div class="pop-container">
-          <div class="pop-bd news">
-            <div class="pn-x" />
-            <div class="pn-a">
-              <h3>系统公告</h3>
+      <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
+        <img :src="currentImage" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" />
+        <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
+      </Popup>
+      <div v-if="appStore.hasShownDownload" class="fixed-foot" id="fixed-downloadApp">
+        <div class="ff-bd">
+          <div class="d-c">
+            <div class="f-a">
+              <img :src="getAssetsFile('logo-2.png')" />
+              <span>
+                <b>芒果TV-下载不迷路</b>
+                <small>海量高清无码，国产吃瓜抢先看</small>
+              </span>
             </div>
-            <div class="pn-b" v-html="appStore.getAdvertisementById(3).items[0].introduction" />
-            <div class="pn-c">
-              <a @click="appStore.hasShownAnnouncement = false">我已阅读</a>
+            <div class="f-b">
+              <a>安装</a>
+              <span @click="closeDownloadPopup"><i class="mvfont mv-close" /></span>
             </div>
           </div>
         </div>
@@ -167,10 +177,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, nextTick } from 'vue'
+import { ref, reactive, nextTick, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
-import { Tabs, Tab, Swipe, SwipeItem, PullRefresh } from 'vant'
+import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, Popup, Icon } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import decryptionService from '@/utils/decryptionService'
@@ -218,6 +228,33 @@ const query = reactive<VideoListRequest>({
   PageIndex: 1,
   PageSize: 20
 })
+
+const showPopup = ref(false)
+const currentImageIndex = ref(0)
+const advertisementImages = appStore.getAdvertisementById(3).items.map((item) => item.imgUrl)
+
+const currentImage = computed(() => appStore.cdnUrl + advertisementImages[currentImageIndex.value])
+
+// 使用 watch 的立即执行选项来检查 showAnnouncement
+watch(
+  () => appStore.showAnnouncement,
+  (newVal) => {
+    if (newVal && advertisementImages.length > 0) {
+      showPopup.value = true
+    }
+  },
+  { immediate: true } // 立即执行
+)
+
+const closePopup = () => {
+  if (currentImageIndex.value < advertisementImages.length - 1) {
+    currentImageIndex.value++
+    showPopup.value = true
+  } else {
+    showPopup.value = false
+    appStore.hasShownAnnouncement = false
+  }
+}
 
 const fetchVideos = async (params: VideoListRequest) => {
   try {
@@ -398,6 +435,11 @@ function handleScroll() {
 
 // 使用 passive 选项来提高滚动性能
 window.addEventListener('scroll', handleScroll, { passive: true })
+
+// 关闭下载弹窗并更新状态
+const closeDownloadPopup = () => {
+  appStore.setHasShownDownload(false)
+}
 </script>
 
 <style scoped>

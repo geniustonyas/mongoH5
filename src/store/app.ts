@@ -8,7 +8,7 @@ export const useAppStore = defineStore('app', {
     return {
       loading: false,
       hasShownAnnouncement: true, // 用于跟踪公告是否已显示, 默认为true 需要显示
-
+      hasShownDownload: true, // 用于跟踪下载弹窗是否已显示, 默认为true 需要显示
       // 系统配置项
       searchInputText: '', // 搜索框输入内容
       startAdTime: '', // 启动显示广告市
@@ -48,6 +48,10 @@ export const useAppStore = defineStore('app', {
         this.searchInputText = data.find((item: any) => item.pKey === 'SEACHDomain')?.value1 || ''
         this.startAdTime = data.find((item: any) => item.pKey === 'StartAdTime')?.value1 || ''
         this.cdnUrl = data.find((item: any) => item.pKey === 'CDNURL')?.value1 || ''
+        // 检查 cdnUrl 是否以 '/' 结尾，如果没有则添加
+        if (this.cdnUrl && !this.cdnUrl.endsWith('/')) {
+          this.cdnUrl += '/'
+        }
         this.downloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
         this.prePlayAdTime = data.find((item: any) => item.pKey === 'PrePlayAdTime')?.value1 || ''
         this.customer_service_link = data.find((item: any) => item.pKey === 'CustomerServiceLink')?.value1 || ''
@@ -105,6 +109,10 @@ export const useAppStore = defineStore('app', {
         await this.fetAdvertisement()
         await this.fetTheme()
       }, 5 * 60 * 1000) // 5分钟
+    },
+
+    setHasShownDownload(shown: boolean) {
+      this.hasShownDownload = shown
     }
   }
 })

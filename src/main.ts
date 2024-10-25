@@ -10,12 +10,12 @@ import './assets/less/black.less'
 
 // 懒加载图片
 // const loadingImage = new URL(`./assets/imgs/logo-1.png`, import.meta.url).href
-const errorImage = new URL(`./assets/imgs/logo.png`, import.meta.url).href
+const errorImage = new URL(`./assets/imgs/default.gif`, import.meta.url).href
 
 const app = createApp(App)
 app.use(store)
 app.use(Lazyload, {
-  // loading: loadingImage,
+  loading: errorImage,
   error: errorImage
 })
 app.use(router)

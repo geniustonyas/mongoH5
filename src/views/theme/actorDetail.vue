@@ -6,7 +6,7 @@
         <div class="a-x" :style="{ backgroundImage: `url(${actor.imgUrl})` }">
           <div class="x-c">
             <div class="c-bd">
-              <div class="c-i" :style="{ backgroundImage: `url(${actor.imgUrl})` }">
+              <div class="c-i" v-lazy:background-image="appStore.cdnUrl + actor.imgUrl">
                 <span class="i-a">知名女优</span>
               </div>
               <div class="c-n">
@@ -52,7 +52,7 @@
           <div class="y-t">
             <div class="t-l">
               作品(
-              <b> {{ videos.length }} </b>部)
+              <b> {{ route.query.videoCount }} </b>部)
             </div>
             <div class="t-r">
               <span v-for="option in sortOptions" :key="option.value" :class="{ active: activeSort == option.value }" @click="changeSort(option.value)">{{ option.label }}</span>
@@ -83,7 +83,9 @@ import { getVideoListApi } from '@/api/video'
 import type { Actor } from '@/types/theme'
 import type { Video, VideoListRequest } from '@/types/video'
 import VideoGridItem from '@/components/VideoGridItem.vue'
+import { useAppStore } from '@/store/app'
 
+const appStore = useAppStore()
 const router = useRouter()
 const route = useRoute()
 

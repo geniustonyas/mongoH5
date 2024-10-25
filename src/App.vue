@@ -39,16 +39,6 @@ body,
   width: 100%;
   height: 100%;
 }
-/* 
-.van-lazy-image {
-  &.van-lazy-image-loading,
-  &.van-lazy-image-error {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-  }
-}
-
 .slide-left-enter-active,
 .slide-left-leave-active,
 .slide-right-enter-active,
@@ -71,5 +61,5 @@ body,
 .slide-right-leave-to,
 .slide-left-enter-from {
   transform: translateX(-100%);
-} */
+}
 </style>

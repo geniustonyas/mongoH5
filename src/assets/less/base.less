@@ -64,7 +64,7 @@
 // 透明度, 兼容 IE8
 .opacity(@opacity: 20) { opacity: @opacity / 100; filter: alpha(opacity=@opacity); }
 // 模糊
-.blur(@blur: 10px) { filter: blur(@blur); -webkit-filter: blur(@blur); -moz-filter: blur(@blur); -o-filter: blur(@blur); -ms-filter: blur(@blur); filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='@{blur}'); *zoom: 1; }
+.blur(@blur: 10px) { filter: blur(@blur); -webkit-filter: blur(@blur); -moz-filter: blur(@blur); -o-filter: blur(@blur); -ms-filter: blur(@blur); filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='@{blur}'); }
 //禁止文本选中
 .noselect() { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 

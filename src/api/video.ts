@@ -29,6 +29,15 @@ export function getVideoDetailApi(id: number) {
   })
 }
 
+/** 获取视频榜单   */
+export function getVideoRankApi(data: VideoListRequest) {
+  return request<ApiResponseData<VideoListResponse>>({
+    url: 'Web/VideoRankList',
+    method: 'post',
+    data
+  })
+}
+
 /** 添加用户操作 */
 export function addRecordApi(data: addRecordData) {
   return request<ApiResponseData<addRecordDataResp>>({

@@ -35,6 +35,7 @@ export interface VideoListRequest {
   SortType?: string | number
   IsFirst?: boolean
   ActressId?: number | string
+  RankType?: number | string
 }
 
 // 修改 VideoListResponse 的定义
@@ -53,6 +54,8 @@ export interface VideoDetailResponse {
   title: string
   viewCount: string
   likeCount: string
+  hateCount: string
+  collectionCount: string
   addTime: string
   playDomain: string
   playUrl: string

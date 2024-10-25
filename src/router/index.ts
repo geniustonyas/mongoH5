@@ -12,28 +12,9 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/index',
-    component: AppMain,
+    name: 'index',
     meta: { needLogin: false, keepAlive: false },
-    children: [
-      {
-        path: '',
-        name: 'index',
-        component: () => import('@/views/index/index.vue'),
-        meta: { needLogin: false, keepAlive: false }
-      }
-      // {
-      //   path: 'recommend',
-      //   name: 'recommend',
-      //   component: () => import('@/views/index/recommend.vue'),
-      //   meta: { needLogin: false, keepAlive: false }
-      // }
-      // {
-      //   path: 'category/:id',
-      //   name: 'category',
-      //   component: () => import('@/views/index/category.vue'),
-      //   meta: { needLogin: false, keepAlive: false }
-      // }
-    ]
+    component: () => import('@/views/index/index.vue')
   },
   {
     path: '/theme',
@@ -66,6 +47,24 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/bbs',
+    component: AppMain,
+    children: [
+      {
+        path: '',
+        name: 'bbs',
+        component: () => import('@/views/bbs/bbs.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      },
+      {
+        path: 'bbsDetail/:id',
+        name: 'bbsDetail',
+        component: () => import('@/views/bbs/bbsDetail.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      }
+    ]
+  },
+  {
     path: '/shortVideo',
     name: 'shortVideo',
     component: () => import('@/views/shortVideo/shortVideo.vue'),
@@ -74,11 +73,11 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/shortPlay',
     name: 'shortPlay',
-    component: () => import('@/views/shortVideo/shortPlay.vue'),
+    component: () => import('@/views/shortVideo/playlet.vue'),
     meta: { needLogin: false, keepAlive: false }
   },
   {
-    path: '/moreShortPlay',
+    path: '/shortVideo/moreShortPlay',
     name: 'moreShortPlay',
     component: () => import('@/views/shortVideo/moreShortPlay.vue'),
     meta: { needLogin: false, keepAlive: false }
@@ -90,7 +89,7 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false }
   },
   {
-    path: '/search',
+    path: '/video/search',
     name: 'search',
     component: () => import('@/views/search/search.vue'),
     meta: { needLogin: false, keepAlive: false }
@@ -216,10 +215,10 @@ router.beforeEach(async (to, from, next) => {
   }
 })
 
-// router.afterEach((to, from) => {
-//   const toDepth = to.path.split('/').length
-//   const fromDepth = from.path.split('/').length
-//   to.meta.transition = toDepth == fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'
-// })
+router.afterEach((to, from) => {
+  const toDepth = to.path.split('/').length
+  const fromDepth = from.path.split('/').length
+  to.meta.transition = toDepth == fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'
+})
 
 export default router
