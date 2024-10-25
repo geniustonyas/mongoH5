@@ -10,7 +10,7 @@
         <div class="d-a">纯欲双马尾女高学妹，被金主爸爸带到酒店沙发上爆操，不吃香菜 VS AAA建材老王的既视感【请复制链接到迅雷下载】</div>
         <div class="d-b">
           <div class="b-l">
-            <div class="l-a" style="background-image: url(/assets/imgs/u_video.png)" />
+            <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('u_video.png')})` }" />
             <div class="l-b">
               <h3>小芒果</h3>
               <span>2024-10-10</span>
@@ -37,7 +37,7 @@
           </div>
           <div class="dc-b">
             <div class="item">
-              <div class="i-l" style="background-image: url(assets/imgs/u_video.png)" />
+              <div class="i-l" :style="{ backgroundImage: `url(${getAssetsFile('u_video.png')})` }" />
               <div class="i-r">
                 <div class="r-a">
                   <div class="ra-l">
@@ -53,7 +53,7 @@
               </div>
             </div>
             <div class="item">
-              <div class="i-l" style="background-image: url(assets/imgs/u_video.png)" />
+              <div class="i-l" :style="{ backgroundImage: `url(${getAssetsFile('u_video.png')})` }" />
               <div class="i-r">
                 <div class="r-a">
                   <div class="ra-l">
@@ -69,7 +69,7 @@
               </div>
             </div>
             <div class="item">
-              <div class="i-l" style="background-image: url(assets/imgs/u_video.png)" />
+              <div class="i-l" :style="{ backgroundImage: `url(${getAssetsFile('u_video.png')})` }" />
               <div class="i-r">
                 <div class="r-a">
                   <div class="ra-l">
@@ -85,7 +85,7 @@
               </div>
             </div>
             <div class="item">
-              <div class="i-l" style="background-image: url(assets/imgs/u_video.png)" />
+              <div class="i-l" :style="{ backgroundImage: `url(${getAssetsFile('u_video.png')})` }" />
               <div class="i-r">
                 <div class="r-a">
                   <div class="ra-l">
@@ -101,7 +101,7 @@
               </div>
             </div>
             <div class="item">
-              <div class="i-l" style="background-image: url(assets/imgs/u_video.png)" />
+              <div class="i-l" :style="{ backgroundImage: `url(${getAssetsFile('u_video.png')})` }" />
               <div class="i-r">
                 <div class="r-a">
                   <div class="ra-l">
@@ -143,5 +143,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { getAssetsFile } from '@/utils'
+
 const router = useRouter()
 </script>

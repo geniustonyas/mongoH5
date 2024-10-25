@@ -23,7 +23,7 @@
       </div>
       <ul class="bbs-list">
         <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
-          <div class="l-l" style="background-image: url(assets/imgs/u_video.png)" />
+          <div class="l-l" :style="{ backgroundImage: `url(${getAssetsFile('u_video.png')})` }" />
           <div class="l-r">
             <div class="r-a">
               <div class="a-l">小芒果</div>
@@ -31,15 +31,15 @@
             </div>
             <div class="r-b">纯欲双马尾女高学妹，被金主爸爸带到酒店沙发上爆操，不吃香菜 VS AAA建材老王的既视感【请复制链接到迅雷下载】</div>
             <div class="r-c pic9">
-              <div class="item"><img src="assets/imgs/temp/m1.jpg" /></div>
-              <div class="item"><img src="assets/imgs/temp/m4.jpg" /></div>
-              <div class="item"><img src="assets/imgs/mv/m1.jpg" /></div>
-              <div class="item"><img src="assets/imgs/mv/m3.jpg" /></div>
-              <div class="item"><img src="assets/imgs/temp/m5.jpg" /></div>
-              <div class="item"><img src="assets/imgs/temp/m6.jpg" /></div>
-              <div class="item"><img src="assets/imgs/mv/m6.jpg" /></div>
-              <div class="item"><img src="assets/imgs/mv/m5.jpg" /></div>
-              <div class="item"><img src="assets/imgs/temp/m7.jpg" /></div>
+              <div class="item"><img :src="getAssetsFile('temp/m1.jpg')" /></div>
+              <div class="item"><img :src="getAssetsFile('temp/m4.jpg')" /></div>
+              <div class="item"><img :src="getAssetsFile('mv/m1.jpg')" /></div>
+              <div class="item"><img :src="getAssetsFile('mv/m3.jpg')" /></div>
+              <div class="item"><img :src="getAssetsFile('temp/m5.jpg')" /></div>
+              <div class="item"><img :src="getAssetsFile('temp/m6.jpg')" /></div>
+              <div class="item"><img :src="getAssetsFile('mv/m6.jpg')" /></div>
+              <div class="item"><img :src="getAssetsFile('mv/m5.jpg')" /></div>
+              <div class="item"><img :src="getAssetsFile('temp/m7.jpg')" /></div>
             </div>
             <div class="r-d">
               <div class="d-x">
@@ -63,6 +63,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import Footer from '@/components/layout/Footer.vue'
+import { getAssetsFile } from '@/utils/'
 
 const router = useRouter()
 </script>
