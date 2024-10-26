@@ -144,7 +144,16 @@
       </div>
     </div>
 
-    <Footer active-menu="shortVideo" />
+    <!--<Footer active-menu="shortVideo" />-->
+     <footer class="footer f-footer">
+   <div class="p-foot">
+     <router-link to="/index"> <i class="mvfont mv-shouye" />首页 </router-link>
+     <router-link to="/theme/bbs"> <i class="mvfont mv-shequ" />社区 </router-link>
+     <router-link to="/shortVideo" class="active"> <i class="mvfont mv-dsp" />短视频 </router-link>
+     <router-link to="/game"> <i class="mvfont mv-game" />游戏 </router-link>
+     <router-link to="/home"> <i class="mvfont mv-home0" />我的 </router-link>
+   </div>
+ </footer>
   </div>
 </template>
 
