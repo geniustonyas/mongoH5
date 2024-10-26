@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="$router.back()"><i class="mvfont mv-left" /></a>
-        <div id="video-player" />
+        <video id="video-player" controls />
       </div>
       <div class="md-b">
         <div class="b-a">
@@ -53,10 +53,9 @@ import type { Video, VideoDetailResponse } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
 import { getAssetsFile } from '@/utils'
 import { useUserStore } from '@/store/user'
-import Player from 'xgplayer'
-import HlsJsPlugin from 'xgplayer-hls.js'
+import Hls from 'hls.js'
 import VideoGridItem from '@/components/VideoGridItem.vue'
-import 'xgplayer/dist/index.min.css'
+import md5 from 'crypto-js/md5'
 
 const route = useRoute()
 const router = useRouter()
@@ -67,9 +66,8 @@ const isLiked = ref(false)
 const isDisliked = ref(false)
 const isFavorited = ref(false)
 
-const player = ref<Player | null>(null)
-
 const decrypt = new decryptionService()
+let hls: Hls | null = null
 
 const fetchVideoDetail = async () => {
   try {
@@ -103,33 +101,53 @@ const handleShare = () => {
   }
 }
 
+const generateAuthUrl = (domain: string, uri: string, key: string): string => {
+  const timestamp = Math.floor(Date.now() / 1000).toString()
+  const temp = `${key}${uri}${timestamp}`
+  const sign = md5(temp).toString().toLowerCase()
+  return `${domain}${uri}?sign=${sign}&t=${timestamp}`
+}
+
+const initializePlayer = (domain: string, uri: string, key: string) => {
+  const urls = domain + uri
+  const video = document.getElementById('video-player') as HTMLVideoElement
+
+  // 销毁现有的 Hls 实例
+  if (hls) {
+    hls.destroy()
+    hls = null
+  }
+
+  if (Hls.isSupported()) {
+    hls = new Hls()
+
+    hls.config.xhrSetup = (xhr, url) => {
+      const path = new URL(url).pathname
+      const tsUrlWithAuth = generateAuthUrl(domain, path, key)
+      xhr.open('GET', tsUrlWithAuth, true)
+    }
+
+    hls.loadSource(urls)
+    hls.attachMedia(video)
+
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      video.play()
+    })
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = urls
+    video.addEventListener('loadedmetadata', () => {
+      video.play()
+    })
+  }
+}
+
 onMounted(async () => {
   await fetchVideoDetail()
   if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
     const uri = videoDetail.value.playUrl
-    const domain = videoDetail.value.playDomain
-    const url = domain + uri
-    // 使用 xgplayer 和 xgplayer-hls.js 初始化播放器
-    const playerConfig = {
-      id: 'video-player',
-      url: url,
-      poster: videoDetail.value?.poster,
-      autoplay: false,
-      controls: true,
-      fluid: true,
-      playsinline: true,
-      'x5-video-player-type': 'h5',
-      'x5-video-player-fullscreen': true,
-      'x5-video-orientation': 'portraint',
-      plugins: [HlsJsPlugin],
-      useHlsJs: true
-    }
-    if (player.value) {
-      player.value.destroy()
-      player.value = null
-    }
-
-    player.value = new Player(playerConfig)
+    const domain = 'https://mogo2.ewcdn.com'
+    const key = 'p81F7ObiYxqSiJ5tnY1Evl'
+    initializePlayer(domain, uri, key)
   } else {
     console.error('视频详情数据不完整')
   }
@@ -137,9 +155,9 @@ onMounted(async () => {
 
 // 在离开路由前销毁播放器
 onBeforeRouteLeave((to, from, next) => {
-  if (player.value) {
-    player.value.destroy()
-    player.value = null
+  if (hls) {
+    hls.destroy()
+    hls = null
   }
   next()
 })

@@ -27,7 +27,9 @@
     "swiper": "^10.3.1",
     "vant": "^4.4.1",
     "vue": "^3.3.2",
-    "vue-router": "^4.2.0"
+    "vue-router": "^4.2.0",
+    "xgplayer": "^3.0.20",
+    "xgplayer-hls.js": "^3.0.20"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",

@@ -88,6 +88,7 @@ const searchResults = ref<Video[]>([])
 const showHotTags = ref(true)
 const hasSearched = ref(false)
 const currentTagId = ref<string | null>(null)
+const recordCount = ref(0)
 
 let pageIndex = ref(1)
 let listLoading = ref(false)
@@ -142,11 +143,13 @@ const searchVideos = async (isRefresh = false) => {
       if (newVideos.length < params.PageSize) {
         finished.value = true
       }
+      recordCount.value = data.recordCount
     } else {
       if (isRefresh) {
         searchResults.value = []
       }
       finished.value = true
+      recordCount.value = 0
     }
   } catch (error) {
     console.error('搜索视频失败:', error)

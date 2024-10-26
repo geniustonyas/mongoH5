@@ -1,7 +1,7 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <transition :name="getTransition(route.meta.transition)">
-      <keep-alive :include="[]">
+      <keep-alive :include="['index']">
         <component :is="Component" :key="route.path" />
       </keep-alive>
     </transition>
