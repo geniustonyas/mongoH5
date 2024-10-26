@@ -2,7 +2,7 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a href="javascript:void(0)" @click="goBack"><i class="mvfont mv-left" /></a>
+        <a @click="router.back()"><i class="mvfont mv-left" /></a>
       </div>
       <div class="d-m">我的足迹</div>
     </header>
@@ -50,8 +50,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getRecordApi } from '@/api/video'
-import type { Video, getRecordData } from '@/types/video'
+import { userWatchHistory } from '@/api/user'
+import type { Video } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 
@@ -67,29 +67,24 @@ const nodata = ref(false)
 
 const fetchRecords = async () => {
   try {
-    const params: getRecordData = {
-      type: 1, // 假设 1 代表浏览记录
-      search: null,
-      beginTime: null,
-      endTime: null,
-      pageSize: pageSize.value,
-      page: currentPage.value,
-      sortOrder: null
+    const params = {
+      PageIndex: currentPage.value,
+      PageSize: pageSize.value
     }
     const {
       data: { data }
-    } = await getRecordApi(params)
+    } = await userWatchHistory(params)
 
-    if (data && Array.isArray(data)) {
+    if (data && Array.isArray(data.items)) {
       nodata.value = false
       videos.value = await Promise.all(
-        data.map(async (video) => ({
+        data.items.map(async (video) => ({
           ...video,
-          poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
+          poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
         }))
       )
-      currentPage.value = data.pageIndex
-      totalPages.value = data.pageCount
+      currentPage.value = parseInt(data.pageIndex)
+      totalPages.value = parseInt(data.pageCount)
     } else {
       nodata.value = true
     }
@@ -103,10 +98,6 @@ const changePage = (newPage: number) => {
     currentPage.value = newPage
     fetchRecords()
   }
-}
-
-const goBack = () => {
-  router.go(-1)
 }
 
 const formatDate = (dateString: string | undefined) => {

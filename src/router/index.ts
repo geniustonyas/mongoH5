@@ -193,7 +193,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (token) {
-    if (!userStore.userInfo.phone) {
+    if (!userStore.userInfo.id) {
       try {
         await userStore.fetchUserInfo()
         next()

@@ -143,7 +143,7 @@ const searchVideos = async (isRefresh = false) => {
       if (newVideos.length < params.PageSize) {
         finished.value = true
       }
-      recordCount.value = data.recordCount
+      recordCount.value = parseInt(data.recordCount)
     } else {
       if (isRefresh) {
         searchResults.value = []

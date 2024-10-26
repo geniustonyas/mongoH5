@@ -18,7 +18,7 @@
         <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
           <div class="a-l">
             <a v-for="actor in actorList" :key="actor.id" @click="router.push({ name: 'actorDetail', params: { id: actor.id }, query: { videoCount: actor.videosCount } })">
-              <div class="l-img" v-lazy:background-image="appStore.cdnUrl + actor.imgUrl">
+              <div class="l-img" v-lazy:background-image="appStore.cdnUrl + actor.imgUrl" v-lazy:loading="getAssetsFile('default2.gif')">
                 <span class="s-a">{{ actor.videosCount }}部</span>
                 <span class="s-b" v-if="actor.categoryNames.indexOf('知名') != -1"><b>知名女优</b></span>
               </div>
@@ -39,6 +39,7 @@ import { getActorListApi } from '@/api/theme'
 import { useAppStore } from '@/store/app'
 import type { ActorListRequest, ActorList } from '@/types/theme'
 import { List } from 'vant'
+import { getAssetsFile } from '@/utils/'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -89,7 +90,7 @@ const getActorList = async (isRefresh = false) => {
       if (isRefresh) {
         actorList.value = data.items
       } else {
-        actorList.value = [...actorList.value, ...data.items]
+        actorList.value = actorList.value.concat(data.items)
       }
       if (data.items.length < query.PageSize) {
         finished.value = true

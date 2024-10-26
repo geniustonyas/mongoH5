@@ -42,10 +42,10 @@ export interface VideoListRequest {
 export type VideoListResponse = {
   items: Video[]
   newVideos: Video[]
-  pageCount: number
-  pageIndex: number
-  pageSize: number
-  recordCount: number
+  pageCount: string
+  pageIndex: string
+  pageSize: string
+  recordCount: string
 }
 
 // 获取视频详情
@@ -65,6 +65,8 @@ export interface VideoDetailResponse {
   }[]
   licks: Video[]
   poster?: string
+  like?: number | string
+  collect?: boolean
 }
 
 // 新增一个接口来描述分页数据结构

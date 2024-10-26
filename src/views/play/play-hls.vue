@@ -88,7 +88,7 @@ const fetchVideoDetail = async () => {
 }
 
 const checkLogin = (): boolean => {
-  if (userStore.userInfo.phone == '') {
+  if (userStore.userInfo.id == '') {
     userStore.showLoginDialog = true
     return false
   }

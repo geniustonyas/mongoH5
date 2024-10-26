@@ -18,22 +18,22 @@
               <ul class="f-a">
                 <li v-if="isLoginMode">
                   <i class="mvfont mv-user" />
-                  <input v-model="formData.userName" placeholder="账号/手机号" />
+                  <input v-model="formData.UserName" placeholder="账号/手机号" />
                 </li>
                 <li v-else>
                   <i class="mvfont mv-user" />
-                  <input v-model="formData.phone" placeholder="手机号" />
+                  <input v-model="formData.PhoneNumber" placeholder="手机号" />
                 </li>
-                <li v-if="!isLoginMode">
+                <li v-if="!isLoginMode" style="display: none">
                   <i class="mvfont mv-yzm" />
-                  <input v-model="formData.code" placeholder="手机验证码" maxlength="6" />
+                  <input v-model="formData.VerifCode" placeholder="手机验证码" maxlength="6" />
                   <a @click="handleGetCode" :class="{ disabled: countdown > 0 }">
                     {{ countdown > 0 ? `${countdown}秒后重试` : '获取验证码' }}
                   </a>
                 </li>
                 <li>
                   <i class="mvfont mv-password" />
-                  <input v-model="formData.password" type="password" placeholder="密码" />
+                  <input v-model="formData.Password" type="password" placeholder="密码" />
                 </li>
               </ul>
               <div class="f-b">
@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, watch } from 'vue'
 import { useUserStore } from '@/store/user'
 import { userLogin, userRegister } from '@/api/user'
 import { getCodeApi } from '@/api/app'
@@ -63,15 +63,26 @@ import { isPhone, isPwd } from '@/utils/validate'
 const userStore = useUserStore()
 const isLoginMode = ref(true)
 
-const formData = ref<loginForm>({
-  userName: '',
-  password: '',
-  phone: '',
-  code: ''
+const formData = reactive<loginForm>({
+  UserName: '',
+  Password: '',
+  PhoneNumber: '',
+  VerifCode: '',
+  InvitationCode: ''
 })
 
 const countdown = ref(0)
 const timer = ref<ReturnType<typeof setInterval> | null>(null)
+
+watch(isLoginMode, (newVal) => {
+  if (newVal) {
+    formData.VerifCode = ''
+    formData.InvitationCode = ''
+    formData.UserName = ''
+    formData.Password = ''
+    formData.PhoneNumber = ''
+  }
+})
 
 onMounted(() => {
   const storedCountdown = localStorage.getItem('codeCountdown')
@@ -100,12 +111,12 @@ const startCountdown = (duration: number) => {
 
 const handleGetCode = async () => {
   if (countdown.value > 0) return
-  if (!isPhone(formData.value.phone)) {
+  if (!isPhone(formData.PhoneNumber)) {
     showToast('请输入正确的手机号')
     return
   }
   try {
-    const { data } = await getCodeApi({ phone: formData.value.phone, type: 'register' })
+    const { data } = await getCodeApi({ phone: formData.PhoneNumber, type: 'register' })
     if (data) {
       showToast('验证码已发送')
       startCountdown(60)
@@ -119,51 +130,66 @@ const handleGetCode = async () => {
 
 const handleSubmit = async () => {
   if (isLoginMode.value) {
-    if (!formData.value.userName || !formData.value.password) {
+    if (!formData.UserName || !formData.Password) {
       showToast('请输入账号和密码')
       return
     }
   } else {
-    if (!isPhone(formData.value.phone)) {
+    formData.UserName = formData.PhoneNumber
+    if (!isPhone(formData.PhoneNumber)) {
       showToast('请输入正确的手机号')
       return
     }
-    if (!formData.value.password) {
+    if (!formData.Password) {
       showToast('请输入密码')
       return
     }
-    if (!formData.value.code) {
-      showToast('请输入验证码')
-      return
-    }
+    // if (!formData.value.VerifCode) {
+    //   showToast('请输入验证码')
+    //   return
+    // }
   }
 
-  if (!isPwd(formData.value.password)) {
+  if (!isPwd(formData.Password)) {
     showToast('密码格式不正确，请输入6-16位包含字母、数字或特殊字符的密码')
     return
   }
 
   try {
-    let resp
     if (isLoginMode.value) {
-      resp = await userLogin(formData.value)
-    } else {
-      resp = await userRegister(formData.value)
-    }
-    if (resp.code == 200 && resp.data.token) {
-      setToken(resp.data.token)
-      if (resp.data.user) {
-        userStore.setUserInfo(resp.data.user)
-      } else {
-        await userStore.fetchUserInfo()
-      }
-      showToast(isLoginMode.value ? '登录成功' : '注册成功')
+      await login()
+      isLoginMode.value = !isLoginMode.value
       userStore.showLoginDialog = false
     } else {
-      showToast(resp.message || (isLoginMode.value ? '登录失败' : '注册失败'))
+      const {
+        data: { code, message }
+      } = await userRegister(formData)
+      if (code == '200') {
+        await login()
+        isLoginMode.value = !isLoginMode.value
+        userStore.showLoginDialog = false
+        showToast('注册成功')
+      } else {
+        showToast(message || '注册失败')
+      }
     }
   } catch (error) {
-    showToast(error.resp?.data?.message || (isLoginMode.value ? '登录失败' : '注册失败'))
+    const {
+      data: { message }
+    } = error
+    showToast(message || (isLoginMode.value ? '登录失败' : '注册失败'))
+  }
+}
+
+const login = async () => {
+  const {
+    data: { code, data, message }
+  } = await userLogin(formData)
+  if (code == '200' && data.token) {
+    setToken(data.token)
+    await userStore.fetchUserInfo()
+  } else {
+    showToast(message || '登录失败')
   }
 }
 </script>

@@ -3,6 +3,23 @@ import { getCategoryApi, getConfigApi, getAdsApi } from '@/api/app'
 import { getThemeApi } from '@/api/theme'
 import store from '@/store'
 
+// 定义判断是否在App环境中的函数
+function isInApp() {
+  // @ts-ignore
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera
+  const appUserAgentKeywords = [
+    /iPhone|iPod|iPad/i, // iOS设备
+    /Android/i, // Android设备
+    /webOS|BlackBerry|IEMobile|Opera Mini/i, // 常见的Mobile浏览器User-Agent关键字
+    /CrKey/i, // 思维火箭
+    /MQQBrowser/i, // QQ浏览器
+    /baiduboxapp/i, // 百度App
+    /Googlebot/i // 搜索引擎
+  ]
+
+  return appUserAgentKeywords.some((keyword) => userAgent.match(keyword))
+}
+
 export const useAppStore = defineStore('app', {
   state: () => {
     return {
@@ -32,6 +49,10 @@ export const useAppStore = defineStore('app', {
     // 根据广告id获取广告
     getAdvertisementById: (state) => (id: number) => {
       return state.advertisement.find((item: any) => item.id == id) || []
+    },
+    isAppEnvironment: () => {
+      // 使用 isInApp 函数来判断是否在App环境中
+      return isInApp()
     }
   },
   actions: {

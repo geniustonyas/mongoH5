@@ -2,14 +2,20 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a href="javascript:void(0)" @click="goBack"><i class="mvfont mv-left" /></a>
+        <a @click="router.back()"><i class="mvfont mv-left" /></a>
       </div>
       <div class="d-m">我的收藏</div>
+      <div class="d-r" @click="toggleEditMode">{{ isEditing ? '取消' : '编辑' }}</div>
     </header>
     <section class="h-m-b">
       <div class="his-box collect">
         <ul v-if="videos.length > 0">
-          <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
+          <li v-for="video in videos" :key="video.id" @click="!isEditing && router.push({ name: 'play', params: { id: video.id } })">
+            <div class="l-x" v-show="isEditing" @click.stop="toggleSelectVideo(parseInt(video.id))">
+              <div class="x-c" :class="{ checked: selectedVideos.has(video.id) }">
+                <i class="mvfont mv-radio" />
+              </div>
+            </div>
             <div class="l-a">
               <img :src="video.poster" />
               <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
@@ -32,6 +38,15 @@
         </div>
       </div>
     </section>
+    <footer class="footer" v-show="isEditing">
+      <div class="edit-foot">
+        <div class="f-bd">
+          <a @click="selectAll">全选</a>
+          <a @click="removeSelected">移除</a>
+        </div>
+      </div>
+    </footer>
+
     <div class="au-pagination-box" v-if="totalPages > 1">
       <div class="pb-x">
         <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">上一页</a>
@@ -50,8 +65,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getRecordApi } from '@/api/video'
-import type { Video, getRecordData } from '@/types/video'
+import { userCollectionHistory, userCollection } from '@/api/user'
+import type { Video } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 
@@ -62,34 +77,31 @@ const decrypt = new decryptionService()
 const videos = ref<Video[]>([])
 const currentPage = ref(1)
 const totalPages = ref(1)
-const pageSize = ref(20)
+const pageSize = ref(5)
 const nodata = ref(false)
+const isEditing = ref(false)
+const selectedVideos = ref<Set<number | string>>(new Set())
 
 const fetchCollections = async () => {
   try {
-    const params: getRecordData = {
-      type: 3, // 假设 2 代表收藏记录
-      search: null,
-      beginTime: null,
-      endTime: null,
-      pageSize: pageSize.value,
-      page: currentPage.value,
-      sortOrder: null
+    const params = {
+      PageIndex: currentPage.value,
+      PageSize: pageSize.value
     }
     const {
       data: { data }
-    } = await getRecordApi(params)
+    } = await userCollectionHistory(params)
 
-    if (data && Array.isArray(data)) {
+    if (data && Array.isArray(data.items)) {
       nodata.value = false
       videos.value = await Promise.all(
-        data.map(async (video) => ({
+        data.items.map(async (video) => ({
           ...video,
-          poster: await decrypt.fetchAndDecrypt(`${video.posterDomain}${video.poster}`)
+          poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
         }))
       )
-      currentPage.value = data.pageIndex
-      totalPages.value = data.pageCount
+      currentPage.value = parseInt(data.pageIndex)
+      totalPages.value = parseInt(data.pageCount)
     } else {
       nodata.value = true
       videos.value = []
@@ -108,14 +120,49 @@ const changePage = (newPage: number) => {
   }
 }
 
-const goBack = () => {
-  router.go(-1)
-}
-
 const formatDate = (dateString: string | undefined) => {
   if (!dateString) return ''
   const date = new Date(dateString)
   return date.toLocaleDateString('zh-CN')
+}
+
+const toggleEditMode = () => {
+  isEditing.value = !isEditing.value
+  if (!isEditing.value) {
+    selectedVideos.value.clear()
+  }
+}
+
+const toggleSelectVideo = (videoId: number) => {
+  if (selectedVideos.value.has(videoId)) {
+    selectedVideos.value.delete(videoId)
+  } else {
+    selectedVideos.value.add(videoId)
+  }
+}
+
+const selectAll = () => {
+  if (selectedVideos.value.size === videos.value.length) {
+    selectedVideos.value.clear()
+  } else {
+    videos.value.forEach((video) => selectedVideos.value.add(parseInt(video.id)))
+  }
+}
+
+const removeSelected = async () => {
+  if (selectedVideos.value.size === 0) return
+
+  const videoIds = Array.from(selectedVideos.value).join(',')
+  try {
+    await userCollection({ VideoId: videoIds, Collect: false })
+    currentPage.value = 1
+    fetchCollections()
+  } catch (error) {
+    console.error('移除收藏失败:', error)
+  } finally {
+    isEditing.value = false
+    selectedVideos.value.clear()
+  }
 }
 
 onMounted(() => {

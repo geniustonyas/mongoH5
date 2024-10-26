@@ -7,15 +7,15 @@
         </div>
         <div @click="router.push({ name: 'search' })" class="hs-b">
           <div class="sb-i">
-            <input />
+            <input id="searchInput" class="search-inputs" />
             <i class="mvfont mv-search1" />
           </div>
           <div class="sb-t">
             <Swipe :autoplay="3000" :vertical="true" :show-indicators="false" :touchable="false" style="line-height: 50px">
               <SwipeItem>番号/片名/演员</SwipeItem>
-              <SwipeItem>
+              <SwipeItem v-for="item in appStore.searchInputText.split(',')" :key="item">
                 永久域名:
-                <span>{{ appStore.searchInputText }}</span>
+                <span>{{ item }}</span>
               </SwipeItem>
             </Swipe>
           </div>
@@ -134,14 +134,14 @@
                   </div>
                   <div class="au-pagination-box" v-if="categoryTotalPages[category.d] > 1">
                     <div class="pb-x">
-                      <a @click="changePage(parseInt(categoryPageIndex[category.d]) - 1)" :class="{ disabled: categoryPageIndex[category.d] == 1 }">上一页</a>
+                      <a @click="changePage(categoryPageIndex[category.d] - 1)" :class="{ disabled: categoryPageIndex[category.d] == 1 }">上一页</a>
                     </div>
                     <div class="pb-x">
                       <input v-model="categoryPageIndex[category.d]" @change="handlePageChange" type="number" min="1" :max="categoryTotalPages[category.d]" />
                       <span>/ {{ categoryTotalPages[category.d] }}</span>
                     </div>
                     <div class="pb-x">
-                      <a @click="changePage(parseInt(categoryPageIndex[category.d]) + 1)" :class="{ disabled: categoryPageIndex[category.d] == categoryTotalPages[category.d] }">下一页</a>
+                      <a @click="changePage(categoryPageIndex[category.d] + 1)" :class="{ disabled: categoryPageIndex[category.d] == categoryTotalPages[category.d] }">下一页</a>
                     </div>
                   </div>
                 </nav>
@@ -154,7 +154,7 @@
         <img :src="currentImage" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" />
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
-      <div v-if="appStore.hasShownDownload" class="fixed-foot" id="fixed-downloadApp">
+      <div v-if="appStore.hasShownDownload && !appStore.isAppEnvironment" class="fixed-foot" id="fixed-downloadApp">
         <div class="ff-bd">
           <div class="d-c">
             <div class="f-a">
@@ -280,8 +280,8 @@ const fetchVideos = async (params: VideoListRequest) => {
 
         categoryVideosMap.value[query.ChannelId] = videoList
         categoryBannerMap.value[query.ChannelId] = swiperList
-        categoryTotalPages.value[query.ChannelId] = data.pageCount
-        categoryPageIndex.value[query.ChannelId] = data.pageIndex
+        categoryTotalPages.value[query.ChannelId] = parseInt(data.pageCount)
+        categoryPageIndex.value[query.ChannelId] = parseInt(data.pageIndex)
       }
     } else {
       console.error('响应数据结构不正确')

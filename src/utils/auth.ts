@@ -7,10 +7,14 @@ const getToken = () => {
   return localStorage.getItem(TokenKey)
 }
 const setToken = (token: string) => {
-  localStorage.setItem(TokenKey, token)
+  console.log(token)
+  try {
+    localStorage.setItem(TokenKey, token)
+  } catch (error) {
+    console.error('设置token失败:', error)
+  }
 }
 const clearToken = () => {
-  console.log(TokenKey)
   localStorage.removeItem(TokenKey)
 }
 export { TokenPrefix, isLogin, getToken, setToken, clearToken }
