@@ -14,7 +14,7 @@
     <section class="vp-main">
       <div class="vm-a" />
       <div class="vm-b">
-        <swiper :direction="'vertical'" :modules="modules" :virtual="true" :slides-per-view="1" :space-between="0" @slide-change="onSlideChange" style="width: 100%; height: 100%">
+        <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true } as undefined" :slides-per-view="1" :space-between="0" @slide-change="onSlideChange" style="width: 100%; height: 100%">
           <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
             <div class="v-a">
               <div :id="'video-player-' + index" class="video-player" />
@@ -38,7 +38,9 @@
               <h3>@芒果TV</h3>
               <p>
                 <b>{{ video.title }}</b>
-                <span v-for="tag in video.tags" :key="tag">#{{ tag }}</span>
+                <template v-if="videoDetail && videoDetail.tags">
+                  <span v-for="tag in videoDetail.tags" :key="tag.id">#{{ tag.title }}</span>
+                </template>
               </p>
             </div>
           </swiper-slide>
@@ -58,7 +60,7 @@
 import { ref, onMounted, computed, watch, nextTick } from 'vue'
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { getVideoListApi, getVideoDetailApi } from '@/api/video'
-import type { Video, } from '@/types/video'
+import type { Video, VideoDetailResponse } from '@/types/video'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -162,7 +164,7 @@ const initializePlayer = async (index: number) => {
 onMounted(async () => {
   await fetchVideos()
   if (videos.value.length > 0) {
-    await fetchVideoDetail(videos.value[0].id)
+    await fetchVideoDetail(parseInt(videos.value[0].id))
     initializePlayer(0)
   }
 })
@@ -186,7 +188,7 @@ const onSlideChange = (swiper) => {
   // 获取当前视频详情
   const currentVideo = videos.value[currentVideoIndex.value]
   if (currentVideo) {
-    fetchVideoDetail(currentVideo.id)
+    fetchVideoDetail(parseInt(currentVideo.id))
   }
 }
 

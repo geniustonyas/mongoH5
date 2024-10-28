@@ -103,7 +103,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/video/play/:id',
     name: 'play',
-    component: () => import('@/views/play/play.vue'),
+    component: () => import('@/views/play/play-xgplayer.vue'),
     meta: { needLogin: false, keepAlive: false }
   },
   {

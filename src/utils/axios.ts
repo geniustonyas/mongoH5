@@ -5,7 +5,7 @@ import { showToast } from 'vant'
 import { ApiResponseData } from '@/types/api.d'
 
 // 解析 VITE_BASE_API 环境变量
-const apiUrls = import.meta.env.VITE_BASE_API.split(',')
+const apiUrls = import.meta.env.VITE_BASE_API.split('|')
 
 // 缓存第一个可用的 API 地址
 let cachedApiUrl: string | null = null

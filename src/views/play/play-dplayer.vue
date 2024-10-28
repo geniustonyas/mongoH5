@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="router.back()"><i class="mvfont mv-left" /></a>
-        <video id="plyr-player" controls></video>
+        <div id="dplayer" />
       </div>
       <div class="md-b">
         <div class="b-a">
@@ -68,8 +68,7 @@ import { showToast } from 'vant'
 import { addPlayCountApi } from '@/api/video'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
-import Plyr from 'plyr'
-import 'plyr/dist/plyr.css'
+import DPlayer from 'dplayer'
 import Hls from 'hls.js'
 
 const route = useRoute()
@@ -79,7 +78,7 @@ const videoDetail = ref<VideoDetailResponse | null>(null)
 const recommendedVideos = ref<Video[]>([])
 const initialLikeType = ref<number | string>()
 
-const player = ref<Plyr | null>(null)
+const player = ref<DPlayer | null>(null)
 
 const decrypt = new decryptionService()
 
@@ -217,37 +216,52 @@ const initializePlayer = (url: string) => {
     player.value = null
   }
 
-  const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
-
-  if (Hls.isSupported()) {
-    const hls = new Hls()
-    hls.loadSource(url)
-    hls.attachMedia(videoElement)
-    hls.on(Hls.Events.MANIFEST_PARSED, () => {
-      player.value = new Plyr(videoElement, {
-        autoplay: true,
-        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
-      })
-    })
-  } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-    videoElement.src = url
-    player.value = new Plyr(videoElement, {
-      autoplay: true,
-      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
-    })
-  }
+  player.value = new DPlayer({
+    container: document.getElementById('dplayer'),
+    video: {
+      url: url,
+      type: 'customHls',
+      customType: {
+        customHls: function (video: HTMLVideoElement, _player: DPlayer) {
+          if (Hls.isSupported()) {
+            // const hls = new Hls()
+            const hls = new Hls({
+              debug: false, // 关闭调试日志
+              maxBufferLength: 30 // 合理设置缓冲区长度
+            })
+            hls.loadSource(video.src)
+            hls.attachMedia(video)
+          } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // video.src = video.src
+          }
+        }
+      }
+    },
+    autoplay: true,
+    theme: '#b7daff',
+    loop: false,
+    lang: 'zh-cn',
+    screenshot: true,
+    hotkey: true,
+    preload: 'auto',
+    volume: 0.7
+  })
 
   // 统计播放量
-  player.value?.on('play', async () => {
+  const handleFirstPlay = async () => {
     await addPlayCountApi(videoDetail.value?.id)
-  })
+    player.value?.off('play', handleFirstPlay)
+  }
+  player.value.on('play', handleFirstPlay)
 }
 
 watch(
   () => route.params.id,
   async (newId, oldId) => {
     if (newId != oldId) {
+      console.log(player)
       if (player.value) {
+        console.log(12312323)
         player.value.destroy()
         player.value = null
       }

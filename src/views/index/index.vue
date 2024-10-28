@@ -46,7 +46,7 @@
               <nav id="index-banner" class="swiper-container">
                 <Swipe class="my-swipe" :autoplay="3000" lazy-render>
                   <SwipeItem v-for="ad in appStore.getAdvertisementById(2).items" :key="ad.id">
-                    <a :href="ad.targetUrl">
+                    <a target="_blank" :href="ad.targetUrl">
                       <img :src="appStore.cdnUrl + ad.imgUrl" :alt="ad.title" />
                     </a>
                   </SwipeItem>
@@ -150,7 +150,7 @@
         </SwipeItem>
       </Swipe>
       <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
-        <img :src="currentImage" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" />
+        <a target="_blank" :href="currentPopAd.targetUrl"><img :src="appStore.cdnUrl + currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
       <div v-if="appStore.hasShownDownload && !appStore.isAppEnvironment" class="fixed-foot" id="fixed-downloadApp">
@@ -229,16 +229,19 @@ const query = reactive<VideoListRequest>({
 })
 
 const showPopup = ref(false)
-const currentImageIndex = ref(0)
-const advertisementImages = appStore.getAdvertisementById(3).items.map((item) => item.imgUrl)
+const currentPopAdIndex = ref(0)
+const popAdvertisement = appStore.getAdvertisementById(3).items
 
-const currentImage = computed(() => appStore.cdnUrl + advertisementImages[currentImageIndex.value])
+const currentPopAd = computed(() => {
+  var item = popAdvertisement[currentPopAdIndex.value]
+  return item || {}
+})
 
 // 使用 watch 的立即执行选项来检查 showAnnouncement
 watch(
   () => appStore.showAnnouncement,
   (newVal) => {
-    if (newVal && advertisementImages.length > 0) {
+    if (newVal && popAdvertisement.length > 0) {
       showPopup.value = true
     }
   },
@@ -256,8 +259,8 @@ watch(
 )
 
 const closePopup = () => {
-  if (currentImageIndex.value < advertisementImages.length - 1) {
-    currentImageIndex.value++
+  if (currentPopAdIndex.value < popAdvertisement.length - 1) {
+    currentPopAdIndex.value++
     showPopup.value = true
   } else {
     showPopup.value = false
