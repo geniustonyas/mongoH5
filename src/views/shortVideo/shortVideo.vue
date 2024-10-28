@@ -3,7 +3,8 @@
     <header class="m-header h-video">
       <div class="h-m">
         <a @click="router.push({ name: 'shortVideo' })" class="active">抖阴</a>
-        <a @click="router.push({ name: 'shortPlay' })">短剧</a>
+        <a @click="showToast('建设中...')">短剧</a>
+        <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
       </div>
       <div class="h-r">
         <i class="mvfont mv-search1" />
@@ -19,14 +20,15 @@
               <div :id="'video-player-' + index" class="video-player" />
             </div>
             <div class="v-b">
-              <a><img :src="getAssetsFile('logo-1.png')" /></a>
-              <a>
-                <i class="mvfont mv-xihuan" /><b>{{ video.likeCount || 0 }}</b>
+              <a @click="handleLike()">
+                <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
+                <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
               </a>
-              <a>
-                <i class="mvfont mv-shoucang" /><b>{{ video.collectCount || 0 }}</b>
+              <a @click="handleCollection()">
+                <i :class="['mvfont', 'mv-shoucang', { active: videoDetail && videoDetail.collect }]" />
+                <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
               </a>
-              <a><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
+              <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
             </div>
             <div class="v-c">
               <div class="c-g">
@@ -43,16 +45,22 @@
         </swiper>
       </div>
     </section>
+    <Popup v-model:show="showSharePopup" teleport="body" position="center" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :overlay="false" round>
+      <div class="share-popup">
+        <p>分享链接已复制，赶快去分享给好友吧！</p>
+      </div>
+    </Popup>
     <Footer active-menu="shortVideo" footer-class="footer f-footer" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, computed, watch, nextTick } from 'vue'
-import { useRouter } from 'vue-router'
-import { getVideoListApi } from '@/api/video'
-import type { Video } from '@/types/video'
+import { useRouter, onBeforeRouteLeave } from 'vue-router'
+import { getVideoListApi, getVideoDetailApi } from '@/api/video'
+import type { Video, } from '@/types/video'
 import { useAppStore } from '@/store/app'
+import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import Footer from '@/components/layout/Footer.vue'
 import Player from 'xgplayer'
@@ -63,17 +71,23 @@ import 'swiper/css/virtual'
 import { Virtual } from 'swiper/modules'
 import decryptionService from '@/utils/decryptionService'
 import { getAssetsFile } from '@/utils'
+import { userLike, userCollection } from '@/api/user'
+import { Popup, showToast } from 'vant'
+import Clipboard from 'clipboard'
 
 const modules = [Virtual]
 
 const router = useRouter()
 const appStore = useAppStore()
+const userStore = useUserStore()
 const videos = ref<Video[]>([])
-const videoRefs = ref<HTMLElement[]>([])
+const videoDetail = ref<VideoDetailResponse | null>(null)
 const player = ref<Player | null>(null)
 const currentVideoIndex = ref(0)
 const pageIndex = ref(1)
 const decrypt = new decryptionService()
+const showSharePopup = ref(false)
+const clipboard = ref<Clipboard | null>(null)
 
 const foreverDomain = computed(() => {
   var tmp = appStore.searchInputText.split(',')
@@ -148,53 +162,125 @@ const initializePlayer = async (index: number) => {
 onMounted(async () => {
   await fetchVideos()
   if (videos.value.length > 0) {
+    await fetchVideoDetail(videos.value[0].id)
     initializePlayer(0)
   }
 })
 
-watch(videos, (newVideos) => {
-  if (newVideos.length > 0 && !player.value) {
-    initializePlayer(0)
+onBeforeRouteLeave(() => {
+  if (player.value) {
+    player.value.destroy()
+    player.value = null
   }
 })
-
-const setVideoRef = (index) => (el) => {
-  if (el) {
-    videoRefs.value[index] = el
-  }
-}
 
 const onSlideChange = (swiper) => {
   currentVideoIndex.value = swiper.activeIndex
   initializePlayer(currentVideoIndex.value)
-
-  // // 预加载下一个视频
-  // if (currentVideoIndex.value + 1 < videos.value.length) {
-  //   const nextIndex = currentVideoIndex.value + 1
-  //   const nextVideo = videos.value[nextIndex]
-  //   if (nextVideo) {
-  //     const nextPlayerConfig = {
-  //       id: 'video-player-' + nextIndex,
-  //       url: nextVideo.playUrl,
-  //       poster: nextVideo.poster,
-  //       autoplay: true, // 不自动播放
-  //       controls: false, // 隐藏所有控件
-  //       fluid: true,
-  //       playsinline: true,
-  //       'x5-video-player-type': 'h5',
-  //       'x5-video-player-fullscreen': true,
-  //       'x5-video-orientation': 'portraint',
-  //       plugins: [HlsJsPlugin],
-  //       useHlsJs: true
-  //     }
-  //     new Player(nextPlayerConfig)
-  //   }
-  // }
-
   // 当滑动到倒数第二个视频时，加载下一页
   if (currentVideoIndex.value >= videos.value.length - 2) {
     pageIndex.value++
     fetchVideos()
   }
+
+  // 获取当前视频详情
+  const currentVideo = videos.value[currentVideoIndex.value]
+  if (currentVideo) {
+    fetchVideoDetail(currentVideo.id)
+  }
+}
+
+// 检查登录状态
+const checkLogin = (): boolean => {
+  if (userStore.userInfo.id == '') {
+    userStore.showLoginDialog = true
+    return false
+  }
+  return true
+}
+
+// 点赞功能
+const handleLike = async () => {
+  if (!checkLogin()) return
+
+  try {
+    const videoId = videoDetail.value?.id
+    const newLikeStatus = videoDetail.value?.like == 1 ? 0 : 1
+
+    await userLike({ VideoId: videoId, Like: newLikeStatus })
+
+    // 更新本地状态
+    videoDetail.value.like = newLikeStatus
+    videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) + (newLikeStatus ? 1 : -1)).toString()
+  } catch (error) {
+    console.error('操作失败:', error)
+  }
+}
+
+// 收藏功能
+const handleCollection = async () => {
+  if (!checkLogin()) return
+
+  try {
+    const videoId = videoDetail.value?.id
+    const newCollectStatus = !videoDetail.value?.collect
+
+    await userCollection({ VideoId: videoId, Collect: newCollectStatus })
+
+    // 更新本地状态
+    videoDetail.value.collect = newCollectStatus
+    videoDetail.value.collectionCount = (Number(videoDetail.value.collectionCount) + (newCollectStatus ? 1 : -1)).toString()
+  } catch (error) {
+    console.error('操作失败:', error)
+  }
+}
+
+// 分享功能
+const handleShare = () => {
+  if (clipboard.value) {
+    clipboard.value.destroy()
+  }
+  clipboard.value = new Clipboard('.share-button', {
+    text: () => window.location.href
+  })
+
+  clipboard.value?.on('success', () => {
+    showSharePopup.value = true
+    // 设置2秒后自动关闭弹窗
+    setTimeout(() => {
+      showSharePopup.value = false
+    }, 2000)
+    clipboard.value?.destroy()
+  })
+
+  clipboard.value?.on('error', () => {
+    console.error('复制失败')
+    clipboard.value?.destroy()
+  })
+
+  // 模拟点击事件以触发复制
+  const button = document.createElement('button')
+  button.className = 'share-button'
+  document.body.appendChild(button)
+  button.click()
+  document.body.removeChild(button)
+}
+
+// 获取视频详情
+const fetchVideoDetail = async (videoId: number) => {
+  try {
+    const {
+      data: { data }
+    } = await getVideoDetailApi(videoId)
+    videoDetail.value = data
+  } catch (error) {
+    console.error('获取视频详情失败:', error)
+  }
 }
 </script>
+
+<style scoped>
+.active {
+  color: #ff6b6b;
+}
+</style>

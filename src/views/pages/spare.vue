@@ -2,7 +2,9 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a href="javascript:void(0)" onclick="javascript:history.go(-1)"><i class="mvfont mv-left" /></a>
+        <a href="javascript:void(0)" onclick="javascript:history.go(-1)">
+          <i class="mvfont mv-left" />
+        </a>
       </div>
       <div class="d-m">回家不迷路</div>
     </header>
@@ -17,7 +19,8 @@
         </div>
         <div class="r-b">
           <div class="b-item">
-            <a>mg91.tv@gmail.com</a><span data-clipboard-text="mg91.tv@gmail.com" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <a>mg91.tv@gmail.com</a>
+            <span data-clipboard-text="mg91.tv@gmail.com" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
           </div>
         </div>
       </div>
@@ -31,13 +34,16 @@
         </div>
         <div class="r-b">
           <div class="b-item">
-            <a>mg97.cc</a><span data-clipboard-text="mg97.cc" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <a>mg97.cc</a>
+            <span data-clipboard-text="mg97.cc" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
           </div>
           <div class="b-item">
-            <a>mg41.cc</a><span data-clipboard-text="mg41.cc" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <a>mg41.cc</a>
+            <span data-clipboard-text="mg41.cc" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
           </div>
           <div class="b-item">
-            <a>mg42.cc</a><span data-clipboard-text="mg42.cc" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <a>mg42.cc</a>
+            <span data-clipboard-text="mg42.cc" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
           </div>
         </div>
       </div>
@@ -51,7 +57,8 @@
         </div>
         <div class="r-b">
           <div class="b-item">
-            <a href="https://t.me/cai7899">https://t.me/cai7899</a><span data-clipboard-text="https://t.me/cai7899" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <a href="https://t.me/cai7899">https://t.me/cai7899</a>
+            <span data-clipboard-text="https://t.me/cai7899" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
           </div>
         </div>
       </div>
@@ -65,10 +72,12 @@
         </div>
         <div class="r-b">
           <div @click="downloadBrowser('chrome')" class="b-item">
-            <a>谷歌浏览器</a><span><i class="mvfont mv-xiazai1" />下载</span>
+            <a>谷歌浏览器</a>
+            <span><i class="mvfont mv-xiazai1" />下载</span>
           </div>
           <div @click="downloadBrowser('quark')" class="b-item">
-            <a>夸克浏览器</a><span><i class="mvfont mv-xiazai1" />下载</span>
+            <a>夸克浏览器</a>
+            <span><i class="mvfont mv-xiazai1" />下载</span>
           </div>
         </div>
       </div>
@@ -91,45 +100,43 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted } from 'vue'
-  import { copy } from '@/utils/index'
+import { onMounted } from 'vue'
+import { copy } from '@/utils/index'
 
-  const handleCopy = (event: MouseEvent) => {
-    const target = event.currentTarget as HTMLElement
-    const text = target.getAttribute('data-clipboard-text')
-    if (text) {
-      copy(`[data-clipboard-text="${text}"]`)
+const handleCopy = (event: MouseEvent) => {
+  const target = event.currentTarget as HTMLElement
+  const text = target.getAttribute('data-clipboard-text')
+  if (text) {
+    copy(`[data-clipboard-text="${text}"]`)
+  }
+}
+
+const downloadBrowser = (browser: string) => {
+  //@ts-ignore
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera
+  if (/android/i.test(userAgent)) {
+    if (browser === 'chrome') {
+      window.open('https://play.google.com/store/apps/details?id=com.android.chrome', '_blank')
+    } else if (browser === 'quark') {
+      window.open('https://www.myquark.cn/', '_blank')
+    }
+    //@ts-ignore
+  } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    if (browser === 'chrome') {
+      window.open('https://apps.apple.com/us/app/google-chrome/id535886823', '_blank')
+    } else if (browser === 'quark') {
+      window.open('https://apps.apple.com/cn/app/id1127253508', '_blank')
+    }
+  } else {
+    if (browser === 'chrome') {
+      window.open('https://www.google.com/chrome/', '_blank')
+    } else if (browser === 'quark') {
+      window.open('https://www.myquark.cn/', '_blank')
     }
   }
+}
 
-  const downloadBrowser = (browser: string) => {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera
-    if (/android/i.test(userAgent)) {
-      // Android
-      if (browser === 'chrome') {
-        window.open('https://play.google.com/store/apps/details?id=com.android.chrome', '_blank')
-      } else if (browser === 'quark') {
-        window.open('https://www.myquark.cn/', '_blank')
-      }
-    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      // iOS
-      if (browser === 'chrome') {
-        window.open('https://apps.apple.com/us/app/google-chrome/id535886823', '_blank')
-      } else if (browser === 'quark') {
-        window.open('https://apps.apple.com/cn/app/id1127253508', '_blank')
-      }
-    } else {
-      // Web
-      if (browser === 'chrome') {
-        window.open('https://www.google.com/chrome/', '_blank')
-      } else if (browser === 'quark') {
-        window.open('https://www.myquark.cn/', '_blank')
-      }
-    }
-  }
-
-  onMounted(() => {
-    // 只对有 data-clipboard-text 属性的元素进行复制绑定
-    copy('[data-clipboard-text]')
-  })
+onMounted(() => {
+  copy('[data-clipboard-text]')
+})
 </script>
