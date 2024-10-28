@@ -10,7 +10,7 @@
             <input />
             <i class="mvfont mv-search1" />
           </div>
-          <div class="swiper-container sb-t" style="line-height: 50px;">
+          <div class="swiper-container sb-t" style="line-height: 50px">
             <div class="swiper-wrapper">
               <div class="swiper-slide">搜索关键字</div>
               <div class="swiper-slide">永久域名:<span>mg51.tv</span></div>
@@ -37,7 +37,7 @@
 
     <main class="b-b-b">
       <ul class="bbs-list">
-        <li @click="router.push({ name: 'bbsDetail' })">
+        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
           <div class="i-a">
             <div class="a-l">
               <img :src="getAssetsFile('u_video.png')" />
@@ -72,7 +72,7 @@
           </div>
         </li>
 
-        <li @click="router.push({ name: 'bbsDetail' })">
+        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
           <div class="i-a">
             <div class="a-l">
               <img :src="getAssetsFile('u_video.png')" />
@@ -101,7 +101,7 @@
             </div>
           </div>
         </li>
-        <li @click="router.push({ name: 'bbsDetail' })">
+        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
           <div class="i-a">
             <div class="a-l">
               <img :src="getAssetsFile('u_video.png')" />
@@ -129,7 +129,7 @@
             </div>
           </div>
         </li>
-        <li onclick="javascript: location.href='bbs-detail.html'">
+        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
           <div class="i-a">
             <div class="a-l">
               <img :src="getAssetsFile('u_video.png')" />
@@ -156,7 +156,7 @@
             </div>
           </div>
         </li>
-        <li onclick="javascript: location.href='bbs-detail.html'">
+        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
           <div class="i-a">
             <div class="a-l">
               <img :src="getAssetsFile('u_video.png')" />

@@ -84,11 +84,13 @@ import type { Actor } from '@/types/theme'
 import type { Video, VideoListRequest } from '@/types/video'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import { useAppStore } from '@/store/app'
+import decryptionService from '@/utils/decryptionService'
 
 const appStore = useAppStore()
 const router = useRouter()
 const route = useRoute()
 
+const decrypt = new decryptionService()
 const noData = ref(false)
 
 const sortOptions = [
@@ -137,7 +139,13 @@ const fetchVideos = async () => {
     const {
       data: { data }
     } = await getVideoListApi(params)
-    videos.value = data.items
+    videos.value = data.items.map((video) => ({
+      ...video,
+      poster: ''
+    }))
+    videos.value.forEach(async (video) => {
+      video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+    })
     noData.value = videos.value.length === 0
   } catch (error) {
     console.error(`获取视频列表失败 (${activeSort.value}):`, error)

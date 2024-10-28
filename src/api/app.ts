@@ -1,10 +1,10 @@
-import request, { cancelTokenSource } from '@/utils/axios'
+import { request } from '@/utils/axios'
 import { SmsParams } from '@/types/app'
 import type { ApiResponseData } from '@/types/api.d'
 
 /** 获取系统配置 */
 export function getConfigApi() {
-  return request({
+  return request<ApiResponseData<any>>({
     url: 'Web/Config',
     method: 'post'
   })
@@ -12,17 +12,16 @@ export function getConfigApi() {
 
 /** 获取所有分类 */
 export function getCategoryApi() {
-  return request({
+  return request<ApiResponseData<any>>({
     url: 'Web/Channel',
-    method: 'post',
-    cancelToken: cancelTokenSource?.token // 使用取消令牌
+    method: 'post'
   })
 }
 
 /** 获取所有广告 */
 export function getAdsApi() {
-  return request({
-    url: `Web/AdsList`,
+  return request<ApiResponseData<any>>({
+    url: 'Web/AdsList',
     method: 'post'
   })
 }

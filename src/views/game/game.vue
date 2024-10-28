@@ -3,8 +3,7 @@
     <header class="d-header">
       <div class="d-l">
         <div class="h-logo">
-          <img src="assets/imgs/logo.svg" />
-          <span>芒果TV</span>
+          <img src="assets/imgs/logo.png" />
         </div>
       </div>
       <div class="d-r">

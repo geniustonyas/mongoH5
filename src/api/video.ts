@@ -1,13 +1,12 @@
-import request, { cancelTokenSource } from '@/utils/axios'
-import type { IndexVideoResponse, VideoListRequest, VideoListResponse, VideoDetailResponse, addRecordData, addRecordDataResp, getRecordData } from '@/types/video'
+import { request } from '@/utils/axios'
+import type { IndexVideoResponse, VideoListRequest, VideoListResponse, VideoDetailResponse } from '@/types/video'
 import type { ApiResponseData } from '@/types/api.d'
 
 /** 获取首页视频列表 */
 export function getIndexVideoListApi() {
   return request<ApiResponseData<IndexVideoResponse>>({
     url: 'Web/IndexVideo',
-    method: 'post',
-    cancelToken: cancelTokenSource?.token
+    method: 'post'
   })
 }
 
@@ -29,7 +28,7 @@ export function getVideoDetailApi(id: number) {
   })
 }
 
-/** 获取视频榜单   */
+/** 获取视频榜单 */
 export function getVideoRankApi(data: VideoListRequest) {
   return request<ApiResponseData<VideoListResponse>>({
     url: 'Web/VideoRankList',
@@ -38,20 +37,11 @@ export function getVideoRankApi(data: VideoListRequest) {
   })
 }
 
-/** 添加用户操作 */
-export function addRecordApi(data: addRecordData) {
-  return request<ApiResponseData<addRecordDataResp>>({
-    url: 'api/addRecord',
+/** 用户点击播放统计播放数 */
+export function addPlayCountApi(Id: string | number) {
+  return request<ApiResponseData<any>>({
+    url: 'web/PlayVideo',
     method: 'post',
-    data
-  })
-}
-
-/** 获取用户操作记录 */
-export function getRecordApi(params: getRecordData) {
-  return request<ApiResponseData<VideoListResponse>>({
-    url: 'api/getRecords',
-    method: 'get',
-    params
+    data: { Id }
   })
 }

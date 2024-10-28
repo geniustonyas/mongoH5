@@ -27,12 +27,14 @@ export const useAppStore = defineStore('app', {
       hasShownAnnouncement: true, // 用于跟踪公告是否已显示, 默认为true 需要显示
       hasShownDownload: true, // 用于跟踪下载弹窗是否已显示, 默认为true 需要显示
       // 系统配置项
+      regSms: '', // 注册短信
       searchInputText: '', // 搜索框输入内容
       startAdTime: '', // 启动显示广告市
       downloadUrl: '', // 下载地址
       prePlayAdTime: '', // 播放前广告时间
       cdnUrl: '', // cdn地址
       customer_service_link: '', // 客服链接
+      sharedUrl: '', // 分享链接
 
       theme: [], // 标签
       categorys: [], // 分类
@@ -66,6 +68,7 @@ export const useAppStore = defineStore('app', {
         const {
           data: { data }
         } = await getConfigApi()
+        this.regSms = data.find((item: any) => item.pKey === 'RegSms')?.value1 || ''
         this.searchInputText = data.find((item: any) => item.pKey === 'SEACHDomain')?.value1 || ''
         this.startAdTime = data.find((item: any) => item.pKey === 'StartAdTime')?.value1 || ''
         this.cdnUrl = data.find((item: any) => item.pKey === 'CDNURL')?.value1 || ''
@@ -75,7 +78,8 @@ export const useAppStore = defineStore('app', {
         }
         this.downloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
         this.prePlayAdTime = data.find((item: any) => item.pKey === 'PrePlayAdTime')?.value1 || ''
-        this.customer_service_link = data.find((item: any) => item.pKey === 'CustomerServiceLink')?.value1 || ''
+        this.customer_service_link = data.find((item: any) => item.pKey === 'Chat')?.value1 || ''
+        this.sharedUrl = data.find((item: any) => item.pKey === 'SharedUrl')?.value1 || ''
       } catch (error) {
         console.error('获取系统配置失败:', error)
       }

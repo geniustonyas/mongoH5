@@ -14,7 +14,6 @@
             <Swipe :autoplay="3000" :vertical="true" :show-indicators="false" :touchable="false" style="line-height: 50px">
               <SwipeItem>番号/片名/演员</SwipeItem>
               <SwipeItem v-for="item in appStore.searchInputText.split(',')" :key="item">
-                永久域名:
                 <span>{{ item }}</span>
               </SwipeItem>
             </Swipe>
@@ -79,7 +78,7 @@
                     <span>热门推荐</span>
                   </div>
                   <div class="a-r">
-                    <i class="mvfont mv-right" />
+                    <i @click="router.push({ name: 'videoList', params: { id: 2 } })" class="mvfont mv-right" />
                   </div>
                 </div>
                 <div class="m-b">
@@ -94,7 +93,7 @@
                     <span>最新视频</span>
                   </div>
                   <div class="a-r">
-                    <i class="mvfont mv-right" />
+                    <i @click="router.push({ name: 'videoList', params: { id: 1 } })" class="mvfont mv-right" />
                   </div>
                 </div>
                 <div class="m-b">
@@ -111,13 +110,13 @@
                 <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
                   <swiper-slide v-for="categoryBanner in categoryBannerMap[category.d]" :key="categoryBanner.id">
                     <a @click="router.push({ name: 'play', params: { id: categoryBanner.id } })">
-                      <img :src="categoryBanner.poster" :alt="categoryBanner.title" />
+                      <img v-lazy="categoryBanner.poster" :alt="categoryBanner.title" />
                     </a>
                   </swiper-slide>
                 </swiper>
               </div>
               <section class="m-l-b">
-                <nav class="b-a">
+                <nav v-if="category.s && category.s.length > 0" class="b-a">
                   <span :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</span>
                   <span v-for="cates in category.s" :key="cates.d" :class="{ active: query.SubChannelId == cates.d }" @click="selectCategory(cates.d)">
                     {{ cates.t }}
@@ -177,8 +176,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, nextTick, computed, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, reactive, nextTick, computed, watch, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
 import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, Popup, Icon } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -195,7 +194,7 @@ import Footer from '@/components/layout/Footer.vue'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 
 const router = useRouter()
-
+const route = useRoute()
 const appStore = useAppStoreHook()
 
 const decrypt = new decryptionService()
@@ -246,6 +245,16 @@ watch(
   { immediate: true } // 立即执行
 )
 
+watch(
+  () => route.query.inviteCode,
+  (newVal) => {
+    if (newVal) {
+      localStorage.setItem('inviteCode', newVal as string)
+    }
+  },
+  { immediate: true }
+)
+
 const closePopup = () => {
   if (currentImageIndex.value < advertisementImages.length - 1) {
     currentImageIndex.value++
@@ -262,26 +271,23 @@ const fetchVideos = async (params: VideoListRequest) => {
       data: { data }
     } = await getVideoListApi(params)
     if (data && Array.isArray(data.items)) {
-      const videoList = await Promise.all(
-        data.items.map(async (video) => ({
-          ...video,
-          poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
-        }))
-      )
-      if (activeId.value == 0) {
-        return videoList
-      } else {
-        const swiperList = await Promise.all(
-          data.newVideos.map(async (video) => ({
-            ...video,
-            poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
-          }))
-        )
+      const videoList = data.items.map((video) => ({ ...video, poster: '' }))
+      const swiperList = data.newVideos.map((video) => ({ ...video, poster: '' }))
+      categoryVideosMap.value[query.ChannelId] = videoList
+      categoryBannerMap.value[query.ChannelId] = swiperList
+      categoryTotalPages.value[query.ChannelId] = parseInt(data.pageCount)
+      categoryPageIndex.value[query.ChannelId] = parseInt(data.pageIndex)
 
-        categoryVideosMap.value[query.ChannelId] = videoList
-        categoryBannerMap.value[query.ChannelId] = swiperList
-        categoryTotalPages.value[query.ChannelId] = parseInt(data.pageCount)
-        categoryPageIndex.value[query.ChannelId] = parseInt(data.pageIndex)
+      if (categoryVideosMap.value[query.ChannelId] && categoryVideosMap.value[query.ChannelId].length > 0) {
+        categoryVideosMap.value[query.ChannelId].forEach(async (video) => {
+          video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+        })
+      }
+
+      if (categoryBannerMap.value[query.ChannelId] && categoryBannerMap.value[query.ChannelId].length > 0) {
+        categoryBannerMap.value[query.ChannelId].forEach(async (video) => {
+          video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+        })
       }
     } else {
       console.error('响应数据结构不正确')
@@ -299,18 +305,15 @@ const fetchIndexVideos = async () => {
       data: { data }
     } = await getIndexVideoListApi()
     // 解密视频
-    recommendedVideos.value = await Promise.all(
-      data.Recommended.map(async (video: Video) => ({
-        ...video,
-        poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
-      }))
-    )
-    latestVideos.value = await Promise.all(
-      data.Latest.map(async (video: Video) => ({
-        ...video,
-        poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
-      }))
-    )
+    recommendedVideos.value = data.Recommended
+    latestVideos.value = data.Latest
+    // 异步解密图片
+    recommendedVideos.value.forEach(async (video) => {
+      video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+    })
+    latestVideos.value.forEach(async (video) => {
+      video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+    })
   } catch (error) {
     console.error(`获取首页视频列表失败:`, error)
     return []
@@ -433,13 +436,14 @@ function handleScroll() {
   }
 }
 
-// 使用 passive 选项来提高滚动性能
-window.addEventListener('scroll', handleScroll, { passive: true })
-
 // 关闭下载弹窗并更新状态
 const closeDownloadPopup = () => {
   appStore.setHasShownDownload(false)
 }
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+})
 </script>
 
 <style scoped>

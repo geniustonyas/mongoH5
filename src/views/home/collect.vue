@@ -5,7 +5,7 @@
         <a @click="router.back()"><i class="mvfont mv-left" /></a>
       </div>
       <div class="d-m">我的收藏</div>
-      <div class="d-r" @click="toggleEditMode">{{ isEditing ? '取消' : '编辑' }}</div>
+      <div v-show="!nodata" class="d-r" @click="toggleEditMode">{{ isEditing ? '取消' : '编辑' }}</div>
     </header>
     <section class="h-m-b">
       <div class="his-box collect">
@@ -93,13 +93,13 @@ const fetchCollections = async () => {
     } = await userCollectionHistory(params)
 
     if (data && Array.isArray(data.items)) {
-      nodata.value = false
       videos.value = await Promise.all(
         data.items.map(async (video) => ({
           ...video,
           poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
         }))
       )
+      nodata.value = videos.value.length == 0
       currentPage.value = parseInt(data.pageIndex)
       totalPages.value = parseInt(data.pageCount)
     } else {

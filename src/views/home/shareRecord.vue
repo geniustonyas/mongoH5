@@ -2,50 +2,91 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a href="javascript:void(0)" onclick="javascript:history.go(-1)"><i class="mvfont mv-left" /></a>
+        <a @click="router.back()"><i class="mvfont mv-left" /></a>
       </div>
-      <div class="d-m">分享好友</div>
+      <div class="d-m">分享记录</div>
     </header>
-    <section class="s-h-b">
-      <div class="sb-a">
-        <dl>
-          <dt>规则说明</dt>
-          <dd>①、成功邀请“<b>1名好友</b>”注册，可以免费获得“<b>3天VIP</b>”</dd>
-          <dd>②、VIP可以享有跳过播放广告特权</dd>
-          <dd>③、点击“<b>保存二维码</b>”或“<b>复制推广链接</b>”，获取专属推广链接，推荐分享给其他人下载即可</dd>
-        </dl>
-      </div>
-      <div class="sb-b">
-        <div class="t-tickets">
-          <div class="i-t">您的邀请码</div>
-          <div class="i-c">
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-            <span>6</span>
-          </div>
+    <section class="h-m-b">
+      <div class="share-box">
+        <ul v-if="dataList.length > 0">
+          <li v-for="record in dataList" :key="record.id">
+            <div>用户名： {{ record.username }}</div>
+            <div>注册时间： {{ record.registerTime }}</div>
+            <!-- <div>层级： {{ record.layer }}</div> -->
+          </li>
+        </ul>
+        <div v-if="nodata" class="nodata">
+          <div class="d-i" />
+          <div class="d-t">暂无分享记录</div>
         </div>
-        <div class="b-tickets">
-          <div class="b-t">
-            <span>累计邀请<b>0</b>人</span>
-            <a href="#">邀请记录<i class="mvfont mv-right" /></a>
-          </div>
-          <div class="b-q">
-            <img src="https://www.3--1.com/wp-content/uploads/broadcast/2023-06-03/647ac1cd21f70.jpeg" />
-          </div>
-          <div class="b-l">
-            <p>专属链接</p>
-            <a href="https://adz888.com/Home/Public/reg/smid/202595">https://adz888.com/Home/Public/reg/smid/202595</a>
-          </div>
-        </div>
-      </div>
-      <div class="sb-c">
-        <a>保存图片</a>
-        <a>复制推广链接</a>
       </div>
     </section>
+    <div class="au-pagination-box" v-if="totalPages > 1">
+      <div class="pb-x">
+        <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">上一页</a>
+      </div>
+      <div class="pb-x">
+        <input v-model="currentPage" @change="fetchRecords" type="number" min="1" :max="totalPages" />
+        <span>/ {{ totalPages }}</span>
+      </div>
+      <div class="pb-x">
+        <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">下一页</a>
+      </div>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { userShareHistory } from '@/api/user'
+import type { ShareRecord } from '@/types/user'
+
+const router = useRouter()
+const dataList = ref<ShareRecord[]>([])
+const currentPage = ref(1)
+const totalPages = ref(1)
+const pageSize = ref(20)
+const nodata = ref(false)
+
+const fetchRecords = async () => {
+  try {
+    const params = {
+      PageIndex: currentPage.value,
+      PageSize: pageSize.value
+    }
+    const {
+      data: { data }
+    } = await userShareHistory(params)
+
+    if (data && Array.isArray(data.items)) {
+      dataList.value = data.items
+      nodata.value = dataList.value.length == 0
+      currentPage.value = parseInt(data.pageIndex)
+      totalPages.value = parseInt(data.pageCount)
+    } else {
+      nodata.value = true
+    }
+  } catch (error) {
+    console.error('获取分享记录失败:', error)
+  }
+}
+
+const changePage = (newPage: number) => {
+  if (newPage >= 1 && newPage <= totalPages.value) {
+    currentPage.value = newPage
+    fetchRecords()
+  }
+}
+
+onMounted(() => {
+  fetchRecords()
+})
+</script>
+
+<style scoped>
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+</style>

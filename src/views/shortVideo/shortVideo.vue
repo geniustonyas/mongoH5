@@ -34,21 +34,14 @@
         </div>
       </div>
     </section>
-    <footer class="footer f-footer">
-      <div class="p-foot">
-        <router-link to="/index"> <i class="mvfont mv-shouye" />首页 </router-link>
-        <router-link to="/theme/bbs"> <i class="mvfont mv-shequ" />社区 </router-link>
-        <router-link to="/shortVideo" class="active"> <i class="mvfont mv-dsp" />短视频 </router-link>
-        <router-link to="/game"> <i class="mvfont mv-game" />游戏 </router-link>
-        <router-link to="/home"> <i class="mvfont mv-home0" />我的 </router-link>
-      </div>
-    </footer>
+    <Footer active-menu="shortVideo" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useAppStore } from '@/store/app'
 import { useRouter } from 'vue-router'
+import Footer from '@/components/layout/Footer.vue'
 
 const router = useRouter()
 const appStore = useAppStore()

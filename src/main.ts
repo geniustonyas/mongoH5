@@ -3,7 +3,7 @@ import store from '@/store'
 
 import App from './App.vue'
 import router from './router'
-import { Lazyload } from 'vant'
+import VueLazyload from 'vue-lazyload'
 
 import 'vant/lib/index.css'
 import './assets/less/black.less'
@@ -14,9 +14,11 @@ const errorImage = new URL(`./assets/imgs/default.gif`, import.meta.url).href
 
 const app = createApp(App)
 app.use(store)
-app.use(Lazyload, {
+app.use(VueLazyload, {
+  preLoad: 1.3,
+  error: errorImage,
   loading: errorImage,
-  error: errorImage
+  attempt: 1
 })
 app.use(router)
 

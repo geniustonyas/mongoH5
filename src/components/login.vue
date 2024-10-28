@@ -24,7 +24,7 @@
                   <i class="mvfont mv-user" />
                   <input v-model="formData.PhoneNumber" placeholder="手机号" />
                 </li>
-                <li v-if="!isLoginMode" style="display: none">
+                <li v-if="!isLoginMode && appStore.regSms == '1'">
                   <i class="mvfont mv-yzm" />
                   <input v-model="formData.VerifCode" placeholder="手机验证码" maxlength="6" />
                   <a @click="handleGetCode" :class="{ disabled: countdown > 0 }">
@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted, watch } from 'vue'
+import { reactive, ref, onMounted, watch, computed } from 'vue'
 import { useUserStore } from '@/store/user'
 import { userLogin, userRegister } from '@/api/user'
 import { getCodeApi } from '@/api/app'
@@ -59,9 +59,12 @@ import { showToast } from 'vant'
 import { setToken } from '@/utils/auth'
 import type { loginForm } from '@/types/user'
 import { isPhone, isPwd } from '@/utils/validate'
+import { useAppStore } from '@/store/app'
 
+const appStore = useAppStore()
 const userStore = useUserStore()
 const isLoginMode = ref(true)
+const inviteCode = computed(() => localStorage.getItem('inviteCode'))
 
 const formData = reactive<loginForm>({
   UserName: '',
@@ -94,6 +97,8 @@ onMounted(() => {
       localStorage.removeItem('codeCountdown')
     }
   }
+
+  formData.InvitationCode = inviteCode.value
 })
 
 const startCountdown = (duration: number) => {
@@ -144,10 +149,10 @@ const handleSubmit = async () => {
       showToast('请输入密码')
       return
     }
-    // if (!formData.value.VerifCode) {
-    //   showToast('请输入验证码')
-    //   return
-    // }
+    if (appStore.regSms == '1' && !formData.VerifCode) {
+      showToast('请输入验证码')
+      return
+    }
   }
 
   if (!isPwd(formData.Password)) {
@@ -169,6 +174,8 @@ const handleSubmit = async () => {
         isLoginMode.value = !isLoginMode.value
         userStore.showLoginDialog = false
         showToast('注册成功')
+        // Clear inviteCode from localStorage after successful registration
+        localStorage.removeItem('inviteCode')
       } else {
         showToast(message || '注册失败')
       }

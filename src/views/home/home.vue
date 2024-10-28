@@ -62,7 +62,7 @@
             </a>
           </li>
           <li>
-            <a @click="router.push({ name: 'share' })">
+            <a @click="router.push({ name: 'shareRecord' })">
               <span> <i class="mvfont mv-bets" />分享记录 </span>
               <i class="mvfont mv-right" />
             </a>

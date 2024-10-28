@@ -76,13 +76,13 @@ const fetchRecords = async () => {
     } = await userWatchHistory(params)
 
     if (data && Array.isArray(data.items)) {
-      nodata.value = false
       videos.value = await Promise.all(
         data.items.map(async (video) => ({
           ...video,
           poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
         }))
       )
+      nodata.value = videos.value.length == 0
       currentPage.value = parseInt(data.pageIndex)
       totalPages.value = parseInt(data.pageCount)
     } else {

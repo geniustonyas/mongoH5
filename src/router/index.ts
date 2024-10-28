@@ -17,6 +17,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/index/index.vue')
   },
   {
+    path: '/videoList/:id',
+    name: 'videoList',
+    meta: { needLogin: false, keepAlive: false },
+    component: () => import('@/views/index/videoList.vue')
+  },
+  {
     path: '/theme',
     component: AppMain,
     children: [
@@ -151,7 +157,7 @@ const routes: RouteRecordRaw[] = [
         path: 'share',
         name: 'share',
         component: () => import('../views/pages/share.vue'),
-        meta: { needLogin: false, keepAlive: false }
+        meta: { needLogin: true, keepAlive: false }
       },
       {
         path: 'spare',

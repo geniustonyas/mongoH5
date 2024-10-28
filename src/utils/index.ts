@@ -1,8 +1,9 @@
 import _ from 'lodash-es'
 import Clipboard from 'clipboard'
 import { showToast } from 'vant'
-// import { useUserStore } from '@/store/user'
-// import router from '@/router'
+import dayjs from 'dayjs'
+import duration from 'dayjs/plugin/duration'
+dayjs.extend(duration)
 
 // 获取url中全部参数的对象
 export function getUrlAllParams() {
@@ -105,6 +106,16 @@ export function moneyFormat(value: any) {
     }
   }
   return ret
+}
+
+export function formatDuration(seconds: number) {
+  const dur = dayjs.duration(seconds, 'seconds')
+  const hours = dur.hours()
+  if (hours > 0) {
+    return dur.format('H:mm:ss')
+  } else {
+    return dur.format('m:ss')
+  }
 }
 
 // 将数字货币地址中间部分用4个*号代替

@@ -11,9 +11,9 @@
             <ul v-if="videos.length > 0" class="video-list-box">
               <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })" class="video-list">
                 <div class="l-a">
-                  <img :src="video.poster" />
+                  <img v-lazy="{ src: video.poster, loading: getAssetsFile('default2.gif') }" />
                   <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
-                  <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
+                  <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c">{{ video.channelName }}</span>
                 </div>
                 <div class="l-b">
@@ -47,6 +47,8 @@ import decryptionService from '@/utils/decryptionService'
 import Header from '@/views/theme/themeHeader.vue'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store/app'
+import { getAssetsFile } from '@/utils/'
+import { formatDuration } from '@/utils'
 
 const router = useRouter()
 const appStore = useAppStore()

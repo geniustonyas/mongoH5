@@ -71,3 +71,19 @@ export interface loginResp {
   tokenExpires: string
   userName: string
 }
+
+export interface ShareRecord {
+  id: string
+  status: number
+  username: string
+  registerTime: string
+  layer: string
+}
+
+export type ShareRecordResponse = {
+  items: ShareRecord[]
+  pageCount: string
+  pageIndex: string
+  pageSize: string
+  recordCount: string
+}

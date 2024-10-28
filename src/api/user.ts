@@ -1,5 +1,5 @@
-import request from '@/utils/axios'
-import type { loginForm, loginResp, UserInfo } from '@/types/user'
+import { request } from '@/utils/axios'
+import type { loginForm, loginResp, UserInfo, ShareRecordResponse } from '@/types/user'
 import type { VideoListResponse } from '@/types/video'
 import type { ApiResponseData } from '@/types/api.d'
 import { TokenPrefix, getToken } from '@/utils/auth'
@@ -25,9 +25,9 @@ export function userRegister(data: loginForm) {
 /** 用户信息 */
 export function getUserInfo() {
   return request<ApiResponseData<UserInfo>>({
-    headers: { Authorization: `${TokenPrefix}${getToken()}` },
     url: 'Member/GetUserInfo',
-    method: 'get'
+    method: 'get',
+    headers: { Authorization: `${TokenPrefix}${getToken()}` }
   })
 }
 
@@ -72,5 +72,22 @@ export function userCollectionHistory(data: { PageIndex: number; PageSize: numbe
     url: 'Web/MemberCollectVideoList',
     method: 'post',
     data
+  })
+}
+
+/** 用户分享记录 */
+export function userShareHistory(data: { PageIndex: number; PageSize: number }) {
+  return request<ApiResponseData<ShareRecordResponse>>({
+    url: 'Member/GetChildList',
+    method: 'post',
+    data
+  })
+}
+
+/** 用户分享人数 */
+export function userShareCount() {
+  return request<ApiResponseData<string>>({
+    url: 'Member/GetChildCount',
+    method: 'post'
   })
 }

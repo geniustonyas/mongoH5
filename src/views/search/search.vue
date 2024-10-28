@@ -33,9 +33,9 @@
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
             <ul class="m-list">
               <li v-for="video in searchResults" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
-                <div class="l-a" :style="{ backgroundImage: `url(${video.poster})` }">
-                  <span v-if="video.clarity != '0'" class="a-a">{{ video.clarity }}</span>
-                  <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
+                <div class="l-a" v-lazy:background-image="video.poster">
+                  <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+                  <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(video.duration) }}</span>
                   <span class="a-c">{{ video.channelName }}</span>
                 </div>
                 <div class="l-b">
@@ -77,6 +77,7 @@ import { getVideoListApi } from '@/api/video'
 import decryptionService from '@/utils/decryptionService'
 import type { Video } from '@/types/video'
 import { List } from 'vant'
+import { formatDuration } from '@/utils'
 
 const router = useRouter()
 const route = useRoute()
@@ -94,6 +95,9 @@ let pageIndex = ref(1)
 let listLoading = ref(false)
 let finished = ref(false)
 let error = ref(false)
+
+// 用于管理请求的 AbortController
+let currentAbortController: AbortController | null = null
 
 const hotTags = computed(() => {
   const allTags = appStore.theme.flatMap((tag) => tag.items || [])
@@ -119,11 +123,21 @@ const searchVideos = async (isRefresh = false) => {
   hasSearched.value = true
   try {
     listLoading.value = true
+
+    // 取消上一个请求
+    if (currentAbortController) {
+      currentAbortController.abort()
+    }
+
+    // 创建一个新的 AbortController
+    currentAbortController = new AbortController()
+
     const params = {
       TagIds: currentTagId.value,
       PageIndex: pageIndex.value,
       PageSize: 30,
-      KeyWord: currentTagId.value ? '' : searchKeyword.value
+      KeyWord: currentTagId.value ? '' : searchKeyword.value,
+      signal: currentAbortController.signal // 传递 signal
     }
     const {
       data: { data }

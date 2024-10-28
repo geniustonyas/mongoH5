@@ -18,7 +18,7 @@
         <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
           <div class="a-l">
             <a v-for="actor in actorList" :key="actor.id" @click="router.push({ name: 'actorDetail', params: { id: actor.id }, query: { videoCount: actor.videosCount } })">
-              <div class="l-img" v-lazy:background-image="appStore.cdnUrl + actor.imgUrl" v-lazy:loading="getAssetsFile('default2.gif')">
+              <div class="l-img" v-lazy:background-image="{ src: appStore.cdnUrl + actor.imgUrl, loading: getAssetsFile('default2.gif') }" :key="actor.id">
                 <span class="s-a">{{ actor.videosCount }}部</span>
                 <span class="s-b" v-if="actor.categoryNames.indexOf('知名') != -1"><b>知名女优</b></span>
               </div>

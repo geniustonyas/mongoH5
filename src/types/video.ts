@@ -1,5 +1,3 @@
-import { ApiResponseData } from '@/types/api.d'
-
 export interface IndexVideoResponse {
   Recommended: Video[]
   Latest: Video[]
@@ -38,7 +36,6 @@ export interface VideoListRequest {
   RankType?: number | string
 }
 
-// 修改 VideoListResponse 的定义
 export type VideoListResponse = {
   items: Video[]
   newVideos: Video[]
@@ -68,34 +65,3 @@ export interface VideoDetailResponse {
   like?: number | string
   collect?: boolean
 }
-
-// 新增一个接口来描述分页数据结构
-export interface VideoListData {
-  data: Video[]
-  currentPage: number
-  pageSize: number
-  total: number
-  totalPages: number
-}
-
-export interface addRecordData {
-  type: number
-  videoId: number
-}
-
-export interface addRecordDataResp {
-  isActive: boolean
-  message?: string
-}
-
-export interface getRecordData {
-  type: number
-  search: string | null
-  beginTime: string | null
-  endTime: string | null
-  pageSize: number
-  page: number
-  sortOrder: string | null
-}
-
-export type addRecordResponse = ApiResponseData<addRecordDataResp>

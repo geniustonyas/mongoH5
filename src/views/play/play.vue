@@ -2,14 +2,14 @@
   <div class="page">
     <section class="m-d-b">
       <div class="md-a">
-        <a class="a-r" @click="$router.back()"><i class="mvfont mv-left" /></a>
+        <a class="a-r" @click="router.back()"><i class="mvfont mv-left" /></a>
         <div id="video-player" />
       </div>
       <div class="md-b">
         <div class="b-a">
           <div class="a-a">{{ videoDetail ? videoDetail.title : '' }}</div>
           <div class="a-b">
-            <span><i class="mvfont mv-time" />{{ videoDetail ? videoDetail.addTime : '' }}</span>
+            <span><i class="mvfont mv-time" />{{ videoDetail ? dayjs(videoDetail.addTime).format('YYYY-MM-DD') : '' }}</span>
             <span><i class="mvfont mv-kan" />{{ videoDetail ? videoDetail.viewCount : '' }}</span>
           </div>
           <div class="a-c">
@@ -40,10 +40,15 @@
           <div class="a-l"><i class="mvfont mv-xietiao" /><span>猜你喜欢</span></div>
         </div>
         <div class="m-b" v-if="recommendedVideos && recommendedVideos.length > 0">
-          <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" @click="$router.push({ name: 'play', params: { id: video.id } })" />
+          <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
         </div>
       </nav>
     </section>
+    <Popup v-model:show="showSharePopup" position="center" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :overlay="false" round>
+      <div class="share-popup">
+        <p>分享链接已复制，赶快去分享给好友吧！</p>
+      </div>
+    </Popup>
     <main class="main" />
   </div>
 </template>
@@ -59,9 +64,13 @@ import { getAssetsFile } from '@/utils'
 import { useUserStore } from '@/store/user'
 import Player from 'xgplayer'
 import HlsJsPlugin from 'xgplayer-hls.js'
+import dayjs from 'dayjs'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import 'xgplayer/dist/index.min.css'
 import { showToast } from 'vant'
+import { addPlayCountApi } from '@/api/video'
+import { Popup } from 'vant'
+import Clipboard from 'clipboard'
 
 const route = useRoute()
 const router = useRouter()
@@ -80,12 +89,13 @@ const fetchVideoDetail = async () => {
       data: { data }
     } = await getVideoDetailApi(id)
     videoDetail.value = data
-    recommendedVideos.value = await Promise.all(
-      data.licks.map(async (video) => ({
-        ...video,
-        poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
-      }))
-    )
+    recommendedVideos.value = data.licks.map((video) => ({
+      ...video,
+      poster: ''
+    }))
+    recommendedVideos.value.forEach(async (video) => {
+      video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+    })
   } catch (error) {
     console.error('获取视频详情失败:', error)
   }
@@ -99,10 +109,36 @@ const checkLogin = (): boolean => {
   return true
 }
 
+const showSharePopup = ref(false)
+const clipboard = ref<Clipboard | null>(null)
 const handleShare = () => {
-  if (checkLogin()) {
-    router.push({ name: 'share' })
+  if (clipboard.value) {
+    clipboard.value.destroy()
   }
+  clipboard.value = new Clipboard('.share-button', {
+    text: () => window.location.href
+  })
+
+  clipboard.value?.on('success', () => {
+    showSharePopup.value = true
+    // 设置2秒后自动关闭弹窗
+    setTimeout(() => {
+      showSharePopup.value = false
+    }, 2000)
+    clipboard.value?.destroy()
+  })
+
+  clipboard.value?.on('error', () => {
+    console.error('复制失败')
+    clipboard.value?.destroy()
+  })
+
+  // 模拟点击事件以触发复制
+  const button = document.createElement('button')
+  button.className = 'share-button'
+  document.body.appendChild(button)
+  button.click()
+  document.body.removeChild(button)
 }
 
 const handleLike = async (likeType: number) => {
@@ -156,34 +192,42 @@ const handleCollection = async () => {
   }
 }
 
+const initializePlayer = (url: string) => {
+  const playerConfig = {
+    id: 'video-player',
+    url: url,
+    poster: videoDetail.value?.poster,
+    autoplay: true,
+    controls: true,
+    fluid: true,
+    playsinline: true,
+    'x5-video-player-type': 'h5',
+    'x5-video-player-fullscreen': true,
+    'x5-video-orientation': 'portraint',
+    plugins: [HlsJsPlugin],
+    useHlsJs: true
+  }
+
+  if (player.value) {
+    player.value.destroy()
+    player.value = null
+  }
+
+  player.value = new Player(playerConfig)
+
+  // 统计播放量
+  const handleFirstPlay = async () => {
+    await addPlayCountApi(videoDetail.value?.id)
+    player.value?.off('play', handleFirstPlay)
+  }
+  // 监听第一次播放事件
+  player.value.on('play', handleFirstPlay)
+}
+
 onMounted(async () => {
   await fetchVideoDetail()
   if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
-    const uri = videoDetail.value.playUrl
-    const domain = videoDetail.value.playDomain
-    const url = domain + uri
-    // 使用 xgplayer 和 xgplayer-hls.js 初始化播放器
-    const playerConfig = {
-      id: 'video-player',
-      url: url,
-      poster: videoDetail.value?.poster,
-      autoplay: true,
-      controls: true,
-      fluid: true,
-      playsinline: true,
-      'x5-video-player-type': 'h5',
-      'x5-video-player-fullscreen': true,
-      'x5-video-orientation': 'portraint',
-      plugins: [HlsJsPlugin],
-      useHlsJs: true
-    }
-    if (player.value) {
-      player.value.destroy()
-      player.value = null
-    }
-
-    player.value = new Player(playerConfig)
-
+    initializePlayer(videoDetail.value.playDomain + videoDetail.value.playUrl)
     window.scrollTo(0, 0)
   } else {
     console.error('视频详情数据不完整')
