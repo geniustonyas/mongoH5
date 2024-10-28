@@ -12,8 +12,8 @@
     </header>
     <section class="g-l-b">
       <div class="b-a">
-        <a href="#">
-          <img src="assets/imgs/temp/gb.gif" />
+        <a target="_blank" href="https://qp1026.vibbd.com/112233/1705.html?shareName=1705mgnb01">
+          <img src="https://mgtv.imgix.net/d7e1064b91f643ffb1f00474ff0ea681.gif" />
         </a>
       </div>
       <div class="b-x">
@@ -101,7 +101,7 @@
           <ul>
             <li>
               <div class="l-l">
-                <a href="https://49931com49931com49931com.c5swn.com"><img src="https://49931com49931com49931com.c5swn.com/imgs/baixiaojie.png" /></a>
+                <a target="_blank" href="https://49931com49931com49931com.c5swn.com"><img src="https://49931com49931com49931com.c5swn.com/imgs/baixiaojie.png" /></a>
                 <div class="i-t">
                   <b>白小姐</b>
                   <p>四肖四码，七码中特，精准大小，每期三码，天天二肖，正版四肖</p>
@@ -113,7 +113,7 @@
             </li>
             <li>
               <div class="l-l">
-                <a href="https://41008com41008com41008com.c5swn.com"><img src="https://41008com41008com41008com.c5swn.com/img/cengdaoren.png" /></a>
+                <a target="_blank" href="https://41008com41008com41008com.c5swn.com"><img src="https://41008com41008com41008com.c5swn.com/img/cengdaoren.png" /></a>
                 <div class="i-t">
                   <b>曾道人</b>
                   <p>⑩肖⑩码，六肖中特，极致１波，单单双双，四肖八码，吃草肉菜</p>
@@ -125,7 +125,7 @@
             </li>
             <li>
               <div class="l-l">
-                <a href="https://19977com19977com19977com.c5swn.com"><img src="https://19977com19977com19977com.c5swn.com/images/xiaoyuer.png" /></a>
+                <a target="_blank" href="https://19977com19977com19977com.c5swn.com"><img src="https://19977com19977com19977com.c5swn.com/images/xiaoyuer.png" /></a>
                 <div class="i-t">
                   <b>小鱼儿</b>
                   <p>阴阳中特，无措30码，内幕码数，九肖中特，暴富⑳码，8码中特</p>
@@ -137,7 +137,7 @@
             </li>
             <li>
               <div class="l-l">
-                <a href="https://400118com400118com400118com.c5swn.com"><img src="https://400118com400118com400118com.c5swn.com/img/118luntan.png" /></a>
+                <a target="_blank" href="https://400118com400118com400118com.c5swn.com"><img src="https://400118com400118com400118com.c5swn.com/img/118luntan.png" /></a>
                 <div class="i-t">
                   <b>118论坛</b>
                   <p>家禽野兽，一句解特，精品⑸肖，大大小小，玄机解特，一波半波</p>
@@ -149,7 +149,7 @@
             </li>
             <li>
               <div class="l-l">
-                <a href="https://13988com13988com13988com.c5swn.com"><img src="https://13988com13988com13988com.c5swn.com/imgs/biyingluntan1.png" /></a>
+                <a target="_blank" href="https://13988com13988com13988com.c5swn.com"><img src="https://13988com13988com13988com.c5swn.com/imgs/biyingluntan1.png" /></a>
                 <div class="i-t">
                   <b>必赢论坛</b>
                   <p>平特①肖，15码中特，稳杀三肖，平特④码，黄金二肖，发财二头</p>
@@ -161,7 +161,7 @@
             </li>
             <li>
               <div class="l-l">
-                <a href="https://20599com20599com20599com.c5swn.com"><img src="https://20599com20599com20599com.c5swn.com/imgs/heiwukong.png" /></a>
+                <a target="_blank" href="https://20599com20599com20599com.c5swn.com"><img src="https://20599com20599com20599com.c5swn.com/imgs/heiwukong.png" /></a>
                 <div class="i-t">
                   <b>黑神话悟空</b>
                   <p>单双④吗，绝杀11肖，家婆透码，精解玄机，神机一肖，五肖五尾</p>
@@ -173,7 +173,7 @@
             </li>
             <li>
               <div class="l-l">
-                <a href="https://556688com556688com556688com.c5swn.com"><img src="https://556688com556688com556688com.c5swn.com/imgs/bishengluntan.png" /></a>
+                <a target="_blank" href="https://556688com556688com556688com.c5swn.com"><img src="https://556688com556688com556688com.c5swn.com/imgs/bishengluntan.png" /></a>
                 <div class="i-t">
                   <b>必胜论坛</b>
                   <p>一组3中3，八肖中特，四肖中特，六肖中特，单双大神，八肖八码</p>
@@ -186,7 +186,7 @@
 
             <li>
               <div class="l-l">
-                <a href="https://33789com33789com33789com.pbmnk.com/"><img src="https://33789com33789com33789com.pbmnk.com/images/baomaluntan1.png" /></a>
+                <a target="_blank" href="https://33789com33789com33789com.pbmnk.com/"><img src="https://33789com33789com33789com.pbmnk.com/images/baomaluntan1.png" /></a>
                 <div class="i-t">
                   <b>宝马论坛</b>
                   <p>平特一肖，一句平特，谐音平特，三字平特，一肖①码，一句爆特</p>
@@ -198,7 +198,7 @@
             </li>
             <li>
               <div class="l-l">
-                <a href="https://44444cc44444cc44444cc.pbmnk.com//"><img src="https://44444cc44444cc44444cc.pbmnk.com/img/wangzhongwang1.png" /></a>
+                <a target="_blank" href="https://44444cc44444cc44444cc.pbmnk.com//"><img src="https://44444cc44444cc44444cc.pbmnk.com/img/wangzhongwang1.png" /></a>
                 <div class="i-t">
                   <b>王中王论坛</b>
                   <p>⑧肖中特，⑮码中特，二头中特，合数单双，㉕码中特，九宫禁肖</p>
@@ -210,7 +210,7 @@
             </li>
             <li>
               <div class="l-l">
-                <a href="https://40048com40048com40048com.pbmnk.com/"><img src="https://40048com40048com40048com.pbmnk.com/imgs/jixianluntan.jpg" /></a>
+                <a target="_blank" href="https://40048com40048com40048com.pbmnk.com/"><img src="https://40048com40048com40048com.pbmnk.com/imgs/jixianluntan.jpg" /></a>
                 <div class="i-t">
                   <b>极限论坛</b>
                   <p>⒏码中特，六尾⑫码，火热3肖，理财六肖，2波㈣码，三肖三码</p>
