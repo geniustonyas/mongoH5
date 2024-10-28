@@ -1,4 +1,4 @@
-import _ from 'lodash-es'
+import * as _ from 'lodash-es'
 import Clipboard from 'clipboard'
 import { showToast } from 'vant'
 import dayjs from 'dayjs'

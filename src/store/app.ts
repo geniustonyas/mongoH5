@@ -35,6 +35,7 @@ export const useAppStore = defineStore('app', {
       cdnUrl: '', // cdn地址
       customer_service_link: '', // 客服链接
       sharedUrl: '', // 分享链接
+      playDomain: '', // 播放域名
 
       theme: [], // 标签
       categorys: [], // 分类
@@ -80,6 +81,7 @@ export const useAppStore = defineStore('app', {
         this.prePlayAdTime = data.find((item: any) => item.pKey === 'PrePlayAdTime')?.value1 || ''
         this.customer_service_link = data.find((item: any) => item.pKey === 'Chat')?.value1 || ''
         this.sharedUrl = data.find((item: any) => item.pKey === 'SharedUrl')?.value1 || ''
+        this.playDomain = data.find((item: any) => item.pKey === 'PlayDomain')?.value1 || ''
       } catch (error) {
         console.error('获取系统配置失败:', error)
       }

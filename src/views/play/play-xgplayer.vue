@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="router.back()"><i class="mvfont mv-left" /></a>
-        <div id="dplayer" />
+        <div id="video-player" />
       </div>
       <div class="md-b">
         <div class="b-a">
@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
@@ -62,23 +62,23 @@ import type { Video, VideoDetailResponse } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
 import { getAssetsFile } from '@/utils'
 import { useUserStore } from '@/store/user'
+import Player from 'xgplayer'
+import HlsJsPlugin from 'xgplayer-hls.js'
 import dayjs from 'dayjs'
 import VideoGridItem from '@/components/VideoGridItem.vue'
+import 'xgplayer/dist/index.min.css'
 import { showToast } from 'vant'
 import { addPlayCountApi } from '@/api/video'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
-import DPlayer from 'dplayer'
-import Hls from 'hls.js'
 
 const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
 const videoDetail = ref<VideoDetailResponse | null>(null)
 const recommendedVideos = ref<Video[]>([])
-const initialLikeType = ref<number | string>()
 
-const player = ref<DPlayer | null>(null)
+const player = ref<Player | null>(null)
 
 const decrypt = new decryptionService()
 
@@ -89,7 +89,6 @@ const fetchVideoDetail = async () => {
       data: { data }
     } = await getVideoDetailApi(id)
     videoDetail.value = data
-    initialLikeType.value = data.like // 保存初始点赞状态
     recommendedVideos.value = data.licks.map((video) => ({
       ...video,
       poster: ''
@@ -148,10 +147,8 @@ const handleLike = async (likeType: number) => {
   try {
     const videoId = videoDetail.value?.id
     if (videoId) {
-      const currentLikeType = videoDetail.value.like
       let newLikeType = likeType
-
-      if (currentLikeType == likeType) {
+      if (videoDetail.value.like === likeType) {
         // 如果当前状态和点击的状态相同，则取消点赞/踩
         newLikeType = 0
       }
@@ -159,29 +156,14 @@ const handleLike = async (likeType: number) => {
       await userLike({ VideoId: videoId, Like: newLikeType })
 
       // 更新本地状态
-      if (newLikeType == 1) {
-        // 点赞
-        if (currentLikeType == 0) {
-          videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) + 1).toString()
-        } else if (currentLikeType == 2) {
-          videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) - 1).toString()
-          videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) + 1).toString()
-        }
-      } else if (newLikeType == 2) {
-        // 踩
-        if (currentLikeType == 0) {
-          videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) + 1).toString()
-        } else if (currentLikeType == 1) {
-          videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) - 1).toString()
-          videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) + 1).toString()
-        }
+      if (newLikeType === 1) {
+        videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) + (videoDetail.value.like === 1 ? -1 : 1)).toString()
+        if (videoDetail.value.like === 2) videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) - 1).toString()
+      } else if (newLikeType === 2) {
+        videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) + (videoDetail.value.like === 2 ? -1 : 1)).toString()
       } else {
-        // 取消赞或踩
-        if (currentLikeType == 1) {
-          videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) - 1).toString()
-        } else if (currentLikeType == 2) {
-          videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) - 1).toString()
-        }
+        if (videoDetail.value.like === 1) videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) - 1).toString()
+        if (videoDetail.value.like === 2) videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) - 1).toString()
       }
 
       videoDetail.value.like = newLikeType
@@ -211,71 +193,46 @@ const handleCollection = async () => {
 }
 
 const initializePlayer = (url: string) => {
+  const playerConfig = {
+    id: 'video-player',
+    url: url,
+    poster: videoDetail.value?.poster,
+    autoplay: true,
+    controls: true,
+    fluid: true,
+    playsinline: true,
+    'x5-video-player-type': 'h5',
+    'x5-video-player-fullscreen': true,
+    'x5-video-orientation': 'portraint',
+    plugins: [HlsJsPlugin],
+    useHlsJs: true
+  }
+
   if (player.value) {
     player.value.destroy()
     player.value = null
   }
 
-  player.value = new DPlayer({
-    container: document.getElementById('dplayer'),
-    video: {
-      url: url,
-      type: 'customHls',
-      customType: {
-        customHls: function (video: HTMLVideoElement, _player: DPlayer) {
-          if (Hls.isSupported()) {
-            // const hls = new Hls()
-            const hls = new Hls({
-              debug: false, // 关闭调试日志
-              maxBufferLength: 30 // 合理设置缓冲区长度
-            })
-            hls.loadSource(video.src)
-            hls.attachMedia(video)
-          } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            // video.src = video.src
-          }
-        }
-      }
-    },
-    autoplay: true,
-    theme: '#b7daff',
-    loop: false,
-    lang: 'zh-cn',
-    screenshot: true,
-    hotkey: true,
-    preload: 'auto',
-    volume: 0.7
-  })
+  player.value = new Player(playerConfig)
 
   // 统计播放量
   const handleFirstPlay = async () => {
     await addPlayCountApi(videoDetail.value?.id)
     player.value?.off('play', handleFirstPlay)
   }
+  // 监听第一次播放事件
   player.value.on('play', handleFirstPlay)
 }
 
-watch(
-  () => route.params.id,
-  async (newId, oldId) => {
-    if (newId != oldId) {
-      console.log(player)
-      if (player.value) {
-        console.log(12312323)
-        player.value.destroy()
-        player.value = null
-      }
-      await fetchVideoDetail()
-      if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
-        initializePlayer(videoDetail.value.playDomain + videoDetail.value.playUrl)
-        window.scrollTo(0, 0)
-      } else {
-        console.error('视频详情数据不完整')
-      }
-    }
-  },
-  { immediate: true }
-)
+onMounted(async () => {
+  await fetchVideoDetail()
+  if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
+    initializePlayer(videoDetail.value.playDomain + videoDetail.value.playUrl)
+    window.scrollTo(0, 0)
+  } else {
+    console.error('视频详情数据不完整')
+  }
+})
 
 // 在离开路由前销毁播放器
 onBeforeRouteLeave((to, from, next) => {

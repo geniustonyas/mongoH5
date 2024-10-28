@@ -103,6 +103,7 @@ const handleCopy = (event: MouseEvent) => {
 }
 
 const downloadBrowser = (browser: string) => {
+  // @ts-ignore
   const userAgent = navigator.userAgent || navigator.vendor || window.opera
   if (/android/i.test(userAgent)) {
     // Android
@@ -111,6 +112,7 @@ const downloadBrowser = (browser: string) => {
     } else if (browser === 'quark') {
       window.open('https://www.myquark.cn/', '_blank')
     }
+    // @ts-ignore
   } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
     // iOS
     if (browser === 'chrome') {

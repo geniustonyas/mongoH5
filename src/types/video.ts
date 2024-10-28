@@ -34,6 +34,7 @@ export interface VideoListRequest {
   IsFirst?: boolean
   ActressId?: number | string
   RankType?: number | string
+  VideoType?: number | string
 }
 
 export type VideoListResponse = {

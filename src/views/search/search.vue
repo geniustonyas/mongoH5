@@ -35,7 +35,7 @@
               <li v-for="video in searchResults" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
                 <div class="l-a" v-lazy:background-image="video.poster">
                   <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
-                  <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(video.duration) }}</span>
+                  <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c">{{ video.channelName }}</span>
                 </div>
                 <div class="l-b">

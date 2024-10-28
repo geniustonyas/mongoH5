@@ -144,7 +144,7 @@
       </div>
     </div>
 
-    <Footer active-menu="shortVideo" />
+    <Footer active-menu="shortVideo" footer-class="footer f-footer" />
   </div>
 </template>
 

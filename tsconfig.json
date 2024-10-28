@@ -6,7 +6,6 @@
     "strictFunctionTypes": false, // 启用严格的函数类型检查
     "strictPropertyInitialization": false, // 启用严格的属性初始化检查
     "strictBindCallApply": false, // 启用严格的 bind、call、apply 检查
-    "suppressImplicitAnyIndexErrors": true, // 禁止隐式 any 类型的索引错误。这可以在使用动态属性时避免一些错误
     "ignoreDeprecations":"5.0", // 忽略对已弃用特性的警告，特别是针对 TypeScript 5.0 版本的弃用警告
     "target": "esnext", // 指定 ECMAScript 目标版本。"esnext" 表示使用最新的 ECMAScript 特性
     "allowJs": true, // 允许编译 JavaScript 文件。这对于逐步将 JS 项目迁移到 TS 很有用

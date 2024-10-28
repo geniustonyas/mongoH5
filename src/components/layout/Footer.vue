@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer :class="footerClass">
     <div class="p-foot">
       <router-link to="/index" :class="{ active: activeMenu == 'index' }"> <i class="mvfont mv-shouye" />首页 </router-link>
       <router-link to="/bbs" :class="{ active: activeMenu == 'bbs' }"> <i class="mvfont mv-shequ" />社区 </router-link>
@@ -11,11 +11,14 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, withDefaults } from 'vue'
 
 interface FooterProps {
   activeMenu: string
+  footerClass?: string
 }
 
-defineProps<FooterProps>()
+const props = withDefaults(defineProps<FooterProps>(), {
+  footerClass: 'footer'
+})
 </script>

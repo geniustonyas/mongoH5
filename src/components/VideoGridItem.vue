@@ -3,7 +3,7 @@
     <!-- <div class="i-a" :style="{ backgroundImage: `url(${video.poster})` }"> -->
     <div class="i-a" v-lazy:background-image="video.poster">
       <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
-      <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(video.duration) }}</span>
+      <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
       <span class="a-c">{{ video.channelName }}</span>
     </div>
     <div class="i-b">
