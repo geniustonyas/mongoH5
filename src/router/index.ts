@@ -103,7 +103,37 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/video/play/:id',
     name: 'play',
-    component: () => import('@/views/play/play-xgplayer.vue'),
+    component: () => import('@/views/play/play-plyr.vue'),
+    meta: { needLogin: false, keepAlive: false }
+  },
+  {
+    path: '/video/hls/:id',
+    name: 'hls',
+    component: () => import('@/views/play/play-hls.vue'),
+    meta: { needLogin: false, keepAlive: false }
+  },
+  // {
+  //   path: '/video/dplayer/:id',
+  //   name: 'dplayer',
+  //   component: () => import('@/views/play/play-dplayer.vue'),
+  //   meta: { needLogin: false, keepAlive: false }
+  // },
+  {
+    path: '/video/plyr/:id',
+    name: 'plyr',
+    component: () => import('@/views/play/play-plyr.vue'),
+    meta: { needLogin: false, keepAlive: false }
+  },
+  {
+    path: '/video/videojs/:id',
+    name: 'videojs',
+    component: () => import('@/views/play/play-videojs.vue'),
+    meta: { needLogin: false, keepAlive: false }
+  },
+  {
+    path: '/video/vue3-video-play/:id',
+    name: 'vue3-video-play',
+    component: () => import('@/views/play/play.vue'),
     meta: { needLogin: false, keepAlive: false }
   },
   {

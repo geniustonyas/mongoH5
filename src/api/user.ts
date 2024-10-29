@@ -1,7 +1,7 @@
 import { request } from '@/utils/axios'
 import type { loginForm, loginResp, UserInfo, ShareRecordResponse } from '@/types/user'
 import type { VideoListResponse } from '@/types/video'
-import type { ApiResponseData } from '@/types/api.d'
+import type { ApiResponseData } from '@/types/global.d'
 import { TokenPrefix, getToken } from '@/utils/auth'
 
 /** 用户登录 */

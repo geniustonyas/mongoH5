@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { TokenPrefix, getToken } from '@/utils/auth'
 import { useUserStoreHook } from '@/store/user'
 import { showToast } from 'vant'
-import { ApiResponseData } from '@/types/api.d'
+import { ApiResponseData } from '@/types/global'
 
 // 解析 VITE_BASE_API 环境变量
 const apiUrls = import.meta.env.VITE_BASE_API.split('|')

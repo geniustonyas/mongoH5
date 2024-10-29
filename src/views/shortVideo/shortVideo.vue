@@ -17,7 +17,7 @@
         <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true } as undefined" :slides-per-view="1" :space-between="0" @slide-change="onSlideChange" style="width: 100%; height: 100%">
           <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
             <div class="v-a">
-              <div :id="'video-player-' + index" class="video-player" />
+              <video :id="'video-player-' + index" class="video-player" playsinline webkit-playsinline />
             </div>
             <div class="v-b">
               <a @click="handleLike()">
@@ -65,9 +65,6 @@ import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import Footer from '@/components/layout/Footer.vue'
-import Player from 'xgplayer'
-import HlsJsPlugin from 'xgplayer-hls.js'
-import 'xgplayer/dist/index.min.css'
 import 'swiper/css'
 import 'swiper/css/virtual'
 import { Virtual } from 'swiper/modules'
@@ -77,14 +74,14 @@ import { userLike, userCollection } from '@/api/user'
 import { Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
 
-const modules = [Virtual]
-
 const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
+const modules = [Virtual]
+
 const videos = ref<Video[]>([])
 const videoDetail = ref<VideoDetailResponse | null>(null)
-const player = ref<Player | null>(null)
+const player = ref<any>(null)
 const currentVideoIndex = ref(0)
 const pageIndex = ref(1)
 const decrypt = new decryptionService()
@@ -125,40 +122,33 @@ const initializePlayer = async (index: number) => {
   const video = videos.value[index]
   if (!video) return
 
-  const playerConfig = {
-    id: 'video-player-' + index,
-    url: appStore.playDomain + video.playUrl,
-    poster: video.poster,
-    autoplay: true,
-    controls: false,
-    fluid: true,
-    playsinline: true,
-    'x5-video-player-type': 'h5',
-    'x5-video-player-fullscreen': true,
-    'x5-video-orientation': 'portraint',
-    width: '100%',
-    height: '100%',
-    plugins: [HlsJsPlugin],
-    useHlsJs: true
-  }
-
+  const videoElement = document.getElementById('video-player-' + index) as HTMLVideoElement
+  console.log(videoElement)
   if (player.value) {
     player.value.destroy()
     player.value = null
   }
 
-  player.value = new Player(playerConfig)
-
-  // // 自定义控件样式，只显示进度条
-  // player.value.once('ready', () => {
-  //   const controls = player.value.controls
-  //   if (controls) {
-  //     const progressBar = player.value.root.querySelector('.xgplayer-progress')
-  //     if (progressBar) {
-  //       progressBar.style.display = 'block' // 只显示进度条
-  //     }
-  //   }
-  // })
+  if (window.Hls.isSupported()) {
+    const hls = new window.Hls()
+    hls.loadSource(appStore.playDomain + video.playUrl)
+    hls.attachMedia(videoElement)
+    hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
+      player.value = new window.Plyr(videoElement, {
+        autoplay: true,
+        // controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
+        controls: ['progress']
+      })
+      console.log(player.value)
+    })
+  } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+    videoElement.src = appStore.playDomain + video.playUrl
+    player.value = new window.Plyr(videoElement, {
+      autoplay: true,
+      // controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
+      controls: ['progress']
+    })
+  }
 }
 
 onMounted(async () => {

@@ -1,6 +1,6 @@
 import { request } from '@/utils/axios'
 import { SmsParams } from '@/types/app'
-import type { ApiResponseData } from '@/types/api.d'
+import type { ApiResponseData } from '@/types/global.d'
 
 /** 获取系统配置 */
 export function getConfigApi() {

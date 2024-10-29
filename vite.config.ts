@@ -68,18 +68,6 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       chunkSizeWarningLimit: 2000,
       /** Vite 2.6.x 以上需要配置 minify: 'terser', terserOptions 才能生效 */
       minify: 'terser',
-      rollupOptions: {
-        output: {
-          // 在 dist/i18n 目录下生成一个独立的语言文件
-          chunkFileNames: 'i18n/[name]-[hash].js',
-          // 使用 splitChunks 配置将语言文件单独打包
-          manualChunks(id: any) {
-            if (id.includes('/src/i18n/config/')) {
-              return `i18n/${id.split('/').pop().split('.')[0]}`
-            }
-          }
-        }
-      },
       /** 在打包代码时移除 console.log、debugger 和 注释 */
       terserOptions: {
         compress: {

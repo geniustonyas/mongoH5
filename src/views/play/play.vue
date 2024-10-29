@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="router.back()"><i class="mvfont mv-left" /></a>
-        <video id="plyr-player" controls></video>
+        <video id="plyr-player" controls playsinline webkit-playsinline />
       </div>
       <div class="md-b">
         <div class="b-a">
@@ -68,9 +68,6 @@ import { showToast } from 'vant'
 import { addPlayCountApi } from '@/api/video'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
-import Plyr from 'plyr'
-import 'plyr/dist/plyr.css'
-import Hls from 'hls.js'
 
 const route = useRoute()
 const router = useRouter()
@@ -79,7 +76,7 @@ const videoDetail = ref<VideoDetailResponse | null>(null)
 const recommendedVideos = ref<Video[]>([])
 const initialLikeType = ref<number | string>()
 
-const player = ref<Plyr | null>(null)
+const player = ref<any>(null)
 
 const decrypt = new decryptionService()
 
@@ -219,21 +216,39 @@ const initializePlayer = (url: string) => {
 
   const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
 
-  if (Hls.isSupported()) {
-    const hls = new Hls()
+  if (window.Hls.isSupported()) {
+    const hls = new window.Hls()
     hls.loadSource(url)
     hls.attachMedia(videoElement)
-    hls.on(Hls.Events.MANIFEST_PARSED, () => {
-      player.value = new Plyr(videoElement, {
+    hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
+      player.value = new window.Plyr(videoElement, {
         autoplay: true,
-        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
+      })
+
+      // 添加点击事件监听器
+      videoElement.addEventListener('click', () => {
+        if (player.value.playing) {
+          player.value.pause()
+        } else {
+          player.value.play()
+        }
       })
     })
   } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
     videoElement.src = url
-    player.value = new Plyr(videoElement, {
+    player.value = new window.Plyr(videoElement, {
       autoplay: true,
-      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
+    })
+
+    // 添加点击事件监听器
+    videoElement.addEventListener('click', () => {
+      if (player.value.playing) {
+        player.value.pause()
+      } else {
+        player.value.play()
+      }
     })
   }
 

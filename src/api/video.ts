@@ -1,6 +1,6 @@
 import { request } from '@/utils/axios'
 import type { IndexVideoResponse, VideoListRequest, VideoListResponse, VideoDetailResponse } from '@/types/video'
-import type { ApiResponseData } from '@/types/api.d'
+import type { ApiResponseData } from '@/types/global.d'
 
 /** 获取首页视频列表 */
 export function getIndexVideoListApi() {

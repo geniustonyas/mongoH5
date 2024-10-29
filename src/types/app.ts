@@ -1,4 +1,4 @@
-import type { ApiResponseData } from '@/types/api.d'
+import type { ApiResponseData } from '@/types/global.d'
 
 export interface Category {
   cId: number

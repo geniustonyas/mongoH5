@@ -1,6 +1,6 @@
 import { request } from '@/utils/axios'
 import type { ThemeResponse, ActorListRequest, ActorListResponse, Actor } from '@/types/theme'
-import type { ApiResponseData } from '@/types/api.d'
+import type { ApiResponseData } from '@/types/global.d'
 
 /** 获取所有主题 */
 export function getThemeApi() {
