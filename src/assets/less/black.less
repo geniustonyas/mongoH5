@@ -91,9 +91,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
                     .van-tab--active {
                         .van-tab__text { font-size: 2rem; font-weight: 600; color: var(--color-white); }
                     }
-                    .van-tabs__line { 
-                        display: none;
-                    }
+                    .van-tabs__line { display: none; }
                 }
             }
         }
@@ -129,7 +127,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 
 
-    &.h-video { /*position: relative;*/ background:transparent;
+    &.h-video { /*position: relative;*/ background: transparent;
         .h-m {
             a { padding: 0 1.2rem;
                 &.active { font-size: 1.6rem;
@@ -459,7 +457,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
                 small { display: inline-block; width: 2rem; .h-lh(2rem); .radius(2rem); font-size: 1rem; .bgc(#ee2753,var(--color-white)); position: absolute; bottom: -1rem; left: 30%; font-weight: 600; }
             }
         }
-        .v-c { position: absolute; bottom: 0; width: 100%; padding: 1rem 5rem 1rem 1rem; color: var(--color-white); z-index: 9;
+        .v-c { position: absolute; bottom: 1.5rem; width: 100%; padding: 0 5rem .5rem 1rem; color: var(--color-white); z-index: 9;
             .c-g { .bgc(rgba(0,0,0,.2),var(--color-white)); font-size: 1.3rem; font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif; display: inline-block; padding: .5rem 1rem; .radius(.4rem);
                 img { height: 1.5rem; margin-right: .5rem; position: relative; bottom: .1rem; }
                 span { position: relative; display: inline-block; margin-left: .7rem; padding-left: .7rem;
@@ -501,6 +499,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             }
         }
     }
+    .plyr__progress__container { position: relative; top: .5rem; }
 }
 
 .g-l-b { padding-bottom: 8rem; padding-top: 5rem;
