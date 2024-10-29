@@ -17,7 +17,7 @@
         <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true } as undefined" :slides-per-view="1" :space-between="0" @slide-change="onSlideChange" style="width: 100%; height: 100%">
           <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
             <div class="v-a">
-              <video :id="'video-player-' + index" class="video-player" playsinline webkit-playsinline />
+              <video :id="'video-player-' + index" class="video-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
             </div>
             <div class="v-b">
               <a @click="handleLike()">
@@ -123,7 +123,6 @@ const initializePlayer = async (index: number) => {
   if (!video) return
 
   const videoElement = document.getElementById('video-player-' + index) as HTMLVideoElement
-  console.log(videoElement)
   if (player.value) {
     player.value.destroy()
     player.value = null
@@ -135,16 +134,19 @@ const initializePlayer = async (index: number) => {
     hls.attachMedia(videoElement)
     hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
       player.value = new window.Plyr(videoElement, {
+        clickToPlay: true,
         autoplay: true,
+        hideControls: true,
         // controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
         controls: ['progress']
       })
-      console.log(player.value)
     })
   } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
     videoElement.src = appStore.playDomain + video.playUrl
     player.value = new window.Plyr(videoElement, {
+      clickToPlay: true,
       autoplay: true,
+      hideControls: true,
       // controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
       controls: ['progress']
     })

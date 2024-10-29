@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="router.back()"><i class="mvfont mv-left" /></a>
-        <video id="plyr-player" controls playsinline webkit-playsinline />
+        <video id="plyr-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
       </div>
       <div class="md-b">
         <div class="b-a">
@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute, useRouter, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
@@ -94,6 +94,12 @@ const fetchVideoDetail = async () => {
     }))
     recommendedVideos.value.forEach(async (video) => {
       video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+    })
+
+    nextTick(() => {
+      if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
+        initializePlayer(videoDetail.value.playDomain + videoDetail.value.playUrl)
+      }
     })
   } catch (error) {
     console.error('获取视频详情失败:', error)
@@ -208,75 +214,70 @@ const handleCollection = async () => {
   }
 }
 
-const initializePlayer = (url: string) => {
+const initializePlayer = async (url: string) => {
   if (player.value) {
     player.value.destroy()
     player.value = null
   }
-
-  const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
-
-  if (window.Hls.isSupported()) {
-    const hls = new window.Hls()
-    hls.loadSource(url)
-    hls.attachMedia(videoElement)
-    hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
+  try {
+    const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
+    console.log(videoElement)
+    if (window.Hls.isSupported()) {
+      console.log('hls支持')
+      try {
+        const hls = new window.Hls()
+        hls.loadSource(url)
+        hls.attachMedia(videoElement)
+        console.log('hls.attachMedia')
+        hls.debug = true
+        hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
+          console.log('hls.on')
+          player.value = new window.Plyr(videoElement, {
+            clickToPlay: true,
+            hideControls: true,
+            autoplay: true,
+            controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
+          })
+          console.log('player.value', player.value)
+        })
+      } catch (error) {
+        console.error('hls初始化失败:', error)
+      }
+    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+      videoElement.src = url
       player.value = new window.Plyr(videoElement, {
+        clickToPlay: true,
+        hideControls: true,
         autoplay: true,
         controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
       })
+    }
 
-      // 添加点击事件监听器
-      videoElement.addEventListener('click', () => {
-        if (player.value.playing) {
-          player.value.pause()
-        } else {
-          player.value.play()
-        }
-      })
+    // 统计播放量
+    player.value?.on('play', async () => {
+      await addPlayCountApi(videoDetail.value?.id)
     })
-  } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-    videoElement.src = url
-    player.value = new window.Plyr(videoElement, {
-      autoplay: true,
-      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
-    })
-
-    // 添加点击事件监听器
-    videoElement.addEventListener('click', () => {
-      if (player.value.playing) {
-        player.value.pause()
-      } else {
-        player.value.play()
-      }
-    })
+  } catch (error) {
+    console.error('初始化播放器失败:', error)
   }
-
-  // 统计播放量
-  player.value?.on('play', async () => {
-    await addPlayCountApi(videoDetail.value?.id)
-  })
 }
 
 watch(
   () => route.params.id,
   async (newId, oldId) => {
     if (newId != oldId) {
-      if (player.value) {
-        player.value.destroy()
-        player.value = null
-      }
       await fetchVideoDetail()
-      if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
-        initializePlayer(videoDetail.value.playDomain + videoDetail.value.playUrl)
-        window.scrollTo(0, 0)
-      } else {
-        console.error('视频详情数据不完整')
-      }
     }
   },
   { immediate: true }
 )
+
+onUnmounted(() => {
+  if (player.value) {
+    player.value.destroy()
+    player.value = null
+  }
+})
 
 // 在离开路由前销毁播放器
 onBeforeRouteLeave((to, from, next) => {
