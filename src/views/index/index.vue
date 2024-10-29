@@ -149,27 +149,13 @@
           </PullRefresh>
         </SwipeItem>
       </Swipe>
+      <!-- 首页弹窗 -->
       <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
         <a target="_blank" :href="currentPopAd.targetUrl"><img :src="appStore.cdnUrl + currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
-      <div v-if="appStore.hasShownDownload && !appStore.isAppEnvironment" class="fixed-foot" id="fixed-downloadApp">
-        <div class="ff-bd">
-          <div class="d-c">
-            <div class="f-a">
-              <img :src="getAssetsFile('logo-2.png')" />
-              <span>
-                <b>芒果TV-下载不迷路</b>
-                <small>海量高清无码，国产吃瓜抢先看</small>
-              </span>
-            </div>
-            <div class="f-b">
-              <a>安装</a>
-              <span @click="closeDownloadPopup"><i class="mvfont mv-close" /></span>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      
     </main>
     <Footer active-menu="index" />
   </div>

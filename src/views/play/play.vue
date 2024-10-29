@@ -221,38 +221,19 @@ const initializePlayer = async (url: string) => {
   }
   try {
     const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
-    console.log(videoElement)
+    player.value = new window.Plyr(videoElement, {
+      clickToPlay: true,
+      hideControls: true,
+      autoplay: true,
+      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
+    })
     if (window.Hls.isSupported()) {
-      console.log('hls支持')
-      try {
-        const hls = new window.Hls()
-        hls.loadSource(url)
-        hls.attachMedia(videoElement)
-        console.log('hls.attachMedia')
-        hls.debug = true
-        hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
-          console.log('hls.on')
-          player.value = new window.Plyr(videoElement, {
-            clickToPlay: true,
-            hideControls: true,
-            autoplay: true,
-            controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
-          })
-          console.log('player.value', player.value)
-        })
-      } catch (error) {
-        console.error('hls初始化失败:', error)
-      }
+      const hls = new window.Hls()
+      hls.loadSource(url)
+      hls.attachMedia(videoElement)
     } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
       videoElement.src = url
-      player.value = new window.Plyr(videoElement, {
-        clickToPlay: true,
-        hideControls: true,
-        autoplay: true,
-        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
-      })
     }
-
     // 统计播放量
     player.value?.on('play', async () => {
       await addPlayCountApi(videoDetail.value?.id)
@@ -291,6 +272,6 @@ onBeforeRouteLeave((to, from, next) => {
 
 <style scoped>
 .active {
-  color: #ff6b6b;
+  color: #ff6b6b
 }
 </style>
