@@ -154,8 +154,6 @@
         <a target="_blank" :href="currentPopAd.targetUrl"><img :src="appStore.cdnUrl + currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
-
-      
     </main>
     <Footer active-menu="index" />
   </div>
@@ -423,11 +421,6 @@ function handleScroll() {
       header.classList.remove('fixed')
     }
   }
-}
-
-// 关闭下载弹窗并更新状态
-const closeDownloadPopup = () => {
-  appStore.setHasShownDownload(false)
 }
 
 onMounted(() => {

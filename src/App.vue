@@ -6,18 +6,13 @@
       </keep-alive>
     </transition>
   </router-view>
-  <!-- <Overlay class-name="loading" style="background-color: transparent" :show="appStore.loading" :z-index="9999">
-    <Loading />
-  </Overlay> -->
   <Login />
+  <DownloadPop />
 </template>
 
 <script setup lang="ts">
-// import { Overlay } from 'vant'
-// import { useAppStore } from '@/store/app'
 import Login from '@/components/Login.vue'
-// const appStore = useAppStore()
-
+import DownloadPop from '@/components/DownloadPop.vue'
 const getTransition = (transition: unknown): string | undefined => {
   if (typeof transition === 'string') {
     return transition

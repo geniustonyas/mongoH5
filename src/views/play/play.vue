@@ -272,6 +272,9 @@ onBeforeRouteLeave((to, from, next) => {
 
 <style scoped>
 .active {
-  color: #ff6b6b
+  color: #ff6b6b;
+}
+.m-d-b .md-a video {
+  height: 24rem;
 }
 </style>
