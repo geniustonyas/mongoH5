@@ -2,7 +2,7 @@
   <div>
     <header class="s-header">
       <input v-model="searchKeyword" placeholder="搜索" @keyup.enter="handleInputSearch" @input="clearTagId" />
-      <a @click="router.back()">取消</a>
+      <a @click="appStore.setBack(true)">取消</a>
     </header>
 
     <!-- 热门标签 -->

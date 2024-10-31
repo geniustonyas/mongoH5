@@ -56,7 +56,7 @@
             </a>
           </li>
           <li>
-            <a @click="router.push({ name: 'record' })">
+            <a @click="showToast('建设中')">
               <span> <i class="mvfont mv-zzjl" />购买记录 </span>
               <i class="mvfont mv-right" />
             </a>
@@ -80,6 +80,7 @@ import Footer from '@/components/layout/Footer.vue'
 import { getAssetsFile } from '@/utils'
 import { useUserStoreHook } from '@/store/user'
 import { useAppStoreHook } from '@/store/app'
+import { showToast } from 'vant'
 
 const userStore = useUserStoreHook()
 const appStore = useAppStoreHook()

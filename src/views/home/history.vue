@@ -2,7 +2,7 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a @click="router.back()"><i class="mvfont mv-left" /></a>
+        <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
       </div>
       <div class="d-m">我的足迹</div>
     </header>

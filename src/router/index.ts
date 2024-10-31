@@ -107,6 +107,12 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false }
   },
   {
+    path: '/video/plays/:id',
+    name: 'playOld',
+    component: () => import('@/views/play/play_old.vue'),
+    meta: { needLogin: false, keepAlive: false }
+  },
+  {
     path: '/home',
     component: AppMain,
     children: [
@@ -132,6 +138,12 @@ const routes: RouteRecordRaw[] = [
         path: 'collect',
         name: 'collect',
         component: () => import('@/views/home/collect.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
+      {
+        path: 'buyRecord',
+        name: 'buyRecord',
+        component: () => import('@/views/home/buyRecord.vue'),
         meta: { needLogin: true, keepAlive: false }
       },
       {
@@ -219,12 +231,25 @@ router.beforeEach(async (to, from, next) => {
       next()
     }
   }
+
+  // @ts-ignore
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && typeof window.MSStream !== 'undefined'
+  const isBackNavigation = window.history.state && window.history.state.forward === null
+
+  if (isIOS && isBackNavigation && !appStore.isProgrammaticBack) {
+    console.log(123)
+    to.meta.transition = 'no'
+  }
+
+  appStore.isProgrammaticBack = false
 })
 
 router.afterEach((to, from) => {
-  const toDepth = to.path.split('/').length
-  const fromDepth = from.path.split('/').length
-  to.meta.transition = toDepth == fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'
+  if (to.meta.transition != 'no') {
+    const toDepth = to.path.split('/').length
+    const fromDepth = from.path.split('/').length
+    to.meta.transition = toDepth === fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'
+  }
 })
 
 export default router

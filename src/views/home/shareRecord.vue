@@ -2,7 +2,7 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a @click="router.back()"><i class="mvfont mv-left" /></a>
+        <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
       </div>
       <div class="d-m">分享记录</div>
     </header>
@@ -38,11 +38,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { userShareHistory } from '@/api/user'
 import type { ShareRecord } from '@/types/user'
+import { useAppStore } from '@/store/app'
 
-const router = useRouter()
+const appStore = useAppStore()
 const dataList = ref<ShareRecord[]>([])
 const currentPage = ref(1)
 const totalPages = ref(1)

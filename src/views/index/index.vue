@@ -82,7 +82,7 @@
                   </div>
                 </div>
                 <div class="m-b">
-                  <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" />
+                  <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
                 </div>
               </nav>
 
@@ -97,7 +97,7 @@
                   </div>
                 </div>
                 <div class="m-b">
-                  <VideoGridItem v-for="video in latestVideos" :key="video.id" :video="video" />
+                  <VideoGridItem v-for="video in latestVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
                 </div>
               </nav>
             </div>
@@ -116,7 +116,7 @@
                 </swiper>
               </div>
               <section class="m-l-b">
-                <nav v-if="category.s && category.s.length > 0" class="b-a">
+                <nav v-if="category.s && category.s.length > 0" class="b-a" @touchstart.stop @touchmove.stop>
                   <span :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</span>
                   <span v-for="cates in category.s" :key="cates.d" :class="{ active: query.SubChannelId == cates.d }" @click="selectCategory(cates.d)">
                     {{ cates.t }}

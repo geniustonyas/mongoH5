@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <header class="m-header">
-      <div class="h-l" @click="router.back()">
+      <div class="h-l" @click="appStore.setBack(true)">
         <i class="mvfont mv-left" />
       </div>
     </header>
@@ -140,8 +140,8 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { getAssetsFile } from '@/utils'
+import { useAppStore } from '@/store/app'
 
-const router = useRouter()
+const appStore = useAppStore()
 </script>

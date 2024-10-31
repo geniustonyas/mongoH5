@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { getCategoryApi, getConfigApi, getAdsApi } from '@/api/app'
+import router from '@/router'
 import { getThemeApi } from '@/api/theme'
 import store from '@/store'
 
@@ -7,8 +8,10 @@ export const useAppStore = defineStore('app', {
   state: () => {
     return {
       loading: false,
+      isProgrammaticBack: false, // 是否是程序返回
       hasShownAnnouncement: true, // 用于跟踪公告是否已显示, 默认为true 需要显示
       shownDownload: true, // 用于跟踪下载弹窗是否已显示, 默认为true 需要显示
+
       // 系统配置项
       regSms: '', // 注册短信
       searchInputText: '', // 搜索框输入内容
@@ -40,6 +43,11 @@ export const useAppStore = defineStore('app', {
   actions: {
     setLoading(loading: boolean) {
       this.loading = loading
+    },
+
+    setBack(isProgrammaticBack: boolean) {
+      this.isProgrammaticBack = isProgrammaticBack
+      router.back()
     },
 
     // 获取系统配置

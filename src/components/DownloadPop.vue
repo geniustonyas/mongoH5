@@ -123,7 +123,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getAssetsFile } from '@/utils'
 import { useAppStore } from '@/store/app'
@@ -137,21 +137,24 @@ const showAddToHomeTip = ref(false)
 const showIos = ref(false)
 const showAndroid = ref(false)
 
-if (appStore.shownDownload && nu != 'a1' && nu != 'a2') {
-  showDownloadTips.value = true
-  appStore.setShownDownload(false)
-}
+//@ts-ignore 检测是否在独立模式下运行
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone
+
+onMounted(() => {
+  if (!isStandalone && appStore.shownDownload && nu != 'a1' && nu != 'a2') {
+    showDownloadTips.value = true
+    appStore.setShownDownload(false)
+  }
+})
 
 const popAddToHomeTip = () => {
   // 判断当前浏览器是IOS还是Android
   showAddToHomeTip.value = true
   const ua = navigator.userAgent
-  console.log(ua)
   if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
     showIos.value = true
   } else {
     showAndroid.value = true
-    console.log('android')
   }
 }
 </script>

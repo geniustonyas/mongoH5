@@ -2,7 +2,7 @@
   <div class="page">
     <section class="a-d-b">
       <div class="ab-a">
-        <a href="javascript:void(0)" @click="router.back()" class="a-bk"><i class="mvfont mv-left" /></a>
+        <a href="javascript:void(0)" @click="appStore.setBack(true)" class="a-bk"><i class="mvfont mv-left" /></a>
         <div class="a-x" :style="{ backgroundImage: `url(${actor.imgUrl})` }">
           <div class="x-c">
             <div class="c-bd">
@@ -61,7 +61,7 @@
           <div class="y-m">
             <nav class="mv-t-l">
               <div class="m-b">
-                <VideoGridItem v-for="video in videos" :key="video.id" :video="video" />
+                <VideoGridItem v-for="video in videos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
               </div>
             </nav>
             <div v-if="noData" class="nodata">

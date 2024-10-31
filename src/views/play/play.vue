@@ -2,7 +2,7 @@
   <div class="page">
     <section class="m-d-b">
       <div class="md-a">
-        <a class="a-r" @click="router.back()"><i class="mvfont mv-left" /></a>
+        <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
         <video id="plyr-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
       </div>
       <div class="md-b">
@@ -39,8 +39,8 @@
         <div class="m-a">
           <div class="a-l"><i class="mvfont mv-xietiao" /><span>猜你喜欢</span></div>
         </div>
-        <div class="m-b" v-if="recommendedVideos && recommendedVideos.length > 0">
-          <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+        <div class="m-b" v-if="recommendedVideos && recommendedVideos.length > 0" @click="handleVideoClick">
+          <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" />
         </div>
       </nav>
     </section>
@@ -54,40 +54,99 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { ref, nextTick, onUnmounted } from 'vue'
 import { useRoute, useRouter, onBeforeRouteLeave } from 'vue-router'
-import { getVideoDetailApi } from '@/api/video'
+import { getVideoDetailApi, addPlayCountApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
 import { getAssetsFile } from '@/utils'
 import { useUserStore } from '@/store/user'
+import { useAppStore } from '@/store/app'
 import dayjs from 'dayjs'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import { showToast } from 'vant'
-import { addPlayCountApi } from '@/api/video'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
+import { throttle } from 'lodash-es'
 
 const route = useRoute()
-const router = useRouter()
 const userStore = useUserStore()
+const appStore = useAppStore()
 const videoDetail = ref<VideoDetailResponse | null>(null)
 const recommendedVideos = ref<Video[]>([])
 const initialLikeType = ref<number | string>()
 
 const player = ref<any>(null)
-
+const hls = ref<any>(null)
+const controls = ref([
+  'play', // 播放/暂停播放
+  'play-large', // 中心的大播放按钮
+  'rewind', // 按默认的10秒回退
+  'fast-forward', // 按默认的10秒快进
+  'progress', // 播放和缓冲的进度条和拖动条
+  'duration', // 媒体的总时长
+  'mute', // 静音切换
+  'volume', // 音量控制
+  'captions', // 字幕切换
+  'settings', // 设置菜单
+  'pip', // 画中画（目前仅Safari支持）
+  'airplay', // Airplay（目前仅Safari支持）
+  // 'download', // 显示一个下载按钮，链接到当前源或您在选项中指定的自定义URL
+  'fullscreen' // 全屏切换
+])
 const decrypt = new decryptionService()
+const showSharePopup = ref(false)
+const clipboard = ref<Clipboard | null>(null)
 
-const fetchVideoDetail = async () => {
+const clickCount = ref(0)
+const maxClicks = 5
+const disableTime = 10000
+let isDisabled = ref(false)
+
+const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
+  if (isDisabled.value) {
+    showToast('请稍后再试')
+    return
+  }
+
+  clickCount.value++
+  console.log(clickCount.value)
+  if (clickCount.value >= maxClicks) {
+    showToast('请不要频繁操作')
+    isDisabled.value = true
+    setTimeout(() => {
+      isDisabled.value = false
+      clickCount.value = 0
+    }, disableTime)
+    return
+  }
+
+  await fetchVideoDetail(videoId)
+  clickCount.value = 0
+}, 1000)
+
+const handleVideoClick = (event) => {
+  if (isDisabled.value) {
+    showToast('请稍后再试')
+    return
+  }
+
+  const videoElement = event.target.closest('.video-grid-item')
+  if (videoElement) {
+    const videoId = videoElement.dataset.videoId
+    fetchVideoDetailThrottled(videoId)
+  }
+}
+
+const fetchVideoDetail = async (videoId: string) => {
   try {
-    const id = Number(route.params.id)
+    const id = Number(videoId)
     const {
       data: { data }
     } = await getVideoDetailApi(id)
     videoDetail.value = data
-    initialLikeType.value = data.like // 保存初始点赞状态
+    initialLikeType.value = data.like
     recommendedVideos.value = data.licks.map((video) => ({
       ...video,
       poster: ''
@@ -96,13 +155,101 @@ const fetchVideoDetail = async () => {
       video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
     })
 
-    nextTick(() => {
-      if (videoDetail.value && videoDetail.value.playDomain && videoDetail.value.playUrl) {
-        initializePlayer(videoDetail.value.playDomain + videoDetail.value.playUrl)
-      }
-    })
+    if (videoDetail.value?.playUrl) {
+      const newUrl = appStore.playDomain + videoDetail.value?.playUrl
+      nextTick(() => {
+        initializePlayer(newUrl)
+      })
+    }
   } catch (error) {
     console.error('获取视频详情失败:', error)
+  }
+}
+
+const initializePlayer = async (url: string) => {
+  try {
+    resetPlayer()
+    const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
+    if (!videoElement) {
+      console.error('Video element not found')
+      return
+    }
+    player.value = new window.Plyr(videoElement, {
+      clickToPlay: true,
+      autoplay: true,
+      controls: controls.value,
+      settings: ['captions', 'quality', 'speed', 'loop'],
+      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
+    })
+    if (window.Hls.isSupported()) {
+      hls.value = new window.Hls({
+        maxBufferLength: 30,
+        maxMaxBufferLength: 60,
+        maxBufferSize: 60 * 1000 * 1000,
+        maxBufferHole: 0.5,
+        startFragPrefetch: true,
+        debug: false
+      })
+      hls.value.loadSource(url)
+      hls.value.attachMedia(videoElement)
+
+      hls.value.on(window.Hls.Events.ERROR, (event, data) => {
+        handleHlsError(data)
+      })
+    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+      videoElement.src = url
+    }
+
+    videoElement.addEventListener('canplay', () => {
+      player.value?.on('play', async () => {
+        await addPlayCountApi(videoDetail.value?.id)
+      })
+    })
+  } catch (error) {
+    console.error('初始化播放器失败:', error)
+  }
+}
+
+const handleHlsError = (data) => {
+  if (data.fatal) {
+    switch (data.type) {
+      case window.Hls.ErrorTypes.NETWORK_ERROR:
+        console.error('HLS network error:', data)
+        // 尝试重新加载资源
+        if (data.details === 'manifestLoadError') {
+          showToast('加载视频失败,请检查网络连接或稍后重试。')
+        }
+        break
+      case window.Hls.ErrorTypes.MEDIA_ERROR:
+        console.error('HLS media error:', data)
+        // 尝试恢复媒体错误
+        hls.value.recoverMediaError()
+        break
+      case window.Hls.ErrorTypes.OTHER_ERROR:
+        console.error('HLS other error:', data)
+        break
+      default:
+        console.error('HLS unrecoverable error:', data)
+        hls.value.destroy()
+        showToast('视频播放遇到问题，请稍后重试。')
+        break
+    }
+  } else {
+    // 非致命错误的处理
+    console.warn('HLS non-fatal error:', data)
+  }
+}
+
+const resetPlayer = () => {
+  if (player.value) {
+    player.value.stop()
+    player.value.destroy()
+    player.value = null
+  }
+  if (hls.value) {
+    hls.value.stopLoad()
+    // hls.value.destroy()
+    // hls.value = null
   }
 }
 
@@ -114,8 +261,6 @@ const checkLogin = (): boolean => {
   return true
 }
 
-const showSharePopup = ref(false)
-const clipboard = ref<Clipboard | null>(null)
 const handleShare = () => {
   if (clipboard.value) {
     clipboard.value.destroy()
@@ -126,7 +271,6 @@ const handleShare = () => {
 
   clipboard.value?.on('success', () => {
     showSharePopup.value = true
-    // 设置2秒后自动关闭弹窗
     setTimeout(() => {
       showSharePopup.value = false
     }, 2000)
@@ -138,7 +282,6 @@ const handleShare = () => {
     clipboard.value?.destroy()
   })
 
-  // 模拟点击事件以触发复制
   const button = document.createElement('button')
   button.className = 'share-button'
   document.body.appendChild(button)
@@ -162,37 +305,36 @@ const handleLike = async (likeType: number) => {
 
       await userLike({ VideoId: videoId, Like: newLikeType })
 
-      // 更新本地状态
-      if (newLikeType == 1) {
-        // 点赞
-        if (currentLikeType == 0) {
-          videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) + 1).toString()
-        } else if (currentLikeType == 2) {
-          videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) - 1).toString()
-          videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) + 1).toString()
-        }
-      } else if (newLikeType == 2) {
-        // 踩
-        if (currentLikeType == 0) {
-          videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) + 1).toString()
-        } else if (currentLikeType == 1) {
-          videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) - 1).toString()
-          videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) + 1).toString()
-        }
-      } else {
-        // 取消赞或踩
-        if (currentLikeType == 1) {
-          videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) - 1).toString()
-        } else if (currentLikeType == 2) {
-          videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) - 1).toString()
-        }
-      }
-
+      updateLikeStatus(Number(currentLikeType), Number(newLikeType))
       videoDetail.value.like = newLikeType
     }
   } catch (error) {
     console.error('操作失败:', error)
     showToast('操作失败')
+  }
+}
+
+const updateLikeStatus = (currentLikeType: number, newLikeType: number) => {
+  if (newLikeType == 1) {
+    if (currentLikeType == 0) {
+      videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) + 1).toString()
+    } else if (currentLikeType == 2) {
+      videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) - 1).toString()
+      videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) + 1).toString()
+    }
+  } else if (newLikeType == 2) {
+    if (currentLikeType == 0) {
+      videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) + 1).toString()
+    } else if (currentLikeType == 1) {
+      videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) - 1).toString()
+      videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) + 1).toString()
+    }
+  } else {
+    if (currentLikeType == 1) {
+      videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) - 1).toString()
+    } else if (currentLikeType == 2) {
+      videoDetail.value.hateCount = (Number(videoDetail.value.hateCount) - 1).toString()
+    }
   }
 }
 
@@ -204,7 +346,6 @@ const handleCollection = async () => {
     if (videoId) {
       const isCollecting = !videoDetail.value.collect
       await userCollection({ VideoId: videoId, Collect: isCollecting })
-      // 更新本地状态
       videoDetail.value.collect = isCollecting
       videoDetail.value.collectionCount = (Number(videoDetail.value.collectionCount) + (isCollecting ? 1 : -1)).toString()
     }
@@ -214,58 +355,20 @@ const handleCollection = async () => {
   }
 }
 
-const initializePlayer = async (url: string) => {
-  if (player.value) {
-    player.value.destroy()
-    player.value = null
-  }
-  try {
-    const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
-    player.value = new window.Plyr(videoElement, {
-      clickToPlay: true,
-      hideControls: true,
-      autoplay: true,
-      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'pip', 'settings', 'fullscreen']
-    })
-    if (window.Hls.isSupported()) {
-      const hls = new window.Hls()
-      hls.loadSource(url)
-      hls.attachMedia(videoElement)
-    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-      videoElement.src = url
-    }
-    // 统计播放量
-    player.value?.on('play', async () => {
-      await addPlayCountApi(videoDetail.value?.id)
-    })
-  } catch (error) {
-    console.error('初始化播放器失败:', error)
-  }
-}
+;(async () => {
+  await fetchVideoDetail(route.params.id as string)
+})()
 
-watch(
-  () => route.params.id,
-  async (newId, oldId) => {
-    if (newId != oldId) {
-      await fetchVideoDetail()
-    }
-  },
-  { immediate: true }
-)
+// onMounted(async () => {
+//   await fetchVideoDetail(route.params.id as string)
+// })
 
 onUnmounted(() => {
-  if (player.value) {
-    player.value.destroy()
-    player.value = null
-  }
+  resetPlayer()
 })
 
-// 在离开路由前销毁播放器
 onBeforeRouteLeave((to, from, next) => {
-  if (player.value) {
-    player.value.destroy()
-    player.value = null
-  }
+  resetPlayer()
   next()
 })
 </script>

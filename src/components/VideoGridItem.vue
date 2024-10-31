@@ -1,6 +1,5 @@
 <template>
-  <div class="item" @click="router.push({ name: 'play', params: { id: video.id } })">
-    <!-- <div class="i-a" :style="{ backgroundImage: `url(${video.poster})` }"> -->
+  <div class="item video-grid-item" :data-video-id="video.id">
     <div class="i-a" v-lazy:background-image="video.poster">
       <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
       <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
@@ -24,12 +23,10 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import { useAppStore } from '@/store/app'
-import { useRouter } from 'vue-router'
 import type { Video } from '@/types/video'
 import dayjs from 'dayjs'
 import { formatDuration } from '@/utils'
 
-const router = useRouter()
 const appStore = useAppStore()
 
 defineProps<{
