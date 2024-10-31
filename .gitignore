@@ -1,6 +1,8 @@
 #custom
 mongotvH5/
+mongotvH5-Test/
 mongotvH5.zip
+mongotvH5-Test.zip
 /dist
 /.history
 /.vscode

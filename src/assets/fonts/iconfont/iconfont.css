@@ -1,8 +1,8 @@
 @font-face {
   font-family: "mvfont"; /* Project id 4698642 */
-  src: url('iconfont.woff2?t=1729842961255') format('woff2'),
-       url('iconfont.woff?t=1729842961255') format('woff'),
-       url('iconfont.ttf?t=1729842961255') format('truetype');
+  src: url('iconfont.woff2?t=1730396311529') format('woff2'),
+       url('iconfont.woff?t=1730396311529') format('woff'),
+       url('iconfont.ttf?t=1730396311529') format('truetype');
 }
 
 .mvfont {
@@ -13,8 +13,48 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.mv-redian3:before {
-  content: "\e64b";
+.mv-kuaitui10s:before {
+  content: "\e650";
+}
+
+.mv-kuaijin15s:before {
+  content: "\e6e7";
+}
+
+.mv-kuaitui15s:before {
+  content: "\e6e8";
+}
+
+.mv-kuaijin10s:before {
+  content: "\e64e";
+}
+
+.mv-zuixin:before {
+  content: "\e65b";
+}
+
+.mv-mv1:before {
+  content: "\e8ed";
+}
+
+.mv-hot3:before {
+  content: "\e64d";
+}
+
+.mv-quanbu:before {
+  content: "\e707";
+}
+
+.mv-jia2:before {
+  content: "\e7cb";
+}
+
+.mv-paihb:before {
+  content: "\e853";
+}
+
+.mv-remenbang:before {
+  content: "\e64a";
 }
 
 .mv-redian4:before {
@@ -23,10 +63,6 @@
 
 .mv-redian:before {
   content: "\e6c3";
-}
-
-.mv-redian1:before {
-  content: "\e689";
 }
 
 .mv-resou:before {
@@ -79,10 +115,6 @@
 
 .mv-remen1:before {
   content: "\e646";
-}
-
-.mv-remen4:before {
-  content: "\e603";
 }
 
 .mv-remen11:before {

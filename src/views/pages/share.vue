@@ -49,6 +49,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import QrcodeVue from 'qrcode.vue'
 import { useUserStoreHook } from '@/store/user'
 import { copy } from '@/utils/index'
@@ -57,7 +58,7 @@ import { useAppStore } from '@/store/app'
 
 const appStore = useAppStore()
 const userStore = useUserStoreHook()
-
+const router = useRouter()
 // 获取当前域名
 const currentDomain = window.location.origin
 

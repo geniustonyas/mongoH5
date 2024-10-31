@@ -267,13 +267,13 @@ const fetchVideos = async (params: VideoListRequest) => {
 
       if (categoryVideosMap.value[query.ChannelId] && categoryVideosMap.value[query.ChannelId].length > 0) {
         categoryVideosMap.value[query.ChannelId].forEach(async (video) => {
-          video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+          video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
         })
       }
 
       if (categoryBannerMap.value[query.ChannelId] && categoryBannerMap.value[query.ChannelId].length > 0) {
         categoryBannerMap.value[query.ChannelId].forEach(async (video) => {
-          video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+          video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
         })
       }
     } else {
@@ -296,10 +296,10 @@ const fetchIndexVideos = async () => {
     latestVideos.value = data.Latest
     // 异步解密图片
     recommendedVideos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
     })
     latestVideos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
     })
   } catch (error) {
     console.error(`获取首页视频列表失败:`, error)

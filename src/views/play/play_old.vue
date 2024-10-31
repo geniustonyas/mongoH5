@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { ref, onUnmounted, nextTick, watch } from 'vue'
-import { useRoute, onBeforeRouteLeave } from 'vue-router'
+import { useRoute, useRouter, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
@@ -72,6 +72,7 @@ import Clipboard from 'clipboard'
 
 const route = useRoute()
 const appStore = useAppStore()
+const router = useRouter()
 const userStore = useUserStore()
 const videoDetail = ref<VideoDetailResponse | null>(null)
 const recommendedVideos = ref<Video[]>([])
@@ -94,7 +95,7 @@ const fetchVideoDetail = async () => {
       poster: ''
     }))
     recommendedVideos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
     })
 
     nextTick(() => {

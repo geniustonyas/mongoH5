@@ -75,7 +75,6 @@ import 'swiper/css/virtual'
 
 import { Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
-import { throttle } from 'lodash-es'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -111,7 +110,7 @@ const fetchVideos = async () => {
       const newVideos = await Promise.all(
         data.items.map(async (video) => ({
           ...video,
-          poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+          poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
         }))
       )
       videos.value.push(...newVideos)

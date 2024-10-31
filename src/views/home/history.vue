@@ -79,7 +79,7 @@ const fetchRecords = async () => {
       videos.value = await Promise.all(
         data.items.map(async (video) => ({
           ...video,
-          poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+          poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
         }))
       )
       nodata.value = videos.value.length == 0

@@ -102,7 +102,7 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
       const newVideos = await Promise.all(
         data.items.map(async (video) => ({
           ...video,
-          poster: await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+          poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
         }))
       )
       if (isRefresh) {

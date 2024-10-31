@@ -6,11 +6,81 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "21621290",
-      "name": "热点",
-      "font_class": "redian3",
-      "unicode": "e64b",
-      "unicode_decimal": 58955
+      "icon_id": "21574275",
+      "name": "后退10s",
+      "font_class": "kuaitui10s",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "4151013",
+      "name": "快进",
+      "font_class": "kuaijin15s",
+      "unicode": "e6e7",
+      "unicode_decimal": 59111
+    },
+    {
+      "icon_id": "4151014",
+      "name": "快退",
+      "font_class": "kuaitui15s",
+      "unicode": "e6e8",
+      "unicode_decimal": 59112
+    },
+    {
+      "icon_id": "21574273",
+      "name": "快进10s",
+      "font_class": "kuaijin10s",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "1330552",
+      "name": "最新问题",
+      "font_class": "zuixin",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "40307422",
+      "name": "视频",
+      "font_class": "mv1",
+      "unicode": "e8ed",
+      "unicode_decimal": 59629
+    },
+    {
+      "icon_id": "563533",
+      "name": "hot",
+      "font_class": "hot3",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "32475591",
+      "name": "全部",
+      "font_class": "quanbu",
+      "unicode": "e707",
+      "unicode_decimal": 59143
+    },
+    {
+      "icon_id": "25537501",
+      "name": "加",
+      "font_class": "jia2",
+      "unicode": "e7cb",
+      "unicode_decimal": 59339
+    },
+    {
+      "icon_id": "34453859",
+      "name": "paihb",
+      "font_class": "paihb",
+      "unicode": "e853",
+      "unicode_decimal": 59475
+    },
+    {
+      "icon_id": "38128204",
+      "name": "二级菜单_总体热榜_选中",
+      "font_class": "remenbang",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
     },
     {
       "icon_id": "30894120",
@@ -25,13 +95,6 @@
       "font_class": "redian",
       "unicode": "e6c3",
       "unicode_decimal": 59075
-    },
-    {
-      "icon_id": "3965589",
-      "name": "热点",
-      "font_class": "redian1",
-      "unicode": "e689",
-      "unicode_decimal": 59017
     },
     {
       "icon_id": "7078708",
@@ -123,13 +186,6 @@
       "font_class": "remen1",
       "unicode": "e646",
       "unicode_decimal": 58950
-    },
-    {
-      "icon_id": "10830731",
-      "name": "热门",
-      "font_class": "remen4",
-      "unicode": "e603",
-      "unicode_decimal": 58883
     },
     {
       "icon_id": "17396187",

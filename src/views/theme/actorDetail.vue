@@ -144,7 +144,7 @@ const fetchVideos = async () => {
       poster: ''
     }))
     videos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
     })
     noData.value = videos.value.length === 0
   } catch (error) {

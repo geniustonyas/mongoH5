@@ -551,6 +551,35 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             i { font-size: 2.4rem; color: var(--color-white); }
         }
         video { width: 100%; height: 100%; }
+
+        .plyr__controls {
+            .plyr__progress__container {
+                position: absolute;
+                top: -5px;
+                left: 10px;
+                width: calc(100% - 24px);
+            }
+            // .plyr__controls__item[data-plyr="rewind"] {
+            //     position: relative;
+              
+            //     svg {
+            //       display: none; // 隐藏默认的 SVG 图标
+            //     }
+              
+            //     &::before {
+            //         content:url('../imgs/video/rewind.svg'); 
+            //       position: absolute;
+            //       left: 50%;
+            //       top: 50%;
+            //       transform: translate(-50%, -50%);
+            //       width: 16px;
+            //       height: 16px;
+            //       background-size: contain;
+            //       background-repeat: no-repeat;
+            //     }
+            // }
+        }
+        
     }
     .md-b { padding: 1rem;
         .b-a {
@@ -1209,3 +1238,16 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 
 :root { --color-main-bg: #000; --color-main-txt: #e1e3e5; --color-white: #fff; --color-black: #000; --color-dark: #333; --color-border: #e2e2e2; --color-666: #666; --color-light: #969699; --color-primary: #f96518; --color-primary-rgba: 249,101,24; }
+:root {
+    --plyr-color-main: var(--color-primary);
+    --plyr-video-background: transparent;
+    --plyr-captions-background: #000;
+    --plyr-captions-text-color: #fff;
+    --plyr-font-weight-regular: 600;
+    --plyr-font-weight-bold: 600;
+    --plyr-font-family: 'rubik';
+    --webkit-text-track-display: none;
+    --plyr-font-size-xlarge: 30px;
+    --plyr-control-icon-size: 15px;
+    --plyr-control-spacing: 10px;
+  }

@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick, onUnmounted } from 'vue'
-import { useRoute, useRouter, onBeforeRouteLeave } from 'vue-router'
+import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi, addPlayCountApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
@@ -85,6 +85,7 @@ const controls = ref([
   'rewind', // 按默认的10秒回退
   'fast-forward', // 按默认的10秒快进
   'progress', // 播放和缓冲的进度条和拖动条
+  'current-time',
   'duration', // 媒体的总时长
   'mute', // 静音切换
   'volume', // 音量控制
@@ -152,7 +153,7 @@ const fetchVideoDetail = async (videoId: string) => {
       poster: ''
     }))
     recommendedVideos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${video.imgDomain}${video.imgUrl}`)
+      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
     })
 
     if (videoDetail.value?.playUrl) {
