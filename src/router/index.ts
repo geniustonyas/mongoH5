@@ -233,11 +233,10 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // @ts-ignore
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && typeof window.MSStream !== 'undefined'
+  const isIOS = /iPad|iPhone|iPod|IOS|Ios/.test(navigator.userAgent)
   const isBackNavigation = window.history.state && window.history.state.forward === null
-
+  // 提前设置 transition
   if (isIOS && isBackNavigation && !appStore.isProgrammaticBack) {
-    console.log(123)
     to.meta.transition = 'no'
   }
 

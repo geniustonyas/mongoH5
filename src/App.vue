@@ -13,12 +13,19 @@
 <script setup lang="ts">
 import Login from '@/components/Login.vue'
 import DownloadPop from '@/components/DownloadPop.vue'
+import { useAppStoreHook } from '@/store/app'
+
+const appStore = useAppStoreHook()
 const getTransition = (transition: unknown): string | undefined => {
   if (typeof transition === 'string') {
     return transition
   }
   return undefined
 }
+
+window.addEventListener('popstate', () => {
+  appStore.isUserBackNavigation = true
+})
 </script>
 
 <style>

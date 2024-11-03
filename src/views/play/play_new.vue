@@ -4,14 +4,6 @@
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
         <video id="plyr-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
-        <div class="a-f">
-          <div class="item">
-            <span v-for="(option, index) in rewindOptions" :key="'rewind-' + index" @click="rewind(option.time)"> <i class="mvfont mv-left" />{{ option.label }} </span>
-          </div>
-          <div class="item">
-            <span v-for="(option, index) in forwardOptions" :key="'forward-' + index" @click="forward(option.time)">{{ option.label }}<i class="mvfont mv-right" /></span>
-          </div>
-        </div>
       </div>
       <div class="md-b">
         <div class="b-a">
@@ -57,18 +49,12 @@
         <p>分享链接已复制，赶快去分享给好友吧！</p>
       </div>
     </Popup>
-    <Popup v-if="ad" v-model:show="showAdPopup" position="center" :close-on-click-overlay="false">
-      <a v-if="ad.targetUrl" target="_blank" :href="ad.targetUrl">
-        <img :src="appStore.cdnUrl + ad.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" />
-      </a>
-      <Icon name="close" size="30" @click="closeAdPopup" style="display: block; text-align: center; margin: 20px auto" />
-    </Popup>
     <main class="main" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, onUnmounted, onMounted } from 'vue'
+import { ref, nextTick, onUnmounted } from 'vue'
 import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi, addPlayCountApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
@@ -80,7 +66,7 @@ import { useAppStore } from '@/store/app'
 import dayjs from 'dayjs'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import { showToast } from 'vant'
-import { Popup, Icon } from 'vant'
+import { Popup } from 'vant'
 import Clipboard from 'clipboard'
 import { throttle } from 'lodash-es'
 
@@ -119,18 +105,6 @@ const maxClicks = 5
 const disableTime = 10000
 let isDisabled = ref(false)
 
-const rewindOptions = [
-  { time: 600, label: '10m' }, // 10分钟
-  { time: 60, label: '1m' }, // 1分钟
-  { time: 15, label: '15s' } // 15秒
-]
-
-const forwardOptions = [
-  { time: 15, label: '15s' }, // 15秒
-  { time: 60, label: '1m' }, // 1分钟
-  { time: 600, label: '10m' } // 10分钟
-]
-
 const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
   if (isDisabled.value) {
     showToast('请稍后再试')
@@ -138,6 +112,7 @@ const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
   }
 
   clickCount.value++
+  console.log(clickCount.value)
   if (clickCount.value >= maxClicks) {
     showToast('请不要频繁操作')
     isDisabled.value = true
@@ -200,7 +175,6 @@ const initializePlayer = async (domain: string, uri: string) => {
       return
     }
     const url = domain + uri
-    // const url = 'http://mg.aj666888.com/video/demo.m3u8'
     player.value = new window.Plyr(videoElement, {
       clickToPlay: true,
       autoplay: true,
@@ -232,28 +206,10 @@ const initializePlayer = async (domain: string, uri: string) => {
       videoElement.src = url
     }
 
-    player.value?.once('play', async () => {
-      await addPlayCountApi(videoDetail.value?.id)
-    })
-
-    player.value.on('ready', () => {
-      if (ad.value) showAdPopup.value = true // 视频准备好时显示广告
-    })
-
-    player.value.on('play', () => {
-      showAdPopup.value = false // 播放时隐藏广告
-    })
-
-    player.value.on('pause', () => {
-      if (ad.value) showAdPopup.value = true // 暂停时显示广告
-    })
-
-    player.value.on('waiting', () => {
-      if (ad.value) showAdPopup.value = true // 加载中时显示广告
-    })
-
-    player.value.on('playing', () => {
-      showAdPopup.value = false // 播放时隐藏广告
+    videoElement.addEventListener('canplay', () => {
+      player.value?.on('play', async () => {
+        await addPlayCountApi(videoDetail.value?.id)
+      })
     })
   } catch (error) {
     console.error('初始化播放器失败:', error)
@@ -287,20 +243,6 @@ const handleHlsError = (data) => {
   } else {
     // 非致命错误的处理
     console.warn('HLS non-fatal error:', data)
-  }
-}
-
-const rewind = (time: number) => {
-  if (player.value) {
-    const currentTime = player.value.currentTime
-    player.value.currentTime = Math.max(currentTime - time, 0)
-  }
-}
-
-const forward = (time: number) => {
-  if (player.value) {
-    const currentTime = player.value.currentTime
-    player.value.currentTime = Math.min(currentTime + time, player.value.duration)
   }
 }
 
@@ -419,55 +361,13 @@ const handleCollection = async () => {
   }
 }
 
-const showAdPopup = ref(false) // 控制广告弹窗的显示
-const ad = ref(null) // 初始化广告为 null
-
-const closeAdPopup = () => {
-  showAdPopup.value = false
-  player.value?.play() // 关闭广告后播放视频
-}
-
 ;(async () => {
   await fetchVideoDetail(route.params.id as string)
 })()
 
-onMounted(() => {
-  const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
-
-  // 使用 Page Visibility API
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      player.value?.pause()
-    } else {
-      player.value?.play()
-    }
-  })
-
-  // 使用 Intersection Observer API
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          player.value?.pause()
-        } else {
-          player.value?.play()
-        }
-      })
-    },
-    { threshold: 0.1 }
-  )
-
-  observer.observe(videoElement)
-
-  // 在组件卸载时清除观察器
-  onUnmounted(() => {
-    observer.disconnect()
-  })
-
-  if (showAdPopup.value) {
-    player.value?.pause() // 显示广告时暂停视频
-  }
-})
+// onMounted(async () => {
+//   await fetchVideoDetail(route.params.id as string)
+// })
 
 onUnmounted(() => {
   resetPlayer()

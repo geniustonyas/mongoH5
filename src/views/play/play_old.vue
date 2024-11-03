@@ -59,7 +59,7 @@ import { useRoute, useRouter, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
-import decryptionService from '@/utils/decryptionService'
+import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
 import { getAssetsFile } from '@/utils'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
@@ -233,6 +233,11 @@ const initializePlayer = async (url: string) => {
       const hls = new window.Hls()
       hls.loadSource(url)
       hls.attachMedia(videoElement)
+      hls.value.config.xhrSetup = (xhr, url) => {
+        const path = new URL(url).pathname
+        const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, path)
+        xhr.open('GET', tsUrlWithAuth, true)
+      }
     } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
       videoElement.src = url
     }

@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { TokenPrefix, getToken } from '@/utils/auth'
 import { useUserStoreHook } from '@/store/user'
 import { showToast } from 'vant'
-import { ApiResponseData } from '@/types/global'
+import decryptionService from '@/utils/decryptionService'
 
 // 解析 VITE_BASE_API 环境变量
 const apiUrls = import.meta.env.VITE_BASE_API.split('|')
@@ -60,46 +60,64 @@ const initializeAxios = () => {
   return servicePromise
 }
 
-// 请求拦截器和响应拦截器的设置
 const setupInterceptors = (service: AxiosInstance) => {
-  service.interceptors.request.use(
-    (config) => {
-      const abortController = new AbortController()
-      config.signal = abortController.signal as AbortSignal
-      ;(config as any).abortController = abortController
+  //@ts-ignore
+  if (service.interceptors.request.handlers.length === 0) {
+    service.interceptors.request.use(
+      (config) => {
+        const abortController = new AbortController()
+        config.signal = abortController.signal as AbortSignal
+        ;(config as any).abortController = abortController
 
-      config.headers['Authorization'] = `${TokenPrefix}${getToken()}`
+        config.headers['Authorization'] = `${TokenPrefix}${getToken()}`
 
-      return config
-    },
-    (error) => {
-      return Promise.reject(error)
-    }
-  )
-
-  service.interceptors.response.use(
-    (response: AxiosResponse<ApiResponseData<any>>) => {
-      const data = response.data
-      if (data.code === undefined) {
-        return response
-      } else {
-        if (data.code == '200') {
-          return response
-        } else if (data.code == '401') {
-          useUserStoreHook().clearLogin()
-        } else {
-          showToast('服务器错误：' + data.code)
+        // 处理预检请求
+        if (config.method?.toUpperCase() === 'OPTIONS') {
+          return config // 直接返回配置，不做其他处理
         }
-        return Promise.reject(response)
+
+        return config
+      },
+      (error) => {
+        return Promise.reject(error)
       }
-    },
-    (error) => {
-      if (error.response?.status === 401) {
-        useUserStoreHook().clearLogin()
+    )
+  }
+
+  //@ts-ignore
+  if (service.interceptors.response.handlers.length === 0) {
+    service.interceptors.response.use(
+      async (response: AxiosResponse<any>) => {
+        const decrypt = new decryptionService()
+        const encryptedData = response.data
+
+        const decryptedData = decrypt.decryptResponseData(encryptedData)
+        try {
+          const parsedData = JSON.parse(decryptedData)
+          response.data = parsedData
+
+          // 检查解密后的数据中的权限错误
+          if (parsedData.code == '401') {
+            useUserStoreHook().clearLogin()
+            return Promise.reject(new Error('Unauthorized'))
+          } else if (parsedData.code !== '200') {
+            showToast('服务器错误：' + parsedData.code)
+            return Promise.reject(new Error('Server Error: ' + parsedData.code))
+          }
+
+          return response
+        } catch (parseError) {
+          throw new Error('解密后的数据不是有效的 JSON 格式')
+        }
+      },
+      (error) => {
+        if (error.response?.status === 401) {
+          useUserStoreHook().clearLogin()
+        }
+        return Promise.reject(error)
       }
-      return Promise.reject(error)
-    }
-  )
+    )
+  }
 }
 
 // 通用请求函数

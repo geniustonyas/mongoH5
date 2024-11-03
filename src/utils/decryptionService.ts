@@ -1,5 +1,6 @@
 import axios from 'axios'
 import CryptoJS from 'crypto-js'
+import md5 from 'crypto-js/md5'
 
 // 定义文件类型
 const fileTypes = {
@@ -60,8 +61,26 @@ class decryptionService {
 
       return `data:${mimeType};base64,${base64Data}`
     } catch (error) {
-      console.error('Error fetching or decrypting data for URL:', url, error)
-      // 返回一个默认值或空字符串以继续处理后续图片
+      console.error('解密图片失败:', url, error)
+      return ''
+    }
+  }
+
+  decryptResponseData(encryptedData: string): string {
+    try {
+      const key = 'gFzviOY0zOxVq1cu'
+      const iv = 'ZmA0Osl677UdSrl0'
+      const parsedKey = CryptoJS.enc.Utf8.parse(key)
+      const parsedIv = CryptoJS.enc.Utf8.parse(iv)
+      const decrypted = CryptoJS.AES.decrypt(encryptedData, parsedKey, {
+        iv: parsedIv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      })
+      const decryptedString = decrypted.toString(CryptoJS.enc.Utf8)
+      return decryptedString
+    } catch (error) {
+      console.error('解密响应数据失败:', error)
       return ''
     }
   }
@@ -75,6 +94,14 @@ class decryptionService {
     }
     return 'application/octet-stream' // 默认类型
   }
+}
+
+export const generateAuthUrl = (domain: string, uri: string, key = '7x3qBibrQR1Jobw2FGr') => {
+  // key 主7x3qBibrQR1Jobw2FGr 备kTv4kHZwx
+  const timestamp = Math.floor(Date.now() / 1000).toString()
+  const temp = `${key}${uri}${timestamp}`
+  const sign = md5(temp).toString().toLowerCase()
+  return `${domain}${uri}?sign=${sign}&t=${timestamp}`
 }
 
 export default decryptionService

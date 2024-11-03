@@ -9,6 +9,7 @@ export const useAppStore = defineStore('app', {
     return {
       loading: false,
       isProgrammaticBack: false, // 是否是程序返回
+      isUserBackNavigation: false, // 是否是用户返回
       hasShownAnnouncement: true, // 用于跟踪公告是否已显示, 默认为true 需要显示
       shownDownload: true, // 用于跟踪下载弹窗是否已显示, 默认为true 需要显示
 
@@ -95,6 +96,7 @@ export const useAppStore = defineStore('app', {
           data: { data }
         } = await getAdsApi()
         this.advertisement = data || []
+        console.log('广告:', this.advertisement)
       } catch (error) {
         console.error('获取广告失败:', error)
       }

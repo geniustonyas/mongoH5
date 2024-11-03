@@ -59,12 +59,12 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, nextTick } from 'vue'
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
-import { getVideoListApi, getVideoDetailApi } from '@/api/video'
+import { getVideoListApi, getVideoDetailApi, addPlayCountApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
-import decryptionService from '@/utils/decryptionService'
+import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
 import { getAssetsFile } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 
@@ -163,6 +163,11 @@ const initializePlayer = async (index: number) => {
         liveSyncDuration: 3,
         liveMaxLatencyDuration: 5
       })
+      hls.config.xhrSetup = (xhr, url) => {
+        const path = new URL(url).pathname
+        const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, path)
+        xhr.open('GET', tsUrlWithAuth, true)
+      }
       hlsInstances.value.set(index, hls)
       hls.loadSource(appStore.playDomain + video.playUrl)
       hls.attachMedia(videoElement)
@@ -177,6 +182,10 @@ const initializePlayer = async (index: number) => {
         players.value.set(index, player)
         player.on('canplay', () => {
           resolve() // 视频可以播放
+        })
+        player.once('play', async () => {
+          await addPlayCountApi(videoDetail.value?.id)
+          resolve()
         })
       })
       // https://github.com/video-dev/hls.js/blob/master/docs/API.md
