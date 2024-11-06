@@ -173,7 +173,7 @@ const initializePlayer = async (index: number) => {
       hls.attachMedia(videoElement)
       hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
         const player = new window.Plyr(videoElement, {
-          clickToPlay: true,
+          clickToPlay: false,
           autoplay: false,
           autopause: true,
           hideControls: true,
@@ -182,6 +182,11 @@ const initializePlayer = async (index: number) => {
         players.value.set(index, player)
         player.on('canplay', () => {
           resolve() // 视频可以播放
+        })
+        player.on('click', () => {
+          if (player.touch) {
+            player.togglePlay()
+          }
         })
         player.once('play', async () => {
           await addPlayCountApi(videoDetail.value?.id)

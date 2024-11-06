@@ -199,7 +199,8 @@ const router = createRouter({
   routes
 })
 
-// 验证是否需要登录
+const navigationStack: string[] = []
+
 router.beforeEach(async (to, from, next) => {
   const token = getToken()
   const userStore = useUserStore()
@@ -234,21 +235,28 @@ router.beforeEach(async (to, from, next) => {
 
   // @ts-ignore
   const isIOS = /iPad|iPhone|iPod|IOS|Ios/.test(navigator.userAgent)
-  const isBackNavigation = window.history.state && window.history.state.forward === null
-  // 提前设置 transition
-  if (isIOS && isBackNavigation && !appStore.isProgrammaticBack) {
+  if (isIOS && appStore.isUserBackNavigation && !appStore.isProgrammaticBack) {
     to.meta.transition = 'no'
   }
 
-  appStore.isProgrammaticBack = false
+  appStore.isUserBackNavigation = false
 })
 
 router.afterEach((to, from) => {
-  if (to.meta.transition != 'no') {
+  const appStore = useAppStore()
+  if (to.meta.transition !== 'no') {
     const toDepth = to.path.split('/').length
     const fromDepth = from.path.split('/').length
     to.meta.transition = toDepth === fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'
   }
+
+  if (navigationStack.length === 0 || navigationStack[navigationStack.length - 1] !== to.fullPath) {
+    navigationStack.push(to.fullPath)
+  } else {
+    navigationStack.pop()
+  }
+
+  appStore.isProgrammaticBack = false
 })
 
 export default router

@@ -1,7 +1,7 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <transition :name="getTransition(route.meta.transition)">
-      <keep-alive :include="['index']">
+      <keep-alive :include="[]">
         <component :is="Component" :key="route.path" />
       </keep-alive>
     </transition>
@@ -13,18 +13,19 @@
 <script setup lang="ts">
 import Login from '@/components/Login.vue'
 import DownloadPop from '@/components/DownloadPop.vue'
-import { useAppStoreHook } from '@/store/app'
-
-const appStore = useAppStoreHook()
+import { useAppStore } from '@/store/app'
+const appStore = useAppStore()
 const getTransition = (transition: unknown): string | undefined => {
   if (typeof transition === 'string') {
     return transition
   }
   return undefined
 }
-
-window.addEventListener('popstate', () => {
+window.addEventListener('touchmove', () => {
   appStore.isUserBackNavigation = true
+  setTimeout(() => {
+    appStore.isUserBackNavigation = false
+  }, 400)
 })
 </script>
 
@@ -46,13 +47,14 @@ body,
 .slide-right-enter-active,
 .slide-right-leave-active {
   will-change: transform;
-  transition: transform 400ms;
+  transition: transform 400ms ease-in-out;
   height: 100%;
   width: 100%;
   top: 0;
   position: absolute;
   backface-visibility: hidden;
   perspective: 1000;
+  /* display: none; */
 }
 
 .slide-right-enter-from,

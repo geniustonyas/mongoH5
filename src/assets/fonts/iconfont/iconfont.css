@@ -1,8 +1,8 @@
 @font-face {
   font-family: "mvfont"; /* Project id 4698642 */
-  src: url('iconfont.woff2?t=1730396311529') format('woff2'),
-       url('iconfont.woff?t=1730396311529') format('woff'),
-       url('iconfont.ttf?t=1730396311529') format('truetype');
+  src: url('iconfont.woff2?t=1730820216358') format('woff2'),
+       url('iconfont.woff?t=1730820216358') format('woff'),
+       url('iconfont.ttf?t=1730820216358') format('truetype');
 }
 
 .mvfont {
@@ -11,6 +11,42 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.mv-shanchu:before {
+  content: "\e64f";
+}
+
+.mv-bianpinghuatubiaosheji-:before {
+  content: "\e64b";
+}
+
+.mv-left1:before {
+  content: "\10103";
+}
+
+.mv-left2:before {
+  content: "\10104";
+}
+
+.mv-right2:before {
+  content: "\e655";
+}
+
+.mv-right1:before {
+  content: "\e9cd";
+}
+
+.mv-biaoqing:before {
+  content: "\e603";
+}
+
+.mv-shengxu:before {
+  content: "\e651";
+}
+
+.mv-jiangxu:before {
+  content: "\e653";
 }
 
 .mv-kuaitui10s:before {

@@ -2,8 +2,8 @@
   <div class="page">
     <section class="a-d-b">
       <div class="ab-a">
-        <a href="javascript:void(0)" @click="appStore.setBack(true)" class="a-bk"><i class="mvfont mv-left" /></a>
-        <div class="a-x" :style="{ backgroundImage: `url(${actor.imgUrl})` }">
+        <a @click="appStore.setBack(true)" class="a-bk"><i class="mvfont mv-left" /></a>
+        <div class="a-x" v-lazy:background-image="appStore.cdnUrl + actor.imgUrl">
           <div class="x-c">
             <div class="c-bd">
               <div class="c-i" v-lazy:background-image="appStore.cdnUrl + actor.imgUrl">
@@ -123,6 +123,7 @@ const fetchActorDetail = async () => {
       data: { data }
     } = await getActorDetailApi(actorId)
     actor.value = data
+    console.log(actor.value)
   } catch (error) {
     console.error('获取演员详情失败:', error)
   }

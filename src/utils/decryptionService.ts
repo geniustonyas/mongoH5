@@ -96,8 +96,8 @@ class decryptionService {
   }
 }
 
-export const generateAuthUrl = (domain: string, uri: string, key = '7x3qBibrQR1Jobw2FGr') => {
-  // key 主7x3qBibrQR1Jobw2FGr 备kTv4kHZwx
+export const generateAuthUrl = (domain: string, uri: string, key = 'WZUnX2Avi6WNBN1Gx1a4RH') => {
+  // key 主WZUnX2Avi6WNBN1Gx1a4RH 备V1zDuHmSCVCKO0Xu
   const timestamp = Math.floor(Date.now() / 1000).toString()
   const temp = `${key}${uri}${timestamp}`
   const sign = md5(temp).toString().toLowerCase()

@@ -202,7 +202,7 @@ const initializePlayer = async (domain: string, uri: string) => {
     const url = domain + uri
     // const url = 'http://mg.aj666888.com/video/demo.m3u8'
     player.value = new window.Plyr(videoElement, {
-      clickToPlay: true,
+      clickToPlay: false,
       autoplay: true,
       controls: controls.value,
       settings: ['captions', 'quality', 'speed', 'loop'],
@@ -231,6 +231,12 @@ const initializePlayer = async (domain: string, uri: string) => {
     } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
       videoElement.src = url
     }
+
+    player.value?.on('click', () => {
+      if (player.value.touch) {
+        player.value.togglePlay()
+      }
+    })
 
     player.value?.once('play', async () => {
       await addPlayCountApi(videoDetail.value?.id)
@@ -458,6 +464,10 @@ onMounted(() => {
   )
 
   observer.observe(videoElement)
+
+  onMounted(() => {
+    window.scrollTo(0, 0)
+  })
 
   // 在组件卸载时清除观察器
   onUnmounted(() => {
