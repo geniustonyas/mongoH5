@@ -33,19 +33,19 @@
             <span @click="changeSortType(2)" :class="{ active: bbsListSortType[0] == 2 }"><i class="mvfont mv-hot3" />热门</span>
             <span @click="changeSortType(3)" :class="{ active: bbsListSortType[0] == 3 }"><i class="mvfont mv-mv1" />视频</span>
           </div>
-          <PullRefresh v-if="bbsListMap[activeTab]" v-model="refreshing" @refresh="handleRefresh">
-            <BbsListItem :bbs-list="bbsListMap[activeTab]" />
+          <PullRefresh v-if="bbsListMap[0]" v-model="refreshing" @refresh="handleRefresh">
+            <BbsListItem :bbs-list="bbsListMap[0]" />
           </PullRefresh>
-          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+          <div class="au-pagination-box" v-if="bbsListTotalPages[0] > 1">
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
+              <a @click="changePage(bbsListPageIndex[0])" :class="{ disabled: bbsListPageIndex[0] == 1 }">上一页</a>
             </div>
             <div class="pb-x">
-              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
-              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
+              <input v-model="bbsListPageIndex[0]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[0]" />
+              <span>/ {{ bbsListTotalPages[0] }}</span>
             </div>
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
+              <a @click="changePage(bbsListPageIndex[0] + 1)" :class="{ disabled: bbsListPageIndex[0] == bbsListTotalPages[0] }">下一页</a>
             </div>
           </div>
         </SwipeItem>
@@ -76,25 +76,25 @@
             <div class="g-item">
               <div class="i-l">排序</div>
               <div class="i-r">
-                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[activeTab] == key }" @click="changeSortType(key)">
+                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[1] == key }" @click="changeSortType(key)">
                   {{ label }}
                 </span>
               </div>
             </div>
           </div>
-          <PullRefresh v-if="bbsListMap[activeTab]" v-model="refreshing" @refresh="handleRefresh">
-            <BbsListItem :bbs-list="bbsListMap[activeTab]" class="bbs-list mt-0" />
+          <PullRefresh v-if="bbsListMap[1]" v-model="refreshing" @refresh="handleRefresh">
+            <BbsListItem :bbs-list="bbsListMap[1]" class="bbs-list mt-0" />
           </PullRefresh>
-          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+          <div class="au-pagination-box" v-if="bbsListTotalPages[1] > 1">
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
+              <a @click="changePage(bbsListPageIndex[1])" :class="{ disabled: bbsListPageIndex[1] == 1 }">上一页</a>
             </div>
             <div class="pb-x">
-              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
-              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
+              <input v-model="bbsListPageIndex[1]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[1]" />
+              <span>/ {{ bbsListTotalPages[1] }}</span>
             </div>
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
+              <a @click="changePage(bbsListPageIndex[1] + 1)" :class="{ disabled: bbsListPageIndex[1] == bbsListTotalPages[1] }">下一页</a>
             </div>
           </div>
         </SwipeItem>
@@ -114,26 +114,26 @@
             <div class="g-item">
               <div class="i-l">排序</div>
               <div class="i-r">
-                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[activeTab] == key }" @click="changeSortType(key)">
+                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[2] == key }" @click="changeSortType(key)">
                   {{ label }}
                 </span>
               </div>
             </div>
           </div>
-          <PullRefresh v-if="bbsListMap[activeTab]" v-model="refreshing" @refresh="handleRefresh">
-            <BbsWeimiListItem :bbs-list="bbsListMap[activeTab]" />
+          <PullRefresh v-if="bbsListMap[2]" v-model="refreshing" @refresh="handleRefresh">
+            <BbsWeimiListItem :bbs-list="bbsListMap[2]" />
           </PullRefresh>
 
-          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+          <div class="au-pagination-box" v-if="bbsListTotalPages[2] > 1">
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
+              <a @click="changePage(bbsListPageIndex[2])" :class="{ disabled: bbsListPageIndex[2] == 1 }">上一页</a>
             </div>
             <div class="pb-x">
-              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
-              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
+              <input v-model="bbsListPageIndex[2]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[2]" />
+              <span>/ {{ bbsListTotalPages[2] }}</span>
             </div>
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
+              <a @click="changePage(bbsListPageIndex[2] + 1)" :class="{ disabled: bbsListPageIndex[2] == bbsListTotalPages[2] }">下一页</a>
             </div>
           </div>
         </SwipeItem>
@@ -153,44 +153,44 @@
             <div class="g-item">
               <div class="i-l">排序</div>
               <div class="i-r">
-                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[activeTab] == key }" @click="changeSortType(key)">
+                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[3] == key }" @click="changeSortType(key)">
                   {{ label }}
                 </span>
               </div>
             </div>
           </div>
-          <PullRefresh v-if="bbsListMap[activeTab]" v-model="refreshing" @refresh="handleRefresh">
-            <BbsListItem :bbs-list="bbsListMap[activeTab]" class="bbs-list mt-0" />
+          <PullRefresh v-if="bbsListMap[3]" v-model="refreshing" @refresh="handleRefresh">
+            <BbsListItem :bbs-list="bbsListMap[3]" class="bbs-list mt-0" />
           </PullRefresh>
 
-          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+          <div class="au-pagination-box" v-if="bbsListTotalPages[3] > 1">
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
+              <a @click="changePage(bbsListPageIndex[3])" :class="{ disabled: bbsListPageIndex[3] == 1 }">上一页</a>
             </div>
             <div class="pb-x">
-              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
-              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
+              <input v-model="bbsListPageIndex[3]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[3]" />
+              <span>/ {{ bbsListTotalPages[3] }}</span>
             </div>
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
+              <a @click="changePage(bbsListPageIndex[3] + 1)" :class="{ disabled: bbsListPageIndex[3] == bbsListTotalPages[3] }">下一页</a>
             </div>
           </div>
         </SwipeItem>
         <!-- 收藏 -->
         <SwipeItem>
-          <PullRefresh v-if="bbsListMap[activeTab]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh">
-            <BbsListItem :bbs-list="bbsListMap[activeTab]" :is-collect="true" />
+          <PullRefresh v-if="bbsListMap[4]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh">
+            <BbsListItem :bbs-list="bbsListMap[4]" :is-collect="true" />
           </PullRefresh>
-          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+          <div class="au-pagination-box" v-if="bbsListTotalPages[4] > 1">
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
+              <a @click="changePage(bbsListPageIndex[4])" :class="{ disabled: bbsListPageIndex[4] == 1 }">上一页</a>
             </div>
             <div class="pb-x">
-              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
-              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
+              <input v-model="bbsListPageIndex[4]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[4]" />
+              <span>/ {{ bbsListTotalPages[4] }}</span>
             </div>
             <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
+              <a @click="changePage(bbsListPageIndex[4] + 1)" :class="{ disabled: bbsListPageIndex[4] == bbsListTotalPages[4] }">下一页</a>
             </div>
           </div>
         </SwipeItem>

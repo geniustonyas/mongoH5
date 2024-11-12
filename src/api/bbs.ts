@@ -81,3 +81,12 @@ export function bbsCommentLikeApi(data: { CommentId: string | number; Like: stri
     data
   })
 }
+
+/** 发表评论  */
+export function bbsCommentApi(data: { PostId: string | number; Content: string }) {
+  return request<ApiResponseData<any>>({
+    url: 'BBS/CreateComment',
+    method: 'post',
+    data
+  })
+}

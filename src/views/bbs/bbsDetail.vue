@@ -88,52 +88,53 @@
         <p>分享链接已复制，赶快去分享给好友吧！</p>
       </div>
     </Popup>
-
-    <div class="au-pop" id="pop-comment" v-show="showComment">
-      <div class="ap-bg" />
-      <div class="ap-bd">
-        <div class="bbs-comment-box">
-          <div class="bcb-head">
-            <p>
-              评论<b>{{ comments.length }}</b>
-            </p>
-            <span @click="showComment = false"><i class="mvfont mv-close" /></span>
-          </div>
-          <div class="bcb-main">
-            <ul class="bbs-comment-list">
-              <li v-for="comment in comments" :key="comment.id">
-                <div class="i-l">
-                  <img v-lazy="{ src: comment.userAvatar, error: getAssetsFile('logo-4.png') }" alt="用户头像" />
-                </div>
-                <div class="i-r">
-                  <div class="r-a">{{ comment.userName }}</div>
-                  <div class="r-b">{{ comment.createTime }}</div>
-                  <div class="r-c">{{ comment.content }}</div>
-                  <div class="r-d">
-                    <span @click="toggleCommentLike(comment, 1)">
-                      <i :class="['mvfont', 'mv-zan', { active: comment.like == 1 }]" />
-                      {{ comment.likeCount }}
-                    </span>
-                    <span @click="toggleCommentLike(comment, 2)">
-                      <i :class="['mvfont', 'mv-nzan', { active: comment.like == 2 }]" />
-                      {{ comment.hateCount }}
-                    </span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="bcb-foot">
-            <div class="f-a">
-              一键发评
-              <p><span>支持楼主☝</span><span>📢真是太美了</span><span>真是太美了🍀</span></p>
-            </div>
-            <div class="f-b">
-              <div class="b-input">
-                <i class="mvfont mv-bianji" />
-                <input placeholder="欢迎您留下宝贵的见解！" />
-                <i class="mvfont mv-biaoqing" />
+  </div>
+  <div class="au-pop" id="pop-comment" v-show="showComment">
+    <div class="ap-bg" />
+    <div class="ap-bd" style="height: 100%">
+      <div class="bbs-comment-box">
+        <div class="bcb-head">
+          <p>
+            评论<b>{{ comments.length }}</b>
+          </p>
+          <span @click="showComment = false"><i class="mvfont mv-close" /></span>
+        </div>
+        <div class="bcb-main">
+          <ul class="bbs-comment-list">
+            <li v-for="comment in comments" :key="comment.id">
+              <div class="i-l">
+                <img v-lazy="{ src: comment.userAvatar, error: getAssetsFile('logo-4.png') }" alt="用户头像" />
               </div>
+              <div class="i-r">
+                <div class="r-a">{{ comment.userName }}</div>
+                <div class="r-b">{{ comment.createTime }}</div>
+                <div class="r-c">{{ comment.content }}</div>
+                <div class="r-d">
+                  <span @click="toggleCommentLike(comment, 1)">
+                    <i :class="['mvfont', 'mv-zan', { active: comment.like == 1 }]" />
+                    {{ comment.likeCount }}
+                  </span>
+                  <span @click="toggleCommentLike(comment, 2)">
+                    <i :class="['mvfont', 'mv-nzan', { active: comment.like == 2 }]" />
+                    {{ comment.hateCount }}
+                  </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="bcb-foot">
+          <div class="f-a">
+            一键发评
+            <p>
+              <span v-for="preset in presetComments" :key="preset" @click="postComment(preset)">{{ preset }}</span>
+            </p>
+          </div>
+          <div class="f-b">
+            <div class="b-input">
+              <i class="mvfont mv-bianji" />
+              <input v-model="commentInput" placeholder="欢迎您留下宝贵的见解！" @keyup.enter="postComment(commentInput)" />
+              <i class="mvfont mv-biaoqing" />
             </div>
           </div>
         </div>
@@ -148,11 +149,11 @@ import { getAssetsFile } from '@/utils'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
-import { getBbsDetailApi, getBbsRelatedRecommendApi, bbsLikeApi, bbsCollectionApi, getBbsCommentListApi, bbsCommentLikeApi } from '@/api/bbs'
+import { getBbsDetailApi, getBbsRelatedRecommendApi, bbsLikeApi, bbsCollectionApi, getBbsCommentListApi, bbsCommentLikeApi, bbsCommentApi } from '@/api/bbs'
 import decryptionService from '@/utils/decryptionService'
 import BbsListItem from '@/components/BbsListItem.vue'
 import type { Bbs } from '@/types/bbs'
-import { showImagePreview, Popup } from 'vant'
+import { showImagePreview, Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
 
 const route = useRoute()
@@ -167,6 +168,25 @@ const showComment = ref(false)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 const comments = ref([])
+const commentInput = ref('')
+const presetComments = ['支持楼主☝', '📢真是太美了', '真是太美了🍀']
+
+const postComment = async (content: string) => {
+  if (!checkLogin()) return
+  if (!detail.value) return
+  if (!content) return
+  try {
+    const { data } = await bbsCommentApi({ PostId: detail.value.id, Content: content })
+    if (data) {
+      showToast('评论成功')
+      fetchComments() // 重新获取评论列表
+      commentInput.value = ''
+    }
+  } catch (error) {
+    console.error('发表评论失败:', error)
+    showToast('发表评论失败')
+  }
+}
 
 const fetchDetail = async (id: string) => {
   try {
