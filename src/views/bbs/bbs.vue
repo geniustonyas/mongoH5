@@ -22,7 +22,7 @@
             <Swipe class="my-swipe" :autoplay="3000" lazy-render>
               <SwipeItem v-for="ad in appStore.getAdvertisementById(2).items" :key="ad.id">
                 <a target="_blank" :href="ad.targetUrl">
-                  <img :src="ad.imgUrl" :alt="ad.title" />
+                  <img v-lazy="ad.imgUrl" :alt="ad.title" />
                 </a>
               </SwipeItem>
             </Swipe>

@@ -88,53 +88,54 @@
         <p>分享链接已复制，赶快去分享给好友吧！</p>
       </div>
     </Popup>
-  </div>
-  <div class="au-pop" id="pop-comment" v-show="showComment">
-    <div class="ap-bg" />
-    <div class="ap-bd" style="height: 100%">
-      <div class="bbs-comment-box">
-        <div class="bcb-head">
-          <p>
-            评论<b>{{ comments.length }}</b>
-          </p>
-          <span @click="showComment = false"><i class="mvfont mv-close" /></span>
-        </div>
-        <div class="bcb-main">
-          <ul class="bbs-comment-list">
-            <li v-for="comment in comments" :key="comment.id">
-              <div class="i-l">
-                <img v-lazy="{ src: comment.userAvatar, error: getAssetsFile('logo-4.png') }" alt="用户头像" />
-              </div>
-              <div class="i-r">
-                <div class="r-a">{{ comment.userName }}</div>
-                <div class="r-b">{{ comment.createTime }}</div>
-                <div class="r-c">{{ comment.content }}</div>
-                <div class="r-d">
-                  <span @click="toggleCommentLike(comment, 1)">
-                    <i :class="['mvfont', 'mv-zan', { active: comment.like == 1 }]" />
-                    {{ comment.likeCount }}
-                  </span>
-                  <span @click="toggleCommentLike(comment, 2)">
-                    <i :class="['mvfont', 'mv-nzan', { active: comment.like == 2 }]" />
-                    {{ comment.hateCount }}
-                  </span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="bcb-foot">
-          <div class="f-a">
-            一键发评
+
+    <div class="au-pop" id="pop-comment" v-show="showComment">
+      <div class="ap-bg" />
+      <div class="ap-bd" style="height: 100%">
+        <div class="bbs-comment-box">
+          <div class="bcb-head">
             <p>
-              <span v-for="preset in presetComments" :key="preset" @click="postComment(preset)">{{ preset }}</span>
+              评论<b>{{ comments.length }}</b>
             </p>
+            <span @click="showComment = false"><i class="mvfont mv-close" /></span>
           </div>
-          <div class="f-b">
-            <div class="b-input">
-              <i class="mvfont mv-bianji" />
-              <input v-model="commentInput" placeholder="欢迎您留下宝贵的见解！" @keyup.enter="postComment(commentInput)" />
-              <i class="mvfont mv-biaoqing" />
+          <div class="bcb-main">
+            <ul class="bbs-comment-list">
+              <li v-for="comment in comments" :key="comment.id">
+                <div class="i-l">
+                  <img v-lazy="{ src: comment.userAvatar, error: getAssetsFile('logo-4.png') }" alt="用户头像" />
+                </div>
+                <div class="i-r">
+                  <div class="r-a">{{ comment.userName }}</div>
+                  <div class="r-b">{{ comment.createTime }}</div>
+                  <div class="r-c">{{ comment.content }}</div>
+                  <div class="r-d">
+                    <span @click="toggleCommentLike(comment, 1)">
+                      <i :class="['mvfont', 'mv-zan', { active: comment.like == 1 }]" />
+                      {{ comment.likeCount }}
+                    </span>
+                    <span @click="toggleCommentLike(comment, 2)">
+                      <i :class="['mvfont', 'mv-nzan', { active: comment.like == 2 }]" />
+                      {{ comment.hateCount }}
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="bcb-foot">
+            <div class="f-a">
+              一键发评
+              <p>
+                <span v-for="preset in presetComments" :key="preset" @click="postComment(preset)">{{ preset }}</span>
+              </p>
+            </div>
+            <div class="f-b">
+              <div class="b-input">
+                <i class="mvfont mv-bianji" />
+                <input v-model="commentInput" placeholder="欢迎您留下宝贵的见解！" @keyup.enter="postComment(commentInput)" />
+                <i class="mvfont mv-biaoqing" />
+              </div>
             </div>
           </div>
         </div>

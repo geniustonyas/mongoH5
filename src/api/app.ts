@@ -1,5 +1,5 @@
 import { request } from '@/utils/axios'
-import { AdsPostion } from '@/types/app'
+import { AdsPostion, SmsParams } from '@/types/app'
 import type { ApiResponseData } from '@/types/global.d'
 
 /** 获取系统配置 */
@@ -27,9 +27,10 @@ export function getAdsApi() {
 }
 
 /** 获取验证码 */
-export function getCodeApi() {
+export function getCodeApi(data: SmsParams) {
   return request<ApiResponseData<any>>({
     url: 'Web/GetCode',
-    method: 'post'
+    method: 'post',
+    data
   })
 }
