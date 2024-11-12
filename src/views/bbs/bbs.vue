@@ -22,7 +22,7 @@
             <Swipe class="my-swipe" :autoplay="3000" lazy-render>
               <SwipeItem v-for="ad in appStore.getAdvertisementById(2).items" :key="ad.id">
                 <a target="_blank" :href="ad.targetUrl">
-                  <img :src="appStore.cdnUrl + ad.imgUrl" :alt="ad.title" />
+                  <img :src="ad.imgUrl" :alt="ad.title" />
                 </a>
               </SwipeItem>
             </Swipe>
@@ -121,7 +121,7 @@
             </div>
           </div>
           <PullRefresh v-if="bbsListMap[activeTab]" v-model="refreshing" @refresh="handleRefresh">
-            <BbsListItem :bbs-list="bbsListMap[activeTab]" class="bbs-list mt-0" />
+            <BbsWeimiListItem :bbs-list="bbsListMap[activeTab]" />
           </PullRefresh>
 
           <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
@@ -207,6 +207,7 @@ import { useRouter } from 'vue-router'
 import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, SwipeInstance } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
 import BbsListItem from '@/components/BbsListItem.vue'
+import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'
 import { useAppStore } from '@/store/app'
 import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
 import decryptionService from '@/utils/decryptionService'
@@ -239,7 +240,7 @@ const query = reactive<BbsListRequest>({
 
 const refreshing = ref(false)
 const collectionRefreshing = ref(false) // 用于收藏列表的刷新状态
-const bbsListMap = ref({})
+const bbsListMap = ref<Record<number, any[]>>({})
 const bbsListTotalPages = ref<Record<number, number>>({})
 const bbsListPageIndex = ref<Record<number, number>>({})
 const swipeRef = ref<SwipeInstance>()
@@ -284,9 +285,14 @@ const fetchBbsList = async () => {
       data: { data }
     } = await getBbsListApi(query)
     if (data && Array.isArray(data.items)) {
+      // 初始化 bbsListMap[activeTab.value] 为数组
+      if (!bbsListMap.value[activeTab.value]) {
+        bbsListMap.value[activeTab.value] = []
+      }
+
       // 先显示返回的数据
       bbsListMap.value[activeTab.value] = data.items.map((item) => {
-        const placeholderImages = item.imgs ? item.imgs.split(',').map((item, index) => `placeholder${index + 1}`) : []
+        const placeholderImages = item.imgs ? item.imgs.split(',').map(() => 'placeholder') : []
         return { ...item, decryptImage: placeholderImages }
       })
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
@@ -320,7 +326,7 @@ const fetchCollectionList = async () => {
     } = await getBbsCollectionListApi({ PageIndex: query.PageIndex, PageSize: query.PageSize })
     if (data && Array.isArray(data.items)) {
       bbsListMap.value[activeTab.value] = data.items.map((item) => {
-        const placeholderImages = item.imgs ? item.imgs.split(',').map((item, index) => `placeholder${index + 1}`) : []
+        const placeholderImages = item.imgs ? item.imgs.split(',').map(() => 'placeholder') : []
         return { ...item, decryptImage: placeholderImages, isCollected: true }
       })
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
@@ -401,6 +407,31 @@ const handleCollectionRefresh = async () => {
   collectionRefreshing.value = true
   await fetchCollectionList()
   collectionRefreshing.value = false
+}
+
+// 切换页码
+const changePage = async (newPage: number) => {
+  if (newPage >= 1 && newPage <= bbsListTotalPages.value[activeTab.value]) {
+    bbsListPageIndex.value[activeTab.value] = newPage
+    query.PageIndex = newPage
+    await fetchBbsList()
+  }
+}
+
+// 页码变化
+const handlePageChange = async () => {
+  if (bbsListPageIndex.value[activeTab.value] >= 1 && bbsListPageIndex.value[activeTab.value] <= bbsListTotalPages.value[activeTab.value]) {
+    query.PageIndex = bbsListPageIndex.value[activeTab.value]
+    await fetchBbsList()
+
+    // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
+    // nextTick(() => {
+    //   const mainElement = document.querySelector('.bbs-content')
+    //   if (mainElement) {
+    //     mainElement.scrollTop = 0 // 重置滚动条到顶部
+    //   }
+    // })
+  }
 }
 
 onMounted(() => {

@@ -20,10 +20,10 @@
             </div>
           </div>
           <div class="b-r">
-            <span><i class="mvfont mv-kan" />{{ detail?.viewCount || 0 }}</span>
-            <span><i class="mvfont mv-pinglun" />{{ detail?.commentCount || 0 }}</span>
-            <span><i class="mvfont mv-zan" />{{ detail?.likeCount || 0 }}</span>
-            <span><i class="mvfont mv-like" />{{ detail?.collectionCount || 0 }}</span>
+            <span><i class="mvfont mv-kan" />{{ Number(detail?.viewCount) || 0 }}</span>
+            <span><i class="mvfont mv-pinglun" />{{ Number(detail?.commentCount) || 0 }}</span>
+            <span><i class="mvfont mv-zan" />{{ Number(detail?.likeCount) || 0 }}</span>
+            <span><i class="mvfont mv-like" />{{ Number(detail?.collectionCount) || 0 }}</span>
           </div>
         </div>
         <div class="d-c">{{ detail?.content || '' }}</div>
@@ -67,17 +67,17 @@
         <span><i @click="handleShare" class="mvfont mv-fenxiang" /><small>分享</small></span>
         <span>
           <i @click="showComment = true" class="mvfont mv-pinglun" />
-          <small v-if="detail?.commentCount == 0">评论</small>
+          <small v-if="Number(detail?.commentCount) == 0">评论</small>
           <b v-else>{{ detail?.commentCount }}</b>
         </span>
         <span>
           <i :class="['mvfont', 'mv-zan', { active: detail?.like }]" @click="toggleLike" />
-          <small v-if="detail?.likeCount == 0">赞</small>
+          <small v-if="Number(detail?.likeCount) == 0">赞</small>
           <b v-else>{{ detail?.likeCount }}</b>
         </span>
         <span>
           <i :class="['mvfont', 'mv-like', { active: detail?.collect }]" @click="toggleCollection" />
-          <small v-if="detail?.collectionCount == 0">收藏</small>
+          <small v-if="Number(detail?.collectionCount) == 0">收藏</small>
           <b v-else>{{ detail?.collectionCount }}</b>
         </span>
       </div>

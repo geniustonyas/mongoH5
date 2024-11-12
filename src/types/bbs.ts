@@ -56,7 +56,10 @@ export type BbsListResponse = {
 }
 
 export interface BbsCategoryItem {
-  actress: string[]
+  actress: {
+    id: string
+    name: string
+  }[]
   id: string
   img: string
   title: string

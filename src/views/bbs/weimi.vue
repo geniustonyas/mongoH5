@@ -3,7 +3,7 @@
     <main class="bbs-plate-box">
       <header class="d-header">
         <div class="d-l">
-          <a href="javascript:void(0)" onclick="javascript:history.go(-1)"><i class="mvfont mv-left" /></a>
+          <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
         </div>
         <div class="d-m">
           <span>{{ weimi?.title }}</span>
@@ -18,7 +18,7 @@
           <div class="c-i"><img v-lazy="weimi?.img" /></div>
           <div class="c-d">
             <h3>{{ weimi?.title }}</h3>
-            <p>{{ weimi?.description }}</p>
+            <p>{{ weimi?.title }}</p>
             <span>
               今日：<b>{{ weimi?.postCount }}</b>
             </span>
@@ -33,20 +33,20 @@
           <div class="g-item">
             <div class="i-l">排序</div>
             <div class="i-r">
-              <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: query.sortType == key }" @click="changeSortType(key)">
+              <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: query.SortType == key }" @click="changeSortType(key)">
                 {{ label }}
               </span>
             </div>
           </div>
         </div>
-        <div v-if="weimi?.actressList && weimi?.actressList.length > 0" class="au-tags">
+        <div v-if="weimi?.actress && weimi?.actress.length > 0" class="au-tags">
           <div class="t-a" @click="toggleActressList">
             <div class="a-l">标签</div>
             <div class="a-r"><i :class="['mvfont', 'mv-xia', { up: actressListExpanded }]" /></div>
           </div>
           <div :class="['t-b', { expanded: actressListExpanded }]" ref="actressListRef">
             <span :class="{ active: query.ActressId == '' }" @click="changeActress('')">全部</span>
-            <span v-for="actress in weimi?.actressList" :key="actress.id" :class="{ active: query.ActressId == actress.id }" @click="changeActress(actress.id)">{{ actress.name }}</span>
+            <span v-for="actress in weimi?.actress" :key="actress.id" :class="{ active: query.ActressId == actress.id }" @click="changeActress(actress.id)">{{ actress.name }}</span>
           </div>
           <div class="t-c">
             <span>…</span>
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="pb-c">
-        <BbsListItem :bbs-list="bbsList" class="bbs-list mt-0" />
+        <BbsWeimiListItem :bbs-list="bbsList" />
       </div>
     </main>
   </div>
@@ -62,13 +62,14 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted, nextTick } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { getBbsCategoryApi, getBbsListApi } from '@/api/bbs'
 import type { BbsCategoryItem, BbsListRequest } from '@/types/bbs'
 import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 
 const route = useRoute()
+const router = useRouter()
 const appStore = useAppStore()
 const decrypt = new decryptionService()
 const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }

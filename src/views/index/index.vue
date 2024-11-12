@@ -47,7 +47,7 @@
                 <Swipe class="my-swipe" :autoplay="3000" lazy-render>
                   <SwipeItem v-for="ad in appStore.getAdvertisementById(2).items" :key="ad.id">
                     <a target="_blank" :href="ad.targetUrl">
-                      <img :src="appStore.cdnUrl + ad.imgUrl" :alt="ad.title" />
+                      <img :src="ad.imgUrl" :alt="ad.title" />
                     </a>
                   </SwipeItem>
                 </Swipe>
@@ -151,7 +151,7 @@
       </Swipe>
       <!-- 首页弹窗 -->
       <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
-        <a target="_blank" :href="currentPopAd.targetUrl"><img :src="appStore.cdnUrl + currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
+        <a target="_blank" :href="currentPopAd.targetUrl"><img v-lazy="currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
     </main>

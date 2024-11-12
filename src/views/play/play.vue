@@ -178,10 +178,7 @@ const fetchVideoDetail = async (videoId: string) => {
       poster: ''
     }))
     recommendedVideos.value.forEach(async (video) => {
-      const url = getAssetsFile('62dd51b8815142e2bee4c5d8b619bbfa.js')
-      // video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-      video.poster = await decrypt.fetchAndDecrypt(url)
-      console.log(video.poster)
+      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
     })
 
     if (videoDetail.value?.playUrl) {
@@ -203,9 +200,8 @@ const initializePlayer = async (domain: string, uri: string) => {
       return
     }
     const url = domain + uri
-    // const url = 'http://mg.aj666888.com/video/demo.m3u8'
     player.value = new window.Plyr(videoElement, {
-      clickToPlay: false,
+      clickToPlay: true,
       autoplay: true,
       controls: controls.value,
       settings: ['captions', 'quality', 'speed', 'loop'],
@@ -217,14 +213,12 @@ const initializePlayer = async (domain: string, uri: string) => {
         maxMaxBufferLength: 60,
         maxBufferSize: 60 * 1000 * 1000,
         maxBufferHole: 0.5,
-        startFragPrefetch: true,
         debug: false
       })
-      hls.value.config.xhrSetup = (xhr, url) => {
-        const path = new URL(url).pathname
-        const tsUrlWithAuth = generateAuthUrl(domain, path)
-        xhr.open('GET', tsUrlWithAuth, true)
-      }
+      // hls.value.config.xhrSetup = (xhr) => {
+      //   const tsUrlWithAuth = generateAuthUrl(domain, uri)
+      //   xhr.open('GET', tsUrlWithAuth, true)
+      // }
       hls.value.loadSource(url)
       hls.value.attachMedia(videoElement)
 
@@ -235,10 +229,9 @@ const initializePlayer = async (domain: string, uri: string) => {
       videoElement.src = url
     }
 
-    player.value?.on('click', () => {
-      if (player.value.touch) {
-        player.value.togglePlay()
-      }
+    player.value.on('click', (event) => {
+      event.stopPropagation()
+      player.value.togglePlay()
     })
 
     player.value?.once('play', async () => {
@@ -249,11 +242,15 @@ const initializePlayer = async (domain: string, uri: string) => {
       if (ad.value) showAdPopup.value = true // 视频准备好时显示广告
     })
 
-    player.value.on('play', () => {
+    player.value.on('play', (event) => {
+      event.stopPropagation()
+      console.log('play')
       showAdPopup.value = false // 播放时隐藏广告
     })
 
-    player.value.on('pause', () => {
+    player.value.on('pause', (event) => {
+      event.stopPropagation()
+      console.log('pause')
       if (ad.value) showAdPopup.value = true // 暂停时显示广告
     })
 
@@ -469,7 +466,7 @@ onMounted(() => {
   observer.observe(videoElement)
 
   onMounted(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo
   })
 
   // 在组件卸载时清除观察器

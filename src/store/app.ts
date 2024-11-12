@@ -3,6 +3,10 @@ import { getCategoryApi, getConfigApi, getAdsApi } from '@/api/app'
 import router from '@/router'
 import { getThemeApi } from '@/api/theme'
 import store from '@/store'
+import decryptionService from '@/utils/decryptionService'
+
+// 在 store 中创建 decryptionService 实例
+const decrypt = new decryptionService()
 
 export const useAppStore = defineStore('app', {
   state: () => {
@@ -62,21 +66,21 @@ export const useAppStore = defineStore('app', {
         this.searchInputText = data.find((item: any) => item.pKey === 'SEACHDomain')?.value1 || ''
         this.startAdTime = data.find((item: any) => item.pKey === 'StartAdTime')?.value1 || ''
         this.cdnUrl = data.find((item: any) => item.pKey === 'CDNURL')?.value1 || ''
-        if (this.cdnUrl && !this.cdnUrl.endsWith('/')) {
-          this.cdnUrl += '/'
-        }
+        // if (this.cdnUrl && !this.cdnUrl.endsWith('/')) {
+        //   this.cdnUrl += '/'
+        // }
         this.downloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
         this.prePlayAdTime = data.find((item: any) => item.pKey === 'PrePlayAdTime')?.value1 || ''
         this.customer_service_link = data.find((item: any) => item.pKey === 'Chat')?.value1 || ''
         this.sharedUrl = data.find((item: any) => item.pKey === 'SharedUrl')?.value1 || ''
         this.playDomain = data.find((item: any) => item.pKey === 'PlayDomain')?.value1 || ''
-        if (this.playDomain && !this.playDomain.endsWith('/')) {
-          this.playDomain += '/'
-        }
+        // if (this.playDomain && !this.playDomain.endsWith('/')) {
+        //   this.playDomain += '/'
+        // }
         this.imageDomain = data.find((item: any) => item.pKey === 'ImageDomain')?.value1 || ''
-        if (this.imageDomain && !this.imageDomain.endsWith('/')) {
-          this.imageDomain += '/'
-        }
+        // if (this.imageDomain && !this.imageDomain.endsWith('/')) {
+        //   this.imageDomain += '/'
+        // }
       } catch (error) {
         console.error('获取系统配置失败:', error)
       }
@@ -100,7 +104,14 @@ export const useAppStore = defineStore('app', {
         const {
           data: { data }
         } = await getAdsApi()
+        // 先将广告数据存储用于渲染
         this.advertisement = data || []
+        // 异步解密广告图片
+        for (const adPosition of this.advertisement) {
+          for (const adItem of adPosition.items) {
+            adItem.imgUrl = await decrypt.fetchAndDecrypt(`${this.cdnUrl}${adItem.imgUrl}`)
+          }
+        }
         console.log('广告:', this.advertisement)
       } catch (error) {
         console.error('获取广告失败:', error)

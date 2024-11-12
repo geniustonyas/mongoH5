@@ -14,11 +14,12 @@
           <span v-else class="on" @click.stop="toggleCollect(post)">＋添加收藏</span>
         </div>
         <div v-else class="a-r">
+          <span>#{{ post.channel.title }}</span>
           <span v-for="tag in post.subChannel.title.split(',')" :key="tag">{{ '#' + tag }}</span>
         </div>
       </div>
       <div class="i-b">{{ post.title }}</div>
-      <div :class="`i-c pic${post.decryptImage?.length || 0} ${post.channel.id == '2' ? 'weimi' : ''}`">
+      <div :class="`i-c pic${post.decryptImage?.length > 4 ? '9' : post.decryptImage?.length || ''} ${post.channel.id == '2' ? 'weimi' : ''}`">
         <div class="item" v-for="img in post.decryptImage" :key="img">
           <img v-lazy="img" />
         </div>

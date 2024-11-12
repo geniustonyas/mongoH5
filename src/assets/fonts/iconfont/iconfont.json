@@ -6,18 +6,25 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2742629",
+      "name": "点赞",
+      "font_class": "full_zan",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "14855671",
+      "name": "现场图集",
+      "font_class": "tuji1",
+      "unicode": "e6b4",
+      "unicode_decimal": 59060
+    },
+    {
       "icon_id": "8675124",
       "name": "删除",
       "font_class": "shanchu",
       "unicode": "e64f",
       "unicode_decimal": 58959
-    },
-    {
-      "icon_id": "11238650",
-      "name": "热门",
-      "font_class": "bianpinghuatubiaosheji-",
-      "unicode": "e64b",
-      "unicode_decimal": 58955
     },
     {
       "icon_id": "42325484",

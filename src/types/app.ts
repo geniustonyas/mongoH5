@@ -1,5 +1,3 @@
-import type { ApiResponseData } from '@/types/global.d'
-
 export interface Category {
   cId: number
   name: string
@@ -11,35 +9,19 @@ export enum AdvertisementType {
   Text = 3
 }
 
-export interface Advertisements {
-  adId?: number
-  type: AdvertisementType | string | null
-  content: string | null
-  titles: string | null
-  description: string | null
-  thumbnail: string | null
-  url: string | null
-  pId: number | string | null
-  vipExempt: number
-  status: number
-  sort: number
-  target?: number
-  beginTime?: string | null
-  endTime?: string | null
-  updateTime?: string | null
-  addTime?: string | null
+export interface AdsItem {
+  andoridDownloadUrl: string
+  downloadCount: string
+  id: string
+  imgUrl: string
+  introduction: string
+  iosDownLoadUrl: string
+  targetUrl: string
+  title: string
 }
 
-export interface ConfigResponse {
-  systemSettings: Record<string, any>
-  tags: any[]
-  categorys: any[]
+export interface AdsPostion {
+  id: string
+  items: AdsItem[]
+  title: string
 }
-
-// 短信参数
-export interface SmsParams {
-  phone: string
-  type: string
-}
-
-export type AdvertisementsResp = ApiResponseData<Advertisements[]>
