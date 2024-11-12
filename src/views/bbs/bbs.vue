@@ -1,197 +1,411 @@
 <template>
   <div class="page">
-    <header class="header">
-      <div class="head-search">
-        <div class="hs-a">
-          <img :src="getAssetsFile('logo.png')" />
-        </div>
-        <div class="hs-b">
-          <div class="sb-i">
-            <input />
-            <i class="mvfont mv-search1" />
-          </div>
-          <div class="swiper-container sb-t" style="line-height: 50px">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">搜索关键字</div>
-              <div class="swiper-slide">永久域名:<span>mg51.tv</span></div>
-              <div class="swiper-slide">永久域名:<span>mg91.tv</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="hs-c">
-          <a class="c-hot" @click="router.push({ name: 'hotVideo' })"><i class="mvfont mv-zhutirebangbeifen" /></a>
-        </div>
+    <header class="header bbs-header">
+      <div class="b-l">
+        <i class="mvfont mv-jia2" />
       </div>
-      <div class="head-tabs">
-        <div class="hm-a">
-          <span class="active">最新</span>
-          <span>热门</span>
-          <span>收藏</span>
-        </div>
-        <div class="hm-b">
-          <span>最多评论</span>
-          <a><i class="mvfont mv-xia" /></a>
-        </div>
+      <div class="b-m">
+        <Tabs v-model:active="activeTab" class="vant-tabs" title-active-color="transparent" @change="clickTab">
+          <Tab v-for="(tab, index) in tabs" :key="index" :title="tab.title" :name="tab.name" />
+        </Tabs>
+      </div>
+      <div class="b-r" @click="router.push({ name: 'search' })">
+        <i class="mvfont mv-search1" />
       </div>
     </header>
 
     <main class="b-b-b">
-      <ul class="bbs-list">
-        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
-          <div class="i-a">
-            <div class="a-l">
-              <img :src="getAssetsFile('u_video.png')" />
-              <div class="l-n">
-                <h3>小芒果</h3>
-                <span>2024-10-10</span>
+      <Swipe v-model:active="activeTab" :loop="false" :show-indicators="false" lazy-render ref="swipeRef" @change="handleSwipeChange">
+        <!-- 推荐 -->
+        <SwipeItem>
+          <nav id="index-banner" class="swiper-container">
+            <Swipe class="my-swipe" :autoplay="3000" lazy-render>
+              <SwipeItem v-for="ad in appStore.getAdvertisementById(2).items" :key="ad.id">
+                <a target="_blank" :href="ad.targetUrl">
+                  <img :src="appStore.cdnUrl + ad.imgUrl" :alt="ad.title" />
+                </a>
+              </SwipeItem>
+            </Swipe>
+          </nav>
+          <div class="au-tabs">
+            <span @click="changeSortType(0)" :class="{ active: bbsListSortType[0] == 0 }"><i class="mvfont mv-quanbu" />全部</span>
+            <span @click="changeSortType(1)" :class="{ active: bbsListSortType[0] == 1 }"><i class="mvfont mv-zuixin" />最新</span>
+            <span @click="changeSortType(2)" :class="{ active: bbsListSortType[0] == 2 }"><i class="mvfont mv-hot3" />热门</span>
+            <span @click="changeSortType(3)" :class="{ active: bbsListSortType[0] == 3 }"><i class="mvfont mv-mv1" />视频</span>
+          </div>
+          <PullRefresh v-if="bbsListMap[activeTab]" v-model="refreshing" @refresh="handleRefresh">
+            <BbsListItem :bbs-list="bbsListMap[activeTab]" />
+          </PullRefresh>
+          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
+            </div>
+            <div class="pb-x">
+              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
+              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
+            </div>
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
+            </div>
+          </div>
+        </SwipeItem>
+        <!-- 黑料 -->
+        <SwipeItem>
+          <div class="au-col-module-5">
+            <div class="m-l">
+              <div class="item" @click="changeSubChannel(heiliaoCategories[0].items[0].id)" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 0">
+                <img :src="heiliaoCategories[0].items[0].img" />
+                <p>
+                  <span># {{ heiliaoCategories[0].items[0].title }}</span>
+                </p>
+                <small>{{ heiliaoCategories[0].items[0].postCount }}帖</small>
               </div>
             </div>
-            <div class="a-r" />
-          </div>
-          <div class="i-b">纯欲双马尾女高学妹，被金主爸爸带到酒店沙发上爆操，不吃香菜 VS AAA建材老王的既视感【请复制链接到迅雷下载】</div>
-          <div class="i-c pic9">
-            <div class="item"><img :src="getAssetsFile('temp/m1.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('temp/m4.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('mv/m1.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('mv/m3.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('temp/m5.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('temp/m6.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('mv/m6.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('mv/m5.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('temp/m7.jpg')" /></div>
-          </div>
-          <div class="i-d">
-            <div class="d-x">
-              <span><i class="mvfont mv-pinglun" />5</span>
-              <span><i class="mvfont mv-zan" />876</span>
-              <span><i class="mvfont mv-like" />32</span>
-            </div>
-            <div class="d-x">
-              <span><i class="mvfont mv-kan" />235</span>
+            <div class="m-r" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 1">
+              <div class="item" @click="changeSubChannel(item.id)" v-for="item in heiliaoCategories[0].items.slice(1)" :key="item.id">
+                <img v-lazy="item.img" />
+                <p>
+                  <span># {{ item.title }}</span>
+                </p>
+                <small>{{ item.postCount }}帖</small>
+              </div>
             </div>
           </div>
-        </li>
 
-        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
-          <div class="i-a">
-            <div class="a-l">
-              <img :src="getAssetsFile('u_video.png')" />
-              <div class="l-n">
-                <h3>小芒果</h3>
-                <span>2024-10-10</span>
+          <div class="au-tab-group">
+            <div class="g-item">
+              <div class="i-l">排序</div>
+              <div class="i-r">
+                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[activeTab] == key }" @click="changeSortType(key)">
+                  {{ label }}
+                </span>
               </div>
             </div>
-            <div class="a-r" />
           </div>
-          <div class="i-b">纯欲双马尾女高学妹，被金主爸爸带到酒店沙发上爆操，不吃香菜 VS AAA建材老王的既视感【请复制链接到迅雷下载】</div>
-          <div class="i-c pic4">
-            <div class="item"><img :src="getAssetsFile('temp/m9.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('mv/m10.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('mv/m11.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('temp/m10.jpg')" /></div>
-          </div>
-          <div class="i-d">
-            <div class="d-x">
-              <span><i class="mvfont mv-pinglun" />5</span>
-              <span><i class="mvfont mv-zan" />876</span>
-              <span><i class="mvfont mv-like" />32</span>
+          <PullRefresh v-if="bbsListMap[activeTab]" v-model="refreshing" @refresh="handleRefresh">
+            <BbsListItem :bbs-list="bbsListMap[activeTab]" class="bbs-list mt-0" />
+          </PullRefresh>
+          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
             </div>
-            <div class="d-x">
-              <span><i class="mvfont mv-kan" />235</span>
+            <div class="pb-x">
+              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
+              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
+            </div>
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
             </div>
           </div>
-        </li>
-        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
-          <div class="i-a">
-            <div class="a-l">
-              <img :src="getAssetsFile('u_video.png')" />
-              <div class="l-n">
-                <h3>小芒果</h3>
-                <span>2024-10-10</span>
+        </SwipeItem>
+        <!-- 微密 -->
+        <SwipeItem>
+          <ul class="au-col-module" v-if="weimiCategories[0] && weimiCategories[0].items.length > 0">
+            <li v-for="item in weimiCategories[0].items" :key="item.id" @click="router.push({ name: 'weimi', params: { id: item.id } })">
+              <img :src="item.img" />
+              <p>
+                <span># {{ item.title }}</span>
+              </p>
+              <small>{{ item.postCount }}帖</small>
+            </li>
+          </ul>
+
+          <div class="au-tab-group">
+            <div class="g-item">
+              <div class="i-l">排序</div>
+              <div class="i-r">
+                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[activeTab] == key }" @click="changeSortType(key)">
+                  {{ label }}
+                </span>
               </div>
             </div>
-            <div class="a-r" />
           </div>
-          <div class="i-b">纯欲双马尾女高学妹，被金主爸爸带到酒店沙发上爆操，不吃香菜 VS AAA建材老王的既视感【请复制链接到迅雷下载】</div>
-          <div class="i-c pic3">
-            <div class="item"><img :src="getAssetsFile('temp/m11.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('mv/m12.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('mv/m13.jpg')" /></div>
-          </div>
-          <div class="i-d">
-            <div class="d-x">
-              <span><i class="mvfont mv-pinglun" />5</span>
-              <span><i class="mvfont mv-zan" />876</span>
-              <span><i class="mvfont mv-like" />32</span>
+          <PullRefresh v-if="bbsListMap[activeTab]" v-model="refreshing" @refresh="handleRefresh">
+            <BbsListItem :bbs-list="bbsListMap[activeTab]" class="bbs-list mt-0" />
+          </PullRefresh>
+
+          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
             </div>
-            <div class="d-x">
-              <span><i class="mvfont mv-kan" />235</span>
+            <div class="pb-x">
+              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
+              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
+            </div>
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
             </div>
           </div>
-        </li>
-        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
-          <div class="i-a">
-            <div class="a-l">
-              <img :src="getAssetsFile('u_video.png')" />
-              <div class="l-n">
-                <h3>小芒果</h3>
-                <span>2024-10-10</span>
+        </SwipeItem>
+        <!-- 圈子 -->
+        <SwipeItem>
+          <div class="au-col-module-x" v-if="quanziCategories[0] && quanziCategories[0].items.length > 0">
+            <div class="item" @click="changeSubChannel(item.id)" v-for="item in quanziCategories[0].items" :key="item.id">
+              <img :src="item.img" />
+              <p>
+                <span># {{ item.title }}</span>
+              </p>
+              <small>{{ item.postCount }}帖</small>
+            </div>
+          </div>
+
+          <div class="au-tab-group">
+            <div class="g-item">
+              <div class="i-l">排序</div>
+              <div class="i-r">
+                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[activeTab] == key }" @click="changeSortType(key)">
+                  {{ label }}
+                </span>
               </div>
             </div>
-            <div class="a-r" />
           </div>
-          <div class="i-b">纯欲双马尾女高学妹，被金主爸爸带到酒店沙发上爆操，不吃香菜 VS AAA建材老王的既视感【请复制链接到迅雷下载】</div>
-          <div class="i-c pic2">
-            <div class="item"><img :src="getAssetsFile('mv/m14.jpg')" /></div>
-            <div class="item"><img :src="getAssetsFile('temp/m14.jpg')" /></div>
-          </div>
-          <div class="i-d">
-            <div class="d-x">
-              <span><i class="mvfont mv-pinglun" />5</span>
-              <span><i class="mvfont mv-zan" />876</span>
-              <span><i class="mvfont mv-like" />32</span>
+          <PullRefresh v-if="bbsListMap[activeTab]" v-model="refreshing" @refresh="handleRefresh">
+            <BbsListItem :bbs-list="bbsListMap[activeTab]" class="bbs-list mt-0" />
+          </PullRefresh>
+
+          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
             </div>
-            <div class="d-x">
-              <span><i class="mvfont mv-kan" />235</span>
+            <div class="pb-x">
+              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
+              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
             </div>
-          </div>
-        </li>
-        <li @click="router.push({ name: 'bbsDetail', params: { id: 1 } })">
-          <div class="i-a">
-            <div class="a-l">
-              <img :src="getAssetsFile('u_video.png')" />
-              <div class="l-n">
-                <h3>小芒果</h3>
-                <span>2024-10-10</span>
-              </div>
-            </div>
-            <div class="a-r" />
-          </div>
-          <div class="i-b">纯欲双马尾女高学妹，被金主爸爸带到酒店沙发上爆操，不吃香菜 VS AAA建材老王的既视感【请复制链接到迅雷下载】</div>
-          <div class="i-c pic1">
-            <div class="item"><img :src="getAssetsFile('temp/m7.jpg')" /></div>
-          </div>
-          <div class="i-d">
-            <div class="d-x">
-              <span><i class="mvfont mv-pinglun" />5</span>
-              <span><i class="mvfont mv-zan" />876</span>
-              <span><i class="mvfont mv-like" />32</span>
-            </div>
-            <div class="d-x">
-              <span><i class="mvfont mv-kan" />235</span>
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
             </div>
           </div>
-        </li>
-      </ul>
+        </SwipeItem>
+        <!-- 收藏 -->
+        <SwipeItem>
+          <PullRefresh v-if="bbsListMap[activeTab]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh">
+            <BbsListItem :bbs-list="bbsListMap[activeTab]" :is-collect="true" />
+          </PullRefresh>
+          <div class="au-pagination-box" v-if="bbsListTotalPages[activeTab] > 1">
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab])" :class="{ disabled: bbsListPageIndex[activeTab] == 1 }">上一页</a>
+            </div>
+            <div class="pb-x">
+              <input v-model="bbsListPageIndex[activeTab]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[activeTab]" />
+              <span>/ {{ bbsListTotalPages[activeTab] }}</span>
+            </div>
+            <div class="pb-x">
+              <a @click="changePage(bbsListPageIndex[activeTab] + 1)" :class="{ disabled: bbsListPageIndex[activeTab] == bbsListTotalPages[activeTab] }">下一页</a>
+            </div>
+          </div>
+        </SwipeItem>
+      </Swipe>
     </main>
+
     <Footer active-menu="bbs" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, SwipeInstance } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
-import { getAssetsFile } from '@/utils/'
+import BbsListItem from '@/components/BbsListItem.vue'
+import { useAppStore } from '@/store/app'
+import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
+import decryptionService from '@/utils/decryptionService'
+import type { BbsListRequest, BbsCategoryResponse } from '@/types/bbs'
+import 'swiper/css'
 
 const router = useRouter()
+const appStore = useAppStore()
+
+const tabs = [
+  { title: '推荐', name: 0 },
+  { title: '黑料', name: 1 },
+  { title: '微密', name: 2 },
+  { title: '圈子', name: 3 },
+  { title: '收藏', name: 4 }
+]
+const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
+
+const activeTab = ref(0)
+
+const query = reactive<BbsListRequest>({
+  PageIndex: 1,
+  PageSize: 10,
+  SortType: 0,
+  ChannelId: '',
+  SubChannelId: '',
+  ActressId: '',
+  KeyWord: ''
+})
+
+const refreshing = ref(false)
+const collectionRefreshing = ref(false) // 用于收藏列表的刷新状态
+const bbsListMap = ref({})
+const bbsListTotalPages = ref<Record<number, number>>({})
+const bbsListPageIndex = ref<Record<number, number>>({})
+const swipeRef = ref<SwipeInstance>()
+const decrypt = new decryptionService()
+
+const heiliaoCategories = ref<BbsCategoryResponse[]>([])
+const weimiCategories = ref<BbsCategoryResponse[]>([])
+const quanziCategories = ref<BbsCategoryResponse[]>([])
+
+const bbsListSortType = ref({})
+const bbsListSubChannelId = ref({})
+
+const clickTab = () => {
+  swipeRef.value.swipeTo(activeTab.value, { immediate: true })
+}
+
+const handleSwipeChange = async (index: number) => {
+  activeTab.value = index
+  query.ChannelId = activeTab.value == 0 ? '' : activeTab.value
+
+  // 如果是收藏，则调用获取收藏列表方法
+  if (activeTab.value == 4) {
+    await fetchCollectionList()
+  }
+
+  // 恢复新 SwipeItem 的状态
+  if (bbsListSortType.value[activeTab.value] != undefined) {
+    query.SortType = bbsListSortType.value[activeTab.value]
+  }
+  if (bbsListSubChannelId.value[activeTab.value] != undefined) {
+    query.SubChannelId = bbsListSubChannelId.value[activeTab.value]
+  }
+
+  if (!bbsListMap.value[activeTab.value] || bbsListMap.value[activeTab.value].length == 0) {
+    await fetchBbsList()
+  }
+}
+
+const fetchBbsList = async () => {
+  try {
+    const {
+      data: { data }
+    } = await getBbsListApi(query)
+    if (data && Array.isArray(data.items)) {
+      // 先显示返回的数据
+      bbsListMap.value[activeTab.value] = data.items.map((item) => {
+        const placeholderImages = item.imgs ? item.imgs.split(',').map((item, index) => `placeholder${index + 1}`) : []
+        return { ...item, decryptImage: placeholderImages }
+      })
+      bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
+      bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
+
+      // 异步解密图片
+      data.items.forEach(async (item, index) => {
+        if (item.imgs) {
+          const imgs = item.imgs.split(',')
+          item.decryptImage = await Promise.all(
+            imgs.map(async (img) => {
+              return await decrypt.fetchAndDecrypt(appStore.cdnUrl + img)
+            })
+          )
+          // 更新解密后的图片
+          bbsListMap.value[activeTab.value][index] = { ...item }
+        }
+      })
+    } else {
+      console.error('响应数据结构不正确')
+    }
+  } catch (error) {
+    console.error('获取BBS列表失败:', error)
+  }
+}
+
+const fetchCollectionList = async () => {
+  try {
+    const {
+      data: { data }
+    } = await getBbsCollectionListApi({ PageIndex: query.PageIndex, PageSize: query.PageSize })
+    if (data && Array.isArray(data.items)) {
+      bbsListMap.value[activeTab.value] = data.items.map((item) => {
+        const placeholderImages = item.imgs ? item.imgs.split(',').map((item, index) => `placeholder${index + 1}`) : []
+        return { ...item, decryptImage: placeholderImages, isCollected: true }
+      })
+      bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
+      bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
+
+      // 异步解密图片
+      data.items.forEach(async (item, index) => {
+        if (item.imgs) {
+          const imgs = item.imgs.split(',')
+          item.decryptImage = await Promise.all(
+            imgs.map(async (img) => {
+              return await decrypt.fetchAndDecrypt(appStore.cdnUrl + img)
+            })
+          )
+          item.isCollected = true
+          bbsListMap.value[activeTab.value][index] = { ...item }
+        }
+      })
+    } else {
+      console.error('响应数据结构不正确')
+    }
+  } catch (error) {
+    console.error('获取收藏列表失败:', error)
+  }
+}
+
+const fetchCategories = async () => {
+  try {
+    const {
+      data: { data }
+    } = await getBbsCategoryApi()
+    if (data && Array.isArray(data)) {
+      const categoryMap = {
+        '1': heiliaoCategories,
+        '2': weimiCategories,
+        '3': quanziCategories
+      }
+
+      for (const item of data) {
+        const decryptedItems = await Promise.all(
+          item.items.map(async (imgs) => {
+            imgs.img = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgs.img)
+            return imgs
+          })
+        )
+        const category = categoryMap[item.id]
+        if (category) {
+          category.value.push({ ...item, items: decryptedItems })
+        }
+      }
+    } else {
+      console.error('响应数据结构不正确')
+    }
+  } catch (error) {
+    console.error('获取分类数据失败:', error)
+  }
+}
+
+const changeSortType = (sortType: number) => {
+  bbsListSortType.value[activeTab.value] = sortType
+  bbsListPageIndex.value[activeTab.value] = 1
+  fetchBbsList()
+}
+
+const changeSubChannel = (id: string) => {
+  bbsListPageIndex.value[activeTab.value] = 1
+  bbsListSubChannelId.value[activeTab.value] = id
+  fetchBbsList()
+}
+
+const handleRefresh = async () => {
+  refreshing.value = true
+  await fetchBbsList()
+  refreshing.value = false
+}
+
+const handleCollectionRefresh = async () => {
+  collectionRefreshing.value = true
+  await fetchCollectionList()
+  collectionRefreshing.value = false
+}
+
+onMounted(() => {
+  bbsListSortType.value[0] = 0
+  fetchBbsList()
+  fetchCategories()
+})
 </script>

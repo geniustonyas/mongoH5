@@ -178,7 +178,10 @@ const fetchVideoDetail = async (videoId: string) => {
       poster: ''
     }))
     recommendedVideos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
+      const url = getAssetsFile('62dd51b8815142e2bee4c5d8b619bbfa.js')
+      // video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
+      video.poster = await decrypt.fetchAndDecrypt(url)
+      console.log(video.poster)
     })
 
     if (videoDetail.value?.playUrl) {

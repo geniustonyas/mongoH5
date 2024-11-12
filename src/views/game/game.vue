@@ -3,7 +3,7 @@
     <header class="d-header">
       <div class="d-l">
         <div class="h-logo">
-          <img src="assets/imgs/logo.png">
+          <img src="assets/imgs/logo.png" />
         </div>
       </div>
       <div class="d-r">
@@ -229,17 +229,17 @@
 </template>
 
 <script setup lang="ts">
-  import { useAppStoreHook } from '@/store/app'
-  import Footer from '@/components/layout/Footer.vue'
+import { useAppStoreHook } from '@/store/app'
+import Footer from '@/components/layout/Footer.vue'
 
-  const appStore = useAppStoreHook()
+const appStore = useAppStoreHook()
 
-  const openCustomerService = () => {
-    const customerServiceLink = appStore.customer_service_link
-    if (customerServiceLink) {
-      window.open(customerServiceLink, '_blank')
-    } else {
-      console.warn('客服链接未设置')
-    }
+const openCustomerService = () => {
+  const customerServiceLink = appStore.customer_service_link
+  if (customerServiceLink) {
+    window.open(customerServiceLink, '_blank')
+  } else {
+    console.warn('客服链接未设置')
   }
+}
 </script>

@@ -62,7 +62,6 @@ export const useAppStore = defineStore('app', {
         this.searchInputText = data.find((item: any) => item.pKey === 'SEACHDomain')?.value1 || ''
         this.startAdTime = data.find((item: any) => item.pKey === 'StartAdTime')?.value1 || ''
         this.cdnUrl = data.find((item: any) => item.pKey === 'CDNURL')?.value1 || ''
-        // 检查 cdnUrl 是否以 '/' 结尾，如果没有则添加
         if (this.cdnUrl && !this.cdnUrl.endsWith('/')) {
           this.cdnUrl += '/'
         }
@@ -71,7 +70,13 @@ export const useAppStore = defineStore('app', {
         this.customer_service_link = data.find((item: any) => item.pKey === 'Chat')?.value1 || ''
         this.sharedUrl = data.find((item: any) => item.pKey === 'SharedUrl')?.value1 || ''
         this.playDomain = data.find((item: any) => item.pKey === 'PlayDomain')?.value1 || ''
+        if (this.playDomain && !this.playDomain.endsWith('/')) {
+          this.playDomain += '/'
+        }
         this.imageDomain = data.find((item: any) => item.pKey === 'ImageDomain')?.value1 || ''
+        if (this.imageDomain && !this.imageDomain.endsWith('/')) {
+          this.imageDomain += '/'
+        }
       } catch (error) {
         console.error('获取系统配置失败:', error)
       }

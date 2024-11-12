@@ -11,55 +11,40 @@ const fileTypes = {
   zip: ['application/x-zip-compressed', 'application/x-gzip']
 }
 
-// AES解密
-const decryptU8arr = (u8arr: Uint8Array, key: string, iv: string): Uint8Array => {
-  const parsedKey = CryptoJS.enc.Utf8.parse(key)
-  const parsedIv = CryptoJS.enc.Utf8.parse(iv)
-  const wordArray = CryptoJS.lib.WordArray.create(u8arr)
-  const dcBase64String = wordArray.toString(CryptoJS.enc.Base64)
-  const decrypt = CryptoJS.AES.decrypt(dcBase64String, parsedKey, {
-    iv: parsedIv,
-    mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7
-  })
-  return word2u8Array(decrypt)
-}
-
-// wordArray转Uint8Array
-const word2u8Array = (wordArray: CryptoJS.lib.WordArray): Uint8Array => {
-  const words = wordArray.words
-  const sigBytes = wordArray.sigBytes
-  const u8 = new Uint8Array(sigBytes)
-  for (let i = 0; i < sigBytes; i++) {
-    const byte = (words[i >>> 2] >>> (24 - (i % 4) * 8)) & 0xff
-    u8[i] = byte
-  }
-  return u8
-}
-
 class decryptionService {
   private key: string
   private iv: string
 
   constructor() {
     // 使用你提供的 AES key 和 IV
-    this.key = 'NHboMHZerxFQ401E'
-    this.iv = 'i7JeCEIMVrj2W9xN'
+    // this.key = 'NHboMHZerxFQ401E'
+    // this.iv = 'i7JeCEIMVrj2W9xN'
+
+    this.key = 'gFzviOY0zOxVq1cu'
+    this.iv = 'ZmA0Osl677UdSrl0'
   }
 
   async fetchAndDecrypt(url: string): Promise<string> {
     try {
-      const response = await axios.get(url, { responseType: 'arraybuffer' })
-      const encryptedData = new Uint8Array(response.data)
+      // 提取文件名部分
+      const fileName = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.'))
+      // 检查文件名中是否包含后缀
+      const extension = fileName.includes('.') ? fileName.split('.').pop() : 'jpg'
+      // 获取 MIME 类型
+      const mimeType = this.getMimeType(`.${extension}`)
 
-      // 解密数据
-      const decryptedData = decryptU8arr(encryptedData, this.key, this.iv)
+      const response = await axios.get(url, { responseType: 'text' }) // 获取文本数据
+      const base64Data = response.data
+      // 使用类中定义的密钥和偏移量
+      const parsedKey = CryptoJS.enc.Utf8.parse(this.key)
+      const parsedIv = CryptoJS.enc.Utf8.parse(this.iv)
+      const decrypted = CryptoJS.AES.decrypt(base64Data, parsedKey, {
+        iv: parsedIv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      })
 
-      // 获取文件类型
-      const mimeType = this.getMimeType(url)
-      const base64Data = CryptoJS.enc.Base64.stringify(CryptoJS.lib.WordArray.create(decryptedData))
-
-      return `data:${mimeType};base64,${base64Data}`
+      return `data:${mimeType};base64,${decrypted.toString(CryptoJS.enc.Utf8)}`
     } catch (error) {
       console.error('解密图片失败:', url, error)
       return ''
@@ -77,8 +62,7 @@ class decryptionService {
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
       })
-      const decryptedString = decrypted.toString(CryptoJS.enc.Utf8)
-      return decryptedString
+      return decrypted.toString(CryptoJS.enc.Utf8)
     } catch (error) {
       console.error('解密响应数据失败:', error)
       return ''
@@ -92,7 +76,7 @@ class decryptionService {
         return fileTypes[type][0] // 返回第一个匹配的 mimeType
       }
     }
-    return 'application/octet-stream' // 默认类型
+    return 'image/jpeg' // 默认类型
   }
 }
 

@@ -63,8 +63,20 @@ const routes: RouteRecordRaw[] = [
         meta: { needLogin: false, keepAlive: false }
       },
       {
+        path: 'weimi/:id',
+        name: 'weimi',
+        component: () => import('@/views/bbs/weimi.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      },
+      {
         path: 'bbsDetail/:id',
         name: 'bbsDetail',
+        component: () => import('@/views/bbs/bbsDetail.vue'),
+        meta: { needLogin: false, keepAlive: false }
+      },
+      {
+        path: 'bbsSearch',
+        name: 'bbsSearch',
         component: () => import('@/views/bbs/bbsDetail.vue'),
         meta: { needLogin: false, keepAlive: false }
       }

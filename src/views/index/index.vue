@@ -363,11 +363,6 @@ const swipePage = throttle(async (index: number) => {
   query.ChannelId = activeId.value == 0 ? '' : appStore.categorys[activeId.value - 1].d
   if (!categoryVideosMap.value[query.ChannelId] || categoryVideosMap.value[query.ChannelId].length == 0) {
     handleCategoryChange()
-
-    // 预加载下一个swipeItem的内容
-    // if (!categoryVideosMap.value[appStore.categorys[activeId.value].d] || categoryVideosMap.value[appStore.categorys[activeId.value].d].length == 0) {
-    //   await fetchVideos({ ...query, ChannelId: appStore.categorys[activeId.value].d })
-    // }
   } else {
     query.SubChannelId = ''
   }
