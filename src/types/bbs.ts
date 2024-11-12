@@ -12,6 +12,7 @@ export interface Bbs {
   id: string
   image?: string
   decryptImage?: string[]
+  imgUrlDecrypted?: boolean
   imgs: string
   isCollected?: boolean
   like?: string

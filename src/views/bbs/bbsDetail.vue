@@ -2,7 +2,7 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a @click="router.push({ name: 'bbs' })"><i class="mvfont mv-left" /></a>
+        <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
       </div>
       <div class="d-m">
         <span>详情</span>
@@ -35,14 +35,14 @@
           <img src="https://sjtv.xianliao.voto/9btu/bbbbb.png" />
         </div>
         <div class="bbs-d-ne">
-          <div class="item" v-if="detail?.prev?.id" @click="router.push({ name: 'bbsDetail', params: { id: detail.prev.id } })">
+          <div class="item" v-if="detail?.prev?.id" @click="handleBbsClick(detail.prev)">
             <div class="i-a"><i class="mvfont mv-left" />上一篇</div>
             <div class="i-b">
               <span>#{{ detail.prev?.channel?.title }}-{{ detail.prev?.subChannel?.title }}</span>
               {{ detail.prev?.title }}
             </div>
           </div>
-          <div class="item" v-if="detail?.next?.id" @click="router.push({ name: 'bbsDetail', params: { id: detail.next.id } })">
+          <div class="item" v-if="detail?.next?.id" @click="handleBbsClick(detail.next)">
             <div class="i-a">下一篇<i class="mvfont mv-right" /></div>
             <div class="i-b">
               <span>#{{ detail.next?.channel?.title }}-{{ detail.next?.subChannel?.title }}</span>
@@ -56,7 +56,7 @@
             <div class="t-l"><i class="mvfont mv-xietiao" />相关推荐</div>
           </div>
           <div class="a-c">
-            <BbsListItem :bbs-list="relatedList" />
+            <BbsListItem :bbs-list="relatedList" :bbs-click="handleBbsClick" />
             <div class="more-box"><a v-if="pageCount > 1" @click="loadMore">加载更多</a></div>
           </div>
         </div>
@@ -143,9 +143,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { getAssetsFile } from '@/utils'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { getBbsDetailApi, getBbsRelatedRecommendApi, bbsLikeApi, bbsCollectionApi, getBbsCommentListApi, bbsCommentLikeApi } from '@/api/bbs'
@@ -156,7 +156,6 @@ import { showImagePreview, Popup } from 'vant'
 import Clipboard from 'clipboard'
 
 const route = useRoute()
-const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const detail = ref<Bbs | null>(null)
@@ -361,15 +360,17 @@ const updateCommentLikeStatus = (comment, currentLikeType, newLikeType) => {
   }
 }
 
-watch(
-  () => route.params.id,
-  (newId) => {
-    if (newId) {
-      pageIndex.value = 1
-      relatedList.value = []
-      fetchDetail(newId as string)
-    }
-  },
-  { immediate: true }
-)
+const handleBbsClick = (post: Bbs) => {
+  console.log(post)
+  pageIndex.value = 1
+  relatedList.value = []
+  fetchDetail(post.id)
+}
+
+;(async () => {
+  const id = route.params.id
+  if (id) {
+    fetchDetail(id as string)
+  }
+})()
 </script>

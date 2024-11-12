@@ -9,7 +9,7 @@
           <Tab v-for="(tab, index) in tabs" :key="index" :title="tab.title" :name="tab.name" />
         </Tabs>
       </div>
-      <div class="b-r" @click="router.push({ name: 'search' })">
+      <div class="b-r" @click="router.push({ name: 'bbsSearch' })">
         <i class="mvfont mv-search1" />
       </div>
     </header>
@@ -290,10 +290,10 @@ const fetchBbsList = async () => {
         bbsListMap.value[activeTab.value] = []
       }
 
-      // 先显示返回的数据
+      // 先显示返回的数据，并设置解密标志
       bbsListMap.value[activeTab.value] = data.items.map((item) => {
-        const placeholderImages = item.imgs ? item.imgs.split(',').map(() => 'placeholder') : []
-        return { ...item, decryptImage: placeholderImages }
+        const placeholderImages = item.imgs ? item.imgs.split(',').map((item, index) => 'placeholder' + index) : []
+        return { ...item, decryptImage: placeholderImages, imgUrlDecrypted: false }
       })
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
       bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
@@ -307,8 +307,8 @@ const fetchBbsList = async () => {
               return await decrypt.fetchAndDecrypt(appStore.cdnUrl + img)
             })
           )
-          // 更新解密后的图片
-          bbsListMap.value[activeTab.value][index] = { ...item }
+          // 更新解密后的图片和标志
+          bbsListMap.value[activeTab.value][index] = { ...item, imgUrlDecrypted: true }
         }
       })
     } else {
@@ -326,8 +326,8 @@ const fetchCollectionList = async () => {
     } = await getBbsCollectionListApi({ PageIndex: query.PageIndex, PageSize: query.PageSize })
     if (data && Array.isArray(data.items)) {
       bbsListMap.value[activeTab.value] = data.items.map((item) => {
-        const placeholderImages = item.imgs ? item.imgs.split(',').map(() => 'placeholder') : []
-        return { ...item, decryptImage: placeholderImages, isCollected: true }
+        const placeholderImages = item.imgs ? item.imgs.split(',').map((item, index) => 'placeholder' + index) : []
+        return { ...item, decryptImage: placeholderImages, imgUrlDecrypted: false, isCollected: true }
       })
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
       bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
@@ -342,7 +342,7 @@ const fetchCollectionList = async () => {
             })
           )
           item.isCollected = true
-          bbsListMap.value[activeTab.value][index] = { ...item }
+          bbsListMap.value[activeTab.value][index] = { ...item, imgUrlDecrypted: true }
         }
       })
     } else {

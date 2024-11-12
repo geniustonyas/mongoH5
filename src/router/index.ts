@@ -54,14 +54,20 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/bbs',
+    name: 'bbs',
+    component: () => import('@/views/bbs/bbs.vue'),
+    meta: { needLogin: false, keepAlive: false }
+  },
+  {
+    path: '/bbs',
     component: AppMain,
     children: [
-      {
-        path: '',
-        name: 'bbs',
-        component: () => import('@/views/bbs/bbs.vue'),
-        meta: { needLogin: false, keepAlive: false }
-      },
+      // {
+      //   path: '',
+      //   name: 'bbs',
+      //   component: () => import('@/views/bbs/bbs.vue'),
+      //   meta: { needLogin: false, keepAlive: false }
+      // },
       {
         path: 'weimi/:id',
         name: 'weimi',
@@ -77,7 +83,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'bbsSearch',
         name: 'bbsSearch',
-        component: () => import('@/views/bbs/bbsDetail.vue'),
+        component: () => import('@/views/bbs/bbsSearch.vue'),
         meta: { needLogin: false, keepAlive: false }
       }
     ]

@@ -75,17 +75,15 @@ const decrypt = new decryptionService()
 const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
 const weimi = ref<BbsCategoryItem>()
 const bbsList = ref([])
-const actressListExpanded = ref(false)
+const actressListExpanded = ref(true)
 const actressListRef = ref<HTMLElement | null>(null)
 
 const query = reactive<BbsListRequest>({
   PageIndex: 1,
   PageSize: 10,
   SortType: 0,
-  // ChannelId: 2,
-  ChannelId: '',
-  // SubChannelId: route.params.id as string,
-  SubChannelId: '',
+  ChannelId: 2,
+  SubChannelId: route.params.id as string,
   ActressId: '',
   KeyWord: ''
 })
