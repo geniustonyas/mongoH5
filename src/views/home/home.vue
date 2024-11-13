@@ -3,7 +3,7 @@
     <header class="h-header">
       <div class="d-r">
         <a><i class="mvfont mv-kefu1" @click="openCustomerService" /></a>
-        <a><i class="mvfont mv-setting" /></a>
+        <!-- <a><i class="mvfont mv-setting" /></a> -->
       </div>
     </header>
     <section class="h-p-b">
@@ -25,7 +25,7 @@
             <p>全球高清独家资源，免广告，专属线路</p>
           </div>
           <div class="b-r">
-            <a>开通VIP</a>
+            <!-- <a>开通VIP</a> -->
           </div>
         </div>
         <div class="a-c">
@@ -56,7 +56,7 @@
             </a>
           </li>
           <li>
-            <a @click="showToast('建设中')">
+            <a @click="router.push({ name: 'buyRecord' })">
               <span> <i class="mvfont mv-zzjl" />购买记录 </span>
               <i class="mvfont mv-right" />
             </a>
@@ -80,7 +80,7 @@ import Footer from '@/components/layout/Footer.vue'
 import { getAssetsFile } from '@/utils'
 import { useUserStoreHook } from '@/store/user'
 import { useAppStoreHook } from '@/store/app'
-import { showToast } from 'vant'
+// import { showToast } from 'vant'
 
 const userStore = useUserStoreHook()
 const appStore = useAppStoreHook()

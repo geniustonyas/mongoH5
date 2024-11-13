@@ -163,11 +163,11 @@ const initializePlayer = async (index: number) => {
         liveSyncDuration: 3,
         liveMaxLatencyDuration: 5
       })
-      hls.config.xhrSetup = (xhr, url) => {
-        const path = new URL(url).pathname
-        const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, path)
-        xhr.open('GET', tsUrlWithAuth, true)
-      }
+      // hls.config.xhrSetup = (xhr, url) => {
+      //   const path = new URL(url).pathname
+      //   const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, path)
+      //   xhr.open('GET', tsUrlWithAuth, true)
+      // }
       hlsInstances.value.set(index, hls)
       hls.loadSource(appStore.playDomain + video.playUrl)
       hls.attachMedia(videoElement)

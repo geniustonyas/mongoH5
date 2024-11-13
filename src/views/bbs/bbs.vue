@@ -2,7 +2,7 @@
   <div class="page">
     <header class="header bbs-header">
       <div class="b-l">
-        <i class="mvfont mv-jia2" />
+        <i @click="showToast('暂停发帖')" class="mvfont mv-jia2" />
       </div>
       <div class="b-m">
         <Tabs v-model:active="activeTab" class="vant-tabs" title-active-color="transparent" @change="clickTab">
@@ -204,7 +204,7 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, SwipeInstance } from 'vant'
+import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, SwipeInstance, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
 import BbsListItem from '@/components/BbsListItem.vue'
 import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'

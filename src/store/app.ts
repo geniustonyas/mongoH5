@@ -132,9 +132,9 @@ export const useAppStore = defineStore('app', {
       // 每隔5分钟刷新一次数据
       setInterval(async () => {
         await this.fetConfig()
-        await this.fetCategory()
-        await this.fetAdvertisement()
-        await this.fetTheme()
+        // await this.fetCategory()
+        // await this.fetAdvertisement()
+        // await this.fetTheme()
       }, 5 * 60 * 1000) // 5分钟
     },
 
