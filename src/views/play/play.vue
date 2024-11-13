@@ -230,8 +230,13 @@ const initializePlayer = async (domain: string, uri: string) => {
     }
 
     player.value.on('click', (event) => {
-      event.stopPropagation()
-      player.value.togglePlay()
+      if (player.value.touch && event.target.className == 'plyr__poster') {
+        if (player.value.playing) {
+          player.value.pause()
+        } else {
+          player.value.play()
+        }
+      }
     })
 
     player.value?.once('play', async () => {
@@ -244,13 +249,11 @@ const initializePlayer = async (domain: string, uri: string) => {
 
     player.value.on('play', (event) => {
       event.stopPropagation()
-      console.log('play')
       showAdPopup.value = false // 播放时隐藏广告
     })
 
     player.value.on('pause', (event) => {
       event.stopPropagation()
-      console.log('pause')
       if (ad.value) showAdPopup.value = true // 暂停时显示广告
     })
 
@@ -438,9 +441,9 @@ const closeAdPopup = () => {
 })()
 
 onMounted(() => {
-  const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
+  window.scrollTo(0, 0)
 
-  // 使用 Page Visibility API
+  // 页面离开停止播放，回来后继续播放
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       player.value?.pause()
@@ -449,33 +452,9 @@ onMounted(() => {
     }
   })
 
-  // 使用 Intersection Observer API
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          player.value?.pause()
-        } else {
-          player.value?.play()
-        }
-      })
-    },
-    { threshold: 0.1 }
-  )
-
-  observer.observe(videoElement)
-
-  onMounted(() => {
-    window.scrollTo
-  })
-
-  // 在组件卸载时清除观察器
-  onUnmounted(() => {
-    observer.disconnect()
-  })
-
+  // 显示广告时暂停视频
   if (showAdPopup.value) {
-    player.value?.pause() // 显示广告时暂停视频
+    player.value?.pause()
   }
 })
 

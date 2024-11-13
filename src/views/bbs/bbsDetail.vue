@@ -71,7 +71,7 @@
           <b v-else>{{ detail?.commentCount }}</b>
         </span>
         <span>
-          <i :class="['mvfont', 'mv-zan', { active: detail?.like }]" @click="toggleLike" />
+          <i :class="['mvfont', 'mv-zan', { active: detail?.like == '1' }]" @click="toggleLike" />
           <small v-if="Number(detail?.likeCount) == 0">赞</small>
           <b v-else>{{ detail?.likeCount }}</b>
         </span>

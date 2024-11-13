@@ -12,7 +12,7 @@
           <b>热门标签</b>
         </div>
         <div class="s-b">
-          <a v-for="tag in hotTags" :key="tag.id" @click="selectTag(tag.title)"> {{ tag.title }}<small v-if="tag.video_count > 0">热</small> </a>
+          <a v-for="(tag, index) in appStore.bbsSearchTags" :key="index" @click="selectTag(tag)"> {{ tag }}<small v-if="index < 5">热</small> </a>
         </div>
       </nav>
 
@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { getBbsListApi } from '@/api/bbs'
@@ -88,18 +88,6 @@ let pageIndex = ref(1)
 let listLoading = ref(false)
 let finished = ref(false)
 let error = ref(false)
-
-const hotTags = computed(() => {
-  const allTags = appStore.theme.flatMap((tag) => tag.items || [])
-  return allTags
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 10)
-    .map((tag) => ({
-      id: tag.id,
-      title: tag.title,
-      video_count: tag.targetUrl
-    }))
-})
 
 const loadSearchHistory = () => {
   const history = localStorage.getItem('searchHistory')

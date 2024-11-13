@@ -53,7 +53,7 @@
         <SwipeItem>
           <div class="au-col-module-5">
             <div class="m-l">
-              <div class="item" @click="changeSubChannel(heiliaoCategories[0].items[0].id)" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 0">
+              <div class="item" @click="changeSubChannel(heiliaoCategories[0].items[0].id, 1)" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 0">
                 <img :src="heiliaoCategories[0].items[0].img" />
                 <p>
                   <span># {{ heiliaoCategories[0].items[0].title }}</span>
@@ -62,7 +62,7 @@
               </div>
             </div>
             <div class="m-r" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 1">
-              <div class="item" @click="changeSubChannel(item.id)" v-for="item in heiliaoCategories[0].items.slice(1)" :key="item.id">
+              <div class="item" @click="changeSubChannel(item.id, 1)" v-for="item in heiliaoCategories[0].items.slice(1)" :key="item.id">
                 <img v-lazy="item.img" />
                 <p>
                   <span># {{ item.title }}</span>
@@ -83,7 +83,7 @@
             </div>
           </div>
           <PullRefresh v-if="bbsListMap[1]" v-model="refreshing" @refresh="handleRefresh">
-            <BbsListItem :bbs-list="bbsListMap[1]" class="bbs-list mt-0" />
+            <BbsListItem :bbs-list="bbsListMap[1]" class="mt-0" />
           </PullRefresh>
           <div class="au-pagination-box" v-if="bbsListTotalPages[1] > 1">
             <div class="pb-x">
@@ -101,7 +101,7 @@
         <!-- 微密 -->
         <SwipeItem>
           <ul class="au-col-module" v-if="weimiCategories[0] && weimiCategories[0].items.length > 0">
-            <li v-for="item in weimiCategories[0].items" :key="item.id" @click="router.push({ name: 'weimi', params: { id: item.id } })">
+            <li v-for="item in weimiCategories[0].items" :key="item.id" @click="changeSubChannel(item.id, 2)">
               <img :src="item.img" />
               <p>
                 <span># {{ item.title }}</span>
@@ -140,7 +140,7 @@
         <!-- 圈子 -->
         <SwipeItem>
           <div class="au-col-module-x" v-if="quanziCategories[0] && quanziCategories[0].items.length > 0">
-            <div class="item" @click="changeSubChannel(item.id)" v-for="item in quanziCategories[0].items" :key="item.id">
+            <div class="item" @click="changeSubChannel(item.id, 3)" v-for="item in quanziCategories[0].items" :key="item.id">
               <img :src="item.img" />
               <p>
                 <span># {{ item.title }}</span>
@@ -160,7 +160,7 @@
             </div>
           </div>
           <PullRefresh v-if="bbsListMap[3]" v-model="refreshing" @refresh="handleRefresh">
-            <BbsListItem :bbs-list="bbsListMap[3]" class="bbs-list mt-0" />
+            <BbsListItem :bbs-list="bbsListMap[3]" class="mt-0" />
           </PullRefresh>
 
           <div class="au-pagination-box" v-if="bbsListTotalPages[3] > 1">
@@ -179,7 +179,7 @@
         <!-- 收藏 -->
         <SwipeItem>
           <PullRefresh v-if="bbsListMap[4]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh">
-            <BbsListItem :bbs-list="bbsListMap[4]" :is-collect="true" />
+            <BbsListItem :bbs-list="bbsListMap[4]" :is-collect="true" class="mt-0" />
           </PullRefresh>
           <div class="au-pagination-box" v-if="bbsListTotalPages[4] > 1">
             <div class="pb-x">
@@ -209,6 +209,7 @@ import Footer from '@/components/layout/Footer.vue'
 import BbsListItem from '@/components/BbsListItem.vue'
 import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'
 import { useAppStore } from '@/store/app'
+import { useUserStore } from '@/store/user'
 import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
 import decryptionService from '@/utils/decryptionService'
 import type { BbsListRequest, BbsCategoryResponse } from '@/types/bbs'
@@ -216,7 +217,7 @@ import 'swiper/css'
 
 const router = useRouter()
 const appStore = useAppStore()
-
+const userStore = useUserStore()
 const tabs = [
   { title: '推荐', name: 0 },
   { title: '黑料', name: 1 },
@@ -227,6 +228,7 @@ const tabs = [
 const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
 
 const activeTab = ref(0)
+const previousTab = ref(0)
 
 const query = reactive<BbsListRequest>({
   PageIndex: 1,
@@ -255,9 +257,24 @@ const bbsListSubChannelId = ref({})
 
 const clickTab = () => {
   swipeRef.value.swipeTo(activeTab.value, { immediate: true })
+  if (activeTab.value == 4) {
+    if (userStore.userInfo.id == '') {
+      swipeRef.value.swipeTo(previousTab.value, { immediate: true })
+      userStore.showLoginDialog = true
+    }
+  }
 }
 
 const handleSwipeChange = async (index: number) => {
+  // 检查是否滑动到收藏列表
+  if (index === 4) {
+    if (userStore.userInfo.id == '') {
+      swipeRef.value.swipeTo(activeTab.value, { immediate: true })
+      userStore.showLoginDialog = true
+      return
+    }
+  }
+  previousTab.value = activeTab.value
   activeTab.value = index
   query.ChannelId = activeTab.value == 0 ? '' : activeTab.value
 
@@ -266,7 +283,7 @@ const handleSwipeChange = async (index: number) => {
     await fetchCollectionList()
   }
 
-  // 恢复新 SwipeItem 的状态
+  // 滑动到新的swipeItem，获取之前的排序和子频道
   if (bbsListSortType.value[activeTab.value] != undefined) {
     query.SortType = bbsListSortType.value[activeTab.value]
   }
@@ -391,10 +408,8 @@ const changeSortType = (sortType: number) => {
   fetchBbsList()
 }
 
-const changeSubChannel = (id: string) => {
-  bbsListPageIndex.value[activeTab.value] = 1
-  bbsListSubChannelId.value[activeTab.value] = id
-  fetchBbsList()
+const changeSubChannel = (id: string, channelId: number) => {
+  router.push({ name: 'weimi', params: { id: id }, query: { channelId: channelId } })
 }
 
 const handleRefresh = async () => {

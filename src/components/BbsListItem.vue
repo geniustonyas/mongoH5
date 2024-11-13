@@ -1,5 +1,5 @@
 <template>
-  <ul :class="['bbs-list', customClass]">
+  <ul class="bbs-list">
     <li v-for="post in bbsList" :key="post.id" @click="handleClick(post)">
       <div class="i-a">
         <div class="a-l">
@@ -49,12 +49,10 @@ import { bbsCollectionApi } from '@/api/bbs' // 导入收藏API
 const props = withDefaults(
   defineProps<{
     bbsList: Bbs[]
-    customClass?: string
     isCollect?: boolean
     bbsClick?: (post: Bbs) => void
   }>(),
   {
-    customClass: '',
     isCollect: false
   }
 )

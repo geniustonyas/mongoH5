@@ -1,5 +1,5 @@
 import { request } from '@/utils/axios'
-import { BbsListRequest, BbsListResponse, BbsCategoryResponse, Bbs, BbsRelatedRecommendRequest, BbsCommentListResponse } from '@/types/bbs'
+import { BbsListRequest, BbsListResponse, BbsCategoryResponse, Bbs, BbsRelatedRecommendRequest, BbsCommentListResponse, BbsSubCategoryDetailResponse } from '@/types/bbs'
 import type { ApiResponseData } from '@/types/global.d'
 
 /** 获取BBS列表 */
@@ -25,6 +25,15 @@ export function getBbsCategoryApi() {
   return request<ApiResponseData<BbsCategoryResponse[]>>({
     url: 'BBS/ChanelList',
     method: 'post'
+  })
+}
+
+/** 获取BBS二级分类详情 */
+export function getBbsSubCategoryDetailApi(data: { Id: string | number }) {
+  return request<ApiResponseData<BbsSubCategoryDetailResponse>>({
+    url: 'BBS/SubChannelDetail',
+    method: 'post',
+    data
   })
 }
 

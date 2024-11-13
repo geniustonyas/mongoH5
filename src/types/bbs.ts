@@ -73,6 +73,19 @@ export interface BbsCategoryResponse {
   title: string
 }
 
+export interface BbsSubCategoryDetailResponse {
+  coverImage: string
+  dayNewPostCount: string
+  description: string
+  id: string
+  postCount: string
+  title: string
+  actress: {
+    id: string
+    title: string
+  }[]
+}
+
 export interface BbsRelatedRecommendRequest {
   id: string | number
   PageIndex?: number

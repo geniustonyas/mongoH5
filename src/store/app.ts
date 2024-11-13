@@ -28,6 +28,7 @@ export const useAppStore = defineStore('app', {
       sharedUrl: '', // 分享链接
       playDomain: '', // 播放域名
       imageDomain: '', // 图片域名
+      bbsSearchTags: [], // bbs搜索标签
 
       theme: [], // 标签
       categorys: [], // 分类
@@ -66,21 +67,13 @@ export const useAppStore = defineStore('app', {
         this.searchInputText = data.find((item: any) => item.pKey === 'SEACHDomain')?.value1 || ''
         this.startAdTime = data.find((item: any) => item.pKey === 'StartAdTime')?.value1 || ''
         this.cdnUrl = data.find((item: any) => item.pKey === 'CDNURL')?.value1 || ''
-        // if (this.cdnUrl && !this.cdnUrl.endsWith('/')) {
-        //   this.cdnUrl += '/'
-        // }
         this.downloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
         this.prePlayAdTime = data.find((item: any) => item.pKey === 'PrePlayAdTime')?.value1 || ''
         this.customer_service_link = data.find((item: any) => item.pKey === 'Chat')?.value1 || ''
         this.sharedUrl = data.find((item: any) => item.pKey === 'SharedUrl')?.value1 || ''
         this.playDomain = data.find((item: any) => item.pKey === 'PlayDomain')?.value1 || ''
-        // if (this.playDomain && !this.playDomain.endsWith('/')) {
-        //   this.playDomain += '/'
-        // }
         this.imageDomain = data.find((item: any) => item.pKey === 'ImageDomain')?.value1 || ''
-        // if (this.imageDomain && !this.imageDomain.endsWith('/')) {
-        //   this.imageDomain += '/'
-        // }
+        this.bbsSearchTags = data.find((item: any) => item.pKey === 'BBSSearchPageTags')?.value1.split(',') || []
       } catch (error) {
         console.error('获取系统配置失败:', error)
       }

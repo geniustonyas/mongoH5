@@ -183,8 +183,8 @@ const initializePlayer = async (index: number) => {
         player.on('canplay', () => {
           resolve() // 视频可以播放
         })
-        player.on('click', () => {
-          if (player.touch) {
+        player.on('click', (event) => {
+          if (player.touch && event.target.className == 'plyr__poster') {
             player.togglePlay()
           }
         })
