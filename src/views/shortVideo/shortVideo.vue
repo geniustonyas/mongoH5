@@ -14,7 +14,7 @@
     <section class="vp-main">
       <div class="vm-a" />
       <div class="vm-b">
-        <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 1, addSlidesAfter: 1 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
+        <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 2, addSlidesAfter: 2 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
           <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
             <div class="v-a">
               <video :id="'video-player-' + index" class="video-player" controls muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
@@ -64,7 +64,7 @@ import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
-import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
+// import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
 import { getAssetsFile } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 
@@ -107,12 +107,6 @@ const fetchVideos = async () => {
       SortType: 0
     })
     if (data && data.items) {
-      // const newVideos = await Promise.all(
-      //   data.items.map(async (video) => ({
-      //     ...video,
-      //     poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-      //   }))
-      // )
       videos.value.push(...data.items)
     }
   } catch (error) {
@@ -248,8 +242,8 @@ const slideChange = async (swiper) => {
 
   if (previousIndex === currentVideoIndex.value) return
 
+  // 停止并重置上一个视频
   await stopAndResetVideo(previousIndex)
-  await playCurrentVideo()
 
   // 预加载下一个视频
   const isSlidingDown = currentVideoIndex.value > previousIndex
@@ -264,6 +258,10 @@ const slideChange = async (swiper) => {
     await destroyVideo(destroyIndex)
   }
 
+  // 播放当前视频
+  await playCurrentVideo()
+
+  // 获取视频详情
   const currentVideo = videos.value[currentVideoIndex.value]
   if (currentVideo) {
     await fetchVideoDetail(parseInt(currentVideo.id))
@@ -298,22 +296,26 @@ const playCurrentVideo = async () => {
     return
   }
 
-  // const playVideo = async () => {
-  //   try {
-  //     await currentPlayer.play()
-  //   } catch (error) {
-  //     console.error('播放视频时出错:', error)
-  //     showToast('播放失败')
-  //   }
-  // }
+  const playVideo = async () => {
+    try {
+      await currentPlayer.play()
+    } catch (error) {
+      console.error('播放失败:', error)
+      if (error.name == 'NotAllowedError') {
+        showToast('您的浏览器禁止自动播放，请点击屏幕以开始播放')
+      } else {
+        showToast('播放失败')
+      }
+    }
+  }
 
   if (videoElement.readyState >= 2) {
-    currentPlayer.play()
+    await playVideo()
   } else {
     videoElement.addEventListener(
       'canplay',
       async function onCanPlay() {
-        currentPlayer.play()
+        await playVideo()
         videoElement.removeEventListener('canplay', onCanPlay)
       },
       { once: true }

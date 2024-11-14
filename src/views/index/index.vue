@@ -47,7 +47,7 @@
                 <Swipe class="my-swipe" :autoplay="3000" lazy-render>
                   <SwipeItem v-for="ad in bannerAdvertisement" :key="ad.id">
                     <a target="_blank" :href="ad.targetUrl">
-                      <img v-lazy="ad.imgUrl" :alt="ad.title" />
+                      <img v-lazy="ad.isDecrypted ? ad.imgUrl : getAssetsFile('default.gif')" :alt="ad.title" />
                     </a>
                   </SwipeItem>
                 </Swipe>
@@ -151,7 +151,7 @@
       </Swipe>
       <!-- 首页弹窗 -->
       <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
-        <a target="_blank" :href="currentPopAd.targetUrl"><img v-lazy="currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
+        <a target="_blank" :href="currentPopAd.targetUrl"><img v-lazy="currentPopAd.isDecrypted ? currentPopAd.imgUrl : getAssetsFile('default2.gif')" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
     </main>
@@ -214,14 +214,10 @@ const query = reactive<VideoListRequest>({
 
 const showPopup = ref(false)
 const currentPopAdIndex = ref(0)
-const bannerAdvertisement = computed(() => {
-  return appStore.getAdvertisementById(2).items
-})
-
+const bannerAdvertisement = computed(() => appStore.getAdvertisementById(2).items)
 const popAdvertisement = computed(() => appStore.getAdvertisementById(3).items)
-
 const currentPopAd = computed(() => {
-  var item = popAdvertisement[currentPopAdIndex.value]
+  var item = popAdvertisement.value[currentPopAdIndex.value]
   return item || {}
 })
 
@@ -257,10 +253,21 @@ watch(
     for (const ad of newAds) {
       if (!ad.isDecrypted) {
         ad.imgUrl = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${ad.imgUrl}`)
+        ad.isDecrypted = true
       }
     }
   },
   { immediate: true }
+)
+
+watch(
+  () => currentPopAd.value,
+  async (newAd) => {
+    if (newAd && !newAd.isDecrypted) {
+      newAd.imgUrl = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${newAd.imgUrl}`)
+      newAd.isDecrypted = true
+    }
+  }
 )
 
 const closePopup = () => {
