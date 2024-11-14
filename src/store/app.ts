@@ -98,13 +98,14 @@ export const useAppStore = defineStore('app', {
           data: { data }
         } = await getAdsApi()
         // 先将广告数据存储用于渲染
-        this.advertisement = data || []
-        // 异步解密广告图片
-        for (const adPosition of this.advertisement) {
-          for (const adItem of adPosition.items) {
-            adItem.imgUrl = await decrypt.fetchAndDecrypt(`${this.cdnUrl}${adItem.imgUrl}`)
-          }
-        }
+        this.advertisement =
+          data.map((adPosition) => ({
+            ...adPosition,
+            items: adPosition.items.map((adItem) => ({
+              ...adItem,
+              isDecrypted: false
+            }))
+          })) || []
         console.log('广告:', this.advertisement)
       } catch (error) {
         console.error('获取广告失败:', error)

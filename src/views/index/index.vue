@@ -45,7 +45,7 @@
               <!--Banner-->
               <nav id="index-banner" class="swiper-container">
                 <Swipe class="my-swipe" :autoplay="3000" lazy-render>
-                  <SwipeItem v-for="ad in appStore.getAdvertisementById(2).items" :key="ad.id">
+                  <SwipeItem v-for="ad in bannerAdvertisement" :key="ad.id">
                     <a target="_blank" :href="ad.targetUrl">
                       <img v-lazy="ad.imgUrl" :alt="ad.title" />
                     </a>
@@ -214,7 +214,11 @@ const query = reactive<VideoListRequest>({
 
 const showPopup = ref(false)
 const currentPopAdIndex = ref(0)
-const popAdvertisement = appStore.getAdvertisementById(3).items
+const bannerAdvertisement = computed(() => {
+  return appStore.getAdvertisementById(2).items
+})
+
+const popAdvertisement = computed(() => appStore.getAdvertisementById(3).items)
 
 const currentPopAd = computed(() => {
   var item = popAdvertisement[currentPopAdIndex.value]
@@ -225,13 +229,17 @@ const currentPopAd = computed(() => {
 watch(
   () => appStore.showAnnouncement,
   (newVal) => {
-    if (newVal && popAdvertisement.length > 0) {
+    if (newVal && popAdvertisement.value.length > 0) {
+      popAdvertisement.value.forEach(async (ad) => {
+        ad.imgUrl = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${ad.imgUrl}`)
+      })
       showPopup.value = true
     }
   },
   { immediate: true } // 立即执行
 )
 
+// 监听邀请码
 watch(
   () => route.query.inviteCode,
   (newVal) => {
@@ -242,8 +250,21 @@ watch(
   { immediate: true }
 )
 
+// 监听banner广告获取到数据后，先渲染后解密图片
+watch(
+  () => bannerAdvertisement.value,
+  async (newAds) => {
+    for (const ad of newAds) {
+      if (!ad.isDecrypted) {
+        ad.imgUrl = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${ad.imgUrl}`)
+      }
+    }
+  },
+  { immediate: true }
+)
+
 const closePopup = () => {
-  if (currentPopAdIndex.value < popAdvertisement.length - 1) {
+  if (currentPopAdIndex.value < popAdvertisement.value.length - 1) {
     currentPopAdIndex.value++
     showPopup.value = true
   } else {
@@ -422,9 +443,9 @@ onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
 })
 </script>
-
 <style scoped>
 .category-content {
   min-height: 550px;
 }
 </style>
+

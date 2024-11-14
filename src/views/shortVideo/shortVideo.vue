@@ -87,7 +87,7 @@ const players = ref<Map<number, any>>(new Map())
 const hlsInstances = ref<Map<number, any>>(new Map())
 const currentVideoIndex = ref(0)
 const pageIndex = ref(1)
-const decrypt = new decryptionService()
+// const decrypt = new decryptionService()
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 
@@ -107,13 +107,13 @@ const fetchVideos = async () => {
       SortType: 0
     })
     if (data && data.items) {
-      const newVideos = await Promise.all(
-        data.items.map(async (video) => ({
-          ...video,
-          poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-        }))
-      )
-      videos.value.push(...newVideos)
+      // const newVideos = await Promise.all(
+      //   data.items.map(async (video) => ({
+      //     ...video,
+      //     poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
+      //   }))
+      // )
+      videos.value.push(...data.items)
     }
   } catch (error) {
     console.error('获取视频列表失败:', error)
@@ -173,9 +173,10 @@ const initializePlayer = async (index: number) => {
       hls.attachMedia(videoElement)
       hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
         const player = new window.Plyr(videoElement, {
-          clickToPlay: false,
+          clickToPlay: true,
           autoplay: false,
-          autopause: true,
+          muted: true,
+          autopause: false,
           hideControls: true,
           controls: ['progress']
         })
@@ -204,6 +205,8 @@ const initializePlayer = async (index: number) => {
       const player = new window.Plyr(videoElement, {
         clickToPlay: true,
         autoplay: false,
+        muted: true,
+        autopause: false,
         hideControls: true,
         controls: ['progress']
       })
@@ -295,22 +298,22 @@ const playCurrentVideo = async () => {
     return
   }
 
-  const playVideo = async () => {
-    try {
-      await currentPlayer.play()
-    } catch (error) {
-      console.error('播放视频时出错:', error)
-      showToast('播放失败')
-    }
-  }
+  // const playVideo = async () => {
+  //   try {
+  //     await currentPlayer.play()
+  //   } catch (error) {
+  //     console.error('播放视频时出错:', error)
+  //     showToast('播放失败')
+  //   }
+  // }
 
   if (videoElement.readyState >= 2) {
-    await playVideo()
+    currentPlayer.play()
   } else {
     videoElement.addEventListener(
       'canplay',
       async function onCanPlay() {
-        await playVideo()
+        currentPlayer.play()
         videoElement.removeEventListener('canplay', onCanPlay)
       },
       { once: true }
