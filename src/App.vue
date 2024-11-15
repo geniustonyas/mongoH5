@@ -7,12 +7,10 @@
     </transition>
   </router-view>
   <Login />
-  <DownloadPop />
 </template>
 
 <script setup lang="ts">
 import Login from '@/components/Login.vue'
-import DownloadPop from '@/components/DownloadPop.vue'
 import { useAppStore } from '@/store/app'
 const appStore = useAppStore()
 const getTransition = (transition: unknown): string | undefined => {

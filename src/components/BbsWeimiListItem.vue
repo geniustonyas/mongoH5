@@ -1,6 +1,6 @@
 <template>
   <ul class="bbs-weimi">
-    <li v-for="post in bbsList" :key="post.id" @click="router.push({ name: 'bbsDetail', params: { id: post.id } })">
+    <li v-for="(post, index) in bbsList" :key="index" @click="router.push({ name: 'bbsDetail', params: { id: post.id } })">
       <div class="i-a">
         <img v-lazy="post.decryptImage[0]" alt="Image" />
         <div class="a-b">
@@ -26,7 +26,7 @@
           {{ post.title }}
         </div>
         <div class="i-d">
-          <span><img :src="post.user.avatar || getAssetsFile('logo-4.png')" />{{ post.user.nickName }}</span>
+          <span><img :src="getAssetsFile('logo-4.png')" />{{ post.user.nickName || '芒果TV官方' }}</span>
           {{ formatDate(post.createTime) }}
         </div>
       </div>

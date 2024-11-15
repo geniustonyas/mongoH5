@@ -20,9 +20,9 @@
         <SwipeItem>
           <nav id="index-banner" class="swiper-container">
             <Swipe class="my-swipe" :autoplay="3000" lazy-render>
-              <SwipeItem v-for="ad in appStore.getAdvertisementById(2).items" :key="ad.id">
+              <SwipeItem v-for="ad in bannerAdvertisement" :key="ad.id">
                 <a target="_blank" :href="ad.targetUrl">
-                  <img v-lazy="ad.imgUrl" :alt="ad.title" />
+                  <img v-lazy="ad.isDecrypted ? ad.imgUrl : getAssetsFile('default.gif')" :alt="ad.title" />
                 </a>
               </SwipeItem>
             </Swipe>
@@ -54,7 +54,7 @@
           <div class="au-col-module-5">
             <div class="m-l">
               <div class="item" @click="changeSubChannel(heiliaoCategories[0].items[0].id, 1)" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 0">
-                <img :src="heiliaoCategories[0].items[0].img" />
+                <img v-lazy="heiliaoCategories[0].items[0].isDecrypted ? heiliaoCategories[0].items[0].img : getAssetsFile('default2.gif')" />
                 <p>
                   <span># {{ heiliaoCategories[0].items[0].title }}</span>
                 </p>
@@ -102,7 +102,7 @@
         <SwipeItem>
           <ul class="au-col-module" v-if="weimiCategories[0] && weimiCategories[0].items.length > 0">
             <li v-for="item in weimiCategories[0].items" :key="item.id" @click="changeSubChannel(item.id, 2)">
-              <img :src="item.img" />
+              <img v-lazy="item.isDecrypted ? item.img : getAssetsFile('default2.gif')" />
               <p>
                 <span># {{ item.title }}</span>
               </p>
@@ -141,7 +141,7 @@
         <SwipeItem>
           <div class="au-col-module-x" v-if="quanziCategories[0] && quanziCategories[0].items.length > 0">
             <div class="item" @click="changeSubChannel(item.id, 3)" v-for="item in quanziCategories[0].items" :key="item.id">
-              <img :src="item.img" />
+              <img v-lazy="item.isDecrypted ? item.img : getAssetsFile('default2.gif')" />
               <p>
                 <span># {{ item.title }}</span>
               </p>
@@ -202,7 +202,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, watch, computed, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, SwipeInstance, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
@@ -211,6 +211,7 @@ import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
+import { getAssetsFile } from '@/utils'
 import decryptionService from '@/utils/decryptionService'
 import type { BbsListRequest, BbsCategoryResponse } from '@/types/bbs'
 import 'swiper/css'
@@ -225,6 +226,8 @@ const tabs = [
   { title: '圈子', name: 3 },
   { title: '收藏', name: 4 }
 ]
+const bannerAdvertisement = computed(() => appStore.getAdvertisementById(2).items)
+
 const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
 
 const activeTab = ref(0)
@@ -294,6 +297,11 @@ const handleSwipeChange = async (index: number) => {
   if (!bbsListMap.value[activeTab.value] || bbsListMap.value[activeTab.value].length == 0) {
     await fetchBbsList()
   }
+
+  nextTick(() => {
+    swipeRef.value.resize()
+    window.scrollTo(0, 0)
+  })
 }
 
 const fetchBbsList = async () => {
@@ -383,15 +391,31 @@ const fetchCategories = async () => {
       }
 
       for (const item of data) {
-        const decryptedItems = await Promise.all(
-          item.items.map(async (imgs) => {
-            imgs.img = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgs.img)
-            return imgs
-          })
-        )
+        // 添加解密标志
+        const decryptedItems = item.items.map((imgs) => ({
+          ...imgs,
+          isDecrypted: false // 初始标志为未解密
+        }))
+
         const category = categoryMap[item.id]
         if (category) {
+          // 先渲染数据
           category.value.push({ ...item, items: decryptedItems })
+
+          // 异步解密图片
+          Promise.all(
+            decryptedItems.map(async (imgs) => {
+              imgs.img = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgs.img)
+              imgs.isDecrypted = true // 更新标志为已解密
+              return imgs
+            })
+          ).then((updatedItems) => {
+            // 更新渲染后的数据
+            const index = category.value.findIndex((catItem) => catItem.id === item.id)
+            if (index !== -1) {
+              category.value[index].items = updatedItems
+            }
+          })
         }
       }
     } else {
@@ -431,6 +455,9 @@ const changePage = async (newPage: number) => {
     query.PageIndex = newPage
     await fetchBbsList()
   }
+  nextTick(() => {
+    window.scrollTo(0, 0)
+  })
 }
 
 // 页码变化
@@ -448,6 +475,20 @@ const handlePageChange = async () => {
     // })
   }
 }
+
+// 监听banner广告获取到数据后，先渲染后解密图片
+watch(
+  () => bannerAdvertisement.value,
+  async (newAds) => {
+    for (const ad of newAds) {
+      if (!ad.isDecrypted) {
+        ad.imgUrl = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${ad.imgUrl}`)
+        ad.isDecrypted = true
+      }
+    }
+  },
+  { immediate: true }
+)
 
 onMounted(() => {
   bbsListSortType.value[0] = 0

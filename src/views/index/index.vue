@@ -156,6 +156,7 @@
       </Popup>
     </main>
     <Footer active-menu="index" />
+    <DownloadPop />
   </div>
 </template>
 
@@ -176,6 +177,7 @@ import 'swiper/css'
 
 import Footer from '@/components/layout/Footer.vue'
 import VideoGridItem from '@/components/VideoGridItem.vue'
+import DownloadPop from '@/components/DownloadPop.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -394,6 +396,9 @@ const swipePage = throttle(async (index: number) => {
   } else {
     query.SubChannelId = ''
   }
+  nextTick(() => {
+    window.scrollTo(0, 0)
+  })
 }, 200)
 
 // 分类页切换排序

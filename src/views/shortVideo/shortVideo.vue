@@ -14,7 +14,7 @@
     <section class="vp-main">
       <div class="vm-a" />
       <div class="vm-b">
-        <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 2, addSlidesAfter: 2 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
+        <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
           <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
             <div class="v-a">
               <video :id="'video-player-' + index" class="video-player" controls muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
@@ -32,10 +32,10 @@
             </div>
             <div class="v-c">
               <div class="c-g">
-                <img :src="getAssetsFile('logo-2.png')" />芒果TV
+                <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
                 <span>{{ foreverDomain }}</span>
               </div>
-              <h3>@芒果TV</h3>
+              <h3>@芒果TV官方</h3>
               <p>
                 <b>{{ video.title }}</b>
                 <template v-if="videoDetail && videoDetail.tags">
@@ -75,6 +75,7 @@ import 'swiper/css/virtual'
 
 import { Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
+import { validateHeaderName } from 'http'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -85,8 +86,9 @@ const videos = ref<Video[]>([])
 const videoDetail = ref<VideoDetailResponse | null>(null)
 const players = ref<Map<number, any>>(new Map())
 const hlsInstances = ref<Map<number, any>>(new Map())
+const mutePlay = ref(true)
 const currentVideoIndex = ref(0)
-const pageIndex = ref(1)
+const pageIndex = ref(Math.floor(Math.random() * 10) + 1)
 // const decrypt = new decryptionService()
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
@@ -129,7 +131,6 @@ const initializePlayer = async (index: number) => {
   await nextTick() // 确保 DOM 已更新
   const video = videos.value[index]
   if (!video) return
-
   const videoElement = document.getElementById('video-player-' + index) as HTMLVideoElement
   if (!videoElement) {
     console.error(`Video element with id 'video-player-${index}' not found`)
@@ -139,15 +140,17 @@ const initializePlayer = async (index: number) => {
   if (players.value.has(index)) {
     players.value.get(index).destroy()
     players.value.delete(index)
+    console.log('初始化时删除player: ' + index)
   }
   if (hlsInstances.value.has(index)) {
     hlsInstances.value.get(index).stopLoad()
     hlsInstances.value.get(index).destroy()
     hlsInstances.value.delete(index)
+    console.log('初始化时删除hls: ' + index)
   }
 
-  return new Promise<void>((resolve) => {
-    if (window.Hls.isSupported()) {
+  if (window.Hls.isSupported()) {
+    try {
       const hls = new window.Hls({
         maxBufferLength: 15,
         maxMaxBufferLength: 30,
@@ -157,27 +160,21 @@ const initializePlayer = async (index: number) => {
         liveSyncDuration: 3,
         liveMaxLatencyDuration: 5
       })
-      // hls.config.xhrSetup = (xhr, url) => {
-      //   const path = new URL(url).pathname
-      //   const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, path)
-      //   xhr.open('GET', tsUrlWithAuth, true)
-      // }
       hlsInstances.value.set(index, hls)
+      console.log(videoElement)
+      const player = new window.Plyr(videoElement, {
+        clickToPlay: true,
+        autoplay: false,
+        muted: mutePlay.value,
+        autopause: false,
+        hideControls: true,
+        controls: ['progress']
+      })
       hls.loadSource(appStore.playDomain + video.playUrl)
       hls.attachMedia(videoElement)
       hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
-        const player = new window.Plyr(videoElement, {
-          clickToPlay: true,
-          autoplay: false,
-          muted: true,
-          autopause: false,
-          hideControls: true,
-          controls: ['progress']
-        })
+        console.log('初始化m3u8解析完成：' + index)
         players.value.set(index, player)
-        player.on('canplay', () => {
-          resolve() // 视频可以播放
-        })
         player.on('click', (event) => {
           if (player.touch && event.target.className == 'plyr__poster') {
             player.togglePlay()
@@ -185,32 +182,40 @@ const initializePlayer = async (index: number) => {
         })
         player.once('play', async () => {
           await addPlayCountApi(videoDetail.value?.id)
-          resolve()
+        })
+        player.on('play', () => {
+          console.log('playIndex: ' + index, 'currentVideoIndex: ' + currentVideoIndex.value)
+          if (currentVideoIndex.value == index) {
+            // player.muted = false
+          } else {
+            // player.muted = true
+            player.stop()
+          }
         })
       })
-      // https://github.com/video-dev/hls.js/blob/master/docs/API.md
       hls.on(window.Hls.Events.ERROR, (event, data) => {
         if (data.fatal) {
           handleHlsError(data, hls, index)
         }
       })
-    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-      videoElement.src = appStore.playDomain + video.playUrl
-      const player = new window.Plyr(videoElement, {
-        clickToPlay: true,
-        autoplay: false,
-        muted: true,
-        autopause: false,
-        hideControls: true,
-        controls: ['progress']
-      })
-      players.value.set(index, player)
-      player.on('canplay', () => {
-        // console.log(`Video at index ${index} is ready to play`)
-        resolve() // 视频可以播放
-      })
+    } catch (error) {
+      console.error('初始化hls失败: ' + index, error)
     }
-  })
+  } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+    videoElement.src = appStore.playDomain + video.playUrl
+    console.log('canPlayType，初始化player: ' + index)
+    const player = new window.Plyr(videoElement, {
+      clickToPlay: true,
+      autoplay: false,
+      muted: mutePlay.value,
+      autopause: false,
+      hideControls: true,
+      controls: ['progress']
+    })
+    players.value.set(index, player)
+  } else {
+    console.error('HLS not supported and cannot play type')
+  }
 }
 
 const handleHlsError = (data, hls, index) => {
@@ -237,55 +242,73 @@ const handleHlsError = (data, hls, index) => {
 }
 
 const slideChange = async (swiper) => {
-  const previousIndex = currentVideoIndex.value
-  currentVideoIndex.value = swiper.activeIndex
+  try {
+    const previousIndex = currentVideoIndex.value
+    currentVideoIndex.value = swiper.activeIndex
+    console.log('上一个: ' + previousIndex, '当前: ' + currentVideoIndex.value)
 
-  if (previousIndex === currentVideoIndex.value) return
+    if (previousIndex === currentVideoIndex.value) return
 
-  // 停止并重置上一个视频
-  await stopAndResetVideo(previousIndex)
+    // 播放当前视频
+    // const currentPlayer = players.value.get(currentVideoIndex.value)
+    // currentPlayer.muted = false
+    // currentPlayer.play()
+    await playCurrentVideo()
 
-  // 预加载下一个视频
-  const isSlidingDown = currentVideoIndex.value > previousIndex
-  const nextVideoIndex = isSlidingDown ? currentVideoIndex.value + 1 : currentVideoIndex.value - 1
-  if (nextVideoIndex >= 0 && nextVideoIndex < videos.value.length) {
-    await initializePlayer(nextVideoIndex)
-  }
+    // 停止并重置上一个视频
+    await stopAndResetVideo(previousIndex)
+    // 预加载下一个视频
+    const isSlidingDown = currentVideoIndex.value > previousIndex
+    const nextVideoIndex = isSlidingDown ? currentVideoIndex.value + 1 : currentVideoIndex.value - 1
+    if (nextVideoIndex >= 0 && nextVideoIndex < videos.value.length) {
+      await initializePlayer(nextVideoIndex)
+    }
+    // 销毁上上一个视频
+    const destroyIndex = isSlidingDown ? currentVideoIndex.value - 2 : currentVideoIndex.value + 2
+    if (destroyIndex >= 0 && players.value.has(destroyIndex)) {
+      await destroyVideo(destroyIndex)
+      console.log('上上一个视频销毁完成', destroyIndex)
+    }
 
-  // 销毁上上一个视频
-  const destroyIndex = isSlidingDown ? currentVideoIndex.value - 2 : currentVideoIndex.value + 2
-  if (destroyIndex >= 0 && players.value.has(destroyIndex)) {
-    await destroyVideo(destroyIndex)
-  }
+    // 获取视频详情
+    const currentVideo = videos.value[currentVideoIndex.value]
+    if (currentVideo) {
+      await fetchVideoDetail(parseInt(currentVideo.id))
+    }
 
-  // 播放当前视频
-  await playCurrentVideo()
-
-  // 获取视频详情
-  const currentVideo = videos.value[currentVideoIndex.value]
-  if (currentVideo) {
-    await fetchVideoDetail(parseInt(currentVideo.id))
-  }
-
-  if (videos.value.length - currentVideoIndex.value < 3) {
-    pageIndex.value++
-    await fetchVideos()
+    if (videos.value.length - currentVideoIndex.value < 3) {
+      pageIndex.value++
+      await fetchVideos()
+    }
+  } catch (error) {
+    console.error('滑动失败:', error)
   }
 }
 
 const stopAndResetVideo = (index) => {
   const player = players.value.get(index)
   if (hlsInstances.value.has(index)) {
+    console.log('stopload: ' + index)
     hlsInstances.value.get(index).stopLoad()
   }
   if (player) {
-    player.stop()
+    try {
+      console.log('stop: ' + index)
+      if (currentVideoIndex.value != index) {
+        player.stop()
+        console.log('播放器已停止: ' + index)
+      }
+    } catch (error) {
+      console.error('停止播放失败:', error)
+    }
   }
 }
 
 const playCurrentVideo = async () => {
+  console.log('playCurrentVideo 方法被调用')
   const currentPlayer = players.value.get(currentVideoIndex.value)
   if (!currentPlayer) {
+    console.log('播放器不存在，初始化: ' + currentVideoIndex.value)
     await initializePlayer(currentVideoIndex.value)
     return
   }
@@ -297,12 +320,14 @@ const playCurrentVideo = async () => {
   }
 
   const playVideo = async () => {
+    console.log('playVideo 方法被调用')
     try {
+      console.log('播放器 ' + currentVideoIndex.value + ' 存在，播放')
       await currentPlayer.play()
     } catch (error) {
       console.error('播放失败:', error)
       if (error.name == 'NotAllowedError') {
-        showToast('您的浏览器禁止自动播放，请点击屏幕以开始播放')
+        showToast('自动播放失败,请点击屏幕开始播放')
       } else {
         showToast('播放失败')
       }
@@ -310,8 +335,10 @@ const playCurrentVideo = async () => {
   }
 
   if (videoElement.readyState >= 2) {
+    console.log('视频成功播放')
     await playVideo()
   } else {
+    console.log('播放器: ' + currentVideoIndex.value + ' 视频未准备好')
     videoElement.addEventListener(
       'canplay',
       async function onCanPlay() {
@@ -326,6 +353,7 @@ const playCurrentVideo = async () => {
 const destroyVideo = async (index) => {
   const playerToDestroy = players.value.get(index)
   await playerToDestroy.stop()
+  await playerToDestroy.destroy()
   playerToDestroy.currentTime = 0
   if (hlsInstances.value.has(index)) {
     hlsInstances.value.get(index).stopLoad()

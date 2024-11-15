@@ -65,12 +65,14 @@ export interface BbsCategoryItem {
   img: string
   title: string
   postCount: string
+  isDecrypted?: boolean
 }
 
 export interface BbsCategoryResponse {
   id: string
   items: BbsCategoryItem[]
   title: string
+  isDecrypted?: boolean
 }
 
 export interface BbsSubCategoryDetailResponse {

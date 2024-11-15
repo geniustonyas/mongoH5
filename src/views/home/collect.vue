@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="l-a">
-              <img :src="video.poster" />
+              <img v-lazy="video.isDecrypted ? video.poster : getAssetsFile('default.gif')" />
               <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
               <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
               <span class="a-c">{{ video.channelName }}</span>
@@ -66,6 +66,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { userCollectionHistory, userCollection } from '@/api/user'
+import { getAssetsFile } from '@/utils'
 import type { Video } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
@@ -93,15 +94,19 @@ const fetchCollections = async () => {
     } = await userCollectionHistory(params)
 
     if (data && Array.isArray(data.items)) {
-      videos.value = await Promise.all(
-        data.items.map(async (video) => ({
-          ...video,
-          poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-        }))
-      )
+      videos.value = data.items.map((video) => ({
+        ...video,
+        poster: `${appStore.imageDomain}${video.imgUrl}`,
+        isDecrypted: false
+      }))
       nodata.value = videos.value.length == 0
       currentPage.value = parseInt(data.pageIndex)
       totalPages.value = parseInt(data.pageCount)
+
+      videos.value.forEach(async (video) => {
+        video.poster = await decrypt.fetchAndDecrypt(video.poster)
+        video.isDecrypted = true
+      })
     } else {
       nodata.value = true
       videos.value = []

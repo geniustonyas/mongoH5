@@ -20,6 +20,7 @@ export interface Video {
   trailerDomain?: string
   trailerUrl?: string
   poster?: string
+  isDecrypted?: boolean
 }
 
 // 在 video.ts 中直接定义接口

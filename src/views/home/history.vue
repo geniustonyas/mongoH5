@@ -11,7 +11,7 @@
         <ul v-if="videos.length > 0">
           <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
             <div class="l-a">
-              <img :src="video.poster" />
+              <img v-lazy="video.isDecrypted ? video.poster : getAssetsFile('default.gif')" />
               <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
               <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
               <span class="a-c">{{ video.channelName }}</span>
@@ -51,6 +51,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { userWatchHistory } from '@/api/user'
+import { getAssetsFile } from '@/utils'
 import type { Video } from '@/types/video'
 import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
@@ -76,20 +77,27 @@ const fetchRecords = async () => {
     } = await userWatchHistory(params)
 
     if (data && Array.isArray(data.items)) {
-      videos.value = await Promise.all(
-        data.items.map(async (video) => ({
-          ...video,
-          poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-        }))
-      )
+      videos.value = data.items.map((video) => ({
+        ...video,
+        poster: `${appStore.imageDomain}${video.imgUrl}`,
+        isDecrypted: false
+      }))
       nodata.value = videos.value.length == 0
       currentPage.value = parseInt(data.pageIndex)
       totalPages.value = parseInt(data.pageCount)
+
+      videos.value.forEach(async (video) => {
+        video.poster = await decrypt.fetchAndDecrypt(video.poster)
+        video.isDecrypted = true
+      })
     } else {
       nodata.value = true
+      videos.value = []
     }
   } catch (error) {
     console.error('获取浏览记录失败:', error)
+    nodata.value = true
+    videos.value = []
   }
 }
 

@@ -95,6 +95,7 @@ const fetchCategories = async () => {
     } = await getBbsSubCategoryDetailApi({ Id: route.params.id as string })
     if (data) {
       weimi.value = data
+      console.log('微密圈数据:', weimi.value)
       weimi.value.coverImage = await decrypt.fetchAndDecrypt(appStore.cdnUrl + weimi.value.coverImage)
     } else {
       console.error('未找到微密圈数据')

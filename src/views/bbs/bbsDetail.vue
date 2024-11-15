@@ -13,9 +13,9 @@
         <div class="d-a">{{ detail?.title || '' }}</div>
         <div class="d-b">
           <div class="b-l">
-            <div class="l-a" v-lazy:background-image="{ src: detail?.user?.avatar, error: getAssetsFile('logo-4.png') }" />
+            <div class="l-a" v-lazy:background-image="{ src: getAssetsFile('logo-4.png') }" />
             <div class="l-b">
-              <h3>{{ detail?.user?.nickName || '' }}</h3>
+              <h3>{{ detail?.user?.nickName || '芒果TV官方' }}</h3>
               <span>{{ detail?.createTime || '' }}</span>
             </div>
           </div>
@@ -103,7 +103,7 @@
             <ul class="bbs-comment-list">
               <li v-for="comment in comments" :key="comment.id">
                 <div class="i-l">
-                  <img v-lazy="{ src: comment.userAvatar, error: getAssetsFile('logo-4.png') }" alt="用户头像" />
+                  <img v-lazy="{ src: getAssetsFile('logo-4.png') }" alt="用户头像" />
                 </div>
                 <div class="i-r">
                   <div class="r-a">{{ comment.userName }}</div>
