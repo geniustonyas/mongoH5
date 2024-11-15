@@ -18,7 +18,7 @@
         <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
           <div class="a-l">
             <a v-for="actor in actorList" :key="actor.id" @click="router.push({ name: 'actorDetail', params: { id: actor.id }, query: { videoCount: actor.videosCount } })">
-              <div class="l-img" :style="{ backgroundImage: actor.imgUrlDecrypted ? `url(${actor.imgUrl})` : `url(${getAssetsFile('default2.gif')})` }" :key="actor.id">
+              <div class="l-img" :style="{ backgroundImage: actor.isDecrypted ? `url(${actor.imgUrl})` : `url(${getAssetsFile('default2.gif')})` }" :key="actor.id">
                 <span class="s-a">{{ actor.videosCount }}部</span>
                 <span class="s-b" v-if="actor.categoryNames.indexOf('知名') != -1"><b>知名女优</b></span>
               </div>
@@ -92,16 +92,16 @@ const getActorList = async (isRefresh = false) => {
       const startIndex = actorList.value.length
 
       if (isRefresh) {
-        actorList.value = data.items.map((actor) => ({ ...actor, imgUrlDecrypted: false }))
+        actorList.value = data.items.map((actor) => ({ ...actor, isDecrypted: false }))
       } else {
-        actorList.value = actorList.value.concat(data.items.map((actor) => ({ ...actor, imgUrlDecrypted: false })))
+        actorList.value = actorList.value.concat(data.items.map((actor) => ({ ...actor, isDecrypted: false })))
       }
 
       for (let i = startIndex; i < actorList.value.length; i++) {
         try {
           const decryptedUrl = await decrypt.fetchAndDecrypt(`${appStore.cdnUrl}${actorList.value[i].imgUrl}`)
           actorList.value[i].imgUrl = decryptedUrl
-          actorList.value[i].imgUrlDecrypted = true
+          actorList.value[i].isDecrypted = true
         } catch (error) {
           console.error('解密演员图片失败:', actorList.value[i].imgUrl, error)
         }

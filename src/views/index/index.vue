@@ -460,4 +460,3 @@ onMounted(() => {
   min-height: 550px;
 }
 </style>
-

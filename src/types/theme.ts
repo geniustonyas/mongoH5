@@ -26,7 +26,7 @@ export interface ActorList {
   imgUrl: string
   categoryNames: string
   videosCount: string
-  imgUrlDecrypted?: boolean
+  isDecrypted?: boolean
 }
 
 export interface Actor {

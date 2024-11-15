@@ -11,7 +11,7 @@
             <ul v-if="videos.length > 0" class="video-list-box">
               <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })" class="video-list">
                 <div class="l-a">
-                  <img v-lazy="{ src: video.poster, loading: getAssetsFile('default2.gif') }" />
+                  <img v-lazy="{ src: video.isDecrypted ? video.poster : getAssetsFile('default.gif') }" />
                   <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c">{{ video.channelName }}</span>
@@ -99,17 +99,32 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
     } = response
 
     if (data && Array.isArray(data.items)) {
-      const newVideos = await Promise.all(
-        data.items.map(async (video) => ({
-          ...video,
-          poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-        }))
-      )
+      // 初始化视频数据，设置解密标志为 false
+      const newVideos = data.items.map((video) => ({
+        ...video,
+        poster: `${appStore.imageDomain}${video.imgUrl}`,
+        isDecrypted: false // 初始标志为未解密
+      }))
+
+      const startIndex = videos.value.length
+
       if (isRefresh) {
         videos.value = newVideos
       } else {
         videos.value = [...videos.value, ...newVideos]
       }
+
+      // 异步解密图片，从新添加的记录开始
+      for (let i = startIndex; i < videos.value.length; i++) {
+        try {
+          const decryptedUrl = await decrypt.fetchAndDecrypt(videos.value[i].poster)
+          videos.value[i].poster = decryptedUrl
+          videos.value[i].isDecrypted = true // 更新标志为已解密
+        } catch (error) {
+          console.error('解密视频图片失败:', videos.value[i].poster, error)
+        }
+      }
+
       if (newVideos.length < pageSize) {
         finished.value = true
       }

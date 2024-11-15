@@ -17,7 +17,7 @@
     <main class="b-b-b">
       <Swipe v-model:active="activeTab" :loop="false" :show-indicators="false" lazy-render ref="swipeRef" @change="handleSwipeChange">
         <!-- 推荐 -->
-        <SwipeItem>
+        <SwipeItem class="bbs-swipe-item0">
           <nav id="index-banner" class="swiper-container">
             <Swipe class="my-swipe" :autoplay="3000" lazy-render>
               <SwipeItem v-for="ad in bannerAdvertisement" :key="ad.id">
@@ -50,11 +50,11 @@
           </div>
         </SwipeItem>
         <!-- 黑料 -->
-        <SwipeItem>
+        <SwipeItem class="bbs-swipe-item1">
           <div class="au-col-module-5">
             <div class="m-l">
               <div class="item" @click="changeSubChannel(heiliaoCategories[0].items[0].id, 1)" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 0">
-                <img v-lazy="heiliaoCategories[0].items[0].isDecrypted ? heiliaoCategories[0].items[0].img : getAssetsFile('default2.gif')" />
+                <img v-lazy="heiliaoCategories[0].items[0].isDecrypted ? heiliaoCategories[0].items[0].decryptImg : getAssetsFile('default2.gif')" />
                 <p>
                   <span># {{ heiliaoCategories[0].items[0].title }}</span>
                 </p>
@@ -63,7 +63,7 @@
             </div>
             <div class="m-r" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 1">
               <div class="item" @click="changeSubChannel(item.id, 1)" v-for="item in heiliaoCategories[0].items.slice(1)" :key="item.id">
-                <img v-lazy="item.img" />
+                <img v-lazy="item.isDecrypted ? item.decryptImg : getAssetsFile('default2.gif')" />
                 <p>
                   <span># {{ item.title }}</span>
                 </p>
@@ -99,10 +99,10 @@
           </div>
         </SwipeItem>
         <!-- 微密 -->
-        <SwipeItem>
+        <SwipeItem class="bbs-swipe-item2">
           <ul class="au-col-module" v-if="weimiCategories[0] && weimiCategories[0].items.length > 0">
             <li v-for="item in weimiCategories[0].items" :key="item.id" @click="changeSubChannel(item.id, 2)">
-              <img v-lazy="item.isDecrypted ? item.img : getAssetsFile('default2.gif')" />
+              <img v-lazy="item.isDecrypted ? item.decryptImg : getAssetsFile('default2.gif')" />
               <p>
                 <span># {{ item.title }}</span>
               </p>
@@ -138,10 +138,10 @@
           </div>
         </SwipeItem>
         <!-- 圈子 -->
-        <SwipeItem>
+        <SwipeItem class="bbs-swipe-item3">
           <div class="au-col-module-x" v-if="quanziCategories[0] && quanziCategories[0].items.length > 0">
             <div class="item" @click="changeSubChannel(item.id, 3)" v-for="item in quanziCategories[0].items" :key="item.id">
-              <img v-lazy="item.isDecrypted ? item.img : getAssetsFile('default2.gif')" />
+              <img v-lazy="item.isDecrypted ? item.decryptImg : getAssetsFile('default2.gif')" />
               <p>
                 <span># {{ item.title }}</span>
               </p>
@@ -177,7 +177,7 @@
           </div>
         </SwipeItem>
         <!-- 收藏 -->
-        <SwipeItem>
+        <SwipeItem class="bbs-swipe-item4">
           <PullRefresh v-if="bbsListMap[4]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh">
             <BbsListItem :bbs-list="bbsListMap[4]" :is-collect="true" class="mt-0" />
           </PullRefresh>
@@ -248,15 +248,15 @@ const collectionRefreshing = ref(false) // 用于收藏列表的刷新状态
 const bbsListMap = ref<Record<number, any[]>>({})
 const bbsListTotalPages = ref<Record<number, number>>({})
 const bbsListPageIndex = ref<Record<number, number>>({})
+const bbsListSortType = ref({})
+const bbsListSubChannelId = ref({})
+
 const swipeRef = ref<SwipeInstance>()
 const decrypt = new decryptionService()
 
 const heiliaoCategories = ref<BbsCategoryResponse[]>([])
 const weimiCategories = ref<BbsCategoryResponse[]>([])
 const quanziCategories = ref<BbsCategoryResponse[]>([])
-
-const bbsListSortType = ref({})
-const bbsListSubChannelId = ref({})
 
 const clickTab = () => {
   swipeRef.value.swipeTo(activeTab.value, { immediate: true })
@@ -293,13 +293,17 @@ const handleSwipeChange = async (index: number) => {
   if (bbsListSubChannelId.value[activeTab.value] != undefined) {
     query.SubChannelId = bbsListSubChannelId.value[activeTab.value]
   }
+  if (bbsListPageIndex.value[activeTab.value] == undefined) {
+    query.PageIndex = 1
+  } else {
+    query.PageIndex = bbsListPageIndex.value[activeTab.value]
+  }
 
   if (!bbsListMap.value[activeTab.value] || bbsListMap.value[activeTab.value].length == 0) {
     await fetchBbsList()
   }
 
   nextTick(() => {
-    swipeRef.value.resize()
     window.scrollTo(0, 0)
   })
 }
@@ -315,27 +319,53 @@ const fetchBbsList = async () => {
         bbsListMap.value[activeTab.value] = []
       }
 
-      // 先显示返回的数据，并设置解密标志
-      bbsListMap.value[activeTab.value] = data.items.map((item) => {
-        const placeholderImages = item.imgs ? item.imgs.split(',').map((item, index) => 'placeholder' + index) : []
-        return { ...item, decryptImage: placeholderImages, imgUrlDecrypted: false }
-      })
+      // 先将数据赋值给 bbsListMap
+      bbsListMap.value[activeTab.value] = data.items.map((item) => ({
+        ...item,
+        decrypt: item.imgs.split(',').map((img) => ({
+          isDecrypted: false,
+          decryptImg: img
+        }))
+      }))
+
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
       bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
 
-      // 异步解密图片
-      data.items.forEach(async (item, index) => {
+      // 异步解密图片，直接操作 bbsListMap
+      bbsListMap.value[activeTab.value].forEach(async (item) => {
         if (item.imgs) {
-          const imgs = item.imgs.split(',')
-          item.decryptImage = await Promise.all(
-            imgs.map(async (img) => {
-              return await decrypt.fetchAndDecrypt(appStore.cdnUrl + img)
-            })
-          )
-          // 更新解密后的图片和标志
-          bbsListMap.value[activeTab.value][index] = { ...item, imgUrlDecrypted: true }
+          item.decrypt.forEach(async (imgObj) => {
+            try {
+              imgObj.decryptImg = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgObj.decryptImg)
+              imgObj.isDecrypted = true
+            } catch (error) {
+              console.error(`解密图片失败: ${imgObj.decryptImg}`, error)
+              imgObj.isDecrypted = false
+            }
+          })
         }
       })
+      console.log(bbsListMap.value[activeTab.value])
+
+      // 在数据更新并渲染完成后调整高度
+      // nextTick(() => {
+      //   const currentSwipeItem = document.querySelector(`.bbs-swipe-item${activeTab.value}`) as HTMLElement
+      //   if (currentSwipeItem) {
+      //     let totalHeight = 0
+      //     // 遍历所有子元素，累加它们的高度
+      //     currentSwipeItem.childNodes.forEach((child) => {
+      //       console.log(child)
+      //       if (child instanceof HTMLElement) {
+      //         totalHeight += child.offsetHeight
+      //       }
+      //     })
+      //     console.log(totalHeight)
+      //     // 设置 currentSwipeItem 的高度
+      //     console.log(currentSwipeItem.offsetHeight)
+      //     currentSwipeItem.style.height = `${totalHeight}px`
+      //     console.log(currentSwipeItem.style.height)
+      //   }
+      // })
     } else {
       console.error('响应数据结构不正确')
     }
@@ -350,26 +380,32 @@ const fetchCollectionList = async () => {
       data: { data }
     } = await getBbsCollectionListApi({ PageIndex: query.PageIndex, PageSize: query.PageSize })
     if (data && Array.isArray(data.items)) {
-      bbsListMap.value[activeTab.value] = data.items.map((item) => {
-        const placeholderImages = item.imgs ? item.imgs.split(',').map((item, index) => 'placeholder' + index) : []
-        return { ...item, decryptImage: placeholderImages, imgUrlDecrypted: false, isCollected: true }
-      })
+      bbsListMap.value[activeTab.value] = data.items.map((item) => ({
+        ...item,
+        isCollected: true,
+        decrypt: item.imgs.split(',').map((img) => ({
+          isDecrypted: false,
+          decryptImg: img
+        }))
+      }))
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
       bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
 
       // 异步解密图片
-      data.items.forEach(async (item, index) => {
+      bbsListMap.value[activeTab.value].forEach(async (item) => {
         if (item.imgs) {
-          const imgs = item.imgs.split(',')
-          item.decryptImage = await Promise.all(
-            imgs.map(async (img) => {
-              return await decrypt.fetchAndDecrypt(appStore.cdnUrl + img)
-            })
-          )
-          item.isCollected = true
-          bbsListMap.value[activeTab.value][index] = { ...item, imgUrlDecrypted: true }
+          item.decrypt.forEach(async (imgObj) => {
+            try {
+              imgObj.decryptImg = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgObj.decryptImg)
+              imgObj.isDecrypted = true
+            } catch (error) {
+              console.error(`解密图片失败: ${imgObj.decryptImg}`, error)
+              imgObj.isDecrypted = false
+            }
+          })
         }
       })
+      console.log(bbsListMap.value[activeTab.value])
     } else {
       console.error('响应数据结构不正确')
     }
@@ -383,6 +419,7 @@ const fetchCategories = async () => {
     const {
       data: { data }
     } = await getBbsCategoryApi()
+
     if (data && Array.isArray(data)) {
       const categoryMap = {
         '1': heiliaoCategories,
@@ -390,34 +427,38 @@ const fetchCategories = async () => {
         '3': quanziCategories
       }
 
-      for (const item of data) {
-        // 添加解密标志
-        const decryptedItems = item.items.map((imgs) => ({
-          ...imgs,
-          isDecrypted: false // 初始标志为未解密
-        }))
-
+      data.forEach((item) => {
         const category = categoryMap[item.id]
         if (category) {
-          // 先渲染数据
+          // 初始化解密标志并渲染数据
+          const decryptedItems = item.items.map((imgs) => ({
+            ...imgs,
+            isDecrypted: false,
+            decryptImg: '' // 初始化解密图片字段为空
+          }))
           category.value.push({ ...item, items: decryptedItems })
 
-          // 异步解密图片
-          Promise.all(
-            decryptedItems.map(async (imgs) => {
-              imgs.img = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgs.img)
-              imgs.isDecrypted = true // 更新标志为已解密
-              return imgs
-            })
-          ).then((updatedItems) => {
-            // 更新渲染后的数据
-            const index = category.value.findIndex((catItem) => catItem.id === item.id)
-            if (index !== -1) {
-              category.value[index].items = updatedItems
+          // 异步逐个解密图片
+          decryptedItems.forEach(async (imgs, index) => {
+            try {
+              const decryptedUrl = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgs.img)
+              imgs.decryptImg = decryptedUrl
+              imgs.isDecrypted = true
+
+              // 更新 categoryMap 中的解密数据
+              const categoryIndex = category.value.findIndex((catItem) => catItem.id === item.id)
+              if (categoryIndex !== -1) {
+                category.value[categoryIndex].items[index] = imgs
+              }
+            } catch (error) {
+              console.error(`解密图片失败: ${imgs.img}`, error)
+              imgs.isDecrypted = false
             }
           })
         }
-      }
+      })
+      console.log(123)
+      console.log(heiliaoCategories.value)
     } else {
       console.error('响应数据结构不正确')
     }
@@ -467,12 +508,9 @@ const handlePageChange = async () => {
     await fetchBbsList()
 
     // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
-    // nextTick(() => {
-    //   const mainElement = document.querySelector('.bbs-content')
-    //   if (mainElement) {
-    //     mainElement.scrollTop = 0 // 重置滚动条到顶部
-    //   }
-    // })
+    nextTick(() => {
+      window.scrollTo(0, 0)
+    })
   }
 }
 
@@ -496,3 +534,8 @@ onMounted(() => {
   fetchCategories()
 })
 </script>
+<style scoped>
+.vant-swipe-item {
+  min-height: calc(100vh - 19.5rem);
+}
+</style>

@@ -123,24 +123,39 @@ const searchBbs = async (isRefresh = false) => {
 
     const params: BbsListRequest = {
       PageIndex: pageIndex.value,
-      PageSize: 30,
+      PageSize: 10,
       KeyWord: searchKeyword.value
     }
     const {
       data: { data }
     } = await getBbsListApi(params)
     if (data.items && Array.isArray(data.items)) {
-      const newBbs = await Promise.all(
-        data.items.map(async (bbs) => ({
-          ...bbs,
-          decryptImage: await Promise.all(bbs.imgs.split(',').map(async (img) => await decrypt.fetchAndDecrypt(`${appStore.cdnUrl}${img}`)))
+      const newBbs = data.items.map((item) => ({
+        ...item,
+        decrypt: item.imgs.split(',').map((img) => ({
+          isDecrypted: false,
+          decryptImg: img
         }))
-      )
+      }))
+      const startIndex = searchResults.value.length
+
       if (isRefresh) {
         searchResults.value = newBbs
       } else {
         searchResults.value = [...searchResults.value, ...newBbs]
       }
+      for (let i = startIndex; i < searchResults.value.length; i++) {
+        searchResults.value[i].decrypt.forEach(async (imgObj) => {
+          try {
+            imgObj.decryptImg = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgObj.decryptImg)
+            imgObj.isDecrypted = true
+          } catch (error) {
+            console.error(`解密图片失败: ${imgObj.decryptImg}`, error)
+            imgObj.isDecrypted = false
+          }
+        })
+      }
+
       if (newBbs.length < params.PageSize) {
         finished.value = true
       }
@@ -172,6 +187,7 @@ const selectTag = (tagName: string) => {
 
 const handleInputSearch = () => {
   pageIndex.value = 1
+  searchResults.value = []
   searchBbs(true)
 }
 

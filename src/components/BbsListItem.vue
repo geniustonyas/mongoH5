@@ -1,6 +1,6 @@
 <template>
   <ul class="bbs-list">
-    <li v-for="post in bbsList" :key="post.id" @click="handleClick(post)">
+    <li v-for="(post, index) in bbsList" :key="index" @click="handleClick(post)">
       <div class="i-a">
         <div class="a-l">
           <img :src="getAssetsFile('logo-4.png')" />
@@ -19,9 +19,9 @@
         </div>
       </div>
       <div class="i-b">{{ post.title }}</div>
-      <div :class="`i-c pic${post.decryptImage?.length > 4 ? '9' : post.decryptImage?.length || ''} ${post.channel.id == '2' ? 'weimi' : ''}`">
-        <div class="item" v-for="(img, index) in post.decryptImage" :key="index">
-          <img v-lazy="post.imgUrlDecrypted ? img : getAssetsFile('default2.gif')" />
+      <div :class="`i-c pic${post.decrypt?.length > 4 ? '9' : post.decrypt?.length || ''} ${post.channel.id == '2' ? 'weimi' : ''}`">
+        <div class="item" v-for="(img, index1) in post.decrypt" :key="index1">
+          <img v-lazy="img.isDecrypted ? img.decryptImg : getAssetsFile('default2.gif')" />
         </div>
       </div>
       <div class="i-d">
