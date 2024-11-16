@@ -15,9 +15,9 @@
     </header>
 
     <main class="b-b-b">
-      <Swipe v-model:active="activeTab" :loop="false" :show-indicators="false" lazy-render ref="swipeRef" @change="handleSwipeChange">
+      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="handleSwipeChange">
         <!-- 推荐 -->
-        <SwipeItem class="bbs-swipe-item0">
+        <swiper-slide class="bbs-swipe-item0">
           <nav id="index-banner" class="swiper-container">
             <Swipe class="my-swipe" :autoplay="3000" lazy-render>
               <SwipeItem v-for="ad in bannerAdvertisement" :key="ad.id">
@@ -48,9 +48,9 @@
               <a @click="changePage(bbsListPageIndex[0] + 1)" :class="{ disabled: bbsListPageIndex[0] == bbsListTotalPages[0] }">下一页</a>
             </div>
           </div>
-        </SwipeItem>
+        </swiper-slide>
         <!-- 黑料 -->
-        <SwipeItem class="bbs-swipe-item1">
+        <swiper-slide class="bbs-swipe-item1">
           <div class="au-col-module-5">
             <div class="m-l">
               <div class="item" @click="changeSubChannel(heiliaoCategories[0].items[0].id, 1)" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 0">
@@ -97,9 +97,9 @@
               <a @click="changePage(bbsListPageIndex[1] + 1)" :class="{ disabled: bbsListPageIndex[1] == bbsListTotalPages[1] }">下一页</a>
             </div>
           </div>
-        </SwipeItem>
+        </swiper-slide>
         <!-- 微密 -->
-        <SwipeItem class="bbs-swipe-item2">
+        <swiper-slide class="bbs-swipe-item2">
           <ul class="au-col-module" v-if="weimiCategories[0] && weimiCategories[0].items.length > 0">
             <li v-for="item in weimiCategories[0].items" :key="item.id" @click="changeSubChannel(item.id, 2)">
               <img v-lazy="item.isDecrypted ? item.decryptImg : getAssetsFile('default2.gif')" />
@@ -136,9 +136,9 @@
               <a @click="changePage(bbsListPageIndex[2] + 1)" :class="{ disabled: bbsListPageIndex[2] == bbsListTotalPages[2] }">下一页</a>
             </div>
           </div>
-        </SwipeItem>
+        </swiper-slide>
         <!-- 圈子 -->
-        <SwipeItem class="bbs-swipe-item3">
+        <swiper-slide class="bbs-swipe-item3">
           <div class="au-col-module-x" v-if="quanziCategories[0] && quanziCategories[0].items.length > 0">
             <div class="item" @click="changeSubChannel(item.id, 3)" v-for="item in quanziCategories[0].items" :key="item.id">
               <img v-lazy="item.isDecrypted ? item.decryptImg : getAssetsFile('default2.gif')" />
@@ -175,9 +175,9 @@
               <a @click="changePage(bbsListPageIndex[3] + 1)" :class="{ disabled: bbsListPageIndex[3] == bbsListTotalPages[3] }">下一页</a>
             </div>
           </div>
-        </SwipeItem>
+        </swiper-slide>
         <!-- 收藏 -->
-        <SwipeItem class="bbs-swipe-item4">
+        <swiper-slide class="bbs-swipe-item4">
           <PullRefresh v-if="bbsListMap[4]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh">
             <BbsListItem :bbs-list="bbsListMap[4]" :is-collect="true" class="mt-0" />
           </PullRefresh>
@@ -193,8 +193,8 @@
               <a @click="changePage(bbsListPageIndex[4] + 1)" :class="{ disabled: bbsListPageIndex[4] == bbsListTotalPages[4] }">下一页</a>
             </div>
           </div>
-        </SwipeItem>
-      </Swipe>
+        </swiper-slide>
+      </swiper>
     </main>
 
     <Footer active-menu="bbs" />
@@ -204,12 +204,13 @@
 <script setup lang="ts">
 import { ref, reactive, watch, computed, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
-import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, SwipeInstance, showToast } from 'vant'
+import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
 import BbsListItem from '@/components/BbsListItem.vue'
 import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
 import { getAssetsFile } from '@/utils'
 import decryptionService from '@/utils/decryptionService'
@@ -251,39 +252,49 @@ const bbsListPageIndex = ref<Record<number, number>>({})
 const bbsListSortType = ref({})
 const bbsListSubChannelId = ref({})
 
-const swipeRef = ref<SwipeInstance>()
+const swiperInstance = ref<any>(null)
 const decrypt = new decryptionService()
 
 const heiliaoCategories = ref<BbsCategoryResponse[]>([])
 const weimiCategories = ref<BbsCategoryResponse[]>([])
 const quanziCategories = ref<BbsCategoryResponse[]>([])
 
+const onSwiper = (swiper: any) => {
+  swiperInstance.value = swiper
+}
+
 const clickTab = () => {
-  swipeRef.value.swipeTo(activeTab.value, { immediate: true })
+  if (swiperInstance.value) {
+    swiperInstance.value.slideTo(activeTab.value, 0)
+  }
   if (activeTab.value == 4) {
     if (userStore.userInfo.id == '') {
-      swipeRef.value.swipeTo(previousTab.value, { immediate: true })
+      if (swiperInstance.value) {
+        swiperInstance.value.slideTo(previousTab.value, 0)
+      }
       userStore.showLoginDialog = true
     }
   }
 }
 
-const handleSwipeChange = async (index: number) => {
+const handleSwipeChange = (swiper: any) => {
   // 检查是否滑动到收藏列表
-  if (index === 4) {
+  if (swiper.activeIndex === 4) {
     if (userStore.userInfo.id == '') {
-      swipeRef.value.swipeTo(activeTab.value, { immediate: true })
+      if (swiperInstance.value) {
+        swiperInstance.value.slideTo(activeTab.value, 0)
+      }
       userStore.showLoginDialog = true
       return
     }
   }
   previousTab.value = activeTab.value
-  activeTab.value = index
+  activeTab.value = swiper.activeIndex
   query.ChannelId = activeTab.value == 0 ? '' : activeTab.value
 
   // 如果是收藏，则调用获取收藏列表方法
   if (activeTab.value == 4) {
-    await fetchCollectionList()
+    fetchCollectionList()
   }
 
   // 滑动到新的swipeItem，获取之前的排序和子频道
@@ -300,7 +311,7 @@ const handleSwipeChange = async (index: number) => {
   }
 
   if (!bbsListMap.value[activeTab.value] || bbsListMap.value[activeTab.value].length == 0) {
-    await fetchBbsList()
+    fetchBbsList()
   }
 
   nextTick(() => {

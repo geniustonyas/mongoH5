@@ -181,10 +181,7 @@ const handleSubmit = async () => {
       }
     }
   } catch (error) {
-    const {
-      data: { message }
-    } = error
-    showToast(message || (isLoginMode.value ? '登录失败' : '注册失败'))
+    showToast(error.message || (isLoginMode.value ? '登录失败' : '注册失败'))
   }
 }
 

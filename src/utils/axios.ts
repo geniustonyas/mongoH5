@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { TokenPrefix, getToken } from '@/utils/auth'
 import { useUserStoreHook } from '@/store/user'
-import { showToast } from 'vant'
+// import { showToast } from 'vant'
 import decryptionService from '@/utils/decryptionService'
 
 // 解析 VITE_BASE_API 环境变量
@@ -101,10 +101,9 @@ const setupInterceptors = (service: AxiosInstance) => {
             useUserStoreHook().clearLogin()
             return Promise.reject(new Error('Unauthorized'))
           } else if (parsedData.code !== '200') {
-            showToast('服务器错误：' + parsedData.code)
-            return Promise.reject(new Error('Server Error: ' + parsedData.code))
+            // showToast('服务器错误：' + parsedData.code)
+            return Promise.reject(parsedData)
           }
-          console.log(response.data)
           return response
         } catch (parseError) {
           throw new Error('解密后的数据不是有效的 JSON 格式')

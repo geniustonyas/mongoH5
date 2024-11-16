@@ -38,8 +38,8 @@
       </div>
     </header>
     <main class="main">
-      <Swipe v-model="activeId" :show-indicators="false" :loop="false" @change="swipePage" lazy-render ref="swipeRef">
-        <SwipeItem>
+      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage">
+        <swiper-slide>
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="index-content">
               <!--Banner-->
@@ -102,8 +102,8 @@
               </nav>
             </div>
           </PullRefresh>
-        </SwipeItem>
-        <SwipeItem v-for="category in appStore.categorys" :key="category.d">
+        </swiper-slide>
+        <swiper-slide v-for="category in appStore.categorys" :key="category.d">
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="category-content">
               <div class="mv-swiper" @touchstart.stop @touchmove.stop>
@@ -147,8 +147,8 @@
               </section>
             </div>
           </PullRefresh>
-        </SwipeItem>
-      </Swipe>
+        </swiper-slide>
+      </swiper>
       <!-- 首页弹窗 -->
       <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
         <a target="_blank" :href="currentPopAd.targetUrl"><img v-lazy="currentPopAd.isDecrypted ? currentPopAd.imgUrl : getAssetsFile('default2.gif')" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
@@ -171,8 +171,6 @@ import decryptionService from '@/utils/decryptionService'
 import type { VideoListRequest, Video } from '@/types/video'
 import { getAssetsFile } from '@/utils'
 import { Autoplay } from 'swiper/modules'
-import type { SwipeInstance } from 'vant'
-import { throttle } from 'lodash-es'
 import 'swiper/css'
 
 import Footer from '@/components/layout/Footer.vue'
@@ -185,7 +183,7 @@ const appStore = useAppStoreHook()
 
 const decrypt = new decryptionService()
 
-const swipeRef = ref<SwipeInstance>()
+const swiperInstance = ref<any>(null)
 const modules = [Autoplay]
 
 const refreshing = ref(false)
@@ -204,6 +202,10 @@ const sortOptions = [
   { label: '按最热', value: 2 },
   { label: '按好评', value: 3 }
 ]
+
+const onSwiper = (swiper: any) => {
+  swiperInstance.value = swiper
+}
 
 const query = reactive<VideoListRequest>({
   ChannelId: '',
@@ -360,7 +362,9 @@ const changePage = async (newPage: number) => {
 
 // 点击tab滑动到对应分类, 并重新获取数据
 const clickTab = () => {
-  swipeRef.value.swipeTo(activeId.value, { immediate: true })
+  if (swiperInstance.value) {
+    swiperInstance.value.slideTo(activeId.value, 0)
+  }
   // query.ChannelId = appStore.categorys[activeId.value - 1].d
   // if (!categoryVideosMap.value[query.ChannelId] || categoryVideosMap.value[query.ChannelId].length == 0) {
   //   handleCategoryChange()
@@ -385,8 +389,8 @@ const handleCategoryChange = async (isRefresh = false) => {
   }
 }
 
-const swipePage = throttle(async (index: number) => {
-  activeId.value = index
+const swipePage = (swiper: any) => {
+  activeId.value = swiper.activeIndex
   query.ChannelId = activeId.value == 0 ? '' : appStore.categorys[activeId.value - 1].d
   if (!categoryVideosMap.value[query.ChannelId] || categoryVideosMap.value[query.ChannelId].length == 0) {
     handleCategoryChange()
@@ -396,7 +400,7 @@ const swipePage = throttle(async (index: number) => {
   nextTick(() => {
     window.scrollTo(0, 0)
   })
-}, 200)
+}
 
 // 分类页切换排序
 const changeSort = async (sortValue) => {
