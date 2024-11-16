@@ -289,7 +289,7 @@ const fetchVideos = async (params: VideoListRequest) => {
     } = await getVideoListApi(params)
     if (data && Array.isArray(data.items)) {
       const videoList = data.items.map((video) => ({ ...video, poster: '' }))
-      const swiperList = data.newVideos.map((video) => ({ ...video, poster: '' }))
+      const swiperList = data.items.map((video) => ({ ...video, poster: '' }))
       categoryVideosMap.value[query.ChannelId] = videoList
       categoryBannerMap.value[query.ChannelId] = swiperList
       categoryTotalPages.value[query.ChannelId] = parseInt(data.pageCount)
@@ -353,10 +353,7 @@ const changePage = async (newPage: number) => {
     await fetchVideos(query)
     // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
     nextTick(() => {
-      const mainElement = document.querySelector('.category-content')
-      if (mainElement) {
-        mainElement.scrollTop = 0 // 重置滚动条到顶部
-      }
+      window.scrollTo(0, 0)
     })
   }
 }

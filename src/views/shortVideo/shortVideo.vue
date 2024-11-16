@@ -75,7 +75,6 @@ import 'swiper/css/virtual'
 
 import { Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
-import { validateHeaderName } from 'http'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -186,9 +185,9 @@ const initializePlayer = async (index: number) => {
         player.on('play', () => {
           console.log('playIndex: ' + index, 'currentVideoIndex: ' + currentVideoIndex.value)
           if (currentVideoIndex.value == index) {
-            // player.muted = false
+            player.muted = false
           } else {
-            // player.muted = true
+            player.muted = true
             player.stop()
           }
         })

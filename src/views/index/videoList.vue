@@ -128,6 +128,7 @@ const fetchVideos = async (sortType: number, isRefresh = false) => {
 const changeTab = (tabValue: number) => {
   window.scrollTo(0, 0)
   activeTab.value = tabValue
+  videos.value = []
   fetchVideos(tabValue, true)
 }
 

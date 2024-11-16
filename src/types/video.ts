@@ -40,7 +40,6 @@ export interface VideoListRequest {
 
 export type VideoListResponse = {
   items: Video[]
-  newVideos: Video[]
   pageCount: string
   pageIndex: string
   pageSize: string

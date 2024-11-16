@@ -17,8 +17,20 @@
       </nav>
     </section>
 
+    <!-- 搜索中提示 -->
+    <section v-if="searchIng" class="p-s-b">
+      <nav class="ps-ssfx">
+        <div class="s-a">
+          <b>
+            正在搜索"<span>{{ searchKeyword }}</span>
+            "相关的影片
+          </b>
+        </div>
+      </nav>
+    </section>
+
     <!-- 搜索结果展示 -->
-    <section v-if="searchResults.length > 0" class="p-s-b">
+    <section v-if="!searchIng && searchResults.length > 0" class="p-s-b">
       <nav class="ps-ssfx">
         <div class="s-a">
           <b>
@@ -56,7 +68,7 @@
     </section>
 
     <!-- 搜索结果为空时的展示 -->
-    <section v-else-if="hasSearched" class="p-s-b">
+    <section v-if="!searchIng && hasSearched && searchResults.length === 0" class="p-s-b">
       <nav class="ps-ssfx">
         <div class="s-a">
           <b>
@@ -95,6 +107,7 @@ let pageIndex = ref(1)
 let listLoading = ref(false)
 let finished = ref(false)
 let error = ref(false)
+const searchIng = ref(false)
 
 // 用于管理请求的 AbortController
 let currentAbortController: AbortController | null = null
@@ -118,9 +131,8 @@ const searchVideos = async (isRefresh = false) => {
     finished.value = false
   }
   if (finished.value) return
-
+  searchIng.value = true
   showHotTags.value = false
-  hasSearched.value = true
   try {
     listLoading.value = true
 
@@ -143,21 +155,25 @@ const searchVideos = async (isRefresh = false) => {
       data: { data }
     } = await getVideoListApi(params)
     if (data.items && Array.isArray(data.items)) {
-      const newVideos = await Promise.all(
-        data.items.map(async (video) => ({
-          ...video,
-          poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-        }))
-      )
+      const newVideos = data.items.map((video) => ({
+        ...video,
+        poster: ''
+      }))
+      const startIndex = searchResults.value.length
       if (isRefresh) {
         searchResults.value = newVideos
       } else {
-        searchResults.value = [...searchResults.value, ...newVideos]
+        searchResults.value = searchResults.value.concat(newVideos)
       }
+
+      searchResults.value.slice(startIndex).forEach(async (video) => {
+        video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
+      })
       if (newVideos.length < params.PageSize) {
         finished.value = true
       }
       recordCount.value = parseInt(data.recordCount)
+      hasSearched.value = recordCount.value == 0
     } else {
       if (isRefresh) {
         searchResults.value = []
@@ -171,7 +187,9 @@ const searchVideos = async (isRefresh = false) => {
       searchResults.value = []
     }
     finished.value = true
+    searchIng.value = false
   } finally {
+    searchIng.value = false
     listLoading.value = false
   }
 }
@@ -186,6 +204,7 @@ const selectTag = (tagName: string, tagId: string) => {
 const handleInputSearch = () => {
   currentTagId.value = null
   pageIndex.value = 1
+  searchResults.value = []
   searchVideos(true)
 }
 

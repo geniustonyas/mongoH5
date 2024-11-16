@@ -150,6 +150,7 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
 
 const changeRank = (rank: string) => {
   activeRank.value = rank
+  videos.value = []
   fetchVideos(rank, true)
 }
 

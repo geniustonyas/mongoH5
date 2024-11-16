@@ -130,12 +130,14 @@ const getActorList = async (isRefresh = false) => {
 const handleCategoryChange = async (categoryId: string) => {
   query.CategoryId = categoryId
   query.PageIndex = 1 // 重置分页
+  actorList.value = []
   await getActorList(true)
 }
 
 const handleSortChange = async (sortType: string) => {
   query.SortType = sortType
   query.PageIndex = 1 // 重置分页
+  actorList.value = []
   await getActorList(true)
 }
 
