@@ -24,18 +24,14 @@ class decryptionService {
     this.iv = 'ZmA0Osl677UdSrl0'
   }
 
-  async fetchAndDecrypt(url: string): Promise<string> {
+  async fetchAndDecrypt(url: string): Promise<Blob> {
     try {
-      // 提取文件名部分
       const fileName = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.'))
-      // 检查文件名中是否包含后缀
       const extension = fileName.includes('.') ? fileName.split('.').pop() : 'jpg'
-      // 获取 MIME 类型
       const mimeType = this.getMimeType(`.${extension}`)
 
-      const response = await axios.get(url, { responseType: 'text' }) // 获取文本数据
+      const response = await axios.get(url, { responseType: 'text' })
       const base64Data = response.data
-      // 使用类中定义的密钥和偏移量
       const parsedKey = CryptoJS.enc.Utf8.parse(this.key)
       const parsedIv = CryptoJS.enc.Utf8.parse(this.iv)
       const decrypted = CryptoJS.AES.decrypt(base64Data, parsedKey, {
@@ -44,10 +40,13 @@ class decryptionService {
         padding: CryptoJS.pad.Pkcs7
       })
 
-      return `data:${mimeType};base64,${decrypted.toString(CryptoJS.enc.Utf8)}`
+      const decryptedData = CryptoJS.enc.Base64.parse(decrypted.toString(CryptoJS.enc.Utf8))
+      const byteArray = new Uint8Array(decryptedData.words.map((word) => [(word >> 24) & 0xff, (word >> 16) & 0xff, (word >> 8) & 0xff, word & 0xff]).flat())
+
+      return new Blob([byteArray], { type: mimeType })
     } catch (error) {
       console.error('解密图片失败:', url, error)
-      return ''
+      throw error
     }
   }
 

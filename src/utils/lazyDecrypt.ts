@@ -25,15 +25,21 @@ export default {
 
     const loadImage = async () => {
       try {
-        const decryptedUrl = await decrypt.fetchAndDecrypt(appStore.cdnUrl + binding.value)
+        const blob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + binding.value)
+        // 检查 blob 是否是一个有效的 Blob 对象
+        if (!(blob instanceof Blob)) {
+          throw new Error('解密后的数据不是有效的 Blob 对象')
+        }
+
+        const blobUrl = URL.createObjectURL(blob)
+
         if (isImageElement) {
-          ;(el as HTMLImageElement).src = decryptedUrl
+          ;(el as HTMLImageElement).src = blobUrl
         } else {
-          el.style.backgroundImage = `url(${decryptedUrl})`
+          el.style.backgroundImage = `url(${blobUrl})`
         }
       } catch (error) {
         console.error('图片解密失败:', error)
-        // 设置解密失败的图片或背景图片
         if (isImageElement) {
           ;(el as HTMLImageElement).src = getAssetsFile(errorImage)
         } else {
