@@ -19,9 +19,9 @@
         </div>
       </div>
       <div class="i-b">{{ post.title }}</div>
-      <div :class="`i-c pic${post.decrypt?.length > 4 ? '9' : post.decrypt?.length || ''} ${post.channel.id == '2' ? 'weimi' : ''}`">
-        <div class="item" v-for="(img, index1) in post.decrypt" :key="index1">
-          <img v-lazy="img.isDecrypted ? img.decryptImg : getAssetsFile('default2.gif')" />
+      <div :class="`i-c pic${post.imgs.split(',').length > 4 ? '9' : post.imgs.split(',').length || ''} ${post.channel.id == '2' ? 'weimi' : ''}`">
+        <div class="item" v-for="(img, index1) in post.imgs.split(',')" :key="index1">
+          <img v-lazy-decrypt="img" />
         </div>
       </div>
       <div class="i-d">

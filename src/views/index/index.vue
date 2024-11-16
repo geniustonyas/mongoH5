@@ -43,14 +43,14 @@
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="index-content">
               <!--Banner-->
-              <nav id="index-banner" class="swiper-container">
-                <Swipe class="my-swipe" :autoplay="3000" lazy-render>
-                  <SwipeItem v-for="ad in bannerAdvertisement" :key="ad.id">
+              <nav id="index-banner" class="swiper-container" @touchstart.stop @touchmove.stop>
+                <swiper class="my-swipe" :modules="bannerModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
+                  <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                     <a target="_blank" :href="ad.targetUrl">
-                      <img v-lazy="ad.isDecrypted ? ad.imgUrl : getAssetsFile('default.gif')" :alt="ad.title" />
+                      <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
                     </a>
-                  </SwipeItem>
-                </Swipe>
+                  </swiper-slide>
+                </swiper>
               </nav>
               <nav class="i-m-b">
                 <a @click.prevent="openDownloadPage" href="#">
@@ -108,9 +108,9 @@
             <div class="category-content">
               <div class="mv-swiper" @touchstart.stop @touchmove.stop>
                 <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
-                  <swiper-slide v-for="categoryBanner in categoryBannerMap[category.d]" :key="categoryBanner.id">
-                    <a @click="router.push({ name: 'play', params: { id: categoryBanner.id } })">
-                      <img v-lazy="categoryBanner.poster" :alt="categoryBanner.title" />
+                  <swiper-slide v-for="video in categoryVideosMap[category.d]" :key="video.id">
+                    <a @click="router.push({ name: 'play', params: { id: video.id } })">
+                      <img v-lazy-decrypt="video.imgUrl" :alt="video.title" />
                     </a>
                   </swiper-slide>
                 </swiper>
@@ -151,7 +151,7 @@
       </swiper>
       <!-- 首页弹窗 -->
       <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
-        <a target="_blank" :href="currentPopAd.targetUrl"><img v-lazy="currentPopAd.isDecrypted ? currentPopAd.imgUrl : getAssetsFile('default2.gif')" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
+        <a target="_blank" :href="currentPopAd.targetUrl"><img v-lazy-decrypt="currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
     </main>
@@ -161,17 +161,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, nextTick, computed, watch, onMounted } from 'vue'
+import { ref, reactive, nextTick, computed, watch, onMounted, onActivated } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
 import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, Popup, Icon } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
-import decryptionService from '@/utils/decryptionService'
 import type { VideoListRequest, Video } from '@/types/video'
 import { getAssetsFile } from '@/utils'
-import { Autoplay } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
+import 'swiper/css/pagination'
 
 import Footer from '@/components/layout/Footer.vue'
 import VideoGridItem from '@/components/VideoGridItem.vue'
@@ -181,10 +181,9 @@ const router = useRouter()
 const route = useRoute()
 const appStore = useAppStoreHook()
 
-const decrypt = new decryptionService()
-
 const swiperInstance = ref<any>(null)
 const modules = [Autoplay]
+const bannerModules = [Autoplay, Pagination]
 
 const refreshing = ref(false)
 
@@ -193,7 +192,6 @@ const recommendedVideos = ref<Video[]>([])
 const latestVideos = ref<Video[]>([])
 
 const categoryVideosMap = ref({})
-const categoryBannerMap = ref({})
 const categoryTotalPages = ref({})
 const categoryPageIndex = ref({})
 
@@ -225,20 +223,6 @@ const currentPopAd = computed(() => {
   return item || {}
 })
 
-// 使用 watch 的立即执行选项来检查 showAnnouncement
-watch(
-  () => appStore.showAnnouncement,
-  (newVal) => {
-    if (newVal && popAdvertisement.value.length > 0) {
-      popAdvertisement.value.forEach(async (ad) => {
-        ad.imgUrl = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${ad.imgUrl}`)
-      })
-      showPopup.value = true
-    }
-  },
-  { immediate: true } // 立即执行
-)
-
 // 监听邀请码
 watch(
   () => route.query.inviteCode,
@@ -248,30 +232,6 @@ watch(
     }
   },
   { immediate: true }
-)
-
-// 监听banner广告获取到数据后，先渲染后解密图片
-watch(
-  () => bannerAdvertisement.value,
-  async (newAds) => {
-    for (const ad of newAds) {
-      if (!ad.isDecrypted) {
-        ad.imgUrl = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${ad.imgUrl}`)
-        ad.isDecrypted = true
-      }
-    }
-  },
-  { immediate: true }
-)
-
-watch(
-  () => currentPopAd.value,
-  async (newAd) => {
-    if (newAd && !newAd.isDecrypted) {
-      newAd.imgUrl = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${newAd.imgUrl}`)
-      newAd.isDecrypted = true
-    }
-  }
 )
 
 const closePopup = () => {
@@ -290,24 +250,9 @@ const fetchVideos = async (params: VideoListRequest) => {
       data: { data }
     } = await getVideoListApi(params)
     if (data && Array.isArray(data.items)) {
-      const videoList = data.items.map((video) => ({ ...video, poster: '' }))
-      const swiperList = data.items.map((video) => ({ ...video, poster: '' }))
-      categoryVideosMap.value[query.ChannelId] = videoList
-      categoryBannerMap.value[query.ChannelId] = swiperList
+      categoryVideosMap.value[query.ChannelId] = data.items
       categoryTotalPages.value[query.ChannelId] = parseInt(data.pageCount)
       categoryPageIndex.value[query.ChannelId] = parseInt(data.pageIndex)
-
-      if (categoryVideosMap.value[query.ChannelId] && categoryVideosMap.value[query.ChannelId].length > 0) {
-        categoryVideosMap.value[query.ChannelId].forEach(async (video) => {
-          video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-        })
-      }
-
-      if (categoryBannerMap.value[query.ChannelId] && categoryBannerMap.value[query.ChannelId].length > 0) {
-        categoryBannerMap.value[query.ChannelId].forEach(async (video) => {
-          video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-        })
-      }
     } else {
       console.error('响应数据结构不正确')
       return []
@@ -326,13 +271,6 @@ const fetchIndexVideos = async () => {
     // 解密视频
     recommendedVideos.value = data.Recommended
     latestVideos.value = data.Latest
-    // 异步解密图片
-    recommendedVideos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-    })
-    latestVideos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-    })
   } catch (error) {
     console.error(`获取首页视频列表失败:`, error)
     return []
@@ -451,6 +389,13 @@ function handleScroll() {
     }
   }
 }
+
+onActivated(() => {
+  const header = document.querySelector('.header')
+  if (header) {
+    header.classList.remove('fixed')
+  }
+})
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })

@@ -24,10 +24,10 @@
                 <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
                 <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
               </a>
-              <a @click="handleCollection()">
+              <!-- <a @click="handleCollection()">
                 <i :class="['mvfont', 'mv-shoucang', { active: videoDetail && videoDetail.collect }]" />
                 <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
-              </a>
+              </a> -->
               <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
             </div>
             <div class="v-c">
@@ -60,7 +60,8 @@
 import { ref, onMounted, computed, nextTick } from 'vue'
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { getVideoListApi, getVideoDetailApi, addPlayCountApi } from '@/api/video'
-import { userLike, userCollection } from '@/api/user'
+// import { userCollection } from '@/api/user'
+import { userLike } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
@@ -386,21 +387,21 @@ const handleLike = async () => {
   }
 }
 
-const handleCollection = async () => {
-  if (!checkLogin()) return
+// const handleCollection = async () => {
+//   if (!checkLogin()) return
 
-  try {
-    const videoId = videoDetail.value?.id
-    const newCollectStatus = !videoDetail.value?.collect
+//   try {
+//     const videoId = videoDetail.value?.id
+//     const newCollectStatus = !videoDetail.value?.collect
 
-    await userCollection({ VideoId: videoId, Collect: newCollectStatus })
+//     await userCollection({ Ids: videoId, Collect: newCollectStatus })
 
-    videoDetail.value.collect = newCollectStatus
-    videoDetail.value.collectionCount = (Number(videoDetail.value.collectionCount) + (newCollectStatus ? 1 : -1)).toString()
-  } catch (error) {
-    console.error('操作失败:', error)
-  }
-}
+//     videoDetail.value.collect = newCollectStatus
+//     videoDetail.value.collectionCount = (Number(videoDetail.value.collectionCount) + (newCollectStatus ? 1 : -1)).toString()
+//   } catch (error) {
+//     console.error('操作失败:', error)
+//   }
+// }
 
 const handleShare = () => {
   if (clipboard.value) {

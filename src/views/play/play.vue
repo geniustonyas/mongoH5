@@ -59,7 +59,7 @@
     </Popup>
     <Popup v-if="ad" v-model:show="showAdPopup" position="center" :close-on-click-overlay="false">
       <a v-if="ad.targetUrl" target="_blank" :href="ad.targetUrl">
-        <img :src="appStore.cdnUrl + ad.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" />
+        <img v-lazy-decrypt="ad.imgUrl" style="width: 80%; height: auto; display: block; margin: 0 auto" />
       </a>
       <Icon name="close" size="30" @click="closeAdPopup" style="display: block; text-align: center; margin: 20px auto" />
     </Popup>
@@ -173,14 +173,7 @@ const fetchVideoDetail = async (videoId: string) => {
     } = await getVideoDetailApi(id)
     videoDetail.value = data
     initialLikeType.value = data.like
-    recommendedVideos.value = data.licks.map((video) => ({
-      ...video,
-      poster: ''
-    }))
-    recommendedVideos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-    })
-
+    recommendedVideos.value = data.licks
     if (videoDetail.value?.playUrl) {
       nextTick(() => {
         initializePlayer(appStore.playDomain, videoDetail.value?.playUrl)
@@ -418,7 +411,7 @@ const handleCollection = async () => {
     const videoId = videoDetail.value?.id
     if (videoId) {
       const isCollecting = !videoDetail.value.collect
-      await userCollection({ VideoId: videoId, Collect: isCollecting })
+      await userCollection({ Ids: videoId, Collect: isCollecting })
       videoDetail.value.collect = isCollecting
       videoDetail.value.collectionCount = (Number(videoDetail.value.collectionCount) + (isCollecting ? 1 : -1)).toString()
     }

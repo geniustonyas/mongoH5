@@ -1,6 +1,6 @@
 <template>
   <div class="item video-grid-item" :data-video-id="video.id">
-    <div class="i-a" v-lazy:background-image="video.poster">
+    <div class="i-a" v-lazy-decrypt="video.imgUrl">
       <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
       <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
       <span class="a-c">{{ video.channelName }}</span>

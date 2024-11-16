@@ -12,12 +12,12 @@
         <ul v-if="videos.length > 0">
           <li v-for="video in videos" :key="video.id" @click="!isEditing && router.push({ name: 'play', params: { id: video.id } })">
             <div class="l-x" v-show="isEditing" @click.stop="toggleSelectVideo(parseInt(video.id))">
-              <div class="x-c" :class="{ checked: selectedVideos.has(video.id) }">
+              <div class="x-c" :class="{ checked: selectedVideos.has(parseInt(video.id)) }">
                 <i class="mvfont mv-radio" />
               </div>
             </div>
             <div class="l-a">
-              <img v-lazy="video.isDecrypted ? video.poster : getAssetsFile('default.gif')" />
+              <img v-lazy-decrypt="video.imgUrl" />
               <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
               <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
               <span class="a-c">{{ video.channelName }}</span>
@@ -66,14 +66,11 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { userCollectionHistory, userCollection } from '@/api/user'
-import { getAssetsFile } from '@/utils'
 import type { Video } from '@/types/video'
-import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 
 const router = useRouter()
 const appStore = useAppStore()
-const decrypt = new decryptionService()
 
 const videos = ref<Video[]>([])
 const currentPage = ref(1)
@@ -94,19 +91,10 @@ const fetchCollections = async () => {
     } = await userCollectionHistory(params)
 
     if (data && Array.isArray(data.items)) {
-      videos.value = data.items.map((video) => ({
-        ...video,
-        poster: `${appStore.imageDomain}${video.imgUrl}`,
-        isDecrypted: false
-      }))
+      videos.value = data.items
       nodata.value = videos.value.length == 0
       currentPage.value = parseInt(data.pageIndex)
       totalPages.value = parseInt(data.pageCount)
-
-      videos.value.forEach(async (video) => {
-        video.poster = await decrypt.fetchAndDecrypt(video.poster)
-        video.isDecrypted = true
-      })
     } else {
       nodata.value = true
       videos.value = []
@@ -144,6 +132,7 @@ const toggleSelectVideo = (videoId: number) => {
   } else {
     selectedVideos.value.add(videoId)
   }
+  console.log(selectedVideos.value)
 }
 
 const selectAll = () => {
@@ -159,7 +148,7 @@ const removeSelected = async () => {
 
   const videoIds = Array.from(selectedVideos.value).join(',')
   try {
-    await userCollection({ VideoId: videoIds, Collect: false })
+    await userCollection({ Ids: videoIds, Collect: false })
     currentPage.value = 1
     fetchCollections()
   } catch (error) {

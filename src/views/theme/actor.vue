@@ -18,7 +18,7 @@
         <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
           <div class="a-l">
             <a v-for="actor in actorList" :key="actor.id" @click="router.push({ name: 'actorDetail', params: { id: actor.id }, query: { videoCount: actor.videosCount } })">
-              <div class="l-img" :style="{ backgroundImage: actor.isDecrypted ? `url(${actor.imgUrl})` : `url(${getAssetsFile('default2.gif')})` }" :key="actor.id">
+              <div class="l-img" v-lazy-decrypt="actor.imgUrl" loading-img="default2.gif" error-img="default2.gif" :key="actor.id">
                 <span class="s-a">{{ actor.videosCount }}部</span>
                 <span class="s-b" v-if="actor.categoryNames.indexOf('知名') != -1"><b>知名女优</b></span>
               </div>
@@ -36,15 +36,10 @@ import { ref, onMounted } from 'vue'
 import Header from '@/views/theme/themeHeader.vue'
 import { useRouter } from 'vue-router'
 import { getActorListApi } from '@/api/theme'
-import { useAppStore } from '@/store/app'
 import type { ActorListRequest, ActorList } from '@/types/theme'
 import { List } from 'vant'
-import { getAssetsFile } from '@/utils/'
-import decryptionService from '@/utils/decryptionService'
 
 const router = useRouter()
-const appStore = useAppStore()
-const decrypt = new decryptionService()
 
 const sortOptions = [
   { label: '全部', value: '' },
@@ -79,6 +74,7 @@ let error = ref(false)
 const getActorList = async (isRefresh = false) => {
   if (isRefresh) {
     query.PageIndex = 1
+    actorList.value = []
     finished.value = false
   }
   if (finished.value) return
@@ -89,39 +85,17 @@ const getActorList = async (isRefresh = false) => {
       data: { data }
     } = await getActorListApi(query)
     if (data.items && Array.isArray(data.items)) {
-      const startIndex = actorList.value.length
-
       if (isRefresh) {
-        actorList.value = data.items.map((actor) => ({ ...actor, isDecrypted: false }))
+        actorList.value = data.items
       } else {
-        actorList.value = actorList.value.concat(data.items.map((actor) => ({ ...actor, isDecrypted: false })))
+        actorList.value = actorList.value.concat(data.items)
       }
-
-      for (let i = startIndex; i < actorList.value.length; i++) {
-        try {
-          const decryptedUrl = await decrypt.fetchAndDecrypt(`${appStore.cdnUrl}${actorList.value[i].imgUrl}`)
-          actorList.value[i].imgUrl = decryptedUrl
-          actorList.value[i].isDecrypted = true
-        } catch (error) {
-          console.error('解密演员图片失败:', actorList.value[i].imgUrl, error)
-        }
-      }
-
-      if (data.items.length < query.PageSize) {
-        finished.value = true
-      }
+      finished.value = data.items.length < query.PageSize
     } else {
-      if (isRefresh) {
-        actorList.value = []
-      }
       finished.value = true
     }
   } catch (error) {
     console.error('获取演员列表失败:', error)
-    if (isRefresh) {
-      actorList.value = []
-    }
-    finished.value = true
   } finally {
     listLoading.value = false
   }

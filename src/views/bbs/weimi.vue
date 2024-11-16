@@ -13,9 +13,9 @@
         </div>
       </header>
       <div class="pb-a">
-        <div class="a-b" v-lazy:background-image="weimi?.isDecrypted ? weimi?.coverImage : getAssetsFile('default.gif')" />
+        <div class="a-b" v-if="weimi?.coverImage" v-lazy-decrypt="weimi?.coverImage" />
         <div class="a-c">
-          <div class="c-i"><img v-lazy="weimi?.isDecrypted ? weimi?.coverImage : getAssetsFile('default.gif')" /></div>
+          <div class="c-i"><img v-if="weimi?.coverImage" v-lazy-decrypt="weimi?.coverImage" /></div>
           <div class="c-d">
             <h3>{{ weimi?.title }}</h3>
             <p>{{ weimi?.description }}</p>
@@ -68,15 +68,12 @@ import { ref, reactive, onMounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getBbsSubCategoryDetailApi, getBbsListApi } from '@/api/bbs'
 import type { BbsListRequest, BbsSubCategoryDetailResponse } from '@/types/bbs'
-import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 import { List } from 'vant'
-import { getAssetsFile } from '@/utils'
 
 const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
-const decrypt = new decryptionService()
 const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
 const weimi = ref<BbsSubCategoryDetailResponse | null>(null)
 const bbsList = ref([])
@@ -100,19 +97,8 @@ const fetchCategories = async () => {
     const {
       data: { data }
     } = await getBbsSubCategoryDetailApi({ Id: route.params.id as string })
-    if (data) {
-      weimi.value = data
-      weimi.value.isDecrypted = false
-      try {
-        weimi.value.coverImage = await decrypt.fetchAndDecrypt(appStore.cdnUrl + weimi.value.coverImage)
-        weimi.value.isDecrypted = true
-      } catch (error) {
-        console.error(`解密图片失败: ${weimi.value.coverImage}`, error)
-        weimi.value.isDecrypted = false
-      }
-    } else {
-      console.error('未找到微密圈数据')
-    }
+    weimi.value = data
+    console.log(weimi.value)
   } catch (error) {
     console.error('获取分类数据失败:', error)
   }
@@ -120,6 +106,7 @@ const fetchCategories = async () => {
 
 const fetchBbsList = async (isRefresh = false) => {
   if (isRefresh) {
+    bbsList.value = []
     query.PageIndex = 1
     finished.value = false
   }
@@ -130,41 +117,15 @@ const fetchBbsList = async (isRefresh = false) => {
     const {
       data: { data }
     } = await getBbsListApi(query)
-    const newItems = data.items.map((item) => ({
-      ...item,
-      decrypt: item.imgs.split(',').map((img) => ({
-        isDecrypted: false,
-        decryptImg: img
-      }))
-    }))
-
-    const startIndex = bbsList.value.length
-
     if (isRefresh) {
-      bbsList.value = newItems
+      bbsList.value = data.items
     } else {
-      bbsList.value = [...bbsList.value, ...newItems]
+      bbsList.value = bbsList.value.concat(data.items)
     }
 
-    bbsList.value.slice(startIndex).forEach(async (item) => {
-      if (item.imgs) {
-        item.decrypt.forEach(async (imgObj) => {
-          try {
-            imgObj.decryptImg = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgObj.decryptImg)
-            imgObj.isDecrypted = true
-          } catch (error) {
-            console.error(`解密图片失败: ${imgObj.decryptImg}`, error)
-            imgObj.isDecrypted = false
-          }
-        })
-      }
-    })
-
-    if (newItems.length < query.PageSize) {
+    if (data.items.length < query.PageSize) {
       finished.value = true
     }
-
-    console.log('BBS列表:', bbsList.value)
   } catch (error) {
     console.error('获取BBS列表失败:', error)
   } finally {

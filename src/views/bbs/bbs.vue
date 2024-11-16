@@ -19,13 +19,13 @@
         <!-- 推荐 -->
         <swiper-slide class="bbs-swipe-item0">
           <nav id="index-banner" class="swiper-container">
-            <Swipe class="my-swipe" :autoplay="3000" lazy-render>
-              <SwipeItem v-for="ad in bannerAdvertisement" :key="ad.id">
+            <swiper class="my-swipe" :modules="bannerModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
+              <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                 <a target="_blank" :href="ad.targetUrl">
-                  <img v-lazy="ad.isDecrypted ? ad.imgUrl : getAssetsFile('default.gif')" :alt="ad.title" />
+                  <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
                 </a>
-              </SwipeItem>
-            </Swipe>
+              </swiper-slide>
+            </swiper>
           </nav>
           <div class="au-tabs">
             <span @click="changeSortType(0)" :class="{ active: bbsListSortType[0] == 0 }"><i class="mvfont mv-quanbu" />全部</span>
@@ -54,7 +54,7 @@
           <div class="au-col-module-5">
             <div class="m-l">
               <div class="item" @click="changeSubChannel(heiliaoCategories[0].items[0].id, 1)" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 0">
-                <img v-lazy="heiliaoCategories[0].items[0].isDecrypted ? heiliaoCategories[0].items[0].decryptImg : getAssetsFile('default2.gif')" />
+                <img v-lazy-decrypt="heiliaoCategories[0].items[0].img" />
                 <p>
                   <span># {{ heiliaoCategories[0].items[0].title }}</span>
                 </p>
@@ -63,7 +63,7 @@
             </div>
             <div class="m-r" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 1">
               <div class="item" @click="changeSubChannel(item.id, 1)" v-for="item in heiliaoCategories[0].items.slice(1)" :key="item.id">
-                <img v-lazy="item.isDecrypted ? item.decryptImg : getAssetsFile('default2.gif')" />
+                <img v-lazy-decrypt="item.img" />
                 <p>
                   <span># {{ item.title }}</span>
                 </p>
@@ -102,7 +102,7 @@
         <swiper-slide class="bbs-swipe-item2">
           <ul class="au-col-module" v-if="weimiCategories[0] && weimiCategories[0].items.length > 0">
             <li v-for="item in weimiCategories[0].items" :key="item.id" @click="changeSubChannel(item.id, 2)">
-              <img v-lazy="item.isDecrypted ? item.decryptImg : getAssetsFile('default2.gif')" />
+              <img v-lazy-decrypt="item.img" />
               <p>
                 <span># {{ item.title }}</span>
               </p>
@@ -141,7 +141,7 @@
         <swiper-slide class="bbs-swipe-item3">
           <div class="au-col-module-x" v-if="quanziCategories[0] && quanziCategories[0].items.length > 0">
             <div class="item" @click="changeSubChannel(item.id, 3)" v-for="item in quanziCategories[0].items" :key="item.id">
-              <img v-lazy="item.isDecrypted ? item.decryptImg : getAssetsFile('default2.gif')" />
+              <img v-lazy-decrypt="item.img" />
               <p>
                 <span># {{ item.title }}</span>
               </p>
@@ -202,9 +202,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, computed, onMounted, nextTick } from 'vue'
+import { ref, reactive, computed, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
-import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, showToast } from 'vant'
+import { Tabs, Tab, PullRefresh, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
 import BbsListItem from '@/components/BbsListItem.vue'
 import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'
@@ -212,14 +212,17 @@ import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
-import { getAssetsFile } from '@/utils'
-import decryptionService from '@/utils/decryptionService'
 import type { BbsListRequest, BbsCategoryResponse } from '@/types/bbs'
 import 'swiper/css'
+import 'swiper/css/pagination'
+import { Autoplay, Pagination } from 'swiper/modules'
 
 const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
+
+const bannerModules = [Autoplay, Pagination]
+
 const tabs = [
   { title: '推荐', name: 0 },
   { title: '黑料', name: 1 },
@@ -253,7 +256,6 @@ const bbsListSortType = ref({})
 const bbsListSubChannelId = ref({})
 
 const swiperInstance = ref<any>(null)
-const decrypt = new decryptionService()
 
 const heiliaoCategories = ref<BbsCategoryResponse[]>([])
 const weimiCategories = ref<BbsCategoryResponse[]>([])
@@ -331,52 +333,10 @@ const fetchBbsList = async () => {
       }
 
       // 先将数据赋值给 bbsListMap
-      bbsListMap.value[activeTab.value] = data.items.map((item) => ({
-        ...item,
-        decrypt: item.imgs.split(',').map((img) => ({
-          isDecrypted: false,
-          decryptImg: img
-        }))
-      }))
+      bbsListMap.value[activeTab.value] = data.items
 
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
       bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
-
-      // 异步解密图片，直接操作 bbsListMap
-      bbsListMap.value[activeTab.value].forEach(async (item) => {
-        if (item.imgs) {
-          item.decrypt.forEach(async (imgObj) => {
-            try {
-              imgObj.decryptImg = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgObj.decryptImg)
-              imgObj.isDecrypted = true
-            } catch (error) {
-              console.error(`解密图片失败: ${imgObj.decryptImg}`, error)
-              imgObj.isDecrypted = false
-            }
-          })
-        }
-      })
-      console.log(bbsListMap.value[activeTab.value])
-
-      // 在数据更新并渲染完成后调整高度
-      // nextTick(() => {
-      //   const currentSwipeItem = document.querySelector(`.bbs-swipe-item${activeTab.value}`) as HTMLElement
-      //   if (currentSwipeItem) {
-      //     let totalHeight = 0
-      //     // 遍历所有子元素，累加它们的高度
-      //     currentSwipeItem.childNodes.forEach((child) => {
-      //       console.log(child)
-      //       if (child instanceof HTMLElement) {
-      //         totalHeight += child.offsetHeight
-      //       }
-      //     })
-      //     console.log(totalHeight)
-      //     // 设置 currentSwipeItem 的高度
-      //     console.log(currentSwipeItem.offsetHeight)
-      //     currentSwipeItem.style.height = `${totalHeight}px`
-      //     console.log(currentSwipeItem.style.height)
-      //   }
-      // })
     } else {
       console.error('响应数据结构不正确')
     }
@@ -393,30 +353,10 @@ const fetchCollectionList = async () => {
     if (data && Array.isArray(data.items)) {
       bbsListMap.value[activeTab.value] = data.items.map((item) => ({
         ...item,
-        isCollected: true,
-        decrypt: item.imgs.split(',').map((img) => ({
-          isDecrypted: false,
-          decryptImg: img
-        }))
+        isCollected: true
       }))
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
       bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
-
-      // 异步解密图片
-      bbsListMap.value[activeTab.value].forEach(async (item) => {
-        if (item.imgs) {
-          item.decrypt.forEach(async (imgObj) => {
-            try {
-              imgObj.decryptImg = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgObj.decryptImg)
-              imgObj.isDecrypted = true
-            } catch (error) {
-              console.error(`解密图片失败: ${imgObj.decryptImg}`, error)
-              imgObj.isDecrypted = false
-            }
-          })
-        }
-      })
-      console.log(bbsListMap.value[activeTab.value])
     } else {
       console.error('响应数据结构不正确')
     }
@@ -441,35 +381,9 @@ const fetchCategories = async () => {
       data.forEach((item) => {
         const category = categoryMap[item.id]
         if (category) {
-          // 初始化解密标志并渲染数据
-          const decryptedItems = item.items.map((imgs) => ({
-            ...imgs,
-            isDecrypted: false,
-            decryptImg: '' // 初始化解密图片字段为空
-          }))
-          category.value.push({ ...item, items: decryptedItems })
-
-          // 异步逐个解密图片
-          decryptedItems.forEach(async (imgs, index) => {
-            try {
-              const decryptedUrl = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgs.img)
-              imgs.decryptImg = decryptedUrl
-              imgs.isDecrypted = true
-
-              // 更新 categoryMap 中的解密数据
-              const categoryIndex = category.value.findIndex((catItem) => catItem.id === item.id)
-              if (categoryIndex !== -1) {
-                category.value[categoryIndex].items[index] = imgs
-              }
-            } catch (error) {
-              console.error(`解密图片失败: ${imgs.img}`, error)
-              imgs.isDecrypted = false
-            }
-          })
+          category.value.push(item)
         }
       })
-      console.log(123)
-      console.log(heiliaoCategories.value)
     } else {
       console.error('响应数据结构不正确')
     }
@@ -524,20 +438,6 @@ const handlePageChange = async () => {
     })
   }
 }
-
-// 监听banner广告获取到数据后，先渲染后解密图片
-watch(
-  () => bannerAdvertisement.value,
-  async (newAds) => {
-    for (const ad of newAds) {
-      if (!ad.isDecrypted) {
-        ad.imgUrl = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${ad.imgUrl}`)
-        ad.isDecrypted = true
-      }
-    }
-  },
-  { immediate: true }
-)
 
 onMounted(() => {
   bbsListSortType.value[0] = 0

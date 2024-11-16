@@ -4,6 +4,7 @@ import store from '@/store'
 import App from './App.vue'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
+import lazyDecrypt from '@/utils/lazyDecrypt'
 
 import 'vant/lib/index.css'
 import './assets/less/black.less'
@@ -21,6 +22,7 @@ app.use(VueLazyload, {
   attempt: 1
 })
 app.use(router)
+app.directive('lazy-decrypt', lazyDecrypt)
 
 router.isReady().then(() => {
   app.mount('#app')

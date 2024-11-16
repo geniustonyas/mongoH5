@@ -13,7 +13,7 @@
           <ul v-if="videos.length > 0" class="col-one">
             <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
               <div class="l-a">
-                <img v-lazy="{ src: video.poster }" />
+                <img v-lazy-decrypt="video.imgUrl" />
                 <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
                 <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                 <span class="a-c">{{ video.channelName }}</span>
@@ -46,11 +46,9 @@ import dayjs from 'dayjs'
 import { getVideoListApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
 import { formatDuration } from '@/utils'
-import decryptionService from '@/utils/decryptionService'
 import { useAppStoreHook } from '@/store/app'
 
 const appStore = useAppStoreHook()
-const decrypt = new decryptionService()
 const route = useRoute()
 const router = useRouter()
 
@@ -72,6 +70,7 @@ let pageIndex = ref(1) // 当前页码
 
 const fetchVideos = async (sortType: number, isRefresh = false) => {
   if (isRefresh) {
+    videos.value = []
     pageIndex.value = 1
     finished.value = false
   }
@@ -85,43 +84,25 @@ const fetchVideos = async (sortType: number, isRefresh = false) => {
       SortType: sortType
     }
 
-    const response = await getVideoListApi(params)
     const {
       data: { data }
-    } = response
+    } = await getVideoListApi(params)
 
     if (data && Array.isArray(data.items)) {
-      const newVideos = await Promise.all(
-        data.items.map(async (video) => ({
-          ...video,
-          poster: await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-        }))
-      )
       if (isRefresh) {
-        videos.value = newVideos
+        videos.value = data.items
       } else {
-        videos.value = [...videos.value, ...newVideos]
+        videos.value = videos.value.concat(data.items)
       }
-      if (newVideos.length < 10) {
+      if (data.items.length < params.PageSize) {
         finished.value = true
       }
-    } else {
-      if (isRefresh) {
-        videos.value = []
-      }
-      finished.value = true
     }
   } catch (error) {
     console.error('获取视频列表失败:', error)
-    if (isRefresh) {
-      videos.value = []
-    }
-    finished.value = true
   } finally {
     listLoading.value = false
-    if (isRefresh) {
-      refreshing.value = false
-    }
+    refreshing.value = false
   }
 }
 

@@ -49,7 +49,7 @@ export function userLike(data: { VideoId: number | string; Like: number | string
 }
 
 /** 用户收藏 */
-export function userCollection(data: { VideoId: number | string; Collect: boolean }) {
+export function userCollection(data: { Ids: number | string; Collect: boolean }) {
   return request<ApiResponseData<any>>({
     url: 'Web/MemberCollectVideo',
     method: 'post',

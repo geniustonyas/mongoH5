@@ -68,14 +68,12 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { getBbsListApi } from '@/api/bbs'
-import decryptionService from '@/utils/decryptionService'
 import type { BbsListRequest, Bbs } from '@/types/bbs'
 import { List } from 'vant'
 import BbsListItem from '@/components/BbsListItem.vue'
 
 const route = useRoute()
 const appStore = useAppStore()
-const decrypt = new decryptionService()
 
 const searchKeyword = ref('')
 const searchResults = ref<Bbs[]>([])
@@ -111,6 +109,7 @@ const clearSearchHistory = () => {
 const searchBbs = async (isRefresh = false) => {
   if (!searchKeyword.value) return
   if (isRefresh) {
+    searchResults.value = []
     pageIndex.value = 1
     finished.value = false
   }
@@ -130,49 +129,20 @@ const searchBbs = async (isRefresh = false) => {
       data: { data }
     } = await getBbsListApi(params)
     if (data.items && Array.isArray(data.items)) {
-      const newBbs = data.items.map((item) => ({
-        ...item,
-        decrypt: item.imgs.split(',').map((img) => ({
-          isDecrypted: false,
-          decryptImg: img
-        }))
-      }))
-      const startIndex = searchResults.value.length
-
       if (isRefresh) {
-        searchResults.value = newBbs
+        searchResults.value = data.items
       } else {
-        searchResults.value = [...searchResults.value, ...newBbs]
+        searchResults.value = searchResults.value.concat(data.items)
       }
-      for (let i = startIndex; i < searchResults.value.length; i++) {
-        searchResults.value[i].decrypt.forEach(async (imgObj) => {
-          try {
-            imgObj.decryptImg = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgObj.decryptImg)
-            imgObj.isDecrypted = true
-          } catch (error) {
-            console.error(`解密图片失败: ${imgObj.decryptImg}`, error)
-            imgObj.isDecrypted = false
-          }
-        })
-      }
-
-      if (newBbs.length < params.PageSize) {
+      if (data.items.length < params.PageSize) {
         finished.value = true
       }
       recordCount.value = parseInt(data.recordCount)
     } else {
-      if (isRefresh) {
-        searchResults.value = []
-      }
-      finished.value = true
       recordCount.value = 0
     }
   } catch (error) {
     console.error('搜索BBS失败:', error)
-    if (isRefresh) {
-      searchResults.value = []
-    }
-    finished.value = true
   } finally {
     listLoading.value = false
     saveSearchHistory()

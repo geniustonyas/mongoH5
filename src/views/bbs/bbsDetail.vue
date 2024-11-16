@@ -28,7 +28,7 @@
         </div>
         <div class="d-c">{{ detail?.content || '' }}</div>
         <div class="d-d">
-          <img v-for="(img, index) in detail?.decrypt" :key="index" :src="img.isDecrypted ? img.decryptImg : getAssetsFile('default2.gif')" @click="showPreview(index, img.isDecrypted)" />
+          <img v-for="(img, index) in bbsImgs" :key="index" v-lazy-decrypt="img" @click="showPreview(index)" />
         </div>
 
         <div class="au-ad">
@@ -82,6 +82,12 @@
         </span>
       </div>
     </footer>
+
+    <ImagePreview v-model:show="showImagePreview" :images="bbsImgs" ref="imgPreviewRef" :start-position="imgPreviewIndex" :loop="false">
+      <template #image="{ src, style }">
+        <img v-lazy-decrypt="src" :style="[{ width: '100%' }, style]" />
+      </template>
+    </ImagePreview>
 
     <Popup v-model:show="showSharePopup" position="center" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :overlay="false" round>
       <div class="share-popup">
@@ -151,10 +157,9 @@ import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { getBbsDetailApi, getBbsRelatedRecommendApi, bbsLikeApi, bbsCollectionApi, getBbsCommentListApi, bbsCommentLikeApi, bbsCommentApi } from '@/api/bbs'
-import decryptionService from '@/utils/decryptionService'
 import BbsListItem from '@/components/BbsListItem.vue'
 import type { Bbs } from '@/types/bbs'
-import { showImagePreview, Popup, showToast } from 'vant'
+import { ImagePreview, Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
 
 const route = useRoute()
@@ -164,13 +169,16 @@ const detail = ref<Bbs | null>(null)
 const relatedList = ref<Bbs[]>([])
 const pageIndex = ref(1)
 const pageCount = ref(0)
-const decrypt = new decryptionService()
 const showComment = ref(false)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 const comments = ref([])
 const commentInput = ref('')
 const presetComments = ['支持楼主☝', '📢真是太美了', '真是太美了🍀']
+
+const bbsImgs = ref<string[]>([])
+const imgPreviewIndex = ref(0)
+const showImagePreview = ref(false)
 
 const postComment = async (content: string) => {
   if (!checkLogin()) return
@@ -194,25 +202,8 @@ const fetchDetail = async (id: string) => {
     const response = await getBbsDetailApi(id)
     const { data } = response
     if (data) {
-      detail.value = {
-        ...data.data,
-        decrypt: data.data.imgs.split(',').map((img) => ({
-          isDecrypted: false,
-          decryptImg: img
-        }))
-      }
-
-      // 异步逐个解密图片
-      detail.value.decrypt.forEach(async (imgObj) => {
-        try {
-          imgObj.decryptImg = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgObj.decryptImg)
-          imgObj.isDecrypted = true
-        } catch (error) {
-          console.error(`解密图片失败: ${imgObj.decryptImg}`, error)
-          imgObj.isDecrypted = false
-        }
-      })
-
+      detail.value = data.data
+      bbsImgs.value = detail.value?.imgs.split(',') || []
       fetchRelatedList()
       fetchComments()
     }
@@ -221,42 +212,19 @@ const fetchDetail = async (id: string) => {
   }
 }
 
+const showPreview = (index: number) => {
+  showImagePreview.value = true
+  imgPreviewIndex.value = index
+}
+
 const fetchRelatedList = async () => {
   try {
     const {
       data: { data }
     } = await getBbsRelatedRecommendApi({ id: detail.value?.id || '', PageIndex: pageIndex.value, PageSize: 10 })
     if (data && Array.isArray(data.items)) {
-      const newItems = data.items.map((item) => ({
-        ...item,
-        decrypt: item.imgs.split(',').map((img) => ({
-          isDecrypted: false,
-          decryptImg: img
-        }))
-      }))
-
-      // 记录当前relatedList的长度
-      const startIndex = relatedList.value.length
-
-      // 数据叠加
-      relatedList.value = relatedList.value.concat(newItems)
-
+      relatedList.value = relatedList.value.concat(data.items)
       pageCount.value = parseInt(data.pageCount)
-
-      // 从新添加的数据开始解密
-      relatedList.value.slice(startIndex).forEach(async (item) => {
-        if (item.imgs) {
-          item.decrypt.forEach(async (imgObj) => {
-            try {
-              imgObj.decryptImg = await decrypt.fetchAndDecrypt(appStore.cdnUrl + imgObj.decryptImg)
-              imgObj.isDecrypted = true
-            } catch (error) {
-              console.error(`解密图片失败: ${imgObj.decryptImg}`, error)
-              imgObj.isDecrypted = false
-            }
-          })
-        }
-      })
       console.log(relatedList.value)
     }
   } catch (error) {
@@ -267,22 +235,6 @@ const fetchRelatedList = async () => {
 const loadMore = () => {
   pageIndex.value += 1
   fetchRelatedList()
-}
-
-const showPreview = (index: number, isDecrypted: boolean) => {
-  if (detail.value?.decrypt) {
-    if (isDecrypted) {
-      const decryptedImages = detail.value.decrypt.filter((img) => img.isDecrypted).map((img) => img.decryptImg)
-      showImagePreview({
-        images: decryptedImages,
-        startPosition: index,
-        closeable: true,
-        loop: false
-      })
-    } else {
-      showToast('图片加载中请稍后')
-    }
-  }
 }
 
 const toggleLike = async () => {

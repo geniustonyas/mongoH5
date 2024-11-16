@@ -11,7 +11,7 @@
             <ul v-if="videos.length > 0" class="video-list-box">
               <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })" class="video-list">
                 <div class="l-a">
-                  <img v-lazy="{ src: video.isDecrypted ? video.poster : getAssetsFile('default.gif') }" />
+                  <img v-lazy-decrypt="video.imgUrl" />
                   <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c">{{ video.channelName }}</span>
@@ -43,17 +43,13 @@ import { PullRefresh, List } from 'vant'
 import dayjs from 'dayjs'
 import { getVideoListApi, getVideoRankApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
-import decryptionService from '@/utils/decryptionService'
 import Header from '@/views/theme/themeHeader.vue'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store/app'
-import { getAssetsFile } from '@/utils/'
 import { formatDuration } from '@/utils'
 
 const router = useRouter()
 const appStore = useAppStore()
-
-const decrypt = new decryptionService()
 
 const videos = ref<Video[]>([])
 const activeRank = ref('total')
@@ -73,6 +69,7 @@ let pageIndex = ref(1) // 当前页码
 
 const fetchVideos = async (rank: string, isRefresh = false) => {
   if (isRefresh) {
+    videos.value = []
     pageIndex.value = 1
     finished.value = false
   }
@@ -99,52 +96,23 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
     } = response
 
     if (data && Array.isArray(data.items)) {
-      // 初始化视频数据，设置解密标志为 false
-      const newVideos = data.items.map((video) => ({
-        ...video,
-        poster: `${appStore.imageDomain}${video.imgUrl}`,
-        isDecrypted: false // 初始标志为未解密
-      }))
-
-      const startIndex = videos.value.length
-
       if (isRefresh) {
-        videos.value = newVideos
+        videos.value = data.items
       } else {
-        videos.value = [...videos.value, ...newVideos]
+        videos.value = videos.value.concat(data.items)
       }
 
-      // 异步解密图片，从新添加的记录开始
-      for (let i = startIndex; i < videos.value.length; i++) {
-        try {
-          const decryptedUrl = await decrypt.fetchAndDecrypt(videos.value[i].poster)
-          videos.value[i].poster = decryptedUrl
-          videos.value[i].isDecrypted = true // 更新标志为已解密
-        } catch (error) {
-          console.error('解密视频图片失败:', videos.value[i].poster, error)
-        }
-      }
-
-      if (newVideos.length < pageSize) {
-        finished.value = true
-      }
+      finished.value = data.items.length < pageSize
     } else {
       if (isRefresh) {
         videos.value = []
       }
-      finished.value = true
     }
   } catch (error) {
     console.error(`获取视频列表失败 (${rank}):`, error)
-    if (isRefresh) {
-      videos.value = []
-    }
-    finished.value = true
   } finally {
+    refreshing.value = false
     listLoading.value = false
-    if (isRefresh) {
-      refreshing.value = false
-    }
   }
 }
 
@@ -160,6 +128,7 @@ const loadData = () => {
 }
 
 const fresh = () => {
+  refreshing.value = true
   fetchVideos(activeRank.value, true)
 }
 

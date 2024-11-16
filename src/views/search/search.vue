@@ -45,7 +45,7 @@
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
             <ul class="m-list">
               <li v-for="video in searchResults" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
-                <div class="l-a" v-lazy:background-image="video.poster">
+                <div class="l-a" v-lazy-decrypt="video.imgUrl">
                   <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c">{{ video.channelName }}</span>
@@ -86,7 +86,6 @@ import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { getVideoListApi } from '@/api/video'
-import decryptionService from '@/utils/decryptionService'
 import type { Video } from '@/types/video'
 import { List } from 'vant'
 import { formatDuration } from '@/utils'
@@ -94,7 +93,6 @@ import { formatDuration } from '@/utils'
 const router = useRouter()
 const route = useRoute()
 const appStore = useAppStore()
-const decrypt = new decryptionService()
 
 const searchKeyword = ref('')
 const searchResults = ref<Video[]>([])
@@ -127,6 +125,7 @@ const hotTags = computed(() => {
 const searchVideos = async (isRefresh = false) => {
   if (!searchKeyword.value && !currentTagId.value) return
   if (isRefresh) {
+    searchResults.value = []
     pageIndex.value = 1
     finished.value = false
   }
@@ -155,39 +154,22 @@ const searchVideos = async (isRefresh = false) => {
       data: { data }
     } = await getVideoListApi(params)
     if (data.items && Array.isArray(data.items)) {
-      const newVideos = data.items.map((video) => ({
-        ...video,
-        poster: ''
-      }))
-      const startIndex = searchResults.value.length
       if (isRefresh) {
-        searchResults.value = newVideos
+        searchResults.value = data.items
       } else {
-        searchResults.value = searchResults.value.concat(newVideos)
+        searchResults.value = searchResults.value.concat(data.items)
       }
-
-      searchResults.value.slice(startIndex).forEach(async (video) => {
-        video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-      })
-      if (newVideos.length < params.PageSize) {
+      if (data.items.length < params.PageSize) {
         finished.value = true
       }
       recordCount.value = parseInt(data.recordCount)
       hasSearched.value = recordCount.value == 0
     } else {
-      if (isRefresh) {
-        searchResults.value = []
-      }
       finished.value = true
       recordCount.value = 0
     }
   } catch (error) {
     console.error('搜索视频失败:', error)
-    if (isRefresh) {
-      searchResults.value = []
-    }
-    finished.value = true
-    searchIng.value = false
   } finally {
     searchIng.value = false
     listLoading.value = false

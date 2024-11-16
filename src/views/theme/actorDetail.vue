@@ -3,10 +3,10 @@
     <section class="a-d-b">
       <div class="ab-a">
         <a @click="appStore.setBack(true)" class="a-bk"><i class="mvfont mv-left" /></a>
-        <div class="a-x" v-lazy:background-image="appStore.cdnUrl + actor.imgUrl">
+        <div class="a-x" v-lazy-decrypt="actor.imgUrl">
           <div class="x-c">
             <div class="c-bd">
-              <div class="c-i" v-lazy:background-image="appStore.cdnUrl + actor.imgUrl">
+              <div class="c-i" v-lazy-decrypt="actor.imgUrl">
                 <span class="i-a">知名女优</span>
               </div>
               <div class="c-n">
@@ -84,13 +84,11 @@ import type { Actor } from '@/types/theme'
 import type { Video, VideoListRequest } from '@/types/video'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import { useAppStore } from '@/store/app'
-import decryptionService from '@/utils/decryptionService'
 
 const appStore = useAppStore()
 const router = useRouter()
 const route = useRoute()
 
-const decrypt = new decryptionService()
 const noData = ref(false)
 
 const sortOptions = [
@@ -123,7 +121,6 @@ const fetchActorDetail = async () => {
       data: { data }
     } = await getActorDetailApi(actorId)
     actor.value = data
-    console.log(actor.value)
   } catch (error) {
     console.error('获取演员详情失败:', error)
   }
@@ -140,13 +137,7 @@ const fetchVideos = async () => {
     const {
       data: { data }
     } = await getVideoListApi(params)
-    videos.value = data.items.map((video) => ({
-      ...video,
-      poster: ''
-    }))
-    videos.value.forEach(async (video) => {
-      video.poster = await decrypt.fetchAndDecrypt(`${appStore.imageDomain}${video.imgUrl}`)
-    })
+    videos.value = data.items
     noData.value = videos.value.length === 0
   } catch (error) {
     console.error(`获取视频列表失败 (${activeSort.value}):`, error)

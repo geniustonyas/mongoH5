@@ -2,7 +2,7 @@
   <ul class="bbs-weimi">
     <li v-for="(post, index) in bbsList" :key="index" @click="router.push({ name: 'bbsDetail', params: { id: post.id } })">
       <div class="i-a">
-        <img v-lazy="post.decrypt[0]?.isDecrypted ? post.decrypt[0]?.decryptImg : getAssetsFile('default2.gif')" alt="Image" />
+        <img v-if="post.imgs" v-lazy-decrypt="post.imgs.split(',')[0]" />
         <div class="a-b">
           <div class="ab-d">
             <div class="d-l">
