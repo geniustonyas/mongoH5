@@ -11,7 +11,7 @@ export default {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     // 获取自定义属性或使用默认值
     const defaultImage = el.getAttribute('loading-img') || 'default.gif'
-    const errorImage = el.getAttribute('error-img') || 'default.gif'
+    const errorImage = el.getAttribute('error-img') || defaultImage || 'default2.gif'
 
     // 判断是图片还是背景图
     const isImageElement = el.tagName.toLowerCase() === 'img'

@@ -419,11 +419,12 @@ const changePage = async (newPage: number) => {
   if (newPage >= 1 && newPage <= bbsListTotalPages.value[activeTab.value]) {
     bbsListPageIndex.value[activeTab.value] = newPage
     query.PageIndex = newPage
+    bbsListMap.value[activeTab.value] = []
     await fetchBbsList()
+    nextTick(() => {
+      window.scrollTo(0, 0)
+    })
   }
-  nextTick(() => {
-    window.scrollTo(0, 0)
-  })
 }
 
 // 页码变化
@@ -445,8 +446,3 @@ onMounted(() => {
   fetchCategories()
 })
 </script>
-<style scoped>
-.vant-swipe-item {
-  min-height: calc(100vh - 19.5rem);
-}
-</style>

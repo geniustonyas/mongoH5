@@ -125,12 +125,6 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false }
   },
   {
-    path: '/video/plays/:id',
-    name: 'playOld',
-    component: () => import('@/views/play/play_old.vue'),
-    meta: { needLogin: false, keepAlive: false }
-  },
-  {
     path: '/home',
     component: AppMain,
     children: [
