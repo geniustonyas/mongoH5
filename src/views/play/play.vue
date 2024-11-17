@@ -70,10 +70,10 @@
 <script setup lang="ts">
 import { ref, nextTick, onUnmounted, onMounted } from 'vue'
 import { useRoute, onBeforeRouteLeave } from 'vue-router'
-import { getVideoDetailApi, addPlayCountApi } from '@/api/video'
+import { getVideoDetailApi, addPlayCountApi, getVideoListApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
-import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
+// import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
 import { getAssetsFile } from '@/utils'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
@@ -110,7 +110,7 @@ const controls = ref([
   // 'download', // 显示一个下载按钮，链接到当前源或您在选项中指定的自定义URL
   'fullscreen' // 全屏切换
 ])
-const decrypt = new decryptionService()
+// const decrypt = new decryptionService()
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 
@@ -173,7 +173,10 @@ const fetchVideoDetail = async (videoId: string) => {
     } = await getVideoDetailApi(id)
     videoDetail.value = data
     initialLikeType.value = data.like
-    recommendedVideos.value = data.licks
+
+    // 获取猜你喜欢的视频列表
+    await fetchRecommendedVideos(data.channelId, data.id)
+
     if (videoDetail.value?.playUrl) {
       nextTick(() => {
         initializePlayer(appStore.playDomain, videoDetail.value?.playUrl)
@@ -181,6 +184,29 @@ const fetchVideoDetail = async (videoId: string) => {
     }
   } catch (error) {
     console.error('获取视频详情失败:', error)
+  }
+}
+
+const fetchRecommendedVideos = async (channelId: string, currentVideoId: string) => {
+  try {
+    const {
+      data: { data }
+    } = await getVideoListApi({
+      ChannelId: channelId,
+      SortType: 2,
+      PageIndex: 1,
+      PageSize: 11
+    })
+    // 过滤掉当前视频ID
+    const filteredVideos = data.items.filter((video) => video.id !== currentVideoId)
+
+    // 如果没有当前视频ID，则删除最后一个
+    if (filteredVideos.length == data.items.length) {
+      filteredVideos.pop()
+    }
+    recommendedVideos.value = filteredVideos
+  } catch (error) {
+    console.error('获取猜你喜欢视频失败:', error)
   }
 }
 

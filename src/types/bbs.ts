@@ -10,7 +10,6 @@ export interface Bbs {
   createTime: string
   hateCount: string
   id: string
-  decrypt?: { isDecrypted: boolean; decryptImg: string }[]
   imgs: string
   isCollected?: boolean
   like?: string
@@ -63,15 +62,12 @@ export interface BbsCategoryItem {
   img: string
   title: string
   postCount: string
-  isDecrypted?: boolean
-  decryptImg?: string
 }
 
 export interface BbsCategoryResponse {
   id: string
   items: BbsCategoryItem[]
   title: string
-  isDecrypted?: boolean
 }
 
 export interface BbsSubCategoryDetailResponse {
@@ -85,7 +81,6 @@ export interface BbsSubCategoryDetailResponse {
     id: string
     title: string
   }[]
-  isDecrypted?: boolean
 }
 
 export interface BbsRelatedRecommendRequest {

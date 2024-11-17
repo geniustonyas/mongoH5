@@ -104,6 +104,7 @@ const setupInterceptors = (service: AxiosInstance) => {
             // showToast('服务器错误：' + parsedData.code)
             return Promise.reject(parsedData)
           }
+          console.log(response.data)
           return response
         } catch (parseError) {
           throw new Error('解密后的数据不是有效的 JSON 格式')

@@ -19,8 +19,6 @@ export interface Video {
   playUrl: string
   trailerDomain?: string
   trailerUrl?: string
-  poster?: string
-  isDecrypted?: boolean
 }
 
 // 在 video.ts 中直接定义接口
@@ -50,6 +48,7 @@ export type VideoListResponse = {
 export interface VideoDetailResponse {
   id: string
   title: string
+  channelId: string
   viewCount: string
   likeCount: string
   hateCount: string
