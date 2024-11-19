@@ -20,7 +20,7 @@ export default defineComponent({
 
     onMounted(async () => {
       try {
-        const blob = await decryptionServiceInstance.decryptImageFromUrl(remoteFileUrl)
+        const blob = await decryptionServiceInstance.fetchAndDecrypt(remoteFileUrl)
         console.log('Decrypted Blob URL:', URL.createObjectURL(blob))
         imageUrl.value = URL.createObjectURL(blob)
       } catch (error) {

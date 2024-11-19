@@ -23,24 +23,28 @@ class decryptionService {
   async fetchAndDecrypt(url: string): Promise<Blob> {
     try {
       const { mimeType } = this.extractFileInfo(url)
-      const base64Data = await this.fetchData(url)
-      const byteArray = this.decryptBase64Data(base64Data)
-      return new Blob([byteArray], { type: mimeType })
-    } catch (error) {
-      console.error('解密图片失败:', url, error)
-      throw error
-    }
-  }
+      const response = await axios.get(url, { responseType: 'arraybuffer' })
+      const arrayBuffer = response.data
 
-  async decryptImageFromUrl(url: string): Promise<Blob> {
-    try {
-      const { mimeType } = this.extractFileInfo(url)
-      const arrayBuffer = await this.fetchData(url, 'arraybuffer')
-      const base64String = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)))
-      const decryptedContent = this.decryptBase64Data(base64String)
+      // 尝试将 ArrayBuffer 转换为字符串
+      const textDecoder = new TextDecoder('utf-8')
+      const decodedString = textDecoder.decode(arrayBuffer)
+
+      let decryptedContent: Uint8Array
+
+      if (this.isBase64(decodedString)) {
+        // 如果是 Base64 编码，直接解密
+        decryptedContent = this.decryptBase64Data(decodedString)
+      } else {
+        // 如果是二进制字节，先转换为 Base64 再解密
+        const base64Data = this.arrayBufferToBase64(arrayBuffer)
+        decryptedContent = this.decryptBase64Data(base64Data)
+      }
+
+      // 返回解密后的 Blob
       return new Blob([decryptedContent], { type: mimeType })
     } catch (error) {
-      console.error('解密远端图片失败:', error)
+      console.error('解密数据失败:', error)
       throw error
     }
   }
@@ -50,11 +54,6 @@ class decryptionService {
     const extension = fileName.includes('.') ? fileName.split('.').pop() : 'jpg'
     const mimeType = this.getMimeType(`.${extension}`)
     return { fileName, mimeType }
-  }
-
-  private async fetchData(url: string, responseType: 'text' | 'arraybuffer' = 'text'): Promise<any> {
-    const response = await axios.get(url, { responseType })
-    return response.data
   }
 
   private decryptBase64Data(base64Data: string): Uint8Array {
@@ -96,6 +95,24 @@ class decryptionService {
       }
     }
     return 'image/jpeg' // 默认类型
+  }
+
+  private isBase64(str: string): boolean {
+    try {
+      return btoa(atob(str)) === str
+    } catch (err) {
+      return false
+    }
+  }
+
+  private arrayBufferToBase64(buffer: ArrayBuffer): string {
+    let binary = ''
+    const bytes = new Uint8Array(buffer)
+    const len = bytes.byteLength
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i])
+    }
+    return btoa(binary)
   }
 }
 
