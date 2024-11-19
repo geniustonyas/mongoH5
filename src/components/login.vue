@@ -1,5 +1,5 @@
 <template>
-  <div v-if="userStore" class="au-pop" v-show="userStore.showLoginDialog">
+  <div v-if="userStore" id="loginDialog" class="au-pop" v-show="userStore.showLoginDialog">
     <div class="ap-bg" />
     <div class="ap-bd">
       <div class="p-login">
@@ -197,3 +197,8 @@ const login = async () => {
   }
 }
 </script>
+<style scoped>
+#loginDialog {
+  z-index: 999999;
+}
+</style>

@@ -17,6 +17,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/index/index.vue')
   },
   {
+    path: '/test',
+    name: 'test',
+    meta: { needLogin: false, keepAlive: false },
+    component: () => import('@/views/test.vue')
+  },
+  {
     path: '/videoList/:id',
     name: 'videoList',
     meta: { needLogin: false, keepAlive: false },

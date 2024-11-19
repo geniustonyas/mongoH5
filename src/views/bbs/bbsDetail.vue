@@ -101,9 +101,9 @@
         <div class="bbs-comment-box">
           <div class="bcb-head">
             <p>
-              评论<b>{{ comments.length }}</b>
+              评论<b>{{ comments.length == 0 ? '' : comments.length }}</b>
             </p>
-            <span @click="showComment = false"><i class="mvfont mv-close" /></span>
+            <span @click="closeComment"><i class="mvfont mv-close" /></span>
           </div>
           <div class="bcb-main">
             <ul class="bbs-comment-list">
@@ -114,7 +114,7 @@
                 <div class="i-r">
                   <div class="r-a">{{ comment.userName }}</div>
                   <div class="r-b">{{ comment.createTime }}</div>
-                  <div class="r-c">{{ comment.content }}</div>
+                  <div class="r-c" v-html="comment.content" />
                   <div class="r-d">
                     <span @click="toggleCommentLike(comment, 1)">
                       <i :class="['mvfont', 'mv-zan', { active: comment.like == 1 }]" />
@@ -133,27 +133,42 @@
             <div class="f-a">
               一键发评
               <p>
-                <span v-for="preset in presetComments" :key="preset" @click="postComment(preset)">{{ preset }}</span>
+                <span v-for="preset in presetComments" :key="preset" @click="postComment(preset)" v-html="parseEmojis(preset)" />
               </p>
             </div>
             <div class="f-b">
               <div class="b-input">
                 <i class="mvfont mv-bianji" />
-                <input v-model="commentInput" placeholder="欢迎您留下宝贵的见解！" @keyup.enter="postComment(commentInput)" />
-                <i class="mvfont mv-biaoqing" />
+                <input id="commentContent" placeholder="欢迎您留下宝贵的见解！" autocomplete="off" />
+                <i @click="showEmojiPopup = !showEmojiPopup" class="mvfont mv-biaoqing" />
               </div>
+              <div @click="postComment()" class="btn btn1">发送</div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <Popup v-model:show="showEmojiPopup" round position="bottom" :overlay="false" class="emoji-popup" :duration="0">
+      <div class="emoji-container">
+        <swiper :modules="emojiModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="false">
+          <swiper-slide v-for="(items, index) in groupedEmojis" :key="index">
+            <span v-for="(item, i) in items" :key="i">
+              <img @click="inputEmoji(item.title)" :src="getAssetsFile(`emoji/${item.src}`)" :title="item.title" />
+            </span>
+            <span @click="deleteEmoji()"><i class="mvfont mv-shanchu" /></span>
+          </swiper-slide>
+          <!-- <div class="swiper-pagination" /> -->
+        </swiper>
+      </div>
+    </Popup>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
 import { getAssetsFile } from '@/utils'
-import { useRoute } from 'vue-router'
+import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { getBbsDetailApi, getBbsRelatedRecommendApi, bbsLikeApi, bbsCollectionApi, getBbsCommentListApi, bbsCommentLikeApi, bbsCommentApi } from '@/api/bbs'
@@ -161,6 +176,12 @@ import BbsListItem from '@/components/BbsListItem.vue'
 import type { Bbs } from '@/types/bbs'
 import { ImagePreview, Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
+import { groupEmoji, inputEmoji, deleteEmoji } from '@/utils/emojiHandle'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import emojiList from '@/utils/emoji.js' // 导入表情列表
 
 const route = useRoute()
 const appStore = useAppStore()
@@ -173,23 +194,32 @@ const showComment = ref(false)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 const comments = ref([])
-const commentInput = ref('')
-const presetComments = ['支持楼主☝', '📢真是太美了', '真是太美了🍀']
+const presetComments = ref(['放开她，让我来！[色]', '老师真是太美了！[可爱]'])
+const emojiModules = [Pagination]
 
 const bbsImgs = ref<string[]>([])
 const imgPreviewIndex = ref(0)
 const showImagePreview = ref(false)
 
-const postComment = async (content: string) => {
+const postComment = async (content = '') => {
   if (!checkLogin()) return
   if (!detail.value) return
-  if (!content) return
+
+  // 直接从 DOM 获取评论内容
+  const textDom = document.getElementById('commentContent') as HTMLInputElement
+  const commentContent = content || textDom.value.trim()
+
+  if (commentContent === '') {
+    showToast('评论内容不能为空')
+    return
+  }
   try {
-    const { data } = await bbsCommentApi({ PostId: detail.value.id, Content: content })
+    const { data } = await bbsCommentApi({ PostId: detail.value.id, Content: commentContent })
     if (data) {
       showToast('评论成功')
       fetchComments() // 重新获取评论列表
-      commentInput.value = ''
+      textDom.value = '' // 清空输入框
+      showEmojiPopup.value = false
     }
   } catch (error) {
     console.error('发表评论失败:', error)
@@ -305,6 +335,17 @@ const checkLogin = (): boolean => {
   return true
 }
 
+// 创建一个方法来解析评论内容中的表情符号
+const parseEmojis = (content: string): string => {
+  if (content && content.length > 0) {
+    emojiList.forEach((item) => {
+      var reg = '/\\' + item.title.replace(']', '\\]') + '/g'
+      content = content.replace(eval(reg), `<img src="${getAssetsFile(`emoji/${item.src}`)}" alt="${item.title}" />`)
+    })
+  }
+  return content
+}
+
 const fetchComments = async () => {
   if (!detail.value) return
   try {
@@ -316,7 +357,8 @@ const fetchComments = async () => {
         ...comment,
         likeCount: comment.likeCount.toString(),
         hateCount: comment.hateCount.toString(),
-        like: comment.like.toString()
+        like: comment.like.toString(),
+        content: parseEmojis(comment.content) // 解析评论内容
       }))
       console.log('评论列表:', comments.value)
     }
@@ -369,6 +411,15 @@ const updateCommentLikeStatus = (comment, currentLikeType, newLikeType) => {
   }
 }
 
+onBeforeRouteLeave(() => {
+  closeComment()
+})
+
+const closeComment = () => {
+  showComment.value = false
+  showEmojiPopup.value = false
+}
+
 const handleBbsClick = (post: Bbs) => {
   pageIndex.value = 1
   relatedList.value = []
@@ -378,6 +429,9 @@ const handleBbsClick = (post: Bbs) => {
     })
   })
 }
+
+const showEmojiPopup = ref(false)
+const groupedEmojis = groupEmoji()
 
 ;(async () => {
   const id = route.params.id

@@ -16,38 +16,59 @@ class decryptionService {
   private iv: string
 
   constructor() {
-    // 使用你提供的 AES key 和 IV
-    // this.key = 'NHboMHZerxFQ401E'
-    // this.iv = 'i7JeCEIMVrj2W9xN'
-
     this.key = 'gFzviOY0zOxVq1cu'
     this.iv = 'ZmA0Osl677UdSrl0'
   }
 
   async fetchAndDecrypt(url: string): Promise<Blob> {
     try {
-      const fileName = url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.'))
-      const extension = fileName.includes('.') ? fileName.split('.').pop() : 'jpg'
-      const mimeType = this.getMimeType(`.${extension}`)
-
-      const response = await axios.get(url, { responseType: 'text' })
-      const base64Data = response.data
-      const parsedKey = CryptoJS.enc.Utf8.parse(this.key)
-      const parsedIv = CryptoJS.enc.Utf8.parse(this.iv)
-      const decrypted = CryptoJS.AES.decrypt(base64Data, parsedKey, {
-        iv: parsedIv,
-        mode: CryptoJS.mode.CBC,
-        padding: CryptoJS.pad.Pkcs7
-      })
-
-      const decryptedData = CryptoJS.enc.Base64.parse(decrypted.toString(CryptoJS.enc.Utf8))
-      const byteArray = new Uint8Array(decryptedData.words.map((word) => [(word >> 24) & 0xff, (word >> 16) & 0xff, (word >> 8) & 0xff, word & 0xff]).flat())
-
+      const { mimeType } = this.extractFileInfo(url)
+      const base64Data = await this.fetchData(url)
+      const byteArray = this.decryptBase64Data(base64Data)
       return new Blob([byteArray], { type: mimeType })
     } catch (error) {
       console.error('解密图片失败:', url, error)
       throw error
     }
+  }
+
+  async decryptImageFromUrl(url: string): Promise<Blob> {
+    try {
+      const { mimeType } = this.extractFileInfo(url)
+      const arrayBuffer = await this.fetchData(url, 'arraybuffer')
+      const base64String = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)))
+      const decryptedContent = this.decryptBase64Data(base64String)
+      return new Blob([decryptedContent], { type: mimeType })
+    } catch (error) {
+      console.error('解密远端图片失败:', error)
+      throw error
+    }
+  }
+
+  private extractFileInfo(url: string): { fileName: string; mimeType: string } {
+    const fileName = url.substring(url.lastIndexOf('/') + 1)
+    const extension = fileName.includes('.') ? fileName.split('.').pop() : 'jpg'
+    const mimeType = this.getMimeType(`.${extension}`)
+    return { fileName, mimeType }
+  }
+
+  private async fetchData(url: string, responseType: 'text' | 'arraybuffer' = 'text'): Promise<any> {
+    const response = await axios.get(url, { responseType })
+    return response.data
+  }
+
+  private decryptBase64Data(base64Data: string): Uint8Array {
+    const parsedKey = CryptoJS.enc.Utf8.parse(this.key)
+    const parsedIv = CryptoJS.enc.Utf8.parse(this.iv)
+    const decrypted = CryptoJS.AES.decrypt(base64Data, parsedKey, {
+      iv: parsedIv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7
+    })
+
+    const decryptedData = CryptoJS.enc.Base64.parse(decrypted.toString(CryptoJS.enc.Utf8))
+    const byteArray = new Uint8Array(decryptedData.words.map((word) => [(word >> 24) & 0xff, (word >> 16) & 0xff, (word >> 8) & 0xff, word & 0xff]).flat())
+    return byteArray
   }
 
   decryptResponseData(encryptedData: string): string {
@@ -68,8 +89,7 @@ class decryptionService {
     }
   }
 
-  private getMimeType(url: string): string {
-    const extension = url.split('.').pop()?.toLowerCase()
+  private getMimeType(extension: string): string {
     for (const type in fileTypes) {
       if (fileTypes[type].some((mime) => mime.includes(extension))) {
         return fileTypes[type][0] // 返回第一个匹配的 mimeType
@@ -80,7 +100,6 @@ class decryptionService {
 }
 
 export const generateAuthUrl = (domain: string, uri: string, key = 'WZUnX2Avi6WNBN1Gx1a4RH') => {
-  // key 主WZUnX2Avi6WNBN1Gx1a4RH 备V1zDuHmSCVCKO0Xu
   const timestamp = Math.floor(Date.now() / 1000).toString()
   const temp = `${key}${uri}${timestamp}`
   const sign = md5(temp).toString().toLowerCase()

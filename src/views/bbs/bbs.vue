@@ -395,6 +395,9 @@ const fetchCategories = async () => {
 const changeSortType = (sortType: number) => {
   bbsListSortType.value[activeTab.value] = sortType
   bbsListPageIndex.value[activeTab.value] = 1
+  bbsListTotalPages.value[activeTab.value] = 1
+  bbsListMap.value[activeTab.value] = []
+  query.SortType = sortType
   fetchBbsList()
 }
 

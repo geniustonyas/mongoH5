@@ -3,7 +3,7 @@
     <section class="a-d-b">
       <div class="ab-a">
         <a @click="appStore.setBack(true)" class="a-bk"><i class="mvfont mv-left" /></a>
-        <div class="a-x" v-lazy-decrypt="actor.imgUrl">
+        <div class="a-x" v-if="actor.imgUrl" v-lazy-decrypt="actor.imgUrl">
           <div class="x-c">
             <div class="c-bd">
               <div class="c-i" v-lazy-decrypt="actor.imgUrl">

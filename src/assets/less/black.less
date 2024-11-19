@@ -206,8 +206,29 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
 }
 
-
-
+.emoji-popup {
+    position: fixed;
+    bottom: 4.5rem; 
+    width: 100%;
+    transition: none;
+    transform: none;
+    .bg(var(--color-dark));
+    .emoji-container {
+        padding-top: 1rem;
+        .swiper{ height: 12rem; 
+            .swiper-pagination {
+                .swiper-pagination-bullet { width: 10px; height: 4px; .radius(); }
+                .swiper-pagination-bullet-active {.bg(var(--color-primary)); }
+            }
+            .swiper-slide {
+                span { float: left; width: 14.2857%; text-align: center; padding: 5px;
+                    i { font-size: 24px; }
+                    img {.size(24px,24px); vertical-align: middle; }
+                }
+            }
+        }
+    }
+}
 
 
 
@@ -553,11 +574,13 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
                 span { display: inline-block; .bg(rgba(255,255,255,.1)); color: var(--color-light); font-size: 1.2rem; padding: .5rem 1rem; text-align: center; .radius(.4rem); white-space: nowrap; margin-left: .5rem; cursor: pointer; }
             }
         }
-        .f-b { padding: 1rem; .border-t(.1rem,rgba(255,255,255,.05));
-            .b-input { .bg(rgba(255,255,255,.1)); .radius(.5rem); .h-lh(3.4rem); .flex(); .flex-align();
+        .f-b { padding: 1rem; .border-t(.1rem,rgba(255,255,255,.05)); .flex(); .flex-pack-justify(); .flex-align();
+            .b-input { .bg(rgba(255,255,255,.1)); .radius(.5rem); max-height: 5rem; .flex(); .flex-align(); .flex-x();
                 input { .flex-x(); border: none; .h-lh(3.4rem); padding: 0 1rem; }
+                textarea { .flex-x(); border: none; line-height: 2rem; padding: 0 1rem; }
                 i { .flex-x(0 0 3rem); text-align: center; font-size: 2.2rem; color: var(--color-light); cursor: pointer; }
             }
+            .btn { .flex-x(0 0 5rem); .h-lh(2.5rem); vertical-align: middle; margin-left: .5rem; }
         }
     }
 }
@@ -570,7 +593,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         .i-r { .flex-x();
             .r-a { color: #5b6a91; font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif; }
             .r-b { font-size: 1.2rem; color: var(--color-666); }
-            .r-c { color: var(--color-white); font-size: 1.6rem; margin: 1rem 0; }
+            .r-c { color: var(--color-white); font-size: 1.6rem; margin: 1rem 0; .wordwrap(); }
             .r-d { text-align: right;
                 span { margin-left: 2rem; color: var(--color-light);
                     i { font-size: 2rem; margin-right: .5rem; vertical-align: middle; position: relative; bottom: .2rem; }
