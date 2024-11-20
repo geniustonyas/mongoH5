@@ -378,8 +378,12 @@ const handlePageChange = async () => {
 })()
 
 const openDownloadPage = () => {
-  const baseUrl = window.location.origin + import.meta.env.BASE_URL
-  window.open(baseUrl + 'appdownload/index.html', '_blank')
+  const ua = navigator.userAgent
+  if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+    window.open(appStore.iosDownloadUrl, '_blank')
+  } else {
+    window.open(appStore.androidDownloadUrl, '_blank')
+  }
 }
 
 function handleScroll() {

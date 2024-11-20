@@ -281,7 +281,7 @@ const clickTab = () => {
 
 const handleSwipeChange = (swiper: any) => {
   // 检查是否滑动到收藏列表
-  if (swiper.activeIndex === 4) {
+  if (swiper.activeIndex == 4) {
     if (userStore.userInfo.id == '') {
       if (swiperInstance.value) {
         swiperInstance.value.slideTo(activeTab.value, 0)
@@ -302,9 +302,13 @@ const handleSwipeChange = (swiper: any) => {
   // 滑动到新的swipeItem，获取之前的排序和子频道
   if (bbsListSortType.value[activeTab.value] != undefined) {
     query.SortType = bbsListSortType.value[activeTab.value]
+  } else {
+    query.SortType = 0
   }
   if (bbsListSubChannelId.value[activeTab.value] != undefined) {
     query.SubChannelId = bbsListSubChannelId.value[activeTab.value]
+  } else {
+    query.SubChannelId = ''
   }
   if (bbsListPageIndex.value[activeTab.value] == undefined) {
     query.PageIndex = 1
