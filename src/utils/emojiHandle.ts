@@ -16,30 +16,34 @@ export function groupEmoji(): Emoji[][] {
  * @param value  [String]要插入的文本
  */
 export function inputEmoji(value: string) {
-  const textDom = document.getElementById('commentContent') as HTMLTextAreaElement
+  const textDom = document.getElementById('commentContent')
   if (!textDom) return
 
-  // @ts-ignore
-  if (document.selection) {
-    // IE Support
-    textDom.focus()
-    // @ts-ignore
-    const selectRange = document.selection.createRange()
-    selectRange.text = value
-    textDom.focus()
-  } else if (textDom.selectionStart || textDom.selectionStart === 0) {
-    // Firefox support
-    const startPos = textDom.selectionStart
-    const endPos = textDom.selectionEnd
-    const scrollTop = textDom.scrollTop
-    textDom.value = textDom.value.substring(0, startPos) + value + textDom.value.substring(endPos, textDom.value.length)
-    textDom.focus()
-    textDom.selectionStart = startPos + value.length
-    textDom.selectionEnd = startPos + value.length
-    textDom.scrollTop = scrollTop
+  // 获取当前光标位置
+  const selection = window.getSelection()
+  let range
+
+  if (selection && selection.rangeCount > 0) {
+    range = selection.getRangeAt(0)
+    range.deleteContents() // 删除选中的内容
   } else {
-    textDom.value += value
-    textDom.focus()
+    // 如果没有选中内容或光标位置，创建一个新的 range
+    range = document.createRange()
+    range.selectNodeContents(textDom)
+    range.collapse(false) // 将光标移动到内容末尾
+  }
+
+  // 使用 document.execCommand 插入文本
+  textDom.focus()
+  document.execCommand('insertText', false, value)
+
+  // 确保输入框保持聚焦状态
+  textDom.focus()
+
+  // 检查光标是否在内容末尾
+  if (range.endOffset === textDom.textContent.length) {
+    // 滚动到最右边
+    textDom.scrollLeft = textDom.scrollWidth
   }
 }
 

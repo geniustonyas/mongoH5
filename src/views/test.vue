@@ -16,7 +16,7 @@ export default defineComponent({
   setup() {
     const imageUrl = ref<string | null>(null)
     const decryptionServiceInstance = new decryptionService()
-    const remoteFileUrl = 'http://mgtvs.com/post.js' // 远端文件的 URL
+    const remoteFileUrl = 'https://video.rf028.com/MGBBS/20241119/tu31529/3.jpg.js' // 远端文件的 URL
 
     onMounted(async () => {
       try {

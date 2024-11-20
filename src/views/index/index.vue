@@ -118,7 +118,7 @@
               <section class="m-l-b">
                 <nav v-if="category.s && category.s.length > 0" class="b-a" @touchstart.stop @touchmove.stop>
                   <span :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</span>
-                  <span v-for="cates in category.s" :key="cates.d" :class="{ active: query.SubChannelId == cates.d }" @click="selectCategory(cates.d)">
+                  <span v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
                     {{ cates.t }}
                   </span>
                 </nav>
@@ -194,6 +194,8 @@ const latestVideos = ref<Video[]>([])
 const categoryVideosMap = ref({})
 const categoryTotalPages = ref({})
 const categoryPageIndex = ref({})
+const categorySortType = ref({})
+const categorySubChannelId = ref({})
 
 const sortOptions = [
   { label: '按最新', value: 1 },
@@ -279,9 +281,11 @@ const fetchIndexVideos = async () => {
 
 // 选择二级分类
 const selectCategory = async (categoryId: string | number) => {
-  query.PageIndex = 1 // 重置页码
-  categoryPageIndex.value[query.ChannelId] = 1
+  query.PageIndex = 1
   query.SubChannelId = categoryId
+  categoryPageIndex.value[query.ChannelId] = query.PageIndex
+  categorySortType.value[query.ChannelId] = query.SortType
+  categorySubChannelId.value[query.ChannelId] = query.SubChannelId
   await fetchVideos(query)
 }
 
@@ -330,10 +334,13 @@ const handleCategoryChange = async (isRefresh = false) => {
 const swipePage = (swiper: any) => {
   activeId.value = swiper.activeIndex
   query.ChannelId = activeId.value == 0 ? '' : appStore.categorys[activeId.value - 1].d
-  if (!categoryVideosMap.value[query.ChannelId] || categoryVideosMap.value[query.ChannelId].length == 0) {
-    handleCategoryChange()
-  } else {
+  // 如果没有数据。则重新获取数据
+  if (categoryVideosMap.value[query.ChannelId] == undefined) {
+    query.PageIndex = 1
+    categoryPageIndex.value[query.ChannelId] = 1
     query.SubChannelId = ''
+    query.SortType = 2
+    handleCategoryChange()
   }
   nextTick(() => {
     window.scrollTo(0, 0)
@@ -345,6 +352,7 @@ const changeSort = async (sortValue) => {
   query.SortType = sortValue
   query.PageIndex = 1
   categoryPageIndex.value[query.ChannelId] = 1
+  categorySortType.value[query.ChannelId] = query.SortType
   await fetchVideos(query)
 }
 

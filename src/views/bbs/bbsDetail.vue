@@ -103,7 +103,7 @@
             <p>
               评论<b>{{ comments.length == 0 ? '' : comments.length }}</b>
             </p>
-            <span @click="closeComment"><i class="mvfont mv-close" /></span>
+            <span @click="toggleComment(false)"><i class="mvfont mv-close" /></span>
           </div>
           <div class="bcb-main">
             <ul class="bbs-comment-list">
@@ -139,7 +139,8 @@
             <div class="f-b">
               <div class="b-input">
                 <i class="mvfont mv-bianji" />
-                <input id="commentContent" placeholder="欢迎您留下宝贵的见解！" autocomplete="off" />
+                <!-- <input id="commentContent" placeholder="欢迎您留下宝贵的见解！" autocomplete="off" /> -->
+                <div id="commentContent" contenteditable="true" class="editable-div" @focus="showEmojiPopup = true" />
                 <i @click="showEmojiPopup = !showEmojiPopup" class="mvfont mv-biaoqing" />
               </div>
               <div @click="postComment()" class="btn btn1">发送</div>
@@ -196,6 +197,8 @@ const clipboard = ref<Clipboard | null>(null)
 const comments = ref([])
 const presetComments = ref(['放开她，让我来！[色]', '老师真是太美了！[可爱]'])
 const emojiModules = [Pagination]
+const showEmojiPopup = ref(false)
+const groupedEmojis = groupEmoji()
 
 const bbsImgs = ref<string[]>([])
 const imgPreviewIndex = ref(0)
@@ -412,12 +415,12 @@ const updateCommentLikeStatus = (comment, currentLikeType, newLikeType) => {
 }
 
 onBeforeRouteLeave(() => {
-  closeComment()
+  toggleComment()
 })
 
-const closeComment = () => {
-  showComment.value = false
-  showEmojiPopup.value = false
+const toggleComment = (isShow = false) => {
+  showComment.value = isShow
+  showEmojiPopup.value = isShow
 }
 
 const handleBbsClick = (post: Bbs) => {
@@ -429,9 +432,6 @@ const handleBbsClick = (post: Bbs) => {
     })
   })
 }
-
-const showEmojiPopup = ref(false)
-const groupedEmojis = groupEmoji()
 
 ;(async () => {
   const id = route.params.id

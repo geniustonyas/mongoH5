@@ -3,10 +3,6 @@ import { getCategoryApi, getConfigApi, getAdsApi } from '@/api/app'
 import router from '@/router'
 import { getThemeApi } from '@/api/theme'
 import store from '@/store'
-import decryptionService from '@/utils/decryptionService'
-
-// 在 store 中创建 decryptionService 实例
-const decrypt = new decryptionService()
 
 export const useAppStore = defineStore('app', {
   state: () => {
@@ -29,6 +25,8 @@ export const useAppStore = defineStore('app', {
       playDomain: '', // 播放域名
       imageDomain: '', // 图片域名
       bbsSearchTags: [], // bbs搜索标签
+      iosDownloadUrl: '', // ios下载地址
+      androidDownloadUrl: '', // android下载地址
 
       theme: [], // 标签
       categorys: [], // 分类
@@ -74,6 +72,8 @@ export const useAppStore = defineStore('app', {
         this.playDomain = data.find((item: any) => item.pKey === 'PlayDomain')?.value1 || ''
         this.imageDomain = data.find((item: any) => item.pKey === 'ImageDomain')?.value1 || ''
         this.bbsSearchTags = data.find((item: any) => item.pKey === 'BBSSearchPageTags')?.value1.split(',') || []
+        this.iosDownloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value2 || ''
+        this.androidDownloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
       } catch (error) {
         console.error('获取系统配置失败:', error)
       }
@@ -98,14 +98,7 @@ export const useAppStore = defineStore('app', {
           data: { data }
         } = await getAdsApi()
         // 先将广告数据存储用于渲染
-        this.advertisement =
-          data.map((adPosition) => ({
-            ...adPosition,
-            items: adPosition.items.map((adItem) => ({
-              ...adItem,
-              isDecrypted: false
-            }))
-          })) || []
+        this.advertisement = data || []
         console.log('广告:', this.advertisement)
       } catch (error) {
         console.error('获取广告失败:', error)

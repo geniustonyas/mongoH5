@@ -25,11 +25,11 @@
           <img :src="getAssetsFile('logo-1.png')" />
           <span>
             <b>芒果TV</b>
-            <small>添加到主屏幕</small>
+            <small>下载APP观看更多高清视频</small>
           </span>
         </div>
         <div class="f-b">
-          <a @click="popAddToHomeTip">添加</a>
+          <a @click="downloadApp">立即下载</a>
           <span @click="showDownloadTips = false"><i class="mvfont mv-close" /></span>
         </div>
       </div>
@@ -147,14 +147,23 @@ onMounted(() => {
   }
 })
 
-const popAddToHomeTip = () => {
-  // 判断当前浏览器是IOS还是Android
-  showAddToHomeTip.value = true
+// const popAddToHomeTip = () => {
+//   // 判断当前浏览器是IOS还是Android
+//   showAddToHomeTip.value = true
+//   const ua = navigator.userAgent
+//   if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+//     showIos.value = true
+//   } else {
+//     showAndroid.value = true
+//   }
+// }
+
+const downloadApp = () => {
   const ua = navigator.userAgent
   if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
-    showIos.value = true
+    window.open(appStore.iosDownloadUrl, '_blank')
   } else {
-    showAndroid.value = true
+    window.open(appStore.androidDownloadUrl, '_blank')
   }
 }
 </script>
