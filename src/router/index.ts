@@ -225,7 +225,7 @@ router.beforeEach(async (to, from, next) => {
   const appStore = useAppStore()
 
   // 如果应用配置还未加载，则加载配置
-  if (appStore.theme.length == 0) {
+  if (appStore.cdnUrl == '') {
     await appStore.fetchAllData()
   }
 

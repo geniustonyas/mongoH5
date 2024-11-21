@@ -19,12 +19,12 @@
         <!-- <ul>
           <li class="new">
             <div class="m-a">注册成功</div>
-            <div class="m-b">恭喜您注册成功，您的用户名为：xaklxe5040926，密码为：ka7Bho3760130if，请妥善保管,尽快完善用户信息哦～</div>
+            <div class="m-b">恭喜您注册成功，您的用户名为：xxxx，密码为：xxxxxx，请妥善保管,尽快完善用户信息哦～</div>
             <div class="m-c">2024-10-02</div>
           </li>
           <li>
             <div class="m-a">注册成功</div>
-            <div class="m-b">恭喜您注册成功，您的用户名为：xaklxe5040926，密码为：ka7Bho3760130if，请妥善保管,尽快完善用户信息哦～</div>
+            <div class="m-b">恭喜您注册成功，您的用户名为：xxxx，密码为：xxxxxx，请妥善保管,尽快完善用户信息哦～</div>
             <div class="m-c">2024-10-02</div>
           </li>
         </ul> -->

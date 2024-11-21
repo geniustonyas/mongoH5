@@ -20,7 +20,7 @@
             <a v-for="actor in actorList" :key="actor.id" @click="router.push({ name: 'actorDetail', params: { id: actor.id }, query: { videoCount: actor.videosCount } })">
               <div class="l-img" v-lazy-decrypt="actor.imgUrl" loading-img="default2.gif" error-img="default2.gif" :key="actor.id">
                 <span class="s-a">{{ actor.videosCount }}部</span>
-                <span class="s-b" v-if="actor.categoryNames.indexOf('知名') != -1"><b>知名女优</b></span>
+                <span class="s-b" v-if="actor.categoryNames.indexOf('知名') != -1"><b>&#x77E5;&#x540D;&#x5973;&#x4F18;</b></span>
               </div>
               <span>{{ actor.title }}</span>
             </a>
@@ -52,10 +52,10 @@ const sortOptions = [
 const categorys = [
   { label: '全部', value: '' },
   { label: '知名', value: '1' },
-  { label: '无码', value: '2' },
-  { label: '日本', value: '3' },
-  { label: '国产', value: '4' },
-  { label: '素人', value: '5' }
+  { label: '&#x65E0;&#x7801;', value: '2' },
+  { label: '&#x65E5;&#x672C;', value: '3' },
+  { label: '&#x56FD;&#x4EA7;', value: '4' },
+  { label: '&#x7D20;&#x4EBA;', value: '5' }
 ]
 
 const actorList = ref<ActorList[]>([])

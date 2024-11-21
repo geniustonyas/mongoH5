@@ -7,7 +7,7 @@
           <div class="x-c">
             <div class="c-bd">
               <div class="c-i" v-lazy-decrypt="actor.imgUrl">
-                <span class="i-a">知名女优</span>
+                <span class="i-a">&#x77E5;&#x540D;&#x5973;&#x4F18;</span>
               </div>
               <div class="c-n">
                 <h3>{{ actor.title }}</h3>

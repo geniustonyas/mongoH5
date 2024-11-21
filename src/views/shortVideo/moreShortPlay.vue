@@ -37,7 +37,7 @@
           <span>收藏</span>
         </div>
       </nav>
-      <ul class="b-u-l">
+      <!-- <ul class="b-u-l">
         <li @click="router.push({ name: 'play', params: { id: 1 } })">
           <div class="l-a" :style="{ backgroundImage: `url(${getAssetsFile('mv/v1.jpg')})` }">
             <a class="a-a"><i class="mvfont mv-bofang2" />108.9万</a>
@@ -182,16 +182,16 @@
             <span><small>都市</small>全70集</span>
           </div>
         </li>
-      </ul>
+      </ul> -->
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useAppStore } from '@/store/app'
+// import { useAppStore } from '@/store/app'
 import { useRouter } from 'vue-router'
-import { getAssetsFile } from '@/utils'
+// import { getAssetsFile } from '@/utils'
 
 const router = useRouter()
-const appStore = useAppStore()
+// const appStore = useAppStore()
 </script>

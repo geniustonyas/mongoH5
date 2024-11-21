@@ -2,7 +2,7 @@
   <div class="page video-page">
     <header class="m-header h-video">
       <div class="h-m">
-        <a @click="router.push({ name: 'shortVideo' })" class="active">抖阴</a>
+        <a @click="router.push({ name: 'shortVideo' })" class="active">&#x6296;&#x9634;</a>
         <a @click="showToast('建设中...')">短剧</a>
         <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
       </div>

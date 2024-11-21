@@ -32,7 +32,7 @@
         </div>
 
         <div class="au-ad">
-          <img src="https://sjtv.xianliao.voto/9btu/bbbbb.png" />
+          <img v-if="bannerAdvertisement.length > 0" @click="handleBannerAdvertisementClick" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
         </div>
         <div class="bbs-d-ne">
           <div class="item" v-if="detail?.prev?.id" @click="handleBbsClick(detail.prev)">
@@ -167,7 +167,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, computed } from 'vue'
 import { getAssetsFile } from '@/utils'
 import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { useAppStore } from '@/store/app'
@@ -227,6 +227,17 @@ const postComment = async (content = '') => {
   } catch (error) {
     console.error('发表评论失败:', error)
     showToast('发表评论失败')
+  }
+}
+
+const bannerAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(4).items
+  return tmp || []
+})
+
+const handleBannerAdvertisementClick = () => {
+  if (bannerAdvertisement.value.length > 0) {
+    window.open(bannerAdvertisement.value[0].targetUrl, '_blank')
   }
 }
 
@@ -445,6 +456,9 @@ const handleBbsClick = (post: Bbs) => {
         window.scrollTo(0, 0)
       })
     })
+  }
+  if (appStore.advertisement.length == 0) {
+    appStore.fetAdvertisement()
   }
 })()
 </script>

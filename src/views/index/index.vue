@@ -44,7 +44,7 @@
             <div class="index-content">
               <!--Banner-->
               <nav id="index-banner" class="swiper-container" @touchstart.stop @touchmove.stop>
-                <swiper class="my-swipe" :modules="bannerModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
+                <swiper class="my-swipe" :modules="bannerModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
                   <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                     <a target="_blank" :href="ad.targetUrl">
                       <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
@@ -106,9 +106,9 @@
         <swiper-slide v-for="category in appStore.categorys" :key="category.d">
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="category-content">
-              <div class="mv-swiper" @touchstart.stop @touchmove.stop>
-                <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
-                  <swiper-slide v-for="video in categoryVideosMap[category.d]" :key="video.id">
+              <div class="mv-swiper">
+                <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
+                  <swiper-slide v-for="video in categoryBannerVideosMap[category.d]" :key="video.id">
                     <a @click="router.push({ name: 'play', params: { id: video.id } })">
                       <img v-lazy-decrypt="video.imgUrl" :alt="video.title" />
                     </a>
@@ -192,6 +192,7 @@ const recommendedVideos = ref<Video[]>([])
 const latestVideos = ref<Video[]>([])
 
 const categoryVideosMap = ref({})
+const categoryBannerVideosMap = ref({})
 const categoryTotalPages = ref({})
 const categoryPageIndex = ref({})
 const categorySortType = ref({})
@@ -259,6 +260,9 @@ const fetchVideos = async (params: VideoListRequest) => {
     } = await getVideoListApi(params)
     if (data && Array.isArray(data.items)) {
       categoryVideosMap.value[query.ChannelId] = data.items
+      if (params.IsFirst) {
+        categoryBannerVideosMap.value[query.ChannelId] = data.newVideos
+      }
       categoryTotalPages.value[query.ChannelId] = parseInt(data.pageCount)
       categoryPageIndex.value[query.ChannelId] = parseInt(data.pageIndex)
     } else {
@@ -329,10 +333,12 @@ const handleCategoryChange = async (isRefresh = false) => {
     refreshing.value = true
   }
   if (activeId.value == 0) {
+    query.IsFirst = false
     await fetchIndexVideos()
     refreshing.value = false
   } else {
     await fetchVideos(query)
+    query.IsFirst = false
     refreshing.value = false
   }
 }
@@ -342,6 +348,7 @@ const swipePage = (swiper: any) => {
   query.ChannelId = activeId.value == 0 ? '' : appStore.categorys[activeId.value - 1].d
   // 如果没有数据。则重新获取数据
   if (categoryVideosMap.value[query.ChannelId] == undefined) {
+    query.IsFirst = true
     query.PageIndex = 1
     categoryPageIndex.value[query.ChannelId] = 1
     query.SubChannelId = ''

@@ -41,7 +41,9 @@
           </span>
           <span><i @click="handleShare" class="mvfont mv-zhuanfa1" />分享</span>
         </div>
-        <div class="ad-box"><img :src="getAssetsFile('cpt2.png')" /></div>
+        <div class="ad-box">
+          <img v-if="bannerAdvertisement.length > 0" @click="handleBannerAdvertisementClick" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
+        </div>
       </div>
       <nav class="mv-t-l">
         <div class="m-a">
@@ -68,13 +70,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, onUnmounted, onMounted } from 'vue'
+import { ref, nextTick, onUnmounted, onMounted, computed } from 'vue'
 import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi, addPlayCountApi, getVideoListApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
 // import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
-import { getAssetsFile } from '@/utils'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
 import dayjs from 'dayjs'
@@ -130,6 +131,17 @@ const forwardOptions = [
   { time: 60, label: '1m' }, // 1分钟
   { time: 600, label: '10m' } // 10分钟
 ]
+
+const bannerAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(4).items
+  return tmp || []
+})
+
+const handleBannerAdvertisementClick = () => {
+  if (bannerAdvertisement.value.length > 0) {
+    window.open(bannerAdvertisement.value[0].targetUrl, '_blank')
+  }
+}
 
 const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
   if (isDisabled.value) {
@@ -490,6 +502,10 @@ onMounted(() => {
   // 显示广告时暂停视频
   if (showAdPopup.value) {
     player.value?.pause()
+  }
+
+  if (appStore.advertisement.length == 0) {
+    appStore.fetAdvertisement()
   }
 })
 
