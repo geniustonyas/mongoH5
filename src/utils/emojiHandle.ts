@@ -17,6 +17,7 @@ export function groupEmoji(): Emoji[][] {
  */
 export function inputEmoji(value: string) {
   const textDom = document.getElementById('commentContent')
+  textDom.focus()
   if (!textDom) return
 
   // 获取当前光标位置
@@ -31,60 +32,86 @@ export function inputEmoji(value: string) {
     range = document.createRange()
     range.selectNodeContents(textDom)
     range.collapse(false) // 将光标移动到内容末尾
+    selection.removeAllRanges()
+    selection.addRange(range)
   }
 
-  // 使用 document.execCommand 插入文本
-  textDom.focus()
-  document.execCommand('insertText', false, value)
+  // 插入表情
+  const textNode = document.createTextNode(value)
+  range.insertNode(textNode)
+
+  // 更新光标位置到新插入的节点后面
+  range.setStartAfter(textNode)
+  range.setEndAfter(textNode)
+  selection.removeAllRanges()
+  selection.addRange(range)
 
   // 确保输入框保持聚焦状态
   textDom.focus()
 
-  // 检查光标是否在内容末尾
-  if (range.endOffset === textDom.textContent.length) {
-    // 滚动到最右边
-    textDom.scrollLeft = textDom.scrollWidth
-  }
+  // 滚动到最右边
+  textDom.scrollLeft = textDom.scrollWidth
 }
 
 /**
  * @description 删除光标前面的文字
  */
 export function deleteEmoji() {
-  const textDom = document.getElementById('commentContent') as HTMLTextAreaElement
-  if (!textDom || !textDom.value) return
+  const textDom = document.getElementById('commentContent')
+  if (!textDom) return
 
-  const val = textDom.value
-  // @ts-ignore
-  if (document.selection) {
-    // 兼容IE
-    textDom.focus()
-    // @ts-ignore
-    const selectRange = document.selection.createRange()
-    const cursorPos = selectRange.text.length
-    selectRange.text = val.substring(0, cursorPos - 1) + val.substring(cursorPos, val.length)
-    textDom.focus()
-  } else if (textDom.selectionStart || textDom.selectionStart === 0) {
-    // Firefox Safari
-    const startPos = textDom.selectionStart
-    const endPos = textDom.selectionEnd
-    const scrollTop = textDom.scrollTop
-    const lastChar = val.substring(startPos - 1, startPos)
-    if (lastChar === ']') {
-      const lastIndex = val.lastIndexOf('[', startPos)
-      textDom.value = val.substring(0, lastIndex) + val.substring(endPos, val.length)
-      textDom.focus()
-      textDom.selectionStart = lastIndex
-      textDom.selectionEnd = lastIndex
-    } else {
-      textDom.value = val.substring(0, startPos - 1) + val.substring(startPos, val.length)
-      textDom.focus()
-      textDom.selectionStart = startPos - 1
-      textDom.selectionEnd = startPos - 1
+  const selection = window.getSelection()
+  if (!selection || selection.rangeCount === 0) return
+
+  const range = selection.getRangeAt(0)
+
+  // 如果光标在文本节点中
+  if (range.startContainer.nodeType === Node.TEXT_NODE) {
+    const textNode = range.startContainer as Text
+    const offset = range.startOffset
+
+    if (offset > 0) {
+      // 检查前一个字符是否是表情的结束符号
+      const prevChar = textNode.textContent?.charAt(offset - 1)
+      if (prevChar === ']') {
+        // 找到表情的开始符号
+        const start = textNode.textContent?.lastIndexOf('[', offset - 1)
+        if (start !== undefined && start !== -1) {
+          const potentialEmoji = textNode.textContent?.substring(start, offset)
+          // 检查是否是有效的表情符号
+          if (isValidEmoji(potentialEmoji)) {
+            // 删除整个表情
+            textNode.deleteData(start, offset - start)
+            range.setStart(textNode, start)
+            range.setEnd(textNode, start)
+            selection.removeAllRanges()
+            selection.addRange(range)
+            textDom.focus() // 重新聚焦
+            return
+          }
+        }
+      }
+      // 如果不是有效的表情符号，删除单个字符
+      textNode.deleteData(offset - 1, 1)
+      range.setStart(textNode, offset - 1)
+      range.setEnd(textNode, offset - 1)
+      selection.removeAllRanges()
+      selection.addRange(range)
     }
-    textDom.scrollTop = scrollTop
   } else {
-    textDom.value = val.substring(0, val.length - 1)
-    textDom.focus()
+    // 如果光标在非文本节点中，尝试删除前一个节点
+    const prevNode = range.startContainer.childNodes[range.startOffset - 1]
+    if (prevNode) {
+      prevNode.parentNode?.removeChild(prevNode)
+    }
   }
+
+  // 确保输入框保持聚焦状态
+  textDom.focus()
+}
+
+// 检查字符串是否是有效的表情符号
+function isValidEmoji(potentialEmoji: string): boolean {
+  // 这里假设有一个表情符号列表 `emojis`，可以根据需要调整
+  return emojis.some((emoji) => `[${emoji.title}]` === potentialEmoji)
 }

@@ -28,9 +28,10 @@ import Header from '@/views/theme/themeHeader.vue'
 import { getThemeApi } from '@/api/theme'
 import type { ThemeResponse } from '@/types/theme'
 import { useRouter } from 'vue-router'
+import { useAppStore } from '@/store/app'
 
 const router = useRouter()
-
+const appStore = useAppStore()
 const themeData = ref<ThemeResponse[]>([])
 const expandedCategories = ref<Set<string>>(new Set())
 const contentRefs = ref<HTMLElement[]>([])
@@ -57,6 +58,7 @@ const fetchThemeData = async () => {
     } = await getThemeApi()
     if (data && Array.isArray(data)) {
       themeData.value = data
+      appStore.theme = data
     } else {
       themeData.value = []
     }

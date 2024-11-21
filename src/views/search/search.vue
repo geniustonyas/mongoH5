@@ -201,6 +201,10 @@ const loadData = () => {
   searchVideos()
 }
 
+if (appStore.theme.length == 0) {
+  appStore.fetTheme()
+}
+
 onMounted(() => {
   const queryKeyword = route.query.keyword
   const queryTagId = route.query.tagId

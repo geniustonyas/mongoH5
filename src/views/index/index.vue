@@ -218,8 +218,14 @@ const query = reactive<VideoListRequest>({
 
 const showPopup = ref(false)
 const currentPopAdIndex = ref(0)
-const bannerAdvertisement = computed(() => appStore.getAdvertisementById(2).items)
-const popAdvertisement = computed(() => appStore.getAdvertisementById(3).items)
+const bannerAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(2).items
+  return tmp || []
+})
+const popAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(3).items
+  return tmp || []
+})
 const currentPopAd = computed(() => {
   var item = popAdvertisement.value[currentPopAdIndex.value]
   return item || {}
@@ -375,6 +381,12 @@ const handlePageChange = async () => {
 // 立即执行
 ;(async () => {
   await handleCategoryChange()
+  if (appStore.advertisement.length == 0) {
+    await appStore.fetAdvertisement()
+  }
+  if (appStore.categorys.length == 0) {
+    await appStore.fetCategory()
+  }
 })()
 
 const openDownloadPage = () => {

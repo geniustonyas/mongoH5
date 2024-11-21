@@ -154,8 +154,8 @@
       <div class="emoji-container">
         <swiper :modules="emojiModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="false">
           <swiper-slide v-for="(items, index) in groupedEmojis" :key="index">
-            <span v-for="(item, i) in items" :key="i">
-              <img @click="inputEmoji(item.title)" :src="getAssetsFile(`emoji/${item.src}`)" :title="item.title" />
+            <span v-for="(item, i) in items" :key="i" @click="inputEmoji(item.title)">
+              <img :src="getAssetsFile(`emoji/${item.src}`)" :title="item.title" />
             </span>
             <span @click="deleteEmoji()"><i class="mvfont mv-shanchu" /></span>
           </swiper-slide>
@@ -209,8 +209,8 @@ const postComment = async (content = '') => {
   if (!detail.value) return
 
   // 直接从 DOM 获取评论内容
-  const textDom = document.getElementById('commentContent') as HTMLInputElement
-  const commentContent = content || textDom.value.trim()
+  const textDom = document.getElementById('commentContent') as HTMLElement
+  const commentContent = content || textDom.innerText.trim() // 使用 innerText 获取内容
 
   if (commentContent === '') {
     showToast('评论内容不能为空')
@@ -221,7 +221,7 @@ const postComment = async (content = '') => {
     if (data) {
       showToast('评论成功')
       fetchComments() // 重新获取评论列表
-      textDom.value = '' // 清空输入框
+      textDom.innerText = '' // 清空输入框
       showEmojiPopup.value = false
     }
   } catch (error) {
@@ -424,8 +424,12 @@ const toggleComment = (isShow = false) => {
 }
 
 const handleBbsClick = (post: Bbs) => {
+  console.log(post)
   pageIndex.value = 1
   relatedList.value = []
+  detail.value = {} as Bbs
+  comments.value = []
+  bbsImgs.value = []
   fetchDetail(post.id).then(() => {
     nextTick(() => {
       window.scrollTo(0, 0)

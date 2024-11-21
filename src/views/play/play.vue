@@ -258,6 +258,22 @@ const initializePlayer = async (domain: string, uri: string) => {
       }
     })
 
+    player.value.on('enterfullscreen', () => {
+      const videoElement = document.getElementById('plyr-player')
+      if (videoElement) {
+        videoElement.style.width = '100%'
+        videoElement.style.height = '100%'
+      }
+    })
+
+    player.value.on('exitfullscreen', () => {
+      const videoElement = document.getElementById('plyr-player')
+      if (videoElement) {
+        videoElement.style.width = ''
+        videoElement.style.height = '24rem'
+      }
+    })
+
     player.value?.once('play', async () => {
       await addPlayCountApi(videoDetail.value?.id)
     })

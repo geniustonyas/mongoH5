@@ -202,7 +202,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, nextTick } from 'vue'
+import { ref, reactive, computed, onMounted, onActivated, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { Tabs, Tab, PullRefresh, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
@@ -230,7 +230,10 @@ const tabs = [
   { title: '圈子', name: 3 },
   { title: '收藏', name: 4 }
 ]
-const bannerAdvertisement = computed(() => appStore.getAdvertisementById(2).items)
+const bannerAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(2).items
+  return tmp || []
+})
 
 const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
 
@@ -446,6 +449,12 @@ const handlePageChange = async () => {
     })
   }
 }
+
+onActivated(() => {
+  if (activeTab.value == 4) {
+    fetchCollectionList()
+  }
+})
 
 onMounted(() => {
   bbsListSortType.value[0] = 0

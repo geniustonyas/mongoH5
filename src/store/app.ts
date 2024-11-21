@@ -120,9 +120,8 @@ export const useAppStore = defineStore('app', {
     // 获取配置、分类和广告，并每隔5分钟刷新一次
     async fetchAllData() {
       await this.fetConfig()
-      await this.fetCategory()
-      await this.fetAdvertisement()
-      await this.fetTheme()
+      // await this.fetCategory()
+      // await this.fetTheme()
       // 每隔5分钟刷新一次数据
       setInterval(async () => {
         await this.fetConfig()
