@@ -47,18 +47,21 @@
       </div>
     </footer>
 
-    <div class="au-pagination-box" v-if="totalPages > 1">
-      <div class="pb-x">
-        <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">上一页</a>
+    <template v-if="totalPages > 1">
+      <div class="au-pagination-box" v-if="totalPages > 9">
+        <div class="pb-x">
+          <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">上一页</a>
+        </div>
+        <div class="pb-x">
+          <input v-model="currentPage" @change="() => fetchCollections()" type="number" min="1" :max="totalPages" />
+          <span>/ {{ totalPages }}</span>
+        </div>
+        <div class="pb-x">
+          <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">下一页</a>
+        </div>
       </div>
-      <div class="pb-x">
-        <input v-model="currentPage" @change="fetchCollections" type="number" min="1" :max="totalPages" />
-        <span>/ {{ totalPages }}</span>
-      </div>
-      <div class="pb-x">
-        <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">下一页</a>
-      </div>
-    </div>
+      <div v-else class="more-box"><a v-if="currentPage < totalPages" @click="loadMore">加载更多</a></div>
+    </template>
   </div>
 </template>
 
@@ -75,12 +78,12 @@ const appStore = useAppStore()
 const videos = ref<Video[]>([])
 const currentPage = ref(1)
 const totalPages = ref(1)
-const pageSize = ref(5)
+const pageSize = ref(10)
 const nodata = ref(false)
 const isEditing = ref(false)
 const selectedVideos = ref<Set<number | string>>(new Set())
 
-const fetchCollections = async () => {
+const fetchCollections = async (loadMore = false) => {
   try {
     const params = {
       PageIndex: currentPage.value,
@@ -91,7 +94,7 @@ const fetchCollections = async () => {
     } = await userCollectionHistory(params)
 
     if (data && Array.isArray(data.items)) {
-      videos.value = data.items
+      videos.value = loadMore ? videos.value.concat(data.items) : data.items
       nodata.value = videos.value.length == 0
       currentPage.value = parseInt(data.pageIndex)
       totalPages.value = parseInt(data.pageCount)
@@ -111,6 +114,11 @@ const changePage = (newPage: number) => {
     currentPage.value = newPage
     fetchCollections()
   }
+}
+
+const loadMore = async () => {
+  currentPage.value += 1
+  await fetchCollections(true)
 }
 
 const formatDate = (dateString: string | undefined) => {

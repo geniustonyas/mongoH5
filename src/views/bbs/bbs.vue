@@ -36,18 +36,21 @@
           <PullRefresh v-if="bbsListMap[0]" v-model="refreshing" @refresh="handleRefresh">
             <BbsListItem :bbs-list="bbsListMap[0]" />
           </PullRefresh>
-          <div class="au-pagination-box" v-if="bbsListTotalPages[0] > 1">
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[0])" :class="{ disabled: bbsListPageIndex[0] == 1 }">上一页</a>
+          <template v-if="bbsListTotalPages[0] > 1">
+            <div class="au-pagination-box" v-if="bbsListTotalPages[0] > 9">
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[0])" :class="{ disabled: bbsListPageIndex[0] == 1 }">上一页</a>
+              </div>
+              <div class="pb-x">
+                <input v-model="bbsListPageIndex[0]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[0]" />
+                <span>/ {{ bbsListTotalPages[0] }}</span>
+              </div>
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[0] + 1)" :class="{ disabled: bbsListPageIndex[0] == bbsListTotalPages[0] }">下一页</a>
+              </div>
             </div>
-            <div class="pb-x">
-              <input v-model="bbsListPageIndex[0]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[0]" />
-              <span>/ {{ bbsListTotalPages[0] }}</span>
-            </div>
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[0] + 1)" :class="{ disabled: bbsListPageIndex[0] == bbsListTotalPages[0] }">下一页</a>
-            </div>
-          </div>
+            <div v-else class="more-box"><a v-if="bbsListPageIndex[0] < bbsListTotalPages[0]" @click="loadMore">加载更多</a></div>
+          </template>
         </swiper-slide>
         <!-- 黑料 -->
         <swiper-slide class="bbs-swipe-item1">
@@ -85,18 +88,21 @@
           <PullRefresh v-if="bbsListMap[1]" v-model="refreshing" @refresh="handleRefresh">
             <BbsListItem :bbs-list="bbsListMap[1]" class="mt-0" />
           </PullRefresh>
-          <div class="au-pagination-box" v-if="bbsListTotalPages[1] > 1">
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[1])" :class="{ disabled: bbsListPageIndex[1] == 1 }">上一页</a>
+          <template v-if="bbsListTotalPages[1] > 1">
+            <div class="au-pagination-box" v-if="bbsListTotalPages[1] > 9">
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[1])" :class="{ disabled: bbsListPageIndex[1] == 1 }">上一页</a>
+              </div>
+              <div class="pb-x">
+                <input v-model="bbsListPageIndex[1]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[1]" />
+                <span>/ {{ bbsListTotalPages[1] }}</span>
+              </div>
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[1] + 1)" :class="{ disabled: bbsListPageIndex[1] == bbsListTotalPages[1] }">下一页</a>
+              </div>
             </div>
-            <div class="pb-x">
-              <input v-model="bbsListPageIndex[1]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[1]" />
-              <span>/ {{ bbsListTotalPages[1] }}</span>
-            </div>
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[1] + 1)" :class="{ disabled: bbsListPageIndex[1] == bbsListTotalPages[1] }">下一页</a>
-            </div>
-          </div>
+            <div v-else class="more-box"><a v-if="bbsListPageIndex[1] < bbsListTotalPages[1]" @click="loadMore">加载更多</a></div>
+          </template>
         </swiper-slide>
         <!-- 微密 -->
         <swiper-slide class="bbs-swipe-item2">
@@ -123,19 +129,21 @@
           <PullRefresh v-if="bbsListMap[2]" v-model="refreshing" @refresh="handleRefresh">
             <BbsWeimiListItem :bbs-list="bbsListMap[2]" />
           </PullRefresh>
-
-          <div class="au-pagination-box" v-if="bbsListTotalPages[2] > 1">
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[2])" :class="{ disabled: bbsListPageIndex[2] == 1 }">上一页</a>
+          <template v-if="bbsListTotalPages[2] > 1">
+            <div class="au-pagination-box" v-if="bbsListTotalPages[2] > 9">
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[2])" :class="{ disabled: bbsListPageIndex[2] == 1 }">上一页</a>
+              </div>
+              <div class="pb-x">
+                <input v-model="bbsListPageIndex[2]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[2]" />
+                <span>/ {{ bbsListTotalPages[2] }}</span>
+              </div>
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[2] + 1)" :class="{ disabled: bbsListPageIndex[2] == bbsListTotalPages[2] }">下一页</a>
+              </div>
             </div>
-            <div class="pb-x">
-              <input v-model="bbsListPageIndex[2]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[2]" />
-              <span>/ {{ bbsListTotalPages[2] }}</span>
-            </div>
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[2] + 1)" :class="{ disabled: bbsListPageIndex[2] == bbsListTotalPages[2] }">下一页</a>
-            </div>
-          </div>
+            <div v-else class="more-box"><a v-if="bbsListPageIndex[2] < bbsListTotalPages[2]" @click="loadMore">加载更多</a></div>
+          </template>
         </swiper-slide>
         <!-- 圈子 -->
         <swiper-slide class="bbs-swipe-item3">
@@ -162,37 +170,42 @@
           <PullRefresh v-if="bbsListMap[3]" v-model="refreshing" @refresh="handleRefresh">
             <BbsListItem :bbs-list="bbsListMap[3]" class="mt-0" />
           </PullRefresh>
-
-          <div class="au-pagination-box" v-if="bbsListTotalPages[3] > 1">
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[3])" :class="{ disabled: bbsListPageIndex[3] == 1 }">上一页</a>
+          <template v-if="bbsListTotalPages[3] > 1">
+            <div class="au-pagination-box" v-if="bbsListTotalPages[3] > 9">
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[3])" :class="{ disabled: bbsListPageIndex[3] == 1 }">上一页</a>
+              </div>
+              <div class="pb-x">
+                <input v-model="bbsListPageIndex[3]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[3]" />
+                <span>/ {{ bbsListTotalPages[3] }}</span>
+              </div>
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[3] + 1)" :class="{ disabled: bbsListPageIndex[3] == bbsListTotalPages[3] }">下一页</a>
+              </div>
             </div>
-            <div class="pb-x">
-              <input v-model="bbsListPageIndex[3]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[3]" />
-              <span>/ {{ bbsListTotalPages[3] }}</span>
-            </div>
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[3] + 1)" :class="{ disabled: bbsListPageIndex[3] == bbsListTotalPages[3] }">下一页</a>
-            </div>
-          </div>
+            <div v-else class="more-box"><a v-if="bbsListPageIndex[3] < bbsListTotalPages[3]" @click="loadMore">加载更多</a></div>
+          </template>
         </swiper-slide>
         <!-- 收藏 -->
         <swiper-slide class="bbs-swipe-item4">
           <PullRefresh v-if="bbsListMap[4]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh">
             <BbsListItem :bbs-list="bbsListMap[4]" :is-collect="true" class="mt-0" />
           </PullRefresh>
-          <div class="au-pagination-box" v-if="bbsListTotalPages[4] > 1">
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[4])" :class="{ disabled: bbsListPageIndex[4] == 1 }">上一页</a>
+          <template v-if="bbsListTotalPages[4] > 1">
+            <div class="au-pagination-box" v-if="bbsListTotalPages[4] > 9">
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[4])" :class="{ disabled: bbsListPageIndex[4] == 1 }">上一页</a>
+              </div>
+              <div class="pb-x">
+                <input v-model="bbsListPageIndex[4]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[4]" />
+                <span>/ {{ bbsListTotalPages[4] }}</span>
+              </div>
+              <div class="pb-x">
+                <a @click="changePage(bbsListPageIndex[4] + 1)" :class="{ disabled: bbsListPageIndex[4] == bbsListTotalPages[4] }">下一页</a>
+              </div>
             </div>
-            <div class="pb-x">
-              <input v-model="bbsListPageIndex[4]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[4]" />
-              <span>/ {{ bbsListTotalPages[4] }}</span>
-            </div>
-            <div class="pb-x">
-              <a @click="changePage(bbsListPageIndex[4] + 1)" :class="{ disabled: bbsListPageIndex[4] == bbsListTotalPages[4] }">下一页</a>
-            </div>
-          </div>
+            <div v-else class="more-box"><a v-if="bbsListPageIndex[4] < bbsListTotalPages[4]" @click="loadMore">加载更多</a></div>
+          </template>
         </swiper-slide>
       </swiper>
     </main>
@@ -202,7 +215,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, onActivated, nextTick } from 'vue'
+import { ref, reactive, computed, onActivated, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { Tabs, Tab, PullRefresh, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
@@ -328,7 +341,7 @@ const handleSwipeChange = (swiper: any) => {
   })
 }
 
-const fetchBbsList = async () => {
+const fetchBbsList = async (loadMore = false) => {
   try {
     const {
       data: { data }
@@ -339,8 +352,14 @@ const fetchBbsList = async () => {
         bbsListMap.value[activeTab.value] = []
       }
 
-      // 先将数据赋值给 bbsListMap
-      bbsListMap.value[activeTab.value] = data.items
+      if (loadMore) {
+        bbsListMap.value[activeTab.value].push(...data.items)
+        nextTick(() => {
+          swiperInstance.value.updateAutoHeight()
+        })
+      } else {
+        bbsListMap.value[activeTab.value] = data.items
+      }
 
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
       bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
@@ -437,6 +456,12 @@ const changePage = async (newPage: number) => {
   }
 }
 
+const loadMore = async () => {
+  bbsListPageIndex.value[activeTab.value] += 1
+  query.PageIndex = bbsListPageIndex.value[activeTab.value]
+  await fetchBbsList(true)
+}
+
 // 页码变化
 const handlePageChange = async () => {
   if (bbsListPageIndex.value[activeTab.value] >= 1 && bbsListPageIndex.value[activeTab.value] <= bbsListTotalPages.value[activeTab.value]) {
@@ -450,15 +475,18 @@ const handlePageChange = async () => {
   }
 }
 
+;(async () => {
+  bbsListSortType.value[0] = 0
+  await fetchBbsList()
+  await fetchCategories()
+  if (appStore.advertisement.length == 0) {
+    await appStore.fetAdvertisement()
+  }
+})()
+
 onActivated(() => {
   if (activeTab.value == 4) {
     fetchCollectionList()
   }
-})
-
-onMounted(() => {
-  bbsListSortType.value[0] = 0
-  fetchBbsList()
-  fetchCategories()
 })
 </script>

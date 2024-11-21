@@ -394,7 +394,7 @@ const handleLike = async () => {
 //     const videoId = videoDetail.value?.id
 //     const newCollectStatus = !videoDetail.value?.collect
 
-//     await userCollection({ Ids: videoId, Collect: newCollectStatus })
+//     await userCollection({ VideoId: videoId, Collect: newCollectStatus })
 
 //     videoDetail.value.collect = newCollectStatus
 //     videoDetail.value.collectionCount = (Number(videoDetail.value.collectionCount) + (newCollectStatus ? 1 : -1)).toString()

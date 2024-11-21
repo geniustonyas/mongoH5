@@ -131,18 +131,22 @@
                   <div class="m-b" v-if="categoryVideosMap[category.d]">
                     <VideoGridItem v-for="video in categoryVideosMap[category.d]" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
                   </div>
-                  <div class="au-pagination-box" v-if="categoryTotalPages[category.d] > 1">
-                    <div class="pb-x">
-                      <a @click="changePage(categoryPageIndex[category.d] - 1)" :class="{ disabled: categoryPageIndex[category.d] == 1 }">上一页</a>
+
+                  <template v-if="categoryTotalPages[category.d] > 1">
+                    <div class="au-pagination-box" v-if="categoryTotalPages[category.d] > 9">
+                      <div class="pb-x">
+                        <a @click="changePage(categoryPageIndex[category.d] - 1)" :class="{ disabled: categoryPageIndex[category.d] == 1 }">上一页</a>
+                      </div>
+                      <div class="pb-x">
+                        <input v-model="categoryPageIndex[category.d]" @change="handlePageChange" type="number" min="1" :max="categoryTotalPages[category.d]" />
+                        <span>/ {{ categoryTotalPages[category.d] }}</span>
+                      </div>
+                      <div class="pb-x">
+                        <a @click="changePage(categoryPageIndex[category.d] + 1)" :class="{ disabled: categoryPageIndex[category.d] == categoryTotalPages[category.d] }">下一页</a>
+                      </div>
                     </div>
-                    <div class="pb-x">
-                      <input v-model="categoryPageIndex[category.d]" @change="handlePageChange" type="number" min="1" :max="categoryTotalPages[category.d]" />
-                      <span>/ {{ categoryTotalPages[category.d] }}</span>
-                    </div>
-                    <div class="pb-x">
-                      <a @click="changePage(categoryPageIndex[category.d] + 1)" :class="{ disabled: categoryPageIndex[category.d] == categoryTotalPages[category.d] }">下一页</a>
-                    </div>
-                  </div>
+                    <div v-else class="more-box"><a v-if="categoryPageIndex[category.d] < categoryTotalPages[category.d]" @click="loadMore">加载更多</a></div>
+                  </template>
                 </nav>
               </section>
             </div>
@@ -253,13 +257,20 @@ const closePopup = () => {
   }
 }
 
-const fetchVideos = async (params: VideoListRequest) => {
+const fetchVideos = async (params: VideoListRequest, loadMore = false) => {
   try {
     const {
       data: { data }
     } = await getVideoListApi(params)
     if (data && Array.isArray(data.items)) {
-      categoryVideosMap.value[query.ChannelId] = data.items
+      if (loadMore) {
+        categoryVideosMap.value[query.ChannelId] = categoryVideosMap.value[query.ChannelId].concat(data.items)
+        nextTick(() => {
+          swiperInstance.value.updateAutoHeight()
+        })
+      } else {
+        categoryVideosMap.value[query.ChannelId] = data.items
+      }
       if (params.IsFirst) {
         categoryBannerVideosMap.value[query.ChannelId] = data.newVideos
       }
@@ -309,6 +320,15 @@ const changePage = async (newPage: number) => {
     nextTick(() => {
       window.scrollTo(0, 0)
     })
+  }
+}
+
+// 加载更多
+const loadMore = async () => {
+  const newPage = query.PageIndex + 1
+  if (newPage >= 1 && newPage <= categoryTotalPages.value[query.ChannelId]) {
+    query.PageIndex = newPage
+    await fetchVideos(query, true)
   }
 }
 

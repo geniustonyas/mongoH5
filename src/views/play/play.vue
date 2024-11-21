@@ -465,9 +465,10 @@ const handleCollection = async () => {
     const videoId = videoDetail.value?.id
     if (videoId) {
       const isCollecting = !videoDetail.value.collect
-      await userCollection({ Ids: videoId, Collect: isCollecting })
+      await userCollection({ VideoId: videoId, Collect: isCollecting })
       videoDetail.value.collect = isCollecting
-      videoDetail.value.collectionCount = (Number(videoDetail.value.collectionCount) + (isCollecting ? 1 : -1)).toString()
+      const newCollectionCount = Number(videoDetail.value.collectionCount) + (isCollecting ? 1 : -1)
+      videoDetail.value.collectionCount = Math.max(newCollectionCount, 0).toString()
     }
   } catch (error) {
     console.error('操作失败:', error)
