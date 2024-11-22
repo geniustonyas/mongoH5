@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import { getCategoryApi, getConfigApi, getAdsApi } from '@/api/app'
+import { SpareData } from '@/types/app'
 import router from '@/router'
 import { getThemeApi } from '@/api/theme'
 import store from '@/store'
+import { decryptedCategorys, fanhaoPianmingYanyuan } from '@/utils/cryptedData'
 
 export const useAppStore = defineStore('app', {
   state: () => {
@@ -15,7 +17,7 @@ export const useAppStore = defineStore('app', {
 
       // 系统配置项
       regSms: '', // 注册短信
-      searchInputText: '', // 搜索框输入内容
+      searchInputText: fanhaoPianmingYanyuan, // 搜索框输入内容
       startAdTime: '', // 启动显示广告市
       downloadUrl: '', // 下载地址
       prePlayAdTime: '', // 播放前广告时间
@@ -27,9 +29,12 @@ export const useAppStore = defineStore('app', {
       bbsSearchTags: [], // bbs搜索标签
       iosDownloadUrl: '', // ios下载地址
       androidDownloadUrl: '', // android下载地址
+      shortVideoRandomMin: 1, // 短视频随机最小值
+      shortVideoRandomMax: 10, // 短视频随机最大值
+      spareData: {} as SpareData, // 丢失数据
 
       theme: [], // 标签
-      categorys: [], // 分类
+      categorys: decryptedCategorys, // 分类
       advertisement: [], // 广告
       clarity: ['普通', '高清', '超清', '蓝光'] // 清晰度
     }
@@ -62,7 +67,7 @@ export const useAppStore = defineStore('app', {
           data: { data }
         } = await getConfigApi()
         this.regSms = data.find((item: any) => item.pKey === 'RegSms')?.value1 || ''
-        this.searchInputText = data.find((item: any) => item.pKey === 'SEACHDomain')?.value1 || ''
+        this.searchInputText = this.searchInputText + ',' + data.find((item: any) => item.pKey === 'SEACHDomain')?.value1 || ''
         this.startAdTime = data.find((item: any) => item.pKey === 'StartAdTime')?.value1 || ''
         this.cdnUrl = data.find((item: any) => item.pKey === 'CDNURL')?.value1 || ''
         this.downloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
@@ -74,6 +79,11 @@ export const useAppStore = defineStore('app', {
         this.bbsSearchTags = data.find((item: any) => item.pKey === 'BBSSearchPageTags')?.value1.split(',') || []
         this.iosDownloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value2 || ''
         this.androidDownloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
+        this.shortVideoRandomMin = parseInt(data.find((item: any) => item.pKey === 'ShortVideoRandomPage')?.value1 || '1')
+        this.shortVideoRandomMax = parseInt(data.find((item: any) => item.pKey === 'ShortVideoRandomPage')?.value2 || '10')
+        const tmp = data.find((item: any) => item.pKey === 'SpareData')?.value1.split(',') || []
+        this.spareData = JSON.parse(tmp)
+        console.log('丢失数据:', this.spareData)
       } catch (error) {
         console.error('获取系统配置失败:', error)
       }
@@ -120,7 +130,7 @@ export const useAppStore = defineStore('app', {
     // 获取配置、分类和广告，并每隔5分钟刷新一次
     async fetchAllData() {
       await this.fetConfig()
-      // await this.fetCategory()
+      await this.fetCategory()
       // await this.fetTheme()
       // 每隔5分钟刷新一次数据
       setInterval(async () => {

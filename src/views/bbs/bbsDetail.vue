@@ -19,11 +19,11 @@
               <span>{{ detail?.createTime || '' }}</span>
             </div>
           </div>
-          <div class="b-r">
-            <span><i class="mvfont mv-kan" />{{ Number(detail?.viewCount) || 0 }}</span>
-            <span><i class="mvfont mv-pinglun" />{{ Number(detail?.commentCount) || 0 }}</span>
-            <span><i class="mvfont mv-zan" />{{ Number(detail?.likeCount) || 0 }}</span>
-            <span><i class="mvfont mv-like" />{{ Number(detail?.collectionCount) || 0 }}</span>
+          <div v-if="detail" class="b-r">
+            <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(detail?.viewCount, 'b', detail.id, 'view') }}</span>
+            <span><i class="mvfont mv-pinglun" />{{ detail?.commentCount || 0 }}</span>
+            <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(detail?.likeCount, 'b', detail.id, 'like') }}</span>
+            <span><i class="mvfont mv-like" />{{ getIncrementalNumberWithOffset(detail?.collectionCount, 'b', detail.id, 'collect') }}</span>
           </div>
         </div>
         <div class="d-c">{{ detail?.content || '' }}</div>
@@ -70,15 +70,15 @@
           <small v-if="Number(detail?.commentCount) == 0">评论</small>
           <b v-else>{{ detail?.commentCount }}</b>
         </span>
-        <span>
+        <span v-if="detail">
           <i :class="['mvfont', 'mv-zan', { active: detail?.like == '1' }]" @click="toggleLike" />
           <small v-if="Number(detail?.likeCount) == 0">赞</small>
-          <b v-else>{{ detail?.likeCount }}</b>
+          <b v-else>{{ getIncrementalNumberWithOffset(detail?.likeCount, 'b', detail.id, 'like') }}</b>
         </span>
-        <span>
+        <span v-if="detail">
           <i :class="['mvfont', 'mv-like', { active: detail?.collect }]" @click="toggleCollection" />
           <small v-if="Number(detail?.collectionCount) == 0">收藏</small>
-          <b v-else>{{ detail?.collectionCount }}</b>
+          <b v-else>{{ getIncrementalNumberWithOffset(detail?.collectionCount, 'b', detail.id, 'collect') }}</b>
         </span>
       </div>
     </footer>
@@ -179,6 +179,7 @@ import { ImagePreview, Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
 import { groupEmoji, inputEmoji, deleteEmoji } from '@/utils/emojiHandle'
 import { Swiper, SwiperSlide } from 'swiper/vue'
+import { getIncrementalNumberWithOffset } from '@/utils'
 import { Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'

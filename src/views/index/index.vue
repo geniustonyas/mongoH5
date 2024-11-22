@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <header class="header">
+    <header class="header index-header">
       <div class="head-search">
         <div class="hs-a">
           <img @click="router.push({ name: 'index' })" :src="getAssetsFile('logo.png')" />
@@ -10,13 +10,12 @@
             <input id="searchInput" class="search-inputs" />
             <i class="mvfont mv-search1" />
           </div>
-          <div class="sb-t">
-            <Swipe :autoplay="3000" :vertical="true" :show-indicators="false" :touchable="false" style="line-height: 50px">
-              <SwipeItem>番号/片名/演员</SwipeItem>
-              <SwipeItem v-for="item in appStore.searchInputText.split(',')" :key="item">
+          <div class="sb-t" v-if="appStore.searchInputText && keepAlive">
+            <swiper @swiper="searchSwiper" :modules="[Autoplay]" :slides-per-view="1" :auto-height="true" direction="vertical" :centered-slides="true" :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: false } as any" :nested="true" style="line-height: 50px">
+              <swiper-slide v-for="item in appStore.searchInputText.split(',')" :key="item">
                 <span>{{ item }}</span>
-              </SwipeItem>
-            </Swipe>
+              </swiper-slide>
+            </swiper>
           </div>
         </div>
         <!-- <div class="hs-c">
@@ -43,8 +42,8 @@
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="index-content">
               <!--Banner-->
-              <nav id="index-banner" class="swiper-container" @touchstart.stop @touchmove.stop>
-                <swiper class="my-swipe" :modules="bannerModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
+              <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="index-banner" class="swiper-container">
+                <swiper class="my-swipe" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
                   <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                     <a target="_blank" :href="ad.targetUrl">
                       <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
@@ -71,21 +70,6 @@
                 </a>
               </nav>
 
-              <nav v-if="recommendedVideos && recommendedVideos.length > 0" class="mv-t-l">
-                <div class="m-a">
-                  <div class="a-l">
-                    <i class="mvfont mv-xietiao" />
-                    <span>热门推荐</span>
-                  </div>
-                  <div class="a-r">
-                    <i @click="router.push({ name: 'videoList', params: { id: 2 } })" class="mvfont mv-right" />
-                  </div>
-                </div>
-                <div class="m-b">
-                  <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
-                </div>
-              </nav>
-
               <nav v-if="latestVideos && latestVideos.length > 0" class="mv-t-l">
                 <div class="m-a">
                   <div class="a-l">
@@ -100,14 +84,29 @@
                   <VideoGridItem v-for="video in latestVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
                 </div>
               </nav>
+
+              <nav v-if="recommendedVideos && recommendedVideos.length > 0" class="mv-t-l">
+                <div class="m-a">
+                  <div class="a-l">
+                    <i class="mvfont mv-xietiao" />
+                    <span>热门推荐</span>
+                  </div>
+                  <div class="a-r">
+                    <i @click="router.push({ name: 'videoList', params: { id: 2 } })" class="mvfont mv-right" />
+                  </div>
+                </div>
+                <div class="m-b">
+                  <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                </div>
+              </nav>
             </div>
           </PullRefresh>
         </swiper-slide>
         <swiper-slide v-for="category in appStore.categorys" :key="category.d">
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="category-content">
-              <div class="mv-swiper">
-                <swiper :modules="modules" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
+              <div v-if="categoryBannerVideosMap[category.d] && categoryBannerVideosMap[category.d].length > 0 && keepAlive" class="mv-swiper">
+                <swiper :modules="[Autoplay]" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
                   <swiper-slide v-for="video in categoryBannerVideosMap[category.d]" :key="video.id">
                     <a @click="router.push({ name: 'play', params: { id: video.id } })">
                       <img v-lazy-decrypt="video.imgUrl" :alt="video.title" />
@@ -116,7 +115,7 @@
                 </swiper>
               </div>
               <section class="m-l-b">
-                <nav v-if="category.s && category.s.length > 0" class="b-a" @touchstart.stop @touchmove.stop>
+                <nav v-if="category.s && category.s.length > 0" class="b-a">
                   <span :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</span>
                   <span v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
                     {{ cates.t }}
@@ -165,16 +164,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, nextTick, computed, watch, onMounted, onActivated } from 'vue'
+import { ref, reactive, nextTick, computed, watch, onMounted, onActivated, onDeactivated } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
-import { Tabs, Tab, Swipe, SwipeItem, PullRefresh, Popup, Icon } from 'vant'
+import { Tabs, Tab, PullRefresh, Popup, Icon } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'
 import { getAssetsFile } from '@/utils'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
+import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
 
 import Footer from '@/components/layout/Footer.vue'
@@ -185,9 +185,9 @@ const router = useRouter()
 const route = useRoute()
 const appStore = useAppStoreHook()
 
+const keepAlive = ref(true)
 const swiperInstance = ref<any>(null)
-const modules = [Autoplay]
-const bannerModules = [Autoplay, Pagination]
+const searchSwiperInstance = ref<any>(null)
 
 const refreshing = ref(false)
 
@@ -210,6 +210,10 @@ const sortOptions = [
 
 const onSwiper = (swiper: any) => {
   swiperInstance.value = swiper
+}
+
+const searchSwiper = (swiper: any) => {
+  searchSwiperInstance.value = swiper
 }
 
 const query = reactive<VideoListRequest>({
@@ -258,24 +262,27 @@ const closePopup = () => {
 }
 
 const fetchVideos = async (params: VideoListRequest, loadMore = false) => {
+  const currentChannelId = params.ChannelId // 保存当前的 ChannelId
+  const isFirst = params.IsFirst
   try {
     const {
       data: { data }
     } = await getVideoListApi(params)
     if (data && Array.isArray(data.items)) {
       if (loadMore) {
-        categoryVideosMap.value[query.ChannelId] = categoryVideosMap.value[query.ChannelId].concat(data.items)
-        nextTick(() => {
-          swiperInstance.value.updateAutoHeight()
-        })
+        categoryVideosMap.value[currentChannelId] = categoryVideosMap.value[currentChannelId].concat(data.items)
       } else {
-        categoryVideosMap.value[query.ChannelId] = data.items
+        categoryVideosMap.value[currentChannelId] = data.items
       }
-      if (params.IsFirst) {
-        categoryBannerVideosMap.value[query.ChannelId] = data.newVideos
+      if (isFirst) {
+        categoryBannerVideosMap.value[currentChannelId] = data.newVideos
       }
-      categoryTotalPages.value[query.ChannelId] = parseInt(data.pageCount)
-      categoryPageIndex.value[query.ChannelId] = parseInt(data.pageIndex)
+      query.IsFirst = false
+      categoryTotalPages.value[currentChannelId] = parseInt(data.pageCount)
+      categoryPageIndex.value[currentChannelId] = parseInt(data.pageIndex)
+      nextTick(() => {
+        swiperInstance.value.updateAutoHeight()
+      })
     } else {
       console.error('响应数据结构不正确')
       return []
@@ -307,6 +314,7 @@ const selectCategory = async (categoryId: string | number) => {
   categoryPageIndex.value[query.ChannelId] = query.PageIndex
   categorySortType.value[query.ChannelId] = query.SortType
   categorySubChannelId.value[query.ChannelId] = query.SubChannelId
+  query.IsFirst = false
   await fetchVideos(query)
 }
 
@@ -315,6 +323,7 @@ const changePage = async (newPage: number) => {
   if (newPage >= 1 && newPage <= categoryTotalPages.value[query.ChannelId]) {
     categoryPageIndex.value[query.ChannelId] = newPage
     query.PageIndex = newPage
+    query.IsFirst = false
     await fetchVideos(query)
     // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
     nextTick(() => {
@@ -328,6 +337,7 @@ const loadMore = async () => {
   const newPage = query.PageIndex + 1
   if (newPage >= 1 && newPage <= categoryTotalPages.value[query.ChannelId]) {
     query.PageIndex = newPage
+    query.IsFirst = false
     await fetchVideos(query, true)
   }
 }
@@ -353,12 +363,11 @@ const handleCategoryChange = async (isRefresh = false) => {
     refreshing.value = true
   }
   if (activeId.value == 0) {
-    query.IsFirst = false
     await fetchIndexVideos()
     refreshing.value = false
   } else {
+    query.IsFirst = true
     await fetchVideos(query)
-    query.IsFirst = false
     refreshing.value = false
   }
 }
@@ -368,7 +377,6 @@ const swipePage = (swiper: any) => {
   query.ChannelId = activeId.value == 0 ? '' : appStore.categorys[activeId.value - 1].d
   // 如果没有数据。则重新获取数据
   if (categoryVideosMap.value[query.ChannelId] == undefined) {
-    query.IsFirst = true
     query.PageIndex = 1
     categoryPageIndex.value[query.ChannelId] = 1
     query.SubChannelId = ''
@@ -396,12 +404,7 @@ const handlePageChange = async () => {
     await fetchVideos(query)
 
     // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
-    nextTick(() => {
-      const mainElement = document.querySelector('.category-content')
-      if (mainElement) {
-        mainElement.scrollTop = 0 // 重置滚动条到顶部
-      }
-    })
+    window.scrollTo(0, 0)
   }
 }
 
@@ -410,9 +413,6 @@ const handlePageChange = async () => {
   await handleCategoryChange()
   if (appStore.advertisement.length == 0) {
     await appStore.fetAdvertisement()
-  }
-  if (appStore.categorys.length == 0) {
-    await appStore.fetCategory()
   }
 })()
 
@@ -427,7 +427,7 @@ const openDownloadPage = () => {
 
 function handleScroll() {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-  const header = document.querySelector('.header')!
+  const header = document.querySelector('.index-header')!
   const hmB = document.querySelector('.search-icon') as HTMLElement
 
   if (header && hmB) {
@@ -442,10 +442,15 @@ function handleScroll() {
 }
 
 onActivated(() => {
-  const header = document.querySelector('.header')
+  const header = document.querySelector('.index-header')
   if (header) {
     header.classList.remove('fixed')
   }
+  keepAlive.value = true
+})
+
+onDeactivated(() => {
+  keepAlive.value = false
 })
 
 onMounted(() => {

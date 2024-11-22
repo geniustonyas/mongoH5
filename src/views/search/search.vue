@@ -56,8 +56,8 @@
                     <span>{{ video.channelName }}</span>
                   </div>
                   <div class="b-c">
-                    <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                    <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                    <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(video.viewCount, 'v', video.id, 'view') }}</span>
+                    <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(video.likeCount, 'v', video.id, 'like') }}</span>
                   </div>
                 </div>
               </li>
@@ -88,7 +88,7 @@ import { useAppStore } from '@/store/app'
 import { getVideoListApi } from '@/api/video'
 import type { Video } from '@/types/video'
 import { List } from 'vant'
-import { formatDuration } from '@/utils'
+import { formatDuration, getIncrementalNumberWithOffset } from '@/utils'
 
 const router = useRouter()
 const route = useRoute()

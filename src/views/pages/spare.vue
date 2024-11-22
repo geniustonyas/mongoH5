@@ -19,8 +19,8 @@
         </div>
         <div class="r-b">
           <div class="b-item">
-            <a>mg91.tv@gmail.com</a>
-            <span data-clipboard-text="mg91.tv@gmail.com" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <a :href="`mailto:${appStore.spareData.Email}`">{{ appStore.spareData.Email }}</a>
+            <span :data-clipboard-text="appStore.spareData.Email" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
           </div>
         </div>
       </div>
@@ -33,17 +33,9 @@
           </span>
         </div>
         <div class="r-b">
-          <div class="b-item">
-            <a>mg97.cc</a>
-            <span data-clipboard-text="mg97.cc" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
-          </div>
-          <div class="b-item">
-            <a>mg41.cc</a>
-            <span data-clipboard-text="mg41.cc" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
-          </div>
-          <div class="b-item">
-            <a>mg42.cc</a>
-            <span data-clipboard-text="mg42.cc" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+          <div v-for="domain in appStore.spareData.Domains" :key="domain" class="b-item">
+            <a>{{ domain }}</a>
+            <span :data-clipboard-text="domain" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
           </div>
         </div>
       </div>
@@ -57,8 +49,8 @@
         </div>
         <div class="r-b">
           <div class="b-item">
-            <a href="https://t.me/cai7899">https://t.me/cai7899</a>
-            <span data-clipboard-text="https://t.me/cai7899" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <a :href="appStore.spareData.TG">{{ appStore.spareData.TG }}</a>
+            <span :data-clipboard-text="appStore.spareData.TG" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
           </div>
         </div>
       </div>
@@ -91,7 +83,7 @@
         </div>
         <div class="r-c">
           <a href="#">
-            <img src="../../assets/imgs/qr.png" />
+            <img v-lazy-decrypt="appStore.spareData.QR" />
           </a>
         </div>
       </div>
@@ -102,6 +94,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { copy } from '@/utils/index'
+import { useAppStore } from '@/store/app'
+
+const appStore = useAppStore()
 
 const handleCopy = (event: MouseEvent) => {
   const target = event.currentTarget as HTMLElement

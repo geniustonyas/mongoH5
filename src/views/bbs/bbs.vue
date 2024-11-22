@@ -18,8 +18,8 @@
       <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="handleSwipeChange">
         <!-- 推荐 -->
         <swiper-slide class="bbs-swipe-item0">
-          <nav id="index-banner" class="swiper-container">
-            <swiper class="my-swipe" :modules="bannerModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
+          <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="bbs-banner" class="swiper-container">
+            <swiper class="my-swipe" @swiper="onBannerSwiper" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
               <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                 <a target="_blank" :href="ad.targetUrl">
                   <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
@@ -215,7 +215,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onActivated, nextTick } from 'vue'
+import { ref, reactive, computed, onActivated, nextTick, onDeactivated } from 'vue'
 import { useRouter } from 'vue-router'
 import { Tabs, Tab, PullRefresh, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
@@ -226,15 +226,14 @@ import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
 import type { BbsListRequest, BbsCategoryResponse } from '@/types/bbs'
-import 'swiper/css'
-import 'swiper/css/pagination'
 import { Autoplay, Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/autoplay'
+import 'swiper/css/pagination'
 
 const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
-
-const bannerModules = [Autoplay, Pagination]
 
 const tabs = [
   { title: '推荐', name: 0 },
@@ -271,7 +270,9 @@ const bbsListPageIndex = ref<Record<number, number>>({})
 const bbsListSortType = ref({})
 const bbsListSubChannelId = ref({})
 
+const keepAlive = ref(true)
 const swiperInstance = ref<any>(null)
+const bannerSwiperInstance = ref<any>(null)
 
 const heiliaoCategories = ref<BbsCategoryResponse[]>([])
 const weimiCategories = ref<BbsCategoryResponse[]>([])
@@ -279,6 +280,10 @@ const quanziCategories = ref<BbsCategoryResponse[]>([])
 
 const onSwiper = (swiper: any) => {
   swiperInstance.value = swiper
+}
+
+const onBannerSwiper = (swiper: any) => {
+  bannerSwiperInstance.value = swiper
 }
 
 const clickTab = () => {
@@ -488,5 +493,10 @@ onActivated(() => {
   if (activeTab.value == 4) {
     fetchCollectionList()
   }
+  keepAlive.value = true
+})
+
+onDeactivated(() => {
+  keepAlive.value = false
 })
 </script>

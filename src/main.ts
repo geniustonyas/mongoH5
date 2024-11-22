@@ -14,6 +14,7 @@ import './assets/less/black.less'
 const errorImage = new URL(`./assets/imgs/default.gif`, import.meta.url).href
 
 const app = createApp(App)
+
 app.use(store)
 app.use(VueLazyload, {
   preLoad: 1.3,

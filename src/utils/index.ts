@@ -25,6 +25,89 @@ export function getAssetsFile(url: string) {
   return new URL(`../assets/imgs/${url}`, import.meta.url).href
 }
 
+// src/utils/index.ts
+export function getIncrementalNumberWithOffset(value: string, module: string, id: string | number, type: 'view' | 'like' | 'collect'): number {
+  const storageKey = `incNum_${module}_${id}_${type}`
+  const storedData = localStorage.getItem(storageKey)
+  const currentTime = Date.now()
+  const oneHour = 60 * 60 * 1000
+
+  let lastGeneratedTime = 0
+  let lastGeneratedNumber = 0
+
+  if (storedData) {
+    const [time, number] = storedData.split(':').map(Number)
+    lastGeneratedTime = time
+    lastGeneratedNumber = number
+  }
+
+  // 定义每种类型的范围和增量
+  let baseRange: [number, number]
+  let incrementRange: [number, number]
+
+  switch (type) {
+    case 'view':
+      baseRange = [1000, 3000]
+      incrementRange = [150, 400]
+      break
+    case 'like':
+      baseRange = [0, 1500]
+      incrementRange = [50, 120]
+      break
+    case 'collect':
+      baseRange = [0, 500]
+      incrementRange = [5, 50]
+      break
+    default:
+      throw new Error('Invalid type')
+  }
+
+  // 检查是否自上次生成以来已过一小时
+  if (currentTime - lastGeneratedTime > oneHour) {
+    // 生成新的基础数字
+    const baseNumber = Math.floor(Math.random() * (baseRange[1] - baseRange[0] + 1)) + baseRange[0]
+    // 确保新数字比上次大
+    const increment = Math.floor(Math.random() * (incrementRange[1] - incrementRange[0] + 1)) + incrementRange[0]
+    const newNumber = Math.max(baseNumber, lastGeneratedNumber + increment)
+
+    // 检查 localStorage 空间并清理最旧的 200 条记录
+    manageLocalStorageCapacity()
+
+    // 存储新的数字和当前时间
+    localStorage.setItem(storageKey, `${currentTime}:${newNumber}`)
+
+    return parseInt(value, 10) + newNumber
+  } else {
+    return parseInt(value, 10) + lastGeneratedNumber
+  }
+}
+
+function manageLocalStorageCapacity() {
+  const minEntriesToDelete = 500
+  const keys = Object.keys(localStorage).filter((key) => key.startsWith('incNum_'))
+
+  // 获取所有条目的时间戳
+  const entries = keys.map((key) => {
+    const [time] = (localStorage.getItem(key) || '').split(':').map(Number)
+    return { key, time }
+  })
+
+  // 按时间排序
+  entries.sort((a, b) => a.time - b.time)
+
+  // 检查 localStorage 空间是否不足
+  try {
+    // 尝试存储一个大数据来检测空间不足
+    localStorage.setItem('test', new Array(1024 * 1024).join('a'))
+    localStorage.removeItem('test')
+  } catch (e) {
+    // 空间不足时，删除最旧的条目
+    const entriesToDelete = Math.max(minEntriesToDelete, entries.length)
+    for (let i = 0; i < entriesToDelete && i < entries.length; i++) {
+      localStorage.removeItem(entries[i].key)
+    }
+  }
+}
 // 处理多个async await
 export function awaitWraper(promise: any) {
   return promise.then((res: any) => [null, res]).catch((err: any) => [err, null])

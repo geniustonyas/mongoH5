@@ -9,8 +9,8 @@
       <b>{{ video.title }}</b>
       <div class="b-dv">
         <div class="p-c">
-          <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-          <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+          <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(video.viewCount, 'v', video.id, 'view') }}</span>
+          <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(video.likeCount, 'v', video.id, 'like') }}</span>
         </div>
         <div v-if="video.addTime" class="p-c">
           <span><i class="mvfont mv-riqi" />{{ formatDate(video.addTime) }}</span>
@@ -26,6 +26,7 @@ import { useAppStore } from '@/store/app'
 import type { Video } from '@/types/video'
 import dayjs from 'dayjs'
 import { formatDuration } from '@/utils'
+import { getIncrementalNumberWithOffset } from '@/utils'
 
 const appStore = useAppStore()
 

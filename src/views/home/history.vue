@@ -19,8 +19,8 @@
             <div class="l-b">
               <div class="b-a">{{ video.title }}</div>
               <div class="b-b">
-                <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(video.viewCount, 'v', video.id, 'view') }}</span>
+                <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(video.likeCount, 'v', video.id, 'like') }}</span>
               </div>
               <div class="b-c">{{ formatDate(video.addTime) }}</div>
             </div>
@@ -56,7 +56,7 @@ import { useRouter } from 'vue-router'
 import { userWatchHistory } from '@/api/user'
 import type { Video } from '@/types/video'
 import { useAppStore } from '@/store/app'
-
+import { getIncrementalNumberWithOffset } from '@/utils'
 const router = useRouter()
 const appStore = useAppStore()
 

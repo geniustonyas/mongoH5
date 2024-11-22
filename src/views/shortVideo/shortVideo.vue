@@ -2,7 +2,7 @@
   <div class="page video-page">
     <header class="m-header h-video">
       <div class="h-m">
-        <a @click="router.push({ name: 'shortVideo' })" class="active">&#x6296;&#x9634;</a>
+        <a @click="router.push({ name: 'shortVideo' })" class="active">{{ douyin }}</a>
         <a @click="showToast('建设中...')">短剧</a>
         <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
       </div>
@@ -22,11 +22,11 @@
             <div class="v-b">
               <a @click="handleLike()">
                 <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
-                <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
+                <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.likeCount, 'v', videoDetail.id, 'like') : 0 }}</b>
               </a>
               <!-- <a @click="handleCollection()">
                 <i :class="['mvfont', 'mv-shoucang', { active: videoDetail && videoDetail.collect }]" />
-                <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
+                <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.collectionCount, 'v', videoDetail.id, 'collect') : 0 }}</b>
               </a> -->
               <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
             </div>
@@ -66,7 +66,8 @@ import type { Video, VideoDetailResponse } from '@/types/video'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 // import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
-import { getAssetsFile } from '@/utils'
+import { douyin } from '@/utils/cryptedData'
+import { getAssetsFile, getIncrementalNumberWithOffset } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -88,8 +89,8 @@ const players = ref<Map<number, any>>(new Map())
 const hlsInstances = ref<Map<number, any>>(new Map())
 const mutePlay = ref(true)
 const currentVideoIndex = ref(0)
-const pageIndex = ref(Math.floor(Math.random() * 10) + 1)
-// const decrypt = new decryptionService()
+const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin)
+const pageIndex = ref(initPageIndex.value)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 

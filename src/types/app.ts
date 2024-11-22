@@ -9,6 +9,13 @@ export interface AdsItem {
   title: string
 }
 
+export interface SpareData {
+  Email: string
+  Domains: string[]
+  TG: string
+  QR: string
+}
+
 export interface AdsPostion {
   id: string
   items: AdsItem[]
