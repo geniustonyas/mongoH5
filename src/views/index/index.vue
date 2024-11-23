@@ -122,7 +122,7 @@
                   </span>
                 </nav>
                 <nav class="b-b">
-                  <span v-for="sort in sortOptions" :key="sort.value" :class="{ active: query.SortType == sort.value }" @click="changeSort(sort.value)">
+                  <span v-for="sort in sortOptions" :key="sort.value" :class="{ active: categorySortType[query.ChannelId] == sort.value }" @click="changeSort(sort.value)">
                     {{ sort.label }}
                   </span>
                 </nav>
@@ -380,7 +380,8 @@ const swipePage = (swiper: any) => {
     query.PageIndex = 1
     categoryPageIndex.value[query.ChannelId] = 1
     query.SubChannelId = ''
-    query.SortType = 2
+    query.SortType = 1
+    categorySortType.value[query.ChannelId] = query.SortType
     handleCategoryChange()
   }
   nextTick(() => {

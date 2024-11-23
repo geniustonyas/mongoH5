@@ -255,7 +255,7 @@ const previousTab = ref(0)
 const query = reactive<BbsListRequest>({
   PageIndex: 1,
   PageSize: 10,
-  SortType: 0,
+  SortType: 1,
   ChannelId: '',
   SubChannelId: '',
   ActressId: '',
@@ -324,7 +324,8 @@ const handleSwipeChange = (swiper: any) => {
   if (bbsListSortType.value[activeTab.value] != undefined) {
     query.SortType = bbsListSortType.value[activeTab.value]
   } else {
-    query.SortType = 0
+    query.SortType = 1
+    bbsListSortType.value[activeTab.value] = 1
   }
   if (bbsListSubChannelId.value[activeTab.value] != undefined) {
     query.SubChannelId = bbsListSubChannelId.value[activeTab.value]
@@ -428,7 +429,7 @@ const changeSortType = (sortType: number) => {
   bbsListPageIndex.value[activeTab.value] = 1
   bbsListTotalPages.value[activeTab.value] = 1
   bbsListMap.value[activeTab.value] = []
-  query.SortType = sortType
+  query.SortType = sortType == 0 ? 1 : sortType
   fetchBbsList()
 }
 
@@ -481,8 +482,8 @@ const handlePageChange = async () => {
 }
 
 ;(async () => {
-  bbsListSortType.value[0] = 0
   await fetchBbsList()
+  bbsListSortType.value[0] = 0
   await fetchCategories()
   if (appStore.advertisement.length == 0) {
     await appStore.fetAdvertisement()

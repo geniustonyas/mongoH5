@@ -232,6 +232,7 @@ const initializePlayer = async (domain: string, uri: string) => {
       return
     }
     const url = domain + uri
+    // const url = 'https://video.rf028.com/MGTV/20241122/XH/test003/index.m3u8'
     player.value = new window.Plyr(videoElement, {
       clickToPlay: true,
       autoplay: true,

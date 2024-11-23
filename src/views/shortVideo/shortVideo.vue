@@ -107,7 +107,7 @@ const fetchVideos = async () => {
       PageIndex: pageIndex.value,
       PageSize: 5,
       VideoType: 1,
-      SortType: 0
+      SortType: 1
     })
     if (data && data.items) {
       videos.value.push(...data.items)
