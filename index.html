@@ -25,47 +25,11 @@
   <script src="/js/plyr.min.js" defer></script>
   
   <script>
-    function getMainDomain(hostname) {
-      const parts = hostname.split('.');
-      if (parts.length > 2) {
-        return parts.slice(-2).join('.');
-      }
-      return hostname;
-    }
 
-    // 获取当前域名
-    const currentDomain = getMainDomain(window.location.hostname);
-
-    // 配置域名和对应的统计代码
-    const trackingCodes = {
-      'mg95.cc': `
-        var _czc = _czc || [];
-        (function () {
-          var um = document.createElement("script");
-          um.src = "https://v1.cnzz.com/z.js?id=1281395151&async=1";
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(um, s);
-        })();
-      `
-    };
-
-    // 默认统计代码
-    const defaultTrackingCode = `
-      // 默认站长统计代码
-      var _czc = _czc || [];
-      (function () {
-        var um = document.createElement("script");
-        um.src = "https://s4.cnzz.com/z.js?id=1281390562&async=1";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(um, s);
-      })();
-    `;
-    // 动态插入统计代码
-    const trackingCode = trackingCodes[currentDomain] || defaultTrackingCode;
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.innerHTML = trackingCode;
-    document.head.appendChild(script);
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = `/stat.js`
+    document.head.appendChild(script)
 
     // 禁止safari缩放
     window.onload = function () {
@@ -73,7 +37,7 @@
         if (event.touches.length > 1) {
           event.preventDefault()
         }
-      }, { passive: false }) // 明确指定为非被动
+      }, { passive: false })
 
       var lastTouchEnd = 0
       document.addEventListener('touchend', function (event) {
@@ -82,11 +46,11 @@
           event.preventDefault()
         }
         lastTouchEnd = now
-      }, { passive: false }) // 明确指定为非被动
+      }, { passive: false })
 
       document.addEventListener('gesturestart', function (event) {
         event.preventDefault()
-      }, { passive: false }) // 明确指定为非被动
+      }, { passive: false }) 
     }
   </script>
  
