@@ -19,7 +19,7 @@
         <!-- 推荐 -->
         <swiper-slide class="bbs-swipe-item0">
           <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="bbs-banner" class="swiper-container">
-            <swiper class="my-swipe" @swiper="onBannerSwiper" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any">
+            <swiper class="my-swipe" @swiper="onBannerSwiper" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
               <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                 <a target="_blank" :href="ad.targetUrl">
                   <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
