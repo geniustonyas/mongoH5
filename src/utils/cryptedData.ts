@@ -9,6 +9,20 @@ const decryptedCategorys = tmpCategorys.data
 
 // 抖音
 const douyin = decryptionServiceInstance.decryptResponseData(`0Ur5UOs3lsQyop+fZYrgKg==`)
+
+const zhiming = decryptionServiceInstance.decryptResponseData(`A1iuZtBj0poEReCNzheWCw==`)
+
+const nvyou = decryptionServiceInstance.decryptResponseData(`jjK4EzOPAUnyO/ydcVNz1A==`)
+
+const wuma = decryptionServiceInstance.decryptResponseData(`NVDItEtbJpic6UaH/IRxVg==`)
+
+const youma = decryptionServiceInstance.decryptResponseData(`YJ4djS+BgEmwDXEgHPsecw==`)
+
+const riben = decryptionServiceInstance.decryptResponseData(`ONVx2xrhRKnfZuxS6c7FSw==`)
+
+const guochan = decryptionServiceInstance.decryptResponseData(`DIbJxnXC6/ys1FpA2U3gMg==`)
+
+const suren = decryptionServiceInstance.decryptResponseData(`hepkuYFUcjAG2llmGO1fcw==`)
 // 番号片名演员
 const fanhaoPianmingYanyuan = decryptionServiceInstance.decryptResponseData(`5MqOCp2EbjKW3BzyyxxWDhR4Vg/J3TnRrFQhUWYx8R4=`)
-export { decryptedCategorys, douyin, fanhaoPianmingYanyuan }
+export { decryptedCategorys, zhiming, douyin, fanhaoPianmingYanyuan, nvyou, wuma, youma, riben, guochan, suren }

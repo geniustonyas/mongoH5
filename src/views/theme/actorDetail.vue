@@ -7,7 +7,7 @@
           <div class="x-c">
             <div class="c-bd">
               <div class="c-i" v-lazy-decrypt="actor.imgUrl">
-                <span class="i-a">&#x77E5;&#x540D;&#x5973;&#x4F18;</span>
+                <span class="i-a">{{ zhiming }}{{ nvyou }}</span>
               </div>
               <div class="c-n">
                 <h3>{{ actor.title }}</h3>
@@ -84,6 +84,7 @@ import type { Actor } from '@/types/theme'
 import type { Video, VideoListRequest } from '@/types/video'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import { useAppStore } from '@/store/app'
+import { zhiming, nvyou } from '@/utils/cryptedData'
 
 const appStore = useAppStore()
 const router = useRouter()

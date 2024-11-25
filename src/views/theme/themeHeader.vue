@@ -6,7 +6,7 @@
     <div class="h-m">
       <a @click="router.push({ name: 'theme' })" :class="{ active: currentRoute == 'theme' }">主题</a>
       <a @click="router.push({ name: 'hotVideo' })" :class="{ active: currentRoute == 'hotVideo' }">热榜</a>
-      <a @click="router.push({ name: 'actor' })" :class="{ active: currentRoute == 'actor' }">&#x5973;&#x4F18;</a>
+      <a @click="router.push({ name: 'actor' })" :class="{ active: currentRoute == 'actor' }">{{ nvyou }}</a>
     </div>
     <div class="h-r">
       <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { nvyou } from '@/utils/cryptedData'
 
 const router = useRouter()
 const route = useRoute()

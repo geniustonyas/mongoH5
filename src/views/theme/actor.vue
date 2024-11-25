@@ -20,7 +20,9 @@
             <a v-for="actor in actorList" :key="actor.id" @click="router.push({ name: 'actorDetail', params: { id: actor.id }, query: { videoCount: actor.videosCount } })">
               <div class="l-img" v-lazy-decrypt="actor.imgUrl" loading-img="default2.gif" error-img="default2.gif" :key="actor.id">
                 <span class="s-a">{{ actor.videosCount }}部</span>
-                <span class="s-b" v-if="actor.categoryNames.indexOf('知名') != -1"><b>&#x77E5;&#x540D;&#x5973;&#x4F18;</b></span>
+                <span class="s-b" v-if="actor.categoryNames.indexOf('知名') != -1">
+                  <b>{{ zhiming }} {{ nvyou }}</b>
+                </span>
               </div>
               <span>{{ actor.title }}</span>
             </a>
@@ -37,6 +39,7 @@ import Header from '@/views/theme/themeHeader.vue'
 import { useRouter } from 'vue-router'
 import { getActorListApi } from '@/api/theme'
 import type { ActorListRequest, ActorList } from '@/types/theme'
+import { zhiming, nvyou, wuma, riben, guochan, suren } from '@/utils/cryptedData'
 import { List } from 'vant'
 
 const router = useRouter()
@@ -51,11 +54,11 @@ const sortOptions = [
 
 const categorys = [
   { label: '全部', value: '' },
-  { label: '知名', value: '1' },
-  { label: '&#x65E0;&#x7801;', value: '2' },
-  { label: '&#x65E5;&#x672C;', value: '3' },
-  { label: '&#x56FD;&#x4EA7;', value: '4' },
-  { label: '&#x7D20;&#x4EBA;', value: '5' }
+  { label: zhiming, value: '1' },
+  { label: wuma, value: '2' },
+  { label: riben, value: '3' },
+  { label: guochan, value: '4' },
+  { label: suren, value: '5' }
 ]
 
 const actorList = ref<ActorList[]>([])

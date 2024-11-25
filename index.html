@@ -28,8 +28,71 @@
 
     const script = document.createElement('script')
     script.type = 'text/javascript'
-    script.src = `/stat.js`
+    script.src = `/stat.js` // 假设每个域名下都有一个 stat.js 文件
     document.head.appendChild(script)
+
+    // function getMainDomain(hostname) {
+    //   const parts = hostname.split('.')
+    //   if (parts.length > 2) {
+    //     return parts.slice(-2).join('.')
+    //   }
+    //   return hostname
+    // }
+
+    // // 获取当前域名和端口
+    // const currentDomain = getMainDomain(window.location.hostname)
+    // const currentPort = window.location.port
+    // const domainWithPort = currentPort ? `${currentDomain}:${currentPort}` : currentDomain
+
+    // 配置域名和对应的统计代码
+    const trackingCodes = {
+      'mg95.cc': `
+        var _czc = _czc || []
+        (function () {
+          var um = document.createElement("script")
+          um.src = "https://v1.cnzz.com/z.js?id=1281395152&async=1"
+          var s = document.getElementsByTagName("script")[0]
+          s.parentNode.insertBefore(um, s)
+        })()
+      `,
+      'mg84.cc:2025': `
+        var _czc = _czc || [];
+        (function () {
+          var um = document.createElement("script");
+          um.src = "https://v1.cnzz.com/z.js?id=1281395405&async=1";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(um, s);
+        })();
+      `,
+      'mg90.cc:2025': `
+        var _czc = _czc || [];
+        (function () {
+          var um = document.createElement("script");
+          um.src = "https://s9.cnzz.com/z.js?id=1281395404&async=1";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(um, s);
+        })();
+      `
+    }
+
+    // 默认统计代码
+    const defaultTrackingCode = `
+      // 默认站长统计代码
+      var _czc = _czc || []
+      (function () {
+        var um = document.createElement("script")
+        um.src = "https://s4.cnzz.com/z.js?id=1281390562&async=1"
+        var s = document.getElementsByTagName("script")[0]
+        s.parentNode.insertBefore(um, s)
+      })()
+    `
+
+    // // 动态插入统计代码
+    // const trackingCode = trackingCodes[domainWithPort] || defaultTrackingCode
+    // const script = document.createElement('script')
+    // script.type = 'text/javascript'
+    // script.innerHTML = trackingCode
+    // document.head.appendChild(script)
 
     // 禁止safari缩放
     window.onload = function () {
@@ -37,7 +100,7 @@
         if (event.touches.length > 1) {
           event.preventDefault()
         }
-      }, { passive: false })
+      }, { passive: false }) // 明确指定为非被动
 
       var lastTouchEnd = 0
       document.addEventListener('touchend', function (event) {
@@ -46,11 +109,11 @@
           event.preventDefault()
         }
         lastTouchEnd = now
-      }, { passive: false })
+      }, { passive: false }) // 明确指定为非被动
 
       document.addEventListener('gesturestart', function (event) {
         event.preventDefault()
-      }, { passive: false }) 
+      }, { passive: false }) // 明确指定为非被动
     }
   </script>
  
