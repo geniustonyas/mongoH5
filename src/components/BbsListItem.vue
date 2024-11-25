@@ -18,7 +18,7 @@
           <span v-for="tag in post.subChannel.title.split(',')" :key="tag">{{ '#' + tag }}</span>
         </div>
       </div>
-      <div class="i-b">{{ post.title }}</div>
+      <div class="i-b" v-html="decodeHtmlEntities(post.title || '')" />
       <div :class="`i-c pic${post.imgs.split(',').length > 4 ? '9' : post.imgs.split(',').length || ''} ${post.channel.id == '2' ? 'weimi' : ''}`">
         <div class="item" v-for="(img, index1) in post.imgs.split(',')" :key="index1">
           <img v-lazy-decrypt="img" :loading-img="post.imgs.split(',').length == 3 && index1 == 0 ? 'default2.gif' : 'default.gif'" />
@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, decodeHtmlEntities } from '@/utils'
 import { defineProps, withDefaults } from 'vue'
 import { Bbs } from '@/types/bbs' // 导入 Bbs 类型
 import dayjs from 'dayjs'

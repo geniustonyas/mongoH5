@@ -219,3 +219,14 @@ export function getCookieValue(cookieName: string) {
   }
   return ''
 }
+
+/**
+ * 解码 HTML 实体
+ * @param str - 包含 HTML 实体的字符串
+ * @returns 解码后的字符串
+ */
+export function decodeHtmlEntities(str: string): string {
+  const textarea = document.createElement('textarea')
+  textarea.innerHTML = str
+  return textarea.value
+}

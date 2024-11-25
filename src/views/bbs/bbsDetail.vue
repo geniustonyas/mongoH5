@@ -10,7 +10,7 @@
     </header>
     <main class="b-b-b">
       <div class="bbs-detail">
-        <div class="d-a">{{ detail?.title || '' }}</div>
+        <div class="d-a" v-html="decodeHtmlEntities(detail?.title || '')" />
         <div class="d-b">
           <div class="b-l">
             <div class="l-a" v-lazy:background-image="{ src: getAssetsFile('logo-4.png') }" />
@@ -26,7 +26,7 @@
             <span><i class="mvfont mv-like" />{{ getIncrementalNumberWithOffset(detail?.collectionCount, 'b', detail.id, 'collect') }}</span>
           </div>
         </div>
-        <div class="d-c">{{ detail?.content || '' }}</div>
+        <div class="d-c" v-html="decodeHtmlEntities(detail?.content || '')" />
         <div class="d-d">
           <img v-for="(img, index) in bbsImgs" :key="index" v-lazy-decrypt="img" @click="showPreview(index)" />
         </div>
@@ -37,17 +37,11 @@
         <div class="bbs-d-ne">
           <div class="item" v-if="detail?.prev?.id" @click="handleBbsClick(detail.prev)">
             <div class="i-a"><i class="mvfont mv-left" />上一篇</div>
-            <div class="i-b">
-              <span>#{{ detail.prev?.channel?.title }}-{{ detail.prev?.subChannel?.title }}</span>
-              {{ detail.prev?.title }}
-            </div>
+            <div class="i-b" v-html="`<span>#${detail.prev?.channel?.title}-${detail.prev?.subChannel?.title}</span>${decodeHtmlEntities(detail.prev?.title || '')}`" />
           </div>
           <div class="item" v-if="detail?.next?.id" @click="handleBbsClick(detail.next)">
             <div class="i-a">下一篇<i class="mvfont mv-right" /></div>
-            <div class="i-b">
-              <span>#{{ detail.next?.channel?.title }}-{{ detail.next?.subChannel?.title }}</span>
-              {{ detail.next?.title }}
-            </div>
+            <div class="i-b" v-html="`<span>#${detail.next?.channel?.title}-${detail.next?.subChannel?.title}</span>${decodeHtmlEntities(detail.next?.title || '')}`" />
           </div>
         </div>
 
@@ -168,7 +162,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick, computed } from 'vue'
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, decodeHtmlEntities } from '@/utils'
 import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'

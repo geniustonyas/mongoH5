@@ -98,7 +98,6 @@ const fetchCategories = async () => {
       data: { data }
     } = await getBbsSubCategoryDetailApi({ Id: route.params.id as string })
     weimi.value = data
-    console.log(weimi.value)
   } catch (error) {
     console.error('获取分类数据失败:', error)
   }
