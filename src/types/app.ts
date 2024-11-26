@@ -14,6 +14,7 @@ export interface SpareData {
   Domains: string[]
   TG: string
   QR: string
+  OfficialDomain: string
 }
 
 export interface AdsPostion {

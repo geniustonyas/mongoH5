@@ -11,7 +11,7 @@ export function isPhone(arg: any): boolean {
  * @returns {Boolean}
  */
 export function isUname(arg: any): boolean {
-  return /^[a-zA-Z]{1}\w{4,12}$/.test(arg)
+  return /^[a-zA-Z]{1}\w{5,12}$/.test(arg)
 }
 
 /** 验证昵称

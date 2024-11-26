@@ -115,12 +115,12 @@
                 </swiper>
               </div>
               <section class="m-l-b">
-                <nav v-if="category.s && category.s.length > 0" class="b-a">
-                  <span :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</span>
-                  <span v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
+                <swiper v-if="category.s && category.s.length > 0" class="b-a" :modules="[FreeMode]" :free-mode="true as any" :slides-per-view="7" :space-between="10" :loop="false" :nested="true">
+                  <swiper-slide :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</swiper-slide>
+                  <swiper-slide v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
                     {{ cates.t }}
-                  </span>
-                </nav>
+                  </swiper-slide>
+                </swiper>
                 <nav class="b-b">
                   <span v-for="sort in sortOptions" :key="sort.value" :class="{ active: categorySortType[query.ChannelId] == sort.value }" @click="changeSort(sort.value)">
                     {{ sort.label }}
@@ -172,10 +172,11 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'
 import { getAssetsFile } from '@/utils'
-import { Autoplay, Pagination } from 'swiper/modules'
+import { Autoplay, Pagination, FreeMode } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
+import 'swiper/css/free-mode'
 
 import Footer from '@/components/layout/Footer.vue'
 import VideoGridItem from '@/components/VideoGridItem.vue'

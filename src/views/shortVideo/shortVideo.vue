@@ -33,7 +33,7 @@
             <div class="v-c">
               <div class="c-g">
                 <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
-                <span>{{ foreverDomain }}</span>
+                <span>{{ appStore.spareData.OfficialDomain }}</span>
               </div>
               <h3>@芒果TV官方</h3>
               <p>
@@ -93,11 +93,6 @@ const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.shortV
 const pageIndex = ref(initPageIndex.value)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
-
-const foreverDomain = computed(() => {
-  const tmp = appStore.searchInputText.split(',')
-  return tmp[0] || ''
-})
 
 const fetchVideos = async () => {
   try {

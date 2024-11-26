@@ -18,11 +18,11 @@
               <ul class="f-a">
                 <li v-if="isLoginMode">
                   <i class="mvfont mv-user" />
-                  <input v-model="formData.UserName" placeholder="账号/手机号" />
+                  <input v-model="formData.UserName" placeholder="用户名" />
                 </li>
                 <li v-else>
                   <i class="mvfont mv-user" />
-                  <input v-model="formData.PhoneNumber" placeholder="手机号" />
+                  <input v-model="formData.PhoneNumber" placeholder="用户名" />
                 </li>
                 <li v-if="!isLoginMode && appStore.regSms == '1'">
                   <i class="mvfont mv-yzm" />
@@ -58,7 +58,7 @@ import { getCodeApi } from '@/api/app'
 import { showToast } from 'vant'
 import { setToken } from '@/utils/auth'
 import type { loginForm } from '@/types/user'
-import { isPhone, isPwd } from '@/utils/validate'
+import { isPhone, isPwd, isUname } from '@/utils/validate'
 import { useAppStore } from '@/store/app'
 
 const appStore = useAppStore()
@@ -136,13 +136,17 @@ const handleGetCode = async () => {
 const handleSubmit = async () => {
   if (isLoginMode.value) {
     if (!formData.UserName || !formData.Password) {
-      showToast('请输入账号和密码')
+      showToast('请输入用户名和密码')
+      return
+    }
+    if (!isUname(formData.UserName)) {
+      showToast('请输入以字母开头的5-12位用户名')
       return
     }
   } else {
     formData.UserName = formData.PhoneNumber
-    if (!isPhone(formData.PhoneNumber)) {
-      showToast('请输入正确的手机号')
+    if (!isPhone(formData.PhoneNumber) && !isUname(formData.UserName)) {
+      showToast('请输入正确的用户名或手机号')
       return
     }
     if (!formData.Password) {
