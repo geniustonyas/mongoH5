@@ -70,6 +70,25 @@
                 </a>
               </nav>
 
+              <!-- <nav class="i-m-b">
+                <a @click.prevent="openDownloadPage" href="#">
+                  <i class="mvfont mv-appxiazai" />
+                  <span>APP下载</span>
+                </a>
+                <a @click="router.push({ name: 'share' })">
+                  <i class="mvfont mv-fenxiang3" />
+                  <span>分享好友</span>
+                </a>
+                <a @click="router.push({ name: 'spare' })">
+                  <i class="mvfont mv-yizhangtong" />
+                  <span>防丢失</span>
+                </a>
+                <a>
+                  <i class="mvfont mv-changjianwenti" />
+                  <span>常见问题</span>
+                </a>
+              </nav> -->
+
               <nav v-if="latestVideos && latestVideos.length > 0" class="mv-t-l">
                 <div class="m-a">
                   <div class="a-l">
@@ -115,7 +134,7 @@
                 </swiper>
               </div>
               <section class="m-l-b">
-                <swiper v-if="category.s && category.s.length > 0" class="b-a" :modules="[FreeMode]" :free-mode="true as any" :slides-per-view="7" :space-between="10" :loop="false" :nested="true">
+                <swiper v-if="category.s && category.s.length > 0" class="b-a" :modules="[FreeMode]" :free-mode="true as any" :slides-per-view="7" :space-between="10" :loop="false" :nested="true" @touch-start="handleTouchStart" :no-swiping="true" :no-swiping-class="'swiper-no-swiping'" :threshold="0" :touch-release-on-edges="false">
                   <swiper-slide :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</swiper-slide>
                   <swiper-slide v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
                     {{ cates.t }}
@@ -408,6 +427,10 @@ const handlePageChange = async () => {
     // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
     window.scrollTo(0, 0)
   }
+}
+
+const handleTouchStart = (event: any) => {
+  event.preventDefault()
 }
 
 // 立即执行

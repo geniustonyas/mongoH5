@@ -76,7 +76,7 @@ import { getVideoDetailApi, addPlayCountApi, getVideoListApi } from '@/api/video
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
 import { getIncrementalNumberWithOffset } from '@/utils'
-// import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
+import { generateAuthUrl } from '@/utils/decryptionService'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
 import dayjs from 'dayjs'
@@ -231,7 +231,8 @@ const initializePlayer = async (domain: string, uri: string) => {
       console.error('Video element not found')
       return
     }
-    const url = domain + uri
+    const url = uri.includes('http') ? uri : domain + uri
+    console.log('url', url)
     // const url = 'https://video.rf028.com/MGTV/20241122/XH/test003/index.m3u8'
     player.value = new window.Plyr(videoElement, {
       clickToPlay: true,
@@ -248,10 +249,10 @@ const initializePlayer = async (domain: string, uri: string) => {
         maxBufferHole: 0.5,
         debug: false
       })
-      // hls.value.config.xhrSetup = (xhr) => {
-      //   const tsUrlWithAuth = generateAuthUrl(domain, uri)
-      //   xhr.open('GET', tsUrlWithAuth, true)
-      // }
+      hls.value.config.xhrSetup = (xhr) => {
+        const tsUrlWithAuth = generateAuthUrl(domain, uri)
+        xhr.open('GET', tsUrlWithAuth, true)
+      }
       hls.value.loadSource(url)
       hls.value.attachMedia(videoElement)
 

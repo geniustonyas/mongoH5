@@ -65,7 +65,7 @@ import { userLike } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
-// import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
+import { generateAuthUrl } from '@/utils/decryptionService'
 import { douyin } from '@/utils/cryptedData'
 import { getAssetsFile, getIncrementalNumberWithOffset } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
@@ -156,6 +156,10 @@ const initializePlayer = async (index: number) => {
         liveSyncDuration: 3,
         liveMaxLatencyDuration: 5
       })
+      hls.config.xhrSetup = (xhr) => {
+        const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, video.playUrl)
+        xhr.open('GET', tsUrlWithAuth, true)
+      }
       hlsInstances.value.set(index, hls)
       const player = new window.Plyr(videoElement, {
         clickToPlay: true,
