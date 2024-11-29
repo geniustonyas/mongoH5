@@ -74,6 +74,29 @@
                     <small>开通VIP</small>
                   </a>
                 </div>
+
+                <div v-if="bannerTextAd && bannerTextAd.length > 0" class="b-row r-ad">
+                  <a @click="openAd(bannerTextAd[0].targetUrl)">
+                    <span><i class="mvfont mv-biaoji" /><em>精</em></span>
+                    <small>{{ bannerTextAd[0].title }}</small>
+                  </a>
+                  <a @click="openAd(bannerTextAd[1].targetUrl)">
+                    <span><i class="mvfont mv-cvFilter" /><em>准</em></span>
+                    <small>{{ bannerTextAd[1].title }}</small>
+                  </a>
+                  <a @click="openAd(bannerTextAd[2].targetUrl)">
+                    <span><i class="mvfont mv-jingzhun" /><em /></span>
+                    <small>{{ bannerTextAd[2].title }}</small>
+                  </a>
+                  <a @click="openAd(bannerTextAd[3].targetUrl)">
+                    <span><i class="mvfont mv-kuang2" /><em>论</em></span>
+                    <small>{{ bannerTextAd[3].title }}</small>
+                  </a>
+                  <a @click="openAd(bannerTextAd[4].targetUrl)">
+                    <span><i class="mvfont mv-dunp1" /><em>坛</em></span>
+                    <small>{{ bannerTextAd[4].title }}</small>
+                  </a>
+                </div>
               </nav>
 
               <nav v-if="latestVideos && latestVideos.length > 0" class="mv-t-l">
@@ -230,6 +253,11 @@ const query = reactive<VideoListRequest>({
   IsFirst: true,
   PageIndex: 1,
   PageSize: 20
+})
+
+const bannerTextAd = computed(() => {
+  const tmp = appStore.getAdvertisementById(11).items
+  return tmp || []
 })
 
 const showPopup = ref(false)
@@ -435,6 +463,10 @@ const openDownloadPage = () => {
   } else {
     window.open(appStore.androidDownloadUrl, '_blank')
   }
+}
+
+const openAd = (url: string) => {
+  window.open(url)
 }
 
 function handleScroll() {
