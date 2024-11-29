@@ -118,7 +118,7 @@ class decryptionService {
 
 export const generateAuthUrl = (domain: string, uri: string, key = 'wB760Vqpk76oRSVA1TNz') => {
   const timestamp = Math.floor(Date.now() / 1000).toString()
-  const temp = `${key}${uri}${timestamp}`
+  const temp = `${key}/${uri}${timestamp}`
   const sign = md5(temp).toString().toLowerCase()
   const baseUrl = uri.includes('http') ? uri : domain + uri
   return `${baseUrl}?sign=${sign}&t=${timestamp}`

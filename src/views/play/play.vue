@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
-        <video id="plyr-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+        <video ref="videoRef" id="plyr-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
         <div class="a-f">
           <div class="item">
             <span v-for="(option, index) in rewindOptions" :key="'rewind-' + index" @click="rewind(option.time)"> <i class="mvfont mv-left" />{{ option.label }} </span>
@@ -93,6 +93,7 @@ const videoDetail = ref<VideoDetailResponse | null>(null)
 const recommendedVideos = ref<Video[]>([])
 const initialLikeType = ref<number | string>()
 
+const videoRef = ref<HTMLVideoElement>(null)
 const player = ref<any>(null)
 const hls = ref<any>(null)
 const controls = ref([
@@ -171,9 +172,9 @@ const handleVideoClick = (event) => {
     return
   }
 
-  const videoElement = event.target.closest('.video-grid-item')
-  if (videoElement) {
-    const videoId = videoElement.dataset.videoId
+  const videoListElement = event.target.closest('.video-grid-item')
+  if (videoListElement) {
+    const videoId = videoListElement.dataset.videoId
     fetchVideoDetailThrottled(videoId)
   }
 }
@@ -226,42 +227,44 @@ const fetchRecommendedVideos = async (channelId: string, currentVideoId: string)
 const initializePlayer = async (domain: string, uri: string) => {
   try {
     resetPlayer()
-    const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
-    if (!videoElement) {
+    if (!videoRef.value) {
       console.error('Video element not found')
       return
     }
-    const url = uri.includes('http') ? uri : domain + uri
-    console.log('url', url)
-    // const url = 'https://video.rf028.com/MGTV/20241122/XH/test003/index.m3u8'
-    player.value = new window.Plyr(videoElement, {
-      clickToPlay: true,
-      autoplay: true,
-      controls: controls.value,
-      settings: ['captions', 'quality', 'speed', 'loop'],
-      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
-    })
+    // const url = uri.includes('http') ? uri : domain + uri
+    const url = generateAuthUrl(domain, uri)
+    // const url = 'https://b.gg155gg1.com/20241128/f33h63BE/index.m3u8'
     if (window.Hls.isSupported()) {
-      hls.value = new window.Hls({
+      // 这里声明了 tmphls 的原因是因为直接使用vue的代理 hls.value时 视频会无法播放
+      const tmpHls = new window.Hls({
         maxBufferLength: 30,
         maxMaxBufferLength: 60,
         maxBufferSize: 60 * 1000 * 1000,
         maxBufferHole: 0.5,
         debug: false
       })
-      hls.value.config.xhrSetup = (xhr) => {
-        const tsUrlWithAuth = generateAuthUrl(domain, uri)
-        xhr.open('GET', tsUrlWithAuth, true)
-      }
-      hls.value.loadSource(url)
-      hls.value.attachMedia(videoElement)
+      // tmpHls.config.xhrSetup = (xhr) => {
+      //   const tsUrlWithAuth = generateAuthUrl(domain, uri)
+      //   xhr.open('GET', tsUrlWithAuth, true)
+      // }
+      tmpHls.loadSource(url)
+      tmpHls.attachMedia(videoRef.value)
 
-      hls.value.on(window.Hls.Events.ERROR, (event, data) => {
+      tmpHls.on(window.Hls.Events.ERROR, (event, data) => {
         handleHlsError(data)
       })
-    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-      videoElement.src = url
+      hls.value = tmpHls
+    } else if (videoRef.value.canPlayType('application/vnd.apple.mpegurl')) {
+      videoRef.value.src = url
     }
+
+    player.value = new window.Plyr(videoRef.value, {
+      clickToPlay: true,
+      autoplay: true,
+      controls: controls.value,
+      settings: ['captions', 'quality', 'speed', 'loop'],
+      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
+    })
 
     player.value.on('click', (event) => {
       if (player.value.touch && event.target.className == 'plyr__poster') {
@@ -274,18 +277,16 @@ const initializePlayer = async (domain: string, uri: string) => {
     })
 
     player.value.on('enterfullscreen', () => {
-      const videoElement = document.getElementById('plyr-player')
-      if (videoElement) {
-        videoElement.style.width = '100%'
-        videoElement.style.height = '100%'
+      if (videoRef.value) {
+        videoRef.value.style.width = '100%'
+        videoRef.value.style.height = '100%'
       }
     })
 
     player.value.on('exitfullscreen', () => {
-      const videoElement = document.getElementById('plyr-player')
-      if (videoElement) {
-        videoElement.style.width = ''
-        videoElement.style.height = '24rem'
+      if (videoRef.value) {
+        videoRef.value.style.width = ''
+        videoRef.value.style.height = '24rem'
       }
     })
 

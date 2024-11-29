@@ -41,5 +41,5 @@
     "types/**/*.d.ts",
     "vite.config.ts"
   ], // 指定要包含在编译中的文件模式列表
-  "exclude": ["node_modules", "dist"] // 指定要排除在编译之外的文件模式列表
+  "exclude": ["node_modules", "dist", "mongotvH5-Test" , "mongotvH5"] // 指定要排除在编译之外的文件模式列表
 }
