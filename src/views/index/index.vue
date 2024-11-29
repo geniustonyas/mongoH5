@@ -52,42 +52,29 @@
                 </swiper>
               </nav>
               <nav class="i-m-b">
-                <a @click.prevent="openDownloadPage" href="#">
-                  <i class="mvfont mv-appxiazai" />
-                  <span>APP下载</span>
-                </a>
-                <a @click="router.push({ name: 'share' })">
-                  <i class="mvfont mv-fenxiang3" />
-                  <span>分享好友</span>
-                </a>
-                <a @click="router.push({ name: 'spare' })">
-                  <i class="mvfont mv-yizhangtong" />
-                  <span>防丢失</span>
-                </a>
-                <a>
-                  <i class="mvfont mv-changjianwenti" />
-                  <span>常见问题</span>
-                </a>
+                <div class="b-row">
+                  <a @click.prevent="openDownloadPage" href="#">
+                    <span><i class="mvfont mv-appxiazai" /></span>
+                    <small>APP下载</small>
+                  </a>
+                  <a @click="router.push({ name: 'share' })">
+                    <span><i class="mvfont mv-fenxiang3" /></span>
+                    <small>分享好友</small>
+                  </a>
+                  <a @click="router.push({ name: 'spare' })">
+                    <span><i class="mvfont mv-yizhangtong" /></span>
+                    <small>防丢失</small>
+                  </a>
+                  <a>
+                    <span><i class="mvfont mv-changjianwenti" /></span>
+                    <small>常见问题</small>
+                  </a>
+                  <a @click="showToast('暂未开通')">
+                    <span><i class="mvfont mv-vip1" /></span>
+                    <small>开通VIP</small>
+                  </a>
+                </div>
               </nav>
-
-              <!-- <nav class="i-m-b">
-                <a @click.prevent="openDownloadPage" href="#">
-                  <i class="mvfont mv-appxiazai" />
-                  <span>APP下载</span>
-                </a>
-                <a @click="router.push({ name: 'share' })">
-                  <i class="mvfont mv-fenxiang3" />
-                  <span>分享好友</span>
-                </a>
-                <a @click="router.push({ name: 'spare' })">
-                  <i class="mvfont mv-yizhangtong" />
-                  <span>防丢失</span>
-                </a>
-                <a>
-                  <i class="mvfont mv-changjianwenti" />
-                  <span>常见问题</span>
-                </a>
-              </nav> -->
 
               <nav v-if="latestVideos && latestVideos.length > 0" class="mv-t-l">
                 <div class="m-a">
@@ -186,7 +173,7 @@
 import { ref, reactive, nextTick, computed, watch, onMounted, onActivated, onDeactivated } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
-import { Tabs, Tab, PullRefresh, Popup, Icon } from 'vant'
+import { Tabs, Tab, PullRefresh, Popup, Icon, showToast } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'

@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "17495658",
+      "name": "盾牌外框",
+      "font_class": "dunp1",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "32854055",
+      "name": "描边",
+      "font_class": "kuang2",
+      "unicode": "e6ea",
+      "unicode_decimal": 59114
+    },
+    {
+      "icon_id": "35626472",
+      "name": "frame-expand",
+      "font_class": "kuang",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "20304392",
+      "name": "cvFilter",
+      "font_class": "cvFilter",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "26691900",
+      "name": "认证盾牌2",
+      "font_class": "zheng",
+      "unicode": "e8d4",
+      "unicode_decimal": 59604
+    },
+    {
+      "icon_id": "30697831",
+      "name": "我的-盾牌 绑定",
+      "font_class": "dunp",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "281413",
+      "name": "精准",
+      "font_class": "jingzhun",
+      "unicode": "e704",
+      "unicode_decimal": 59140
+    },
+    {
+      "icon_id": "19972756",
+      "name": "标记",
+      "font_class": "biaoji",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
       "icon_id": "2742629",
       "name": "点赞",
       "font_class": "full_zan",

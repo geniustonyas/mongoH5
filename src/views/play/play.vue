@@ -14,6 +14,13 @@
         </div>
       </div>
       <div class="md-b">
+        <div class="b-c">
+          <i class="mvfont mv-guangbo" />
+          <p>
+            请牢记域名：<b>{{ appStore.spareData.OfficialDomain }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.OfficialDomain"><i class="mvfont mv-fuzhi" /></span><br />
+            发送邮件至：<b>{{ appStore.spareData.Email }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.Email"><i class="mvfont mv-fuzhi" /></span> 可获得最新地址
+          </p>
+        </div>
         <div class="b-a">
           <div class="a-a">{{ videoDetail ? videoDetail.title : '' }}</div>
           <div class="a-b">
@@ -75,7 +82,7 @@ import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi, addPlayCountApi, getVideoListApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
-import { getIncrementalNumberWithOffset } from '@/utils'
+import { copy, getIncrementalNumberWithOffset } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
@@ -234,6 +241,15 @@ const initializePlayer = async (domain: string, uri: string) => {
     // const url = uri.includes('http') ? uri : domain + uri
     const url = generateAuthUrl(domain, uri)
     // const url = 'https://b.gg155gg1.com/20241128/f33h63BE/index.m3u8'
+
+    player.value = new window.Plyr(videoRef.value, {
+      clickToPlay: true,
+      autoplay: true,
+      controls: controls.value,
+      settings: ['captions', 'quality', 'speed', 'loop'],
+      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
+    })
+
     if (window.Hls.isSupported()) {
       // 这里声明了 tmphls 的原因是因为直接使用vue的代理 hls.value时 视频会无法播放
       const tmpHls = new window.Hls({
@@ -257,14 +273,6 @@ const initializePlayer = async (domain: string, uri: string) => {
     } else if (videoRef.value.canPlayType('application/vnd.apple.mpegurl')) {
       videoRef.value.src = url
     }
-
-    player.value = new window.Plyr(videoRef.value, {
-      clickToPlay: true,
-      autoplay: true,
-      controls: controls.value,
-      settings: ['captions', 'quality', 'speed', 'loop'],
-      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
-    })
 
     player.value.on('click', (event) => {
       if (player.value.touch && event.target.className == 'plyr__poster') {
@@ -512,6 +520,8 @@ onMounted(() => {
   if (appStore.advertisement.length == 0) {
     appStore.fetAdvertisement()
   }
+
+  copy('.copy')
 })
 
 onUnmounted(() => {
