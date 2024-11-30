@@ -1,8 +1,8 @@
 @font-face {
   font-family: "mvfont"; /* Project id 4698642 */
-  src: url('iconfont.woff2?t=1732811941825') format('woff2'),
-       url('iconfont.woff?t=1732811941825') format('woff'),
-       url('iconfont.ttf?t=1732811941825') format('truetype');
+  src: url('iconfont.woff2?t=1732892596190') format('woff2'),
+       url('iconfont.woff?t=1732892596190') format('woff'),
+       url('iconfont.ttf?t=1732892596190') format('truetype');
 }
 
 .mvfont {
@@ -11,6 +11,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.mv-shengyin0:before {
+  content: "\e6c0";
+}
+
+.mv-jingyin:before {
+  content: "\e65e";
+}
+
+.mv-jingxuan:before {
+  content: "\e66e";
+}
+
+.mv-jingxuan1:before {
+  content: "\e68b";
+}
+
+.mv-jingxuan2:before {
+  content: "\e659";
 }
 
 .mv-dunp1:before {

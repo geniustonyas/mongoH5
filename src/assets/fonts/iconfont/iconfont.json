@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18371945",
+      "name": "声音-开",
+      "font_class": "shengyin0",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "36590128",
+      "name": "静音面",
+      "font_class": "jingyin",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "15515621",
+      "name": "精选",
+      "font_class": "jingxuan",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "19766381",
+      "name": "精选",
+      "font_class": "jingxuan1",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    },
+    {
+      "icon_id": "32421972",
+      "name": "精选",
+      "font_class": "jingxuan2",
+      "unicode": "e659",
+      "unicode_decimal": 58969
+    },
+    {
       "icon_id": "17495658",
       "name": "盾牌外框",
       "font_class": "dunp1",
