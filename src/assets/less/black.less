@@ -567,25 +567,33 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             i { font-size: 2rem; }
         }
     }
-    .bcb-main {.flex-x(); .scroll-touch(); }
+    .bcb-main {.flex-x(); .scroll-touch();
+        .no-comment { text-align: center; color: var(--color-light); padding: 1rem; }
+    }
     .bcb-foot { margin-bottom: constant(safe-area-inset-bottom); margin-bottom: env(safe-area-inset-bottom);
         .f-a { font-size: 1.3rem; .flex(); .flex-align(); padding: 1rem;
             span { color: var(--color-black); }
             p {.scroll-touch(auto,hidden);
-                span { display: inline-block; .bg(rgba(255,255,255,.1)); color: var(--color-light); font-size: 1.2rem; padding: .5rem 1rem; text-align: center; .radius(.4rem); white-space: nowrap; margin-left: .5rem; cursor: pointer; }
+                span { display: inline-block; .bg(rgba(0,0,0,.1)); color: var(--color-dark); font-size: 1.2rem; padding: .5rem 1rem; text-align: center; .radius(.4rem); white-space: nowrap; margin-left: .5rem; cursor: pointer; }
             }
         }
         .f-b { padding: 1rem; .border-t(.1rem,rgba(255,255,255,.05)); .flex(); .flex-pack-justify(); .flex-align();
-                .b-input { border: 1px solid var(--color-light); .radius(.5rem); max-height: 5rem; width: 80%; max-width: 80%; .flex(); .flex-align(); flex: 1;
+                .b-input { .bg(rgba(0,0,0,.1)); .radius(.5rem); max-height: 5rem; width: 80%; max-width: 80%; .flex(); .flex-align(); flex: 1;
                 .editable-div {
                     flex: 1;
                     border: none;
                     .h-lh(3.4rem);
                     padding: 0 1rem;
                     white-space: nowrap;
-                    overflow-x: hidden; /* 隐藏水平滚动条 */
-                    width: 100%; /* 设置固定宽度 */
-                    max-width: 100%; /* 确保宽度不超过容器 */
+                    overflow-x: hidden;
+                    width: 100%;
+                    max-width: 100%;
+                    color: var(--color-dark); 
+                    &:empty::before {
+                        content: attr(data-placeholder);
+                        color: var(--color-light);
+                        pointer-events: none;
+                    }
                 }
                 input { .flex-x(); border: none; .h-lh(3.4rem); padding: 0 1rem; }
                 textarea { .flex-x(); border: none; line-height: 2rem; padding: 0 1rem; }

@@ -1,3 +1,4 @@
+import { getAssetsFile } from './index'
 import emojis, { Emoji } from './emoji'
 
 // 对表情分组
@@ -114,4 +115,15 @@ export function deleteEmoji() {
 function isValidEmoji(potentialEmoji: string): boolean {
   // 这里假设有一个表情符号列表 `emojis`，可以根据需要调整
   return emojis.some((emoji) => `[${emoji.title}]` === potentialEmoji)
+}
+
+// 创建一个方法来解析评论内容中的表情符号
+export function parseEmojis(content: string): string {
+  if (content && content.length > 0) {
+    emojis.forEach((item) => {
+      const reg = '/\\' + item.title.replace(']', '\\]') + '/g'
+      content = content.replace(eval(reg), `<img src="${getAssetsFile(`emoji/${item.src}`)}" alt="${item.title}" />`)
+    })
+  }
+  return content
 }
