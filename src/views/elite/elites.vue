@@ -2,12 +2,13 @@
   <div class="page video-page">
     <header class="m-header h-video">
       <div class="h-m">
-        <a @click="router.push({ name: 'shortVideo' })" class="active">{{ douyin }}</a>
+        <a @click="router.push({ name: 'elites' })" class="active">{{ douyin }}</a>
+        <a @click="router.push({ name: 'disclose' })">吃瓜</a>
         <a @click="showToast('建设中...')">短剧</a>
         <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
       </div>
       <div class="h-r">
-        <i class="mvfont mv-search1" />
+        <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
       </div>
     </header>
 
@@ -29,6 +30,10 @@
                 <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.collectionCount, 'v', videoDetail.id, 'collect') : 0 }}</b>
               </a> -->
               <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
+              <a class="btn-mute" @click="toggleMute">
+                <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
+                <b />
+              </a>
             </div>
             <div class="v-c">
               <div class="c-g">
@@ -52,7 +57,7 @@
         <p>分享链接已复制，赶快去分享给好友吧！</p>
       </div>
     </Popup>
-    <Footer active-menu="shortVideo" footer-class="footer f-footer" />
+    <Footer active-menu="elites" footer-class="footer f-footer" />
   </div>
 </template>
 
@@ -156,10 +161,10 @@ const initializePlayer = async (index: number) => {
         liveSyncDuration: 3,
         liveMaxLatencyDuration: 5
       })
-      hls.config.xhrSetup = (xhr) => {
-        const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, video.playUrl)
-        xhr.open('GET', tsUrlWithAuth, true)
-      }
+      // hls.config.xhrSetup = (xhr) => {
+      //   const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, video.playUrl)
+      //   xhr.open('GET', tsUrlWithAuth, true)
+      // }
       hlsInstances.value.set(index, hls)
       const player = new window.Plyr(videoElement, {
         clickToPlay: true,
@@ -190,10 +195,7 @@ const initializePlayer = async (index: number) => {
         // 如果不是当前视频，则暂停
         player.on('play', () => {
           console.log('playIndex: ' + index, 'currentVideoIndex: ' + currentVideoIndex.value)
-          if (currentVideoIndex.value == index) {
-            player.muted = false
-          } else {
-            player.muted = true
+          if (currentVideoIndex.value != index) {
             player.stop()
           }
         })
@@ -258,10 +260,10 @@ const handleHlsError = (data, hls, index) => {
       break
     default:
       console.error('HLS unrecoverable error:', data)
-      showToast('播放失败')
-      hls.destroy()
-      hls.stopLoad()
-      hlsInstances.value.delete(index)
+      // showToast('播放失败')
+      // hls.destroy()
+      // hls.stopLoad()
+      // hlsInstances.value.delete(index)
       break
   }
 }
@@ -350,11 +352,8 @@ const playCurrentVideo = async () => {
       console.log('播放器 ' + currentVideoIndex.value + ' 存在，播放')
       await currentPlayer.play()
     } catch (error) {
-      console.error('播放失败:', error)
       if (error.name == 'NotAllowedError') {
-        showToast('自动播放失败,请点击屏幕开始播放')
-      } else {
-        showToast('播放失败')
+        showToast('点击屏幕继续播放')
       }
     }
   }
@@ -454,6 +453,13 @@ const handleShare = () => {
   document.body.appendChild(button)
   button.click()
   document.body.removeChild(button)
+}
+
+const toggleMute = () => {
+  mutePlay.value = !mutePlay.value
+  players.value.forEach((player) => {
+    player.muted = mutePlay.value
+  })
 }
 
 onMounted(async () => {

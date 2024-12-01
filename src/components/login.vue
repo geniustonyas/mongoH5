@@ -139,8 +139,8 @@ const handleSubmit = async () => {
       showToast('请输入用户名和密码')
       return
     }
-    if (!isUname(formData.UserName)) {
-      showToast('请输入以字母开头的5-12位用户名')
+    if (!isPhone(formData.UserName) && !isUname(formData.UserName)) {
+      showToast('请输入正确的用户名或手机号')
       return
     }
   } else {

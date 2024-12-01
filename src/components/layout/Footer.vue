@@ -8,7 +8,7 @@
       <router-link to="/home" :class="{ active: activeMenu == 'home' }"> <i class="mvfont mv-home0" />我的 </router-link> -->
 
       <router-link to="/index" :class="{ active: activeMenu == 'index' }"> <i class="mvfont mv-shouye" />首页 </router-link>
-      <router-link to="/elite" :class="{ active: activeMenu == 'elite' }"> <i class="mvfont mv-jingxuan" />精选 </router-link>
+      <router-link to="/elites" :class="{ active: activeMenu == 'elites' }"> <i class="mvfont mv-jingxuan" />精选 </router-link>
       <router-link to="/shortVideo" :class="{ active: activeMenu == 'shortVideo' }"> <i class="mvfont mv-dsp" />短视频 </router-link>
       <router-link to="/bbs" :class="{ active: activeMenu == 'bbs' }"> <i class="mvfont mv-shequ" />社区 </router-link>
       <router-link to="/home" :class="{ active: activeMenu == 'home' }"> <i class="mvfont mv-home0" />我的 </router-link>

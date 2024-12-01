@@ -1,0 +1,277 @@
+<template>
+  <div class="page video-page">
+    <header class="m-header h-video">
+      <div class="h-m">
+        <a @click="router.push({ name: 'elites' })">{{ douyin }}</a>
+        <a @click="router.push({ name: 'disclose' })" class="active">吃瓜</a>
+        <a @click="showToast('建设中...')">短剧</a>
+        <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
+      </div>
+      <div class="h-r">
+        <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
+      </div>
+    </header>
+
+    <section class="vp-main">
+      <div class="vm-a" />
+      <div class="vm-b">
+        <swiper v-if="bbsList.length > 0" :direction="'vertical'" :modules="modules" :virtual="{ slides: bbsList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
+          <swiper-slide v-for="(bbs, index) in bbsList" :key="bbs.id" :virtual-index="index">
+            <div class="v-a">
+              <swiper :id="'swiper-' + index" :modules="[Autoplay, Pagination]" @swiper="(swiper) => onSwiper(index, swiper)" :slides-per-view="1" :pagination="getPaginationStyle(bbs.imgs)" :centered-slides="true" :autoplay="false" :nested="true" style="width: 100%; height: 100%">
+                <swiper-slide v-for="img in bbs.imgs.split(',')" :key="img">
+                  <img v-lazy-decrypt="img" :alt="img" />
+                </swiper-slide>
+              </swiper>
+            </div>
+            <div class="v-b">
+              <a @click="toggleLike()">
+                <i :class="['mvfont', 'mv-xihuan', { active: bbsDetail && bbsDetail.like == 1 }]" />
+                <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.likeCount, 'v', bbsDetail.id, 'like') : 0 }}</b>
+              </a>
+              <a @click="toggleCollection()">
+                <i :class="['mvfont', 'mv-shoucang', { active: bbsDetail && bbsDetail.collect }]" />
+                <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.collectionCount, 'v', bbsDetail.id, 'collect') : 0 }}</b>
+              </a>
+              <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
+            </div>
+            <div class="v-c">
+              <div class="c-g">
+                <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
+                <span>{{ appStore.spareData.OfficialDomain }}</span>
+              </div>
+              <h3>@芒果TV官方</h3>
+              <p>
+                <b v-html="decodeHtmlEntities(bbs.title || '')" />
+                <template v-if="bbsDetail && bbsDetail.tags">
+                  <span v-for="tag in bbsDetail.tags" :key="tag.id">#{{ tag.title }}</span>
+                </template>
+              </p>
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </section>
+    <Popup v-model:show="showSharePopup" teleport="body" position="center" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :overlay="false" round>
+      <div class="share-popup">
+        <p>分享链接已复制，赶快去分享给好友吧！</p>
+      </div>
+    </Popup>
+    <Footer active-menu="elites" footer-class="footer f-footer" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted, computed } from 'vue'
+import { useRouter, onBeforeRouteLeave } from 'vue-router'
+import { getBbsListApi, getBbsDetailApi, bbsLikeApi, bbsCollectionApi } from '@/api/bbs'
+import type { Bbs } from '@/types/bbs'
+import { useAppStore } from '@/store/app'
+import { useUserStore } from '@/store/user'
+import { douyin } from '@/utils/cryptedData'
+import { getAssetsFile, getIncrementalNumberWithOffset, decodeHtmlEntities } from '@/utils'
+import Footer from '@/components/layout/Footer.vue'
+
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Virtual, Autoplay, Pagination } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/virtual'
+import 'swiper/css/autoplay'
+import 'swiper/css/pagination'
+
+import { Popup, showToast } from 'vant'
+import Clipboard from 'clipboard'
+
+const router = useRouter()
+const appStore = useAppStore()
+const userStore = useUserStore()
+const modules = [Virtual]
+
+const swipers = ref<Map<number, any>>(new Map())
+
+const bbsList = ref<Bbs[]>([])
+const bbsDetail = ref<Bbs | null>(null)
+const currentSlideIndex = ref(0)
+const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin)
+const pageIndex = ref(initPageIndex.value)
+const showSharePopup = ref(false)
+const clipboard = ref<Clipboard | null>(null)
+
+const fetchBbsList = async () => {
+  try {
+    const {
+      data: { data }
+    } = await getBbsListApi({
+      PageIndex: pageIndex.value,
+      PageSize: 5,
+      SortType: 1
+    })
+    if (data && data.items) {
+      bbsList.value.push(...data.items)
+    }
+  } catch (error) {
+    console.error('获取BBS列表失败:', error)
+  }
+}
+
+const fetchBbsDetail = async (bbsId: number) => {
+  try {
+    const {
+      data: { data }
+    } = await getBbsDetailApi(bbsId)
+    bbsDetail.value = data
+    // 修改列表的数据
+    bbsList.value[currentSlideIndex.value].imgs = data.imgs
+  } catch (error) {
+    console.error('获取BBS详情失败:', error)
+  }
+}
+
+const onSwiper = (index: number, swiper: any) => {
+  console.log(index, swiper)
+  swipers.value.set(index, swiper)
+}
+
+const slideChange = async (swiper) => {
+  try {
+    const previousIndex = currentSlideIndex.value
+    currentSlideIndex.value = swiper.activeIndex
+    console.log('上一个: ' + previousIndex, '当前: ' + currentSlideIndex.value)
+
+    if (previousIndex === currentSlideIndex.value) return
+
+    // 播放当前swiper
+    const currentSwiper = swipers.value.get(currentSlideIndex.value)
+    if (currentSwiper) {
+      currentSwiper.autoplay.start()
+    }
+
+    // 停止并 重置上一个
+    const previousSwiper = swipers.value.get(previousIndex)
+    if (previousSwiper) {
+      previousSwiper.autoplay.stop()
+    }
+    // 预加载下一个视频
+    const isSlidingDown = currentSlideIndex.value > previousIndex
+    // 销毁上上一个swiper
+    const destroyIndex = isSlidingDown ? currentSlideIndex.value - 2 : currentSlideIndex.value + 2
+    if (destroyIndex >= 0 && swipers.value.has(destroyIndex)) {
+      // const destroySwiper = swipers.value.get(destroyIndex)
+      // destroySwiper.destroy(true, true)
+      swipers.value.delete(destroyIndex)
+      console.log('上上一个swiper销毁完成', destroyIndex)
+    }
+
+    // 获取bbs详情
+    const currentBbs = bbsList.value[currentSlideIndex.value]
+    if (currentBbs) {
+      await fetchBbsDetail(parseInt(currentBbs.id))
+    }
+
+    if (bbsList.value.length - currentSlideIndex.value < 3) {
+      pageIndex.value++
+      await fetchBbsList()
+    }
+  } catch (error) {
+    console.error('滑动失败:', error)
+  }
+}
+
+const checkLogin = (): boolean => {
+  if (userStore.userInfo.id == '') {
+    userStore.showLoginDialog = true
+    return false
+  }
+  return true
+}
+
+const toggleLike = async () => {
+  if (!checkLogin()) return
+  if (!bbsDetail.value) return
+  const newLikeStatus = bbsDetail.value.like == '1' ? 0 : 1
+  try {
+    const { data } = await bbsLikeApi({ PostId: bbsDetail.value.id, Like: newLikeStatus })
+    if (data) {
+      bbsDetail.value.like = newLikeStatus.toString()
+      const newLikeCount = Number(bbsDetail.value.likeCount) + (newLikeStatus ? 1 : -1)
+      bbsDetail.value.likeCount = Math.max(newLikeCount, 0).toString()
+    }
+  } catch (error) {
+    console.error('点赞失败:', error)
+  }
+}
+
+const toggleCollection = async () => {
+  if (!checkLogin()) return
+  if (!bbsDetail.value) return
+  const newCollectStatus = !bbsDetail.value.collect
+  try {
+    const { data } = await bbsCollectionApi({ PostId: bbsDetail.value.id, Collect: newCollectStatus, Ids: '' })
+    if (data) {
+      bbsDetail.value.collect = newCollectStatus
+      const newCollectionCount = Number(bbsDetail.value.collectionCount) + (newCollectStatus ? 1 : -1)
+      bbsDetail.value.collectionCount = Math.max(newCollectionCount, 0).toString()
+    }
+  } catch (error) {
+    console.error('收藏失败:', error)
+  }
+}
+
+const handleShare = () => {
+  if (clipboard.value) {
+    clipboard.value.destroy()
+  }
+  clipboard.value = new Clipboard('.share-button', {
+    text: () => window.location.href
+  })
+
+  clipboard.value?.on('success', () => {
+    showSharePopup.value = true
+    setTimeout(() => {
+      showSharePopup.value = false
+    }, 2000)
+    clipboard.value?.destroy()
+  })
+
+  clipboard.value?.on('error', () => {
+    console.error('复制失败')
+    clipboard.value?.destroy()
+  })
+
+  const button = document.createElement('button')
+  button.className = 'share-button'
+  document.body.appendChild(button)
+  button.click()
+  document.body.removeChild(button)
+}
+
+const getPaginationStyle = (imgs: string) => {
+  const imgCount = imgs.split(',').length
+  return imgCount > 20 ? { type: 'fraction' } : { type: 'progressbar' }
+}
+
+onMounted(async () => {
+  await fetchBbsList()
+  if (bbsList.value.length > 0) {
+    await fetchBbsDetail(parseInt(bbsList.value[0].id))
+    // 启动第一个swiper的自动播放
+    const firstSwiper = swipers.value.get(0)
+    if (firstSwiper) {
+      firstSwiper.autoplay.start()
+    }
+  }
+})
+
+onBeforeRouteLeave(() => {
+  // swipers.value.forEach((swiper) => {
+  //   swiper.destroy()
+  // })
+  swipers.value.clear()
+})
+</script>
+
+<style scoped>
+.active {
+  color: #ff6b6b;
+}
+</style>

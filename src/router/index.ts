@@ -59,12 +59,17 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: '/elite',
-    name: 'elite',
-    component: () => import('@/views/elite/elite.vue'),
+    path: '/elites',
+    name: 'elites',
+    component: () => import('@/views/elite/elites.vue'),
     meta: { needLogin: false, keepAlive: false }
   },
-
+  {
+    path: '/disclose',
+    name: 'disclose',
+    component: () => import('@/views/elite/disclose.vue'),
+    meta: { needLogin: false, keepAlive: false }
+  },
   {
     path: '/bbs',
     name: 'bbs',
