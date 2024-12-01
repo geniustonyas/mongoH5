@@ -174,8 +174,7 @@ const postComment = async (content = '') => {
       showEmojiPopup.value = false
     }
   } catch (error) {
-    console.error('发表评论失败:', error)
-    showToast('发表评论失败')
+    showToast(error.message || '发表评论失败')
   }
 }
 

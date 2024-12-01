@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "9114418",
+      "name": "70全屏",
+      "font_class": "quanping",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "10183097",
+      "name": "70全屏",
+      "font_class": "quanping1",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
       "icon_id": "18371945",
       "name": "声音-开",
       "font_class": "shengyin0",

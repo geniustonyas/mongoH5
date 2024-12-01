@@ -36,11 +36,11 @@
               <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
             </div>
             <div class="v-c">
-              <div class="c-g">
+              <!--<div class="c-g">
                 <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
                 <span>{{ appStore.spareData.OfficialDomain }}</span>
-              </div>
-              <h3>@芒果TV官方</h3>
+              </div>-->
+             <h3>@芒果TV官方-<span>{{ appStore.spareData.OfficialDomain }}</span></h3>
               <p>
                 <b v-html="decodeHtmlEntities(bbs.title || '')" />
                 <template v-if="bbsDetail && bbsDetail.tags">

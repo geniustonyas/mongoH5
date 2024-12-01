@@ -32,15 +32,15 @@
               <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
               <a class="btn-mute" @click="toggleMute">
                 <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
-                <b />
+                <span>取消静音</span>
               </a>
             </div>
             <div class="v-c">
-              <div class="c-g">
+              <!--<div class="c-g">
                 <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
                 <span>{{ appStore.spareData.OfficialDomain }}</span>
-              </div>
-              <h3>@芒果TV官方</h3>
+              </div>-->
+              <h3>@芒果TV官方-<span>{{ appStore.spareData.OfficialDomain }}</span></h3>
               <p>
                 <b>{{ video.title }}</b>
                 <template v-if="videoDetail && videoDetail.tags">
