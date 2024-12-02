@@ -246,7 +246,7 @@ const initializePlayer = async (index: number) => {
   }
 }
 
-const handleHlsError = (data, hls, index) => {
+const handleHlsError = (data, hls) => {
   switch (data.type) {
     case window.Hls.ErrorTypes.NETWORK_ERROR:
       console.error('HLS network error:', data)

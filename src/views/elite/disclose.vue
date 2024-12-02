@@ -129,7 +129,7 @@ const fetchBbsDetail = async (bbsId: number) => {
     } = await getBbsDetailApi(bbsId)
     bbsDetail.value = data
     // 修改列表的数据
-    bbsList.value[currentSlideIndex.value].imgs = data.imgs + ',' + data.imgs + ',' + data.imgs
+    bbsList.value[currentSlideIndex.value].imgs = data.imgs
     if (bbsList.value[currentSlideIndex.value].imgs.split(',').length > 20) {
       // 获取到当前swiper 下面的pagination 元素
       const currentSwiper = swipers.value.get(currentSlideIndex.value)

@@ -75,7 +75,7 @@ import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { douyin } from '@/utils/cryptedData'
-import { getAssetsFile, getIncrementalNumberWithOffset } from '@/utils'
+import { getIncrementalNumberWithOffset } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -250,7 +250,7 @@ const initializePlayer = async (index: number) => {
   }
 }
 
-const handleHlsError = (data, hls, index) => {
+const handleHlsError = (data, hls) => {
   switch (data.type) {
     case window.Hls.ErrorTypes.NETWORK_ERROR:
       console.error('HLS network error:', data)
