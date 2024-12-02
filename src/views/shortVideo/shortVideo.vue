@@ -31,7 +31,7 @@
               <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
               <a class="btn-mute" @click="toggleMute">
                 <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
-                <b />
+                <span>取消静音</span>
               </a>
             </div>
             <div class="v-c">
@@ -39,7 +39,7 @@
                 <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
                 <span>{{ appStore.spareData.OfficialDomain }}</span>
               </div>
-              <h3>@芒果TV官方</h3>
+              <!-- <h3>@芒果TV官方</h3> -->
               <p>
                 <b>{{ video.title }}</b>
                 <template v-if="videoDetail && videoDetail.tags">
@@ -149,6 +149,16 @@ const initializePlayer = async (index: number) => {
     console.log('初始化时删除hls: ' + index)
   }
 
+  const player = new window.Plyr(videoElement, {
+    clickToPlay: true,
+    autoplay: false,
+    muted: mutePlay.value,
+    autopause: false,
+    hideControls: true,
+    controls: ['progress']
+  })
+
+  const url = generateAuthUrl(appStore.playDomain, video.playUrl)
   if (window.Hls.isSupported()) {
     try {
       const hls = new window.Hls({
@@ -165,15 +175,7 @@ const initializePlayer = async (index: number) => {
       //   xhr.open('GET', tsUrlWithAuth, true)
       // }
       hlsInstances.value.set(index, hls)
-      const player = new window.Plyr(videoElement, {
-        clickToPlay: true,
-        autoplay: false,
-        muted: mutePlay.value,
-        autopause: false,
-        hideControls: true,
-        controls: ['progress']
-      })
-      hls.loadSource(appStore.playDomain + video.playUrl)
+      hls.loadSource(url)
       hls.attachMedia(videoElement)
 
       // 点击屏幕播放暂停
@@ -220,7 +222,7 @@ const initializePlayer = async (index: number) => {
       console.error('初始化hls失败: ' + index, error)
     }
   } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-    videoElement.src = appStore.playDomain + video.playUrl
+    videoElement.src = url
     console.log('canPlayType，初始化player: ' + index)
     const player = new window.Plyr(videoElement, {
       clickToPlay: true,

@@ -1,6 +1,6 @@
 <template>
   <div class="comment-container">
-    <Popup v-model:show="showComment" round position="bottom" :overlay="true" :overlay-style="{ background: 'none' }" :style="{ height: commentHeight }" :safe-area-inset-top="true" :safe-area-inset-bottom="true">
+    <Popup v-model:show="showComment" round position="bottom" :overlay="true" :overlay-style="{ background: 'none' }" :style="{ height: commentHeight }" @click-overlay="toggleCommentVisibility(false)" :safe-area-inset-top="true" :safe-area-inset-bottom="true">
       <div class="bbs-comment-box">
         <div class="bcb-head">
           <p>
@@ -228,6 +228,10 @@ const updateCommentLikeStatus = (comment, currentLikeType, newLikeType) => {
 const toggleCommentVisibility = (isVisible: boolean) => {
   showComment.value = isVisible
   emit('update:showComment', isVisible)
+  console.log(isVisible)
+  if (!isVisible) {
+    showEmojiPopup.value = false
+  }
 }
 
 const checkLogin = (): boolean => {
@@ -257,6 +261,10 @@ watch([() => props.showComment, () => props.postId], ([newShowComment, newPostId
   showComment.value = newShowComment
   if (newShowComment && newPostId) {
     fetchComments(true)
+  }
+  if (!newShowComment) {
+    console.log('123')
+    showEmojiPopup.value = false
   }
 })
 </script>

@@ -140,13 +140,13 @@ const handleSubmit = async () => {
       return
     }
     if (!isPhone(formData.UserName) && !isUname(formData.UserName)) {
-      showToast('请输入正确的用户名或手机号')
+      showToast('请输入以字母开头的5-12位用户名或手机号')
       return
     }
   } else {
     formData.UserName = formData.PhoneNumber
     if (!isPhone(formData.PhoneNumber) && !isUname(formData.UserName)) {
-      showToast('请输入正确的用户名或手机号')
+      showToast('请输入以字母开头的5-12位用户名或手机号')
       return
     }
     if (!formData.Password) {
