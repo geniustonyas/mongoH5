@@ -129,13 +129,14 @@ const fetchBbsDetail = async (bbsId: number) => {
     } = await getBbsDetailApi(bbsId)
     bbsDetail.value = data
     // 修改列表的数据
-    bbsList.value[currentSlideIndex.value].imgs = data.imgs
+    bbsList.value[currentSlideIndex.value].imgs = data.imgs + ',' + data.imgs + ',' + data.imgs
     if (bbsList.value[currentSlideIndex.value].imgs.split(',').length > 20) {
       // 获取到当前swiper 下面的pagination 元素
       const currentSwiper = swipers.value.get(currentSlideIndex.value)
       console.log(currentSlideIndex.value)
       console.log(swipers.value)
       if (currentSwiper) {
+        currentSwiper.pagination.el.classList.add('swiper-pagination-bullets')
         currentSwiper.pagination.el.style.top = '60px'
         currentSwiper.pagination.el.style.setProperty('display', 'unset', 'important')
         currentSwiper.pagination.el.style.setProperty('bottom', 'unset', 'important')
@@ -263,7 +264,15 @@ const handleShare = () => {
 // 根据图片数量返回分页器类型
 const getPaginationStyle = (imgs: string) => {
   const imgCount = imgs.split(',').length
-  return imgCount > 20 ? { type: 'fraction' } : { type: 'bullets' }
+  if (imgCount > 20) {
+    return {
+      type: 'fraction',
+      renderFraction: (currentClass, totalClass) => {
+        return `<div class="fraction-pagination"><span class="${currentClass}"></span> / <span class="${totalClass}"></span></div>`
+      }
+    }
+  }
+  return { type: 'bullets' }
 }
 
 const showCommentComponent = (postId: string | undefined) => {
@@ -276,9 +285,6 @@ const showCommentComponent = (postId: string | undefined) => {
 // 处理评论弹窗的打开和关闭时分页的显示隐藏和自动播放
 const handleCommentToggle = (isVisible: boolean) => {
   const currentSwiper = swipers.value.get(currentSlideIndex.value)
-  console.log(currentSlideIndex.value)
-  console.log(swipers.value)
-  console.log(currentSwiper)
   if (isVisible) {
     // 当打开评论弹窗时，停止自动播放，并隐藏分页器
     if (currentSwiper) {
