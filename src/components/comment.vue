@@ -94,7 +94,7 @@ const commentListRef = ref(null)
 const showComment = ref(props.showComment)
 const comments = ref([])
 const noData = ref(false)
-const commentHeight = props.commentHeight || '70vh'
+const commentHeight = props.commentHeight || '70%'
 
 const presetComments = ref(['放开她，让我来！[色]', '老师真是太美了！[可爱]'])
 const showEmojiPopup = ref(false)
