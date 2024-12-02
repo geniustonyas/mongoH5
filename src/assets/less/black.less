@@ -649,7 +649,16 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
                 width: -moz-calc(100vw - 2rem);width: -webkit-calc(100vw - 2rem); width: calc(100vw - 2rem);
                 left:1rem;
                 right:1rem;
+                .fraction-pagination{
+                    float: right;
+                    .bg(rgba(255,255,255,.2));
+                    .radius(.2rem);
+                    padding: .2rem .5rem;
+                    font-size: 1.2rem;
+                    color: var(--color-white);
+                }
                 .swiper-pagination-bullet {
+                    
                     flex-grow: 1;
                     height: .3rem; 
                     .bg(var(--color-white)); .opacity(85); .radius(.3rem);
