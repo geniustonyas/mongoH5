@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18431007",
+      "name": "图标_界面_抖音评论",
+      "font_class": "pinglun3",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "1519275",
+      "name": "评论",
+      "font_class": "pinglun1",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "9408820",
+      "name": "评论",
+      "font_class": "pinglun2",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
       "icon_id": "9114418",
       "name": "70全屏",
       "font_class": "quanping",
