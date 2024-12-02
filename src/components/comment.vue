@@ -1,6 +1,6 @@
 <template>
   <div class="comment-container">
-    <Popup v-model:show="showComment" round position="bottom" :overlay="false" :style="{ height: commentHeight }">
+    <Popup v-model:show="showComment" round position="bottom" :overlay="false" :style="{ height: commentHeight }" @open="onPopupToggle(true)" @close="onPopupToggle(false)">
       <div class="bbs-comment-box">
         <div class="bcb-head">
           <p>
@@ -9,7 +9,7 @@
           <span @click="toggleComment(false)"><i class="mvfont mv-close" /></span>
         </div>
         <div ref="commentListRef" class="bcb-main">
-          <List v-model:loading="loading" :finished="finished" finished-text="没有更多评论了" @load="loadMoreComments">
+          <List v-if="comments.length > 0" v-model:loading="loading" :finished="finished" finished-text="没有更多评论了" @load="loadMoreComments">
             <ul class="bbs-comment-list">
               <li v-for="comment in comments" :key="comment.id">
                 <div class="i-l">
@@ -87,14 +87,14 @@ import 'dayjs/locale/zh-cn'
 dayjs.extend(relativeTime)
 dayjs.locale('zh-cn')
 
-const props = defineProps<{ postId: string; showComment: boolean }>()
-const emit = defineEmits(['update:showComment'])
+const props = defineProps<{ postId: string; showComment: boolean; commentHeight?: string }>()
+const emit = defineEmits(['update:showComment', 'popup-toggle'])
 
 const commentListRef = ref(null)
 const showComment = ref(props.showComment)
 const comments = ref([])
 const noData = ref(false)
-const commentHeight = ref('70vh')
+const commentHeight = props.commentHeight || '70vh'
 
 const presetComments = ref(['放开她，让我来！[色]', '老师真是太美了！[可爱]'])
 const showEmojiPopup = ref(false)
@@ -132,6 +132,7 @@ const fetchComments = async (isRefresh = false) => {
           content: parseEmojis(comment.content)
         }))
       ]
+      noData.value = comments.value.length == 0
       finished.value = data.items.length < 10
       pageIndex.value++
     }
@@ -165,6 +166,7 @@ const postComment = async (content = '') => {
         hateCount: '0',
         like: '0'
       })
+      noData.value = false
       nextTick(() => {
         if (commentListRef.value) {
           commentListRef.value.scrollTop = 0
@@ -251,4 +253,8 @@ watch([() => props.showComment, () => props.postId], ([newShowComment, newPostId
     fetchComments(true)
   }
 })
+
+const onPopupToggle = (isVisible: boolean) => {
+  emit('popup-toggle', isVisible)
+}
 </script>

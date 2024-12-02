@@ -1,6 +1,6 @@
 <template>
   <div class="page video-page">
-    <header class="m-header h-video">
+    <header class="m-header h-video" :class="{ hidden: showComment }">
       <div class="h-m">
         <a @click="router.push({ name: 'elites' })">{{ douyin }}</a>
         <a @click="router.push({ name: 'disclose' })" class="active">吃瓜</a>
@@ -17,30 +17,34 @@
       <div class="vm-b">
         <swiper v-if="bbsList.length > 0" :direction="'vertical'" :modules="modules" :virtual="{ slides: bbsList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
           <swiper-slide v-for="(bbs, index) in bbsList" :key="bbs.id" :virtual-index="index">
-            <div class="v-a">
+            <div class="v-a" :class="{ shrink: showComment }">
               <swiper :id="'swiper-' + index" :modules="[Autoplay, Pagination]" @swiper="(swiper) => onSwiper(index, swiper)" :slides-per-view="1" :pagination="getPaginationStyle(bbs.imgs)" :centered-slides="true" :autoplay="false" :nested="true" style="width: 100%; height: 100%">
                 <swiper-slide v-for="img in bbs.imgs.split(',')" :key="img">
-                  <img v-lazy-decrypt="img" :alt="img" />
+                  <img v-lazy-decrypt="img" :alt="img" loading-img="default2.gif" error-img="default2.gif" />
                 </swiper-slide>
               </swiper>
             </div>
-            <div class="v-b">
+            <div class="v-b" :class="{ hidden: showComment }">
               <a @click="toggleLike()">
                 <i :class="['mvfont', 'mv-xihuan', { active: bbsDetail && bbsDetail.like == 1 }]" />
-                <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.likeCount, 'v', bbsDetail.id, 'like') : 0 }}</b>
+                <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.likeCount, 'b', bbsDetail.id, 'like') : 0 }}</b>
+              </a>
+              <a @click="showCommentComponent(bbsDetail?.id)">
+                <i class="mvfont mv-pinglun" />
+                <b>{{ bbsDetail ? bbsDetail.commentCount : 0 }}</b>
               </a>
               <a @click="toggleCollection()">
                 <i :class="['mvfont', 'mv-shoucang', { active: bbsDetail && bbsDetail.collect }]" />
-                <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.collectionCount, 'v', bbsDetail.id, 'collect') : 0 }}</b>
+                <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.collectionCount, 'b', bbsDetail.id, 'collect') : 0 }}</b>
               </a>
               <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
             </div>
-            <div class="v-c">
-              <!--<div class="c-g">
+            <div class="v-c" :class="{ hidden: showComment }">
+              <div class="c-g">
                 <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
                 <span>{{ appStore.spareData.OfficialDomain }}</span>
-              </div>-->
-             <h3>@芒果TV官方-<span>{{ appStore.spareData.OfficialDomain }}</span></h3>
+              </div>
+              <h3>@芒果TV官方</h3>
               <p>
                 <b v-html="decodeHtmlEntities(bbs.title || '')" />
                 <template v-if="bbsDetail && bbsDetail.tags">
@@ -58,11 +62,12 @@
       </div>
     </Popup>
     <Footer active-menu="elites" footer-class="footer f-footer" />
+    <Comment v-model:showComment="showComment" :post-id="currentPostId" @update:show-comment="handleCommentToggle" @popup-toggle="onCommentPopupToggle" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch, nextTick } from 'vue'
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { getBbsListApi, getBbsDetailApi, bbsLikeApi, bbsCollectionApi } from '@/api/bbs'
 import type { Bbs } from '@/types/bbs'
@@ -81,6 +86,7 @@ import 'swiper/css/pagination'
 
 import { Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
+import Comment from '@/components/comment.vue'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -88,14 +94,16 @@ const userStore = useUserStore()
 const modules = [Virtual]
 
 const swipers = ref<Map<number, any>>(new Map())
+const currentSlideIndex = ref(0)
 
 const bbsList = ref<Bbs[]>([])
 const bbsDetail = ref<Bbs | null>(null)
-const currentSlideIndex = ref(0)
 const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin)
 const pageIndex = ref(initPageIndex.value)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
+const showComment = ref(false)
+const currentPostId = ref<string | null>(null)
 
 const fetchBbsList = async () => {
   try {
@@ -121,7 +129,15 @@ const fetchBbsDetail = async (bbsId: number) => {
     } = await getBbsDetailApi(bbsId)
     bbsDetail.value = data
     // 修改列表的数据
-    bbsList.value[currentSlideIndex.value].imgs = data.imgs
+    bbsList.value[currentSlideIndex.value].imgs = data.imgs + ',' + data.imgs + ',' + data.imgs
+    if (bbsList.value[currentSlideIndex.value].imgs.split(',').length > 20) {
+      // 获取到当前swiper 下面的pagination 元素
+      const currentSwiper = swipers.value.get(currentSlideIndex.value)
+      if (currentSwiper) {
+        currentSwiper.pagination.el.style.top = '60px'
+        currentSwiper.pagination.el.style.display = 'block'
+      }
+    }
   } catch (error) {
     console.error('获取BBS详情失败:', error)
   }
@@ -247,8 +263,52 @@ const handleShare = () => {
 
 const getPaginationStyle = (imgs: string) => {
   const imgCount = imgs.split(',').length
-  return imgCount > 20 ? { type: 'fraction' } : { type: 'progressbar' }
+  return imgCount > 20 ? { type: 'fraction' } : { type: 'bullets' }
 }
+
+const showCommentComponent = (postId: string | undefined) => {
+  if (postId) {
+    currentPostId.value = postId
+    showComment.value = true
+  }
+}
+
+const handleCommentToggle = (isShow: boolean) => {
+  showComment.value = isShow
+}
+
+const updateSwiperSize = () => {
+  const currentSwiper = swipers.value.get(currentSlideIndex.value)
+  nextTick(() => {
+    if (currentSwiper) {
+      currentSwiper.update()
+    }
+  })
+}
+
+const onCommentPopupToggle = (isVisible: boolean) => {
+  const currentSwiper = swipers.value.get(currentSlideIndex.value)
+  if (isVisible) {
+    console.log('评论弹窗已打开')
+    if (currentSwiper) {
+      currentSwiper.autoplay.stop() // 停止自动播放
+    }
+  } else {
+    console.log('评论弹窗已关闭')
+    if (currentSwiper) {
+      currentSwiper.autoplay.start() // 继续自动播放
+    }
+  }
+  updateSwiperSize() // 在弹窗打开或关闭时更新当前 swiper 尺寸
+}
+
+// 监听 showComment 的变化
+watch(showComment, (newVal) => {
+  if (newVal) {
+    // 当评论弹窗显示时，更新 swiper 尺寸
+    updateSwiperSize()
+  }
+})
 
 onMounted(async () => {
   await fetchBbsList()
@@ -269,9 +329,3 @@ onBeforeRouteLeave(() => {
   swipers.value.clear()
 })
 </script>
-
-<style scoped>
-.active {
-  color: #ff6b6b;
-}
-</style>
