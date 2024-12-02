@@ -629,7 +629,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
     .vm-b { position: relative; .flex(); .flex-align(); height: 100%;
         .v-a { width: 100%; height: 100%; transition: all 0.3s ease; .flex(); .flex-align();
-            &.shrink { height: 35vh; margin: 0 auto;}
+            &.shrink { height: 30vh; margin: 0 auto;}
             .cover-fit { object-fit: cover; object-position: center; }
             .plyr { height: 100% !important; }
             .swiper-wrapper { width: 100%;
@@ -642,9 +642,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             }
             
             .swiper-pagination {
-                display: flex; // 使用 flexbox 布局
-                justify-content: center; // 水平居中对齐
-                align-items: center; // 垂直居中对齐
+                .flex(); .flex-align();
                 position: absolute; 
                 bottom: 0px;
                 width: 100%;
@@ -666,7 +664,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
                 pointer-events: none;
             }
             a { color: var(--color-white); display: inline-block; margin-bottom: 1.5rem; text-align: center; position: relative; cursor: pointer;
-                i { font-size: 3.4rem; text-shadow: 1px 1px 6px rgba(0,0,0,.3); }
+                i { font-size: 3.4rem; text-shadow: 1px 1px 6px rgba(0,0,0,.3); 
+                    &.active { color: var(--color-primary); }
+                }
                 b { display: block; font-size: 1.3rem; font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif; }
                 img { width: 4.8rem; height: 4.8rem; .radius(4.8rem); .border-a(.2rem,var(--color-white)); }
                 small { display: inline-block; width: 2rem; .h-lh(2rem); .radius(2rem); font-size: 1rem; .bgc(#ee2753,var(--color-white)); position: absolute; bottom: -1rem; left: 30%; font-weight: 600; }

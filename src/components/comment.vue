@@ -1,12 +1,12 @@
 <template>
   <div class="comment-container">
-    <Popup v-model:show="showComment" round position="bottom" :overlay="false" :style="{ height: commentHeight }" @open="onPopupToggle(true)" @close="onPopupToggle(false)">
+    <Popup v-model:show="showComment" round position="bottom" :overlay="true" :overlay-style="{ background: 'none' }" :style="{ height: commentHeight }" :safe-area-inset-top="true" :safe-area-inset-bottom="true">
       <div class="bbs-comment-box">
         <div class="bcb-head">
           <p>
             评论<b>{{ comments.length == 0 ? '' : comments.length }}</b>
           </p>
-          <span @click="toggleComment(false)"><i class="mvfont mv-close" /></span>
+          <span @click="toggleCommentVisibility(false)"><i class="mvfont mv-close" /></span>
         </div>
         <div ref="commentListRef" class="bcb-main">
           <List v-if="comments.length > 0" v-model:loading="loading" :finished="finished" finished-text="没有更多评论了" @load="loadMoreComments">
@@ -69,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, nextTick } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
 import { getAssetsFile } from '@/utils'
 import { groupEmoji, inputEmoji, deleteEmoji, parseEmojis } from '@/utils/emojiHandle.ts'
 import { bbsCommentApi, bbsCommentLikeApi, getBbsCommentListApi } from '@/api/bbs'
@@ -88,7 +88,7 @@ dayjs.extend(relativeTime)
 dayjs.locale('zh-cn')
 
 const props = defineProps<{ postId: string; showComment: boolean; commentHeight?: string }>()
-const emit = defineEmits(['update:showComment', 'popup-toggle'])
+const emit = defineEmits(['update:showComment', 'comment-added'])
 
 const commentListRef = ref(null)
 const showComment = ref(props.showComment)
@@ -174,6 +174,7 @@ const postComment = async (content = '') => {
       })
       textDom.innerText = ''
       showEmojiPopup.value = false
+      emit('comment-added')
     }
   } catch (error) {
     showToast(error.message || '发表评论失败')
@@ -224,9 +225,9 @@ const updateCommentLikeStatus = (comment, currentLikeType, newLikeType) => {
   }
 }
 
-const toggleComment = (isShow = false) => {
-  showComment.value = isShow
-  emit('update:showComment', isShow)
+const toggleCommentVisibility = (isVisible: boolean) => {
+  showComment.value = isVisible
+  emit('update:showComment', isVisible)
 }
 
 const checkLogin = (): boolean => {
@@ -247,14 +248,15 @@ onMounted(() => {
   }
 })
 
+// 监听 showComment 的变化并发射事件
+watch(showComment, (newVal) => {
+  emit('update:showComment', newVal)
+})
+
 watch([() => props.showComment, () => props.postId], ([newShowComment, newPostId]) => {
   showComment.value = newShowComment
-  if (newPostId) {
+  if (newShowComment && newPostId) {
     fetchComments(true)
   }
 })
-
-const onPopupToggle = (isVisible: boolean) => {
-  emit('popup-toggle', isVisible)
-}
 </script>

@@ -15,10 +15,10 @@
     <section class="vp-main">
       <div class="vm-a" />
       <div class="vm-b">
-        <swiper v-if="bbsList.length > 0" :direction="'vertical'" :modules="modules" :virtual="{ slides: bbsList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
+        <swiper v-if="bbsList.length > 0" :direction="'vertical'" :modules="modules" :virtual="{ slides: bbsList.length, enabled: true, addSlidesBefore: 2, addSlidesAfter: 2 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
           <swiper-slide v-for="(bbs, index) in bbsList" :key="bbs.id" :virtual-index="index">
             <div class="v-a" :class="{ shrink: showComment }">
-              <swiper :id="'swiper-' + index" :modules="[Autoplay, Pagination]" @swiper="(swiper) => onSwiper(index, swiper)" :slides-per-view="1" :pagination="getPaginationStyle(bbs.imgs)" :centered-slides="true" :autoplay="false" :nested="true" style="width: 100%; height: 100%">
+              <swiper :id="'swiper-' + index" :modules="[Autoplay, Pagination]" @swiper="(swiper) => onSwiper(index, swiper)" :slides-per-view="1" :pagination="getPaginationStyle(bbs.imgs)" :centered-slides="true" :autoplay="false" :loop="false" :nested="true" style="width: 100%; height: 100%">
                 <swiper-slide v-for="img in bbs.imgs.split(',')" :key="img">
                   <img v-lazy-decrypt="img" :alt="img" loading-img="default2.gif" error-img="default2.gif" />
                 </swiper-slide>
@@ -62,7 +62,7 @@
       </div>
     </Popup>
     <Footer active-menu="elites" footer-class="footer f-footer" />
-    <Comment v-model:showComment="showComment" :post-id="currentPostId" @update:show-comment="handleCommentToggle" @popup-toggle="onCommentPopupToggle" />
+    <Comment v-model:showComment="showComment" :post-id="currentPostId" @comment-added="updateCommentCount" />
   </div>
 </template>
 
@@ -133,9 +133,12 @@ const fetchBbsDetail = async (bbsId: number) => {
     if (bbsList.value[currentSlideIndex.value].imgs.split(',').length > 20) {
       // 获取到当前swiper 下面的pagination 元素
       const currentSwiper = swipers.value.get(currentSlideIndex.value)
+      console.log(currentSlideIndex.value)
+      console.log(swipers.value)
       if (currentSwiper) {
         currentSwiper.pagination.el.style.top = '60px'
-        currentSwiper.pagination.el.style.display = 'block'
+        currentSwiper.pagination.el.style.setProperty('display', 'unset', 'important')
+        currentSwiper.pagination.el.style.setProperty('bottom', 'unset', 'important')
       }
     }
   } catch (error) {
@@ -144,7 +147,6 @@ const fetchBbsDetail = async (bbsId: number) => {
 }
 
 const onSwiper = (index: number, swiper: any) => {
-  console.log(index, swiper)
   swipers.value.set(index, swiper)
 }
 
@@ -152,8 +154,6 @@ const slideChange = async (swiper) => {
   try {
     const previousIndex = currentSlideIndex.value
     currentSlideIndex.value = swiper.activeIndex
-    console.log('上一个: ' + previousIndex, '当前: ' + currentSlideIndex.value)
-
     if (previousIndex === currentSlideIndex.value) return
 
     // 播放当前swiper
@@ -161,21 +161,17 @@ const slideChange = async (swiper) => {
     if (currentSwiper) {
       currentSwiper.autoplay.start()
     }
-
-    // 停止并 重置上一个
+    // 停止上一个swiper的自动播放
     const previousSwiper = swipers.value.get(previousIndex)
     if (previousSwiper) {
       previousSwiper.autoplay.stop()
     }
-    // 预加载下一个视频
     const isSlidingDown = currentSlideIndex.value > previousIndex
-    // 销毁上上一个swiper
     const destroyIndex = isSlidingDown ? currentSlideIndex.value - 2 : currentSlideIndex.value + 2
     if (destroyIndex >= 0 && swipers.value.has(destroyIndex)) {
       // const destroySwiper = swipers.value.get(destroyIndex)
       // destroySwiper.destroy(true, true)
-      swipers.value.delete(destroyIndex)
-      console.log('上上一个swiper销毁完成', destroyIndex)
+      // swipers.value.delete(destroyIndex)
     }
 
     // 获取bbs详情
@@ -201,6 +197,7 @@ const checkLogin = (): boolean => {
   return true
 }
 
+// 点赞
 const toggleLike = async () => {
   if (!checkLogin()) return
   if (!bbsDetail.value) return
@@ -217,6 +214,7 @@ const toggleLike = async () => {
   }
 }
 
+// 收藏
 const toggleCollection = async () => {
   if (!checkLogin()) return
   if (!bbsDetail.value) return
@@ -233,6 +231,7 @@ const toggleCollection = async () => {
   }
 }
 
+// 复制分享链接
 const handleShare = () => {
   if (clipboard.value) {
     clipboard.value.destroy()
@@ -261,6 +260,7 @@ const handleShare = () => {
   document.body.removeChild(button)
 }
 
+// 根据图片数量返回分页器类型
 const getPaginationStyle = (imgs: string) => {
   const imgCount = imgs.split(',').length
   return imgCount > 20 ? { type: 'fraction' } : { type: 'bullets' }
@@ -273,10 +273,31 @@ const showCommentComponent = (postId: string | undefined) => {
   }
 }
 
-const handleCommentToggle = (isShow: boolean) => {
-  showComment.value = isShow
+// 处理评论弹窗的打开和关闭时分页的显示隐藏和自动播放
+const handleCommentToggle = (isVisible: boolean) => {
+  const currentSwiper = swipers.value.get(currentSlideIndex.value)
+  console.log(currentSlideIndex.value)
+  console.log(swipers.value)
+  console.log(currentSwiper)
+  if (isVisible) {
+    // 当打开评论弹窗时，停止自动播放，并隐藏分页器
+    if (currentSwiper) {
+      currentSwiper.autoplay.stop()
+      currentSwiper.pagination.el.style.visibility = 'hidden'
+    }
+  } else {
+    // 当关闭评论弹窗时，继续自动播放，并延迟200ms显示分页器
+    if (currentSwiper) {
+      currentSwiper.autoplay.start()
+      setTimeout(() => {
+        currentSwiper.pagination.el.style.visibility = 'visible'
+      }, 200)
+    }
+  }
+  updateSwiperSize()
 }
 
+// 更新swiper尺寸
 const updateSwiperSize = () => {
   const currentSwiper = swipers.value.get(currentSlideIndex.value)
   nextTick(() => {
@@ -286,28 +307,16 @@ const updateSwiperSize = () => {
   })
 }
 
-const onCommentPopupToggle = (isVisible: boolean) => {
-  const currentSwiper = swipers.value.get(currentSlideIndex.value)
-  if (isVisible) {
-    console.log('评论弹窗已打开')
-    if (currentSwiper) {
-      currentSwiper.autoplay.stop() // 停止自动播放
-    }
-  } else {
-    console.log('评论弹窗已关闭')
-    if (currentSwiper) {
-      currentSwiper.autoplay.start() // 继续自动播放
-    }
+// 当comment更新评论数量时，更新bbsDetail的评论数量
+const updateCommentCount = () => {
+  if (bbsDetail.value) {
+    bbsDetail.value.commentCount = (Number(bbsDetail.value.commentCount) + 1).toString()
   }
-  updateSwiperSize() // 在弹窗打开或关闭时更新当前 swiper 尺寸
 }
 
 // 监听 showComment 的变化
 watch(showComment, (newVal) => {
-  if (newVal) {
-    // 当评论弹窗显示时，更新 swiper 尺寸
-    updateSwiperSize()
-  }
+  handleCommentToggle(newVal)
 })
 
 onMounted(async () => {
@@ -323,9 +332,6 @@ onMounted(async () => {
 })
 
 onBeforeRouteLeave(() => {
-  // swipers.value.forEach((swiper) => {
-  //   swiper.destroy()
-  // })
   swipers.value.clear()
 })
 </script>
