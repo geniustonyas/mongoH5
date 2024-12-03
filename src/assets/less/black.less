@@ -56,7 +56,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
     .head-menu { .flex(); .h-lh(4.4rem);
         .hm-a { .flex(); .flex-wrap(); .x-scrollbar();
-            a { padding: 0 1rem; font-size: 1.6rem; white-space: nowrap; color: var(--color-light); font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif; .transition(font-size,.2s,linear);
+            a { cursor:pointer; padding: 0 1rem; font-size: 1.6rem; white-space: nowrap; color: var(--color-light); font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif; .transition(font-size,.2s,linear);
                 &.active { position: relative; font-size: 2rem; color: var(--color-white); font-weight: 600;
 
                     i { font-size: 1.6rem; background-image: -webkit-linear-gradient(-45deg, #f4a942, #ff2a14); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -71,7 +71,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
     .head-tabs { .flex(); .flex-pack-justify(); padding-left: .5rem; padding-right: 1.5rem;
         .hm-a {
-            span { display: inline-block; height: 4rem; line-height: 4rem; padding: 0 1rem; font-size: 1.6rem; color: var(--color-666); font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif;
+            span { cursor:pointer; display: inline-block; height: 4rem; line-height: 4rem; padding: 0 1rem; font-size: 1.6rem; color: var(--color-666); font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif;
                 &.active { color: var(--color-white); position: relative; font-weight: 600; }
             }
         }
@@ -118,7 +118,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         pointer-events: none;
     }
     .h-m { text-align: center;
-        a { position: relative; display: inline-block; .h-lh(4rem); padding: 0 1.5rem; font-size: 1.6rem; color: var(--color-666); font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif;
+        a { cursor:pointer; position: relative; display: inline-block; .h-lh(4rem); padding: 0 1.5rem; font-size: 1.6rem; color: var(--color-666); font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif;
 
             &.active { color: var(--color-white);
                 &:before { content: ""; position: absolute; left: 32%; width: 35%; height: 0.2rem; bottom: 0.4rem; background: var(--color-white); }
@@ -673,7 +673,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
                 .flex-align();
                 position: absolute; 
                 bottom: .5rem;
-                width: -moz-calc(100vw - 2rem);width: -webkit-calc(100vw - 2rem); width: calc(100vw - 2rem);
+                width: -moz-calc(100% - 2rem);width: -webkit-calc(100% - 2rem); width: calc(100% - 2rem);
                 left:1rem;
                 right:1rem;
                 .fraction-pagination{
@@ -711,8 +711,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
                 b { display: block; font-size: 1.3rem; font-weight: 500; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif; }
                 img { width: 4.8rem; height: 4.8rem; .radius(4.8rem); .border-a(.2rem,var(--color-white)); }
                 small { display: inline-block; width: 2rem; .h-lh(2rem); .radius(2rem); font-size: 1rem; .bgc(#ee2753,var(--color-white)); position: absolute; bottom: -1rem; left: 30%; font-weight: 600; }
-                &.btn-mute { .bgc(var(--color-white),var(--color-black)); .flex(); .flex-align(); .flex-pack(); .flex-wrap(); height: 4rem; line-height: 4rem; .radius(4rem); margin: 0 auto; min-width: 4rem;
-                    span { font-weight: 500; display: inline-block; width: 6rem; animation-name: shrinkWith; animation-duration: .85s; animation-delay: 1s; animation-timing-function: ease-in-out; animation-iteration-count: 1; animation-fill-mode: forwards; }
+                &.btn-mute { .bgc(var(--color-white),var(--color-black)); .flex(); .flex-align(); .flex-pack(); .flex-wrap(); height: 4rem;
+                             line-height: 4rem; .radius(4rem); margin: 0 auto; min-width: 4rem;
+                    span { font-weight: 500; display: inline-block; width: 6rem;
+                           animation-name: shrinkWith; animation-duration: .85s; 
+                           animation-delay: 1s; animation-timing-function: ease-in-out; 
+                           animation-iteration-count: 1; animation-fill-mode: forwards; .ellipsis(); }
                     i { font-size: 2.4rem; vertical-align: middle; position: relative; bottom: .1rem; }
                 }
             }
@@ -775,7 +779,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             i { font-size: 2.4rem; cursor: pointer; }
         }
         .h-m { text-align: center;
-            a { position: relative; display: inline-block; .h-lh(4rem); font-size: 1.6rem; padding: 0 1.2rem; color: var(--color-666);
+            a { cursor:pointer; position: relative; display: inline-block; .h-lh(4rem); font-size: 1.6rem; padding: 0 1.2rem; color: var(--color-666);
                 &.active { color: var(--color-white);
                     &:before { content: ""; position: absolute; left: 32%; width: 35%; height: 0.2rem; bottom: 0.4rem; background: var(--color-white); }
                 }
@@ -1129,7 +1133,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         .r-b {
             .b-item { .flex(); .flex-pack-justify(); .flex-align(); padding: .5rem 0;
                 a { .flex-x(); padding: 1rem; .bgc(rgba(255,255,255,.1),var(--color-white)); font-size: 1.5rem; .radius(.4rem 0 0 .4rem); }
-                span { width: 6rem; .flex-x(0 0 6rem); .h-lh(4rem); .radius(0 .4rem .4rem 0); text-align: center; .bg(rgba(255,255,255,.2)); color: var(--color-white); }
+                span { width: 6rem; cursor:pointer; .flex-x(0 0 6rem); .h-lh(4rem); .radius(0 .4rem .4rem 0); text-align: center; .bg(rgba(255,255,255,.2)); color: var(--color-white); }
             }
         }
         .r-c { text-align: center;
@@ -1613,6 +1617,21 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     45% { transform: scale(1.05) }
     80% { transform: scale(0.95) }
     100% { transform: scale(1) }
+}
+
+/*@keyframes shrinkWith {
+   from  { opacity: 1; margin-right:0; width:6rem;}
+    to {  opacity: 0; width:0;}
+}
+*/
+@-webkit-keyframes shrinkWith {
+    0% { margin-right: 0; opacity: 1; filter: alpha(opacity=100); }
+    100% { margin-right: -6rem; opacity: 0; filter: alpha(opacity=0); }
+}
+
+@keyframes shrinkWith {
+    0% { margin-right: 0; opacity: 1; filter: alpha(opacity=100); }
+    100% { margin-right: -6rem; opacity: 0; filter: alpha(opacity=0); }
 }
 
 
