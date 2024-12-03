@@ -40,7 +40,7 @@
                 <a @click="handleSubmit" class="btn btn1">{{ isLoginMode ? '立即登录' : '立即注册' }}</a>
               </div>
               <div class="f-c" v-if="isLoginMode">
-                <a>忘记密码？</a>
+                <!-- <a>忘记密码？</a> -->
               </div>
             </div>
           </div>

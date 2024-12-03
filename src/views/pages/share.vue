@@ -44,6 +44,7 @@
         <a @click="copyLink" :data-clipboard-text="shareLink">复制推广链接</a>
       </div>
     </section>
+    <NavBar active-menu="share" />
   </div>
 </template>
 
@@ -55,6 +56,7 @@ import { useUserStoreHook } from '@/store/user'
 import { copy } from '@/utils/index'
 import { userShareCount } from '@/api/user'
 import { useAppStore } from '@/store/app'
+import NavBar from '@/components/layout/NavBar.vue'
 
 const appStore = useAppStore()
 const userStore = useUserStoreHook()
