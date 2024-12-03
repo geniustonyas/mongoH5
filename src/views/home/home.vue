@@ -71,12 +71,14 @@
       </div>
     </section>
     <Footer active-menu="home" />
+    <NavBar active-menu="home" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import Footer from '@/components/layout/Footer.vue'
+import NavBar from '@/components/layout/NavBar.vue'
 import { getAssetsFile } from '@/utils'
 import { useUserStoreHook } from '@/store/user'
 import { useAppStoreHook } from '@/store/app'
