@@ -72,6 +72,7 @@
         </div>
       </div>
     </section>
+    <NavBar active-menu="theme" />
   </div>
 </template>
 
@@ -84,6 +85,7 @@ import type { Actor } from '@/types/theme'
 import type { Video, VideoListRequest } from '@/types/video'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import { useAppStore } from '@/store/app'
+import NavBar from '@/components/layout/NavBar.vue'
 import { zhiming, nvyou } from '@/utils/cryptedData'
 
 const appStore = useAppStore()

@@ -19,6 +19,7 @@
         </div>
       </div>
     </section>
+    <NavBar active-menu="theme" />
   </div>
 </template>
 
@@ -29,6 +30,7 @@ import { getThemeApi } from '@/api/theme'
 import type { ThemeResponse } from '@/types/theme'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store/app'
+import NavBar from '@/components/layout/NavBar.vue'
 
 const router = useRouter()
 const appStore = useAppStore()

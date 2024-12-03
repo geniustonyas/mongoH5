@@ -13,47 +13,63 @@
     </header>
 
     <section class="vp-main">
-      <div class="vm-a" />
-      <div class="vm-b">
-        <swiper v-if="bbsList.length > 0" :direction="'vertical'" :modules="modules" :virtual="{ slides: bbsList.length, enabled: true, addSlidesBefore: 2, addSlidesAfter: 2 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
-          <swiper-slide v-for="(bbs, index) in bbsList" :key="bbs.id" :virtual-index="index">
-            <div class="v-a" :class="{ shrink: showComment }">
-              <swiper :id="'swiper-' + index" :modules="[Autoplay, Pagination]" @swiper="(swiper) => onSwiper(index, swiper)" :slides-per-view="1" :pagination="getPaginationStyle(bbs.imgs)" :centered-slides="true" :autoplay="false" :loop="false" :nested="true" style="width: 100%; height: 100%">
-                <swiper-slide v-for="img in bbs.imgs.split(',')" :key="img">
-                  <img v-lazy-decrypt="img" :alt="img" loading-img="default2.gif" error-img="default2.gif" />
-                </swiper-slide>
-              </swiper>
-            </div>
-            <div class="v-b" :class="{ hidden: showComment }">
-              <a @click="toggleLike()">
-                <i :class="['mvfont', 'mv-xihuan', { active: bbsDetail && bbsDetail.like == 1 }]" />
-                <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.likeCount, 'b', bbsDetail.id, 'like') : 0 }}</b>
-              </a>
-              <a @click="showCommentComponent(bbsDetail?.id)">
-                <i class="mvfont mv-pinglun3" />
-                <b>{{ bbsDetail ? bbsDetail.commentCount : 0 }}</b>
-              </a>
-              <a @click="toggleCollection()">
-                <i :class="['mvfont', 'mv-shoucang', { active: bbsDetail && bbsDetail.collect }]" />
-                <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.collectionCount, 'b', bbsDetail.id, 'collect') : 0 }}</b>
-              </a>
-              <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
-            </div>
-            <div class="v-c" :class="{ hidden: showComment }">
-              <!--<div class="c-g">
-                <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
-                <span>{{ appStore.spareData.OfficialDomain }}</span>
-              </div>-->
-              <h3>@芒果TV官方-<span>{{ appStore.spareData.OfficialDomain }}</span></h3>
-              <p>
-                <b v-html="decodeHtmlEntities(bbs.title || '')" />
-                <template v-if="bbsDetail && bbsDetail.tags">
-                  <span v-for="tag in bbsDetail.tags" :key="tag.id">#{{ tag.title }}</span>
-                </template>
-              </p>
-            </div>
-          </swiper-slide>
-        </swiper>
+      <div class="vpm-bd">
+        <div class="vm-h">
+          <div class="h-m">
+            <a @click="router.push({ name: 'elites' })">{{ douyin }}</a>
+            <a @click="router.push({ name: 'disclose' })" class="active">吃瓜</a>
+            <a @click="showToast('建设中...')">短剧</a>
+            <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
+          </div>
+          <div class="h-r">
+            <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
+          </div>
+        </div>
+        <div class="vm-a" />
+        <div class="vm-b">
+          <swiper v-if="bbsList.length > 0" :direction="'vertical'" :modules="modules" :virtual="{ slides: bbsList.length, enabled: true, addSlidesBefore: 2, addSlidesAfter: 2 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
+            <swiper-slide v-for="(bbs, index) in bbsList" :key="bbs.id" :virtual-index="index">
+              <div class="v-a" :class="{ shrink: showComment }">
+                <swiper :id="'swiper-' + index" :modules="[Autoplay, Pagination]" @swiper="(swiper) => onSwiper(index, swiper)" :slides-per-view="1" :pagination="getPaginationStyle(bbs.imgs) as any" :centered-slides="true" :autoplay="{} as any" :loop="false" :nested="true" style="width: 100%; height: 100%">
+                  <swiper-slide v-for="img in bbs.imgs.split(',')" :key="img">
+                    <img v-lazy-decrypt="img" :alt="img" loading-img="default2.gif" error-img="default2.gif" />
+                  </swiper-slide>
+                </swiper>
+              </div>
+              <div class="v-b" :class="{ hidden: showComment }">
+                <a @click="toggleLike()">
+                  <i :class="['mvfont', 'mv-xihuan', { active: bbsDetail && bbsDetail.like == '1' }]" />
+                  <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.likeCount, 'b', bbsDetail.id, 'like') : 0 }}</b>
+                </a>
+                <a @click="showCommentComponent(bbsDetail?.id)">
+                  <i class="mvfont mv-pinglun3" />
+                  <b>{{ bbsDetail ? bbsDetail.commentCount : 0 }}</b>
+                </a>
+                <a @click="toggleCollection()">
+                  <i :class="['mvfont', 'mv-shoucang', { active: bbsDetail && bbsDetail.collect }]" />
+                  <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.collectionCount, 'b', bbsDetail.id, 'collect') : 0 }}</b>
+                </a>
+                <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
+              </div>
+              <div class="v-c" :class="{ hidden: showComment }">
+                <!--<div class="c-g">
+                  <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
+                  <span>{{ appStore.spareData.OfficialDomain }}</span>
+                </div>-->
+                <h3>
+                  @芒果TV官方-<span>{{ appStore.spareData.OfficialDomain }}</span>
+                </h3>
+                <p>
+                  <b v-html="decodeHtmlEntities(bbs.title || '')" />
+                  <template v-if="bbsDetail && bbsDetail.subChannel">
+                    <span :key="bbsDetail.channel.id">#{{ bbsDetail.channel.title }}</span>
+                    <span :key="bbsDetail.subChannel.id">#{{ bbsDetail.subChannel.title }}</span>
+                  </template>
+                </p>
+              </div>
+            </swiper-slide>
+          </swiper>
+        </div>
       </div>
     </section>
     <Popup v-model:show="showSharePopup" teleport="body" position="center" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :overlay="false" round>
@@ -61,8 +77,9 @@
         <p>分享链接已复制，赶快去分享给好友吧！</p>
       </div>
     </Popup>
-    <Footer active-menu="elites" footer-class="footer f-footer" />
-    <Comment v-model:showComment="showComment" :post-id="currentPostId" @comment-added="updateCommentCount" />
+    <Footer active-menu="elites" footer-class="footer f-footer" :class="{ hidden: showComment }" />
+    <NavBar active-menu="elites" />
+    <Comment v-if="bbsDetail" v-model:showComment="showComment" :post-id="bbsDetail.id" @comment-added="updateCommentCount" teleport-target=".vpm-bd" />
   </div>
 </template>
 
@@ -74,8 +91,10 @@ import type { Bbs } from '@/types/bbs'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { douyin } from '@/utils/cryptedData'
-import { getAssetsFile, getIncrementalNumberWithOffset, decodeHtmlEntities } from '@/utils'
+import { getIncrementalNumberWithOffset, decodeHtmlEntities } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
+import NavBar from '@/components/layout/NavBar.vue'
+import Comment from '@/components/comment.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Virtual, Autoplay, Pagination } from 'swiper/modules'
@@ -86,7 +105,6 @@ import 'swiper/css/pagination'
 
 import { Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
-import Comment from '@/components/comment.vue'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -266,13 +284,17 @@ const getPaginationStyle = (imgs: string) => {
   const imgCount = imgs.split(',').length
   if (imgCount > 20) {
     return {
+      enabled: true,
       type: 'fraction',
-      renderFraction: (currentClass, totalClass) => {
+      renderFraction: (currentClass: string, totalClass: string) => {
         return `<div class="fraction-pagination"><span class="${currentClass}"></span> / <span class="${totalClass}"></span></div>`
       }
     }
   }
-  return { type: 'bullets' }
+  return {
+    enabled: true,
+    type: 'bullets'
+  }
 }
 
 const showCommentComponent = (postId: string | undefined) => {
@@ -335,9 +357,14 @@ onMounted(async () => {
       firstSwiper.autoplay.start()
     }
   }
+  // 给body加上 noscrolling class (先移除在添加)
+  document.body.classList.remove('noscrolling')
+  document.body.classList.add('noscrolling')
 })
 
 onBeforeRouteLeave(() => {
   swipers.value.clear()
+
+  document.body.classList.remove('noscrolling')
 })
 </script>

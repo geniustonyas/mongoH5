@@ -89,7 +89,8 @@
       </div>
     </Popup>
 
-    <Comment v-model:showComment="showComment" :post-id="detail?.id" />
+    <Comment v-if="detail" v-model:showComment="showComment" :post-id="detail?.id" />
+    <NavBar active-menu="bbs" />
   </div>
 </template>
 
@@ -102,6 +103,7 @@ import { useUserStore } from '@/store/user'
 import { getBbsDetailApi, getBbsRelatedRecommendApi, bbsLikeApi, bbsCollectionApi } from '@/api/bbs'
 import BbsListItem from '@/components/BbsListItem.vue'
 import Comment from '@/components/Comment.vue'
+import NavBar from '@/components/layout/NavBar.vue'
 import type { Bbs } from '@/types/bbs'
 import { ImagePreview, Popup } from 'vant'
 import Clipboard from 'clipboard'

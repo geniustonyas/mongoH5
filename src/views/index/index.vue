@@ -18,29 +18,27 @@
             </swiper>
           </div>
         </div>
-        <!-- <div class="hs-c">
-          <a @click="router.push({ name: 'history' })"><i class="mvfont mv-lishishijian-" /></a>
-          <a @click="router.push({ name: 'home' })"><i class="mvfont mv-touxiang1" /></a>
-        </div> -->
         <div class="hs-c">
           <a class="c-hot" @click="router.push({ name: 'hotVideo' })"><i class="mvfont mv-zhutirebangbeifen" /></a>
         </div>
       </div>
-      <div class="category-tabs">
-        <Tabs v-model:active="activeId" class="vant-tabs" @click-tab="clickTab" title-active-color="transparent">
-          <Tab title="首页" name="0" />
-          <Tab v-for="category in appStore.categorys" :key="category.d" :title="category.t" />
-        </Tabs>
-        <div class="search-icon">
+      <div class="head-menu">
+        <div class="hm-a">
+          <a :class="{ active: activeId === 0 }" @click="clickTab(0)">首页</a>
+          <a v-for="(category, index) in appStore.categorys" :key="category.d" :class="{ active: activeId === index + 1 }" @click="clickTab(index + 1)">
+            {{ category.t }}
+          </a>
+        </div>
+        <div class="hm-b">
           <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
         </div>
       </div>
     </header>
     <main class="main">
-      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage">
+      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" :allow-touch-move="!appStore.isPc">
         <swiper-slide>
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
-            <div class="index-content">
+            <div class="web-col">
               <!--Banner-->
               <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="index-banner" class="swiper-container">
                 <swiper class="my-swipe" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
@@ -98,86 +96,84 @@
                   </a>
                 </div>
               </nav>
-
-              <nav v-if="latestVideos && latestVideos.length > 0" class="mv-t-l">
-                <div class="m-a">
-                  <div class="a-l">
-                    <i class="mvfont mv-xietiao" />
-                    <span>最新视频</span>
-                  </div>
-                  <div class="a-r">
-                    <i @click="router.push({ name: 'videoList', params: { id: 1 } })" class="mvfont mv-right" />
-                  </div>
-                </div>
-                <div class="m-b">
-                  <VideoGridItem v-for="video in latestVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
-                </div>
-              </nav>
-
-              <nav v-if="recommendedVideos && recommendedVideos.length > 0" class="mv-t-l">
-                <div class="m-a">
-                  <div class="a-l">
-                    <i class="mvfont mv-xietiao" />
-                    <span>热门推荐</span>
-                  </div>
-                  <div class="a-r">
-                    <i @click="router.push({ name: 'videoList', params: { id: 2 } })" class="mvfont mv-right" />
-                  </div>
-                </div>
-                <div class="m-b">
-                  <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
-                </div>
-              </nav>
             </div>
+
+            <nav v-if="latestVideos && latestVideos.length > 0" class="mv-t-l">
+              <div class="m-a">
+                <div class="a-l">
+                  <i class="mvfont mv-xietiao" />
+                  <span>最新视频</span>
+                </div>
+                <div class="a-r">
+                  <i @click="router.push({ name: 'videoList', params: { id: 1 } })" class="mvfont mv-right" />
+                </div>
+              </div>
+              <div class="m-b">
+                <VideoGridItem v-for="video in latestVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+              </div>
+            </nav>
+
+            <nav v-if="recommendedVideos && recommendedVideos.length > 0" class="mv-t-l">
+              <div class="m-a">
+                <div class="a-l">
+                  <i class="mvfont mv-xietiao" />
+                  <span>热门推荐</span>
+                </div>
+                <div class="a-r">
+                  <i @click="router.push({ name: 'videoList', params: { id: 2 } })" class="mvfont mv-right" />
+                </div>
+              </div>
+              <div class="m-b">
+                <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+              </div>
+            </nav>
           </PullRefresh>
         </swiper-slide>
         <swiper-slide v-for="category in appStore.categorys" :key="category.d">
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
-            <div class="category-content">
-              <div v-if="categoryBannerVideosMap[category.d] && categoryBannerVideosMap[category.d].length > 0 && keepAlive" class="mv-swiper">
-                <swiper :modules="[Autoplay]" :slides-per-view="2" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
-                  <swiper-slide v-for="video in categoryBannerVideosMap[category.d]" :key="video.id">
-                    <a @click="router.push({ name: 'play', params: { id: video.id } })">
-                      <img v-lazy-decrypt="video.imgUrl" :alt="video.title" />
-                    </a>
-                  </swiper-slide>
-                </swiper>
-              </div>
-              <section class="m-l-b">
-                <swiper v-if="category.s && category.s.length > 0" class="b-a" :modules="[FreeMode]" :free-mode="true as any" :slides-per-view="7" :space-between="10" :loop="false" :nested="true" @touch-start="handleTouchStart" :no-swiping="true" :no-swiping-class="'swiper-no-swiping'" :threshold="0" :touch-release-on-edges="false">
-                  <swiper-slide :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</swiper-slide>
-                  <swiper-slide v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
-                    {{ cates.t }}
-                  </swiper-slide>
-                </swiper>
-                <nav class="b-b">
-                  <span v-for="sort in sortOptions" :key="sort.value" :class="{ active: categorySortType[query.ChannelId] == sort.value }" @click="changeSort(sort.value)">
-                    {{ sort.label }}
-                  </span>
-                </nav>
-                <nav class="mv-t-l">
-                  <div class="m-b" v-if="categoryVideosMap[category.d]">
-                    <VideoGridItem v-for="video in categoryVideosMap[category.d]" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
-                  </div>
-
-                  <template v-if="categoryTotalPages[category.d] > 1">
-                    <div class="au-pagination-box" v-if="categoryTotalPages[category.d] > 9">
-                      <div class="pb-x">
-                        <a @click="changePage(categoryPageIndex[category.d] - 1)" :class="{ disabled: categoryPageIndex[category.d] == 1 }">上一页</a>
-                      </div>
-                      <div class="pb-x">
-                        <input v-model="categoryPageIndex[category.d]" @change="handlePageChange" type="number" min="1" :max="categoryTotalPages[category.d]" />
-                        <span>/ {{ categoryTotalPages[category.d] }}</span>
-                      </div>
-                      <div class="pb-x">
-                        <a @click="changePage(categoryPageIndex[category.d] + 1)" :class="{ disabled: categoryPageIndex[category.d] == categoryTotalPages[category.d] }">下一页</a>
-                      </div>
-                    </div>
-                    <div v-else class="more-box"><a v-if="categoryPageIndex[category.d] < categoryTotalPages[category.d]" @click="loadMore">加载更多</a></div>
-                  </template>
-                </nav>
-              </section>
+            <div v-if="categoryBannerVideosMap[category.d] && categoryBannerVideosMap[category.d].length > 0 && keepAlive" class="mv-swiper">
+              <swiper :modules="[Autoplay]" :slides-per-view="appStore.isPc ? 5 : 2" :centered-slides="!appStore.isPc" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
+                <swiper-slide v-for="video in categoryBannerVideosMap[category.d]" :key="video.id">
+                  <a @click="router.push({ name: 'play', params: { id: video.id } })">
+                    <img v-lazy-decrypt="video.imgUrl" :alt="video.title" />
+                  </a>
+                </swiper-slide>
+              </swiper>
             </div>
+            <section class="m-l-b">
+              <swiper v-if="category.s && category.s.length > 0" class="b-a" :modules="[FreeMode]" :free-mode="true as any" :slides-per-view="'auto'" :space-between="10" :loop="false" :nested="true">
+                <swiper-slide :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</swiper-slide>
+                <swiper-slide v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
+                  {{ cates.t }}
+                </swiper-slide>
+              </swiper>
+              <nav class="b-b">
+                <span v-for="sort in sortOptions" :key="sort.value" :class="{ active: categorySortType[query.ChannelId] == sort.value }" @click="changeSort(sort.value)">
+                  {{ sort.label }}
+                </span>
+              </nav>
+              <nav class="mv-t-l">
+                <div class="m-b" v-if="categoryVideosMap[category.d]">
+                  <VideoGridItem v-for="video in categoryVideosMap[category.d]" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                </div>
+
+                <template v-if="categoryTotalPages[category.d] > 1">
+                  <div class="au-pagination-box" v-if="appStore.isPc || (!appStore.isPc && categoryTotalPages[category.d] > 9)">
+                    <div class="pb-x">
+                      <a @click="changePage(categoryPageIndex[category.d] - 1)" :class="{ disabled: categoryPageIndex[category.d] == 1 }">上一页</a>
+                    </div>
+                    <div class="pb-x">
+                      <input v-model="categoryPageIndex[category.d]" @change="handlePageChange" type="number" min="1" :max="categoryTotalPages[category.d]" />
+                      <span>/ {{ categoryTotalPages[category.d] }}</span>
+                    </div>
+                    <div class="pb-x">
+                      <a @click="changePage(categoryPageIndex[category.d] + 1)" :class="{ disabled: categoryPageIndex[category.d] == categoryTotalPages[category.d] }">下一页</a>
+                    </div>
+                  </div>
+                  <div v-else class="more-box"><a v-if="categoryPageIndex[category.d] < categoryTotalPages[category.d]" @click="loadMore">加载更多</a></div>
+                </template>
+              </nav>
+            </section>
           </PullRefresh>
         </swiper-slide>
       </swiper>
@@ -188,6 +184,7 @@
       </Popup>
     </main>
     <Footer active-menu="index" />
+    <NavBar active-menu="index" />
     <DownloadPop />
   </div>
 </template>
@@ -195,8 +192,9 @@
 <script setup lang="ts">
 import { ref, reactive, nextTick, computed, watch, onMounted, onActivated, onDeactivated } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import NavBar from '@/components/layout/NavBar.vue'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
-import { Tabs, Tab, PullRefresh, Popup, Icon, showToast } from 'vant'
+import { PullRefresh, Popup, Icon, showToast } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'
@@ -377,17 +375,12 @@ const loadMore = async () => {
   }
 }
 
-// 点击tab滑动到对应分类, 并重新获取数据
-const clickTab = () => {
+// 使用 clickTab 方法来切换 tab
+const clickTab = (index: number) => {
+  activeId.value = index
   if (swiperInstance.value) {
-    swiperInstance.value.slideTo(activeId.value, 0)
+    swiperInstance.value.slideTo(index)
   }
-  // query.ChannelId = appStore.categorys[activeId.value - 1].d
-  // if (!categoryVideosMap.value[query.ChannelId] || categoryVideosMap.value[query.ChannelId].length == 0) {
-  //   handleCategoryChange()
-  // } else {
-  //   query.SubChannelId = ''
-  // }
 }
 
 // 切换分类
@@ -444,10 +437,6 @@ const handlePageChange = async () => {
   }
 }
 
-const handleTouchStart = (event: any) => {
-  event.preventDefault()
-}
-
 // 立即执行
 ;(async () => {
   await handleCategoryChange()
@@ -457,11 +446,15 @@ const handleTouchStart = (event: any) => {
 })()
 
 const openDownloadPage = () => {
-  const ua = navigator.userAgent
-  if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
-    window.open(appStore.iosDownloadUrl, '_blank')
+  if (appStore.isPc) {
+    window.open('https://mg14.cc/', '_blank')
   } else {
-    window.open(appStore.androidDownloadUrl, '_blank')
+    const ua = navigator.userAgent
+    if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+      window.open(appStore.iosDownloadUrl, '_blank')
+    } else {
+      window.open(appStore.androidDownloadUrl, '_blank')
+    }
   }
 }
 
@@ -472,7 +465,7 @@ const openAd = (url: string) => {
 function handleScroll() {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
   const header = document.querySelector('.index-header')!
-  const hmB = document.querySelector('.search-icon') as HTMLElement
+  const hmB = document.querySelector('.hm-b') as HTMLElement
 
   if (header && hmB) {
     if (scrollTop > 100) {
@@ -501,8 +494,3 @@ onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
 })
 </script>
-<style scoped>
-.category-content {
-  min-height: 550px;
-}
-</style>

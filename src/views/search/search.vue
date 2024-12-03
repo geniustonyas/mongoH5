@@ -78,6 +78,7 @@
         </div>
       </nav>
     </section>
+    <NavBar active-menu="search" />
   </div>
 </template>
 
@@ -89,6 +90,7 @@ import { getVideoListApi } from '@/api/video'
 import type { Video } from '@/types/video'
 import { List } from 'vant'
 import { formatDuration, getIncrementalNumberWithOffset } from '@/utils'
+import NavBar from '@/components/layout/NavBar.vue'
 
 const router = useRouter()
 const route = useRoute()

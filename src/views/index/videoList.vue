@@ -35,6 +35,7 @@
         </List>
       </PullRefresh>
     </section>
+    <NavBar active-menu="index" />
   </div>
 </template>
 
@@ -47,7 +48,7 @@ import { getVideoListApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
 import { formatDuration, getIncrementalNumberWithOffset } from '@/utils'
 import { useAppStoreHook } from '@/store/app'
-
+import NavBar from '@/components/layout/NavBar.vue'
 const appStore = useAppStoreHook()
 const route = useRoute()
 const router = useRouter()

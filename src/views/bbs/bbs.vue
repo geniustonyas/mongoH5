@@ -4,10 +4,12 @@
       <div class="b-l">
         <i @click="showToast('暂停发帖')" class="mvfont mv-jia2" />
       </div>
-      <div class="b-m">
-        <Tabs v-model:active="activeTab" class="vant-tabs" title-active-color="transparent" @change="clickTab">
-          <Tab v-for="(tab, index) in tabs" :key="index" :title="tab.title" :name="tab.name" />
-        </Tabs>
+      <div class="head-menu">
+        <div class="hm-a">
+          <a v-for="(tab, index) in tabs" :key="index" :class="{ active: activeTab === tab.name }" @click="clickTab(tab.name)">
+            {{ tab.title }}
+          </a>
+        </div>
       </div>
       <div class="b-r" @click="router.push({ name: 'bbsSearch' })">
         <i class="mvfont mv-search1" />
@@ -15,11 +17,11 @@
     </header>
 
     <main class="b-b-b">
-      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="handleSwipeChange">
+      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="handleSwipeChange" :allow-touch-move="!appStore.isPc">
         <!-- 推荐 -->
         <swiper-slide class="bbs-swipe-item0">
           <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="bbs-banner" class="swiper-container">
-            <swiper class="my-swipe" @swiper="onBannerSwiper" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
+            <swiper class="my-swipe" @swiper="onBannerSwiper" :modules="appStore.isPc ? [Autoplay, Pagination] : [Autoplay]" :slides-per-view="appStore.isPc ? 5 : 1" :space-between="10" :pagination="{ clickable: true } as any" :centered-slides="false" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
               <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                 <a target="_blank" :href="ad.targetUrl">
                   <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
@@ -211,14 +213,16 @@
     </main>
 
     <Footer active-menu="bbs" />
+    <NavBar active-menu="bbs" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, computed, onActivated, nextTick, onDeactivated } from 'vue'
 import { useRouter } from 'vue-router'
-import { Tabs, Tab, PullRefresh, showToast } from 'vant'
+import { PullRefresh, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
+import NavBar from '@/components/layout/NavBar.vue'
 import BbsListItem from '@/components/BbsListItem.vue'
 import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'
 import { useAppStore } from '@/store/app'
@@ -286,11 +290,12 @@ const onBannerSwiper = (swiper: any) => {
   bannerSwiperInstance.value = swiper
 }
 
-const clickTab = () => {
+const clickTab = (tabName: number) => {
+  activeTab.value = tabName
   if (swiperInstance.value) {
-    swiperInstance.value.slideTo(activeTab.value, 0)
+    swiperInstance.value.slideTo(tabName, 0)
   }
-  if (activeTab.value == 4) {
+  if (tabName == 4) {
     if (userStore.userInfo.id == '') {
       if (swiperInstance.value) {
         swiperInstance.value.slideTo(previousTab.value, 0)

@@ -280,7 +280,7 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach((to, from) => {
   const appStore = useAppStore()
-  if (to.meta.transition !== 'no') {
+  if (to.meta.transition !== 'no' && !appStore.isPc) {
     const toDepth = to.path.split('/').length
     const fromDepth = from.path.split('/').length
     to.meta.transition = toDepth === fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'

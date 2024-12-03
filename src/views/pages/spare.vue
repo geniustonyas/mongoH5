@@ -88,6 +88,7 @@
         </div>
       </div>
     </section>
+    <NavBar active-menu="index" />
   </div>
 </template>
 
@@ -95,6 +96,7 @@
 import { onMounted } from 'vue'
 import { copy } from '@/utils/index'
 import { useAppStore } from '@/store/app'
+import NavBar from '@/components/layout/NavBar.vue'
 
 const appStore = useAppStore()
 

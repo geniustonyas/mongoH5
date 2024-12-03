@@ -30,6 +30,7 @@
         </List>
       </div>
     </section>
+    <NavBar active-menu="theme" />
   </div>
 </template>
 
@@ -41,7 +42,7 @@ import { getActorListApi } from '@/api/theme'
 import type { ActorListRequest, ActorList } from '@/types/theme'
 import { zhiming, nvyou, wuma, riben, guochan, suren } from '@/utils/cryptedData'
 import { List } from 'vant'
-
+import NavBar from '@/components/layout/NavBar.vue'
 const router = useRouter()
 
 const sortOptions = [

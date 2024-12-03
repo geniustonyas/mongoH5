@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
-        <video ref="videoRef" id="plyr-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+        <video id="plyr-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
         <div class="a-f">
           <div class="item">
             <span v-for="(option, index) in rewindOptions" :key="'rewind-' + index" @click="rewind(option.time)"> <i class="mvfont mv-left" />{{ option.label }} </span>
@@ -73,6 +73,7 @@
       <Icon name="close" size="30" @click="closeAdPopup" style="display: block; text-align: center; margin: 20px auto" />
     </Popup>
     <main class="main" />
+    <NavBar active-menu="play" />
   </div>
 </template>
 
@@ -88,6 +89,7 @@ import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
 import dayjs from 'dayjs'
 import VideoGridItem from '@/components/VideoGridItem.vue'
+import NavBar from '@/components/layout/NavBar.vue'
 import { showToast } from 'vant'
 import { Popup, Icon } from 'vant'
 import Clipboard from 'clipboard'
@@ -100,7 +102,6 @@ const videoDetail = ref<VideoDetailResponse | null>(null)
 const recommendedVideos = ref<Video[]>([])
 const initialLikeType = ref<number | string>()
 
-const videoRef = ref<HTMLVideoElement>(null)
 const player = ref<any>(null)
 const hls = ref<any>(null)
 const controls = ref([
@@ -234,22 +235,14 @@ const fetchRecommendedVideos = async (channelId: string, currentVideoId: string)
 const initializePlayer = async (domain: string, uri: string) => {
   try {
     resetPlayer()
-    if (!videoRef.value) {
+    const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
+    if (!videoElement) {
       console.error('Video element not found')
       return
     }
     // const url = uri.includes('http') ? uri : domain + uri
     const url = generateAuthUrl(domain, uri)
     // const url = 'https://b.gg155gg1.com/20241128/f33h63BE/index.m3u8'
-
-    player.value = new window.Plyr(videoRef.value, {
-      clickToPlay: true,
-      autoplay: true,
-      controls: controls.value,
-      settings: ['captions', 'quality', 'speed', 'loop'],
-      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
-    })
-
     if (window.Hls.isSupported()) {
       // 这里声明了 tmphls 的原因是因为直接使用vue的代理 hls.value时 视频会无法播放
       const tmpHls = new window.Hls({
@@ -264,16 +257,22 @@ const initializePlayer = async (domain: string, uri: string) => {
       //   xhr.open('GET', tsUrlWithAuth, true)
       // }
       tmpHls.loadSource(url)
-      tmpHls.attachMedia(videoRef.value)
+      tmpHls.attachMedia(videoElement)
 
       tmpHls.on(window.Hls.Events.ERROR, (event, data) => {
         handleHlsError(data)
       })
       hls.value = tmpHls
-    } else if (videoRef.value.canPlayType('application/vnd.apple.mpegurl')) {
-      videoRef.value.src = url
+    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+      videoElement.src = url
     }
-
+    player.value = new window.Plyr(videoElement, {
+      clickToPlay: true,
+      autoplay: true,
+      controls: controls.value,
+      settings: ['captions', 'quality', 'speed', 'loop'],
+      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
+    })
     player.value.on('click', (event) => {
       if (player.value.touch && event.target.className == 'plyr__poster') {
         if (player.value.playing) {
@@ -285,16 +284,18 @@ const initializePlayer = async (domain: string, uri: string) => {
     })
 
     player.value.on('enterfullscreen', () => {
-      if (videoRef.value) {
-        videoRef.value.style.width = '100%'
-        videoRef.value.style.height = '100%'
+      const videoElement = document.getElementById('plyr-player')
+      if (videoElement) {
+        videoElement.style.width = '100%'
+        videoElement.style.height = '100%'
       }
     })
 
     player.value.on('exitfullscreen', () => {
-      if (videoRef.value) {
-        videoRef.value.style.width = ''
-        videoRef.value.style.height = '24rem'
+      const videoElement = document.getElementById('plyr-player')
+      if (videoElement) {
+        videoElement.style.width = ''
+        videoElement.style.height = '24rem'
       }
     })
 
@@ -323,6 +324,8 @@ const initializePlayer = async (domain: string, uri: string) => {
     player.value.on('playing', () => {
       showAdPopup.value = false // 播放时隐藏广告
     })
+
+    window.scrollTo(0, 0)
   } catch (error) {
     console.error('初始化播放器失败:', error)
   }
@@ -520,7 +523,6 @@ onMounted(() => {
   if (appStore.advertisement.length == 0) {
     appStore.fetAdvertisement()
   }
-
   copy('.copy')
 })
 
@@ -537,8 +539,5 @@ onBeforeRouteLeave((to, from, next) => {
 <style scoped>
 .active {
   color: #ff6b6b;
-}
-.m-d-b .md-a video {
-  height: 24rem;
 }
 </style>

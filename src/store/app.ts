@@ -4,6 +4,7 @@ import { SpareData } from '@/types/app'
 import router from '@/router'
 import { getThemeApi } from '@/api/theme'
 import store from '@/store'
+
 import { decryptedCategorys, fanhaoPianmingYanyuan } from '@/utils/cryptedData'
 
 export const useAppStore = defineStore('app', {
@@ -36,7 +37,8 @@ export const useAppStore = defineStore('app', {
       theme: [], // 标签
       categorys: decryptedCategorys, // 分类
       advertisement: [], // 广告
-      clarity: ['普通', '高清', '超清', '蓝光'] // 清晰度
+      clarity: ['普通', '高清', '超清', '蓝光'], // 清晰度
+      isPc: /Windows|Macintosh|Linux|X11/i.test(navigator.userAgent) && !/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
     }
   },
   getters: {

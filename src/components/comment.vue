@@ -1,6 +1,6 @@
 <template>
   <div class="comment-container">
-    <Popup v-model:show="showComment" round position="bottom" :overlay="true" :overlay-style="{ background: 'none' }" :style="{ height: commentHeight }" @click-overlay="toggleCommentVisibility(false)" :safe-area-inset-top="true" :safe-area-inset-bottom="true">
+    <Popup v-model:show="showComment" round position="bottom" :overlay="true" :overlay-style="{ background: 'none' }" :style="{ height: commentHeight }" @click-overlay="toggleCommentVisibility(false)" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :teleport="teleportTarget">
       <div class="bbs-comment-box">
         <div class="bcb-head">
           <p>
@@ -71,7 +71,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, nextTick } from 'vue'
 import { getAssetsFile } from '@/utils'
-import { groupEmoji, inputEmoji, deleteEmoji, parseEmojis } from '@/utils/emojiHandle.ts'
+import { groupEmoji, inputEmoji, deleteEmoji, parseEmojis } from '@/utils/emojiHandle'
 import { bbsCommentApi, bbsCommentLikeApi, getBbsCommentListApi } from '@/api/bbs'
 import { Popup, showToast, List } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -87,7 +87,12 @@ import 'dayjs/locale/zh-cn'
 dayjs.extend(relativeTime)
 dayjs.locale('zh-cn')
 
-const props = defineProps<{ postId: string; showComment: boolean; commentHeight?: string }>()
+const props = defineProps<{
+  postId: string
+  showComment: boolean
+  commentHeight?: string
+  teleportTarget?: string
+}>()
 const emit = defineEmits(['update:showComment', 'comment-added'])
 
 const commentListRef = ref(null)
@@ -95,6 +100,7 @@ const showComment = ref(props.showComment)
 const comments = ref([])
 const noData = ref(false)
 const commentHeight = props.commentHeight || '70%'
+const teleportTarget = props.teleportTarget || '.page'
 
 const presetComments = ref(['放开她，让我来！[色]', '老师真是太美了！[可爱]'])
 const showEmojiPopup = ref(false)
@@ -158,8 +164,8 @@ const postComment = async (content = '') => {
     if (data) {
       showToast('评论成功')
       comments.value.unshift({
-        id: data.id,
-        userName: userStore.userInfo.name,
+        id: '',
+        userName: userStore.userInfo.nickName,
         createTime: dayjs().fromNow(),
         content: parseEmojis(commentContent),
         likeCount: '0',

@@ -60,6 +60,8 @@
         </List>
       </div>
     </main>
+
+    <NavBar active-menu="bbs" />
   </div>
 </template>
 
@@ -70,6 +72,7 @@ import { getBbsSubCategoryDetailApi, getBbsListApi } from '@/api/bbs'
 import type { BbsListRequest, BbsSubCategoryDetailResponse } from '@/types/bbs'
 import { useAppStore } from '@/store/app'
 import { List } from 'vant'
+import NavBar from '@/components/layout/NavBar.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -82,7 +85,7 @@ const actressListRef = ref<HTMLElement | null>(null)
 const query = reactive<BbsListRequest>({
   PageIndex: 1,
   PageSize: 5,
-  SortType: 0,
+  SortType: 1,
   ChannelId: route.query.channelId as string,
   SubChannelId: route.params.id as string,
   ActressId: '',

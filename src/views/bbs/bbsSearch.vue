@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <header class="s-header">
       <input v-model="searchKeyword" placeholder="搜索" @keyup.enter="handleInputSearch" />
       <a @click="appStore.setBack(true)">取消</a>
@@ -60,6 +60,7 @@
         </div>
       </nav>
     </section>
+    <NavBar active-menu="bbs" />
   </div>
 </template>
 
@@ -71,6 +72,7 @@ import { getBbsListApi } from '@/api/bbs'
 import type { BbsListRequest, Bbs } from '@/types/bbs'
 import { List } from 'vant'
 import BbsListItem from '@/components/BbsListItem.vue'
+import NavBar from '@/components/layout/NavBar.vue'
 
 const route = useRoute()
 const appStore = useAppStore()

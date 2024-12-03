@@ -34,6 +34,7 @@
         </PullRefresh>
       </div>
     </section>
+    <NavBar active-menu="theme" />
   </div>
 </template>
 
@@ -44,6 +45,7 @@ import dayjs from 'dayjs'
 import { getVideoListApi, getVideoRankApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
 import Header from '@/views/theme/themeHeader.vue'
+import NavBar from '@/components/layout/NavBar.vue'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { formatDuration, getIncrementalNumberWithOffset } from '@/utils'
