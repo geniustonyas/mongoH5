@@ -14,7 +14,8 @@
         }
     }
 }
-.main, .m-d-b, .vp-main, .b-b-b, .bbs-plate-box, .t-l-b, .h-l-b ,.s-h-b,.p-s-b,.s-header,.a-d-b{ margin-left: 16rem; }
+.h-header { margin-left: 16rem; max-width: calc(100% - 16rem); }
+.main, .m-d-b, .vp-main, .b-b-b, .bbs-plate-box, .t-l-b, .h-l-b, .s-h-b, .p-s-b, .s-header, .a-d-b, .h-p-b { margin-left: 16rem; }
 .main {
     .web-col { .flex();
         #index-banner {.flex-x(1.5); }
@@ -28,7 +29,7 @@
 }
 .m-d-b {
     .md-a { position: relative; height: auto;
-              video{max-height:80vh;}
+        video { max-height: 80vh; }
     }
 }
 .m-header.h-video { display: none; }
@@ -122,14 +123,5 @@
 }
 .p-s-b .ps-ssfx .s-b { grid-template-columns: repeat(8, 1fr); }
 
-.au-pop {
-    .flex(); .flex-align(); .flex-pack();
-}
-.p-login {
-    min-width: 40rem;
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    bottom: auto;
-}
+.au-pop { .flex(); .flex-align(); .flex-pack(); }
+.p-login { min-width: 40rem; position: relative; top: auto; left: auto; transform: none; bottom: auto; }
