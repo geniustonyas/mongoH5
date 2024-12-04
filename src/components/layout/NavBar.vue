@@ -19,7 +19,9 @@
           <div class="row">
             <router-link :to="{ name: 'theme' }"><i class="mvfont mv-tag" /><span>主题</span></router-link>
             <router-link :to="{ name: 'hotVideo' }"><i class="mvfont mv-hot" /><span>热门</span></router-link>
-            <router-link :to="{ name: 'actor' }"><i class="mvfont mv-cvFilter" /><span>女优</span></router-link>
+            <router-link :to="{ name: 'actor' }">
+              <i class="mvfont mv-cvFilter" /><span>{{ nvyou }}</span>
+            </router-link>
           </div>
         </div>
       </div>
@@ -41,6 +43,7 @@ import { defineProps } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAssetsFile } from '@/utils'
 import { useAppStore } from '@/store/app'
+import { nvyou } from '@/utils/cryptedData'
 
 const appStore = useAppStore()
 const router = useRouter()
