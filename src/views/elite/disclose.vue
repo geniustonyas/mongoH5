@@ -167,6 +167,7 @@ const fetchBbsDetail = async (bbsId: number) => {
 
 const onSwiper = (index: number, swiper: any) => {
   swipers.value.set(index, swiper)
+  swiper.autoplay.stop()
 }
 
 const slideChange = async (swiper) => {
@@ -353,6 +354,7 @@ onMounted(async () => {
     await fetchBbsDetail(parseInt(bbsList.value[0].id))
     // 启动第一个swiper的自动播放
     const firstSwiper = swipers.value.get(0)
+    console.log(firstSwiper)
     if (firstSwiper) {
       firstSwiper.autoplay.start()
     }

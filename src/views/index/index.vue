@@ -35,7 +35,7 @@
       </div>
     </header>
     <main class="main">
-      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" :allow-touch-move="!appStore.isPc">
+      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" :allow-touch-move="!appStore.isPc" :no-swiping="true" no-swiping-class="no-swipe">
         <swiper-slide>
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="web-col">
@@ -43,9 +43,7 @@
               <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="index-banner" class="swiper-container">
                 <swiper class="my-swipe" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
                   <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
-                    <a target="_blank" :href="ad.targetUrl">
-                      <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
-                    </a>
+                    <a target="_blank" :href="ad.targetUrl"><img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" /></a>
                   </swiper-slide>
                 </swiper>
               </nav>
@@ -141,12 +139,18 @@
               </swiper>
             </div>
             <section class="m-l-b">
-              <swiper v-if="category.s && category.s.length > 0" class="b-a" :modules="[FreeMode]" :free-mode="true as any" :slides-per-view="'auto'" :space-between="10" :loop="false" :nested="true">
-                <swiper-slide :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</swiper-slide>
+              <!-- <swiper v-if="category.s && category.s.length > 0" class="b-a" :modules="[FreeMode]" :free-mode="true as any" :slides-per-view="'auto'" :space-between="10" :loop="false" :nested="true">
+                <swiper-slide :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')"><span>全部</span></swiper-slide>
                 <swiper-slide v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
-                  {{ cates.t }}
+                  <span>{{ cates.t }}</span>
                 </swiper-slide>
-              </swiper>
+              </swiper> -->
+              <nav v-if="category.s && category.s.length > 0" class="b-a no-swipe">
+                <span :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</span>
+                <span v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
+                  {{ cates.t }}
+                </span>
+              </nav>
               <nav class="b-b">
                 <span v-for="sort in sortOptions" :key="sort.value" :class="{ active: categorySortType[query.ChannelId] == sort.value }" @click="changeSort(sort.value)">
                   {{ sort.label }}

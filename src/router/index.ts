@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'root',
-    redirect: { name: 'elites' }
+    component: null
   },
   {
     path: '/index',
@@ -245,6 +245,20 @@ router.beforeEach(async (to, from, next) => {
   // 如果应用配置还未加载，则加载配置
   if (appStore.cdnUrl == '') {
     await appStore.fetchAllData()
+  }
+
+  // 判断是否为PC端
+  const isPc = appStore.isPc
+  console.log(to.path)
+  console.log(isPc)
+  // 如果访问根路径，根据设备类型重定向
+  if (to.path == '/') {
+    if (isPc) {
+      next({ name: 'index' })
+    } else {
+      next({ name: 'elites' })
+    }
+    return
   }
 
   if (token) {

@@ -314,8 +314,15 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 }
 
 .m-l-b {
-    .b-a { padding: 1rem;
-        .swiper-slide { .bgc(rgba(255, 255, 255, 0.1),var(--color-white)); padding: 0.5rem 1rem; text-align: center; .radius(.4rem); white-space: nowrap; cursor: pointer; min-width: 5rem; max-width: 8rem;
+    // .b-a { padding: 1rem;
+    //     .swiper-slide { min-width: 4rem; max-width: 5rem;
+    //         span {  .bgc(rgba(255, 255, 255, 0.1),var(--color-white)); padding: 0.5rem 1rem; text-align: center; .radius(.4rem); white-space: nowrap; cursor: pointer;
+    //             &.active { .bgc(rgba(var(--color-primary-rgba),.15),var(--color-primary)); font-weight: 600; }
+    //         }
+    //     }
+    // }
+    .b-a { padding: 1rem; .flex(); .flex-wrap(); .x-scrollbar();
+        span { .bgc(rgba(255, 255, 255, 0.1),var(--color-white)); padding: 0.5rem 1rem; text-align: center; .radius(.4rem); white-space: nowrap; margin-right: 1rem; cursor: pointer;
             &.active { .bgc(rgba(var(--color-primary-rgba),.15),var(--color-primary)); font-weight: 600; }
         }
     }
