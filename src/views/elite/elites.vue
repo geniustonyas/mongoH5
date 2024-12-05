@@ -30,7 +30,7 @@
           <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
             <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
               <div class="v-a">
-                <video :id="'video-player-' + index" class="video-player" controls muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
+                <video :id="'video-player-' + index" class="video-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
               </div>
               <div class="v-b">
                 <a @click="handleLike()">
@@ -74,6 +74,7 @@
       </div>
     </Popup>
     <Footer active-menu="elites" footer-class="footer f-footer" />
+    <Loading v-show="isLoading" />
     <NavBar active-menu="elites" />
   </div>
 </template>
@@ -90,8 +91,10 @@ import { useUserStore } from '@/store/user'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { douyin } from '@/utils/cryptedData'
 import { getIncrementalNumberWithOffset } from '@/utils'
-import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
+import Footer from '@/components/layout/Footer.vue'
+import Loading from '@/components/layout/Loading.vue'
+
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Virtual } from 'swiper/modules'
 import 'swiper/css'
@@ -115,6 +118,7 @@ const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.shortV
 const pageIndex = ref(initPageIndex.value)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
+const isLoading = ref(true)
 
 const fetchVideos = async () => {
   try {
@@ -169,13 +173,13 @@ const initializePlayer = async (index: number) => {
 
   const player = new window.Plyr(videoElement, {
     clickToPlay: true,
-    autoplay: false,
+    autoplay: true,
     muted: mutePlay.value,
     autopause: false,
     hideControls: true,
     controls: ['progress']
   })
-
+  players.value.set(index, player)
   const url = generateAuthUrl(appStore.playDomain, video.playUrl)
   if (window.Hls.isSupported()) {
     try {
@@ -199,7 +203,6 @@ const initializePlayer = async (index: number) => {
       // 点击屏幕播放暂停
       hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
         console.log('初始化m3u8解析完成：' + index)
-        players.value.set(index, player)
         player.on('click', (event) => {
           if (player.touch && event.target.className == 'plyr__poster') {
             player.togglePlay()
@@ -216,6 +219,8 @@ const initializePlayer = async (index: number) => {
           console.log('playIndex: ' + index, 'currentVideoIndex: ' + currentVideoIndex.value)
           if (currentVideoIndex.value != index) {
             player.stop()
+          } else {
+            isLoading.value = false
           }
         })
       })
@@ -235,6 +240,9 @@ const initializePlayer = async (index: number) => {
         if (videoRatio > 1.5) {
           videoElement.classList.add('cover-fit')
         }
+        if (currentVideoIndex.value == index) {
+          isLoading.value = false
+        }
       })
     } catch (error) {
       console.error('初始化hls失败: ' + index, error)
@@ -244,7 +252,7 @@ const initializePlayer = async (index: number) => {
     console.log('canPlayType，初始化player: ' + index)
     const player = new window.Plyr(videoElement, {
       clickToPlay: true,
-      autoplay: false,
+      autoplay: true,
       muted: mutePlay.value,
       autopause: false,
       hideControls: true,
@@ -257,8 +265,10 @@ const initializePlayer = async (index: number) => {
       if (videoRatio > 1.5) {
         videoElement.classList.add('cover-fit')
       }
+      if (currentVideoIndex.value == index) {
+        isLoading.value = false
+      }
     })
-    players.value.set(index, player)
   } else {
     console.error('HLS not supported and cannot play type')
   }
@@ -351,7 +361,7 @@ const stopAndResetVideo = (index) => {
 }
 
 const playCurrentVideo = async () => {
-  console.log('playCurrentVideo 方法被调用')
+  isLoading.value = true
   const currentPlayer = players.value.get(currentVideoIndex.value)
   if (!currentPlayer) {
     console.log('播放器不存在，初始化: ' + currentVideoIndex.value)
@@ -370,6 +380,7 @@ const playCurrentVideo = async () => {
     try {
       console.log('播放器 ' + currentVideoIndex.value + ' 存在，播放')
       await currentPlayer.play()
+      isLoading.value = false
     } catch (error) {
       if (error.name == 'NotAllowedError') {
         showToast('点击屏幕继续播放')
@@ -490,6 +501,7 @@ onMounted(async () => {
 
     const firstPlayer = players.value.get(0)
     if (firstPlayer) {
+      console.log('播放第一个视频')
       firstPlayer.play()
     }
   }

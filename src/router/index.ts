@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'root',
-    redirect: { name: 'index' }
+    redirect: { name: 'elites' }
   },
   {
     path: '/index',
