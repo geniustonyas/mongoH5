@@ -32,6 +32,8 @@ export const useAppStore = defineStore('app', {
       androidDownloadUrl: '', // android下载地址
       shortVideoRandomMin: 1, // 短视频随机最小值
       shortVideoRandomMax: 10, // 短视频随机最大值
+      discloseRandomMin: 1, // 揭秘随机最小值
+      discloseRandomMax: 10, // 揭秘随机最大值
       spareData: {} as SpareData, // 丢失数据
 
       theme: [], // 标签
@@ -83,6 +85,8 @@ export const useAppStore = defineStore('app', {
         this.androidDownloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
         this.shortVideoRandomMin = parseInt(data.find((item: any) => item.pKey === 'ShortVideoRandomPage')?.value1 || '1')
         this.shortVideoRandomMax = parseInt(data.find((item: any) => item.pKey === 'ShortVideoRandomPage')?.value2 || '10')
+        this.discloseRandomMin = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value1 || '1')
+        this.discloseRandomMax = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value2 || '10')
         const tmp = data.find((item: any) => item.pKey === 'SpareData')?.value1.split(',') || []
         this.spareData = JSON.parse(tmp)
         console.log('丢失数据:', this.spareData)

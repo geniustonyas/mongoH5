@@ -79,7 +79,7 @@
     </Popup>
     <Footer active-menu="elites" footer-class="footer f-footer" :class="{ hidden: showComment }" />
     <NavBar active-menu="elites" />
-    <Comment v-if="bbsDetail" v-model:showComment="showComment" :post-id="bbsDetail.id" @comment-added="updateCommentCount" teleport-target=".vpm-bd" />
+    <Comment v-if="bbsDetail" v-model:show-comment="showComment" :post-id="bbsDetail.id" @comment-added="updateCommentCount" teleport-target=".vpm-bd" />
   </div>
 </template>
 
@@ -94,7 +94,7 @@ import { douyin } from '@/utils/cryptedData'
 import { getIncrementalNumberWithOffset, decodeHtmlEntities } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
-import Comment from '@/components/comment.vue'
+import Comment from '@/components/Comment.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Virtual, Autoplay, Pagination } from 'swiper/modules'
@@ -116,7 +116,7 @@ const currentSlideIndex = ref(0)
 
 const bbsList = ref<Bbs[]>([])
 const bbsDetail = ref<Bbs | null>(null)
-const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin)
+const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.discloseRandomMax - appStore.discloseRandomMin + 1)) + appStore.discloseRandomMin)
 const pageIndex = ref(initPageIndex.value)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
@@ -147,7 +147,7 @@ const fetchBbsDetail = async (bbsId: number) => {
     } = await getBbsDetailApi(bbsId)
     bbsDetail.value = data
     // 修改列表的数据
-    bbsList.value[currentSlideIndex.value].imgs = data.imgs + ',' + data.imgs + ',' + data.imgs
+    bbsList.value[currentSlideIndex.value].imgs = data.imgs
     if (bbsList.value[currentSlideIndex.value].imgs.split(',').length > 20) {
       // 获取到当前swiper 下面的pagination 元素
       const currentSwiper = swipers.value.get(currentSlideIndex.value)
