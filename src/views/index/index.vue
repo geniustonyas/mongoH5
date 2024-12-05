@@ -22,10 +22,10 @@
           <a class="c-hot" @click="router.push({ name: 'hotVideo' })"><i class="mvfont mv-zhutirebangbeifen" /></a>
         </div>
       </div>
-      <div class="head-menu">
+      <div v-if="appStore.isPc" class="head-menu">
         <div class="hm-a">
-          <a :class="{ active: activeId === 0 }" @click="clickTab(0)">首页</a>
-          <a v-for="(category, index) in appStore.categorys" :key="category.d" :class="{ active: activeId === index + 1 }" @click="clickTab(index + 1)">
+          <a :class="{ active: activeId === 0 }" @click="clickTabPc(0)">首页</a>
+          <a v-for="(category, index) in appStore.categorys" :key="category.d" :class="{ active: activeId === index + 1 }" @click="clickTabPc(index + 1)">
             {{ category.t }}
           </a>
         </div>
@@ -33,9 +33,18 @@
           <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
         </div>
       </div>
+      <div v-else class="category-tabs">
+        <Tabs v-model:active="activeId" class="vant-tabs" @click-tab="clickTab" title-active-color="transparent">
+          <Tab title="首页" name="0" />
+          <Tab v-for="category in appStore.categorys" :key="category.d" :title="category.t" />
+        </Tabs>
+        <div class="search-icon">
+          <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
+        </div>
+      </div>
     </header>
     <main class="main">
-      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" :allow-touch-move="!appStore.isPc" :no-swiping="true" no-swiping-class="no-swipe">
+      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" :allow-touch-move="!appStore.isPc" :no-swiping="!appStore.isPc" no-swiping-class="no-swipe">
         <swiper-slide>
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="web-col">
@@ -198,12 +207,12 @@ import { ref, reactive, nextTick, computed, watch, onMounted, onActivated, onDea
 import { useRouter, useRoute } from 'vue-router'
 import NavBar from '@/components/layout/NavBar.vue'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
-import { PullRefresh, Popup, Icon, showToast } from 'vant'
+import { PullRefresh, Popup, Icon, showToast, Tabs, Tab } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'
 import { getAssetsFile } from '@/utils'
-import { Autoplay, Pagination, FreeMode } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
@@ -379,11 +388,18 @@ const loadMore = async () => {
   }
 }
 
-// 使用 clickTab 方法来切换 tab
-const clickTab = (index: number) => {
+// PC端方法来切换 tab
+const clickTabPc = (index: number) => {
   activeId.value = index
   if (swiperInstance.value) {
     swiperInstance.value.slideTo(index)
+  }
+}
+
+// 点击tab滑动到对应分类, 并重新获取数据
+const clickTab = () => {
+  if (swiperInstance.value) {
+    swiperInstance.value.slideTo(activeId.value, 0)
   }
 }
 
