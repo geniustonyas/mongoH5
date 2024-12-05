@@ -273,6 +273,7 @@ const initializePlayer = async (domain: string, uri: string) => {
       settings: ['captions', 'quality', 'speed', 'loop'],
       fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
     })
+    videoElement.style.display = 'block'
     player.value.on('click', (event) => {
       if (player.value.touch && event.target.className == 'plyr__poster') {
         if (player.value.playing) {
@@ -527,11 +528,11 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  resetPlayer()
+  // resetPlayer()
 })
 
 onBeforeRouteLeave((to, from, next) => {
-  resetPlayer()
+  // resetPlayer()
   next()
 })
 </script>

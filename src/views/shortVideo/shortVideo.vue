@@ -174,6 +174,7 @@ const initializePlayer = async (index: number) => {
     hideControls: true,
     controls: ['progress']
   })
+  videoElement.style.display = 'block'
   players.value.set(index, player)
   const url = generateAuthUrl(appStore.playDomain, video.playUrl)
   if (window.Hls.isSupported()) {
@@ -375,11 +376,12 @@ const playCurrentVideo = async () => {
     try {
       console.log('播放器 ' + currentVideoIndex.value + ' 存在，播放')
       await currentPlayer.play()
-      isLoading.value = false
     } catch (error) {
       if (error.name == 'NotAllowedError') {
         showToast('点击屏幕继续播放')
       }
+    } finally {
+      isLoading.value = false
     }
   }
 

@@ -10,14 +10,3 @@
 <script setup lang="ts">
 // 这里不需要额外的脚本
 </script>
-
-<style scoped>
-.loading-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none; /* 确保不影响用户操作 */
-  z-index: 99;
-}
-</style>
