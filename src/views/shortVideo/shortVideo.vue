@@ -28,7 +28,8 @@
           <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
             <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
               <div class="v-a">
-                <video :id="'video-player-' + index" class="video-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
+                <!-- controls 不能去掉,会导致很多问题, 禁音无效 -->
+                <video :id="'video-player-' + index" class="video-player" muted controls preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
               </div>
               <div class="v-b">
                 <a @click="handleLike()">
@@ -46,11 +47,14 @@
                 </a>
               </div>
               <div class="v-c">
-                <div class="c-g">
+                <!-- <div class="c-g">
                   <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
                   <span>{{ appStore.spareData.OfficialDomain }}</span>
-                </div>
-                <!-- <h3>@芒果TV官方</h3> -->
+                </div> -->
+                <h3>
+                  @芒果TV官方-
+                  <span>{{ appStore.spareData.OfficialDomain }}</span>
+                </h3>
                 <p>
                   <b>{{ video.title }}</b>
                   <template v-if="videoDetail && videoDetail.tags">
@@ -85,7 +89,7 @@ import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { douyin } from '@/utils/cryptedData'
-import { getAssetsFile, getIncrementalNumberWithOffset } from '@/utils'
+import { getIncrementalNumberWithOffset } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 import Footer from '@/components/layout/Footer.vue'
 import Loading from '@/components/layout/Loading.vue'
@@ -107,13 +111,13 @@ const videos = ref<Video[]>([])
 const videoDetail = ref<VideoDetailResponse | null>(null)
 const players = ref<Map<number, any>>(new Map())
 const hlsInstances = ref<Map<number, any>>(new Map())
-const mutePlay = ref(true)
 const currentVideoIndex = ref(0)
 const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin)
 const pageIndex = ref(initPageIndex.value)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 const isLoading = ref(true)
+const mutePlay = ref(true)
 
 const fetchVideos = async () => {
   try {
@@ -153,32 +157,29 @@ const initializePlayer = async (index: number) => {
     console.error(`Video element with id 'video-player-${index}' not found`)
     return
   }
-
   if (players.value.has(index)) {
     players.value.get(index).destroy()
     players.value.delete(index)
-    console.log('初始化时删除player: ' + index)
   }
   if (hlsInstances.value.has(index)) {
     hlsInstances.value.get(index).stopLoad()
     hlsInstances.value.get(index).destroy()
     hlsInstances.value.delete(index)
-    console.log('初始化时删除hls: ' + index)
   }
 
-  const player = new window.Plyr(videoElement, {
-    clickToPlay: true,
-    autoplay: true,
-    muted: mutePlay.value,
-    autopause: false,
-    hideControls: true,
-    controls: ['progress']
-  })
-  videoElement.style.display = 'block'
-  players.value.set(index, player)
   const url = generateAuthUrl(appStore.playDomain, video.playUrl)
   if (window.Hls.isSupported()) {
     try {
+      const player = new window.Plyr(videoElement, {
+        clickToPlay: true,
+        autoplay: false,
+        muted: true,
+        autopause: true,
+        hideControls: true,
+        controls: ['progress']
+      })
+      // 播放器初始化后总是把禁音给取消了, 这里重新设置
+      player.muted = mutePlay.value
       const hls = new window.Hls({
         maxBufferLength: 15,
         maxMaxBufferLength: 30,
@@ -198,7 +199,6 @@ const initializePlayer = async (index: number) => {
 
       // 点击屏幕播放暂停
       hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
-        console.log('初始化m3u8解析完成：' + index)
         player.on('click', (event) => {
           if (player.touch && event.target.className == 'plyr__poster') {
             player.togglePlay()
@@ -212,12 +212,7 @@ const initializePlayer = async (index: number) => {
 
         // 如果不是当前视频，则暂停
         player.on('play', () => {
-          console.log('playIndex: ' + index, 'currentVideoIndex: ' + currentVideoIndex.value)
-          if (currentVideoIndex.value != index) {
-            player.stop()
-          } else {
-            isLoading.value = false
-          }
+          isLoading.value = false
         })
       })
 
@@ -240,20 +235,22 @@ const initializePlayer = async (index: number) => {
           isLoading.value = false
         }
       })
+      players.value.set(index, player)
     } catch (error) {
       console.error('初始化hls失败: ' + index, error)
     }
   } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
     videoElement.src = url
-    console.log('canPlayType，初始化player: ' + index)
     const player = new window.Plyr(videoElement, {
       clickToPlay: true,
-      autoplay: true,
-      muted: mutePlay.value,
-      autopause: false,
+      autoplay: false,
+      muted: true,
+      autopause: true,
       hideControls: true,
       controls: ['progress']
     })
+    // 播放器初始化后总是把禁音给取消了, 这里重新设置
+    player.muted = mutePlay.value
     player.on('canplay', () => {
       const videoWidth = videoElement.videoWidth
       const videoHeight = videoElement.videoHeight
@@ -265,6 +262,7 @@ const initializePlayer = async (index: number) => {
         isLoading.value = false
       }
     })
+    players.value.set(index, player)
   } else {
     console.error('HLS not supported and cannot play type')
   }
@@ -302,9 +300,6 @@ const slideChange = async (swiper) => {
     if (previousIndex === currentVideoIndex.value) return
 
     // 播放当前视频
-    // const currentPlayer = players.value.get(currentVideoIndex.value)
-    // currentPlayer.muted = false
-    // currentPlayer.play()
     await playCurrentVideo()
 
     // 停止并重置上一个视频
@@ -494,9 +489,11 @@ onMounted(async () => {
   if (videos.value.length > 0) {
     await fetchVideoDetail(parseInt(videos.value[0].id))
     await initializePlayer(0)
+    // isAutoPlay.value = false
     await initializePlayer(1)
 
     const firstPlayer = players.value.get(0)
+    console.log(firstPlayer)
     if (firstPlayer) {
       console.log('播放第一个视频')
       firstPlayer.play()

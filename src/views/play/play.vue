@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
-        <video id="plyr-player" controls muted autoplay preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+        <video id="plyr-player" controls muted autoplay preload="auto" poster="" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
         <div class="a-f">
           <div class="item">
             <span v-for="(option, index) in rewindOptions" :key="'rewind-' + index" @click="rewind(option.time)"> <i class="mvfont mv-left" />{{ option.label }} </span>
@@ -271,9 +271,9 @@ const initializePlayer = async (domain: string, uri: string) => {
       autoplay: true,
       controls: controls.value,
       settings: ['captions', 'quality', 'speed', 'loop'],
-      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
+      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null },
+      poster: ''
     })
-    videoElement.style.display = 'block'
     player.value.on('click', (event) => {
       if (player.value.touch && event.target.className == 'plyr__poster') {
         if (player.value.playing) {
@@ -528,11 +528,11 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  // resetPlayer()
+  resetPlayer()
 })
 
 onBeforeRouteLeave((to, from, next) => {
-  // resetPlayer()
+  resetPlayer()
   next()
 })
 </script>

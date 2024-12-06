@@ -249,8 +249,6 @@ router.beforeEach(async (to, from, next) => {
 
   // 判断是否为PC端
   const isPc = appStore.isPc
-  console.log(to.path)
-  console.log(isPc)
   // 如果访问根路径，根据设备类型重定向
   if (to.path == '/') {
     if (isPc) {

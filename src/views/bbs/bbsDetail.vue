@@ -89,7 +89,7 @@
       </div>
     </Popup>
 
-    <Comment v-if="detail" v-model:showComment="showComment" :post-id="detail?.id" />
+    <Comment v-if="detail" v-model:show-comment="showComment" :post-id="detail?.id" />
     <NavBar active-menu="bbs" />
   </div>
 </template>
