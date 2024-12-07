@@ -120,6 +120,10 @@
               </div>
             </nav>
 
+            <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
+              <img @click="handleBannerAdvertisementClick" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
+            </div>
+
             <nav v-if="recommendedVideos && recommendedVideos.length > 0" class="mv-t-l">
               <div class="m-a">
                 <div class="a-l">
@@ -281,10 +285,21 @@ const popAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(3).items
   return tmp || []
 })
+const listBannerAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(54).items
+  // const tmp = appStore.getAdvertisementById(4).items
+  return tmp || []
+})
 const currentPopAd = computed(() => {
   var item = popAdvertisement.value[currentPopAdIndex.value]
   return item || {}
 })
+
+const handleBannerAdvertisementClick = () => {
+  if (listBannerAdvertisement.value.length > 0) {
+    window.open(listBannerAdvertisement.value[0].targetUrl, '_blank')
+  }
+}
 
 // 监听邀请码
 watch(

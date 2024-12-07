@@ -5,6 +5,10 @@
       <a @click="appStore.setBack(true)">取消</a>
     </header>
 
+    <div class="ad-box1 search-padding">
+      <img v-if="bannerAdvertisement && bannerAdvertisement.length > 0" @click="handleBannerAdvertisementClick" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
+    </div>
+
     <!-- 热门标签 -->
     <section v-if="showHotTags" class="p-s-b">
       <nav class="ps-ssfx">
@@ -68,7 +72,7 @@
     </section>
 
     <!-- 搜索结果为空时的展示 -->
-    <section v-if="!searchIng && hasSearched && searchResults.length === 0" class="p-s-b">
+    <section v-if="!searchIng && hasSearched && searchResults.length == 0" class="p-s-b">
       <nav class="ps-ssfx">
         <div class="s-a">
           <b>
@@ -111,6 +115,18 @@ const searchIng = ref(false)
 
 // 用于管理请求的 AbortController
 let currentAbortController: AbortController | null = null
+
+const bannerAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(53).items
+  // const tmp = appStore.getAdvertisementById(4).items
+  return tmp || []
+})
+
+const handleBannerAdvertisementClick = () => {
+  if (bannerAdvertisement.value.length > 0) {
+    window.open(bannerAdvertisement.value[0].targetUrl, '_blank')
+  }
+}
 
 const hotTags = computed(() => {
   const allTags = appStore.theme.flatMap((tag) => tag.items || [])
@@ -206,6 +222,13 @@ const loadData = () => {
 if (appStore.theme.length == 0) {
   appStore.fetTheme()
 }
+
+// 立即执行
+;(async () => {
+  if (appStore.advertisement.length == 0) {
+    await appStore.fetAdvertisement()
+  }
+})()
 
 onMounted(() => {
   const queryKeyword = route.query.keyword

@@ -35,6 +35,11 @@
           <a @click="router.push({ name: 'share' })"><i class="mvfont mv-fenxiang2" />分享好友</a>
         </div>
       </div>
+
+      <div v-if="bannerAdvertisement && bannerAdvertisement.length > 0" class="ad-box">
+        <img @click="handleBannerAdvertisementClick" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
+      </div>
+
       <div class="h-b">
         <ul class="au-rows">
           <li>
@@ -76,6 +81,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
@@ -87,6 +93,25 @@ import { useAppStoreHook } from '@/store/app'
 const userStore = useUserStoreHook()
 const appStore = useAppStoreHook()
 const router = useRouter()
+
+const bannerAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(52).items
+  // const tmp = appStore.getAdvertisementById(4).items
+  return tmp || []
+})
+
+// 立即执行
+;(async () => {
+  if (appStore.advertisement.length == 0) {
+    await appStore.fetAdvertisement()
+  }
+})()
+
+const handleBannerAdvertisementClick = () => {
+  if (bannerAdvertisement.value.length > 0) {
+    window.open(bannerAdvertisement.value[0].targetUrl, '_blank')
+  }
+}
 
 const openDownloadPage = () => {
   const ua = navigator.userAgent
