@@ -64,15 +64,15 @@
           <small v-if="Number(detail?.commentCount) == 0">评论</small>
           <b v-else>{{ detail?.commentCount }}</b>
         </span>
-        <span v-if="detail">
+        <span>
           <i :class="['mvfont', 'mv-zan', { active: detail?.like == '1' }]" @click="toggleLike" />
           <small v-if="Number(detail?.likeCount) == 0">赞</small>
-          <b v-else>{{ getIncrementalNumberWithOffset(detail?.likeCount, 'b', detail.id, 'like') }}</b>
+          <b v-else>{{ getIncrementalNumberWithOffset(detail?.likeCount, 'b', detail?.id, 'like') }}</b>
         </span>
-        <span v-if="detail">
+        <span>
           <i :class="['mvfont', 'mv-like', { active: detail?.collect }]" @click="toggleCollection" />
           <small v-if="Number(detail?.collectionCount) == 0">收藏</small>
-          <b v-else>{{ getIncrementalNumberWithOffset(detail?.collectionCount, 'b', detail.id, 'collect') }}</b>
+          <b v-else>{{ getIncrementalNumberWithOffset(detail?.collectionCount, 'b', detail?.id, 'collect') }}</b>
         </span>
       </div>
     </footer>
@@ -89,7 +89,7 @@
       </div>
     </Popup>
 
-    <Comment v-if="detail" v-model:show-comment="showComment" :post-id="detail?.id" />
+    <Comment v-model:show-comment="showComment" :post-id="detail?.id" />
     <NavBar active-menu="bbs" />
   </div>
 </template>

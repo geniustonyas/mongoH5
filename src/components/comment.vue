@@ -1,71 +1,67 @@
 <template>
-  <div class="comment-container">
-    <Popup v-model:show="showComment" round position="bottom" :overlay="true" :overlay-style="{ background: 'none' }" :style="{ height: commentHeight }" @click-overlay="toggleCommentVisibility(false)" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :teleport="teleportTarget">
-      <div class="bbs-comment-box">
-        <div class="bcb-head">
+  <Popup v-model:show="showComment" round position="bottom" :overlay="true" :overlay-style="{ background: 'none' }" :style="{ height: commentHeight }" @click-overlay="toggleCommentVisibility(false)">
+    <div class="bbs-comment-box">
+      <div class="bcb-head">
+        <p>
+          评论<b>{{ comments.length == 0 ? '' : comments.length }}</b>
+        </p>
+        <span @click="toggleCommentVisibility(false)"><i class="mvfont mv-close" /></span>
+      </div>
+      <div ref="commentListRef" class="bcb-main">
+        <List v-if="comments.length > 0" v-model:loading="loading" :finished="finished" finished-text="没有更多评论了" @load="loadMoreComments">
+          <ul class="bbs-comment-list">
+            <li v-for="comment in comments" :key="comment.id">
+              <div class="i-l">
+                <img v-lazy="{ src: getAssetsFile('logo-4.png') }" alt="用户头像" />
+              </div>
+              <div class="i-r">
+                <div class="r-a">{{ comment.userName }}</div>
+                <div class="r-b">{{ comment.createTime }}</div>
+                <div class="r-c" v-html="comment.content" />
+                <div class="r-d">
+                  <span @click="toggleCommentLike(comment, 1)">
+                    <i :class="['mvfont', 'mv-zan', { active: comment.like == 1 }]" />
+                    {{ comment.likeCount }}
+                  </span>
+                  <span @click="toggleCommentLike(comment, 2)">
+                    <i :class="['mvfont', 'mv-nzan', { active: comment.like == 2 }]" />
+                    {{ comment.hateCount }}
+                  </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </List>
+        <div v-if="noData" class="no-comment">暂无评论</div>
+      </div>
+      <div class="bcb-foot">
+        <div class="f-a">
+          <span>一键发评</span>
           <p>
-            评论<b>{{ comments.length == 0 ? '' : comments.length }}</b>
+            <span v-for="preset in presetComments" :key="preset" @click="postComment(preset)" v-html="parseEmojis(preset)" />
           </p>
-          <span @click="toggleCommentVisibility(false)"><i class="mvfont mv-close" /></span>
         </div>
-        <div ref="commentListRef" class="bcb-main">
-          <List v-if="comments.length > 0" v-model:loading="loading" :finished="finished" finished-text="没有更多评论了" @load="loadMoreComments">
-            <ul class="bbs-comment-list">
-              <li v-for="comment in comments" :key="comment.id">
-                <div class="i-l">
-                  <img v-lazy="{ src: getAssetsFile('logo-4.png') }" alt="用户头像" />
-                </div>
-                <div class="i-r">
-                  <div class="r-a">{{ comment.userName }}</div>
-                  <div class="r-b">{{ comment.createTime }}</div>
-                  <div class="r-c" v-html="comment.content" />
-                  <div class="r-d">
-                    <span @click="toggleCommentLike(comment, 1)">
-                      <i :class="['mvfont', 'mv-zan', { active: comment.like == 1 }]" />
-                      {{ comment.likeCount }}
-                    </span>
-                    <span @click="toggleCommentLike(comment, 2)">
-                      <i :class="['mvfont', 'mv-nzan', { active: comment.like == 2 }]" />
-                      {{ comment.hateCount }}
-                    </span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </List>
-          <div v-if="noData" class="no-comment">暂无评论</div>
+        <div v-show="showEmojiPopup" class="f-c">
+          <swiper :modules="emojiModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="false">
+            <swiper-slide v-for="(items, index) in groupedEmojis" :key="index">
+              <span v-for="(item, i) in items" :key="i" @click="inputEmoji(item.title)">
+                <img :src="getAssetsFile(`emoji/${item.src}`)" :title="item.title" />
+              </span>
+              <span @click="deleteEmoji()"><i class="mvfont mv-shanchu" /></span>
+            </swiper-slide>
+          </swiper>
         </div>
-        <div class="bcb-foot">
-          <div class="f-a">
-            <span>一键发评</span>
-            <p>
-              <span v-for="preset in presetComments" :key="preset" @click="postComment(preset)" v-html="parseEmojis(preset)" />
-            </p>
+        <div class="f-b">
+          <div class="b-input">
+            <i class="mvfont mv-bianji" />
+            <div id="commentContent" contenteditable="true" class="editable-div" @focus="showEmojiPopup = true" data-placeholder="善言结善缘，恶言伤人心" />
+            <i @click="showEmojiPopup = !showEmojiPopup" class="mvfont mv-biaoqing" />
           </div>
-          <div class="f-b">
-            <div class="b-input">
-              <i class="mvfont mv-bianji" />
-              <div id="commentContent" contenteditable="true" class="editable-div" @focus="showEmojiPopup = true" data-placeholder="善言结善缘，恶言伤人心" />
-              <i @click="showEmojiPopup = !showEmojiPopup" class="mvfont mv-biaoqing" />
-            </div>
-            <div @click="postComment()" class="btn btn1">发送</div>
-          </div>
+          <div @click="postComment()" class="btn btn1">发送</div>
         </div>
       </div>
-    </Popup>
-    <Popup v-model:show="showEmojiPopup" round position="bottom" :overlay="false" class="emoji-popup" :duration="0">
-      <div class="emoji-container">
-        <swiper :modules="emojiModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="false">
-          <swiper-slide v-for="(items, index) in groupedEmojis" :key="index">
-            <span v-for="(item, i) in items" :key="i" @click="inputEmoji(item.title)">
-              <img :src="getAssetsFile(`emoji/${item.src}`)" :title="item.title" />
-            </span>
-            <span @click="deleteEmoji()"><i class="mvfont mv-shanchu" /></span>
-          </swiper-slide>
-        </swiper>
-      </div>
-    </Popup>
-  </div>
+    </div>
+  </Popup>
 </template>
 
 <script setup lang="ts">
@@ -88,7 +84,7 @@ dayjs.extend(relativeTime)
 dayjs.locale('zh-cn')
 
 const props = defineProps<{
-  postId: string
+  postId?: string
   showComment: boolean
   commentHeight?: string
   teleportTarget?: string
@@ -100,7 +96,7 @@ const showComment = ref(props.showComment)
 const comments = ref([])
 const noData = ref(false)
 const commentHeight = props.commentHeight || '70%'
-const teleportTarget = props.teleportTarget || '.page'
+// const teleportTarget = props.teleportTarget || '.page'
 
 const presetComments = ref(['放开她，让我来！[色]', '老师真是太美了！[可爱]'])
 const showEmojiPopup = ref(false)
@@ -234,7 +230,6 @@ const updateCommentLikeStatus = (comment, currentLikeType, newLikeType) => {
 const toggleCommentVisibility = (isVisible: boolean) => {
   showComment.value = isVisible
   emit('update:showComment', isVisible)
-  console.log(isVisible)
   if (!isVisible) {
     showEmojiPopup.value = false
   }
@@ -269,7 +264,6 @@ watch([() => props.showComment, () => props.postId], ([newShowComment, newPostId
     fetchComments(true)
   }
   if (!newShowComment) {
-    console.log('123')
     showEmojiPopup.value = false
   }
 })
