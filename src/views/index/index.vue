@@ -286,8 +286,7 @@ const popAdvertisement = computed(() => {
   return tmp || []
 })
 const listBannerAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(54).items
-  // const tmp = appStore.getAdvertisementById(4).items
+  const tmp = appStore.getAdvertisementById(13).items
   return tmp || []
 })
 const currentPopAd = computed(() => {
@@ -500,7 +499,7 @@ const openAd = (url: string) => {
 function handleScroll() {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
   const header = document.querySelector('.index-header')!
-  const hmB = document.querySelector('.hm-b') as HTMLElement
+  const hmB = document.querySelector('.search-icon') as HTMLElement
 
   if (header && hmB) {
     if (scrollTop > 100) {

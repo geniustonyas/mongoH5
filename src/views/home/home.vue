@@ -95,8 +95,7 @@ const appStore = useAppStoreHook()
 const router = useRouter()
 
 const bannerAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(52).items
-  // const tmp = appStore.getAdvertisementById(4).items
+  const tmp = appStore.getAdvertisementById(14).items
   return tmp || []
 })
 

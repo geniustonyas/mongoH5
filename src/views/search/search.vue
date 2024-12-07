@@ -117,8 +117,7 @@ const searchIng = ref(false)
 let currentAbortController: AbortController | null = null
 
 const bannerAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(53).items
-  // const tmp = appStore.getAdvertisementById(4).items
+  const tmp = appStore.getAdvertisementById(12).items
   return tmp || []
 })
 
