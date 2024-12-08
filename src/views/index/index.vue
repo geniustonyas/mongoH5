@@ -57,27 +57,35 @@
                 </swiper>
               </nav>
               <nav class="i-m-b">
-                <div class="b-row">
+                <div class="b-row r-ad">
                   <a @click.prevent="openDownloadPage" href="#">
                     <span><i class="mvfont mv-appxiazai" /></span>
                     <small>APP下载</small>
                   </a>
-                  <a @click="router.push({ name: 'share' })">
-                    <span><i class="mvfont mv-fenxiang3" /></span>
-                    <small>分享好友</small>
+                  <a @click="redirectCategory(3, 42)">
+                    <span><i class="mvfont mv-n91" /><em>91</em></span>
+                    <small>91大神</small>
+                  </a>
+                  <a @click="redirectCategory(3, 40)">
+                    <span><i class="mvfont mv-madou1" /></span>
+                    <small>麻豆传媒</small>
                   </a>
                   <a @click="router.push({ name: 'spare' })">
                     <span><i class="mvfont mv-yizhangtong" /></span>
                     <small>防丢失</small>
                   </a>
-                  <a>
+                  <!-- <a>
                     <span><i class="mvfont mv-changjianwenti" /></span>
                     <small>常见问题</small>
+                  </a> -->
+                  <a @click="router.push({ name: 'share' })">
+                    <span><i class="mvfont mv-fenxiang3" /></span>
+                    <small>分享赚钱</small>
                   </a>
-                  <a @click="showToast('暂未开通')">
+                  <!-- <a @click="showToast('暂未开通')">
                     <span><i class="mvfont mv-vip1" /></span>
                     <small>开通VIP</small>
-                  </a>
+                  </a> -->
                 </div>
 
                 <div v-if="bannerTextAd && bannerTextAd.length > 0" class="b-row r-ad">
@@ -211,7 +219,7 @@ import { ref, reactive, nextTick, computed, watch, onMounted, onActivated, onDea
 import { useRouter, useRoute } from 'vue-router'
 import NavBar from '@/components/layout/NavBar.vue'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
-import { PullRefresh, Popup, Icon, showToast, Tabs, Tab } from 'vant'
+import { PullRefresh, Popup, Icon, Tabs, Tab } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'
@@ -235,6 +243,7 @@ const swiperInstance = ref<any>(null)
 const searchSwiperInstance = ref<any>(null)
 
 const refreshing = ref(false)
+const isRedirectCategory = ref(false)
 
 const activeId = ref(0)
 const recommendedVideos = ref<Video[]>([])
@@ -437,18 +446,36 @@ const handleCategoryChange = async (isRefresh = false) => {
 const swipePage = (swiper: any) => {
   activeId.value = swiper.activeIndex
   query.ChannelId = activeId.value == 0 ? '' : appStore.categorys[activeId.value - 1].d
+  console.log(query.ChannelId)
+  console.log(query.SubChannelId)
   // 如果没有数据。则重新获取数据
   if (categoryVideosMap.value[query.ChannelId] == undefined) {
     query.PageIndex = 1
-    categoryPageIndex.value[query.ChannelId] = 1
-    query.SubChannelId = ''
     query.SortType = 1
+    categoryPageIndex.value[query.ChannelId] = 1
+    if (isRedirectCategory.value) {
+      categoryPageIndex.value[query.ChannelId] = query.PageIndex
+      categorySortType.value[query.ChannelId] = query.SortType
+      categorySubChannelId.value[query.ChannelId] = query.SubChannelId
+    } else {
+      query.SubChannelId = ''
+    }
     categorySortType.value[query.ChannelId] = query.SortType
     handleCategoryChange()
+  } else {
+    selectCategory(query.SubChannelId)
   }
+  isRedirectCategory.value = false
   nextTick(() => {
     window.scrollTo(0, 0)
   })
+}
+
+// 打开到指定的顶级分类和二级分类
+const redirectCategory = (channelId: number, subChannelId: number) => {
+  isRedirectCategory.value = true
+  query.SubChannelId = subChannelId
+  clickTabPc(channelId)
 }
 
 // 分类页切换排序

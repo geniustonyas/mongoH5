@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
-        <video id="plyr-player" controls muted autoplay preload="auto" poster="" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+        <video id="plyr-player" muted autoplay preload="auto" poster="" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
         <div class="a-f">
           <div class="item">
             <span v-for="(option, index) in rewindOptions" :key="'rewind-' + index" @click="rewind(option.time)"> <i class="mvfont mv-left" />{{ option.label }} </span>
@@ -243,6 +243,15 @@ const initializePlayer = async (domain: string, uri: string) => {
     // const url = uri.includes('http') ? uri : domain + uri
     const url = generateAuthUrl(domain, uri)
     // const url = 'https://b.gg155gg1.com/20241128/f33h63BE/index.m3u8'
+
+    player.value = new window.Plyr(videoElement, {
+      clickToPlay: true,
+      autoplay: true,
+      controls: controls.value,
+      settings: ['captions', 'quality', 'speed', 'loop'],
+      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null },
+      poster: ''
+    })
     if (window.Hls.isSupported()) {
       // 这里声明了 tmphls 的原因是因为直接使用vue的代理 hls.value时 视频会无法播放
       const tmpHls = new window.Hls({
@@ -266,14 +275,6 @@ const initializePlayer = async (domain: string, uri: string) => {
     } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
       videoElement.src = url
     }
-    player.value = new window.Plyr(videoElement, {
-      clickToPlay: true,
-      autoplay: true,
-      controls: controls.value,
-      settings: ['captions', 'quality', 'speed', 'loop'],
-      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null },
-      poster: ''
-    })
     player.value.on('click', (event) => {
       if (player.value.touch && event.target.className == 'plyr__poster') {
         if (player.value.playing) {
