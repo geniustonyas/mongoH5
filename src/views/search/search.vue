@@ -50,7 +50,7 @@
             <ul class="m-list">
               <li v-for="video in searchResults" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
                 <div class="l-a" v-lazy-decrypt="video.imgUrl">
-                  <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+                  <span class="a-a">{{ classifyResolution(video.resolution) }}</span>
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c">{{ video.channelName }}</span>
                 </div>
@@ -93,7 +93,7 @@ import { useAppStore } from '@/store/app'
 import { getVideoListApi } from '@/api/video'
 import type { Video } from '@/types/video'
 import { List } from 'vant'
-import { formatDuration, getIncrementalNumberWithOffset } from '@/utils'
+import { formatDuration, getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 
 const router = useRouter()

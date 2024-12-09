@@ -1,7 +1,7 @@
 <template>
   <div class="item video-grid-item" :data-video-id="video.id">
     <div class="i-a" v-lazy-decrypt="video.imgUrl">
-      <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+      <span class="a-a">{{ classifyResolution(video.resolution) }}</span>
       <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
       <span class="a-c">{{ video.channelName }}</span>
     </div>
@@ -22,13 +22,10 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import { useAppStore } from '@/store/app'
 import type { Video } from '@/types/video'
 import dayjs from 'dayjs'
 import { formatDuration } from '@/utils'
-import { getIncrementalNumberWithOffset } from '@/utils'
-
-const appStore = useAppStore()
+import { getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
 
 defineProps<{
   video: Video

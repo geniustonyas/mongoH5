@@ -25,7 +25,25 @@ export function getAssetsFile(url: string) {
   return new URL(`../assets/imgs/${url}`, import.meta.url).href
 }
 
-// src/utils/index.ts
+// 分类分辨率
+export const classifyResolution = (resolution: string): string => {
+  // 1920*1080
+  const cleanedResolution = resolution.replace(/\s+/g, '')
+  const match = cleanedResolution.match(/(\d+)[xX*&](\d+)/)
+  if (match) {
+    const height = parseInt(match[2])
+    if (height <= 480) {
+      return '480P'
+    } else if (height <= 720) {
+      return '720P'
+    } else {
+      return '1080P'
+    }
+  }
+  return ''
+}
+
+// 获取增量数字
 export function getIncrementalNumberWithOffset(value: string, module: string, id: string | number, type: 'view' | 'like' | 'collect'): number {
   const storageKey = `incNum_${module}_${id}_${type}`
   const storedData = localStorage.getItem(storageKey)
@@ -143,7 +161,6 @@ export function copy(selector: string, tips = '', clipboard: any = null) {
 // 动态加载外部第三方js
 export function loadJs(url: string) {
   return new Promise((resolve, reject) => {
-    console.log(url)
     let isLoaded = false
     const scripts = document.scripts
     for (let i = 0; i < scripts.length; i++) {

@@ -12,7 +12,7 @@
               <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })" class="video-list">
                 <div class="l-a">
                   <img v-lazy-decrypt="video.imgUrl" />
-                  <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+                  <span class="a-a">{{ classifyResolution(video.resolution) }}</span>
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c">{{ video.channelName }}</span>
                 </div>
@@ -47,11 +47,9 @@ import type { Video, VideoListRequest } from '@/types/video'
 import Header from '@/views/theme/themeHeader.vue'
 import NavBar from '@/components/layout/NavBar.vue'
 import { useRouter } from 'vue-router'
-import { useAppStore } from '@/store/app'
-import { formatDuration, getIncrementalNumberWithOffset } from '@/utils'
+import { formatDuration, getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
 
 const router = useRouter()
-const appStore = useAppStore()
 
 const videos = ref<Video[]>([])
 const activeRank = ref('total')

@@ -18,7 +18,7 @@
             </div>
             <div class="l-a">
               <img v-lazy-decrypt="video.imgUrl" />
-              <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+              <span class="a-a">{{ classifyResolution(video.resolution) }}</span>
               <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
               <span class="a-c">{{ video.channelName }}</span>
             </div>
@@ -60,7 +60,7 @@
           <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">下一页</a>
         </div>
       </div>
-      <div v-else class="more-box"><a v-if="currentPage < totalPages" @click="loadMore">加载更多</a></div>
+      <div v-else class="more-box"><a v-if="currentPage < totalPages && !nodata" @click="loadMore">加载更多</a></div>
     </template>
   </div>
 </template>
@@ -69,7 +69,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { userCollectionHistory, userCollection } from '@/api/user'
-import { getIncrementalNumberWithOffset } from '@/utils'
+import { getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
 import type { Video } from '@/types/video'
 import { useAppStore } from '@/store/app'
 

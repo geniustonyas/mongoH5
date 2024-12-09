@@ -12,7 +12,7 @@
           <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
             <div class="l-a">
               <img v-lazy-decrypt="video.imgUrl" />
-              <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+              <span class="a-a">{{ classifyResolution(video.resolution) }}</span>
               <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
               <span class="a-c">{{ video.channelName }}</span>
             </div>
@@ -56,7 +56,7 @@ import { useRouter } from 'vue-router'
 import { userWatchHistory } from '@/api/user'
 import type { Video } from '@/types/video'
 import { useAppStore } from '@/store/app'
-import { getIncrementalNumberWithOffset } from '@/utils'
+import { getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
 const router = useRouter()
 const appStore = useAppStore()
 

@@ -14,7 +14,7 @@
             <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
               <div class="l-a">
                 <img v-lazy-decrypt="video.imgUrl" />
-                <span v-if="video.clarity != '0'" class="a-a">{{ appStore.clarity[parseInt(video.clarity)] }}</span>
+                <span class="a-a">{{ classifyResolution(video.resolution) }}</span>
                 <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                 <span class="a-c">{{ video.channelName }}</span>
               </div>
@@ -46,10 +46,8 @@ import { PullRefresh, List } from 'vant'
 import dayjs from 'dayjs'
 import { getVideoListApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
-import { formatDuration, getIncrementalNumberWithOffset } from '@/utils'
-import { useAppStoreHook } from '@/store/app'
+import { formatDuration, getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
-const appStore = useAppStoreHook()
 const route = useRoute()
 const router = useRouter()
 
