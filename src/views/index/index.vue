@@ -415,7 +415,7 @@ const loadMore = async () => {
 const clickTabPc = (index: number) => {
   activeId.value = index
   if (swiperInstance.value) {
-    swiperInstance.value.slideTo(index)
+    swiperInstance.value.slideTo(index, 0)
   }
 }
 
