@@ -33,7 +33,7 @@ export const classifyResolution = (resolution: string): string => {
   if (match) {
     const height = parseInt(match[2])
     if (height <= 480) {
-      return '480P'
+      return ''
     } else if (height <= 720) {
       return '720P'
     } else {

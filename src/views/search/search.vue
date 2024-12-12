@@ -50,7 +50,7 @@
             <ul class="m-list">
               <li v-for="video in searchResults" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
                 <div class="l-a" v-lazy-decrypt="video.imgUrl">
-                  <span class="a-a">{{ classifyResolution(video.resolution) }}</span>
+                  <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c">{{ video.channelName }}</span>
                 </div>
