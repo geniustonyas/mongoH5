@@ -113,9 +113,9 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false }
   },
   {
-    path: '/tests',
-    name: 'tests',
-    component: () => import('@/views/shortVideo/testVideo.vue'),
+    path: '/shortList',
+    name: 'shortList',
+    component: () => import('@/views/shortVideo/shortList.vue'),
     meta: { needLogin: false, keepAlive: false }
   },
   {
