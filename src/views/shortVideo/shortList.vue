@@ -34,8 +34,8 @@
         </PullRefresh>
       </div>
     </section>
-    <Footer active-menu="shortVideo" footer-class="footer" />
-    <NavBar active-menu="shortVideo" />
+    <Footer active-menu="shortList" footer-class="footer" />
+    <NavBar active-menu="shortList" />
   </div>
 </template>
 
