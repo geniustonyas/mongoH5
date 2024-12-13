@@ -1,7 +1,8 @@
 <template>
   <router-view v-slot="{ Component, route }">
+    <span>sdfsdf</span>
     <transition :name="getTransition(route.meta.transition)">
-      <keep-alive :include="[]">
+      <keep-alive :include="['videoList']">
         <component :is="Component" :key="route.path" />
       </keep-alive>
     </transition>

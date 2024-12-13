@@ -506,7 +506,7 @@ const closeAdPopup = () => {
 })()
 
 onMounted(() => {
-  window.scrollTo(0, 0)
+  // window.scrollTo(0, 0)
 
   // 页面离开停止播放，回来后继续播放
   document.addEventListener('visibilitychange', () => {

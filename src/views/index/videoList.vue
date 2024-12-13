@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onActivated, onDeactivated, watch, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { PullRefresh, List } from 'vant'
 import dayjs from 'dayjs'
@@ -66,6 +66,9 @@ let finished = ref(false)
 let error = ref(false)
 
 let pageIndex = ref(1) // 当前页码
+
+let scrollPosition = 0
+let shouldReloadData = true
 
 const fetchVideos = async (sortType: number, isRefresh = false) => {
   if (isRefresh) {
@@ -125,17 +128,43 @@ const formatDate = (date: string) => {
   return dayjs(date).format('YYYY-MM-DD')
 }
 
-onMounted(() => {
-  const initialTab = parseInt(route.params.id as string, 10) || 0
-  activeTab.value = initialTab
-  fetchVideos(initialTab)
+onActivated(() => {
+  if (shouldReloadData) {
+    const initialTab = parseInt(route.params.id as string, 10) || 0
+    activeTab.value = initialTab
+    fetchVideos(activeTab.value, true)
+    window.scrollTo(0, 0)
+  } else {
+    nextTick(() => {
+      setTimeout(() => {
+        document.documentElement.scrollTop = scrollPosition
+        document.body.scrollTop = scrollPosition
+      }, 100)
+    })
+  }
+  shouldReloadData = true
+})
+
+onDeactivated(() => {
+  scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
 })
 
 watch(
-  () => route.params.id,
-  (newId) => {
-    const newTab = parseInt(newId as string, 10) || 0
-    changeTab(newTab)
+  () => route.name,
+  (newRouteName, oldRouteName) => {
+    if (oldRouteName == 'play' && newRouteName == 'videoList') {
+      console.log('set shouldReloadData to false')
+      shouldReloadData = false
+    }
   }
 )
+
+// watch(
+//   () => route.params.id,
+//   (newId) => {
+//     console.log(newId)
+//     const newTab = parseInt(newId as string, 10) || 0
+//     changeTab(newTab)
+//   }
+// )
 </script>

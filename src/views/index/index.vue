@@ -545,6 +545,7 @@ onActivated(() => {
     header.classList.remove('fixed')
   }
   keepAlive.value = true
+  window.scrollTo(0, 0)
 })
 
 onDeactivated(() => {
