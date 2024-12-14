@@ -1,6 +1,16 @@
 <template>
   <div :class="showVideo ? 'page video-page' : 'page'">
     <div v-show="!showVideo" class="short-List">
+      <header class="m-header">
+        <div class="h-l" />
+        <div class="h-m">
+          <a @click="router.push({ name: 'shortList' })" class="active">{{ douyin }}</a>
+          <a @click="showToast('建设中...')">短剧</a>
+        </div>
+        <div class="h-r">
+          <!-- <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" /> -->
+        </div>
+      </header>
       <section class="h-l-b padding1">
         <PullRefresh v-model="refreshing" @refresh="fresh">
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
@@ -9,20 +19,15 @@
                 <div class="l-a">
                   <Loading v-show="showVideoLoading == video.id" :width="40" :height="40" />
                   <img v-lazy-decrypt="video.imgUrl" />
-                  <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
+                  <!-- <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span> -->
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
-                  <span class="a-c">{{ video.channelName }}</span>
+                  <span class="a-c" />
                 </div>
                 <div class="l-b">
                   <b>{{ video.title }}</b>
                   <div class="b-a">
-                    <div class="a-l">
-                      <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(video.viewCount, 'v', video.id, 'view') }}</span>
-                      <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(video.likeCount, 'v', video.id, 'like') }}</span>
-                    </div>
-                    <div class="a-r">
-                      <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
-                    </div>
+                    <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(video.viewCount, 'v', video.id, 'view') }}</span>
+                    <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(video.likeCount, 'v', video.id, 'like') }}</span>
                   </div>
                 </div>
               </li>
@@ -93,7 +98,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, nextTick } from 'vue'
 import { PullRefresh, List, showToast, Popup } from 'vant'
-import dayjs from 'dayjs'
 import { getVideoListApi, getVideoDetailApi, addPlayCountApi } from '@/api/video'
 // import { userCollection } from '@/api/user'
 import { userLike } from '@/api/user'
@@ -101,24 +105,25 @@ import type { Video, VideoListRequest, VideoDetailResponse } from '@/types/video
 import NavBar from '@/components/layout/NavBar.vue'
 import Footer from '@/components/layout/Footer.vue'
 import Loading from '@/components/layout/Loading.vue'
-import { onBeforeRouteLeave } from 'vue-router'
-import { formatDuration, getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
+import { onBeforeRouteLeave, useRouter } from 'vue-router'
+import { formatDuration, getIncrementalNumberWithOffset } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Virtual } from 'swiper/modules'
-
-const appStore = useAppStore()
-const userStore = useUserStore()
 import 'swiper/css'
 import 'swiper/css/virtual'
 import Clipboard from 'clipboard'
+
+const appStore = useAppStore()
+const userStore = useUserStore()
+const router = useRouter()
 const modules = [Virtual]
 const showVideo = ref(false)
 const showVideoLoading = ref('')
 const poster = ref('')
-// import { douyin } from '@/utils/cryptedData'
+import { douyin } from '@/utils/cryptedData'
 
 // 列表变量
 const videoList = ref<Video[]>([])
@@ -621,4 +626,14 @@ const videoStyle = computed(() => ({
   transform: scale(calc(var(--click-width) / 100vw)) translate(50%, 50%);
   opacity: 0;
 }
+
+/* .short-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 10;
+} */
 </style>
