@@ -32,7 +32,7 @@
       </section>
       <Footer active-menu="shortList" footer-class="footer" />
     </div>
-    <transition name="video-fade">
+    <transition name="video-fade" @after-leave="resetClickPosition">
       <div v-show="showVideo" class="short-video" :style="videoStyle">
         <header class="m-header h-video">
           <div class="h-l s-v">
@@ -49,7 +49,7 @@
               <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videoList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
                 <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
                   <div class="v-a">
-                    <video :id="'video-player-' + index" class="video-player" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
+                    <video :id="'video-player-' + index" class="video-player" :poster="poster" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
                   </div>
                   <div class="v-b">
                     <a @click="handleLike()">
@@ -108,7 +108,6 @@ import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Virtual } from 'swiper/modules'
-import decryptionService from '@/utils/decryptionService'
 
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -118,7 +117,7 @@ import Clipboard from 'clipboard'
 const modules = [Virtual]
 const showVideo = ref(false)
 const showVideoLoading = ref('')
-const decrypt = new decryptionService()
+const poster = ref('')
 // import { douyin } from '@/utils/cryptedData'
 
 // 列表变量
@@ -195,11 +194,11 @@ const fresh = () => {
 const viewVideo = async (video: Video, event: MouseEvent) => {
   showVideoLoading.value = video.id
   const imgElement = (event.currentTarget as HTMLElement).querySelector('img')
-  console.log(imgElement)
   if (imgElement) {
     const rect = imgElement.getBoundingClientRect()
     clickPosition.value = { x: rect.left, y: rect.top, width: rect.width, height: rect.height }
   }
+  poster.value = imgElement.src
   videos.value.push(video)
   await fetchVideoDetail(parseInt(video.id))
   await initializePlayer(0)
@@ -225,6 +224,10 @@ const closeVideo = () => {
   isLoading.value = false
   mutePlay.value = true
   destroyAllVideos()
+}
+
+const resetClickPosition = () => {
+  clickPosition.value = { x: 0, y: 0, width: 0, height: 0 }
 }
 
 const fetchVideos = async () => {
@@ -287,7 +290,7 @@ const initializePlayer = async (index: number) => {
         controls: ['progress']
       })
       // 播放器初始化后总是把禁音给取消了, 这里重新设置
-      player.poster = await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)
+      // player.poster = await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)
       player.muted = mutePlay.value
       const hls = new window.Hls({
         maxBufferLength: 15,
@@ -359,7 +362,7 @@ const initializePlayer = async (index: number) => {
       controls: ['progress']
     })
     // 播放器初始化后总是把禁音给取消了, 这里重新设置
-    player.poster = await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)
+    // player.poster = await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)
     player.muted = mutePlay.value
     player.on('canplay', () => {
       const videoWidth = videoElement.videoWidth
@@ -610,19 +613,12 @@ const videoStyle = computed(() => ({
 <style scoped>
 .video-fade-enter-active,
 .video-fade-leave-active {
-  transition: transform 1s ease, opacity 1s ease;
+  transition: transform 2s ease, opacity 2s ease;
 }
 .video-fade-enter,
 .video-fade-leave-to {
   transform-origin: var(--click-x) var(--click-y);
-  transform: scale(calc(100vw / var(--click-width))) translate(-50%, -50%);
-}
-.short-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
+  transform: scale(calc(var(--click-width) / 100vw)) translate(50%, 50%);
+  opacity: 0;
 }
 </style>
