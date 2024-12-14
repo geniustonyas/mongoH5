@@ -8,6 +8,8 @@ export interface Video {
   title: string
   channelId: string
   channelName: string
+  subChannelId?: string
+  subChannelName?: string
   addTime: string
   clarity: string
   duration: string

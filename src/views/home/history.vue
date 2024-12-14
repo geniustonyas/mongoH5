@@ -14,7 +14,7 @@
               <img v-lazy-decrypt="video.imgUrl" />
               <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
               <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
-              <span class="a-c">{{ video.channelName }}</span>
+              <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
             </div>
             <div class="l-b">
               <div class="b-a">{{ video.title }}</div>

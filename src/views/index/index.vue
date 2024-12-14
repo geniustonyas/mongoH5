@@ -446,8 +446,6 @@ const handleCategoryChange = async (isRefresh = false) => {
 const swipePage = (swiper: any) => {
   activeId.value = swiper.activeIndex
   query.ChannelId = activeId.value == 0 ? '' : appStore.categorys[activeId.value - 1].d
-  console.log(query.ChannelId)
-  console.log(query.SubChannelId)
   // 如果没有数据。则重新获取数据
   if (categoryVideosMap.value[query.ChannelId] == undefined) {
     query.PageIndex = 1
