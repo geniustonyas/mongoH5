@@ -626,7 +626,7 @@ const videoStyle = computed(() => ({
 <style scoped>
 .video-fade-enter-active,
 .video-fade-leave-active {
-  transition: transform 0.5s ease; /* 定义过渡的持续时间和速度曲线 */
+  transition: transform 0.3s ease; /* 定义过渡的持续时间和速度曲线 */
 }
 
 .video-fade-enter-from,
