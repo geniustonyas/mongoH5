@@ -20,7 +20,7 @@ const routes: RouteRecordRaw[] = [
     path: '/test',
     name: 'test',
     meta: { needLogin: false, keepAlive: false },
-    component: () => import('@/views/test.vue')
+    component: () => import('@/views/shortVideo/test.vue')
   },
   {
     path: '/videoList/:id',

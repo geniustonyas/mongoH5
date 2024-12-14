@@ -130,6 +130,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
 
     .h-l { right: auto; left: 0; }
+    // .s-v { width: 6rem; font-size: 1.6rem; .h-lh(5rem); }
 
 
 
@@ -324,7 +325,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
 }
 .h-l-b { padding: 5rem 1rem 7rem 1rem;
-    &.short-list { padding-top: 1rem; }
+    &.padding1 { padding-top: 1rem; }
     .lb-a { padding: 1rem 0; .flex(); .flex-wrap(); .x-scrollbar();
         span { .bgc(rgba(255, 255, 255, 0.1),var(--color-white)); padding: .5rem 1rem; text-align: center; .radius(.4rem); white-space: nowrap; margin-right: 1rem;
             &.active { .bgc(rgba(var(--color-primary-rgba),.15),var(--color-primary)); font-weight: 600; }
@@ -333,7 +334,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
     ul { margin-bottom: 2rem; column-count: 2; column-gap: .8rem;
         &.col-one { column-count: 1; column-gap: .8rem; }
-        li { margin-bottom: 1rem; .radius(.4rem); overflow: hidden; .bg(rgba(26, 28, 31, 0.98)); display: block; cursor: pointer; break-inside: avoid;
+        li { margin-bottom: 1rem; .radius(.4rem); overflow: hidden; .bg(rgba(26, 28, 31, 0.98)); display: block; cursor: pointer; break-inside: avoid; position: relative;
             .l-a { position: relative;
                 img { width: 100%; height: auto; }
                 .a-a { position: absolute; top: 0; left: 0; .bg(#ffe715); color: var(--color-dark); .radius(.5rem 0 .5rem 0); font-weight: 600; font-size: 1rem; padding: .02rem .4rem; font-family: DIN; }
@@ -640,8 +641,8 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 
 
-
-.vp-main { .flex-x(); overflow: hidden; position: relative;
+.short-video { width: 100%; height: 100%; }
+.vp-main { .flex-x(); overflow: hidden; position: relative; width: 100%; height: 100%;
     .vpm-bd { width: 100%; height: 100%;}
 
     .vm-a { position: absolute; left: 0; width: 100%; top: 1rem; text-align: center; z-index: 1;
