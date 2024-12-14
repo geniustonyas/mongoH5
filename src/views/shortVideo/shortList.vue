@@ -1,6 +1,6 @@
 <template>
-  <div :class="showVideo ? 'page video-page' : 'page'">
-    <div v-show="!showVideo" class="short-List">
+  <div class="page">
+    <div class="short-List">
       <header class="m-header">
         <div class="h-l" />
         <div class="h-m">
@@ -18,8 +18,7 @@
               <li v-for="video in videoList" :key="video.id" @click="viewVideo(video, $event)" class="video-list">
                 <div class="l-a">
                   <Loading v-show="showVideoLoading == video.id" :width="40" :height="40" />
-                  <img v-lazy-decrypt="video.imgUrl" />
-                  <!-- <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span> -->
+                  <img v-lazy-decrypt="video.imgUrl" loading-img="default2.gif" />
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c" />
                 </div>
@@ -37,11 +36,11 @@
       </section>
       <Footer active-menu="shortList" footer-class="footer" />
     </div>
-    <transition name="video-fade" @after-leave="resetClickPosition">
+    <transition name="video-fade" @after-leave="handleAfterLeave">
       <div v-show="showVideo" class="short-video" :style="videoStyle">
         <header class="m-header h-video">
           <div class="h-l s-v">
-            <a @click="closeVideo"><i class="mvfont mv-left" /></a>
+            <a @click="closeVideo"><i class="mvfont mv-left" /><span>返回</span></a>
           </div>
           <div class="h-m" />
           <div class="h-r" />
@@ -54,7 +53,7 @@
               <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videoList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
                 <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
                   <div class="v-a">
-                    <video :id="'video-player-' + index" class="video-player" :poster="poster" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
+                    <video :id="'video-player-' + index" class="video-player cover-fit" :poster="poster" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
                   </div>
                   <div class="v-b">
                     <a @click="handleLike()">
@@ -221,18 +220,26 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
 
 const closeVideo = () => {
   showVideo.value = false
+  nextTick(() => {
+    // 确保 DOM 更新完成后立即触发动画
+  })
   showVideoLoading.value = ''
+}
+
+const handleAfterLeave = () => {
+  // 先停止当前播放
+  const currentPlayer = players.value.get(currentVideoIndex.value)
+  if (currentPlayer) {
+    currentPlayer.stop()
+  }
   videos.value = []
   videoDetail.value = null
   currentVideoIndex.value = 0
   pageIndex.value = initPageIndex.value
   isLoading.value = false
   mutePlay.value = true
-  destroyAllVideos()
-}
-
-const resetClickPosition = () => {
   clickPosition.value = { x: 0, y: 0, width: 0, height: 0 }
+  destroyAllVideos()
 }
 
 const fetchVideos = async () => {
@@ -345,8 +352,8 @@ const initializePlayer = async (index: number) => {
         const videoWidth = videoElement.videoWidth
         const videoHeight = videoElement.videoHeight
         const videoRatio = videoHeight / videoWidth
-        if (videoRatio > 1.5) {
-          videoElement.classList.add('cover-fit')
+        if (videoRatio <= 1.5) {
+          videoElement.classList.remove('cover-fit')
         }
         if (currentVideoIndex.value == index) {
           isLoading.value = false
@@ -373,8 +380,8 @@ const initializePlayer = async (index: number) => {
       const videoWidth = videoElement.videoWidth
       const videoHeight = videoElement.videoHeight
       const videoRatio = videoHeight / videoWidth
-      if (videoRatio > 1.5) {
-        videoElement.classList.add('cover-fit')
+      if (videoRatio <= 1.5) {
+        videoElement.classList.remove('cover-fit')
       }
       if (currentVideoIndex.value == index) {
         isLoading.value = false
@@ -605,6 +612,7 @@ const destroyAllVideos = () => {
 
 onBeforeRouteLeave(() => {
   closeVideo()
+  handleAfterLeave()
 })
 
 const videoStyle = computed(() => ({
@@ -616,24 +624,27 @@ const videoStyle = computed(() => ({
 </script>
 
 <style scoped>
-.video-fade-enter-active,
+.video-fade-enter-active {
+  transition: transform 0.3s ease-out; /* 进入动画 */
+}
 .video-fade-leave-active {
-  transition: transform 2s ease, opacity 2s ease;
+  transition: transform 0.3s ease-in; /* 离开动画 */
 }
-.video-fade-enter,
-.video-fade-leave-to {
+.video-fade-enter {
   transform-origin: var(--click-x) var(--click-y);
-  transform: scale(calc(var(--click-width) / 100vw)) translate(50%, 50%);
-  opacity: 0;
+  transform: scale(calc(var(--click-width) / 100vw)) translate(0, 0); /* 从图片位置放大到全屏 */
 }
-
-/* .short-video {
+.video-fade-leave-to {
+  transform-origin: calc(var(--click-x) + var(--click-width) / 2) calc(var(--click-y) + var(--click-height) / 2);
+  transform: scale(calc(var(--click-width) / 100vw)) translate(0, 0); /* 从全屏缩小到图片位置 */
+}
+.short-video {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: black;
-  z-index: 10;
-} */
+  z-index: 10; /* 确保视频层在最上面 */
+}
 </style>
