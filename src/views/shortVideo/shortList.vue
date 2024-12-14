@@ -624,20 +624,22 @@ const videoStyle = computed(() => ({
 </script>
 
 <style scoped>
-.video-fade-enter-active {
-  transition: transform 0.3s ease-out; /* 进入动画 */
-}
+.video-fade-enter-active,
 .video-fade-leave-active {
-  transition: transform 0.3s ease-in; /* 离开动画 */
+  transition: transform 0.5s ease; /* 定义过渡的持续时间和速度曲线 */
 }
-.video-fade-enter {
-  transform-origin: var(--click-x) var(--click-y);
-  transform: scale(calc(var(--click-width) / 100vw)) translate(0, 0); /* 从图片位置放大到全屏 */
-}
+
+.video-fade-enter-from,
 .video-fade-leave-to {
-  transform-origin: calc(var(--click-x) + var(--click-width) / 2) calc(var(--click-y) + var(--click-height) / 2);
-  transform: scale(calc(var(--click-width) / 100vw)) translate(0, 0); /* 从全屏缩小到图片位置 */
+  transform-origin: var(--click-x) var(--click-y);
+  transform: scale(calc(var(--click-width) / 100vw)); /* 从图片位置放大到全屏 */
 }
+
+.video-fade-enter-to,
+.video-fade-leave-from {
+  transform: scale(1); /* 定义动画的结束和起始状态 */
+}
+
 .short-video {
   position: fixed;
   top: 0;
