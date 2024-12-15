@@ -87,3 +87,16 @@ export type ShareRecordResponse = {
   pageSize: string
   recordCount: string
 }
+
+export interface Suggestion {
+  // 内容类型: 0全部 1视屏 2帖子
+  ContentType: string
+  // 内容报错1  查找资源2  意见反馈3  视频报错4  其他5
+  FeedbackType: string
+  // 视屏报错类型: 无法播放1 清晰度太低2  内容与标题不符3 卡顿4  不精彩5
+  VideoErrorType: string
+  // 资源ID, 视屏报错时的视屏ID, BBS报错时的帖子ID
+  SourceId: string
+  // 反馈内容
+  Content: string
+}

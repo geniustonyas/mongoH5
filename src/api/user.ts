@@ -91,3 +91,12 @@ export function userShareCount() {
     method: 'post'
   })
 }
+
+/** 用户反馈 */
+export function userSuggestion(data: { Content: string }) {
+  return request<ApiResponseData<any>>({
+    url: 'Web/CreateFeedback',
+    method: 'post',
+    data
+  })
+}

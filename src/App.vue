@@ -7,10 +7,12 @@
     </transition>
   </router-view>
   <Login />
+  <Suggestion />
 </template>
 
 <script setup lang="ts">
 import Login from '@/components/Login.vue'
+import Suggestion from '@/components/Suggestion.vue'
 import { useAppStore } from '@/store/app'
 const appStore = useAppStore()
 const getTransition = (transition: unknown): string | undefined => {

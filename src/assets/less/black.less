@@ -1598,6 +1598,19 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 .loading { font-family: 'Orbitron', sans-serif; font-size: 7px; animation: blink .9s ease-in-out infinite alternate; }
 
+.fixed-suggestion { position: fixed; right: 1rem; bottom: 6rem; z-index: 999;
+
+    .fs-t { width: 2.2rem; .h-lh(2.2rem); text-align: center; .radius(2.2rem); .bg(var(--color-white)); color: #f00; position: absolute; position: absolute; top: -1rem; right: -1rem;
+        i { font-size: 1.4rem; }
+    }
+    .fs-c { .bg-gradient(-45deg, #f4a942, #ff2a14); border-radius: 1rem 0; display: inline-block;
+        span { display: inline-block; width: 6.4rem; height: 4rem; .flex(); .flex-align(); .flex-pack(); color: var(--color-white);
+            i { font-size: 2.8rem; }
+            small { font-size: 1rem; }
+        }
+    }
+}
+
 @keyframes blink {
     50% { opacity: 0; }
 }
