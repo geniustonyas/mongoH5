@@ -1,5 +1,5 @@
 import { request } from '@/utils/axios'
-import type { loginForm, loginResp, UserInfo, ShareRecordResponse } from '@/types/user'
+import type { loginForm, loginResp, UserInfo, ShareRecordResponse, Suggestion } from '@/types/user'
 import type { VideoListResponse } from '@/types/video'
 import type { ApiResponseData } from '@/types/global.d'
 import { TokenPrefix, getToken } from '@/utils/auth'
@@ -93,10 +93,14 @@ export function userShareCount() {
 }
 
 /** 用户反馈 */
-export function userSuggestion(data: { Content: string }) {
+export function userSuggestion(data: Suggestion) {
   return request<ApiResponseData<any>>({
     url: 'Web/CreateFeedback',
     method: 'post',
+    headers: {
+      'Content-Type': 'text/plain',
+      'X-Should-Encrypt': '1'
+    },
     data
   })
 }

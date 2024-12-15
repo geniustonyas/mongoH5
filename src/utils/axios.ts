@@ -71,9 +71,12 @@ const setupInterceptors = (service: AxiosInstance) => {
 
         config.headers['Authorization'] = `${TokenPrefix}${getToken()}`
 
-        // 处理预检请求
-        if (config.method?.toUpperCase() === 'OPTIONS') {
-          return config // 直接返回配置，不做其他处理
+        // 检查请求头中的 X-Should-Encrypt 标志
+        if (config.headers['X-Should-Encrypt'] === '1') {
+          const decrypt = new decryptionService()
+          config.data = decrypt.encryptData(JSON.stringify(config.data))
+          // 移除标志以避免发送到服务器
+          delete config.headers['X-Should-Encrypt']
         }
 
         return config

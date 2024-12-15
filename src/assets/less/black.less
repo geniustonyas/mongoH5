@@ -1598,7 +1598,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 .loading { font-family: 'Orbitron', sans-serif; font-size: 7px; animation: blink .9s ease-in-out infinite alternate; }
 
-.fixed-suggestion { position: fixed; right: 1rem; bottom: 6rem; z-index: 999;
+.fixed-suggestion { position: fixed; right: 1rem; bottom: 35%; z-index: 999;
 
     .fs-t { width: 2.2rem; .h-lh(2.2rem); text-align: center; .radius(2.2rem); .bg(var(--color-white)); color: #f00; position: absolute; position: absolute; top: -1rem; right: -1rem;
         i { font-size: 1.4rem; }
@@ -1608,6 +1608,35 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             i { font-size: 2.8rem; }
             small { font-size: 1rem; }
         }
+    }
+}
+
+.suggestion-popup { .bgc(var(--color-white), var(--color-black)); padding: 1rem;
+    .su-title { font-size: 1.6rem; .h-lh(4rem); }
+    .su-content {
+        .su-banner {.bgc(rgba(0, 0, 0, 0.1),var(--color-666)); padding: 1rem 0; padding: 1rem; .radius(.4rem); margin: 1rem 0; border: .1rem dashed rgba(0, 0, 0, .55); .flex();
+            b { color: var(--color-primary); }
+            p { font-size: 1.2rem; }
+            span {
+                i { vertical-align: middle; top: 0; margin-left: .5rem; }
+            }
+        }
+        .van-cell {
+            padding-left: 0 !important; // 去掉左右 padding
+            padding-right: 0 !important;
+          }
+      
+        
+        .van-field--textarea .van-field__control {
+            border: 1px solid rgba(204, 204, 204, 0.3); // 为留言内容的输入框添加一个非常浅的透明边框
+            border-radius: 4px; // 添加圆角
+        }
+        .van-radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px; // 增加行间距
+        }
+    
     }
 }
 
@@ -1690,8 +1719,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 }
 
 ._1080P { .bgc(#00a9f5, var(--color-white)) !important; }
-// .720P { .bgc(#f96518, var(--color-white)) }
-// .480P { .bgc(#f96518, var(--color-white)) }
 
 :root { --color-main-bg: #000; --color-main-txt: #e1e3e5; --color-white: #fff; --color-black: #000; --color-dark: #333; --color-border: #e2e2e2; --color-666: #666; --color-light: #969699; --color-primary: #f96518; --color-primary-rgba: 249,101,24; }
 :root { --plyr-color-main: var(--color-primary); }

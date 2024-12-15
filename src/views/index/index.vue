@@ -211,6 +211,7 @@
     <Footer active-menu="index" />
     <NavBar active-menu="index" />
     <DownloadPop />
+    <Suggestion v-model:show-btn="showSuggestion" />
   </div>
 </template>
 
@@ -218,6 +219,7 @@
 import { ref, reactive, nextTick, computed, watch, onMounted, onActivated, onDeactivated } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import NavBar from '@/components/layout/NavBar.vue'
+import Suggestion from '@/components/Suggestion.vue'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
 import { PullRefresh, Popup, Icon, Tabs, Tab } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -237,6 +239,7 @@ import DownloadPop from '@/components/DownloadPop.vue'
 const router = useRouter()
 const route = useRoute()
 const appStore = useAppStoreHook()
+const showSuggestion = ref(true)
 
 const keepAlive = ref(true)
 const swiperInstance = ref<any>(null)
@@ -538,6 +541,7 @@ function handleScroll() {
 }
 
 onActivated(() => {
+  showSuggestion.value = true
   const header = document.querySelector('.index-header')
   if (header) {
     header.classList.remove('fixed')

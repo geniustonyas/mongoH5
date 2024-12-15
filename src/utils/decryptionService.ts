@@ -12,12 +12,14 @@ const fileTypes = {
 }
 
 class decryptionService {
-  private key: string
-  private iv: string
+  private key: CryptoJS.lib.WordArray
+  private iv: CryptoJS.lib.WordArray
 
   constructor() {
-    this.key = 'gFzviOY0zOxVq1cu'
-    this.iv = 'ZmA0Osl677UdSrl0'
+    const keyString = 'gFzviOY0zOxVq1cu'
+    const ivString = 'ZmA0Osl677UdSrl0'
+    this.key = CryptoJS.enc.Utf8.parse(keyString)
+    this.iv = CryptoJS.enc.Utf8.parse(ivString)
   }
 
   async fetchAndDecrypt(url: string): Promise<Blob> {
@@ -57,10 +59,8 @@ class decryptionService {
   }
 
   private decryptBase64Data(base64Data: string): Uint8Array {
-    const parsedKey = CryptoJS.enc.Utf8.parse(this.key)
-    const parsedIv = CryptoJS.enc.Utf8.parse(this.iv)
-    const decrypted = CryptoJS.AES.decrypt(base64Data, parsedKey, {
-      iv: parsedIv,
+    const decrypted = CryptoJS.AES.decrypt(base64Data, this.key, {
+      iv: this.iv,
       mode: CryptoJS.mode.CBC,
       padding: CryptoJS.pad.Pkcs7
     })
@@ -72,18 +72,28 @@ class decryptionService {
 
   decryptResponseData(encryptedData: string): string {
     try {
-      const key = 'gFzviOY0zOxVq1cu'
-      const iv = 'ZmA0Osl677UdSrl0'
-      const parsedKey = CryptoJS.enc.Utf8.parse(key)
-      const parsedIv = CryptoJS.enc.Utf8.parse(iv)
-      const decrypted = CryptoJS.AES.decrypt(encryptedData, parsedKey, {
-        iv: parsedIv,
+      const decrypted = CryptoJS.AES.decrypt(encryptedData, this.key, {
+        iv: this.iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
       })
       return decrypted.toString(CryptoJS.enc.Utf8)
     } catch (error) {
       console.error('解密响应数据失败:', error)
+      return ''
+    }
+  }
+
+  encryptData(data: string): string {
+    try {
+      const encrypted = CryptoJS.AES.encrypt(data, this.key, {
+        iv: this.iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      })
+      return encrypted.toString()
+    } catch (error) {
+      console.error('加密数据失败:', error)
       return ''
     }
   }
