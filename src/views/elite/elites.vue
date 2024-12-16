@@ -30,7 +30,7 @@
           <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
             <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
               <div class="v-a">
-                <video :id="'video-player-' + index" class="video-player" :data-poster="decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
+                <video :id="'video-player-' + index" class="video-player" :data-poster="video.poster" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
               </div>
               <div class="v-b">
                 <a @click="handleLike()">
@@ -133,6 +133,10 @@ const fetchVideos = async () => {
       SortType: 1
     })
     if (data && data.items) {
+      // 为每个视频设置poster
+      data.items.forEach(async (video) => {
+        video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
+      })
       videos.value.push(...data.items)
     }
   } catch (error) {
@@ -154,6 +158,7 @@ const fetchVideoDetail = async (videoId: number) => {
 const initializePlayer = async (index: number) => {
   await nextTick() // 确保 DOM 已更新
   const video = videos.value[index]
+  console.log(video)
   if (!video) return
   const videoElement = document.getElementById('video-player-' + index) as HTMLVideoElement
   if (!videoElement) {

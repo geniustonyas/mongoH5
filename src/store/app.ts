@@ -93,7 +93,6 @@ export const useAppStore = defineStore('app', {
         this.discloseRandomMax = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value2 || '10')
         const tmp = data.find((item: any) => item.pKey === 'SpareData')?.value1.split(',') || []
         this.spareData = JSON.parse(tmp)
-        console.log('丢失数据:', this.spareData)
       } catch (error) {
         console.error('获取系统配置失败:', error)
       }

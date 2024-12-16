@@ -22,6 +22,7 @@ export interface Video {
   trailerDomain?: string
   trailerUrl?: string
   resolution?: string
+  poster?: string
 }
 
 // 在 video.ts 中直接定义接口

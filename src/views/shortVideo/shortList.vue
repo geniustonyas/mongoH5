@@ -36,7 +36,7 @@
       </section>
       <Footer v-show="!showVideo" active-menu="shortList" footer-class="footer" />
     </div>
-    <transition name="video-fade">
+    <transition name="video-fade" @after-leave="handleAfterLeave">
       <div v-show="showVideo" class="short-video" :style="videoStyle">
         <header class="m-header h-video">
           <div class="h-l s-v">
@@ -50,35 +50,37 @@
             <div class="vm-h" />
             <div class="vm-a" />
             <div class="vm-b">
-              <swiper ref="swiperRef" :direction="'vertical'" :modules="modules" :virtual="{ slides: videoList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
-                <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
-                  <div class="v-a">
-                    <video :id="'video-player-' + index" class="video-player cover-fit" :poster="poster" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
-                  </div>
-                  <div class="v-b">
-                    <a @click="handleLike()">
-                      <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
-                      <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.likeCount, 'v', videoDetail.id, 'like') : 0 }}</b>
-                    </a>
-                    <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
-                    <a class="btn-mute" @click="toggleMute">
-                      <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
-                      <span>取消静音</span>
-                    </a>
-                  </div>
-                  <div class="v-c">
-                    <h3>
-                      @芒果TV官方-
-                      <span>{{ appStore.spareData.OfficialDomain }}</span>
-                    </h3>
-                    <p>
-                      <b>{{ video.title }}</b>
-                      <template v-if="videoDetail && videoDetail.tags">
-                        <span v-for="tag in videoDetail.tags" :key="tag.id">#{{ tag.title }}</span>
-                      </template>
-                    </p>
-                  </div>
-                </swiper-slide>
+              <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videoList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
+                <template v-if="videos.length > 0">
+                  <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
+                    <div class="v-a">
+                      <video :id="'video-player-' + index" class="video-player cover-fit" :data-poster="video.poster" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
+                    </div>
+                    <div class="v-b">
+                      <a @click="handleLike()">
+                        <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
+                        <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.likeCount, 'v', videoDetail.id, 'like') : 0 }}</b>
+                      </a>
+                      <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
+                      <a class="btn-mute" @click="toggleMute">
+                        <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
+                        <span>取消静音</span>
+                      </a>
+                    </div>
+                    <div class="v-c">
+                      <h3>
+                        @芒果TV官方-
+                        <span>{{ appStore.spareData.OfficialDomain }}</span>
+                      </h3>
+                      <p>
+                        <b>{{ video.title }}</b>
+                        <template v-if="videoDetail && videoDetail.tags">
+                          <span v-for="tag in videoDetail.tags" :key="tag.id">#{{ tag.title }}</span>
+                        </template>
+                      </p>
+                    </div>
+                  </swiper-slide>
+                </template>
               </swiper>
             </div>
           </div>
@@ -101,6 +103,8 @@ import { getVideoListApi, getVideoDetailApi, addPlayCountApi } from '@/api/video
 // import { userCollection } from '@/api/user'
 import { userLike } from '@/api/user'
 import type { Video, VideoListRequest, VideoDetailResponse } from '@/types/video'
+import decryptionService from '@/utils/decryptionService'
+
 import NavBar from '@/components/layout/NavBar.vue'
 import Footer from '@/components/layout/Footer.vue'
 import Loading from '@/components/layout/Loading.vue'
@@ -114,15 +118,14 @@ import { Virtual } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/virtual'
 import Clipboard from 'clipboard'
-const swiperRef = ref<any>(null)
 
+const decrypt = new decryptionService()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const router = useRouter()
 const modules = [Virtual]
 const showVideo = ref(false)
 const showVideoLoading = ref('')
-const poster = ref('')
 import { douyin } from '@/utils/cryptedData'
 
 // 列表变量
@@ -203,7 +206,7 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
     const rect = imgElement.getBoundingClientRect()
     clickPosition.value = { x: rect.left, y: rect.top, width: rect.width, height: rect.height }
   }
-  poster.value = imgElement.src
+  video.poster = imgElement.src
   videos.value.push(video)
   await fetchVideoDetail(parseInt(video.id))
   await initializePlayer(0)
@@ -219,20 +222,21 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
   document.body.classList.add('noscrolling')
 }
 
-const closeVideo = () => {
+const closeVideo = async () => {
   showVideo.value = false
+  nextTick(() => {
+    // 确保 DOM 更新完成后立即触发动画
+  })
   showVideoLoading.value = ''
-  handleAfterLeave()
-  swiperRef.value.update()
+  await handleAfterLeave()
 }
 
-const handleAfterLeave = () => {
+const handleAfterLeave = async () => {
   // 先停止当前播放
   const currentPlayer = players.value.get(currentVideoIndex.value)
   if (currentPlayer) {
     currentPlayer.stop()
   }
-  destroyAllVideos()
   videos.value = []
   videoDetail.value = null
   currentVideoIndex.value = 0
@@ -240,6 +244,7 @@ const handleAfterLeave = () => {
   isLoading.value = false
   mutePlay.value = true
   clickPosition.value = { x: 0, y: 0, width: 0, height: 0 }
+  destroyAllVideos()
 }
 
 const fetchVideos = async () => {
@@ -253,6 +258,9 @@ const fetchVideos = async () => {
       SortType: 1
     })
     if (data && data.items) {
+      data.items.forEach(async (video) => {
+        video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
+      })
       videos.value.push(...data.items)
     }
   } catch (error) {
@@ -302,7 +310,6 @@ const initializePlayer = async (index: number) => {
         controls: ['progress']
       })
       // 播放器初始化后总是把禁音给取消了, 这里重新设置
-      // player.poster = await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)
       player.muted = mutePlay.value
       const hls = new window.Hls({
         maxBufferLength: 15,
@@ -374,7 +381,6 @@ const initializePlayer = async (index: number) => {
       controls: ['progress']
     })
     // 播放器初始化后总是把禁音给取消了, 这里重新设置
-    // player.poster = await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)
     player.muted = mutePlay.value
     player.on('canplay', () => {
       const videoWidth = videoElement.videoWidth
