@@ -15,7 +15,7 @@
     </div>
 
     <Popup v-model:show="showPopup" position="bottom" closeable :overlay="true" round>
-      <div class="suggestion-popup" style="background-color: #f7f8fa;">
+      <div class="suggestion-popup">
         <div class="su-title">建议反馈</div>
         <div class="su-content">
           <div class="su-banner">

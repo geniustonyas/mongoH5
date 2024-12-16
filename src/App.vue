@@ -7,11 +7,19 @@
     </transition>
   </router-view>
   <Login />
+  <FloatingBubble v-if="showBubble && floatAdvertisement.length > 0" v-model:offset="offset" axis="xy" magnetic="x" class="float-ad">
+    <img v-for="ad in floatAdvertisement" :key="ad.id" v-lazy-decrypt="ad.imgUrl" alt="广告图片" @click.stop="handleFloatAdvertisementClick" />
+    <i class="mvfont mv-close" @click="handleFloatAdvertisementClose" />
+  </FloatingBubble>
 </template>
 
 <script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
 import Login from '@/components/Login.vue'
 import { useAppStore } from '@/store/app'
+import { FloatingBubble } from 'vant'
+
+const offset = ref({ x: 0, y: 100 })
 const appStore = useAppStore()
 const getTransition = (transition: unknown): string | undefined => {
   if (typeof transition === 'string') {
@@ -24,6 +32,34 @@ window.addEventListener('touchmove', () => {
   setTimeout(() => {
     appStore.isUserBackNavigation = false
   }, 400)
+})
+
+const floatAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(15).items
+  return tmp || []
+})
+const showBubble = ref(true)
+
+const handleFloatAdvertisementClick = () => {
+  if (floatAdvertisement.value.length > 0) {
+    window.open(floatAdvertisement.value[0].targetUrl, '_blank')
+  }
+}
+
+const handleFloatAdvertisementClose = () => {
+  showBubble.value = false
+}
+
+onMounted(() => {
+  // const script = document.createElement('script')
+  // script.src = '/stat.js'
+  // script.async = true
+  // document.body.appendChild(script)
+
+  // 计算偏移量
+  const bubbleWidth = 80 // 浮动元素的宽度
+  const rightMargin = 10 // 距离右侧的距离
+  offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 })
 </script>
 

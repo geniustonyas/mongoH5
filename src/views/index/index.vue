@@ -259,6 +259,8 @@ const categoryPageIndex = ref({})
 const categorySortType = ref({})
 const categorySubChannelId = ref({})
 
+const offset = ref({ x: 0, y: 100 })
+
 const sortOptions = [
   { label: '按最新', value: 1 },
   { label: '按最热', value: 2 },
@@ -301,6 +303,7 @@ const listBannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(13).items
   return tmp || []
 })
+
 const currentPopAd = computed(() => {
   var item = popAdvertisement.value[currentPopAdIndex.value]
   return item || {}
@@ -556,5 +559,10 @@ onDeactivated(() => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
+
+  // 计算偏移量
+  const bubbleWidth = 80 // 浮动元素的宽度
+  const rightMargin = 10 // 距离右侧的距离
+  offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 })
 </script>

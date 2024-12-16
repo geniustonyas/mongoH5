@@ -15,6 +15,18 @@ const errorImage = new URL(`./assets/imgs/default.gif`, import.meta.url).href
 
 const app = createApp(App)
 
+router.afterEach((to, from) => {
+  //@ts-ignore
+  if (window._czc) {
+    //@ts-ignore
+    window._czc.push(['_setAutoPageview', false])
+    //@ts-ignore
+    window._czc.push(['_trackPageview', to.fullPath, from.fullPath])
+  } else {
+    console.warn('CNZZ 未初始化')
+  }
+})
+
 app.use(store)
 app.use(VueLazyload, {
   preLoad: 1.3,
