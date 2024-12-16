@@ -206,10 +206,12 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
     const rect = imgElement.getBoundingClientRect()
     clickPosition.value = { x: rect.left, y: rect.top, width: rect.width, height: rect.height }
   }
+
   video.poster = imgElement.src
   videos.value.push(video)
   await fetchVideoDetail(parseInt(video.id))
   await initializePlayer(0)
+  pageIndex.value = Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
   await fetchVideos()
   await initializePlayer(1)
   const firstPlayer = players.value.get(0)
