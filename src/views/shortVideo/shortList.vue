@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="short-List">
-      <header class="m-header">
+      <header v-show="!showVideo" class="m-header">
         <div class="h-l" />
         <div class="h-m">
           <a @click="router.push({ name: 'shortList' })" class="active">{{ douyin }}</a>
@@ -647,6 +647,5 @@ const videoStyle = computed(() => ({
   width: 100vw;
   height: 100vh;
   background-color: black;
-  z-index: 10; /* 确保视频层在最上面 */
 }
 </style>
