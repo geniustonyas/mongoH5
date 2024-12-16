@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div v-show="showAddToHomeTip" class="pop-fixed" id="popShortcut">
+  <!-- <div v-show="showAddToHomeTip" class="pop-fixed" id="popShortcut">
     <div class="pop-container">
       <div class="pop-bd shortcut">
         <div class="s-a">
@@ -72,7 +72,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
@@ -85,9 +85,9 @@ const route = useRoute()
 const nu = route.query.nu
 
 const showDownloadTips = ref(false)
-const showAddToHomeTip = ref(false)
-const showIos = ref(false)
-const showAndroid = ref(false)
+// const showAddToHomeTip = ref(false)
+// const showIos = ref(false)
+// const showAndroid = ref(false)
 
 //@ts-ignore 检测是否在独立模式下运行
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone

@@ -25,12 +25,21 @@ const getAvailableApiUrl = async (): Promise<string> => {
   if (cachedApiUrl) {
     return cachedApiUrl
   }
-  for (const url of apiUrls) {
-    if (await checkApiAvailability(url)) {
-      cachedApiUrl = url
-      break
+
+  const useCurrentDomain = import.meta.env.VITE_USE_CURRENT_DOMAIN === 'true'
+  if (useCurrentDomain) {
+    const protocol = window.location.protocol
+    const host = window.location.host
+    cachedApiUrl = `${protocol}//api.${host.split('.').slice(-2).join('.')}`
+  } else {
+    for (const url of apiUrls) {
+      if (await checkApiAvailability(url)) {
+        cachedApiUrl = url
+        break
+      }
     }
   }
+
   if (!cachedApiUrl) {
     throw new Error('No available API URL found')
   }
