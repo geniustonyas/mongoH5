@@ -3,7 +3,7 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
-        <video id="plyr-player" muted autoplay preload="auto" poster="" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+        <video id="plyr-player" muted autoplay preload="auto" :poster="poster" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
         <div class="a-f">
           <div class="item">
             <span v-for="(option, index) in rewindOptions" :key="'rewind-' + index" @click="rewind(option.time)"> <i class="mvfont mv-left" />{{ option.label }} </span>
@@ -85,6 +85,7 @@ import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
 import { copy, getIncrementalNumberWithOffset } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
+import decryptionService from '@/utils/decryptionService'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
 import dayjs from 'dayjs'
@@ -121,7 +122,8 @@ const controls = ref([
   // 'download', // 显示一个下载按钮，链接到当前源或您在选项中指定的自定义URL
   'fullscreen' // 全屏切换
 ])
-// const decrypt = new decryptionService()
+const decrypt = new decryptionService()
+const poster = ref('')
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 
@@ -195,7 +197,9 @@ const fetchVideoDetail = async (videoId: string) => {
     } = await getVideoDetailApi(id)
     videoDetail.value = data
     initialLikeType.value = data.like
-
+    if (data.imgUrl) {
+      poster.value = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + data.imgUrl))
+    }
     // 获取猜你喜欢的视频列表
     await fetchRecommendedVideos(data.channelId, data.id)
 
@@ -249,8 +253,7 @@ const initializePlayer = async (domain: string, uri: string) => {
       autoplay: true,
       controls: controls.value,
       settings: ['captions', 'quality', 'speed', 'loop'],
-      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null },
-      poster: ''
+      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
     })
     if (window.Hls.isSupported()) {
       // 这里声明了 tmphls 的原因是因为直接使用vue的代理 hls.value时 视频会无法播放
@@ -529,6 +532,9 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  if (poster.value && poster.value.startsWith('blob:')) {
+    URL.revokeObjectURL(poster.value)
+  }
   resetPlayer()
 })
 

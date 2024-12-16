@@ -76,13 +76,10 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
 import { getAssetsFile } from '@/utils'
 import { useAppStore } from '@/store/app'
 
 const appStore = useAppStore()
-const route = useRoute()
-const nu = route.query.nu
 
 const showDownloadTips = ref(false)
 // const showAddToHomeTip = ref(false)
@@ -91,6 +88,9 @@ const showDownloadTips = ref(false)
 
 //@ts-ignore 检测是否在独立模式下运行
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone
+
+// 从 localstorage 的 nu 中获取 nu  nu由 App.vue 中获获取query并且设置
+const nu = localStorage.getItem('nu')
 
 onMounted(() => {
   if (!isStandalone && appStore.shownDownload && nu != 'a1' && nu != 'a2') {

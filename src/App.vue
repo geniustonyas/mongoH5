@@ -15,12 +15,15 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import Login from '@/components/Login.vue'
 import { useAppStore } from '@/store/app'
 import { FloatingBubble } from 'vant'
 
 const offset = ref({ x: 0, y: 100 })
 const appStore = useAppStore()
+const route = useRoute()
+
 const getTransition = (transition: unknown): string | undefined => {
   if (typeof transition === 'string') {
     return transition
@@ -48,6 +51,11 @@ const handleFloatAdvertisementClick = () => {
 
 const handleFloatAdvertisementClose = () => {
   showBubble.value = false
+}
+
+const nu = route.query.nu
+if (nu) {
+  localStorage.setItem('nu', nu as string)
 }
 
 onMounted(() => {

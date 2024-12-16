@@ -68,4 +68,5 @@ export interface VideoDetailResponse {
   poster?: string
   like?: number | string
   collect?: boolean
+  imgUrl?: string
 }

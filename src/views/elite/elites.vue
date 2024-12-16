@@ -30,7 +30,7 @@
           <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
             <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
               <div class="v-a">
-                <video :id="'video-player-' + index" class="video-player" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
+                <video :id="'video-player-' + index" class="video-player" :data-poster="decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
               </div>
               <div class="v-b">
                 <a @click="handleLike()">
@@ -84,6 +84,7 @@ import { ref, onMounted, computed, nextTick } from 'vue'
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { getVideoListApi, getVideoDetailApi, addPlayCountApi } from '@/api/video'
 // import { userCollection } from '@/api/user'
+import decryptionService from '@/utils/decryptionService'
 import { userLike } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
 import { useAppStore } from '@/store/app'
@@ -107,6 +108,7 @@ const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const modules = [Virtual]
+const decrypt = new decryptionService()
 
 const videos = ref<Video[]>([])
 const videoDetail = ref<VideoDetailResponse | null>(null)

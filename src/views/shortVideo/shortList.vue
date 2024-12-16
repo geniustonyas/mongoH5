@@ -34,9 +34,9 @@
           </List>
         </PullRefresh>
       </section>
-      <Footer active-menu="shortList" footer-class="footer" />
+      <Footer v-show="!showVideo" active-menu="shortList" footer-class="footer" />
     </div>
-    <transition name="video-fade" @after-leave="handleAfterLeave">
+    <transition name="video-fade">
       <div v-show="showVideo" class="short-video" :style="videoStyle">
         <header class="m-header h-video">
           <div class="h-l s-v">
@@ -50,7 +50,7 @@
             <div class="vm-h" />
             <div class="vm-a" />
             <div class="vm-b">
-              <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videoList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
+              <swiper ref="swiperRef" :direction="'vertical'" :modules="modules" :virtual="{ slides: videoList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
                 <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
                   <div class="v-a">
                     <video :id="'video-player-' + index" class="video-player cover-fit" :poster="poster" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
@@ -114,6 +114,7 @@ import { Virtual } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/virtual'
 import Clipboard from 'clipboard'
+const swiperRef = ref<any>(null)
 
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -220,10 +221,9 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
 
 const closeVideo = () => {
   showVideo.value = false
-  nextTick(() => {
-    // 确保 DOM 更新完成后立即触发动画
-  })
   showVideoLoading.value = ''
+  handleAfterLeave()
+  swiperRef.value.update()
 }
 
 const handleAfterLeave = () => {
@@ -232,6 +232,7 @@ const handleAfterLeave = () => {
   if (currentPlayer) {
     currentPlayer.stop()
   }
+  destroyAllVideos()
   videos.value = []
   videoDetail.value = null
   currentVideoIndex.value = 0
@@ -239,7 +240,6 @@ const handleAfterLeave = () => {
   isLoading.value = false
   mutePlay.value = true
   clickPosition.value = { x: 0, y: 0, width: 0, height: 0 }
-  destroyAllVideos()
 }
 
 const fetchVideos = async () => {
