@@ -1,8 +1,8 @@
 @font-face {
   font-family: "mvfont"; /* Project id 4698642 */
-  src: url('iconfont.woff2?t=1734197254296') format('woff2'),
-       url('iconfont.woff?t=1734197254296') format('woff'),
-       url('iconfont.ttf?t=1734197254296') format('truetype');
+  src: url('iconfont.woff2?t=1734424999287') format('woff2'),
+       url('iconfont.woff?t=1734424999287') format('woff'),
+       url('iconfont.ttf?t=1734424999287') format('truetype');
 }
 
 .mvfont {
@@ -13,8 +13,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.mv-xinxiluruwangye-:before {
-  content: "\e66a";
+.mv-zbza:before {
+  content: "\e6a8";
+}
+
+.mv-zbza1:before {
+  content: "\e6c1";
+}
+
+.mv-tcyp:before {
+  content: "\e664";
+}
+
+.mv-bb1:before {
+  content: "\e6b9";
 }
 
 .mv-jianyi:before {

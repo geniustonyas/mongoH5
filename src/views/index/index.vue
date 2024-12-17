@@ -90,23 +90,23 @@
 
                 <div v-if="bannerTextAd && bannerTextAd.length > 0" class="b-row r-ad">
                   <a @click="openAd(bannerTextAd[0].targetUrl, '首页文字广告', 'click', bannerTextAd[0].id)">
-                    <span><i class="mvfont mv-biaoji" /><em>精</em></span>
+                    <span><i class="mvfont mv-zbza1" /><em /></span>
                     <small>{{ bannerTextAd[0].title }}</small>
                   </a>
                   <a @click="openAd(bannerTextAd[1].targetUrl, '首页文字广告', 'click', bannerTextAd[1].id)">
-                    <span><i class="mvfont mv-cvFilter" /><em>准</em></span>
+                    <span><i class="mvfont mv-tcyp" /><em /></span>
                     <small>{{ bannerTextAd[1].title }}</small>
                   </a>
                   <a @click="openAd(bannerTextAd[2].targetUrl, '首页文字广告', 'click', bannerTextAd[2].id)">
-                    <span><i class="mvfont mv-jingzhun" /><em /></span>
+                    <span><i class="mvfont mv-kuang2" /><em>精</em></span>
                     <small>{{ bannerTextAd[2].title }}</small>
                   </a>
                   <a @click="openAd(bannerTextAd[3].targetUrl, '首页文字广告', 'click', bannerTextAd[3].id)">
-                    <span><i class="mvfont mv-kuang2" /><em>论</em></span>
+                    <span><i class="mvfont mv-jingzhun" /><em /></span>
                     <small>{{ bannerTextAd[3].title }}</small>
                   </a>
                   <a @click="openAd(bannerTextAd[4].targetUrl, '首页文字广告', 'click', bannerTextAd[4].id)">
-                    <span><i class="mvfont mv-dunp1" /><em>坛</em></span>
+                    <span><i class="mvfont mv-cvFilter" /><em>准</em></span>
                     <small>{{ bannerTextAd[4].title }}</small>
                   </a>
                 </div>
