@@ -14,13 +14,12 @@
       <section class="h-l-b padding1">
         <PullRefresh v-model="refreshing" @refresh="fresh">
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
-            <ul v-if="videoList.length > 0" class="video-list-box">
+            <ul class="video-list-box" ref="videoListBox">
               <li v-for="video in videoList" :key="video.id" @click="viewVideo(video, $event)" class="video-list">
                 <div class="l-a">
                   <Loading v-show="showVideoLoading == video.id" :width="40" :height="40" />
                   <img v-lazy-decrypt="video.imgUrl" loading-img="default2.gif" />
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
-                  <span class="a-c" />
                 </div>
                 <div class="l-b">
                   <b>{{ video.title }}</b>
@@ -118,8 +117,11 @@ import { Virtual } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/virtual'
 import Clipboard from 'clipboard'
+import Masonry from 'masonry-layout'
+import imagesLoaded from 'imagesloaded'
 
 const decrypt = new decryptionService()
+let msnry = null
 const appStore = useAppStore()
 const userStore = useUserStore()
 const router = useRouter()
@@ -180,6 +182,25 @@ const fetchVideoList = async (isRefresh = false) => {
       }
       finished.value = data.items.length < params.PageSize
     }
+
+    // await nextTick()
+    // const elem = document.querySelector('.video-list-box')
+    // if (elem) {
+    //   imagesLoaded(elem, () => {
+    //     console.log('All images loaded')
+    //     if (!msnry) {
+    //       msnry = new Masonry(elem, {
+    //         itemSelector: '.video-list',
+    //         columnWidth: '.video-list',
+    //         percentPosition: true
+    //       })
+    //       console.log('Masonry initialized')
+    //     } else {
+    //       msnry.layout()
+    //       console.log('Masonry layout updated')
+    //     }
+    //   })
+    // }
   } catch (error) {
     console.error('获取视频列表失败:', error)
     error.value = true
@@ -191,6 +212,7 @@ const fetchVideoList = async (isRefresh = false) => {
 
 const loadData = () => {
   videoListPageIndex.value += 1
+  console.log(123)
   fetchVideoList()
 }
 
@@ -200,6 +222,7 @@ const fresh = () => {
 }
 
 const viewVideo = async (video: Video, event: MouseEvent) => {
+  videos.value = []
   showVideoLoading.value = video.id
   const imgElement = (event.currentTarget as HTMLElement).querySelector('img')
   if (imgElement) {
@@ -209,6 +232,7 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
 
   video.poster = imgElement.src
   videos.value.push(video)
+
   await fetchVideoDetail(parseInt(video.id))
   await initializePlayer(0)
   pageIndex.value = Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
@@ -226,9 +250,6 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
 
 const closeVideo = async () => {
   showVideo.value = false
-  nextTick(() => {
-    // 确保 DOM 更新完成后立即触发动画
-  })
   showVideoLoading.value = ''
   await handleAfterLeave()
 }
@@ -242,11 +263,10 @@ const handleAfterLeave = async () => {
   videos.value = []
   videoDetail.value = null
   currentVideoIndex.value = 0
-  pageIndex.value = initPageIndex.value
   isLoading.value = false
   mutePlay.value = true
   clickPosition.value = { x: 0, y: 0, width: 0, height: 0 }
-  destroyAllVideos()
+  await destroyAllVideos()
 }
 
 const fetchVideos = async () => {
@@ -264,6 +284,7 @@ const fetchVideos = async () => {
         video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
       })
       videos.value.push(...data.items)
+      console.log('获取视频列表成功', videos.value)
     }
   } catch (error) {
     console.error('获取视频列表失败:', error)
@@ -428,7 +449,6 @@ const slideChange = async (swiper) => {
   try {
     const previousIndex = currentVideoIndex.value
     currentVideoIndex.value = swiper.activeIndex
-    console.log('上一个: ' + previousIndex, '当前: ' + currentVideoIndex.value)
 
     if (previousIndex === currentVideoIndex.value) return
 
@@ -447,7 +467,6 @@ const slideChange = async (swiper) => {
     const destroyIndex = isSlidingDown ? currentVideoIndex.value - 2 : currentVideoIndex.value + 2
     if (destroyIndex >= 0 && players.value.has(destroyIndex)) {
       await destroyVideo(destroyIndex)
-      console.log('上上一个视频销毁完成', destroyIndex)
     }
 
     // 获取视频详情
@@ -468,15 +487,12 @@ const slideChange = async (swiper) => {
 const stopAndResetVideo = (index) => {
   const player = players.value.get(index)
   if (hlsInstances.value.has(index)) {
-    console.log('stopload: ' + index)
     hlsInstances.value.get(index).stopLoad()
   }
   if (player) {
     try {
-      console.log('stop: ' + index)
       if (currentVideoIndex.value != index) {
         player.stop()
-        console.log('播放器已停止: ' + index)
       }
     } catch (error) {
       console.error('停止播放失败:', error)
@@ -488,7 +504,6 @@ const playCurrentVideo = async () => {
   isLoading.value = true
   const currentPlayer = players.value.get(currentVideoIndex.value)
   if (!currentPlayer) {
-    console.log('播放器不存在，初始化: ' + currentVideoIndex.value)
     await initializePlayer(currentVideoIndex.value)
     return
   }
@@ -500,9 +515,7 @@ const playCurrentVideo = async () => {
   }
 
   const playVideo = async () => {
-    console.log('playVideo 方法被调用')
     try {
-      console.log('播放器 ' + currentVideoIndex.value + ' 存在，播放')
       await currentPlayer.play()
     } catch (error) {
       if (error.name == 'NotAllowedError') {
@@ -514,10 +527,8 @@ const playCurrentVideo = async () => {
   }
 
   if (videoElement.readyState >= 2) {
-    console.log('视频成功播放')
     await playVideo()
   } else {
-    console.log('播放器: ' + currentVideoIndex.value + ' 视频未准备好')
     videoElement.addEventListener(
       'canplay',
       async function onCanPlay() {
@@ -605,7 +616,8 @@ onMounted(() => {
   fetchVideoList()
 })
 
-const destroyAllVideos = () => {
+const destroyAllVideos = async () => {
+  await nextTick()
   players.value.forEach((player) => {
     player.destroy()
   })

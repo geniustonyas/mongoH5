@@ -252,9 +252,9 @@ router.beforeEach(async (to, from, next) => {
   // 如果访问根路径，根据设备类型重定向
   if (to.path == '/') {
     if (isPc) {
-      next({ name: 'index' })
+      next({ name: 'index', query: to.query })
     } else {
-      next({ name: 'elites' })
+      next({ name: 'elites', query: to.query })
     }
     return
   }

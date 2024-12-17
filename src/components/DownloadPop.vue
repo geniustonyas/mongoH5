@@ -17,14 +17,32 @@
     </div>
   </div>
 
-  <!-- <div v-show="showAddToHomeTip" class="pop-fixed" id="popShortcut">
+  <div v-show="showAddToHomeTip" class="fixed-foot">
+    <div class="ff-bd">
+      <div class="d-c">
+        <div class="f-a">
+          <img :src="getAssetsFile('logo-1.png')" />
+          <span>
+            <b>芒果TV</b>
+            <small>添加到主屏幕</small>
+          </span>
+        </div>
+        <div class="f-b">
+          <a @click="popAddToHomeTip">添加</a>
+          <span @click="showAddToHomeTip = false"><i class="mvfont mv-close" /></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div v-show="showAddToHomePop" class="pop-fixed" id="popShortcut">
     <div class="pop-container">
       <div class="pop-bd shortcut">
         <div class="s-a">
           <h3>添加到主屏幕</h3>
           <span @click="showAddToHomeTip = false">×</span>
         </div>
-        <div v-show="showIos" class="s-b" id="sb-ios">
+        <div class="s-b" id="sb-ios">
           <div class="b-item">
             <div class="i-a">步骤<b>1</b></div>
             <div class="i-b">
@@ -47,7 +65,7 @@
             <div class="i-c">点击添加按钮，它将添加到您的主屏幕</div>
           </div>
         </div>
-        <div v-show="showAndroid" class="s-b" id="sb-android">
+        <!-- <div v-show="showAndroid" class="s-b" id="sb-android">
           <div class="b-item">
             <div class="i-a">步骤<b>1</b></div>
             <div class="i-b">
@@ -69,10 +87,10 @@
             </div>
             <div class="i-c">点击添加按钮，它将添加到您的主屏幕</div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
-  </div> -->
+  </div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
@@ -82,8 +100,9 @@ import { useAppStore } from '@/store/app'
 const appStore = useAppStore()
 
 const showDownloadTips = ref(false)
-// const showAddToHomeTip = ref(false)
-// const showIos = ref(false)
+const showAddToHomeTip = ref(false)
+const showAddToHomePop = ref(false)
+const showIos = ref(false)
 // const showAndroid = ref(false)
 
 //@ts-ignore 检测是否在独立模式下运行
@@ -91,25 +110,31 @@ const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
 
 // 从 localstorage 的 nu 中获取 nu  nu由 App.vue 中获获取query并且设置
 const nu = localStorage.getItem('nu')
-
 onMounted(() => {
-  if (!isStandalone && appStore.shownDownload && nu != 'a1' && nu != 'a2') {
-    showDownloadTips.value = true
-    appStore.setShownDownload(false)
+  // 不是独立模式, 并且 nu 不是 a1 和 a2 , nu由打包app时传入url参数, 由App.vue中获取并且写入localstorage
+  if (!isStandalone && nu != 'a1' && nu != 'a2') {
+    if (appStore.shownDownload) {
+      const ua = navigator.userAgent
+      // 如果是IOS, 则显示添加到主屏幕
+      if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+        showAddToHomeTip.value = true
+      } else {
+        showDownloadTips.value = true
+      }
+      // 设置已经显示下载提示, 不再显示
+      appStore.setShownDownload(false)
+    }
   }
 })
 
-// const popAddToHomeTip = () => {
-//   // 判断当前浏览器是IOS还是Android
-//   showAddToHomeTip.value = true
-//   const ua = navigator.userAgent
-//   if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
-//     showIos.value = true
-//   } else {
-//     showAndroid.value = true
-//   }
-// }
+// 如果是ios, 则显示添加到主屏幕
+const popAddToHomeTip = () => {
+  showAddToHomePop.value = true
+  showIos.value = true
+  showAddToHomeTip.value = false
+}
 
+// 下载APP
 const downloadApp = () => {
   const ua = navigator.userAgent
   if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {

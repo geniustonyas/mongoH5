@@ -26,10 +26,23 @@
   <script src="/js/hls.min.js" defer></script>
 
   <script>
-    const script = document.createElement('script')
-    script.type = 'text/javascript'
-    script.src = `/stat.js?t=5` // 假设每个域名下都有一个 stat.js 文件
-    document.head.appendChild(script)
+    // 统计
+    const randomNumber = Math.floor(Math.random() * 10);
+    console.log(randomNumber)
+    if (randomNumber != 4)  {
+      const script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.src = `/stat.js?t=6` // 假设每个域名下都有一个 stat.js 文件
+      document.head.appendChild(script)
+    }
+
+    var _czc = _czc || [];
+    (function () {
+      var um = document.createElement("script");
+      um.src = "https://s4.cnzz.com/z.js?id=1281398949&async=1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(um, s);
+    })();
 
     // 禁止safari缩放
     window.onload = function () {
