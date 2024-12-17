@@ -43,6 +43,16 @@ export const classifyResolution = (resolution: string): string => {
   return ''
 }
 
+export const openAd = (url, category = '', action = '', label = '', value = 1, nodeid = '') => {
+  if (url) {
+    window.open(url, '_blank')
+  }
+  if (category != '' && action != '' && window._czc) {
+    // @ts-ignore
+    window._czc.push(['_trackEvent', category, action, label, value, nodeid])
+  }
+}
+
 // 获取增量数字
 export function getIncrementalNumberWithOffset(value: string, module: string, id: string | number, type: 'view' | 'like' | 'collect'): number {
   const storageKey = `incNum_${module}_${id}_${type}`

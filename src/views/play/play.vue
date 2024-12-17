@@ -49,7 +49,7 @@
           <span><i @click="handleShare" class="mvfont mv-zhuanfa1" />分享</span>
         </div>
         <div class="ad-box">
-          <img v-if="bannerAdvertisement.length > 0" @click="handleBannerAdvertisementClick" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
+          <img v-if="bannerAdvertisement.length > 0" @click="openAd(bannerAdvertisement[0].targetUrl, '播放页横幅', 'click', bannerAdvertisement[0].id)" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
         </div>
       </div>
       <nav class="mv-t-l">
@@ -83,7 +83,7 @@ import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi, addPlayCountApi, getVideoListApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
-import { copy, getIncrementalNumberWithOffset } from '@/utils'
+import { copy, getIncrementalNumberWithOffset, openAd } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import decryptionService from '@/utils/decryptionService'
 import { useUserStore } from '@/store/user'
@@ -148,12 +148,6 @@ const bannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(4).items
   return tmp || []
 })
-
-const handleBannerAdvertisementClick = () => {
-  if (bannerAdvertisement.value.length > 0) {
-    window.open(bannerAdvertisement.value[0].targetUrl, '_blank')
-  }
-}
 
 const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
   if (isDisabled.value) {

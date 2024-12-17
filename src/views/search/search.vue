@@ -6,7 +6,7 @@
     </header>
 
     <div class="ad-box1 search-padding">
-      <img v-if="bannerAdvertisement && bannerAdvertisement.length > 0" @click="handleBannerAdvertisementClick" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
+      <img v-if="bannerAdvertisement && bannerAdvertisement.length > 0" @click="openAd(bannerAdvertisement[0].targetUrl, '搜索页横幅', 'click', bannerAdvertisement[0].id)" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
     </div>
 
     <!-- 热门标签 -->
@@ -93,7 +93,7 @@ import { useAppStore } from '@/store/app'
 import { getVideoListApi } from '@/api/video'
 import type { Video } from '@/types/video'
 import { List } from 'vant'
-import { formatDuration, getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
+import { formatDuration, getIncrementalNumberWithOffset, classifyResolution, openAd } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 
 const router = useRouter()
@@ -120,12 +120,6 @@ const bannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(12).items
   return tmp || []
 })
-
-const handleBannerAdvertisementClick = () => {
-  if (bannerAdvertisement.value.length > 0) {
-    window.open(bannerAdvertisement.value[0].targetUrl, '_blank')
-  }
-}
 
 const hotTags = computed(() => {
   const allTags = appStore.theme.flatMap((tag) => tag.items || [])

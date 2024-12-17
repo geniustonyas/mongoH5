@@ -23,7 +23,7 @@
           <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="bbs-banner" class="swiper-container">
             <swiper class="my-swipe" @swiper="onBannerSwiper" :modules="appStore.isPc ? [Autoplay, Pagination] : [Autoplay]" :slides-per-view="appStore.isPc ? 5 : 1" :space-between="10" :pagination="{ clickable: true } as any" :centered-slides="false" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
               <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
-                <a target="_blank" :href="ad.targetUrl">
+                <a target="_blank" @click="openAd(ad.targetUrl, '社区banner', 'click', ad.id)">
                   <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
                 </a>
               </swiper-slide>
@@ -229,6 +229,7 @@ import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
+import { openAd } from '@/utils'
 import type { BbsListRequest, BbsCategoryResponse } from '@/types/bbs'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'

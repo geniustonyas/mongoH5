@@ -32,7 +32,7 @@
         </div>
 
         <div class="au-ad">
-          <img v-if="bannerAdvertisement.length > 0" @click="handleBannerAdvertisementClick" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
+          <img v-if="bannerAdvertisement.length > 0" @click="openAd(bannerAdvertisement[0].targetUrl, '社区详情横幅', 'click', bannerAdvertisement[0].id)" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
         </div>
         <div class="bbs-d-ne">
           <div class="item" v-if="detail?.prev?.id" @click="handleBbsClick(detail.prev)">
@@ -96,7 +96,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick, computed } from 'vue'
-import { getAssetsFile, decodeHtmlEntities } from '@/utils'
+import { getAssetsFile, decodeHtmlEntities, openAd } from '@/utils'
 import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
@@ -129,12 +129,6 @@ const bannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(4).items
   return tmp || []
 })
-
-const handleBannerAdvertisementClick = () => {
-  if (bannerAdvertisement.value.length > 0) {
-    window.open(bannerAdvertisement.value[0].targetUrl, '_blank')
-  }
-}
 
 const fetchDetail = async (id: string) => {
   try {

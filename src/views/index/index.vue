@@ -52,7 +52,7 @@
               <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="index-banner" class="swiper-container">
                 <swiper class="my-swipe" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
                   <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
-                    <a target="_blank" :href="ad.targetUrl"><img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" /></a>
+                    <a target="_blank" @click="openAd(ad.targetUrl, '首页banner', 'click', ad.id)"><img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" /></a>
                   </swiper-slide>
                 </swiper>
               </nav>
@@ -89,23 +89,23 @@
                 </div>
 
                 <div v-if="bannerTextAd && bannerTextAd.length > 0" class="b-row r-ad">
-                  <a @click="openAd(bannerTextAd[0].targetUrl)">
+                  <a @click="openAd(bannerTextAd[0].targetUrl, '首页文字广告', 'click', bannerTextAd[0].id)">
                     <span><i class="mvfont mv-biaoji" /><em>精</em></span>
                     <small>{{ bannerTextAd[0].title }}</small>
                   </a>
-                  <a @click="openAd(bannerTextAd[1].targetUrl)">
+                  <a @click="openAd(bannerTextAd[1].targetUrl, '首页文字广告', 'click', bannerTextAd[1].id)">
                     <span><i class="mvfont mv-cvFilter" /><em>准</em></span>
                     <small>{{ bannerTextAd[1].title }}</small>
                   </a>
-                  <a @click="openAd(bannerTextAd[2].targetUrl)">
+                  <a @click="openAd(bannerTextAd[2].targetUrl, '首页文字广告', 'click', bannerTextAd[2].id)">
                     <span><i class="mvfont mv-jingzhun" /><em /></span>
                     <small>{{ bannerTextAd[2].title }}</small>
                   </a>
-                  <a @click="openAd(bannerTextAd[3].targetUrl)">
+                  <a @click="openAd(bannerTextAd[3].targetUrl, '首页文字广告', 'click', bannerTextAd[3].id)">
                     <span><i class="mvfont mv-kuang2" /><em>论</em></span>
                     <small>{{ bannerTextAd[3].title }}</small>
                   </a>
-                  <a @click="openAd(bannerTextAd[4].targetUrl)">
+                  <a @click="openAd(bannerTextAd[4].targetUrl, '首页文字广告', 'click', bannerTextAd[4].id)">
                     <span><i class="mvfont mv-dunp1" /><em>坛</em></span>
                     <small>{{ bannerTextAd[4].title }}</small>
                   </a>
@@ -129,7 +129,7 @@
             </nav>
 
             <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
-              <img @click="handleBannerAdvertisementClick" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
+              <img @click="openAd(listBannerAdvertisement[0].targetUrl, '首页列表横幅', 'click', listBannerAdvertisement[0].id)" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
             </div>
 
             <nav v-if="recommendedVideos && recommendedVideos.length > 0" class="mv-t-l">
@@ -225,7 +225,7 @@ import { PullRefresh, Popup, Icon, Tabs, Tab } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, openAd } from '@/utils'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/autoplay'
@@ -308,12 +308,6 @@ const currentPopAd = computed(() => {
   var item = popAdvertisement.value[currentPopAdIndex.value]
   return item || {}
 })
-
-const handleBannerAdvertisementClick = () => {
-  if (listBannerAdvertisement.value.length > 0) {
-    window.open(listBannerAdvertisement.value[0].targetUrl, '_blank')
-  }
-}
 
 // 监听邀请码
 watch(
@@ -521,10 +515,6 @@ const openDownloadPage = () => {
       window.open(appStore.androidDownloadUrl, '_blank')
     }
   }
-}
-
-const openAd = (url: string) => {
-  window.open(url)
 }
 
 function handleScroll() {

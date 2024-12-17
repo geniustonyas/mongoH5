@@ -37,7 +37,7 @@
       </div>
 
       <div v-if="bannerAdvertisement && bannerAdvertisement.length > 0" class="ad-box">
-        <img @click="handleBannerAdvertisementClick" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
+        <img @click="openAd(bannerAdvertisement[0].targetUrl, '会员中心横幅', 'click', bannerAdvertisement[0].id)" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
       </div>
 
       <div class="h-b">
@@ -85,7 +85,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
-import { getAssetsFile } from '@/utils'
+import { getAssetsFile, openAd } from '@/utils'
 import { useUserStoreHook } from '@/store/user'
 import { useAppStoreHook } from '@/store/app'
 // import { showToast } from 'vant'
@@ -105,12 +105,6 @@ const bannerAdvertisement = computed(() => {
     await appStore.fetAdvertisement()
   }
 })()
-
-const handleBannerAdvertisementClick = () => {
-  if (bannerAdvertisement.value.length > 0) {
-    window.open(bannerAdvertisement.value[0].targetUrl, '_blank')
-  }
-}
 
 const openDownloadPage = () => {
   const ua = navigator.userAgent

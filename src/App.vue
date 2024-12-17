@@ -8,8 +8,8 @@
   </router-view>
   <Login />
   <FloatingBubble v-if="showBubble && floatAdvertisement.length > 0" v-model:offset="offset" axis="xy" magnetic="x" class="float-ad">
-    <img v-for="ad in floatAdvertisement" :key="ad.id" v-lazy-decrypt="ad.imgUrl" alt="广告图片" @click.stop="handleFloatAdvertisementClick" />
-    <i class="mvfont mv-close" @click="handleFloatAdvertisementClose" />
+    <img v-for="ad in floatAdvertisement" :key="ad.id" v-lazy-decrypt="ad.imgUrl" alt="广告图片" @click.stop="openAd(ad.targetUrl, '首页浮动广告', 'click', ad.id)" />
+    <i class="mvfont mv-close" @click.stop="handleFloatAdvertisementClose" />
   </FloatingBubble>
 </template>
 
@@ -19,6 +19,7 @@ import { useRoute } from 'vue-router'
 import Login from '@/components/Login.vue'
 import { useAppStore } from '@/store/app'
 import { FloatingBubble } from 'vant'
+import { openAd } from '@/utils'
 
 const offset = ref({ x: 0, y: 100 })
 const appStore = useAppStore()
@@ -42,12 +43,6 @@ const floatAdvertisement = computed(() => {
   return tmp || []
 })
 const showBubble = ref(true)
-
-const handleFloatAdvertisementClick = () => {
-  if (floatAdvertisement.value.length > 0) {
-    window.open(floatAdvertisement.value[0].targetUrl, '_blank')
-  }
-}
 
 const handleFloatAdvertisementClose = () => {
   showBubble.value = false

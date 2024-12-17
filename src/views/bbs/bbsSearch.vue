@@ -5,6 +5,10 @@
       <a @click="appStore.setBack(true)">取消</a>
     </header>
 
+    <div class="ad-box1 search-padding">
+      <img v-if="bannerAdvertisement && bannerAdvertisement.length > 0" @click="openAd(bannerAdvertisement[0].targetUrl, '搜索页横幅', 'click', bannerAdvertisement[0].id)" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
+    </div>
+
     <!-- 热门标签 -->
     <section v-if="showHotTags" class="p-s-b">
       <nav class="ps-ssfx">
@@ -65,11 +69,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { getBbsListApi } from '@/api/bbs'
 import type { BbsListRequest, Bbs } from '@/types/bbs'
+import { openAd } from '@/utils'
 import { List } from 'vant'
 import BbsListItem from '@/components/BbsListItem.vue'
 import NavBar from '@/components/layout/NavBar.vue'
@@ -88,6 +93,11 @@ let pageIndex = ref(1)
 let listLoading = ref(false)
 let finished = ref(false)
 let error = ref(false)
+
+const bannerAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(12).items
+  return tmp || []
+})
 
 const loadSearchHistory = () => {
   const history = localStorage.getItem('searchHistory')
