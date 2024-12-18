@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fixed-suggestion" ref="draggable">
+    <!-- <div class="fixed-suggestion" ref="draggable">
       <div v-show="showBtn">
         <div class="fs-t" @click="toggleBtn">
           <span><i class="mvfont mv-close" /></span>
@@ -12,7 +12,19 @@
           </span>
         </div>
       </div>
-    </div>
+    </div> -->
+
+    <FloatingBubble v-if="showBtn" v-model:offset="offset" axis="xy" magnetic="x" class="fixed-suggestion" :gap="0">
+      <div class="fs-t" @click="toggleBtn">
+        <span><i class="mvfont mv-close" /></span>
+      </div>
+      <div class="fs-c" @click="showPopup = true">
+        <span>
+          <i class="mvfont mv-jianyi" />
+          <small>建议<br />反馈</small>
+        </span>
+      </div>
+    </FloatingBubble>
 
     <Popup v-model:show="showPopup" position="bottom" closeable :overlay="true" round>
       <div class="suggestion-popup">
@@ -50,10 +62,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted, defineProps, defineEmits } from 'vue'
-import { Popup, Form, Field, RadioGroup, Radio, Button, CellGroup, showSuccessToast } from 'vant'
+import { Popup, Form, Field, RadioGroup, Radio, Button, CellGroup, showSuccessToast, FloatingBubble } from 'vant'
 import { useAppStore } from '@/store/app'
 import { copy } from '@/utils'
 import { userSuggestion } from '@/api/user'
+
+const offset = ref({ x: 0, y: 400 })
 
 defineProps<{
   showBtn: boolean
@@ -93,5 +107,14 @@ const onSubmit = async () => {
 
 onMounted(() => {
   copy('.copy')
+  // const script = document.createElement('script')
+  // script.src = '/stat.js'
+  // script.async = true
+  // document.body.appendChild(script)
+
+  // 计算偏移量
+  const bubbleWidth = 64 // 浮动元素的宽度
+  const rightMargin = 25 // 距离右侧的距离
+  offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 })
 </script>

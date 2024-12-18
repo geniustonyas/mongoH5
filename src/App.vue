@@ -7,9 +7,11 @@
     </transition>
   </router-view>
   <Login />
-  <FloatingBubble v-if="showBubble && floatAdvertisement.length > 0" v-model:offset="offset" axis="xy" magnetic="x" class="float-ad">
+  <FloatingBubble v-if="showBubble && floatAdvertisement.length > 0" v-model:offset="offset" axis="xy" magnetic="x" class="float-ad" :gap="0">
     <img v-for="ad in floatAdvertisement" :key="ad.id" v-lazy-decrypt="ad.imgUrl" alt="广告图片" @click.stop="openAd(ad.targetUrl, '首页浮动广告', 'click', ad.id)" />
-    <i class="mvfont mv-close" @click.stop="handleFloatAdvertisementClose" />
+    <div class="fs-t" @click.stop="handleFloatAdvertisementClose">
+      <span><i class="mvfont mv-close" /></span>
+    </div>
   </FloatingBubble>
 </template>
 
@@ -60,8 +62,8 @@ onMounted(() => {
   // document.body.appendChild(script)
 
   // 计算偏移量
-  const bubbleWidth = 80 // 浮动元素的宽度
-  const rightMargin = 10 // 距离右侧的距离
+  const bubbleWidth = 130 // 浮动元素的宽度
+  const rightMargin = 0 // 距离右侧的距离
   offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 })
 </script>
