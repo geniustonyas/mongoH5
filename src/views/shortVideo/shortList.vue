@@ -14,22 +14,22 @@
       <section class="h-l-b padding1">
         <PullRefresh v-model="refreshing" @refresh="fresh">
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
-            <ul class="video-list-box" ref="videoListBox">
-              <li v-for="video in videoList" :key="video.id" @click="viewVideo(video, $event)" class="video-list">
+            <div class="video-list-box" ref="videoListBox">
+              <div v-for="vd in videoList" :key="vd.id" @click="viewVideo(vd, $event)" class="video-list">
                 <div class="l-a">
-                  <Loading v-show="showVideoLoading == video.id" :width="40" :height="40" />
-                  <img v-lazy-decrypt="video.imgUrl" loading-img="default2.gif" />
-                  <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
+                  <Loading v-show="showVideoLoading == vd.id" :width="40" :height="40" />
+                  <img :src="vd.poster" :alt="vd.title" />
+                  <span class="a-b" v-if="vd.duration != '0'">{{ formatDuration(parseInt(vd.duration)) }}</span>
                 </div>
                 <div class="l-b">
-                  <b>{{ video.title }}</b>
+                  <b>{{ vd.title }}</b>
                   <div class="b-a">
-                    <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(video.viewCount, 'v', video.id, 'view') }}</span>
-                    <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(video.likeCount, 'v', video.id, 'like') }}</span>
+                    <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(vd.viewCount, 'v', vd.id, 'view') }}</span>
+                    <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(vd.likeCount, 'v', vd.id, 'like') }}</span>
                   </div>
                 </div>
-              </li>
-            </ul>
+              </div>
+            </div>
           </List>
         </PullRefresh>
       </section>
@@ -120,8 +120,8 @@ import Clipboard from 'clipboard'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'
 
-const decrypt = new decryptionService()
 let msnry = null
+const decrypt = new decryptionService()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const router = useRouter()
@@ -175,6 +175,14 @@ const fetchVideoList = async (isRefresh = false) => {
     } = await getVideoListApi(params)
 
     if (data && Array.isArray(data.items)) {
+      // 必须先等待 解密图片存入poster中
+      await Promise.all(
+        data.items.map(async (video) => {
+          const blob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)
+          video.poster = URL.createObjectURL(blob)
+        })
+      )
+
       if (isRefresh) {
         videoList.value = data.items
       } else {
@@ -182,25 +190,29 @@ const fetchVideoList = async (isRefresh = false) => {
       }
       finished.value = data.items.length < params.PageSize
     }
-
-    // await nextTick()
-    // const elem = document.querySelector('.video-list-box')
-    // if (elem) {
-    //   imagesLoaded(elem, () => {
-    //     console.log('All images loaded')
-    //     if (!msnry) {
-    //       msnry = new Masonry(elem, {
-    //         itemSelector: '.video-list',
-    //         columnWidth: '.video-list',
-    //         percentPosition: true
-    //       })
-    //       console.log('Masonry initialized')
-    //     } else {
-    //       msnry.layout()
-    //       console.log('Masonry layout updated')
-    //     }
-    //   })
-    // }
+    await nextTick()
+    const elem = document.querySelector('.video-list-box')
+    if (elem) {
+      imagesLoaded(elem, () => {
+        if (!msnry) {
+          msnry = new Masonry(elem, {
+            itemSelector: '.video-list',
+            columnWidth: '.video-list',
+            percentPosition: true,
+            gutter: 4
+          })
+          setTimeout(() => {
+            msnry.reloadItems() // 重新加载所有项目
+            msnry.layout()
+          }, 200)
+        } else {
+          setTimeout(() => {
+            msnry.reloadItems() // 重新加载所有项目
+            msnry.layout()
+          }, 200)
+        }
+      })
+    }
   } catch (error) {
     console.error('获取视频列表失败:', error)
     error.value = true
@@ -212,7 +224,6 @@ const fetchVideoList = async (isRefresh = false) => {
 
 const loadData = () => {
   videoListPageIndex.value += 1
-  console.log(123)
   fetchVideoList()
 }
 
@@ -251,7 +262,6 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
 const closeVideo = async () => {
   showVideo.value = false
   showVideoLoading.value = ''
-  await handleAfterLeave()
 }
 
 const handleAfterLeave = async () => {

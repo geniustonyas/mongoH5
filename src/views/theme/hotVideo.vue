@@ -8,10 +8,10 @@
       <div>
         <PullRefresh v-model="refreshing" @refresh="fresh">
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
-            <ul v-if="videos.length > 0" class="video-list-box">
-              <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })" class="video-list">
+            <div v-if="videos.length > 0" class="video-list-box">
+              <div v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })" class="video-list">
                 <div class="l-a">
-                  <img v-lazy-decrypt="video.imgUrl" />
+                  <img :src="video.poster" :alt="video.poster" />
                   <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
                   <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
                   <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
@@ -28,10 +28,11 @@
                     </div>
                   </div>
                 </div>
-              </li>
-            </ul>
+              </div>
+            </div>
           </List>
         </PullRefresh>
+        <BackTop />
       </div>
     </section>
     <NavBar active-menu="theme" />
@@ -39,17 +40,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { PullRefresh, List } from 'vant'
+import { ref, onMounted, nextTick } from 'vue'
+import { PullRefresh, List, BackTop } from 'vant'
 import dayjs from 'dayjs'
 import { getVideoListApi, getVideoRankApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
 import Header from '@/views/theme/themeHeader.vue'
 import NavBar from '@/components/layout/NavBar.vue'
 import { useRouter } from 'vue-router'
+import { useAppStore } from '@/store/app'
 import { formatDuration, getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
+import decryptionService from '@/utils/decryptionService'
+import Masonry from 'masonry-layout'
+import imagesLoaded from 'imagesloaded'
 
+let msnry = null
 const router = useRouter()
+const decrypt = new decryptionService()
+const appStore = useAppStore()
 
 const videos = ref<Video[]>([])
 const activeRank = ref('total')
@@ -96,10 +104,38 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
     } = response
 
     if (data && Array.isArray(data.items)) {
+      // 先等待全部解密图片存入poster
+      await Promise.all(
+        data.items.map(async (video) => {
+          const blob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)
+          video.poster = URL.createObjectURL(blob)
+        })
+      )
+
       if (isRefresh) {
         videos.value = data.items
       } else {
         videos.value = videos.value.concat(data.items)
+      }
+
+      await nextTick()
+      const elem = document.querySelector('.video-list-box')
+      if (elem) {
+        imagesLoaded(elem, () => {
+          if (!msnry) {
+            msnry = new Masonry(elem, {
+              itemSelector: '.video-list',
+              columnWidth: '.video-list',
+              percentPosition: true,
+              gutter: 4
+            })
+          } else {
+            setInterval(() => {
+              msnry.reloadItems()
+              msnry.layout()
+            }, 200)
+          }
+        })
       }
 
       finished.value = data.items.length < pageSize
