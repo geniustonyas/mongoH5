@@ -122,20 +122,31 @@ export const useAppStore = defineStore('app', {
 
         this.statistics = data || []
 
-        // 如果扣量比例为0，则直接加载 code 的统计代码
+        // 如果扣量比例为0，或者上次已经加载过统计代码，则直接加载 code 的统计代码
         if (data.rate == '0') {
           loadStatistics(data.code)
         } else {
-          // 生成一个 0 到 99 的随机数
-          const randomNumber = Math.floor(Math.random() * 100)
-
-          // 如果随机数在 rate 指定的范围内，则不加载 code 的统计代码
-          if (randomNumber >= parseInt(data.rate, 10)) {
-            loadStatistics(data.code)
-          }
-
           // 只要 rate 不为 0，就加载 selfcode 的统计代码
           loadStatistics(data.selfCode)
+          const storageKey = 'statisticsCodeLoaded'
+          const codeLoaded = localStorage.getItem(storageKey)
+          // 如果已经加载过统计代码，则直接载入
+          if (codeLoaded == '1') {
+            loadStatistics(data.code)
+          } else if (codeLoaded == '0') {
+            // 如果上次没有加载过统计代码，则不加载
+            return
+          } else {
+            // 新用户, 没有载入则随机载入
+            const randomNumber = Math.floor(Math.random() * 100)
+            console.log('随机数:', randomNumber)
+            if (randomNumber >= parseInt(data.rate, 10)) {
+              loadStatistics(data.code)
+              localStorage.setItem(storageKey, '1')
+            } else {
+              localStorage.setItem(storageKey, '0')
+            }
+          }
         }
       } catch (error) {
         console.error('获取站长统计代码和扣量比例失败:', error)
