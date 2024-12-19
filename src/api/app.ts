@@ -1,5 +1,5 @@
 import { request } from '@/utils/axios'
-import { AdsPostion, SmsParams } from '@/types/app'
+import { AdsPostion, SmsParams, StatisticsResp } from '@/types/app'
 import type { ApiResponseData } from '@/types/global.d'
 
 /** 获取系统配置 */
@@ -31,6 +31,19 @@ export function getCodeApi(data: SmsParams) {
   return request<ApiResponseData<any>>({
     url: 'Web/GetCode',
     method: 'post',
+    data
+  })
+}
+
+/** 获取站长统计代码和扣量比例 */
+export function getStatisticsApi(data: { Domain: string }) {
+  return request<ApiResponseData<StatisticsResp>>({
+    url: 'Web/GetMGStatisticsConfig',
+    method: 'post',
+    headers: {
+      'Content-Type': 'text/plain',
+      'X-Should-Encrypt': '1'
+    },
     data
   })
 }

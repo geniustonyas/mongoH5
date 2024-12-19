@@ -27,3 +27,10 @@ export interface SmsParams {
   phone: string
   type: string
 }
+
+export interface StatisticsResp {
+  code: string
+  domain?: string
+  rate?: string
+  selfCode: string
+}

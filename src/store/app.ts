@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
-import { getCategoryApi, getConfigApi, getAdsApi } from '@/api/app'
+import { getCategoryApi, getConfigApi, getAdsApi, getStatisticsApi } from '@/api/app'
 import { SpareData } from '@/types/app'
 import router from '@/router'
 import { getThemeApi } from '@/api/theme'
+import { loadStatistics } from '@/utils'
 import store from '@/store'
 
 import { decryptedCategorys, fanhaoPianmingYanyuan } from '@/utils/cryptedData'
@@ -110,6 +111,37 @@ export const useAppStore = defineStore('app', {
       }
     },
 
+    async fetStatistics() {
+      try {
+        // 获取当前顶级域名
+        // const domain = window.location.host.split('.').slice(-2).join('.')
+        const domain = 'mgtvx.cc'
+        const {
+          data: { data }
+        } = await getStatisticsApi({ Domain: domain })
+
+        this.statistics = data || []
+
+        // 如果扣量比例为0，则直接加载 code 的统计代码
+        if (data.rate == '0') {
+          loadStatistics(data.code)
+        } else {
+          // 生成一个 0 到 99 的随机数
+          const randomNumber = Math.floor(Math.random() * 100)
+
+          // 如果随机数在 rate 指定的范围内，则不加载 code 的统计代码
+          if (randomNumber >= parseInt(data.rate, 10)) {
+            loadStatistics(data.code)
+          }
+
+          // 只要 rate 不为 0，就加载 selfcode 的统计代码
+          loadStatistics(data.selfCode)
+        }
+      } catch (error) {
+        console.error('获取站长统计代码和扣量比例失败:', error)
+      }
+    },
+
     // 获取广告
     async fetAdvertisement() {
       try {
@@ -140,6 +172,7 @@ export const useAppStore = defineStore('app', {
     async fetchAllData() {
       await this.fetConfig()
       await this.fetCategory()
+      await this.fetStatistics()
       // await this.fetTheme()
       // 每隔5分钟刷新一次数据
       setInterval(async () => {
@@ -156,7 +189,7 @@ export const useAppStore = defineStore('app', {
   }
 })
 
-// 导出一个可以在 setup 外部使用的函数
+// 导一个可以在 setup 外部使用的函数
 export function useAppStoreHook() {
   return useAppStore(store)
 }

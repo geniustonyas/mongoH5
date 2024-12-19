@@ -43,10 +43,29 @@ export const classifyResolution = (resolution: string): string => {
   return ''
 }
 
+// 加载统计代码
+export const loadStatistics = (url: string) => {
+  // 确保 URL 中的 HTML 实体被正确解析
+  url = url.replace(/&amp;/g, '&')
+  const script = document.createElement('script')
+  script.textContent = `
+    var _czc = _czc || [];
+    (function () {
+      var um = document.createElement("script");
+      um.src = "${url}";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(um, s);
+    })();
+  `
+  // 将 script 元素插入到文档中
+  document.head.appendChild(script)
+}
+
 export const openAd = (url, category = '', action = '', label = '', value = 1, nodeid = '') => {
   if (url) {
     window.open(url, '_blank')
   }
+  // @ts-ignore
   if (category != '' && action != '' && window._czc) {
     // @ts-ignore
     window._czc.push(['_trackEvent', category, action, label, value, nodeid])
