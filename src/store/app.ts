@@ -114,8 +114,8 @@ export const useAppStore = defineStore('app', {
     async fetStatistics() {
       try {
         // 获取当前顶级域名
-        // const domain = window.location.host.split('.').slice(-2).join('.')
-        const domain = 'mgtvx.cc'
+        const domain = window.location.host.split('.').slice(-2).join('.')
+        // const domain = 'mgtvx.cc'
         const {
           data: { data }
         } = await getStatisticsApi({ Domain: domain })
