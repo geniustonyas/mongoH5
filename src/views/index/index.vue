@@ -113,18 +113,29 @@
               </nav>
             </div>
 
-            <nav v-if="latestVideos && latestVideos.length > 0" class="mv-t-l">
-              <div class="m-a">
+            <nav v-if="latestVideos.length > 0" class="mv-t-c">
+              <div class="mc-a">
                 <div class="a-l">
                   <i class="mvfont mv-xietiao" />
                   <span>最新视频</span>
                 </div>
                 <div class="a-r">
-                  <i @click="router.push({ name: 'videoList', params: { id: 1 } })" class="mvfont mv-right" />
+                  <span>
+                    <em v-for="(chunk, index) in latestVideos" :key="index" :class="{ active: index === latestActiveIndex }" />
+                  </span>
+                  <span @click="router.push({ name: 'videoList', params: { id: 1 } })">更多<i class="mvfont mv-right" /></span>
                 </div>
               </div>
-              <div class="m-b">
-                <VideoGridItem v-for="video in latestVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+              <div class="mc-b">
+                <swiper :modules="[Pagination]" :slides-per-view="1" @slide-change="onLatestSlideChange" class="no-swipe">
+                  <swiper-slide v-for="(chunk, index) in latestVideos" :key="index">
+                    <nav class="mv-t-l">
+                      <div class="m-b">
+                        <VideoGridItem v-for="video in chunk" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                      </div>
+                    </nav>
+                  </swiper-slide>
+                </swiper>
               </div>
             </nav>
 
@@ -132,18 +143,29 @@
               <img @click="openAd(listBannerAdvertisement[0].targetUrl, '首页列表横幅', 'click', listBannerAdvertisement[0].id)" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
             </div>
 
-            <nav v-if="recommendedVideos && recommendedVideos.length > 0" class="mv-t-l">
-              <div class="m-a">
+            <nav v-if="recommendedVideos.length > 0" class="mv-t-c">
+              <div class="mc-a">
                 <div class="a-l">
                   <i class="mvfont mv-xietiao" />
                   <span>热门推荐</span>
                 </div>
                 <div class="a-r">
-                  <i @click="router.push({ name: 'videoList', params: { id: 2 } })" class="mvfont mv-right" />
+                  <span>
+                    <em v-for="(chunk, index) in recommendedVideos" :key="index" :class="{ active: index === recommendedActiveIndex }" />
+                  </span>
+                  <span @click="router.push({ name: 'videoList', params: { id: 2 } })">更多<i class="mvfont mv-right" /></span>
                 </div>
               </div>
-              <div class="m-b">
-                <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+              <div class="mc-b">
+                <swiper :modules="[Pagination]" :slides-per-view="1" @slide-change="onRecommendedSlideChange" class="no-swipe">
+                  <swiper-slide v-for="(chunk, index) in recommendedVideos" :key="index">
+                    <nav class="mv-t-l">
+                      <div class="m-b">
+                        <VideoGridItem v-for="video in chunk" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                      </div>
+                    </nav>
+                  </swiper-slide>
+                </swiper>
               </div>
             </nav>
           </PullRefresh>
@@ -249,8 +271,8 @@ const refreshing = ref(false)
 const isRedirectCategory = ref(false)
 
 const activeId = ref(0)
-const recommendedVideos = ref<Video[]>([])
-const latestVideos = ref<Video[]>([])
+const recommendedVideos = ref<Video[][]>([])
+const latestVideos = ref<Video[][]>([])
 
 const categoryVideosMap = ref({})
 const categoryBannerVideosMap = ref({})
@@ -362,14 +384,25 @@ const fetchVideos = async (params: VideoListRequest, loadMore = false) => {
   }
 }
 
+// 辅助函数：将视频列表分块
+function chunkArray(videos: Video[], chunkSize: number): Video[][] {
+  const chunks = []
+  for (let i = 0; i < videos.length; i += chunkSize) {
+    chunks.push(videos.slice(i, i + chunkSize))
+  }
+  return chunks
+}
+
 const fetchIndexVideos = async () => {
   try {
     const {
       data: { data }
     } = await getIndexVideoListApi()
     // 解密视频
-    recommendedVideos.value = data.Recommended
-    latestVideos.value = data.Latest
+    // recommendedVideos.value = data.Recommended
+    // latestVideos.value = data.Latest
+    recommendedVideos.value = chunkArray(data.Recommended, 6)
+    latestVideos.value = chunkArray(data.Latest, 6)
   } catch (error) {
     console.error(`获取首页视频列表失败:`, error)
     return []
@@ -555,4 +588,17 @@ onMounted(() => {
   const rightMargin = 10 // 距离右侧的距离
   offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 })
+
+const latestActiveIndex = ref(0)
+const recommendedActiveIndex = ref(0)
+
+const onLatestSlideChange = (swiper: any) => {
+  latestActiveIndex.value = swiper.activeIndex
+}
+
+const onRecommendedSlideChange = (swiper: any) => {
+  recommendedActiveIndex.value = swiper.activeIndex
+}
+
+fetchIndexVideos()
 </script>

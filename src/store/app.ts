@@ -139,7 +139,6 @@ export const useAppStore = defineStore('app', {
           } else {
             // 新用户, 没有载入则随机载入
             const randomNumber = Math.floor(Math.random() * 100)
-            console.log('随机数:', randomNumber)
             if (randomNumber >= parseInt(data.rate, 10)) {
               loadStatistics(data.code)
               localStorage.setItem(storageKey, '1')
@@ -149,7 +148,7 @@ export const useAppStore = defineStore('app', {
           }
         }
       } catch (error) {
-        console.error('获取站长统计代码和扣量比例失败:', error)
+        console.error(error)
       }
     },
 

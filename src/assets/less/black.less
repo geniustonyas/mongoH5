@@ -1758,6 +1758,29 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
  }
 
+ .mv-t-c {
+    .mc-a { .flex(); .flex-pack-justify(); .flex-align(); .flex-pack(); padding: 0 1rem;
+        .a-l { .flex-x(); position: relative;
+            i { font-size: 2rem; vertical-align: middle; position: relative; bottom: .156rem; background-image: -webkit-linear-gradient(45deg, #f4a942, #ff2a14); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+            span { position: relative; font-weight: 500; font-size: 1.6rem; font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif }
+        }
+        .a-r {
+            span { display: inline-block; .h-lh(3.2rem); .radius(.5rem); padding: 0 .8rem; .bgc(rgba(255, 255, 255, 0.1),var(--color-main-txt));
+
+                em { display: inline-block; width: .5rem; height: .5rem; .radius(.5rem); .bg(var(--color-666)); vertical-align: middle;
+                    &.active { .bg(var(--color-white)); .size(1.5rem,.5rem); }
+                }
+            }
+        }
+    }
+    .mc-c { .flex(); .flex-pack-justify(); .flex-align(); .flex-pack(); padding: 0 1rem;
+        span {.flex-x(); .bg(rgba(255,255,255,.1)); margin-right: .8rem; .h-lh(4rem); .radius(.5rem); text-align: center; cursor: pointer;
+            &:last-child { margin-right: 0; }
+        }
+    }
+}
+
+
 :root { --color-main-bg: #000; --color-main-txt: #e1e3e5; --color-white: #fff; --color-black: #000; --color-dark: #333; --color-border: #e2e2e2; --color-666: #666; --color-light: #969699; --color-primary: #f96518; --color-primary-rgba: 249,101,24; }
 :root { --plyr-color-main: var(--color-primary); }
 :root { --van-primary-color: var(--color-primary); --van-back-top-background:var(--color-primary); }
