@@ -7,6 +7,10 @@ const decryptionServiceInstance = new decryptionService()
 const tmpCategorys = JSON.parse(decryptionServiceInstance.decryptResponseData(cryptedCategorys))
 const decryptedCategorys = tmpCategorys.data
 
+// 首页分类列表
+const cryptedIndexCategory = `iKO5ZyPy86Llrf9AJuTlWgAI9lyoNEb4k+3n6IlpGgC/q7trEx4YRz7nDhrS7OS1lYckmydXNEAhq64n4xJuW8rwrPdXZbZdPXutxsUIAnoQdZZR8RdHneqteeupAQ1IRLTe3w79D+/5hfePysgM/mum0JIs+pjLIgMybDI7yakOJTdPV+oP5e3Wusf4GkOl3sXDUaf54+KiZRqrxv7QkTGRazIFEXMZH4bU5Ourofaa4XnB4dcUG7ZxDoIOjaD7JZf0Y/sPKetNCjQzQuFdh+0xAoiLPTKiLvw7zdu6sv7Pz45NsBA/h8w4Nyjl4hSrFOi0S1i21KQ5xrmQBKoBY3aSd2g/I2PeOj1vthkZFDefCYfqs4JnYZO/D59bZT1pp62PyD/tCwyU+LWf1Yv1FuvLy4tqyWqoYquaO+Q5FvZykt3I5gjmam4OzR0KLP6hENzgJPx2O98BhhYeA8cUdDJadUgsTherf/FN4BdmvJKKF8StZM4tCDPA/AOh4n2m`
+const indexCategory = JSON.parse(decryptionServiceInstance.decryptResponseData(cryptedIndexCategory))
+
 // 抖音
 const douyin = decryptionServiceInstance.decryptResponseData(`0Ur5UOs3lsQyop+fZYrgKg==`)
 
@@ -25,4 +29,4 @@ const guochan = decryptionServiceInstance.decryptResponseData(`DIbJxnXC6/ys1FpA2
 const suren = decryptionServiceInstance.decryptResponseData(`hepkuYFUcjAG2llmGO1fcw==`)
 // 番号片名演员
 const fanhaoPianmingYanyuan = decryptionServiceInstance.decryptResponseData(`5MqOCp2EbjKW3BzyyxxWDhR4Vg/J3TnRrFQhUWYx8R4=`)
-export { decryptedCategorys, zhiming, douyin, fanhaoPianmingYanyuan, nvyou, wuma, youma, riben, guochan, suren }
+export { decryptedCategorys, zhiming, douyin, fanhaoPianmingYanyuan, nvyou, wuma, youma, riben, guochan, suren, indexCategory }

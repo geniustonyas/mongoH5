@@ -1,6 +1,10 @@
 export interface IndexVideoResponse {
   Recommended: Video[]
   Latest: Video[]
+  Channels: {
+    channel: string
+    items: Video[]
+  }[]
 }
 
 export interface Video {

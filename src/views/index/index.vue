@@ -45,6 +45,7 @@
     </header>
     <main class="main">
       <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" :allow-touch-move="!appStore.isPc" :no-swiping="!appStore.isPc" no-swiping-class="no-swipe">
+        <!-- 首页 -->
         <swiper-slide>
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="web-col">
@@ -56,6 +57,20 @@
                   </swiper-slide>
                 </swiper>
               </nav>
+
+              <NoticeBar left-icon="volume-o" :text="noticeAdvertisement.length > 0 ? decodeHtmlEntities(noticeAdvertisement[0].introduction) : ''" :delay="1" />
+
+              <swiper v-if="iconAdvertisement.length > 0" :modules="[Autoplay]" :slides-per-view="1" class="no-swipe" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
+                <swiper-slide v-for="(chunk, index) in iconAdvertisement" :key="index">
+                  <div class="i-m-c">
+                    <a v-for="item in chunk" @click="openAd(item.targetUrl, '首页图标广告', 'click', item.id)" target="_blank" :key="item.id">
+                      <img v-lazy-decrypt="item.imgUrl" :alt="item.title" />
+                      <span>{{ item.title }}</span>
+                    </a>
+                  </div>
+                </swiper-slide>
+              </swiper>
+
               <nav class="i-m-b">
                 <div class="b-row r-ad">
                   <a @click.prevent="openDownloadPage" href="#">
@@ -113,6 +128,7 @@
               </nav>
             </div>
 
+            <!-- 最新视频 -->
             <nav v-if="latestVideos.length > 0" class="mv-t-c">
               <div class="mc-a">
                 <div class="a-l">
@@ -139,10 +155,12 @@
               </div>
             </nav>
 
+            <!-- 列表横幅广告 -->
             <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
               <img @click="openAd(listBannerAdvertisement[0].targetUrl, '首页列表横幅', 'click', listBannerAdvertisement[0].id)" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
             </div>
 
+            <!-- 热门推荐 -->
             <nav v-if="recommendedVideos.length > 0" class="mv-t-c">
               <div class="mc-a">
                 <div class="a-l">
@@ -151,7 +169,7 @@
                 </div>
                 <div class="a-r">
                   <span>
-                    <em v-for="(chunk, index) in recommendedVideos" :key="index" :class="{ active: index === recommendedActiveIndex }" />
+                    <em v-for="(chunk, index) in recommendedVideos" :key="index" :class="{ active: index == recommendedActiveIndex }" />
                   </span>
                   <span @click="router.push({ name: 'videoList', params: { id: 2 } })">更多<i class="mvfont mv-right" /></span>
                 </div>
@@ -168,8 +186,43 @@
                 </swiper>
               </div>
             </nav>
+
+            <!-- 列表横幅广告 -->
+            <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
+              <img @click="openAd(listBannerAdvertisement[0].targetUrl, '首页列表横幅', 'click', listBannerAdvertisement[0].id)" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
+            </div>
+
+            <template v-for="(channel, channelIndex) in channelVideos" :key="channel.label">
+              <nav v-if="channel.videos.length > 0" class="mv-t-c">
+                <div class="mc-a">
+                  <div class="a-l">
+                    <i class="mvfont mv-xietiao" />
+                    <span>{{ channel.label }}</span>
+                  </div>
+                  <div class="a-r">
+                    <span>
+                      <em v-for="(chunk, index) in channel.videos" :key="index" :class="{ active: index == channelActiveIndices[channelIndex] }" />
+                    </span>
+                    <span @click="redirectCategory(channelIndex + 1, '')">更多<i class="mvfont mv-right" /></span>
+                  </div>
+                </div>
+                <div class="mc-b">
+                  <swiper :modules="[Pagination]" :slides-per-view="1" @slide-change="(swiper) => onChannelSlideChange(channelIndex, swiper)" class="no-swipe">
+                    <swiper-slide v-for="(chunk, index) in channel.videos" :key="index">
+                      <nav class="mv-t-l">
+                        <div class="m-b">
+                          <VideoGridItem v-for="video in chunk" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                        </div>
+                      </nav>
+                    </swiper-slide>
+                  </swiper>
+                </div>
+              </nav>
+            </template>
           </PullRefresh>
         </swiper-slide>
+
+        <!-- 分类 -->
         <swiper-slide v-for="category in appStore.categorys" :key="category.d">
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div v-if="categoryBannerVideosMap[category.d] && categoryBannerVideosMap[category.d].length > 0 && keepAlive" class="mv-swiper">
@@ -243,12 +296,13 @@ import { useRouter, useRoute } from 'vue-router'
 import NavBar from '@/components/layout/NavBar.vue'
 import Suggestion from '@/components/Suggestion.vue'
 import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
-import { PullRefresh, Popup, Icon, Tabs, Tab } from 'vant'
+import { PullRefresh, Popup, Icon, Tabs, Tab, NoticeBar } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'
-import { getAssetsFile, openAd } from '@/utils'
+import { getAssetsFile, openAd, decodeHtmlEntities } from '@/utils'
 import { Autoplay, Pagination } from 'swiper/modules'
+import { indexCategory } from '@/utils/cryptedData'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
@@ -273,6 +327,7 @@ const isRedirectCategory = ref(false)
 const activeId = ref(0)
 const recommendedVideos = ref<Video[][]>([])
 const latestVideos = ref<Video[][]>([])
+const channelVideos = ref<{ label: string; value: string; videos: Video[][] }[]>([])
 
 const categoryVideosMap = ref({})
 const categoryBannerVideosMap = ref({})
@@ -280,6 +335,10 @@ const categoryTotalPages = ref({})
 const categoryPageIndex = ref({})
 const categorySortType = ref({})
 const categorySubChannelId = ref({})
+
+const latestActiveIndex = ref(0)
+const recommendedActiveIndex = ref(0)
+const channelActiveIndices = ref<number[]>([])
 
 const offset = ref({ x: 0, y: 100 })
 
@@ -323,6 +382,20 @@ const popAdvertisement = computed(() => {
 })
 const listBannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(13).items
+  return tmp || []
+})
+
+const iconAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(16).items
+  let iconAds = []
+  if (tmp && tmp.length >= 0) {
+    iconAds = chunkArray(tmp, 6) || []
+  }
+  return iconAds
+})
+
+const noticeAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(17).items
   return tmp || []
 })
 
@@ -385,12 +458,24 @@ const fetchVideos = async (params: VideoListRequest, loadMore = false) => {
 }
 
 // 辅助函数：将视频列表分块
-function chunkArray(videos: Video[], chunkSize: number): Video[][] {
+function chunkArray(arr: any[], chunkSize: number): any[][] {
   const chunks = []
-  for (let i = 0; i < videos.length; i += chunkSize) {
-    chunks.push(videos.slice(i, i + chunkSize))
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    chunks.push(arr.slice(i, i + chunkSize))
   }
   return chunks
+}
+
+const onLatestSlideChange = (swiper: any) => {
+  latestActiveIndex.value = swiper.activeIndex
+}
+
+const onRecommendedSlideChange = (swiper: any) => {
+  recommendedActiveIndex.value = swiper.activeIndex
+}
+
+const onChannelSlideChange = (index: number, swiper: any) => {
+  channelActiveIndices.value[index] = swiper.activeIndex
 }
 
 const fetchIndexVideos = async () => {
@@ -403,6 +488,20 @@ const fetchIndexVideos = async () => {
     // latestVideos.value = data.Latest
     recommendedVideos.value = chunkArray(data.Recommended, 6)
     latestVideos.value = chunkArray(data.Latest, 6)
+
+    // 合并 indexCategory 和 Channels 数据
+    channelVideos.value = indexCategory.map((category) => {
+      const channel = data.Channels.find((ch) => ch.channel == category.value.toString())
+      return {
+        label: category.label,
+        value: category.value,
+        videos: channel ? chunkArray(channel.items, 6) : []
+      }
+    })
+    console.log(channelVideos.value)
+
+    // 初始化每个频道的活动索引
+    channelActiveIndices.value = channelVideos.value.map(() => 0)
   } catch (error) {
     console.error(`获取首页视频列表失败:`, error)
     return []
@@ -503,7 +602,7 @@ const swipePage = (swiper: any) => {
 }
 
 // 打开到指定的顶级分类和二级分类
-const redirectCategory = (channelId: number, subChannelId: number) => {
+const redirectCategory = (channelId: number, subChannelId: number | string) => {
   isRedirectCategory.value = true
   query.SubChannelId = subChannelId
   clickTabPc(channelId)
@@ -588,17 +687,5 @@ onMounted(() => {
   const rightMargin = 10 // 距离右侧的距离
   offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 })
-
-const latestActiveIndex = ref(0)
-const recommendedActiveIndex = ref(0)
-
-const onLatestSlideChange = (swiper: any) => {
-  latestActiveIndex.value = swiper.activeIndex
-}
-
-const onRecommendedSlideChange = (swiper: any) => {
-  recommendedActiveIndex.value = swiper.activeIndex
-}
-
 fetchIndexVideos()
 </script>

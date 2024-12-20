@@ -24,37 +24,7 @@
   <link rel="stylesheet" href="/js/plyr.min.css">
   <script src="/js/plyr.min.js" defer></script>
   <script src="/js/hls.min.js" defer></script>
-
-  <script>
-    // const script = document.createElement('script')
-    // script.type = 'text/javascript'
-    // script.src = `/stat.js?t=7` // 假设每个域名下都有一个 stat.js 文件
-    // document.head.appendChild(script)
-
-    // 禁止safari缩放
-    window.onload = function () {
-      document.addEventListener('touchstart', function (event) {
-        if (event.touches.length > 1) {
-          event.preventDefault()
-        }
-      }, { passive: false }) // 明确指定为非被动
-
-      var lastTouchEnd = 0
-      document.addEventListener('touchend', function (event) {
-        var now = (new Date()).getTime()
-        if (now - lastTouchEnd <= 100) {
-          event.preventDefault()
-        }
-        lastTouchEnd = now
-      }, { passive: false }) // 明确指定为非被动
-
-      document.addEventListener('gesturestart', function (event) {
-        event.preventDefault()
-      }, { passive: false }) // 明确指定为非被动
-    }
-  </script>
- 
-  
+  <script src="/js/blockScale.js" defer></script>
 </head>
 
 <body>
