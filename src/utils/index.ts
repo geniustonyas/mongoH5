@@ -61,6 +61,34 @@ export const loadStatistics = (url: string) => {
   document.head.appendChild(script)
 }
 
+export const loadGoogleAnalytics = (code: string) => {
+  // 创建 Google Analytics 脚本
+  const script = document.createElement('script')
+  script.async = true
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${code}`
+  // 插入 Google Analytics 脚本到文档中
+  document.head.appendChild(script)
+
+  // 创建并插入配置脚本
+  const configScript = document.createElement('script')
+  configScript.textContent = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${code}');
+  `
+  document.head.appendChild(configScript)
+}
+
+// 将数组分块
+export function chunkArray(arr: any[], chunkSize: number): any[][] {
+  const chunks = []
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    chunks.push(arr.slice(i, i + chunkSize))
+  }
+  return chunks
+}
+
 export const openAd = (url, category = '', action = '', label = '', value = 1, nodeid = '') => {
   if (url) {
     window.open(url, '_blank')

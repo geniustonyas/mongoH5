@@ -29,6 +29,9 @@
               </swiper-slide>
             </swiper>
           </nav>
+
+          <IconAd style="margin-top: 10px" />
+
           <div class="au-tabs">
             <span @click="changeSortType(0)" :class="{ active: bbsListSortType[0] == 0 }"><i class="mvfont mv-quanbu" />全部</span>
             <span @click="changeSortType(1)" :class="{ active: bbsListSortType[0] == 1 }"><i class="mvfont mv-zuixin" />最新</span>
@@ -77,6 +80,8 @@
             </div>
           </div>
 
+          <IconAd style="margin-top: 10px" />
+
           <div class="au-tab-group">
             <div class="g-item">
               <div class="i-l">排序</div>
@@ -118,6 +123,8 @@
             </li>
           </ul>
 
+          <IconAd style="margin-top: 10px" />
+
           <div class="au-tab-group">
             <div class="g-item">
               <div class="i-l">排序</div>
@@ -158,6 +165,8 @@
               <small>{{ item.postCount }}帖</small>
             </div>
           </div>
+
+          <IconAd style="margin-top: 10px" />
 
           <div class="au-tab-group">
             <div class="g-item">
@@ -225,6 +234,7 @@ import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
 import BbsListItem from '@/components/BbsListItem.vue'
 import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'
+import IconAd from '@/components/Advertisement/IconAd.vue'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'

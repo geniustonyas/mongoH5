@@ -1,7 +1,7 @@
 <template>
   <div class="item video-grid-item" :data-video-id="video.id">
     <div class="i-a" v-lazy-decrypt="video.imgUrl">
-      <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
+      <span v-if="classifyResolution(video.resolution) != ''" :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
       <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
       <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
     </div>

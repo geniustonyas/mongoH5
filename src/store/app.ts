@@ -3,7 +3,7 @@ import { getCategoryApi, getConfigApi, getAdsApi, getStatisticsApi } from '@/api
 import { SpareData } from '@/types/app'
 import router from '@/router'
 import { getThemeApi } from '@/api/theme'
-import { loadStatistics } from '@/utils'
+import { loadStatistics, loadGoogleAnalytics } from '@/utils'
 import store from '@/store'
 
 import { decryptedCategorys, fanhaoPianmingYanyuan } from '@/utils/cryptedData'
@@ -121,13 +121,15 @@ export const useAppStore = defineStore('app', {
         } = await getStatisticsApi({ Domain: domain })
 
         this.statistics = data || []
-
         // 如果扣量比例为0，或者上次已经加载过统计代码，则直接加载 code 的统计代码
         if (data.rate == '0') {
           loadStatistics(data.code)
         } else {
           // 只要 rate 不为 0，就加载 selfcode 的统计代码
-          loadStatistics(data.selfCode)
+          // loadStatistics(data.selfCode)
+
+          // loadGoogleAnalytics('G-RE36P76SPY')
+          loadGoogleAnalytics(data.selfCode)
           const storageKey = 'statisticsCodeLoaded'
           const codeLoaded = localStorage.getItem(storageKey)
           // 如果已经加载过统计代码，则直接载入
