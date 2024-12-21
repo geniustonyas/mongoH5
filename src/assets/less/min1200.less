@@ -18,8 +18,11 @@
 .main, .m-d-b, .vp-main, .b-b-b, .bbs-plate-box, .t-l-b, .h-l-b, .s-h-b, .p-s-b, .s-header, .a-d-b, .h-p-b { margin-left: 16rem; }
 .main {
     .web-col { .flex();
-        #index-banner {.flex-x(1); }
-        .i-m-b {.flex-x(); }
+        #index-banner {.flex-x(0 0 50%);  width:50%;}
+        .wc-r{ .flex-x(0 0 50%);  width:50%; padding-right:2rem;
+               .van-notice-bar{margin:0 1rem 1rem 1rem;}
+               .i-m-c { grid-gap: 2rem; }
+        }
     }
 }
 .au-tabs {
