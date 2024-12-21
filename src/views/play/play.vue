@@ -3,7 +3,15 @@
     <section class="m-d-b">
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
-        <video id="plyr-player" muted autoplay preload="auto" :data-poster="poster" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+        <div class="video-container">
+          <video id="plyr-player" muted autoplay preload="auto" :data-poster="poster" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+          <!-- <div v-if="showAdPopup" class="ad-overlay">
+            <div class="ad-content">
+              <img v-lazy-decrypt="playAdvertisement[0].imgUrl" class="ad-image" />
+              <span class="close-btn" @click="closeAdPopup"><i class="mvfont mv-close" /></span>
+            </div>
+          </div> -->
+        </div>
         <div class="a-f">
           <div class="item">
             <span v-for="(option, index) in rewindOptions" :key="'rewind-' + index" @click="rewind(option.time)"> <i class="mvfont mv-left" />{{ option.label }} </span>
@@ -66,12 +74,6 @@
         <p>分享链接已复制，赶快去分享给好友吧！</p>
       </div>
     </Popup>
-    <Popup v-if="ad" v-model:show="showAdPopup" position="center" :close-on-click-overlay="false">
-      <a v-if="ad.targetUrl" target="_blank" :href="ad.targetUrl">
-        <img v-lazy-decrypt="ad.imgUrl" style="width: 80%; height: auto; display: block; margin: 0 auto" />
-      </a>
-      <Icon name="close" size="30" @click="closeAdPopup" style="display: block; text-align: center; margin: 20px auto" />
-    </Popup>
     <main class="main" />
     <NavBar active-menu="play" />
   </div>
@@ -92,7 +94,7 @@ import dayjs from 'dayjs'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import NavBar from '@/components/layout/NavBar.vue'
 import { showToast } from 'vant'
-import { Popup, Icon } from 'vant'
+import { Popup } from 'vant'
 import Clipboard from 'clipboard'
 import { throttle } from 'lodash-es'
 
@@ -330,20 +332,20 @@ const initializePlayer = async (domain: string, uri: string) => {
     window.scrollTo(0, 0)
 
     // 添加广告显示标志
-    let adShown = false
+    // let adShown = false
 
-    player.value.on('timeupdate', () => {
-      if (playAdvertisement.value.length == 0) return
-      const currentTime = player.value.currentTime
-      const duration = player.value.duration
-      const progress = (currentTime / duration) * 100
-      if (progress >= 15 && !adShown) {
-        adShown = true
-        showAdPopup.value = true
-        player.value.pause() // 暂停视频播放
-        showToast('下载我们的应用程序，享受更多精彩内容！')
-      }
-    })
+    // player.value.on('timeupdate', () => {
+    //   if (playAdvertisement.value.length == 0) return
+    //   const currentTime = player.value.currentTime
+    //   const duration = player.value.duration
+    //   const progress = (currentTime / duration) * 100
+    //   if (progress >= 15 && !adShown) {
+    //     adShown = true
+    //     showAdPopup.value = true
+    //     player.value.pause() // 暂停视频播放
+    //     showToast('下载我们的应用程序，享受更多精彩内容！')
+    //   }
+    // })
   } catch (error) {
     console.error('初始化播放器失败:', error)
   }
@@ -512,10 +514,10 @@ const handleCollection = async () => {
 const showAdPopup = ref(false) // 控制广告弹窗的显示
 const ad = ref(null) // 初始化广告为 null
 
-const closeAdPopup = () => {
-  showAdPopup.value = false
-  player.value?.play() // 关闭广告后继续播放视频
-}
+// const closeAdPopup = () => {
+//   showAdPopup.value = false
+//   player.value?.play() // 关闭广告后继续播��视频
+// }
 
 ;(async () => {
   await fetchVideoDetail(route.params.id as string)
@@ -561,4 +563,40 @@ onBeforeRouteLeave((to, from, next) => {
 .active {
   color: #ff6b6b;
 }
+/* 
+.video-container {
+  position: relative;
+}
+
+.ad-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.ad-content {
+  position: relative;
+  text-align: center;
+}
+
+.ad-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+} */
 </style>

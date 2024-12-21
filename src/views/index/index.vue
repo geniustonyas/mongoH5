@@ -182,29 +182,29 @@
             </div>
 
             <template v-for="(channel, channelIndex) in channelVideos" :key="channel.label">
-              <nav v-if="channel.videos.length > 0" class="mv-t-c">
+              <nav v-if="channel.videos.length > 0" class="mv-t-c" :key="channelIndex">
                 <div class="mc-a">
                   <div class="a-l">
                     <i class="mvfont mv-xietiao" />
                     <span>{{ channel.label }}</span>
                   </div>
                   <div class="a-r">
-                    <span>
+                    <!-- <span>
                       <em v-for="(chunk, index) in channel.videos" :key="index" :class="{ active: index == channelActiveIndices[channelIndex] }" />
-                    </span>
-                    <span @click="redirectCategory(channelIndex + 1, '')">更多<i class="mvfont mv-right" /></span>
+                    </span> -->
+                    <!-- <span @click="redirectCategory(channelIndex + 1, '')">更多<i class="mvfont mv-right" /></span> -->
                   </div>
                 </div>
                 <div class="mc-b">
-                  <swiper :modules="[Pagination]" :slides-per-view="1" @slide-change="(swiper) => onChannelSlideChange(channelIndex, swiper)" class="no-swipe">
-                    <swiper-slide v-for="(chunk, index) in channel.videos" :key="index">
-                      <nav class="mv-t-l">
-                        <div class="m-b">
-                          <VideoGridItem v-for="video in chunk" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
-                        </div>
-                      </nav>
-                    </swiper-slide>
-                  </swiper>
+                  <nav class="mv-t-l">
+                    <div class="m-b">
+                      <VideoGridItem v-for="video in channel.videos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                    </div>
+                    <div class="mc-c">
+                      <span @click="redirectCategory(channelIndex + 1, '')">更多内容</span>
+                      <span @click="refreshChannelVideos(channelIndex)">换一换</span>
+                    </div>
+                  </nav>
                 </div>
               </nav>
             </template>
@@ -320,7 +320,7 @@ const isRedirectCategory = ref(false)
 const activeId = ref(0)
 const recommendedVideos = ref<Video[][]>([])
 const latestVideos = ref<Video[][]>([])
-const channelVideos = ref<{ label: string; value: string; videos: Video[][] }[]>([])
+const channelVideos = ref<{ label: string; value: string; videos: Video[] }[]>([])
 
 const categoryVideosMap = ref({})
 const categoryBannerVideosMap = ref({})
@@ -331,7 +331,7 @@ const categorySubChannelId = ref({})
 
 const latestActiveIndex = ref(0)
 const recommendedActiveIndex = ref(0)
-const channelActiveIndices = ref<number[]>([])
+// const channelActiveIndices = ref<number[]>([])
 
 const offset = ref({ x: 0, y: 100 })
 
@@ -449,9 +449,9 @@ const onRecommendedSlideChange = (swiper: any) => {
   recommendedActiveIndex.value = swiper.activeIndex
 }
 
-const onChannelSlideChange = (index: number, swiper: any) => {
-  channelActiveIndices.value[index] = swiper.activeIndex
-}
+// const onChannelSlideChange = (index: number, swiper: any) => {
+//   channelActiveIndices.value[index] = swiper.activeIndex
+// }
 
 const fetchIndexVideos = async () => {
   try {
@@ -471,10 +471,9 @@ const fetchIndexVideos = async () => {
         return {
           label: category.label,
           value: category.value,
-          videos: channel ? chunkArray(channel.items, 6) : []
+          videos: channel ? channel.items.slice(0, 6) : []
         }
       })
-      channelActiveIndices.value = channelVideos.value.map(() => 0)
     }
   } catch (error) {
     console.error(`获取首页视频列表失败:`, error)
@@ -661,4 +660,55 @@ onMounted(() => {
   const rightMargin = 10 // 距离右侧的距离
   offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 })
+
+// 添加一个记录每个频道当前页码的对象
+const channelPageIndexMap = ref<Record<string, number>>({})
+
+// 添加换一换方法
+const refreshChannelVideos = async (channelIndex: number) => {
+  const channel = channelVideos.value[channelIndex]
+  if (!channel) return
+
+  // 获取或初始化当前页码
+  if (!channelPageIndexMap.value[channel.value]) {
+    channelPageIndexMap.value[channel.value] = 1
+  }
+  try {
+    const {
+      data: { data }
+    } = await getVideoListApi({
+      ChannelId: channel.value,
+      SubChannelId: '',
+      SortType: 1,
+      PageIndex: channelPageIndexMap.value[channel.value] + 1,
+      PageSize: 6,
+      IsFirst: false
+    })
+
+    if (data && data.items) {
+      if (data.items.length > 0) {
+        channelVideos.value[channelIndex].videos = data.items
+        channelPageIndexMap.value[channel.value]++
+      } else {
+        // 如果没有更多数据，重置到第一页
+        channelPageIndexMap.value[channel.value] = 1
+        const {
+          data: { data: firstPageData }
+        } = await getVideoListApi({
+          ChannelId: channel.value,
+          SubChannelId: '',
+          SortType: 1,
+          PageIndex: 1,
+          PageSize: 6,
+          IsFirst: false
+        })
+        if (firstPageData && firstPageData.items) {
+          channelVideos.value[channelIndex].videos = firstPageData.items
+        }
+      }
+    }
+  } catch (error) {
+    console.error('获取视频列表失败:', error)
+  }
+}
 </script>

@@ -184,7 +184,7 @@ export const useAppStore = defineStore('app', {
     async fetchAllData() {
       await this.fetConfig()
       await this.fetCategory()
-      await this.fetStatistics()
+      // await this.fetStatistics()
       // await this.fetTheme()
       // 每隔5分钟刷新一次数据
       setInterval(async () => {
