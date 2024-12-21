@@ -56,7 +56,7 @@
                 </swiper>
               </nav>
 
-              <NoticeBar left-icon="volume-o" :text="noticeAdvertisement.length > 0 ? decodeHtmlEntities(noticeAdvertisement[0].introduction) : ''" :delay="1" />
+              <NoticeBar @click="openAd(noticeAdvertisement[0].targetUrl, '首页滚动公告', 'click', noticeAdvertisement[0].id)" left-icon="volume-o" :text="noticeAdvertisement.length > 0 ? decodeHtmlEntities(noticeAdvertisement[0].introduction) : ''" :delay="1" />
 
               <IconAd />
 

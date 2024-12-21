@@ -238,9 +238,7 @@ const initializePlayer = async (domain: string, uri: string) => {
       console.error('Video element not found')
       return
     }
-    // const url = uri.includes('http') ? uri : domain + uri
     const url = generateAuthUrl(domain, uri)
-    // const url = 'https://b.gg155gg1.com/20241128/f33h63BE/index.m3u8'
 
     player.value = new window.Plyr(videoElement, {
       clickToPlay: true,
@@ -325,6 +323,21 @@ const initializePlayer = async (domain: string, uri: string) => {
     })
 
     window.scrollTo(0, 0)
+
+    // 添加广告显示标志
+    // let adShown = false
+
+    // player.value.on('timeupdate', () => {
+    //   const currentTime = player.value.currentTime
+    //   const duration = player.value.duration
+    //   const progress = (currentTime / duration) * 100
+    //   if (progress >= 15 && !adShown) {
+    //     adShown = true
+    //     showAdPopup.value = true
+    //     player.value.pause() // 暂停视频播放
+    //     showToast('下载我们的应用程序，享受更多精彩内容！')
+    //   }
+    // })
   } catch (error) {
     console.error('初始化播放器失败:', error)
   }
@@ -495,7 +508,7 @@ const ad = ref(null) // 初始化广告为 null
 
 const closeAdPopup = () => {
   showAdPopup.value = false
-  player.value?.play() // 关闭广告后播放视频
+  player.value?.play() // 关闭广告后继续播放视频
 }
 
 ;(async () => {
