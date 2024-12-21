@@ -1,5 +1,5 @@
 <template>
-  <swiper v-if="iconAdvertisement.length > 0" :modules="[Autoplay]" :slides-per-view="1" class="no-swipe" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
+  <swiper v-if="iconAdvertisement.length > 0" :modules="[Autoplay]" :slides-per-view="1" class="no-swipe" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true" style="width: 100%">
     <swiper-slide v-for="(chunk, index) in iconAdvertisement" :key="index">
       <div class="i-m-c">
         <a v-for="item in chunk" @click="openAd(item.targetUrl, '首页图标广告', 'click', item.id)" target="_blank" :key="item.id">

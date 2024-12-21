@@ -149,6 +149,11 @@ const bannerAdvertisement = computed(() => {
   return tmp || []
 })
 
+const playAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(18).items
+  return tmp || []
+})
+
 const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
   if (isDisabled.value) {
     showToast('请稍后再试')
@@ -325,19 +330,20 @@ const initializePlayer = async (domain: string, uri: string) => {
     window.scrollTo(0, 0)
 
     // 添加广告显示标志
-    // let adShown = false
+    let adShown = false
 
-    // player.value.on('timeupdate', () => {
-    //   const currentTime = player.value.currentTime
-    //   const duration = player.value.duration
-    //   const progress = (currentTime / duration) * 100
-    //   if (progress >= 15 && !adShown) {
-    //     adShown = true
-    //     showAdPopup.value = true
-    //     player.value.pause() // 暂停视频播放
-    //     showToast('下载我们的应用程序，享受更多精彩内容！')
-    //   }
-    // })
+    player.value.on('timeupdate', () => {
+      if (playAdvertisement.value.length == 0) return
+      const currentTime = player.value.currentTime
+      const duration = player.value.duration
+      const progress = (currentTime / duration) * 100
+      if (progress >= 15 && !adShown) {
+        adShown = true
+        showAdPopup.value = true
+        player.value.pause() // 暂停视频播放
+        showToast('下载我们的应用程序，享受更多精彩内容！')
+      }
+    })
   } catch (error) {
     console.error('初始化播放器失败:', error)
   }
