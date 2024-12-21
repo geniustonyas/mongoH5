@@ -27,6 +27,10 @@ const riben = decryptionServiceInstance.decryptResponseData(`ONVx2xrhRKnfZuxS6c7
 const guochan = decryptionServiceInstance.decryptResponseData(`DIbJxnXC6/ys1FpA2U3gMg==`)
 
 const suren = decryptionServiceInstance.decryptResponseData(`hepkuYFUcjAG2llmGO1fcw==`)
+
+const dashen = decryptionServiceInstance.decryptResponseData(`Y4zr+grav5Y5ePxt51eKcw==`)
+
+const madou = decryptionServiceInstance.decryptResponseData(`z85cog01xGdjz7gjwzHk2g==`)
 // 番号片名演员
 const fanhaoPianmingYanyuan = decryptionServiceInstance.decryptResponseData(`5MqOCp2EbjKW3BzyyxxWDhR4Vg/J3TnRrFQhUWYx8R4=`)
-export { decryptedCategorys, zhiming, douyin, fanhaoPianmingYanyuan, nvyou, wuma, youma, riben, guochan, suren, indexCategory }
+export { decryptedCategorys, zhiming, douyin, fanhaoPianmingYanyuan, nvyou, wuma, youma, riben, guochan, suren, dashen, madou, indexCategory }
