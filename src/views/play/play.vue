@@ -5,12 +5,6 @@
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
         <div class="video-container">
           <video id="plyr-player" muted autoplay preload="auto" :data-poster="poster" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
-          <!-- <div v-if="showAdPopup" class="ad-overlay">
-            <div class="ad-content">
-              <img v-lazy-decrypt="playAdvertisement[0].imgUrl" class="ad-image" />
-              <span class="close-btn" @click="closeAdPopup"><i class="mvfont mv-close" /></span>
-            </div>
-          </div> -->
         </div>
         <div class="a-f">
           <div class="item">
@@ -97,6 +91,7 @@ import { showToast } from 'vant'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
 import { throttle } from 'lodash-es'
+import { VastGenerator } from '@/utils/vastGenerator'
 
 const route = useRoute()
 const userStore = useUserStore()
@@ -247,13 +242,52 @@ const initializePlayer = async (domain: string, uri: string) => {
     }
     const url = generateAuthUrl(domain, uri)
 
+    // 确保异步操作完成
+    let vastUrl = ''
+    if (playAdvertisement.value?.length > 0) {
+      const ad = playAdvertisement.value[0]
+      const decryptedImageUrl = await decrypt.fetchAndDecrypt(appStore.cdnUrl + ad.imgUrl)
+
+      const vastXml = VastGenerator.getInstance().generateVastXml({
+        id: ad.id,
+        title: ad.title,
+        skipOffset: 5,
+        clickThrough: ad.targetUrl,
+        mediaFiles: [],
+        nonLinearAds: [
+          {
+            url: URL.createObjectURL(decryptedImageUrl),
+            width: 300,
+            height: 250,
+            clickThrough: ad.targetUrl
+          }
+        ],
+        trackingEvents: []
+      })
+
+      const vastBlob = new Blob([vastXml], { type: 'application/xml' })
+      vastUrl = URL.createObjectURL(vastBlob)
+      console.log(vastUrl)
+    }
+
     player.value = new window.Plyr(videoElement, {
       clickToPlay: true,
       autoplay: true,
       controls: controls.value,
       settings: ['captions', 'quality', 'speed', 'loop'],
-      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
+      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null },
+      ads: {
+        enabled: playAdvertisement.value?.length > 0,
+        tagUrl: vastUrl
+      }
     })
+
+    player.value.on('ready', () => {
+      player.value.play().catch((error) => {
+        console.error('自动播放失败:', error)
+      })
+    })
+
     if (window.Hls.isSupported()) {
       // 这里声明了 tmphls 的原因是因为直接使用vue的代理 hls.value时 视频会无法播放
       const tmpHls = new window.Hls({
@@ -277,6 +311,7 @@ const initializePlayer = async (domain: string, uri: string) => {
     } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
       videoElement.src = url
     }
+
     player.value.on('click', (event) => {
       if (player.value.touch && event.target.className == 'plyr__poster') {
         if (player.value.playing) {
@@ -307,10 +342,6 @@ const initializePlayer = async (domain: string, uri: string) => {
       await addPlayCountApi(videoDetail.value?.id)
     })
 
-    player.value.on('ready', () => {
-      if (ad.value) showAdPopup.value = true // 视频准备好时显示广告
-    })
-
     player.value.on('play', (event) => {
       event.stopPropagation()
       showAdPopup.value = false // 播放时隐藏广告
@@ -329,23 +360,19 @@ const initializePlayer = async (domain: string, uri: string) => {
       showAdPopup.value = false // 播放时隐藏广告
     })
 
+    player.value.on('adsready', () => {
+      console.log('广告已准备好')
+    })
+
+    player.value.on('adplaying', () => {
+      console.log('广告正在播放')
+    })
+
+    player.value.on('adended', () => {
+      console.log('广告播放结束')
+    });
+
     window.scrollTo(0, 0)
-
-    // 添加广告显示标志
-    // let adShown = false
-
-    // player.value.on('timeupdate', () => {
-    //   if (playAdvertisement.value.length == 0) return
-    //   const currentTime = player.value.currentTime
-    //   const duration = player.value.duration
-    //   const progress = (currentTime / duration) * 100
-    //   if (progress >= 15 && !adShown) {
-    //     adShown = true
-    //     showAdPopup.value = true
-    //     player.value.pause() // 暂停视频播放
-    //     showToast('下载我们的应用程序，享受更多精彩内容！')
-    //   }
-    // })
   } catch (error) {
     console.error('初始化播放器失败:', error)
   }
@@ -516,7 +543,7 @@ const ad = ref(null) // 初始化广告为 null
 
 // const closeAdPopup = () => {
 //   showAdPopup.value = false
-//   player.value?.play() // 关闭广告后继续播��视频
+//   player.value?.play() // 关闭广告后继续播放视频
 // }
 
 ;(async () => {
@@ -563,40 +590,4 @@ onBeforeRouteLeave((to, from, next) => {
 .active {
   color: #ff6b6b;
 }
-/* 
-.video-container {
-  position: relative;
-}
-
-.ad-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.ad-content {
-  position: relative;
-  text-align: center;
-}
-
-.ad-image {
-  max-width: 100%;
-  height: auto;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  color: white;
-  font-size: 24px;
-} */
 </style>
