@@ -35,11 +35,11 @@
               <div class="v-b">
                 <a @click="handleLike()">
                   <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
-                  <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.likeCount, 'v', videoDetail.id, 'like') : 0 }}</b>
+                  <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
                 </a>
                 <!-- <a @click="handleCollection()">
                   <i :class="['mvfont', 'mv-shoucang', { active: videoDetail && videoDetail.collect }]" />
-                  <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.collectionCount, 'v', videoDetail.id, 'collect') : 0 }}</b>
+                  <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
                 </a> -->
                 <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
                 <a class="btn-mute" @click="toggleMute">
@@ -91,7 +91,6 @@ import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { douyin } from '@/utils/cryptedData'
-import { getIncrementalNumberWithOffset } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 import Footer from '@/components/layout/Footer.vue'
 import Loading from '@/components/layout/Loading.vue'

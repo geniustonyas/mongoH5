@@ -9,8 +9,8 @@
       <b>{{ video.title }}</b>
       <div class="b-dv">
         <div class="p-c">
-          <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(video.viewCount, 'v', video.id, 'view') }}</span>
-          <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(video.likeCount, 'v', video.id, 'like') }}</span>
+          <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+          <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
         </div>
         <div v-if="video.addTime" class="p-c">
           <span><i class="mvfont mv-riqi" />{{ formatDate(video.addTime) }}</span>
@@ -25,7 +25,7 @@ import { defineProps } from 'vue'
 import type { Video } from '@/types/video'
 import dayjs from 'dayjs'
 import { formatDuration } from '@/utils'
-import { getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
+import { classifyResolution } from '@/utils'
 
 defineProps<{
   video: Video

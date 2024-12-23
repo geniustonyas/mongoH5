@@ -27,11 +27,11 @@
       <div class="i-d">
         <div class="d-x">
           <span><i class="mvfont mv-pinglun" />{{ post.commentCount }}</span>
-          <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(post.likeCount, 'b', post.id, 'like') }}</span>
-          <span><i class="mvfont mv-like" />{{ getIncrementalNumberWithOffset(post.collectionCount, 'b', post.id, 'collect') }}</span>
+          <span><i class="mvfont mv-zan" />{{ post.likeCount }}</span>
+          <span><i class="mvfont mv-like" />{{ post.collectionCount }}</span>
         </div>
         <div class="d-x">
-          <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(post.viewCount, 'b', post.id, 'view') }}</span>
+          <span><i class="mvfont mv-kan" />{{ post.viewCount }}</span>
         </div>
       </div>
     </li>
@@ -44,7 +44,6 @@ import { useRouter } from 'vue-router'
 import { getAssetsFile, decodeHtmlEntities } from '@/utils'
 import { Bbs } from '@/types/bbs' // 导入 Bbs 类型
 import dayjs from 'dayjs'
-import { getIncrementalNumberWithOffset } from '@/utils'
 import { bbsCollectionApi } from '@/api/bbs' // 导入收藏API
 
 const props = withDefaults(

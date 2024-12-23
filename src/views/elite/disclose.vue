@@ -39,7 +39,7 @@
               <div class="v-b" :class="{ hidden: showComment }">
                 <a @click="toggleLike()">
                   <i :class="['mvfont', 'mv-xihuan', { active: bbsDetail && bbsDetail.like == '1' }]" />
-                  <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.likeCount, 'b', bbsDetail.id, 'like') : 0 }}</b>
+                  <b>{{ bbsDetail ? bbsDetail.likeCount : 0 }}</b>
                 </a>
                 <a @click="showCommentComponent(bbsDetail?.id)">
                   <i class="mvfont mv-pinglun3" />
@@ -47,7 +47,7 @@
                 </a>
                 <a @click="toggleCollection()">
                   <i :class="['mvfont', 'mv-shoucang', { active: bbsDetail && bbsDetail.collect }]" />
-                  <b>{{ bbsDetail ? getIncrementalNumberWithOffset(bbsDetail.collectionCount, 'b', bbsDetail.id, 'collect') : 0 }}</b>
+                  <b>{{ bbsDetail ? bbsDetail.collectionCount : 0 }}</b>
                 </a>
                 <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
               </div>
@@ -91,7 +91,7 @@ import type { Bbs } from '@/types/bbs'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { douyin } from '@/utils/cryptedData'
-import { getIncrementalNumberWithOffset, decodeHtmlEntities } from '@/utils'
+import { decodeHtmlEntities } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
 import Comment from '@/components/Comment.vue'

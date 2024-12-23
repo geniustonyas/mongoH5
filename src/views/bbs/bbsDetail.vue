@@ -20,10 +20,10 @@
             </div>
           </div>
           <div v-if="detail" class="b-r">
-            <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(detail?.viewCount, 'b', detail.id, 'view') }}</span>
-            <span><i class="mvfont mv-pinglun" />{{ detail?.commentCount || 0 }}</span>
-            <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(detail?.likeCount, 'b', detail.id, 'like') }}</span>
-            <span><i class="mvfont mv-like" />{{ getIncrementalNumberWithOffset(detail?.collectionCount, 'b', detail.id, 'collect') }}</span>
+            <span><i class="mvfont mv-kan" />{{ Number(detail?.viewCount) || 0 }}</span>
+            <span><i class="mvfont mv-pinglun" />{{ Number(detail?.commentCount) || 0 }}</span>
+            <span><i class="mvfont mv-zan" />{{ Number(detail?.likeCount) || 0 }}</span>
+            <span><i class="mvfont mv-like" />{{ Number(detail?.collectionCount) || 0 }}</span>
           </div>
         </div>
         <div class="d-c" v-html="decodeHtmlEntities(detail?.content || '')" />
@@ -67,12 +67,12 @@
         <span>
           <i :class="['mvfont', 'mv-zan', { active: detail?.like == '1' }]" @click="toggleLike" />
           <small v-if="Number(detail?.likeCount) == 0">赞</small>
-          <b v-else>{{ getIncrementalNumberWithOffset(detail?.likeCount, 'b', detail?.id, 'like') }}</b>
+          <b v-else>{{ Number(detail?.likeCount) || 0 }}</b>
         </span>
         <span>
           <i :class="['mvfont', 'mv-like', { active: detail?.collect }]" @click="toggleCollection" />
           <small v-if="Number(detail?.collectionCount) == 0">收藏</small>
-          <b v-else>{{ getIncrementalNumberWithOffset(detail?.collectionCount, 'b', detail?.id, 'collect') }}</b>
+          <b v-else>{{ Number(detail?.collectionCount) || 0 }}</b>
         </span>
       </div>
     </footer>
@@ -107,7 +107,6 @@ import NavBar from '@/components/layout/NavBar.vue'
 import type { Bbs } from '@/types/bbs'
 import { ImagePreview, Popup } from 'vant'
 import Clipboard from 'clipboard'
-import { getIncrementalNumberWithOffset } from '@/utils'
 import 'swiper/css'
 import 'swiper/css/pagination'
 

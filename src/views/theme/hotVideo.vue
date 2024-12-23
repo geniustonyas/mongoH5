@@ -20,8 +20,8 @@
                   <b>{{ video.title }}</b>
                   <div class="b-a">
                     <div class="a-l">
-                      <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(video.viewCount, 'v', video.id, 'view') }}</span>
-                      <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(video.likeCount, 'v', video.id, 'like') }}</span>
+                      <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+                      <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
                     </div>
                     <div class="a-r">
                       <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
@@ -49,7 +49,7 @@ import Header from '@/views/theme/themeHeader.vue'
 import NavBar from '@/components/layout/NavBar.vue'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store/app'
-import { formatDuration, getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
+import { formatDuration, classifyResolution } from '@/utils'
 import decryptionService from '@/utils/decryptionService'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'

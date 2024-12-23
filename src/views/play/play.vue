@@ -40,7 +40,7 @@
         <div class="b-b">
           <span @click="handleLike(1)">
             <i :class="['mvfont', 'mv-zan', { active: videoDetail && videoDetail.like == 1 }]" />
-            <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.likeCount, 'v', videoDetail.id, 'like') : 0 }}</b>
+            <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
           </span>
           <span @click="handleLike(2)">
             <i :class="['mvfont', 'mv-nzan', { active: videoDetail && videoDetail.like == 2 }]" />
@@ -48,7 +48,7 @@
           </span>
           <span @click="handleCollection">
             <i :class="['mvfont', 'mv-like', { active: videoDetail && videoDetail.collect }]" />
-            <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.collectionCount, 'v', videoDetail.id, 'collect') : 0 }}</b>
+            <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
           </span>
           <span><i @click="handleShare" class="mvfont mv-zhuanfa1" />分享</span>
         </div>
@@ -81,7 +81,7 @@ import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi, addPlayCountApi, getVideoListApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
-import { copy, getIncrementalNumberWithOffset, openAd } from '@/utils'
+import { copy, openAd } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import decryptionService from '@/utils/decryptionService'
 import { useUserStore } from '@/store/user'

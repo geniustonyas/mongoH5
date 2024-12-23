@@ -22,8 +22,8 @@
                 <b>{{ video.title }}</b>
                 <div class="b-a">
                   <div class="a-l">
-                    <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(video.viewCount, 'v', video.id, 'view') }}</span>
-                    <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(video.likeCount, 'v', video.id, 'like') }}</span>
+                    <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+                    <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
                   </div>
                   <div class="a-r">
                     <span><i class="mvfont mv-riqi" />{{ formatDate(video.addTime) }}</span>
@@ -46,7 +46,7 @@ import { PullRefresh, List } from 'vant'
 import dayjs from 'dayjs'
 import { getVideoListApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
-import { formatDuration, getIncrementalNumberWithOffset, classifyResolution } from '@/utils'
+import { formatDuration, classifyResolution } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 const route = useRoute()
 const router = useRouter()

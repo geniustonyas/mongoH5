@@ -24,8 +24,8 @@
                 <div class="l-b">
                   <b>{{ vd.title }}</b>
                   <div class="b-a">
-                    <span><i class="mvfont mv-kan" />{{ getIncrementalNumberWithOffset(vd.viewCount, 'v', vd.id, 'view') }}</span>
-                    <span><i class="mvfont mv-zan" />{{ getIncrementalNumberWithOffset(vd.likeCount, 'v', vd.id, 'like') }}</span>
+                    <span><i class="mvfont mv-kan" />{{ vd.viewCount }}</span>
+                    <span><i class="mvfont mv-zan" />{{ vd.likeCount }}</span>
                   </div>
                 </div>
               </div>
@@ -58,7 +58,7 @@
                     <div class="v-b">
                       <a @click="handleLike()">
                         <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
-                        <b>{{ videoDetail ? getIncrementalNumberWithOffset(videoDetail.likeCount, 'v', videoDetail.id, 'like') : 0 }}</b>
+                        <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
                       </a>
                       <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
                       <a class="btn-mute" @click="toggleMute">
@@ -108,7 +108,7 @@ import NavBar from '@/components/layout/NavBar.vue'
 import Footer from '@/components/layout/Footer.vue'
 import Loading from '@/components/layout/Loading.vue'
 import { onBeforeRouteLeave, useRouter } from 'vue-router'
-import { formatDuration, getIncrementalNumberWithOffset } from '@/utils'
+import { formatDuration } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
