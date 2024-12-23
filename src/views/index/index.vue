@@ -51,17 +51,34 @@
               <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="index-banner" class="swiper-container">
                 <swiper class="my-swipe" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
                   <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
-                    <a target="_blank" @click="openAd(ad.targetUrl, '首页banner', 'click', ad.id)"><img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" /></a>
+                    <a target="_blank" @click="openAd(ad.targetUrl, '首页banner', 'click', ad.id)">
+                      <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" @load="onImageLoad" />
+                    </a>
                   </swiper-slide>
                 </swiper>
               </nav>
+              <div v-if="isDecrypting" class="load-box">
+                <div class="lb-index-banner">
+                  <div class="lb-s" />
+                </div>
+              </div>
 
               <nav class="wc-r">
-                <NoticeBar @click="openAd(noticeAdvertisement[0].targetUrl, '首页滚动公告', 'click', noticeAdvertisement[0].id)" left-icon="volume-o" :text="noticeAdvertisement.length > 0 ? decodeHtmlEntities(noticeAdvertisement[0].introduction) : ''" :delay="1" />
+                <NoticeBar v-if="!loadingAd" @click="openAd(noticeAdvertisement[0].targetUrl, '首页滚动公告', 'click', noticeAdvertisement[0].id)" left-icon="volume-o" :text="noticeAdvertisement.length > 0 ? decodeHtmlEntities(noticeAdvertisement[0].introduction) : ''" :delay="1" />
+                <div v-if="loadingAd" class="load-box">
+                  <div class="lb-i-m-m">
+                    <div class="m-icon">
+                      <div class="lb-s s-l" />
+                    </div>
+                    <div class="m-text">
+                      <div class="lb-s s-l" />
+                    </div>
+                  </div>
+                </div>
 
                 <IconAd />
 
-                <nav class="i-m-b">
+                <nav v-if="!loadingAd" class="i-m-b">
                   <div class="b-row r-ad">
                     <a @click.prevent="openDownloadPage" href="#">
                       <span><i class="mvfont mv-appxiazai" /></span>
@@ -116,6 +133,95 @@
                     </a>
                   </div>
                 </nav>
+
+                <div v-else class="load-box">
+                  <div class="lb-i-m-b">
+                    <div class="b-row">
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="b-row">
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                      <div class="r-col">
+                        <div class="ms-box">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="c-t">
+                          <div class="lb-s" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </nav>
             </div>
 
@@ -146,12 +252,166 @@
               </div>
             </nav>
 
-            <!-- 列表横幅广告 -->
-            <!-- <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
-              <img @click="openAd(listBannerAdvertisement[0].targetUrl, '首页列表横幅', 'click', listBannerAdvertisement[0].id)" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
-            </div> -->
-            <IndexAd v-if="shuffledAds[0]" :ad="shuffledAds[0]" />
+            <div v-if="isDecrypting" class="load-box">
+              <div class="lb-mv-t-c">
+                <div class="mc-a">
+                  <div class="a-l">
+                    <i class="mvfont mv-xietiao" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="a-r">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="mc-b">
+                  <div class="mv-t-l lb-mv-t-l">
+                    <div class="m-b">
+                      <div class="item">
+                        <div class="i-a">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="i-b">
+                          <div class="b-a">
+                            <div class="lb-s" />
+                          </div>
+                          <div class="b-dv">
+                            <div class="p-c">
+                              <div class="lb-s" />
+                              <div class="lb-s" />
+                            </div>
+                            <div class="p-c">
+                              <div class="lb-s" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <div class="i-a">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="i-b">
+                          <div class="b-a">
+                            <div class="lb-s" />
+                          </div>
+                          <div class="b-dv">
+                            <div class="p-c">
+                              <div class="lb-s" />
+                              <div class="lb-s" />
+                            </div>
+                            <div class="p-c">
+                              <div class="lb-s" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <div class="i-a">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="i-b">
+                          <div class="b-a">
+                            <div class="lb-s" />
+                          </div>
+                          <div class="b-dv">
+                            <div class="p-c">
+                              <div class="lb-s" />
+                              <div class="lb-s" />
+                            </div>
+                            <div class="p-c">
+                              <div class="lb-s" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <div class="i-a">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="i-b">
+                          <div class="b-a">
+                            <div class="lb-s" />
+                          </div>
+                          <div class="b-dv">
+                            <div class="p-c">
+                              <div class="lb-s" />
+                              <div class="lb-s" />
+                            </div>
+                            <div class="p-c">
+                              <div class="lb-s" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <div class="i-a">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="i-b">
+                          <div class="b-a">
+                            <div class="lb-s" />
+                          </div>
+                          <div class="b-dv">
+                            <div class="p-c">
+                              <div class="lb-s" />
+                              <div class="lb-s" />
+                            </div>
+                            <div class="p-c">
+                              <div class="lb-s" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <div class="i-a">
+                          <div class="lb-s" />
+                        </div>
+                        <div class="i-b">
+                          <div class="b-a">
+                            <div class="lb-s" />
+                          </div>
+                          <div class="b-dv">
+                            <div class="p-c">
+                              <div class="lb-s" />
+                              <div class="lb-s" />
+                            </div>
+                            <div class="p-c">
+                              <div class="lb-s" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--<div class="c-col">
+                        <div class="lb-s"></div>
+                        <div class="lb-s"></div>
+                    </div>
+                    <div class="c-col">
+                        <div class="lb-s"></div>
+                        <div class="lb-s"></div>
+                    </div>
+                    <div class="c-col">
+                        <div class="lb-s"></div>
+                        <div class="lb-s"></div>
+                    </div>
+                    <div class="c-col">
+                        <div class="lb-s"></div>
+                        <div class="lb-s"></div>
+                    </div>
+                    <div class="c-col">
+                        <div class="lb-s"></div>
+                        <div class="lb-s"></div>
+                    </div>
+                    <div class="c-col">
+                        <div class="lb-s"></div>
+                        <div class="lb-s"></div>
+                    </div>-->
+              </div>
+            </div>
 
+            <IndexAd v-if="shuffledAds[0]" :ad="shuffledAds[0]" />
             <!-- 热门推荐 -->
             <nav v-if="recommendedVideos.length > 0" class="mv-t-c">
               <div class="mc-a">
@@ -179,10 +439,6 @@
               </div>
             </nav>
 
-            <!-- 列表横幅广告 -->
-            <!-- <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
-              <img @click="openAd(listBannerAdvertisement[0].targetUrl, '首页列表横幅', 'click', listBannerAdvertisement[0].id)" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
-            </div> -->
             <IndexAd v-if="shuffledAds[1]" :ad="shuffledAds[1]" />
 
             <template v-for="(channel, channelIndex) in channelVideos" :key="channel.label">
@@ -339,6 +595,8 @@ const categorySubChannelId = ref({})
 const latestActiveIndex = ref(0)
 const recommendedActiveIndex = ref(0)
 // const channelActiveIndices = ref<number[]>([])
+
+const loadingAd = ref(true)
 
 const offset = ref({ x: 0, y: 100 })
 
@@ -618,11 +876,17 @@ const handlePageChange = async () => {
   }
 }
 
+const isDecrypting = ref(true)
+const onImageLoad = () => {
+  isDecrypting.value = false
+}
+
 // 立即执行
 ;(async () => {
   await handleCategoryChange()
   if (appStore.advertisement.length == 0) {
     await appStore.fetAdvertisement()
+    loadingAd.value = false
   }
 })()
 

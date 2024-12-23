@@ -9,28 +9,28 @@
 <script>
 export default {
   mounted() {
-    const mask = document.querySelector('.mask');
-    const dialog = document.querySelector('.dialog');
+    const mask = document.querySelector('.mask')
+    const dialog = document.querySelector('.dialog')
 
     function enter(e) {
-      dialog.style.transformOrigin = `${e.x}px ${e.y}px`;
-      mask.classList.add('visible');
-      dialog.classList.add('scale-in');
-      dialog.classList.add('half-screen');
+      dialog.style.transformOrigin = `${e.x}px ${e.y}px`
+      mask.classList.add('visible')
+      dialog.classList.add('scale-in')
+      dialog.classList.add('half-screen')
     }
 
     function leave() {
-      mask.classList.remove('visible');
-      dialog.classList.remove('scale-in');
-      dialog.classList.remove('half-screen');
+      mask.classList.remove('visible')
+      dialog.classList.remove('scale-in')
+      dialog.classList.remove('half-screen')
     }
 
-    document.addEventListener('click', enter);
-    document.addEventListener('keydown', e => e.key === 'Escape' && leave());
-    mask.addEventListener('click', e => {
-      e.stopPropagation();
-      e.target === mask && leave();
-    });
+    document.addEventListener('click', enter)
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && leave())
+    mask.addEventListener('click', (e) => {
+      e.stopPropagation()
+      e.target === mask && leave()
+    })
   }
 }
 </script>
