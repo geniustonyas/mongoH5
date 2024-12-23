@@ -147,9 +147,10 @@
             </nav>
 
             <!-- 列表横幅广告 -->
-            <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
+            <!-- <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
               <img @click="openAd(listBannerAdvertisement[0].targetUrl, '首页列表横幅', 'click', listBannerAdvertisement[0].id)" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
-            </div>
+            </div> -->
+            <IndexAd v-if="shuffledAds[0]" :ad="shuffledAds[0]" />
 
             <!-- 热门推荐 -->
             <nav v-if="recommendedVideos.length > 0" class="mv-t-c">
@@ -179,9 +180,10 @@
             </nav>
 
             <!-- 列表横幅广告 -->
-            <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
+            <!-- <div v-if="listBannerAdvertisement && listBannerAdvertisement.length > 0" class="ad-box1">
               <img @click="openAd(listBannerAdvertisement[0].targetUrl, '首页列表横幅', 'click', listBannerAdvertisement[0].id)" :key="listBannerAdvertisement[0].id" v-lazy-decrypt="listBannerAdvertisement[0].imgUrl" :alt="listBannerAdvertisement[0].title" />
-            </div>
+            </div> -->
+            <IndexAd v-if="shuffledAds[1]" :ad="shuffledAds[1]" />
 
             <template v-for="(channel, channelIndex) in channelVideos" :key="channel.label">
               <nav v-if="channel.videos.length > 0" class="mv-t-c" :key="channelIndex">
@@ -209,6 +211,8 @@
                   </nav>
                 </div>
               </nav>
+
+              <IndexAd v-if="shuffledAds[channelIndex + 2]" :ad="shuffledAds[channelIndex + 2]" />
             </template>
           </PullRefresh>
         </swiper-slide>
@@ -306,6 +310,7 @@ import 'swiper/css/free-mode'
 import Footer from '@/components/layout/Footer.vue'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import DownloadPop from '@/components/DownloadPop.vue'
+import IndexAd from '@/components/Advertisement/indexAd.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -378,6 +383,16 @@ const popAdvertisement = computed(() => {
 const listBannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(13).items
   return tmp || []
+})
+
+// 打乱广告列表顺序
+const shuffledAds = computed(() => {
+  const ads = [...listBannerAdvertisement.value]
+  for (let i = ads.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[ads[i], ads[j]] = [ads[j], ads[i]]
+  }
+  return ads
 })
 
 const noticeAdvertisement = computed(() => {

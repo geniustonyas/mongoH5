@@ -5,6 +5,7 @@
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
         <div class="video-container">
           <video id="plyr-player" muted autoplay preload="auto" :data-poster="poster" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+          <div id="adContainer"></div> <!-- 广告容器 -->
         </div>
         <div class="a-f">
           <div class="item">
@@ -235,19 +236,31 @@ const fetchRecommendedVideos = async (channelId: string, currentVideoId: string)
 const initializePlayer = async (domain: string, uri: string) => {
   try {
     resetPlayer()
+    await nextTick()
+
     const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
-    if (!videoElement) {
-      console.error('Video element not found')
+    const adContainerElement = document.getElementById('adContainer')
+    if (!videoElement || !adContainerElement) {
+      console.error('Video or Ad container element not found')
       return
     }
+
     const url = generateAuthUrl(domain, uri)
 
-    // 确保异步操作完成
-    let vastUrl = ''
-    if (playAdvertisement.value?.length > 0) {
+    // Initialize IMA3
+    const adDisplayContainer = new google.ima.AdDisplayContainer(adContainerElement, videoElement)
+    const adsLoader = new google.ima.AdsLoader(adDisplayContainer)
+
+    adsLoader.addEventListener(
+      google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
+      onAdsManagerLoaded,
+      false
+    )
+
+    const adsRequest = new google.ima.AdsRequest()
+    if (playAdvertisement.value.length > 0) {
       const ad = playAdvertisement.value[0]
       const decryptedImageUrl = await decrypt.fetchAndDecrypt(appStore.cdnUrl + ad.imgUrl)
-
       const vastXml = VastGenerator.getInstance().generateVastXml({
         id: ad.id,
         title: ad.title,
@@ -266,20 +279,27 @@ const initializePlayer = async (domain: string, uri: string) => {
       })
 
       const vastBlob = new Blob([vastXml], { type: 'application/xml' })
-      vastUrl = URL.createObjectURL(vastBlob)
-      console.log(vastUrl)
+      // https://mg.aj666888.com/vast.xml
+      const vastUrl = URL.createObjectURL(vastBlob)
+      // const vastUrl = 'https://mg.aj666888.com/vast.xml'
+      adsRequest.adTagUrl = vastUrl
     }
 
-    player.value = new window.Plyr(videoElement, {
+    adsLoader.requestAds(adsRequest)
+
+    function onAdsManagerLoaded(adsManagerLoadedEvent) {
+      const adsManager = adsManagerLoadedEvent.getAdsManager(videoElement)
+      adsManager.init(videoElement.clientWidth, videoElement.clientHeight, google.ima.ViewMode.NORMAL)
+      adsManager.start()
+    }
+
+    // Initialize Plyr
+    player.value = new Plyr(videoElement, {
       clickToPlay: true,
       autoplay: true,
       controls: controls.value,
       settings: ['captions', 'quality', 'speed', 'loop'],
-      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null },
-      ads: {
-        enabled: playAdvertisement.value?.length > 0,
-        tagUrl: vastUrl
-      }
+      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
     })
 
     player.value.on('ready', () => {
@@ -370,7 +390,7 @@ const initializePlayer = async (domain: string, uri: string) => {
 
     player.value.on('adended', () => {
       console.log('广告播放结束')
-    });
+    })
 
     window.scrollTo(0, 0)
   } catch (error) {

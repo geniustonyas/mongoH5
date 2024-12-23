@@ -86,10 +86,10 @@ export class VastGenerator {
   generateVastXml(options: VastAdOptions): string {
     return `<?xml version="1.0" encoding="UTF-8"?>
 <VAST version="3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd">
-  <Ad id="${options.id}">
+  <Ad id="${escapeXml(String(options.id))}">
     <InLine>
       <AdSystem>Custom Ad Server</AdSystem>
-      <AdTitle>${options.title}</AdTitle>
+      <AdTitle><![CDATA[${options.title}]]></AdTitle>
       <Description><![CDATA[${options.title} ad description]]></Description>
       <Error><![CDATA[https://example.com/error]]></Error>
       ${this.generateImpressions(options.impressionUrls)}
@@ -118,6 +118,44 @@ export class VastGenerator {
   }
 
   /**
+   * 生成VideoClicks标签的XML字符串
+   * @param clickThrough 点击广告时跳转的URL
+   * @returns 生成的VideoClicks标签XML字符串
+   */
+  private generateVideoClicks(clickThrough?: string): string {
+    if (!clickThrough) return ''
+    return `<VideoClicks>
+      <ClickThrough><![CDATA[${clickThrough}]]></ClickThrough>
+    </VideoClicks>`
+  }
+
+  /**
+   * 生成TrackingEvents标签的XML字符串
+   * @param events 追踪事件的列表
+   * @returns 生成的TrackingEvents标签XML字符串
+   */
+  private generateTrackingEvents(events?: VastAdOptions['trackingEvents']): string {
+    if (!events?.length) return ''
+    return `<TrackingEvents>
+      ${events.map((event) => `<Tracking event="${event.event}"><![CDATA[${event.url}]]></Tracking>`).join('\n')}
+    </TrackingEvents>`
+  }
+
+  /**
+   * 生成MediaFiles标签的XML字符串
+   * @param files 媒体文件的列表
+   * @returns 生成的MediaFiles标签XML字符串
+   */
+  private generateMediaFiles(files: VastAdOptions['mediaFiles']): string {
+    return files
+      .map((file) => {
+        const attrs = [`type="${file.type}"`, file.width ? `width="${file.width}"` : '', file.height ? `height="${file.height}"` : '', `delivery="${file.delivery || 'progressive'}"`].filter(Boolean).join(' ')
+        return `<MediaFile ${attrs}><![CDATA[${file.url}]]></MediaFile>`
+      })
+      .join('\n')
+  }
+
+  /**
    * 生成NonLinearAds标签的XML字符串
    * @param ads 非线性广告的列表
    * @returns 生成的NonLinearAds标签XML字符串
@@ -125,15 +163,35 @@ export class VastGenerator {
   private generateNonLinearAds(ads?: VastAdOptions['nonLinearAds']): string {
     if (!ads?.length) return ''
     return ads
-      .map((ad) => `
-        <Creative id="${ad.url}-nonlinear" sequence="1">
+      .map(
+        (ad) => `<Creative id="${escapeXml(ad.url)}-nonlinear" sequence="1">
           <NonLinearAds>
             <NonLinear width="${ad.width}" height="${ad.height}">
               <StaticResource creativeType="image/jpeg"><![CDATA[${ad.url}]]></StaticResource>
               <NonLinearClickThrough><![CDATA[${ad.clickThrough}]]></NonLinearClickThrough>
             </NonLinear>
           </NonLinearAds>
-        </Creative>
-      `).join('\n')
+        </Creative>`
+      )
+      .join('\n')
   }
+}
+
+function escapeXml(unsafe: string): string {
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case '<':
+        return '&lt;'
+      case '>':
+        return '&gt;'
+      case '&':
+        return '&amp;'
+      case "'":
+        return '&apos;'
+      case '"':
+        return '&quot;'
+      default:
+        return c
+    }
+  })
 }
