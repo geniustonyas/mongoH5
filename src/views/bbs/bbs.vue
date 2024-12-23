@@ -24,13 +24,18 @@
             <swiper class="my-swipe" @swiper="onBannerSwiper" :modules="appStore.isPc ? [Autoplay, Pagination] : [Autoplay]" :slides-per-view="appStore.isPc ? 5 : 1" :space-between="10" :pagination="{ clickable: true } as any" :centered-slides="false" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
               <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                 <a target="_blank" @click="openAd(ad.targetUrl, '社区banner', 'click', ad.id)">
-                  <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
+                  <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" @load="() => onImageLoad('banner')" />
                 </a>
               </swiper-slide>
             </swiper>
           </nav>
+          <div v-if="isDecrypting.banner" class="load-box">
+            <div class="lb-index-banner">
+              <div class="lb-s" />
+            </div>
+          </div>
 
-          <IconAd style="margin-top: 10px" />
+          <IconAd class="mt-10" />
 
           <div class="au-tabs">
             <span @click="changeSortType(0)" :class="{ active: bbsListSortType[0] == 0 }"><i class="mvfont mv-quanbu" />全部</span>
@@ -41,6 +46,68 @@
           <PullRefresh v-if="bbsListMap[0]" v-model="refreshing" @refresh="handleRefresh">
             <BbsListItem :bbs-list="bbsListMap[0]" />
           </PullRefresh>
+
+          <div v-if="loadingBbsList" class="load-box">
+            <ul class="lb-bbs-list mt-0">
+              <li>
+                <div class="i-a">
+                  <div class="a-l">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="a-r">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-b">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-c pic3">
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                </div>
+                <div class="i-d">
+                  <div class="d-x">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="d-x"><div class="lb-s" /></div>
+                </div>
+              </li>
+              <li>
+                <div class="i-a">
+                  <div class="a-l">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="a-r">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-b">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-c pic3">
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                </div>
+                <div class="i-d">
+                  <div class="d-x">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="d-x"><div class="lb-s" /></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
           <template v-if="bbsListTotalPages[0] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[0] > 9">
               <div class="pb-x">
@@ -71,7 +138,7 @@
             </div>
             <div class="m-r" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 1">
               <div class="item" @click="changeSubChannel(item.id, 1)" v-for="item in heiliaoCategories[0].items.slice(1)" :key="item.id">
-                <img v-lazy-decrypt="item.img" />
+                <img v-lazy-decrypt="item.img" @load="onImageLoad('heiliao')" />
                 <p>
                   <span># {{ item.title }}</span>
                 </p>
@@ -80,7 +147,21 @@
             </div>
           </div>
 
-          <IconAd style="margin-top: 10px" />
+          <div v-if="isDecrypting.heiliao" class="load-box">
+            <div class="lb-au-col-module-5">
+              <div class="m-l">
+                <div class="lb-s" />
+              </div>
+              <div class="m-r">
+                <div class="lb-s" />
+                <div class="lb-s" />
+                <div class="lb-s" />
+                <div class="lb-s" />
+              </div>
+            </div>
+          </div>
+
+          <IconAd class="mt-10" />
 
           <div class="au-tab-group">
             <div class="g-item">
@@ -95,6 +176,68 @@
           <PullRefresh v-if="bbsListMap[1]" v-model="refreshing" @refresh="handleRefresh">
             <BbsListItem :bbs-list="bbsListMap[1]" class="mt-0" />
           </PullRefresh>
+
+          <div v-if="loadingBbsList" class="load-box">
+            <ul class="lb-bbs-list mt-0">
+              <li>
+                <div class="i-a">
+                  <div class="a-l">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="a-r">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-b">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-c pic3">
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                </div>
+                <div class="i-d">
+                  <div class="d-x">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="d-x"><div class="lb-s" /></div>
+                </div>
+              </li>
+              <li>
+                <div class="i-a">
+                  <div class="a-l">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="a-r">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-b">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-c pic3">
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                </div>
+                <div class="i-d">
+                  <div class="d-x">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="d-x"><div class="lb-s" /></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
           <template v-if="bbsListTotalPages[1] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[1] > 9">
               <div class="pb-x">
@@ -115,7 +258,7 @@
         <swiper-slide class="bbs-swipe-item2">
           <ul class="au-col-module" v-if="weimiCategories[0] && weimiCategories[0].items.length > 0">
             <li v-for="item in weimiCategories[0].items" :key="item.id" @click="changeSubChannel(item.id, 2)">
-              <img v-lazy-decrypt="item.img" />
+              <img v-lazy-decrypt="item.img" @load="onImageLoad('weimi')" />
               <p>
                 <span># {{ item.title }}</span>
               </p>
@@ -123,7 +266,16 @@
             </li>
           </ul>
 
-          <IconAd style="margin-top: 10px" />
+          <div v-if="isDecrypting.weimi" class="load-box">
+            <ul class="lb-au-col-module">
+              <li><div class="lb-s" /></li>
+              <li><div class="lb-s" /></li>
+              <li><div class="lb-s" /></li>
+              <li><div class="lb-s" /></li>
+            </ul>
+          </div>
+
+          <IconAd class="mt-10" />
 
           <div class="au-tab-group">
             <div class="g-item">
@@ -135,9 +287,56 @@
               </div>
             </div>
           </div>
+
           <PullRefresh v-if="bbsListMap[2]" v-model="refreshing" @refresh="handleRefresh">
             <BbsWeimiListItem :bbs-list="bbsListMap[2]" />
           </PullRefresh>
+
+          <div v-if="loadingBbsList" class="load-box">
+            <ul class="lb-bbs-weimi">
+              <li>
+                <div class="i-a">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-x">
+                  <div class="i-b">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-c">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-d">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+              </li>
+              <li>
+                <div class="i-a">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-x">
+                  <div class="i-b">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-c">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-d">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+              </li>
+            </ul>
+          </div>
+
           <template v-if="bbsListTotalPages[2] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[2] > 9">
               <div class="pb-x">
@@ -158,7 +357,7 @@
         <swiper-slide class="bbs-swipe-item3">
           <div class="au-col-module-x" v-if="quanziCategories[0] && quanziCategories[0].items.length > 0">
             <div class="item" @click="changeSubChannel(item.id, 3)" v-for="item in quanziCategories[0].items" :key="item.id">
-              <img v-lazy-decrypt="item.img" />
+              <img v-lazy-decrypt="item.img" @load="onImageLoad('quanzi')" />
               <p>
                 <span># {{ item.title }}</span>
               </p>
@@ -166,7 +365,18 @@
             </div>
           </div>
 
-          <IconAd style="margin-top: 10px" />
+          <div v-if="isDecrypting.quanzi" class="load-box">
+            <div class="lb-au-col-module-x">
+              <div class="item"><div class="lb-s" /></div>
+              <div class="item"><div class="lb-s" /></div>
+              <div class="item"><div class="lb-s" /></div>
+              <div class="item"><div class="lb-s" /></div>
+              <div class="item"><div class="lb-s" /></div>
+              <div class="item"><div class="lb-s" /></div>
+            </div>
+          </div>
+
+          <IconAd class="mt-10" />
 
           <div class="au-tab-group">
             <div class="g-item">
@@ -181,6 +391,67 @@
           <PullRefresh v-if="bbsListMap[3]" v-model="refreshing" @refresh="handleRefresh">
             <BbsListItem :bbs-list="bbsListMap[3]" class="mt-0" />
           </PullRefresh>
+
+          <div v-if="loadingBbsList" class="load-box">
+            <ul class="lb-bbs-list mt-0">
+              <li>
+                <div class="i-a">
+                  <div class="a-l">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="a-r">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-b">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-c pic3">
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                </div>
+                <div class="i-d">
+                  <div class="d-x">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="d-x"><div class="lb-s" /></div>
+                </div>
+              </li>
+              <li>
+                <div class="i-a">
+                  <div class="a-l">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="a-r">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-b">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-c pic3">
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                </div>
+                <div class="i-d">
+                  <div class="d-x">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="d-x"><div class="lb-s" /></div>
+                </div>
+              </li>
+            </ul>
+          </div>
           <template v-if="bbsListTotalPages[3] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[3] > 9">
               <div class="pb-x">
@@ -202,6 +473,68 @@
           <PullRefresh v-if="bbsListMap[4]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh">
             <BbsListItem :bbs-list="bbsListMap[4]" :is-collect="true" class="mt-0" />
           </PullRefresh>
+
+          <div v-if="loadingBbsList" class="load-box">
+            <ul class="lb-bbs-list mt-0">
+              <li>
+                <div class="i-a">
+                  <div class="a-l">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="a-r">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-b">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-c pic3">
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                </div>
+                <div class="i-d">
+                  <div class="d-x">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="d-x"><div class="lb-s" /></div>
+                </div>
+              </li>
+              <li>
+                <div class="i-a">
+                  <div class="a-l">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="a-r">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                </div>
+                <div class="i-b">
+                  <div class="lb-s" />
+                </div>
+                <div class="i-c pic3">
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                  <div class="item"><div class="lb-s" /></div>
+                </div>
+                <div class="i-d">
+                  <div class="d-x">
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                    <div class="lb-s" />
+                  </div>
+                  <div class="d-x"><div class="lb-s" /></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
           <template v-if="bbsListTotalPages[4] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[4] > 9">
               <div class="pb-x">
@@ -363,7 +696,9 @@ const handleSwipeChange = (swiper: any) => {
   })
 }
 
+const loadingBbsList = ref(false)
 const fetchBbsList = async (loadMore = false) => {
+  loadingBbsList.value = true
   try {
     const {
       data: { data }
@@ -390,6 +725,8 @@ const fetchBbsList = async (loadMore = false) => {
     }
   } catch (error) {
     console.error('获取BBS列表失败:', error)
+  } finally {
+    loadingBbsList.value = false
   }
 }
 
@@ -505,6 +842,17 @@ const handlePageChange = async () => {
     await appStore.fetAdvertisement()
   }
 })()
+
+const isDecrypting = ref({
+  banner: true,
+  heiliao: true,
+  weimi: true,
+  quanzi: true
+})
+
+const onImageLoad = (section: string) => {
+  isDecrypting.value[section] = false
+}
 
 onActivated(() => {
   if (activeTab.value == 4) {

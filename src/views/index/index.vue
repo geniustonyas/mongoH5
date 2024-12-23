@@ -64,8 +64,9 @@
               </div>
 
               <nav class="wc-r">
-                <NoticeBar v-if="!loadingAd" @click="openAd(noticeAdvertisement[0].targetUrl, '首页滚动公告', 'click', noticeAdvertisement[0].id)" left-icon="volume-o" :text="noticeAdvertisement.length > 0 ? decodeHtmlEntities(noticeAdvertisement[0].introduction) : ''" :delay="1" />
-                <div v-if="loadingAd" class="load-box">
+                <NoticeBar v-if="noticeAdvertisement && noticeAdvertisement.length > 0" @click="openAd(noticeAdvertisement[0].targetUrl, '首页滚动公告', 'click', noticeAdvertisement[0].id)" left-icon="volume-o" :text="noticeAdvertisement.length > 0 ? decodeHtmlEntities(noticeAdvertisement[0].introduction) : ''" :delay="1" />
+
+                <div v-if="isDecrypting" class="load-box">
                   <div class="lb-i-m-m">
                     <div class="m-icon">
                       <div class="lb-s s-l" />
@@ -76,9 +77,9 @@
                   </div>
                 </div>
 
-                <IconAd />
+                <IconAd class="mt-10" />
 
-                <nav v-if="!loadingAd" class="i-m-b">
+                <nav v-if="!isDecrypting" class="i-m-b">
                   <div class="b-row r-ad">
                     <a @click.prevent="openDownloadPage" href="#">
                       <span><i class="mvfont mv-appxiazai" /></span>
@@ -252,7 +253,7 @@
               </div>
             </nav>
 
-            <div v-if="isDecrypting" class="load-box">
+            <div v-if="loadingIndexVideos" class="load-box">
               <div class="lb-mv-t-c">
                 <div class="mc-a">
                   <div class="a-l">
@@ -384,30 +385,6 @@
                     </div>
                   </div>
                 </div>
-                <!--<div class="c-col">
-                        <div class="lb-s"></div>
-                        <div class="lb-s"></div>
-                    </div>
-                    <div class="c-col">
-                        <div class="lb-s"></div>
-                        <div class="lb-s"></div>
-                    </div>
-                    <div class="c-col">
-                        <div class="lb-s"></div>
-                        <div class="lb-s"></div>
-                    </div>
-                    <div class="c-col">
-                        <div class="lb-s"></div>
-                        <div class="lb-s"></div>
-                    </div>
-                    <div class="c-col">
-                        <div class="lb-s"></div>
-                        <div class="lb-s"></div>
-                    </div>
-                    <div class="c-col">
-                        <div class="lb-s"></div>
-                        <div class="lb-s"></div>
-                    </div>-->
               </div>
             </div>
 
@@ -485,22 +462,35 @@
                 </swiper-slide>
               </swiper>
             </div>
-
+            <div v-if="loadingCategoryVideos" class="load-box">
+              <div class="lb-mv-swiper">
+                <div class="lb-s" />
+                <div class="lb-s" />
+                <div class="lb-s" />
+              </div>
+            </div>
             <IconAd />
             <!-- 分类 -->
             <section class="m-l-b">
-              <!-- <swiper v-if="category.s && category.s.length > 0" class="b-a" :modules="[FreeMode]" :free-mode="true as any" :slides-per-view="'auto'" :space-between="10" :loop="false" :nested="true">
-                <swiper-slide :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')"><span>全部</span></swiper-slide>
-                <swiper-slide v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
-                  <span>{{ cates.t }}</span>
-                </swiper-slide>
-              </swiper> -->
               <nav v-if="category.s && category.s.length > 0" class="b-a no-swipe">
                 <span :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</span>
                 <span v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
                   {{ cates.t }}
                 </span>
               </nav>
+
+              <div v-if="loadingCategoryVideos" class="load-box">
+                <div class="lb-m-l-b">
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                  <div class="lb-s" />
+                </div>
+              </div>
+
               <nav class="b-b">
                 <span v-for="sort in sortOptions" :key="sort.value" :class="{ active: categorySortType[query.ChannelId] == sort.value }" @click="changeSort(sort.value)">
                   {{ sort.label }}
@@ -596,8 +586,6 @@ const latestActiveIndex = ref(0)
 const recommendedActiveIndex = ref(0)
 // const channelActiveIndices = ref<number[]>([])
 
-const loadingAd = ref(true)
-
 const offset = ref({ x: 0, y: 100 })
 
 const sortOptions = [
@@ -684,7 +672,9 @@ const closePopup = () => {
   }
 }
 
+const loadingCategoryVideos = ref(false)
 const fetchVideos = async (params: VideoListRequest, loadMore = false) => {
+  loadingCategoryVideos.value = true
   const currentChannelId = params.ChannelId // 保存当前的 ChannelId
   const isFirst = params.IsFirst
   try {
@@ -713,6 +703,8 @@ const fetchVideos = async (params: VideoListRequest, loadMore = false) => {
   } catch (error) {
     console.error(`获取视频列表失败:`, error)
     return []
+  } finally {
+    loadingCategoryVideos.value = false
   }
 }
 
@@ -728,7 +720,9 @@ const onRecommendedSlideChange = (swiper: any) => {
 //   channelActiveIndices.value[index] = swiper.activeIndex
 // }
 
+const loadingIndexVideos = ref(false)
 const fetchIndexVideos = async () => {
+  loadingIndexVideos.value = true
   try {
     const {
       data: { data }
@@ -753,6 +747,8 @@ const fetchIndexVideos = async () => {
   } catch (error) {
     console.error(`获取首页视频列表失败:`, error)
     return []
+  } finally {
+    loadingIndexVideos.value = false
   }
 }
 
@@ -886,7 +882,6 @@ const onImageLoad = () => {
   await handleCategoryChange()
   if (appStore.advertisement.length == 0) {
     await appStore.fetAdvertisement()
-    loadingAd.value = false
   }
 })()
 

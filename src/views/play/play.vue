@@ -23,6 +23,8 @@
             发送邮件至：<b>{{ appStore.spareData.Email }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.Email"><i class="mvfont mv-fuzhi" /></span> 可获得最新地址
           </p>
         </div>
+
+        <IconAd class="mt-10" />
         <div class="b-a">
           <div class="a-a">{{ videoDetail ? videoDetail.title : '' }}</div>
           <div class="a-b">
@@ -87,6 +89,7 @@ import { useAppStore } from '@/store/app'
 import dayjs from 'dayjs'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import NavBar from '@/components/layout/NavBar.vue'
+import IconAd from '@/components/Advertisement/IconAd.vue'
 import { showToast } from 'vant'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
