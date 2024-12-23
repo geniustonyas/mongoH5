@@ -10,17 +10,22 @@ const decrypt = new decryptionService()
 export default {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     // 获取自定义属性或使用默认值
-    const defaultImage = el.getAttribute('loading-img') || 'default.gif'
-    const errorImage = el.getAttribute('error-img') || defaultImage || 'default2.gif'
+    const loadingImgAttr = el.getAttribute('loading-img')
+    const errorImgAttr = el.getAttribute('error-img')
+
+    const defaultImage = loadingImgAttr !== null && loadingImgAttr !== '' && loadingImgAttr !== 'no' ? loadingImgAttr : null
+    const errorImage = errorImgAttr !== null && errorImgAttr !== '' && errorImgAttr !== 'no' ? errorImgAttr : defaultImage
 
     // 判断是图片还是背景图
     const isImageElement = el.tagName.toLowerCase() === 'img'
 
     // 设置默认图片或背景图片
-    if (isImageElement) {
-      ;(el as HTMLImageElement).src = getAssetsFile(defaultImage)
-    } else {
-      el.style.backgroundImage = `url(${getAssetsFile(defaultImage)})`
+    if (defaultImage) {
+      if (isImageElement) {
+        ;(el as HTMLImageElement).src = getAssetsFile(defaultImage)
+      } else {
+        el.style.backgroundImage = `url(${getAssetsFile(defaultImage)})`
+      }
     }
 
     const loadImage = async () => {
@@ -40,10 +45,12 @@ export default {
         }
       } catch (error) {
         console.error('图片解密失败:', error)
-        if (isImageElement) {
-          ;(el as HTMLImageElement).src = getAssetsFile(errorImage)
-        } else {
-          el.style.backgroundImage = `url(${getAssetsFile(errorImage)})`
+        if (errorImage) {
+          if (isImageElement) {
+            ;(el as HTMLImageElement).src = getAssetsFile(errorImage)
+          } else {
+            el.style.backgroundImage = `url(${getAssetsFile(errorImage)})`
+          }
         }
       }
     }

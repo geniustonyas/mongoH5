@@ -5,7 +5,6 @@
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
         <div class="video-container">
           <video id="plyr-player" muted autoplay preload="auto" :data-poster="poster" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
-          <div id="adContainer"></div> <!-- 广告容器 -->
         </div>
         <div class="a-f">
           <div class="item">
@@ -236,28 +235,15 @@ const fetchRecommendedVideos = async (channelId: string, currentVideoId: string)
 const initializePlayer = async (domain: string, uri: string) => {
   try {
     resetPlayer()
-    await nextTick()
-
     const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
-    const adContainerElement = document.getElementById('adContainer')
-    if (!videoElement || !adContainerElement) {
-      console.error('Video or Ad container element not found')
+    if (!videoElement) {
+      console.error('Video element not found')
       return
     }
-
     const url = generateAuthUrl(domain, uri)
 
-    // Initialize IMA3
-    const adDisplayContainer = new google.ima.AdDisplayContainer(adContainerElement, videoElement)
-    const adsLoader = new google.ima.AdsLoader(adDisplayContainer)
-
-    adsLoader.addEventListener(
-      google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
-      onAdsManagerLoaded,
-      false
-    )
-
-    const adsRequest = new google.ima.AdsRequest()
+    // 生成 VAST XML 并创建 Blob URL
+    let vastUrl = ''
     if (playAdvertisement.value.length > 0) {
       const ad = playAdvertisement.value[0]
       const decryptedImageUrl = await decrypt.fetchAndDecrypt(appStore.cdnUrl + ad.imgUrl)
@@ -279,27 +265,19 @@ const initializePlayer = async (domain: string, uri: string) => {
       })
 
       const vastBlob = new Blob([vastXml], { type: 'application/xml' })
-      // https://mg.aj666888.com/vast.xml
-      const vastUrl = URL.createObjectURL(vastBlob)
-      // const vastUrl = 'https://mg.aj666888.com/vast.xml'
-      adsRequest.adTagUrl = vastUrl
+      vastUrl = URL.createObjectURL(vastBlob)
+      // vastUrl = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator='
     }
 
-    adsLoader.requestAds(adsRequest)
-
-    function onAdsManagerLoaded(adsManagerLoadedEvent) {
-      const adsManager = adsManagerLoadedEvent.getAdsManager(videoElement)
-      adsManager.init(videoElement.clientWidth, videoElement.clientHeight, google.ima.ViewMode.NORMAL)
-      adsManager.start()
-    }
-
-    // Initialize Plyr
-    player.value = new Plyr(videoElement, {
-      clickToPlay: true,
+    // 使用 Plyr 初始化播放器并配置广告
+    player.value = new window.Plyr(videoElement, {
       autoplay: true,
       controls: controls.value,
       settings: ['captions', 'quality', 'speed', 'loop'],
-      fullscreen: { enabled: true, fallback: true, iosNative: true, container: null }
+      ads: {
+        enabled: true,
+        tagUrl: vastUrl // 使用生成的 VAST URL
+      }
     })
 
     player.value.on('ready', () => {
