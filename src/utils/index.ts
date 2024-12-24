@@ -323,7 +323,24 @@ export function getCookieValue(cookieName: string) {
  * @returns 解码后的字符串
  */
 export function decodeHtmlEntities(str: string): string {
-  const textarea = document.createElement('textarea')
-  textarea.innerHTML = str
-  return textarea.value
+  const namedEntities: { [key: string]: string } = {
+    amp: '&',
+    lt: '<',
+    gt: '>',
+    quot: '"',
+    apos: "'",
+    nbsp: ' '
+    // 添加更多命名实体
+  }
+
+  return str
+    .replace(/&#(\d+);/g, (match, dec) => {
+      return String.fromCharCode(dec)
+    })
+    .replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => {
+      return String.fromCharCode(parseInt(hex, 16))
+    })
+    .replace(/&([a-zA-Z]+);/g, (match, name) => {
+      return namedEntities[name] || match
+    })
 }
