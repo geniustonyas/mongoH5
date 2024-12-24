@@ -46,7 +46,7 @@ class decryptionService {
       // 返回解密后的 Blob
       return new Blob([decryptedContent], { type: mimeType })
     } catch (error) {
-      console.error('解密数据失败:', error)
+      console.error(`解密数据失败:${url} - `, error)
       throw error
     }
   }
