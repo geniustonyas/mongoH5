@@ -523,7 +523,7 @@
       </swiper>
       <!-- 首页弹窗 -->
       <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
-        <a target="_blank" :href="currentPopAd.targetUrl"><img v-lazy-decrypt="currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
+        <a @click="openAd(currentPopAd.targetUrl, '首页弹窗', 'click', currentPopAd.id, 1, '', currentPopAd)"><img v-lazy-decrypt="currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
     </main>
@@ -662,6 +662,12 @@ watch(
   { immediate: true }
 )
 
+watch(popAdvertisement, (newVal) => {
+  if (newVal.length > 0) {
+    showPopup.value = true
+  }
+})
+
 const closePopup = () => {
   if (currentPopAdIndex.value < popAdvertisement.value.length - 1) {
     currentPopAdIndex.value++
@@ -743,7 +749,6 @@ const fetchIndexVideos = async () => {
           videos: channel ? channel.items.slice(0, 6) : []
         }
       })
-      console.log(channelVideos.value)
     }
   } catch (error) {
     console.error(`获取首页视频列表失败:`, error)

@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, defineProps } from 'vue'
+import { computed, ref, defineProps, watch } from 'vue'
 import { openAd, chunkArray } from '@/utils'
 import { useAppStore } from '@/store/app'
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -59,11 +59,13 @@ const onImageLoad = () => {
 
 const iconAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(16).items
-  let iconAds = []
-  if (tmp && tmp.length >= 0) {
-    iconAds = chunkArray(tmp, 6) || []
+  return tmp && tmp.length >= 0 ? chunkArray(tmp, 6) || [] : []
+})
+
+watch(iconAdvertisement, (newVal) => {
+  if (newVal.length === 0) {
+    isDecrypting.value = false
   }
-  return iconAds
 })
 
 defineProps({

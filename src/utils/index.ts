@@ -3,6 +3,7 @@ import Clipboard from 'clipboard'
 import { showToast } from 'vant'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
+import { toRaw } from 'vue'
 dayjs.extend(duration)
 
 // 获取url中全部参数的对象
@@ -89,10 +90,32 @@ export function chunkArray(arr: any[], chunkSize: number): any[][] {
   return chunks
 }
 
-export const openAd = (url, category = '', action = '', label = '', value = 1, nodeid = '') => {
+export const openAd = (url, category = '', action = '', label = '', value = 1, nodeid = '', ad = null) => {
+  if (ad) {
+    // 将响应式对象转换为普通对象
+    const rawAd = toRaw(ad)
+    console.log(rawAd)
+    // 检查并处理 iOS 和 Android 下载链接
+    const ua = navigator.userAgent
+    if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+      if (rawAd.iosDownLoadUrl) {
+        console.log(rawAd.iosDownLoadUrl)
+        window.open(rawAd.iosDownLoadUrl, '_blank')
+        return
+      }
+    } else {
+      if (rawAd.andoridDownloadUrl) {
+        window.open(rawAd.andoridDownloadUrl, '_blank')
+        return
+      }
+    }
+  }
+  // 如果没有 ad 对象或没有下载链接，打开传入的 url
   if (url) {
     window.open(url, '_blank')
   }
+
+  // 事件跟踪逻辑
   // @ts-ignore
   if (category != '' && action != '' && window._czc) {
     // @ts-ignore
