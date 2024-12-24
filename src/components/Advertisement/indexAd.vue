@@ -1,6 +1,6 @@
 <template>
   <div v-if="ad" class="ad-box1">
-    <img @click="openAd(ad.targetUrl, '首页列表横幅', 'click', ad.id)" :key="ad.id" v-lazy-decrypt="ad.imgUrl" :alt="ad.title" />
+    <img @click="openAd(ad.targetUrl, '首页列表横幅', 'click', ad.id)" :key="ad.id" v-lazy-decrypt="ad.imgUrl" :alt="ad.title" :loading-img="'long-banner.jpg'" />
   </div>
 </template>
 

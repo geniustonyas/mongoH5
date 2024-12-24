@@ -4,7 +4,7 @@
       <swiper-slide v-for="(chunk, index) in iconAdvertisement" :key="index">
         <div class="i-m-c">
           <a v-for="item in chunk" @click="openAd(item.targetUrl, '首页图标广告', 'click', item.id)" target="_blank" :key="item.id">
-            <img v-lazy-decrypt="item.imgUrl" :alt="item.title" @load="onImageLoad" />
+            <img v-lazy-decrypt="item.imgUrl" :alt="item.title" :loading-img="'sqare.jpg'" @load="onImageLoad" />
             <span>{{ item.title }}</span>
           </a>
         </div>
