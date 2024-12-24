@@ -35,12 +35,12 @@
         <div v-if="noData" class="no-comment">暂无评论</div>
       </div>
       <div class="bcb-foot">
-        <div class="f-a">
+        <!-- <div class="f-a">
           <span>一键发评</span>
           <p>
             <span v-for="preset in presetComments" :key="preset" @click="postComment(preset)" v-html="parseEmojis(preset)" />
           </p>
-        </div>
+        </div> -->
         <div v-show="showEmojiPopup" class="f-c">
           <swiper :modules="emojiModules" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="false">
             <swiper-slide v-for="(items, index) in groupedEmojis" :key="index">
@@ -98,7 +98,7 @@ const noData = ref(false)
 const commentHeight = props.commentHeight || '70%'
 // const teleportTarget = props.teleportTarget || '.page'
 
-const presetComments = ref(['放开她，让我来！[色]', '老师真是太美了！[可爱]'])
+// const presetComments = ref(['放开她，让我来！[色]', '老师真是太美了！[可爱]'])
 const showEmojiPopup = ref(false)
 const emojiModules = [Pagination]
 const groupedEmojis = groupEmoji()
@@ -155,6 +155,12 @@ const postComment = async (content = '') => {
     showToast('评论内容不能为空')
     return
   }
+
+  if (commentContent.length < 5) {
+    showToast('评论内容至少需要5个字')
+    return
+  }
+
   try {
     const { data } = await bbsCommentApi({ PostId: props.postId, Content: commentContent })
     if (data) {

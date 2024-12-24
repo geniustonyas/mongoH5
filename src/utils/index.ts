@@ -1,10 +1,15 @@
+import { toRaw } from 'vue'
 import * as _ from 'lodash-es'
 import Clipboard from 'clipboard'
 import { showToast } from 'vant'
 import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
-import { toRaw } from 'vue'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/zh-cn'
+
+dayjs.extend(relativeTime)
 dayjs.extend(duration)
+dayjs.locale('zh-cn')
 
 // 获取url中全部参数的对象
 export function getUrlAllParams() {
@@ -286,6 +291,10 @@ export function moneyFormat(value: any) {
     }
   }
   return ret
+}
+
+export function fromNow(date: string) {
+  return dayjs(date).fromNow()
 }
 
 export function formatDuration(seconds: number) {

@@ -26,7 +26,7 @@
                     <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
                   </div>
                   <div class="a-r">
-                    <span><i class="mvfont mv-riqi" />{{ formatDate(video.addTime) }}</span>
+                    <span><i class="mvfont mv-riqi" />{{ fromNow(video.addTime) }}</span>
                   </div>
                 </div>
               </div>
@@ -43,10 +43,9 @@
 import { ref, onActivated, onDeactivated, watch, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { PullRefresh, List } from 'vant'
-import dayjs from 'dayjs'
 import { getVideoListApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
-import { formatDuration, classifyResolution } from '@/utils'
+import { formatDuration, classifyResolution, fromNow } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 const route = useRoute()
 const router = useRouter()
@@ -122,10 +121,6 @@ const loadData = () => {
 
 const refreshList = () => {
   fetchVideos(activeTab.value, true)
-}
-
-const formatDate = (date: string) => {
-  return dayjs(date).format('YYYY-MM-DD')
 }
 
 onActivated(() => {

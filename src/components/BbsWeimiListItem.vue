@@ -25,7 +25,7 @@
         <div class="i-c" v-html="decodeHtmlEntities(post.title || '')" />
         <div class="i-d">
           <span><img :src="getAssetsFile('logo-4.png')" />{{ post.user.nickName || '芒果TV官方' }}</span>
-          {{ formatDate(post.createTime) }}
+          {{ fromNow(post.createTime) }}
         </div>
       </div>
     </li>
@@ -34,10 +34,11 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { getAssetsFile, decodeHtmlEntities } from '@/utils'
+import { getAssetsFile, decodeHtmlEntities, fromNow } from '@/utils'
 import { defineProps, withDefaults } from 'vue'
 import { Bbs } from '@/types/bbs'
-import dayjs from 'dayjs'
+
+const router = useRouter()
 
 withDefaults(
   defineProps<{
@@ -50,10 +51,4 @@ withDefaults(
     isCollect: false
   }
 )
-
-const router = useRouter()
-
-const formatDate = (date: string) => {
-  return dayjs(date).format('YYYY-MM-DD')
-}
 </script>

@@ -6,7 +6,7 @@
           <img :src="getAssetsFile('logo-4.png')" />
           <div class="l-n">
             <h3>{{ post.user.nickName || '芒果TV官方' }}</h3>
-            <span>{{ formatDate(post.createTime) }}</span>
+            <span>{{ fromNow(post.createTime) }}</span>
           </div>
         </div>
         <div v-if="isCollect" class="a-r">
@@ -41,10 +41,11 @@
 <script setup lang="ts">
 import { defineProps, withDefaults, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getAssetsFile, decodeHtmlEntities } from '@/utils'
-import { Bbs } from '@/types/bbs' // 导入 Bbs 类型
-import dayjs from 'dayjs'
-import { bbsCollectionApi } from '@/api/bbs' // 导入收藏API
+import { getAssetsFile, decodeHtmlEntities, fromNow } from '@/utils'
+import { Bbs } from '@/types/bbs'
+import { bbsCollectionApi } from '@/api/bbs'
+
+const router = useRouter()
 
 const props = withDefaults(
   defineProps<{
@@ -56,12 +57,6 @@ const props = withDefaults(
     isCollect: false
   }
 )
-
-const router = useRouter()
-
-const formatDate = (date: string) => {
-  return dayjs(date).format('YYYY-MM-DD')
-}
 
 const toggleCollect = async (post: Bbs) => {
   try {

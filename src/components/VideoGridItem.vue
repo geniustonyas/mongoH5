@@ -13,7 +13,7 @@
           <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
         </div>
         <div v-if="video.addTime" class="p-c">
-          <span><i class="mvfont mv-riqi" />{{ formatDate(video.addTime) }}</span>
+          <span><i class="mvfont mv-riqi" />{{ fromNow(video.addTime) }}</span>
         </div>
       </div>
     </div>
@@ -23,15 +23,9 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type { Video } from '@/types/video'
-import dayjs from 'dayjs'
-import { formatDuration } from '@/utils'
-import { classifyResolution } from '@/utils'
+import { formatDuration, fromNow, classifyResolution } from '@/utils'
 
 defineProps<{
   video: Video
 }>()
-
-const formatDate = (date: string) => {
-  return dayjs(date).format('M-D')
-}
 </script>
