@@ -431,8 +431,8 @@ const resetPlayer = () => {
   }
   if (hls.value) {
     hls.value.stopLoad()
-    // hls.value.destroy()
-    // hls.value = null
+    hls.value.destroy()
+    hls.value = null
   }
 }
 
@@ -547,6 +547,28 @@ const ad = ref(null) // 初始化广告为 null
 //   player.value?.play() // 关闭广告后继续播放视频
 // }
 
+let startX = 0
+let startY = 0
+
+const handleTouchStart = (event) => {
+  const touch = event.touches[0]
+  startX = touch.clientX
+  startY = touch.clientY
+  console.log('Touch start:', startX, startY)
+}
+
+const handleTouchMove = (event) => {
+  const touch = event.touches[0]
+  const deltaX = touch.clientX - startX
+  const deltaY = touch.clientY - startY
+  console.log('Touch move:', deltaX, deltaY)
+
+  // 如果水平移动距离大于垂直移动距离，则阻止默认行为
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    event.preventDefault()
+  }
+}
+
 ;(async () => {
   await fetchVideoDetail(route.params.id as string)
 })()
@@ -572,6 +594,15 @@ onMounted(() => {
     appStore.fetAdvertisement()
   }
   copy('.copy')
+
+  document.addEventListener('touchstart', handleTouchStart, { passive: false })
+  document.addEventListener('touchmove', handleTouchMove, { passive: false })
+
+  // 在组件卸载时移除事件监听器
+  onUnmounted(() => {
+    document.removeEventListener('touchstart', handleTouchStart)
+    document.removeEventListener('touchmove', handleTouchMove)
+  })
 })
 
 onUnmounted(() => {

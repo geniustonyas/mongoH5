@@ -40,7 +40,7 @@
       <div class="pop-bd shortcut">
         <div class="s-a">
           <h3>添加到主屏幕</h3>
-          <span @click="showAddToHomeTip = false">×</span>
+          <span @click="closePop()">×</span>
         </div>
         <div class="s-b" id="sb-ios">
           <div class="b-item">
@@ -132,6 +132,13 @@ const popAddToHomeTip = () => {
   showAddToHomePop.value = true
   showIos.value = true
   showAddToHomeTip.value = false
+}
+
+const closePop = () => {
+  showAddToHomePop.value = false
+  showAddToHomeTip.value = false
+  showDownloadTips.value = false
+  showIos.value = false
 }
 
 // 下载APP

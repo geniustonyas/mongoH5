@@ -950,6 +950,9 @@ onActivated(() => {
   }
   keepAlive.value = true
   window.scrollTo(0, 0)
+  if (swiperInstance.value) {
+    swiperInstance.value.updateAutoHeight()
+  }
 })
 
 onDeactivated(() => {

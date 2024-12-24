@@ -50,7 +50,7 @@
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="form.Content" label="留言内容" name="Content" type="textarea" placeholder="请输入您的反馈" :rules="[{ required: true, message: '请输入留言内容' }]" required />
+              <Field v-model="form.Content" label="留言内容" name="Content" type="textarea" placeholder="请尽可能详细描述您的问题, 以方面我们快速改进" :rules="[{ required: true, message: '请输入留言内容' }]" required />
             </CellGroup>
             <Button round block native-type="submit" class="mt-16 btn btn1">提交</Button>
           </Form>
