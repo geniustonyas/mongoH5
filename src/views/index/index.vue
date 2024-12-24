@@ -523,7 +523,7 @@
       </swiper>
       <!-- 首页弹窗 -->
       <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
-        <a @click="openAd(currentPopAd.targetUrl, '首页弹窗', 'click', currentPopAd.id, 1, '', currentPopAd)"><img v-lazy-decrypt="currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
+        <a @click="openAd(currentPopAd.targetUrl, '首页弹窗', 'click', currentPopAd.id, 1, '', currentPopAd)"><img :src="currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
     </main>
@@ -561,6 +561,7 @@ import IndexAd from '@/components/Advertisement/indexAd.vue'
 const router = useRouter()
 const route = useRoute()
 const appStore = useAppStoreHook()
+
 const showSuggestion = ref(true)
 
 const keepAlive = ref(true)
