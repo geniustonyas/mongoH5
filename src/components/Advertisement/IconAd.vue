@@ -62,11 +62,15 @@ const iconAdvertisement = computed(() => {
   return tmp && tmp.length >= 0 ? chunkArray(tmp, 6) || [] : []
 })
 
-watch(iconAdvertisement, (newVal) => {
-  if (newVal.length === 0) {
-    isDecrypting.value = false
-  }
-})
+watch(
+  iconAdvertisement,
+  (newVal) => {
+    if (newVal.length == 0) {
+      isDecrypting.value = false
+    }
+  },
+  { immediate: true }
+)
 
 defineProps({
   customClass: {

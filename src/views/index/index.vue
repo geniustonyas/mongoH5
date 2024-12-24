@@ -557,10 +557,12 @@ import Footer from '@/components/layout/Footer.vue'
 import VideoGridItem from '@/components/VideoGridItem.vue'
 import DownloadPop from '@/components/DownloadPop.vue'
 import IndexAd from '@/components/Advertisement/indexAd.vue'
+import decryptionService from '@/utils/decryptionService'
 
 const router = useRouter()
 const route = useRoute()
 const appStore = useAppStoreHook()
+const decrypted = new decryptionService()
 
 const showSuggestion = ref(true)
 
@@ -623,10 +625,25 @@ const bannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(2).items
   return tmp || []
 })
+
+const decryptedPopAds = ref([])
+const decryptAdvertisements = async () => {
+  const tmp = appStore.getAdvertisementById(3).items || []
+  decryptedPopAds.value = await Promise.all(
+    tmp.map(async (ad) => {
+      if (ad.imgUrl) {
+        const tmp = await decrypted.fetchAndDecrypt(appStore.cdnUrl + ad.imgUrl)
+        ad.imgUrl = URL.createObjectURL(tmp)
+      }
+      return ad
+    })
+  )
+}
+
 const popAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(3).items
-  return tmp || []
+  return decryptedPopAds.value
 })
+
 const listBannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(19).items
   return tmp || []
@@ -663,11 +680,15 @@ watch(
   { immediate: true }
 )
 
-watch(popAdvertisement, (newVal) => {
-  if (newVal.length > 0) {
-    showPopup.value = true
-  }
-})
+watch(
+  popAdvertisement,
+  (newVal) => {
+    if (newVal.length > 0) {
+      showPopup.value = true
+    }
+  },
+  { immediate: true }
+)
 
 const closePopup = () => {
   if (currentPopAdIndex.value < popAdvertisement.value.length - 1) {
@@ -942,6 +963,8 @@ onMounted(() => {
   const bubbleWidth = 80 // 浮动元素的宽度
   const rightMargin = 10 // 距离右侧的距离
   offset.value.x = window.innerWidth - bubbleWidth - rightMargin
+
+  decryptAdvertisements()
 })
 
 // 添加一个记录每个频道当前页码的对象
