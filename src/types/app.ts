@@ -1,12 +1,13 @@
 export interface AdsItem {
-  andoridDownloadUrl: string
-  downloadCount: string
+  andoridDownloadUrl?: string
+  downloadCount?: string
   id: string
   imgUrl: string
-  introduction: string
-  iosDownLoadUrl: string
+  introduction?: string
+  iosDownLoadUrl?: string
   targetUrl: string
   title: string
+  isAd?: boolean
 }
 
 export interface SpareData {

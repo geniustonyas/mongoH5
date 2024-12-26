@@ -9,23 +9,33 @@
         <PullRefresh v-model="refreshing" @refresh="fresh">
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
             <div v-if="videos.length > 0" class="video-list-box">
-              <div v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })" class="video-list">
+              <div v-for="video in videos" :key="video.id" @click="clickVideo(video)" class="video-list">
                 <div class="l-a">
                   <img :src="video.poster" :alt="video.poster" />
-                  <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
-                  <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
-                  <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
+                  <template v-if="!video.isAd">
+                    <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
+                    <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
+                    <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
+                  </template>
                 </div>
                 <div class="l-b">
                   <b>{{ video.title }}</b>
                   <div class="b-a">
-                    <div class="a-l">
-                      <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                      <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
-                    </div>
-                    <div class="a-r">
-                      <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
-                    </div>
+                    <template v-if="!video.isAd">
+                      <div class="a-l">
+                        <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+                        <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                      </div>
+                      <div class="a-r">
+                        <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
+                      </div>
+                    </template>
+                    <template v-else>
+                      <div class="a-l" />
+                      <div class="a-r">
+                        <span><i class="mvfont mv-riqi" />广告</span>
+                      </div>
+                    </template>
                   </div>
                 </div>
               </div>
@@ -40,26 +50,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, computed } from 'vue'
 import { PullRefresh, List, BackTop } from 'vant'
-import dayjs from 'dayjs'
 import { getVideoListApi, getVideoRankApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
+import type { DataWithAd } from '@/types/global.d'
+import { formatDuration, classifyResolution, insertAds, openAd } from '@/utils'
 import Header from '@/views/theme/themeHeader.vue'
 import NavBar from '@/components/layout/NavBar.vue'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/store/app'
-import { formatDuration, classifyResolution } from '@/utils'
 import decryptionService from '@/utils/decryptionService'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'
+import dayjs from 'dayjs'
 
 let msnry = null
 const router = useRouter()
 const decrypt = new decryptionService()
 const appStore = useAppStore()
 
-const videos = ref<Video[]>([])
+const videos = ref<DataWithAd<Video>[]>([])
 const activeRank = ref('total')
 const rankOptions = ref([
   { label: '总榜单', value: 'total' },
@@ -74,6 +85,19 @@ let finished = ref(false)
 let error = ref(false)
 
 let pageIndex = ref(1) // 当前页码
+
+const videoListAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(28).items
+  return tmp || []
+})
+
+const clickVideo = (video: DataWithAd<Video>) => {
+  if (video.isAd) {
+    openAd(video.targetUrl, '视频列表广告', 'click', video.title, 1, video.id)
+  } else {
+    router.push({ name: 'play', params: { id: video.id } })
+  }
+}
 
 const fetchVideos = async (rank: string, isRefresh = false) => {
   if (isRefresh) {
@@ -104,6 +128,9 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
     } = response
 
     if (data && Array.isArray(data.items)) {
+      // 插入广告
+      data.items = insertAds(data.items, videoListAdvertisement.value, 5, 7, false)
+
       // 先等待全部解密图片存入poster
       await Promise.all(
         data.items.map(async (video) => {

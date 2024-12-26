@@ -8,6 +8,8 @@ export interface ApiResponseData<T = any> {
   }
 }
 
+export type DataWithAd<T> = T | (AdsItem & { isAd: true })
+
 declare global {
   interface Window {
     Hls: any

@@ -81,7 +81,7 @@ import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi, addPlayCountApi, getVideoListApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
-import { copy, openAd } from '@/utils'
+import { copy, openAd, insertAds } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import decryptionService from '@/utils/decryptionService'
 import { useUserStore } from '@/store/user'
@@ -154,6 +154,11 @@ const playAdvertisement = computed(() => {
   return tmp || []
 })
 
+const videoListAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(28).items
+  return tmp || []
+})
+
 const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
   if (isDisabled.value) {
     showToast('请稍后再试')
@@ -183,8 +188,13 @@ const handleVideoClick = (event) => {
 
   const videoListElement = event.target.closest('.video-grid-item')
   if (videoListElement) {
+    const isAd = videoListElement.dataset.isAd
     const videoId = videoListElement.dataset.videoId
-    fetchVideoDetailThrottled(videoId)
+    if (isAd) {
+      openAd(videoListElement.dataset.targetUrl, '播放页广告', 'click', videoListElement.dataset.title, 1, videoId)
+    } else {
+      fetchVideoDetailThrottled(videoId)
+    }
   }
 }
 
@@ -229,7 +239,9 @@ const fetchRecommendedVideos = async (channelId: string, currentVideoId: string)
     if (filteredVideos.length == data.items.length) {
       filteredVideos.pop()
     }
-    recommendedVideos.value = filteredVideos
+
+    // 插入广告
+    recommendedVideos.value = insertAds(filteredVideos, videoListAdvertisement.value, 5, 7, true)
   } catch (error) {
     console.error('获取猜你喜欢视频失败:', error)
   }
@@ -547,28 +559,6 @@ const ad = ref(null) // 初始化广告为 null
 //   player.value?.play() // 关闭广告后继续播放视频
 // }
 
-let startX = 0
-let startY = 0
-
-const handleTouchStart = (event) => {
-  const touch = event.touches[0]
-  startX = touch.clientX
-  startY = touch.clientY
-  console.log('Touch start:', startX, startY)
-}
-
-const handleTouchMove = (event) => {
-  const touch = event.touches[0]
-  const deltaX = touch.clientX - startX
-  const deltaY = touch.clientY - startY
-  console.log('Touch move:', deltaX, deltaY)
-
-  // 如果水平移动距离大于垂直移动距离，则阻止默认行为
-  if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    event.preventDefault()
-  }
-}
-
 ;(async () => {
   await fetchVideoDetail(route.params.id as string)
 })()
@@ -594,15 +584,6 @@ onMounted(() => {
     appStore.fetAdvertisement()
   }
   copy('.copy')
-
-  document.addEventListener('touchstart', handleTouchStart, { passive: false })
-  document.addEventListener('touchmove', handleTouchMove, { passive: false })
-
-  // 在组件卸载时移除事件监听器
-  onUnmounted(() => {
-    document.removeEventListener('touchstart', handleTouchStart)
-    document.removeEventListener('touchmove', handleTouchMove)
-  })
 })
 
 onUnmounted(() => {

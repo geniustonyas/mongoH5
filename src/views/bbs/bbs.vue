@@ -572,7 +572,7 @@ import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
-import { openAd } from '@/utils'
+import { insertAds, openAd } from '@/utils'
 import type { BbsListRequest, BbsCategoryResponse } from '@/types/bbs'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -592,6 +592,12 @@ const tabs = [
 ]
 const bannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(2).items
+  return tmp || []
+})
+
+// 获取社区帖子广告
+const bbsListAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(30).items
   return tmp || []
 })
 
@@ -704,7 +710,9 @@ const fetchBbsList = async (loadMore = false) => {
       data: { data }
     } = await getBbsListApi(query)
     if (data && Array.isArray(data.items)) {
-      // 初始化 bbsListMap[activeTab.value] 为数组
+      // 插入广告
+      data.items = insertAds(data.items, bbsListAdvertisement.value, 5, 7, false)
+
       if (!bbsListMap.value[activeTab.value]) {
         bbsListMap.value[activeTab.value] = []
       }

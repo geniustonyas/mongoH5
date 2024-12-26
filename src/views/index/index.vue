@@ -245,7 +245,7 @@
                   <swiper-slide v-for="(chunk, index) in latestVideos" :key="index">
                     <nav class="mv-t-l">
                       <div class="m-b">
-                        <VideoGridItem v-for="video in chunk" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                        <VideoGridItem v-for="video in chunk" :key="video.id" :video="video" @click="clickVideo(video)" />
                       </div>
                     </nav>
                   </swiper-slide>
@@ -388,7 +388,7 @@
               </div>
             </div>
 
-            <IndexAd v-if="shuffledAds[0]" :ad="shuffledAds[0]" />
+            <IndexAd v-if="listBannerAdvertisement[0]" :ad="listBannerAdvertisement[0]" />
             <!-- 热门推荐 -->
             <nav v-if="recommendedVideos.length > 0" class="mv-t-c">
               <div class="mc-a">
@@ -408,7 +408,7 @@
                   <swiper-slide v-for="(chunk, index) in recommendedVideos" :key="index">
                     <nav class="mv-t-l">
                       <div class="m-b">
-                        <VideoGridItem v-for="video in chunk" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                        <VideoGridItem v-for="video in chunk" :key="video.id" :video="video" @click="clickVideo(video)" />
                       </div>
                     </nav>
                   </swiper-slide>
@@ -416,7 +416,7 @@
               </div>
             </nav>
 
-            <IndexAd v-if="shuffledAds[1]" :ad="shuffledAds[1]" />
+            <IndexAd v-if="listBannerAdvertisement[1]" :ad="listBannerAdvertisement[1]" />
 
             <template v-for="(channel, channelIndex) in channelVideos" :key="channel.label">
               <nav v-if="channel.videos.length > 0" class="mv-t-c" :key="channelIndex">
@@ -435,7 +435,7 @@
                 <div class="mc-b">
                   <nav class="mv-t-l">
                     <div class="m-b">
-                      <VideoGridItem v-for="video in channel.videos" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                      <VideoGridItem v-for="video in channel.videos" :key="video.id" :video="video" @click="clickVideo(video)" />
                     </div>
                     <div class="mc-c">
                       <span @click="redirectCategory(channelIndex + 1, '')">更多内容</span>
@@ -445,7 +445,7 @@
                 </div>
               </nav>
 
-              <IndexAd v-if="shuffledAds[channelIndex + 2]" :ad="shuffledAds[channelIndex + 2]" />
+              <IndexAd v-if="listBannerAdvertisement[channelIndex + 2]" :ad="listBannerAdvertisement[channelIndex + 2]" />
             </template>
           </PullRefresh>
         </swiper-slide>
@@ -453,6 +453,7 @@
         <!-- 分类 -->
         <swiper-slide v-for="category in appStore.categorys" :key="category.d">
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
+            <!-- 分类广告 -->
             <div v-if="categoryBannerVideosMap[category.d] && categoryBannerVideosMap[category.d].length > 0 && keepAlive" class="mv-swiper">
               <swiper :modules="[Autoplay]" :slides-per-view="appStore.isPc ? 5 : 2" :centered-slides="!appStore.isPc" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
                 <swiper-slide v-for="video in categoryBannerVideosMap[category.d]" :key="video.id">
@@ -498,7 +499,7 @@
               </nav>
               <nav class="mv-t-l">
                 <div class="m-b" v-if="categoryVideosMap[category.d]">
-                  <VideoGridItem v-for="video in categoryVideosMap[category.d]" :key="video.id" :video="video" @click="router.push({ name: 'play', params: { id: video.id } })" />
+                  <VideoGridItem v-for="(video, index) in categoryVideosMap[category.d]" :key="index" :video="video" @click="clickVideo(video)" />
                 </div>
 
                 <template v-if="categoryTotalPages[category.d] > 1">
@@ -545,7 +546,8 @@ import { PullRefresh, Popup, Icon, Tabs, Tab, NoticeBar } from 'vant'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'
-import { getAssetsFile, openAd, decodeHtmlEntities, chunkArray } from '@/utils'
+import type { DataWithAd } from '@/types/global.d'
+import { getAssetsFile, openAd, decodeHtmlEntities, chunkArray, shuffleArray, insertAds } from '@/utils'
 import { Autoplay, Pagination } from 'swiper/modules'
 import { dashen, madou, indexCategory } from '@/utils/cryptedData'
 import 'swiper/css'
@@ -626,6 +628,7 @@ const bannerAdvertisement = computed(() => {
   return tmp || []
 })
 
+// 谈窗框广告图片先解密, 不使用懒加载
 const decryptedPopAds = ref([])
 const decryptAdvertisements = async () => {
   const tmp = appStore.getAdvertisementById(3).items || []
@@ -646,21 +649,20 @@ const popAdvertisement = computed(() => {
 
 const listBannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(19).items
-  return tmp || []
-})
-
-// 打乱广告列表顺序
-const shuffledAds = computed(() => {
-  const ads = [...listBannerAdvertisement.value]
-  for (let i = ads.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[ads[i], ads[j]] = [ads[j], ads[i]]
+  if (tmp && tmp.length > 0) {
+    return shuffleArray<{ targetUrl: string; id: string; imgUrl: string; title: string }>(tmp)
   }
-  return ads
+  return []
 })
 
 const noticeAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(17).items
+  return tmp || []
+})
+
+// 获取视屏列表广告
+const videoListAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(28).items
   return tmp || []
 })
 
@@ -710,10 +712,11 @@ const fetchVideos = async (params: VideoListRequest, loadMore = false) => {
       data: { data }
     } = await getVideoListApi(params)
     if (data && Array.isArray(data.items)) {
+      const videos = insertAds(data.items, videoListAdvertisement.value, 5, 7, true)
       if (loadMore) {
-        categoryVideosMap.value[currentChannelId] = categoryVideosMap.value[currentChannelId].concat(data.items)
+        categoryVideosMap.value[currentChannelId] = categoryVideosMap.value[currentChannelId].concat(videos)
       } else {
-        categoryVideosMap.value[currentChannelId] = data.items
+        categoryVideosMap.value[currentChannelId] = videos
       }
       if (isFirst) {
         categoryBannerVideosMap.value[currentChannelId] = data.newVideos
@@ -758,17 +761,23 @@ const fetchIndexVideos = async () => {
     // 解密视频
     // recommendedVideos.value = data.Recommended
     // latestVideos.value = data.Latest
-    recommendedVideos.value = chunkArray(data.Recommended, 6)
-    latestVideos.value = chunkArray(data.Latest, 6)
+    const recommendedVideAds = insertAds(data.Recommended, videoListAdvertisement.value, 5, 6, false)
+    recommendedVideos.value = chunkArray(recommendedVideAds, 6).slice(0, 4)
+    const latestVideAds = insertAds(data.Latest, videoListAdvertisement.value, 5, 6, false)
+    latestVideos.value = chunkArray(latestVideAds, 6).slice(0, 4)
 
     // 合并 indexCategory 和 Channels 数据
     if (data.Channels && data.Channels.length > 0) {
       channelVideos.value = indexCategory.map((category) => {
         const channel = data.Channels.find((ch) => ch.channel == category.value.toString())
+        if (channel && channel.items) {
+          channel.items = insertAds(channel.items, videoListAdvertisement.value, 5, 7, false)
+          channel.items = channel.items.slice(0, 6)
+        }
         return {
           label: category.label,
           value: category.value,
-          videos: channel ? channel.items.slice(0, 6) : []
+          videos: channel ? channel.items : []
         }
       })
     }
@@ -827,6 +836,14 @@ const clickTabPc = (index: number) => {
 const clickTab = () => {
   if (swiperInstance.value) {
     swiperInstance.value.slideTo(activeId.value, 0)
+  }
+}
+
+const clickVideo = (video: DataWithAd<Video>) => {
+  if (video.isAd) {
+    openAd(video.targetUrl, '视频列表广告', 'click', video.title, 1, video.id)
+  } else {
+    router.push({ name: 'play', params: { id: video.id } })
   }
 }
 
@@ -990,12 +1007,14 @@ const refreshChannelVideos = async (channelIndex: number) => {
       SubChannelId: '',
       SortType: 1,
       PageIndex: channelPageIndexMap.value[channel.value] + 1,
-      PageSize: 6,
+      PageSize: 5,
       IsFirst: false
     })
 
     if (data && data.items) {
       if (data.items.length > 0) {
+        data.items = insertAds(data.items, videoListAdvertisement.value, 5, 7)
+
         channelVideos.value[channelIndex].videos = data.items
         channelPageIndexMap.value[channel.value]++
       } else {

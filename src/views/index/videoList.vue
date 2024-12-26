@@ -11,26 +11,38 @@
       <PullRefresh v-model="refreshing" @refresh="refreshList">
         <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
           <ul v-if="videos.length > 0" class="col-one">
-            <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
-              <div class="l-a">
-                <img v-lazy-decrypt="video.imgUrl" />
-                <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
-                <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
-                <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
-              </div>
-              <div class="l-b">
-                <b>{{ video.title }}</b>
-                <div class="b-a">
-                  <div class="a-l">
-                    <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                    <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
-                  </div>
-                  <div class="a-r">
-                    <span><i class="mvfont mv-riqi" />{{ fromNow(video.addTime) }}</span>
+            <template v-for="(video, index) in videos" :key="index">
+              <li @click="clickVideo(video)">
+                <div class="l-a">
+                  <img v-lazy-decrypt="video.imgUrl" />
+                  <template v-if="!video.isAd">
+                    <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
+                    <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
+                    <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
+                  </template>
+                </div>
+                <div class="l-b">
+                  <b>{{ video.title }}</b>
+                  <div class="b-a">
+                    <template v-if="!video.isAd">
+                      <div class="a-l">
+                        <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+                        <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                      </div>
+                      <div class="a-r">
+                        <span><i class="mvfont mv-riqi" />{{ fromNow(video.addTime) }}</span>
+                      </div>
+                    </template>
+                    <template v-else>
+                      <div class="a-l" />
+                      <div class="a-r">
+                        <span><i class="mvfont mv-riqi" />广告</span>
+                      </div>
+                    </template>
                   </div>
                 </div>
-              </div>
-            </li>
+              </li>
+            </template>
           </ul>
         </List>
       </PullRefresh>
@@ -40,17 +52,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onActivated, onDeactivated, watch, nextTick } from 'vue'
+import { ref, onActivated, onDeactivated, watch, nextTick, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { PullRefresh, List } from 'vant'
 import { getVideoListApi } from '@/api/video'
+import { useAppStore } from '@/store/app'
 import type { Video, VideoListRequest } from '@/types/video'
-import { formatDuration, classifyResolution, fromNow } from '@/utils'
+import type { DataWithAd } from '@/types/global.d'
+import { formatDuration, classifyResolution, fromNow, openAd, insertAds } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 const route = useRoute()
 const router = useRouter()
+const appStore = useAppStore()
 
-const videos = ref<Video[]>([])
+const videos = ref<DataWithAd<Video>[]>([])
 const activeTab = ref(0)
 const tabs = ref([
   { label: '最新', value: 1 },
@@ -68,6 +83,19 @@ let pageIndex = ref(1) // 当前页码
 
 let scrollPosition = 0
 let shouldReloadData = true
+
+const videoListAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(28).items
+  return tmp || []
+})
+
+const clickVideo = (video: DataWithAd<Video>) => {
+  if (video.isAd) {
+    openAd(video.targetUrl, '视频列表广告', 'click', video.title, 1, video.id)
+  } else {
+    router.push({ name: 'play', params: { id: video.id } })
+  }
+}
 
 const fetchVideos = async (sortType: number, isRefresh = false) => {
   if (isRefresh) {
@@ -90,6 +118,8 @@ const fetchVideos = async (sortType: number, isRefresh = false) => {
     } = await getVideoListApi(params)
 
     if (data && Array.isArray(data.items)) {
+      data.items = insertAds(data.items, videoListAdvertisement.value, 5, 7, false)
+
       if (isRefresh) {
         videos.value = data.items
       } else {

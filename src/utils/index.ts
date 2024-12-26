@@ -6,6 +6,8 @@ import dayjs from 'dayjs'
 import duration from 'dayjs/plugin/duration'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/zh-cn'
+import type { AdsItem } from '@/types/app'
+import type { DataWithAd } from '@/types/global.d'
 
 dayjs.extend(relativeTime)
 dayjs.extend(duration)
@@ -352,4 +354,76 @@ export function decodeHtmlEntities(str: string): string {
     .replace(/&([a-zA-Z]+);/g, (match, name) => {
       return namedEntities[name] || match
     })
+}
+
+/**
+ * 插入广告
+ * @param dataList 数据列表
+ * @param adList 广告列表
+ * @param minInterval 最小间隔
+ * @param maxInterval 最大间隔
+ * @param ensureEven 是否确保广告数量为偶数
+ * @returns 插入广告后的数据列表
+ */
+export function insertAds<T>(dataList: T[], adList: AdsItem[], minInterval = 5, maxInterval = 7, ensureEven = false): DataWithAd<T>[] {
+  const result: DataWithAd<T>[] = []
+  const adCount = adList.length
+  const dataCount = dataList.length
+
+  // 打乱广告顺序
+  const shuffledAds = shuffleArray(adList)
+
+  // 插入第一个广告的位置，确保在第二条到minInterval之间
+  const firstAdPosition = Math.floor(Math.random() * (minInterval - 1)) + 1
+
+  let nextAdPosition = firstAdPosition
+  const usedAds = new Set<number>()
+
+  for (let i = 0; i < dataCount; i++) {
+    // 插入原始数据
+    result.push(dataList[i])
+
+    // 检查是否需要插入广告
+    if (i + 1 === nextAdPosition) {
+      let randomAdIndex: number
+
+      // 确保不重复使用广告
+      do {
+        randomAdIndex = Math.floor(Math.random() * adCount)
+      } while (usedAds.has(randomAdIndex) && usedAds.size < adCount)
+
+      usedAds.add(randomAdIndex)
+
+      if (usedAds.size === adCount) {
+        usedAds.clear() // 清空已使用广告集合
+      }
+
+      result.push({ ...shuffledAds[randomAdIndex], isAd: true })
+      // 计算下一个广告插入位置
+      nextAdPosition += Math.floor(Math.random() * (maxInterval - minInterval + 1)) + minInterval
+    }
+  }
+
+  // 如果需要确保广告数量为偶数且结果长度为奇数，添加一个随机广告
+  if (ensureEven && result.length % 2 !== 0) {
+    const randomAdIndex = Math.floor(Math.random() * adCount)
+    result.push({ ...shuffledAds[randomAdIndex], isAd: true })
+  }
+
+  return result
+}
+
+/**
+ * 使用 Fisher-Yates 洗牌算法打乱数组
+ * @param array - 需要打乱的数组
+ * @returns 打乱后的数组
+ */
+export function shuffleArray<T>(array: T[]): T[] {
+  const shuffledArray = [...array]
+  if (shuffledArray.length <= 1) return shuffledArray
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]]
+  }
+  return shuffledArray
 }

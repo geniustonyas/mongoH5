@@ -15,20 +15,31 @@
         <PullRefresh v-model="refreshing" @refresh="fresh">
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
             <div class="video-list-box" ref="videoListBox">
-              <div v-for="vd in videoList" :key="vd.id" @click="viewVideo(vd, $event)" class="video-list">
-                <div class="l-a">
-                  <Loading v-show="showVideoLoading == vd.id" :width="40" :height="40" />
-                  <img :src="vd.poster" :alt="vd.title" />
-                  <span class="a-b" v-if="vd.duration != '0'">{{ formatDuration(parseInt(vd.duration)) }}</span>
-                </div>
-                <div class="l-b">
-                  <b>{{ vd.title }}</b>
-                  <div class="b-a">
-                    <span><i class="mvfont mv-kan" />{{ vd.viewCount }}</span>
-                    <span><i class="mvfont mv-zan" />{{ vd.likeCount }}</span>
+              <template v-for="(vd, index) in videoList" :key="index">
+                <div v-if="!vd.isAd" @click="viewVideo(vd, $event)" class="video-list">
+                  <div class="l-a">
+                    <Loading v-show="showVideoLoading == vd.id" :width="40" :height="40" />
+                    <img :src="vd.poster" :alt="vd.title" />
+                    <span class="a-b" v-if="vd.duration != '0'">{{ formatDuration(parseInt(vd.duration)) }}</span>
+                  </div>
+                  <div class="l-b">
+                    <b>{{ vd.title }}</b>
+                    <div class="b-a">
+                      <span><i class="mvfont mv-kan" />{{ vd.viewCount }}</span>
+                      <span><i class="mvfont mv-zan" />{{ vd.likeCount }}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div v-else @click="openAd(vd.targetUrl, '短视频列表广告', 'click', vd.id)" class="video-list">
+                  <div class="l-a">
+                    <img :src="vd.poster" :alt="vd.title" />
+                  </div>
+                  <div class="l-b">
+                    <b>{{ vd.title }}</b>
+                    <div class="b-a" />
+                  </div>
+                </div>
+              </template>
             </div>
           </List>
         </PullRefresh>
@@ -102,13 +113,14 @@ import { getVideoListApi, getVideoDetailApi, addPlayCountApi } from '@/api/video
 // import { userCollection } from '@/api/user'
 import { userLike } from '@/api/user'
 import type { Video, VideoListRequest, VideoDetailResponse } from '@/types/video'
+import type { DataWithAd } from '@/types/global.d'
 import decryptionService from '@/utils/decryptionService'
 
 import NavBar from '@/components/layout/NavBar.vue'
 import Footer from '@/components/layout/Footer.vue'
 import Loading from '@/components/layout/Loading.vue'
 import { onBeforeRouteLeave, useRouter } from 'vue-router'
-import { formatDuration } from '@/utils'
+import { formatDuration, insertAds, openAd } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
@@ -119,6 +131,12 @@ import 'swiper/css/virtual'
 import Clipboard from 'clipboard'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'
+
+// 获取社区帖子广告
+const shortlistAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(29).items
+  return tmp || []
+})
 
 let msnry = null
 const decrypt = new decryptionService()
@@ -131,7 +149,7 @@ const showVideoLoading = ref('')
 import { douyin } from '@/utils/cryptedData'
 
 // 列表变量
-const videoList = ref<Video[]>([])
+const videoList = ref<DataWithAd<Video>[]>([])
 const initVidelListPageIndex = computed(() => Math.floor(Math.random() * (appStore.shortVideoListRandomMax - appStore.shortVideoListRandomMin + 1)) + appStore.shortVideoListRandomMin)
 const videoListPageIndex = ref(initVidelListPageIndex.value)
 let listLoading = ref(false)
@@ -175,6 +193,7 @@ const fetchVideoList = async (isRefresh = false) => {
     } = await getVideoListApi(params)
 
     if (data && Array.isArray(data.items)) {
+      data.items = insertAds(data.items, shortlistAdvertisement.value, 5, 7, false)
       // 必须先等待 解密图片存入poster中
       await Promise.all(
         data.items.map(async (video) => {

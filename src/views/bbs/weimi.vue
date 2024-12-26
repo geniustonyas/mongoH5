@@ -66,12 +66,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, nextTick } from 'vue'
+import { ref, reactive, onMounted, nextTick, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getBbsSubCategoryDetailApi, getBbsListApi } from '@/api/bbs'
 import type { BbsListRequest, BbsSubCategoryDetailResponse } from '@/types/bbs'
 import { useAppStore } from '@/store/app'
 import { List } from 'vant'
+import { insertAds } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 
 const route = useRoute()
@@ -94,6 +95,12 @@ const query = reactive<BbsListRequest>({
 
 let listLoading = ref(false)
 let finished = ref(false)
+
+// 获取社区帖子广告
+const bbsListAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(30).items
+  return tmp || []
+})
 
 const fetchCategories = async () => {
   try {
@@ -119,6 +126,9 @@ const fetchBbsList = async (isRefresh = false) => {
     const {
       data: { data }
     } = await getBbsListApi(query)
+
+    data.items = insertAds(data.items, bbsListAdvertisement.value, 5, 7, false)
+
     if (isRefresh) {
       bbsList.value = data.items
     } else {
