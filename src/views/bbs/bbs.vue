@@ -111,7 +111,7 @@
           <template v-if="bbsListTotalPages[0] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[0] > 9">
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[0])" :class="{ disabled: bbsListPageIndex[0] == 1 }">上一页</a>
+                <a @click="changePage(bbsListPageIndex[0] - 1)" :class="{ disabled: bbsListPageIndex[0] == 1 }">上一页</a>
               </div>
               <div class="pb-x">
                 <input v-model="bbsListPageIndex[0]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[0]" />
@@ -241,7 +241,7 @@
           <template v-if="bbsListTotalPages[1] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[1] > 9">
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[1])" :class="{ disabled: bbsListPageIndex[1] == 1 }">上一页</a>
+                <a @click="changePage(bbsListPageIndex[1] - 1)" :class="{ disabled: bbsListPageIndex[1] == 1 }">上一页</a>
               </div>
               <div class="pb-x">
                 <input v-model="bbsListPageIndex[1]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[1]" />
@@ -340,7 +340,7 @@
           <template v-if="bbsListTotalPages[2] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[2] > 9">
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[2])" :class="{ disabled: bbsListPageIndex[2] == 1 }">上一页</a>
+                <a @click="changePage(bbsListPageIndex[2] - 1)" :class="{ disabled: bbsListPageIndex[2] == 1 }">上一页</a>
               </div>
               <div class="pb-x">
                 <input v-model="bbsListPageIndex[2]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[2]" />
@@ -455,7 +455,7 @@
           <template v-if="bbsListTotalPages[3] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[3] > 9">
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[3])" :class="{ disabled: bbsListPageIndex[3] == 1 }">上一页</a>
+                <a @click="changePage(bbsListPageIndex[3] - 1)" :class="{ disabled: bbsListPageIndex[3] == 1 }">上一页</a>
               </div>
               <div class="pb-x">
                 <input v-model="bbsListPageIndex[3]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[3]" />
@@ -538,7 +538,7 @@
           <template v-if="bbsListTotalPages[4] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[4] > 9">
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[4])" :class="{ disabled: bbsListPageIndex[4] == 1 }">上一页</a>
+                <a @click="changePage(bbsListPageIndex[4] - 1)" :class="{ disabled: bbsListPageIndex[4] == 1 }">上一页</a>
               </div>
               <div class="pb-x">
                 <input v-model="bbsListPageIndex[4]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[4]" />

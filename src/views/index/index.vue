@@ -44,6 +44,7 @@
       </div>
     </header>
     <main class="main">
+      <!-- <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" no-swiping-class="no-swipe"> -->
       <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" :allow-touch-move="!appStore.isPc" :no-swiping="!appStore.isPc" no-swiping-class="no-swipe">
         <swiper-slide>
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
@@ -990,6 +991,7 @@ onActivated(() => {
   if (swiperInstance.value) {
     swiperInstance.value.updateAutoHeight()
   }
+  document.body.classList.remove('noscrolling')
 })
 
 onDeactivated(() => {
