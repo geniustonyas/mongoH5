@@ -991,7 +991,9 @@ onActivated(() => {
   if (swiperInstance.value) {
     swiperInstance.value.updateAutoHeight()
   }
-  document.body.classList.remove('noscrolling')
+  setTimeout(() => {
+    document.body.classList.remove('noscrolling')
+  }, 400)
 })
 
 onDeactivated(() => {

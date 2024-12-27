@@ -524,6 +524,9 @@ onBeforeRouteLeave(() => {
   hlsInstances.value.clear()
 
   document.body.classList.remove('noscrolling')
+  setTimeout(() => {
+    document.body.classList.remove('noscrolling')
+  }, 200)
 })
 </script>
 
