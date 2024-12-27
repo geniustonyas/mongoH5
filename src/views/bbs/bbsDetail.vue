@@ -96,7 +96,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick, computed } from 'vue'
-import { getAssetsFile, decodeHtmlEntities, openAd } from '@/utils'
+import { getAssetsFile, decodeHtmlEntities, openAd, insertAds } from '@/utils'
 import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
@@ -148,12 +148,21 @@ const showPreview = (index: number) => {
   imgPreviewIndex.value = index
 }
 
+// 获取社区帖子广告
+const bbsListAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(30).items
+  return tmp || []
+})
+
 const fetchRelatedList = async () => {
   try {
     const {
       data: { data }
     } = await getBbsRelatedRecommendApi({ id: detail.value?.id || '', PageIndex: pageIndex.value, PageSize: 10 })
     if (data && Array.isArray(data.items)) {
+      // 插入广告
+      data.items = insertAds(data.items, bbsListAdvertisement.value, 5, 7, false)
+
       relatedList.value = relatedList.value.concat(data.items)
       pageCount.value = parseInt(data.pageCount)
     }
