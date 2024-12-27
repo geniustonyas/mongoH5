@@ -94,7 +94,7 @@ import { showToast } from 'vant'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
 import { throttle } from 'lodash-es'
-import { VastGenerator } from '@/utils/vastGenerator'
+// import { VastGenerator } from '@/utils/vastGenerator'
 
 const route = useRoute()
 const userStore = useUserStore()
@@ -104,6 +104,7 @@ const abortController = new AbortController()
 const videoDetail = ref<VideoDetailResponse | null>(null)
 const recommendedVideos = ref<Video[]>([])
 const initialLikeType = ref<number | string>()
+const routeLeaving = ref(false)
 
 const player = ref<any>(null)
 const hls = ref<any>(null)
@@ -151,10 +152,10 @@ const bannerAdvertisement = computed(() => {
   return tmp || []
 })
 
-const playAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(18).items
-  return tmp || []
-})
+// const playAdvertisement = computed(() => {
+//   const tmp = appStore.getAdvertisementById(18).items
+//   return tmp || []
+// })
 
 const videoListAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(28).items
@@ -251,6 +252,9 @@ const fetchRecommendedVideos = async (channelId: string, currentVideoId: string)
 
 const initializePlayer = async (domain: string, uri: string) => {
   try {
+    if (routeLeaving.value) {
+      return
+    }
     resetPlayer()
     const videoElement = document.getElementById('plyr-player') as HTMLVideoElement
     if (!videoElement) {
@@ -260,41 +264,44 @@ const initializePlayer = async (domain: string, uri: string) => {
     const url = generateAuthUrl(domain, uri)
 
     // 生成 VAST XML 并创建 Blob URL
-    let vastUrl = ''
-    if (playAdvertisement.value.length > 0) {
-      const ad = playAdvertisement.value[0]
-      const decryptedImageUrl = await decrypt.fetchAndDecrypt(appStore.cdnUrl + ad.imgUrl)
-      const vastXml = VastGenerator.getInstance().generateVastXml({
-        id: ad.id,
-        title: ad.title,
-        skipOffset: 5,
-        clickThrough: ad.targetUrl,
-        mediaFiles: [],
-        nonLinearAds: [
-          {
-            url: URL.createObjectURL(decryptedImageUrl),
-            width: 300,
-            height: 250,
-            clickThrough: ad.targetUrl
-          }
-        ],
-        trackingEvents: []
-      })
+    // let vastUrl = ''
+    // if (playAdvertisement.value.length > 0) {
+    //   const ad = playAdvertisement.value[0]
+    //   const decryptedImageUrl = await decrypt.fetchAndDecrypt(appStore.cdnUrl + ad.imgUrl)
+    //   const vastXml = VastGenerator.getInstance().generateVastXml({
+    //     id: ad.id,
+    //     title: ad.title,
+    //     skipOffset: 5,
+    //     clickThrough: ad.targetUrl,
+    //     mediaFiles: [],
+    //     nonLinearAds: [
+    //       {
+    //         url: URL.createObjectURL(decryptedImageUrl),
+    //         width: 300,
+    //         height: 250,
+    //         clickThrough: ad.targetUrl
+    //       }
+    //     ],
+    //     trackingEvents: []
+    //   })
 
-      const vastBlob = new Blob([vastXml], { type: 'application/xml' })
-      vastUrl = URL.createObjectURL(vastBlob)
-      // vastUrl = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator='
-    }
+    //   const vastBlob = new Blob([vastXml], { type: 'application/xml' })
+    //   vastUrl = URL.createObjectURL(vastBlob)
+    //   // vastUrl = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator='
+    // }
 
     // 使用 Plyr 初始化播放器并配置广告
+    if (routeLeaving.value) {
+      return
+    }
     player.value = new window.Plyr(videoElement, {
       autoplay: true,
       controls: controls.value,
-      settings: ['captions', 'quality', 'speed', 'loop'],
-      ads: {
-        enabled: true,
-        tagUrl: vastUrl // 使用生成的 VAST URL
-      }
+      settings: ['captions', 'quality', 'speed', 'loop']
+      // ads: {
+      //   enabled: true,
+      //   tagUrl: vastUrl // 使用生成的 VAST URL
+      // }
     })
 
     player.value.on('ready', () => {
@@ -302,6 +309,10 @@ const initializePlayer = async (domain: string, uri: string) => {
         console.error('自动播放失败:', error)
       })
     })
+    if (routeLeaving.value) {
+      resetPlayer()
+      return
+    }
 
     if (window.Hls.isSupported()) {
       // 这里声明了 tmphls 的原因是因为直接使用vue的代理 hls.value时 视频会无法播放
@@ -589,6 +600,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  routeLeaving.value = true
   if (poster.value && poster.value.startsWith('blob:')) {
     URL.revokeObjectURL(poster.value)
   }
@@ -599,6 +611,7 @@ onUnmounted(() => {
 })
 
 onBeforeRouteLeave((to, from, next) => {
+  routeLeaving.value = true
   abortController.abort()
   setTimeout(() => {
     resetPlayer()

@@ -119,7 +119,12 @@ onMounted(() => {
       if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
         showAddToHomeTip.value = true
       } else {
-        showDownloadTips.value = true
+        // 判断如果是PC端浏览器访问, 则不弹窗
+        if (appStore.isPc) {
+          showDownloadTips.value = false
+        } else {
+          showDownloadTips.value = true
+        }
       }
       // 设置已经显示下载提示, 不再显示
       appStore.setShownDownload(false)

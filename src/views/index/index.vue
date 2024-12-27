@@ -825,6 +825,7 @@ const changePage = async (newPage: number) => {
     categoryPageIndex.value[query.ChannelId] = newPage
     query.PageIndex = newPage
     query.IsFirst = false
+    categoryVideosMap.value[query.ChannelId] = []
     await fetchVideos(query)
     // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
     nextTick(() => {
