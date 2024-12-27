@@ -527,6 +527,25 @@
         <a @click="openAd(currentPopAd.targetUrl, '首页弹窗', 'click', currentPopAd.id, 1, '', currentPopAd)"><img :src="currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
+
+      <div class="pop-fixed" style="display: none">
+        <div class="pop-container">
+          <div class="pop-bd news">
+            <div class="pn-x" />
+            <div class="pn-a">
+              <h3>系统公告</h3>
+            </div>
+            <div class="pn-b">
+              <p>一、记住官网https://mgtv.cc</p>
+              <p>二、无法使用请切换播放源</p>
+              <p>三、推荐下载APP使用</p>
+            </div>
+            <div class="pn-c">
+              <a>我已阅读</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <Footer active-menu="index" />
     <NavBar active-menu="index" />

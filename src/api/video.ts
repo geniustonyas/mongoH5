@@ -1,6 +1,7 @@
 import { request } from '@/utils/axios'
 import type { IndexVideoResponse, VideoListRequest, VideoListResponse, VideoDetailResponse } from '@/types/video'
 import type { ApiResponseData } from '@/types/global.d'
+import type { AxiosRequestConfig } from 'axios'
 
 /** 获取首页视频列表 */
 export function getIndexVideoListApi() {
@@ -20,11 +21,12 @@ export function getVideoListApi(data: VideoListRequest) {
 }
 
 /** 获取视频详情 */
-export function getVideoDetailApi(id: number) {
+export function getVideoDetailApi(id: number, config?: AxiosRequestConfig) {
   return request<ApiResponseData<VideoDetailResponse>>({
     url: `Web/VideoDetail`,
     method: 'post',
-    data: { id }
+    data: { id },
+    ...config
   })
 }
 

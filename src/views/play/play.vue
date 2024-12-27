@@ -99,6 +99,8 @@ import { VastGenerator } from '@/utils/vastGenerator'
 const route = useRoute()
 const userStore = useUserStore()
 const appStore = useAppStore()
+
+const abortController = new AbortController()
 const videoDetail = ref<VideoDetailResponse | null>(null)
 const recommendedVideos = ref<Video[]>([])
 const initialLikeType = ref<number | string>()
@@ -203,7 +205,7 @@ const fetchVideoDetail = async (videoId: string) => {
     const id = Number(videoId)
     const {
       data: { data }
-    } = await getVideoDetailApi(id)
+    } = await getVideoDetailApi(id, { signal: abortController.signal })
     videoDetail.value = data
     initialLikeType.value = data.like
     if (data.imgUrl) {
@@ -590,11 +592,17 @@ onUnmounted(() => {
   if (poster.value && poster.value.startsWith('blob:')) {
     URL.revokeObjectURL(poster.value)
   }
-  resetPlayer()
+  abortController.abort()
+  setTimeout(() => {
+    resetPlayer()
+  }, 300)
 })
 
 onBeforeRouteLeave((to, from, next) => {
-  resetPlayer()
+  abortController.abort()
+  setTimeout(() => {
+    resetPlayer()
+  }, 300)
   next()
 })
 </script>
