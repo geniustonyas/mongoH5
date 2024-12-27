@@ -366,6 +366,7 @@ export function decodeHtmlEntities(str: string): string {
  * @returns 插入广告后的数据列表
  */
 export function insertAds<T>(dataList: T[], adList: AdsItem[], minInterval = 5, maxInterval = 7, ensureEven = false): DataWithAd<T>[] {
+  if (adList.length == 0) return dataList
   const result: DataWithAd<T>[] = []
   const adCount = adList.length
   const dataCount = dataList.length
