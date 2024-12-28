@@ -95,7 +95,7 @@
             </div>
           </div>
         </section>
-        <Popup v-model:show="showSharePopup" teleport="body" position="center" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :overlay="false" round>
+        <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
           <div class="share-popup">
             <p>分享链接已复制，赶快去分享给好友吧！</p>
           </div>
@@ -195,12 +195,9 @@ const fetchVideoList = async (isRefresh = false) => {
     if (data && Array.isArray(data.items)) {
       data.items = insertAds(data.items, shortlistAdvertisement.value, 5, 7, false)
       // 必须先等待 解密图片存入poster中
-      await Promise.all(
-        data.items.map(async (video) => {
-          const blob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl)
-          video.poster = URL.createObjectURL(blob)
-        })
-      )
+      for (const video of data.items) {
+        video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
+      }
 
       if (isRefresh) {
         videoList.value = data.items

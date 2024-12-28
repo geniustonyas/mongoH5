@@ -66,7 +66,7 @@
         </div>
       </div>
     </section>
-    <Popup v-model:show="showSharePopup" teleport="body" position="center" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :overlay="false" round>
+    <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
       <div class="share-popup">
         <p>分享链接已复制，赶快去分享给好友吧！</p>
       </div>
@@ -499,8 +499,8 @@ onMounted(async () => {
   }
 
   // 给body加上 noscrolling class (先移除在添加)
-  document.body.classList.remove('noscrolling')
-  document.body.classList.add('noscrolling')
+  // document.body.classList.remove('noscrolling')
+  // document.body.classList.add('noscrolling')
 })
 
 onBeforeRouteLeave(() => {
@@ -514,10 +514,10 @@ onBeforeRouteLeave(() => {
   players.value.clear()
   hlsInstances.value.clear()
 
-  document.body.classList.remove('noscrolling')
-  setTimeout(() => {
-    document.body.classList.remove('noscrolling')
-  }, 200)
+  // document.body.classList.remove('noscrolling')
+  // setTimeout(() => {
+  //   document.body.classList.remove('noscrolling')
+  // }, 200)
 })
 </script>
 

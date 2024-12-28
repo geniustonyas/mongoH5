@@ -83,7 +83,7 @@
       </template>
     </ImagePreview>
 
-    <Popup v-model:show="showSharePopup" position="center" :safe-area-inset-top="true" :safe-area-inset-bottom="true" :overlay="false" round>
+    <Popup v-model:show="showSharePopup" position="center" :overlay="false" round>
       <div class="share-popup">
         <p>分享链接已复制，赶快去分享给好友吧！</p>
       </div>

@@ -464,7 +464,7 @@
                 </swiper-slide>
               </swiper>
             </div>
-            <div v-if="loadingCategoryVideos" class="load-box">
+            <div v-if="query.IsFirst" class="load-box">
               <div class="lb-mv-swiper">
                 <div class="lb-s" />
                 <div class="lb-s" />
@@ -481,7 +481,7 @@
                 </span>
               </nav>
 
-              <div v-if="loadingCategoryVideos" class="load-box">
+              <div v-if="query.IsFirst" class="load-box">
                 <div class="lb-m-l-b">
                   <div class="lb-s" />
                   <div class="lb-s" />
@@ -499,11 +499,145 @@
                 </span>
               </nav>
               <nav class="mv-t-l">
+                <div v-if="loadingCategoryVideos" class="load-box">
+                  <div class="lb-mv-t-c">
+                    <div class="mc-a">
+                      <div class="a-l">
+                        <i class="mvfont mv-xietiao" />
+                        <div class="lb-s" />
+                      </div>
+                      <div class="a-r">
+                        <div class="lb-s" />
+                        <div class="lb-s" />
+                      </div>
+                    </div>
+                    <div class="mc-b">
+                      <div class="mv-t-l lb-mv-t-l">
+                        <div class="m-b">
+                          <div class="item">
+                            <div class="i-a">
+                              <div class="lb-s" />
+                            </div>
+                            <div class="i-b">
+                              <div class="b-a">
+                                <div class="lb-s" />
+                              </div>
+                              <div class="b-dv">
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                  <div class="lb-s" />
+                                </div>
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <div class="i-a">
+                              <div class="lb-s" />
+                            </div>
+                            <div class="i-b">
+                              <div class="b-a">
+                                <div class="lb-s" />
+                              </div>
+                              <div class="b-dv">
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                  <div class="lb-s" />
+                                </div>
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <div class="i-a">
+                              <div class="lb-s" />
+                            </div>
+                            <div class="i-b">
+                              <div class="b-a">
+                                <div class="lb-s" />
+                              </div>
+                              <div class="b-dv">
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                  <div class="lb-s" />
+                                </div>
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <div class="i-a">
+                              <div class="lb-s" />
+                            </div>
+                            <div class="i-b">
+                              <div class="b-a">
+                                <div class="lb-s" />
+                              </div>
+                              <div class="b-dv">
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                  <div class="lb-s" />
+                                </div>
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <div class="i-a">
+                              <div class="lb-s" />
+                            </div>
+                            <div class="i-b">
+                              <div class="b-a">
+                                <div class="lb-s" />
+                              </div>
+                              <div class="b-dv">
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                  <div class="lb-s" />
+                                </div>
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="item">
+                            <div class="i-a">
+                              <div class="lb-s" />
+                            </div>
+                            <div class="i-b">
+                              <div class="b-a">
+                                <div class="lb-s" />
+                              </div>
+                              <div class="b-dv">
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                  <div class="lb-s" />
+                                </div>
+                                <div class="p-c">
+                                  <div class="lb-s" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="m-b" v-if="categoryVideosMap[category.d]">
                   <VideoGridItem v-for="(video, index) in categoryVideosMap[category.d]" :key="index" :video="video" @click="clickVideo(video)" />
                 </div>
 
-                <template v-if="categoryTotalPages[category.d] > 1">
+                <template v-if="categoryTotalPages[category.d] > 1 && categoryVideosMap[category.d].length > 0">
                   <div class="au-pagination-box" v-if="appStore.isPc || (!appStore.isPc && categoryTotalPages[category.d] > 9)">
                     <div class="pb-x">
                       <a @click="changePage(categoryPageIndex[category.d] - 1)" :class="{ disabled: categoryPageIndex[category.d] == 1 }">上一页</a>
@@ -816,6 +950,7 @@ const selectCategory = async (categoryId: string | number) => {
   categoryPageIndex.value[query.ChannelId] = query.PageIndex
   categorySortType.value[query.ChannelId] = query.SortType
   categorySubChannelId.value[query.ChannelId] = query.SubChannelId
+  categoryVideosMap.value[query.ChannelId] = []
   query.IsFirst = false
   await fetchVideos(query)
 }
@@ -924,6 +1059,7 @@ const changeSort = async (sortValue) => {
   query.PageIndex = 1
   categoryPageIndex.value[query.ChannelId] = 1
   categorySortType.value[query.ChannelId] = query.SortType
+  categoryVideosMap.value[query.ChannelId] = []
   await fetchVideos(query)
 }
 
@@ -991,9 +1127,9 @@ onActivated(() => {
   if (swiperInstance.value) {
     swiperInstance.value.updateAutoHeight()
   }
-  setTimeout(() => {
-    document.body.classList.remove('noscrolling')
-  }, 400)
+  // setTimeout(() => {
+  //   document.body.classList.remove('noscrolling')
+  // }, 400)
 })
 
 onDeactivated(() => {
