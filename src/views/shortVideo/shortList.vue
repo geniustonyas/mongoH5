@@ -271,8 +271,8 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
   }
   showVideo.value = true
   showVideoLoading.value = ''
-  document.body.classList.remove('noscrolling')
-  document.body.classList.add('noscrolling')
+  // document.body.classList.remove('noscrolling')
+  // document.body.classList.add('noscrolling')
 }
 
 const closeVideo = async () => {
@@ -653,10 +653,10 @@ const destroyAllVideos = async () => {
   })
   players.value.clear()
   hlsInstances.value.clear()
-  document.body.classList.remove('noscrolling')
-  setTimeout(() => {
-    document.body.classList.remove('noscrolling')
-  }, 200)
+  // document.body.classList.remove('noscrolling')
+  // setTimeout(() => {
+  //   document.body.classList.remove('noscrolling')
+  // }, 200)
 }
 
 onBeforeRouteLeave(() => {

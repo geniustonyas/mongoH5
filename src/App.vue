@@ -26,7 +26,7 @@ import decryptionService from '@/utils/decryptionService'
 
 const offset = ref({ x: 0, y: 100 })
 const appStore = useAppStore()
-const route = useRoute()
+const currentRoute = useRoute()
 const decrypted = new decryptionService()
 
 const getTransition = (transition: unknown): string | undefined => {
@@ -61,7 +61,7 @@ const handleFloatAdvertisementClose = () => {
   showBubble.value = false
 }
 
-const nu = route.query.nu
+const nu = currentRoute.query.nu
 if (nu) {
   localStorage.setItem('nu', nu as string)
 }
