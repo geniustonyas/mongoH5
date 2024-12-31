@@ -32,15 +32,26 @@ export default {
         }
 
         const blobUrl = URL.createObjectURL(blob)
+        el.dataset.blobUrl = blobUrl
+
+        const onLoad = () => {
+          el.removeEventListener('load', onLoad)
+          el.dispatchEvent(new Event('decrypted-attempt'))
+        }
+
+        const onError = () => {
+          el.removeEventListener('error', onError)
+          el.dispatchEvent(new Event('decrypted-attempt'))
+        }
 
         if (isImageElement) {
+          el.addEventListener('load', onLoad)
+          el.addEventListener('error', onError)
           ;(el as HTMLImageElement).src = blobUrl
         } else {
           el.style.backgroundImage = `url(${blobUrl})`
+          el.dispatchEvent(new Event('decrypted-attempt'))
         }
-
-        // 通知图片解密完成
-        el.dispatchEvent(new Event('load'))
       } catch (error) {
         console.error('图片解密失败:', error)
         if (isImageElement) {
@@ -48,6 +59,7 @@ export default {
         } else {
           el.style.backgroundImage = `url(${getAssetsFile(errorImage)})`
         }
+        el.dispatchEvent(new Event('decrypted-attempt'))
       }
     }
 
@@ -66,5 +78,12 @@ export default {
     )
 
     observer.observe(el)
+  },
+  unmounted(el: HTMLElement) {
+    // 销毁创建的 URL
+    if (el.dataset.blobUrl) {
+      URL.revokeObjectURL(el.dataset.blobUrl)
+      el.dataset.blobUrl = null
+    }
   }
 }

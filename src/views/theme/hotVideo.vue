@@ -20,22 +20,20 @@
                 </div>
                 <div class="l-b">
                   <b>{{ video.title }}</b>
-                  <div class="b-a">
-                    <template v-if="!video.isAd">
-                      <div class="a-l">
-                        <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                        <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
-                      </div>
-                      <div class="a-r">
-                        <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
-                      </div>
-                    </template>
-                    <template v-else>
-                      <div class="a-l" />
-                      <div class="a-r">
-                        <span><i class="mvfont mv-riqi" />广告</span>
-                      </div>
-                    </template>
+                  <div v-if="!video.isAd" class="b-a">
+                    <div class="a-l">
+                      <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
+                      <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                    </div>
+                    <div class="a-r">
+                      <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
+                    </div>
+                  </div>
+                  <div v-else class="b-a">
+                    <div class="a-l" />
+                    <div class="a-r">
+                      <span>广告</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -109,7 +107,7 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
 
   try {
     listLoading.value = true
-    const pageSize = rank === 'total' ? 30 : 10 // 根据榜单类型设置每页数量
+    const pageSize = rank === 'total' ? 15 : 10 // 根据榜单类型设置每页数量
     const params: VideoListRequest = {
       PageIndex: pageIndex.value,
       PageSize: pageSize,
@@ -139,6 +137,7 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
         })
       )
 
+      const startIndex = videos.value.length
       if (isRefresh) {
         videos.value = data.items
       } else {
@@ -156,12 +155,16 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
               percentPosition: true,
               gutter: 4
             })
-          } else {
-            setInterval(() => {
-              msnry.reloadItems()
-              msnry.layout()
-            }, 200)
           }
+          const newElements = document.querySelectorAll(`.video-list-box .video-list:nth-child(n+${startIndex + 1})`)
+          if (startIndex == 0) {
+            msnry.reloadItems()
+          } else {
+            msnry.appended(newElements)
+          }
+          setTimeout(() => {
+            msnry.layout()
+          }, 300)
         })
       }
 

@@ -334,26 +334,17 @@ export function getCookieValue(cookieName: string) {
  * @returns 解码后的字符串
  */
 export function decodeHtmlEntities(str: string): string {
-  const namedEntities: { [key: string]: string } = {
-    amp: '&',
-    lt: '<',
-    gt: '>',
-    quot: '"',
-    apos: "'",
-    nbsp: ' '
-    // 添加更多命名实体
-  }
+  const textarea = document.createElement('textarea')
+  let decodedStr = str
 
-  return str
-    .replace(/&#(\d+);/g, (match, dec) => {
-      return String.fromCharCode(dec)
-    })
-    .replace(/&#x([0-9A-Fa-f]+);/g, (match, hex) => {
-      return String.fromCharCode(parseInt(hex, 16))
-    })
-    .replace(/&([a-zA-Z]+);/g, (match, name) => {
-      return namedEntities[name] || match
-    })
+  // 递归解码，直到字符串不再变化
+  while (decodedStr.includes('&')) {
+    textarea.innerHTML = decodedStr
+    const newDecodedStr = textarea.value
+    if (newDecodedStr == decodedStr) break
+    decodedStr = newDecodedStr
+  }
+  return decodedStr
 }
 
 /**

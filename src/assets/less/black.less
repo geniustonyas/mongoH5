@@ -26,7 +26,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 }
 
 
-.header, .footer, .s-header, .m-header, .d-header, .h-header { position: fixed; width: 100%; max-width: 42.8rem; .transition(all,.3s,ease-out); z-index: 10; }
+.header, .footer, .s-header, .m-header, .d-header, .h-header { position: fixed; width: 100%; max-width: 42.8rem; .transition(all,.3s,ease-out); z-index: 9999; }
 .header { top: 0; .bg(var(--color-main-bg)); height: calc(9.4rem + constant(safe-area-inset-top)); height: calc(9.4rem + env(safe-area-inset-top)); padding-top: calc(constant(safe-area-inset-top) - 1rem); padding-top: calc( env(safe-area-inset-top) - 1rem); padding-bottom: constant(safe-area-inset-top); padding-bottom: env(safe-area-inset-top);
 
 
@@ -341,8 +341,8 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         }
     }
 
-    .video-list-box { margin-bottom: 2rem; position: relative; .flex(); .flex-wrap(wrap); .flex-pack-justify();
-        .video-list { width: calc(50% - 0.2rem); min-height: 17rem; margin-bottom: 1rem; .radius(.4rem); overflow: hidden; .bg(rgba(26, 28, 31, 0.98)); display: block; cursor: pointer; break-inside: avoid; position: relative;
+    .video-list-box { margin-bottom: 2rem; position: relative; .flex(); .flex-wrap(wrap); .flex-pack-justify(); transition: none;
+        .video-list {transition: none;  width: calc(50% - 0.2rem); min-height: 15rem; margin-bottom: 1rem; .radius(.4rem); overflow: hidden; .bg(rgba(26, 28, 31, 0.98)); display: block; cursor: pointer; break-inside: avoid; position: relative;
             .l-a { position: relative;
                 img { width: 100%; height: auto; }
                 .a-a { position: absolute; top: 0; left: 0; .bg(#ffe715); color: var(--color-dark); .radius(.5rem 0 .5rem 0); font-weight: 600; font-size: 1rem; padding: .02rem .4rem; font-family: DIN; }

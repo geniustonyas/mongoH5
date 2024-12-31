@@ -157,5 +157,7 @@ const changeSort = (sortBy: string) => {
 onMounted(() => {
   fetchActorDetail()
   fetchVideos()
+
+  window.scrollTo(0, 0)
 })
 </script>

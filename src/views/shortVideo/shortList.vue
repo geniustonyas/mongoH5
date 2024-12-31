@@ -170,6 +170,7 @@ const clipboard = ref<Clipboard | null>(null)
 const isLoading = ref(true)
 const mutePlay = ref(true)
 const clickPosition = ref({ x: 0, y: 0, width: 0, height: 0 })
+const isMasonryUpdating = ref(false)
 
 const fetchVideoList = async (isRefresh = false) => {
   if (isRefresh) {
@@ -199,35 +200,37 @@ const fetchVideoList = async (isRefresh = false) => {
         video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
       }
 
+      const startIndex = videoList.value.length
       if (isRefresh) {
         videoList.value = data.items
       } else {
         videoList.value = videoList.value.concat(data.items)
       }
       finished.value = data.items.length < params.PageSize
-    }
-    await nextTick()
-    const elem = document.querySelector('.video-list-box')
-    if (elem) {
-      imagesLoaded(elem, () => {
-        if (!msnry) {
-          msnry = new Masonry(elem, {
-            itemSelector: '.video-list',
-            columnWidth: '.video-list',
-            percentPosition: true,
-            gutter: 4
-          })
+
+      await nextTick()
+      const elem = document.querySelector('.video-list-box')
+      if (elem) {
+        imagesLoaded(elem, () => {
+          if (!msnry) {
+            msnry = new Masonry(elem, {
+              itemSelector: '.video-list',
+              columnWidth: '.video-list',
+              percentPosition: true,
+              gutter: 4
+            })
+          }
+          const newElements = document.querySelectorAll(`.video-list-box .video-list:nth-child(n+${startIndex + 1})`)
+          if (startIndex == 0) {
+            msnry.reloadItems()
+          } else {
+            msnry.appended(newElements)
+          }
           setTimeout(() => {
-            msnry.reloadItems() // 重新加载所有项目
             msnry.layout()
-          }, 200)
-        } else {
-          setTimeout(() => {
-            msnry.reloadItems() // 重新加载所有项目
-            msnry.layout()
-          }, 200)
-        }
-      })
+          }, 300)
+        })
+      }
     }
   } catch (error) {
     console.error('获取视频列表失败:', error)
@@ -239,8 +242,14 @@ const fetchVideoList = async (isRefresh = false) => {
 }
 
 const loadData = () => {
+  if (isMasonryUpdating.value) {
+    return
+  }
+  isMasonryUpdating.value = true
   videoListPageIndex.value += 1
-  fetchVideoList()
+  fetchVideoList().finally(() => {
+    isMasonryUpdating.value = false
+  })
 }
 
 const fresh = () => {
@@ -271,8 +280,6 @@ const viewVideo = async (video: Video, event: MouseEvent) => {
   }
   showVideo.value = true
   showVideoLoading.value = ''
-  // document.body.classList.remove('noscrolling')
-  // document.body.classList.add('noscrolling')
 }
 
 const closeVideo = async () => {
@@ -653,10 +660,6 @@ const destroyAllVideos = async () => {
   })
   players.value.clear()
   hlsInstances.value.clear()
-  // document.body.classList.remove('noscrolling')
-  // setTimeout(() => {
-  //   document.body.classList.remove('noscrolling')
-  // }, 200)
 }
 
 onBeforeRouteLeave(() => {
