@@ -670,11 +670,6 @@ const handleSwipeChange = (swiper: any) => {
   activeTab.value = swiper.activeIndex
   query.ChannelId = activeTab.value == 0 ? '' : activeTab.value
 
-  // 如果是收藏，则调用获取收藏列表方法
-  if (activeTab.value == 4) {
-    fetchCollectionList()
-  }
-
   // 滑动到新的swipeItem，获取之前的排序和子频道
   if (bbsListSortType.value[activeTab.value] != undefined) {
     query.SortType = bbsListSortType.value[activeTab.value]
@@ -694,9 +689,12 @@ const handleSwipeChange = (swiper: any) => {
   }
 
   if (!bbsListMap.value[activeTab.value] || bbsListMap.value[activeTab.value].length == 0) {
-    fetchBbsList()
+    if (activeTab.value == 4) {
+      fetchCollectionList()
+    } else {
+      fetchBbsList()
+    }
   }
-
   nextTick(() => {
     window.scrollTo(0, 0)
   })
@@ -738,16 +736,32 @@ const fetchBbsList = async (loadMore = false) => {
   }
 }
 
-const fetchCollectionList = async () => {
+const fetchCollectionList = async (loadMore = false) => {
+  loadingBbsList.value = true
   try {
     const {
       data: { data }
     } = await getBbsCollectionListApi({ PageIndex: query.PageIndex, PageSize: query.PageSize })
     if (data && Array.isArray(data.items)) {
-      bbsListMap.value[activeTab.value] = data.items.map((item) => ({
+      data.items = insertAds(data.items, bbsListAdvertisement.value, 5, 7, false)
+
+      if (!bbsListMap.value[activeTab.value]) {
+        bbsListMap.value[activeTab.value] = []
+      }
+
+      data.items = data.items.map((item) => ({
         ...item,
         isCollected: true
       }))
+      if (loadMore) {
+        bbsListMap.value[activeTab.value].push(...data.items)
+        nextTick(() => {
+          swiperInstance.value.updateAutoHeight()
+        })
+      } else {
+        bbsListMap.value[activeTab.value] = data.items
+      }
+
       bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
       bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
     } else {
@@ -755,6 +769,8 @@ const fetchCollectionList = async () => {
     }
   } catch (error) {
     console.error('获取收藏列表失败:', error)
+  } finally {
+    loadingBbsList.value = false
   }
 }
 
@@ -816,7 +832,11 @@ const changePage = async (newPage: number) => {
     bbsListPageIndex.value[activeTab.value] = newPage
     query.PageIndex = newPage
     bbsListMap.value[activeTab.value] = []
-    await fetchBbsList()
+    if (activeTab.value == 4) {
+      await fetchCollectionList()
+    } else {
+      await fetchBbsList()
+    }
     nextTick(() => {
       window.scrollTo(0, 0)
     })
@@ -826,7 +846,11 @@ const changePage = async (newPage: number) => {
 const loadMore = async () => {
   bbsListPageIndex.value[activeTab.value] += 1
   query.PageIndex = bbsListPageIndex.value[activeTab.value]
-  await fetchBbsList(true)
+  if (activeTab.value == 4) {
+    await fetchCollectionList(true)
+  } else {
+    await fetchBbsList(true)
+  }
 }
 
 // 页码变化
@@ -864,6 +888,8 @@ const onImageLoad = (section: string) => {
 
 onActivated(() => {
   if (activeTab.value == 4) {
+    bbsListMap.value[4] = []
+    bbsListPageIndex.value[4] = 1
     fetchCollectionList()
   }
   keepAlive.value = true
