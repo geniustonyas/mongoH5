@@ -893,6 +893,8 @@ onActivated(() => {
     fetchCollectionList()
   }
   keepAlive.value = true
+
+  window.scrollTo(0, 0)
 })
 
 onDeactivated(() => {
