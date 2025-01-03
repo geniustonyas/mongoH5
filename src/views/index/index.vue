@@ -806,8 +806,6 @@ const currentPopAd = computed(() => {
   return item || {}
 })
 
-const nu = localStorage.getItem('nu')
-
 // 监听邀请码
 watch(
   () => route.query.inviteCode,
@@ -824,8 +822,9 @@ watch(
   (newVal) => {
     // nu = a2 为苹果
     // nu 为 a2并且 newVal[0].introduction 为 2
+    const nu = localStorage.getItem('nu')
     if (newVal.length > 0) {
-      if (!(nu == 'a2' && newVal[0].introduction == 2)) {
+      if (!(nu && nu == 'a2' && newVal[0].introduction == 2)) {
         showPopup.value = true
       }
     }
