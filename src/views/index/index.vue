@@ -1013,6 +1013,7 @@ const swipePage = (swiper: any) => {
   if (categoryVideosMap.value[query.ChannelId] == undefined) {
     query.PageIndex = 1
     query.SortType = 1
+    // query.SubChannelId = ''
     categoryPageIndex.value[query.ChannelId] = 1
     if (isRedirectCategory.value) {
       categoryPageIndex.value[query.ChannelId] = query.PageIndex
@@ -1024,7 +1025,7 @@ const swipePage = (swiper: any) => {
     categorySortType.value[query.ChannelId] = query.SortType
     handleCategoryChange()
   } else {
-    selectCategory(query.SubChannelId)
+    selectCategory(categorySubChannelId.value[query.ChannelId])
   }
   isRedirectCategory.value = false
   nextTick(() => {
