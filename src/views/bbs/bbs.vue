@@ -560,7 +560,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onActivated, nextTick, onDeactivated } from 'vue'
+import { ref, reactive, computed, onActivated, nextTick, onDeactivated, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { PullRefresh, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
@@ -894,6 +894,10 @@ onActivated(() => {
   }
   keepAlive.value = true
 
+  // window.scrollTo(0, 0)
+})
+
+onMounted(() => {
   window.scrollTo(0, 0)
 })
 

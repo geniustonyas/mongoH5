@@ -297,7 +297,11 @@ const initializePlayer = async (domain: string, uri: string) => {
     player.value = new window.Plyr(videoElement, {
       autoplay: true,
       controls: controls.value,
-      settings: ['captions', 'quality', 'speed', 'loop']
+      settings: ['captions', 'quality', 'speed', 'loop'],
+      fullscreen: {
+        enabled: true,
+        iosNative: true
+      }
       // ads: {
       //   enabled: true,
       //   tagUrl: vastUrl // 使用生成的 VAST URL

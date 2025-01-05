@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick, computed } from 'vue'
+import { ref, onMounted, nextTick, computed, onUnmounted } from 'vue'
 import { PullRefresh, List, BackTop } from 'vant'
 import { getVideoListApi, getVideoRankApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
@@ -185,6 +185,11 @@ const fetchVideos = async (rank: string, isRefresh = false) => {
 const changeRank = (rank: string) => {
   activeRank.value = rank
   videos.value = []
+  // 清理 Masonry 实例
+  if (msnry) {
+    msnry.destroy()
+    msnry = null
+  }
   fetchVideos(rank, true)
 }
 
@@ -200,5 +205,13 @@ const fresh = () => {
 
 onMounted(() => {
   fetchVideos('total')
+})
+
+onUnmounted(() => {
+  // 清理 Masonry 实例
+  if (msnry) {
+    msnry.destroy()
+    msnry = null
+  }
 })
 </script>
