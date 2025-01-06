@@ -3,7 +3,7 @@
     <div class="ff-bd">
       <div class="d-c">
         <div class="f-a">
-          <img :src="getAssetsFile('logo-1.png')" />
+          <img :src="getAssetsFile('logo-download.png')" />
           <span>
             <b>芒果TV</b>
             <small>下载APP观看更多高清视频</small>
@@ -17,11 +17,11 @@
     </div>
   </div>
 
-  <div v-show="showAddToHomeTip" class="fixed-foot">
+  <div v-if="showAddToHomeTip" class="fixed-foot">
     <div class="ff-bd">
       <div class="d-c">
         <div class="f-a">
-          <img :src="getAssetsFile('logo-1.png')" />
+          <img :src="getAssetsFile('logo-download.png')" />
           <span>
             <b>芒果TV</b>
             <small>添加到主屏幕</small>
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div v-show="showAddToHomePop" class="pop-fixed" id="popShortcut">
+  <div v-if="showAddToHomePop" class="pop-fixed" id="popShortcut">
     <div class="pop-container">
       <div class="pop-bd shortcut">
         <div class="s-a">

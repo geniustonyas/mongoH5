@@ -10,7 +10,7 @@
       <div class="h-a">
         <div class="a-a">
           <div class="a-l">
-            <img :src="getAssetsFile('u_video.png')" />
+            <img :src="getAssetsFile('logo-4.png')" />
           </div>
           <div class="a-n">
             <span v-if="userStore.userInfo.phoneNumber != ''">

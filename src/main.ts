@@ -5,12 +5,12 @@ import App from './App.vue'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
 import lazyDecrypt from '@/utils/lazyDecrypt'
+// import VueMatomo from 'vue-matomo'
 
 import 'vant/lib/index.css'
 import './assets/less/black.less'
 
 // 懒加载图片
-// const loadingImage = new URL(`./assets/imgs/logo-1.png`, import.meta.url).href
 const errorImage = new URL(`./assets/imgs/default.gif`, import.meta.url).href
 
 const app = createApp(App)
