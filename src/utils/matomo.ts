@@ -1,30 +1,28 @@
 import VueMatomo from 'vue-matomo'
 import type { App } from 'vue'
+import { getStatisticsApi } from '@/api/app'
 
-export async function initMatomo(app: App) {
-  try {
+export const matomoPlugin = {
+  install: (app: App) => {
     // 获取当前顶级域名
     const domain = window.location.host.split('.').slice(-2).join('.')
-    const {
-      data: { data }
-    } = await getStatisticsApi({ Domain: domain })
-    // 如果没有配置则返回
-    if (!data?.siteId) {
-      console.warn('No Matomo configuration found for domain:', domain)
-      return
-    }
-
-    // 配置Matomo
-    app.use(VueMatomo, {
-      host: data.host || 'https://your-default-matomo-host.com',
-      siteId: data.siteId,
-      // 其他配置
-      requireConsent: false,
-      trackInitialView: true,
-      enableLinkTracking: true,
-      requireCookieConsent: false
-    })
-  } catch (error) {
-    console.error('Failed to initialize Matomo:', error)
+    // 请求统计配置
+    getStatisticsApi({ Domain: domain })
+      .then(({ data: { data } }) => {
+        if (data?.code) {
+          app.use(VueMatomo, {
+            host: 'https://tj.aj666888.com',
+            siteId: data.code
+            // requireConsent: false,
+            // trackInitialView: true,
+            // enableLinkTracking: true
+          })
+        } else {
+          console.warn('No Matomo configuration found for domain:', domain)
+        }
+      })
+      .catch((error) => {
+        console.error('Matomo setup failed:', error)
+      })
   }
 }
