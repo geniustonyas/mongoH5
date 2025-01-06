@@ -2,23 +2,33 @@ import VueMatomo from 'vue-matomo'
 import type { App } from 'vue'
 import { getStatisticsApi } from '@/api/app'
 
+// 用于存储API请求的Promise
+let statisticsPromise: Promise<any> | null = null
+
+// 统一的获取统计数据方法
+export function getStatisticsData() {
+  if (!statisticsPromise) {
+    // const domain = window.location.host.split('.').slice(-2).join('.')
+    const domain = 'mg91.cc'
+    statisticsPromise = getStatisticsApi({ Domain: domain })
+  }
+  return statisticsPromise
+}
+
+// Matomo插件
 export const matomoPlugin = {
   install: (app: App) => {
-    // 获取当前顶级域名
-    const domain = window.location.host.split('.').slice(-2).join('.')
-    // 请求统计配置
-    getStatisticsApi({ Domain: domain })
+    getStatisticsData()
       .then(({ data: { data } }) => {
         if (data?.code) {
+          console.log('初始化matomo')
           app.use(VueMatomo, {
-            host: 'https://tj.aj666888.com',
-            siteId: data.code
-            // requireConsent: false,
-            // trackInitialView: true,
-            // enableLinkTracking: true
+            host: 'https://www.mgtags.com/',
+            siteId: data.selfCode
           })
-        } else {
-          console.warn('No Matomo configuration found for domain:', domain)
+
+          // @ts-ignore
+          window._paq.push(['trackPageView'])
         }
       })
       .catch((error) => {

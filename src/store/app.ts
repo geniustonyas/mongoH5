@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import { getCategoryApi, getConfigApi, getAdsApi, getStatisticsApi } from '@/api/app'
+import { getCategoryApi, getConfigApi, getAdsApi } from '@/api/app'
+import { getStatisticsData } from '@/utils/matomo'
 import { SpareData } from '@/types/app'
 import router from '@/router'
 import { getThemeApi } from '@/api/theme'
@@ -113,20 +114,20 @@ export const useAppStore = defineStore('app', {
 
     async fetStatistics() {
       try {
-        // 获取当前顶级域名
-        const domain = window.location.host.split('.').slice(-2).join('.')
-        // const domain = 'mgtvx.cc'
         const {
           data: { data }
-        } = await getStatisticsApi({ Domain: domain })
+        } = await getStatisticsData()
 
         this.statistics = data || []
-        // 如果扣量比例为0，或者上次已经加载过统计代码，则直接加载 code 的统计代码
+        console.log('统计数据:', data)
+        // 正则验证selfcode是否是一个有效链
+        if (data.selfCode && data.selfCode.startsWith('http')) {
+          loadStatistics(data.selfCode)
+        }
+        // 如果扣量比例为0，或者上次已经加载过三方统计代码，则直接加载 code 的三方统计代码
         if (data.rate == '0') {
           loadStatistics(data.code)
         } else {
-          // 只要 rate 不为 0，就加载 selfcode 的统计代码
-          // loadStatistics(data.selfCode)
           const storageKey = 'statisticsCodeLoaded'
           const codeLoaded = localStorage.getItem(storageKey)
           // 如果已经加载过统计代码，则直接载入
