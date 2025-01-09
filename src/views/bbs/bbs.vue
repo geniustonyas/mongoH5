@@ -682,19 +682,21 @@ const handleSwipeChange = (swiper: any) => {
   } else {
     query.SubChannelId = ''
   }
-  if (bbsListPageIndex.value[activeTab.value] == undefined) {
-    query.PageIndex = 1
-  } else {
-    query.PageIndex = bbsListPageIndex.value[activeTab.value]
-  }
+  bbsListMap.value[activeTab.value] = []
+  query.PageIndex = 1
+  // if (bbsListPageIndex.value[activeTab.value] == undefined) {
+  //   query.PageIndex = 1
+  // } else {
+  //   query.PageIndex = bbsListPageIndex.value[activeTab.value]
+  // }
 
-  if (!bbsListMap.value[activeTab.value] || bbsListMap.value[activeTab.value].length == 0) {
-    if (activeTab.value == 4) {
-      fetchCollectionList()
-    } else {
-      fetchBbsList()
-    }
+  // if (!bbsListMap.value[activeTab.value] || bbsListMap.value[activeTab.value].length == 0) {
+  if (activeTab.value == 4) {
+    fetchCollectionList()
+  } else {
+    fetchBbsList()
   }
+  // }
   nextTick(() => {
     window.scrollTo(0, 0)
   })

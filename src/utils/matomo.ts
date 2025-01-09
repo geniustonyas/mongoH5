@@ -24,11 +24,19 @@ export const matomoPlugin = {
           console.log('初始化matomo')
           app.use(VueMatomo, {
             host: 'https://www.mgtags.com/',
-            siteId: data.selfCode
-          })
+            siteId: data.selfCode,
 
-          // @ts-ignore
-          window._paq.push(['trackPageView'])
+            router: app.config.globalProperties.$router, // 添加路由自动跟踪
+            trackInitialView: true, // 跟踪首次访问
+            enableLinkTracking: true, // 启用链接跟踪
+
+            // 性能监控相关
+            enableHeartBeatTimer: true, // 启用心跳计时器
+            heartBeatTimerInterval: 15, // 设置心跳间隔
+
+            // 调试相关
+            debug: process.env.NODE_ENV === 'development'
+          })
         }
       })
       .catch((error) => {
