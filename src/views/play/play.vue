@@ -342,12 +342,26 @@ const initializePlayer = async (domain: string, uri: string) => {
       videoElement.src = url
     }
 
+    // 添加一个变量来跟踪是否是第一次点击
+    let isFirstClick = true
+
     player.value.on('click', (event) => {
       if (player.value.touch && event.target.className == 'plyr__poster') {
-        if (player.value.playing) {
-          player.value.pause()
+        if (isFirstClick) {
+          // 第一次点击只显示控制条
+          player.value.toggleControls(true)
+          isFirstClick = false
+          // 设置定时器，在一段时间后重置状态
+          setTimeout(() => {
+            isFirstClick = true
+          }, 3000) // 3秒后重置
         } else {
-          player.value.play()
+          // 非第一次点击，切换播放状态
+          if (player.value.playing) {
+            player.value.pause()
+          } else {
+            player.value.play()
+          }
         }
       }
     })

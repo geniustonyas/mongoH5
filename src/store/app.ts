@@ -119,31 +119,34 @@ export const useAppStore = defineStore('app', {
         } = await getStatisticsData()
 
         this.statistics = data || []
-        console.log('统计数据:', data)
+
         // 正则验证selfcode是否是一个有效链
         if (data.selfCode && data.selfCode.startsWith('http')) {
           loadStatistics(data.selfCode)
         }
-        // 如果扣量比例为0，或者上次已经加载过三方统计代码，则直接加载 code 的三方统计代码
-        if (data.rate == '0') {
-          loadStatistics(data.code)
-        } else {
-          const storageKey = 'statisticsCodeLoaded'
-          const codeLoaded = localStorage.getItem(storageKey)
-          // 如果已经加载过统计代码，则直接载入
-          if (codeLoaded == '1') {
+
+        if (data.selfCode != data.code && data.code != '') {
+          // 如果扣量比例为0，或者上次已经加载过三方统计代码，则直接加载 code 的三方统计代码
+          if (data.rate == '0') {
             loadStatistics(data.code)
-          } else if (codeLoaded == '0') {
-            // 如果上次没有加载过统计代码，则不加载
-            return
           } else {
-            // 新用户, 没有载入则随机载入
-            const randomNumber = Math.floor(Math.random() * 100)
-            if (randomNumber >= parseInt(data.rate, 10)) {
+            const storageKey = 'statisticsCodeLoaded'
+            const codeLoaded = localStorage.getItem(storageKey)
+            // 如果已经加载过统计代码，则直接载入
+            if (codeLoaded == '1') {
               loadStatistics(data.code)
-              localStorage.setItem(storageKey, '1')
+            } else if (codeLoaded == '0') {
+              // 如果上次没有加载过统计代码，则不加载
+              return
             } else {
-              localStorage.setItem(storageKey, '0')
+              // 新用户, 没有载入则随机载入
+              const randomNumber = Math.floor(Math.random() * 100)
+              if (randomNumber >= parseInt(data.rate, 10)) {
+                loadStatistics(data.code)
+                localStorage.setItem(storageKey, '1')
+              } else {
+                localStorage.setItem(storageKey, '0')
+              }
             }
           }
         }

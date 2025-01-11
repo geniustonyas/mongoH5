@@ -8,8 +8,8 @@ let statisticsPromise: Promise<any> | null = null
 // 统一的获取统计数据方法
 export function getStatisticsData() {
   if (!statisticsPromise) {
-    // const domain = window.location.host.split('.').slice(-2).join('.')
-    const domain = 'mg91.cc'
+    // 根据环境判断使用的域名
+    const domain = process.env.NODE_ENV === 'development' ? 'mg91.cc' : window.location.host.split('.').slice(-2).join('.')
     statisticsPromise = getStatisticsApi({ Domain: domain })
   }
   return statisticsPromise
@@ -23,7 +23,7 @@ export const matomoPlugin = {
         if (data?.code) {
           console.log('初始化matomo')
           app.use(VueMatomo, {
-            host: 'https://www.mgtags.com/',
+            host: 'https://www.mgtags.com',
             siteId: data.selfCode,
 
             router: app.config.globalProperties.$router, // 添加路由自动跟踪
