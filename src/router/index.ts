@@ -8,8 +8,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'root',
-    // component: null,
-    redirect: { name: 'index' }
+    component: null
+    // redirect: { name: 'index' }
   },
   {
     path: '/index',
@@ -243,15 +243,15 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // 判断是否为PC端
-  // const isPc = appStore.isPc
-  // if (to.path == '/') {
-  //   if (isPc) {
-  //     next({ name: 'index', query: to.query })
-  //   } else {
-  //     next({ name: 'elites', query: to.query })
-  //   }
-  //   return
-  // }
+  const isPc = appStore.isPc
+  if (to.path == '/') {
+    if (isPc) {
+      next({ name: 'index', query: to.query })
+    } else {
+      next({ name: 'elites', query: to.query })
+    }
+    return
+  }
 
   if (token) {
     if (!userStore.userInfo.id) {

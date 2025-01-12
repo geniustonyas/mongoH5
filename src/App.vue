@@ -66,6 +66,68 @@ if (nu) {
   localStorage.setItem('nu', nu as string)
 }
 
+// 检测 H265 支持（兼容性写法）
+// async function checkH265Support() {
+//   // 检查是否已统计过
+//   const hasTracked = localStorage.getItem('h265_support_tracked')
+//   if (hasTracked) return
+
+//   let isSupported = false
+//   let method = 'unknown'
+
+//   try {
+//     // 优先使用 MediaCapabilities API
+//     if ('mediaCapabilities' in navigator) {
+//       const mediaConfig = {
+//         type: 'media-source',
+//         video: {
+//           contentType: 'video/mp4; codecs="hev1"',
+//           width: 1920,
+//           height: 1080,
+//           bitrate: 2000000,
+//           framerate: 30
+//         }
+//       }
+//       try {
+//         // @ts-ignore
+//         const result = await navigator.mediaCapabilities.decodingInfo(mediaConfig)
+//         isSupported = result.supported
+//         method = 'mediaCapabilities'
+//       } catch {
+//         // 如果新 API 失败，回退到 canPlayType
+//         const video = document.createElement('video')
+//         const canPlay = video.canPlayType('video/mp4; codecs="hev1"')
+//         isSupported = canPlay !== ''
+//         method = 'canPlayType'
+//       }
+//     } else {
+//       const video = document.createElement('video')
+//       const canPlay = video.canPlayType('video/mp4; codecs="hev1"')
+//       isSupported = canPlay !== ''
+//       method = 'canPlayType'
+//     }
+
+//     // CNZZ 统计
+//     // @ts-ignore
+//     if (window._czc) {
+//       // @ts-ignore
+//       window._czc.push(['_trackEvent', 'H265Support', method, isSupported ? 'supported' : 'not-supported', isSupported ? 1 : 0])
+//     }
+
+//     localStorage.setItem('h265_support_tracked', 'true')
+//     return isSupported
+//   } catch (error) {
+//     console.log('H265 check error:', error)
+//     // @ts-ignore
+//     if (window._czc) {
+//       // @ts-ignore
+//       window._czc.push(['_trackEvent', 'H265Support', 'error', String(error), 0])
+//     }
+//     localStorage.setItem('h265_support_tracked', 'true')
+//     return false
+//   }
+// }
+
 onMounted(() => {
   decryptAdvertisements()
   // const script = document.createElement('script')
@@ -77,6 +139,8 @@ onMounted(() => {
   const bubbleWidth = 130 // 浮动元素的宽度
   const rightMargin = 0 // 距离右侧的距离
   offset.value.x = window.innerWidth - bubbleWidth - rightMargin
+
+  // checkH265Support()
 })
 </script>
 

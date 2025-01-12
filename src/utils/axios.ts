@@ -29,7 +29,7 @@ const getAvailableApiUrl = async (): Promise<string> => {
   const useCurrentDomain = import.meta.env.VITE_USE_CURRENT_DOMAIN === 'true'
   if (useCurrentDomain) {
     const protocol = window.location.protocol
-    const host = window.location.host
+    const host = window.location.hostname
     cachedApiUrl = `${protocol}//api.${host.split('.').slice(-2).join('.')}`
   } else {
     for (const url of apiUrls) {

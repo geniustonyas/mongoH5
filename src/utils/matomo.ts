@@ -9,7 +9,7 @@ let statisticsPromise: Promise<any> | null = null
 export function getStatisticsData() {
   if (!statisticsPromise) {
     // 根据环境判断使用的域名
-    const domain = process.env.NODE_ENV === 'development' ? 'mg91.cc' : window.location.host.split('.').slice(-2).join('.')
+    const domain = process.env.NODE_ENV === 'development' ? 'mg91.cc' : window.location.hostname.split('.').slice(-2).join('.')
     statisticsPromise = getStatisticsApi({ Domain: domain })
   }
   return statisticsPromise

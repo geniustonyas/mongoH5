@@ -82,12 +82,10 @@ export const openAd = (url, category = '', action = '', label = '', value = 1, n
   if (ad) {
     // 将响应式对象转换为普通对象
     const rawAd = toRaw(ad)
-    console.log(rawAd)
     // 检查并处理 iOS 和 Android 下载链接
     const ua = navigator.userAgent
     if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
       if (rawAd.iosDownLoadUrl) {
-        console.log(rawAd.iosDownLoadUrl)
         window.open(rawAd.iosDownLoadUrl, '_blank')
         return
       }
