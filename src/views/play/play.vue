@@ -309,6 +309,20 @@ const initializePlayer = async (domain: string, uri: string) => {
     })
 
     player.value.on('ready', () => {
+      // 添加新的div元素
+      const wrapper = document.querySelector('.plyr__video-wrapper')
+      if (wrapper) {
+        const newDiv = document.createElement('div')
+        newDiv.className = 'video-overlay'
+        newDiv.innerHTML = `
+          <div class="watermark-container">
+            <img src="/logo.png" class="logo-image" alt="logo" />
+            <span class="domain-text">永久域名：${appStore.spareData.OfficialDomain}</span>
+          </div>
+        `
+        wrapper.appendChild(newDiv)
+      }
+
       player.value.play().catch((error) => {
         console.error('自动播放失败:', error)
       })
