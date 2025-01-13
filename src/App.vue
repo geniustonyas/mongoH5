@@ -91,6 +91,7 @@ if (nu) {
 //       try {
 //         // @ts-ignore
 //         const result = await navigator.mediaCapabilities.decodingInfo(mediaConfig)
+//         console.log(result)
 //         isSupported = result.supported
 //         method = 'mediaCapabilities'
 //       } catch {
