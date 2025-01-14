@@ -36,7 +36,7 @@ export function getCodeApi(data: SmsParams) {
 }
 
 /** 获取站长统计代码和扣量比例 */
-export function getStatisticsApi(data: { Domain: string }) {
+export function getStatisticsApi(data: { Domain: string; SubDomain: string }) {
   return request<ApiResponseData<StatisticsResp>>({
     url: 'Web/GetMGStatisticsConfig',
     method: 'post',

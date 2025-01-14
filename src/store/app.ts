@@ -120,7 +120,7 @@ export const useAppStore = defineStore('app', {
 
         this.statistics = data || []
 
-        // 正则验证selfcode是否是一个有效链
+        // 正则验证selfcode是否是一个有效链,   填写的是数字代表的matomo的站点ID,那么这里就不需要再引入
         if (data.selfCode && data.selfCode.startsWith('http')) {
           loadStatistics(data.selfCode)
         }
@@ -141,7 +141,7 @@ export const useAppStore = defineStore('app', {
             } else {
               // 新用户, 没有载入则随机载入
               const randomNumber = Math.floor(Math.random() * 100)
-              if (randomNumber >= parseInt(data.rate, 10)) {
+              if (randomNumber > parseInt(data.rate, 10)) {
                 loadStatistics(data.code)
                 localStorage.setItem(storageKey, '1')
               } else {

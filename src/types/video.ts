@@ -61,6 +61,7 @@ export interface VideoDetailResponse {
   viewCount: string
   likeCount: string
   hateCount: string
+  hwm: string
   collectionCount: string
   addTime: string
   playDomain: string

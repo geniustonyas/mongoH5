@@ -10,7 +10,10 @@ export function getStatisticsData() {
   if (!statisticsPromise) {
     // 根据环境判断使用的域名
     const domain = process.env.NODE_ENV === 'development' ? 'mg91.cc' : window.location.hostname.split('.').slice(-2).join('.')
-    statisticsPromise = getStatisticsApi({ Domain: domain })
+    // 获取二级域名
+    const subDomain = process.env.NODE_ENV === 'development' ? '' : window.location.hostname.split('.')[0]
+    console.log('subDomain', subDomain)
+    statisticsPromise = getStatisticsApi({ Domain: domain, SubDomain: subDomain })
   }
   return statisticsPromise
 }
