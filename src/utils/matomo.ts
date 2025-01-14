@@ -21,7 +21,6 @@ export const matomoPlugin = {
     getStatisticsData()
       .then(({ data: { data } }) => {
         if (data?.code) {
-          console.log('初始化matomo')
           app.use(VueMatomo, {
             host: 'https://www.mgtags.com',
             siteId: data.selfCode,

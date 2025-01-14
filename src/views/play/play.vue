@@ -94,6 +94,7 @@ import { showToast } from 'vant'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
 import { throttle } from 'lodash-es'
+import { getAssetsFile } from '@/utils'
 // import { VastGenerator } from '@/utils/vastGenerator'
 
 const route = useRoute()
@@ -316,8 +317,8 @@ const initializePlayer = async (domain: string, uri: string) => {
         newDiv.className = 'video-overlay'
         newDiv.innerHTML = `
           <div class="watermark-container">
-            <img src="/logo.png" class="logo-image" alt="logo" />
-            <span class="domain-text">永久域名：${appStore.spareData.OfficialDomain}</span>
+            <img src="${getAssetsFile('favicon.ico')}" class="logo-image" alt="logo" />
+            <span class="domain-text">${appStore.spareData.OfficialDomain}</span>
           </div>
         `
         wrapper.appendChild(newDiv)
