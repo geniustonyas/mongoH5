@@ -342,7 +342,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
 
     .video-list-box { margin-bottom: 2rem; position: relative; .flex(); .flex-wrap(wrap); .flex-pack-justify(); transition: none;
-        .video-list {transition: none;  width: calc(50% - 0.2rem); min-height: 15rem; margin-bottom: 1rem; .radius(.4rem); overflow: hidden; .bg(rgba(26, 28, 31, 0.98)); display: block; cursor: pointer; break-inside: avoid; position: relative;
+        .video-list { transition: none; width: calc(50% - 0.2rem); min-height: 15rem; margin-bottom: 1rem; .radius(.4rem); overflow: hidden; .bg(rgba(26, 28, 31, 0.98)); display: block; cursor: pointer; break-inside: avoid; position: relative;
             .l-a { position: relative;
                 img { width: 100%; height: auto; }
                 .a-a { position: absolute; top: 0; left: 0; .bg(#ffe715); color: var(--color-dark); .radius(.5rem 0 .5rem 0); font-weight: 600; font-size: 1rem; padding: .02rem .4rem; font-family: DIN; }
@@ -790,8 +790,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
 }
 
-.m-d-b { touch-action: none; 
-    touch-action: pan-y;
+.m-d-b { touch-action: none; touch-action: pan-y;
     .md-a { position: relative; height: 28rem; position: sticky; top: 0; .bg(var(--color-main-bg)); z-index: 99;
         .a-r { position: absolute; left: 0; top: 0; display: inline-block; .h-lh(4.4rem); width: 6rem; text-align: left; z-index: 1; cursor: pointer; padding-left: .5rem;
             i { font-size: 2.4rem; color: var(--color-white); }
@@ -840,13 +839,28 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
 }
 
-.video-overlay { position: absolute; top: .8rem; left: 2rem; z-index: 10; pointer-events: none;
-    .watermark-container {
-        // .flex(); .flex-v(); .flex-align(); .flex-pack();
-        .logo-image { width: 1.6rem; object-fit: contain; }
-        .domain-text {  color: var(--color-white); font-size: 1.3rem; }
+ 
+
+.video-overlay { position: absolute; right: 1rem; bottom: 1rem; z-index: 10; pointer-events: none;
+    &.left-top { top: 1rem; }
+    .watermark-container { .flex(); .flex-v(); .flex-align(); line-height: normal; -webkit-animation: gradient-change 2s linear infinite alternate; animation: gradient-change 2s linear infinite alternate; background: linear-gradient( to right in oklch, var(--color-1), var(--color-2) ); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;
+        span { font-size: 1rem; }
+        b { font-size: 1.3rem; font-weight: 600; text-transform: uppercase; }
     }
 }
+
+@property --color-1 { syntax: "<color>"; inherits: false; initial-value: hsl(34.72deg 89% 60.78%); }
+
+@property --color-2 { syntax: "<color>"; inherits: false; initial-value: hsl(5.62deg 100% 53.92%); }
+
+@-webkit-keyframes gradient-change {
+    to { --color-1: hsl(210 100% 59%); --color-2: hsl(310 100% 59%); }
+}
+
+@keyframes gradient-change {
+    to { --color-1: hsl(210 100% 59%); --color-2: hsl(310 100% 59%); }
+}
+
 
 
 
