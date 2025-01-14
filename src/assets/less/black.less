@@ -843,22 +843,27 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 .video-overlay { position: absolute; right: 1rem; bottom: 1rem; z-index: 10; pointer-events: none;
     &.left-top { top: 1rem; }
-    .watermark-container { .flex(); .flex-v(); .flex-align(); line-height: normal; -webkit-animation: gradient-change 2s linear infinite alternate; animation: gradient-change 2s linear infinite alternate; background: linear-gradient( to right in oklch, var(--color-1), var(--color-2) ); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;
+    .watermark-container { .flex(); .flex-v(); .flex-align(); line-height: normal;  
+   background-image: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 25%, rgba(252, 176, 69, 1) 50%, rgba(253, 29, 29, 1) 75%, rgba(131, 58, 180, 1) 100%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-size: 200%;
+    background-position: 0 0;
+    animation: move 7s linear infinite;
+
+
+
         span { font-size: 1rem; }
         b { font-size: 1.3rem; font-weight: 600; text-transform: uppercase; }
     }
 }
 
-@property --color-1 { syntax: "<color>"; inherits: false; initial-value: hsl(34.72deg 89% 60.78%); }
+ 
 
-@property --color-2 { syntax: "<color>"; inherits: false; initial-value: hsl(5.62deg 100% 53.92%); }
-
-@-webkit-keyframes gradient-change {
-    to { --color-1: hsl(210 100% 59%); --color-2: hsl(310 100% 59%); }
-}
-
-@keyframes gradient-change {
-    to { --color-1: hsl(210 100% 59%); --color-2: hsl(310 100% 59%); }
+@keyframes move {
+  to {
+    background-position: 200%;
+  }
 }
 
 
