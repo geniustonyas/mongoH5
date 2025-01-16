@@ -11,8 +11,8 @@ export function getStatisticsData() {
     // 根据环境判断使用的域名
     const domain = process.env.NODE_ENV === 'development' ? 'mg91.cc' : window.location.hostname.split('.').slice(-2).join('.')
     // 获取二级域名
-    const subDomain = process.env.NODE_ENV === 'development' ? '' : window.location.hostname.split('.')[0]
-    console.log('subDomain', subDomain)
+    const domainParts = window.location.hostname.split('.')
+    const subDomain = process.env.NODE_ENV === 'development' ? '' : domainParts.length > 2 ? domainParts[0] : ''
     statisticsPromise = getStatisticsApi({ Domain: domain, SubDomain: subDomain })
   }
   return statisticsPromise
@@ -34,7 +34,7 @@ export const matomoPlugin = {
 
             // 性能监控相关
             enableHeartBeatTimer: true, // 启用心跳计时器
-            heartBeatTimerInterval: 15, // 设置心跳间隔
+            heartBeatTimerInterval: 10, // 设置心跳间隔
 
             // 调试相关
             debug: process.env.NODE_ENV === 'development'

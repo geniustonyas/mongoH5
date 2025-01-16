@@ -321,7 +321,7 @@ const initializePlayer = async (domain: string, uri: string) => {
           newDiv.style.top = '1rem'
         }
         newDiv.innerHTML = `<div class="watermark-container">
-                              <b>mg-001.cc</b>
+                              <b>${appStore.spareData.OfficialDomain}</b>
                               <span>☝永久域名☝</span>
                             </div>`
         wrapper.appendChild(newDiv)
