@@ -522,6 +522,7 @@ onBeforeRouteLeave(() => {
   })
   players.value.clear()
   hlsInstances.value.clear()
+  localStorage.removeItem('plyr')
 
   // document.body.classList.remove('noscrolling')
   // setTimeout(() => {

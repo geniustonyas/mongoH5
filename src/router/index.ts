@@ -1,15 +1,20 @@
 import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AppMain from '@/components/layout/AppMain.vue'
 import { useUserStore } from '@/store/user'
-import { useAppStore } from '@/store/app'
+import { useAppStore, useAppStoreHook } from '@/store/app'
 import { getToken } from '@/utils/auth'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'root',
-    component: null
-    // redirect: { name: 'index' }
+    redirect: (to: any) => {
+      const isPc = useAppStoreHook().isPc
+      return {
+        name: isPc ? 'index' : 'elites',
+        query: to.query
+      }
+    }
   },
   {
     path: '/index',
@@ -242,17 +247,6 @@ router.beforeEach(async (to, from, next) => {
     await appStore.fetchAllData()
   }
 
-  // 判断是否为PC端
-  const isPc = appStore.isPc
-  if (to.path == '/') {
-    if (isPc) {
-      next({ name: 'index', query: to.query })
-    } else {
-      next({ name: 'elites', query: to.query })
-    }
-    return
-  }
-
   if (token) {
     if (!userStore.userInfo.id) {
       try {
@@ -284,6 +278,7 @@ router.beforeEach(async (to, from, next) => {
   appStore.isUserBackNavigation = false
 })
 
+let currentUrl = location.href
 router.afterEach((to, from) => {
   const appStore = useAppStore()
   if (to.meta.transition !== 'no' && !appStore.isPc) {
@@ -292,13 +287,16 @@ router.afterEach((to, from) => {
     to.meta.transition = toDepth === fromDepth ? '' : toDepth < fromDepth ? 'slide-left' : 'slide-right'
   }
 
-  // Matomo 页面追踪
   // @ts-ignore
   if (window._paq && to.path !== '/') {
+    // @ts-ignore 设置引荐来源为前一个页面
+    window._paq.push(['setReferrerUrl', currentUrl])
+    // 更新当前 URL
+    currentUrl = window.location.origin + to.fullPath
     // @ts-ignore
-    window._paq.push(['setCustomUrl', to.fullPath])
+    window._paq.push(['setCustomUrl', currentUrl])
     // @ts-ignore
-    window._paq.push(['setDocumentTitle', to.meta.title])
+    window._paq.push(['setDocumentTitle', to.meta.title || document.title])
     // @ts-ignore
     window._paq.push(['trackPageView'])
   }

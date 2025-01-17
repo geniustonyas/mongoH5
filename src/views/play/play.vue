@@ -655,6 +655,7 @@ onUnmounted(() => {
 
 onBeforeRouteLeave((to, from, next) => {
   routeLeaving.value = true
+  localStorage.removeItem('plyr')
   abortController.abort()
   setTimeout(() => {
     resetPlayer()
