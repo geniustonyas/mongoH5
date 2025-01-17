@@ -69,6 +69,27 @@ export const loadStatistics = (url: string) => {
   document.head.appendChild(script)
 }
 
+export const initMatomo = (siteId: string) => {
+  if (document.getElementById('matomo-script')) return
+
+  const script = document.createElement('script')
+  script.id = 'matomo-script'
+  script.text = `
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    _paq.push(['enableHeartBeatTimer', 10]);
+    (function() {
+      var u="${import.meta.env.VITE_MATOMO_HOST}/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '${siteId}']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  `
+  document.head.appendChild(script)
+}
+
 // 将数组分块
 export function chunkArray(arr: any[], chunkSize: number): any[][] {
   const chunks = []

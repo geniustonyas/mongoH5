@@ -5,7 +5,6 @@ import App from './App.vue'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
 import lazyDecrypt from '@/utils/lazyDecrypt'
-import { matomoPlugin } from '@/utils/matomo'
 
 import 'vant/lib/index.css'
 import './assets/less/black.less'
@@ -14,9 +13,6 @@ import './assets/less/black.less'
 const errorImage = new URL(`./assets/imgs/default.gif`, import.meta.url).href
 
 const app = createApp(App)
-
-// 使用 Matomo 插件
-app.use(matomoPlugin)
 
 app.use(store)
 app.use(VueLazyload, {

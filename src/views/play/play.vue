@@ -94,6 +94,7 @@ import { showToast } from 'vant'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
 import { throttle } from 'lodash-es'
+
 // import { VastGenerator } from '@/utils/vastGenerator'
 
 const route = useRoute()
@@ -633,6 +634,12 @@ onMounted(() => {
     appStore.fetAdvertisement()
   }
   copy('.copy')
+
+  //@ts-ignore
+  // if (window._paq) {
+  //   window._paq.push(['enableHeartBeatTimer', 5])
+  //   console.log(window._paq)
+  // }
 })
 
 onUnmounted(() => {

@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
-import { getCategoryApi, getConfigApi, getAdsApi } from '@/api/app'
-import { getStatisticsData } from '@/utils/matomo'
+import { getCategoryApi, getConfigApi, getAdsApi, getStatisticsApi } from '@/api/app'
 import { SpareData } from '@/types/app'
 import router from '@/router'
 import { getThemeApi } from '@/api/theme'
-import { loadStatistics } from '@/utils'
+import { loadStatistics, initMatomo } from '@/utils'
 import store from '@/store'
+import { isNumeric } from '@/utils/validate'
 
 import { decryptedCategorys, fanhaoPianmingYanyuan } from '@/utils/cryptedData'
 
@@ -114,38 +114,48 @@ export const useAppStore = defineStore('app', {
 
     async fetStatistics() {
       try {
+        const domain = process.env.NODE_ENV === 'development' ? 'mg91.cc' : window.location.hostname.split('.').slice(-2).join('.')
+        // 获取二级域名
+        const domainParts = window.location.hostname.split('.')
+        const subDomain = process.env.NODE_ENV === 'development' ? '' : domainParts.length > 2 ? domainParts[0] : ''
         const {
           data: { data }
-        } = await getStatisticsData()
+        } = await getStatisticsApi({ Domain: domain, SubDomain: subDomain })
 
         this.statistics = data || []
 
-        // 正则验证selfcode是否是一个有效链,   填写的是数字代表的matomo的站点ID,那么这里就不需要再引入
-        if (data.selfCode && data.selfCode.startsWith('http')) {
-          loadStatistics(data.selfCode)
+        // 初始化 Matomo (如果 selfCode 是数字或数字字符串)
+        if (data?.selfCode && isNumeric(data.selfCode)) {
+          initMatomo(data.selfCode)
         }
 
-        if (data.selfCode != data.code && data.code != '') {
-          // 如果扣量比例为0，或者上次已经加载过三方统计代码，则直接加载 code 的三方统计代码
-          if (data.rate == '0') {
-            loadStatistics(data.code)
-          } else {
-            const storageKey = 'statisticsCodeLoaded'
-            const codeLoaded = localStorage.getItem(storageKey)
-            // 如果已经加载过统计代码，则直接载入
-            if (codeLoaded == '1') {
+        // 加载其他统计代码 (如果 selfCode 是链接或者有其他统计代码)
+        if ((data?.selfCode && data.selfCode.startsWith('http')) || (data?.selfCode != data.code && data.code != '')) {
+          // 如果 selfCode 是链接，加载它
+          if (data?.selfCode && data.selfCode.startsWith('http')) {
+            loadStatistics(data.selfCode)
+          }
+
+          // 处理其他统计代码
+          if (data?.code && data.code != '') {
+            if (data.rate == '0') {
               loadStatistics(data.code)
-            } else if (codeLoaded == '0') {
-              // 如果上次没有加载过统计代码，则不加载
-              return
             } else {
-              // 新用户, 没有载入则随机载入
-              const randomNumber = Math.floor(Math.random() * 100)
-              if (randomNumber > parseInt(data.rate, 10)) {
+              const storageKey = 'statisticsCodeLoaded'
+              const codeLoaded = localStorage.getItem(storageKey)
+
+              if (codeLoaded == '1') {
                 loadStatistics(data.code)
-                localStorage.setItem(storageKey, '1')
+              } else if (codeLoaded == '0') {
+                return
               } else {
-                localStorage.setItem(storageKey, '0')
+                const randomNumber = Math.floor(Math.random() * 100)
+                if (randomNumber > parseInt(data.rate, 10)) {
+                  loadStatistics(data.code)
+                  localStorage.setItem(storageKey, '1')
+                } else {
+                  localStorage.setItem(storageKey, '0')
+                }
               }
             }
           }
