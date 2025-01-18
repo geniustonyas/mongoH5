@@ -288,7 +288,8 @@ router.afterEach((to, from) => {
   }
 
   // @ts-ignore
-  if (window._paq && to.path !== '/') {
+  if (window._paq) {
+    // if (window._paq && to.path !== '/') {
     // @ts-ignore 设置引荐来源为前一个页面
     window._paq.push(['setReferrerUrl', currentUrl])
     // 更新当前 URL
