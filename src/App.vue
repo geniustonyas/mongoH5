@@ -13,12 +13,15 @@
       <span><i class="mvfont mv-close" /></span>
     </div>
   </FloatingBubble>
+  <DownloadPop />
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import Login from '@/components/Login.vue'
+import DownloadPop from '@/components/DownloadPop.vue'
+
 import { useAppStore } from '@/store/app'
 import { FloatingBubble } from 'vant'
 import { openAd } from '@/utils'
@@ -142,6 +145,37 @@ onMounted(() => {
   offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 
   // checkH265Support()
+
+  // 1. 使用 visibilitychange 事件
+  document.addEventListener('visibilitychange', () => {
+    // @ts-ignore
+    if (document.visibilityState === 'hidden' && window._paq) {
+      // @ts-ignore
+      window._paq.push(['ping'])
+    }
+  })
+
+  // 2. 使用 pagehide 事件（移动端更可靠）
+  window.addEventListener('pagehide', () => {
+    // @ts-ignore
+    if (window._paq) {
+      // @ts-ignore
+      window._paq.push(['ping'])
+    }
+  })
+
+  // 3. 保留原有的 beforeunload
+  window.addEventListener('beforeunload', () => {
+    // @ts-ignore
+    if (window._paq) {
+      // @ts-ignore
+      window._paq.push(['ping'])
+    }
+  })
+
+  // 4. 启用心跳检测（这个很重要）
+  // @ts-ignore
+  window._paq.push(['enableHeartBeatTimer', 30]) // 30秒
 })
 </script>
 

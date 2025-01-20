@@ -665,7 +665,6 @@
     </main>
     <Footer active-menu="index" />
     <NavBar active-menu="index" />
-    <DownloadPop />
     <Suggestion v-model:show-btn="showSuggestion" />
   </div>
 </template>
@@ -692,7 +691,6 @@ import 'swiper/css/free-mode'
 
 import Footer from '@/components/layout/Footer.vue'
 import VideoGridItem from '@/components/VideoGridItem.vue'
-import DownloadPop from '@/components/DownloadPop.vue'
 import IndexAd from '@/components/Advertisement/indexAd.vue'
 import decryptionService from '@/utils/decryptionService'
 

@@ -76,9 +76,11 @@ export const initMatomo = (siteId: string) => {
   script.id = 'matomo-script'
   script.text = `
     var _paq = window._paq = window._paq || [];
-    _paq.push(['trackPageView']);
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(["setExcludedQueryParams", ["*"]]);
+    // _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
-    _paq.push(['enableHeartBeatTimer', 10]);
+    _paq.push(['enableHeartBeatTimer', 30]); 
     (function() {
       var u="${import.meta.env.VITE_MATOMO_HOST}/";
       _paq.push(['setTrackerUrl', u+'matomo.php']);

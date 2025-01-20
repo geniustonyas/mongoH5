@@ -1303,8 +1303,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         .t-l { position: relative; color: var(--color-white); font-size: 1.6rem; padding: 1rem 0; font-weight: 600; font-family: DIN; /*i { position: absolute; top: .5rem; left: 0; width: 1rem; height: 2rem; .radius(1rem); display: inline-block; .bg-gradient(125deg, #f7b61c, #FF00FF); .transform(30deg); }*/ i { font-size: 2rem; vertical-align: middle; position: relative; bottom: .156rem; background-image: -webkit-linear-gradient(45deg, #f4a942, #ff2a14); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
             b { margin-left: 1rem; color: var(--color-light); }
         }
-
-        .t-r { }
     }
     .a-c {
         .bbs-list { margin: 0; }
@@ -1320,12 +1318,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 .fixed-foot { position: fixed; bottom: 4.9rem; left: 0; width: 100%; z-index: 99;
     .ff-bd { width: 100%; max-width: 42.8rem; margin: 0 auto;
-        .d-c { padding: .6rem; height: 5rem; margin: 0 2rem; margin-bottom: constant(safe-area-inset-bottom); margin-bottom: env(safe-area-inset-bottom); .radius(.8rem); .border-a(.1rem, rgba(255, 255, 255, 0.2)); .bg-gradient(bottom,#fff,#fdf5e5); -webkit-touch-callout: none; backdrop-filter: blur(.5rem); -webkit-backdrop-filter: blur(.5rem); .flex(); .flex-pack-justify(); .flex-align();
+        .d-c { padding: .6rem; height: 5rem; margin: 0 1rem; margin-bottom: constant(safe-area-inset-bottom); margin-bottom: env(safe-area-inset-bottom); .radius(.8rem); .border-a(.1rem, rgba(255, 255, 255, 0.2)); .bg-gradient(bottom,#fff,#fdf5e5); -webkit-touch-callout: none; backdrop-filter: blur(.5rem); -webkit-backdrop-filter: blur(.5rem); .flex(); .flex-pack-justify(); .flex-align();
             .f-a { .flex-x(); .flex(); .flex-align();
                 img { width: 3.4rem; height: 3.4rem; .radius(.5rem); margin-right: .5rem; }
-                span {.flex(); .flex-v();
-                    b { color: var(--color-main-bg); }
-                    small { color: var(--color-666); }
+                span {.flex(); .flex-v(); .flex-x(); text-align: center;
+                    small { color: var(--color-666); font-size: 1rem;}
+                    b { color: var(--color-main-bg); font-size: 1.2rem; }
                 }
             }
             .f-b {

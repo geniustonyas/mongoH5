@@ -279,6 +279,7 @@ router.beforeEach(async (to, from, next) => {
 })
 
 let currentUrl = location.href
+const isFirstPageView = true
 router.afterEach((to, from) => {
   const appStore = useAppStore()
   if (to.meta.transition !== 'no' && !appStore.isPc) {
@@ -291,9 +292,12 @@ router.afterEach((to, from) => {
   if (window._paq) {
     // if (window._paq && to.path !== '/') {
     // @ts-ignore 设置引荐来源为前一个页面
-    window._paq.push(['setReferrerUrl', currentUrl])
+    if (!isFirstPageView) {
+      // @ts-ignore
+      window._paq.push(['setReferrerUrl', currentUrl])
+    }
     // 更新当前 URL
-    currentUrl = window.location.origin + to.fullPath
+    currentUrl = window.location.origin + to.path
     // @ts-ignore
     window._paq.push(['setCustomUrl', currentUrl])
     // @ts-ignore

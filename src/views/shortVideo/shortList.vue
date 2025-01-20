@@ -1,7 +1,7 @@
 <template>
-  <div class="page">
-    <div class="short-List">
-      <header v-show="!showVideo" class="m-header">
+  <div :class="showVideo ? 'page video-page' : 'page'">
+    <div v-show="!showVideo" class="short-List">
+      <header class="m-header">
         <div class="h-l" />
         <div class="h-m">
           <a @click="router.push({ name: 'shortList' })" class="active">{{ douyin }}</a>
@@ -44,7 +44,7 @@
           </List>
         </PullRefresh>
       </section>
-      <Footer v-show="!showVideo" active-menu="shortList" footer-class="footer" />
+      <Footer active-menu="shortList" footer-class="footer" />
     </div>
     <transition name="video-fade" @after-leave="handleAfterLeave">
       <div v-show="showVideo" class="short-video" :style="videoStyle">
@@ -57,8 +57,8 @@
         </header>
         <section class="vp-main">
           <div class="vpm-bd">
-            <div class="vm-h" />
-            <div class="vm-a" />
+            <!-- <div class="vm-h" />
+            <div class="vm-a" /> -->
             <div class="vm-b">
               <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videoList.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
                 <template v-if="videos.length > 0">
@@ -692,12 +692,9 @@ const videoStyle = computed(() => ({
   transform: scale(1); /* 定义动画的结束和起始状态 */
 }
 
-.short-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
+/* .short-video {
+  width: 100%;
   height: 100vh;
   background-color: black;
-}
+} */
 </style>

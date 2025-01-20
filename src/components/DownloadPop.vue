@@ -5,8 +5,8 @@
         <div class="f-a">
           <img :src="getAssetsFile('logo-download.png')" />
           <span>
-            <b>芒果TV</b>
-            <small>下载APP观看更多高清视频</small>
+            <small>网页仅支持低清晰及缓冲或卡顿</small>
+            <b>app独享超清加速，永久免费</b>
           </span>
         </div>
         <div class="f-b">
@@ -114,18 +114,18 @@ onMounted(() => {
   // 不是独立模式, 并且 nu 不是 a1 和 a2 , nu由打包app时传入url参数, 由App.vue中获取并且写入localstorage
   if (!isStandalone && nu != 'a1' && nu != 'a2') {
     if (appStore.shownDownload) {
-      const ua = navigator.userAgent
+      // const ua = navigator.userAgent
       // 如果是IOS, 则显示添加到主屏幕
-      if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
-        showAddToHomeTip.value = true
+      // if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+      //   showAddToHomeTip.value = true
+      // } else {
+      // 判断如果是PC端浏览器访问, 则不弹窗
+      if (appStore.isPc) {
+        showDownloadTips.value = false
       } else {
-        // 判断如果是PC端浏览器访问, 则不弹窗
-        if (appStore.isPc) {
-          showDownloadTips.value = false
-        } else {
-          showDownloadTips.value = true
-        }
+        showDownloadTips.value = true
       }
+      // }
       // 设置已经显示下载提示, 不再显示
       appStore.setShownDownload(false)
     }
