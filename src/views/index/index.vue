@@ -1011,7 +1011,6 @@ const swipePage = (swiper: any) => {
   if (categoryVideosMap.value[query.ChannelId] == undefined) {
     query.PageIndex = 1
     query.SortType = 1
-    // query.SubChannelId = ''
     categoryPageIndex.value[query.ChannelId] = 1
     if (isRedirectCategory.value) {
       categoryPageIndex.value[query.ChannelId] = query.PageIndex
@@ -1019,10 +1018,15 @@ const swipePage = (swiper: any) => {
       categorySubChannelId.value[query.ChannelId] = query.SubChannelId
     } else {
       query.SubChannelId = ''
+      // categorySubChannelId.value[query.ChannelId] = query.SubChannelId
     }
     categorySortType.value[query.ChannelId] = query.SortType
     handleCategoryChange()
   } else {
+    // 如果有数据, 则切换到对应分类, 获取数据
+    if (isRedirectCategory.value) {
+      categorySubChannelId.value[query.ChannelId] = query.SubChannelId
+    }
     selectCategory(categorySubChannelId.value[query.ChannelId])
   }
   isRedirectCategory.value = false
@@ -1112,9 +1116,6 @@ onActivated(() => {
   if (swiperInstance.value) {
     swiperInstance.value.updateAutoHeight()
   }
-  // setTimeout(() => {
-  //   document.body.classList.remove('noscrolling')
-  // }, 400)
 })
 
 onDeactivated(() => {
