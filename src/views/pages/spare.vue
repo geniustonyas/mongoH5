@@ -43,8 +43,8 @@
         <div class="r-a">
           <i class="mvfont mv-telegram" />
           <span>
-            <b>TG频道</b>
-            <small>关注我们，获取最新信息</small>
+            <b>广告合作</b>
+            <!-- <small>关注我们，获取最新信息</small> -->
           </span>
         </div>
         <div class="r-b">

@@ -5,8 +5,8 @@
         <div class="f-a">
           <img :src="getAssetsFile('logo-download.png')" />
           <span>
-            <small>网页仅支持低清晰及缓冲或卡顿</small>
-            <b>app独享超清加速，永久免费</b>
+            <b>App独享超清加速，永久免费</b>
+            <small>刷抖阴更流畅，海量高清影片抢先看</small>
           </span>
         </div>
         <div class="f-b">
