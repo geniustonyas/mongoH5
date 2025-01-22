@@ -22,8 +22,8 @@
                   <b>{{ video.title }}</b>
                   <div v-if="!video.isAd" class="b-a">
                     <div class="a-l">
-                      <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                      <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                      <span><i class="mvfont mv-kan" />{{ formatNumber(video.viewCount) }}</span>
+                      <span><i class="mvfont mv-zan" />{{ formatNumber(video.likeCount) }}</span>
                     </div>
                     <div class="a-r">
                       <span><i class="mvfont mv-riqi" />{{ dayjs(video.addTime).format('YYYY-MM-DD') }}</span>
@@ -53,7 +53,7 @@ import { PullRefresh, List, BackTop } from 'vant'
 import { getVideoListApi, getVideoRankApi } from '@/api/video'
 import type { Video, VideoListRequest } from '@/types/video'
 import type { DataWithAd } from '@/types/global.d'
-import { formatDuration, classifyResolution, insertAds, openAd } from '@/utils'
+import { formatDuration, classifyResolution, insertAds, openAd, formatNumber } from '@/utils'
 import Header from '@/views/theme/themeHeader.vue'
 import NavBar from '@/components/layout/NavBar.vue'
 import { useRouter } from 'vue-router'

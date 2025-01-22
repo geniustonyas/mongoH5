@@ -421,3 +421,23 @@ export function shuffleArray<T>(array: T[]): T[] {
   }
   return shuffledArray
 }
+
+/**
+ * 格式化数字
+ * @param value 数字
+ * @returns 格式化后的数字
+ */
+export function formatNumber(value: string | number) {
+  // 确保 value 是一个数字
+  const num = parseFloat(value.toString())
+  if (isNaN(num)) {
+    return '0'
+  }
+
+  if (num >= 10000) {
+    return (num / 10000).toFixed(2) + 'W'
+  } else if (num >= 1000) {
+    return (num / 1000).toFixed(2) + 'K'
+  }
+  return num.toString()
+}

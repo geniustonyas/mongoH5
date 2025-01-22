@@ -28,12 +28,12 @@
           </div>
           <div class="i-d">
             <div class="d-x">
-              <span><i class="mvfont mv-pinglun" />{{ post.commentCount }}</span>
-              <span><i class="mvfont mv-zan" />{{ post.likeCount }}</span>
-              <span><i class="mvfont mv-like" />{{ post.collectionCount }}</span>
+              <span><i class="mvfont mv-pinglun" />{{ post.commentCount ? formatNumber(post.commentCount) : 0 }}</span>
+              <span><i class="mvfont mv-zan" />{{ post.likeCount ? formatNumber(post.likeCount) : 0 }}</span>
+              <span><i class="mvfont mv-like" />{{ post.collectionCount ? formatNumber(post.collectionCount) : 0 }}</span>
             </div>
             <div class="d-x">
-              <span><i class="mvfont mv-kan" />{{ post.viewCount }}</span>
+              <span><i class="mvfont mv-kan" />{{ post.viewCount ? formatNumber(post.viewCount) : 0 }}</span>
             </div>
           </div>
         </li>
@@ -67,7 +67,7 @@
 <script setup lang="ts">
 import { defineProps, withDefaults, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getAssetsFile, decodeHtmlEntities, fromNow, openAd } from '@/utils'
+import { getAssetsFile, decodeHtmlEntities, fromNow, openAd, formatNumber } from '@/utils'
 import { Bbs } from '@/types/bbs'
 import type { DataWithAd } from '@/types/global.d'
 import { bbsCollectionApi } from '@/api/bbs'

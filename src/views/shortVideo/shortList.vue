@@ -25,8 +25,8 @@
                   <div class="l-b">
                     <b>{{ vd.title }}</b>
                     <div class="b-a">
-                      <span><i class="mvfont mv-kan" />{{ vd.viewCount }}</span>
-                      <span><i class="mvfont mv-zan" />{{ vd.likeCount }}</span>
+                      <span><i class="mvfont mv-kan" />{{ formatNumber(vd.viewCount) }}</span>
+                      <span><i class="mvfont mv-zan" />{{ formatNumber(vd.likeCount) }}</span>
                     </div>
                   </div>
                 </div>
@@ -120,7 +120,7 @@ import NavBar from '@/components/layout/NavBar.vue'
 import Footer from '@/components/layout/Footer.vue'
 import Loading from '@/components/layout/Loading.vue'
 import { onBeforeRouteLeave, useRouter } from 'vue-router'
-import { formatDuration, insertAds, openAd } from '@/utils'
+import { formatDuration, insertAds, openAd, formatNumber } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'

@@ -29,8 +29,8 @@
         <b>{{ video.title }}</b>
         <div class="b-dv">
           <div class="p-c">
-            <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-            <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+            <span><i class="mvfont mv-kan" />{{ formatNumber(video.viewCount) }}</span>
+            <span><i class="mvfont mv-zan" />{{ formatNumber(video.likeCount) }}</span>
           </div>
           <div v-if="video.addTime" class="p-c">
             <span><i class="mvfont mv-riqi" />{{ fromNow(video.addTime) }}</span>
@@ -44,7 +44,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type { Video } from '@/types/video'
-import { formatDuration, fromNow, classifyResolution } from '@/utils'
+import { formatDuration, fromNow, classifyResolution, formatNumber } from '@/utils'
 import type { DataWithAd } from '@/types/global.d'
 
 defineProps<{

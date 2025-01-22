@@ -26,8 +26,8 @@
                   <div class="b-a">
                     <template v-if="!video.isAd">
                       <div class="a-l">
-                        <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                        <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                        <span><i class="mvfont mv-kan" />{{ formatNumber(video.viewCount) }}</span>
+                        <span><i class="mvfont mv-zan" />{{ formatNumber(video.likeCount) }}</span>
                       </div>
                       <div class="a-r">
                         <span><i class="mvfont mv-riqi" />{{ fromNow(video.addTime) }}</span>
@@ -59,7 +59,7 @@ import { getVideoListApi } from '@/api/video'
 import { useAppStore } from '@/store/app'
 import type { Video, VideoListRequest } from '@/types/video'
 import type { DataWithAd } from '@/types/global.d'
-import { formatDuration, classifyResolution, fromNow, openAd, insertAds } from '@/utils'
+import { formatDuration, classifyResolution, fromNow, openAd, insertAds, formatNumber } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 const route = useRoute()
 const router = useRouter()

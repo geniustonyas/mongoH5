@@ -29,7 +29,7 @@
           <div class="a-a">{{ videoDetail ? videoDetail.title : '' }}</div>
           <div class="a-b">
             <span><i class="mvfont mv-time" />{{ videoDetail ? dayjs(videoDetail.addTime).format('YYYY-MM-DD') : '' }}</span>
-            <span><i class="mvfont mv-kan" />{{ videoDetail ? videoDetail.viewCount : '' }}</span>
+            <span><i class="mvfont mv-kan" />{{ formatNumber(videoDetail ? videoDetail.viewCount : 0) }}</span>
           </div>
           <div class="a-c">
             <template v-if="videoDetail && videoDetail.tags">
@@ -40,15 +40,15 @@
         <div class="b-b">
           <span @click="handleLike(1)">
             <i :class="['mvfont', 'mv-zan', { active: videoDetail && videoDetail.like == 1 }]" />
-            <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
+            <b>{{ formatNumber(videoDetail ? videoDetail.likeCount : 0) }}</b>
           </span>
           <span @click="handleLike(2)">
             <i :class="['mvfont', 'mv-nzan', { active: videoDetail && videoDetail.like == 2 }]" />
-            <b>{{ videoDetail ? videoDetail.hateCount : 0 }}</b>
+            <b>{{ formatNumber(videoDetail ? videoDetail.hateCount : 0) }}</b>
           </span>
           <span @click="handleCollection">
             <i :class="['mvfont', 'mv-like', { active: videoDetail && videoDetail.collect }]" />
-            <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
+            <b>{{ formatNumber(videoDetail ? videoDetail.collectionCount : 0) }}</b>
           </span>
           <span><i @click="handleShare" class="mvfont mv-zhuanfa1" />分享</span>
         </div>
@@ -81,7 +81,7 @@ import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi, addPlayCountApi, getVideoListApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
-import { copy, openAd, insertAds } from '@/utils'
+import { copy, openAd, insertAds, formatNumber } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import decryptionService from '@/utils/decryptionService'
 import { useUserStore } from '@/store/user'

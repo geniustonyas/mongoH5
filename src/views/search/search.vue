@@ -60,8 +60,8 @@
                     <span>{{ video.channelName }}</span>
                   </div>
                   <div class="b-c">
-                    <span><i class="mvfont mv-kan" />{{ video.viewCount }}</span>
-                    <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span>
+                    <span><i class="mvfont mv-kan" />{{ formatNumber(video.viewCount) }}</span>
+                    <span><i class="mvfont mv-zan" />{{ formatNumber(video.likeCount) }}</span>
                   </div>
                 </div>
               </li>
@@ -93,7 +93,7 @@ import { useAppStore } from '@/store/app'
 import { getVideoListApi } from '@/api/video'
 import type { Video } from '@/types/video'
 import { List } from 'vant'
-import { formatDuration, classifyResolution, openAd } from '@/utils'
+import { formatDuration, classifyResolution, openAd, formatNumber } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
 
 const router = useRouter()

@@ -20,10 +20,10 @@
             </div>
           </div>
           <div v-if="detail" class="b-r">
-            <span><i class="mvfont mv-kan" />{{ Number(detail?.viewCount) || 0 }}</span>
-            <span><i class="mvfont mv-pinglun" />{{ Number(detail?.commentCount) || 0 }}</span>
-            <span><i class="mvfont mv-zan" />{{ Number(detail?.likeCount) || 0 }}</span>
-            <span><i class="mvfont mv-like" />{{ Number(detail?.collectionCount) || 0 }}</span>
+            <span><i class="mvfont mv-kan" />{{ formatNumber(detail.viewCount) }}</span>
+            <span><i class="mvfont mv-pinglun" />{{ formatNumber(detail.commentCount) }}</span>
+            <span><i class="mvfont mv-zan" />{{ formatNumber(detail.likeCount) }}</span>
+            <span><i class="mvfont mv-like" />{{ formatNumber(detail.collectionCount) }}</span>
           </div>
         </div>
         <div class="d-c" v-html="decodeHtmlEntities(detail?.content || '')" />
@@ -62,17 +62,17 @@
         <span>
           <i @click="showComment = true" class="mvfont mv-pinglun" />
           <small v-if="Number(detail?.commentCount) == 0">评论</small>
-          <b v-else>{{ detail?.commentCount }}</b>
+          <b v-else>{{ detail?.commentCount ? formatNumber(detail?.commentCount) : 0 }}</b>
         </span>
         <span>
           <i :class="['mvfont', 'mv-zan', { active: detail?.like == '1' }]" @click="toggleLike" />
           <small v-if="Number(detail?.likeCount) == 0">赞</small>
-          <b v-else>{{ Number(detail?.likeCount) || 0 }}</b>
+          <b v-else>{{ detail?.likeCount ? formatNumber(detail?.likeCount) : 0 }}</b>
         </span>
         <span>
           <i :class="['mvfont', 'mv-like', { active: detail?.collect }]" @click="toggleCollection" />
           <small v-if="Number(detail?.collectionCount) == 0">收藏</small>
-          <b v-else>{{ Number(detail?.collectionCount) || 0 }}</b>
+          <b v-else>{{ detail?.collectionCount ? formatNumber(detail?.collectionCount) : 0 }}</b>
         </span>
       </div>
     </footer>
@@ -96,7 +96,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick, computed } from 'vue'
-import { getAssetsFile, decodeHtmlEntities, openAd, insertAds } from '@/utils'
+import { getAssetsFile, decodeHtmlEntities, openAd, insertAds, formatNumber } from '@/utils'
 import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
