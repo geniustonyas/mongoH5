@@ -430,7 +430,7 @@
                     <!-- <span>
                       <em v-for="(chunk, index) in channel.videos" :key="index" :class="{ active: index == channelActiveIndices[channelIndex] }" />
                     </span> -->
-                    <!-- <span @click="redirectCategory(channelIndex + 1, '')">更多<i class="mvfont mv-right" /></span> -->
+                    <span @click="redirectCategory(channelIndex + 1, '')">更多<i class="mvfont mv-right" /></span>
                   </div>
                 </div>
                 <div class="mc-b">
