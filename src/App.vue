@@ -132,6 +132,30 @@ if (nu) {
 //   }
 // }
 
+let lastPingTime = 0
+const pingInterval = 1000 // 1秒
+
+function sendPing() {
+  const currentTime = Date.now()
+  if (currentTime - lastPingTime > pingInterval) {
+    // @ts-ignore
+    if (window._paq) {
+      // @ts-ignore
+      window._paq.push(['ping'])
+    }
+    lastPingTime = currentTime
+  }
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    sendPing()
+  }
+})
+
+window.addEventListener('pagehide', sendPing)
+window.addEventListener('beforeunload', sendPing)
+
 onMounted(() => {
   decryptAdvertisements()
   // const script = document.createElement('script')
@@ -175,7 +199,7 @@ onMounted(() => {
 
   // 4. 启用心跳检测（这个很重要）
   // @ts-ignore
-  window._paq.push(['enableHeartBeatTimer', 30]) // 30秒
+  // window._paq.push(['enableHeartBeatTimer', 30]) // 30秒
 })
 </script>
 
