@@ -69,69 +69,6 @@ if (nu) {
   localStorage.setItem('nu', nu as string)
 }
 
-// 检测 H265 支持（兼容性写法）
-// async function checkH265Support() {
-//   // 检查是否已统计过
-//   const hasTracked = localStorage.getItem('h265_support_tracked')
-//   if (hasTracked) return
-
-//   let isSupported = false
-//   let method = 'unknown'
-
-//   try {
-//     // 优先使用 MediaCapabilities API
-//     if ('mediaCapabilities' in navigator) {
-//       const mediaConfig = {
-//         type: 'media-source',
-//         video: {
-//           contentType: 'video/mp4; codecs="hev1"',
-//           width: 1920,
-//           height: 1080,
-//           bitrate: 2000000,
-//           framerate: 30
-//         }
-//       }
-//       try {
-//         // @ts-ignore
-//         const result = await navigator.mediaCapabilities.decodingInfo(mediaConfig)
-//         console.log(result)
-//         isSupported = result.supported
-//         method = 'mediaCapabilities'
-//       } catch {
-//         // 如果新 API 失败，回退到 canPlayType
-//         const video = document.createElement('video')
-//         const canPlay = video.canPlayType('video/mp4; codecs="hev1"')
-//         isSupported = canPlay !== ''
-//         method = 'canPlayType'
-//       }
-//     } else {
-//       const video = document.createElement('video')
-//       const canPlay = video.canPlayType('video/mp4; codecs="hev1"')
-//       isSupported = canPlay !== ''
-//       method = 'canPlayType'
-//     }
-
-//     // CNZZ 统计
-//     // @ts-ignore
-//     if (window._czc) {
-//       // @ts-ignore
-//       window._czc.push(['_trackEvent', 'H265Support', method, isSupported ? 'supported' : 'not-supported', isSupported ? 1 : 0])
-//     }
-
-//     localStorage.setItem('h265_support_tracked', 'true')
-//     return isSupported
-//   } catch (error) {
-//     console.log('H265 check error:', error)
-//     // @ts-ignore
-//     if (window._czc) {
-//       // @ts-ignore
-//       window._czc.push(['_trackEvent', 'H265Support', 'error', String(error), 0])
-//     }
-//     localStorage.setItem('h265_support_tracked', 'true')
-//     return false
-//   }
-// }
-
 let lastPingTime = 0
 const pingInterval = 1000 // 1秒
 
@@ -147,59 +84,22 @@ function sendPing() {
   }
 }
 
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') {
-    sendPing()
-  }
-})
-
-window.addEventListener('pagehide', sendPing)
-window.addEventListener('beforeunload', sendPing)
-
 onMounted(() => {
   decryptAdvertisements()
-  // const script = document.createElement('script')
-  // script.src = '/stat.js'
-  // script.async = true
-  // document.body.appendChild(script)
 
   // 计算偏移量
   const bubbleWidth = 130 // 浮动元素的宽度
   const rightMargin = 0 // 距离右侧的距离
   offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 
-  // checkH265Support()
-
-  // 1. 使用 visibilitychange 事件
   document.addEventListener('visibilitychange', () => {
-    // @ts-ignore
-    if (document.visibilityState === 'hidden' && window._paq) {
-      // @ts-ignore
-      window._paq.push(['ping'])
+    if (document.visibilityState === 'hidden') {
+      sendPing()
     }
   })
 
-  // 2. 使用 pagehide 事件（移动端更可靠）
-  window.addEventListener('pagehide', () => {
-    // @ts-ignore
-    if (window._paq) {
-      // @ts-ignore
-      window._paq.push(['ping'])
-    }
-  })
-
-  // 3. 保留原有的 beforeunload
-  window.addEventListener('beforeunload', () => {
-    // @ts-ignore
-    if (window._paq) {
-      // @ts-ignore
-      window._paq.push(['ping'])
-    }
-  })
-
-  // 4. 启用心跳检测（这个很重要）
-  // @ts-ignore
-  // window._paq.push(['enableHeartBeatTimer', 30]) // 30秒
+  window.addEventListener('pagehide', sendPing)
+  window.addEventListener('beforeunload', sendPing)
 })
 </script>
 
