@@ -4,7 +4,7 @@
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
         <div class="video-container">
-          <video id="plyr-player" muted autoplay preload="auto" :data-poster="poster" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+          <video id="plyr-player" muted autoplay preload="auto" :data-poster="poster" x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
         </div>
         <div class="a-f">
           <div class="item">
@@ -107,8 +107,11 @@ const recommendedVideos = ref<Video[]>([])
 const initialLikeType = ref<number | string>()
 const routeLeaving = ref(false)
 
+const adCounter = ref(null)
+const adCountDownElement = ref(null)
 const player = ref<any>(null)
 const hls = ref<any>(null)
+const isPlayingAd = ref(true)
 const controls = ref([
   'play', // 播放/暂停播放
   'play-large', // 中心的大播放按钮
@@ -179,7 +182,7 @@ const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
     }, disableTime)
     return
   }
-
+  isPlayingAd.value = true
   await fetchVideoDetail(videoId)
   clickCount.value = 0
 }, 1000)
@@ -295,10 +298,15 @@ const initializePlayer = async (domain: string, uri: string) => {
     if (routeLeaving.value) {
       return
     }
+
+    // 广告视频 URL 和目标地址
+    const adVideoUrl = 'https://mg91.cc/ads1.mp4'
+    // const adTargetUrl = 'https://example.com/ad-target'
+
     player.value = new window.Plyr(videoElement, {
       autoplay: true,
       controls: controls.value,
-      settings: ['captions', 'quality', 'speed', 'loop'],
+      settings: ['captions', 'quality', 'speed'],
       fullscreen: {
         enabled: true,
         iosNative: true
@@ -308,6 +316,10 @@ const initializePlayer = async (domain: string, uri: string) => {
       //   tagUrl: vastUrl // 使用生成的 VAST URL
       // }
     })
+
+    player.value.poster = poster.value
+
+    videoElement.src = adVideoUrl
 
     player.value.on('ready', () => {
       // 添加新的div元素
@@ -337,35 +349,41 @@ const initializePlayer = async (domain: string, uri: string) => {
       return
     }
 
-    if (window.Hls.isSupported()) {
-      // 这里声明了 tmphls 的原因是因为直接使用vue的代理 hls.value时 视频会无法播放
-      const tmpHls = new window.Hls({
-        maxBufferLength: 30,
-        maxMaxBufferLength: 60,
-        maxBufferSize: 60 * 1000 * 1000,
-        maxBufferHole: 0.5,
-        debug: false
-      })
-      // tmpHls.config.xhrSetup = (xhr) => {
-      //   const tsUrlWithAuth = generateAuthUrl(domain, uri)
-      //   xhr.open('GET', tsUrlWithAuth, true)
-      // }
-      tmpHls.loadSource(url)
-      tmpHls.attachMedia(videoElement)
+    player.value.on('ended', () => {
+      if (isPlayingAd.value) {
+        isPlayingAd.value = false
+        // @ts-ignore
+        document.getElementsByClassName('plyr__controls')[0].style.visibility = 'visible'
+        if (window.Hls.isSupported()) {
+          // 这里声明了 tmphls 的原因是因为直接使用vue的代理 hls.value时 视频会无法播放
+          const tmpHls = new window.Hls({
+            maxBufferLength: 30,
+            maxMaxBufferLength: 60,
+            maxBufferSize: 60 * 1000 * 1000,
+            maxBufferHole: 0.5,
+            debug: false
+          })
+          // tmpHls.config.xhrSetup = (xhr) => {
+          //   const tsUrlWithAuth = generateAuthUrl(domain, uri)
+          //   xhr.open('GET', tsUrlWithAuth, true)
+          // }
+          tmpHls.loadSource(url)
+          tmpHls.attachMedia(videoElement)
 
-      tmpHls.on(window.Hls.Events.ERROR, (event, data) => {
-        handleHlsError(data)
-      })
-      hls.value = tmpHls
-    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-      videoElement.src = url
-    }
-
+          tmpHls.on(window.Hls.Events.ERROR, (event, data) => {
+            handleHlsError(data)
+          })
+          hls.value = tmpHls
+        } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+          videoElement.src = url
+        }
+      }
+    })
     // 添加一个变量来跟踪是否是第一次点击
     let isFirstClick = true
 
     player.value.on('click', (event) => {
-      if (player.value.touch && event.target.className == 'plyr__poster') {
+      if (player.value.touch && event.target.className == 'plyr__poster' && !isPlayingAd.value) {
         if (isFirstClick) {
           // 第一次点击只显示控制条
           player.value.toggleControls(true)
@@ -403,6 +421,33 @@ const initializePlayer = async (domain: string, uri: string) => {
 
     player.value?.once('play', async () => {
       await addPlayCountApi(videoDetail.value?.id)
+
+      if (isPlayingAd.value) {
+        // @ts-ignore 隐藏掉所有控件
+        document.getElementsByClassName('plyr__controls')[0].style.visibility = 'hidden'
+
+        // 在广告的右上角插入一个广告倒计时, 并实现倒数
+        let countdown = 14
+
+        const wrapper = document.querySelector('.plyr__video-wrapper')
+        adCountDownElement.value = document.createElement('div')
+        adCountDownElement.value.className = 'countdown'
+        adCountDownElement.value.innerHTML = `广告倒计时 ${countdown}`
+        wrapper.appendChild(adCountDownElement.value)
+
+        adCounter.value = setInterval(() => {
+          adCountDownElement.value.innerHTML = `广告倒计时 ${countdown}`
+          countdown--
+          if (countdown < 0) {
+            clearInterval(adCounter.value)
+            const elements = document.getElementsByClassName('countdown')
+            if (elements.length > 0) {
+              elements[0].parentNode.removeChild(elements[0]) // 移除第一个匹配的元素
+              adCountDownElement.value = null // 清空引用
+            }
+          }
+        }, 1000)
+      }
     })
 
     player.value.on('play', (event) => {
@@ -417,6 +462,15 @@ const initializePlayer = async (domain: string, uri: string) => {
 
     player.value.on('waiting', () => {
       if (ad.value) showAdPopup.value = true // 加载中时显示广告
+    })
+
+    // 监听键盘事件以禁用快进快退
+    document.addEventListener('keydown', (event) => {
+      if (isPlayingAd.value) {
+        if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+          event.preventDefault()
+        }
+      }
     })
 
     player.value.on('playing', () => {
@@ -472,20 +526,29 @@ const handleHlsError = (data) => {
 }
 
 const rewind = (time: number) => {
-  if (player.value) {
+  if (player.value && !isPlayingAd.value) {
     const currentTime = player.value.currentTime
     player.value.currentTime = Math.max(currentTime - time, 0)
   }
 }
 
 const forward = (time: number) => {
-  if (player.value) {
+  if (player.value && !isPlayingAd.value) {
     const currentTime = player.value.currentTime
     player.value.currentTime = Math.min(currentTime + time, player.value.duration)
   }
 }
 
 const resetPlayer = () => {
+  if (adCounter.value) {
+    clearInterval(adCounter.value)
+  }
+  // 使用 getElementsByClassName 获取并移除元素
+  const elements = document.getElementsByClassName('countdown')
+  if (elements.length > 0) {
+    elements[0].parentNode.removeChild(elements[0]) // 移除第一个匹配的元素
+    adCountDownElement.value = null // 清空引用
+  }
   if (player.value) {
     player.value.stop()
     player.value.destroy()
