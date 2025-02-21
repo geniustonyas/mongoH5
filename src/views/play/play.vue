@@ -379,27 +379,52 @@ const initializePlayer = async (domain: string, uri: string) => {
       tmpHls.on(window.Hls.Events.ERROR, (event, data) => {
         handleHlsError(data)
       })
-      hls.value = tmpHls
-    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-      videoElement.src = url
-    }
 
-    // 如果设置了广告视频，则监听广告视频结束事件
-    if (adVideoUrl != '') {
       player.value.on('ended', () => {
         if (isPlayingAd.value) {
           isPlayingAd.value = false
-          hls.value.loadSource(url)
-          hls.value.attachMedia(videoElement)
+          tmpHls.detachMedia()
+          tmpHls.loadSource(url)
+          tmpHls.attachMedia(videoElement)
+
+          tmpHls.on(window.Hls.Events.MANIFEST_PARSED, () => {
+            player.value.currentTime = 0
+            player.value.play()
+          })
           // @ts-ignore
           document.getElementsByClassName('plyr__controls')[0].style.visibility = 'visible'
         }
       })
+
+      hls.value = tmpHls
+    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+      videoElement.src = adVideoUrl
+      videoElement.addEventListener('ended', () => {
+        if (isPlayingAd.value) {
+          isPlayingAd.value = false
+          videoElement.src = url
+          videoElement.currentTime = 0
+
+          // 监听 canplay 事件
+          videoElement.addEventListener(
+            'canplay',
+            () => {
+              videoElement.play()
+            },
+            { once: true }
+          )
+        }
+      })
     }
+
     // 添加一个变量来跟踪是否是第一次点击
     let isFirstClick = true
 
     player.value.on('click', (event) => {
+      if (isPlayingAd.value) {
+        window.open(beforePlayVideoAdvertisement.value[0].targetUrl)
+      }
+
       if (player.value.touch && event.target.className == 'plyr__poster' && !isPlayingAd.value) {
         if (isFirstClick) {
           // 第一次点击只显示控制条
@@ -470,11 +495,6 @@ const initializePlayer = async (domain: string, uri: string) => {
     player.value.on('play', (event) => {
       event.stopPropagation()
       showAdPopup.value = false // 播放时隐藏广告
-    })
-
-    player.value.on('pause', (event) => {
-      event.stopPropagation()
-      if (ad.value) showAdPopup.value = true // 暂停时显示广告
     })
 
     player.value.on('waiting', () => {
@@ -706,9 +726,9 @@ onMounted(() => {
   })
 
   // 显示广告时暂停视频
-  if (showAdPopup.value) {
-    player.value?.pause()
-  }
+  // if (showAdPopup.value) {
+  //   player.value?.pause()
+  // }
 
   if (appStore.advertisement.length == 0) {
     appStore.fetAdvertisement()

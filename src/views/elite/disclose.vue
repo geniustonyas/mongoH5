@@ -28,10 +28,10 @@
         <div class="vm-a" />
         <div class="vm-b">
           <swiper v-if="bbsList.length > 0" :direction="'vertical'" :modules="modules" :virtual="{ slides: bbsList.length, enabled: true, addSlidesBefore: 2, addSlidesAfter: 2 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
-            <swiper-slide v-for="(bbs, index) in bbsList" :key="bbs.id" :virtual-index="index">
+            <swiper-slide v-for="(bbs, index) in bbsList" :key="bbs.id + '-' + index" :virtual-index="bbs.id + '+' + index">
               <div class="v-a" :class="{ shrink: showComment }">
                 <swiper :id="'swiper-' + index" :modules="[Autoplay, Pagination]" @swiper="(swiper) => onSwiper(index, swiper)" :slides-per-view="1" :pagination="getPaginationStyle(bbs.imgs) as any" :centered-slides="true" :autoplay="{} as any" :loop="false" :nested="true" style="width: 100%; height: 100%">
-                  <swiper-slide v-for="img in bbs.imgs.split(',')" :key="img">
+                  <swiper-slide v-for="img in bbs.imgs.split(',')" :key="bbs.id + '|' + img">
                     <img v-lazy-decrypt="img" :alt="img" loading-img="default2.gif" error-img="default2.gif" />
                   </swiper-slide>
                 </swiper>
@@ -52,18 +52,14 @@
                 <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
               </div>
               <div class="v-c" :class="{ hidden: showComment }">
-                <!--<div class="c-g">
-                  <img :src="getAssetsFile('logo-2.png')" />芒果TV官方
-                  <span>{{ appStore.spareData.OfficialDomain }}</span>
-                </div>-->
                 <h3>
                   @芒果TV官方-<span>{{ appStore.spareData.OfficialDomain }}</span>
                 </h3>
                 <p>
                   <b v-html="decodeHtmlEntities(bbs.title || '')" />
                   <template v-if="bbsDetail && bbsDetail.subChannel">
-                    <span :key="bbsDetail.channel.id">#{{ bbsDetail.channel.title }}</span>
-                    <span :key="bbsDetail.subChannel.id">#{{ bbsDetail.subChannel.title }}</span>
+                    <span>#{{ bbsDetail.channel.title }}</span>
+                    <span>#{{ bbsDetail.subChannel.title }}</span>
                   </template>
                 </p>
               </div>
@@ -134,6 +130,7 @@ const fetchBbsList = async () => {
     })
     if (data && data.items) {
       bbsList.value.push(...data.items)
+      console.log(bbsList.value)
     }
   } catch (error) {
     console.error('获取BBS列表失败:', error)
@@ -151,8 +148,6 @@ const fetchBbsDetail = async (bbsId: number) => {
     if (bbsList.value[currentSlideIndex.value].imgs.split(',').length > 20) {
       // 获取到当前swiper 下面的pagination 元素
       const currentSwiper = swipers.value.get(currentSlideIndex.value)
-      console.log(currentSlideIndex.value)
-      console.log(swipers.value)
       if (currentSwiper) {
         currentSwiper.pagination.el.classList.add('swiper-pagination-bullets')
         currentSwiper.pagination.el.style.top = '60px'

@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
-import store from '@/store'
+import store from './store'
+import { useAppStore } from './store/app'
 
 import App from './App.vue'
 import router from './router'
@@ -23,6 +24,55 @@ app.use(VueLazyload, {
 })
 app.use(router)
 app.directive('lazy-decrypt', lazyDecrypt)
+
+// 显示开屏广告
+const splashAd = document.getElementById('splash-ad')
+const splashAdImg = document.getElementById('splash-ad-img') as HTMLImageElement
+const closeSplashAdButton = document.getElementById('close-splash-ad')
+const countdownElement = document.getElementById('countdown')
+
+// 关闭广告
+const closeSplashAd = () => {
+  if (splashAd) {
+    splashAd.style.display = 'none'
+  }
+}
+
+closeSplashAdButton?.addEventListener('click', closeSplashAd)
+
+// 获取广告数据并显示
+const fetchAndShowAd = async () => {
+  try {
+    const appStore = useAppStore()
+    await appStore.fetConfig()
+
+    splashAdImg.src = appStore.sAds
+    splashAdImg.onclick = () => {
+      window.open(appStore.sAdsRoute)
+    }
+
+    // 显示广告
+    splashAd.style.display = 'flex'
+
+    // 设置倒计时
+    let countdown = 3
+    const countdownInterval = setInterval(() => {
+      countdown -= 1
+      if (countdownElement) {
+        countdownElement.textContent = countdown.toString()
+      }
+      if (countdown <= 0) {
+        clearInterval(countdownInterval)
+        closeSplashAd()
+      }
+    }, 1000)
+  } catch (error) {
+    console.error('Failed to fetch or decrypt ad:', error)
+    closeSplashAd()
+  }
+}
+
+fetchAndShowAd()
 
 router.isReady().then(() => {
   app.mount('#app')

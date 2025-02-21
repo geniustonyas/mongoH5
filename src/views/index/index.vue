@@ -657,10 +657,20 @@
           </PullRefresh>
         </swiper-slide>
       </swiper>
-      <!-- 首页弹窗 -->
+      <!-- 首页弹窗 安卓弹窗 -->
       <Popup v-model:show="showPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
         <a @click="openAd(currentPopAd.targetUrl, '首页弹窗', 'click', currentPopAd.id, 1, '', currentPopAd)"><img :src="currentPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closePopup" style="display: block; text-align: center; margin: 20px auto" />
+      </Popup>
+      <!-- 首页弹窗 苹果弹窗 -->
+      <Popup v-model:show="showIosPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
+        <a @click="openAd(currentIosPopAd.targetUrl, '首页弹窗', 'click', currentIosPopAd.id, 1, '', currentIosPopAd)"><img :src="currentIosPopAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
+        <Icon name="close" size="30" @click="closeIosPopup" style="display: block; text-align: center; margin: 20px auto" />
+      </Popup>
+      <!-- 首页广告 -->
+      <Popup v-model:show="showAdPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
+        <a @click="openAd(currentAd.targetUrl, '首页广告', 'click', currentAd.id, 1, '', currentAd)"><img :src="currentAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
+        <Icon name="close" size="30" @click="closeAdPopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
     </main>
     <Footer active-menu="index" />
@@ -755,7 +765,11 @@ const bannerTextAd = computed(() => {
 })
 
 const showPopup = ref(false)
+const showIosPopup = ref(false)
+const showAdPopup = ref(false)
 const currentPopAdIndex = ref(0)
+const currentIosPopAdIndex = ref(0)
+const currentAdIndex = ref(0)
 const bannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(2).items
   return tmp || []
@@ -777,7 +791,15 @@ const decryptAdvertisements = async () => {
 }
 
 const popAdvertisement = computed(() => {
-  return decryptedPopAds.value
+  return decryptedPopAds.value.filter((ad) => ad.introduction == 2)
+})
+
+const iosPopAdvertisement = computed(() => {
+  return decryptedPopAds.value.filter((ad) => ad.introduction == 1)
+})
+
+const adPopupAdvertisement = computed(() => {
+  return decryptedPopAds.value.filter((ad) => ad.introduction == 3)
 })
 
 const listBannerAdvertisement = computed(() => {
@@ -804,6 +826,16 @@ const currentPopAd = computed(() => {
   return item || {}
 })
 
+const currentIosPopAd = computed(() => {
+  var item = iosPopAdvertisement.value[currentIosPopAdIndex.value]
+  return item || {}
+})
+
+const currentAd = computed(() => {
+  var item = adPopupAdvertisement.value[currentAdIndex.value]
+  return item || {}
+})
+
 // 监听邀请码
 watch(
   () => route.query.inviteCode,
@@ -818,12 +850,37 @@ watch(
 watch(
   popAdvertisement,
   (newVal) => {
-    // nu = a2 为苹果
-    // nu 为 a2并且 newVal[0].introduction 为 2
-    const nu = localStorage.getItem('nu')
     if (newVal.length > 0) {
-      if (!(nu && nu == 'a2' && newVal[0].introduction == 2)) {
-        showPopup.value = true
+      const nu = localStorage.getItem('nu')
+      const isIOS = /iPad|iPhone|iPod|IOS|Ios/.test(navigator.userAgent)
+      if (!isIOS) {
+        if ((nu && nu != 'a1') || !nu) {
+          showPopup.value = true
+        } else {
+          if (adPopupAdvertisement.value.length > 0) {
+            showAdPopup.value = true
+          }
+        }
+      }
+    }
+  },
+  { immediate: true }
+)
+
+watch(
+  iosPopAdvertisement,
+  (newVal) => {
+    if (newVal.length > 0) {
+      const nu = localStorage.getItem('nu')
+      const isIOS = /iPad|iPhone|iPod|IOS|Ios/.test(navigator.userAgent)
+      if (isIOS) {
+        if ((nu && nu != 'a3') || !nu) {
+          showIosPopup.value = true
+        } else {
+          if (adPopupAdvertisement.value.length > 0) {
+            showAdPopup.value = true
+          }
+        }
       }
     }
   },
@@ -836,8 +893,28 @@ const closePopup = () => {
     showPopup.value = true
   } else {
     showPopup.value = false
+    if (adPopupAdvertisement.value.length > 0) {
+      showAdPopup.value = true
+    }
     appStore.hasShownAnnouncement = false
   }
+}
+
+const closeIosPopup = () => {
+  if (currentIosPopAdIndex.value < iosPopAdvertisement.value.length - 1) {
+    currentIosPopAdIndex.value++
+    showIosPopup.value = true
+  } else {
+    showIosPopup.value = false
+    if (adPopupAdvertisement.value.length > 0) {
+      showAdPopup.value = true
+    }
+    appStore.hasShownAnnouncement = false
+  }
+}
+
+const closeAdPopup = () => {
+  showAdPopup.value = false
 }
 
 const loadingCategoryVideos = ref(false)

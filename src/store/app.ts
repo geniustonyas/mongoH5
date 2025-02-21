@@ -6,8 +6,11 @@ import { getThemeApi } from '@/api/theme'
 import { loadStatistics, initMatomo } from '@/utils'
 import store from '@/store'
 import { isNumeric } from '@/utils/validate'
+import decryptionService from '@/utils/decryptionService'
 
 import { decryptedCategorys, fanhaoPianmingYanyuan } from '@/utils/cryptedData'
+
+const decrypted = new decryptionService()
 
 export const useAppStore = defineStore('app', {
   state: () => {
@@ -39,6 +42,8 @@ export const useAppStore = defineStore('app', {
       discloseRandomMin: 1, // 揭秘随机最小值
       discloseRandomMax: 10, // 揭秘随机最大值
       spareData: {} as SpareData, // 丢失数据
+      sAds: '', // 启动广告
+      sAdsRoute: '', // 启动广告路由
 
       theme: [], // 标签
       categorys: decryptedCategorys, // 分类
@@ -93,6 +98,12 @@ export const useAppStore = defineStore('app', {
         this.shortVideoListRandomMax = parseInt(data.find((item: any) => item.pKey === 'ShortVideoListRandomPage')?.value2 || '10')
         this.discloseRandomMin = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value1 || '1')
         this.discloseRandomMax = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value2 || '10')
+        const adTmp = data.find((item: any) => item.pKey === 'SAds')
+        if (adTmp.value1) {
+          const tmp = await decrypted.fetchAndDecrypt(adTmp.value1)
+          this.sAds = URL.createObjectURL(tmp)
+          this.sAdsRoute = adTmp.value2
+        }
         const tmp = data.find((item: any) => item.pKey === 'SpareData')?.value1.split(',') || []
         this.spareData = JSON.parse(tmp)
       } catch (error) {

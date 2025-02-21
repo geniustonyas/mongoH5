@@ -21,6 +21,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 .btn.btn1 { .bg-gradient(45deg, #f96518, #ff2a14); color: #fff; }
 .btn.btn1:hover, .btn.btn1:active { .opacity(80) }
 
+.main-container { width: 100%; height: 100%; }
 .page { width: 100%; height: 100%; max-width: 42.8rem; margin: 0 auto;
     &.video-page { height: 100%; overflow: hidden; .flex(); .flex-v(); }
 }
@@ -1704,6 +1705,29 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     img { .size(7.8rem, 7.8rem); }
     .fs-t { width: 2.2rem; .h-lh(2.2rem); text-align: center; .radius(2.2rem); .bg(var(--color-white)); color: #f00; position: absolute; top: 0rem; right: 0rem;
         i { font-size: 1.4rem; }
+    }
+}
+
+.splash-ad {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    .flex(); .flex-align(); .flex-pack();
+    img {
+        width: 100%; height: 100%;
+    }
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        .radius(1rem);
+        padding: 0 1rem;
+        .bgc(var(--color-white), var(--color-black));
     }
 }
 
