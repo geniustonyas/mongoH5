@@ -113,6 +113,12 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/tea',
+    name: 'tea',
+    component: () => import('@/views/tea/tea.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '品茶' }
+  },
+  {
     path: '/shortVideo',
     name: 'shortVideo',
     component: () => import('@/views/shortVideo/shortVideo.vue'),

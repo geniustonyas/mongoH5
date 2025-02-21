@@ -8,7 +8,7 @@ import VueLazyload from 'vue-lazyload'
 import lazyDecrypt from '@/utils/lazyDecrypt'
 
 import 'vant/lib/index.css'
-import './assets/less/black.less'
+import './assets/less-new/black.less'
 
 // 懒加载图片
 const errorImage = new URL(`./assets/imgs/default.gif`, import.meta.url).href

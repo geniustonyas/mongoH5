@@ -1,0 +1,168 @@
+﻿
+.page { max-width: 100%; }
+.footer { left: 16rem; right: 1.5rem; width: auto; padding-left: 1.5rem; max-width: 100%;
+    .p-foot { display: none; }
+}
+.navbar { display: block; }
+.header, .d-header { left: 16rem; max-width: -moz-calc(100vw - 16rem); max-width: -webkit-calc(100vw - 16rem); max-width: calc(100vw - 16rem); }
+.header {
+    .head-search {
+        .hs-a, .hs-c { display: none; }
+    }
+    .head-menu .hm-a a { font-size: 1.4rem;
+        &.active { font-size: 1.4rem;
+            &:before { content: ""; display: inline-block; position: absolute; bottom: 0.5rem; left: 29.5%; width: 40%; height: 0.2rem; .bg(#f96518); .radius(.4rem); }
+        }
+    }
+}
+.h-header{margin-left:16rem; max-width:calc(100% - 16rem);}
+.main, .m-d-b, .vp-main, .b-b-b, .bbs-plate-box, .t-l-b, .h-l-b, .s-h-b, .p-s-b, .s-header, .a-d-b, .h-p-b { margin-left: 16rem; }
+.main {
+
+ .web-col { .flex();   .flex-v();
+        #index-banner {.flex-x(0 0 100%);  width:100%;   background:#f00; padding-right:2rem;
+        }
+        .wc-r{ .flex-x(0 0 100%);  width:100%; padding-right:2rem;
+
+               .van-notice-bar{margin:0 1rem 1rem 1rem;}
+               .i-m-c {  grid-gap: 1rem; }
+               .i-m-b {
+                    .b-row { grid-gap: .5rem; padding: .5rem;
+                a { padding: .5rem 0;
+                    i { font-size: 2rem; }
+                    span {.h-lh(3rem); }
+                    small { font-size: 1rem; }
+                }
+            }
+               }
+        }
+    }
+
+
+
+
+}
+.au-tabs {
+    span { .flex-x(0 0 auto); padding: .8rem 2.83rem;
+        &:hover { color: #fff; }
+    }
+}
+.m-d-b {
+    .md-a { position: relative; height: auto;
+        video { max-height: 80vh; height: auto; }
+    }
+}
+.m-header.h-video { display: none; }
+.au-pagination-box {.flex-pack();
+    .pb-x {.flex-x(0 0 auto);
+        a { padding: 0 4rem; }
+        input { width: 12rem; }
+    }
+}
+.vp-main {
+    .vpm-bd { position: relative; background: #333; .radius(1rem); .h-calc(100vh - 3rem); .w-calc((100vh - 3rem)*0.58); margin: 1.5rem auto; .border-a(.2rem,#656565); .bg(#1e1e1e); .radius(1.5rem); padding: 4rem 2rem;
+        &:before { content: ""; position: absolute; left: 50%; top: 1.6rem; width: .5rem; height: .5rem; .radius(.5rem); .bg(#3c3d3d); }
+        &:after { content: ""; position: absolute; left: 50%; bottom: 1rem; width: 2.1rem; height: 2.1rem; .radius(2.1rem); .border-a(.2rem,#2c2b2c); }
+        .vm-b {
+            .v-a { .bg(var(--color-black)); text-align: center; overflow: hidden; .flex(); .flex-align(); .flex-pack();
+                video { height: auto; width: 100%; margin: 0 auto; }
+            }
+            .v-c {
+                p, .c-g { font-size: 1.2rem; }
+                h3 { font-size: 1.4rem; }
+            }
+        }
+        .vm-h { display: block;
+            .h-m a { font-size: 1.4rem; padding: 0 1rem; }
+        }
+    }
+}
+.bbs-list { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 1rem;
+    li { .bg(rgba(255,255,255,.05)); .radius(1rem); padding: 1rem; cursor: pointer;
+        &:hover, &:active { .bg(rgba(255,255,255,.1)); }
+        .i-a .a-l .l-n h3 { font-size: 1.3rem; }
+        .i-b { font-size: 1.2rem; }
+        .i-c {
+            &.pic3 { grid-gap: 0.5rem;
+                .item:last-child { margin-top: 0; }
+            }
+            &.pic1, &.pic2, &.pic3, &.pic4 { grid-template-columns: repeat(3, 1fr); height: auto;
+                .item { height: -moz-calc(((100vw - 16rem)/8) * 0.7); height: -webkit-calc(((100vw - 16rem)/8) * 0.7); height: calc(((100vw - 16rem)/8) * 0.7);
+                    &:first-child { margin-right: 0; }
+                }
+            }
+            &.pic1.weimi, &.pic2.weimi, &.pic3.weimi {
+                .item { height: -moz-calc(((100vw - 16rem)/8) * 0.7); height: -webkit-calc(((100vw - 16rem)/8) * 0.7); height: calc(((100vw - 16rem)/8) * 0.7); }
+            }
+        }
+    }
+}
+.au-col-module { grid-template-columns: repeat(10, 1fr); }
+.au-col-module-5 {
+    .m-l { .flex-x(); margin-left: 1.5rem;
+        .item img { max-height: 6rem; }
+    }
+    .m-r { grid-template-columns: repeat(4, 1fr); }
+}
+.au-col-module-x { grid-template-columns: repeat(8, 1fr); grid-gap: 1rem; }
+.au-col-module, .au-col-module-5, .au-col-module-x {
+    li, .item { cursor: pointer; .radius(.5rem); overflow: hidden;
+        &:hover {
+            img { transform: scale(1.1); }
+        }
+        p {
+            span { font-size: 1.2rem; }
+        }
+        img { max-height: initial; transition: transform 0.3s ease; }
+    }
+}
+.bbs-plate-box.bpb-fixed .au-tab-group, .m-header { left: 16rem; }
+.m-header { max-width: -moz-calc(100vw - 16rem); max-width: -webkit-calc(100vw - 16rem); max-width: calc(100vw - 16rem); }
+.te-cols .c-l { grid-template-columns: repeat(6,1fr) }
+.h-l-b {
+    .lb-b { width: 40rem; }
+    ul { column-count: 3; column-gap: 1rem;
+        li { break-inside: avoid;
+            .l-b {
+                .b-a { font-size: 1rem; }
+                b { font-size: 1.2rem; }
+            }
+        }
+        &.col-one { column-count: 3; column-gap: 1rem; }
+    }
+}
+.te-cols .c-l a span { font-size: 1.3rem; }
+.ac-cols .a-l { grid-template-columns: repeat(6,1fr) }
+.bbs-weimi { grid-template-columns: repeat(4, 1fr);
+    li { cursor: pointer;
+        .i-x {
+            .i-c { font-size: 1.2rem; }
+            .i-d { font-size: 1rem; }
+        }
+    }
+}
+.au-tab-group .g-item .i-r {
+    span {.flex-x(0 0 auto); }
+}
+.mv-t-l {
+    .m-b { grid-template-columns: repeat(4, 1fr); grid-gap: 1rem;
+        .item {
+            .i-a { height: -moz-calc(((100vw - 17rem)/5) * 0.7); height: -webkit-calc(((100vw - 17rem)/5) * 0.7); height: calc(((100vw - 17rem)/5) * 0.7); }
+            .i-b b { font-size: 1.2rem; }
+        }
+    }
+}
+.i-m-b .b-row a { .bg(rgba(255, 255, 255, 0.1)); .radius(1rem); padding: 1rem 0; cursor: pointer; font-size: 1.1rem;
+    &:hover, &:active { .bg(rgba(255, 255, 255, 0.2)); }
+    span { .bg(transparent); }
+    small { margin-top: 0; }
+}
+.p-s-b .ps-ssfx .s-b { grid-template-columns: repeat(8, 1fr); }
+.fixed-foot { left: 16rem; }
+
+.au-pop { .flex(); .flex-align(); .flex-pack(); }
+.p-login { min-width: 40rem; position: relative; top: auto; left: auto; transform: none; bottom: auto; }
+
+.loading-container {
+    left: -moz-calc(50vw + 8.4rem); left: -webkit-calc(50vw + 8.4rem); left: calc(50vw + 8.4rem);
+}

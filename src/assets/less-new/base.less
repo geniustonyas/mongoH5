@@ -1,0 +1,153 @@
+@font-face { font-family: Lato; font-weight: 400; src: url(../fonts/lato/Lato-Regular.woff2?v=6748e0e1) format("woff2"),url(../fonts/lato/Lato-Regular.woff?v=f137ee48) format("woff") }
+@font-face { font-family: Lato; font-style: italic; src: url(../fonts/lato/Lato-Italic.woff2?v=f8a9a7a9) format("woff2"),url(../fonts/lato/Lato-Italic.woff?v=a8fc7661) format("woff") }
+@font-face { font-family: Lato; font-weight: 700; src: url(../fonts/lato/Lato-Bold.woff2?v=649e18eb) format("woff2"),url(../fonts/lato/Lato-Bold.woff?v=fd373951) format("woff") }
+@font-face { font-family: DIN; src: url(../fonts/DIN/DIN-Alternate-Bold.ttf); unicode-range: U+30-39, U+0041-007a; font-display: fallback }
+
+.common() { .border-box();
+    ol, ul { list-style: none }
+    ins, a { text-decoration: none; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none; }
+    table { border-collapse: collapse; border-spacing: 0; }
+    img { border: none; vertical-align: middle; }
+}
+
+// 盒子宽高
+.size(@w, @h) { width: @w; height: @h; }
+// 最小尺寸, 兼容IE6
+.min-width(@min-w) { min-width: @min-w; _width: @min-w; }
+.min-height(@min-h) { min-height: @min-h; _height: @min-h; }
+.h-lh(@h) { height: @h; line-height: @h; }
+.h-calc(@h) { height: -moz-calc(@h); height: -webkit-calc(@h); height: calc(@h); }
+.w-calc(@w) { width: -moz-calc(@w); width: -webkit-calc(@w); width: calc(@w); }
+.btn-hov-act(@def,@hov,@act) { background-color: @def;
+    &:hover { background-color: @hov; }
+    &:active { background-color: @act; }
+}
+.btn-hov-act(@def-bg,@def-cor,@hov-bg,@hov-cor,@act-bg,@act-cor) { background-color: @def-bg; color: @def-cor;
+    &:hover { background-color: @hov-bg; color: @hov-cor; }
+    &:active { background-color: @act-bg; color: @act-cor; }
+}
+.border-t(@w,@c) { border-top: @w solid @c; }
+.border-b(@w,@c) { border-bottom: @w solid @c; }
+.border-l(@w,@c) { border-left: @w solid @c; }
+.border-r(@w,@c) { border-right: @w solid @c; }
+.border-a(@w,@c) { border: @w solid @c; }
+.bg(@bg) { background-color: @bg; }
+.bgc(@bg,@cor) { background-color: @bg; color: @cor; }
+//背景渐变
+.bg-gradient(@angle: top,@start: #ffa600,@stop: #fe9200) { filter: ~'progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr="@{start}", endColorstr="@{stop}")'; background: -webkit-linear-gradient(@angle,@start,@stop); background: -moz-linear-gradient(@angle,@start,@stop); background: -o-linear-gradient(@angle,@start,@stop); background: linear-gradient(@angle,@start,@stop); }
+
+
+//滚动条
+.scroll-touch(@x: hidden,@y: auto) { overflow-x: @x; overflow-y: @y; -webkit-overflow-scrolling: touch; }
+.x-scrollbar(@x: auto,@y: hidden) { .scroll-touch(@x,@y);
+    &::-webkit-scrollbar { background-color: transparent; display: none; }
+}
+// 统一盒模型
+.border-box() {
+    *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+    * { margin: 0; padding: 0; outline: none; }
+}
+// 字体颜色 + 自身 Hover
+.color(@color, @hovercolor) { color: @color;
+    &:hover { color: @hovercolor; }
+}
+// 英文数字自动换行
+.wordwrap() { word-wrap: break-word; word-break: break-all; }
+// 禁止换行, 文本溢出省略号显示 (一行)
+.ellipsis() { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+// 文本溢出省略号显示 (多行)
+// 只支持 webkit 浏览器, 解决方案：高度 = 行高*行数
+// height: 90px; line-height: 30px; -webkit-line-clamp: 3;
+.ellipsis-mult(@n: 3) { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: @n; word-break: break-all; -o-text-overflow: ellipsis; -ms-text-overflow: ellipsis; text-overflow: ellipsis; overflow: hidden; }
+// 滤镜: 将彩色照片显示为黑白照片
+.grayscale(@x: 100%) { filter: grayscale(@x); -webkit-filter: grayscale(@x); -moz-filter: grayscale(@x); -ms-filter: grayscale(@x); -o-filter: grayscale(@x); }
+// 透明度, 兼容 IE8
+.opacity(@opacity: 20) { opacity: @opacity / 100; filter: alpha(opacity=@opacity); }
+// 模糊
+.blur(@blur: 10px) { filter: blur(@blur); -webkit-filter: blur(@blur); -moz-filter: blur(@blur); -o-filter: blur(@blur); -ms-filter: blur(@blur); filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='@{blur}'); *zoom: 1; }
+//禁止文本选中
+.noselect() { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+//动画
+.transition (@prop: all, @time: 1s, @ease: linear) { -webkit-transition: @prop @time @ease; -moz-transition: @prop @time @ease; -o-transition: @prop @time @ease; -ms-transition: @prop @time @ease; transition: @prop @time @ease; }
+//盒子阴影
+//@right_left 右边阴影为正数 左边负数
+//@bottom_top 下边阴影为正数 上边负数
+//@box  阴影大小
+//@box_color 阴影颜色
+.boxshadow(@right_left: 5px,@bottom_top: 5px,@box: 5px,@box_color: #000) { -moz-box-shadow: @arguments; -webkit-box-shadow: @arguments; box-shadow: @arguments; }
+.boxshadow2(@right_left: 5px,@bottom_top: 5px,@box: 5px,@box_color: #000,@box_inset: inset) { -moz-box-shadow: @arguments; -webkit-box-shadow: @arguments; box-shadow: @arguments; }
+
+//文字阴影,可以指定多组阴影
+//@right_left1 右边阴影为正数 左边负数
+//@bottom_top1 下边阴影为正数 上边负数
+//@text  阴影大小
+//@text_color 阴影颜色
+.textshadow(@right_left1: 1px,@bottom_top1: 1px,@text: 1px,@tetx_color: #000) { -webkit-text-shadow: @arguments; -moz-text-shadow: @arguments; -o-text-shadow: @arguments; text-shadow: @arguments; }
+//Animation 动画
+//@animation-name规定需要绑定到选择器的 keyframe 名称
+//@animation-duration规定完成动画所花费的时间，以秒或毫秒计,默认是 0。
+//@animation-timing-function规定动画的速度曲线。默认是 "ease"。
+//@animation-delay规定在动画开始之前的延迟。默认是 0。
+//@animation-iteration-count规定动画应该播放的次数。默认是 1。
+//@animation-direction规定是否应该轮流反向播放动画。默认是 "normal"。
+//.animation(mykeyframes,5s,linear,2s,infinite,normal);
+.animation(@animation-name,@animation-duration,@animation-timing-function,@animation-delay,@animation-iteration-count,@animation-direction) { -moz-animation: @arguments; -webkit-animation: @arguments; -o-animation: @arguments; animation: @arguments; }
+.animation(@animation-name,@animation-duration,@animation-timing-function) { -moz-animation: @arguments; -webkit-animation: @arguments; -o-animation: @arguments; animation: @arguments; }
+//旋转角度
+//@ro定义度数
+//IE不支持 滤镜支持0，1，2，3
+.transform(@ro: 180deg) { -webkit-transform: rotate(@ro); -moz-transform: rotate(@ro); -o-transform: rotate(@ro); filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); transform: rotate(@ro); }
+//table布局
+.display-tb() { display: table; border-collapse: separate; table-layout: fixed; }
+.display-tb-cell(@v: middle,@t: center) { display: table-cell; vertical-align: @v; text-align: @t; }
+
+// 浮动, 兼容 IE6
+.fl() { float: left; }
+.fr() { float: right; }
+// 清除浮动
+.clearfix() {
+    &:after { content: ""; display: table; height: 0; visibility: both; clear: both; }
+}
+
+// 禁用元素事件
+// 1. 阻止任何点击动作的执行
+// 2. 使链接显示为默认光标(cursor:default)
+// 3. 阻止触发hover和active状态
+// 4. 阻止JavaScript点击事件的触发
+.pointer-events() { pointer-events: none; }
+// 隔行换色
+.zebra-lists(odd, @color) {
+    &.odd {
+        > li:nth-child(odd) { background-color: @color; }
+    }
+}
+.zebra-lists(even, @color) {
+    &.even {
+        > li:nth-child(even) { background: green; }
+    }
+}
+
+
+//定义圆角 //@radius 圆角大小
+.radius(@radius: 2px) { border-radius: @radius; -webkit-border-radius: @radius; -moz-border-radius: @radius; }
+//flex：定义布局为盒模型
+//flex-v：盒模型垂直布局
+//flex-1：子元素占据剩余的空间
+//flex-align：子元素垂直居中
+//flex-pack：子元素水平居中
+//flex-pack-justify：子元素两端对齐 flex-start | flex-end | center | space-between | space-around;
+//flex-grow :是否允许子元素伸缩
+//flex-wrap:  flex-wrap: nowrap | wrap | wrap-reverse; 换行：不换行（默认） | 换行 | 换行并第一行在下方
+//兼容性：ios 4+、android 2.3+、winphone8+
+
+.flex() { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+.flex-v() { -webkit-box-orient: vertical; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; }
+.flex-x(@x: 1) { -webkit-box-flex: @x; -webkit-flex: @x; -ms-flex: @x; flex: @x; }
+.flex-align(@x: center) { -webkit-box-align: @x; -webkit-align-items: @x; -ms-flex-align: @x; align-items: @x; }
+.flex-pack(@x: center) { -webkit-box-pack: @x; -webkit-justify-content: @x; -ms-flex-pack: @x; justify-content: @x; }
+.flex-pack-justify() { -webkit-box-pack: justify; -ms-flex-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; }
+.flex-space-around() { -webkit-box-pack: justify; -ms-flex-pack: justify; -webkit-justify-content: space-around; justify-content: space-around; }
+.flex-end() { -webkit-box-pack: justify; -ms-flex-pack: justify; -webkit-justify-content: flex-end; justify-content: flex-end; }
+.flex-grow(@x: 1) { -webkit-box-flex: @x; -moz-flex-grow: @x; -webkit-flex-grow: @x; flex-grow: @x; }
+.flex-wrap(@x: nowrap) { -webkit-flex-wrap: @x; -moz-flex-wrap: @x; -ms-flex-wrap: @x; -o-flex-wrap: @x; flex-wrap: @x; }
