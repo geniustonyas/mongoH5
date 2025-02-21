@@ -1,8 +1,8 @@
 @font-face {
   font-family: "mvfont"; /* Project id 4698642 */
-  src: url('iconfont.woff2?t=1734424999287') format('woff2'),
-       url('iconfont.woff?t=1734424999287') format('woff'),
-       url('iconfont.ttf?t=1734424999287') format('truetype');
+  src: url('iconfont.woff2?t=1739030437416') format('woff2'),
+       url('iconfont.woff?t=1739030437416') format('woff'),
+       url('iconfont.ttf?t=1739030437416') format('truetype');
 }
 
 .mvfont {
@@ -11,6 +11,126 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.mv-lianzai:before {
+  content: "\e685";
+}
+
+.mv-yuedubangdan:before {
+  content: "\e687";
+}
+
+.mv-wanjie:before {
+  content: "\e688";
+}
+
+.mv-xihuan0:before {
+  content: "\e683";
+}
+
+.mv-shequ:before {
+  content: "\e686";
+}
+
+.mv-kafei:before {
+  content: "\e738";
+}
+
+.mv-motetu-xuanzhong:before {
+  content: "\e680";
+}
+
+.mv-shoucangjiafolder:before {
+  content: "\e681";
+}
+
+.mv-shoucangjia:before {
+  content: "\e6ed";
+}
+
+.mv-jubao:before {
+  content: "\e67f";
+}
+
+.mv-jiesuo2:before {
+  content: "\e678";
+}
+
+.mv-yijiesuo:before {
+  content: "\e750";
+}
+
+.mv-peifutubiao:before {
+  content: "\e67a";
+}
+
+.mv-renzhengguanli:before {
+  content: "\e67d";
+}
+
+.mv-guanfangrenzheng:before {
+  content: "\e67e";
+}
+
+.mv-guanfang:before {
+  content: "\e677";
+}
+
+.mv-yirenzheng:before {
+  content: "\e675";
+}
+
+.mv-xing5:before {
+  content: "\e674";
+}
+
+.mv-jiesuo:before {
+  content: "\e713";
+}
+
+.mv-dingwei:before {
+  content: "\e66b";
+}
+
+.mv-dingwei1:before {
+  content: "\e8c4";
+}
+
+.mv-dingwei2:before {
+  content: "\e673";
+}
+
+.mv-dingwei0:before {
+  content: "\e733";
+}
+
+.mv-fdsp:before {
+  content: "\e69b";
+}
+
+.mv-fdsp-full:before {
+  content: "\e82a";
+}
+
+.mv-yuehui:before {
+  content: "\e66f";
+}
+
+.mv-yuehui2-full:before {
+  content: "\e671";
+}
+
+.mv-yuehui-full:before {
+  content: "\e6bf";
+}
+
+.mv-huaban:before {
+  content: "\e66c";
+}
+
+.mv-Left:before {
+  content: "\e66a";
 }
 
 .mv-zbza:before {
@@ -249,7 +369,7 @@
   content: "\e67b";
 }
 
-.mv-shequ:before {
+.mv-shequ1:before {
   content: "\e63d";
 }
 
