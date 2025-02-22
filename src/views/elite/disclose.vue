@@ -30,7 +30,7 @@
           <swiper v-if="bbsList.length > 0" :direction="'vertical'" :modules="modules" :virtual="{ slides: bbsList.length, enabled: true, addSlidesBefore: 2, addSlidesAfter: 2 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
             <swiper-slide v-for="(bbs, index) in bbsList" :key="bbs.id + '-' + index" :virtual-index="bbs.id + '+' + index">
               <div v-if="bbs.imgs.split(',').length > 3" class="v-a" :class="{ shrink: showComment }">
-                <swiper :id="'swiper-' + index" :modules="[Autoplay]" @swiper="(swiper) => onSwiper(index, swiper)" @slide-change="(swiper) => swiperImg(swiper, index)" :slides-per-view="1" :centered-slides="true" :autoplay="{} as any" :loop="false" :nested="true" style="width: 100%; height: 100%">
+                <swiper :id="'swiper-' + index" :modules="[Autoplay, Virtual]" :virtual="{ slides: bbs.imgs.split(',').length, enabled: true, addSlidesBefore: 2, addSlidesAfter: 2 } as undefined" @swiper="(swiper) => onSwiper(index, swiper)" @slide-change="(swiper) => swiperImg(swiper, index)" :slides-per-view="1" :centered-slides="true" :autoplay="{} as any" :loop="false" :nested="true" style="width: 100%; height: 100%">
                   <swiper-slide v-for="(img, uindex) in bbs.imgs.split(',')" :key="bbs.id + '|' + uindex">
                     <img v-lazy-decrypt="img" :alt="img" loading-img="default2.gif" error-img="default2.gif" />
                   </swiper-slide>
