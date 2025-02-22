@@ -769,7 +769,7 @@ const showIosPopup = ref(false)
 const showAdPopup = ref(false)
 const currentPopAdIndex = ref(0)
 const currentIosPopAdIndex = ref(0)
-const currentAdIndex = ref(0)
+// const currentAdIndex = ref(0)
 const bannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(2).items
   return tmp || []
@@ -832,9 +832,25 @@ const currentIosPopAd = computed(() => {
 })
 
 const currentAd = computed(() => {
-  var item = adPopupAdvertisement.value[currentAdIndex.value]
-  return item || {}
+  if (adPopupAdvertisement.value.length === 0) {
+    return {}
+  }
+  return getRandomAd(adPopupAdvertisement.value) || {}
 })
+
+// 根据权重随机选择广告
+const getRandomAd = (ads) => {
+  const totalWeight = ads.reduce((sum, ad) => sum + parseInt(ad.downloadCount, 10), 0)
+  const randomNum = Math.random() * totalWeight
+  let cumulativeWeight = 0
+
+  for (const ad of ads) {
+    cumulativeWeight += parseInt(ad.downloadCount, 10)
+    if (randomNum < cumulativeWeight) {
+      return ad
+    }
+  }
+}
 
 // 监听邀请码
 watch(

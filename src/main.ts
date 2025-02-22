@@ -7,6 +7,8 @@ import router from './router'
 import VueLazyload from 'vue-lazyload'
 import lazyDecrypt from '@/utils/lazyDecrypt'
 
+import decryptionService from '@/utils/decryptionService'
+
 import 'vant/lib/index.css'
 import './assets/less/black.less'
 
@@ -44,28 +46,61 @@ closeSplashAdButton?.addEventListener('click', closeSplashAd)
 const fetchAndShowAd = async () => {
   try {
     const appStore = useAppStore()
-    await appStore.fetConfig()
+    // await appStore.fetConfig()
+    await appStore.fetAdvertisement()
+    const splashAds = appStore.getAdvertisementById(1).items
 
-    splashAdImg.src = appStore.sAds
-    splashAdImg.onclick = () => {
-      window.open(appStore.sAdsRoute)
+    // 检查广告列表是否为空
+    if (!splashAds || splashAds.length == 0) {
+      console.log('No ads available to display.')
+      return
     }
 
-    // 显示广告
-    splashAd.style.display = 'flex'
+    // 计算权重总和
+    const totalWeight = splashAds.reduce((sum, ad) => sum + parseInt(ad.downloadCount, 10), 0)
 
-    // 设置倒计时
-    let countdown = 3
-    const countdownInterval = setInterval(() => {
-      countdown -= 1
-      if (countdownElement) {
-        countdownElement.textContent = countdown.toString()
+    // 根据权重随机选择广告
+    const getRandomAd = () => {
+      const randomNum = Math.random() * totalWeight
+      let cumulativeWeight = 0
+
+      for (const ad of splashAds) {
+        cumulativeWeight += parseInt(ad.downloadCount, 10)
+        if (randomNum < cumulativeWeight) {
+          return ad
+        }
       }
-      if (countdown <= 0) {
-        clearInterval(countdownInterval)
-        closeSplashAd()
+    }
+
+    // 选择广告并解密图片
+    const selectedAd = getRandomAd()
+    if (selectedAd) {
+      const decrypted = new decryptionService()
+      appStore.cdnUrl = 'https://video.j89pk.com/'
+      const decryptedImageUrl = await decrypted.fetchAndDecrypt(appStore.cdnUrl + selectedAd.imgUrl)
+
+      // 设置广告图片和点击事件
+      splashAdImg.src = URL.createObjectURL(decryptedImageUrl)
+      splashAdImg.onclick = () => {
+        window.open(selectedAd.targetUrl)
       }
-    }, 1000)
+
+      // 显示广告
+      splashAd.style.display = 'flex'
+
+      // 设置倒计时
+      let countdown = 3
+      const countdownInterval = setInterval(() => {
+        countdown -= 1
+        if (countdownElement) {
+          countdownElement.textContent = countdown.toString()
+        }
+        if (countdown <= 0) {
+          clearInterval(countdownInterval)
+          closeSplashAd()
+        }
+      }, 1000)
+    }
   } catch (error) {
     console.error('Failed to fetch or decrypt ad:', error)
     closeSplashAd()
