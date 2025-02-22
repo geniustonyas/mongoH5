@@ -666,10 +666,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
             }
 
             .swiper-pagination { .flex(); .flex-align(); position: absolute; bottom: .5rem; width: -moz-calc(100% - 2rem); width: -webkit-calc(100% - 2rem); width: calc(100% - 2rem); left: 1rem; right: 1rem;
-                .fraction-pagination { float: right; .bg(rgba(255,255,255,.2)); .radius(.2rem); padding: .2rem .5rem; font-size: 1.2rem; color: var(--color-white); }
                 .swiper-pagination-bullet { flex-grow: 1; height: .3rem; .bg(var(--color-white)); .opacity(85); .radius(.3rem); margin: 0 1px; transition: flex-grow 0.3s ease;
                     &.swiper-pagination-bullet-active { .bg(var(--color-white)); .radius();.opacity(100) }
                 }
+            }
+            .swiper-fraction-pagination {
+                top: 60px; bottom: unset; display: unset; text-align: right;
             }
         }
         .v-b { position: absolute; right: 0; bottom: 6rem; .flex(); .flex-v(); .flex-align(flex-end); z-index: 9; transition: opacity 0.3s ease; opacity: 1;

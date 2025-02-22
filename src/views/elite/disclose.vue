@@ -29,11 +29,17 @@
         <div class="vm-b">
           <swiper v-if="bbsList.length > 0" :direction="'vertical'" :modules="modules" :virtual="{ slides: bbsList.length, enabled: true, addSlidesBefore: 2, addSlidesAfter: 2 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
             <swiper-slide v-for="(bbs, index) in bbsList" :key="bbs.id + '-' + index" :virtual-index="bbs.id + '+' + index">
-              <div class="v-a" :class="{ shrink: showComment }">
-                <swiper :id="'swiper-' + index" :modules="[Autoplay, Pagination]" @swiper="(swiper) => onSwiper(index, swiper)" :slides-per-view="1" :pagination="getPaginationStyle(bbs.imgs) as any" :centered-slides="true" :autoplay="{} as any" :loop="false" :nested="true" style="width: 100%; height: 100%">
-                  <swiper-slide v-for="img in bbs.imgs.split(',')" :key="bbs.id + '|' + img">
+              <div v-if="bbs.imgs.split(',').length > 3" class="v-a" :class="{ shrink: showComment }">
+                <swiper :id="'swiper-' + index" :modules="[Autoplay]" @swiper="(swiper) => onSwiper(index, swiper)" @slide-change="(swiper) => swiperImg(swiper, index)" :slides-per-view="1" :centered-slides="true" :autoplay="{} as any" :loop="false" :nested="true" style="width: 100%; height: 100%">
+                  <swiper-slide v-for="(img, uindex) in bbs.imgs.split(',')" :key="bbs.id + '|' + uindex">
                     <img v-lazy-decrypt="img" :alt="img" loading-img="default2.gif" error-img="default2.gif" />
                   </swiper-slide>
+                  <div v-if="bbs.imgs.split(',').length > 20" class="swiper-pagination swiper-fraction-pagination">
+                    <span>{{ currentSlides[index] ? currentSlides[index] + 1 : 1 }}</span> / <span>{{ bbs.imgs.split(',').length }}</span>
+                  </div>
+                  <div v-else class="swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal">
+                    <span v-for="n in bbs.imgs.split(',').length" :key="n" :class="{ 'swiper-pagination-bullet-active': n - 1 == (currentSlides[index] ? currentSlides[index] : 0) }" class="swiper-pagination-bullet" />
+                  </div>
                 </swiper>
               </div>
               <div class="v-b" :class="{ hidden: showComment }">
@@ -93,7 +99,7 @@ import NavBar from '@/components/layout/NavBar.vue'
 import Comment from '@/components/Comment.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Virtual, Autoplay, Pagination } from 'swiper/modules'
+import { Virtual, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/virtual'
 import 'swiper/css/autoplay'
@@ -111,6 +117,8 @@ const swipers = ref<Map<number, any>>(new Map())
 const currentSlideIndex = ref(0)
 
 const bbsList = ref<Bbs[]>([])
+const currentSlides = ref(bbsList.value.map(() => 0))
+
 const bbsDetail = ref<Bbs | null>(null)
 const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.discloseRandomMax - appStore.discloseRandomMin + 1)) + appStore.discloseRandomMin)
 const pageIndex = ref(initPageIndex.value)
@@ -118,6 +126,10 @@ const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 const showComment = ref(false)
 const currentPostId = ref<string | null>(null)
+
+const swiperImg = (swiper, index) => {
+  currentSlides.value[index] = swiper.activeIndex
+}
 
 const fetchBbsList = async () => {
   try {
@@ -130,7 +142,6 @@ const fetchBbsList = async () => {
     })
     if (data && data.items) {
       bbsList.value.push(...data.items)
-      console.log(bbsList.value)
     }
   } catch (error) {
     console.error('获取BBS列表失败:', error)
@@ -145,16 +156,6 @@ const fetchBbsDetail = async (bbsId: number) => {
     bbsDetail.value = data
     // 修改列表的数据
     bbsList.value[currentSlideIndex.value].imgs = data.imgs
-    if (bbsList.value[currentSlideIndex.value].imgs.split(',').length > 20) {
-      // 获取到当前swiper 下面的pagination 元素
-      const currentSwiper = swipers.value.get(currentSlideIndex.value)
-      if (currentSwiper) {
-        currentSwiper.pagination.el.classList.add('swiper-pagination-bullets')
-        currentSwiper.pagination.el.style.top = '60px'
-        currentSwiper.pagination.el.style.setProperty('display', 'unset', 'important')
-        currentSwiper.pagination.el.style.setProperty('bottom', 'unset', 'important')
-      }
-    }
   } catch (error) {
     console.error('获取BBS详情失败:', error)
   }
@@ -273,24 +274,6 @@ const handleShare = () => {
   document.body.appendChild(button)
   button.click()
   document.body.removeChild(button)
-}
-
-// 根据图片数量返回分页器类型
-const getPaginationStyle = (imgs: string) => {
-  const imgCount = imgs.split(',').length
-  if (imgCount > 20) {
-    return {
-      enabled: true,
-      type: 'fraction',
-      renderFraction: (currentClass: string, totalClass: string) => {
-        return `<div class="fraction-pagination"><span class="${currentClass}"></span> / <span class="${totalClass}"></span></div>`
-      }
-    }
-  }
-  return {
-    enabled: true,
-    type: 'bullets'
-  }
 }
 
 const showCommentComponent = (postId: string | undefined) => {
