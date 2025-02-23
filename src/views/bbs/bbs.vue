@@ -561,7 +561,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed, onActivated, nextTick, onDeactivated, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { PullRefresh, showToast } from 'vant'
 import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
@@ -580,6 +580,7 @@ import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
 
 const router = useRouter()
+const route = useRoute()
 const appStore = useAppStore()
 const userStore = useUserStore()
 
@@ -901,6 +902,17 @@ onActivated(() => {
 
 onMounted(() => {
   window.scrollTo(0, 0)
+
+  if (route.query.menu) {
+    const menu = parseInt(route.query.menu as string)
+    const sort = parseInt(route.query.sort as string)
+    if (menu <= 4) {
+      clickTab(menu)
+    }
+    if (sort <= 6) {
+      changeSortType(sort)
+    }
+  }
 })
 
 onDeactivated(() => {

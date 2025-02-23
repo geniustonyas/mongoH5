@@ -90,7 +90,7 @@
                       <span><i class="mvfont mv-n91" /><em>91</em></span>
                       <small>{{ dashen }}</small>
                     </a>
-                    <a @click="redirectCategory(3, 40)">
+                    <a @click="redirectCategory(3, 1)">
                       <span><i class="mvfont mv-madou1" /></span>
                       <small>{{ madou }}</small>
                     </a>
@@ -1224,6 +1224,20 @@ onMounted(() => {
   offset.value.x = window.innerWidth - bubbleWidth - rightMargin
 
   decryptAdvertisements()
+  if (route.query.menu) {
+    const menu = parseInt(route.query.menu as string)
+    let submenu = ''
+    if (appStore.categorys[menu - 1].s && appStore.categorys[menu - 1].s.length > 0) {
+      const tmp = appStore.categorys[menu - 1].s.find((item) => item.d == route.query.submenu)
+      console.log(appStore.categorys[menu - 1].s)
+      //@ts-ignore
+      submenu = tmp ? parseInt(route.query.submenu as string) : ''
+    }
+    console.log(menu, submenu)
+    if (menu <= appStore.categorys.length) {
+      redirectCategory(menu, submenu)
+    }
+  }
 })
 
 // 添加一个记录每个频道当前页码的对象
