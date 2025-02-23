@@ -55,16 +55,37 @@ export const classifyResolution = (resolution: string): string => {
 export const loadStatistics = (url: string) => {
   // 确保 URL 中的 HTML 实体被正确解析
   url = url.replace(/&amp;/g, '&')
+
+  // 创建 script 元素
   const script = document.createElement('script')
-  script.textContent = `
-    var _czc = _czc || [];
-    (function () {
-      var um = document.createElement("script");
-      um.src = "${url}";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(um, s);
-    })();
-  `
+
+  if (url.includes('cnzz.com')) {
+    // CNZZ 统计脚本
+    script.textContent = `
+      var _czc = _czc || [];
+      (function () {
+        var um = document.createElement("script");
+        um.src = "${url}";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(um, s);
+      })();
+    `
+  } else if (url.includes('baidu.com')) {
+    // 百度统计脚本
+    script.textContent = `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "${url}";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    `
+  } else {
+    console.warn('Unsupported URL for statistics:', url)
+    return
+  }
+
   // 将 script 元素插入到文档中
   document.head.appendChild(script)
 }
