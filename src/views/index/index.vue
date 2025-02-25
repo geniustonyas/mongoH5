@@ -634,7 +634,7 @@
                   </div>
                 </div>
                 <div class="m-b" v-if="categoryVideosMap[category.d]">
-                  <VideoGridItem v-for="(video, index) in categoryVideosMap[category.d]" :key="index" :video="video" @click="clickVideo(video)" />
+                  <VideoGridItem v-for="video in categoryVideosMap[category.d]" :key="video.isAd ? video.id : video.id + 'vd'" :video="video" @click="clickVideo(video)" />
                 </div>
 
                 <template v-if="categoryTotalPages[category.d] > 1 && categoryVideosMap[category.d].length > 0">
@@ -669,7 +669,7 @@
       </Popup>
       <!-- 首页广告 -->
       <Popup v-model:show="showAdPopup" position="center" :style="{ background: 'transparent' }" :close-on-click-overlay="false">
-        <a @click="openAd(currentAd.targetUrl, '首页广告', 'click', currentAd.id, 1, '', currentAd)"><img :src="currentAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
+        <a v-if="currentAd" @click="openAd(currentAd.targetUrl, '首页广告', 'click', currentAd.id, 1, '', currentAd)"><img :src="currentAd.imgUrl" alt="广告图片" style="width: 80%; height: auto; display: block; margin: 0 auto" /></a>
         <Icon name="close" size="30" @click="closeAdPopup" style="display: block; text-align: center; margin: 20px auto" />
       </Popup>
     </main>
@@ -691,7 +691,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useAppStoreHook } from '@/store/app'
 import type { VideoListRequest, Video } from '@/types/video'
 import type { DataWithAd } from '@/types/global.d'
-import { getAssetsFile, openAd, decodeHtmlEntities, chunkArray, shuffleArray, insertAds } from '@/utils'
+import { getAssetsFile, openAd, decodeHtmlEntities, chunkArray, shuffleArray, insertAds, getRandomAd } from '@/utils'
 import { Autoplay, Pagination } from 'swiper/modules'
 import { dashen, madou, indexCategory } from '@/utils/cryptedData'
 import 'swiper/css'
@@ -832,25 +832,8 @@ const currentIosPopAd = computed(() => {
 })
 
 const currentAd = computed(() => {
-  if (adPopupAdvertisement.value.length === 0) {
-    return {}
-  }
-  return getRandomAd(adPopupAdvertisement.value) || {}
+  return getRandomAd(adPopupAdvertisement.value)
 })
-
-// 根据权重随机选择广告
-const getRandomAd = (ads) => {
-  const totalWeight = ads.reduce((sum, ad) => sum + parseInt(ad.downloadCount, 10), 0)
-  const randomNum = Math.random() * totalWeight
-  let cumulativeWeight = 0
-
-  for (const ad of ads) {
-    cumulativeWeight += parseInt(ad.downloadCount, 10)
-    if (randomNum < cumulativeWeight) {
-      return ad
-    }
-  }
-}
 
 // 监听邀请码
 watch(

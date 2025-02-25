@@ -26,7 +26,8 @@ export const useAppStore = defineStore('app', {
       searchInputText: fanhaoPianmingYanyuan, // 搜索框输入内容
       startAdTime: '', // 启动显示广告市
       downloadUrl: '', // 下载地址
-      prePlayAdTime: '', // 播放前广告时间
+      prePlayAdTime: '', // 是否可以跳过广告
+      skipAdTime: '', // 播放广告后几秒可以跳过
       cdnUrl: '', // cdn地址
       customer_service_link: '', // 客服链接
       sharedUrl: '', // 分享链接
@@ -85,6 +86,7 @@ export const useAppStore = defineStore('app', {
         this.cdnUrl = data.find((item: any) => item.pKey === 'CDNURL')?.value1 || ''
         this.downloadUrl = data.find((item: any) => item.pKey === 'DownloadUrl')?.value1 || ''
         this.prePlayAdTime = data.find((item: any) => item.pKey === 'PrePlayAdTime')?.value1 || ''
+        this.skipAdTime = data.find((item: any) => item.pKey === 'PrePlayAdTime')?.value2 || ''
         this.customer_service_link = data.find((item: any) => item.pKey === 'Chat')?.value1 || ''
         this.sharedUrl = data.find((item: any) => item.pKey === 'SharedUrl')?.value1 || ''
         this.playDomain = data.find((item: any) => item.pKey === 'PlayDomain')?.value1 || ''

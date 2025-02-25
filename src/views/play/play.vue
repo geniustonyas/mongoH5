@@ -4,7 +4,7 @@
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
         <div class="video-container">
-          <video id="plyr-player" muted autoplay preload="auto" :data-poster="poster" x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+          <video id="plyr-player" muted preload="auto" :data-poster="poster" x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
         </div>
         <div class="a-f">
           <div class="item">
@@ -61,7 +61,7 @@
           <div class="a-l"><i class="mvfont mv-xietiao" /><span>猜你喜欢</span></div>
         </div>
         <div class="m-b" v-if="recommendedVideos && recommendedVideos.length > 0" @click="handleVideoClick">
-          <VideoGridItem v-for="video in recommendedVideos" :key="video.id" :video="video" />
+          <VideoGridItem v-for="video in recommendedVideos" :key="videoAd.isAd ? videoAd.id : video.id + 'vd'" :video="video" />
         </div>
       </nav>
     </section>
@@ -81,7 +81,7 @@ import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import { getVideoDetailApi, addPlayCountApi, getVideoListApi } from '@/api/video'
 import { userLike, userCollection } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
-import { copy, openAd, insertAds, formatNumber } from '@/utils'
+import { copy, openAd, insertAds, formatNumber, getRandomAd } from '@/utils'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import decryptionService from '@/utils/decryptionService'
 import { useUserStore } from '@/store/user'
@@ -107,6 +107,7 @@ const recommendedVideos = ref<Video[]>([])
 const initialLikeType = ref<number | string>()
 const routeLeaving = ref(false)
 
+const adImgElement = ref(null)
 const adCounter = ref(null)
 const adCountDownElement = ref(null)
 const player = ref<any>(null)
@@ -165,6 +166,7 @@ const beforePlayVideoAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(5).items
   return tmp || []
 })
+const videoAd = ref(null)
 
 const videoListAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(28).items
@@ -187,6 +189,7 @@ const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
     }, disableTime)
     return
   }
+  await getVideoAd()
   await fetchVideoDetail(videoId)
   clickCount.value = 0
 }, 1000)
@@ -253,6 +256,7 @@ const fetchRecommendedVideos = async (channelId: string, currentVideoId: string)
 
     // 插入广告
     recommendedVideos.value = insertAds(filteredVideos, videoListAdvertisement.value, 5, 7, true)
+    console.log(recommendedVideos.value)
   } catch (error) {
     console.error('获取猜你喜欢视频失败:', error)
   }
@@ -270,9 +274,8 @@ const initializePlayer = async (domain: string, uri: string) => {
       return
     }
 
-    let adVideoUrl = ''
-    if (beforePlayVideoAdvertisement.value.length > 0 && beforePlayVideoAdvertisement.value[0].introduction != '') {
-      adVideoUrl = generateAuthUrl(domain, beforePlayVideoAdvertisement.value[0].introduction)
+    // 播放前广告为gif图片
+    if (videoAd.value) {
       isPlayingAd.value = true
     }
     const url = generateAuthUrl(domain, uri)
@@ -313,7 +316,7 @@ const initializePlayer = async (domain: string, uri: string) => {
     // const adTargetUrl = 'https://example.com/ad-target'
 
     player.value = new window.Plyr(videoElement, {
-      autoplay: true,
+      autoplay: !isPlayingAd.value,
       controls: controls.value,
       settings: ['captions', 'quality', 'speed'],
       fullscreen: {
@@ -325,15 +328,110 @@ const initializePlayer = async (domain: string, uri: string) => {
       //   tagUrl: vastUrl // 使用生成的 VAST URL
       // }
     })
-
     player.value.poster = poster.value
 
     player.value.on('ready', () => {
+      const wrapper = document.querySelector('.plyr__video-wrapper')
+      if (wrapper) {
+        // 创建广告图片元素
+        adImgElement.value = document.createElement('img')
+        adImgElement.value.src = videoAd.value.imgUrl
+        adImgElement.value.classList.add('video-ad')
+        wrapper.appendChild(adImgElement.value)
+        // 为广告图片添加点击事件，打开新窗口
+        adImgElement.value.onclick = () => {
+          if (videoAd.value && videoAd.value.targetUrl) {
+            window.open(videoAd.value.targetUrl, '_blank')
+          }
+        }
+        // 创建倒计时元素
+        adCountDownElement.value = document.createElement('div')
+        adCountDownElement.value.className = 'countdown'
+        wrapper.appendChild(adCountDownElement.value)
+
+        let countdown = videoAd.value.iosDownLoadUrl || 10
+        const skipThreshold = countdown - parseInt(appStore.skipAdTime)
+
+        const updateCountdownDisplay = () => {
+          if (appStore.prePlayAdTime === '1' && countdown <= skipThreshold) {
+            adCountDownElement.value.innerHTML = `点击关闭 ${countdown}`
+            adCountDownElement.value.onclick = () => {
+              playMainVideo()
+            }
+          } else {
+            adCountDownElement.value.innerHTML = `广告剩余时间 ${countdown}`
+            adCountDownElement.value.onclick = null
+          }
+        }
+
+        updateCountdownDisplay()
+
+        // 开始倒计时
+        adCounter.value = setInterval(() => {
+          countdown--
+          updateCountdownDisplay()
+
+          // 倒计时结束，播放正式视频
+          if (countdown < 0) {
+            clearInterval(adCounter.value)
+            wrapper.removeChild(adImgElement.value)
+            wrapper.removeChild(adCountDownElement.value)
+            playMainVideo()
+          }
+        }, 1000)
+      }
+    })
+
+    const playMainVideo = () => {
+      // 移除广告和倒计时
+      if (adCounter.value) {
+        clearInterval(adCounter.value)
+      }
+      if (adImgElement.value) {
+        adImgElement.value.remove()
+      }
+      if (adCountDownElement.value) {
+        adCountDownElement.value.remove()
+      }
+      // 开始播放视频
+      player.value.play()
+    }
+
+    if (routeLeaving.value) {
+      resetPlayer()
+      return
+    }
+    let tmpHls = null
+    if (window.Hls.isSupported()) {
+      tmpHls = new window.Hls({
+        maxBufferLength: 30,
+        maxMaxBufferLength: 60,
+        maxBufferSize: 60 * 1000 * 1000,
+        maxBufferHole: 0.5,
+        debug: false
+      })
+      // tmpHls.config.xhrSetup = (xhr) => {
+      //   const tsUrlWithAuth = generateAuthUrl(domain, uri)
+      //   xhr.open('GET', tsUrlWithAuth, true)
+      // }
+      tmpHls.loadSource(url)
+      tmpHls.attachMedia(videoElement)
+
+      tmpHls.on(window.Hls.Events.ERROR, (event, data) => {
+        handleHlsError(data)
+      })
+
+      hls.value = tmpHls
+    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+      videoElement.src = url
+    }
+
+    player.value.on('playing', () => {
       // 添加新的div元素
       const wrapper = document.querySelector('.plyr__video-wrapper')
       if (wrapper) {
         const newDiv = document.createElement('div')
-        newDiv.className = 'video-overlay'
+        newDiv.className = 'video-domain'
         newDiv.style.position = 'absolute'
         if (videoDetail.value?.hwm == '1') {
           newDiv.style.bottom = '1rem'
@@ -346,86 +444,17 @@ const initializePlayer = async (domain: string, uri: string) => {
                             </div>`
         wrapper.appendChild(newDiv)
       }
-
-      player.value.play().catch((error) => {
-        console.error('自动播放失败:', error)
-      })
     })
-    if (routeLeaving.value) {
-      resetPlayer()
-      return
-    }
 
-    if (window.Hls.isSupported()) {
-      const tmpHls = new window.Hls({
-        maxBufferLength: 30,
-        maxMaxBufferLength: 60,
-        maxBufferSize: 60 * 1000 * 1000,
-        maxBufferHole: 0.5,
-        debug: false
-      })
-      // tmpHls.config.xhrSetup = (xhr) => {
-      //   const tsUrlWithAuth = generateAuthUrl(domain, uri)
-      //   xhr.open('GET', tsUrlWithAuth, true)
-      // }
-      if (adVideoUrl != '') {
-        tmpHls.loadSource(adVideoUrl)
-        tmpHls.attachMedia(videoElement)
-      } else {
-        tmpHls.loadSource(url)
-        tmpHls.attachMedia(videoElement)
-      }
-
-      tmpHls.on(window.Hls.Events.ERROR, (event, data) => {
-        handleHlsError(data)
-      })
-
-      player.value.on('ended', () => {
-        if (isPlayingAd.value) {
-          isPlayingAd.value = false
-          tmpHls.detachMedia()
-          tmpHls.loadSource(url)
-          tmpHls.attachMedia(videoElement)
-
-          tmpHls.on(window.Hls.Events.MANIFEST_PARSED, () => {
-            player.value.currentTime = 0
-            player.value.play()
-          })
-          // @ts-ignore
-          document.getElementsByClassName('plyr__controls')[0].style.visibility = 'visible'
-        }
-      })
-
-      hls.value = tmpHls
-    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-      videoElement.src = adVideoUrl
-      videoElement.addEventListener('ended', () => {
-        if (isPlayingAd.value) {
-          isPlayingAd.value = false
-          videoElement.src = url
-          videoElement.currentTime = 0
-
-          // 监听 canplay 事件
-          videoElement.addEventListener(
-            'canplay',
-            () => {
-              videoElement.play()
-            },
-            { once: true }
-          )
-        }
-      })
-    }
+    player.value?.once('play', async () => {
+      await addPlayCountApi(videoDetail.value?.id)
+    })
 
     // 添加一个变量来跟踪是否是第一次点击
     let isFirstClick = true
 
     player.value.on('click', (event) => {
-      if (isPlayingAd.value) {
-        window.open(beforePlayVideoAdvertisement.value[0].targetUrl)
-      }
-
-      if (player.value.touch && event.target.className == 'plyr__poster' && !isPlayingAd.value) {
+      if (player.value.touch && event.target.className == 'plyr__poster') {
         if (isFirstClick) {
           // 第一次点击只显示控制条
           player.value.toggleControls(true)
@@ -445,56 +474,14 @@ const initializePlayer = async (domain: string, uri: string) => {
       }
     })
 
-    player.value.on('enterfullscreen', () => {
-      const videoElement = document.getElementById('plyr-player')
-      if (videoElement) {
-        videoElement.style.width = '100%'
-        videoElement.style.height = '100%'
-      }
-    })
-
-    player.value.on('exitfullscreen', () => {
-      const videoElement = document.getElementById('plyr-player')
-      if (videoElement) {
-        videoElement.style.width = ''
-        videoElement.style.height = appStore.isPc ? 'auto' : '24rem'
-      }
-    })
-
-    player.value?.once('play', async () => {
-      await addPlayCountApi(videoDetail.value?.id)
-
-      if (isPlayingAd.value) {
-        // @ts-ignore 隐藏掉所有控件
-        document.getElementsByClassName('plyr__controls')[0].style.visibility = 'hidden'
-
-        // 在广告的右上角插入一个广告倒计时, 并实现倒数, 倒计时从广告的下载次数中获取
-        let countdown = beforePlayVideoAdvertisement.value[0].downloadCount
-
-        const wrapper = document.querySelector('.plyr__video-wrapper')
-        adCountDownElement.value = document.createElement('div')
-        adCountDownElement.value.className = 'countdown'
-        adCountDownElement.value.innerHTML = `广告倒计时 ${countdown}`
-        wrapper.appendChild(adCountDownElement.value)
-
-        adCounter.value = setInterval(() => {
-          adCountDownElement.value.innerHTML = `广告倒计时 ${countdown}`
-          countdown--
-          if (countdown < 0) {
-            clearInterval(adCounter.value)
-            const elements = document.getElementsByClassName('countdown')
-            if (elements.length > 0) {
-              elements[0].parentNode.removeChild(elements[0]) // 移除第一个匹配的元素
-              adCountDownElement.value = null // 清空引用
-            }
-          }
-        }, 1000)
-      }
-    })
-
     player.value.on('play', (event) => {
       event.stopPropagation()
       showAdPopup.value = false // 播放时隐藏广告
+    })
+
+    player.value.on('pause', (event) => {
+      event.stopPropagation()
+      if (ad.value) showAdPopup.value = true // 暂停时显示广告
     })
 
     player.value.on('waiting', () => {
@@ -510,8 +497,20 @@ const initializePlayer = async (domain: string, uri: string) => {
       }
     })
 
-    player.value.on('playing', () => {
-      showAdPopup.value = false // 播放时隐藏广告
+    player.value.on('enterfullscreen', () => {
+      const videoElement = document.getElementById('plyr-player')
+      if (videoElement) {
+        videoElement.style.width = '100%'
+        videoElement.style.height = '100%'
+      }
+    })
+
+    player.value.on('exitfullscreen', () => {
+      const videoElement = document.getElementById('plyr-player')
+      if (videoElement) {
+        videoElement.style.width = ''
+        videoElement.style.height = appStore.isPc ? 'auto' : '24rem'
+      }
     })
 
     player.value.on('adsready', () => {
@@ -704,18 +703,26 @@ const handleCollection = async () => {
 const showAdPopup = ref(false) // 控制广告弹窗的显示
 const ad = ref(null) // 初始化广告为 null
 
-// const closeAdPopup = () => {
-//   showAdPopup.value = false
-//   player.value?.play() // 关闭广告后继续播放视频
-// }
+// 获取视频广告
+const getVideoAd = async () => {
+  const selectedAd = getRandomAd(beforePlayVideoAdvertisement.value)
+  if (selectedAd && selectedAd.imgUrl) {
+    const decryptedImage = await decrypt.fetchAndDecrypt(appStore.cdnUrl + selectedAd.imgUrl)
+    selectedAd.imgUrl = URL.createObjectURL(decryptedImage)
+  }
+  videoAd.value = selectedAd
+  console.log(beforePlayVideoAdvertisement.value)
+  console.log(videoAd.value)
+}
 
 ;(async () => {
   await fetchVideoDetail(route.params.id as string)
 })()
 
-onMounted(() => {
-  // window.scrollTo(0, 0)
-
+onMounted(async () => {
+  if (appStore.advertisement.length == 0) {
+    appStore.fetAdvertisement()
+  }
   // 页面离开停止播放，回来后继续播放
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
@@ -729,17 +736,8 @@ onMounted(() => {
   // if (showAdPopup.value) {
   //   player.value?.pause()
   // }
-
-  if (appStore.advertisement.length == 0) {
-    appStore.fetAdvertisement()
-  }
+  await getVideoAd()
   copy('.copy')
-
-  //@ts-ignore
-  // if (window._paq) {
-  //   window._paq.push(['enableHeartBeatTimer', 5])
-  //   console.log(window._paq)
-  // }
 })
 
 onUnmounted(() => {
@@ -767,5 +765,9 @@ onBeforeRouteLeave((to, from, next) => {
 <style scoped>
 .active {
   color: #ff6b6b;
+}
+
+.plyr__controls {
+  visibility: hidden;
 }
 </style>

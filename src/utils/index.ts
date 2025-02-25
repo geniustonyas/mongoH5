@@ -462,3 +462,17 @@ export function formatNumber(value: string | number) {
   }
   return num.toString()
 }
+
+/** 根据广告权重返回一条广告 */
+export function getRandomAd(adList: AdsItem[]) {
+  if (adList.length == 0) return null
+  const totalWeight = adList.reduce((sum, ad) => sum + parseInt(ad.downloadCount, 10), 0)
+  const randomNum = Math.random() * totalWeight
+  let cumulativeWeight = 0
+  for (const ad of adList) {
+    cumulativeWeight += parseInt(ad.downloadCount, 10)
+    if (randomNum < cumulativeWeight) {
+      return JSON.parse(JSON.stringify(ad))
+    }
+  }
+}

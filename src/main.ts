@@ -9,6 +9,8 @@ import lazyDecrypt from '@/utils/lazyDecrypt'
 
 import decryptionService from '@/utils/decryptionService'
 
+import { getRandomAd } from '@/utils'
+
 import 'vant/lib/index.css'
 import './assets/less/black.less'
 
@@ -55,25 +57,8 @@ const fetchAndShowAd = async () => {
       console.log('No ads available to display.')
       return
     }
-
-    // 计算权重总和
-    const totalWeight = splashAds.reduce((sum, ad) => sum + parseInt(ad.downloadCount, 10), 0)
-
-    // 根据权重随机选择广告
-    const getRandomAd = () => {
-      const randomNum = Math.random() * totalWeight
-      let cumulativeWeight = 0
-
-      for (const ad of splashAds) {
-        cumulativeWeight += parseInt(ad.downloadCount, 10)
-        if (randomNum < cumulativeWeight) {
-          return ad
-        }
-      }
-    }
-
     // 选择广告并解密图片
-    const selectedAd = getRandomAd()
+    const selectedAd = getRandomAd(splashAds)
     if (selectedAd) {
       const decrypted = new decryptionService()
       appStore.cdnUrl = 'https://video.j89pk.com/'

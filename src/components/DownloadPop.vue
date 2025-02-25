@@ -112,7 +112,7 @@ const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
 const nu = localStorage.getItem('nu')
 onMounted(() => {
   // 不是独立模式, 并且 nu 不是 a1 和 a2 , nu由打包app时传入url参数, 由App.vue中获取并且写入localstorage
-  if (!isStandalone && nu != 'a1' && nu != 'a2') {
+  if (!isStandalone && nu != 'a1' && nu != 'a2' && nu != 'a3') {
     if (appStore.shownDownload) {
       // const ua = navigator.userAgent
       // 如果是IOS, 则显示添加到主屏幕
