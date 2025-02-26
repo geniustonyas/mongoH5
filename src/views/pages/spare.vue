@@ -67,10 +67,10 @@
             <a>谷歌浏览器</a>
             <span><i class="mvfont mv-xiazai1" />下载</span>
           </div>
-          <div @click="downloadBrowser('quark')" class="b-item">
+          <!-- <div @click="downloadBrowser('quark')" class="b-item">
             <a>夸克浏览器</a>
             <span><i class="mvfont mv-xiazai1" />下载</span>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="s-row">

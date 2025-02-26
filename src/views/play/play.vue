@@ -383,6 +383,7 @@ const initializePlayer = async (domain: string, uri: string) => {
     })
 
     const playMainVideo = () => {
+      isPlayingAd.value = false
       // 移除广告和倒计时
       if (adCounter.value) {
         clearInterval(adCounter.value)
@@ -563,6 +564,7 @@ const handleHlsError = (data) => {
 
 const rewind = (time: number) => {
   if (player.value && !isPlayingAd.value) {
+    console.log(123123)
     const currentTime = player.value.currentTime
     player.value.currentTime = Math.max(currentTime - time, 0)
   }
