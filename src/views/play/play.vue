@@ -4,7 +4,7 @@
       <div class="md-a">
         <a class="a-r" @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
         <div class="video-container">
-          <video id="plyr-player" muted preload="auto" :data-poster="poster" x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
+          <video id="plyr-player" preload="auto" :data-poster="poster" x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline />
         </div>
         <div class="a-f">
           <div class="item">
@@ -93,7 +93,7 @@ import IconAd from '@/components/Advertisement/IconAd.vue'
 import { showToast } from 'vant'
 import { Popup } from 'vant'
 import Clipboard from 'clipboard'
-import { throttle } from 'lodash-es'
+// import { throttle } from 'lodash-es'
 
 // import { VastGenerator } from '@/utils/vastGenerator'
 
@@ -135,10 +135,10 @@ const poster = ref('')
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
 
-const clickCount = ref(0)
-const maxClicks = 5
-const disableTime = 10000
-let isDisabled = ref(false)
+// const clickCount = ref(0)
+// const maxClicks = 5
+// const disableTime = 10000
+// let isDisabled = ref(false)
 
 const rewindOptions = [
   { time: 600, label: '10m' }, // 10分钟
@@ -173,33 +173,7 @@ const videoListAdvertisement = computed(() => {
   return tmp || []
 })
 
-const fetchVideoDetailThrottled = throttle(async (videoId: string) => {
-  if (isDisabled.value) {
-    showToast('请稍后再试')
-    return
-  }
-
-  clickCount.value++
-  if (clickCount.value >= maxClicks) {
-    showToast('请不要频繁操作')
-    isDisabled.value = true
-    setTimeout(() => {
-      isDisabled.value = false
-      clickCount.value = 0
-    }, disableTime)
-    return
-  }
-  await getVideoAd()
-  await fetchVideoDetail(videoId)
-  clickCount.value = 0
-}, 1000)
-
-const handleVideoClick = (event) => {
-  if (isDisabled.value) {
-    showToast('请稍后再试')
-    return
-  }
-
+const handleVideoClick = async (event) => {
   const videoListElement = event.target.closest('.video-grid-item')
   if (videoListElement) {
     const isAd = videoListElement.dataset.isAd
@@ -207,7 +181,8 @@ const handleVideoClick = (event) => {
     if (isAd) {
       openAd(videoListElement.dataset.targetUrl, '播放页广告', 'click', videoListElement.dataset.title, 1, videoId)
     } else {
-      fetchVideoDetailThrottled(videoId)
+      await getVideoAd()
+      await fetchVideoDetail(videoId)
     }
   }
 }
@@ -227,8 +202,8 @@ const fetchVideoDetail = async (videoId: string) => {
     await fetchRecommendedVideos(data.channelId, data.id)
 
     if (videoDetail.value?.playUrl) {
-      nextTick(() => {
-        initializePlayer(appStore.playDomain, videoDetail.value?.playUrl)
+      nextTick(async () => {
+        await initializePlayer(appStore.playDomain, videoDetail.value?.playUrl)
       })
     }
   } catch (error) {
@@ -279,41 +254,10 @@ const initializePlayer = async (domain: string, uri: string) => {
       isPlayingAd.value = true
     }
     const url = generateAuthUrl(domain, uri)
-
-    // 生成 VAST XML 并创建 Blob URL
-    // let vastUrl = ''
-    // if (playAdvertisement.value.length > 0) {
-    //   const ad = playAdvertisement.value[0]
-    //   const decryptedImageUrl = await decrypt.fetchAndDecrypt(appStore.cdnUrl + ad.imgUrl)
-    //   const vastXml = VastGenerator.getInstance().generateVastXml({
-    //     id: ad.id,
-    //     title: ad.title,
-    //     skipOffset: 5,
-    //     clickThrough: ad.targetUrl,
-    //     mediaFiles: [],
-    //     nonLinearAds: [
-    //       {
-    //         url: URL.createObjectURL(decryptedImageUrl),
-    //         width: 300,
-    //         height: 250,
-    //         clickThrough: ad.targetUrl
-    //       }
-    //     ],
-    //     trackingEvents: []
-    //   })
-
-    //   const vastBlob = new Blob([vastXml], { type: 'application/xml' })
-    //   vastUrl = URL.createObjectURL(vastBlob)
-    //   // vastUrl = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator='
-    // }
-
     // 使用 Plyr 初始化播放器并配置广告
     if (routeLeaving.value) {
       return
     }
-
-    // 广告视频 URL 和目标地址
-    // const adTargetUrl = 'https://example.com/ad-target'
 
     player.value = new window.Plyr(videoElement, {
       autoplay: !isPlayingAd.value,
@@ -323,11 +267,37 @@ const initializePlayer = async (domain: string, uri: string) => {
         enabled: true,
         iosNative: true
       }
-      // ads: {
-      //   enabled: true,
-      //   tagUrl: vastUrl // 使用生成的 VAST URL
-      // }
     })
+
+    if (routeLeaving.value) {
+      resetPlayer()
+      return
+    }
+    let tmpHls = null
+    if (window.Hls.isSupported()) {
+      tmpHls = new window.Hls({
+        maxBufferLength: 30,
+        maxMaxBufferLength: 60,
+        maxBufferSize: 60 * 1000 * 1000,
+        maxBufferHole: 0.5,
+        debug: false
+      })
+      // tmpHls.config.xhrSetup = (xhr) => {
+      //   const tsUrlWithAuth = generateAuthUrl(domain, uri)
+      //   xhr.open('GET', tsUrlWithAuth, true)
+      // }
+      tmpHls.loadSource(url)
+      tmpHls.attachMedia(videoElement)
+
+      tmpHls.on(window.Hls.Events.ERROR, (event, data) => {
+        handleHlsError(data)
+      })
+
+      hls.value = tmpHls
+    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+      videoElement.src = url
+    }
+
     player.value.poster = poster.value
 
     player.value.on('ready', () => {
@@ -396,35 +366,6 @@ const initializePlayer = async (domain: string, uri: string) => {
       }
       // 开始播放视频
       player.value.play()
-    }
-
-    if (routeLeaving.value) {
-      resetPlayer()
-      return
-    }
-    let tmpHls = null
-    if (window.Hls.isSupported()) {
-      tmpHls = new window.Hls({
-        maxBufferLength: 30,
-        maxMaxBufferLength: 60,
-        maxBufferSize: 60 * 1000 * 1000,
-        maxBufferHole: 0.5,
-        debug: false
-      })
-      // tmpHls.config.xhrSetup = (xhr) => {
-      //   const tsUrlWithAuth = generateAuthUrl(domain, uri)
-      //   xhr.open('GET', tsUrlWithAuth, true)
-      // }
-      tmpHls.loadSource(url)
-      tmpHls.attachMedia(videoElement)
-
-      tmpHls.on(window.Hls.Events.ERROR, (event, data) => {
-        handleHlsError(data)
-      })
-
-      hls.value = tmpHls
-    } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-      videoElement.src = url
     }
 
     player.value.on('playing', () => {
@@ -713,11 +654,10 @@ const getVideoAd = async () => {
     selectedAd.imgUrl = URL.createObjectURL(decryptedImage)
   }
   videoAd.value = selectedAd
-  console.log(beforePlayVideoAdvertisement.value)
-  console.log(videoAd.value)
 }
 
 ;(async () => {
+  await getVideoAd()
   await fetchVideoDetail(route.params.id as string)
 })()
 
@@ -738,7 +678,6 @@ onMounted(async () => {
   // if (showAdPopup.value) {
   //   player.value?.pause()
   // }
-  await getVideoAd()
   copy('.copy')
 })
 

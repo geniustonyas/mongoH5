@@ -157,7 +157,6 @@ const fetchVideoDetail = async (videoId: number) => {
 const initializePlayer = async (index: number) => {
   await nextTick() // 确保 DOM 已更新
   const video = videos.value[index]
-  console.log(video)
   if (!video) return
   const videoElement = document.getElementById('video-player-' + index) as HTMLVideoElement
   if (!videoElement) {
@@ -192,9 +191,7 @@ const initializePlayer = async (index: number) => {
         maxMaxBufferLength: 30,
         maxBufferSize: 30 * 1000 * 1000,
         maxBufferHole: 0.2,
-        startFragPrefetch: true,
-        liveSyncDuration: 3,
-        liveMaxLatencyDuration: 5
+        startFragPrefetch: true
       })
       // hls.config.xhrSetup = (xhr) => {
       //   const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, video.playUrl)
@@ -256,7 +253,6 @@ const initializePlayer = async (index: number) => {
       hideControls: true,
       controls: ['progress']
     })
-    // 播放器初始化后总是把禁音给取消了, 这里重新设置
     player.muted = mutePlay.value
     player.on('canplay', () => {
       const videoWidth = videoElement.videoWidth
