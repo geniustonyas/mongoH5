@@ -6,3 +6,13 @@ export enum GameType {
   Esports = 4,
   Lottery = 5
 }
+
+// 主頁菜单枚举
+export enum HOME_ACTIVE_MENU {
+  'discover' = 'discover',
+  'shortVideo' = 'shortVideo',
+  'pictures' = 'disclose',
+  'shortDrama' = 'shortDrama',
+  'novel' = 'novel',
+  'comics' = 'comics'
+}

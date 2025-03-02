@@ -1,22 +1,46 @@
 <template>
-  <HomeLayout>
+  <div class="page video-page">
+    <header class="m-header h-video">
+      <div class="h-m">
+        <a @click="router.push({ name: 'elites' })" class="active">{{ douyin }}</a>
+        <a @click="router.push({ name: 'disclose' })">吃瓜</a>
+        <a @click="showToast('建设中...')">短剧</a>
+        <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
+      </div>
+      <div class="h-r">
+        <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
+      </div>
+    </header>
+
     <section class="vp-main">
       <div class="vpm-bd">
+        <div class="vm-h">
+          <div class="h-m">
+            <a @click="router.push({ name: 'elites' })" class="active">{{ douyin }}</a>
+            <a @click="router.push({ name: 'disclose' })">吃瓜</a>
+            <a @click="showToast('建设中...')">短剧</a>
+            <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
+          </div>
+          <div class="h-r">
+            <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
+          </div>
+        </div>
+        <div class="vm-a" />
         <div class="vm-b">
-          <swiper :direction="'vertical'" :modules="modules"
-                  :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined"
-                  :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
+          <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
             <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
               <div class="v-a">
-                <video :id="'video-player-' + index" class="video-player" :data-poster="video.poster" muted
-                       preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline
-                       webkit-playsinline style="width: 100%; height: 100%" />
+                <video :id="'video-player-' + index" class="video-player" :data-poster="video.poster" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
               </div>
               <div class="v-b">
                 <a @click="handleLike()">
                   <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
                   <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
                 </a>
+                <!-- <a @click="handleCollection()">
+                  <i :class="['mvfont', 'mv-shoucang', { active: videoDetail && videoDetail.collect }]" />
+                  <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
+                </a> -->
                 <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
                 <a class="btn-mute" @click="toggleMute">
                   <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
@@ -44,19 +68,22 @@
         </div>
       </div>
     </section>
-    <Loading v-show="isLoading" />
     <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
       <div class="share-popup">
         <p>分享链接已复制，赶快去分享给好友吧！</p>
       </div>
     </Popup>
-  </HomeLayout>
+    <Footer active-menu="elites" footer-class="footer f-footer" />
+    <Loading v-show="isLoading" />
+    <NavBar active-menu="elites" />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, computed, nextTick } from 'vue'
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { getVideoListApi, getVideoDetailApi, addPlayCountApi } from '@/api/video'
+// import { userCollection } from '@/api/user'
 import decryptionService from '@/utils/decryptionService'
 import { userLike } from '@/api/user'
 import type { Video, VideoDetailResponse } from '@/types/video'
@@ -64,6 +91,8 @@ import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { douyin } from '@/utils/cryptedData'
+import NavBar from '@/components/layout/NavBar.vue'
+import Footer from '@/components/layout/Footer.vue'
 import Loading from '@/components/layout/Loading.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -73,7 +102,6 @@ import 'swiper/css/virtual'
 
 import { Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
-import HomeLayout from '@/components/layout/HomeLayout.vue'
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -412,6 +440,22 @@ const handleLike = async () => {
   }
 }
 
+// const handleCollection = async () => {
+//   if (!checkLogin()) return
+
+//   try {
+//     const videoId = videoDetail.value?.id
+//     const newCollectStatus = !videoDetail.value?.collect
+
+//     await userCollection({ VideoId: videoId, Collect: newCollectStatus })
+
+//     videoDetail.value.collect = newCollectStatus
+//     videoDetail.value.collectionCount = (Number(videoDetail.value.collectionCount) + (newCollectStatus ? 1 : -1)).toString()
+//   } catch (error) {
+//     console.error('操作失败:', error)
+//   }
+// }
+
 const handleShare = () => {
   if (clipboard.value) {
     clipboard.value.destroy()
@@ -490,8 +534,5 @@ onBeforeRouteLeave(() => {
 <style scoped>
 .active {
   color: #ff6b6b;
-}
-.vp-main .vpm-bd {
-  height: calc(100vh - 4.8rem + env(safe-area-inset-bottom));
 }
 </style>

@@ -3,6 +3,7 @@ import AppMain from '@/components/layout/AppMain.vue'
 import { useUserStore } from '@/store/user'
 import { useAppStore, useAppStoreHook } from '@/store/app'
 import { getToken } from '@/utils/auth'
+import { setupRouteGuards } from './guard'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -11,22 +12,16 @@ const routes: RouteRecordRaw[] = [
     redirect: (to: any) => {
       const isPc = useAppStoreHook().isPc
       return {
-        name: isPc ? 'index' : 'elites',
+        name: isPc ? 'longVideo' : 'elites',
         query: to.query
       }
     }
   },
   {
-    path: '/index',
-    name: 'index',
-    meta: { needLogin: false, keepAlive: false, title: '首页' },
-    component: () => import('@/views/index/index.vue')
-  },
-  {
-    path: '/test',
-    name: 'test',
-    meta: { needLogin: false, keepAlive: false, title: '测试' },
-    component: () => import('@/views/shortVideo/test.vue')
+    path: '/shortList',
+    name: 'shortList',
+    meta: { needLogin: false, keepAlive: false, title: '抖阴' },
+    component: () => import('@/views/shortVideo/shortList.vue'),
   },
   {
     path: '/videoList/:id',
@@ -68,13 +63,13 @@ const routes: RouteRecordRaw[] = [
     path: '/elites',
     name: 'elites',
     component: () => import('@/views/elite/elites.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '精选' }
+    meta: { needLogin: false, keepAlive: false, title: '发现' }
   },
   {
     path: '/disclose',
     name: 'disclose',
     component: () => import('@/views/elite/disclose.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '吃瓜' }
+    meta: { needLogin: false, keepAlive: false, title: '美图' }
   },
   {
     path: '/bbs',
@@ -119,16 +114,28 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false, title: '品茶' }
   },
   {
+    path: '/shortDrama',
+    name: 'shortDrama',
+    component: () => import('@/views/drama/list.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '短剧' }
+  },
+  {
     path: '/shortVideo',
     name: 'shortVideo',
     component: () => import('@/views/shortVideo/shortVideo.vue'),
     meta: { needLogin: false, keepAlive: false, title: '短视频' }
   },
   {
-    path: '/shortList',
-    name: 'shortList',
-    component: () => import('@/views/shortVideo/shortList.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '短视频列表' }
+    path: '/novel',
+    name: 'novel',
+    component: () => import('@/views/novel/list.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '文学' }
+  },
+  {
+    path: '/longVideo',
+    name: 'longVideo',
+    component: () => import('@/views/index/index.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '长视频列表' }
   },
   {
     path: '/shortPlay',
@@ -320,5 +327,7 @@ router.afterEach((to, from) => {
 
   appStore.isProgrammaticBack = false
 })
+
+setupRouteGuards(router)
 
 export default router

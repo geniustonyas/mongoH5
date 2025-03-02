@@ -1,7 +1,7 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <transition :name="getTransition(route.meta.transition)">
-      <keep-alive :include="['index', 'bbs', 'videoList']">
+      <keep-alive :include="['longVideo', 'bbs', 'videoList']">
         <component :is="Component" :key="route.path" />
       </keep-alive>
     </transition>
@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import Login from '@/components/Login.vue'
+import Login from '@/components/login.vue'
 import DownloadPop from '@/components/DownloadPop.vue'
 
 import { useAppStore } from '@/store/app'

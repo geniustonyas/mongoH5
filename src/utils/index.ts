@@ -7,7 +7,8 @@ import duration from 'dayjs/plugin/duration'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/zh-cn'
 import type { AdsItem } from '@/types/app'
-import type { DataWithAd } from '@/types/global.d'
+import type { DataWithAd, VideoWithAd } from '@/types/global.d'
+import { Video } from '@/types/video'
 
 dayjs.extend(relativeTime)
 dayjs.extend(duration)
@@ -80,7 +81,7 @@ export const initMatomo = (siteId: string) => {
     _paq.push(["setExcludedQueryParams", ["*"]]);
     // _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
-    _paq.push(['enableHeartBeatTimer', 30]); 
+    _paq.push(['enableHeartBeatTimer', 30]);
     (function() {
       var u="${import.meta.env.VITE_MATOMO_HOST}/";
       _paq.push(['setTrackerUrl', u+'matomo.php']);
@@ -440,4 +441,60 @@ export function formatNumber(value: string | number) {
     return (num / 1000).toFixed(2) + 'K'
   }
   return num.toString()
+}
+
+/**
+ * Insert ads into a list of videos.
+ * @param dataList - List of videos.
+ * @param adList - List of ads.
+ * @param minInterval - Minimum interval between ads.
+ * @param maxInterval - Maximum interval between ads.
+ * @param ensureEven - Ensure the number of ads is even.
+ * @returns List of videos with ads inserted.
+ */
+export function insertAdsForShortList(dataList: Video[], adList: AdsItem[], minInterval = 5, maxInterval = 7, ensureEven = false): VideoWithAd[] {
+  const result: VideoWithAd[] = []
+  const adCount = adList.length
+  const dataCount = dataList.length
+
+  // Shuffle ads
+  const shuffledAds = shuffleArray(adList)
+
+  // Insert the first ad at a random position between the second item and minInterval
+  let nextAdPosition = Math.floor(Math.random() * (minInterval - 1)) + 1
+  const usedAds = new Set<number>()
+
+  for (let i = 0; i < dataCount; i++) {
+    // Insert original data
+    // result.push(dataList[i])
+    result.push({ ...dataList[i], isAd: false } as VideoWithAd)
+
+    // Check if we need to insert an ad
+    if (i + 1 === nextAdPosition) {
+      let randomAdIndex: number
+
+      // Ensure ads are not reused
+      do {
+        randomAdIndex = Math.floor(Math.random() * adCount)
+      } while (usedAds.has(randomAdIndex) && usedAds.size < adCount)
+
+      usedAds.add(randomAdIndex)
+
+      if (usedAds.size === adCount) {
+        usedAds.clear() // Clear used ads set
+      }
+
+      result.push({ ...shuffledAds[randomAdIndex], isAd: true } as VideoWithAd)
+      // Calculate the next ad position
+      nextAdPosition += Math.floor(Math.random() * (maxInterval - minInterval + 1)) + minInterval
+    }
+  }
+
+  // Ensure the number of ads is even if required
+  if (ensureEven && result.length % 2 !== 0) {
+    const randomAdIndex = Math.floor(Math.random() * adCount)
+    result.push({ ...shuffledAds[randomAdIndex], isAd: true } as VideoWithAd)
+  }
+
+  return result
 }

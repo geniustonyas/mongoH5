@@ -9,6 +9,7 @@ import { isNumeric } from '@/utils/validate'
 import decryptionService from '@/utils/decryptionService'
 
 import { decryptedCategorys, fanhaoPianmingYanyuan } from '@/utils/cryptedData'
+import { HOME_ACTIVE_MENU } from '@/utils/constant'
 
 const decrypted = new decryptionService()
 
@@ -16,6 +17,7 @@ export const useAppStore = defineStore('app', {
   state: () => {
     return {
       loading: false,
+      homeActiveMenu: HOME_ACTIVE_MENU.shortVideo,
       isProgrammaticBack: false, // 是否是程序返回
       isUserBackNavigation: false, // 是否是用户返回
       hasShownAnnouncement: true, // 用于跟踪公告是否已显示, 默认为true 需要显示
@@ -64,6 +66,9 @@ export const useAppStore = defineStore('app', {
     }
   },
   actions: {
+    setHomeActiveMenu(menu: HOME_ACTIVE_MENU) {
+      this.homeActiveMenu = menu;
+    },
     setLoading(loading: boolean) {
       this.loading = loading
     },
@@ -99,7 +104,7 @@ export const useAppStore = defineStore('app', {
         this.discloseRandomMin = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value1 || '1')
         this.discloseRandomMax = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value2 || '10')
         const adTmp = data.find((item: any) => item.pKey === 'SAds')
-        if (adTmp.value1) {
+        if (adTmp && adTmp.value1) {
           const tmp = await decrypted.fetchAndDecrypt(adTmp.value1)
           this.sAds = URL.createObjectURL(tmp)
           this.sAdsRoute = adTmp.value2
