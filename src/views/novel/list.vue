@@ -17,7 +17,7 @@
           </span>
         </div>
         <div class="sub-menu">
-          <span v-for="(item, index) in bookCategories" :key="item.id" :class="{ active: activeSubMenu === index }" @click="handleSubMenuClick(index)">
+          <span v-for="(item, index) in bookCategories" :key="item.id" :class="{ active: activeSubMenu === index }" @click="(index: number) => handleSubMenuClick(index, item)">
             {{ item.name }}
           </span>
         </div>
@@ -159,21 +159,15 @@ const fetchBookCategories = async () => {
     const {
       data: { data }
     } = await getNovelCategory(params)
-    bookCategories.push(...data)
+    bookCategories.push({ id: 0, name: '推荐' }, ...data)
   } catch (e) {
     console.log(e)
   }
 }
 
-const fetchBooks = async () => {
+const fetchBooks = async (params: NovelListRequest) => {
   try {
     loading.value = true
-    const params: NovelListRequest = {
-      Type: NovelCategory.Book,
-      BookStatus: BookStatus.All,
-      PageIndex: 1,
-      PageSize: 10
-    }
     const {
       data: { data }
     } = await getNovelList(params)
@@ -189,8 +183,15 @@ const fetchBooks = async () => {
 
 onMounted(async () => {
   if (activePreMenu.value === 'Book') {
+    const param: NovelListRequest = {
+      Type: NovelCategory.Book,
+      BookStatus: BookStatus.All,
+      IsRecommend: activeSubMenu.value === 0 ? 1 : 0,
+      PageIndex: 1,
+      PageSize: 10
+    }
     await fetchBookCategories()
-    await fetchBooks()
+    await fetchBooks(param)
   }
 })
 
@@ -198,8 +199,25 @@ const handlePreMenuClick = (name: string) => {
   activePreMenu.value = name
 }
 
-const handleSubMenuClick = (index: number) => {
+const handleSubMenuClick = async (index: number, item: NovelListItem) => {
   activeSubMenu.value = index
+  const param: NovelListRequest = {
+    Type: NovelCategory.Book,
+    BookStatus: BookStatus.All,
+    IsRecommend: index === 0 ? 1 : 0,
+    CategoryId: item.id,
+    PageIndex: 1,
+    PageSize: 10
+  }
+  try {
+    loading.value = true
+    books.splice(0, books.length)
+    await fetchBooks(param)
+  } catch (e) {
+    console.log(e)
+  } finally {
+    loading.value = false
+  }
 }
 </script>
 

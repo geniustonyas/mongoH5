@@ -40,14 +40,14 @@ export interface NovelBookCategoryItem {
 }
 
 export interface NovelListRequest {
-  Type: NovelCategory
+  Type?: NovelCategory
   KeyWord?: string
-  BookStatus: BookStatus
+  BookStatus?: BookStatus
   CategoryId?: string | number
   IsRecommend?: 0 | 1
   ReadingCount?: 0 | 1
   FavoriteCount?: 0 | 1
   CreateTime?: 0 | 1
-  PageIndex: number
-  PageSize: number
+  PageIndex?: number
+  PageSize?: number
 }
