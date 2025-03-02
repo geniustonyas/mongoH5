@@ -17,7 +17,7 @@
           </span>
         </div>
         <div class="sub-menu">
-          <span v-for="(item, index) in bookCategories" :key="item.id" :class="{ active: activeSubMenu === index }" @click="(index: number) => handleSubMenuClick(index, item)">
+          <span v-for="(item, index) in bookCategories" :key="item.id" :class="{ active: activeSubMenu === index }" @click="() => handleSubMenuClick(index, item)">
             {{ item.name }}
           </span>
         </div>
@@ -199,7 +199,7 @@ const handlePreMenuClick = (name: string) => {
   activePreMenu.value = name
 }
 
-const handleSubMenuClick = async (index: number, item: NovelListItem) => {
+const handleSubMenuClick = async (index: number, item: NovelBookCategoryItem) => {
   activeSubMenu.value = index
   const param: NovelListRequest = {
     Type: NovelCategory.Book,
