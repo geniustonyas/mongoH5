@@ -6,6 +6,7 @@ import App from './App.vue'
 import router from './router'
 import VueLazyload from 'vue-lazyload'
 import lazyDecrypt from '@/utils/lazyDecrypt'
+import i18n from './i18n'
 
 import decryptionService from '@/utils/decryptionService'
 
@@ -27,6 +28,7 @@ app.use(VueLazyload, {
   attempt: 1
 })
 app.use(router)
+app.use(i18n)
 app.directive('lazy-decrypt', lazyDecrypt)
 
 // 手动解析哈希中的查询参数

@@ -140,8 +140,6 @@ export const useAppStore = defineStore('app', {
         this.statistics = data || []
 
         // 初始化 Matomo (如果 selfCode 是数字或数字字符串)
-        console.log(this.openMatomo)
-        console.log('aaaaaa')
         if (data?.selfCode && isNumeric(data.selfCode) && this.openMatomo) {
           initMatomo(data.selfCode)
         }
