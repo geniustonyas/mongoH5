@@ -7,11 +7,11 @@
       <router-link to="/game" :class="{ active: activeMenu == 'game' }"> <i class="mvfont mv-game" />游戏 </router-link>
       <router-link to="/home" :class="{ active: activeMenu == 'home' }"> <i class="mvfont mv-home0" />我的 </router-link> -->
 
-      <router-link to="/index" :class="{ active: activeMenu == 'index' }"> <i class="mvfont mv-shouye" />{{ $t('footer.home') }} </router-link>
-      <router-link to="/elites" :class="{ active: activeMenu == 'elites' }"> <i class="mvfont mv-jingxuan" />{{ $t('footer.elites') }} </router-link>
-      <router-link to="/shortList" :class="{ active: activeMenu == 'shortList' }"> <i class="mvfont mv-dsp" />{{ $t('footer.shortList') }} </router-link>
-      <router-link to="/bbs" :class="{ active: activeMenu == 'bbs' }"> <i class="mvfont mv-shequ" />{{ $t('footer.bbs') }} </router-link>
-      <router-link to="/home" :class="{ active: activeMenu == 'home' }"> <i class="mvfont mv-home0" />{{ $t('footer.my') }} </router-link>
+      <router-link to="/index" :class="{ active: activeMenu == 'index' }"> <i class="mvfont mv-shouye" />{{ $t('common.home') }} </router-link>
+      <router-link to="/elites" :class="{ active: activeMenu == 'elites' }"> <i class="mvfont mv-jingxuan" />{{ $t('common.elites') }} </router-link>
+      <router-link to="/shortList" :class="{ active: activeMenu == 'shortList' }"> <i class="mvfont mv-dsp" />{{ $t('common.shortList') }} </router-link>
+      <router-link to="/bbs" :class="{ active: activeMenu == 'bbs' }"> <i class="mvfont mv-shequ" />{{ $t('common.bbs') }} </router-link>
+      <router-link to="/home" :class="{ active: activeMenu == 'home' }"> <i class="mvfont mv-home0" />{{ $t('common.my') }} </router-link>
     </div>
   </footer>
 </template>

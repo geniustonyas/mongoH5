@@ -3,16 +3,16 @@
     <div class="bbs-comment-box">
       <div class="bcb-head">
         <p>
-          评论<b>{{ comments.length == 0 ? '' : comments.length }}</b>
+          {{ $t('common.comment') }}<b>{{ comments.length == 0 ? '' : comments.length }}</b>
         </p>
         <span @click="toggleCommentVisibility(false)"><i class="mvfont mv-close" /></span>
       </div>
       <div ref="commentListRef" class="bcb-main">
-        <List v-if="comments.length > 0" v-model:loading="loading" :finished="finished" finished-text="没有更多评论了" @load="loadMoreComments">
+        <List v-if="comments.length > 0" v-model:loading="loading" :loading-text="$t('common.loading')" :error-text="$t('common.loadingFail')" :finished="finished" :finished-text="$t('common.noMore')" @load="loadMoreComments">
           <ul class="bbs-comment-list">
             <li v-for="comment in comments" :key="comment.id">
               <div class="i-l">
-                <img v-lazy="{ src: getAssetsFile('logo-4.png') }" alt="用户头像" />
+                <img v-lazy="{ src: getAssetsFile('logo-4.png') }" />
               </div>
               <div class="i-r">
                 <div class="r-a">{{ comment.userName }}</div>
@@ -32,7 +32,7 @@
             </li>
           </ul>
         </List>
-        <div v-if="noData" class="no-comment">暂无评论</div>
+        <div v-if="noData" class="no-comment">{{ $t('common.noComment') }}</div>
       </div>
       <div class="bcb-foot">
         <!-- <div class="f-a">
@@ -54,10 +54,10 @@
         <div class="f-b">
           <div class="b-input">
             <i class="mvfont mv-bianji" />
-            <div id="commentContent" contenteditable="true" class="editable-div" @focus="showEmojiPopup = true" data-placeholder="善言结善缘，恶言伤人心" />
+            <div id="commentContent" contenteditable="true" class="editable-div" @focus="showEmojiPopup = true" :data-placeholder="$t('common.commentPlaceholder')" />
             <i @click="showEmojiPopup = !showEmojiPopup" class="mvfont mv-biaoqing" />
           </div>
-          <div @click="postComment()" class="btn btn1">发送</div>
+          <div @click="postComment()" class="btn btn1">{{ $t('common.send') }}</div>
         </div>
       </div>
     </div>
@@ -78,6 +78,8 @@ import { useUserStore } from '@/store/user'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/zh-cn'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 // 使用相对时间插件
 dayjs.extend(relativeTime)
@@ -152,19 +154,19 @@ const postComment = async (content = '') => {
   const commentContent = content || textDom.innerText.trim()
 
   if (commentContent === '') {
-    showToast('评论内容不能为空')
+    showToast(t('comment.emptyComment'))
     return
   }
 
   if (commentContent.length < 5) {
-    showToast('评论内容至少需要5个字')
+    showToast(t('comment.commentContent'))
     return
   }
 
   try {
     const { data } = await bbsCommentApi({ PostId: props.postId, Content: commentContent })
     if (data) {
-      showToast('评论成功')
+      showToast(t('comment.sendSuccess'))
       comments.value.unshift({
         id: '',
         userName: userStore.userInfo.nickName,
@@ -185,7 +187,7 @@ const postComment = async (content = '') => {
       emit('comment-added')
     }
   } catch (error) {
-    showToast(error.message || '发表评论失败')
+    showToast(error.message || t('comment.sendFail'))
   }
 }
 

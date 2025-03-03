@@ -20,7 +20,7 @@
         <div class="a-b">
           <div class="ab-d">
             <div class="d-l">
-              <span>广告</span>
+              <span>{{ $t('common.ad') }}</span>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
         </div>
         <div class="i-c" v-html="decodeHtmlEntities(post.title || '')" />
         <div class="i-d">
-          <span><img :src="getAssetsFile('logo-4.png')" />{{ '芒果TV官方' }}</span>
+          <span><img :src="getAssetsFile('logo-4.png')" />{{ $t('common.official') }}</span>
           {{ fromNow(post.createTime) }}
         </div>
       </div>

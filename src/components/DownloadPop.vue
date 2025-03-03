@@ -5,12 +5,12 @@
         <div class="f-a">
           <img :src="getAssetsFile('logo-download.png')" />
           <span>
-            <b>App独享超清加速，永久免费</b>
-            <small>刷抖阴更流畅，海量高清影片抢先看</small>
+            <b>{{ $t('downloadPop.appExclusive') }}</b>
+            <small>{{ $t('downloadPop.smoothExperience') }}</small>
           </span>
         </div>
         <div class="f-b">
-          <a @click="downloadApp">立即下载</a>
+          <a @click="downloadApp">{{ $t('downloadPop.downloadNow') }}</a>
           <span @click="showDownloadTips = false"><i class="mvfont mv-close" /></span>
         </div>
       </div>
@@ -23,12 +23,12 @@
         <div class="f-a">
           <img :src="getAssetsFile('logo-download.png')" />
           <span>
-            <b>芒果TV</b>
-            <small>添加到主屏幕</small>
+            <b>{{ $t('common.official') }}</b>
+            <small>{{ $t('downloadPop.addToHome') }}</small>
           </span>
         </div>
         <div class="f-b">
-          <a @click="popAddToHomeTip">添加</a>
+          <a @click="popAddToHomeTip">{{ $t('downloadPop.add') }}</a>
           <span @click="showAddToHomeTip = false"><i class="mvfont mv-close" /></span>
         </div>
       </div>
@@ -39,30 +39,30 @@
     <div class="pop-container">
       <div class="pop-bd shortcut">
         <div class="s-a">
-          <h3>添加到主屏幕</h3>
+          <h3>{{ $t('downloadPop.addToHome') }}</h3>
           <span @click="closePop()">×</span>
         </div>
         <div class="s-b" id="sb-ios">
           <div class="b-item">
-            <div class="i-a">步骤<b>1</b></div>
+            <div class="i-a">{{ $t('downloadPop.step') }}<b>1</b></div>
             <div class="i-b">
               <img src="https://sjtv.xianliao.voto/daohang/IOS-step1.png" />
             </div>
-            <div class="i-c">点击共享按钮</div>
+            <div class="i-c">{{ $t('downloadPop.clickShare') }}</div>
           </div>
           <div class="b-item">
-            <div class="i-a">步骤<b>2</b></div>
+            <div class="i-a">{{ $t('downloadPop.step') }}<b>2</b></div>
             <div class="i-b">
               <img src="https://sjtv.xianliao.voto/daohang/IOS-step2.png" />
             </div>
-            <div class="i-c">点击添加到主屏幕</div>
+            <div class="i-c">{{ $t('downloadPop.clickAddHome') }}</div>
           </div>
           <div class="b-item">
-            <div class="i-a">步骤<b>3</b></div>
+            <div class="i-a">{{ $t('downloadPop.step') }}<b>3</b></div>
             <div class="i-b">
               <img src="https://sjtv.xianliao.voto/daohang/IOS-step3.png" />
             </div>
-            <div class="i-c">点击添加按钮，它将添加到您的主屏幕</div>
+            <div class="i-c">{{ $t('downloadPop.clickAddButton') }}</div>
           </div>
         </div>
         <!-- <div v-show="showAndroid" class="s-b" id="sb-android">

@@ -1,12 +1,9 @@
 export default {
-  footer: {
-    home: '首页',
-    elites: '精选',
-    shortList: '短视频',
-    bbs: '社区',
-    my: '我的'
-  },
-  navbar: {
+  common: {
+    official: '芒果TV官方',
+    ad: '广告',
+    cancelCollect: '取消收藏',
+    addCollect: '＋添加收藏',
     home: '首页',
     elites: '精选',
     shortList: '短视频',
@@ -16,6 +13,55 @@ export default {
     hot: '热门',
     permanentDomain: '永久域名',
     androidDownload: 'Android版下载',
-    iosDownload: 'IOS苹果版下载'
+    iosDownload: 'IOS苹果版下载',
+    comment: '评论',
+    noComment: '暂无评论',
+    noMore: '没有更多了',
+    loading: '加载中...',
+    loadingFail: '加载失败',
+    commentPlaceholder: '善言结善缘，恶言伤人心',
+    send: '发送',
+    login: '登录',
+    register: '注册',
+    username: '用户名',
+    phoneNumber: '手机号',
+    verificationCode: '手机验证码',
+    getCode: '获取验证码',
+    retryAfterSeconds: '{seconds}秒后重试',
+    password: '密码',
+    loginNow: '立即登录',
+    registerNow: '立即注册',
+    enterUsername: '请输入用户名',
+    enterPassword: '请输入密码',
+    enterValidPhone: '请输入正确的手机号',
+    enterValidUsernameOrPhone: '请输入以字母开头的5-12位用户名或手机号',
+    enterValidPassword: '密码格式不正确，请输入6-16位包含字母、数字或特殊字符的密码',
+    enterVerificationCode: '请输入验证码',
+    loginSuccess: '登录成功',
+    loginFail: '登录失败',
+    registerSuccess: '注册成功',
+    registerFail: '注册失败',
+    codeSent: '验证码已发送',
+    codeSendFail: '获取验证码失败'
+  },
+  comment: {
+    emptyComment: '评论内容不能为空',
+    commentContent: '评论内容至少需要5个字',
+    sendSuccess: '评论成功',
+    sendFail: '评论失败',
+  },
+  downloadPop: {
+    appExclusive: 'App独享超清加速，永久免费',
+    smoothExperience: '刷抖阴更流畅，海量高清影片抢先看',
+    downloadNow: '立即下载',
+    addToHome: '添加到主屏幕',
+    add: '添加',
+    step: '步骤',
+    clickShare: '点击共享按钮',
+    clickAddHome: '点击添加到主屏幕',
+    clickAddButton: '点击添加按钮，它将添加到您的主屏幕'
+  },
+  login: {
+    forgotPassword: '忘记密码？'
   }
 }

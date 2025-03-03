@@ -7,13 +7,13 @@
             <div class="a-l">
               <img :src="getAssetsFile('logo-4.png')" />
               <div class="l-n">
-                <h3>{{ post.user.nickName || '芒果TV官方' }}</h3>
+                <h3>{{ post.user.nickName || $t('common.official') }}</h3>
                 <span>{{ fromNow(post.createTime) }}</span>
               </div>
             </div>
             <div v-if="isCollect" class="a-r">
-              <span v-if="post.isCollected" class="off" @click.stop="toggleCollect(post)">取消收藏</span>
-              <span v-else class="on" @click.stop="toggleCollect(post)">＋添加收藏</span>
+              <span v-if="post.isCollected" class="off" @click.stop="toggleCollect(post)">{{ $t('common.cancelCollect') }}</span>
+              <span v-else class="on" @click.stop="toggleCollect(post)">{{ $t('common.addCollect') }}</span>
             </div>
             <div v-else class="a-r">
               <span>#{{ post.channel.title }}</span>
@@ -42,7 +42,7 @@
             <div class="a-l">
               <img :src="getAssetsFile('logo-4.png')" />
               <div class="l-n">
-                <h3>{{ '芒果TV官方' }}</h3>
+                <h3>{{ $t('common.official') }}</h3>
                 <!-- <span>{{ fromNow(post.createTime) }}</span> -->
               </div>
             </div>

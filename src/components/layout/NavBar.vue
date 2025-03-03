@@ -8,19 +8,19 @@
         <div class="nb-b">
           <div class="row">
             <router-link to="/index" :class="{ active: activeMenu == 'index' }">
-              <i class="mvfont mv-shouye" /><span>{{ $t('navbar.home') }}</span>
+              <i class="mvfont mv-shouye" /><span>{{ $t('common.home') }}</span>
             </router-link>
             <router-link to="/elites" :class="{ active: activeMenu == 'elites' }">
-              <i class="mvfont mv-jingxuan" /><span>{{ $t('navbar.elites') }}</span>
+              <i class="mvfont mv-jingxuan" /><span>{{ $t('common.elites') }}</span>
             </router-link>
             <router-link to="/shortList" :class="{ active: activeMenu == 'shortList' }">
-              <i class="mvfont mv-dsp" /><span>{{ $t('navbar.shortList') }}</span>
+              <i class="mvfont mv-dsp" /><span>{{ $t('common.shortList') }}</span>
             </router-link>
             <router-link to="/bbs" :class="{ active: activeMenu == 'bbs' }">
-              <i class="mvfont mv-shequ" /><span>{{ $t('navbar.bbs') }}</span>
+              <i class="mvfont mv-shequ" /><span>{{ $t('common.bbs') }}</span>
             </router-link>
             <router-link to="/home" :class="{ active: activeMenu == 'home' }">
-              <i class="mvfont mv-home0" /><span>{{ $t('navbar.my') }}</span>
+              <i class="mvfont mv-home0" /><span>{{ $t('common.my') }}</span>
             </router-link>
           </div>
           <div class="row">
@@ -28,10 +28,10 @@
           </div>
           <div class="row">
             <router-link :to="{ name: 'theme' }">
-              <i class="mvfont mv-tag" /><span>{{ $t('navbar.theme') }}</span>
+              <i class="mvfont mv-tag" /><span>{{ $t('common.theme') }}</span>
             </router-link>
             <router-link :to="{ name: 'hotVideo' }">
-              <i class="mvfont mv-hot" /><span>{{ $t('navbar.hot') }}</span>
+              <i class="mvfont mv-hot" /><span>{{ $t('common.hot') }}</span>
             </router-link>
             <router-link :to="{ name: 'actor' }">
               <i class="mvfont mv-cvFilter" /><span>{{ nvyou }}</span>
@@ -42,10 +42,10 @@
       <div class="bd-b">
         <div class="row">
           <a>
-            {{ $t('navbar.permanentDomain') }}:<b>{{ appStore.spareData.OfficialDomain }}</b>
+            {{ $t('common.permanentDomain') }}:<b>{{ appStore.spareData.OfficialDomain }}</b>
           </a>
-          <a @click="downloadApp(false)"><i class="mvfont mv-android" />{{ $t('navbar.androidDownload') }}</a>
-          <a @click="downloadApp(true)"><i class="mvfont mv-ios" />{{ $t('navbar.iosDownload') }}</a>
+          <a @click="downloadApp(false)"><i class="mvfont mv-android" />{{ $t('common.androidDownload') }}</a>
+          <a @click="downloadApp(true)"><i class="mvfont mv-ios" />{{ $t('common.iosDownload') }}</a>
         </div>
       </div>
     </div>
