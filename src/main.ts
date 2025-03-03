@@ -29,70 +29,78 @@ app.use(VueLazyload, {
 app.use(router)
 app.directive('lazy-decrypt', lazyDecrypt)
 
-// 显示开屏广告
-const splashAd = document.getElementById('splash-ad')
-const splashAdImg = document.getElementById('splash-ad-img') as HTMLImageElement
-const closeSplashAdButton = document.getElementById('close-splash-ad')
-const countdownElement = document.getElementById('countdown')
+// 手动解析哈希中的查询参数
+const hash = window.location.hash
+const queryString = hash.includes('?') ? hash.split('?')[1] : ''
+const urlParams = new URLSearchParams(queryString)
+const adParam = urlParams.get('ad')
 
-// 关闭广告
-const closeSplashAd = () => {
-  if (splashAd) {
-    splashAd.style.display = 'none'
-  }
-}
+// 只有当 ad 参数不等于 '0' 时才执行开屏广告相关的代码
+if (adParam !== '0') {
+  // 显示开屏广告
+  const splashAd = document.getElementById('splash-ad')
+  const splashAdImg = document.getElementById('splash-ad-img') as HTMLImageElement
+  const closeSplashAdButton = document.getElementById('close-splash-ad')
+  const countdownElement = document.getElementById('countdown')
 
-closeSplashAdButton?.addEventListener('click', closeSplashAd)
-
-// 获取广告数据并显示
-const fetchAndShowAd = async () => {
-  try {
-    const appStore = useAppStore()
-    // await appStore.fetConfig()
-    await appStore.fetAdvertisement()
-    const splashAds = appStore.getAdvertisementById(1).items
-
-    // 检查广告列表是否为空
-    if (!splashAds || splashAds.length == 0) {
-      console.log('No ads available to display.')
-      return
+  // 关闭广告
+  const closeSplashAd = () => {
+    if (splashAd) {
+      splashAd.style.display = 'none'
     }
-    // 选择广告并解密图片
-    const selectedAd = getRandomAd(splashAds)
-    if (selectedAd) {
-      const decrypted = new decryptionService()
-      appStore.cdnUrl = 'https://video.j89pk.com/'
-      const decryptedImageUrl = await decrypted.fetchAndDecrypt(appStore.cdnUrl + selectedAd.imgUrl)
+  }
 
-      // 设置广告图片和点击事件
-      splashAdImg.src = URL.createObjectURL(decryptedImageUrl)
-      splashAdImg.onclick = () => {
-        window.open(selectedAd.targetUrl)
+  closeSplashAdButton?.addEventListener('click', closeSplashAd)
+
+  // 获取广告数据并显示
+  const fetchAndShowAd = async () => {
+    try {
+      const appStore = useAppStore()
+      await appStore.fetAdvertisement()
+      const splashAds = appStore.getAdvertisementById(1).items
+
+      // 检查广告列表是否为空
+      if (!splashAds || splashAds.length == 0) {
+        console.log('No ads available to display.')
+        return
       }
+      // 选择广告并解密图片
+      const selectedAd = getRandomAd(splashAds)
+      if (selectedAd) {
+        const decrypted = new decryptionService()
+        appStore.cdnUrl = 'https://video.j89pk.com/'
+        const decryptedImageUrl = await decrypted.fetchAndDecrypt(appStore.cdnUrl + selectedAd.imgUrl)
 
-      // 显示广告
-      splashAd.style.display = 'flex'
+        // 设置广告图片和点击事件
+        splashAdImg.src = URL.createObjectURL(decryptedImageUrl)
+        splashAdImg.onclick = () => {
+          window.open(selectedAd.targetUrl)
+        }
 
-      // 设置倒计时
-      let countdown = 3
-      const countdownInterval = setInterval(() => {
-        countdown -= 1
-        if (countdownElement) {
-          countdownElement.textContent = countdown.toString()
-        }
-        if (countdown <= 0) {
-          clearInterval(countdownInterval)
-          closeSplashAd()
-        }
-      }, 1000)
+        // 显示广告
+        splashAd.style.display = 'flex'
+
+        // 设置倒计时
+        let countdown = 3
+        const countdownInterval = setInterval(() => {
+          countdown -= 1
+          if (countdownElement) {
+            countdownElement.textContent = countdown.toString()
+          }
+          if (countdown <= 0) {
+            clearInterval(countdownInterval)
+            closeSplashAd()
+          }
+        }, 1000)
+      }
+    } catch (error) {
+      console.error('Failed to fetch or decrypt ad:', error)
+      closeSplashAd()
     }
-  } catch (error) {
-    console.error('Failed to fetch or decrypt ad:', error)
-    closeSplashAd()
   }
-}
 
-fetchAndShowAd()
+  fetchAndShowAd()
+}
 
 router.isReady().then(() => {
   app.mount('#app')

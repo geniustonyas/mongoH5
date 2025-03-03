@@ -49,6 +49,7 @@ export const useAppStore = defineStore('app', {
       theme: [], // 标签
       categorys: decryptedCategorys, // 分类
       advertisement: [], // 广告
+      openMatomo: false, // 是否打开 Matomo
       clarity: ['普通', '高清', '超清', '蓝光'], // 清晰度
       isPc: /Windows|Macintosh|Linux|X11/i.test(navigator.userAgent) && !/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
     }
@@ -100,6 +101,7 @@ export const useAppStore = defineStore('app', {
         this.shortVideoListRandomMax = parseInt(data.find((item: any) => item.pKey === 'ShortVideoListRandomPage')?.value2 || '10')
         this.discloseRandomMin = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value1 || '1')
         this.discloseRandomMax = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value2 || '10')
+        this.openMatomo = data.find((item: any) => item.pKey === 'matomok')?.value1 == '1'
         // const adTmp = data.find((item: any) => item.pKey === 'SAds')
         // if (adTmp.value1) {
         //   const tmp = await decrypted.fetchAndDecrypt(adTmp.value1)
@@ -138,7 +140,9 @@ export const useAppStore = defineStore('app', {
         this.statistics = data || []
 
         // 初始化 Matomo (如果 selfCode 是数字或数字字符串)
-        if (data?.selfCode && isNumeric(data.selfCode)) {
+        console.log(this.openMatomo)
+        console.log('aaaaaa')
+        if (data?.selfCode && isNumeric(data.selfCode) && this.openMatomo) {
           initMatomo(data.selfCode)
         }
 
