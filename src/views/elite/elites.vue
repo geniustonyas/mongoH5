@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed, nextTick } from 'vue'
-import { useRouter, onBeforeRouteLeave } from 'vue-router'
+import { onBeforeRouteLeave } from 'vue-router'
 import { getVideoListApi, getVideoDetailApi, addPlayCountApi } from '@/api/video'
 import decryptionService from '@/utils/decryptionService'
 import { userLike } from '@/api/user'
@@ -63,7 +63,6 @@ import type { Video, VideoDetailResponse } from '@/types/video'
 import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import { generateAuthUrl } from '@/utils/decryptionService'
-import { douyin } from '@/utils/cryptedData'
 import Loading from '@/components/layout/Loading.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -75,7 +74,6 @@ import { Popup, showToast } from 'vant'
 import Clipboard from 'clipboard'
 import HomeLayout from '@/components/layout/HomeLayout.vue'
 
-const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const modules = [Virtual]

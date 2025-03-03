@@ -128,7 +128,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/novel',
     name: 'novel',
-    component: () => import('@/views/novel/list.vue'),
+    component: () => import('@/views/novel/index.vue'),
     meta: { needLogin: false, keepAlive: false, title: '文学' }
   },
   {

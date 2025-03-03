@@ -498,3 +498,21 @@ export function insertAdsForShortList(dataList: Video[], adList: AdsItem[], minI
 
   return result
 }
+
+/**
+ * Converts large numbers to abbreviated format with "w" suffix
+ * Example: 10000 -> "1w", 100000 -> "10w", 1000 -> "1000"
+ * @param count The number to convert
+ * @returns Formatted string with "w" suffix for numbers >= 10000
+ */
+export const formatCount = (count: string | number): string => {
+  const num = typeof count === 'string' ? parseInt(count, 10) : count
+
+  if (isNaN(num)) return '0'
+
+  if (num >= 10000) {
+    return (num / 10000).toFixed(num % 10000 === 0 ? 0 : 1) + 'w'
+  }
+
+  return num.toString()
+}

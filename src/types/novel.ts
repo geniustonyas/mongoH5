@@ -10,6 +10,34 @@ export enum BookStatus {
   Finished = 2
 }
 
+export enum NovelStatus {
+  All = -1,
+  Serial = 0,
+  Finished = 1
+}
+
+export interface NovelIndexResponseData {
+  categories: NovelBookCategoryItem[]
+  ends: NovelIndexListItem[]
+  hots: NovelIndexListItem[]
+  newhots: NovelIndexListItem[]
+  news: NovelIndexListItem[]
+  recommends: NovelIndexListItem[]
+  serial: []
+}
+
+export interface NovelIndexListItem {
+  id: string
+  categoryId: string
+  categoryName: string
+  title: string
+  coverUrl: string
+  favoriteCount: string
+  readCount: string
+  status: number
+  statusText?: string
+}
+
 export interface NovelListItem {
   id: string
   title: string
