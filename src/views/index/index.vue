@@ -861,6 +861,10 @@ watch(
           }
         }
       }
+    } else {
+      if (adPopupAdvertisement.value.length > 0) {
+        showAdPopup.value = true
+      }
     }
   },
   { immediate: true }
@@ -880,6 +884,10 @@ watch(
             showAdPopup.value = true
           }
         }
+      }
+    } else {
+      if (adPopupAdvertisement.value.length > 0) {
+        showAdPopup.value = true
       }
     }
   },
