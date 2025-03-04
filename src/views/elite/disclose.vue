@@ -96,7 +96,7 @@ import { douyin } from '@/utils/cryptedData'
 import { decodeHtmlEntities } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
-import Comment from '@/components/comment.vue'
+import Comment from '@/components/Comment.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Virtual, Autoplay } from 'swiper/modules'
