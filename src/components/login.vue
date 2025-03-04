@@ -6,8 +6,8 @@
         <div class="pl-c">
           <div class="l-a">
             <div class="a-l">
-              <span @click="isLoginMode = true" :class="{ active: isLoginMode }">登录</span>
-              <span @click="isLoginMode = false" :class="{ active: !isLoginMode }">注册</span>
+              <span @click="isLoginMode = true" :class="{ active: isLoginMode }"> {{ $t('login.login') }} </span>
+              <span @click="isLoginMode = false" :class="{ active: !isLoginMode }"> {{ $t('login.register') }} </span>
             </div>
             <div class="a-r">
               <span @click="userStore.showLoginDialog = false"><i class="mvfont mv-close" /></span>
@@ -18,29 +18,29 @@
               <ul class="f-a">
                 <li v-if="isLoginMode">
                   <i class="mvfont mv-user" />
-                  <input v-model="formData.UserName" placeholder="用户名" />
+                  <input v-model="formData.UserName" :placeholder="$t('login.username')" />
                 </li>
                 <li v-else>
                   <i class="mvfont mv-user" />
-                  <input v-model="formData.PhoneNumber" placeholder="用户名" />
+                  <input v-model="formData.PhoneNumber" :placeholder="$t('login.username')" />
                 </li>
                 <li v-if="!isLoginMode && appStore.regSms == '1'">
                   <i class="mvfont mv-yzm" />
-                  <input v-model="formData.VerifCode" placeholder="手机验证码" maxlength="6" />
+                  <input v-model="formData.VerifCode" :placeholder="$t('login.verificationCode')" maxlength="6" />
                   <a @click="handleGetCode" :class="{ disabled: countdown > 0 }">
-                    {{ countdown > 0 ? `${countdown}秒后重试` : '获取验证码' }}
+                    {{ countdown > 0 ? $t('login.retryAfterSeconds', { seconds: countdown }) : $t('login.getCode') }}
                   </a>
                 </li>
                 <li>
                   <i class="mvfont mv-password" />
-                  <input v-model="formData.Password" type="password" placeholder="密码" />
+                  <input v-model="formData.Password" type="password" :placeholder="$t('login.password')" />
                 </li>
               </ul>
               <div class="f-b">
-                <a @click="handleSubmit" class="btn btn1">{{ isLoginMode ? '立即登录' : '立即注册' }}</a>
+                <a @click="handleSubmit" class="btn btn1">{{ isLoginMode ? $t('login.loginNow') : $t('login.registerNow') }}</a>
               </div>
               <div class="f-c" v-if="isLoginMode">
-                <!-- <a>忘记密码？</a> -->
+                <!-- <a @click="isLoginMode = false">{{ $t('login.forgotPassword') }}</a> -->
               </div>
             </div>
           </div>
@@ -60,6 +60,8 @@ import { setToken } from '@/utils/auth'
 import type { loginForm } from '@/types/user'
 import { isPhone, isPwd, isUname } from '@/utils/validate'
 import { useAppStore } from '@/store/app'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const appStore = useAppStore()
 const userStore = useUserStore()
@@ -117,16 +119,16 @@ const startCountdown = (duration: number) => {
 const handleGetCode = async () => {
   if (countdown.value > 0) return
   if (!isPhone(formData.PhoneNumber)) {
-    showToast('请输入正确的手机号')
+    showToast(t('login.enterValidPhone'))
     return
   }
   try {
     const { data } = await getCodeApi({ phone: formData.PhoneNumber, type: 'register' })
     if (data) {
-      showToast('验证码已发送')
+      showToast(t('login.codeSent'))
       startCountdown(60)
     } else {
-      showToast(data.message || '获取验证码失败')
+      showToast(data.message || t('login.codeSendFail'))
     }
   } catch (error) {
     showToast(error.resp?.data?.message || '获取验证码失败')
@@ -136,31 +138,31 @@ const handleGetCode = async () => {
 const handleSubmit = async () => {
   if (isLoginMode.value) {
     if (!formData.UserName || !formData.Password) {
-      showToast('请输入用户名和密码')
+      showToast(t('login.enterUsernameAndPassword'))
       return
     }
     if (!isPhone(formData.UserName) && !isUname(formData.UserName)) {
-      showToast('请输入以字母开头的5-12位用户名或手机号')
+      showToast(t('login.enterValidUsernameOrPhone'))
       return
     }
   } else {
     formData.UserName = formData.PhoneNumber
     if (!isPhone(formData.PhoneNumber) && !isUname(formData.UserName)) {
-      showToast('请输入以字母开头的5-12位用户名或手机号')
+      showToast(t('login.enterValidUsernameOrPhone'))
       return
     }
     if (!formData.Password) {
-      showToast('请输入密码')
+      showToast(t('login.enterPassword'))
       return
     }
     if (appStore.regSms == '1' && !formData.VerifCode) {
-      showToast('请输入验证码')
+      showToast(t('login.enterVerificationCode'))
       return
     }
   }
 
   if (!isPwd(formData.Password)) {
-    showToast('密码格式不正确，请输入6-16位包含字母、数字或特殊字符的密码')
+    showToast(t('login.enterValidPassword'))
     return
   }
 
@@ -177,15 +179,15 @@ const handleSubmit = async () => {
         await login()
         isLoginMode.value = !isLoginMode.value
         userStore.showLoginDialog = false
-        showToast('注册成功')
+        showToast(t('login.registerSuccess'))
         // Clear inviteCode from localStorage after successful registration
         localStorage.removeItem('inviteCode')
       } else {
-        showToast(message || '注册失败')
+        showToast(message || t('login.registerFail'))
       }
     }
   } catch (error) {
-    showToast(error.message || (isLoginMode.value ? '登录失败' : '注册失败'))
+    showToast(error.message || (isLoginMode.value ? t('login.loginFail') : t('login.registerFail')))
   }
 }
 
@@ -197,7 +199,7 @@ const login = async () => {
     setToken(data.token)
     await userStore.fetchUserInfo()
   } else {
-    showToast(message || '登录失败')
+    showToast(message || t('login.loginFail'))
   }
 }
 </script>

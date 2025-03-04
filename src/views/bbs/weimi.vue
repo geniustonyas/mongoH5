@@ -18,12 +18,12 @@
           <div class="c-i"><img v-if="weimi?.coverImage" v-lazy-decrypt="weimi?.coverImage" /></div>
           <div class="c-d">
             <h3>{{ weimi?.title }}</h3>
-            <p>{{ weimi?.description }}</p>
+            <p>{{ weimi?.description || $t('bbs.description') }}</p>
             <span>
-              今日：<b>{{ weimi?.dayNewPostCount }}</b>
+              {{ $t('bbs.todayPost') }}<b>{{ weimi?.dayNewPostCount }}</b>
             </span>
             <span>
-              主题：<b>{{ weimi?.postCount }}</b>
+              {{ $t('bbs.totalPost') }}<b>{{ weimi?.postCount }}</b>
             </span>
           </div>
         </div>
@@ -31,21 +31,21 @@
       <div class="pb-b">
         <div class="au-tab-group">
           <div class="g-item">
-            <div class="i-l">排序</div>
+            <div class="i-l">{{ $t('common.order') }}</div>
             <div class="i-r">
               <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: query.SortType == key }" @click="changeSortType(key)">
-                {{ label }}
+                {{ $t(`common.${label}`) }}
               </span>
             </div>
           </div>
         </div>
         <div v-if="weimi?.actress && weimi?.actress.length > 0" class="au-tags">
           <div class="t-a">
-            <div class="a-l">标签</div>
+            <div class="a-l">{{ $t('common.tag') }}</div>
             <div class="a-r" @click="toggleActressList"><i class="mvfont mv-xia" /></div>
           </div>
           <div class="t-b" ref="actressListRef">
-            <span :class="{ active: query.ActressId == '' }" @click="changeActress('')">全部</span>
+            <span :class="{ active: query.ActressId == '' }" @click="changeActress('')">{{ $t('common.all') }}</span>
             <span v-for="actress in weimi?.actress" :key="actress.id" :class="{ active: query.ActressId == actress.id }" @click="changeActress(actress.id)">{{ actress.title }}</span>
           </div>
           <div class="t-c">
@@ -78,7 +78,7 @@ import NavBar from '@/components/layout/NavBar.vue'
 const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
-const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
+const sortOptions = { 1: 'update', 2: 'view', 4: 'praise', 5: 'comment', 6: 'collection', 3: 'video' }
 const weimi = ref<BbsSubCategoryDetailResponse | null>(null)
 const bbsList = ref([])
 const actressListRef = ref<HTMLElement | null>(null)

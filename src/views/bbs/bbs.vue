@@ -2,7 +2,7 @@
   <div class="page">
     <header class="header bbs-header">
       <div class="b-l">
-        <i @click="showToast('暂停发帖')" class="mvfont mv-jia2" />
+        <i @click="showToast($t('bbs.postDisabled'))" class="mvfont mv-jia2" />
       </div>
       <div class="head-menu">
         <div class="hm-a">
@@ -38,10 +38,10 @@
           <IconAd class="mt-10" />
 
           <div class="au-tabs">
-            <span @click="changeSortType(0)" :class="{ active: bbsListSortType[0] == 0 }"><i class="mvfont mv-quanbu" />全部</span>
-            <span @click="changeSortType(1)" :class="{ active: bbsListSortType[0] == 1 }"><i class="mvfont mv-zuixin" />最新</span>
-            <span @click="changeSortType(2)" :class="{ active: bbsListSortType[0] == 2 }"><i class="mvfont mv-hot3" />热门</span>
-            <span @click="changeSortType(3)" :class="{ active: bbsListSortType[0] == 3 }"><i class="mvfont mv-mv1" />视频</span>
+            <span @click="changeSortType(0)" :class="{ active: bbsListSortType[0] == 0 }"><i class="mvfont mv-quanbu" />{{ $t('common.all') }}</span>
+            <span @click="changeSortType(1)" :class="{ active: bbsListSortType[0] == 1 }"><i class="mvfont mv-zuixin" />{{ $t('common.latest') }}</span>
+            <span @click="changeSortType(2)" :class="{ active: bbsListSortType[0] == 2 }"><i class="mvfont mv-hot3" />{{ $t('common.hot') }}</span>
+            <span @click="changeSortType(3)" :class="{ active: bbsListSortType[0] == 3 }"><i class="mvfont mv-mv1" />{{ $t('common.video') }}</span>
           </div>
           <PullRefresh v-if="bbsListMap[0]" v-model="refreshing" @refresh="handleRefresh">
             <BbsListItem :bbs-list="bbsListMap[0]" />
@@ -165,9 +165,9 @@
 
           <div class="au-tab-group">
             <div class="g-item">
-              <div class="i-l">排序</div>
+              <div class="i-l">{{ $t('common.order') }}</div>
               <div class="i-r">
-                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[1] == key }" @click="changeSortType(key)">
+                <span v-for="(label, key) in $t('bbs.sortOptions')" :key="key" :class="{ active: bbsListSortType[1] == key }" @click="changeSortType(key)">
                   {{ label }}
                 </span>
               </div>
@@ -241,17 +241,19 @@
           <template v-if="bbsListTotalPages[1] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[1] > 9">
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[1] - 1)" :class="{ disabled: bbsListPageIndex[1] == 1 }">上一页</a>
+                <a @click="changePage(bbsListPageIndex[1] - 1)" :class="{ disabled: bbsListPageIndex[1] == 1 }">{{ $t('common.prevPage') }}</a>
               </div>
               <div class="pb-x">
                 <input v-model="bbsListPageIndex[1]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[1]" />
                 <span>/ {{ bbsListTotalPages[1] }}</span>
               </div>
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[1] + 1)" :class="{ disabled: bbsListPageIndex[1] == bbsListTotalPages[1] }">下一页</a>
+                <a @click="changePage(bbsListPageIndex[1] + 1)" :class="{ disabled: bbsListPageIndex[1] == bbsListTotalPages[1] }">{{ $t('common.nextPage') }}</a>
               </div>
             </div>
-            <div v-else class="more-box"><a v-if="bbsListPageIndex[1] < bbsListTotalPages[1]" @click="loadMore">加载更多</a></div>
+            <div v-else class="more-box">
+              <a v-if="bbsListPageIndex[1] < bbsListTotalPages[1]" @click="loadMore">{{ $t('common.loadMore') }}</a>
+            </div>
           </template>
         </swiper-slide>
         <!-- 微密 -->
@@ -262,7 +264,7 @@
               <p>
                 <span># {{ item.title }}</span>
               </p>
-              <small>{{ item.postCount }}帖</small>
+              <small>{{ item.postCount }} {{ $t('common.post') }}</small>
             </li>
           </ul>
 
@@ -279,9 +281,9 @@
 
           <div class="au-tab-group">
             <div class="g-item">
-              <div class="i-l">排序</div>
+              <div class="i-l">{{ $t('common.order') }}</div>
               <div class="i-r">
-                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[2] == key }" @click="changeSortType(key)">
+                <span v-for="(label, key) in $t('bbs.sortOptions')" :key="key" :class="{ active: bbsListSortType[2] == key }" @click="changeSortType(key)">
                   {{ label }}
                 </span>
               </div>
@@ -340,17 +342,19 @@
           <template v-if="bbsListTotalPages[2] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[2] > 9">
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[2] - 1)" :class="{ disabled: bbsListPageIndex[2] == 1 }">上一页</a>
+                <a @click="changePage(bbsListPageIndex[2] - 1)" :class="{ disabled: bbsListPageIndex[2] == 1 }">{{ $t('common.prevPage') }}</a>
               </div>
               <div class="pb-x">
                 <input v-model="bbsListPageIndex[2]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[2]" />
                 <span>/ {{ bbsListTotalPages[2] }}</span>
               </div>
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[2] + 1)" :class="{ disabled: bbsListPageIndex[2] == bbsListTotalPages[2] }">下一页</a>
+                <a @click="changePage(bbsListPageIndex[2] + 1)" :class="{ disabled: bbsListPageIndex[2] == bbsListTotalPages[2] }">{{ $t('common.nextPage') }}</a>
               </div>
             </div>
-            <div v-else class="more-box"><a v-if="bbsListPageIndex[2] < bbsListTotalPages[2]" @click="loadMore">加载更多</a></div>
+            <div v-else class="more-box">
+              <a v-if="bbsListPageIndex[2] < bbsListTotalPages[2]" @click="loadMore">{{ $t('common.loadMore') }}</a>
+            </div>
           </template>
         </swiper-slide>
         <!-- 圈子 -->
@@ -361,7 +365,7 @@
               <p>
                 <span># {{ item.title }}</span>
               </p>
-              <small>{{ item.postCount }}帖</small>
+              <small>{{ item.postCount }} {{ $t('common.post') }}</small>
             </div>
           </div>
 
@@ -380,9 +384,9 @@
 
           <div class="au-tab-group">
             <div class="g-item">
-              <div class="i-l">排序</div>
+              <div class="i-l">{{ $t('common.order') }}</div>
               <div class="i-r">
-                <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: bbsListSortType[3] == key }" @click="changeSortType(key)">
+                <span v-for="(label, key) in $t('bbs.sortOptions')" :key="key" :class="{ active: bbsListSortType[3] == key }" @click="changeSortType(key)">
                   {{ label }}
                 </span>
               </div>
@@ -455,17 +459,17 @@
           <template v-if="bbsListTotalPages[3] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[3] > 9">
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[3] - 1)" :class="{ disabled: bbsListPageIndex[3] == 1 }">上一页</a>
+                <a @click="changePage(bbsListPageIndex[3] - 1)" :class="{ disabled: bbsListPageIndex[3] == 1 }">{{ $t('common.prevPage') }}</a>
               </div>
               <div class="pb-x">
                 <input v-model="bbsListPageIndex[3]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[3]" />
                 <span>/ {{ bbsListTotalPages[3] }}</span>
               </div>
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[3] + 1)" :class="{ disabled: bbsListPageIndex[3] == bbsListTotalPages[3] }">下一页</a>
+                <a @click="changePage(bbsListPageIndex[3] + 1)" :class="{ disabled: bbsListPageIndex[3] == bbsListTotalPages[3] }">{{ $t('common.nextPage') }}</a>
               </div>
             </div>
-            <div v-else class="more-box"><a v-if="bbsListPageIndex[3] < bbsListTotalPages[3]" @click="loadMore">加载更多</a></div>
+            <div v-else class="more-box"><a v-if="bbsListPageIndex[3] < bbsListTotalPages[3]" @click="loadMore">{{ $t('common.loadMore') }}</a></div>
           </template>
         </swiper-slide>
         <!-- 收藏 -->
@@ -538,17 +542,19 @@
           <template v-if="bbsListTotalPages[4] > 1">
             <div class="au-pagination-box" v-if="bbsListTotalPages[4] > 9">
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[4] - 1)" :class="{ disabled: bbsListPageIndex[4] == 1 }">上一页</a>
+                <a @click="changePage(bbsListPageIndex[4] - 1)" :class="{ disabled: bbsListPageIndex[4] == 1 }">{{ $t('common.prevPage') }}</a>
               </div>
               <div class="pb-x">
                 <input v-model="bbsListPageIndex[4]" @change="handlePageChange" type="number" min="1" :max="bbsListTotalPages[4]" />
                 <span>/ {{ bbsListTotalPages[4] }}</span>
               </div>
               <div class="pb-x">
-                <a @click="changePage(bbsListPageIndex[4] + 1)" :class="{ disabled: bbsListPageIndex[4] == bbsListTotalPages[4] }">下一页</a>
+                <a @click="changePage(bbsListPageIndex[4] + 1)" :class="{ disabled: bbsListPageIndex[4] == bbsListTotalPages[4] }">{{ $t('common.nextPage') }}</a>
               </div>
             </div>
-            <div v-else class="more-box"><a v-if="bbsListPageIndex[4] < bbsListTotalPages[4]" @click="loadMore">加载更多</a></div>
+            <div v-else class="more-box">
+              <a v-if="bbsListPageIndex[4] < bbsListTotalPages[4]" @click="loadMore">{{ $t('common.loadMore') }}</a>
+            </div>
           </template>
         </swiper-slide>
       </swiper>
@@ -602,7 +608,7 @@ const bbsListAdvertisement = computed(() => {
   return tmp || []
 })
 
-const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
+const sortOptions = { 1: 'update', 2: 'view', 4: 'praise', 5: 'comment', 6: 'collection', 3: 'video' }
 
 const activeTab = ref(0)
 const previousTab = ref(0)

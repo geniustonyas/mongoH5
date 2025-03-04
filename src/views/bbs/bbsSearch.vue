@@ -1,8 +1,8 @@
 <template>
   <div class="page">
     <header class="s-header">
-      <input v-model="searchKeyword" placeholder="搜索" @keyup.enter="handleInputSearch" />
-      <a @click="appStore.setBack(true)">取消</a>
+      <input v-model="searchKeyword" :placeholder="$t('bbs.searchPlaceholder')" @keyup.enter="handleInputSearch" />
+      <a @click="appStore.setBack(true)">{{ $t('common.cancel') }}</a>
     </header>
 
     <div class="ad-box1 search-padding">
@@ -13,7 +13,7 @@
     <section v-if="showHotTags" class="p-s-b">
       <nav class="ps-ssfx">
         <div class="s-a">
-          <b>热门标签</b>
+          <b>{{ $t('bbs.hotTags') }}</b>
         </div>
         <div class="s-b">
           <a v-for="(tag, index) in appStore.bbsSearchTags" :key="index" @click="selectTag(tag)"> {{ tag }}<small v-if="index < 5">热</small> </a>
@@ -22,7 +22,7 @@
 
       <nav class="ps-ssfx">
         <div class="s-a">
-          <b>搜索历史</b>
+          <b>{{ $t('bbs.searchHistory') }}</b>
           <div v-if="searchHistory.length > 0" class="c-btn" @click="clearSearchHistory">
             <i class="mvfont mv-shanchu" />
           </div>
@@ -38,11 +38,7 @@
       <nav class="ps-ssfx">
         <div class="s-a">
           <b>
-            搜索"
-            <span>{{ searchKeyword }}</span>
-            "，找到
-            <span>{{ searchResults.length }}</span>
-            条帖子
+            {{ $t('bbs.searchResultCount', { keyword: searchKeyword, count: searchResults.length }) }}
           </b>
         </div>
         <div class="s-c">
@@ -58,8 +54,7 @@
       <nav class="ps-ssfx">
         <div class="s-a">
           <b>
-            未找到"<span>{{ searchKeyword }}</span>
-            "相关的帖子
+            {{ $t('bbs.noSearchResult', { keyword: searchKeyword }) }}
           </b>
         </div>
       </nav>

@@ -14,7 +14,7 @@
             <span><i class="mvfont mv-zan" />{{ video.likeCount }}</span> -->
           </div>
           <div class="p-c">
-            <span>广告</span>
+            <span>{{ $t('common.ad') }}</span>
           </div>
         </div>
       </div>

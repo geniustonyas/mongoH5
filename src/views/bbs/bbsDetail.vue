@@ -5,7 +5,7 @@
         <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
       </div>
       <div class="d-m">
-        <span>详情</span>
+        <span>{{ $t('common.detail') }}</span>
       </div>
     </header>
     <main class="b-b-b">
@@ -15,7 +15,7 @@
           <div class="b-l">
             <div class="l-a" v-lazy:background-image="{ src: getAssetsFile('logo-4.png') }" />
             <div class="l-b">
-              <h3>{{ detail?.user?.nickName || '芒果TV官方' }}</h3>
+              <h3>{{ detail?.user?.nickName || $t('common.official') }}</h3>
               <span>{{ detail?.createTime || '' }}</span>
             </div>
           </div>
@@ -36,42 +36,42 @@
         </div>
         <div class="bbs-d-ne">
           <div class="item" v-if="detail?.prev?.id" @click="handleBbsClick(detail.prev)">
-            <div class="i-a"><i class="mvfont mv-left" />上一篇</div>
+            <div class="i-a"><i class="mvfont mv-left" />{{ $t('common.prevPost') }}</div>
             <div class="i-b" v-html="`<span>#${detail.prev?.channel?.title}-${detail.prev?.subChannel?.title}</span>${decodeHtmlEntities(detail.prev?.title || '')}`" />
           </div>
           <div class="item" v-if="detail?.next?.id" @click="handleBbsClick(detail.next)">
-            <div class="i-a">下一篇<i class="mvfont mv-right" /></div>
+            <div class="i-a">{{ $t('common.nextPost') }}<i class="mvfont mv-right" /></div>
             <div class="i-b" v-html="`<span>#${detail.next?.channel?.title}-${detail.next?.subChannel?.title}</span>${decodeHtmlEntities(detail.next?.title || '')}`" />
           </div>
         </div>
 
         <div class="au-t-c">
           <div class="a-t">
-            <div class="t-l"><i class="mvfont mv-xietiao" />相关推荐</div>
+            <div class="t-l"><i class="mvfont mv-xietiao" />{{ $t('common.relatedRecommend') }}</div>
           </div>
           <div class="a-c">
             <BbsListItem :bbs-list="relatedList" :bbs-click="handleBbsClick" />
-            <div class="more-box"><a v-if="pageCount > 1 && pageIndex < pageCount" @click="loadMore">加载更多</a></div>
+            <div class="more-box"><a v-if="pageCount > 1 && pageIndex < pageCount" @click="loadMore">{{ $t('common.loadMore') }}</a></div>
           </div>
         </div>
       </div>
     </main>
     <footer class="footer">
       <div class="p-bbs">
-        <span><i @click="handleShare" class="mvfont mv-fenxiang" /><small>分享</small></span>
+        <span><i @click="handleShare" class="mvfont mv-fenxiang" /><small>{{ $t('common.share') }}</small></span>
         <span>
           <i @click="showComment = true" class="mvfont mv-pinglun" />
-          <small v-if="Number(detail?.commentCount) == 0">评论</small>
+          <small v-if="Number(detail?.commentCount) == 0">{{ $t('common.comment') }}</small>
           <b v-else>{{ detail?.commentCount ? formatNumber(detail?.commentCount) : 0 }}</b>
         </span>
         <span>
           <i :class="['mvfont', 'mv-zan', { active: detail?.like == '1' }]" @click="toggleLike" />
-          <small v-if="Number(detail?.likeCount) == 0">赞</small>
+          <small v-if="Number(detail?.likeCount) == 0">{{ $t('common.like') }}</small>
           <b v-else>{{ detail?.likeCount ? formatNumber(detail?.likeCount) : 0 }}</b>
         </span>
         <span>
           <i :class="['mvfont', 'mv-like', { active: detail?.collect }]" @click="toggleCollection" />
-          <small v-if="Number(detail?.collectionCount) == 0">收藏</small>
+          <small v-if="Number(detail?.collectionCount) == 0">{{ $t('common.collect') }}</small>
           <b v-else>{{ detail?.collectionCount ? formatNumber(detail?.collectionCount) : 0 }}</b>
         </span>
       </div>
@@ -85,7 +85,7 @@
 
     <Popup v-model:show="showSharePopup" position="center" :overlay="false" round>
       <div class="share-popup">
-        <p>分享链接已复制，赶快去分享给好友吧！</p>
+        <p>{{ $t('bbs.shareSuccess') }}</p>
       </div>
     </Popup>
 

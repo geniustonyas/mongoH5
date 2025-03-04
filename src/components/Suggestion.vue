@@ -21,38 +21,38 @@
       <div class="fs-c" @click="showPopup = true">
         <span>
           <i class="mvfont mv-jianyi" />
-          <small>建议<br />反馈</small>
+          <small>{{ $t('suggestion.suggestion') }}<br />{{ $t('suggestion.feedback') }}</small>
         </span>
       </div>
     </FloatingBubble>
 
     <Popup v-model:show="showPopup" position="bottom" closeable :overlay="true" round>
       <div class="suggestion-popup">
-        <div class="su-title">建议反馈</div>
+        <div class="su-title">{{ $t('suggestion.suggestion') + $t('suggestion.feedback') }}</div>
         <div class="su-content">
           <div class="su-banner">
             <i class="mvfont mv-guangbo" />
             <p>
-              请牢记域名：<b>{{ appStore.spareData.OfficialDomain }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.OfficialDomain"><i class="mvfont mv-fuzhi" /></span><br />
-              发送邮件至：<b>{{ appStore.spareData.Email }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.Email"><i class="mvfont mv-fuzhi" /></span> 可获得最新地址
+              {{ t('suggestion.officialDomain') }}<b>{{ appStore.spareData.OfficialDomain }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.OfficialDomain"><i class="mvfont mv-fuzhi" /></span><br />
+              {{ t('suggestion.email') }}<b>{{ appStore.spareData.Email }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.Email"><i class="mvfont mv-fuzhi" /></span> 可获得最新地址
             </p>
           </div>
           <Form ref="formRef" @submit="onSubmit">
             <CellGroup>
-              <Field v-model="form.FeedbackType" label="反馈类型" name="FeedbackType" :rules="[{ required: true, message: '请选择反馈类型' }]" required input-align="right">
+              <Field v-model="form.FeedbackType" :label="$t('suggestion.feedbackType')" name="FeedbackType" :rules="[{ required: true, message: '请选择反馈类型' }]" required input-align="right">
                 <template #input>
                   <RadioGroup v-model="form.FeedbackType" direction="horizontal">
-                    <Radio name="1">内容报错</Radio>
-                    <Radio name="2">查找资源</Radio>
-                    <Radio name="3">意见反馈</Radio>
-                    <Radio name="4">视频报错</Radio>
-                    <Radio name="5">其他</Radio>
+                    <Radio name="1">{{ $t('suggestion.contentError') }}</Radio>
+                    <Radio name="2">{{ $t('suggestion.findResource') }}</Radio>
+                    <Radio name="3">{{ $t('suggestion.feedbackSuggestion') }}</Radio>
+                    <Radio name="4">{{ $t('suggestion.videoError') }}</Radio>
+                    <Radio name="5">{{ $t('suggestion.other') }}</Radio>
                   </RadioGroup>
                 </template>
               </Field>
-              <Field v-model="form.Content" label="留言内容" name="Content" type="textarea" placeholder="请尽可能详细描述您的问题, 以方面我们快速改进" :rules="[{ required: true, message: '请输入留言内容' }]" required />
+              <Field v-model="form.Content" :label="$t('suggestion.messageContent')" name="Content" type="textarea" :placeholder="$t('suggestion.messagePlaceholder')" :rules="[{ required: true, message: $t('suggestion.enterMessage') }]" required />
             </CellGroup>
-            <Button round block native-type="submit" class="mt-16 btn btn1">提交</Button>
+            <Button round block native-type="submit" class="mt-16 btn btn1">{{ $t('common.submit') }}</Button>
           </Form>
         </div>
       </div>
@@ -66,6 +66,8 @@ import { Popup, Form, Field, RadioGroup, Radio, Button, CellGroup, showSuccessTo
 import { useAppStore } from '@/store/app'
 import { copy } from '@/utils'
 import { userSuggestion } from '@/api/user'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const offset = ref({ x: 0, y: 400 })
 
@@ -97,7 +99,7 @@ const onSubmit = async () => {
   try {
     await userSuggestion(form.value)
     showPopup.value = false
-    showSuccessToast('提交成功, 感谢您的反馈')
+    showSuccessToast(t('suggestion.submitSuccess'))
     form.value.FeedbackType = ''
     form.value.Content = ''
   } catch (error) {
