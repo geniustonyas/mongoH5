@@ -469,7 +469,9 @@
                 <a @click="changePage(bbsListPageIndex[3] + 1)" :class="{ disabled: bbsListPageIndex[3] == bbsListTotalPages[3] }">{{ $t('common.nextPage') }}</a>
               </div>
             </div>
-            <div v-else class="more-box"><a v-if="bbsListPageIndex[3] < bbsListTotalPages[3]" @click="loadMore">{{ $t('common.loadMore') }}</a></div>
+            <div v-else class="more-box">
+              <a v-if="bbsListPageIndex[3] < bbsListTotalPages[3]" @click="loadMore">{{ $t('common.loadMore') }}</a>
+            </div>
           </template>
         </swiper-slide>
         <!-- 收藏 -->
