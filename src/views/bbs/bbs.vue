@@ -167,8 +167,8 @@
             <div class="g-item">
               <div class="i-l">{{ $t('common.order') }}</div>
               <div class="i-r">
-                <span v-for="(label, key) in $t('bbs.sortOptions')" :key="key" :class="{ active: bbsListSortType[1] == key }" @click="changeSortType(key)">
-                  {{ label }}
+                <span v-for="key in [1, 2, 4, 5, 6, 3]" :key="key" :class="{ active: bbsListSortType[1] == key }" @click="changeSortType(key)">
+                  {{ $t(`bbs.sortOptions.${key}`) }}
                 </span>
               </div>
             </div>
@@ -283,8 +283,8 @@
             <div class="g-item">
               <div class="i-l">{{ $t('common.order') }}</div>
               <div class="i-r">
-                <span v-for="(label, key) in $t('bbs.sortOptions')" :key="key" :class="{ active: bbsListSortType[2] == key }" @click="changeSortType(key)">
-                  {{ label }}
+                <span v-for="key in [1, 2, 4, 5, 6, 3]" :key="key" :class="{ active: bbsListSortType[2] == key }" @click="changeSortType(key)">
+                  {{ $t(`bbs.sortOptions.${key}`) }}
                 </span>
               </div>
             </div>
@@ -386,8 +386,8 @@
             <div class="g-item">
               <div class="i-l">{{ $t('common.order') }}</div>
               <div class="i-r">
-                <span v-for="(label, key) in $t('bbs.sortOptions')" :key="key" :class="{ active: bbsListSortType[3] == key }" @click="changeSortType(key)">
-                  {{ label }}
+                <span v-for="key in [1, 2, 4, 5, 6, 3]" :key="key" :class="{ active: bbsListSortType[3] == key }" @click="changeSortType(key)">
+                  {{ $t(`bbs.sortOptions.${key}`) }}
                 </span>
               </div>
             </div>
@@ -586,18 +586,20 @@ import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
+import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
 const route = useRoute()
 const appStore = useAppStore()
 const userStore = useUserStore()
+const { t } = useI18n()
 
 const tabs = [
-  { title: '推荐', name: 0 },
-  { title: '黑料', name: 1 },
-  { title: '微密', name: 2 },
-  { title: '圈子', name: 3 },
-  { title: '收藏', name: 4 }
+  { title: t('bbs.recommend'), name: 0 },
+  { title: t('bbs.black'), name: 1 },
+  { title: t('bbs.weimi'), name: 2 },
+  { title: t('bbs.circle'), name: 3 },
+  { title: t('bbs.collection'), name: 4 }
 ]
 const bannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(2).items
@@ -609,8 +611,6 @@ const bbsListAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(30).items
   return tmp || []
 })
-
-const sortOptions = { 1: 'update', 2: 'view', 4: 'praise', 5: 'comment', 6: 'collection', 3: 'video' }
 
 const activeTab = ref(0)
 const previousTab = ref(0)

@@ -3,8 +3,8 @@
     <header class="m-header h-video">
       <div class="h-m">
         <a @click="router.push({ name: 'elites' })" class="active">{{ douyin }}</a>
-        <a @click="router.push({ name: 'disclose' })">吃瓜</a>
-        <a @click="showToast('建设中...')">短剧</a>
+        <a @click="router.push({ name: 'disclose' })">{{ $t('common.disclose') }}</a>
+        <a @click="showToast($t('common.building'))">{{ $t('common.shortPlay') }}</a>
         <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
       </div>
       <div class="h-r">
@@ -17,8 +17,8 @@
         <div class="vm-h">
           <div class="h-m">
             <a @click="router.push({ name: 'elites' })" class="active">{{ douyin }}</a>
-            <a @click="router.push({ name: 'disclose' })">吃瓜</a>
-            <a @click="showToast('建设中...')">短剧</a>
+            <a @click="router.push({ name: 'disclose' })">{{ $t('common.disclose') }}</a>
+            <a @click="showToast($t('common.building'))">{{ $t('common.shortPlay') }}</a>
             <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
           </div>
           <div class="h-r">
@@ -41,10 +41,13 @@
                   <i :class="['mvfont', 'mv-shoucang', { active: videoDetail && videoDetail.collect }]" />
                   <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
                 </a> -->
-                <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
+                <a @click="handleShare">
+                  <i class="mvfont mv-zhuanfa" />
+                  <b>{{ $t('common.share') }}</b>
+                </a>
                 <a class="btn-mute" @click="toggleMute">
                   <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
-                  <span>取消静音</span>
+                  <span>{{ $t('elite.cancelMute') }}</span>
                 </a>
               </div>
               <div class="v-c">
@@ -53,7 +56,7 @@
                   <span>{{ appStore.spareData.OfficialDomain }}</span>
                 </div> -->
                 <h3>
-                  @芒果TV官方-
+                  @{{ $t('common.official') }}-
                   <span>{{ appStore.spareData.OfficialDomain }}</span>
                 </h3>
                 <p>
@@ -70,7 +73,7 @@
     </section>
     <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
       <div class="share-popup">
-        <p>分享链接已复制，赶快去分享给好友吧！</p>
+        <p>{{ $t('bbs.shareSuccess') }}</p>
       </div>
     </Popup>
     <Footer active-menu="elites" footer-class="footer f-footer" />

@@ -18,12 +18,12 @@
           <div class="c-i"><img v-if="weimi?.coverImage" v-lazy-decrypt="weimi?.coverImage" /></div>
           <div class="c-d">
             <h3>{{ weimi?.title }}</h3>
-            <p>{{ weimi?.description || $t('bbs.description') }}</p>
+            <p>{{ weimi?.description }}</p>
             <span>
-              {{ $t('bbs.todayPost') }}<b>{{ weimi?.dayNewPostCount }}</b>
+              {{ $t('comon.today') }}<b>{{ weimi?.dayNewPostCount }}</b>
             </span>
             <span>
-              {{ $t('bbs.totalPost') }}<b>{{ weimi?.postCount }}</b>
+              {{ $t('bbs.topics') }}<b>{{ weimi?.postCount }}</b>
             </span>
           </div>
         </div>
@@ -33,8 +33,8 @@
           <div class="g-item">
             <div class="i-l">{{ $t('common.order') }}</div>
             <div class="i-r">
-              <span v-for="(label, key) in sortOptions" :key="key" :class="{ active: query.SortType == key }" @click="changeSortType(key)">
-                {{ $t(`common.${label}`) }}
+              <span v-for="key in [1, 2, 4, 5, 6, 3]" :key="key" :class="{ active: query.SortType == key }" @click="changeSortType(key)">
+                {{ $t(`bbs.sortOptions.${key}`) }}
               </span>
             </div>
           </div>
@@ -78,7 +78,6 @@ import NavBar from '@/components/layout/NavBar.vue'
 const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
-const sortOptions = { 1: 'update', 2: 'view', 4: 'praise', 5: 'comment', 6: 'collection', 3: 'video' }
 const weimi = ref<BbsSubCategoryDetailResponse | null>(null)
 const bbsList = ref([])
 const actressListRef = ref<HTMLElement | null>(null)

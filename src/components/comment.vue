@@ -78,8 +78,6 @@ import { useUserStore } from '@/store/user'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/zh-cn'
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
 
 // 使用相对时间插件
 dayjs.extend(relativeTime)
@@ -154,19 +152,19 @@ const postComment = async (content = '') => {
   const commentContent = content || textDom.innerText.trim()
 
   if (commentContent === '') {
-    showToast(t('comment.emptyComment'))
+    showToast('评论内容不能为空')
     return
   }
 
   if (commentContent.length < 5) {
-    showToast(t('comment.commentContent'))
+    showToast('评论内容至少需要5个字')
     return
   }
 
   try {
     const { data } = await bbsCommentApi({ PostId: props.postId, Content: commentContent })
     if (data) {
-      showToast(t('comment.sendSuccess'))
+      showToast('评论成功')
       comments.value.unshift({
         id: '',
         userName: userStore.userInfo.nickName,
@@ -187,7 +185,7 @@ const postComment = async (content = '') => {
       emit('comment-added')
     }
   } catch (error) {
-    showToast(error.message || t('comment.sendFail'))
+    showToast(error.message || '发表评论失败')
   }
 }
 

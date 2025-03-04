@@ -37,9 +37,7 @@
     <section v-if="searchResults.length > 0" class="p-s-b">
       <nav class="ps-ssfx">
         <div class="s-a">
-          <b>
-            {{ $t('bbs.searchResultCount', { keyword: searchKeyword, count: searchResults.length }) }}
-          </b>
+          <b v-html="$t('bbs.searchResultCount', { keyword: searchKeyword, count: searchResults.length })" />
         </div>
         <div class="s-c">
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
@@ -53,9 +51,7 @@
     <section v-else-if="hasSearched" class="p-s-b">
       <nav class="ps-ssfx">
         <div class="s-a">
-          <b>
-            {{ $t('bbs.noSearchResult', { keyword: searchKeyword }) }}
-          </b>
+          <b v-html="$t('bbs.noSearchResult', { keyword: searchKeyword })" />
         </div>
       </nav>
     </section>

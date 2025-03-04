@@ -51,14 +51,18 @@
           </div>
           <div class="a-c">
             <BbsListItem :bbs-list="relatedList" :bbs-click="handleBbsClick" />
-            <div class="more-box"><a v-if="pageCount > 1 && pageIndex < pageCount" @click="loadMore">{{ $t('common.loadMore') }}</a></div>
+            <div class="more-box">
+              <a v-if="pageCount > 1 && pageIndex < pageCount" @click="loadMore">{{ $t('common.loadMore') }}</a>
+            </div>
           </div>
         </div>
       </div>
     </main>
     <footer class="footer">
       <div class="p-bbs">
-        <span><i @click="handleShare" class="mvfont mv-fenxiang" /><small>{{ $t('common.share') }}</small></span>
+        <span>
+          <i @click="handleShare" class="mvfont mv-fenxiang" /><small>{{ $t('common.share') }}</small>
+        </span>
         <span>
           <i @click="showComment = true" class="mvfont mv-pinglun" />
           <small v-if="Number(detail?.commentCount) == 0">{{ $t('common.comment') }}</small>
