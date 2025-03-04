@@ -18,12 +18,12 @@ export enum NovelStatus {
 
 export interface NovelIndexResponseData {
   categories: NovelBookCategoryItem[]
-  ends: NovelIndexListItem[]
+  end: NovelIndexListItem[]
   hots: NovelIndexListItem[]
   newhots: NovelIndexListItem[]
   news: NovelIndexListItem[]
   recommends: NovelIndexListItem[]
-  serial: []
+  serial: NovelIndexListItem[]
 }
 
 export interface NovelIndexListItem {
