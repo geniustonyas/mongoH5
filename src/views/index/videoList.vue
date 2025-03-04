@@ -8,7 +8,7 @@
       <div class="h-r" @click="router.push({ name: 'search' })"><i class="mvfont mv-search1" /></div>
     </header>
     <section class="h-l-b">
-      <PullRefresh v-model="refreshing" @refresh="refreshList">
+      <PullRefresh v-model="refreshing" @refresh="refreshList" :success-text="$t('common.refreshSuccess')">
         <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
           <ul v-if="videos.length > 0" class="col-one">
             <template v-for="(video, index) in videos" :key="index">
@@ -36,7 +36,7 @@
                     <template v-else>
                       <div class="a-l" />
                       <div class="a-r">
-                        <span><i class="mvfont mv-riqi" />广告</span>
+                        <span><i class="mvfont mv-riqi" />{{ $t('common.ad') }}</span>
                       </div>
                     </template>
                   </div>
@@ -61,17 +61,20 @@ import type { Video, VideoListRequest } from '@/types/video'
 import type { DataWithAd } from '@/types/global.d'
 import { formatDuration, classifyResolution, fromNow, openAd, insertAds, formatNumber } from '@/utils'
 import NavBar from '@/components/layout/NavBar.vue'
+import { useI18n } from 'vue-i18n'
+
 const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
+const { t } = useI18n()
 
 const videos = ref<DataWithAd<Video>[]>([])
 const activeTab = ref(0)
 const tabs = ref([
-  { label: '最新', value: 1 },
-  { label: '最热', value: 2 },
-  { label: '好评', value: 3 },
-  { label: '收藏', value: 4 }
+  { label: t('videoList.sort.latest'), value: 1 },
+  { label: t('videoList.sort.hot'), value: 2 },
+  { label: t('videoList.sort.good'), value: 3 },
+  { label: t('videoList.sort.collect'), value: 4 }
 ])
 
 let listLoading = ref(false)

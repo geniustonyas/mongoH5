@@ -24,7 +24,7 @@
       </div>
       <div v-if="appStore.isPc" class="head-menu">
         <div class="hm-a">
-          <a :class="{ active: activeId === 0 }" @click="clickTabPc(0)">首页</a>
+          <a :class="{ active: activeId === 0 }" @click="clickTabPc(0)">{{ $t('common.home') }}</a>
           <a v-for="(category, index) in appStore.categorys" :key="category.d" :class="{ active: activeId === index + 1 }" @click="clickTabPc(index + 1)">
             {{ category.t }}
           </a>
@@ -35,7 +35,7 @@
       </div>
       <div v-else class="category-tabs">
         <Tabs v-model:active="activeId" class="vant-tabs" @click-tab="clickTab" title-active-color="transparent">
-          <Tab title="首页" name="0" />
+          <Tab :title="$t('common.home')" name="0" />
           <Tab v-for="category in appStore.categorys" :key="category.d" :title="category.t" />
         </Tabs>
         <div class="search-icon">
@@ -47,7 +47,7 @@
       <!-- <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" no-swiping-class="no-swipe"> -->
       <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="swipePage" :allow-touch-move="!appStore.isPc" :no-swiping="!appStore.isPc" no-swiping-class="no-swipe">
         <swiper-slide>
-          <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
+          <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)" :success-text="$t('common.refreshSuccess')">
             <div class="web-col">
               <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="index-banner" class="swiper-container">
                 <swiper class="my-swipe" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
@@ -84,7 +84,7 @@
                   <div class="b-row r-ad">
                     <a @click.prevent="openDownloadPage" href="#">
                       <span><i class="mvfont mv-appxiazai" /></span>
-                      <small>APP下载</small>
+                      <small>{{ $t('common.appDownload') }}</small>
                     </a>
                     <a @click="redirectCategory(3, 42)">
                       <span><i class="mvfont mv-n91" /><em>91</em></span>
@@ -96,19 +96,19 @@
                     </a>
                     <a @click="router.push({ name: 'spare' })">
                       <span><i class="mvfont mv-yizhangtong" /></span>
-                      <small>防丢失</small>
+                      <small>{{ $t('common.antiLoss') }}</small>
                     </a>
                     <!-- <a>
                       <span><i class="mvfont mv-changjianwenti" /></span>
-                      <small>常见问题</small>
+                      <small>{{ $t('common.commonQuestions') }}</small>
                     </a> -->
                     <a @click="router.push({ name: 'share' })">
                       <span><i class="mvfont mv-fenxiang3" /></span>
-                      <small>分享赚钱</small>
+                      <small>{{ $t('common.shareEarn') }}</small>
                     </a>
                     <!-- <a @click="showToast('暂未开通')">
                       <span><i class="mvfont mv-vip1" /></span>
-                      <small>开通VIP</small>
+                      <small>{{ $t('home.openVIP') }}</small>
                     </a> -->
                   </div>
 
@@ -232,13 +232,13 @@
               <div class="mc-a">
                 <div class="a-l">
                   <i class="mvfont mv-xietiao" />
-                  <span>最新视频</span>
+                  <span>{{ $t('index.latestVideos') }}</span>
                 </div>
                 <div class="a-r">
                   <span>
                     <em v-for="(chunk, index) in latestVideos" :key="index" :class="{ active: index === latestActiveIndex }" />
                   </span>
-                  <span @click="router.push({ name: 'videoList', params: { id: 1 } })">更多<i class="mvfont mv-right" /></span>
+                  <span @click="router.push({ name: 'videoList', params: { id: 1 } })">{{ $t('common.more') }}<i class="mvfont mv-right" /></span>
                 </div>
               </div>
               <div class="mc-b">
@@ -395,13 +395,13 @@
               <div class="mc-a">
                 <div class="a-l">
                   <i class="mvfont mv-xietiao" />
-                  <span>热门推荐</span>
+                  <span>{{ $t('index.recommended') }}</span>
                 </div>
                 <div class="a-r">
                   <span>
                     <em v-for="(chunk, index) in recommendedVideos" :key="index" :class="{ active: index == recommendedActiveIndex }" />
                   </span>
-                  <span @click="router.push({ name: 'videoList', params: { id: 2 } })">更多<i class="mvfont mv-right" /></span>
+                  <span @click="router.push({ name: 'videoList', params: { id: 2 } })">{{ $t('common.more') }}<i class="mvfont mv-right" /></span>
                 </div>
               </div>
               <div class="mc-b">
@@ -430,7 +430,7 @@
                     <!-- <span>
                       <em v-for="(chunk, index) in channel.videos" :key="index" :class="{ active: index == channelActiveIndices[channelIndex] }" />
                     </span> -->
-                    <span @click="redirectCategory(channelIndex + 1, '')">更多<i class="mvfont mv-right" /></span>
+                    <span @click="redirectCategory(channelIndex + 1, '')">{{ $t('common.more') }}<i class="mvfont mv-right" /></span>
                   </div>
                 </div>
                 <div class="mc-b">
@@ -439,8 +439,8 @@
                       <VideoGridItem v-for="video in channel.videos" :key="video.id" :video="video" @click="clickVideo(video)" />
                     </div>
                     <div class="mc-c">
-                      <span @click="redirectCategory(channelIndex + 1, '')">更多内容</span>
-                      <span @click="refreshChannelVideos(channelIndex)">换一换</span>
+                      <span @click="redirectCategory(channelIndex + 1, '')">{{ $t('common.moreContent') }}</span>
+                      <span @click="refreshChannelVideos(channelIndex)">{{ $t('index.refresh') }}</span>
                     </div>
                   </nav>
                 </div>
@@ -453,7 +453,7 @@
 
         <!-- 分类 -->
         <swiper-slide v-for="category in appStore.categorys" :key="category.d">
-          <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
+          <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)" :success-text="$t('common.refreshSuccess')">
             <!-- 分类广告 -->
             <div v-if="categoryBannerVideosMap[category.d] && categoryBannerVideosMap[category.d].length > 0 && keepAlive" class="mv-swiper">
               <swiper :modules="[Autoplay]" :slides-per-view="appStore.isPc ? 5 : 2" :centered-slides="!appStore.isPc" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
@@ -475,7 +475,7 @@
             <!-- 分类 -->
             <section class="m-l-b">
               <nav v-if="category.s && category.s.length > 0" class="b-a no-swipe">
-                <span :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">全部</span>
+                <span :class="{ active: query.SubChannelId == '' }" @click="selectCategory('')">{{ $t('common.all') }}</span>
                 <span v-for="cates in category.s" :key="cates.d" :class="{ active: categorySubChannelId[query.ChannelId] == cates.d }" @click="selectCategory(cates.d)">
                   {{ cates.t }}
                 </span>
@@ -640,17 +640,19 @@
                 <template v-if="categoryTotalPages[category.d] > 1 && categoryVideosMap[category.d].length > 0">
                   <div class="au-pagination-box" v-if="appStore.isPc || (!appStore.isPc && categoryTotalPages[category.d] > 9)">
                     <div class="pb-x">
-                      <a @click="changePage(categoryPageIndex[category.d] - 1)" :class="{ disabled: categoryPageIndex[category.d] == 1 }">上一页</a>
+                      <a @click="changePage(categoryPageIndex[category.d] - 1)" :class="{ disabled: categoryPageIndex[category.d] == 1 }">{{ $t('common.prevPage') }}</a>
                     </div>
                     <div class="pb-x">
                       <input v-model="categoryPageIndex[category.d]" @change="handlePageChange" type="number" min="1" :max="categoryTotalPages[category.d]" />
                       <span>/ {{ categoryTotalPages[category.d] }}</span>
                     </div>
                     <div class="pb-x">
-                      <a @click="changePage(categoryPageIndex[category.d] + 1)" :class="{ disabled: categoryPageIndex[category.d] == categoryTotalPages[category.d] }">下一页</a>
+                      <a @click="changePage(categoryPageIndex[category.d] + 1)" :class="{ disabled: categoryPageIndex[category.d] == categoryTotalPages[category.d] }">{{ $t('common.nextPage') }}</a>
                     </div>
                   </div>
-                  <div v-else class="more-box"><a v-if="categoryPageIndex[category.d] < categoryTotalPages[category.d]" @click="loadMore">加载更多</a></div>
+                  <div v-else class="more-box">
+                    <a v-if="categoryPageIndex[category.d] < categoryTotalPages[category.d]" @click="loadMore">{{ $t('common.loadMore') }}</a>
+                  </div>
                 </template>
               </nav>
             </section>
@@ -694,6 +696,7 @@ import type { DataWithAd } from '@/types/global.d'
 import { getAssetsFile, openAd, decodeHtmlEntities, chunkArray, shuffleArray, insertAds, getRandomAd } from '@/utils'
 import { Autoplay, Pagination } from 'swiper/modules'
 import { dashen, madou, indexCategory } from '@/utils/cryptedData'
+import { useI18n } from 'vue-i18n'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
@@ -708,7 +711,7 @@ const router = useRouter()
 const route = useRoute()
 const appStore = useAppStoreHook()
 const decrypted = new decryptionService()
-
+const { t } = useI18n()
 const showSuggestion = ref(true)
 
 const keepAlive = ref(true)
@@ -737,9 +740,9 @@ const recommendedActiveIndex = ref(0)
 const offset = ref({ x: 0, y: 100 })
 
 const sortOptions = [
-  { label: '按最新', value: 1 },
-  { label: '按最热', value: 2 },
-  { label: '按好评', value: 3 }
+  { label: t('index.sort.latest'), value: 1 },
+  { label: t('index.sort.hot'), value: 2 },
+  { label: t('index.sort.good'), value: 3 }
 ]
 
 const onSwiper = (swiper: any) => {

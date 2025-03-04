@@ -16,23 +16,23 @@
             <span v-if="userStore.userInfo.phoneNumber != ''">
               {{ userStore.userInfo.phoneNumber }}
             </span>
-            <span v-else @click="userStore.showLoginDialog = true">登录 / 注册</span>
+            <span v-else @click="userStore.showLoginDialog = true">{{ $t('common.login') }} / {{ $t('common.register') }}</span>
           </div>
         </div>
         <div class="a-b">
           <div class="b-l">
-            <h3>新用户专项特惠</h3>
-            <p>全球高清独家资源，免广告，专属线路</p>
+            <h3>{{ $t('home.newUserSpecial') }}</h3>
+            <p>{{ $t('home.globalExclusive') }}</p>
           </div>
           <div class="b-r">
-            <!-- <a>开通VIP</a> -->
+            <!-- <a>{{ $t('home.openVIP') }}</a> -->
           </div>
         </div>
         <div class="a-c">
-          <a @click="router.push({ name: 'message' })"><i class="mvfont mv-tixing1-full" />我的消息</a>
-          <a @click="router.push({ name: 'history' })"><i class="mvfont mv-zuji" />我的足迹</a>
-          <a @click="router.push({ name: 'collect' })"><i class="mvfont mv-like_fill" />我的收藏</a>
-          <a @click="router.push({ name: 'share' })"><i class="mvfont mv-fenxiang2" />分享好友</a>
+          <a @click="router.push({ name: 'message' })"><i class="mvfont mv-tixing1-full" />{{ $t('home.myMessages') }}</a>
+          <a @click="router.push({ name: 'history' })"><i class="mvfont mv-zuji" />{{ $t('home.myHistory') }}</a>
+          <a @click="router.push({ name: 'collect' })"><i class="mvfont mv-like_fill" />{{ $t('home.myCollect') }}</a>
+          <a @click="router.push({ name: 'share' })"><i class="mvfont mv-fenxiang2" />{{ $t('home.shareWithFriends') }}</a>
         </div>
       </div>
 
@@ -44,31 +44,31 @@
         <ul class="au-rows">
           <li>
             <a @click="openDownloadPage">
-              <span> <i class="mvfont mv-appxiazai" />APP下载 </span>
+              <span> <i class="mvfont mv-appxiazai" />{{ $t('common.androidDownload') }} </span>
               <i class="mvfont mv-right" />
             </a>
           </li>
           <li>
             <a @click="router.push({ name: 'spare' })">
-              <span> <i class="mvfont mv-fxlj" />永久地址 </span>
+              <span> <i class="mvfont mv-fxlj" />{{ $t('common.permanentDomain') }} </span>
               <i class="mvfont mv-right" />
             </a>
           </li>
           <li>
             <a @click="router.push({ name: 'message' })">
-              <span> <i class="mvfont mv-labax" />系统公告 </span>
+              <span> <i class="mvfont mv-labax" />{{ $t('home.systemAnnouncement') }} </span>
               <i class="mvfont mv-right" />
             </a>
           </li>
           <li>
             <a @click="router.push({ name: 'buyRecord' })">
-              <span> <i class="mvfont mv-zzjl" />购买记录 </span>
+              <span> <i class="mvfont mv-zzjl" />{{ $t('home.buyRecord') }} </span>
               <i class="mvfont mv-right" />
             </a>
           </li>
           <li>
             <a @click="router.push({ name: 'shareRecord' })">
-              <span> <i class="mvfont mv-bets" />分享记录 </span>
+              <span> <i class="mvfont mv-bets" />{{ $t('home.shareRecord') }} </span>
               <i class="mvfont mv-right" />
             </a>
           </li>

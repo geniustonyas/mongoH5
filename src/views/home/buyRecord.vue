@@ -4,7 +4,7 @@
       <div class="d-l">
         <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
       </div>
-      <div class="d-m">购买记录</div>
+      <div class="d-m">{{ $t('home.buyRecord') }}</div>
     </header>
     <section class="h-m-b">
       <div class="his-box">
@@ -13,7 +13,7 @@
         </ul>
         <div class="nodata">
           <div class="d-i" />
-          <div class="d-t">暂无购买记录</div>
+          <div class="d-t">{{ $t('common.noData') }}</div>
         </div>
       </div>
     </section>

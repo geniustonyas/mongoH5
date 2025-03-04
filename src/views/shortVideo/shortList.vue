@@ -12,7 +12,7 @@
         </div>
       </header>
       <section class="h-l-b padding1">
-        <PullRefresh v-model="refreshing" @refresh="fresh">
+        <PullRefresh v-model="refreshing" @refresh="fresh" :success-text="$t('common.refreshSuccess')">
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
             <div class="video-list-box" ref="videoListBox">
               <template v-for="(vd, index) in videoList" :key="index">

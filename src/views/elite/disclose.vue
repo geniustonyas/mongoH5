@@ -3,8 +3,8 @@
     <header class="m-header h-video" :class="{ hidden: showComment }">
       <div class="h-m">
         <a @click="router.push({ name: 'elites' })">{{ douyin }}</a>
-        <a @click="router.push({ name: 'disclose' })" class="active">吃瓜</a>
-        <a @click="showToast('建设中...')">短剧</a>
+        <a @click="router.push({ name: 'disclose' })" class="active">{{ $t('common.disclose') }}</a>
+        <a @click="showToast($t('common.building'))">{{ $t('common.shortPlay') }}</a>
         <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
       </div>
       <div class="h-r">
@@ -17,8 +17,8 @@
         <div class="vm-h">
           <div class="h-m">
             <a @click="router.push({ name: 'elites' })">{{ douyin }}</a>
-            <a @click="router.push({ name: 'disclose' })" class="active">吃瓜</a>
-            <a @click="showToast('建设中...')">短剧</a>
+            <a @click="router.push({ name: 'disclose' })" class="active">{{ $t('common.disclose') }}</a>
+            <a @click="showToast($t('common.building'))">{{ $t('common.shortPlay') }}</a>
             <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
           </div>
           <div class="h-r">
@@ -55,11 +55,13 @@
                   <i :class="['mvfont', 'mv-shoucang', { active: bbsDetail && bbsDetail.collect }]" />
                   <b>{{ bbsDetail ? bbsDetail.collectionCount : 0 }}</b>
                 </a>
-                <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
+                <a @click="handleShare">
+                  i class="mvfont mv-zhuanfa" /><b>{{ $t('common.share') }}</b>
+                </a>
               </div>
               <div class="v-c" :class="{ hidden: showComment }">
                 <h3>
-                  @芒果TV官方-<span>{{ appStore.spareData.OfficialDomain }}</span>
+                  @{{ $t('common.official') }}-<span>{{ appStore.spareData.OfficialDomain }}</span>
                 </h3>
                 <p>
                   <b v-html="decodeHtmlEntities(bbs.title || '')" />
@@ -76,7 +78,7 @@
     </section>
     <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
       <div class="share-popup">
-        <p>分享链接已复制，赶快去分享给好友吧！</p>
+        <p>{{ $t('bbs.shareSuccess') }}</p>
       </div>
     </Popup>
     <Footer active-menu="elites" footer-class="footer f-footer" :class="{ hidden: showComment }" />
@@ -96,7 +98,7 @@ import { douyin } from '@/utils/cryptedData'
 import { decodeHtmlEntities } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
-import Comment from '@/components/comment.vue'
+import Comment from '@/components/Comment.vue'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Virtual, Autoplay } from 'swiper/modules'

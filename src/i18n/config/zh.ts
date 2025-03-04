@@ -50,6 +50,19 @@ export default {
     disclose: '吃瓜',
     shortPlay: '短剧',
     building: '建设中...',
+    noData: '暂无记录',
+    selectAll: '全选',
+    remove: '移除',
+    edit: '编辑',
+    message: '消息',
+    notice: '公告',
+    more: '更多',
+    moreContent: '更多内容',
+    appDownload: 'APP下载',
+    shareEarn: '分享赚钱',
+    antiLoss: '防丢失',
+    commonQuestions: '常见问题',
+    refreshSuccess: '刷新成功'
   },
   comment: {
     emptyComment: '评论内容不能为空',
@@ -72,6 +85,7 @@ export default {
     login: '登录',
     register: '注册',
     username: '用户名',
+    registerTime: '注册时间',
     phoneNumber: '手机号',
     verificationCode: '手机验证码',
     getCode: '获取验证码',
@@ -156,5 +170,35 @@ export default {
     dashen: 'Y4zr+grav5Y5ePxt51eKcw==',
     madou: 'z85cog01xGdjz7gjwzHk2g==',
     fanhaoPianmingYanyuan: '5MqOCp2EbjKW3BzyyxxWDhR4Vg/J3TnRrFQhUWYx8R4=',
+  },
+  home: {
+    buyRecord: '购买记录',
+    newUserSpecial: '新用户专项特惠',
+    globalExclusive: '全球高清独家资源，免广告，专属线路',
+    openVIP: '开通VIP',
+    myMessages: '我的消息',
+    myHistory: '我的足迹',
+    myCollect: '我的收藏',
+    shareWithFriends: '分享好友',
+    systemAnnouncement: '系统公告',
+    shareRecord: '分享记录'
+  },
+  index: {
+    latestVideos: '最新视频',
+    recommended: '热门推荐',
+    refresh: '换一换',
+    sort: {
+      latest: '按最新',
+      hot: '按最热',
+      good: '按好评'
+    }
+  },
+  videoList: {
+    sort: {
+      latest: '最新',
+      hot: '最热',
+      good: '好评',
+      collect: '收藏'
+    }
   }
 }

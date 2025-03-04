@@ -6,7 +6,7 @@
         <span v-for="item in rankOptions" :key="item.value" :class="{ active: activeRank == item.value }" @click="changeRank(item.value)">{{ item.label }}</span>
       </div>
       <div>
-        <PullRefresh v-model="refreshing" @refresh="fresh">
+        <PullRefresh v-model="refreshing" @refresh="fresh" :success-text="$t('common.refreshSuccess')">
           <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
             <div v-if="videos.length > 0" class="video-list-box">
               <div v-for="video in videos" :key="video.id" @click="clickVideo(video)" class="video-list">

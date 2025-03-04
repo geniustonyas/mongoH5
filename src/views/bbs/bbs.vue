@@ -43,7 +43,7 @@
             <span @click="changeSortType(2)" :class="{ active: bbsListSortType[0] == 2 }"><i class="mvfont mv-hot3" />{{ $t('common.hot') }}</span>
             <span @click="changeSortType(3)" :class="{ active: bbsListSortType[0] == 3 }"><i class="mvfont mv-mv1" />{{ $t('common.video') }}</span>
           </div>
-          <PullRefresh v-if="bbsListMap[0]" v-model="refreshing" @refresh="handleRefresh">
+          <PullRefresh v-if="bbsListMap[0]" v-model="refreshing" @refresh="handleRefresh" :success-text="$t('common.refreshSuccess')">
             <BbsListItem :bbs-list="bbsListMap[0]" />
           </PullRefresh>
 
@@ -173,7 +173,7 @@
               </div>
             </div>
           </div>
-          <PullRefresh v-if="bbsListMap[1]" v-model="refreshing" @refresh="handleRefresh">
+          <PullRefresh v-if="bbsListMap[1]" v-model="refreshing" @refresh="handleRefresh" :success-text="$t('common.refreshSuccess')">
             <BbsListItem :bbs-list="bbsListMap[1]" class="mt-0" />
           </PullRefresh>
 
@@ -290,7 +290,7 @@
             </div>
           </div>
 
-          <PullRefresh v-if="bbsListMap[2]" v-model="refreshing" @refresh="handleRefresh">
+          <PullRefresh v-if="bbsListMap[2]" v-model="refreshing" @refresh="handleRefresh" :success-text="$t('common.refreshSuccess')">
             <BbsWeimiListItem :bbs-list="bbsListMap[2]" />
           </PullRefresh>
 
@@ -392,7 +392,7 @@
               </div>
             </div>
           </div>
-          <PullRefresh v-if="bbsListMap[3]" v-model="refreshing" @refresh="handleRefresh">
+          <PullRefresh v-if="bbsListMap[3]" v-model="refreshing" @refresh="handleRefresh" :success-text="$t('common.refreshSuccess')">
             <BbsListItem :bbs-list="bbsListMap[3]" class="mt-0" />
           </PullRefresh>
 
@@ -476,7 +476,7 @@
         </swiper-slide>
         <!-- 收藏 -->
         <swiper-slide class="bbs-swipe-item4">
-          <PullRefresh v-if="bbsListMap[4]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh">
+          <PullRefresh v-if="bbsListMap[4]" v-model="collectionRefreshing" @refresh="handleCollectionRefresh" :success-text="$t('common.refreshSuccess')">
             <BbsListItem :bbs-list="bbsListMap[4]" :is-collect="true" class="mt-0" />
           </PullRefresh>
 

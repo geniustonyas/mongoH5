@@ -3,16 +3,16 @@
     <div class="bbs-comment-box">
       <div class="bcb-head">
         <p>
-          评论<b>{{ comments.length == 0 ? '' : comments.length }}</b>
+          {{ $t('common.comment') }}<b>{{ comments.length == 0 ? '' : comments.length }}</b>
         </p>
         <span @click="toggleCommentVisibility(false)"><i class="mvfont mv-close" /></span>
       </div>
       <div ref="commentListRef" class="bcb-main">
-        <List v-if="comments.length > 0" v-model:loading="loading" :finished="finished" finished-text="没有更多评论了" @load="loadMoreComments">
+        <List v-if="comments.length > 0" v-model:loading="loading" :loading-text="$t('common.loading')" :error-text="$t('common.loadingFail')" :finished="finished" :finished-text="$t('common.noMore')" @load="loadMoreComments">
           <ul class="bbs-comment-list">
             <li v-for="comment in comments" :key="comment.id">
               <div class="i-l">
-                <img v-lazy="{ src: getAssetsFile('logo-4.png') }" alt="用户头像" />
+                <img v-lazy="{ src: getAssetsFile('logo-4.png') }" />
               </div>
               <div class="i-r">
                 <div class="r-a">{{ comment.userName }}</div>
@@ -32,7 +32,7 @@
             </li>
           </ul>
         </List>
-        <div v-if="noData" class="no-comment">暂无评论</div>
+        <div v-if="noData" class="no-comment">{{ $t('common.noComment') }}</div>
       </div>
       <div class="bcb-foot">
         <!-- <div class="f-a">
@@ -54,10 +54,10 @@
         <div class="f-b">
           <div class="b-input">
             <i class="mvfont mv-bianji" />
-            <div id="commentContent" contenteditable="true" class="editable-div" @focus="showEmojiPopup = true" data-placeholder="善言结善缘，恶言伤人心" />
+            <div id="commentContent" contenteditable="true" class="editable-div" @focus="showEmojiPopup = true" :data-placeholder="$t('common.commentPlaceholder')" />
             <i @click="showEmojiPopup = !showEmojiPopup" class="mvfont mv-biaoqing" />
           </div>
-          <div @click="postComment()" class="btn btn1">发送</div>
+          <div @click="postComment()" class="btn btn1">{{ $t('common.send') }}</div>
         </div>
       </div>
     </div>

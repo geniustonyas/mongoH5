@@ -4,7 +4,7 @@
       <div class="d-l">
         <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
       </div>
-      <div class="d-m">我的足迹</div>
+      <div class="d-m">{{ $t('home.myHistory') }}</div>
     </header>
     <section class="h-m-b">
       <div class="his-box">
@@ -28,24 +28,26 @@
         </ul>
         <div v-if="nodata" class="nodata">
           <div class="d-i" />
-          <div class="d-t">暂无观影记录</div>
+          <div class="d-t">{{ $t('common.noData') }}</div>
         </div>
       </div>
     </section>
     <template v-if="totalPages > 1">
       <div class="au-pagination-box" v-if="totalPages > 9">
         <div class="pb-x">
-          <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">上一页</a>
+          <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">{{ $t('common.prevPage') }}</a>
         </div>
         <div class="pb-x">
           <input v-model="currentPage" @change="() => fetchRecords()" type="number" min="1" :max="totalPages" />
           <span>/ {{ totalPages }}</span>
         </div>
         <div class="pb-x">
-          <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">下一页</a>
+          <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">{{ $t('common.nextPage') }}</a>
         </div>
       </div>
-      <div v-else class="more-box"><a v-if="currentPage < totalPages" @click="loadMore">加载更多</a></div>
+      <div v-else class="more-box">
+        <a v-if="currentPage < totalPages" @click="loadMore">{{ $t('common.loadMore') }}</a>
+      </div>
     </template>
   </div>
 </template>
