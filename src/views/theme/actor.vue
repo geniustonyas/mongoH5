@@ -19,7 +19,7 @@
           <div class="a-l">
             <a v-for="actor in actorList" :key="actor.id" @click="router.push({ name: 'actorDetail', params: { id: actor.id }, query: { videoCount: actor.videosCount } })">
               <div class="l-img" v-lazy-decrypt="actor.imgUrl" loading-img="default2.gif" error-img="default2.gif" :key="actor.id">
-                <span class="s-a">{{ actor.videosCount }}部</span>
+                <span class="s-a">{{ actor.videosCount }}</span>
                 <span class="s-b" v-if="actor.categoryNames.indexOf('知名') != -1">
                   <b>{{ zhiming }} {{ nvyou }}</b>
                 </span>
@@ -42,19 +42,21 @@ import { getActorListApi } from '@/api/theme'
 import type { ActorListRequest, ActorList } from '@/types/theme'
 import { zhiming, nvyou, wuma, riben, guochan, suren } from '@/utils/cryptedData'
 import { List } from 'vant'
+import { useI18n } from 'vue-i18n'
 import NavBar from '@/components/layout/NavBar.vue'
 const router = useRouter()
+const { t } = useI18n()
 
 const sortOptions = [
-  { label: '全部', value: '' },
-  { label: '影片数量', value: '1' },
-  { label: '最多人看', value: '2' },
-  { label: '最多收藏', value: '3' },
-  { label: '知名度', value: '4' }
+  { label: t('common.all'), value: '' },
+  { label: t('actor.sort.moveCount'), value: '1' },
+  { label: t('actor.sort.mostView'), value: '2' },
+  { label: t('actor.sort.moveCollect'), value: '3' },
+  { label: t('actor.sort.zhiming'), value: '4' }
 ]
 
 const categorys = [
-  { label: '全部', value: '' },
+  { label: t('common.all'), value: '' },
   { label: zhiming, value: '1' },
   { label: wuma, value: '2' },
   { label: riben, value: '3' },

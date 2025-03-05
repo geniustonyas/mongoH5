@@ -11,6 +11,7 @@ export default {
     my: '我的',
     theme: '主题',
     hot: '热门',
+    hotRank: '热榜',
     permanentDomain: '永久域名',
     androidDownload: 'Android版下载',
     iosDownload: 'IOS苹果版下载',
@@ -62,7 +63,10 @@ export default {
     shareEarn: '分享赚钱',
     antiLoss: '防丢失',
     commonQuestions: '常见问题',
-    refreshSuccess: '刷新成功'
+    refreshSuccess: '刷新成功',
+    back: '返回',
+    cancelMute: '取消静音',
+    shareSuccess: '分享链接已复制，赶快去分享给好友吧！'
   },
   comment: {
     emptyComment: '评论内容不能为空',
@@ -129,13 +133,11 @@ export default {
   },
   bbs: {
     postDisabled: '暂停发帖',
-    searchPlaceholder: '搜索',
     hotTags: '热门标签',
     searchHistory: '搜索历史',
     searchResultCount: `搜索" <span>{keyword}</span>"，找到<span>{count}</span>条帖子`,
     noSearchResult: `未找到"<span>{keyword}</span>"相关的帖子`,
     clearHistory: '清空历史',
-    shareSuccess: '分享链接已复制，赶快去分享给好友吧！',
     description: '描述',
     sortOptions: {
       '1': '更新',
@@ -150,9 +152,6 @@ export default {
     weimi: '微密',
     circle: '圈子',
     collection: '收藏'
-  },
-  elite: {
-    cancelMute: '取消静音',
   },
   cryptedData: {
     cryptedCategorys:
@@ -169,7 +168,7 @@ export default {
     suren: 'hepkuYFUcjAG2llmGO1fcw==',
     dashen: 'Y4zr+grav5Y5ePxt51eKcw==',
     madou: 'z85cog01xGdjz7gjwzHk2g==',
-    fanhaoPianmingYanyuan: '5MqOCp2EbjKW3BzyyxxWDhR4Vg/J3TnRrFQhUWYx8R4=',
+    fanhaoPianmingYanyuan: '5MqOCp2EbjKW3BzyyxxWDhR4Vg/J3TnRrFQhUWYx8R4='
   },
   home: {
     buyRecord: '购买记录',
@@ -204,14 +203,71 @@ export default {
   share: {
     title: '分享好友',
     rules: '规则说明',
-    rule1: '①、成功邀请“<b>1名好友</b>”注册，可以免费获得“<b>3天VIP</b>”',
+    rule1: '①、成功邀请"<b>1名好友</b>"注册，可以免费获得"<b>3天VIP</b>"',
     rule2: '②、VIP可以享有跳过播放广告特权',
-    rule3: '③、点击“<b>保存二维码</b>”或“<b>复制推广链接</b>”，获取专属推广链接，推荐分享给其他人下载即可',
+    rule3: '③、点击"<b>保存二维码</b>"或"<b>复制推广链接</b>"，获取专属推广链接，推荐分享给其他人下载即可',
     invitationCode: '您的邀请码',
     inviteCount: '累计邀请<b>{count}</b>人',
     inviteRecord: '邀请记录',
     exclusiveLink: '专属链接',
     saveImage: '保存图片',
     copyLink: '复制推广链接'
+  },
+  spare: {
+    title: '回家不迷路',
+    emailAddress: '邮箱地址',
+    emailDescription: '发任意邮件到以下邮箱，获取最新地址',
+    websiteAddress: '官网地址',
+    websiteDescription: '官网地址，收藏关注不迷路',
+    advertisingCooperation: '广告合作',
+    recommendedBrowser: '推荐浏览器',
+    browserDescription: '提升播放体验,建议使用以下浏览器',
+    qrCode: '二维码',
+    qrCodeDescription: '长按保存二维码，请分享给身边的',
+    copy: '复制',
+    download: '下载',
+    chromeBrowser: '谷歌浏览器'
+  },
+  play: {
+    rememberDomain: '请牢记域名：',
+    sendEmail: '发送邮件至：',
+    getLatestAddress: '可获得最新地址',
+    share: '分享',
+    recommendations: '猜你喜欢'
+  },
+  search: {
+    hotTags: '热门标签',
+    searching: '正在搜索',
+    relatedVideos: '相关的影片',
+    found: '搜索',
+    videosCount: '，找到',
+    videos: '部影片',
+    notFound: '未找到'
+  },
+  actor: {
+    sort: {
+      moveCount: '影片数量',
+      mostView: '最多观看',
+      moveCollect: '最多收藏',
+      zhiming: '知名度'
+    },
+    birthday: '生日',
+    height: '身高',
+    chest: '胸围',
+    waist: '腰围',
+    hip: '臀围',
+    formerName: '曾用名',
+    works: '作品',
+    recorded: '收录',
+    videos: '部',
+    lastUpdate: '最近更新'
+  },
+  hotVideo: {
+    sort: {
+      totalRank: '总榜单',
+      monthRank: '月榜单',
+      weekRank: '周榜单',
+      dayRank: '日榜单'
+    }
   }
 }

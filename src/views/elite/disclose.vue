@@ -78,7 +78,7 @@
     </section>
     <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
       <div class="share-popup">
-        <p>{{ $t('bbs.shareSuccess') }}</p>
+        <p>{{ $t('common.shareSuccess') }}</p>
       </div>
     </Popup>
     <Footer active-menu="elites" footer-class="footer f-footer" :class="{ hidden: showComment }" />

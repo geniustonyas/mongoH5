@@ -13,7 +13,7 @@
           <a v-for="childTag in tag.items" :key="childTag.id" @click="router.push({ name: 'search', query: { keyword: childTag.title, tagId: childTag.id } })">
             <span>{{ childTag.title }}</span>
             <small>
-              收录：<b>{{ childTag.videosCount }}</b>
+              {{ $t('actor.works') }}：<b>{{ childTag.videosCount }}</b>
             </small>
           </a>
         </div>

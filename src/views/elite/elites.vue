@@ -47,7 +47,7 @@
                 </a>
                 <a class="btn-mute" @click="toggleMute">
                   <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
-                  <span>{{ $t('elite.cancelMute') }}</span>
+                  <span>{{ $t('common.cancelMute') }}</span>
                 </a>
               </div>
               <div class="v-c">
@@ -73,7 +73,7 @@
     </section>
     <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
       <div class="share-popup">
-        <p>{{ $t('bbs.shareSuccess') }}</p>
+        <p>{{ $t('common.shareSuccess') }}</p>
       </div>
     </Popup>
     <Footer active-menu="elites" footer-class="footer f-footer" />

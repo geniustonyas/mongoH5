@@ -32,7 +32,7 @@
                   <div v-else class="b-a">
                     <div class="a-l" />
                     <div class="a-r">
-                      <span>广告</span>
+                      <span>{{ $t('common.ad') }}</span>
                     </div>
                   </div>
                 </div>
@@ -62,19 +62,21 @@ import decryptionService from '@/utils/decryptionService'
 import Masonry from 'masonry-layout'
 import imagesLoaded from 'imagesloaded'
 import dayjs from 'dayjs'
+import { useI18n } from 'vue-i18n'
 
 let msnry = null
 const router = useRouter()
-const decrypt = new decryptionService()
 const appStore = useAppStore()
+const { t } = useI18n()
+const decrypt = new decryptionService()
 
 const videos = ref<DataWithAd<Video>[]>([])
 const activeRank = ref('total')
 const rankOptions = ref([
-  { label: '总榜单', value: 'total' },
-  { label: '月榜单', value: '0' },
-  { label: '周榜单', value: '1' },
-  { label: '日榜单', value: '2' }
+  { label: t('hotVideo.sort.totalRank'), value: 'total' },
+  { label: t('hotVideo.sort.weekRank'), value: '0' },
+  { label: t('hotVideo.sort.monthRank'), value: '1' },
+  { label: t('hotVideo.sort.dayRank'), value: '2' }
 ])
 
 let listLoading = ref(false)

@@ -19,8 +19,8 @@
         <div class="b-c">
           <i class="mvfont mv-guangbo" />
           <p>
-            请牢记域名：<b>{{ appStore.spareData.OfficialDomain }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.OfficialDomain"><i class="mvfont mv-fuzhi" /></span><br />
-            发送邮件至：<b>{{ appStore.spareData.Email }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.Email"><i class="mvfont mv-fuzhi" /></span> 可获得最新地址
+            {{ $t('play.rememberDomain') }}<b>{{ appStore.spareData.OfficialDomain }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.OfficialDomain"><i class="mvfont mv-fuzhi" /></span><br />
+            {{ $t('play.sendEmail') }}<b>{{ appStore.spareData.Email }}</b> <span class="copy" :data-clipboard-text="appStore.spareData.Email"><i class="mvfont mv-fuzhi" /></span> {{ $t('play.getLatestAddress') }}
           </p>
         </div>
 
@@ -50,7 +50,7 @@
             <i :class="['mvfont', 'mv-like', { active: videoDetail && videoDetail.collect }]" />
             <b>{{ formatNumber(videoDetail ? videoDetail.collectionCount : 0) }}</b>
           </span>
-          <span><i @click="handleShare" class="mvfont mv-zhuanfa1" />分享</span>
+          <span><i @click="handleShare" class="mvfont mv-zhuanfa1" />{{ $t('common.share') }}</span>
         </div>
         <div class="ad-box">
           <img v-if="bannerAdvertisement.length > 0" @click="openAd(bannerAdvertisement[0].targetUrl, '播放页横幅', 'click', bannerAdvertisement[0].id)" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
@@ -58,7 +58,9 @@
       </div>
       <nav class="mv-t-l">
         <div class="m-a">
-          <div class="a-l"><i class="mvfont mv-xietiao" /><span>猜你喜欢</span></div>
+          <div class="a-l">
+            <i class="mvfont mv-xietiao" /><span>{{ $t('play.recommendations') }}</span>
+          </div>
         </div>
         <div class="m-b" v-if="recommendedVideos && recommendedVideos.length > 0" @click="handleVideoClick">
           <VideoGridItem v-for="video in recommendedVideos" :key="videoAd.isAd ? videoAd.id : video.id + 'vd'" :video="video" />
@@ -67,7 +69,7 @@
     </section>
     <Popup v-model:show="showSharePopup" position="center" :overlay="false" round>
       <div class="share-popup">
-        <p>分享链接已复制，赶快去分享给好友吧！</p>
+        <p>{{ $t('play.shareLinkCopied') }}</p>
       </div>
     </Popup>
     <main class="main" />

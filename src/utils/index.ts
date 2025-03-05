@@ -98,8 +98,10 @@ export const initMatomo = (siteId: string) => {
   script.text = `
     var _paq = window._paq = window._paq || [];
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    _paq.push(['trackPageView']);
+    _paq.push(["setExcludedQueryParams", ["*"]]);
+    // _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
+    _paq.push(['enableHeartBeatTimer', 30]); 
     (function() {
       var u="//mgmgmg.msabb.com/";
       _paq.push(['setTrackerUrl', u+'matomo.php']);

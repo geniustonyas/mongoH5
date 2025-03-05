@@ -12,37 +12,37 @@
               <div class="c-n">
                 <h3>{{ actor.title }}</h3>
                 <span>
-                  收录：
+                  {{ $t('actor.recorded') }}：
                   <b>{{ videos.length }}</b>
-                  部
+                  {{ $t('actor.videos') }}
                 </span>
               </div>
             </div>
           </div>
           <div class="x-i">
             <span>
-              <b>生日</b>
+              <b>{{ $t('actor.birthday') }}</b>
               <small>{{ actor.birthday }}</small>
             </span>
             <span>
-              <b>身高</b>
+              <b>{{ $t('actor.height') }}</b>
               <small>{{ actor.height }}</small>
             </span>
             <span>
-              <b>胸围</b>
+              <b>{{ $t('actor.chest') }}</b>
               <small>{{ actor.chest }}</small>
             </span>
             <span>
-              <b>腰围</b>
+              <b>{{ $t('actor.waist') }}</b>
               <small>{{ actor.waist }}</small>
             </span>
             <span>
-              <b>臀围</b>
+              <b>{{ $t('actor.hip') }}</b>
               <small>{{ actor.hip }}</small>
             </span>
           </div>
           <div class="x-n">
-            <h3>曾用名</h3>
+            <h3>{{ $t('actor.formerName') }}</h3>
             <p>
               {{ actor.formerName }}
             </p>
@@ -51,8 +51,9 @@
         <div class="a-y">
           <div class="y-t">
             <div class="t-l">
-              作品(
-              <b> {{ route.query.videoCount }} </b>部)
+              {{ $t('actor.works') }}(
+              <b> {{ route.query.videoCount }} </b>
+              {{ $t('actor.videos') }})
             </div>
             <div class="t-r">
               <span v-for="option in sortOptions" :key="option.value" :class="{ active: activeSort == option.value }" @click="changeSort(option.value)">{{ option.label }}</span>
@@ -66,7 +67,7 @@
             </nav>
             <div v-if="noData" class="nodata">
               <div class="d-i" />
-              <div class="d-t">暂无作品</div>
+              <div class="d-t">{{ $t('common.noData') }}</div>
             </div>
           </div>
         </div>
@@ -87,17 +88,19 @@ import VideoGridItem from '@/components/VideoGridItem.vue'
 import { useAppStore } from '@/store/app'
 import NavBar from '@/components/layout/NavBar.vue'
 import { zhiming, nvyou } from '@/utils/cryptedData'
+import { useI18n } from 'vue-i18n'
 
 const appStore = useAppStore()
 const router = useRouter()
 const route = useRoute()
+const { t } = useI18n()
 
 const noData = ref(false)
 
 const sortOptions = [
-  { label: '最近更新', value: '1' },
-  { label: '最多观看', value: '2' },
-  { label: '最多收藏', value: '3' }
+  { label: t('actor.lastUpdate'), value: '1' },
+  { label: t('actor.sort.mostView'), value: '2' },
+  { label: t('actor.sort.moveCollect'), value: '3' }
 ]
 
 const actor = ref<Actor>({

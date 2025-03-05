@@ -6,21 +6,21 @@
           <i class="mvfont mv-left" />
         </a>
       </div>
-      <div class="d-m">回家不迷路</div>
+      <div class="d-m">{{ $t('spare.title') }}</div>
     </header>
     <section class="s-h-b">
       <div class="s-row">
         <div class="r-a">
           <i class="mvfont mv-email_full" />
           <span>
-            <b>邮箱地址</b>
-            <small>发任意邮件到以下邮箱，获取最新地址</small>
+            <b>{{ $t('spare.emailAddress') }}</b>
+            <small>{{ $t('spare.emailDescription') }}</small>
           </span>
         </div>
         <div class="r-b">
           <div class="b-item">
             <a :href="`mailto:${appStore.spareData.Email}`">{{ appStore.spareData.Email }}</a>
-            <span :data-clipboard-text="appStore.spareData.Email" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <span :data-clipboard-text="appStore.spareData.Email" @click="handleCopy"><i class="mvfont mv-fuzhi" />{{ $t('spare.copy') }}</span>
           </div>
         </div>
       </div>
@@ -28,14 +28,14 @@
         <div class="r-a">
           <i class="mvfont mv-guanwang" />
           <span>
-            <b>官网地址</b>
-            <small>官网地址，收藏关注不迷路</small>
+            <b>{{ $t('spare.websiteAddress') }}</b>
+            <small>{{ $t('spare.websiteDescription') }}</small>
           </span>
         </div>
         <div class="r-b">
           <div v-for="domain in appStore.spareData.Domains" :key="domain" class="b-item">
             <a>{{ domain }}</a>
-            <span :data-clipboard-text="domain" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <span :data-clipboard-text="domain" @click="handleCopy"><i class="mvfont mv-fuzhi" />{{ $t('spare.copy') }}</span>
           </div>
         </div>
       </div>
@@ -43,14 +43,13 @@
         <div class="r-a">
           <i class="mvfont mv-telegram" />
           <span>
-            <b>广告合作</b>
-            <!-- <small>关注我们，获取最新信息</small> -->
+            <b>{{ $t('spare.advertisingCooperation') }}</b>
           </span>
         </div>
         <div class="r-b">
           <div class="b-item">
             <a :href="appStore.spareData.TG">{{ appStore.spareData.TG }}</a>
-            <span :data-clipboard-text="appStore.spareData.TG" @click="handleCopy"><i class="mvfont mv-fuzhi" />复制</span>
+            <span :data-clipboard-text="appStore.spareData.TG" @click="handleCopy"><i class="mvfont mv-fuzhi" />{{ $t('spare.copy') }}</span>
           </div>
         </div>
       </div>
@@ -58,27 +57,23 @@
         <div class="r-a">
           <i class="mvfont mv-ie" />
           <span>
-            <b>推荐浏览器</b>
-            <small>提升播放体验,建议使用以下浏览器</small>
+            <b>{{ $t('spare.recommendedBrowser') }}</b>
+            <small>{{ $t('spare.browserDescription') }}</small>
           </span>
         </div>
         <div class="r-b">
           <div @click="downloadBrowser('chrome')" class="b-item">
-            <a>谷歌浏览器</a>
-            <span><i class="mvfont mv-xiazai1" />下载</span>
+            <a>{{ $t('spare.chromeBrowser') }}</a>
+            <span><i class="mvfont mv-xiazai1" />{{ $t('spare.download') }}</span>
           </div>
-          <!-- <div @click="downloadBrowser('quark')" class="b-item">
-            <a>夸克浏览器</a>
-            <span><i class="mvfont mv-xiazai1" />下载</span>
-          </div> -->
         </div>
       </div>
       <div class="s-row">
         <div class="r-a">
           <i class="mvfont mv-erweima" />
           <span>
-            <b>二维码</b>
-            <small>长按保存二维码，请分享给身边的</small>
+            <b>{{ $t('spare.qrCode') }}</b>
+            <small>{{ $t('spare.qrCodeDescription') }}</small>
           </span>
         </div>
         <div class="r-c">

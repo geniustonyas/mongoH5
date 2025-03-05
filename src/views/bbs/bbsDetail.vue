@@ -89,7 +89,7 @@
 
     <Popup v-model:show="showSharePopup" position="center" :overlay="false" round>
       <div class="share-popup">
-        <p>{{ $t('bbs.shareSuccess') }}</p>
+        <p>{{ $t('common.shareSuccess') }}</p>
       </div>
     </Popup>
 

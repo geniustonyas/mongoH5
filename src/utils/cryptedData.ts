@@ -4,7 +4,11 @@ const { t } = i18n.global
 
 const decryptionServiceInstance = new decryptionService()
 
+// 判断当前语言
+const currentLanguage = i18n.global.locale.value
+
 // 分类
+
 const tmpCategorys = JSON.parse(decryptionServiceInstance.decryptResponseData(t('cryptedData.cryptedCategorys')))
 const decryptedCategorys = tmpCategorys.data
 
@@ -12,25 +16,27 @@ const decryptedCategorys = tmpCategorys.data
 const indexCategory = JSON.parse(decryptionServiceInstance.decryptResponseData(t('cryptedData.cryptedIndexCategory')))
 
 // 抖音
-const douyin = decryptionServiceInstance.decryptResponseData(t('cryptedData.douyin'))
+const douyin = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.douyin')) : t('cryptedData.douyin') // 直接返回翻译内容
 
-const zhiming = decryptionServiceInstance.decryptResponseData(t('cryptedData.zhiming'))
+const zhiming = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.zhiming')) : t('cryptedData.zhiming') // 直接返回翻译内容
 
-const nvyou = decryptionServiceInstance.decryptResponseData(t('cryptedData.nvyou'))
+const nvyou = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.nvyou')) : t('cryptedData.nvyou') // 直接返回翻译内容
 
-const wuma = decryptionServiceInstance.decryptResponseData(t('cryptedData.wuma'))
+const wuma = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.wuma')) : t('cryptedData.wuma') // 直接返回翻译内容
 
-const youma = decryptionServiceInstance.decryptResponseData(t('cryptedData.youma'))
+const youma = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.youma')) : t('cryptedData.youma') // 直接返回翻译内容
 
-const riben = decryptionServiceInstance.decryptResponseData(t('cryptedData.riben'))
+const riben = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.riben')) : t('cryptedData.riben') // 直接返回翻译内容
 
-const guochan = decryptionServiceInstance.decryptResponseData(t('cryptedData.guochan'))
+const guochan = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.guochan')) : t('cryptedData.guochan') // 直接返回翻译内容
 
-const suren = decryptionServiceInstance.decryptResponseData(t('cryptedData.suren'))
+const suren = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.suren')) : t('cryptedData.suren') // 直接返回翻译内容
 
-const dashen = decryptionServiceInstance.decryptResponseData(t('cryptedData.dashen'))
+const dashen = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.dashen')) : t('cryptedData.dashen') // 直接返回翻译内容
 
-const madou = decryptionServiceInstance.decryptResponseData(t('cryptedData.madou'))
+const madou = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.madou')) : t('cryptedData.madou') // 直接返回翻译内容
+
 // 番号片名演员
-const fanhaoPianmingYanyuan = decryptionServiceInstance.decryptResponseData(t('cryptedData.fanhaoPianmingYanyuan'))
+const fanhaoPianmingYanyuan = currentLanguage == 'zh' ? decryptionServiceInstance.decryptResponseData(t('cryptedData.fanhaoPianmingYanyuan')) : t('cryptedData.fanhaoPianmingYanyuan') // 直接返回翻译内容
+
 export { decryptedCategorys, zhiming, douyin, fanhaoPianmingYanyuan, nvyou, wuma, youma, riben, guochan, suren, dashen, madou, indexCategory }

@@ -1,8 +1,8 @@
 <template>
   <div>
     <header class="s-header">
-      <input v-model="searchKeyword" placeholder="搜索" @keyup.enter="handleInputSearch" @input="clearTagId" />
-      <a @click="appStore.setBack(true)">取消</a>
+      <input v-model="searchKeyword" :placeholder="$t('common.search')" @keyup.enter="handleInputSearch" @input="clearTagId" />
+      <a @click="appStore.setBack(true)">{{ $t('common.cancel') }}</a>
     </header>
 
     <div class="ad-box1 search-padding">
@@ -13,10 +13,13 @@
     <section v-if="showHotTags" class="p-s-b">
       <nav class="ps-ssfx">
         <div class="s-a">
-          <b>热门标签</b>
+          <b>{{ $t('search.hotTags') }}</b>
         </div>
         <div class="s-b">
-          <a v-for="tag in hotTags" :key="tag.id" @click="selectTag(tag.title, tag.id)"> {{ tag.title }}<small v-if="tag.video_count > 0">热</small> </a>
+          <a v-for="tag in hotTags" :key="tag.id" @click="selectTag(tag.title, tag.id)">
+            {{ tag.title }}
+            <small v-if="tag.video_count > 0">{{ $t('search.hot') }}</small>
+          </a>
         </div>
       </nav>
     </section>
@@ -26,8 +29,9 @@
       <nav class="ps-ssfx">
         <div class="s-a">
           <b>
-            正在搜索"<span>{{ searchKeyword }}</span>
-            "相关的影片
+            {{ $t('search.searching') }}"
+            <span>{{ searchKeyword }}</span>
+            "{{ $t('search.relatedVideos') }}
           </b>
         </div>
       </nav>
@@ -38,11 +42,11 @@
       <nav class="ps-ssfx">
         <div class="s-a">
           <b>
-            搜索"
+            {{ $t('search.found') }}"
             <span>{{ searchKeyword }}</span>
-            "，找到
+            "{{ $t('search.videosCount') }}
             <span>{{ recordCount }}</span>
-            部影片
+            {{ $t('search.videos') }}
           </b>
         </div>
         <div class="s-c">
@@ -76,8 +80,9 @@
       <nav class="ps-ssfx">
         <div class="s-a">
           <b>
-            未找到"<span>{{ searchKeyword }}</span>
-            "相关的影片
+            {{ $t('search.notFound') }}"
+            <span>{{ searchKeyword }}</span>
+            "{{ $t('search.relatedVideos') }}
           </b>
         </div>
       </nav>

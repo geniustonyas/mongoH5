@@ -5,7 +5,7 @@
         <div class="h-l" />
         <div class="h-m">
           <a @click="router.push({ name: 'shortList' })" class="active">{{ douyin }}</a>
-          <a @click="showToast('建设中...')">短剧</a>
+          <a @click="showToast($t('common.building'))">{{ $t('common.shortPlay') }}</a>
         </div>
         <div class="h-r">
           <!-- <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" /> -->
@@ -50,7 +50,10 @@
       <div v-show="showVideo" class="short-video" :style="videoStyle">
         <header class="m-header h-video">
           <div class="h-l s-v">
-            <a @click="closeVideo"><i class="mvfont mv-left" /><span>返回</span></a>
+            <a @click="closeVideo">
+              <i class="mvfont mv-left" />
+              <span>{{ $t('common.back') }}</span>
+            </a>
           </div>
           <div class="h-m" />
           <div class="h-r" />
@@ -71,15 +74,17 @@
                         <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
                         <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
                       </a>
-                      <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
+                      <a @click="handleShare">
+                        <i class="mvfont mv-zhuanfa" /><b>{{ $t('common.share') }}</b>
+                      </a>
                       <a class="btn-mute" @click="toggleMute">
                         <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
-                        <span>取消静音</span>
+                        <span>{{ $t('common.cancelMute') }}</span>
                       </a>
                     </div>
                     <div class="v-c">
                       <h3>
-                        @芒果TV官方-
+                        @{{ $t('common.official') }}-
                         <span>{{ appStore.spareData.OfficialDomain }}</span>
                       </h3>
                       <p>
@@ -97,7 +102,7 @@
         </section>
         <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
           <div class="share-popup">
-            <p>分享链接已复制，赶快去分享给好友吧！</p>
+            <p>{{ $t('common.shareSuccess') }}</p>
           </div>
         </Popup>
       </div>

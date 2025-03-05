@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <header class="s-header">
-      <input v-model="searchKeyword" :placeholder="$t('bbs.searchPlaceholder')" @keyup.enter="handleInputSearch" />
+      <input v-model="searchKeyword" :placeholder="$t('common.search')" @keyup.enter="handleInputSearch" />
       <a @click="appStore.setBack(true)">{{ $t('common.cancel') }}</a>
     </header>
 

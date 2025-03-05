@@ -4,8 +4,8 @@
       <i class="mvfont mv-left" />
     </div>
     <div class="h-m">
-      <a @click="router.push({ name: 'theme' })" :class="{ active: currentRoute == 'theme' }">主题</a>
-      <a @click="router.push({ name: 'hotVideo' })" :class="{ active: currentRoute == 'hotVideo' }">热榜</a>
+      <a @click="router.push({ name: 'theme' })" :class="{ active: currentRoute == 'theme' }">{{ $t('common.theme') }}</a>
+      <a @click="router.push({ name: 'hotVideo' })" :class="{ active: currentRoute == 'hotVideo' }">{{ $t('common.hotRank') }}</a>
       <a @click="router.push({ name: 'actor' })" :class="{ active: currentRoute == 'actor' }">{{ nvyou }}</a>
     </div>
     <div class="h-r">
