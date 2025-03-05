@@ -56,3 +56,12 @@ export function getNovelDetail(bookId: number | string) {
     }
   })
 }
+
+// 获取推荐小说列表
+export function getRecommendNovelList() {
+  return request<ApiResponseData>({
+    url: 'Web/NovelList',
+    method: 'post',
+    data: {}
+  })
+}

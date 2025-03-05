@@ -4,7 +4,14 @@
 
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
-import { BookStatus, NovelBookCategoriesRequest, NovelBookCategoryItem, NovelCategory, NovelListItem, NovelListRequest } from '@/types/novel'
+import {
+  BookStatus,
+  NovelBookCategoriesRequest,
+  NovelBookCategoryItem,
+  NovelCategory,
+  NovelListItem,
+  NovelListRequest
+} from '@/types/novel'
 import { getNovelCategory, getNovelList } from '@/api/novel'
 
 const books = reactive<NovelListItem[]>([])

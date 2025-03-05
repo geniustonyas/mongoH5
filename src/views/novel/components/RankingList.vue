@@ -8,16 +8,10 @@
     </div>
     <div class="mc-b">
       <div class="b-tabs">
-        <span :class="{ active: activeRankingList === 'Hots' }" @click="handleTabClick(0, 'Hots')">
-          畅销榜
-        </span>
-        <span :class="{ active: activeRankingList === 'Series' }" @click="handleTabClick(1, 'Series')">
-          连载榜
-        </span>
+        <span :class="{ active: activeRankingList === 'Hots' }" @click="handleTabClick(0, 'Hots')">畅销榜</span>
+        <span :class="{ active: activeRankingList === 'Series' }" @click="handleTabClick(1, 'Series')">连载榜</span>
         <span :class="{ active: activeRankingList === 'End' }" @click="handleTabClick(2, 'End')">完结榜</span>
-        <span :class="{ active: activeRankingList === 'NewHots' }" @click="handleTabClick(3, 'NewHots')">
-          新书榜
-        </span>
+        <span :class="{ active: activeRankingList === 'NewHots' }" @click="handleTabClick(3, 'NewHots')">新书榜</span>
       </div>
       <swiper
         :slides-per-view="1"

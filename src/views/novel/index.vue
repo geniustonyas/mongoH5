@@ -140,6 +140,7 @@ import { formatCount } from '@/utils'
 import RankingList from './components/RankingList.vue'
 import { useRouter } from 'vue-router'
 import Loading from '@/components/layout/Loading.vue'
+import { useNovelCategoryStore } from '@/store/novelCategory'
 
 const appStore = useAppStore()
 const router = useRouter()
@@ -157,6 +158,8 @@ const endBooks = reactive<NovelIndexListItem[]>([])
 const newHotBooks = reactive<NovelIndexListItem[]>([])
 
 const createdUrls: string[] = []
+
+const novelCategoryStore = useNovelCategoryStore()
 
 async function decryptBookImage(book: NovelIndexListItem) {
   if (book.coverUrl === '') {
@@ -250,6 +253,9 @@ const fetchBooksOfIndexPage = async () => {
         endBooks.push(...end)
         newHotBooks.push(...newhots)
       })
+      if (data?.categories && data.categories.length > 0) {
+        novelCategoryStore.setCategories(data.categories)
+      }
     }
   } catch (error) {
     console.error('Failed to fetch books:', error)
@@ -266,7 +272,7 @@ onMounted(async () => {
 })
 
 const handleBookClick = (item: NovelIndexListItem) => {
-  router.push({ name: 'novelIntro', query: { nid: item.id } })
+  router.push({ name: 'novelIntro', query: { nid: item.id, status: item.statusText } })
 }
 
 const handlePreMenuClick = (name: string) => {

@@ -17,26 +17,94 @@
       <van-button type="primary" @click="fetchBookDetails">重试</van-button>
     </div>
     <template v-else>
-      <!-- 书籍详情内容 -->
+      <div class="novel-introduction">
+        <div class="ni-a">
+          <div class="a-a">
+            <div class="aa-l">
+              <img :src="bookInfo?.coverUrl || '-'" style="min-width: 110px; min-height: 147px" />
+            </div>
+            <div class="aa-r">
+              <div class="r-a">
+                {{ bookInfo?.title || '-' }}
+              </div>
+              <div class="r-b">
+                {{ categoryName }}<em>|</em>{{ bookInfo?.statusText || '未知' }}<em>|</em>最新{{
+                  chapters.length > 0 ? `最新${chapters.length}章` : '暂无'
+                }}
+              </div>
+              <div class="r-c">
+                <span>
+                  阅读：<b>{{ formatCount(bookInfo?.readCount) }}</b>
+                </span>
+                <span>
+                  收藏：<b>{{ formatCount(bookInfo?.favoriteCount) }}</b>
+                </span>
+              </div>
+              <div class="r-d">
+                更新时间：<span>{{ formatDate(bookInfo?.updateAt) }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="a-b" :class="{ els3: !isExpanded }">
+            <div ref="descriptionRef" class="ab-a">{{ bookInfo?.description || '-' }}</div>
+            <div class="ab-b" @click="toggleExpand">
+              <i v-if="hasOverflow" class="mvfont" :class="isExpanded ? 'mv-up' : 'mv-right1'" />
+            </div>
+          </div>
+          <div class="a-c" :style="{ backgroundImage: `url(${bookInfo?.coverUrl})` }" />
+        </div>
+        <nav class="mv-t-c">
+          <div class="mc-a">
+            <div class="a-l"><i class="mvfont mv-xietiao" /><span>目录</span></div>
+            <div class="a-r">
+              <span>共{{ chapters.length }}章<i class="mvfont mv-right" /></span>
+            </div>
+          </div>
+          <div class="mc-b">
+            <div class="ni-b">
+              <dl>
+                <dt>最新章节</dt>
+                <dd v-for="chapter in chapters" :key="chapter.id">{{ chapter.title }}</dd>
+              </dl>
+              <p v-if="chapters.length > 3" @click="router.push('/novel/chapter')">查看全部章节</p>
+            </div>
+          </div>
+        </nav>
+        <nav class="mv-t-c">
+          <div class="mc-a">
+            <div class="a-l"><i class="mvfont mv-xietiao" /><span>为您推荐</span></div>
+            <div class="a-r">
+              <span>更多<i class="mvfont mv-right" /></span>
+            </div>
+          </div>
+        </nav>
+      </div>
     </template>
   </section>
 </template>
 
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, nextTick, watch, onBeforeUnmount } from 'vue'
 import { getNovelDetail } from '@/api/novel'
 import Loading from '@/components/layout/Loading.vue'
 import { NovelBookInfo, NovelChapter } from '@/types/novel'
+import decryptionService from '@/utils/decryptionService'
+import { useAppStore } from '@/store/app'
+import { formatCount } from '@/utils/index'
+import { useNovelCategoryStore } from '@/store/novelCategory'
 
 const router = useRouter()
 const route = useRoute()
 
+const appStore = useAppStore()
+const novelCategoryStore = useNovelCategoryStore()
 const loading = ref(false)
 const error = ref<string | null>(null)
 const chapters = ref<NovelChapter[]>([])
 const bookInfo = ref<NovelBookInfo | null>(null)
 const lastReadChapterId = ref<string>('0')
+const decrypt = new decryptionService()
 const pagination = ref({
   pageIndex: '1',
   pageSize: '10',
@@ -44,8 +112,41 @@ const pagination = ref({
   recordCount: '1'
 })
 
+const isExpanded = ref(false)
+const hasOverflow = ref(false)
+const descriptionRef = ref<HTMLElement | null>(null)
+
+const LINE_HEIGHT = 20 // 行高
+const MAX_LINES = 3 // 最大行数
+const isWebkitLineClampSupported = ref(true)
+
+// 获取分类名称
+const categoryName = computed(() => {
+  if (!bookInfo.value || !bookInfo.value.categoryId) return '未知分类'
+  const categoryId = parseInt(bookInfo.value.categoryId)
+  if (isNaN(categoryId)) return '未知分类'
+  return novelCategoryStore.getCategoryNameById(categoryId.toString())
+})
+
+// 格式化日期
+const formatDate = (dateStr: string | undefined) => {
+  if (!dateStr) return '-'
+  // 可以根据需要进一步格式化日期
+  return dateStr
+}
+
+async function decryptBookImage(book: NovelBookInfo) {
+  if (book.coverUrl === '') {
+    book.coverUrl = '/src/assets/imgs/default2.gif'
+  } else {
+    book.coverUrl = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
+  }
+  return book
+}
+
 const fetchBookDetails = async () => {
   const nid = route.query.nid
+  const status = route.query.status
   if (!nid) {
     error.value = '无效的书籍ID'
     return
@@ -62,10 +163,12 @@ const fetchBookDetails = async () => {
       error.value = '获取书籍详情失败'
       return
     }
-
-    // 更新响应式数据
+    // 解密图片
+    data.newVideos.book = await decryptBookImage(data.newVideos.book)
+    // 赋值给响应式变量
     chapters.value = data.items
     bookInfo.value = data.newVideos.book
+    bookInfo.value.statusText = status as string
     lastReadChapterId.value = data.newVideos.chapterId
     pagination.value = {
       pageIndex: data.pageIndex,
@@ -81,7 +184,56 @@ const fetchBookDetails = async () => {
   }
 }
 
-onMounted(fetchBookDetails)
+// 检查浏览器是否支持 -webkit-line-clamp
+const checkWebkitLineClampSupport = () => {
+  const element = document.createElement('div')
+  isWebkitLineClampSupported.value =
+    'webkitLineClamp' in element.style || 'lineClamp' in element.style || '-webkit-line-clamp' in element.style
+}
+
+// 检查文本是否溢出
+const checkOverflow = async () => {
+  if (!descriptionRef.value) return
+  await nextTick()
+  const element = descriptionRef.value
+
+  if (isWebkitLineClampSupported.value) {
+    hasOverflow.value = element.scrollHeight > element.clientHeight
+  } else {
+    // 降级方案：通过计算行数来判断是否溢出
+    const maxHeight = LINE_HEIGHT * MAX_LINES
+    hasOverflow.value = element.scrollHeight > maxHeight
+  }
+}
+
+// 监听窗口大小变化
+const handleResize = () => {
+  checkOverflow()
+}
+
+// 切换展开/收起状态
+const toggleExpand = () => {
+  isExpanded.value = !isExpanded.value
+}
+
+// 监听描述文本变化
+watch(
+  () => bookInfo.value?.description,
+  async () => {
+    await checkOverflow()
+  }
+)
+
+onMounted(async () => {
+  checkWebkitLineClampSupport()
+  await fetchBookDetails()
+  await checkOverflow()
+  window.addEventListener('resize', handleResize)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
+})
 </script>
 
 <style scoped>
@@ -93,5 +245,89 @@ onMounted(fetchBookDetails)
   justify-content: center;
   min-height: 200px;
   gap: 16px;
+}
+
+.a-b {
+  position: relative;
+  margin-top: 10px;
+}
+
+.ab-a {
+  line-height: 24px; /* 固定行高 */
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Webkit 支持的样式 */
+@supports (-webkit-line-clamp: 3) {
+  .els3 .ab-a {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Webkit 不支持时的降级样式 */
+@supports not (-webkit-line-clamp: 3) {
+  .els3 .ab-a {
+    max-height: 72px; /* 24px * 3行 */
+    overflow: hidden;
+    position: relative;
+  }
+
+  .els3 .ab-a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 24px; /* 一行的高度 */
+    background: linear-gradient(to bottom, transparent, white);
+    pointer-events: none;
+  }
+}
+
+.ab-b {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-left: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* 根据是否支持 -webkit-line-clamp 调整展开按钮的背景 */
+@supports (-webkit-line-clamp: 3) {
+  .ab-b {
+    background: linear-gradient(to right, transparent, white);
+  }
+}
+
+@supports not (-webkit-line-clamp: 3) {
+  .ab-b {
+    background: white;
+  }
+}
+
+.ab-b i {
+  font-size: 16px;
+  color: #666;
+}
+
+.ab-b:hover i {
+  color: #333;
+}
+
+/* 展开状态下的样式 */
+.a-b:not(.els3) .ab-a {
+  max-height: none;
+}
+
+.a-b:not(.els3) .ab-a::after {
+  display: none;
 }
 </style>

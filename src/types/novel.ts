@@ -94,6 +94,8 @@ export interface NovelBookInfo {
   favoriteCount: string
   description: string
   updateAt: string
+  categoryId?: string // 添加分类ID字段
+  statusText?: string // 添加状态字段
 }
 
 export interface NovelDetailResponse {
