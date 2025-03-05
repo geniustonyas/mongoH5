@@ -4,44 +4,41 @@
       <div class="d-l">
         <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
       </div>
-      <div class="d-m">分享好友</div>
+      <div class="d-m">{{ $t('share.title') }}</div>
     </header>
     <section class="s-h-b">
       <div class="sb-a">
         <dl>
-          <dt>规则说明</dt>
-          <dd>①、成功邀请“<b>1名好友</b>”注册，可以免费获得“<b>3天VIP</b>”</dd>
-          <dd>②、VIP可以享有跳过播放广告特权</dd>
-          <dd>③、点击“<b>保存二维码</b>”或“<b>复制推广链接</b>”，获取专属推广链接，推荐分享给其他人下载即可</dd>
+          <dt>{{ $t('share.rules') }}</dt>
+          <dd v-html="$t('share.rule1')" />
+          <dd v-html="$t('share.rule2')" />
+          <dd v-html="$t('share.rule3')" />
         </dl>
       </div>
       <div class="sb-b">
         <div class="t-tickets">
-          <div class="i-t">您的邀请码</div>
+          <div class="i-t">{{ $t('share.invitationCode') }}</div>
           <div class="i-c">
             <span v-for="(digit, index) in userStore.userInfo.invitationCode" :key="index">{{ digit }}</span>
           </div>
         </div>
         <div class="b-tickets">
           <div class="b-t">
-            <span>
-              累计邀请<b>{{ inviteCount }}</b>
-              人
-            </span>
-            <a @click="router.push({ name: 'shareRecord' })">邀请记录<i class="mvfont mv-right" /></a>
+            <span v-html="$t('share.inviteCount', { count: inviteCount })" />
+            <a @click="router.push({ name: 'shareRecord' })">{{ $t('share.inviteRecord') }}<i class="mvfont mv-right" /></a>
           </div>
           <div class="b-q">
             <qrcode-vue :value="shareLink" :size="160" level="H" />
           </div>
           <div class="b-l">
-            <p>专属链接</p>
+            <p>{{ $t('share.exclusiveLink') }}</p>
             <a :href="shareLink">{{ shareLink }}</a>
           </div>
         </div>
       </div>
       <div class="sb-c">
-        <a @click="saveQrCode">保存图片</a>
-        <a @click="copyLink" :data-clipboard-text="shareLink">复制推广链接</a>
+        <a @click="saveQrCode">{{ $t('share.saveImage') }}</a>
+        <a @click="copyLink" :data-clipboard-text="shareLink">{{ $t('share.copyLink') }}</a>
       </div>
     </section>
     <NavBar active-menu="share" />

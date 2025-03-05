@@ -200,5 +200,18 @@ export default {
       good: '好评',
       collect: '收藏'
     }
+  },
+  share: {
+    title: '分享好友',
+    rules: '规则说明',
+    rule1: '①、成功邀请“<b>1名好友</b>”注册，可以免费获得“<b>3天VIP</b>”',
+    rule2: '②、VIP可以享有跳过播放广告特权',
+    rule3: '③、点击“<b>保存二维码</b>”或“<b>复制推广链接</b>”，获取专属推广链接，推荐分享给其他人下载即可',
+    invitationCode: '您的邀请码',
+    inviteCount: '累计邀请<b>{count}</b>人',
+    inviteRecord: '邀请记录',
+    exclusiveLink: '专属链接',
+    saveImage: '保存图片',
+    copyLink: '复制推广链接'
   }
 }

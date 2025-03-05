@@ -196,12 +196,6 @@ const routes: RouteRecordRaw[] = [
     redirect: { name: 'spare' },
     children: [
       {
-        path: 'download',
-        name: 'download',
-        component: () => import('../views/pages/download.vue'),
-        meta: { needLogin: false, keepAlive: false, title: '下载' }
-      },
-      {
         path: 'share',
         name: 'share',
         component: () => import('../views/pages/share.vue'),
@@ -212,12 +206,6 @@ const routes: RouteRecordRaw[] = [
         name: 'spare',
         component: () => import('@/views/pages/spare.vue'),
         meta: { needLogin: false, keepAlive: false, title: '找回我们  ' }
-      },
-      {
-        path: 'problem',
-        name: 'problem',
-        component: () => import('@/views/pages/problem.vue'),
-        meta: { needLogin: false, keepAlive: false, title: '问题反馈' }
       }
     ]
   },
