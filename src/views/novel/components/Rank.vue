@@ -31,6 +31,6 @@ defineProps({
 
 <style scoped>
 .n-l-r {
-  padding: 0 1.2rem;
+  padding: 0 1.8rem;
 }
 </style>

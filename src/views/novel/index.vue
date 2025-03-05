@@ -2,132 +2,128 @@
   <HomeLayout>
     <div class="novel-list">
       <section class="au-main">
-        <div class="pre-menu">
-          <span :class="{ active: activePreMenu === 'Book' }" @click="handlePreMenuClick('Book')">
-            <b>文字小说</b>
-            <small>随时随地看</small>
-          </span>
-          <span :class="{ active: activePreMenu === 'AudioBook' }" @click="handlePreMenuClick('AudioBook')">
-            <b>有声小说</b>
-            <small>随时随地听</small>
-          </span>
-          <span :class="{ active: activePreMenu === 'App' }" @click="handlePreMenuClick('App')">
-            <b>APP下载</b>
-            <small>第一时间看更新</small>
-          </span>
+        <div v-if="loading" class="loading-container">
+          <van-loading type="spinner" color="#1989fa" />
+          <span>加载中...</span>
         </div>
-        <div class="sub-menu">
-          <span v-for="(item, index) in bookCategories" :key="item.id" :class="{ active: activeSubMenu === index }" @click="() => handleSubMenuClick(index, item)">
-            {{ item.name }}
-          </span>
+        <div v-else-if="error" class="error-container">
+          <van-empty image="error" :description="error" />
+          <van-button type="primary" @click="fetchBooksOfIndexPage">刷新</van-button>
         </div>
-        <nav class="i-m-b">
-          <div class="b-row br-img">
-            <a href="#">
-              <span><img src="../../assets/imgs/novel/s_shoucang.svg" /></span>
-              <small>我的收藏</small>
-            </a>
-            <a href="#">
-              <span><img src="../../assets/imgs/novel/s_paihang.svg" /></span>
-              <small>排行榜</small>
-            </a>
-            <a href="#">
-              <span><img src="../../assets/imgs/novel/s_fenlei.svg" /></span>
-              <small>分类</small>
-            </a>
-            <a>
-              <span><img src="../../assets/imgs/novel/s_lianzai.svg" /></span>
-              <small>连载</small>
-            </a>
-            <a>
-              <span><img src="../../assets/imgs/novel/s_wanjie.svg" /></span>
-              <small>完结</small>
-            </a>
+        <template v-else>
+          <div class="pre-menu">
+            <span :class="{ active: activePreMenu === 'Book' }" @click="handlePreMenuClick('Book')">
+              <b>文字小说</b>
+              <small>随时随地看</small>
+            </span>
+            <span :class="{ active: activePreMenu === 'AudioBook' }" @click="handlePreMenuClick('AudioBook')">
+              <b>有声小说</b>
+              <small>随时随地听</small>
+            </span>
+            <span :class="{ active: activePreMenu === 'App' }" @click="handlePreMenuClick('App')">
+              <b>APP下载</b>
+              <small>第一时间看更新</small>
+            </span>
           </div>
-        </nav>
-        <nav v-if="activePreMenu === 'Book'" class="mv-t-c">
-          <div class="mc-a">
-            <div class="a-l"><i class="mvfont mv-xietiao" /><span>大家都喜欢</span></div>
-            <div class="a-r">
-              <span v-if="recommendBooks.length" onclick="javascript: location.href=''">更多<i class="mvfont mv-right" /></span>
+          <div class="sub-menu">
+            <span
+              v-for="(item, index) in bookCategories"
+              :key="item.id"
+              :class="{ active: activeSubMenu === index }"
+              @click="() => handleSubMenuClick(index, item)"
+            >
+              {{ item.name }}
+            </span>
+          </div>
+          <nav class="i-m-b">
+            <div class="b-row br-img">
+              <a href="#">
+                <span><img src="../../assets/imgs/novel/s_shoucang.svg" /></span>
+                <small>我的收藏</small>
+              </a>
+              <a href="#">
+                <span><img src="../../assets/imgs/novel/s_paihang.svg" /></span>
+                <small>排行榜</small>
+              </a>
+              <a href="#">
+                <span><img src="../../assets/imgs/novel/s_fenlei.svg" /></span>
+                <small>分类</small>
+              </a>
+              <a>
+                <span><img src="../../assets/imgs/novel/s_lianzai.svg" /></span>
+                <small>连载</small>
+              </a>
+              <a>
+                <span><img src="../../assets/imgs/novel/s_wanjie.svg" /></span>
+                <small>完结</small>
+              </a>
             </div>
-          </div>
-          <div class="mc-b">
-            <div class="n-l-b">
-              <div v-if="!recommendBooks.length" class="empty-container">
-                <van-empty image="search" description="还没有作品噢" image-size="10rem" />
+          </nav>
+          <nav v-if="activePreMenu === 'Book'" class="mv-t-c">
+            <div class="mc-a">
+              <div class="a-l"><i class="mvfont mv-xietiao" /><span>大家都喜欢</span></div>
+              <div class="a-r">
+                <span v-if="recommendBooks.length" onclick="javascript: location.href=''"
+                  >更多<i class="mvfont mv-right"
+                /></span>
               </div>
-              <ul v-else>
-                <li v-for="item in recommendBooks" :key="item.id">
-                  <div class="l-a">
-                    <img :src="item.coverUrl" />
-                    <span class="a-a">{{ item.categoryName }}</span>
-                    <span class="a-b">{{ formatCount(item.readCount) }}&nbsp;阅读</span>
-                  </div>
-                  <div class="l-b">
-                    <b>{{ item.title }}</b>
-                    <p>{{ item.statusText }}</p>
-                  </div>
-                </li>
-              </ul>
             </div>
-          </div>
-        </nav>
-        <nav v-if="activePreMenu === 'Book'" class="mv-t-c">
-          <div class="mc-a">
-            <div class="a-l"><i class="mvfont mv-xietiao" /><span>最新上架</span></div>
-            <div class="a-r">
-              <span onclick="javascript: location.href=''">更多<i class="mvfont mv-right" /></span>
+            <div class="mc-b">
+              <div class="n-l-b">
+                <div v-if="!recommendBooks.length" class="empty-container">
+                  <van-empty image="search" description="还没有作品噢" image-size="10rem" />
+                </div>
+                <ul v-else>
+                  <li v-for="item in recommendBooks" :key="item.id" @click="handleBookClick(item)">
+                    <div class="l-a">
+                      <img :src="item.coverUrl" :alt="item.title" />
+                      <span class="a-a">{{ item.categoryName }}</span>
+                      <span class="a-b">{{ formatCount(item.readCount) }}&nbsp;阅读</span>
+                    </div>
+                    <div class="l-b">
+                      <b>{{ item.title }}</b>
+                      <p>{{ item.statusText }}</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="mc-b">
-            <div class="n-l-b">
-              <ul>
-                <li v-for="item in newBooks" :key="item.id">
-                  <div class="l-a">
-                    <img :src="item.coverUrl" />
-                    <span class="a-a">{{ item.categoryName }}</span>
-                    <span class="a-b">{{ formatCount(item.readCount) }}&nbsp;阅读</span>
-                  </div>
-                  <div class="l-b">
-                    <b>{{ item.title }}</b>
-                    <p>{{ item.statusText }}</p>
-                  </div>
-                </li>
-              </ul>
+          </nav>
+          <nav v-if="activePreMenu === 'Book'" class="mv-t-c">
+            <div class="mc-a">
+              <div class="a-l"><i class="mvfont mv-xietiao" /><span>最新上架</span></div>
+              <div class="a-r">
+                <span onclick="javascript: location.href=''">更多<i class="mvfont mv-right" /></span>
+              </div>
             </div>
-          </div>
-        </nav>
-        <nav v-if="activePreMenu === 'Book'" class="mv-t-c">
-          <div class="mc-a">
-            <div class="a-l"><i class="mvfont mv-xietiao" /><span>排行榜</span></div>
-            <div class="a-r">
-              <span>完整榜单<i class="mvfont mv-right" /></span>
+            <div class="mc-b">
+              <div class="n-l-b">
+                <ul>
+                  <li v-for="item in newBooks" :key="item.id">
+                    <div class="l-a">
+                      <img :src="item.coverUrl" />
+                      <span class="a-a">{{ item.categoryName }}</span>
+                      <span class="a-b">{{ formatCount(item.readCount) }}&nbsp;阅读</span>
+                    </div>
+                    <div class="l-b">
+                      <b>{{ item.title }}</b>
+                      <p>{{ item.statusText }}</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="mc-b">
-            <div class="b-tabs">
-              <span :class="{ active: activeRankingList === 'Hots' }" @click="handleTabClick(0, 'Hots')">畅销榜</span>
-              <span :class="{ active: activeRankingList === 'Series' }" @click="handleTabClick(1, 'Series')">连载榜</span>
-              <span :class="{ active: activeRankingList === 'End' }" @click="handleTabClick(2, 'End')">完结榜</span>
-              <span :class="{ active: activeRankingList === 'NewHots' }" @click="handleTabClick(3, 'NewHots')">新书榜</span>
-            </div>
-            <swiper :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="handleSwipeChange" @swiper="getSwiperClass" :allow-touch-move="!appStore.isPc">
-              <swiper-slide :virtual-index="1">
-                <Rank :data="hotBooks" />
-              </swiper-slide>
-              <swiper-slide :virtual-index="2">
-                <Rank :data="serialBooks" />
-              </swiper-slide>
-              <swiper-slide :virtual-index="3">
-                <Rank :data="endBooks" />
-              </swiper-slide>
-              <swiper-slide :virtual-index="3">
-                <Rank :data="newHotBooks" />
-              </swiper-slide>
-            </swiper>
-          </div>
-        </nav>
+          </nav>
+          <RankingList
+            v-if="activePreMenu === 'Book'"
+            :hot-books="hotBooks"
+            :serial-books="serialBooks"
+            :end-books="endBooks"
+            :new-hot-books="newHotBooks"
+            :is-pc="appStore.isPc"
+            @cleanup-urls="cleanupUrls"
+          />
+        </template>
       </section>
     </div>
   </HomeLayout>
@@ -135,24 +131,22 @@
 
 <script setup lang="ts">
 import HomeLayout from '@/components/layout/HomeLayout.vue'
-import { nextTick, onMounted, reactive, ref } from 'vue'
+import { nextTick, onMounted, onUnmounted, reactive, ref } from 'vue'
 import { NovelBookCategoryItem, NovelIndexListItem, NovelStatus } from '@/types/novel'
 import { getNovelIndexList } from '@/api/novel'
 import { useAppStore } from '@/store/app'
 import decryptionService from '@/utils/decryptionService'
 import { formatCount } from '@/utils'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import type { Swiper as SwiperClass } from 'swiper/types'
-import Rank from '@/views/novel/components/Rank.vue'
-
-import 'swiper/css'
+import RankingList from './components/RankingList.vue'
+import { useRouter } from 'vue-router'
 
 const appStore = useAppStore()
+const router = useRouter()
 const bookCategories = reactive<NovelBookCategoryItem[]>([])
 const activePreMenu = ref('Book')
 const activeSubMenu = ref(0)
-const activeRankingList = ref('Hots')
 const loading = ref(false)
+const error = ref<string | null>(null)
 const decrypt = new decryptionService()
 const hotBooks = reactive<NovelIndexListItem[]>([])
 const newBooks = reactive<NovelIndexListItem[]>([])
@@ -160,119 +154,85 @@ const recommendBooks = reactive<NovelIndexListItem[]>([])
 const serialBooks = reactive<NovelIndexListItem[]>([])
 const endBooks = reactive<NovelIndexListItem[]>([])
 const newHotBooks = reactive<NovelIndexListItem[]>([])
-const swiperInstance = ref<SwiperClass>()
 
-async function decryptImage(hots: NovelIndexListItem[], news: NovelIndexListItem[], recommends: NovelIndexListItem[], serial: NovelIndexListItem[], ends: NovelIndexListItem[], newhots: NovelIndexListItem[]) {
-  for (const hotBook of hots) {
-    if (hotBook.coverUrl === '') {
-      hotBook.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      hotBook.coverUrl = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + hotBook.coverUrl))
-    }
-  }
-  for (const book of news) {
-    if (book.coverUrl === '') {
-      book.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      book.coverUrl = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-    }
-  }
-  for (const book of recommends) {
-    if (book.coverUrl === '') {
-      book.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      book.coverUrl = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-    }
-  }
-  for (const book of serial) {
-    if (book.coverUrl === '') {
-      book.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      book.coverUrl = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-    }
-  }
-  for (const book of ends) {
-    if (book.coverUrl === '') {
-      book.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      book.coverUrl = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-    }
-  }
-  for (const book of newhots) {
-    if (book.coverUrl === '') {
-      book.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      book.coverUrl = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-    }
+const createdUrls: string[] = []
+
+async function decryptBookImage(book: NovelIndexListItem) {
+  if (book.coverUrl === '') {
+    book.coverUrl = '/src/assets/imgs/default2.gif'
+  } else {
+    const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
+    createdUrls.push(url)
+    book.coverUrl = url
   }
 }
 
-function formatBookStatus(hots: NovelIndexListItem[], news: NovelIndexListItem[], recommends: NovelIndexListItem[], serial: NovelIndexListItem[], ends: NovelIndexListItem[], newhots: NovelIndexListItem[]) {
-  hots.forEach((item) => {
-    switch (item.status) {
-      case NovelStatus.Serial:
-        item.statusText = '连载中'
-        break
-      case NovelStatus.Finished:
-        item.statusText = '完结'
-        break
-    }
+async function decryptImage(
+  hots: NovelIndexListItem[],
+  news: NovelIndexListItem[],
+  recommends: NovelIndexListItem[],
+  serial: NovelIndexListItem[],
+  ends: NovelIndexListItem[],
+  newhots: NovelIndexListItem[]
+) {
+  await Promise.all([
+    ...hots.map(decryptBookImage),
+    ...news.map(decryptBookImage),
+    ...recommends.map(decryptBookImage),
+    ...serial.map(decryptBookImage),
+    ...ends.map(decryptBookImage),
+    ...newhots.map(decryptBookImage)
+  ])
+}
+
+function cleanupUrls() {
+  createdUrls.forEach((url) => {
+    URL.revokeObjectURL(url)
   })
-  news.forEach((item) => {
-    switch (item.status) {
-      case NovelStatus.Serial:
-        item.statusText = '连载中'
-        break
-      case NovelStatus.Finished:
-        item.statusText = '完结'
-        break
-    }
-  })
-  recommends.forEach((item) => {
-    switch (item.status) {
-      case NovelStatus.Serial:
-        item.statusText = '连载中'
-        break
-      case NovelStatus.Finished:
-        item.statusText = '完结'
-        break
-    }
-  })
-  serial.forEach((item) => {
-    switch (item.status) {
-      case NovelStatus.Serial:
-        item.statusText = '连载中'
-        break
-      case NovelStatus.Finished:
-        item.statusText = '完结'
-        break
-    }
-  })
-  ends.forEach((item) => {
-    switch (item.status) {
-      case NovelStatus.Serial:
-        item.statusText = '连载中'
-        break
-      case NovelStatus.Finished:
-        item.statusText = '完结'
-        break
-    }
-  })
-  newhots.forEach((item) => {
-    switch (item.status) {
-      case NovelStatus.Serial:
-        item.statusText = '连载中'
-        break
-      case NovelStatus.Finished:
-        item.statusText = '完结'
-        break
-    }
-  })
+  createdUrls.length = 0
+}
+
+onUnmounted(() => {
+  cleanupUrls()
+})
+
+function formatBookStatusText(status: NovelStatus): string {
+  switch (status) {
+    case NovelStatus.Serial:
+      return '连载中'
+    case NovelStatus.Finished:
+      return '完结'
+    default:
+      return ''
+  }
+}
+
+function formatBookStatus(
+  hots: NovelIndexListItem[],
+  news: NovelIndexListItem[],
+  recommends: NovelIndexListItem[],
+  serial: NovelIndexListItem[],
+  ends: NovelIndexListItem[],
+  newhots: NovelIndexListItem[]
+) {
+  const formatBooks = (books: NovelIndexListItem[]) => {
+    books.forEach((item) => {
+      item.statusText = formatBookStatusText(item.status)
+    })
+  }
+
+  formatBooks(hots)
+  formatBooks(news)
+  formatBooks(recommends)
+  formatBooks(serial)
+  formatBooks(ends)
+  formatBooks(newhots)
 }
 
 const fetchBooksOfIndexPage = async () => {
   try {
     loading.value = true
+    error.value = null
     const {
       data: { data }
     } = await getNovelIndexList()
@@ -291,7 +251,8 @@ const fetchBooksOfIndexPage = async () => {
       })
     }
   } catch (error) {
-    console.log(error)
+    console.error('Failed to fetch books:', error)
+    error.value = '获取数据失败，请稍后重试'
   } finally {
     loading.value = false
   }
@@ -303,30 +264,8 @@ onMounted(async () => {
   }
 })
 
-const handleTabClick = (index: number, name: string) => {
-  swiperInstance.value.slideTo(index)
-  activeRankingList.value = name
-}
-
-const getSwiperClass = (swiper: SwiperClass) => {
-  swiperInstance.value = swiper
-}
-
-const handleSwipeChange = () => {
-  switch (swiperInstance.value.activeIndex) {
-    case 0:
-      activeRankingList.value = 'Hots'
-      break
-    case 1:
-      activeRankingList.value = 'Series'
-      break
-    case 2:
-      activeRankingList.value = 'End'
-      break
-    case 3:
-      activeRankingList.value = 'NewHots'
-      break
-  }
+const handleBookClick = (item: NovelIndexListItem) => {
+  router.push({ name: 'novelIntro', params: { nid: item.id } })
 }
 
 const handlePreMenuClick = (name: string) => {
@@ -347,5 +286,18 @@ const handleSubMenuClick = async (index: number, item: NovelBookCategoryItem) =>
 </script>
 
 <style scoped>
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  gap: 16px;
+}
 
+.loading-container span {
+  color: #666;
+  font-size: 14px;
+}
 </style>
