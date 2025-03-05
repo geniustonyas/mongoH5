@@ -111,23 +111,25 @@ const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
 // 从 localstorage 的 nu 中获取 nu  nu由 App.vue 中获获取query并且设置
 const nu = localStorage.getItem('nu')
 onMounted(() => {
-  // 不是独立模式, 并且 nu 不是 a1 和 a2 , nu由打包app时传入url参数, 由App.vue中获取并且写入localstorage
-  if (!isStandalone && nu != 'a1' && nu != 'a2' && nu != 'a3') {
-    if (appStore.shownDownload) {
-      // const ua = navigator.userAgent
-      // 如果是IOS, 则显示添加到主屏幕
-      // if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
-      //   showAddToHomeTip.value = true
-      // } else {
-      // 判断如果是PC端浏览器访问, 则不弹窗
-      if (appStore.isPc) {
-        showDownloadTips.value = false
-      } else {
-        showDownloadTips.value = true
+  if (appStore.footerpop) {
+    // 不是独立模式, 并且 nu 不是 a1 和 a2 , nu由打包app时传入url参数, 由App.vue中获取并且写入localstorage
+    if (!isStandalone && nu != 'a1' && nu != 'a2' && nu != 'a3') {
+      if (appStore.shownDownload) {
+        // const ua = navigator.userAgent
+        // 如果是IOS, 则显示添加到主屏幕
+        // if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+        //   showAddToHomeTip.value = true
+        // } else {
+        // 判断如果是PC端浏览器访问, 则不弹窗
+        if (appStore.isPc) {
+          showDownloadTips.value = false
+        } else {
+          showDownloadTips.value = true
+        }
+        // }
+        // 设置已经显示下载提示, 不再显示
+        appStore.setShownDownload(false)
       }
-      // }
-      // 设置已经显示下载提示, 不再显示
-      appStore.setShownDownload(false)
     }
   }
 })
