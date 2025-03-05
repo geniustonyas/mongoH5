@@ -3,8 +3,7 @@
     <div class="novel-list">
       <section class="au-main">
         <div v-if="loading" class="loading-container">
-          <van-loading type="spinner" color="#1989fa" />
-          <span>加载中...</span>
+          <Loading v-show="loading" />
         </div>
         <div v-else-if="error" class="error-container">
           <van-empty image="error" :description="error" />
@@ -59,13 +58,14 @@
               </a>
             </div>
           </nav>
-          <nav v-if="activePreMenu === 'Book'" class="mv-t-c">
+          <nav v-show="activePreMenu === 'Book'" class="mv-t-c">
             <div class="mc-a">
               <div class="a-l"><i class="mvfont mv-xietiao" /><span>大家都喜欢</span></div>
               <div class="a-r">
-                <span v-if="recommendBooks.length" onclick="javascript: location.href=''"
-                  >更多<i class="mvfont mv-right"
-                /></span>
+                <span v-if="recommendBooks.length" onclick="javascript: location.href=''">
+                  更多
+                  <i class="mvfont mv-right" />
+                </span>
               </div>
             </div>
             <div class="mc-b">
@@ -89,7 +89,7 @@
               </div>
             </div>
           </nav>
-          <nav v-if="activePreMenu === 'Book'" class="mv-t-c">
+          <nav v-show="activePreMenu === 'Book'" class="mv-t-c">
             <div class="mc-a">
               <div class="a-l"><i class="mvfont mv-xietiao" /><span>最新上架</span></div>
               <div class="a-r">
@@ -99,7 +99,7 @@
             <div class="mc-b">
               <div class="n-l-b">
                 <ul>
-                  <li v-for="item in newBooks" :key="item.id">
+                  <li v-for="item in newBooks" :key="item.id" @click="handleBookClick(item)">
                     <div class="l-a">
                       <img :src="item.coverUrl" />
                       <span class="a-a">{{ item.categoryName }}</span>
@@ -115,7 +115,7 @@
             </div>
           </nav>
           <RankingList
-            v-if="activePreMenu === 'Book'"
+            v-show="activePreMenu === 'Book'"
             :hot-books="hotBooks"
             :serial-books="serialBooks"
             :end-books="endBooks"
@@ -139,6 +139,7 @@ import decryptionService from '@/utils/decryptionService'
 import { formatCount } from '@/utils'
 import RankingList from './components/RankingList.vue'
 import { useRouter } from 'vue-router'
+import Loading from '@/components/layout/Loading.vue'
 
 const appStore = useAppStore()
 const router = useRouter()
@@ -265,7 +266,7 @@ onMounted(async () => {
 })
 
 const handleBookClick = (item: NovelIndexListItem) => {
-  router.push({ name: 'novelIntro', params: { nid: item.id } })
+  router.push({ name: 'novelIntro', query: { nid: item.id } })
 }
 
 const handlePreMenuClick = (name: string) => {

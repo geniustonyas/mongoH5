@@ -28,14 +28,22 @@
         </div>
         <section class="h-l-b">
           <PullRefresh v-model="refreshing" @refresh="handleRefresh">
-            <List v-model:loading="loading" :offset="20" :finished="finished" :immediate-check="false"
-                  v-model:error="error" @load="handleLoadVideoWithAd">
+            <List
+              v-model:loading="loading"
+              :offset="20"
+              :finished="finished"
+              :immediate-check="false"
+              v-model:error="error"
+              @load="handleLoadVideoWithAd"
+            >
               <div class="video-list-box">
                 <template v-for="(vd, index) in videos" :key="`${vd.imgUrl}${index}`">
                   <div v-if="!vd.isAd" class="video-list">
                     <div class="l-a">
                       <img :src="vd.poster" :alt="vd.title" />
-                      <span class="a-b" v-if="vd.duration != '0'">{{ formatDuration(parseInt(vd.duration)) }}</span>
+                      <span class="a-b" v-if="vd.duration != '0'">{{
+                        formatDuration(parseInt(vd.duration))
+                      }}</span>
                     </div>
                     <div class="l-b">
                       <b>{{ vd.title }}</b>
@@ -50,7 +58,11 @@
                       </div>
                     </div>
                   </div>
-                  <div v-else @click="openAd(vd.targetUrl, '短视频列表广告', 'click', vd.id)" class="video-list">
+                  <div
+                    v-else
+                    @click="openAd(vd.targetUrl, '短视频列表广告', 'click', vd.id)"
+                    class="video-list"
+                  >
                     <div class="l-a">
                       <img :src="vd.poster" :alt="vd.title" />
                     </div>
@@ -95,17 +107,18 @@ const appStore = useAppStore()
 const videos = reactive<VideoWithAd[]>([])
 const totalPages = ref(0)
 const initPageNo = ref(
-  Math.floor(
-    Math.random() *
-    (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) +
-  appStore.shortVideoRandomMin
+  Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) +
+    appStore.shortVideoRandomMin
 )
 
-watch(() => refreshing.value, () => {
-  if (refreshing.value) {
-    reloadVideos()
+watch(
+  () => refreshing.value,
+  () => {
+    if (refreshing.value) {
+      reloadVideos()
+    }
   }
-})
+)
 
 const shortlistAdvertisement = () => {
   const tmp = appStore.getAdvertisementById(29).items
@@ -122,15 +135,17 @@ const fetchVideos = async (isRefresh: boolean) => {
   }
   const adsList = shortlistAdvertisement()
   let dataWithAds: VideoWithAd[] = []
-  const { data: { data } } = await getVideoListApi(params)
+  const {
+    data: { data }
+  } = await getVideoListApi(params)
 
   if (data && Array.isArray(data.items)) {
     totalPages.value = parseInt(data.pageCount)
-    if (isRefresh && (totalPages.value < initPageNo.value)) {
+    if (isRefresh && totalPages.value < initPageNo.value) {
       while (totalPages.value < initPageNo.value) {
-        initPageNo.value = Math.floor(
-          Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)
-        ) + appStore.shortVideoRandomMin
+        initPageNo.value =
+          Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) +
+          appStore.shortVideoRandomMin
       }
       await fetchVideos(false)
       return

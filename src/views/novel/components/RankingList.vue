@@ -28,16 +28,16 @@
         :allow-touch-move="!isPc"
       >
         <swiper-slide :virtual-index="1">
-          <Rank :data="hotBooks" />
+          <Rank v-if="activeRankingList === 'Hots'" :data="hotBooks" />
         </swiper-slide>
         <swiper-slide :virtual-index="2">
-          <Rank :data="serialBooks" />
+          <Rank v-if="activeRankingList === 'Series'" :data="serialBooks" />
         </swiper-slide>
         <swiper-slide :virtual-index="3">
-          <Rank :data="endBooks" />
+          <Rank v-if="activeRankingList === 'End'" :data="endBooks" />
         </swiper-slide>
         <swiper-slide :virtual-index="3">
-          <Rank :data="newHotBooks" />
+          <Rank v-if="activeRankingList === 'NewHots'" :data="newHotBooks" />
         </swiper-slide>
       </swiper>
     </div>

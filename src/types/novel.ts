@@ -79,3 +79,31 @@ export interface NovelListRequest {
   PageIndex?: number
   PageSize?: number
 }
+
+export interface NovelChapter {
+  id: string
+  title: string
+}
+
+export interface NovelBookInfo {
+  id: string
+  title: string
+  coverUrl: string
+  author: string
+  readCount: string
+  favoriteCount: string
+  description: string
+  updateAt: string
+}
+
+export interface NovelDetailResponse {
+  items: NovelChapter[]
+  newVideos: {
+    book: NovelBookInfo
+    chapterId: string
+  }
+  pageIndex: string
+  pageSize: string
+  pageCount: string
+  recordCount: string
+}
