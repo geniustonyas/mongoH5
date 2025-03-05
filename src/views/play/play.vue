@@ -24,10 +24,10 @@
           </p>
         </div>
 
-        <!-- <div class="b-d">
+        <div v-if="!isIOS" class="b-d">
           <p>特别提醒：因地域及用户网络差异，会导致个别用户播放失败，推荐使用“芒果浏览器”。该浏览器自带VPN，无屏蔽无限制，全球加速，极速翻墙，同时内置多个海外X站供家人们挑选！</p>
-          <a href="xxxx.com" target="_blank"><i class="mvfont mv-xiazai1" />立即下载</a>
-        </div> -->
+          <a :href="mangoAdvertisement[0].targetUrl" target="_blank"><i class="mvfont mv-xiazai1" />立即下载</a>
+        </div>
 
         <IconAd class="mt-10" />
         <div class="b-a">
@@ -159,6 +159,13 @@ const forwardOptions = [
 
 const bannerAdvertisement = computed(() => {
   const tmp = appStore.getAdvertisementById(4).items
+  return tmp || []
+})
+
+const isIOS = /iPad|iPhone|iPod|IOS|Ios/.test(navigator.userAgent)
+// 芒果浏览器
+const mangoAdvertisement = computed(() => {
+  const tmp = appStore.getAdvertisementById(33).items
   return tmp || []
 })
 
