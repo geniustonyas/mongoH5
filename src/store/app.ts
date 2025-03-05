@@ -43,6 +43,7 @@ export const useAppStore = defineStore('app', {
       discloseRandomMin: 1, // 揭秘随机最小值
       discloseRandomMax: 10, // 揭秘随机最大值
       spareData: {} as SpareData, // 丢失数据
+      footerpop: false, // 是否弹出底部下载通知
       // sAds: '', // 启动广告
       // sAdsRoute: '', // 启动广告路由
 
@@ -102,6 +103,7 @@ export const useAppStore = defineStore('app', {
         this.discloseRandomMin = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value1 || '1')
         this.discloseRandomMax = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value2 || '10')
         this.openMatomo = data.find((item: any) => item.pKey === 'matomok')?.value1 == '1'
+        this.footerpop = data.find((item: any) => item.pKey === 'footerpop')?.value1 == '1'
         // const adTmp = data.find((item: any) => item.pKey === 'SAds')
         // if (adTmp.value1) {
         //   const tmp = await decrypted.fetchAndDecrypt(adTmp.value1)
