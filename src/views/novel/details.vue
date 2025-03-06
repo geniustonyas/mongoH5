@@ -72,9 +72,42 @@
         </nav>
         <nav class="mv-t-c">
           <div class="mc-a">
-            <div class="a-l"><i class="mvfont mv-xietiao" /><span>为您推荐</span></div>
+            <div class="a-l" ref="recommendTitleRef"><i class="mvfont mv-xietiao" /><span>为您推荐</span></div>
             <div class="a-r">
               <span>更多<i class="mvfont mv-right" /></span>
+            </div>
+          </div>
+          <div class="mc-b">
+            <div class="n-l-b">
+              <div v-if="recommendLoading" class="loading-container">
+                <Loading />
+              </div>
+              <div v-else-if="!recommendBooks.length" class="empty-container">
+                <van-empty image="search" description="还没有作品噢" image-size="10rem" />
+              </div>
+              <template v-else>
+                <ul>
+                  <li v-for="item in recommendBooks" :key="item.id" @click="handleBookClick(item)">
+                    <div class="l-a">
+                      <img :src="item.coverUrl" :alt="item.title" />
+                      <span class="a-a">{{ item?.categoryName }}</span>
+                      <span class="a-b">{{ formatCount(item.readCount) }}&nbsp;阅读</span>
+                    </div>
+                    <div class="l-b">
+                      <b>{{ item.title }}</b>
+                      <p>{{ item.statusText }}</p>
+                    </div>
+                  </li>
+                </ul>
+                <!-- 底部加载状态 -->
+                <div class="load-more" v-if="recommendBooks.length">
+                  <template v-if="isLoadingMore">
+                    <Loading size="24" />
+                    <span>加载中...</span>
+                  </template>
+                  <span v-else-if="!hasMoreData" class="no-more">没有更多了</span>
+                </div>
+              </template>
             </div>
           </div>
         </nav>
@@ -86,9 +119,9 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
 import { ref, onMounted, computed, nextTick, watch, onBeforeUnmount } from 'vue'
-import { getNovelDetail } from '@/api/novel'
+import { getNovelDetail, getRecommendNovelList } from '@/api/novel'
 import Loading from '@/components/layout/Loading.vue'
-import { NovelBookInfo, NovelChapter } from '@/types/novel'
+import { DEFAULT_RECOMMEND_PARAMS, NovelBookInfo, NovelChapter, NovelStatus } from '@/types/novel'
 import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 import { formatCount } from '@/utils/index'
@@ -101,10 +134,16 @@ const appStore = useAppStore()
 const novelCategoryStore = useNovelCategoryStore()
 const loading = ref(false)
 const error = ref<string | null>(null)
+const recommendLoading = ref(false)
+const isLoadingMore = ref(false)
+const hasMoreData = ref(true)
+const currentPage = ref(1)
 const chapters = ref<NovelChapter[]>([])
 const bookInfo = ref<NovelBookInfo | null>(null)
+const recommendBooks = ref<NovelBookInfo[]>([])
 const lastReadChapterId = ref<string>('0')
 const decrypt = new decryptionService()
+const createdUrls = ref<string[]>([])
 const pagination = ref({
   pageIndex: '1',
   pageSize: '10',
@@ -115,6 +154,8 @@ const pagination = ref({
 const isExpanded = ref(false)
 const hasOverflow = ref(false)
 const descriptionRef = ref<HTMLElement | null>(null)
+const recommendTitleRef = ref<HTMLElement | null>(null)
+let observer: IntersectionObserver | null = null
 
 const LINE_HEIGHT = 20 // 行高
 const MAX_LINES = 3 // 最大行数
@@ -139,9 +180,18 @@ async function decryptBookImage(book: NovelBookInfo) {
   if (book.coverUrl === '') {
     book.coverUrl = '/src/assets/imgs/default2.gif'
   } else {
-    book.coverUrl = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
+    const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
+    createdUrls.value.push(url)
+    book.coverUrl = url
   }
   return book
+}
+
+const cleanupUrls = () => {
+  createdUrls.value.forEach((url) => {
+    URL.revokeObjectURL(url)
+  })
+  createdUrls.value = []
 }
 
 const fetchBookDetails = async () => {
@@ -155,6 +205,7 @@ const fetchBookDetails = async () => {
   try {
     loading.value = true
     error.value = null
+    cleanupUrls()
     const {
       data: { data }
     } = await getNovelDetail(nid as string)
@@ -181,6 +232,69 @@ const fetchBookDetails = async () => {
     error.value = '获取数据失败，请稍后重试'
   } finally {
     loading.value = false
+  }
+}
+
+// 格式化书籍状态文本
+const formatBookStatusText = (status: number): string => {
+  switch (status) {
+    case NovelStatus.Serial:
+      return '连载中'
+    case NovelStatus.Finished:
+      return '完结'
+    default:
+      return '未知'
+  }
+}
+
+const fetchRecommendBooks = async (isLoadMore = false) => {
+  try {
+    if (isLoadMore) {
+      isLoadingMore.value = true
+    } else {
+      recommendLoading.value = true
+      currentPage.value = 1
+      cleanupUrls()
+    }
+    error.value = null
+
+    const {
+      data: { data }
+    } = await getRecommendNovelList({
+      ...DEFAULT_RECOMMEND_PARAMS,
+      CategoryId: parseInt(bookInfo.value?.categoryId, 10),
+      PageIndex: currentPage.value
+    })
+
+    if (!data) {
+      error.value = '获取推荐书籍失败'
+      return
+    }
+
+    // 处理每本书的图片解密和状态映射
+    const processedBooks = await Promise.all(
+      data.items.map(async (book) => {
+        book = await decryptBookImage(book)
+        book.statusText = formatBookStatusText(book.status)
+        return book
+      })
+    )
+
+    // 更新分页信息
+    hasMoreData.value = currentPage.value < parseInt(data.pageCount)
+
+    // 追加或替换数据
+    if (isLoadMore) {
+      recommendBooks.value.push(...processedBooks)
+    } else {
+      recommendBooks.value = processedBooks
+    }
+  } catch (e) {
+    console.error('Failed to fetch recommend books:', e)
+    error.value = '获取数据失败，请稍后重试'
+  } finally {
+    recommendLoading.value = false
+    isLoadingMore.value = false
   }
 }
 
@@ -224,15 +338,86 @@ watch(
   }
 )
 
+const setupIntersectionObserver = () => {
+  if (!recommendTitleRef.value) return
+
+  observer = new IntersectionObserver(
+    async (entries) => {
+      const entry = entries[0]
+      if (entry.isIntersecting) {
+        await fetchRecommendBooks()
+        // 取消观察，确保只触发一次
+        observer?.disconnect()
+      }
+    },
+    {
+      threshold: 0.1 // 当10%的元素可见时触发
+    }
+  )
+
+  observer.observe(recommendTitleRef.value)
+}
+
+// 监听滚动加载更多
+const handleScroll = async () => {
+  if (isLoadingMore.value || !hasMoreData.value) return
+
+  const recommendSection = recommendTitleRef.value?.closest('nav')
+  if (!recommendSection) return
+
+  const rect = recommendSection.getBoundingClientRect()
+  const isBottom = rect.bottom <= window.innerHeight + 100 // 提前100px触发加载
+
+  if (isBottom) {
+    currentPage.value++
+    await fetchRecommendBooks(true)
+  }
+}
+
+// 监听路由参数变化
+watch(
+  () => route.query.nid,
+  async (newNid, oldNid) => {
+    if (newNid && newNid !== oldNid) {
+      // 重置页面状态
+      recommendBooks.value = []
+      currentPage.value = 1
+      hasMoreData.value = true
+      // 重新获取数据
+      await fetchBookDetails()
+      // 重新设置推荐区域的观察者
+      setupIntersectionObserver()
+      // 滚动到页面顶部
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+)
+
+const handleBookClick = (item: NovelBookInfo) => {
+  const query = { nid: item.id, status: item.statusText }
+  if (route.query.nid === item.id) {
+    // 如果是同一本书，直接重新获取数据
+    fetchBookDetails()
+  } else {
+    // 不同的书，进行路由跳转
+    router.push({ name: 'novelIntro', query })
+  }
+}
+
 onMounted(async () => {
   checkWebkitLineClampSupport()
   await fetchBookDetails()
   await checkOverflow()
   window.addEventListener('resize', handleResize)
+  window.addEventListener('scroll', handleScroll)
+  setupIntersectionObserver()
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize)
+  window.removeEventListener('scroll', handleScroll)
+  observer?.disconnect()
+  cleanupUrls()
 })
 </script>
 
@@ -329,5 +514,22 @@ onBeforeUnmount(() => {
 
 .a-b:not(.els3) .ab-a::after {
   display: none;
+}
+
+.load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: #666;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.no-more {
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+  padding: 16px;
 }
 </style>

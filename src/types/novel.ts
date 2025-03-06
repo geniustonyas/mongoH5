@@ -94,8 +94,10 @@ export interface NovelBookInfo {
   favoriteCount: string
   description: string
   updateAt: string
-  categoryId?: string // 添加分类ID字段
-  statusText?: string // 添加状态字段
+  categoryId?: string
+  categoryName?: string
+  status?: number
+  statusText?: string
 }
 
 export interface NovelDetailResponse {
@@ -108,4 +110,33 @@ export interface NovelDetailResponse {
   pageSize: string
   pageCount: string
   recordCount: string
+}
+
+export interface NovelRecommendParams {
+  Type?: number
+  KeyWord?: string
+  BookStatus?: number
+  CategoryId?: number
+  IsRecommend?: boolean
+  ReadingCount?: number
+  FavoriteCount?: number
+  CreateTime?: string
+  PageIndex: number
+  PageSize: number
+}
+
+export interface NovelRecommendResponse {
+  items: NovelBookInfo[]
+  pageIndex: string
+  pageSize: string
+  pageCount: string
+  recordCount: string
+}
+
+// 默认参数值
+export const DEFAULT_RECOMMEND_PARAMS: NovelRecommendParams = {
+  Type: NovelCategory.Book,
+  BookStatus: BookStatus.All,
+  PageIndex: 1,
+  PageSize: 10
 }

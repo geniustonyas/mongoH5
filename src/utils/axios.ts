@@ -4,6 +4,50 @@ import { useUserStoreHook } from '@/store/user'
 // import { showToast } from 'vant'
 import decryptionService from '@/utils/decryptionService'
 
+const isDev = import.meta.env.DEV
+
+/**
+ * 开发环境下的日志函数
+ * 只在开发环境（import.meta.env.DEV）下打印日志
+ * 生产环境自动禁用所有日志
+ * 快速定位加密/解密相关问题
+ * 查看请求和响应的完整生命周期
+ * 更容易调试 API 交互问题
+ * 理解数据在传输过程中的变化
+ */
+const logRequest = (config: AxiosRequestConfig, originalData?: any) => {
+  if (!isDev) return
+
+  console.group(`🚀 Request: ${config.url}`)
+  console.log('Method:', config.method?.toUpperCase())
+  if (originalData) {
+    console.log('Original Request Data:', originalData)
+  }
+  console.log('Encrypted Request Data:', config.data)
+  console.log('Headers:', config.headers)
+  console.groupEnd()
+}
+
+const logResponse = (response: AxiosResponse, decryptedData: any) => {
+  if (!isDev) return
+
+  console.group(`✨ Response: ${response.config.url}`)
+  console.log('Status:', response.status)
+  // console.log('Original Response:', response.data)
+  console.log('Decrypted Response:', decryptedData)
+  console.log('Response Headers:', response.headers)
+  console.groupEnd()
+}
+
+const logError = (error: any, context: string) => {
+  if (!isDev) return
+
+  console.group(`❌ Error in ${context}`)
+  console.error('Error:', error)
+  console.error('Stack:', error.stack)
+  console.groupEnd()
+}
+
 // 解析 VITE_BASE_API 环境变量
 const apiUrls = import.meta.env.VITE_BASE_API.split('|')
 
@@ -83,14 +127,20 @@ const setupInterceptors = (service: AxiosInstance) => {
         // 检查请求头中的 X-Should-Encrypt 标志
         if (config.headers['X-Should-Encrypt'] === '1') {
           const decrypt = new decryptionService()
+          const originalData = config.data
           config.data = decrypt.encryptData(JSON.stringify(config.data))
+          // 记录请求日志
+          logRequest(config, originalData)
           // 移除标志以避免发送到服务器
           delete config.headers['X-Should-Encrypt']
+        } else {
+          logRequest(config)
         }
 
         return config
       },
       (error) => {
+        logError(error, 'Request Interceptor')
         return Promise.reject(error)
       }
     )
@@ -103,26 +153,29 @@ const setupInterceptors = (service: AxiosInstance) => {
         const decrypt = new decryptionService()
         const encryptedData = response.data
 
-        const decryptedData = decrypt.decryptResponseData(encryptedData)
         try {
+          const decryptedData = decrypt.decryptResponseData(encryptedData)
           const parsedData = JSON.parse(decryptedData)
+
+          // 记录响应日志
+          logResponse(response, parsedData)
+
           response.data = parsedData
 
-          // 检查解密后的数据中的权限错误
           if (parsedData.code == '401') {
             useUserStoreHook().clearLogin()
             return Promise.reject(new Error('Unauthorized'))
           } else if (parsedData.code !== '200') {
-            // showToast('服务器错误：' + parsedData.code)
             return Promise.reject(parsedData)
           }
-          console.log(response.data)
           return response
         } catch (parseError) {
+          logError(parseError, 'Response Parsing')
           throw new Error('解密后的数据不是有效的 JSON 格式')
         }
       },
       (error) => {
+        logError(error, 'Response Interceptor')
         if (error.response?.status === 401) {
           useUserStoreHook().clearLogin()
         }

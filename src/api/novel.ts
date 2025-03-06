@@ -6,7 +6,9 @@ import {
   NovelDetailResponse,
   NovelIndexResponseData,
   NovelListRequest,
-  NovelListResponse
+  NovelListResponse,
+  NovelRecommendParams,
+  NovelRecommendResponse
 } from '@/types/novel'
 
 // 获取小说首页列表
@@ -58,10 +60,13 @@ export function getNovelDetail(bookId: number | string) {
 }
 
 // 获取推荐小说列表
-export function getRecommendNovelList() {
-  return request<ApiResponseData>({
+export function getRecommendNovelList(params: NovelRecommendParams) {
+  return request<ApiResponseData<NovelRecommendResponse>>({
     url: 'Web/NovelList',
     method: 'post',
-    data: {}
+    data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
   })
 }
