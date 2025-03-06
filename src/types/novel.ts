@@ -67,6 +67,17 @@ export interface NovelBookCategoryItem {
   name: string | number
 }
 
+// 通用选项接口
+export interface TabOption {
+  id: string | number
+  name: string
+  active: boolean
+}
+
+export interface CategoryWithActive extends NovelBookCategoryItem {
+  active?: boolean
+}
+
 export interface NovelListRequest {
   Type?: NovelCategory
   KeyWord?: string

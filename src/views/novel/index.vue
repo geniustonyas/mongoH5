@@ -44,7 +44,7 @@
                 <span><img src="../../assets/imgs/novel/s_paihang.svg" /></span>
                 <small>排行榜</small>
               </a>
-              <a href="#">
+              <a @click="router.push({ name: 'novelCategory' })">
                 <span><img src="../../assets/imgs/novel/s_fenlei.svg" /></span>
                 <small>分类</small>
               </a>

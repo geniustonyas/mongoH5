@@ -21,7 +21,7 @@ const routes: RouteRecordRaw[] = [
     path: '/shortList',
     name: 'shortList',
     meta: { needLogin: false, keepAlive: false, title: '抖阴' },
-    component: () => import('@/views/shortVideo/shortList.vue'),
+    component: () => import('@/views/shortVideo/shortList.vue')
   },
   {
     path: '/videoList/:id',
@@ -138,6 +138,18 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false, title: '小说详情' }
   },
   {
+    path: '/novelRank',
+    name: 'novelRank',
+    component: () => import('@/views/novel/rank.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '排行榜' }
+  },
+  {
+    path: '/novelCategory',
+    name: 'novelCategory',
+    component: () => import('@/views/novel/category.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '分类' }
+  },
+  {
     path: '/longVideo',
     name: 'longVideo',
     component: () => import('@/views/index/index.vue'),
@@ -249,7 +261,10 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  history: import.meta.env.VITE_ROUTER_HISTORY == 'hash' ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH) : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
+  history:
+    import.meta.env.VITE_ROUTER_HISTORY == 'hash'
+      ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
+      : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
   // linkActiveClass: 'active',
   routes
 })

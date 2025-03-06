@@ -3,40 +3,48 @@
     <section class="vp-main">
       <div class="vm-b">
         <div class="v-a">
-          <video v-if="!isLoading" class="video-player" :data-poster="videos[INDEX].poster" muted
-                 preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline
-                 webkit-playsinline style="width: 100%; height: 100%" />
+          <video
+            v-if="!isLoading"
+            class="video-player"
+            :data-poster="videos[INDEX].poster"
+            muted
+            preload="auto"
+            loop
+            x5-video-player-fullscreen="true"
+            x5-playsinline
+            playsinline
+            webkit-playsinline
+            style="width: 100%; height: 100%"
+          />
         </div>
         <div class="v-b">
-          <a href="#"><img alt="" src="../../assets/imgs/logo-4.png"></a>
+          <a href="#"><img alt="" src="../../assets/imgs/logo-4.png" /></a>
           <a @click.prevent="handleLike()">
             <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
             <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
           </a>
           <a @click.prevent="handleShowComment">
-            <i class="mvfont mv-pinglun3"></i>
+            <i class="mvfont mv-pinglun3" />
             <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
           </a>
           <a @click.prevent="toggleCollection">
-            <i class="mvfont mv-shoucang"></i>
+            <i class="mvfont mv-shoucang" />
             <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
           </a>
           <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
         </div>
         <div class="v-d">
           <div class="d-a">
-            <a href="brilliant.html"><i class="mvfont mv-dianji"></i>点击查看更多短剧<i class="mvfont mv-right"></i></a>
+            <a href="brilliant.html"><i class="mvfont mv-dianji" />点击查看更多短剧<i class="mvfont mv-right" /></a>
           </div>
           <div class="d-b">
             <h3>{{ videoDetail?.title || '-' }}</h3>
             <p>第2集<small>|</small>雇人假结婚被抓包？不过女主是专业的，看合约夫妻如何反击！</p>
           </div>
           <div class="d-c" @click="showDramasPopup = true">
-            <div class="c-l">
-              <img alt="" src="assets/imgs/logo-2.png">短剧<b>●</b>三十天而已<span>更新至第3集</span>
-            </div>
+            <div class="c-l"><img alt="" src="assets/imgs/logo-2.png" />短剧<b>●</b>三十天而已<span>更新至第3集</span></div>
             <div class="c-r">
-              <i class="mvfont mv-right"></i>
+              <i class="mvfont mv-right" />
             </div>
           </div>
         </div>
@@ -54,9 +62,7 @@
       <div class="moreEpisodes">
         <div class="m-a">
           <div class="ma-t">
-            <div class="t-l">
-              <img src="assets/imgs/logo-2.png">短剧<b>●</b>三十天而已<span>更新至第3集</span>
-            </div>
+            <div class="t-l"><img src="assets/imgs/logo-2.png" />短剧<b>●</b>三十天而已<span>更新至第3集</span></div>
           </div>
         </div>
         <div class="m-a" style="padding-top: 0">
@@ -66,50 +72,50 @@
                 <div class="m-b m-b-tab">
                   <ul class="p-l-i">
                     <li>
-                      <div class="l-l" style="background-image:url(src/assets/imgs/logo-4.png)"></div>
+                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
                       <div class="l-r">
                         <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
                         <div class="r-b">
                           <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2"></i>48.1万</span>
-                          <span><i class="mvfont mv-like"></i>2982</span>
-                          <span><i class="mvfont mv-zan"></i>2982</span>
+                          <span><i class="mvfont mv-bofang2" />48.1万</span>
+                          <span><i class="mvfont mv-like" />2982</span>
+                          <span><i class="mvfont mv-zan" />2982</span>
                         </div>
                       </div>
                     </li>
                     <li>
-                      <div class="l-l" style="background-image:url(src/assets/imgs/logo-4.png)"></div>
+                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
                       <div class="l-r">
                         <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
                         <div class="r-b">
                           <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2"></i>48.1万</span>
-                          <span><i class="mvfont mv-like"></i>2982</span>
-                          <span><i class="mvfont mv-zan"></i>2982</span>
+                          <span><i class="mvfont mv-bofang2" />48.1万</span>
+                          <span><i class="mvfont mv-like" />2982</span>
+                          <span><i class="mvfont mv-zan" />2982</span>
                         </div>
                       </div>
                     </li>
                     <li>
-                      <div class="l-l" style="background-image:url(src/assets/imgs/logo-4.png)"></div>
+                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
                       <div class="l-r">
                         <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
                         <div class="r-b">
                           <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2"></i>48.1万</span>
-                          <span><i class="mvfont mv-like"></i>2982</span>
-                          <span><i class="mvfont mv-zan"></i>2982</span>
+                          <span><i class="mvfont mv-bofang2" />48.1万</span>
+                          <span><i class="mvfont mv-like" />2982</span>
+                          <span><i class="mvfont mv-zan" />2982</span>
                         </div>
                       </div>
                     </li>
                     <li>
-                      <div class="l-l" style="background-image:url(src/assets/imgs/logo-4.png)"></div>
+                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
                       <div class="l-r">
                         <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
                         <div class="r-b">
                           <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2"></i>48.1万</span>
-                          <span><i class="mvfont mv-like"></i>2982</span>
-                          <span><i class="mvfont mv-zan"></i>2982</span>
+                          <span><i class="mvfont mv-bofang2" />48.1万</span>
+                          <span><i class="mvfont mv-like" />2982</span>
+                          <span><i class="mvfont mv-zan" />2982</span>
                         </div>
                       </div>
                     </li>
@@ -120,14 +126,14 @@
                 <div class="m-b">
                   <ul class="p-l-i">
                     <li>
-                      <div class="l-l" style="background-image:url(src/assets/imgs/logo-4.png)"></div>
+                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
                       <div class="l-r">
                         <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
                         <div class="r-b">
                           <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2"></i>48.1万</span>
-                          <span><i class="mvfont mv-like"></i>2982</span>
-                          <span><i class="mvfont mv-zan"></i>2982</span>
+                          <span><i class="mvfont mv-bofang2" />48.1万</span>
+                          <span><i class="mvfont mv-like" />2982</span>
+                          <span><i class="mvfont mv-zan" />2982</span>
                         </div>
                       </div>
                     </li>
@@ -138,14 +144,14 @@
                 <div class="m-b">
                   <ul class="p-l-i">
                     <li>
-                      <div class="l-l" style="background-image:url(src/assets/imgs/logo-4.png)"></div>
+                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
                       <div class="l-r">
                         <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
                         <div class="r-b">
                           <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2"></i>48.1万</span>
-                          <span><i class="mvfont mv-like"></i>2982</span>
-                          <span><i class="mvfont mv-zan"></i>2982</span>
+                          <span><i class="mvfont mv-bofang2" />48.1万</span>
+                          <span><i class="mvfont mv-like" />2982</span>
+                          <span><i class="mvfont mv-zan" />2982</span>
                         </div>
                       </div>
                     </li>
@@ -156,8 +162,8 @@
           </div>
         </div>
         <div class="m-c">
-          <a><i class="mvfont mv-like"></i>收藏短剧</a>
-          <a href="#"><i class="mvfont mv-home"></i>短剧首页</a>
+          <a><i class="mvfont mv-like" />收藏短剧</a>
+          <a href="#"><i class="mvfont mv-home" />短剧首页</a>
         </div>
       </div>
     </Popup>
@@ -180,7 +186,7 @@ import Loading from '@/components/layout/Loading.vue'
 import { Popup } from 'vant'
 
 // 目前没有剧集接口, 用短视频模拟, 取第一个视频作为展示.
-const INDEX = 0;
+const INDEX = 0
 const videos = ref<Video[]>([])
 const videoDetail = ref<VideoDetailResponse | null>(null)
 const decrypt = new decryptionService()
@@ -248,7 +254,7 @@ const fetchVideoDetail = async (videoId: number) => {
 }
 
 const prepareVideo = async (video: Video) => {
-  let hlsInstance = null;
+  let hlsInstance = null
   const videoPlayerEle = document.querySelector('.video-player') as HTMLVideoElement
   if (videoPlayerEle) {
     const url = generateAuthUrl(appStore.playDomain, video.playUrl)
@@ -350,14 +356,13 @@ onMounted(async () => {
   } finally {
     isLoading.value = false
   }
-
-});
+})
 
 onUnmounted(() => {
-  players.value.forEach(player => {
+  players.value.forEach((player) => {
     player.destroy()
   })
-  hlsInstances.value.forEach(hls => {
+  hlsInstances.value.forEach((hls) => {
     hls.destroy()
   })
   players.value.clear()
@@ -481,11 +486,9 @@ const toggleCollection = () => {}
   height: calc(50vh - 9rem);
   overflow: auto;
 }
-
 </style>
 <!-- 覆盖van-tab的样式 -->
 <style lang="css">
-
 .moreEpisodes .van-tabs--line .van-tabs__wrap {
   height: 3.6rem;
   padding-bottom: 3.8rem;
@@ -494,7 +497,7 @@ const toggleCollection = () => {}
 
 .moreEpisodes .van-tabs__nav {
   background-color: var(--color-black);
-  padding-left: .5rem;
+  padding-left: 0.5rem;
 }
 
 .moreEpisodes .van-tab {
@@ -511,13 +514,13 @@ const toggleCollection = () => {}
 
 .moreEpisodes .van-tab:first-child {
   flex: 0 0 3.5rem;
-  margin-right: .8rem
+  margin-right: 0.8rem;
 }
 
 .moreEpisodes .van-tab--active:before {
-  content: "";
+  content: '';
   position: absolute;
-  bottom: -.5rem;
+  bottom: -0.5rem;
   left: 2.4rem;
   background: url('../../assets/imgs/by.svg') no-repeat center;
   background-size: cover;
