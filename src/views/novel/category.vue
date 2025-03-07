@@ -5,7 +5,7 @@
         <a @click="router.go(-1)"><i class="mvfont mv-left" /></a>
       </div>
       <div class="d-m">
-        <span>排行榜</span>
+        <span>所有小说</span>
       </div>
       <div class="d-r" />
     </header>
@@ -97,7 +97,7 @@
 
 <script setup lang="ts">
 import { reactive, ref, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import Loading from '@/components/layout/Loading.vue'
 import { useNovelCategoryStore } from '@/store/novelCategory'
 import { BookStatus, CategoryWithActive, DEFAULT_RECOMMEND_PARAMS, NovelBookInfo, NovelRecommendParams, TabOption } from '@/types/novel'
@@ -107,6 +107,7 @@ import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 
 const router = useRouter()
+const route = useRoute()
 const novelCategoryStore = useNovelCategoryStore()
 const appStore = useAppStore()
 
@@ -141,6 +142,17 @@ const statusOptions = reactive<TabOption[]>([
   { id: 0, name: '完结', active: false },
   { id: 1, name: '连载', active: false }
 ])
+
+// 根据路由参数初始化状态选项
+const initializeFromRoute = () => {
+  const sortType = route.query.sortType
+  if (sortType !== undefined) {
+    const statusId = Number(sortType)
+    statusOptions.forEach((option) => {
+      option.active = option.id === statusId
+    })
+  }
+}
 
 // 获取当前激活的选项ID
 const getActiveId = (list: TabOption[] | CategoryWithActive[]) => {
@@ -264,6 +276,8 @@ const handleScroll = async () => {
 
 // 监听滚动事件
 onMounted(() => {
+  initializeFromRoute()
+  fetchRankList()
   window.addEventListener('scroll', handleScroll)
 })
 
@@ -315,9 +329,6 @@ const handleBookClick = (item: NovelBookInfo) => {
     query: { nid: item.id, status: item.statusText }
   })
 }
-
-// 初始加载
-fetchRankList()
 </script>
 
 <style scoped>

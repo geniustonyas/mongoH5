@@ -40,7 +40,7 @@
                 <span><img src="../../assets/imgs/novel/s_shoucang.svg" /></span>
                 <small>我的收藏</small>
               </a>
-              <a href="#">
+              <a @click="router.push({ name: 'novelRank' })">
                 <span><img src="../../assets/imgs/novel/s_paihang.svg" /></span>
                 <small>排行榜</small>
               </a>
@@ -48,11 +48,11 @@
                 <span><img src="../../assets/imgs/novel/s_fenlei.svg" /></span>
                 <small>分类</small>
               </a>
-              <a>
+              <a @click="router.push({ name: 'novelCategory', query: { sortType: 1 } })">
                 <span><img src="../../assets/imgs/novel/s_lianzai.svg" /></span>
                 <small>连载</small>
               </a>
-              <a>
+              <a @click="router.push({ name: 'novelCategory', query: { sortType: 0 } })">
                 <span><img src="../../assets/imgs/novel/s_wanjie.svg" /></span>
                 <small>完结</small>
               </a>
