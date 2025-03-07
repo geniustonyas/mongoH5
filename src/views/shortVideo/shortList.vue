@@ -41,9 +41,7 @@
                   <div v-if="!vd.isAd" class="video-list">
                     <div class="l-a">
                       <img :src="vd.poster" :alt="vd.title" />
-                      <span class="a-b" v-if="vd.duration != '0'">{{
-                        formatDuration(parseInt(vd.duration))
-                      }}</span>
+                      <span class="a-b" v-if="vd.duration != '0'">{{ formatDuration(parseInt(vd.duration)) }}</span>
                     </div>
                     <div class="l-b">
                       <b>{{ vd.title }}</b>
@@ -58,11 +56,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    v-else
-                    @click="openAd(vd.targetUrl, '短视频列表广告', 'click', vd.id)"
-                    class="video-list"
-                  >
+                  <div v-else @click="openAd(vd.targetUrl, '短视频列表广告', 'click', vd.id)" class="video-list">
                     <div class="l-a">
                       <img :src="vd.poster" :alt="vd.title" />
                     </div>
@@ -107,8 +101,7 @@ const appStore = useAppStore()
 const videos = reactive<VideoWithAd[]>([])
 const totalPages = ref(0)
 const initPageNo = ref(
-  Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) +
-    appStore.shortVideoRandomMin
+  Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
 )
 
 watch(
@@ -144,8 +137,7 @@ const fetchVideos = async (isRefresh: boolean) => {
     if (isRefresh && totalPages.value < initPageNo.value) {
       while (totalPages.value < initPageNo.value) {
         initPageNo.value =
-          Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) +
-          appStore.shortVideoRandomMin
+          Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
       }
       await fetchVideos(false)
       return

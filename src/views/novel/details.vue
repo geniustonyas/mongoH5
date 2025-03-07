@@ -1,119 +1,127 @@
 <template>
-  <section class="novel-main nmh-fixed">
-    <header class="d-header">
-      <div class="d-l">
-        <a @click="router.go(-1)"><i class="mvfont mv-left" /></a>
-      </div>
-      <div class="d-m" />
-      <div class="d-r">
-        <i class="mvfont mv-fenxiang" />
-      </div>
-    </header>
-    <div v-if="loading" class="loading-container">
-      <Loading />
-    </div>
-    <div v-else-if="error" class="error-container">
-      <van-empty image="error" :description="error" />
-      <van-button type="primary" @click="fetchBookDetails">重试</van-button>
-    </div>
-    <template v-else>
-      <div class="novel-introduction">
-        <div class="ni-a">
-          <div class="a-a">
-            <div class="aa-l">
-              <img :src="bookInfo?.coverUrl || '-'" style="min-width: 110px; min-height: 147px" />
-            </div>
-            <div class="aa-r">
-              <div class="r-a">
-                {{ bookInfo?.title || '-' }}
-              </div>
-              <div class="r-b">
-                {{ categoryName }}<em>|</em>{{ bookInfo?.statusText || '未知' }}<em>|</em>最新{{
-                  chapters.length > 0 ? `最新${chapters.length}章` : '暂无'
-                }}
-              </div>
-              <div class="r-c">
-                <span>
-                  阅读：<b>{{ formatCount(bookInfo?.readCount) }}</b>
-                </span>
-                <span>
-                  收藏：<b>{{ formatCount(bookInfo?.favoriteCount) }}</b>
-                </span>
-              </div>
-              <div class="r-d">
-                更新时间：<span>{{ formatDate(bookInfo?.updateAt) }}</span>
-              </div>
-            </div>
-          </div>
-          <div class="a-b" :class="{ els3: !isExpanded }">
-            <div ref="descriptionRef" class="ab-a">{{ bookInfo?.description || '-' }}</div>
-            <div class="ab-b" @click="toggleExpand">
-              <i v-if="hasOverflow" class="mvfont" :class="isExpanded ? 'mv-up' : 'mv-right1'" />
-            </div>
-          </div>
-          <div class="a-c" :style="{ backgroundImage: `url(${bookInfo?.coverUrl})` }" />
+  <div>
+    <section class="novel-main" :class="{ 'nmh-fixed': isHeaderFixed }">
+      <header class="d-header">
+        <div class="d-l">
+          <a @click="router.go(-1)"><i class="mvfont mv-left" /></a>
         </div>
-        <nav class="mv-t-c">
-          <div class="mc-a">
-            <div class="a-l"><i class="mvfont mv-xietiao" /><span>目录</span></div>
-            <div class="a-r">
-              <span>共{{ chapters.length }}章<i class="mvfont mv-right" /></span>
-            </div>
-          </div>
-          <div class="mc-b">
-            <div class="ni-b">
-              <dl>
-                <dt>最新章节</dt>
-                <dd v-for="chapter in chapters" :key="chapter.id">{{ chapter.title }}</dd>
-              </dl>
-              <p v-if="chapters.length > 3" @click="router.push('/novel/chapter')">查看全部章节</p>
-            </div>
-          </div>
-        </nav>
-        <nav class="mv-t-c">
-          <div class="mc-a">
-            <div class="a-l" ref="recommendTitleRef"><i class="mvfont mv-xietiao" /><span>为您推荐</span></div>
-            <div class="a-r">
-              <span>更多<i class="mvfont mv-right" /></span>
-            </div>
-          </div>
-          <div class="mc-b">
-            <div class="n-l-b">
-              <div v-if="recommendLoading" class="loading-container">
-                <Loading />
-              </div>
-              <div v-else-if="!recommendBooks.length" class="empty-container">
-                <van-empty image="search" description="还没有作品噢" image-size="10rem" />
-              </div>
-              <template v-else>
-                <ul>
-                  <li v-for="item in recommendBooks" :key="item.id" @click="handleBookClick(item)">
-                    <div class="l-a">
-                      <img :src="item.coverUrl" :alt="item.title" />
-                      <span class="a-a">{{ item?.categoryName }}</span>
-                      <span class="a-b">{{ formatCount(item.readCount) }}&nbsp;阅读</span>
-                    </div>
-                    <div class="l-b">
-                      <b>{{ item.title }}</b>
-                      <p>{{ item.statusText }}</p>
-                    </div>
-                  </li>
-                </ul>
-                <!-- 底部加载状态 -->
-                <div class="load-more" v-if="recommendBooks.length">
-                  <template v-if="isLoadingMore">
-                    <Loading size="24" />
-                    <span>加载中...</span>
-                  </template>
-                  <span v-else-if="!hasMoreData" class="no-more">没有更多了</span>
-                </div>
-              </template>
-            </div>
-          </div>
-        </nav>
+        <div class="d-m" />
+        <div class="d-r">
+          <i class="mvfont mv-fenxiang" />
+        </div>
+      </header>
+      <div v-if="loading" class="loading-container">
+        <Loading />
       </div>
-    </template>
-  </section>
+      <div v-else-if="error" class="error-container">
+        <van-empty image="error" :description="error" />
+        <van-button type="primary" @click="fetchBookDetails">重试</van-button>
+      </div>
+      <template v-else>
+        <div class="novel-introduction">
+          <div class="ni-a">
+            <div class="a-a">
+              <div class="aa-l">
+                <img :src="bookInfo?.coverUrl || '-'" style="min-width: 110px; min-height: 147px" />
+              </div>
+              <div class="aa-r" ref="aaRightRef">
+                <div class="r-a">
+                  {{ bookInfo?.title || '-' }}
+                </div>
+                <div class="r-b">
+                  {{ categoryName }}<em>|</em>{{ bookInfo?.statusText || '未知' }}<em>|</em>最新{{
+                    chapters.length > 0 ? `最新${chapters.length}章` : '暂无'
+                  }}
+                </div>
+                <div class="r-c">
+                  <span>
+                    阅读：<b>{{ formatCount(bookInfo?.readCount) }}</b>
+                  </span>
+                  <span>
+                    收藏：<b>{{ formatCount(bookInfo?.favoriteCount) }}</b>
+                  </span>
+                </div>
+                <div class="r-d">
+                  更新时间：<span>{{ formatDate(bookInfo?.updateAt) }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="a-b" :class="{ els3: !isExpanded }">
+              <div ref="descriptionRef" class="ab-a">{{ bookInfo?.description || '-' }}</div>
+              <div class="ab-b" @click="toggleExpand">
+                <i v-if="hasOverflow" class="mvfont" :class="isExpanded ? 'mv-up' : 'mv-right1'" />
+              </div>
+            </div>
+            <div class="a-c" :style="{ backgroundImage: `url(${bookInfo?.coverUrl})` }" />
+          </div>
+          <nav class="mv-t-c">
+            <div class="mc-a">
+              <div class="a-l"><i class="mvfont mv-xietiao" /><span>目录</span></div>
+              <div class="a-r">
+                <span>共{{ chapters.length }}章<i class="mvfont mv-right" /></span>
+              </div>
+            </div>
+            <div class="mc-b">
+              <div class="ni-b">
+                <dl>
+                  <dt>最新章节</dt>
+                  <dd v-for="chapter in chapters" :key="chapter.id">{{ chapter.title }}</dd>
+                </dl>
+                <p v-if="chapters.length > 3" @click="router.push('/novel/chapter')">查看全部章节</p>
+              </div>
+            </div>
+          </nav>
+          <nav class="mv-t-c">
+            <div class="mc-a">
+              <div class="a-l" ref="recommendTitleRef"><i class="mvfont mv-xietiao" /><span>为您推荐</span></div>
+              <div class="a-r">
+                <span>更多<i class="mvfont mv-right" /></span>
+              </div>
+            </div>
+            <div class="mc-b">
+              <div class="n-l-b">
+                <div v-if="recommendLoading" class="loading-container">
+                  <Loading />
+                </div>
+                <div v-else-if="!recommendBooks.length" class="empty-container">
+                  <van-empty image="search" description="还没有作品噢" image-size="10rem" />
+                </div>
+                <template v-else>
+                  <ul>
+                    <li v-for="item in recommendBooks" :key="item.id" @click="handleBookClick(item)">
+                      <div class="l-a">
+                        <img :src="item.coverUrl" :alt="item.title" />
+                        <span class="a-a">{{ item?.categoryName }}</span>
+                        <span class="a-b">{{ formatCount(item.readCount) }}&nbsp;阅读</span>
+                      </div>
+                      <div class="l-b">
+                        <b>{{ item.title }}</b>
+                        <p>{{ item.statusText }}</p>
+                      </div>
+                    </li>
+                  </ul>
+                  <!-- 底部加载状态 -->
+                  <div class="load-more" v-if="recommendBooks.length">
+                    <template v-if="isLoadingMore">
+                      <Loading size="24" />
+                      <span>加载中...</span>
+                    </template>
+                    <span v-else-if="!hasMoreData" class="no-more">没有更多了</span>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </template>
+    </section>
+    <footer class="footer">
+      <div class="p-btns">
+        <span><i class="mvfont mv-shoucang" />加入收藏</span>
+        <span onclick="javascript: location.href='novel_detail.html'">开始阅读</span>
+      </div>
+    </footer>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -155,6 +163,8 @@ const isExpanded = ref(false)
 const hasOverflow = ref(false)
 const descriptionRef = ref<HTMLElement | null>(null)
 const recommendTitleRef = ref<HTMLElement | null>(null)
+const aaRightRef = ref<HTMLElement | null>(null)
+const isHeaderFixed = ref(true)
 let observer: IntersectionObserver | null = null
 
 const LINE_HEIGHT = 20 // 行高
@@ -404,18 +414,28 @@ const handleBookClick = (item: NovelBookInfo) => {
   }
 }
 
+// 监听滚动
+const handleHeaderScroll = () => {
+  if (!aaRightRef.value) return
+  
+  const rect = aaRightRef.value.getBoundingClientRect()
+  isHeaderFixed.value = rect.top > 0
+}
+
 onMounted(async () => {
   checkWebkitLineClampSupport()
   await fetchBookDetails()
   await checkOverflow()
   window.addEventListener('resize', handleResize)
   window.addEventListener('scroll', handleScroll)
+  window.addEventListener('scroll', handleHeaderScroll)
   setupIntersectionObserver()
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize)
   window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('scroll', handleHeaderScroll)
   observer?.disconnect()
   cleanupUrls()
 })

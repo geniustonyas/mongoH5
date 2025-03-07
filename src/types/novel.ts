@@ -131,7 +131,7 @@ export interface NovelRecommendParams {
   IsRecommend?: boolean
   ReadingCount?: number
   FavoriteCount?: number
-  CreateTime?: string
+  CreateTime?: number
   PageIndex: number
   PageSize: number
 }

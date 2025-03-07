@@ -24,7 +24,7 @@
               <small>第一时间看更新</small>
             </span>
           </div>
-          <div class="sub-menu">
+          <div v-show="activePreMenu === 'Book'" class="sub-menu">
             <span
               v-for="(item, index) in bookCategories"
               :key="item.id"
@@ -34,13 +34,13 @@
               {{ item.name }}
             </span>
           </div>
-          <nav class="i-m-b">
+          <nav v-show="activePreMenu === 'Book'" class="i-m-b">
             <div class="b-row br-img">
               <a href="#">
                 <span><img src="../../assets/imgs/novel/s_shoucang.svg" /></span>
                 <small>我的收藏</small>
               </a>
-              <a href="#">
+              <a @click="router.push({ name: 'novelRank' })">
                 <span><img src="../../assets/imgs/novel/s_paihang.svg" /></span>
                 <small>排行榜</small>
               </a>
@@ -48,11 +48,11 @@
                 <span><img src="../../assets/imgs/novel/s_fenlei.svg" /></span>
                 <small>分类</small>
               </a>
-              <a>
+              <a @click="router.push({ name: 'novelCategory', query: { sortType: 1 } })">
                 <span><img src="../../assets/imgs/novel/s_lianzai.svg" /></span>
                 <small>连载</small>
               </a>
-              <a>
+              <a @click="router.push({ name: 'novelCategory', query: { sortType: 0 } })">
                 <span><img src="../../assets/imgs/novel/s_wanjie.svg" /></span>
                 <small>完结</small>
               </a>
@@ -93,7 +93,7 @@
             <div class="mc-a">
               <div class="a-l"><i class="mvfont mv-xietiao" /><span>最新上架</span></div>
               <div class="a-r">
-                <span onclick="javascript: location.href=''">更多<i class="mvfont mv-right" /></span>
+                <span @click="handleLatestMoreClick">更多<i class="mvfont mv-right" /></span>
               </div>
             </div>
             <div class="mc-b">
@@ -114,6 +114,9 @@
               </div>
             </div>
           </nav>
+          <div v-show="activePreMenu === 'AudioBook'" class="empty-container">
+            <van-empty image="search" description="敬请期待噢" image-size="10rem" />
+          </div>
           <RankingList
             v-show="activePreMenu === 'Book'"
             :hot-books="hotBooks"
@@ -281,14 +284,22 @@ const handlePreMenuClick = (name: string) => {
 
 const handleSubMenuClick = async (index: number, item: NovelBookCategoryItem) => {
   activeSubMenu.value = index
-  try {
-    // todo：点击分类跳转所有书籍列表
-    console.log(item.id, index)
-  } catch (e) {
-    console.log(e)
-  } finally {
-    loading.value = false
-  }
+  // 跳转到分类页面，传递分类ID
+  router.push({
+    name: 'novelCategory',
+    query: {
+      categoryId: item.id
+    }
+  })
+}
+
+const handleLatestMoreClick = () => {
+  router.push({
+    name: 'novelCategory',
+    query: {
+      sortType: 'CreateTime'
+    }
+  })
 }
 </script>
 
