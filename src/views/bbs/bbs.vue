@@ -1,17 +1,15 @@
 <template>
   <div class="page">
-    <header class="header bbs-header">
-      <div class="b-l">
-        <i @click="showToast('暂停发帖')" class="mvfont mv-jia2" />
+    <header class="d-header">
+      <div class="d-l">
+        <i @click="clickAddPost" class="mvfont mv-jia2" />
       </div>
-      <div class="head-menu">
-        <div class="hm-a">
-          <a v-for="(tab, index) in tabs" :key="index" :class="{ active: activeTab === tab.name }" @click="clickTab(tab.name)">
-            {{ tab.title }}
-          </a>
-        </div>
+      <div class="d-m">
+        <a v-for="(tab, index) in tabs" :key="index" :class="{ active: activeTab === tab.name }" @click="clickTab(tab.name)">
+          {{ tab.title }}
+        </a>
       </div>
-      <div class="b-r" @click="router.push({ name: 'bbsSearch' })">
+      <div class="d-r" @click="router.push({ name: 'bbsSearch' })">
         <i class="mvfont mv-search1" />
       </div>
     </header>
@@ -638,6 +636,14 @@ const onSwiper = (swiper: any) => {
 
 const onBannerSwiper = (swiper: any) => {
   bannerSwiperInstance.value = swiper
+}
+
+const clickAddPost = () => {
+  if (userStore.userInfo.id == '') {
+    userStore.showLoginDialog = true
+  } else {
+    router.push({ name: 'addPost' })
+  }
 }
 
 const clickTab = (tabName: number) => {
