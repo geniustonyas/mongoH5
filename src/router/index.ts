@@ -22,12 +22,12 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false, title: '首页' },
     component: () => import('@/views/index/index.vue')
   },
-  {
-    path: '/test',
-    name: 'test',
-    meta: { needLogin: false, keepAlive: false, title: '测试' },
-    component: () => import('@/views/shortVideo/test.vue')
-  },
+  // {
+  //   path: '/test',
+  //   name: 'test',
+  //   meta: { needLogin: false, keepAlive: false, title: '测试' },
+  //   component: () => import('@/views/shortVideo/test.vue')
+  // },
   {
     path: '/videoList/:id',
     name: 'videoList',
