@@ -99,3 +99,11 @@ export function bbsCommentApi(data: { PostId: string | number; Content: string }
     data
   })
 }
+
+/** 获取STS Token */
+export function getSTSTokenApi() {
+  return request<ApiResponseData<any>>({
+    url: 'BBS/GetSTSToken',
+    method: 'post'
+  })
+}

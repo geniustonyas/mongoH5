@@ -2344,7 +2344,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
 
 
 /*pc样式*/
-.pop-fixed, .au-pop, .fixed-foot { display: none !important; }
+// .pop-fixed, .au-pop, .fixed-foot { display: none !important; }
 .navbar { position: fixed; left: 0; top: 0; width: 16rem; height: 100%; .bg(var(--color-main-bg)); display: none;
     .nb-bd { height: 100%; width: 100%; .flex(); .flex-v(); .flex-pack-justify(); .scroll-touch();
         .bd-a {
@@ -2591,3 +2591,34 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         }
     }
 }
+
+.upload-box {
+    padding: 1rem;
+    .upload-header {
+        .flex(); .flex-align(); .flex-pack();
+        .border-b(.1rem,var(--color-border));
+        color: var(--color-black);
+        .h-lh(5rem);
+    }
+    .upload-body {
+        padding: 2rem 1rem;
+        .upload-row {
+            .flex();  .flex-align(); .flex-pack-justify();
+            gap: 2rem;
+            margin-bottom: 1rem;
+            width: 100%;
+    
+            
+        }
+    }
+    
+    .upload-btns {
+        .flex(); .flex-align(); .flex-pack();
+        gap: 20px;
+        position: absolute;
+        bottom: 5rem;
+        width: 100%;
+    }      
+}
+
+
