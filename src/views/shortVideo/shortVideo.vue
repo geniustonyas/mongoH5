@@ -25,10 +25,29 @@
         </div>
         <div class="vm-a" />
         <div class="vm-b">
-          <swiper :direction="'vertical'" :modules="modules" :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined" :slides-per-view="1" :space-between="0" @slide-change="slideChange" style="width: 100%; height: 100%">
+          <swiper
+            :direction="'vertical'"
+            :modules="modules"
+            :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined"
+            :slides-per-view="1"
+            :space-between="0"
+            @slide-change="slideChange"
+            style="width: 100%; height: 100%"
+          >
             <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
               <div class="v-a">
-                <video :id="'video-player-' + index" class="video-player" muted preload="auto" loop x5-video-player-fullscreen="true" x5-playsinline playsinline webkit-playsinline style="width: 100%; height: 100%" />
+                <video
+                  :id="'video-player-' + index"
+                  class="video-player"
+                  muted
+                  preload="auto"
+                  loop
+                  x5-video-player-fullscreen="true"
+                  x5-playsinline
+                  playsinline
+                  webkit-playsinline
+                  style="width: 100%; height: 100%"
+                />
               </div>
               <div class="v-b">
                 <a @click="handleLike()">
@@ -110,7 +129,9 @@ const videoDetail = ref<VideoDetailResponse | null>(null)
 const players = ref<Map<number, any>>(new Map())
 const hlsInstances = ref<Map<number, any>>(new Map())
 const currentVideoIndex = ref(0)
-const initPageIndex = computed(() => Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin)
+const initPageIndex = computed(
+  () => Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
+)
 const pageIndex = ref(initPageIndex.value)
 const showSharePopup = ref(false)
 const clipboard = ref<Clipboard | null>(null)
