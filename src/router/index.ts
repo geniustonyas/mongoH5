@@ -81,12 +81,12 @@ const routes: RouteRecordRaw[] = [
     path: '/bbs',
     component: AppMain,
     children: [
-      // {
-      //   path: '',
-      //   name: 'bbs',
-      //   component: () => import('@/views/bbs/bbs.vue'),
-      //   meta: { needLogin: false, keepAlive: false }
-      // },
+      {
+        path: 'addPost',
+        name: 'addPost',
+        component: () => import('@/views/bbs/addPost.vue'),
+        meta: { needLogin: true, keepAlive: false }
+      },
       {
         path: 'weimi/:id',
         name: 'weimi',
