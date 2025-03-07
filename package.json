@@ -14,7 +14,7 @@
     "plop": "plop"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.758.0",
+    "@aws-sdk/client-s3": "3.726.1",
     "axios": "^1.4.0",
     "clipboard": "^2.0.11",
     "crypto-js": "^4.2.0",

@@ -2600,15 +2600,21 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         color: var(--color-black);
         .h-lh(5rem);
     }
-    .upload-body {
-        padding: 2rem 1rem;
+    .upload-body { padding: 2rem 1rem; width: 100%;
+        .flex(); .flex-align(); .flex-pack(); .flex-wrap(wrap); gap: .5rem;
+        .select-file-btn {  margin-top: 5rem; }
+        .upload-row-name { width: 20%; color: var(--color-dark); .ellipsis(); }
+        .error-message { color: var(--color-primary); }
+        .van-progress{ width: 65%; }
+        .actions {  width: 12%;
+            .flex(); .flex-pack-justify();
+        }
         .upload-row {
-            .flex();  .flex-align(); .flex-pack-justify();
-            gap: 2rem;
+            width: 100%;
+            .flex();  .flex-align(); .flex-space-around();
+            gap: .5rem;
             margin-bottom: 1rem;
             width: 100%;
-    
-            
         }
     }
     

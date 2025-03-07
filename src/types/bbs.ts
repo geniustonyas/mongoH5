@@ -115,3 +115,9 @@ export type BbsCommentListResponse = {
   pageSize: string
   recordCount: string
 }
+
+export type STSTokenResponse = {
+  accessKeyId: string
+  secretAccessKey: string
+  sessionToken: string
+}

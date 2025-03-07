@@ -1,5 +1,5 @@
 import { request } from '@/utils/axios'
-import { BbsListRequest, BbsListResponse, BbsCategoryResponse, Bbs, BbsRelatedRecommendRequest, BbsCommentListResponse, BbsSubCategoryDetailResponse } from '@/types/bbs'
+import { BbsListRequest, BbsListResponse, BbsCategoryResponse, Bbs, BbsRelatedRecommendRequest, BbsCommentListResponse, BbsSubCategoryDetailResponse, STSTokenResponse } from '@/types/bbs'
 import type { ApiResponseData } from '@/types/global.d'
 
 /** 获取BBS列表 */
@@ -102,7 +102,7 @@ export function bbsCommentApi(data: { PostId: string | number; Content: string }
 
 /** 获取STS Token */
 export function getSTSTokenApi() {
-  return request<ApiResponseData<any>>({
+  return request<ApiResponseData<STSTokenResponse>>({
     url: 'BBS/GetSTSToken',
     method: 'post'
   })
