@@ -3,7 +3,7 @@
     <div class="mc-a">
       <div class="a-l"><i class="mvfont mv-xietiao" /><span>排行榜</span></div>
       <div class="a-r">
-        <span>完整榜单<i class="mvfont mv-right" /></span>
+        <span @click="router.push({ name: 'novelRank' })">完整榜单<i class="mvfont mv-right" /></span>
       </div>
     </div>
     <div class="mc-b">
@@ -45,6 +45,7 @@ import type { Swiper as SwiperClass } from 'swiper/types'
 import Rank from './Rank.vue'
 import { NovelIndexListItem } from '@/types/novel'
 import 'swiper/css'
+import { useRouter } from 'vue-router'
 
 interface Props {
   hotBooks: NovelIndexListItem[]
@@ -56,6 +57,7 @@ interface Props {
 
 const _props = defineProps<Props>()
 const emit = defineEmits(['cleanupUrls'])
+const router = useRouter()
 
 const activeRankingList = ref('Hots')
 const swiperInstance = ref<SwiperClass>()

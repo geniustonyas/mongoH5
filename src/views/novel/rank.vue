@@ -19,15 +19,17 @@
       <div class="au-main novel-main">
         <div class="mv-t-c">
           <div class="mc-b">
-            <div class="b-tabs">
-              <span
-                v-for="tab in rankTabs"
-                :key="tab.value"
-                :class="{ active: activeRankingList === tab.value }"
-                @click="handleTabClick(tab.index, tab.value)"
-              >
-                {{ tab.label }}
-              </span>
+            <div class="tabs-wrapper">
+              <div ref="tabsRef" class="b-tabs" :class="{ 'is-fixed': isTabFixed }">
+                <span
+                  v-for="tab in rankTabs"
+                  :key="tab.value"
+                  :class="{ active: activeRankingList === tab.value }"
+                  @click="handleTabClick(tab.index, tab.value)"
+                >
+                  {{ tab.label }}
+                </span>
+              </div>
             </div>
             <swiper
               :slides-per-view="1"
@@ -93,6 +95,10 @@ const rankTabs = [
   { label: '完结榜', value: 'End', index: 2 },
   { label: '新书榜', value: 'NewHots', index: 3 }
 ]
+
+const isTabFixed = ref(false)
+const tabsRef = ref<HTMLElement | null>(null)
+const tabsOffsetTop = ref(0)
 
 const handleTabClick = (index: number, name: string) => {
   swiperInstance.value?.slideTo(index)
@@ -203,12 +209,29 @@ const fetchRankList = async () => {
   }
 }
 
+// 监听滚动
+const handleScroll = () => {
+  if (!tabsRef.value) return
+
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+  isTabFixed.value = scrollTop >= tabsOffsetTop.value
+}
+
+// 获取tab的初始位置
+const initTabPosition = () => {
+  if (!tabsRef.value) return
+  tabsOffsetTop.value = tabsRef.value.offsetTop
+}
+
 onMounted(() => {
+  initTabPosition()
+  window.addEventListener('scroll', handleScroll)
   fetchRankList()
 })
 
 onUnmounted(() => {
   cleanupUrls()
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
@@ -221,5 +244,16 @@ onUnmounted(() => {
   justify-content: center;
   min-height: 200px;
   gap: 16px;
+}
+
+.b-tabs {
+  &.is-fixed {
+    position: fixed;
+    top: 4.5rem;
+    left: 0;
+    right: 0;
+    background-color: #1e1e1e;
+    z-index: 100;
+  }
 }
 </style>

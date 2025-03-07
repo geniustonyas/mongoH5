@@ -10,45 +10,47 @@
       <div class="d-r" />
     </header>
     <div class="au-main novel-main">
-      <div class="au-tab-group">
-        <div class="g-item">
-          <div class="i-r">
-            <span
-              v-for="category in bookCategories"
-              :key="category.id"
-              :class="{ active: category.active }"
-              @click="handleCategoryClick(category.id)"
-            >
-              {{ category.name }}
-            </span>
+      <div class="tabs-container">
+        <div class="au-tab-group">
+          <div class="g-item">
+            <div class="i-r">
+              <span
+                v-for="category in bookCategories"
+                :key="category.id"
+                :class="{ active: category.active }"
+                @click="handleCategoryClick(category.id)"
+              >
+                {{ category.name }}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="au-tab-group">
-        <div class="g-item">
-          <div class="i-r">
-            <span
-              v-for="sortOption in sortOptions"
-              :key="sortOption.id"
-              :class="{ active: sortOption.active }"
-              @click="handleSortOptionClick(sortOption.id)"
-            >
-              {{ sortOption.name }}
-            </span>
+        <div class="au-tab-group">
+          <div class="g-item">
+            <div class="i-r">
+              <span
+                v-for="sortOption in sortOptions"
+                :key="sortOption.id"
+                :class="{ active: sortOption.active }"
+                @click="handleSortOptionClick(sortOption.id)"
+              >
+                {{ sortOption.name }}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="au-tab-group">
-        <div class="g-item">
-          <div class="i-r">
-            <span
-              v-for="statusOption in statusOptions"
-              :key="statusOption.id"
-              :class="{ active: statusOption.active }"
-              @click="handleStatusOptionClick(statusOption.id)"
-            >
-              {{ statusOption.name }}
-            </span>
+        <div class="au-tab-group">
+          <div class="g-item">
+            <div class="i-r">
+              <span
+                v-for="statusOption in statusOptions"
+                :key="statusOption.id"
+                :class="{ active: statusOption.active }"
+                @click="handleStatusOptionClick(statusOption.id)"
+              >
+                {{ statusOption.name }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -98,6 +100,7 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useThrottleFn } from '@vueuse/core'
 import Loading from '@/components/layout/Loading.vue'
 import { useNovelCategoryStore } from '@/store/novelCategory'
 import { BookStatus, CategoryWithActive, DEFAULT_RECOMMEND_PARAMS, NovelBookInfo, NovelRecommendParams, TabOption } from '@/types/novel'
@@ -145,6 +148,23 @@ const statusOptions = reactive<TabOption[]>([
 
 // 根据路由参数初始化状态选项
 const initializeFromRoute = () => {
+  // 处理sortType参数
+  const sortTypeParam = route.query.sortType as string
+  if (sortTypeParam !== undefined) {
+    sortOptions.forEach((option) => {
+      option.active = option.id === sortTypeParam
+    })
+  }
+
+  // 处理分类ID参数
+  const categoryId = route.query.categoryId
+  if (categoryId !== undefined) {
+    bookCategories.forEach((category) => {
+      category.active = category.id === categoryId
+    })
+  }
+
+  // 处理排序类型参数
   const sortType = route.query.sortType
   if (sortType !== undefined) {
     const statusId = Number(sortType)
@@ -274,17 +294,8 @@ const handleScroll = async () => {
   }
 }
 
-// 监听滚动事件
-onMounted(() => {
-  initializeFromRoute()
-  fetchRankList()
-  window.addEventListener('scroll', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-  cleanupUrls()
-})
+// 使用节流包装的获取数据函数
+const throttledFetchRankList = useThrottleFn(fetchRankList, 300)
 
 const handleCategoryClick = (categoryId: string | number) => {
   // 更新分类选中状态
@@ -302,24 +313,24 @@ const handleCategoryClick = (categoryId: string | number) => {
     option.active = option.id === -1
   })
 
-  // 重新获取数据
-  fetchRankList()
+  // 使用节流后的函数获取数据
+  throttledFetchRankList()
 }
 
 const handleSortOptionClick = (sortId: string | number) => {
   sortOptions.forEach((option) => {
     option.active = option.id === sortId
   })
-  // 获取数据
-  fetchRankList()
+  // 使用节流后的函数获取数据
+  throttledFetchRankList()
 }
 
 const handleStatusOptionClick = (statusId: string | number) => {
   statusOptions.forEach((option) => {
     option.active = option.id === statusId
   })
-  // 获取数据
-  fetchRankList()
+  // 使用节流后的函数获取数据
+  throttledFetchRankList()
 }
 
 // 处理书籍点击
@@ -329,6 +340,19 @@ const handleBookClick = (item: NovelBookInfo) => {
     query: { nid: item.id, status: item.statusText }
   })
 }
+
+// 监听滚动事件
+onMounted(() => {
+  initializeFromRoute()
+  // 初始加载不需要节流
+  fetchRankList()
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+  cleanupUrls()
+})
 </script>
 
 <style scoped>
@@ -358,5 +382,21 @@ const handleBookClick = (item: NovelBookInfo) => {
   font-size: 14px;
   text-align: center;
   padding: 16px;
+}
+
+.n-l-b ul {
+  padding-top: 0;
+}
+
+.tabs-container {
+  position: sticky;
+  top: 4.8rem;
+  background: black;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.au-tab-group + .au-tab-group {
+  margin-top: 1px;
 }
 </style>

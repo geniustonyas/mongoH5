@@ -5,11 +5,20 @@
     </div>
     <ul v-else class="n-l-r" :class="{ row1: isRow }">
       <li v-for="(rankItem, index) in data" :key="rankItem.id" @click="handleBookClick(rankItem)">
-        <div class="l-l">
+        <div v-if="isRow" class="l-l">
           <img :src="rankItem.coverUrl" :alt="rankItem.title" />
           <span>{{ index + 1 }}</span>
         </div>
-        <div class="l-r">
+        <div v-if="isRow" class="l-r">
+          <b>{{ rankItem.title }}</b>
+          <p>{{ rankItem.categoryName }}<em>|</em>{{ rankItem.statusText }}</p>
+          <p>{{ formatCount(rankItem.readCount) }}阅读</p>
+        </div>
+        <div v-if="!isRow" class="l-l">
+          <img :src="rankItem.coverUrl" :alt="rankItem.title" />
+          <span>{{ index + 1 }}</span>
+        </div>
+        <div v-if="!isRow" class="l-r">
           <b>{{ rankItem.title }}</b>
           <p>{{ rankItem.categoryName }}<em>|</em>{{ rankItem.statusText }}</p>
         </div>
@@ -21,6 +30,7 @@
 <script setup lang="ts">
 import { NovelIndexListItem } from '@/types/novel'
 import { useRouter } from 'vue-router'
+import { formatCount } from '@/utils'
 
 const router = useRouter()
 

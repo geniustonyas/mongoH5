@@ -1,5 +1,5 @@
 <template>
-  <div>全部小说</div>
+  <div>我的收藏</div>
 </template>
 
 <script setup lang="ts">
@@ -59,27 +59,6 @@ onMounted(async () => {
   await fetchBookCategories()
   await fetchBooks(param)
 })
-
-// const handleSubMenuClick = async (index: number, item: NovelBookCategoryItem) => {
-//   activeSubMenu.value = index
-//   const param: NovelListRequest = {
-//     Type: NovelCategory.Book,
-//     BookStatus: BookStatus.All,
-//     IsRecommend: index === 0 ? 1 : 0,
-//     CategoryId: item.id,
-//     PageIndex: 1,
-//     PageSize: 10
-//   }
-//   try {
-//     loading.value = true
-//     books.splice(0, books.length)
-//     await fetchBooks(param)
-//   } catch (e) {
-//     console.log(e)
-//   } finally {
-//     loading.value = false
-//   }
-// }
 </script>
 
 <style scoped></style>
