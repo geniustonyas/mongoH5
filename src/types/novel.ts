@@ -151,3 +151,9 @@ export const DEFAULT_RECOMMEND_PARAMS: NovelRecommendParams = {
   PageIndex: 1,
   PageSize: 10
 }
+
+export interface NovelChapterDetailResponse {
+  id: string
+  title: string
+  contents: string
+}

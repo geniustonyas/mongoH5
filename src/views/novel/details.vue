@@ -29,9 +29,8 @@
                   {{ bookInfo?.title || '-' }}
                 </div>
                 <div class="r-b">
-                  {{ categoryName }}<em>|</em>{{ bookInfo?.statusText || '未知' }}<em>|</em>最新{{
-                    chapters.length > 0 ? `最新${chapters.length}章` : '暂无'
-                  }}
+                  {{ categoryName }}<em>|</em>{{ bookInfo?.statusText || '未知' }}<em> |</em
+                  >{{ chapters.length > 0 ? `最新${chapters.length}章` : '暂无' }}
                 </div>
                 <div class="r-c">
                   <span>
@@ -118,7 +117,7 @@
     <footer class="footer">
       <div class="p-btns">
         <span><i class="mvfont mv-shoucang" />加入收藏</span>
-        <span onclick="javascript: location.href='novel_detail.html'">开始阅读</span>
+        <span @click="handleReadStart">开始阅读</span>
       </div>
     </footer>
   </div>
@@ -134,6 +133,7 @@ import decryptionService from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
 import { formatCount } from '@/utils/index'
 import { useNovelCategoryStore } from '@/store/novelCategory'
+import { Toast } from 'vant'
 
 const router = useRouter()
 const route = useRoute()
@@ -417,9 +417,24 @@ const handleBookClick = (item: NovelBookInfo) => {
 // 监听滚动
 const handleHeaderScroll = () => {
   if (!aaRightRef.value) return
-  
+
   const rect = aaRightRef.value.getBoundingClientRect()
   isHeaderFixed.value = rect.top > 0
+}
+
+const handleReadStart = () => {
+  const chapter = chapters.value[lastReadChapterId.value]
+  if (!chapter) {
+    Toast.fail('抱歉，暂无章节可供阅读')
+    return
+  }
+  router.push({
+    name: 'novelRead',
+    query: {
+      nid: bookInfo.value?.id,
+      chapterId: chapter?.id
+    }
+  })
 }
 
 onMounted(async () => {

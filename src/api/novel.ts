@@ -3,6 +3,8 @@ import { ApiResponseData } from '@/types/global'
 import {
   NovelBookCategoriesRequest,
   NovelBookCategoryItem,
+  NovelCategory,
+  NovelChapterDetailResponse,
   NovelDetailResponse,
   NovelIndexResponseData,
   NovelListRequest,
@@ -65,6 +67,42 @@ export function getRecommendNovelList(params: NovelRecommendParams) {
     url: 'Web/NovelList',
     method: 'post',
     data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
+// 更新小说阅读量
+export function updateNovelReadCount(type: NovelCategory, bookId: number | string) {
+  return request<ApiResponseData>({
+    url: '/Web/UpdateCount',
+    method: 'post',
+    data: { type, id: bookId },
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
+// 更新小说阅读进度
+export function updateNovelReadProgress(bookId: number | string, chapterId: number | string) {
+  return request<ApiResponseData>({
+    url: '/Web/UpdateReadingProcess',
+    method: 'post',
+    data: { bookId: bookId, id: chapterId },
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
+//  获取小说章节详情
+export function getNovelChapterDetail(bookId: number | string, chapterId: number | string) {
+  return request<ApiResponseData<NovelChapterDetailResponse>>({
+    url: '/Web/ChapterDetails',
+    method: 'post',
+    data: { bookId, id: chapterId },
     headers: {
       'X-Should-Encrypt': '1'
     }

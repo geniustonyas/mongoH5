@@ -150,6 +150,12 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false, title: '分类' }
   },
   {
+    path: '/novelRead',
+    name: 'novelRead',
+    component: () => import('@/views/novel/chapter.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '小说阅读' }
+  },
+  {
     path: '/longVideo',
     name: 'longVideo',
     component: () => import('@/views/index/index.vue'),
