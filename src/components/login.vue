@@ -37,7 +37,9 @@
                 </li>
               </ul>
               <div class="f-b">
-                <a @click="handleSubmit" class="btn btn1">{{ isLoginMode ? '立即登录' : '立即注册' }}</a>
+                <a @click="handleSubmit" class="btn btn1" :class="{ disabled: isSubmitting }" :disabled="isSubmitting">
+                  {{ isLoginMode ? '立即登录' : '立即注册' }}
+                </a>
               </div>
               <div class="f-c" v-if="isLoginMode">
                 <!-- <a>忘记密码？</a> -->
@@ -76,6 +78,7 @@ const formData = reactive<loginForm>({
 
 const countdown = ref(0)
 const timer = ref<ReturnType<typeof setInterval> | null>(null)
+const isSubmitting = ref(false)
 
 watch(isLoginMode, (newVal) => {
   if (newVal) {
@@ -134,58 +137,62 @@ const handleGetCode = async () => {
 }
 
 const handleSubmit = async () => {
-  if (isLoginMode.value) {
-    if (!formData.UserName || !formData.Password) {
-      showToast('请输入用户名和密码')
-      return
-    }
-    if (!isPhone(formData.UserName) && !isUname(formData.UserName)) {
-      showToast('请输入以字母开头的5-12位用户名或手机号')
-      return
-    }
-  } else {
-    formData.UserName = formData.PhoneNumber
-    if (!isPhone(formData.PhoneNumber) && !isUname(formData.UserName)) {
-      showToast('请输入以字母开头的5-12位用户名或手机号')
-      return
-    }
-    if (!formData.Password) {
-      showToast('请输入密码')
-      return
-    }
-    if (appStore.regSms == '1' && !formData.VerifCode) {
-      showToast('请输入验证码')
-      return
-    }
-  }
-
-  if (!isPwd(formData.Password)) {
-    showToast('密码格式不正确，请输入6-16位包含字母、数字或特殊字符的密码')
-    return
-  }
+  if (isSubmitting.value) return;
+  isSubmitting.value = true;
 
   try {
     if (isLoginMode.value) {
-      await login()
-      isLoginMode.value = !isLoginMode.value
-      userStore.showLoginDialog = false
+      if (!formData.UserName || !formData.Password) {
+        showToast('请输入用户名和密码');
+        return;
+      }
+      if (!isPhone(formData.UserName) && !isUname(formData.UserName)) {
+        showToast('请输入以字母开头的5-12位用户名或手机号');
+        return;
+      }
+    } else {
+      formData.UserName = formData.PhoneNumber;
+      if (!isPhone(formData.PhoneNumber) && !isUname(formData.UserName)) {
+        showToast('请输入以字母开头的5-12位用户名或手机号');
+        return;
+      }
+      if (!formData.Password) {
+        showToast('请输入密码');
+        return;
+      }
+      if (appStore.regSms == '1' && !formData.VerifCode) {
+        showToast('请输入验证码');
+        return;
+      }
+    }
+
+    if (!isPwd(formData.Password)) {
+      showToast('密码格式不正确，请输入6-16位包含字母、数字或特殊字符的密码');
+      return;
+    }
+
+    if (isLoginMode.value) {
+      await login();
+      isLoginMode.value = !isLoginMode.value;
+      userStore.showLoginDialog = false;
     } else {
       const {
         data: { code, message }
-      } = await userRegister(formData)
+      } = await userRegister(formData);
       if (code == '200') {
-        await login()
-        isLoginMode.value = !isLoginMode.value
-        userStore.showLoginDialog = false
-        showToast('注册成功')
-        // Clear inviteCode from localStorage after successful registration
-        localStorage.removeItem('inviteCode')
+        await login();
+        isLoginMode.value = !isLoginMode.value;
+        userStore.showLoginDialog = false;
+        showToast('注册成功');
+        localStorage.removeItem('inviteCode');
       } else {
-        showToast(message || '注册失败')
+        showToast(message || '注册失败');
       }
     }
   } catch (error) {
-    showToast(error.message || (isLoginMode.value ? '登录失败' : '注册失败'))
+    showToast(error.message || (isLoginMode.value ? '登录失败' : '注册失败'));
+  } finally {
+    isSubmitting.value = false;
   }
 }
 
