@@ -48,6 +48,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { getNovelChapterDetail, updateNovelReadCount } from '@/api/novel'
 import Loading from '@/components/layout/Loading.vue'
 import { NovelCategory } from '@/types/novel'
+import { useThrottleFn } from '@vueuse/core'
 
 const router = useRouter()
 const route = useRoute()
@@ -83,19 +84,18 @@ const initPage = async () => {
   try {
     loading.value = true
     error.value = null
+    retryCount.value = 0 // 重置重试次数
 
     const nid = route.query.nid as string
     const chapterId = route.query.chapterId as string
 
-    // 更新阅读量，重试机制
-    await updateReadCountWithRetry(nid)
+    if (!nid || !chapterId) {
+      error.value = '无效的阅读参数'
+      return
+    }
 
-    // 获取章节内容
-    const response = await getNovelChapterDetail(nid, chapterId)
-    const { data } = response.data
-
-    chapterTitle.value = data.title
-    chapterContent.value = data.contents
+    // 并行处理更新阅读量和获取内容
+    await Promise.all([updateReadCountWithRetry(nid), fetchChapterContent(nid, chapterId)])
   } catch (err) {
     error.value = '获取章节内容失败'
     console.error('获取章节内容失败:', err)
@@ -118,19 +118,41 @@ const updateReadCountWithRetry = async (nid: string) => {
     }
   }
 }
-// 处理滚动事件
-const handleScroll = (event: Event) => {
-  const target = event.target as HTMLElement
-  // 当滚动位置为0（顶部）时，移除nmh-fixed样式
-  isHeaderFixed.value = target.scrollTop > 0
+
+// 分离章节内容获取逻辑
+const fetchChapterContent = async (nid: string, chapterId: string) => {
+  const response = await getNovelChapterDetail(nid, chapterId)
+  const { data } = response.data
+
+  if (!data) {
+    throw new Error('章节内容为空')
+  }
+
+  chapterTitle.value = data.title
+  chapterContent.value = data.contents
 }
+
+let lastScrollTop = 0
+const handleScroll = useThrottleFn((event: Event) => {
+  const target = event.target as HTMLElement
+  const currentScrollTop = target.scrollTop
+
+  // 向下滚动超过50px时隐藏header，向上滚动时显示
+  if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
+    isHeaderFixed.value = false
+  } else if (currentScrollTop < lastScrollTop) {
+    isHeaderFixed.value = true
+  }
+
+  lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop
+}, 100)
 
 // 更新样式`
 const updateStyles = () => {
   const contentWrapper = document.querySelector('.content-wrapper') as HTMLElement
   if (contentWrapper) {
-    contentWrapper.style.fontSize = `${fontSize.value}px`
-    contentWrapper.style.lineHeight = `${lineHeight.value}`
+    contentWrapper.style.setProperty('--font-size', `${fontSize.value}px`)
+    contentWrapper.style.setProperty('--line-height', `${lineHeight.value}`)
   }
 }
 
@@ -152,7 +174,9 @@ onMounted(() => {
   overflow-y: auto;
   padding: 1rem;
   height: calc(100vh - 5rem);
-  padding-top: 5rem;
+  padding-top: var(--header-height, 5rem);
+  scroll-padding-top: var(--header-height, 5rem);
+  -webkit-overflow-scrolling: touch;
 }
 
 .content-wrapper {
@@ -165,6 +189,9 @@ onMounted(() => {
   font-size: v-bind('fontSize + "px"');
   line-height: v-bind('lineHeight');
   transition: font-size 0.2s ease, line-height 0.2s ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   pre {
     white-space: pre-wrap;
@@ -172,6 +199,8 @@ onMounted(() => {
     font-family: 'Noto Serif SC', serif;
     color: #333;
     text-align: justify;
+    text-justify: inter-ideograph;
+    hanging-punctuation: first;
     margin: 0;
     padding: 0;
 
