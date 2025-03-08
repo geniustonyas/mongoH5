@@ -64,7 +64,7 @@
               <div class="ni-b">
                 <dl>
                   <dt>最新章节</dt>
-                  <dd v-for="chapter in chapters" :key="chapter.id">{{ chapter.title }}</dd>
+                  <dd v-for="chapter in chapters" :key="chapter.id" @click="handleChapterClick(chapter)">{{ chapter.title }}</dd>
                 </dl>
                 <p v-if="chapters.length > 3" @click="router.push('/novel/chapter')">查看全部章节</p>
               </div>
@@ -81,6 +81,10 @@
               <div class="n-l-b">
                 <div v-if="recommendLoading" class="loading-container">
                   <Loading />
+                </div>
+                <div v-else-if="recommendError" class="error-container">
+                  <van-empty image="error" :description="recommendError" />
+                  <van-button color="#333333" size="small" plain @click="fetchRecommendBooks">重试</van-button>
                 </div>
                 <div v-else-if="!recommendBooks.length" class="empty-container">
                   <van-empty image="search" description="还没有作品噢" image-size="10rem" />
@@ -112,21 +116,21 @@
             </div>
           </nav>
         </div>
+        <footer class="footer">
+          <div class="p-btns">
+            <span><i class="mvfont mv-shoucang" />加入收藏</span>
+            <span @click="handleReadStart">开始阅读</span>
+          </div>
+        </footer>
       </template>
     </section>
-    <footer class="footer">
-      <div class="p-btns">
-        <span><i class="mvfont mv-shoucang" />加入收藏</span>
-        <span @click="handleReadStart">开始阅读</span>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
 import { ref, onMounted, computed, nextTick, watch, onBeforeUnmount } from 'vue'
-import { getNovelDetail, getRecommendNovelList } from '@/api/novel'
+import { getNovelDetail, getRecommendNovelList, updateNovelReadProgress } from '@/api/novel'
 import Loading from '@/components/layout/Loading.vue'
 import { DEFAULT_RECOMMEND_PARAMS, NovelBookInfo, NovelChapter, NovelStatus } from '@/types/novel'
 import decryptionService from '@/utils/decryptionService'
@@ -143,6 +147,7 @@ const novelCategoryStore = useNovelCategoryStore()
 const loading = ref(false)
 const error = ref<string | null>(null)
 const recommendLoading = ref(false)
+const recommendError = ref<string | null>(null)
 const isLoadingMore = ref(false)
 const hasMoreData = ref(true)
 const currentPage = ref(1)
@@ -266,7 +271,7 @@ const fetchRecommendBooks = async (isLoadMore = false) => {
       currentPage.value = 1
       cleanupUrls()
     }
-    error.value = null
+    recommendError.value = null
 
     const {
       data: { data }
@@ -277,7 +282,7 @@ const fetchRecommendBooks = async (isLoadMore = false) => {
     })
 
     if (!data) {
-      error.value = '获取推荐书籍失败'
+      recommendError.value = '获取推荐书籍失败'
       return
     }
 
@@ -301,7 +306,7 @@ const fetchRecommendBooks = async (isLoadMore = false) => {
     }
   } catch (e) {
     console.error('Failed to fetch recommend books:', e)
-    error.value = '获取数据失败，请稍后重试'
+    recommendError.value = '获取推荐书籍失败'
   } finally {
     recommendLoading.value = false
     isLoadingMore.value = false
@@ -428,13 +433,43 @@ const handleReadStart = () => {
     Toast.fail('抱歉，暂无章节可供阅读')
     return
   }
+
+  // 生成唯一的key并存储章节列表
+  const chaptersKey = `chapters_${bookInfo.value?.id}_${Date.now()}`
+  localStorage.setItem(chaptersKey, JSON.stringify(chapters.value))
+
   router.push({
     name: 'novelRead',
     query: {
       nid: bookInfo.value?.id,
-      chapterId: chapter?.id
+      chapterId: chapter?.id,
+      chaptersKey
     }
   })
+}
+
+const handleChapterClick = async (chapter: NovelChapter) => {
+  try {
+    // 更新阅读进度
+    await updateNovelReadProgress(bookInfo.value?.id as string, chapter.id)
+
+    // 生成唯一的key并存储章节列表
+    const chaptersKey = `chapters_${bookInfo.value?.id}_${Date.now()}`
+    localStorage.setItem(chaptersKey, JSON.stringify(chapters.value))
+
+    // 跳转到阅读页面
+    router.push({
+      name: 'novelRead',
+      query: {
+        nid: bookInfo.value?.id,
+        chapterId: chapter.id,
+        chaptersKey
+      }
+    })
+  } catch (err) {
+    console.error('更新阅读进度失败:', err)
+    Toast.fail('更新阅读进度失败')
+  }
 }
 
 onMounted(async () => {

@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { TokenPrefix, getToken } from '@/utils/auth'
 import { useUserStoreHook } from '@/store/user'
+import { showNotify } from 'vant'
 // import { showToast } from 'vant'
 import decryptionService from '@/utils/decryptionService'
 
@@ -162,15 +163,19 @@ const setupInterceptors = (service: AxiosInstance) => {
 
           response.data = parsedData
 
-          if (parsedData.code == '401') {
+          if (parsedData.code === '401') {
             useUserStoreHook().clearLogin()
+            showNotify({ type: 'danger', message: '登录已过期，请重新登录' })
             return Promise.reject(new Error('Unauthorized'))
           } else if (parsedData.code !== '200') {
+            // 显示错误信息
+            showNotify({ type: 'danger', message: parsedData.message || '请求失败' })
             return Promise.reject(parsedData)
           }
           return response
         } catch (parseError) {
           logError(parseError, 'Response Parsing')
+          showNotify({ type: 'danger', message: '数据解析失败' })
           throw new Error('解密后的数据不是有效的 JSON 格式')
         }
       },
@@ -178,6 +183,13 @@ const setupInterceptors = (service: AxiosInstance) => {
         logError(error, 'Response Interceptor')
         if (error.response?.status === 401) {
           useUserStoreHook().clearLogin()
+          showNotify({ type: 'danger', message: '登录已过期，请重新登录' })
+        } else {
+          // 显示网络错误信息
+          showNotify({
+            type: 'danger',
+            message: error.response?.data?.msg || error.message || '网络请求失败'
+          })
         }
         return Promise.reject(error)
       }
