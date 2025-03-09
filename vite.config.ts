@@ -12,7 +12,7 @@ import type { ICompressionOptions } from 'rollup-plugin-compression'
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default (configEnv: ConfigEnv): UserConfigExport => {
   const viteEnv = loadEnv(configEnv.mode, process.cwd()) as ImportMetaEnv
-  const { VITE_PUBLIC_PATH, VITE_APP_SITE_NAME, VITE_BUILD_DIR } = viteEnv
+  const { VITE_PUBLIC_PATH, VITE_APP_SITE_NAME, VITE_BUILD_DIR, VITE_DROP_CONSOLE } = viteEnv
   const option: ICompressionOptions = {
     sourceName: VITE_BUILD_DIR,
     type: 'zip',
@@ -71,9 +71,9 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       /** 在打包代码时移除 console.log、debugger 和 注释 */
       terserOptions: {
         compress: {
-          drop_console: true,
-          drop_debugger: true,
-          pure_funcs: ['console.log']
+          drop_console: VITE_DROP_CONSOLE === 'true',
+          drop_debugger: VITE_DROP_CONSOLE === 'true',
+          pure_funcs: VITE_DROP_CONSOLE === 'true' ? ['console.log'] : []
         },
         format: {
           /** 删除注释 */
