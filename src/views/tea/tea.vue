@@ -23,19 +23,19 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide swiper-slide-center none-effect">
-              <a href="#"><img src="../assets/imgs/banner/tb1.png" /></a>
+              <a href="#"><img :src="getAssetsFile('banner/tb1.png')" /></a>
             </div>
             <div class="swiper-slide">
-              <a href="#"><img src="../assets/imgs/banner/tb2.png" /></a>
+              <a href="#"><img :src="getAssetsFile('banner/tb2.png')" /></a>
             </div>
             <div class="swiper-slide">
-              <a href="#"><img src="../assets/imgs/banner/tb3.png" /></a>
+              <a href="#"><img :src="getAssetsFile('banner/tb3.png')" /></a>
             </div>
             <div class="swiper-slide">
-              <a href="#"><img src="../assets/imgs/banner/tb4.png" /></a>
+              <a href="#"><img :src="getAssetsFile('banner/tb4.png')" /></a>
             </div>
             <div class="swiper-slide">
-              <a href="#"><img src="../assets/imgs/banner/tb5.png" /></a>
+              <a href="#"><img :src="getAssetsFile('banner/tb5.png')" /></a>
             </div>
           </div>
           <div class="swiper-pagination" />
@@ -76,7 +76,7 @@
       <ul class="tea-list" onclick="javascript: location.href='loufeng_detail.html'">
         <li>
           <div class="i-a">
-            <img src="../assets/imgs/temp/tm1.jpg" />
+            <img :src="getAssetsFile('temp/tm1.jpg')" />
             <span>楼凤</span>
           </div>
           <div class="i-b">
@@ -107,7 +107,7 @@
         </li>
         <li>
           <div class="i-a">
-            <img src="../assets/imgs/temp/tm2.jpg" />
+            <img :src="getAssetsFile('temp/tm2.jpg')" />
             <span>外围</span>
           </div>
           <div class="i-b">
@@ -134,7 +134,7 @@
         </li>
         <li>
           <div class="i-a">
-            <img src="../assets/imgs/temp/tm3.jpg" />
+            <img :src="getAssetsFile('temp/tm3.jpg')" />
             <span>兼职</span>
           </div>
           <div class="i-b">
@@ -162,7 +162,7 @@
         </li>
         <li>
           <div class="i-a">
-            <img src="../assets/imgs/temp/tm4.jpg" />
+            <img :src="getAssetsFile('temp/tm4.jpg')" />
             <span>足浴</span>
           </div>
           <div class="i-b">
@@ -190,7 +190,7 @@
         </li>
         <li>
           <div class="i-a">
-            <img src="../assets/imgs/temp/tm5.jpg" />
+            <img :src="getAssetsFile('temp/tm5.jpg')" />
             <span>会所</span>
           </div>
           <div class="i-b">
@@ -218,7 +218,7 @@
         </li>
         <li>
           <div class="i-a">
-            <img src="../assets/imgs/temp/tm6.jpg" />
+            <img :src="getAssetsFile('temp/tm6.jpg')" />
             <span>KTV</span>
           </div>
           <div class="i-b">
@@ -252,6 +252,7 @@
 </template>
 
 <script setup lang="ts">
+import { getAssetsFile } from '@/utils'
 import Footer from '@/components/layout/Footer.vue'
 import NavBar from '@/components/layout/NavBar.vue'
 </script>

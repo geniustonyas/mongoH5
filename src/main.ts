@@ -15,6 +15,23 @@ const errorImage = new URL(`./assets/imgs/default.gif`, import.meta.url).href
 
 const app = createApp(App)
 
+import FingerprintJS from '@fingerprintjs/fingerprintjs';
+// 初始化 FingerprintJS
+const fpPromise = FingerprintJS.load();
+
+// 获取设备指纹
+async function getDeviceFingerprint() {
+  const fp = await fpPromise;
+  const result = await fp.get();
+  return result.visitorId; // 这是设备的唯一标识符
+}
+
+// 使用设备指纹
+getDeviceFingerprint().then((visitorId) => {
+  console.log('Device fingerprint:', visitorId);
+  // 可以将 visitorId 发送到服务器以跟踪用户
+});
+
 app.use(store)
 app.use(VueLazyload, {
   preLoad: 1.3,
