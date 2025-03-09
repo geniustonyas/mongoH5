@@ -12,9 +12,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-    // eslint-config-prettier 的缩写
-    'prettier'
+    // 确保 prettier 配置在最后
+    'plugin:prettier/recommended'
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -68,11 +67,21 @@ module.exports = {
     'vue/require-default-prop': 'off',
     'vue/require-explicit-emits': 'off',
     'vue/multi-word-component-names': 'off',
-    'vue/no-parsing-error': [
+    // Prettier
+    'prettier/prettier': [
       'error',
       {
-        'x-invalid-end-tag': false,
-        'control-character-in-input-stream': false
+        endOfLine: 'auto',
+        semi: false,
+        singleQuote: true,
+        tabWidth: 2,
+        trailingComma: 'none',
+        printWidth: 140,
+        bracketSpacing: true,
+        arrowParens: 'avoid',
+        htmlWhitespaceSensitivity: 'css',
+        vueIndentScriptAndStyle: true,
+        singleAttributePerLine: false
       }
     ],
     'vue/html-self-closing': [
