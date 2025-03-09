@@ -15,7 +15,7 @@
            @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.shortDrama); router.push({ name: 'shortDrama' })">短剧</a>
         <a :class="{ active: appStore.homeActiveMenu === HOME_ACTIVE_MENU.novel }"
            @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.novel); router.push({ name: 'novel' })">小说</a>
-        <a :class="{ active: appStore.homeActiveMenu === HOME_ACTIVE_MENU.comics }"
+        <a :class="{ active: appStore.homeActiveMenu === HOME_ACTIVE_MENU.commic }"
            @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.comics); router.push({ name: 'commic' })">漫画</a>
       </div>
       <div class="d-r" @click="router.push({ name: 'search' })">

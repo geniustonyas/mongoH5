@@ -13,7 +13,7 @@ import {
   CommicRecommendResponse
 } from '@/types/commic'
 
-// 获取小说首页列表
+// 获取漫画首页列表
 export function getCommicIndexList() {
   return request<ApiResponseData<CommicIndexResponseData>>({
     url: 'Web/IndexComicsList',
@@ -25,7 +25,7 @@ export function getCommicIndexList() {
   })
 }
 
-// 获取小说或者漫画分页列表
+// 获取漫画或者漫画分页列表
 export function getCommicList(params: CommicListRequest) {
   return request<ApiResponseData<CommicListResponse>>({
     url: 'Web/ComicsList',
@@ -37,7 +37,7 @@ export function getCommicList(params: CommicListRequest) {
   })
 }
 
-// 小说/漫画类型列表
+// 漫画/漫画类型列表
 export function getCommicCategory(params: CommicBookCategoriesRequest) {
   return request<ApiResponseData<CommicBookCategoryItem[]>>({
     url: 'Web/BookCategories',
@@ -49,10 +49,10 @@ export function getCommicCategory(params: CommicBookCategoriesRequest) {
   })
 }
 
-// 获取小说详情
+// 获取漫画详情
 export function getCommicDetail(bookId: number | string) {
   return request<ApiResponseData<CommicDetailResponse>>({
-    url: 'Web/CommicInfo',
+    url: 'Web/ComicsInfo',
     method: 'post',
     data: { id: bookId, PageSize: 999 }, // 给一个足够大的章节数用来获取全部章节
     headers: {
@@ -61,10 +61,10 @@ export function getCommicDetail(bookId: number | string) {
   })
 }
 
-// 获取推荐小说列表
+// 获取推荐漫画列表
 export function getRecommendCommicList(params: CommicRecommendParams) {
   return request<ApiResponseData<CommicRecommendResponse>>({
-    url: 'Web/CommicList',
+    url: 'Web/ComicsList',
     method: 'post',
     data: params,
     headers: {
@@ -73,10 +73,10 @@ export function getRecommendCommicList(params: CommicRecommendParams) {
   })
 }
 
-// 更新小说阅读量
+// 更新漫画阅读量
 export function updateCommicReadCount(type: CommicCategory, bookId: number | string) {
   return request<ApiResponseData>({
-    url: '/Web/UpdateCount',
+    url: '/Web/UpdateComicsCount',
     method: 'post',
     data: { type, id: bookId },
     headers: {
@@ -85,10 +85,10 @@ export function updateCommicReadCount(type: CommicCategory, bookId: number | str
   })
 }
 
-// 更新小说阅读进度
+// 更新漫画阅读进度
 export function updateCommicReadProgress(bookId: number | string, chapterId: number | string) {
   return request<ApiResponseData>({
-    url: '/Web/UpdateReadingProcess',
+    url: '/Web/UpdateComicsReadingProcess',
     method: 'post',
     data: { bookId: bookId, id: chapterId },
     headers: {
@@ -97,10 +97,10 @@ export function updateCommicReadProgress(bookId: number | string, chapterId: num
   })
 }
 
-//  获取小说章节详情
+//  获取漫画章节详情
 export function getCommicChapterDetail(bookId: number | string, chapterId: number | string) {
   return request<ApiResponseData<CommicChapterDetailResponse>>({
-    url: '/Web/ChapterDetails',
+    url: '/Web/ComicsChapterDetails',
     method: 'post',
     data: { bookId, id: chapterId },
     headers: {

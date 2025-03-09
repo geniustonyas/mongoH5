@@ -28,32 +28,32 @@
 </template>
 
 <script setup lang="ts">
-import { NovelIndexListItem } from '@/types/novel'
-import { useRouter } from 'vue-router'
-import { formatCount } from '@/utils'
+  import { NovelIndexListItem } from '@/types/novel'
+  import { useRouter } from 'vue-router'
+  import { formatCount } from '@/utils'
 
-const router = useRouter()
+  const router = useRouter()
 
-defineProps<{
-  data: NovelIndexListItem[]
-  isRow?: boolean
-}>()
+  defineProps<{
+    data: NovelIndexListItem[]
+    isRow?: boolean
+  }>()
 
-const handleBookClick = (item: NovelIndexListItem) => {
-  router.push({
-    name: 'novelIntro',
-    query: { nid: item.id, status: item.statusText }
-  })
-}
+  const handleBookClick = (item: NovelIndexListItem) => {
+    router.push({
+      name: 'novelIntro',
+      query: { nid: item.id, status: item.statusText }
+    })
+  }
 </script>
 
 <style scoped lang="less">
-.empty-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  gap: 16px;
-}
+  .empty-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    gap: 16px;
+  }
 </style>

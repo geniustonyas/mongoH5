@@ -98,305 +98,311 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted, onUnmounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useThrottleFn } from '@vueuse/core'
-import Loading from '@/components/layout/Loading.vue'
-import { useNovelCategoryStore } from '@/store/novelCategory'
-import { BookStatus, CategoryWithActive, DEFAULT_RECOMMEND_PARAMS, NovelBookInfo, NovelRecommendParams, TabOption } from '@/types/novel'
-import { getRecommendNovelList } from '@/api/novel'
-import { formatCount } from '@/utils'
-import decryptionService from '@/utils/decryptionService'
-import { useAppStore } from '@/store/app'
+  import { reactive, ref, onMounted, onUnmounted } from 'vue'
+  import { useRouter, useRoute } from 'vue-router'
+  import { useThrottleFn } from '@vueuse/core'
+  import Loading from '@/components/layout/Loading.vue'
+  import { useNovelCategoryStore } from '@/store/novelCategory'
+  import { BookStatus, CategoryWithActive, DEFAULT_RECOMMEND_PARAMS, NovelBookInfo, NovelRecommendParams, TabOption } from '@/types/novel'
+  import { getRecommendNovelList } from '@/api/novel'
+  import { formatCount } from '@/utils'
+  import decryptionService from '@/utils/decryptionService'
+  import { useAppStore } from '@/store/app'
 
-const router = useRouter()
-const route = useRoute()
-const novelCategoryStore = useNovelCategoryStore()
-const appStore = useAppStore()
+  const router = useRouter()
+  const route = useRoute()
+  const novelCategoryStore = useNovelCategoryStore()
+  const appStore = useAppStore()
 
-const loading = ref(false)
-const error = ref<string | null>(null)
-const currentPage = ref(1)
-const hasMoreData = ref(true)
-const isLoadingMore = ref(false)
-const books = ref<NovelBookInfo[]>([])
-const decrypt = new decryptionService()
-const createdUrls = ref<string[]>([])
+  const loading = ref(false)
+  const error = ref<string | null>(null)
+  const currentPage = ref(1)
+  const hasMoreData = ref(true)
+  const isLoadingMore = ref(false)
+  const books = ref<NovelBookInfo[]>([])
+  const decrypt = new decryptionService()
+  const createdUrls = ref<string[]>([])
 
-// 分类选项
-const bookCategories = reactive<CategoryWithActive[]>([])
+  // 分类选项
+  const bookCategories = reactive<CategoryWithActive[]>([])
 
-// Initialize categories with active state
-const initialCategories = [
-  { id: -1, name: '全部', active: true },
-  ...novelCategoryStore.categories.map((cat) => ({ ...cat, active: false }))
-]
-bookCategories.push(...initialCategories)
+  // Initialize categories with active state
+  const initialCategories = [
+    { id: -1, name: '全部', active: true },
+    ...novelCategoryStore.categories.map(cat => ({ ...cat, active: false }))
+  ]
+  bookCategories.push(...initialCategories)
 
-const sortOptions = reactive<TabOption[]>([
-  { id: -1, name: '全部', active: true },
-  { id: 'CreateTime', name: '上架时间', active: false },
-  { id: 'ReadingCount', name: '最多阅读', active: false },
-  { id: 'FavoriteCount', name: '最多收藏', active: false }
-])
+  const sortOptions = reactive<TabOption[]>([
+    { id: -1, name: '全部', active: true },
+    { id: 'CreateTime', name: '上架时间', active: false },
+    { id: 'ReadingCount', name: '最多阅读', active: false },
+    { id: 'FavoriteCount', name: '最多收藏', active: false }
+  ])
 
-const statusOptions = reactive<TabOption[]>([
-  { id: -1, name: '全部', active: true },
-  { id: 0, name: '完结', active: false },
-  { id: 1, name: '连载', active: false }
-])
+  const statusOptions = reactive<TabOption[]>([
+    { id: -1, name: '全部', active: true },
+    { id: 0, name: '完结', active: false },
+    { id: 1, name: '连载', active: false }
+  ])
 
-// 根据路由参数初始化状态选项
-const initializeFromRoute = () => {
-  // 处理sortType参数
-  const sortTypeParam = route.query.sortType as string
-  if (sortTypeParam !== undefined) {
-    sortOptions.forEach((option) => {
-      option.active = option.id === sortTypeParam
-    })
+  // 根据路由参数初始化状态选项
+  const initializeFromRoute = () => {
+    // 处理sortType参数
+    const sortTypeParam = route.query.sortType as string
+    if (sortTypeParam !== undefined) {
+      sortOptions.forEach(option => {
+        option.active = option.id === sortTypeParam
+      })
+    }
+
+    // 处理分类ID参数
+    const categoryId = route.query.categoryId
+    if (categoryId !== undefined) {
+      bookCategories.forEach(category => {
+        category.active = category.id === categoryId
+      })
+    }
+
+    // 处理排序类型参数
+    const sortType = route.query.sortType
+    if (sortType !== undefined) {
+      const statusId = Number(sortType)
+      statusOptions.forEach(option => {
+        option.active = option.id === statusId
+      })
+    }
   }
 
-  // 处理分类ID参数
-  const categoryId = route.query.categoryId
-  if (categoryId !== undefined) {
-    bookCategories.forEach((category) => {
+  // 获取当前激活的选项ID
+  const getActiveId = (list: TabOption[] | CategoryWithActive[]) => {
+    const activeItem = list.find(item => item.active)
+    return activeItem ? activeItem.id : -1
+  }
+
+  // 处理图片解密
+  async function decryptBookImage(book: NovelBookInfo) {
+    if (book.coverUrl === '') {
+      book.coverUrl = '/src/assets/imgs/default2.gif'
+    } else {
+      const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
+      // 检查解密后的URL是否包含本地开发地址
+      if (url.includes('localhost') || url.includes('127.0.0.1')) {
+        book.coverUrl = '/src/assets/imgs/default2.gif'
+        URL.revokeObjectURL(url)
+      } else {
+        createdUrls.value.push(url)
+        book.coverUrl = url
+      }
+    }
+    return book
+  }
+
+  // 清理已创建的URL
+  const cleanupUrls = () => {
+    createdUrls.value.forEach(url => {
+      URL.revokeObjectURL(url)
+    })
+    createdUrls.value = []
+  }
+
+  const fetchRankList = async (isLoadMore = false) => {
+    try {
+      if (isLoadMore) {
+        isLoadingMore.value = true
+      } else {
+        loading.value = true
+        currentPage.value = 1
+        books.value = []
+        cleanupUrls()
+      }
+      error.value = null
+
+      const params = {
+        categoryId: getActiveId(bookCategories),
+        sortType: getActiveId(sortOptions),
+        status: getActiveId(statusOptions)
+      }
+
+      // 构建基础请求参数
+      const requestParams: NovelRecommendParams = {
+        ...DEFAULT_RECOMMEND_PARAMS,
+        PageIndex: currentPage.value,
+        PageSize: 10
+      }
+
+      // 只有当分类不是全部时才添加分类参数
+      if (params.categoryId !== -1) {
+        requestParams.CategoryId = params.categoryId as number
+      }
+
+      // 设置状态变量, '全部'默认设置为-1
+      if (params.status !== -1) {
+        requestParams.BookStatus = params.status as number
+      } else {
+        requestParams.BookStatus = BookStatus.All
+      }
+
+      // 只有当排序类型不是全部时才添加排序参数
+      if (params.sortType !== -1 && typeof params.sortType === 'string') {
+        switch (params.sortType) {
+          case 'CreateTime':
+            requestParams.CreateTime = 1
+            break
+          case 'ReadingCount':
+            requestParams.ReadingCount = 1
+            break
+          case 'FavoriteCount':
+            requestParams.FavoriteCount = 1
+            break
+        }
+      }
+
+      const {
+        data: { data }
+      } = await getRecommendNovelList(requestParams)
+
+      if (data) {
+        // 更新分页状态
+        hasMoreData.value = currentPage.value < parseInt(data.pageCount)
+
+        // 处理图片解密
+        const processedBooks = await Promise.all(data.items.map(decryptBookImage))
+
+        // 追加或替换数据
+        if (isLoadMore) {
+          books.value.push(...processedBooks)
+        } else {
+          books.value = processedBooks
+        }
+      }
+    } catch (err) {
+      error.value = '获取数据失败'
+      console.error(err)
+    } finally {
+      loading.value = false
+      isLoadingMore.value = false
+    }
+  }
+
+  // 处理滚动加载
+  const handleScroll = async () => {
+    if (isLoadingMore.value || !hasMoreData.value) return
+
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    const clientHeight = document.documentElement.clientHeight
+    const scrollHeight = document.documentElement.scrollHeight
+    const threshold = 100 // 提前100px触发加载
+
+    if (scrollHeight - scrollTop - clientHeight <= threshold) {
+      currentPage.value++
+      await fetchRankList(true)
+    }
+  }
+
+  // 使用节流包装的获取数据函数
+  const throttledFetchRankList = useThrottleFn(fetchRankList, 300)
+
+  const handleCategoryClick = (categoryId: string | number) => {
+    // 更新分类选中状态
+    bookCategories.forEach(category => {
       category.active = category.id === categoryId
     })
+
+    // 重置排序选项到默认状态
+    sortOptions.forEach(option => {
+      option.active = option.id === -1
+    })
+
+    // 重置小说状态选项到默认状态
+    statusOptions.forEach(option => {
+      option.active = option.id === -1
+    })
+
+    // 使用节流后的函数获取数据
+    throttledFetchRankList()
   }
 
-  // 处理排序类型参数
-  const sortType = route.query.sortType
-  if (sortType !== undefined) {
-    const statusId = Number(sortType)
-    statusOptions.forEach((option) => {
+  const handleSortOptionClick = (sortId: string | number) => {
+    sortOptions.forEach(option => {
+      option.active = option.id === sortId
+    })
+    // 使用节流后的函数获取数据
+    throttledFetchRankList()
+  }
+
+  const handleStatusOptionClick = (statusId: string | number) => {
+    statusOptions.forEach(option => {
       option.active = option.id === statusId
     })
+    // 使用节流后的函数获取数据
+    throttledFetchRankList()
   }
-}
 
-// 获取当前激活的选项ID
-const getActiveId = (list: TabOption[] | CategoryWithActive[]) => {
-  const activeItem = list.find((item) => item.active)
-  return activeItem ? activeItem.id : -1
-}
-
-// 处理图片解密
-async function decryptBookImage(book: NovelBookInfo) {
-  if (book.coverUrl === '') {
-    book.coverUrl = '/src/assets/imgs/default2.gif'
-  } else {
-    const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-    createdUrls.value.push(url)
-    book.coverUrl = url
+  // 处理书籍点击
+  const handleBookClick = (item: NovelBookInfo) => {
+    router.push({
+      name: 'novelIntro',
+      query: { nid: item.id, status: item.statusText }
+    })
   }
-  return book
-}
 
-// 清理已创建的URL
-const cleanupUrls = () => {
-  createdUrls.value.forEach((url) => {
-    URL.revokeObjectURL(url)
-  })
-  createdUrls.value = []
-}
-
-const fetchRankList = async (isLoadMore = false) => {
-  try {
-    if (isLoadMore) {
-      isLoadingMore.value = true
-    } else {
-      loading.value = true
-      currentPage.value = 1
-      books.value = []
-      cleanupUrls()
-    }
-    error.value = null
-
-    const params = {
-      categoryId: getActiveId(bookCategories),
-      sortType: getActiveId(sortOptions),
-      status: getActiveId(statusOptions)
-    }
-
-    // 构建基础请求参数
-    const requestParams: NovelRecommendParams = {
-      ...DEFAULT_RECOMMEND_PARAMS,
-      PageIndex: currentPage.value,
-      PageSize: 10
-    }
-
-    // 只有当分类不是全部时才添加分类参数
-    if (params.categoryId !== -1) {
-      requestParams.CategoryId = params.categoryId as number
-    }
-
-    // 设置状态变量, '全部'默认设置为-1
-    if (params.status !== -1) {
-      requestParams.BookStatus = params.status as number
-    } else {
-      requestParams.BookStatus = BookStatus.All
-    }
-
-    // 只有当排序类型不是全部时才添加排序参数
-    if (params.sortType !== -1 && typeof params.sortType === 'string') {
-      switch (params.sortType) {
-        case 'CreateTime':
-          requestParams.CreateTime = 1
-          break
-        case 'ReadingCount':
-          requestParams.ReadingCount = 1
-          break
-        case 'FavoriteCount':
-          requestParams.FavoriteCount = 1
-          break
-      }
-    }
-
-    const {
-      data: { data }
-    } = await getRecommendNovelList(requestParams)
-
-    if (data) {
-      // 更新分页状态
-      hasMoreData.value = currentPage.value < parseInt(data.pageCount)
-
-      // 处理图片解密
-      const processedBooks = await Promise.all(data.items.map(decryptBookImage))
-
-      // 追加或替换数据
-      if (isLoadMore) {
-        books.value.push(...processedBooks)
-      } else {
-        books.value = processedBooks
-      }
-    }
-  } catch (err) {
-    error.value = '获取数据失败'
-    console.error(err)
-  } finally {
-    loading.value = false
-    isLoadingMore.value = false
-  }
-}
-
-// 处理滚动加载
-const handleScroll = async () => {
-  if (isLoadingMore.value || !hasMoreData.value) return
-
-  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-  const clientHeight = document.documentElement.clientHeight
-  const scrollHeight = document.documentElement.scrollHeight
-  const threshold = 100 // 提前100px触发加载
-
-  if (scrollHeight - scrollTop - clientHeight <= threshold) {
-    currentPage.value++
-    await fetchRankList(true)
-  }
-}
-
-// 使用节流包装的获取数据函数
-const throttledFetchRankList = useThrottleFn(fetchRankList, 300)
-
-const handleCategoryClick = (categoryId: string | number) => {
-  // 更新分类选中状态
-  bookCategories.forEach((category) => {
-    category.active = category.id === categoryId
+  // 监听滚动事件
+  onMounted(() => {
+    initializeFromRoute()
+    // 初始加载不需要节流
+    fetchRankList()
+    window.addEventListener('scroll', handleScroll)
   })
 
-  // 重置排序选项到默认状态
-  sortOptions.forEach((option) => {
-    option.active = option.id === -1
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+    cleanupUrls()
   })
-
-  // 重置小说状态选项到默认状态
-  statusOptions.forEach((option) => {
-    option.active = option.id === -1
-  })
-
-  // 使用节流后的函数获取数据
-  throttledFetchRankList()
-}
-
-const handleSortOptionClick = (sortId: string | number) => {
-  sortOptions.forEach((option) => {
-    option.active = option.id === sortId
-  })
-  // 使用节流后的函数获取数据
-  throttledFetchRankList()
-}
-
-const handleStatusOptionClick = (statusId: string | number) => {
-  statusOptions.forEach((option) => {
-    option.active = option.id === statusId
-  })
-  // 使用节流后的函数获取数据
-  throttledFetchRankList()
-}
-
-// 处理书籍点击
-const handleBookClick = (item: NovelBookInfo) => {
-  router.push({
-    name: 'novelIntro',
-    query: { nid: item.id, status: item.statusText }
-  })
-}
-
-// 监听滚动事件
-onMounted(() => {
-  initializeFromRoute()
-  // 初始加载不需要节流
-  fetchRankList()
-  window.addEventListener('scroll', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-  cleanupUrls()
-})
 </script>
 
 <style scoped>
-.loading-container,
-.error-container,
-.empty-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  gap: 16px;
-}
+  .loading-container,
+  .error-container,
+  .empty-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    gap: 16px;
+  }
 
-.load-more {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  color: #666;
-  font-size: 14px;
-  gap: 8px;
-}
+  .load-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    color: #666;
+    font-size: 14px;
+    gap: 8px;
+  }
 
-.no-more {
-  color: #999;
-  font-size: 14px;
-  text-align: center;
-  padding: 16px;
-}
+  .no-more {
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    padding: 16px;
+  }
 
-.n-l-b ul {
-  padding-top: 0;
-}
+  .n-l-b ul {
+    padding-top: 0;
+  }
 
-.tabs-container {
-  position: sticky;
-  top: 4.8rem;
-  background: black;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
+  .tabs-container {
+    position: sticky;
+    top: 4.8rem;
+    background: black;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
 
-.au-tab-group + .au-tab-group {
-  margin-top: 1px;
-}
+  .au-tab-group + .au-tab-group {
+    margin-top: 1px;
+  }
 </style>

@@ -14,7 +14,7 @@ export const useNovelCategoryStore = defineStore('novelCategory', () => {
   // 根据分类ID获取分类名称
   const getCategoryNameById = (categoryId: string): string => {
     const parsedId = parseInt(categoryId)
-    const category = categories.value.find((cat) => {
+    const category = categories.value.find(cat => {
       const catId = typeof cat.id === 'string' ? parseInt(cat.id) : cat.id
       return catId === parsedId
     })

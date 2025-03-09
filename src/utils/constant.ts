@@ -14,5 +14,5 @@ export enum HOME_ACTIVE_MENU {
   'pictures' = 'disclose',
   'shortDrama' = 'shortDrama',
   'novel' = 'novel',
-  'comics' = 'comics'
+  'commic' = 'commic'
 }

@@ -129,7 +129,7 @@
   import RankingList from './components/RankingList.vue'
   import { useRouter } from 'vue-router'
   import Loading from '@/components/layout/Loading.vue'
-  import { useNovelCategoryStore } from '@/store/novelCategory'
+  import { useCommicCategoryStore } from '@/store/commicCategory'
 
   const appStore = useAppStore()
   const router = useRouter()
@@ -148,15 +148,21 @@
 
   const createdUrls: string[] = []
 
-  const novelCategoryStore = useNovelCategoryStore()
+  const commicCategoryStore = useCommicCategoryStore()
 
   async function decryptBookImage(book: CommicIndexListItem) {
     if (book.coverUrl === '') {
       book.coverUrl = '/src/assets/imgs/default2.gif'
     } else {
       const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-      createdUrls.push(url)
-      book.coverUrl = url
+      // 检查解密后的URL是否包含本地开发地址
+      if (url.includes('localhost') || url.includes('127.0.0.1')) {
+        book.coverUrl = '/src/assets/imgs/default2.gif'
+        URL.revokeObjectURL(url)
+      } else {
+        createdUrls.push(url)
+        book.coverUrl = url
+      }
     }
   }
 
@@ -211,6 +217,8 @@
     const formatBooks = (books: CommicIndexListItem[]) => {
       books.forEach(item => {
         item.statusText = formatBookStatusText(item.status)
+        const categoryName = commicCategoryStore.getCategoryNameById(item.categoryId.toString())
+        item.categoryName = categoryName.toString()
       })
     }
 
@@ -243,7 +251,7 @@
           newHotCommics.push(...newhots)
         })
         if (data?.categories && data.categories.length > 0) {
-          novelCategoryStore.setCategories(data.categories)
+          commicCategoryStore.setCategories(data.categories)
         }
       }
     } catch (error) {

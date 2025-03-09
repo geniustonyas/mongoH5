@@ -133,189 +133,194 @@
 </template>
 
 <script setup lang="ts">
-import HomeLayout from '@/components/layout/HomeLayout.vue'
-import { nextTick, onMounted, onUnmounted, reactive, ref } from 'vue'
-import { NovelBookCategoryItem, NovelIndexListItem, NovelStatus } from '@/types/novel'
-import { getNovelIndexList } from '@/api/novel'
-import { useAppStore } from '@/store/app'
-import decryptionService from '@/utils/decryptionService'
-import { formatCount } from '@/utils'
-import RankingList from './components/RankingList.vue'
-import { useRouter } from 'vue-router'
-import Loading from '@/components/layout/Loading.vue'
-import { useNovelCategoryStore } from '@/store/novelCategory'
+  import HomeLayout from '@/components/layout/HomeLayout.vue'
+  import { nextTick, onMounted, onUnmounted, reactive, ref } from 'vue'
+  import { NovelBookCategoryItem, NovelIndexListItem, NovelStatus } from '@/types/novel'
+  import { getNovelIndexList } from '@/api/novel'
+  import { useAppStore } from '@/store/app'
+  import decryptionService from '@/utils/decryptionService'
+  import { formatCount } from '@/utils'
+  import RankingList from './components/RankingList.vue'
+  import { useRouter } from 'vue-router'
+  import Loading from '@/components/layout/Loading.vue'
+  import { useNovelCategoryStore } from '@/store/novelCategory'
 
-const appStore = useAppStore()
-const router = useRouter()
-const bookCategories = reactive<NovelBookCategoryItem[]>([])
-const activePreMenu = ref('Book')
-const activeSubMenu = ref(0)
-const loading = ref(false)
-const error = ref<string | null>(null)
-const decrypt = new decryptionService()
-const hotBooks = reactive<NovelIndexListItem[]>([])
-const newBooks = reactive<NovelIndexListItem[]>([])
-const recommendBooks = reactive<NovelIndexListItem[]>([])
-const serialBooks = reactive<NovelIndexListItem[]>([])
-const endBooks = reactive<NovelIndexListItem[]>([])
-const newHotBooks = reactive<NovelIndexListItem[]>([])
+  const appStore = useAppStore()
+  const router = useRouter()
+  const bookCategories = reactive<NovelBookCategoryItem[]>([])
+  const activePreMenu = ref('Book')
+  const activeSubMenu = ref(0)
+  const loading = ref(false)
+  const error = ref<string | null>(null)
+  const decrypt = new decryptionService()
+  const hotBooks = reactive<NovelIndexListItem[]>([])
+  const newBooks = reactive<NovelIndexListItem[]>([])
+  const recommendBooks = reactive<NovelIndexListItem[]>([])
+  const serialBooks = reactive<NovelIndexListItem[]>([])
+  const endBooks = reactive<NovelIndexListItem[]>([])
+  const newHotBooks = reactive<NovelIndexListItem[]>([])
 
-const createdUrls: string[] = []
+  const createdUrls: string[] = []
 
-const novelCategoryStore = useNovelCategoryStore()
+  const novelCategoryStore = useNovelCategoryStore()
 
-async function decryptBookImage(book: NovelIndexListItem) {
-  if (book.coverUrl === '') {
-    book.coverUrl = '/src/assets/imgs/default2.gif'
-  } else {
-    const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-    createdUrls.push(url)
-    book.coverUrl = url
+  async function decryptBookImage(book: NovelIndexListItem) {
+    if (book.coverUrl === '') {
+      book.coverUrl = '/src/assets/imgs/default2.gif'
+    } else {
+      const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
+      if (url.includes('localhost') || url.includes('127.0.0.1')) {
+        book.coverUrl = '/src/assets/imgs/default2.gif'
+        URL.revokeObjectURL(url)
+      } else {
+        createdUrls.push(url)
+        book.coverUrl = url
+      }
+    }
   }
-}
 
-async function decryptImage(
-  hots: NovelIndexListItem[],
-  news: NovelIndexListItem[],
-  recommends: NovelIndexListItem[],
-  serial: NovelIndexListItem[],
-  ends: NovelIndexListItem[],
-  newhots: NovelIndexListItem[]
-) {
-  await Promise.all([
-    ...hots.map(decryptBookImage),
-    ...news.map(decryptBookImage),
-    ...recommends.map(decryptBookImage),
-    ...serial.map(decryptBookImage),
-    ...ends.map(decryptBookImage),
-    ...newhots.map(decryptBookImage)
-  ])
-}
+  async function decryptImage(
+    hots: NovelIndexListItem[],
+    news: NovelIndexListItem[],
+    recommends: NovelIndexListItem[],
+    serial: NovelIndexListItem[],
+    ends: NovelIndexListItem[],
+    newhots: NovelIndexListItem[]
+  ) {
+    await Promise.all([
+      ...hots.map(decryptBookImage),
+      ...news.map(decryptBookImage),
+      ...recommends.map(decryptBookImage),
+      ...serial.map(decryptBookImage),
+      ...ends.map(decryptBookImage),
+      ...newhots.map(decryptBookImage)
+    ])
+  }
 
-function cleanupUrls() {
-  createdUrls.forEach((url) => {
-    URL.revokeObjectURL(url)
+  function cleanupUrls() {
+    createdUrls.forEach(url => {
+      URL.revokeObjectURL(url)
+    })
+    createdUrls.length = 0
+  }
+
+  onUnmounted(() => {
+    cleanupUrls()
   })
-  createdUrls.length = 0
-}
 
-onUnmounted(() => {
-  cleanupUrls()
-})
-
-function formatBookStatusText(status: NovelStatus): string {
-  switch (status) {
-    case NovelStatus.Serial:
-      return '连载中'
-    case NovelStatus.Finished:
-      return '完结'
-    default:
-      return ''
+  function formatBookStatusText(status: NovelStatus): string {
+    switch (status) {
+      case NovelStatus.Serial:
+        return '连载中'
+      case NovelStatus.Finished:
+        return '完结'
+      default:
+        return ''
+    }
   }
-}
 
-function formatBookStatus(
-  hots: NovelIndexListItem[],
-  news: NovelIndexListItem[],
-  recommends: NovelIndexListItem[],
-  serial: NovelIndexListItem[],
-  ends: NovelIndexListItem[],
-  newhots: NovelIndexListItem[]
-) {
-  const formatBooks = (books: NovelIndexListItem[]) => {
-    books.forEach((item) => {
-      item.statusText = formatBookStatusText(item.status)
+  function formatBookStatus(
+    hots: NovelIndexListItem[],
+    news: NovelIndexListItem[],
+    recommends: NovelIndexListItem[],
+    serial: NovelIndexListItem[],
+    ends: NovelIndexListItem[],
+    newhots: NovelIndexListItem[]
+  ) {
+    const formatBooks = (books: NovelIndexListItem[]) => {
+      books.forEach(item => {
+        item.statusText = formatBookStatusText(item.status)
+      })
+    }
+
+    formatBooks(hots)
+    formatBooks(news)
+    formatBooks(recommends)
+    formatBooks(serial)
+    formatBooks(ends)
+    formatBooks(newhots)
+  }
+
+  const fetchBooksOfIndexPage = async () => {
+    try {
+      loading.value = true
+      error.value = null
+      const {
+        data: { data }
+      } = await getNovelIndexList()
+      if (data) {
+        const { hots, news, recommends, serial, end, newhots, categories } = data
+        bookCategories.push({ id: 0, name: '推荐' }, ...categories)
+        formatBookStatus(hots, news, recommends, serial, end, newhots)
+        await decryptImage(hots, news, recommends, serial, end, newhots)
+        nextTick(() => {
+          hotBooks.push(...hots)
+          newBooks.push(...news)
+          recommendBooks.push(...recommends)
+          serialBooks.push(...serial)
+          endBooks.push(...end)
+          newHotBooks.push(...newhots)
+        })
+        if (data?.categories && data.categories.length > 0) {
+          novelCategoryStore.setCategories(data.categories)
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch books:', error)
+      error.value = '获取数据失败，请稍后重试'
+    } finally {
+      loading.value = false
+    }
+  }
+
+  onMounted(async () => {
+    if (activePreMenu.value === 'Book') {
+      await fetchBooksOfIndexPage()
+    }
+  })
+
+  const handleBookClick = (item: NovelIndexListItem) => {
+    router.push({ name: 'novelIntro', query: { nid: item.id, status: item.statusText } })
+  }
+
+  const handlePreMenuClick = (name: string) => {
+    activePreMenu.value = name
+  }
+
+  const handleSubMenuClick = async (index: number, item: NovelBookCategoryItem) => {
+    activeSubMenu.value = index
+    // 跳转到分类页面，传递分类ID
+    router.push({
+      name: 'novelCategory',
+      query: {
+        categoryId: item.id
+      }
     })
   }
 
-  formatBooks(hots)
-  formatBooks(news)
-  formatBooks(recommends)
-  formatBooks(serial)
-  formatBooks(ends)
-  formatBooks(newhots)
-}
-
-const fetchBooksOfIndexPage = async () => {
-  try {
-    loading.value = true
-    error.value = null
-    const {
-      data: { data }
-    } = await getNovelIndexList()
-    if (data) {
-      const { hots, news, recommends, serial, end, newhots, categories } = data
-      bookCategories.push({ id: 0, name: '推荐' }, ...categories)
-      formatBookStatus(hots, news, recommends, serial, end, newhots)
-      await decryptImage(hots, news, recommends, serial, end, newhots)
-      nextTick(() => {
-        hotBooks.push(...hots)
-        newBooks.push(...news)
-        recommendBooks.push(...recommends)
-        serialBooks.push(...serial)
-        endBooks.push(...end)
-        newHotBooks.push(...newhots)
-      })
-      if (data?.categories && data.categories.length > 0) {
-        novelCategoryStore.setCategories(data.categories)
+  const handleLatestMoreClick = () => {
+    router.push({
+      name: 'novelCategory',
+      query: {
+        sortType: 'CreateTime'
       }
-    }
-  } catch (error) {
-    console.error('Failed to fetch books:', error)
-    error.value = '获取数据失败，请稍后重试'
-  } finally {
-    loading.value = false
+    })
   }
-}
-
-onMounted(async () => {
-  if (activePreMenu.value === 'Book') {
-    await fetchBooksOfIndexPage()
-  }
-})
-
-const handleBookClick = (item: NovelIndexListItem) => {
-  router.push({ name: 'novelIntro', query: { nid: item.id, status: item.statusText } })
-}
-
-const handlePreMenuClick = (name: string) => {
-  activePreMenu.value = name
-}
-
-const handleSubMenuClick = async (index: number, item: NovelBookCategoryItem) => {
-  activeSubMenu.value = index
-  // 跳转到分类页面，传递分类ID
-  router.push({
-    name: 'novelCategory',
-    query: {
-      categoryId: item.id
-    }
-  })
-}
-
-const handleLatestMoreClick = () => {
-  router.push({
-    name: 'novelCategory',
-    query: {
-      sortType: 'CreateTime'
-    }
-  })
-}
 </script>
 
 <style scoped>
-.loading-container,
-.error-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  gap: 16px;
-}
+  .loading-container,
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    gap: 16px;
+  }
 
-.loading-container span {
-  color: #666;
-  font-size: 14px;
-}
+  .loading-container span {
+    color: #666;
+    font-size: 14px;
+  }
 </style>

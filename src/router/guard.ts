@@ -24,8 +24,8 @@ export function setupRouteGuards(router: Router) {
       case 'novel':
         appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.novel)
         break
-      case 'comics':
-        appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.comics)
+      case 'commic':
+        appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.commic)
         break
       // Add other routes as needed
     }
