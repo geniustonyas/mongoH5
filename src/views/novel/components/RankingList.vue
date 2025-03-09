@@ -39,58 +39,58 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted } from 'vue'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import type { Swiper as SwiperClass } from 'swiper/types'
-import Rank from './Rank.vue'
-import { NovelIndexListItem } from '@/types/novel'
-import 'swiper/css'
-import { useRouter } from 'vue-router'
+  import { ref, onUnmounted } from 'vue'
+  import { Swiper, SwiperSlide } from 'swiper/vue'
+  import type { Swiper as SwiperClass } from 'swiper/types'
+  import Rank from './Rank.vue'
+  import { NovelIndexListItem } from '@/types/novel'
+  import 'swiper/css'
+  import { useRouter } from 'vue-router'
 
-interface Props {
-  hotBooks: NovelIndexListItem[]
-  serialBooks: NovelIndexListItem[]
-  endBooks: NovelIndexListItem[]
-  newHotBooks: NovelIndexListItem[]
-  isPc: boolean
-}
-
-const _props = defineProps<Props>()
-const emit = defineEmits(['cleanupUrls'])
-const router = useRouter()
-
-const activeRankingList = ref('Hots')
-const swiperInstance = ref<SwiperClass>()
-
-const handleTabClick = (index: number, name: string) => {
-  swiperInstance.value?.slideTo(index)
-  activeRankingList.value = name
-}
-
-const getSwiperClass = (swiper: SwiperClass) => {
-  swiperInstance.value = swiper
-}
-
-const handleSwipeChange = () => {
-  if (!swiperInstance.value) return
-
-  switch (swiperInstance.value.activeIndex) {
-    case 0:
-      activeRankingList.value = 'Hots'
-      break
-    case 1:
-      activeRankingList.value = 'Series'
-      break
-    case 2:
-      activeRankingList.value = 'End'
-      break
-    case 3:
-      activeRankingList.value = 'NewHots'
-      break
+  interface Props {
+    hotBooks: NovelIndexListItem[]
+    serialBooks: NovelIndexListItem[]
+    endBooks: NovelIndexListItem[]
+    newHotBooks: NovelIndexListItem[]
+    isPc: boolean
   }
-}
 
-onUnmounted(() => {
-  emit('cleanupUrls')
-})
+  const _props = defineProps<Props>()
+  const emit = defineEmits(['cleanupUrls'])
+  const router = useRouter()
+
+  const activeRankingList = ref('Hots')
+  const swiperInstance = ref<SwiperClass>()
+
+  const handleTabClick = (index: number, name: string) => {
+    swiperInstance.value?.slideTo(index)
+    activeRankingList.value = name
+  }
+
+  const getSwiperClass = (swiper: SwiperClass) => {
+    swiperInstance.value = swiper
+  }
+
+  const handleSwipeChange = () => {
+    if (!swiperInstance.value) return
+
+    switch (swiperInstance.value.activeIndex) {
+      case 0:
+        activeRankingList.value = 'Hots'
+        break
+      case 1:
+        activeRankingList.value = 'Series'
+        break
+      case 2:
+        activeRankingList.value = 'End'
+        break
+      case 3:
+        activeRankingList.value = 'NewHots'
+        break
+    }
+  }
+
+  onUnmounted(() => {
+    emit('cleanupUrls')
+  })
 </script>
