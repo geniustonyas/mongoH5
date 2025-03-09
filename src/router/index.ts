@@ -156,6 +156,12 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false, title: '小说阅读' }
   },
   {
+    path: '/commic',
+    name: 'commic',
+    component: () => import('@/views/comics/index.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '漫画' }
+  },
+  {
     path: '/longVideo',
     name: 'longVideo',
     component: () => import('@/views/index/index.vue'),

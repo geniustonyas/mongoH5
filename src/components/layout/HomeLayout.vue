@@ -16,7 +16,7 @@
         <a :class="{ active: appStore.homeActiveMenu === HOME_ACTIVE_MENU.novel }"
            @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.novel); router.push({ name: 'novel' })">小说</a>
         <a :class="{ active: appStore.homeActiveMenu === HOME_ACTIVE_MENU.comics }"
-           @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.comics); showToast('建设中...')">漫画</a>
+           @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.comics); router.push({ name: 'commic' })">漫画</a>
       </div>
       <div class="d-r" @click="router.push({ name: 'search' })">
         <i class="mvfont mv-search1"></i>
@@ -30,16 +30,11 @@
 <script setup lang="ts">
 import Footer from '@/components/layout/Footer.vue'
 import { useRouter } from 'vue-router'
-import { showToast } from 'vant'
 import { HOME_ACTIVE_MENU } from '@/utils/constant'
 import { useAppStoreHook } from '@/store/app'
 
 const router = useRouter()
 const appStore = useAppStoreHook()
-
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
