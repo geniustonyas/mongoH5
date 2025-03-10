@@ -794,7 +794,7 @@ const fetchCategories = async () => {
         '2': weimiCategories,
         '3': quanziCategories
       }
-
+      console.log(data)
       data.forEach((item) => {
         const category = categoryMap[item.id]
         if (category) {

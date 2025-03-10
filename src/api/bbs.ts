@@ -1,5 +1,16 @@
 import { request } from '@/utils/axios'
-import { BbsListRequest, BbsListResponse, BbsCategoryResponse, Bbs, BbsRelatedRecommendRequest, BbsCommentListResponse, BbsSubCategoryDetailResponse, STSTokenResponse } from '@/types/bbs'
+import {
+  BbsListRequest,
+  BbsListResponse,
+  BbsCategoryResponse,
+  Bbs,
+  BbsRelatedRecommendRequest,
+  BbsCommentListResponse,
+  BbsSubCategoryDetailResponse,
+  STSTokenResponse,
+  CreatePostRequest
+} from '@/types/bbs'
+
 import type { ApiResponseData } from '@/types/global.d'
 
 /** 获取BBS列表 */
@@ -105,5 +116,14 @@ export function getSTSTokenApi() {
   return request<ApiResponseData<STSTokenResponse>>({
     url: 'BBS/GetSTSToken',
     method: 'post'
+  })
+}
+
+/** 创建帖子 */
+export function createPostApi(data: CreatePostRequest) {
+  return request<ApiResponseData<any>>({
+    url: 'Member/CreatePost',
+    method: 'post',
+    data
   })
 }

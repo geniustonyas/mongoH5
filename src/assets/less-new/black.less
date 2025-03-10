@@ -2581,6 +2581,17 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         .i-c {.bg(rgba(255,255,255,.1)); .radius(.5rem);
             .f-control { .border-a(.1rem,transparent); .bg(transparent); width: 100%; min-height: 4rem; padding: 1rem; .radius(.5rem);
                 &:hover { border-color: var(--color-light); }
+                ::placeholder {
+                    color: rgba(255, 255, 255, 0.5);
+                }
+            }
+            .custom-cell {
+                padding: 1rem;
+                .bg(transparent);
+                .van-cell__title {
+                    span { color: rgba(255, 255, 255, 0.5); }
+                }
+                .van-cell__value { text-align: left; color: var(--color-white); }
             }
         }
         .i-b {
@@ -2602,27 +2613,27 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
     }
     .upload-body { padding: 2rem 1rem; width: 100%;
         .flex(); .flex-align(); .flex-pack(); .flex-wrap(wrap); gap: .5rem;
-        .select-file-btn {  margin-top: 5rem; }
-        .upload-row-name { width: 20%; color: var(--color-dark); .ellipsis(); }
-        .error-message { color: var(--color-primary); }
-        .van-progress{ width: 65%; }
-        .actions {  width: 12%;
-            .flex(); .flex-pack-justify();
-        }
         .upload-row {
+            .upload-row-name { width: 20%; color: var(--color-dark); .ellipsis(); }
+            .error-message { color: var(--color-primary); }
+            .van-progress{ width: 65%; }
+            .actions {  width: 12%;
+                .flex(); .flex-pack-justify();
+            }
             width: 100%;
             .flex();  .flex-align(); .flex-space-around();
             gap: .5rem;
             margin-bottom: 1rem;
             width: 100%;
         }
+        .select-file-btn {  margin-top: 1rem; }
+        .select-file-tip { color: var(--color-primary); font-size: 1.2rem; }
     }
-    
     .upload-btns {
         .flex(); .flex-align(); .flex-pack();
         gap: 20px;
         position: absolute;
-        bottom: 5rem;
+        bottom: 2rem;
         width: 100%;
     }      
 }

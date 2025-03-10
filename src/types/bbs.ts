@@ -121,3 +121,13 @@ export type STSTokenResponse = {
   secretAccessKey: string
   sessionToken: string
 }
+
+export interface CreatePostRequest {
+  ChannelId: string | number
+  SubChannelId: string | number
+  Title: string
+  Content: string
+  Imgs?: string
+  Videos?: string
+  KeyWords?: string
+}
