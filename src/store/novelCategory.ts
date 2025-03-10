@@ -1,10 +1,17 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { NovelBookCategoryItem } from '@/types/novel'
+import { NovelBookCategoryItem, NovelCategory } from '@/types/novel'
+import { getNovelCategory } from '@/api/novel'
 
 export const useNovelCategoryStore = defineStore('novelCategory', () => {
   // 存储小说分类列表
   const categories = ref<NovelBookCategoryItem[]>([])
+
+  // 获取漫画分类
+  const fetchNovelCategory = async () => {
+    const { data } = await getNovelCategory({ OType: NovelCategory.Book })
+    categories.value = data.data
+  }
 
   // 保存分类列表到store
   const setCategories = (categoryList: NovelBookCategoryItem[]) => {
@@ -24,6 +31,7 @@ export const useNovelCategoryStore = defineStore('novelCategory', () => {
   return {
     categories,
     setCategories,
+    fetchNovelCategory,
     getCategoryNameById
   }
 })

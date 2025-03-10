@@ -1,9 +1,16 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { CommicBookCategoryItem } from '@/types/commic'
+import { CommicBookCategoryItem, CommicCategory } from '@/types/commic'
+import { getCommicCategory } from '@/api/commic'
 
 export const useCommicCategoryStore = defineStore('commicCategory', () => {
   const categories = ref<CommicBookCategoryItem[]>([])
+
+  // 获取漫画分类
+  const fetchCommicCategory = async () => {
+    const { data } = await getCommicCategory({ OType: CommicCategory.Comic })
+    categories.value = data.data
+  }
 
   function setCategories(newCategories: CommicBookCategoryItem[]) {
     categories.value = newCategories
@@ -17,6 +24,7 @@ export const useCommicCategoryStore = defineStore('commicCategory', () => {
   return {
     categories,
     setCategories,
+    fetchCommicCategory,
     getCategoryNameById
   }
 })

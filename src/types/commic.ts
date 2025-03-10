@@ -3,13 +3,6 @@ export enum CommicCategory {
   Comic = 1
 }
 
-export enum BookStatus {
-  All = -1,
-  Single = 0,
-  Serial = 1,
-  Finished = 2
-}
-
 export enum CommicStatus {
   All = -1,
   Serial = 0,
@@ -81,7 +74,7 @@ export interface CategoryWithActive extends CommicBookCategoryItem {
 export interface CommicListRequest {
   Type?: CommicCategory
   KeyWord?: string
-  BookStatus?: BookStatus
+  BookStatus?: CommicStatus
   CategoryId?: string | number
   IsRecommend?: 0 | 1
   ReadingCount?: 0 | 1
@@ -147,7 +140,7 @@ export interface CommicRecommendResponse {
 // 默认参数值
 export const DEFAULT_RECOMMEND_PARAMS: CommicRecommendParams = {
   Type: CommicCategory.Book,
-  BookStatus: BookStatus.All,
+  BookStatus: CommicStatus.All,
   PageIndex: 1,
   PageSize: 10
 }
