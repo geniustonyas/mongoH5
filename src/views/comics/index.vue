@@ -26,19 +26,19 @@
                 <span><img src="../../assets/imgs/novel/s_shoucang.svg" /></span>
                 <small>我的收藏</small>
               </a>
-              <a @click="router.push({ name: 'novelRank' })">
+              <a @click="router.push({ name: 'comicRank' })">
                 <span><img src="../../assets/imgs/novel/s_paihang.svg" /></span>
                 <small>排行榜</small>
               </a>
-              <a @click="router.push({ name: 'novelCategory' })">
+              <a @click="router.push({ name: 'comicCategory' })">
                 <span><img src="../../assets/imgs/novel/s_fenlei.svg" /></span>
                 <small>分类</small>
               </a>
-              <a @click="router.push({ name: 'novelCategory', query: { sortType: 1 } })">
+              <a @click="router.push({ name: 'comicCategory', query: { sortType: 0 } })">
                 <span><img src="../../assets/imgs/novel/s_lianzai.svg" /></span>
                 <small>连载</small>
               </a>
-              <a @click="router.push({ name: 'novelCategory', query: { sortType: 0 } })">
+              <a @click="router.push({ name: 'comicCategory', query: { sortType: 1 } })">
                 <span><img src="../../assets/imgs/novel/s_wanjie.svg" /></span>
                 <small>完结</small>
               </a>
@@ -48,7 +48,7 @@
             <div class="mc-a">
               <div class="a-l"><i class="mvfont mv-xietiao" /><span>大家都喜欢</span></div>
               <div class="a-r">
-                <span v-if="recommendCommics.length" onclick="javascript: location.href=''">
+                <span v-if="recommendCommics.length" @click="handleRecommendMoreClick">
                   更多
                   <i class="mvfont mv-right" />
                 </span>
@@ -214,8 +214,8 @@
     ends: CommicIndexListItem[],
     newhots: CommicIndexListItem[]
   ) {
-    const formatBooks = (books: CommicIndexListItem[]) => {
-      books.forEach(item => {
+    const formatBooks = (commics: CommicIndexListItem[]) => {
+      commics.forEach(item => {
         item.statusText = formatBookStatusText(item.status)
         const categoryName = commicCategoryStore.getCategoryNameById(item.categoryId.toString())
         item.categoryName = categoryName.toString()
@@ -269,14 +269,14 @@
   })
 
   const handleBookClick = (item: CommicIndexListItem) => {
-    router.push({ name: ' Intro', query: { nid: item.id, status: item.statusText } })
+    router.push({ name: 'comicIntro', query: { nid: item.id, status: item.statusText } })
   }
 
   const handleSubMenuClick = async (index: number, item: CommicBookCategoryItem) => {
     activeSubMenu.value = index
     // 跳转到分类页面，传递分类ID
     router.push({
-      name: 'commicCategory',
+      name: 'comicCategory',
       query: {
         categoryId: item.id
       }
@@ -289,6 +289,13 @@
       query: {
         sortType: 'CreateTime'
       }
+    })
+  }
+
+  const handleRecommendMoreClick = () => {
+    router.push({
+      name: 'commicCategory',
+      query: { sortType: 'FavoriteCount' }
     })
   }
 </script>

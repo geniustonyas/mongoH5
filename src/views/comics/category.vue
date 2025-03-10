@@ -104,11 +104,11 @@
   import Loading from '@/components/layout/Loading.vue'
   import { useCommicCategoryStore } from '@/store/commicCategory'
   import { CommicStatus, CategoryWithActive } from '@/types/commic'
-  import { getRecommendNovelList } from '@/api/novel'
   import { formatCount } from '@/utils'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
   import { DEFAULT_RECOMMEND_PARAMS, CommicBookInfo, CommicRecommendParams, TabOption } from '@/types/commic'
+  import { getRecommendCommicList } from '@/api/commic'
 
   const router = useRouter()
   const route = useRoute()
@@ -207,6 +207,17 @@
     createdUrls.value = []
   }
 
+  function formatBookStatusText(status: CommicStatus): string {
+    switch (status) {
+      case CommicStatus.Serial:
+        return '连载中'
+      case CommicStatus.Finished:
+        return '完结'
+      default:
+        return ''
+    }
+  }
+
   const fetchRankList = async (isLoadMore = false) => {
     try {
       if (isLoadMore) {
@@ -261,7 +272,7 @@
 
       const {
         data: { data }
-      } = await getRecommendNovelList(requestParams)
+      } = await getRecommendCommicList(requestParams)
 
       if (data) {
         // 更新分页状态
@@ -269,6 +280,17 @@
 
         // 处理图片解密
         const processedCommics = await Promise.all(data.items.map(decryptBookImage))
+
+        // 处理漫画分类
+        processedCommics.forEach(item => {
+          const categoryName = commicCategoryStore.getCategoryNameById(item.categoryId.toString())
+          item.categoryName = categoryName.toString()
+        })
+
+        // 处理漫画状态
+        processedCommics.forEach(item => {
+          item.statusText = formatBookStatusText(item.status)
+        })
 
         // 追加或替换数据
         if (isLoadMore) {
@@ -343,7 +365,7 @@
   // 处理书籍点击
   const handleBookClick = (item: CommicBookInfo) => {
     router.push({
-      name: 'novelIntro',
+      name: 'comicIntro',
       query: { nid: item.id, status: item.statusText }
     })
   }

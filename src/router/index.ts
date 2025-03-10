@@ -162,6 +162,30 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false, title: '漫画' }
   },
   {
+    path: '/comicCategory',
+    name: 'comicCategory',
+    component: () => import('@/views/comics/category.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '漫画分类' }
+  },
+  {
+    path: '/comicRank',
+    name: 'comicRank',
+    component: () => import('@/views/comics/rank.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '漫画排行榜' }
+  },
+  {
+    path: '/comicIntro',
+    name: 'comicIntro',
+    component: () => import('@/views/comics/details.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '漫画详情' }
+  },
+  // {
+  //   path: '/comicRead',
+  //   name: 'comicRead',
+  //   component: () => import('@/views/comics/read.vue'),
+  //   meta: { needLogin: false, keepAlive: false, title: '漫画阅读' }
+  // },
+  {
     path: '/longVideo',
     name: 'longVideo',
     component: () => import('@/views/index/index.vue'),
