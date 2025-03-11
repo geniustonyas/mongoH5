@@ -450,7 +450,7 @@
     }
 
     // 生成唯一的key并存储章节列表
-    const chaptersKey = `chapters_${bookInfo.value?.id}_${Date.now()}`
+    const chaptersKey = `commic_chapters_${bookInfo.value?.id}_${Date.now()}`
     localStorage.setItem(chaptersKey, JSON.stringify(chapters.value))
 
     router.push({

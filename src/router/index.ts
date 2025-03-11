@@ -191,12 +191,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/comics/chapter.vue'),
     meta: { needLogin: false, keepAlive: false, title: '漫画章节列表' }
   },
-  // {
-  //   path: '/comicRead',
-  //   name: 'comicRead',
-  //   component: () => import('@/views/comics/read.vue'),
-  //   meta: { needLogin: false, keepAlive: false, title: '漫画阅读' }
-  // },
+  {
+    path: '/comicRead',
+    name: 'comicRead',
+    component: () => import('@/views/comics/read.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '漫画阅读' }
+  },
   {
     path: '/longVideo',
     name: 'longVideo',
