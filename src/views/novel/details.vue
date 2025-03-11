@@ -66,7 +66,7 @@
                   <dt>最新章节</dt>
                   <dd v-for="chapter in chapters" :key="chapter.id" @click="handleChapterClick(chapter)">{{ chapter.title }}</dd>
                 </dl>
-                <p v-if="chapters.length > 3" @click="router.push('/novel/chapter')">查看全部章节</p>
+                <p v-if="chapters.length > 3" @click="handleViewAllChapters">查看全部章节</p>
               </div>
             </div>
           </nav>
@@ -423,6 +423,25 @@
       // 不同的书，进行路由跳转
       router.push({ name: 'novelIntro', query })
     }
+  }
+
+  // 添加处理查看全部章节的方法
+  const handleViewAllChapters = () => {
+    // 生成唯一的key并存储章节列表
+    const chaptersKey = `book_chapters_${bookInfo.value?.id}_${Date.now()}`
+    localStorage.setItem(chaptersKey, JSON.stringify(chapters.value))
+    // 存储书籍信息
+    const bookInfoKey = `bookInfo_${bookInfo.value?.id}_${Date.now()}`
+    localStorage.setItem(bookInfoKey, JSON.stringify(bookInfo.value))
+
+    router.push({
+      name: 'bookChapters',
+      query: {
+        nid: bookInfo.value?.id,
+        chaptersKey,
+        bookInfoKey
+      }
+    })
   }
 
   // 监听滚动

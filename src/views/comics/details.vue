@@ -58,7 +58,7 @@
               <div class="chapter-header">
                 <div class="status-line">
                   <span class="status">{{ bookInfo?.statusText || '未知' }}</span>
-                  <span class="all-chapters" @click="router.push('/comics/chapter')">全部章节<i class="mvfont mv-right" /></span>
+                  <span class="all-chapters" @click="handleViewAllChapters">全部章节<i class="mvfont mv-right" /></span>
                 </div>
               </div>
               <div class="chapter-swiper">
@@ -487,6 +487,25 @@
     }
   }
 
+  // 添加处理查看全部章节的方法
+  const handleViewAllChapters = () => {
+    // 生成唯一的key并存储章节列表
+    const chaptersKey = `commic_chapters_${bookInfo.value?.id}_${Date.now()}`
+    localStorage.setItem(chaptersKey, JSON.stringify(chapters.value))
+    // 存储漫画信息
+    const bookInfoKey = `commicInfo_${bookInfo.value?.id}_${Date.now()}`
+    localStorage.setItem(bookInfoKey, JSON.stringify(bookInfo.value))
+
+    router.push({
+      name: 'comicChapters',
+      query: {
+        nid: bookInfo.value?.id,
+        chaptersKey,
+        bookInfoKey
+      }
+    })
+  }
+
   onMounted(async () => {
     checkWebkitLineClampSupport()
     await fetchBookDetails()
@@ -529,12 +548,12 @@
 
   .status {
     font-size: 14px;
-    color: #666;
+    color: var(--color-white);
   }
 
   .all-chapters {
     font-size: 14px;
-    color: #666;
+    color: var(--color-white);
     cursor: pointer;
     display: flex;
     align-items: center;
