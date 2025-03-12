@@ -134,7 +134,12 @@ export const openAd = (url, category = '', action = '', label = '', value = 1, n
 }
 
 // 获取增量数字
-export function getIncrementalNumberWithOffset(value: string, module: string, id: string | number, type: 'view' | 'like' | 'collect'): number {
+export function getIncrementalNumberWithOffset(
+  value: string,
+  module: string,
+  id: string | number,
+  type: 'view' | 'like' | 'collect'
+): number {
   const storageKey = `incNum_${module}_${id}_${type}`
   const storedData = localStorage.getItem(storageKey)
   const currentTime = Date.now()
@@ -192,10 +197,10 @@ export function getIncrementalNumberWithOffset(value: string, module: string, id
 
 function manageLocalStorageCapacity() {
   const minEntriesToDelete = 500
-  const keys = Object.keys(localStorage).filter((key) => key.startsWith('incNum_'))
+  const keys = Object.keys(localStorage).filter(key => key.startsWith('incNum_'))
 
   // 获取所有条目的时间戳
-  const entries = keys.map((key) => {
+  const entries = keys.map(key => {
     const [time] = (localStorage.getItem(key) || '').split(':').map(Number)
     return { key, time }
   })
@@ -452,7 +457,13 @@ export function formatNumber(value: string | number) {
  * @param ensureEven - Ensure the number of ads is even.
  * @returns List of videos with ads inserted.
  */
-export function insertAdsForShortList(dataList: Video[], adList: AdsItem[], minInterval = 5, maxInterval = 7, ensureEven = false): VideoWithAd[] {
+export function insertAdsForShortList(
+  dataList: Video[],
+  adList: AdsItem[],
+  minInterval = 5,
+  maxInterval = 7,
+  ensureEven = false
+): VideoWithAd[] {
   const result: VideoWithAd[] = []
   const adCount = adList.length
   const dataCount = dataList.length
@@ -515,4 +526,22 @@ export const formatCount = (count: string | number): string => {
   }
 
   return num.toString()
+}
+
+/**
+ * 预加载图片
+ * @param urls 图片URL数组
+ * @returns Promise<void[]> 所有图片加载完成的Promise
+ */
+export function preloadImages(urls: string[]): Promise<void[]> {
+  const loadImage = (url: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const img = new Image()
+      img.onload = () => resolve()
+      img.onerror = () => reject(new Error(`Failed to load image: ${url}`))
+      img.src = url
+    })
+  }
+
+  return Promise.all(urls.map(url => loadImage(url)))
 }

@@ -125,7 +125,7 @@
   import { getCommicIndexList } from '@/api/commic'
   import { useAppStore } from '@/store/app'
   import decryptionService from '@/utils/decryptionService'
-  import { formatCount } from '@/utils'
+  import { formatCount, preloadImages } from '@/utils'
   import RankingList from './components/RankingList.vue'
   import { useRouter } from 'vue-router'
   import Loading from '@/components/layout/Loading.vue'
@@ -174,6 +174,7 @@
     ends: CommicIndexListItem[],
     newhots: CommicIndexListItem[]
   ) {
+    // 先解密所有图片
     await Promise.all([
       ...hots.map(decryptBookImage),
       ...news.map(decryptBookImage),
@@ -182,6 +183,18 @@
       ...ends.map(decryptBookImage),
       ...newhots.map(decryptBookImage)
     ])
+
+    // 收集所有图片URL进行预加载
+    const allImageUrls = [...hots, ...news, ...recommends, ...serial, ...ends, ...newhots]
+      .map(book => book.coverUrl)
+      .filter(url => url && !url.includes('default2.gif'))
+
+    // 预加载图片
+    try {
+      await preloadImages(allImageUrls)
+    } catch (error) {
+      console.warn('Some images failed to preload:', error)
+    }
   }
 
   function cleanupUrls() {

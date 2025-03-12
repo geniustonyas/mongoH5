@@ -1,11 +1,10 @@
 <template>
-  <div
-    class="novel-chapter page"
-    :class="{ 'nmh-fixed': isHeaderFixed, 'theme-black': backgroundColor === 'black', 'theme-sepia': backgroundColor === 'sepia' }"
-  >
+  <div class="novel-chapter page" :class="{ 'nmh-fixed': isHeaderFixed }">
     <header class="d-header" v-show="showControls">
       <div class="d-l">
-        <a @click="router.go(-1)"><i class="mvfont mv-left" /></a>
+        <a @click="router.push({ name: 'comicIntro', query: { nid: route.query.nid, status: route.query.status } })">
+          <i class="mvfont mv-left" />
+        </a>
       </div>
       <div class="d-m">
         <span>{{ chapterTitle }}</span>
@@ -25,21 +24,24 @@
     <div v-else class="chapter-content" @scroll="handleScroll" ref="contentRef">
       <div class="content-wrapper novel-read">
         <!-- 主阅读区域 -->
-        <div class="reader-content" @click="toggleControls" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
-          <Swiper
-            :direction="'vertical'"
-            :slides-per-view="1"
-            :space-between="12"
-            :mousewheel="true"
-            @swiper="onSwiperInit"
-            @slideChange="onSlideChange"
+        <div class="reader-content" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+          <div
+            v-for="(image, index) in chapterContent"
+            :key="index"
+            class="image-wrapper"
+            :class="[readingMode, { loading: imageLoadingStates[index] }]"
           >
-            <SwiperSlide v-for="(image, index) in chapterContent" :key="index">
-              <div class="image-wrapper" :class="readingMode">
-                <img :data-src="image" :alt="`第${index + 1}页`" @load="handleImageLoad" :style="imageStyle" />
-              </div>
-            </SwiperSlide>
-          </Swiper>
+            <img
+              :src="image"
+              :alt="`第${index + 1}页`"
+              @load="() => handleImageLoad(index)"
+              @error="() => handleImageError(index)"
+              :style="imageStyle"
+            />
+            <div v-if="imageLoadingStates[index]" class="loading-overlay">
+              <Loading />
+            </div>
+          </div>
         </div>
         <div class="chapter-navigation" v-show="showControls">
           <div class="nav-left">
@@ -95,6 +97,7 @@
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
   import { Popup as VanPopup, RadioGroup as VanRadioGroup, Radio as VanRadio } from 'vant'
+  import { preloadImages } from '@/utils'
 
   const router = useRouter()
   const route = useRoute()
@@ -108,18 +111,16 @@
   const contentRef = ref<HTMLElement | null>(null)
   const readingMode = ref('fit-width')
   const backgroundColor = ref('white')
-  const showControls = ref(false)
+  const showControls = ref(true)
   const showSettings = ref(false)
   const fontSize = ref(18)
   const lineHeight = ref(2.6)
   const decrypt = new decryptionService()
   const appStore = useAppStore()
-  const swiperInstance = ref<any>(null)
 
   const currentChapterId = ref(route.query.chapterId || '0')
   const chaptersKey = ref(route.query.chaptersKey as string)
 
-  const currentPage = ref(1)
   const totalPages = ref(0)
   const imageStyle = computed(() => {
     return {
@@ -127,10 +128,6 @@
       maxHeight: readingMode.value === 'fit-height' ? '100%' : 'none'
     }
   })
-
-  const onSwiperInit = (swiper: any) => {
-    swiperInstance.value = swiper
-  }
 
   // 控制显示/隐藏工具栏
   const toggleControls = () => {
@@ -143,63 +140,32 @@
     }
   }
 
-  // 图片预加载
-  const preloadImages = async (images: string[]) => {
-    const promises = images.map(src => {
-      return new Promise((resolve, reject) => {
-        const img = new Image()
-        img.onload = resolve
-        img.onerror = reject
-        img.src = src
-      })
-    })
-    await Promise.all(promises)
+  // 使用一个对象来跟踪每张图片的加载状态
+  const imageLoadingStates = ref<Record<number, boolean>>({})
+
+  // 初始化每张图片的加载状态为true（加载中）
+  const initImageLoadingStates = (length: number) => {
+    const states: Record<number, boolean> = {}
+    for (let i = 0; i < length; i++) {
+      states[i] = true
+    }
+    imageLoadingStates.value = states
   }
 
-  // 图片懒加载
-  const setupLazyLoading = () => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target as HTMLImageElement
-          const dataSrc = img.getAttribute('data-src')
-          if (dataSrc) {
-            img.src = dataSrc
-            img.removeAttribute('data-src')
-            observer.unobserve(img)
-          }
-        }
-      })
-    })
-
-    return observer
+  // 处理图片加载完成
+  const handleImageLoad = (index: number) => {
+    imageLoadingStates.value[index] = false
+    console.log(`Image ${index} loaded successfully`)
   }
 
-  // 手势控制
-  const setupGestures = () => {
-    let startX = 0
-    let startY = 0
-
-    const handleTouchStart = (e: TouchEvent) => {
-      startX = e.touches[0].clientX
-      startY = e.touches[0].clientY
+  // 处理图片加载错误
+  const handleImageError = (index: number) => {
+    imageLoadingStates.value[index] = false
+    console.error(`Image ${index} failed to load`)
+    // 可以在这里设置一个默认图片
+    if (chapterContent.value && chapterContent.value[index]) {
+      chapterContent.value[index] = '/src/assets/imgs/default2.gif'
     }
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      const deltaX = e.changedTouches[0].clientX - startX
-      const deltaY = e.changedTouches[0].clientY - startY
-
-      // 水平滑动切换章节
-      if (Math.abs(deltaX) > 100 && Math.abs(deltaX) > Math.abs(deltaY)) {
-        if (deltaX > 0) {
-          handlePrevChapter()
-        } else {
-          handleNextChapter()
-        }
-      }
-    }
-
-    return { handleTouchStart, handleTouchEnd }
   }
 
   // 获取章节列表
@@ -231,24 +197,7 @@
   const isLastChapter = computed(() => currentChapterId.value === lastChapterId.value)
   const isSingleChapter = computed(() => totalChapters.value === 1)
 
-  async function decryptImage(image: string) {
-    let imageUrl = ''
-    if (image === '') {
-      imageUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + imageUrl))
-      // 检查解密后的URL是否包含本地开发地址
-      if (url.includes('localhost') || url.includes('127.0.0.1')) {
-        imageUrl = '/src/assets/imgs/default2.gif'
-        URL.revokeObjectURL(url)
-      } else {
-        imageUrl = url
-      }
-    }
-    return imageUrl
-  }
-
-  // 在初始化时获取章节列表
+  // 在initPage中初始化图片加载状态
   const initPage = async () => {
     try {
       loading.value = true
@@ -282,6 +231,10 @@
       chapterTitle.value = data.title
       // 漫画图片列表
       const comicImages = data.contents.split(',')
+
+      // 初始化图片加载状态
+      initImageLoadingStates(comicImages.length)
+
       // 对图片进行解密
       const decryptedImages = await Promise.all(
         comicImages.map(async (image: string) => {
@@ -289,7 +242,25 @@
           return decryptedImage
         })
       )
+
+      // 更新章节内容
       chapterContent.value = decryptedImages
+      console.log('Chapter content loaded:', decryptedImages.length, 'images')
+
+      // 预加载前3张图片
+      const initialImages = decryptedImages.slice(0, 3).filter(url => url && !url.includes('default2.gif'))
+
+      if (initialImages.length > 0) {
+        try {
+          await preloadImages(initialImages)
+          console.log('Preloaded initial images')
+        } catch (error) {
+          console.warn('Failed to preload initial images:', error)
+        }
+      }
+
+      // 开始预加载下一章
+      preloadNextChapter()
     } catch (err) {
       error.value = '获取章节内容失败'
       console.error('获取章节内容失败:', err)
@@ -379,49 +350,193 @@
 
   // 在组件卸载时清理localStorage
   onBeforeUnmount(() => {
+    // 清理章节列表
     if (chaptersKey.value) {
       localStorage.removeItem(chaptersKey.value)
     }
+
+    // 清理所有创建的图片 URL
+    chapterContent.value.forEach(url => {
+      if (url && !url.includes('default2.gif')) {
+        URL.revokeObjectURL(url)
+      }
+    })
   })
 
-  // 处理图片加载
-  const handleImageLoad = (event: Event) => {
-    const img = event.target as HTMLImageElement
-    if (img.dataset.src) {
-      img.src = img.dataset.src
+  // 修改手势控制函数
+  const setupGestures = () => {
+    let startX = 0
+    let startY = 0
+    let startTime = 0
+    // 用于追踪滑动方向和距离
+    let lastY = 0
+    let direction = ''
+
+    const handleTouchStart = (e: TouchEvent) => {
+      startX = e.touches[0].clientX
+      startY = e.touches[0].clientY
+      lastY = startY
+      startTime = Date.now()
     }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const currentY = e.touches[0].clientY
+      const deltaY = currentY - lastY
+
+      // 确定滑动方向
+      if (Math.abs(deltaY) > 10) {
+        direction = deltaY > 0 ? 'down' : 'up'
+
+        // 向下滑动显示页头，向上滑动隐藏页头
+        if (direction === 'down') {
+          isHeaderFixed.value = true
+        } else if (direction === 'up') {
+          isHeaderFixed.value = false
+        }
+
+        lastY = currentY
+      }
+    }
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const endTime = Date.now()
+      const deltaTime = endTime - startTime
+      const deltaX = e.changedTouches[0].clientX - startX
+      const deltaY = e.changedTouches[0].clientY - startY
+
+      // 如果垂直滑动距离大于水平滑动距离，则视为滚动，只处理页头显示/隐藏
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        // 垂直滑动的处理已经在 handleTouchMove 中完成
+        return
+      }
+
+      // 判断是否是轻触（快速点击）
+      if (deltaTime < 300 && Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10) {
+        toggleControls()
+        return
+      }
+
+      // 显著的水平滑动才触发章节切换
+      if (Math.abs(deltaX) > 100) {
+        if (deltaX > 0) {
+          handlePrevChapter()
+        } else {
+          handleNextChapter()
+        }
+      }
+    }
+
+    return { handleTouchStart, handleTouchMove, handleTouchEnd }
   }
 
-  // 处理滑动切换
-  const onSlideChange = () => {
-    if (swiperInstance.value) {
-      currentPage.value = swiperInstance.value.activeIndex + 1
-      // 自动隐藏控制栏
-      showControls.value = false
-    }
-  }
-
-  // 设置手势控制
-  const { handleTouchStart, handleTouchEnd } = setupGestures()
+  // 设置手势控制，添加 handleTouchMove
+  const { handleTouchStart, handleTouchMove, handleTouchEnd } = setupGestures()
 
   // 在初始化时设置总页数
   watch(chapterContent, newContent => {
     totalPages.value = newContent.length
   })
 
+  // 添加路由参数监听
+  watch(
+    () => route.query.chapterId,
+    newChapterId => {
+      if (newChapterId) {
+        currentChapterId.value = newChapterId as string
+        initPage()
+      }
+    }
+  )
+
   onMounted(() => {
     initPage()
-
-    // 设置图片懒加载
-    const lazyLoadObserver = setupLazyLoading()
-    const images = document.querySelectorAll('.image-wrapper img')
-    images.forEach(img => lazyLoadObserver.observe(img))
-
-    // 清理函数
-    onBeforeUnmount(() => {
-      lazyLoadObserver.disconnect()
-    })
   })
+
+  // 重新添加缺失的decryptImage函数
+  async function decryptImage(image: string) {
+    let imageUrl = ''
+    if (image === '') {
+      imageUrl = '/src/assets/imgs/default2.gif'
+    } else {
+      try {
+        const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + image)
+
+        // 验证解密后的数据是否为有效的图片
+        const isValidImage = await validateImage(decryptedBlob)
+        if (!isValidImage) {
+          console.warn('Invalid image data:', image)
+          return '/src/assets/imgs/default2.gif'
+        }
+
+        imageUrl = URL.createObjectURL(decryptedBlob)
+      } catch (error) {
+        console.error('Image decryption failed:', error)
+        imageUrl = '/src/assets/imgs/default2.gif'
+      }
+    }
+    return imageUrl
+  }
+
+  // 验证图片数据是否有效
+  function validateImage(blob: Blob): Promise<boolean> {
+    return new Promise(resolve => {
+      // 如果blob大小为0或不是图片类型，直接返回false
+      if (blob.size === 0 || !blob.type.startsWith('image/')) {
+        resolve(false)
+        return
+      }
+
+      const img = new Image()
+      const url = URL.createObjectURL(blob)
+
+      img.onload = () => {
+        URL.revokeObjectURL(url)
+        // 验证图片尺寸是否合理（例如：至少1x1像素）
+        resolve(img.width > 0 && img.height > 0)
+      }
+
+      img.onerror = () => {
+        URL.revokeObjectURL(url)
+        resolve(false)
+      }
+
+      img.src = url
+    })
+  }
+
+  // 预加载下一章节的图片
+  async function preloadNextChapter() {
+    if (!currentChapterId.value || isLastChapter.value) return
+
+    const currentIndex = chapters.value.findIndex(chapter => chapter.id === currentChapterId.value.toString())
+    if (currentIndex < chapters.value.length - 1) {
+      const nextChapter = chapters.value[currentIndex + 1]
+      try {
+        const response = await getCommicChapterDetail(route.query.nid as string, nextChapter.id)
+        const { data } = response.data
+        if (data?.contents) {
+          const nextImages = data.contents.split(',')
+          // 解密并预加载前3张图片
+          const decryptedImages = await Promise.all(
+            nextImages.slice(0, 3).map(async (image: string) => {
+              if (!image) return ''
+              const decryptedImage = await decryptImage(image)
+              return decryptedImage
+            })
+          )
+
+          const validImages = decryptedImages.filter(url => url && !url.includes('default2.gif'))
+          if (validImages.length > 0) {
+            preloadImages(validImages).catch(error => {
+              console.warn('Failed to preload next chapter images:', error)
+            })
+          }
+        }
+      } catch (error) {
+        console.warn('Failed to fetch next chapter for preloading:', error)
+      }
+    }
+  }
 </script>
 
 <style scoped lang="less">
@@ -437,10 +552,14 @@
     flex: 1;
     overflow-y: auto;
     padding: 1rem;
-    height: calc(100vh - 5rem);
-    margin-top: var(--header-height, 5rem);
-    scroll-padding-top: var(--header-height, 5rem);
+    height: 100vh;
+    transition: height 0.3s ease, margin-top 0.3s ease;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .nmh-fixed .chapter-content {
+    height: calc(100vh - var(--header-height, 5rem));
+    margin-top: var(--header-height, 5rem);
   }
 
   .content-wrapper {
@@ -475,7 +594,17 @@
   .d-header {
     background-color: #1a1a1a;
     color: #e0e0e0;
-    border-bottom: 1px solid #333;
+    transition: transform 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transform: translateY(0);
+  }
+
+  .novel-chapter:not(.nmh-fixed) .d-header {
+    transform: translateY(-100%);
   }
 
   .chapter-navigation {
@@ -542,22 +671,61 @@
   }
 
   .reader-content {
-    touch-action: none;
+    // 修改touch-action属性，允许滚动
+    touch-action: pan-y;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
   }
 
-  .image-wrapper img {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+  .image-wrapper {
+    position: relative;
+    margin-bottom: 16px; // 添加间距，提高可读性
 
-  .image-wrapper img[src] {
-    opacity: 1;
-  }
+    &.loading {
+      min-height: 200px;
+    }
 
-  :deep(.swiper-slide) {
-    transition: transform 0.3s ease;
+    &.fit-width img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    &.fit-height img {
+      height: 100vh;
+      width: auto;
+      max-width: 100%;
+      margin: 0 auto;
+      display: block;
+    }
+
+    &.original img {
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+
+    img {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    img[src] {
+      opacity: 1;
+    }
+
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.5);
+    }
   }
 
   .nav-btn:active {
