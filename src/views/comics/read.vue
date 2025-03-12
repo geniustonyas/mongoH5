@@ -21,7 +21,7 @@
       <van-empty image="error" :description="error" />
       <van-button type="primary" @click="initPage">重试</van-button>
     </div>
-    <div v-else class="chapter-content" @scroll="handleScroll" ref="contentRef">
+    <div v-else class="chapter-content" ref="contentRef" @click="toggleControls">
       <div class="content-wrapper novel-read">
         <!-- 主阅读区域 -->
         <div class="reader-content" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
@@ -48,6 +48,7 @@
             <template v-if="isFirstChapter || isSingleChapter">
               <span class="nav-text">已是第一章</span>
               <span class="nav-btn" @click="handleBackToBook">返回书目</span>
+              <span class="nav-btn" @click="showChaptersList = true">目录</span>
             </template>
             <span v-else class="nav-btn" @click="handlePrevChapter">上一章</span>
           </div>
@@ -56,6 +57,7 @@
             <template v-if="isLastChapter && !isSingleChapter">
               <span class="nav-text">已是最后一章</span>
               <span class="nav-btn" @click="handleBackToBook">返回书目</span>
+              <span class="nav-btn" @click="showChaptersList = true">目录</span>
             </template>
             <span v-else-if="!isSingleChapter" class="nav-btn" @click="handleNextChapter">下一章</span>
           </div>
@@ -84,6 +86,36 @@
         </div>
       </div>
     </van-popup>
+
+    <!-- 目录面板 -->
+    <van-popup v-model:show="showChaptersList" position="bottom" round class="chapters-popup">
+      <div class="popup-header">
+        <div class="popup-title">目录</div>
+        <div class="popup-close" @click="showChaptersList = false">
+          <div class="popup-sort" @click.stop="handleSortChapters">
+            <van-icon v-if="isReverse" name="arrow-up" color="#f96518" />
+            <van-icon v-else name="arrow-down" color="#f96518" />
+            <span v-if="isReverse">倒序</span>
+            <span v-if="!isReverse">正序</span>
+          </div>
+          <van-icon name="cross" />
+        </div>
+      </div>
+      <div class="chapters-list">
+        <div
+          v-for="chapter in displayChapters"
+          :key="chapter.id"
+          class="chapter-item"
+          :class="{ active: chapter.id === currentChapterId }"
+          @click="handleChapterSelect(chapter)"
+        >
+          <div class="chapter-image">
+            <img src="/src/assets/imgs/default2.gif" :alt="chapter.title" />
+          </div>
+          <div class="chapter-title">{{ chapter.title }}</div>
+        </div>
+      </div>
+    </van-popup>
   </div>
 </template>
 
@@ -92,17 +124,17 @@
   import { useRouter, useRoute } from 'vue-router'
   import { getCommicChapterDetail, updateCommicReadCount, updateCommicReadProgress } from '@/api/commic'
   import Loading from '@/components/layout/Loading.vue'
-  import { useThrottleFn } from '@vueuse/core'
+  // import { useThrottleFn } from '@vueuse/core'
   import { CommicCategory } from '@/types/commic'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
-  import { Popup as VanPopup, RadioGroup as VanRadioGroup, Radio as VanRadio } from 'vant'
+  import { Popup as VanPopup, Icon as VanIcon } from 'vant'
   import { preloadImages } from '@/utils'
 
   const router = useRouter()
   const route = useRoute()
   const loading = ref(false)
-  const isHeaderFixed = ref(true)
+  const isHeaderFixed = ref(false) // 修改为默认隐藏
   const error = ref<string | null>(null)
   const chapterTitle = ref('')
   const chapterContent = ref<string[]>([])
@@ -111,8 +143,10 @@
   const contentRef = ref<HTMLElement | null>(null)
   const readingMode = ref('fit-width')
   const backgroundColor = ref('white')
-  const showControls = ref(true)
+  const showControls = ref(false) // 修改为默认隐藏
   const showSettings = ref(false)
+  const showChaptersList = ref(false) // 添加目录显示状态
+  const isReverse = ref(true) // 默认倒序
   const fontSize = ref(18)
   const lineHeight = ref(2.6)
   const decrypt = new decryptionService()
@@ -132,12 +166,7 @@
   // 控制显示/隐藏工具栏
   const toggleControls = () => {
     showControls.value = !showControls.value
-    if (showControls.value) {
-      // 3秒后自动隐藏
-      setTimeout(() => {
-        showControls.value = false
-      }, 3000)
-    }
+    isHeaderFixed.value = !isHeaderFixed.value
   }
 
   // 使用一个对象来跟踪每张图片的加载状态
@@ -284,20 +313,20 @@
     }
   }
 
-  let lastScrollTop = 0
-  const handleScroll = useThrottleFn((event: Event) => {
-    const target = event.target as HTMLElement
-    const currentScrollTop = target.scrollTop
+  // let lastScrollTop = 0
+  // const handleScroll = useThrottleFn((event: Event) => {
+  //   const target = event.target as HTMLElement
+  //   const currentScrollTop = target.scrollTop
 
-    // 向下滚动超过50px时隐藏header，向上滚动时显示
-    if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
-      isHeaderFixed.value = false
-    } else if (currentScrollTop < lastScrollTop) {
-      isHeaderFixed.value = true
-    }
+  //   // 向下滚动超过50px时隐藏header，向上滚动时显示
+  //   if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
+  //     isHeaderFixed.value = false
+  //   } else if (currentScrollTop < lastScrollTop) {
+  //     isHeaderFixed.value = true
+  //   }
 
-    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop
-  }, 100)
+  //   lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop
+  // }, 100)
 
   // 处理上一章
   const handlePrevChapter = () => {
@@ -370,7 +399,6 @@
     let startTime = 0
     // 用于追踪滑动方向和距离
     let lastY = 0
-    let direction = ''
 
     const handleTouchStart = (e: TouchEvent) => {
       startX = e.touches[0].clientX
@@ -385,15 +413,6 @@
 
       // 确定滑动方向
       if (Math.abs(deltaY) > 10) {
-        direction = deltaY > 0 ? 'down' : 'up'
-
-        // 向下滑动显示页头，向上滑动隐藏页头
-        if (direction === 'down') {
-          isHeaderFixed.value = true
-        } else if (direction === 'up') {
-          isHeaderFixed.value = false
-        }
-
         lastY = currentY
       }
     }
@@ -404,26 +423,24 @@
       const deltaX = e.changedTouches[0].clientX - startX
       const deltaY = e.changedTouches[0].clientY - startY
 
-      // 如果垂直滑动距离大于水平滑动距离，则视为滚动，只处理页头显示/隐藏
+      // 如果垂直滑动距离大于水平滑动距离，则视为滚动
       if (Math.abs(deltaY) > Math.abs(deltaX)) {
-        // 垂直滑动的处理已经在 handleTouchMove 中完成
         return
       }
 
       // 判断是否是轻触（快速点击）
       if (deltaTime < 300 && Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10) {
-        toggleControls()
         return
       }
 
       // 显著的水平滑动才触发章节切换
-      if (Math.abs(deltaX) > 100) {
-        if (deltaX > 0) {
-          handlePrevChapter()
-        } else {
-          handleNextChapter()
-        }
-      }
+      // if (Math.abs(deltaX) > 100) {
+      //   if (deltaX > 0) {
+      //     handlePrevChapter()
+      //   } else {
+      //     handleNextChapter()
+      //   }
+      // }
     }
 
     return { handleTouchStart, handleTouchMove, handleTouchEnd }
@@ -537,6 +554,33 @@
       }
     }
   }
+
+  // 处理章节选择
+  const handleChapterSelect = (chapter: { id: string; title: string }) => {
+    showChaptersList.value = false
+    router.push({
+      query: {
+        ...route.query,
+        chapterId: chapter.id
+      }
+    })
+  }
+
+  // 处理章节排序
+  const handleSortChapters = () => {
+    isReverse.value = !isReverse.value
+  }
+
+  // 计算显示的章节列表
+  const displayChapters = computed(() => {
+    // 根据排序状态返回正确顺序的章节列表
+    const sortedChapters = isReverse.value ? [...chapters.value].reverse() : [...chapters.value]
+
+    return sortedChapters.map(chapter => ({
+      ...chapter,
+      active: chapter.id === currentChapterId.value
+    }))
+  })
 </script>
 
 <style scoped lang="less">
@@ -552,6 +596,7 @@
     flex: 1;
     overflow-y: auto;
     padding: 1rem;
+    padding-top: 0;
     height: 100vh;
     transition: height 0.3s ease, margin-top 0.3s ease;
     -webkit-overflow-scrolling: touch;
@@ -608,13 +653,15 @@
   }
 
   .chapter-navigation {
+    position: fixed;
+    bottom: 0;
+    width: 90%;
+    padding: 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     background: #1a1a1a;
+    z-index: 999;
 
     .nav-left,
     .nav-right {
@@ -741,6 +788,83 @@
     min-height: 200px;
     gap: 4rem;
     background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+
+  .chapters-popup {
+    padding: 20px;
+    background-color: #1a1a1a;
+  }
+
+  .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .popup-title {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .popup-close {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+  }
+
+  .popup-sort {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    width: 5rem;
+    span {
+      font-size: 1.2rem;
+    }
+  }
+
+  .chapters-list {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .chapter-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    cursor: pointer;
+
+    &.active {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 1rem;
+    }
+
+    &.active .chapter-title {
+      color: #f96518;
+      font-weight: 600;
+    }
+  }
+
+  .chapter-image {
+    width: 15rem;
+    height: 10rem;
+    margin-right: 12px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+  }
+
+  .chapter-title {
+    font-size: 16px;
     color: #e0e0e0;
   }
 </style>

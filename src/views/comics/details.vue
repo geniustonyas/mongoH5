@@ -63,7 +63,7 @@
               </div>
               <div class="chapter-swiper">
                 <Swiper :slides-per-view="'auto'" :space-between="16" :centered-slides="false">
-                  <SwiperSlide v-for="(chapter, index) in [...chapters].reverse()" :key="chapter.id">
+                  <SwiperSlide v-for="(chapter, index) in [...chapters]" :key="chapter.id">
                     <div class="chapter-item" @click="handleChapterClick(chapter)">
                       <div class="chapter-image">
                         <img src="/src/assets/imgs/default2.gif" :alt="chapter.title" />
@@ -203,18 +203,54 @@
   async function decryptBookImage(book: CommicBookInfo) {
     if (book.coverUrl === '') {
       book.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-      // 检查解密后的URL是否包含本地开发地址
-      if (url.includes('localhost') || url.includes('127.0.0.1')) {
-        book.coverUrl = '/src/assets/imgs/default2.gif'
-        URL.revokeObjectURL(url)
-      } else {
-        createdUrls.value.push(url)
-        book.coverUrl = url
-      }
+      return
     }
-    return book
+
+    try {
+      const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl)
+
+      // 验证解密后的数据是否为有效的图片
+      const isValidImage = await validateImage(decryptedBlob)
+      if (!isValidImage) {
+        console.warn('Invalid image data:', book.coverUrl)
+        book.coverUrl = '/src/assets/imgs/default2.gif'
+        return
+      }
+
+      const objectUrl = URL.createObjectURL(decryptedBlob)
+      createdUrls.value.push(objectUrl)
+      book.coverUrl = objectUrl
+    } catch (error) {
+      console.error('Image decryption failed:', error)
+      book.coverUrl = '/src/assets/imgs/default2.gif'
+    }
+  }
+
+  // 验证图片数据是否有效
+  function validateImage(blob: Blob): Promise<boolean> {
+    return new Promise(resolve => {
+      // 如果blob大小为0或不是图片类型，直接返回false
+      if (blob.size === 0 || !blob.type.startsWith('image/')) {
+        resolve(false)
+        return
+      }
+
+      const img = new Image()
+      const url = URL.createObjectURL(blob)
+
+      img.onload = () => {
+        URL.revokeObjectURL(url)
+        // 验证图片尺寸是否合理（例如：至少1x1像素）
+        resolve(img.width > 0 && img.height > 0)
+      }
+
+      img.onerror = () => {
+        URL.revokeObjectURL(url)
+        resolve(false)
+      }
+
+      img.src = url
+    })
   }
 
   const cleanupUrls = () => {
@@ -245,11 +281,12 @@
         return
       }
       // 解密图片
-      data.newVideos.book = await decryptBookImage(data.newVideos.book)
+      await decryptBookImage(data.newVideos.book)
       // 赋值给响应式变量
-      chapters.value = data.items
       bookInfo.value = data.newVideos.book
       bookInfo.value.statusText = status as string
+      // 后端默认是倒序，这里需要反转
+      chapters.value = data.items.reverse()
       lastReadChapterId.value = data.newVideos.chapterId
       pagination.value = {
         pageIndex: data.pageIndex,
@@ -304,7 +341,7 @@
       // 处理每本书的图片解密和状态映射
       const processedBooks = await Promise.all(
         data.items.map(async book => {
-          book = await decryptBookImage(book)
+          await decryptBookImage(book)
           book.statusText = formatBookStatusText(book.status)
           return book
         })
@@ -443,7 +480,8 @@
   }
 
   const handleReadStart = () => {
-    const chapter = chapters.value[lastReadChapterId.value]
+    const chapter =
+      lastReadChapterId.value === '0' ? chapters.value[0] : chapters.value.find(chapter => chapter.id === lastReadChapterId.value)
     if (!chapter) {
       Toast.fail('抱歉，暂无章节可供阅读')
       return

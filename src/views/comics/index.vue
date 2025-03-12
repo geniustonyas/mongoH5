@@ -146,24 +146,61 @@
   const endCommics = reactive<CommicIndexListItem[]>([])
   const newHotCommics = reactive<CommicIndexListItem[]>([])
 
-  const createdUrls: string[] = []
+  const createdUrls = ref<string[]>([])
 
   const commicCategoryStore = useCommicCategoryStore()
 
   async function decryptBookImage(book: CommicIndexListItem) {
     if (book.coverUrl === '') {
       book.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-      // 检查解密后的URL是否包含本地开发地址
-      if (url.includes('localhost') || url.includes('127.0.0.1')) {
-        book.coverUrl = '/src/assets/imgs/default2.gif'
-        URL.revokeObjectURL(url)
-      } else {
-        createdUrls.push(url)
-        book.coverUrl = url
-      }
+      return
     }
+
+    try {
+      const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl)
+
+      // 验证解密后的数据是否为有效的图片
+      const isValidImage = await validateImage(decryptedBlob)
+      if (!isValidImage) {
+        console.warn('Invalid image data:', book.coverUrl)
+        book.coverUrl = '/src/assets/imgs/default2.gif'
+        return
+      }
+
+      const objectUrl = URL.createObjectURL(decryptedBlob)
+      createdUrls.value.push(objectUrl)
+      book.coverUrl = objectUrl
+    } catch (error) {
+      console.error('Image decryption failed:', error)
+      book.coverUrl = '/src/assets/imgs/default2.gif'
+    }
+  }
+
+  // 验证图片数据是否有效
+  function validateImage(blob: Blob): Promise<boolean> {
+    return new Promise(resolve => {
+      // 如果blob大小为0或不是图片类型，直接返回false
+      if (blob.size === 0 || !blob.type.startsWith('image/')) {
+        resolve(false)
+        return
+      }
+
+      const img = new Image()
+      const url = URL.createObjectURL(blob)
+
+      img.onload = () => {
+        URL.revokeObjectURL(url)
+        // 验证图片尺寸是否合理（例如：至少1x1像素）
+        resolve(img.width > 0 && img.height > 0)
+      }
+
+      img.onerror = () => {
+        URL.revokeObjectURL(url)
+        resolve(false)
+      }
+
+      img.src = url
+    })
   }
 
   async function decryptImage(
@@ -197,11 +234,11 @@
     }
   }
 
-  function cleanupUrls() {
-    createdUrls.forEach(url => {
+  const cleanupUrls = () => {
+    createdUrls.value.forEach(url => {
       URL.revokeObjectURL(url)
     })
-    createdUrls.length = 0
+    createdUrls.value = []
   }
 
   onUnmounted(() => {
