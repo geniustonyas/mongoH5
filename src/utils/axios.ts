@@ -118,7 +118,7 @@ const setupInterceptors = (service: AxiosInstance) => {
   //@ts-ignore
   if (service.interceptors.request.handlers.length === 0) {
     service.interceptors.request.use(
-      (config) => {
+      config => {
         const abortController = new AbortController()
         config.signal = abortController.signal as AbortSignal
         ;(config as any).abortController = abortController
@@ -140,7 +140,7 @@ const setupInterceptors = (service: AxiosInstance) => {
 
         return config
       },
-      (error) => {
+      error => {
         logError(error, 'Request Interceptor')
         return Promise.reject(error)
       }
@@ -179,7 +179,7 @@ const setupInterceptors = (service: AxiosInstance) => {
           throw new Error('解密后的数据不是有效的 JSON 格式')
         }
       },
-      (error) => {
+      error => {
         logError(error, 'Response Interceptor')
         if (error.response?.status === 401) {
           useUserStoreHook().clearLogin()

@@ -123,7 +123,15 @@
         </div>
         <footer class="footer">
           <div class="p-btns">
-            <span><i class="mvfont mv-shoucang" />加入收藏</span>
+            <span @click="handleAddToCollection" :class="{ loading: isCollecting }">
+              <template v-if="isCollecting">
+                <div class="loading-dots"><i /><i /><i /></div>
+              </template>
+              <template v-else>
+                <i class="mvfont mv-shoucang" :class="{ active: isCollected }" />
+              </template>
+              {{ isCollecting ? '' : isCollected ? '已收藏' : '加入收藏' }}
+            </span>
             <span @click="handleReadStart">开始阅读</span>
           </div>
         </footer>
@@ -135,9 +143,9 @@
 <script setup lang="ts">
   import { useRouter, useRoute } from 'vue-router'
   import { ref, onMounted, computed, nextTick, watch, onBeforeUnmount } from 'vue'
-  import { getCommicDetail, getRecommendCommicList, updateCommicReadProgress } from '@/api/commic'
+  import { addCommicToCollection, getCommicDetail, getRecommendCommicList, updateCommicReadProgress } from '@/api/commic'
   import Loading from '@/components/layout/Loading.vue'
-  import { DEFAULT_RECOMMEND_PARAMS, CommicBookInfo, CommicChapter, CommicStatus } from '@/types/commic'
+  import { DEFAULT_RECOMMEND_PARAMS, CommicBookInfo, CommicChapter, CommicStatus, AddCommicToCollectionParams } from '@/types/commic'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
   import { formatCount } from '@/utils/index'
@@ -155,6 +163,8 @@
   const commicCategoryStore = useCommicCategoryStore()
   const loading = ref(false)
   const error = ref<string | null>(null)
+  const isCollecting = ref(false)
+  const isCollected = ref(false)
   const recommendLoading = ref(false)
   const recommendError = ref<string | null>(null)
   const isLoadingMore = ref(false)
@@ -203,7 +213,7 @@
   async function decryptBookImage(book: CommicBookInfo) {
     if (book.coverUrl === '') {
       book.coverUrl = '/src/assets/imgs/default2.gif'
-      return
+      return book
     }
 
     try {
@@ -214,15 +224,17 @@
       if (!isValidImage) {
         console.warn('Invalid image data:', book.coverUrl)
         book.coverUrl = '/src/assets/imgs/default2.gif'
-        return
+        return book
       }
 
       const objectUrl = URL.createObjectURL(decryptedBlob)
       createdUrls.value.push(objectUrl)
       book.coverUrl = objectUrl
+      return book
     } catch (error) {
       console.error('Image decryption failed:', error)
       book.coverUrl = '/src/assets/imgs/default2.gif'
+      return book
     }
   }
 
@@ -525,6 +537,29 @@
     }
   }
 
+  const handleAddToCollection = async () => {
+    if (isCollecting.value) return
+
+    try {
+      isCollecting.value = true
+      const params: AddCommicToCollectionParams = {
+        id: bookInfo.value?.id as string,
+        type: 1
+      }
+      const { data } = await addCommicToCollection(params)
+      if (data.code === '200') {
+        isCollected.value = true
+        Toast.success('收藏成功')
+      } else {
+        Toast.fail(data.message || '收藏失败')
+      }
+    } catch (error) {
+      Toast.fail('收藏失败')
+    } finally {
+      isCollecting.value = false
+    }
+  }
+
   // 添加处理查看全部章节的方法
   const handleViewAllChapters = () => {
     // 生成唯一的key并存储章节列表
@@ -756,5 +791,56 @@
     font-size: 14px;
     text-align: center;
     padding: 16px;
+  }
+
+  .p-btns {
+    span {
+      position: relative;
+      transition: opacity 0.3s;
+
+      &.loading {
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      .loading-dots {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-right: 4px;
+
+        i {
+          width: 4px;
+          height: 4px;
+          background-color: currentColor;
+          border-radius: 50%;
+          display: inline-block;
+          animation: dot-flashing 1s infinite linear alternate;
+
+          &:nth-child(2) {
+            animation-delay: 0.2s;
+          }
+          &:nth-child(3) {
+            animation-delay: 0.4s;
+          }
+        }
+      }
+
+      .mvfont.active {
+        color: var(--color-primary, #2196f3);
+        bottom: 0;
+      }
+    }
+  }
+
+  @keyframes dot-flashing {
+    0% {
+      opacity: 0.2;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 </style>

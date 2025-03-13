@@ -23,13 +23,22 @@
     </div>
     <div v-else class="chapter-content" ref="contentRef" @click="toggleControls">
       <div class="content-wrapper novel-read">
+        <!-- 添加加载进度显示 -->
+        <div v-if="false" class="loading-progress">
+          <div class="progress-bar">
+            <div class="progress" :style="{ width: `${loadingProgress}%` }" />
+          </div>
+          <span class="progress-text">{{ loadingProgress }}%</span>
+        </div>
+
         <!-- 主阅读区域 -->
         <div class="reader-content" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
           <div
-            v-for="(image, index) in chapterContent"
+            v-for="(image, index) in loadedImages"
             :key="index"
             class="image-wrapper"
-            :class="[readingMode, { loading: imageLoadingStates[index] }]"
+            :class="[readingMode, { loading: imageLoadingStates[index], visible: !imageLoadingStates[index] }]"
+            :data-index="index"
           >
             <img
               :src="image"
@@ -37,6 +46,7 @@
               @load="() => handleImageLoad(index)"
               @error="() => handleImageError(index)"
               :style="imageStyle"
+              loading="lazy"
             />
             <div v-if="imageLoadingStates[index]" class="loading-overlay">
               <Loading />
@@ -50,7 +60,10 @@
               <span class="nav-btn" @click="handleBackToBook">返回书目</span>
               <span class="nav-btn" @click="showChaptersList = true">目录</span>
             </template>
-            <span v-else class="nav-btn" @click="handlePrevChapter">上一章</span>
+            <template v-else>
+              <span class="nav-btn" @click="handlePrevChapter">上一章</span>
+              <span class="nav-btn" @click="showChaptersList = true">目录</span>
+            </template>
           </div>
 
           <div class="nav-right">
@@ -59,7 +72,9 @@
               <span class="nav-btn" @click="handleBackToBook">返回书目</span>
               <span class="nav-btn" @click="showChaptersList = true">目录</span>
             </template>
-            <span v-else-if="!isSingleChapter" class="nav-btn" @click="handleNextChapter">下一章</span>
+            <template v-else>
+              <span class="nav-btn" @click="handleNextChapter">下一章</span>
+            </template>
           </div>
         </div>
       </div>
@@ -120,16 +135,14 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted, computed, onBeforeUnmount, watch } from 'vue'
+  import { ref, onMounted, computed, onBeforeUnmount, watch, nextTick } from 'vue'
   import { useRouter, useRoute } from 'vue-router'
   import { getCommicChapterDetail, updateCommicReadCount, updateCommicReadProgress } from '@/api/commic'
   import Loading from '@/components/layout/Loading.vue'
-  // import { useThrottleFn } from '@vueuse/core'
   import { CommicCategory } from '@/types/commic'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
-  import { Popup as VanPopup, Icon as VanIcon } from 'vant'
-  import { preloadImages } from '@/utils'
+  import { Popup as VanPopup, Icon as VanIcon, showToast } from 'vant'
 
   const router = useRouter()
   const route = useRoute()
@@ -172,25 +185,77 @@
   // 使用一个对象来跟踪每张图片的加载状态
   const imageLoadingStates = ref<Record<number, boolean>>({})
 
-  // 初始化每张图片的加载状态为true（加载中）
+  // 添加虚拟滚动相关的状态
+  const BATCH_SIZE = 2 // 每批加载的图片数量
+  const loadedImages = ref<string[]>([]) // 已加载的图片
+  const pendingImages = ref<string[]>([]) // 待加载的图片
+  const imageCache = new Map<string, string>() // 图片缓存
+  const loadingBatch = ref(false) // 批量加载状态
+  const currentViewIndex = ref(0) // 当前查看的图片索引
+  const loadingProgress = ref(0) // 加载进度
+
+  // 修改图片加载状态的初始化
   const initImageLoadingStates = (length: number) => {
     const states: Record<number, boolean> = {}
     for (let i = 0; i < length; i++) {
       states[i] = true
     }
     imageLoadingStates.value = states
+    loadingProgress.value = 0
   }
 
-  // 处理图片加载完成
+  // 添加观察者引用
+  const imageObserver = ref<IntersectionObserver | null>(null)
+
+  // 修改 onMounted
+  onMounted(() => {
+    initPage()
+    // 设置图片观察者
+    imageObserver.value = setupImageObserver()
+    // 观察所有图片容器
+    const imageWrappers = document.querySelectorAll('.image-wrapper')
+    imageWrappers.forEach(wrapper => {
+      imageObserver.value?.observe(wrapper)
+    })
+  })
+
+  // 修改 onBeforeUnmount
+  onBeforeUnmount(() => {
+    // 清理章节列表
+    if (chaptersKey.value) {
+      localStorage.removeItem(chaptersKey.value)
+    }
+
+    // 清理所有已创建的URL和缓存
+    imageCache.forEach(url => {
+      if (url && !url.includes('default2.gif')) {
+        URL.revokeObjectURL(url)
+      }
+    })
+    imageCache.clear()
+
+    // 断开观察者连接
+    if (imageObserver.value) {
+      imageObserver.value.disconnect()
+      imageObserver.value = null
+    }
+  })
+
+  // 修改 handleImageLoad 函数
   const handleImageLoad = (index: number) => {
     imageLoadingStates.value[index] = false
     console.log(`Image ${index} loaded successfully`)
   }
 
-  // 处理图片加载错误
+  // 修改 handleImageError 函数
   const handleImageError = (index: number) => {
     imageLoadingStates.value[index] = false
     console.error(`Image ${index} failed to load`)
+    // showToast({
+    //   message: '图片加载失败，已替换为默认图片',
+    //   type: 'fail',
+    //   position: 'top'
+    // })
     // 可以在这里设置一个默认图片
     if (chapterContent.value && chapterContent.value[index]) {
       chapterContent.value[index] = '/src/assets/imgs/default2.gif'
@@ -226,12 +291,25 @@
   const isLastChapter = computed(() => currentChapterId.value === lastChapterId.value)
   const isSingleChapter = computed(() => totalChapters.value === 1)
 
-  // 在initPage中初始化图片加载状态
+  // 修改初始化页面逻辑
   const initPage = async () => {
     try {
       loading.value = true
       error.value = null
       retryCount.value = 0
+      loadedImages.value = []
+      pendingImages.value = []
+      imageCache.clear()
+      loadingProgress.value = 0
+      imageLoadingStates.value = {}
+      currentViewIndex.value = 0
+      loadingBatch.value = false
+
+      // 断开之前的观察者连接
+      if (imageObserver.value) {
+        imageObserver.value.disconnect()
+        imageObserver.value = null
+      }
 
       const nid = route.query.nid as string
       const chapterId = route.query.chapterId as string
@@ -241,14 +319,12 @@
         return
       }
 
-      // 先尝试加载章节列表
       const hasChapters = loadChapters()
       if (!hasChapters) {
         error.value = '获取章节列表失败'
         return
       }
 
-      // 获取章节内容
       const chapterResponse = await getCommicChapterDetail(nid, chapterId)
       await updateReadCountWithRetry(nid)
 
@@ -258,38 +334,27 @@
       }
 
       chapterTitle.value = data.title
-      // 漫画图片列表
       const comicImages = data.contents.split(',')
 
-      // 初始化图片加载状态
+      // 初始化加载状态
       initImageLoadingStates(comicImages.length)
 
-      // 对图片进行解密
-      const decryptedImages = await Promise.all(
-        comicImages.map(async (image: string) => {
-          const decryptedImage = await decryptImage(image)
-          return decryptedImage
+      // 设置待加载队列
+      pendingImages.value = comicImages
+
+      // 重新设置图片观察者
+      imageObserver.value = setupImageObserver()
+
+      // 开始加载第一批图片
+      await loadImageBatch(0)
+
+      // 在下一个 tick 重新观察图片容器
+      nextTick(() => {
+        const imageWrappers = document.querySelectorAll('.image-wrapper')
+        imageWrappers.forEach(wrapper => {
+          imageObserver.value?.observe(wrapper)
         })
-      )
-
-      // 更新章节内容
-      chapterContent.value = decryptedImages
-      console.log('Chapter content loaded:', decryptedImages.length, 'images')
-
-      // 预加载前3张图片
-      const initialImages = decryptedImages.slice(0, 3).filter(url => url && !url.includes('default2.gif'))
-
-      if (initialImages.length > 0) {
-        try {
-          await preloadImages(initialImages)
-          console.log('Preloaded initial images')
-        } catch (error) {
-          console.warn('Failed to preload initial images:', error)
-        }
-      }
-
-      // 开始预加载下一章
-      preloadNextChapter()
+      })
     } catch (err) {
       error.value = '获取章节内容失败'
       console.error('获取章节内容失败:', err)
@@ -312,21 +377,6 @@
       }
     }
   }
-
-  // let lastScrollTop = 0
-  // const handleScroll = useThrottleFn((event: Event) => {
-  //   const target = event.target as HTMLElement
-  //   const currentScrollTop = target.scrollTop
-
-  //   // 向下滚动超过50px时隐藏header，向上滚动时显示
-  //   if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
-  //     isHeaderFixed.value = false
-  //   } else if (currentScrollTop < lastScrollTop) {
-  //     isHeaderFixed.value = true
-  //   }
-
-  //   lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop
-  // }, 100)
 
   // 处理上一章
   const handlePrevChapter = () => {
@@ -376,21 +426,6 @@
       }
     })
   }
-
-  // 在组件卸载时清理localStorage
-  onBeforeUnmount(() => {
-    // 清理章节列表
-    if (chaptersKey.value) {
-      localStorage.removeItem(chaptersKey.value)
-    }
-
-    // 清理所有创建的图片 URL
-    chapterContent.value.forEach(url => {
-      if (url && !url.includes('default2.gif')) {
-        URL.revokeObjectURL(url)
-      }
-    })
-  })
 
   // 修改手势控制函数
   const setupGestures = () => {
@@ -454,40 +489,56 @@
     totalPages.value = newContent.length
   })
 
-  // 添加路由参数监听
+  // 修改路由参数监听，确保在切换章节时重置所有状态
   watch(
     () => route.query.chapterId,
-    newChapterId => {
-      if (newChapterId) {
+    async (newChapterId, oldChapterId) => {
+      if (newChapterId && newChapterId !== oldChapterId) {
         currentChapterId.value = newChapterId as string
-        initPage()
+        // 重置滚动位置
+        if (contentRef.value) {
+          contentRef.value.scrollTop = 0
+        }
+        await initPage()
       }
     }
   )
 
-  onMounted(() => {
-    initPage()
-  })
-
-  // 重新添加缺失的decryptImage函数
+  // 添加图片解密缓存
   async function decryptImage(image: string) {
+    // 检查缓存
+    if (imageCache.has(image)) {
+      return imageCache.get(image)
+    }
+
     let imageUrl = ''
     if (image === '') {
       imageUrl = '/src/assets/imgs/default2.gif'
     } else {
       try {
         const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + image)
-
-        // 验证解密后的数据是否为有效的图片
         const isValidImage = await validateImage(decryptedBlob)
+
         if (!isValidImage) {
           console.warn('Invalid image data:', image)
-          return '/src/assets/imgs/default2.gif'
+          // showToast({
+          //   message: '图片数据无效',
+          //   type: 'fail',
+          //   position: 'top'
+          // })
+          imageUrl = '/src/assets/imgs/default2.gif'
+        } else {
+          imageUrl = URL.createObjectURL(decryptedBlob)
+          // 存入缓存
+          imageCache.set(image, imageUrl)
         }
-
-        imageUrl = URL.createObjectURL(decryptedBlob)
       } catch (error) {
         console.error('Image decryption failed:', error)
+        showToast({
+          message: '图片解密失败',
+          type: 'fail',
+          position: 'top'
+        })
         imageUrl = '/src/assets/imgs/default2.gif'
       }
     }
@@ -521,40 +572,6 @@
     })
   }
 
-  // 预加载下一章节的图片
-  async function preloadNextChapter() {
-    if (!currentChapterId.value || isLastChapter.value) return
-
-    const currentIndex = chapters.value.findIndex(chapter => chapter.id === currentChapterId.value.toString())
-    if (currentIndex < chapters.value.length - 1) {
-      const nextChapter = chapters.value[currentIndex + 1]
-      try {
-        const response = await getCommicChapterDetail(route.query.nid as string, nextChapter.id)
-        const { data } = response.data
-        if (data?.contents) {
-          const nextImages = data.contents.split(',')
-          // 解密并预加载前3张图片
-          const decryptedImages = await Promise.all(
-            nextImages.slice(0, 3).map(async (image: string) => {
-              if (!image) return ''
-              const decryptedImage = await decryptImage(image)
-              return decryptedImage
-            })
-          )
-
-          const validImages = decryptedImages.filter(url => url && !url.includes('default2.gif'))
-          if (validImages.length > 0) {
-            preloadImages(validImages).catch(error => {
-              console.warn('Failed to preload next chapter images:', error)
-            })
-          }
-        }
-      } catch (error) {
-        console.warn('Failed to fetch next chapter for preloading:', error)
-      }
-    }
-  }
-
   // 处理章节选择
   const handleChapterSelect = (chapter: { id: string; title: string }) => {
     showChaptersList.value = false
@@ -580,6 +597,100 @@
       ...chapter,
       active: chapter.id === currentChapterId.value
     }))
+  })
+
+  // 批量加载图片
+  const loadImageBatch = async (startIndex: number) => {
+    if (loadingBatch.value || startIndex >= pendingImages.value.length) return
+
+    loadingBatch.value = true
+    const endIndex = Math.min(startIndex + BATCH_SIZE, pendingImages.value.length)
+    const batch = pendingImages.value.slice(startIndex, endIndex)
+    const totalImages = loadedImages.value.length + pendingImages.value.length
+
+    try {
+      const decryptedBatch = await Promise.all(
+        batch.map(async (image, index) => {
+          const decrypted = await decryptImage(image)
+          // 使用已加载图片数量除以总图片数量计算进度
+          const progress = Math.round(((loadedImages.value.length + index + 1) / totalImages) * 100)
+          loadingProgress.value = progress
+
+          // 每25%显示一次toast
+          // if (progress % 25 === 0) {
+          //   showToast({
+          //     message: `加载进度: ${progress}%`,
+          //     type: 'success',
+          //     position: 'top'
+          //   })
+          // }
+
+          return decrypted
+        })
+      )
+
+      loadedImages.value.push(...decryptedBatch)
+      pendingImages.value = pendingImages.value.slice(endIndex)
+
+      // 预加载下一批
+      if (pendingImages.value.length > 0) {
+        setTimeout(() => {
+          loadImageBatch(0)
+        }, 300)
+      } else {
+        // 所有图片加载完成
+        // showToast({
+        //   message: '加载完成',
+        //   type: 'success',
+        //   position: 'top'
+        // })
+      }
+    } catch (error) {
+      console.error('Failed to load image batch:', error)
+      // showToast({
+      //   message: '加载失败，请重试',
+      //   type: 'fail',
+      //   position: 'top'
+      // })
+    } finally {
+      loadingBatch.value = false
+    }
+  }
+
+  // 添加图片可见性检测
+  const setupImageObserver = () => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index') || '0')
+            currentViewIndex.value = index
+
+            // 当查看到倒数第三张图时，加载下一批
+            if (index >= loadedImages.value.length - 3 && pendingImages.value.length > 0) {
+              loadImageBatch(0)
+            }
+          }
+        })
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '100px'
+      }
+    )
+
+    return observer
+  }
+
+  // 修改 watch 监听，添加对 loadedImages 的监听
+  watch(loadedImages, () => {
+    // 当新图片加载完成后，设置观察者
+    nextTick(() => {
+      const imageWrappers = document.querySelectorAll('.image-wrapper')
+      imageWrappers.forEach(wrapper => {
+        imageObserver.value?.observe(wrapper)
+      })
+    })
   })
 </script>
 
@@ -866,5 +977,49 @@
   .chapter-title {
     font-size: 16px;
     color: #e0e0e0;
+  }
+
+  .loading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress {
+    height: 100%;
+    background: #f96518;
+    transition: width 0.3s ease;
+  }
+
+  .progress-text {
+    font-size: 12px;
+    color: #fff;
+  }
+
+  .image-wrapper {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>

@@ -118,7 +118,15 @@
         </div>
         <footer class="footer">
           <div class="p-btns">
-            <span><i class="mvfont mv-shoucang" />加入收藏</span>
+            <span @click="handleAddToCollection" :class="{ loading: isCollecting }">
+              <template v-if="isCollecting">
+                <div class="loading-dots"><i /><i /><i /></div>
+              </template>
+              <template v-else>
+                <i class="mvfont mv-shoucang" :class="{ active: isCollected }" />
+              </template>
+              {{ isCollecting ? '' : isCollected ? '已收藏' : '加入收藏' }}
+            </span>
             <span @click="handleReadStart">开始阅读</span>
           </div>
         </footer>
@@ -130,9 +138,9 @@
 <script setup lang="ts">
   import { useRouter, useRoute } from 'vue-router'
   import { ref, onMounted, computed, nextTick, watch, onBeforeUnmount } from 'vue'
-  import { getNovelDetail, getRecommendNovelList, updateNovelReadProgress } from '@/api/novel'
+  import { addNovelToCollection, getNovelDetail, getRecommendNovelList, updateNovelReadProgress } from '@/api/novel'
   import Loading from '@/components/layout/Loading.vue'
-  import { DEFAULT_RECOMMEND_PARAMS, NovelBookInfo, NovelChapter, NovelStatus } from '@/types/novel'
+  import { AddNovelCollectionRequest, DEFAULT_RECOMMEND_PARAMS, NovelBookInfo, NovelChapter, NovelStatus } from '@/types/novel'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
   import { formatCount } from '@/utils/index'
@@ -176,6 +184,9 @@
   const MAX_LINES = 3 // 最大行数
   const isWebkitLineClampSupported = ref(true)
 
+  const isCollecting = ref(false)
+  const isCollected = ref(false)
+
   // 获取分类名称
   const categoryName = computed(() => {
     if (!bookInfo.value || !bookInfo.value.categoryId) return '未知分类'
@@ -194,18 +205,54 @@
   async function decryptBookImage(book: NovelBookInfo) {
     if (book.coverUrl === '') {
       book.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl))
-      // 检查解密后的URL是否包含本地开发地址
-      if (url.includes('localhost') || url.includes('127.0.0.1')) {
-        book.coverUrl = '/src/assets/imgs/default2.gif'
-        URL.revokeObjectURL(url)
-      } else {
-        createdUrls.value.push(url)
-        book.coverUrl = url
-      }
+      return
     }
-    return book
+
+    try {
+      const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl)
+
+      // 验证解密后的数据是否为有效的图片
+      const isValidImage = await validateImage(decryptedBlob)
+      if (!isValidImage) {
+        console.warn('Invalid image data:', book.coverUrl)
+        book.coverUrl = '/src/assets/imgs/default2.gif'
+        return
+      }
+
+      const objectUrl = URL.createObjectURL(decryptedBlob)
+      createdUrls.value.push(objectUrl)
+      book.coverUrl = objectUrl
+    } catch (error) {
+      console.error('Image decryption failed:', error)
+      book.coverUrl = '/src/assets/imgs/default2.gif'
+    }
+  }
+
+  // 验证图片数据是否有效
+  function validateImage(blob: Blob): Promise<boolean> {
+    return new Promise(resolve => {
+      // 如果blob大小为0或不是图片类型，直接返回false
+      if (blob.size === 0 || !blob.type.startsWith('image/')) {
+        resolve(false)
+        return
+      }
+
+      const img = new Image()
+      const url = URL.createObjectURL(blob)
+
+      img.onload = () => {
+        URL.revokeObjectURL(url)
+        // 验证图片尺寸是否合理（例如：至少1x1像素）
+        resolve(img.width > 0 && img.height > 0)
+      }
+
+      img.onerror = () => {
+        URL.revokeObjectURL(url)
+        resolve(false)
+      }
+
+      img.src = url
+    })
   }
 
   const cleanupUrls = () => {
@@ -236,7 +283,7 @@
         return
       }
       // 解密图片
-      data.newVideos.book = await decryptBookImage(data.newVideos.book)
+      await decryptBookImage(data.newVideos.book)
       // 赋值给响应式变量
       chapters.value = data.items
       bookInfo.value = data.newVideos.book
@@ -293,22 +340,19 @@
       }
 
       // 处理每本书的图片解密和状态映射
-      const processedBooks = await Promise.all(
-        data.items.map(async book => {
-          book = await decryptBookImage(book)
-          book.statusText = formatBookStatusText(book.status)
-          return book
-        })
-      )
+      for (const book of data.items) {
+        await decryptBookImage(book)
+        book.statusText = formatBookStatusText(book.status)
+      }
 
       // 更新分页信息
       hasMoreData.value = currentPage.value < parseInt(data.pageCount)
 
       // 追加或替换数据
       if (isLoadMore) {
-        recommendBooks.value.push(...processedBooks)
+        recommendBooks.value.push(...data.items)
       } else {
-        recommendBooks.value = processedBooks
+        recommendBooks.value = data.items
       }
     } catch (e) {
       console.error('Failed to fetch recommend books:', e)
@@ -497,6 +541,29 @@
     }
   }
 
+  const handleAddToCollection = async () => {
+    if (isCollecting.value) return
+
+    try {
+      isCollecting.value = true
+      const params: AddNovelCollectionRequest = {
+        id: bookInfo.value?.id as string,
+        type: 0
+      }
+      const { data } = await addNovelToCollection(params)
+      if (data.code === '200') {
+        isCollected.value = true
+        Toast.success('收藏成功')
+      } else {
+        Toast.fail(data.message || '收藏失败')
+      }
+    } catch (error) {
+      Toast.fail('收藏失败')
+    } finally {
+      isCollecting.value = false
+    }
+  }
+
   onMounted(async () => {
     checkWebkitLineClampSupport()
     await fetchBookDetails()
@@ -626,5 +693,56 @@
     font-size: 14px;
     text-align: center;
     padding: 16px;
+  }
+
+  .p-btns {
+    span {
+      position: relative;
+      transition: opacity 0.3s;
+
+      &.loading {
+        opacity: 0.7;
+        pointer-events: none;
+      }
+
+      .loading-dots {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-right: 4px;
+
+        i {
+          width: 4px;
+          height: 4px;
+          background-color: currentColor;
+          border-radius: 50%;
+          display: inline-block;
+          animation: dot-flashing 1s infinite linear alternate;
+
+          &:nth-child(2) {
+            animation-delay: 0.2s;
+          }
+          &:nth-child(3) {
+            animation-delay: 0.4s;
+          }
+        }
+      }
+
+      .mvfont.active {
+        color: var(--color-primary, #2196f3);
+        bottom: 0;
+      }
+    }
+  }
+
+  @keyframes dot-flashing {
+    0% {
+      opacity: 0.2;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 </style>

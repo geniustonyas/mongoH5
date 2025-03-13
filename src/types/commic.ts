@@ -35,7 +35,7 @@ export interface CommicListItem {
   id: string
   title: string
   author: string
-  coverurl: string
+  coverUrl: string
   status: number
   readCount: string
   favoriteCount: string
@@ -149,4 +149,22 @@ export interface CommicChapterDetailResponse {
   id: string
   title: string
   contents: string
+}
+
+export interface AddCommicToCollectionParams {
+  id: string | number
+  type: string | number // 类型： 0：小说，1：漫画
+}
+
+export interface CommicCollectionListRequest {
+  pageIndex: number
+  pageSize: number
+}
+
+export interface CommicRecommendResponse {
+  items: CommicBookInfo[]
+  pageIndex: string
+  pageSize: string
+  pageCount: string
+  recordCount: string
 }

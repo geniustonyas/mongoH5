@@ -19,11 +19,11 @@
           <van-empty image="error" :description="error" />
         </div>
         <div v-else-if="!books.length">
-          <van-empty description="您还没有收藏书籍噢" />
+          <van-empty description="您还没有收藏漫画噢" />
         </div>
         <template v-else>
           <div v-if="!books.length" class="empty-container">
-            <van-empty description="暂无相关书籍" />
+            <van-empty description="暂无相关漫画" />
           </div>
           <div v-else class="n-l-b">
             <ul>
@@ -58,19 +58,20 @@
 <script setup lang="ts">
   import { onMounted, onUnmounted, reactive, ref } from 'vue'
   import { formatCount } from '@/utils'
-  import { CategoryWithActive, NovelBookInfo, NovelStatus } from '@/types/novel'
-  import { getCollectionList } from '@/api/novel'
+  import { CategoryWithActive, CommicBookInfo, CommicStatus } from '@/types/commic'
   import { useRouter } from 'vue-router'
-  import { useNovelCategoryStore } from '@/store/novelCategory'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
+  import { useCommicCategoryStore } from '@/store/commicCategory'
+
+  import { getCommicCollectionList } from '@/api/commic'
 
   // 分类选项
   const bookCategories = reactive<CategoryWithActive[]>([])
-  const novelCategoryStore = useNovelCategoryStore()
+  const novelCategoryStore = useCommicCategoryStore()
   const router = useRouter()
   const error = ref<string | null>(null)
-  const books = ref<NovelBookInfo[]>([])
+  const books = ref<CommicBookInfo[]>([])
   const currentPage = ref(1)
   const loading = ref(false)
   const hasMoreData = ref(true)
@@ -86,18 +87,18 @@
   ]
   bookCategories.push(...initialCategories)
 
-  function formatBookStatusText(status: NovelStatus): string {
+  function formatBookStatusText(status: CommicStatus): string {
     switch (status) {
-      case NovelStatus.Serial:
+      case CommicStatus.Serial:
         return '连载中'
-      case NovelStatus.Finished:
+      case CommicStatus.Finished:
         return '完结'
       default:
         return ''
     }
   }
 
-  async function decryptBookImage(book: NovelBookInfo) {
+  async function decryptBookImage(book: CommicBookInfo) {
     if (book.coverUrl === '') {
       book.coverUrl = '/src/assets/imgs/default2.gif'
       return
@@ -177,7 +178,7 @@
 
       const {
         data: { data }
-      } = await getCollectionList(params)
+      } = await getCommicCollectionList(params)
 
       if (data) {
         // 更新分页状态
@@ -220,7 +221,7 @@
   }
 
   // 处理书籍点击
-  const handleBookClick = (item: NovelBookInfo) => {
+  const handleBookClick = (item: CommicBookInfo) => {
     router.push({
       name: 'novelIntro',
       query: { nid: item.id, status: item.statusText }

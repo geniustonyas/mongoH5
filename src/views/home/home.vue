@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page my-home">
     <header class="h-header">
       <div class="d-r">
         <a><i class="mvfont mv-kefu1" @click="openCustomerService" /></a>
@@ -37,7 +37,12 @@
       </div>
 
       <div v-if="bannerAdvertisement && bannerAdvertisement.length > 0" class="ad-box">
-        <img @click="openAd(bannerAdvertisement[0].targetUrl, '会员中心横幅', 'click', bannerAdvertisement[0].id)" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
+        <img
+          @click="openAd(bannerAdvertisement[0].targetUrl, '会员中心横幅', 'click', bannerAdvertisement[0].id)"
+          :key="bannerAdvertisement[0].id"
+          v-lazy-decrypt="bannerAdvertisement[0].imgUrl"
+          :alt="bannerAdvertisement[0].title"
+        />
       </div>
 
       <div class="h-b">
@@ -81,46 +86,76 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-import Footer from '@/components/layout/Footer.vue'
-import NavBar from '@/components/layout/NavBar.vue'
-import { getAssetsFile, openAd } from '@/utils'
-import { useUserStoreHook } from '@/store/user'
-import { useAppStoreHook } from '@/store/app'
-// import { showToast } from 'vant'
+  import { computed } from 'vue'
+  import { useRouter } from 'vue-router'
+  import Footer from '@/components/layout/Footer.vue'
+  import NavBar from '@/components/layout/NavBar.vue'
+  import { getAssetsFile, openAd } from '@/utils'
+  import { useUserStoreHook } from '@/store/user'
+  import { useAppStoreHook } from '@/store/app'
+  // import { showToast } from 'vant'
 
-const userStore = useUserStoreHook()
-const appStore = useAppStoreHook()
-const router = useRouter()
+  const userStore = useUserStoreHook()
+  const appStore = useAppStoreHook()
+  const router = useRouter()
 
-const bannerAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(14).items
-  return tmp || []
-})
+  const bannerAdvertisement = computed(() => {
+    const tmp = appStore.getAdvertisementById(14).items
+    return tmp || []
+  })
 
-// 立即执行
-;(async () => {
-  if (appStore.advertisement.length == 0) {
-    await appStore.fetAdvertisement()
+  // 立即执行
+  ;(async () => {
+    if (appStore.advertisement.length == 0) {
+      await appStore.fetAdvertisement()
+    }
+  })()
+
+  const openDownloadPage = () => {
+    const ua = navigator.userAgent
+    if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+      window.open(appStore.iosDownloadUrl, '_blank')
+    } else {
+      window.open(appStore.androidDownloadUrl, '_blank')
+    }
   }
-})()
 
-const openDownloadPage = () => {
-  const ua = navigator.userAgent
-  if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
-    window.open(appStore.iosDownloadUrl, '_blank')
-  } else {
-    window.open(appStore.androidDownloadUrl, '_blank')
+  const openCustomerService = () => {
+    const customerServiceLink = appStore.customer_service_link
+    if (customerServiceLink) {
+      window.open(customerServiceLink, '_blank')
+    } else {
+      console.warn('客服链接未设置')
+    }
   }
-}
-
-const openCustomerService = () => {
-  const customerServiceLink = appStore.customer_service_link
-  if (customerServiceLink) {
-    window.open(customerServiceLink, '_blank')
-  } else {
-    console.warn('客服链接未设置')
-  }
-}
 </script>
+
+<style lang="less" scoped>
+  .my-home {
+    .h-header {
+      text-align: right;
+      height: 5rem;
+      line-height: 5rem;
+      padding: 0 1rem;
+      top: 0;
+      background-color: var(--color-main-bg);
+      height: calc(5rem + constant(safe-area-inset-top));
+      height: calc(5rem + env(safe-area-inset-top));
+      padding-top: calc(constant(safe-area-inset-top) - 1rem);
+      padding-top: calc(env(safe-area-inset-top) - 1rem);
+      padding-bottom: constant(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-top);
+      a {
+        display: inline-block;
+        height: 5rem;
+        line-height: 5rem;
+        padding: 0 1rem;
+        cursor: pointer;
+        i {
+          font-size: 2.6rem;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+</style>

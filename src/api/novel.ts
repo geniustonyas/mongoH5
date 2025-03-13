@@ -1,10 +1,12 @@
 import { request } from '@/utils/axios'
 import { ApiResponseData } from '@/types/global'
 import {
+  AddNovelCollectionRequest,
   NovelBookCategoriesRequest,
   NovelBookCategoryItem,
   NovelCategory,
   NovelChapterDetailResponse,
+  NovelCollectionListRequest,
   NovelDetailResponse,
   NovelIndexResponseData,
   NovelListRequest,
@@ -103,6 +105,30 @@ export function getNovelChapterDetail(bookId: number | string, chapterId: number
     url: '/Web/ChapterDetails',
     method: 'post',
     data: { bookId, id: chapterId },
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
+// 小说收藏列表
+export function getCollectionList(params: NovelCollectionListRequest) {
+  return request<ApiResponseData<NovelRecommendResponse>>({
+    url: '/Web/MemberFavoriteList',
+    method: 'post',
+    data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
+// 加入小说收藏列表
+export function addNovelToCollection(params: AddNovelCollectionRequest) {
+  return request<ApiResponseData>({
+    url: '/Web/AddFavorite',
+    method: 'post',
+    data: params,
     headers: {
       'X-Should-Encrypt': '1'
     }

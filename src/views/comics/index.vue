@@ -22,7 +22,7 @@
           </div>
           <nav v-show="activePreMenu === 'Book'" class="i-m-b">
             <div class="b-row br-img">
-              <a href="#">
+              <a @click="router.push({ name: 'myCommicCollection' })">
                 <span><img src="../../assets/imgs/novel/s_shoucang.svg" /></span>
                 <small>我的收藏</small>
               </a>
@@ -153,7 +153,7 @@
   async function decryptBookImage(book: CommicIndexListItem) {
     if (book.coverUrl === '') {
       book.coverUrl = '/src/assets/imgs/default2.gif'
-      return
+      return book
     }
 
     try {
@@ -164,15 +164,17 @@
       if (!isValidImage) {
         console.warn('Invalid image data:', book.coverUrl)
         book.coverUrl = '/src/assets/imgs/default2.gif'
-        return
+        return book
       }
 
       const objectUrl = URL.createObjectURL(decryptedBlob)
       createdUrls.value.push(objectUrl)
       book.coverUrl = objectUrl
+      return book
     } catch (error) {
       console.error('Image decryption failed:', error)
       book.coverUrl = '/src/assets/imgs/default2.gif'
+      return book
     }
   }
 

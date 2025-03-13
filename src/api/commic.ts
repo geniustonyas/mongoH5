@@ -1,10 +1,12 @@
 import { request } from '@/utils/axios'
 import { ApiResponseData } from '@/types/global'
 import {
+  AddCommicToCollectionParams,
   CommicBookCategoriesRequest,
   CommicBookCategoryItem,
   CommicCategory,
   CommicChapterDetailResponse,
+  CommicCollectionListRequest,
   CommicDetailResponse,
   CommicIndexResponseData,
   CommicListRequest,
@@ -103,6 +105,30 @@ export function getCommicChapterDetail(bookId: number | string, chapterId: numbe
     url: '/Web/ComicsChapterDetails',
     method: 'post',
     data: { bookId, id: chapterId },
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
+// 添加漫画到收藏
+export function addCommicToCollection(params: AddCommicToCollectionParams) {
+  return request<ApiResponseData>({
+    url: '/Web/AddComicsFavorite',
+    method: 'post',
+    data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
+// 获取漫画收藏列表
+export function getCommicCollectionList(params: CommicCollectionListRequest) {
+  return request<ApiResponseData<CommicRecommendResponse>>({
+    url: '/Web/MemberComicsFavoriteList',
+    method: 'post',
+    data: params,
     headers: {
       'X-Should-Encrypt': '1'
     }

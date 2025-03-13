@@ -42,7 +42,7 @@ export interface NovelListItem {
   id: string
   title: string
   author: string
-  coverurl: string
+  coverUrl: string
   status: number
   readCount: string
   favoriteCount: string
@@ -156,4 +156,14 @@ export interface NovelChapterDetailResponse {
   id: string
   title: string
   contents: string
+}
+
+export interface NovelCollectionListRequest {
+  pageIndex: number
+  pageSize: number
+}
+
+export interface AddNovelCollectionRequest {
+  id: string | number
+  type: number // 类型： 0：小说，1：漫画
 }
