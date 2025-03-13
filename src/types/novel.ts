@@ -12,8 +12,8 @@ export enum BookStatus {
 
 export enum NovelStatus {
   All = -1,
-  Serial = 0,
-  Finished = 1
+  Serial = 1,
+  Finished = 0
 }
 
 export interface NovelIndexResponseData {

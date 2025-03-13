@@ -5,8 +5,8 @@ export enum CommicCategory {
 
 export enum CommicStatus {
   All = -1,
-  Serial = 0,
-  Finished = 1
+  Serial = 1,
+  Finished = 0
 }
 
 export interface CommicIndexResponseData {

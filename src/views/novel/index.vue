@@ -48,11 +48,11 @@
                 <span><img src="../../assets/imgs/novel/s_fenlei.svg" /></span>
                 <small>分类</small>
               </a>
-              <a @click="router.push({ name: 'novelCategory', query: { sortType: 0 } })">
+              <a @click="router.push({ name: 'novelCategory', query: { sortType: 1 } })">
                 <span><img src="../../assets/imgs/novel/s_lianzai.svg" /></span>
                 <small>连载</small>
               </a>
-              <a @click="router.push({ name: 'novelCategory', query: { sortType: 1 } })">
+              <a @click="router.push({ name: 'novelCategory', query: { sortType: 0 } })">
                 <span><img src="../../assets/imgs/novel/s_wanjie.svg" /></span>
                 <small>完结</small>
               </a>

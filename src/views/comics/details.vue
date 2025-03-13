@@ -3,7 +3,7 @@
     <section class="novel-main" :class="{ 'nmh-fixed': isHeaderFixed }">
       <header class="d-header">
         <div class="d-l">
-          <a @click="router.go(-1)"><i class="mvfont mv-left" /></a>
+          <a @click="router.push({ name: 'commic' })"><i class="mvfont mv-left" /></a>
         </div>
         <div class="d-m" />
         <div class="d-r">

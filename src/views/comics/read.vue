@@ -534,11 +534,11 @@
         }
       } catch (error) {
         console.error('Image decryption failed:', error)
-        showToast({
-          message: '图片解密失败',
-          type: 'fail',
-          position: 'top'
-        })
+        // showToast({
+        //   message: '图片解密失败',
+        //   type: 'fail',
+        //   position: 'top'
+        // })
         imageUrl = '/src/assets/imgs/default2.gif'
       }
     }
