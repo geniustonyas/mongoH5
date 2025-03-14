@@ -171,6 +171,7 @@
   const files = ref([])
   const imageFiles = ref([])
   const userStore = useUserStoreHook()
+  const uniqueId = ref(uuidv4())
 
   // 帖子表单数据
   const postForm = ref({
@@ -226,10 +227,9 @@
   function generateUploadPath(file) {
     const now = new Date()
     const dateStr = now.getFullYear().toString() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0')
-    const uniqueId = uuidv4()
     const fileType = file.type.startsWith('image/') ? 'image' : 'video'
     const userName = userStore.userInfo.userName || 'anonymous'
-    return `uploads/${dateStr}/${userName}/${uniqueId}/${fileType}/${file.name}`
+    return `uploads/${dateStr}/${userName}/${uniqueId.value}/${fileType}/${file.name}`
   }
 
   const FILE_STATUS = {
@@ -668,6 +668,7 @@
         showToast('发布成功')
         // 关闭弹窗并清空表单
         closePopup()
+        uniqueId.value = uuidv4()
       } else {
         showToast(data.message || '发布失败')
       }
@@ -702,5 +703,6 @@
   // 在组件挂载时获取分类列表
   onMounted(() => {
     fetchCategories()
+    uniqueId.value = uuidv4()
   })
 </script>
