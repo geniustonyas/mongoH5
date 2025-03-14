@@ -93,6 +93,7 @@ export interface CommicBookInfo {
   id: string
   title: string
   coverUrl: string
+  coverurl: string
   author: string
   readCount: string
   favoriteCount: string

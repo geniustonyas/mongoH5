@@ -99,6 +99,7 @@ export interface NovelChapter {
 export interface NovelBookInfo {
   id: string
   title: string
+  coverurl: string
   coverUrl: string
   author: string
   readCount: string

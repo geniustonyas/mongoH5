@@ -29,7 +29,7 @@
             <ul>
               <li v-for="item in books" :key="item.id" @click="handleBookClick(item)">
                 <div class="l-a">
-                  <img :src="item.coverUrl" :alt="item.title" />
+                  <img :src="item.coverurl" :alt="item.title" />
                   <span class="a-a">{{ item.categoryName }}</span>
                   <span class="a-b">{{ formatCount(item.readCount) }}&nbsp;阅读</span>
                 </div>
@@ -99,28 +99,28 @@
   }
 
   async function decryptBookImage(book: CommicBookInfo) {
-    if (book.coverUrl === '') {
-      book.coverUrl = '/src/assets/imgs/default2.gif'
+    if (book.coverurl === '') {
+      book.coverurl = '/src/assets/imgs/default2.gif'
       return
     }
 
     try {
-      const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl)
+      const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverurl)
 
       // 验证解密后的数据是否为有效的图片
       const isValidImage = await validateImage(decryptedBlob)
       if (!isValidImage) {
-        console.warn('Invalid image data:', book.coverUrl)
-        book.coverUrl = '/src/assets/imgs/default2.gif'
+        console.warn('Invalid image data:', book.coverurl)
+        book.coverurl = '/src/assets/imgs/default2.gif'
         return
       }
 
       const objectUrl = URL.createObjectURL(decryptedBlob)
       createdUrls.value.push(objectUrl)
-      book.coverUrl = objectUrl
+      book.coverurl = objectUrl
     } catch (error) {
       console.error('Image decryption failed:', error)
-      book.coverUrl = '/src/assets/imgs/default2.gif'
+      book.coverurl = '/src/assets/imgs/default2.gif'
     }
   }
 

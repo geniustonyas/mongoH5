@@ -36,8 +36,8 @@
     </div>
     <div v-else class="chapter-content" @scroll="handleScroll">
       <div class="content-wrapper novel-read" ref="contentRef">
-        <pre class="nr-contnt">{{ formattedContent }}</pre>
-        <div class="chapter-navigation">
+        <pre class="nr-contnt" @click="toggleControls">{{ formattedContent }}</pre>
+        <div class="chapter-navigation" :class="{ 'show-nav': showControls }">
           <div class="nav-left">
             <template v-if="isFirstChapter || isSingleChapter">
               <span class="nav-text">已是第一章</span>
@@ -80,6 +80,7 @@
   const showSettings = ref(false)
   const fontSize = ref(18)
   const lineHeight = ref(2.6)
+  const showControls = ref(false)
 
   const currentChapterId = ref(route.query.chapterId || '0')
   const chaptersKey = ref(route.query.chaptersKey as string)
@@ -258,6 +259,12 @@
     })
   }
 
+  // 控制显示/隐藏工具栏
+  const toggleControls = () => {
+    showControls.value = !showControls.value
+    isHeaderFixed.value = showControls.value
+  }
+
   // 在组件卸载时清理localStorage
   onBeforeUnmount(() => {
     if (chaptersKey.value) {
@@ -326,13 +333,26 @@
   }
 
   .chapter-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: 100%;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    background: #1a1a1a;
+    background: var(--color-bg);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+
+    &.show-nav {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
 
     .nav-left,
     .nav-right {
@@ -349,13 +369,13 @@
     .nav-btn {
       color: #e0e0e0;
       font-size: 1.2rem;
-      padding: 0 0.6rem;
+      padding: 0.4rem 0.8rem;
       border-radius: 4px;
       background: #333;
       cursor: pointer;
 
-      &:hover {
-        background: #444;
+      &:active {
+        opacity: 0.8;
       }
     }
   }
