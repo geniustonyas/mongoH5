@@ -155,6 +155,7 @@
   import { Swiper, SwiperSlide } from 'swiper/vue'
   // Import Swiper styles
   import 'swiper/css'
+import dayjs from 'dayjs'
 
   const router = useRouter()
   const route = useRoute()
@@ -207,7 +208,7 @@
   const formatDate = (dateStr: string | undefined) => {
     if (!dateStr) return '-'
     // 可以根据需要进一步格式化日期
-    return dateStr
+    return dayjs(dateStr).format('YYYY-MM-DD')
   }
 
   async function decryptBookImage(book: CommicBookInfo) {

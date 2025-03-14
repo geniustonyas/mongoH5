@@ -348,7 +348,7 @@
   const handleRecommendMoreClick = () => {
     router.push({
       name: 'novelCategory',
-      query: { sortType: 'FavoriteCount' }
+      query: { sortType: 'ReadingCount' }
     })
   }
 </script>
