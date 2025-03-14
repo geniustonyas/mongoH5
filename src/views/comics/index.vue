@@ -121,8 +121,8 @@
 <script setup lang="ts">
   import HomeLayout from '@/components/layout/HomeLayout.vue'
   import { nextTick, onMounted, onUnmounted, reactive, ref } from 'vue'
-  import { CommicBookCategoryItem, CommicIndexListItem, CommicStatus } from '@/types/commic'
-  import { getCommicIndexList } from '@/api/commic'
+  import { CommicBookCategoryItem, CommicIndexListItem, CommicStatus, CommicListRequest, CommicListItem } from '@/types/commic'
+  import { getCommicIndexList, getCommiclAllLikeList } from '@/api/commic'
   import { useAppStore } from '@/store/app'
   import decryptionService from '@/utils/decryptionService'
   import { formatCount, preloadImages } from '@/utils'
@@ -141,7 +141,7 @@
   const decrypt = new decryptionService()
   const hotCommics = reactive<CommicIndexListItem[]>([])
   const newCommics = reactive<CommicIndexListItem[]>([])
-  const recommendCommics = reactive<CommicIndexListItem[]>([])
+  const recommendCommics = reactive<CommicListItem[]>([])
   const serialCommics = reactive<CommicIndexListItem[]>([])
   const endCommics = reactive<CommicIndexListItem[]>([])
   const newHotCommics = reactive<CommicIndexListItem[]>([])
@@ -150,7 +150,7 @@
 
   const commicCategoryStore = useCommicCategoryStore()
 
-  async function decryptBookImage(book: CommicIndexListItem) {
+  async function decryptBookImage(book: CommicIndexListItem | CommicListItem) {
     if (book.coverUrl === '') {
       book.coverUrl = '/src/assets/imgs/default2.gif'
       return book
@@ -208,7 +208,7 @@
   async function decryptImage(
     hots: CommicIndexListItem[],
     news: CommicIndexListItem[],
-    recommends: CommicIndexListItem[],
+    recommends: CommicListItem[],
     serial: CommicIndexListItem[],
     ends: CommicIndexListItem[],
     newhots: CommicIndexListItem[]
@@ -261,16 +261,18 @@
   function formatBookStatus(
     hots: CommicIndexListItem[],
     news: CommicIndexListItem[],
-    recommends: CommicIndexListItem[],
+    recommends: CommicListItem[],
     serial: CommicIndexListItem[],
     ends: CommicIndexListItem[],
     newhots: CommicIndexListItem[]
   ) {
-    const formatBooks = (commics: CommicIndexListItem[]) => {
+    const formatBooks = (commics: (CommicIndexListItem | CommicListItem)[]) => {
       commics.forEach(item => {
         item.statusText = formatBookStatusText(item.status)
-        const categoryName = commicCategoryStore.getCategoryNameById(item.categoryId.toString())
-        item.categoryName = categoryName.toString()
+        if ('categoryId' in item) {
+          const categoryName = commicCategoryStore.getCategoryNameById(item.categoryId.toString())
+          item.categoryName = categoryName.toString()
+        }
       })
     }
 
@@ -282,6 +284,34 @@
     formatBooks(newhots)
   }
 
+  const fetchRecommendCommics = async () => {
+    try {
+      const params: CommicListRequest = {
+        PageIndex: 1,
+        PageSize: 10
+      }
+      const {
+        data: { data }
+      } = await getCommiclAllLikeList(params)
+      if (data?.items) {
+        const commics = data.items
+        commics.forEach(comic => {
+          comic.statusText = formatBookStatusText(comic.status)
+        })
+        await Promise.all(
+          commics.map(async comic => {
+            await decryptBookImage(comic)
+          })
+        )
+        nextTick(() => {
+          recommendCommics.splice(0, recommendCommics.length, ...commics)
+        })
+      }
+    } catch (error) {
+      console.error('Failed to fetch recommend comics:', error)
+    }
+  }
+
   const fetchBooksOfIndexPage = async () => {
     try {
       loading.value = true
@@ -290,14 +320,14 @@
         data: { data }
       } = await getCommicIndexList()
       if (data) {
-        const { hots, news, recommends, serial, end, newhots, categories } = data
+        const { hots, news, serial, end, newhots, categories } = data
         commicCategories.push({ id: 0, name: '推荐' }, ...categories)
-        formatBookStatus(hots, news, recommends, serial, end, newhots)
-        await decryptImage(hots, news, recommends, serial, end, newhots)
+        formatBookStatus(hots, news, [], serial, end, newhots)
+        await decryptImage(hots, news, [], serial, end, newhots)
+        await fetchRecommendCommics() // 单独获取推荐漫画
         nextTick(() => {
           hotCommics.push(...hots)
           newCommics.push(...news)
-          recommendCommics.push(...recommends)
           serialCommics.push(...serial)
           endCommics.push(...end)
           newHotCommics.push(...newhots)
@@ -320,7 +350,7 @@
     }
   })
 
-  const handleBookClick = (item: CommicIndexListItem) => {
+  const handleBookClick = (item: CommicIndexListItem | CommicListItem) => {
     router.push({ name: 'comicIntro', query: { nid: item.id, status: item.statusText } })
   }
 
@@ -347,7 +377,7 @@
   const handleRecommendMoreClick = () => {
     router.push({
       name: 'comicCategory',
-      query: { sortType: 'ReadingCount' }
+      query: { sortType: 'AllLike' }
     })
   }
 </script>

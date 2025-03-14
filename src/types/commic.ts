@@ -41,6 +41,7 @@ export interface CommicListItem {
   favoriteCount: string
   averageRating: number
   categoryName: string
+  statusText?: string
 }
 
 export interface CommicBookCategoriesRequest {

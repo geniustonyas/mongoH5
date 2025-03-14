@@ -39,6 +39,18 @@ export function getNovelList(params: NovelListRequest) {
   })
 }
 
+// 获取小说或者漫画大家最喜欢分页列表
+export function getNovelAllLikeList(params: NovelListRequest) {
+  return request<ApiResponseData<NovelListResponse>>({
+    url: 'Web/AllLikes',
+    method: 'post',
+    data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
 // 小说/漫画类型列表
 export function getNovelCategory(params: NovelBookCategoriesRequest) {
   return request<ApiResponseData<NovelBookCategoryItem[]>>({

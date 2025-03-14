@@ -63,6 +63,18 @@ export function getCommicDetail(bookId: number | string) {
   })
 }
 
+// 获取小说或者漫画大家最喜欢分页列表
+export function getCommiclAllLikeList(params: CommicListRequest) {
+  return request<ApiResponseData<CommicListResponse>>({
+    url: 'Web/ComicsAllLikes',
+    method: 'post',
+    data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
 // 获取推荐漫画列表
 export function getRecommendCommicList(params: CommicRecommendParams) {
   return request<ApiResponseData<CommicRecommendResponse>>({
