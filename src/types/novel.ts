@@ -48,6 +48,7 @@ export interface NovelListItem {
   favoriteCount: string
   averageRating: number
   categoryName: string
+  statusText?: string
 }
 
 export interface NovelBookCategoriesRequest {

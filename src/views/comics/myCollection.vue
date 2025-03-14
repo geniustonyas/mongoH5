@@ -182,7 +182,7 @@
 
       if (data) {
         // 更新分页状态
-        hasMoreData.value = currentPage.value < parseInt(data.pageCount)
+        hasMoreData.value = currentPage.value < parseInt(data.pageCount as string)
 
         // 处理图片解密
         for (const book of data.items) {

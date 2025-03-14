@@ -9,53 +9,60 @@
       </div>
       <div class="d-r" />
     </header>
-    <div v-if="loading" class="loading-container">
-      <Loading />
-    </div>
-    <div v-else-if="error" class="error-container">
-      <van-empty image="error" :description="error" />
-    </div>
-    <template v-else>
-      <div class="au-main novel-main">
-        <div class="mv-t-c">
-          <div class="mc-b">
-            <div class="tabs-wrapper">
-              <div ref="tabsRef" class="b-tabs" :class="{ 'is-fixed': isTabFixed }">
-                <span
-                  v-for="tab in rankTabs"
-                  :key="tab.value"
-                  :class="{ active: activeRankingList === tab.value }"
-                  @click="handleTabClick(tab.index, tab.value)"
-                >
-                  {{ tab.label }}
-                </span>
+    <div class="au-main novel-main">
+      <div class="mv-t-c">
+        <div class="mc-b">
+          <div class="tabs-wrapper">
+            <div ref="tabsRef" class="b-tabs" :class="{ 'is-fixed': isTabFixed }">
+              <span
+                v-for="tab in rankTabs"
+                :key="tab.value"
+                :class="{ active: activeRankingList === tab.value }"
+                @click="handleTabClick(tab.index, tab.value)"
+              >
+                {{ tab.label }}
+              </span>
+            </div>
+          </div>
+          <van-pull-refresh v-model="isRefreshing" @refresh="onRefresh" :disabled="isPc">
+            <div class="content-wrapper">
+              <div v-if="loading && !isLoadingMore" class="loading-container">
+                <Loading />
+              </div>
+              <div v-else-if="error" class="error-container">
+                <van-empty image="error" :description="error" />
+              </div>
+              <swiper
+                v-else-if="!isDataEmpty"
+                :slides-per-view="1"
+                :initial-slide="rankTabs.findIndex(tab => tab.value === activeRankingList)"
+                :auto-height="true"
+                :loop="false"
+                @slide-change="handleSwipeChange"
+                @swiper="getSwiperClass"
+                :allow-touch-move="!isPc"
+              >
+                <swiper-slide>
+                  <Rank v-show="activeRankingList === 'Hots'" :data="hotBooks" :is-row="isRowLayout" />
+                </swiper-slide>
+                <swiper-slide>
+                  <Rank v-show="activeRankingList === 'Series'" :data="serialBooks" :is-row="isRowLayout" />
+                </swiper-slide>
+                <swiper-slide>
+                  <Rank v-show="activeRankingList === 'End'" :data="endBooks" :is-row="isRowLayout" />
+                </swiper-slide>
+                <swiper-slide>
+                  <Rank v-show="activeRankingList === 'NewHots'" :data="newHotBooks" :is-row="isRowLayout" />
+                </swiper-slide>
+              </swiper>
+              <div v-else class="empty-container">
+                <van-empty description="暂无数据" />
               </div>
             </div>
-            <swiper
-              :slides-per-view="1"
-              :auto-height="true"
-              :loop="false"
-              @slide-change="handleSwipeChange"
-              @swiper="getSwiperClass"
-              :allow-touch-move="!isPc"
-            >
-              <swiper-slide :virtual-index="1">
-                <Rank v-if="activeRankingList === 'Hots'" :data="hotBooks" :is-row="isRowLayout" />
-              </swiper-slide>
-              <swiper-slide :virtual-index="2">
-                <Rank v-if="activeRankingList === 'Series'" :data="serialBooks" :is-row="isRowLayout" />
-              </swiper-slide>
-              <swiper-slide :virtual-index="3">
-                <Rank v-if="activeRankingList === 'End'" :data="endBooks" :is-row="isRowLayout" />
-              </swiper-slide>
-              <swiper-slide :virtual-index="4">
-                <Rank v-if="activeRankingList === 'NewHots'" :data="newHotBooks" :is-row="isRowLayout" />
-              </swiper-slide>
-            </swiper>
-          </div>
+          </van-pull-refresh>
         </div>
       </div>
-    </template>
+    </div>
   </div>
 </template>
 
@@ -66,10 +73,11 @@
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import type { Swiper as SwiperClass } from 'swiper/types'
   import Rank from './components/Rank.vue'
-  import { NovelIndexListItem, NovelStatus } from '@/types/novel'
-  import { getNovelIndexList } from '@/api/novel'
+  import { NovelListItem, BookStatus, NovelListRequest, NovelStatus } from '@/types/novel'
+  import { getNovelList } from '@/api/novel'
   import { useAppStore } from '@/store/app'
   import decryptionService from '@/utils/decryptionService'
+  import { showToast } from 'vant'
   import 'swiper/css'
 
   const router = useRouter()
@@ -84,25 +92,184 @@
   const activeRankingList = ref('Hots')
   const swiperInstance = ref<SwiperClass>()
 
-  const hotBooks = ref<NovelIndexListItem[]>([])
-  const serialBooks = ref<NovelIndexListItem[]>([])
-  const endBooks = ref<NovelIndexListItem[]>([])
-  const newHotBooks = ref<NovelIndexListItem[]>([])
+  const hotBooks = ref<NovelListItem[]>([])
+  const serialBooks = ref<NovelListItem[]>([])
+  const endBooks = ref<NovelListItem[]>([])
+  const newHotBooks = ref<NovelListItem[]>([])
 
   const rankTabs = [
-    { label: '畅销榜', value: 'Hots', index: 0 },
-    { label: '连载榜', value: 'Series', index: 1 },
-    { label: '完结榜', value: 'End', index: 2 },
-    { label: '新书榜', value: 'NewHots', index: 3 }
+    { label: '畅销榜', value: 'Hots', index: 0, sortType: 0 },
+    { label: '连载榜', value: 'Series', index: 1, sortType: 1 },
+    { label: '完结榜', value: 'End', index: 2, sortType: 2 },
+    { label: '新书榜', value: 'NewHots', index: 3, sortType: 3 }
   ]
 
   const isTabFixed = ref(false)
   const tabsRef = ref<HTMLElement | null>(null)
   const tabsOffsetTop = ref(0)
 
-  const handleTabClick = (index: number, name: string) => {
-    swiperInstance.value?.slideTo(index)
+  const isLoadingMore = ref(false)
+  const hasMore = ref(true)
+  const currentPage = ref(1)
+  const PAGE_SIZE = 10
+  const isRefreshing = ref(false)
+
+  const isDataEmpty = computed(() => {
+    if (loading.value || isLoadingMore.value || error.value) return false
+
+    switch (activeRankingList.value) {
+      case 'Hots':
+        return hotBooks.value.length === 0
+      case 'Series':
+        return serialBooks.value.length === 0
+      case 'End':
+        return endBooks.value.length === 0
+      case 'NewHots':
+        return newHotBooks.value.length === 0
+      default:
+        return true
+    }
+  })
+
+  function formatBookStatusText(status: NovelStatus): string {
+    switch (status) {
+      case NovelStatus.Serial:
+        return '连载中'
+      case NovelStatus.Finished:
+        return '完结'
+      default:
+        return ''
+    }
+  }
+
+  const getQueryParams = () => {
+    const activeTab = rankTabs.find(tab => tab.value === activeRankingList.value)
+    if (!activeTab) return null
+
+    const params: NovelListRequest = {
+      PageIndex: currentPage.value,
+      PageSize: PAGE_SIZE,
+      ReadingCount: 1,
+      BookStatus: BookStatus.All
+    }
+
+    switch (activeTab.value) {
+      case 'Series':
+        params.BookStatus = BookStatus.Serial
+        break
+      case 'End':
+        params.BookStatus = BookStatus.Finished
+        break
+      case 'NewHots':
+        params.CreateTime = 1
+        break
+      default:
+        params.BookStatus = BookStatus.All
+    }
+
+    return params
+  }
+
+  const onRefresh = async () => {
+    try {
+      currentPage.value = 1
+      await fetchRankList()
+    } finally {
+      isRefreshing.value = false
+    }
+  }
+
+  const fetchRankList = async (isLoadMore = false) => {
+    try {
+      if (isLoadMore) {
+        isLoadingMore.value = true
+        currentPage.value++
+      } else if (!isRefreshing.value) {
+        loading.value = true
+        currentPage.value = 1
+        cleanupUrls()
+
+        switch (activeRankingList.value) {
+          case 'Hots':
+            hotBooks.value = []
+            break
+          case 'Series':
+            serialBooks.value = []
+            break
+          case 'End':
+            endBooks.value = []
+            break
+          case 'NewHots':
+            newHotBooks.value = []
+            break
+        }
+      }
+
+      const params = getQueryParams()
+      if (!params) {
+        error.value = '获取查询参数失败'
+        return
+      }
+
+      error.value = null
+      const response = await getNovelList(params)
+      const { items } = response.data.data
+
+      if (!items) {
+        throw new Error('Invalid response data')
+      }
+
+      // 处理数据
+      const processedData = await Promise.all(
+        items.map(async book => {
+          book.statusText = formatBookStatusText(book.status)
+          return await decryptBookImage(book)
+        })
+      )
+
+      // 更新对应列表数据
+      switch (activeRankingList.value) {
+        case 'Hots':
+          hotBooks.value = isLoadMore ? [...hotBooks.value, ...processedData] : processedData
+          break
+        case 'Series':
+          serialBooks.value = isLoadMore ? [...serialBooks.value, ...processedData] : processedData
+          break
+        case 'End':
+          endBooks.value = isLoadMore ? [...endBooks.value, ...processedData] : processedData
+          break
+        case 'NewHots':
+          newHotBooks.value = isLoadMore ? [...newHotBooks.value, ...processedData] : processedData
+          break
+      }
+
+      // 更新分页状态
+      hasMore.value = items.length === PAGE_SIZE
+    } catch (err) {
+      error.value = '获取排行榜数据失败'
+      console.error('获取排行榜数据失败:', err)
+      showToast({
+        message: '获取数据失败，请重试',
+        type: 'fail'
+      })
+    } finally {
+      loading.value = false
+      isLoadingMore.value = false
+    }
+  }
+
+  const handleTabClick = async (index: number, name: string) => {
+    if (activeRankingList.value === name) return
+
     activeRankingList.value = name
+    if (swiperInstance.value) {
+      try {
+        await swiperInstance.value.slideTo(index)
+      } catch (err) {
+        console.error('Swiper slide failed:', err)
+      }
+    }
+    fetchRankList()
   }
 
   const getSwiperClass = (swiper: SwiperClass) => {
@@ -112,23 +279,15 @@
   const handleSwipeChange = () => {
     if (!swiperInstance.value) return
 
-    switch (swiperInstance.value.activeIndex) {
-      case 0:
-        activeRankingList.value = 'Hots'
-        break
-      case 1:
-        activeRankingList.value = 'Series'
-        break
-      case 2:
-        activeRankingList.value = 'End'
-        break
-      case 3:
-        activeRankingList.value = 'NewHots'
-        break
+    const newIndex = swiperInstance.value.activeIndex
+    const newTab = rankTabs[newIndex]
+    if (newTab && activeRankingList.value !== newTab.value) {
+      activeRankingList.value = newTab.value
+      fetchRankList()
     }
   }
 
-  async function decryptBookImage(book: NovelIndexListItem) {
+  async function decryptBookImage(book: NovelListItem) {
     if (book.coverUrl === '') {
       book.coverUrl = '/src/assets/imgs/default2.gif'
       return book
@@ -137,7 +296,6 @@
     try {
       const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl)
 
-      // 验证解密后的数据是否为有效的图片
       const isValidImage = await validateImage(decryptedBlob)
       if (!isValidImage) {
         console.warn('Invalid image data:', book.coverUrl)
@@ -156,10 +314,8 @@
     }
   }
 
-  // 验证图片数据是否有效
   function validateImage(blob: Blob): Promise<boolean> {
     return new Promise(resolve => {
-      // 如果blob大小为0或不是图片类型，直接返回false
       if (blob.size === 0 || !blob.type.startsWith('image/')) {
         resolve(false)
         return
@@ -170,7 +326,6 @@
 
       img.onload = () => {
         URL.revokeObjectURL(url)
-        // 验证图片尺寸是否合理（例如：至少1x1像素）
         resolve(img.width > 0 && img.height > 0)
       }
 
@@ -190,78 +345,22 @@
     createdUrls.value = []
   }
 
-  function formatBookStatusText(status: NovelStatus): string {
-    switch (status) {
-      case NovelStatus.Serial:
-        return '连载中'
-      case NovelStatus.Finished:
-        return '完结'
-      default:
-        return ''
-    }
-  }
-
-  function formatBookStatus(
-    hots: NovelIndexListItem[],
-    news: NovelIndexListItem[],
-    serial: NovelIndexListItem[],
-    ends: NovelIndexListItem[],
-    newhots: NovelIndexListItem[]
-  ) {
-    const formatBooks = (books: NovelIndexListItem[]) => {
-      books.forEach(item => {
-        item.statusText = formatBookStatusText(item.status)
-      })
-    }
-
-    formatBooks(hots)
-    formatBooks(news)
-    formatBooks(serial)
-    formatBooks(ends)
-    formatBooks(newhots)
-  }
-
-  const fetchRankList = async () => {
-    try {
-      loading.value = true
-      error.value = null
-      cleanupUrls()
-
-      // 获取首页数据，包含所有榜单
-      const response = await getNovelIndexList()
-      const { data } = response.data
-
-      // 格式化书籍状态
-      formatBookStatus(data.hots, data.news, data.serial, data.end, data.newhots)
-
-      // 处理畅销榜数据
-      hotBooks.value = await Promise.all(data.hots.map(decryptBookImage))
-
-      // 处理连载榜数据
-      serialBooks.value = await Promise.all(data.serial.map(decryptBookImage))
-
-      // 处理完结榜数据
-      endBooks.value = await Promise.all(data.end.map(decryptBookImage))
-
-      // 处理新书榜数据
-      newHotBooks.value = await Promise.all(data.newhots.map(decryptBookImage))
-    } catch (err) {
-      error.value = '获取排行榜数据失败'
-      console.error('获取排行榜数据失败:', err)
-    } finally {
-      loading.value = false
-    }
-  }
-
-  // 监听滚动
   const handleScroll = () => {
     if (!tabsRef.value) return
 
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop
     isTabFixed.value = scrollTop >= tabsOffsetTop.value
+
+    if (!loading.value && !isLoadingMore.value && hasMore.value) {
+      const scrollHeight = document.documentElement.scrollHeight
+      const clientHeight = document.documentElement.clientHeight
+
+      if (scrollTop + clientHeight >= scrollHeight - 100) {
+        fetchRankList(true)
+      }
+    }
   }
 
-  // 获取tab的初始位置
   const initTabPosition = () => {
     if (!tabsRef.value) return
     tabsOffsetTop.value = tabsRef.value.offsetTop
@@ -274,20 +373,27 @@
   })
 
   onUnmounted(() => {
-    cleanupUrls()
     window.removeEventListener('scroll', handleScroll)
+    cleanupUrls()
   })
 </script>
 
 <style scoped lang="less">
   .loading-container,
-  .error-container {
+  .error-container,
+  .empty-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 200px;
+    min-height: 12rem;
     gap: 16px;
+    margin: 16px 0;
+  }
+
+  .content-wrapper {
+    position: relative;
+    padding-top: 8px;
   }
 
   .b-tabs {

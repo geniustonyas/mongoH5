@@ -7,7 +7,7 @@
       <li v-for="(rankItem, index) in data" :key="rankItem.id" @click="handleBookClick(rankItem)">
         <div v-if="isRow" class="l-l">
           <img :src="rankItem.coverUrl" :alt="rankItem.title" />
-          <span>{{ index + 1 }}</span>
+          <span v-if="index < 10">{{ index + 1 }}</span>
         </div>
         <div v-if="isRow" class="l-r">
           <b>{{ rankItem.title }}</b>
@@ -16,7 +16,7 @@
         </div>
         <div v-if="!isRow" class="l-l">
           <img :src="rankItem.coverUrl" :alt="rankItem.title" />
-          <span>{{ index + 1 }}</span>
+          <span v-if="index < 10">{{ index + 1 }}</span>
         </div>
         <div v-if="!isRow" class="l-r">
           <b>{{ rankItem.title }}</b>
@@ -28,18 +28,18 @@
 </template>
 
 <script setup lang="ts">
-  import { NovelIndexListItem } from '@/types/novel'
+  import { NovelListItem } from '@/types/novel'
   import { useRouter } from 'vue-router'
   import { formatCount } from '@/utils'
 
   const router = useRouter()
 
   defineProps<{
-    data: NovelIndexListItem[]
+    data: NovelListItem[]
     isRow?: boolean
   }>()
 
-  const handleBookClick = (item: NovelIndexListItem) => {
+  const handleBookClick = (item: NovelListItem) => {
     router.push({
       name: 'novelIntro',
       query: { nid: item.id, status: item.statusText }

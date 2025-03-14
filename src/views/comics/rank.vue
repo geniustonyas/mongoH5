@@ -9,53 +9,60 @@
       </div>
       <div class="d-r" />
     </header>
-    <div v-if="loading" class="loading-container">
-      <Loading />
-    </div>
-    <div v-else-if="error" class="error-container">
-      <van-empty image="error" :description="error" />
-    </div>
-    <template v-else>
-      <div class="au-main novel-main">
-        <div class="mv-t-c">
-          <div class="mc-b">
-            <div class="tabs-wrapper">
-              <div ref="tabsRef" class="b-tabs" :class="{ 'is-fixed': isTabFixed }">
-                <span
-                  v-for="tab in rankTabs"
-                  :key="tab.value"
-                  :class="{ active: activeRankingList === tab.value }"
-                  @click="handleTabClick(tab.index, tab.value)"
-                >
-                  {{ tab.label }}
-                </span>
+    <div class="au-main novel-main">
+      <div class="mv-t-c">
+        <div class="mc-b">
+          <div class="tabs-wrapper">
+            <div ref="tabsRef" class="b-tabs" :class="{ 'is-fixed': isTabFixed }">
+              <span
+                v-for="tab in rankTabs"
+                :key="tab.value"
+                :class="{ active: activeRankingList === tab.value }"
+                @click="handleTabClick(tab.index, tab.value)"
+              >
+                {{ tab.label }}
+              </span>
+            </div>
+          </div>
+          <van-pull-refresh v-model="isRefreshing" @refresh="onRefresh" :disabled="isPc">
+            <div class="content-wrapper">
+              <div v-if="loading && !isLoadingMore" class="loading-container">
+                <Loading />
+              </div>
+              <div v-else-if="error" class="error-container">
+                <van-empty image="error" :description="error" />
+              </div>
+              <swiper
+                v-else-if="!isDataEmpty"
+                :slides-per-view="1"
+                :initial-slide="rankTabs.findIndex(tab => tab.value === activeRankingList)"
+                :auto-height="true"
+                :loop="false"
+                @slide-change="handleSwipeChange"
+                @swiper="getSwiperClass"
+                :allow-touch-move="!isPc"
+              >
+                <swiper-slide>
+                  <Rank v-show="activeRankingList === 'Hots'" :data="hotBooks" :is-row="isRowLayout" />
+                </swiper-slide>
+                <swiper-slide>
+                  <Rank v-show="activeRankingList === 'Series'" :data="serialBooks" :is-row="isRowLayout" />
+                </swiper-slide>
+                <swiper-slide>
+                  <Rank v-show="activeRankingList === 'End'" :data="endBooks" :is-row="isRowLayout" />
+                </swiper-slide>
+                <swiper-slide>
+                  <Rank v-show="activeRankingList === 'NewHots'" :data="newHotBooks" :is-row="isRowLayout" />
+                </swiper-slide>
+              </swiper>
+              <div v-else class="empty-container">
+                <van-empty description="暂无数据" />
               </div>
             </div>
-            <swiper
-              :slides-per-view="1"
-              :auto-height="true"
-              :loop="false"
-              @slide-change="handleSwipeChange"
-              @swiper="getSwiperClass"
-              :allow-touch-move="!isPc"
-            >
-              <swiper-slide :virtual-index="1">
-                <Rank v-if="activeRankingList === 'Hots'" :data="hotBooks" :is-row="isRowLayout" />
-              </swiper-slide>
-              <swiper-slide :virtual-index="2">
-                <Rank v-if="activeRankingList === 'Series'" :data="serialBooks" :is-row="isRowLayout" />
-              </swiper-slide>
-              <swiper-slide :virtual-index="3">
-                <Rank v-if="activeRankingList === 'End'" :data="endBooks" :is-row="isRowLayout" />
-              </swiper-slide>
-              <swiper-slide :virtual-index="4">
-                <Rank v-if="activeRankingList === 'NewHots'" :data="newHotBooks" :is-row="isRowLayout" />
-              </swiper-slide>
-            </swiper>
-          </div>
+          </van-pull-refresh>
         </div>
       </div>
-    </template>
+    </div>
   </div>
 </template>
 
@@ -68,9 +75,9 @@
   import Rank from './components/Rank.vue'
   import { useAppStore } from '@/store/app'
   import decryptionService from '@/utils/decryptionService'
-  import { CommicIndexListItem, CommicStatus } from '@/types/commic'
-  import { getCommicIndexList } from '@/api/commic'
-  import { useCommicCategoryStore } from '@/store/commicCategory'
+  import { CommicBookInfo, CommicStatus } from '@/types/commic'
+  import { getRecommendCommicList } from '@/api/commic'
+  import { showToast } from 'vant'
 
   import 'swiper/css'
 
@@ -80,82 +87,78 @@
   const appStore = useAppStore()
   const decrypt = new decryptionService()
   const createdUrls = ref<string[]>([])
-  const commicCategoryStore = useCommicCategoryStore()
 
   const isPc = computed(() => appStore.isPc)
   const isRowLayout = ref(true)
   const activeRankingList = ref('Hots')
   const swiperInstance = ref<SwiperClass>()
 
-  const hotBooks = ref<CommicIndexListItem[]>([])
-  const serialBooks = ref<CommicIndexListItem[]>([])
-  const endBooks = ref<CommicIndexListItem[]>([])
-  const newHotBooks = ref<CommicIndexListItem[]>([])
+  const hotBooks = ref<CommicBookInfo[]>([])
+  const serialBooks = ref<CommicBookInfo[]>([])
+  const endBooks = ref<CommicBookInfo[]>([])
+  const newHotBooks = ref<CommicBookInfo[]>([])
 
   const rankTabs = [
-    { label: '畅销榜', value: 'Hots', index: 0 },
-    { label: '连载榜', value: 'Series', index: 1 },
-    { label: '完结榜', value: 'End', index: 2 },
-    { label: '新漫榜', value: 'NewHots', index: 3 }
+    { label: '畅销榜', value: 'Hots', index: 0, sortType: 0 },
+    { label: '连载榜', value: 'Series', index: 1, sortType: 1 },
+    { label: '完结榜', value: 'End', index: 2, sortType: 2 },
+    { label: '新漫榜', value: 'NewHots', index: 3, sortType: 3 }
   ]
 
   const isTabFixed = ref(false)
   const tabsRef = ref<HTMLElement | null>(null)
   const tabsOffsetTop = ref(0)
 
-  const handleTabClick = (index: number, name: string) => {
-    swiperInstance.value?.slideTo(index)
-    activeRankingList.value = name
-  }
+  const isLoadingMore = ref(false)
+  const hasMore = ref(true)
+  const currentPage = ref(1)
+  const PAGE_SIZE = 10
 
-  const getSwiperClass = (swiper: SwiperClass) => {
-    swiperInstance.value = swiper
-  }
+  const isRefreshing = ref(false)
 
-  const handleSwipeChange = () => {
-    if (!swiperInstance.value) return
+  const isDataEmpty = computed(() => {
+    if (loading.value || isLoadingMore.value || error.value) return false
 
-    switch (swiperInstance.value.activeIndex) {
-      case 0:
-        activeRankingList.value = 'Hots'
-        break
-      case 1:
-        activeRankingList.value = 'Series'
-        break
-      case 2:
-        activeRankingList.value = 'End'
-        break
-      case 3:
-        activeRankingList.value = 'NewHots'
-        break
+    switch (activeRankingList.value) {
+      case 'Hots':
+        return hotBooks.value.length === 0
+      case 'Series':
+        return serialBooks.value.length === 0
+      case 'End':
+        return endBooks.value.length === 0
+      case 'NewHots':
+        return newHotBooks.value.length === 0
+      default:
+        return true
     }
-  }
+  })
 
-  async function decryptCommicImage(commic: CommicIndexListItem) {
-    if (commic.coverUrl === '') {
-      commic.coverUrl = '/src/assets/imgs/default2.gif'
-    } else {
-      const url = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + commic.coverUrl))
-      // 检查解密后的URL是否包含本地开发地址
-      if (url.includes('localhost') || url.includes('127.0.0.1')) {
-        commic.coverUrl = '/src/assets/imgs/default2.gif'
-        URL.revokeObjectURL(url)
-      } else {
-        createdUrls.value.push(url)
-        commic.coverUrl = url
-      }
+  const getQueryParams = () => {
+    const activeTab = rankTabs.find(tab => tab.value === activeRankingList.value)
+    if (!activeTab) return null
+
+    const params = {
+      PageIndex: currentPage.value,
+      PageSize: PAGE_SIZE,
+      SortType: activeTab.sortType,
+      BookStatus: -1
     }
-    return commic
+
+    switch (activeTab.value) {
+      case 'Series':
+        params.BookStatus = 0
+        break
+      case 'End':
+        params.BookStatus = 1
+        break
+      default:
+        params.BookStatus = -1
+    }
+
+    return params
   }
 
-  const cleanupUrls = () => {
-    createdUrls.value.forEach(url => {
-      URL.revokeObjectURL(url)
-    })
-    createdUrls.value = []
-  }
-
-  function formatCommicStatusText(status: CommicStatus): string {
+  function formatComicsStatusText(status: CommicStatus): string {
     switch (status) {
       case CommicStatus.Serial:
         return '连载中'
@@ -166,72 +169,194 @@
     }
   }
 
-  function formatCommicStatus(
-    hots: CommicIndexListItem[],
-    news: CommicIndexListItem[],
-    serial: CommicIndexListItem[],
-    ends: CommicIndexListItem[],
-    newhots: CommicIndexListItem[]
-  ) {
-    const formatBooks = (processedCommics: CommicIndexListItem[]) => {
-      processedCommics.forEach(item => {
-        item.statusText = formatCommicStatusText(item.status)
-      })
-      // 处理漫画分类
-      processedCommics.forEach(item => {
-        const categoryName = commicCategoryStore.getCategoryNameById(item.categoryId.toString())
-        item.categoryName = categoryName.toString()
-      })
+  const onRefresh = async () => {
+    try {
+      currentPage.value = 1
+      await fetchRankList()
+    } finally {
+      isRefreshing.value = false
     }
-
-    formatBooks(hots)
-    formatBooks(news)
-    formatBooks(serial)
-    formatBooks(ends)
-    formatBooks(newhots)
   }
 
-  const fetchRankList = async () => {
+  const fetchRankList = async (isLoadMore = false) => {
     try {
-      loading.value = true
-      error.value = null
-      cleanupUrls()
+      if (isLoadMore) {
+        isLoadingMore.value = true
+        currentPage.value++
+      } else if (!isRefreshing.value) {
+        loading.value = true
+        currentPage.value = 1
+        cleanupUrls()
 
-      // 获取首页数据，包含所有榜单
-      const response = await getCommicIndexList()
+        switch (activeRankingList.value) {
+          case 'Hots':
+            hotBooks.value = []
+            break
+          case 'Series':
+            serialBooks.value = []
+            break
+          case 'End':
+            endBooks.value = []
+            break
+          case 'NewHots':
+            newHotBooks.value = []
+            break
+        }
+      }
+
+      const params = getQueryParams()
+      if (!params) {
+        error.value = '获取查询参数失败'
+        return
+      }
+
+      error.value = null
+      const response = await getRecommendCommicList(params)
       const { data } = response.data
 
-      // 格式化书籍状态
-      formatCommicStatus(data.hots, data.news, data.serial, data.end, data.newhots)
+      if (!data || !Array.isArray(data.items)) {
+        throw new Error('Invalid response data')
+      }
 
-      // 处理畅销榜数据
-      hotBooks.value = await Promise.all(data.hots.map(decryptCommicImage))
+      const processedData = await Promise.all(
+        data.items.map(async book => {
+          book.statusText = formatComicsStatusText(book.status)
+          return await decryptImage(book)
+        })
+      )
 
-      // 处理连载榜数据
-      serialBooks.value = await Promise.all(data.serial.map(decryptCommicImage))
+      switch (activeRankingList.value) {
+        case 'Hots':
+          hotBooks.value = isLoadMore ? [...hotBooks.value, ...processedData] : processedData
+          break
+        case 'Series':
+          serialBooks.value = isLoadMore ? [...serialBooks.value, ...processedData] : processedData
+          break
+        case 'End':
+          endBooks.value = isLoadMore ? [...endBooks.value, ...processedData] : processedData
+          break
+        case 'NewHots':
+          newHotBooks.value = isLoadMore ? [...newHotBooks.value, ...processedData] : processedData
+          break
+      }
 
-      // 处理完结榜数据
-      endBooks.value = await Promise.all(data.end.map(decryptCommicImage))
-
-      // 处理新书榜数据
-      newHotBooks.value = await Promise.all(data.newhots.map(decryptCommicImage))
+      hasMore.value = data.items.length === PAGE_SIZE
     } catch (err) {
       error.value = '获取排行榜数据失败'
       console.error('获取排行榜数据失败:', err)
+      showToast({
+        message: '获取数据失败，请重试',
+        type: 'fail'
+      })
     } finally {
       loading.value = false
+      isLoadingMore.value = false
     }
   }
 
-  // 监听滚动
+  const handleTabClick = async (index: number, name: string) => {
+    if (activeRankingList.value === name) return
+
+    activeRankingList.value = name
+    if (swiperInstance.value) {
+      try {
+        await swiperInstance.value.slideTo(index)
+      } catch (err) {
+        console.error('Swiper slide failed:', err)
+      }
+    }
+    fetchRankList()
+  }
+
+  const getSwiperClass = (swiper: SwiperClass) => {
+    swiperInstance.value = swiper
+  }
+
+  const handleSwipeChange = () => {
+    if (!swiperInstance.value) return
+
+    const newIndex = swiperInstance.value.activeIndex
+    const newTab = rankTabs[newIndex]
+    if (newTab && activeRankingList.value !== newTab.value) {
+      activeRankingList.value = newTab.value
+      fetchRankList()
+    }
+  }
+
+  async function decryptImage(book: CommicBookInfo) {
+    if (book.coverUrl === '') {
+      book.coverUrl = '/src/assets/imgs/default2.gif'
+      return book
+    }
+
+    try {
+      const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl)
+
+      const isValidImage = await validateImage(decryptedBlob)
+      if (!isValidImage) {
+        console.warn('Invalid image data:', book.coverUrl)
+        book.coverUrl = '/src/assets/imgs/default2.gif'
+        return book
+      }
+
+      const objectUrl = URL.createObjectURL(decryptedBlob)
+      createdUrls.value.push(objectUrl)
+      book.coverUrl = objectUrl
+      return book
+    } catch (error) {
+      console.error('Image decryption failed:', error)
+      book.coverUrl = '/src/assets/imgs/default2.gif'
+      return book
+    }
+  }
+
+  function validateImage(blob: Blob): Promise<boolean> {
+    return new Promise(resolve => {
+      if (blob.size === 0 || !blob.type.startsWith('image/')) {
+        resolve(false)
+        return
+      }
+
+      const img = new Image()
+      const url = URL.createObjectURL(blob)
+
+      img.onload = () => {
+        URL.revokeObjectURL(url)
+        resolve(img.width > 0 && img.height > 0)
+      }
+
+      img.onerror = () => {
+        URL.revokeObjectURL(url)
+        resolve(false)
+      }
+
+      img.src = url
+    })
+  }
+
+  const cleanupUrls = () => {
+    createdUrls.value.forEach(url => {
+      URL.revokeObjectURL(url)
+    })
+    createdUrls.value = []
+  }
+
   const handleScroll = () => {
     if (!tabsRef.value) return
 
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop
     isTabFixed.value = scrollTop >= tabsOffsetTop.value
+
+    if (!loading.value && !isLoadingMore.value && hasMore.value) {
+      const scrollHeight = document.documentElement.scrollHeight
+      const clientHeight = document.documentElement.clientHeight
+
+      if (scrollTop + clientHeight >= scrollHeight - 100) {
+        fetchRankList(true)
+      }
+    }
   }
 
-  // 获取tab的初始位置
   const initTabPosition = () => {
     if (!tabsRef.value) return
     tabsOffsetTop.value = tabsRef.value.offsetTop
@@ -244,20 +369,27 @@
   })
 
   onUnmounted(() => {
-    cleanupUrls()
     window.removeEventListener('scroll', handleScroll)
+    cleanupUrls()
   })
 </script>
 
 <style scoped lang="less">
   .loading-container,
-  .error-container {
+  .error-container,
+  .empty-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 200px;
+    min-height: 12rem;
     gap: 16px;
+    margin: 16px 0;
+  }
+
+  .content-wrapper {
+    position: relative;
+    padding-top: 8px;
   }
 
   .b-tabs {

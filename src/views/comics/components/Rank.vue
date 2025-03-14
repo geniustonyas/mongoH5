@@ -7,7 +7,7 @@
       <li v-for="(rankItem, index) in data" :key="rankItem.id" @click="handleBookClick(rankItem)">
         <div v-if="isRow" class="l-l">
           <img :src="rankItem.coverUrl" :alt="rankItem.title" />
-          <span>{{ index + 1 }}</span>
+          <span v-if="index < 10">{{ index + 1 }}</span>
         </div>
         <div v-if="isRow" class="l-r">
           <b>{{ rankItem.title }}</b>
@@ -16,7 +16,7 @@
         </div>
         <div v-if="!isRow" class="l-l">
           <img :src="rankItem.coverUrl" :alt="rankItem.title" />
-          <span>{{ index + 1 }}</span>
+          <span v-if="index < 10">{{ index + 1 }}</span>
         </div>
         <div v-if="!isRow" class="l-r">
           <b>{{ rankItem.title }}</b>
@@ -28,18 +28,18 @@
 </template>
 
 <script setup lang="ts">
-  import { CommicIndexListItem } from '@/types/commic'
+  import { CommicBookInfo } from '@/types/commic'
   import { useRouter } from 'vue-router'
   import { formatCount } from '@/utils'
 
   const router = useRouter()
 
   defineProps<{
-    data: CommicIndexListItem[]
+    data: CommicBookInfo[]
     isRow?: boolean
   }>()
 
-  const handleBookClick = (item: CommicIndexListItem) => {
+  const handleBookClick = (item: CommicBookInfo) => {
     router.push({
       name: 'commicIntro',
       query: { nid: item.id, status: item.statusText }
@@ -55,5 +55,10 @@
     justify-content: center;
     min-height: 200px;
     gap: 16px;
+  }
+  .n-l-r li .l-l img {
+    width: 100%;
+    height: 12.4rem;
+    object-fit: cover;
   }
 </style>

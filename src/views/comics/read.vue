@@ -142,7 +142,7 @@
   import { CommicCategory } from '@/types/commic'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
-  import { Popup as VanPopup, Icon as VanIcon, showToast } from 'vant'
+  import { Popup as VanPopup, Icon as VanIcon } from 'vant'
 
   const router = useRouter()
   const route = useRoute()

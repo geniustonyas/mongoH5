@@ -130,14 +130,6 @@ export interface CommicRecommendParams {
   PageSize: number
 }
 
-export interface CommicRecommendResponse {
-  items: CommicBookInfo[]
-  pageIndex: string
-  pageSize: string
-  pageCount: string
-  recordCount: string
-}
-
 // 默认参数值
 export const DEFAULT_RECOMMEND_PARAMS: CommicRecommendParams = {
   Type: CommicCategory.Book,
@@ -166,6 +158,6 @@ export interface CommicRecommendResponse {
   items: CommicBookInfo[]
   pageIndex: string
   pageSize: string
-  pageCount: string
+  pageCount: number | string
   recordCount: string
 }
