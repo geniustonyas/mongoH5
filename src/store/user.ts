@@ -37,6 +37,8 @@ export const useUserStore = defineStore('user', {
         totalDepositOrderCount: '',
         totalAgentCommon: 0,
         totalCommon: 0,
+        avatar: '',
+        remark: '',
         vip: {
           id: '',
           vipId: '',
@@ -119,6 +121,8 @@ export const useUserStore = defineStore('user', {
         totalDepositOrderCount: '',
         totalAgentCommon: 0,
         totalCommon: 0,
+        avatar: '',
+        remark: '',
         vip: {
           id: '',
           vipId: '',

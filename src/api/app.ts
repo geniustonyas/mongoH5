@@ -47,3 +47,13 @@ export function getStatisticsApi(data: { Domain: string; SubDomain: string }) {
     data
   })
 }
+
+
+/** 上传文件 */
+export function uploadFileApi(data: FormData) {
+  return request<ApiResponseData<any>>({
+    url: 'UploadFile/UploadImg',
+    method: 'post',
+    data
+  })
+}

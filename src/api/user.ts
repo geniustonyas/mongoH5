@@ -104,3 +104,12 @@ export function userSuggestion(data: Suggestion) {
     data
   })
 }
+
+/** 修改用户资料 */
+export function updateUserInfo(data: { NickName: string; Avatar: string; Introduction: string }) {
+  return request<ApiResponseData<any>>({
+    url: 'Member/UpdateUserInfo',
+    method: 'post',
+    data
+  })
+}
