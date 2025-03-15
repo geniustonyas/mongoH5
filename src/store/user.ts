@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { getUserInfo } from '@/api/user'
+import { getUserInfo, userLogout } from '@/api/user'
 import store from '@/store'
 import type { UserInfo } from '@/types/user'
 import { clearToken } from '@/utils/auth'
@@ -88,6 +88,7 @@ export const useUserStore = defineStore('user', {
     },
 
     clearLogin() {
+      userLogout()
       this.userInfo = {
         id: '',
         userName: '',

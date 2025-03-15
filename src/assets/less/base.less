@@ -1,8 +1,9 @@
-@font-face { font-family: Lato; font-weight: 400; src: url(https://cdn.j99h8.com/fonts/lato/Lato-Regular.woff2) format("woff2") crossorigin, url(https://cdn.j99h8.com/fonts/lato/Lato-Regular.woff) format("woff") crossorigin }
-@font-face { font-family: Lato; font-style: italic; src: url(https://cdn.j99h8.com/fonts/lato/Lato-Italic.woff2) format("woff2") crossorigin, url(https://cdn.j99h8.com/fonts/lato/Lato-Italic.woff) format("woff") crossorigin }
-@font-face { font-family: Lato; font-weight: 700; src: url(https://cdn.j99h8.com/fonts/lato/Lato-Bold.woff2) format("woff2") crossorigin, url(https://cdn.j99h8.com/fonts/lato/Lato-Bold.woff) format("woff") crossorigin }
-@font-face { font-family: DIN; src: url(https://cdn.j99h8.com/fonts/DIN/DIN-Alternate-Bold.ttf) crossorigin; unicode-range: U+30-39, U+0041-007a; font-display: fallback }
-
+@font-face { font-family: Lato; font-weight: 400; src: url(../fonts/lato/Lato-Regular.woff2?v=6748e0e1) format("woff2"),url(../fonts/lato/Lato-Regular.woff?v=f137ee48) format("woff") }
+@font-face { font-family: Lato; font-style: italic; src: url(../fonts/lato/Lato-Italic.woff2?v=f8a9a7a9) format("woff2"),url(../fonts/lato/Lato-Italic.woff?v=a8fc7661) format("woff") }
+@font-face { font-family: Lato; font-weight: 700; src: url(../fonts/lato/Lato-Bold.woff2?v=649e18eb) format("woff2"),url(../fonts/lato/Lato-Bold.woff?v=fd373951) format("woff") }
+@font-face { font-family: DIN; src: url(../fonts/DIN/DIN-Alternate-Bold.ttf); unicode-range: U+30-39, U+0041-007a; font-display: fallback }
+@font-face { font-family: YouSheBiaoTiHei; src: url(../fonts/YouSheBiaoTiHei/YouSheBiaoTiHei-2.ttf);  }
+@font-face { font-family: HYYakuHei; src: url(../fonts/HYYakuHei/HYYakuHei.ttf);  }
 .common() { .border-box();
     ol, ul { list-style: none }
     ins, a { text-decoration: none; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none; }
@@ -64,7 +65,7 @@
 // 透明度, 兼容 IE8
 .opacity(@opacity: 20) { opacity: @opacity / 100; filter: alpha(opacity=@opacity); }
 // 模糊
-.blur(@blur: 10px) { filter: blur(@blur); -webkit-filter: blur(@blur); -moz-filter: blur(@blur); -o-filter: blur(@blur); -ms-filter: blur(@blur); filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='@{blur}'); }
+.blur(@blur: 10px) { filter: blur(@blur); -webkit-filter: blur(@blur); -moz-filter: blur(@blur); -o-filter: blur(@blur); -ms-filter: blur(@blur); filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='@{blur}'); *zoom: 1; }
 //禁止文本选中
 .noselect() { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
@@ -151,3 +152,6 @@
 .flex-end() { -webkit-box-pack: justify; -ms-flex-pack: justify; -webkit-justify-content: flex-end; justify-content: flex-end; }
 .flex-grow(@x: 1) { -webkit-box-flex: @x; -moz-flex-grow: @x; -webkit-flex-grow: @x; flex-grow: @x; }
 .flex-wrap(@x: nowrap) { -webkit-flex-wrap: @x; -moz-flex-wrap: @x; -ms-flex-wrap: @x; -o-flex-wrap: @x; flex-wrap: @x; }
+
+
+

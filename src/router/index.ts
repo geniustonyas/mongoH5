@@ -250,6 +250,12 @@ const routes: RouteRecordRaw[] = [
         meta: { needLogin: false, keepAlive: false, title: '用户中心' }
       },
       {
+        path: 'account',
+        name: 'account',
+        component: () => import('@/views/home/account.vue'),
+        meta: { needLogin: true, keepAlive: false, title: '个人设置' }
+      },
+      {
         path: 'message',
         name: 'message',
         component: () => import('@/views/home/message.vue'),

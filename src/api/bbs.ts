@@ -124,6 +124,9 @@ export function createPostApi(data: CreatePostRequest) {
   return request<ApiResponseData<any>>({
     url: 'Member/CreatePost',
     method: 'post',
+    headers: {
+      'X-Should-Encrypt': '1'
+    },
     data
   })
 }

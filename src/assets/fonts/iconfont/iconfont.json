@@ -6,6 +6,111 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2038328",
+      "name": "多选选中",
+      "font_class": "unckbox",
+      "unicode": "e696",
+      "unicode_decimal": 59030
+    },
+    {
+      "icon_id": "8356556",
+      "name": "多选未选中1",
+      "font_class": "ckbox",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
+      "icon_id": "596215",
+      "name": "启用",
+      "font_class": "qiyong",
+      "unicode": "e68d",
+      "unicode_decimal": 59021
+    },
+    {
+      "icon_id": "1585508",
+      "name": "禁用",
+      "font_class": "jinyong",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "11372782",
+      "name": "相机",
+      "font_class": "xiangji",
+      "unicode": "e8c7",
+      "unicode_decimal": 59591
+    },
+    {
+      "icon_id": "7098868",
+      "name": "换一换",
+      "font_class": "hyh2",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "19732959",
+      "name": "消息",
+      "font_class": "xiaoxi1",
+      "unicode": "e69f",
+      "unicode_decimal": 59039
+    },
+    {
+      "icon_id": "34929656",
+      "name": "三斜杠_three-slashes",
+      "font_class": "sanxiegang",
+      "unicode": "e6b6",
+      "unicode_decimal": 59062
+    },
+    {
+      "icon_id": "20667272",
+      "name": "书籍",
+      "font_class": "s_wanjie",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "24111760",
+      "name": "收藏夹",
+      "font_class": "s_shoucangjia1",
+      "unicode": "fb93",
+      "unicode_decimal": 64403
+    },
+    {
+      "icon_id": "24111894",
+      "name": "收藏夹",
+      "font_class": "s_shoucangjia11",
+      "unicode": "fc06",
+      "unicode_decimal": 64518
+    },
+    {
+      "icon_id": "26901669",
+      "name": "排行榜",
+      "font_class": "s_paihangbang",
+      "unicode": "e69c",
+      "unicode_decimal": 59036
+    },
+    {
+      "icon_id": "30174318",
+      "name": "排行榜",
+      "font_class": "s_rankinglist",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "31252148",
+      "name": "书籍-打开",
+      "font_class": "s_lianzai",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "37482055",
+      "name": "类-分类管理",
+      "font_class": "s_fenlei",
+      "unicode": "e8af",
+      "unicode_decimal": 59567
+    },
+    {
       "icon_id": "21872367",
       "name": "rdicon2",
       "font_class": "lianzai",
@@ -211,9 +316,16 @@
     {
       "icon_id": "34809347",
       "name": "Left",
-      "font_class": "Left",
+      "font_class": "Left3",
       "unicode": "e66a",
       "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "43591056",
+      "name": "Left-copy",
+      "font_class": "right3",
+      "unicode": "10105",
+      "unicode_decimal": 65797
     },
     {
       "icon_id": "9041044",

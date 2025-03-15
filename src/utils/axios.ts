@@ -4,6 +4,7 @@ import { useUserStoreHook } from '@/store/user'
 import { showNotify } from 'vant'
 // import { showToast } from 'vant'
 import decryptionService from '@/utils/decryptionService'
+import FingerprintJS from '@fingerprintjs/fingerprintjs'
 
 const isDev = import.meta.env.DEV
 
@@ -48,6 +49,21 @@ const logError = (error: any, context: string) => {
   console.error('Stack:', error.stack)
   console.groupEnd()
 }
+
+// 获取设备指纹
+let deviceFingerprint: string | null = null
+
+async function getDeviceFingerprint() {
+  const fpPromise = FingerprintJS.load()
+  const fp = await fpPromise
+  const result = await fp.get()
+  deviceFingerprint = result.visitorId
+  console.log('deviceFingerprint', deviceFingerprint)
+}
+console.log('deviceFingerprint2', deviceFingerprint)
+
+// 初始化设备指纹
+getDeviceFingerprint()
 
 // 解析 VITE_BASE_API 环境变量
 const apiUrls = import.meta.env.VITE_BASE_API.split('|')
@@ -124,6 +140,11 @@ const setupInterceptors = (service: AxiosInstance) => {
         ;(config as any).abortController = abortController
 
         config.headers['Authorization'] = `${TokenPrefix}${getToken()}`
+
+        // 添加设备指纹到请求头
+        if (deviceFingerprint) {
+          config.headers['X-AUTH-UUID'] = deviceFingerprint
+        }
 
         // 检查请求头中的 X-Should-Encrypt 标志
         if (config.headers['X-Should-Encrypt'] === '1') {

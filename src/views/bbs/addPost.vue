@@ -669,6 +669,19 @@
         // 关闭弹窗并清空表单
         closePopup()
         uniqueId.value = uuidv4()
+
+        // 清空表单数据
+        postForm.value = {
+          channelId: '',
+          subChannelId: '',
+          title: '',
+          content: '',
+          keywords: ''
+        }
+
+        // 清空已上传的图片和视频
+        imageFiles.value = []
+        files.value = []
       } else {
         showToast(data.message || '发布失败')
       }

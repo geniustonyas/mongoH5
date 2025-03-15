@@ -1,8 +1,8 @@
 @font-face {
   font-family: "mvfont"; /* Project id 4698642 */
-  src: url('iconfont.woff2?t=1739030437416') format('woff2'),
-       url('iconfont.woff?t=1739030437416') format('woff'),
-       url('iconfont.ttf?t=1739030437416') format('truetype');
+  src: url('iconfont.woff2?t=1741797651211') format('woff2'),
+       url('iconfont.woff?t=1741797651211') format('woff'),
+       url('iconfont.ttf?t=1741797651211') format('truetype');
 }
 
 .mvfont {
@@ -11,6 +11,66 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.mv-unckbox:before {
+  content: "\e696";
+}
+
+.mv-ckbox:before {
+  content: "\e69d";
+}
+
+.mv-qiyong:before {
+  content: "\e68d";
+}
+
+.mv-jinyong:before {
+  content: "\e690";
+}
+
+.mv-xiangji:before {
+  content: "\e8c7";
+}
+
+.mv-hyh2:before {
+  content: "\e68f";
+}
+
+.mv-xiaoxi1:before {
+  content: "\e69f";
+}
+
+.mv-sanxiegang:before {
+  content: "\e6b6";
+}
+
+.mv-s_wanjie:before {
+  content: "\e691";
+}
+
+.mv-s_shoucangjia1:before {
+  content: "\fb93";
+}
+
+.mv-s_shoucangjia11:before {
+  content: "\fc06";
+}
+
+.mv-s_paihangbang:before {
+  content: "\e69c";
+}
+
+.mv-s_rankinglist:before {
+  content: "\e689";
+}
+
+.mv-s_lianzai:before {
+  content: "\e68a";
+}
+
+.mv-s_fenlei:before {
+  content: "\e8af";
 }
 
 .mv-lianzai:before {
@@ -129,8 +189,12 @@
   content: "\e66c";
 }
 
-.mv-Left:before {
+.mv-Left3:before {
   content: "\e66a";
+}
+
+.mv-right3:before {
+  content: "\10105";
 }
 
 .mv-zbza:before {
