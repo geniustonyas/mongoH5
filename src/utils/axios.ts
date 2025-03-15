@@ -58,9 +58,7 @@ async function getDeviceFingerprint() {
   const fp = await fpPromise
   const result = await fp.get()
   deviceFingerprint = result.visitorId
-  console.log('deviceFingerprint', deviceFingerprint)
 }
-console.log('deviceFingerprint2', deviceFingerprint)
 
 // 初始化设备指纹
 getDeviceFingerprint()

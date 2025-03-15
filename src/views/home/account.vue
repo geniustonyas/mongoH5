@@ -14,8 +14,8 @@
     <section class="au-main">
       <div class="hpb-setting">
         <div class="hs-a">
-          <div class="a-a">
-            <img src="assets/imgs/u_video.png" />0
+          <div class="a-a" @click="selectAvatar">
+            <img :src="userStore.userInfo.avatar || getAssetsFile('u_video.png')" />
             <i class="mvfont mv-xiangji" />
           </div>
           <div class="a-b">修改头像</div>
@@ -31,7 +31,7 @@
           </div>
           <div class="item">
             <div class="i-l">简介</div>
-            <div class="i-r">这人很懒，啥都没留下<i class="mvfont mv-right3" /></div>
+            <div class="i-r">{{ userStore.userInfo.remark || '这人很懒，啥都没留下' }}<i class="mvfont mv-right3" /></div>
           </div>
           <!-- <div class="item">
             <div class="i-l">手机号</div>
@@ -53,3 +53,47 @@
     </section>
   </div>
 </template>
+
+<script setup lang="ts">
+  import { ref } from 'vue'
+  import { getAssetsFile } from '@/utils'
+  import { useUserStoreHook } from '@/store/user'
+  import { uploadFileApi } from '@/api/app'
+  import { updateUserInfo } from '@/api/user'
+
+  const userStore = useUserStoreHook()
+  const fileInput = ref<HTMLInputElement | null>(null)
+
+  const selectAvatar = () => {
+    if (!fileInput.value) {
+      fileInput.value = document.createElement('input')
+      fileInput.value.type = 'file'
+      fileInput.value.accept = 'image/*'
+      fileInput.value.onchange = async () => {
+        const files = fileInput.value?.files
+        if (files && files.length > 0) {
+          const formData = new FormData()
+          try {
+            formData.append('files', files[0])
+            const { data } = await uploadFileApi(formData)
+            console.log(data)
+            if (response.data.code === 200) {
+              const avatarUrl = response.data.data.url
+              await updateUserInfo({
+                NickName: userStore.userInfo.nickName,
+                Avatar: avatarUrl,
+                Remark: userStore.userInfo.remark,
+                QQ: userStore.userInfo.qq,
+                WX: userStore.userInfo.wx
+              })
+              userStore.userInfo.avatar = avatarUrl
+            }
+          } catch (error) {
+            console.error('上传头像失败:', error)
+          }
+        }
+      }
+    }
+    fileInput.value.click()
+  }
+</script>

@@ -48,7 +48,6 @@ export function getStatisticsApi(data: { Domain: string; SubDomain: string }) {
   })
 }
 
-
 /** 上传文件 */
 export function uploadFileApi(data: FormData) {
   return request<ApiResponseData<any>>({
