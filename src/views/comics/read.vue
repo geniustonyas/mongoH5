@@ -51,7 +51,7 @@
             <div v-if="imageLoadingStates[index]" class="loading-overlay">
               <Loading />
             </div>
-          </div>
+              </div>
         </div>
         <div class="chapter-navigation" v-show="showControls">
           <div class="nav-left">
@@ -808,14 +808,14 @@
     padding: 16px;
   }
 
-  .setting-item {
+    .setting-item {
     margin-bottom: 16px;
   }
 
   .setting-item span {
     display: block;
     margin-bottom: 8px;
-    font-size: 14px;
+        font-size: 14px;
     color: #666;
   }
 
