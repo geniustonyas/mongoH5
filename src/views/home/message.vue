@@ -29,7 +29,7 @@
           </li>
         </ul> -->
         <div class="nodata">
-          <div class="d-i" />
+          <img :src="getAssetsFile('empty/message.svg')" alt="默认图标" />
           <div class="d-t">{{ tips }}</div>
         </div>
       </div>
@@ -40,7 +40,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useAppStore } from '@/store/app'
-
+import { getAssetsFile } from '@/utils'
 const appStore = useAppStore()
 
 const activeTab = ref('message')

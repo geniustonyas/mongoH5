@@ -1329,7 +1329,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -we
         }
         .hb-b { padding-bottom: 1.2rem; text-align: center;
             span { position: relative; display: inline-block; width: 4rem; height: .3rem; .radius(.3rem); overflow: hidden; background-color: #2B2B2E;
-                &:before { content: ""; position: absolute; left: 0; width: 60%; height: .3rem; .radius(.3rem); .bg(var(--color-primary)); }
+                &:before { content: ""; position: absolute; left: var(--indicator-left, 0); width: 60%; height: .3rem; .radius(.3rem); .bg(var(--color-primary)); transition: left 0.2s ease; }
             }
         }
     }

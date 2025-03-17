@@ -21,7 +21,7 @@
       </div>
       <div class="h-b">
         <div class="hb-t">我的权益</div>
-        <div class="hb-c">
+        <div class="hb-c" ref="scrollContainer">
           <span><b>999</b><small>长视频</small></span>
           <span><b>999</b><small>短视频</small></span>
           <span><b>999</b><small>短剧</small></span>
@@ -30,7 +30,9 @@
           <span><b>999</b><small>帖子</small></span>
           <span><b>999</b><small>茶贴</small></span>
         </div>
-        <div class="hb-b"><span /></div>
+        <div class="hb-b">
+          <span ref="indicator" />
+        </div>
       </div>
       <div class="h-c">
         <a @click="router.push({ name: 'message' })"><i class="mvfont mv-xiaoxi1" />我的消息</a>
@@ -109,7 +111,7 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue'
+  import { computed, ref, onMounted } from 'vue'
   import { useRouter } from 'vue-router'
   import { useUserStoreHook } from '@/store/user'
   import { useAppStoreHook } from '@/store/app'
@@ -148,4 +150,25 @@
       console.warn('客服链接未设置')
     }
   }
+
+  const scrollContainer = ref(null)
+  const indicator = ref(null)
+
+  onMounted(() => {
+    const updateIndicator = () => {
+      const scrollWidth = scrollContainer.value.scrollWidth
+      const clientWidth = scrollContainer.value.clientWidth
+      const scrollLeft = scrollContainer.value.scrollLeft
+      const maxScrollLeft = scrollWidth - clientWidth
+      const scrollRatio = scrollLeft / maxScrollLeft
+
+      // 计算伪类的 left 值
+      const indicatorWidth = 0.6 * indicator.value.offsetWidth
+      const leftPosition = scrollRatio * (indicator.value.offsetWidth - indicatorWidth)
+      indicator.value.style.setProperty('--indicator-left', `${leftPosition}px`)
+    }
+
+    scrollContainer.value.addEventListener('scroll', updateIndicator)
+    updateIndicator() // 初始化位置
+  })
 </script>
