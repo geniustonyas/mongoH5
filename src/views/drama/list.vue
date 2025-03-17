@@ -6,21 +6,22 @@
           <swiper
             :direction="'vertical'"
             :modules="modules"
-            :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined"
+            :virtual="{ slides: dramas.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined"
             :slides-per-view="1"
             :space-between="0"
             @slide-change="slideChange"
             style="width: 100%; height: 100%"
           >
-            <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
+            <swiper-slide v-for="(video, index) in dramas" :key="video.id" :virtual-index="index">
               <div class="vm-b">
                 <div class="v-a">
                   <video
-                    v-if="!isLoading"
+                    :id="'video-player-' + video.id"
                     class="video-player"
-                    :data-poster="videos[currentIndex].poster"
+                    :data-poster="video.poster"
                     muted
                     preload="auto"
+                    :loop="false"
                     x5-video-player-fullscreen="true"
                     x5-playsinline
                     playsinline
@@ -44,7 +45,7 @@
                   </a>
                   <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
                 </div>
-                <div class="v-d">
+                <div v-if="false" class="v-d">
                   <div class="d-a">
                     <a href="#"><i class="mvfont mv-dianji" />点击查看更多短剧<i class="mvfont mv-right" /></a>
                   </div>
@@ -192,118 +193,35 @@
 
 <script setup lang="ts">
   import HomeLayout from '@/components/layout/HomeLayout.vue'
-  import { nextTick, onMounted, onUnmounted, ref } from 'vue'
-  import decryptionService, { generateAuthUrl } from '@/utils/decryptionService'
+  import { computed, nextTick, onMounted, onUnmounted, reactive, ref } from 'vue'
+  import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
   import Loading from '@/components/layout/Loading.vue'
   import { Popup } from 'vant'
-  import { getDramaDetail, getDramaList } from '@/api/drama'
+  import { getDramaList } from '@/api/drama'
   import { DramaDetailResponse, DramaItemVM } from '@/types/drama'
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import { Virtual } from 'swiper/modules'
+  import { cleanupAllVideoInstances, loadVideo } from './utils/videoLoader'
+
   import 'swiper/css'
   import 'swiper/css/virtual'
 
   const modules = [Virtual]
-  const videos = ref<DramaItemVM[]>([])
-  const videoDetail = ref<DramaDetailResponse | null>(null)
+  const dramas = ref<DramaItemVM[]>([])
+  const dramaDetails = reactive<DramaDetailResponse[]>([])
   const decrypt = new decryptionService()
   const appStore = useAppStore()
   const isLoading = ref(true)
   const showSharePopup = ref(false)
   const showDramasPopup = ref(false)
   const activeEpisode = ref('episodeListTab')
-  const currentIndex = ref(0)
-  const currentEpisodeIndex = ref(0) // 当前剧集的第几集索引
+  const currentDramaId = ref('')
+  const currentEpisodeId = ref('')
 
-  // 创建视频预加载管理器
-  const VideoPreloadManager = {
-    preloadQueue: new Map<string, { hls?: any; player: any }>(),
-    currentVideo: new Map<string, { hls?: any; player: any }>(),
-    maxPreloadCount: 2,
-
-    async preloadVideo(video: DramaItemVM) {
-      if (this.preloadQueue.size >= this.maxPreloadCount) {
-        const [firstKey] = this.preloadQueue.keys()
-        this.destroyVideo(firstKey)
-      }
-
-      const videoElement = document.createElement('video')
-      videoElement.style.display = 'none'
-      videoElement.muted = true
-      document.body.appendChild(videoElement)
-
-      const url = generateAuthUrl(appStore.playDomain, video.first.playUrl)
-      if (window.Hls.isSupported()) {
-        try {
-          const preloadPlayer = createPlayer(videoElement)
-          const preloadHls = createHlsInstance(url, videoElement)
-          this.preloadQueue.set(video.first.id, { hls: preloadHls, player: preloadPlayer })
-        } catch (error) {
-          console.error('预加载视频失败:', error)
-        }
-      }
-    },
-
-    destroyVideo(videoId: string) {
-      const video = this.preloadQueue.get(videoId)
-      if (video) {
-        video.player.destroy()
-        video.hls.destroy()
-        this.preloadQueue.delete(videoId)
-      }
-    },
-
-    getPreloadedVideo(videoId: string) {
-      return this.preloadQueue.get(videoId)
-    },
-
-    setCurrentVideo(videoId: string, video: { hls?: any; player: any }) {
-      // 清理之前的当前视频
-      this.clearCurrentVideo()
-      this.currentVideo.set(videoId, video)
-    },
-
-    clearCurrentVideo() {
-      this.currentVideo.forEach(({ hls, player }) => {
-        if (player) {
-          player.pause()
-          player.destroy()
-        }
-        if (hls) {
-          hls.stopLoad()
-          hls.detachMedia()
-          hls.destroy()
-        }
-      })
-      this.currentVideo.clear()
-    },
-
-    clear() {
-      this.preloadQueue.forEach((video, id) => this.destroyVideo(id))
-      this.preloadQueue.clear()
-      this.clearCurrentVideo()
-    }
-  }
-
-  const handleHlsError = (data, hls) => {
-    switch (data.type) {
-      case window.Hls.ErrorTypes.NETWORK_ERROR:
-        console.error('HLS network error:', data)
-        hls.startLoad()
-        break
-      case window.Hls.ErrorTypes.MEDIA_ERROR:
-        console.error('HLS media error:', data)
-        hls.recoverMediaError()
-        break
-      case window.Hls.ErrorTypes.OTHER_ERROR:
-        console.error('HLS other error:', data)
-        break
-      default:
-        console.error('HLS unrecoverable error:', data)
-        break
-    }
-  }
+  const videoDetail = computed(() => {
+    return dramaDetails.find(item => item.id === currentDramaId.value)
+  })
 
   const fetchDramaList = async () => {
     try {
@@ -318,7 +236,7 @@
       if (data && data.items) {
         for (const video of data.items) {
           video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
-          videos.value.push(video)
+          dramas.value.push(video)
         }
       }
     } catch (error) {
@@ -326,254 +244,39 @@
     }
   }
 
-  const fetchDramaDetail = async (videoId: number) => {
-    try {
-      const {
-        data: { data }
-      } = await getDramaDetail({ Id: videoId })
-      videoDetail.value = data
-    } catch (error) {
-      console.error('获取视频详情失败:', error)
-    }
-  }
-
-  // 创建播放器配置
-  const createPlayerConfig = () => ({
-    clickToPlay: true,
-    autoplay: false,
-    muted: true,
-    autopause: true,
-    hideControls: true,
-    controls: ['progress']
-  })
-
-  // 创建HLS配置
-  const createHlsConfig = () => ({
-    maxBufferLength: 15,
-    maxMaxBufferLength: 30,
-    maxBufferSize: 30 * 1000 * 1000,
-    maxBufferHole: 0.2,
-    startFragPrefetch: true,
-    liveSyncDuration: 3,
-    liveMaxLatencyDuration: 5
-  })
-
-  // 检查视频宽高比并设置样式
-  const checkVideoAspectRatio = (videoElement: HTMLVideoElement) => {
-    const videoWidth = videoElement.videoWidth
-    const videoHeight = videoElement.videoHeight
-    const videoRatio = videoHeight / videoWidth
-    if (videoRatio > 1.5) {
-      videoElement.classList.add('cover-fit')
-    }
-  }
-
-  // 设置播放器事件监听
-  const setupPlayerEvents = (player: any, video: DramaItemVM) => {
-    // 点击事件
-    player.on('click', event => {
-      if (player.touch && event.target.className == 'plyr__poster') {
-        player.togglePlay()
-      }
-    })
-
-    // 播放结束事件
-    player.on('ended', () => {
-      handleVideoEnd(video)
-    })
-
-    // 可以播放时的事件
-    player.on('canplay', () => {
-      const videoPlayerEle = player.elements.container
-      if (videoPlayerEle) {
-        checkVideoAspectRatio(videoPlayerEle)
-      }
-    })
-  }
-
-  // 创建并初始化播放器
-  const createPlayer = (videoElement: HTMLVideoElement) => {
-    const player = new window.Plyr(videoElement, createPlayerConfig())
-    player.muted = true
-    return player
-  }
-
-  // 创建并初始化HLS实例
-  const createHlsInstance = (url: string, videoElement: HTMLVideoElement) => {
-    const hlsInstance = new window.Hls(createHlsConfig())
-    hlsInstance.loadSource(url)
-    hlsInstance.attachMedia(videoElement)
-    return hlsInstance
-  }
-
-  // 加载新剧集（slider切换时调用）
-  const loadVideo = async (video: DramaItemVM, autoPlay = false) => {
-    // 重置当前集数索引
-    currentEpisodeIndex.value = 0
-
-    const videoPlayerEle = document.querySelector('.video-player') as HTMLVideoElement
-    if (!videoPlayerEle) return
-
-    // 检查是否有预加载的视频
-    const preloadedVideo = VideoPreloadManager.getPreloadedVideo(video.first.id)
-    if (preloadedVideo) {
-      const { hls, player } = preloadedVideo
-      VideoPreloadManager.preloadQueue.delete(video.first.id)
-
-      // 将预加载的视频附加到播放器元素
-      if (hls) {
-        hls.detachMedia()
-        hls.attachMedia(videoPlayerEle)
-      }
-      player.elements.container = videoPlayerEle
-
-      setupPlayerEvents(player, video)
-
-      if (autoPlay) {
-        player.play()
-      }
-
-      // 添加到预加载管理器的当前播放队列
-      VideoPreloadManager.setCurrentVideo(video.first.id, { hls, player })
-    } else {
-      // 没有预加载，正常加载第一集
-      await loadEpisode(video, 0)
-    }
-  }
-
-  // 加载指定集数的视频
-  const loadEpisode = async (video: DramaItemVM, episodeIndex = 0) => {
-    const videoPlayerEle = document.querySelector('.video-player') as HTMLVideoElement
-    if (!videoPlayerEle) return
-
-    // 清理当前播放的资源
-    VideoPreloadManager.clearCurrentVideo()
-
-    // 重置视频元素
-    videoPlayerEle.removeAttribute('src')
-    videoPlayerEle.load()
-
-    // 获取要播放的视频URL
-    let playUrl = ''
-    if (episodeIndex === 0) {
-      playUrl = video.first.playUrl
-    } else if (videoDetail.value?.items && videoDetail.value.items[episodeIndex - 1]) {
-      playUrl = videoDetail.value.items[episodeIndex - 1].playUrl
-    } else {
-      console.error('找不到对应集数的视频')
-      return
-    }
-
-    const url = generateAuthUrl(appStore.playDomain, playUrl)
-    const videoId = episodeIndex === 0 ? video.first.id : videoDetail.value!.items[episodeIndex - 1].id
-
-    if (window.Hls.isSupported()) {
-      try {
-        const player = createPlayer(videoPlayerEle)
-        const hlsInstance = createHlsInstance(url, videoPlayerEle)
-
-        hlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
-          setupPlayerEvents(player, video)
-          player.play().catch(error => {
-            console.error('播放失败:', error)
-          })
-        })
-
-        hlsInstance.on(window.Hls.Events.ERROR, (event, data) => {
-          if (data.fatal) {
-            handleHlsError(data, hlsInstance)
-          }
-        })
-
-        // 添加到预加载管理器的当前播放队列
-        VideoPreloadManager.setCurrentVideo(videoId, { hls: hlsInstance, player })
-      } catch (error) {
-        console.error('初始化hls失败: ', error)
-      }
-    } else if (videoPlayerEle.canPlayType('application/vnd.apple.mpegurl')) {
-      videoPlayerEle.src = url
-      const player = createPlayer(videoPlayerEle)
-      setupPlayerEvents(player, video)
-      player.play().catch(error => {
-        console.error('播放失败:', error)
-      })
-
-      // 添加到预加载管理器的当前播放队列
-      VideoPreloadManager.setCurrentVideo(videoId, { player })
-    } else {
-      console.error('HLS not supported and cannot play type')
-    }
-  }
-
-  const handleVideoEnd = async (video: DramaItemVM) => {
-    // 检查是否有下一集
-    if (videoDetail.value?.items && currentEpisodeIndex.value < videoDetail.value.items.length) {
-      currentEpisodeIndex.value++
-      await loadEpisode(video, currentEpisodeIndex.value)
-    } else {
-      // 如果是最后一集，检查是否有下一个视频
-      if (currentIndex.value < videos.value.length - 1) {
-        // 重置当前集数索引，准备播放下一个视频的第一集
-        currentEpisodeIndex.value = 0
-        // 触发滑动到下一个视频
-        const swiperInstance = document.querySelector('.swiper')?.swiper
-        if (swiperInstance) {
-          swiperInstance.slideNext()
-        }
-      }
-    }
-  }
-
   const slideChange = async (swiper: any) => {
     currentIndex.value = swiper.activeIndex
     const currentVideo = videos.value[currentIndex.value]
+    // 设置virtualIndex
+    currentVideo.virtualIndex = currentVideo.id
 
     // 获得当前剧集的详情
     await fetchDramaDetail(parseInt(currentVideo.id))
 
     // 播放当前视频
-    await loadVideo(currentVideo, true)
+    await loadVideo(currentVideo, currentEpisodeIndex, videoDetail, true)
 
     // 预加载后面的视频
     const nextVideos = videos.value.slice(currentIndex.value + 1, currentIndex.value + 3)
     for (const video of nextVideos) {
+      video.virtualIndex = videos.value.indexOf(video)
       await VideoPreloadManager.preloadVideo(video)
-    }
-  }
-
-  const updatePreloadStrategy = () => {
-    if ('connection' in navigator) {
-      const connection = (navigator as any).connection
-      if (connection.effectiveType === '4g') {
-        VideoPreloadManager.maxPreloadCount = 2
-      } else {
-        VideoPreloadManager.maxPreloadCount = 1
-      }
     }
   }
 
   onMounted(async () => {
     try {
       await fetchDramaList()
-      await fetchDramaDetail(parseInt(videos.value[0].id))
-      isLoading.value = false
-
-      if (videos.value.length > 0) {
+      if (dramas.value.length > 0) {
+        isLoading.value = false
         await nextTick()
-
         // 加载并播放第一个视频
-        await loadVideo(videos.value[0], true)
-
+        await loadVideo(currentDramaId, currentEpisodeId, dramas.value[0])
         // 预加载后面两个视频
-        const nextVideos = videos.value.slice(1, 3)
-        for (const video of nextVideos) {
-          await VideoPreloadManager.preloadVideo(video)
+        const nextDramas = dramas.value.slice(1, 3)
+        for (const drama of nextDramas) {
+          await loadVideo(currentDramaId, currentEpisodeId, drama)
         }
-      }
-
-      updatePreloadStrategy()
-      if ('connection' in navigator) {
-        ;(navigator as any).connection.addEventListener('change', updatePreloadStrategy)
       }
     } catch (e) {
       console.error(e)
@@ -583,10 +286,7 @@
   })
 
   onUnmounted(() => {
-    VideoPreloadManager.clear()
-    if ('connection' in navigator) {
-      ;(navigator as any).connection.removeEventListener('change', updatePreloadStrategy)
-    }
+    cleanupAllVideoInstances()
   })
 
   const handleLike = () => {}
