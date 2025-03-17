@@ -89,11 +89,11 @@ export type ShareRecordResponse = {
 }
 
 export interface UpdateUserInfo {
-  NickName: string
-  Avatar: string
-  Remark: string
-  QQ: string
-  WX: string
+  NickName?: string | ''
+  Avatar?: string | ''
+  Remark?: string | ''
+  QQ?: string | ''
+  WX?: string | ''
 }
 
 export interface Suggestion {

@@ -71,8 +71,14 @@ export const useUserStore = defineStore('user', {
   },
   getters: {},
   actions: {
-    setUserInfo(userInfo: UserInfo) {
-      this.userInfo = userInfo
+    setUserInfo(userInfo: Partial<UserInfo>) {
+      // 深度合并对象，保留原有字段
+      this.userInfo = {
+        ...this.userInfo,
+        ...userInfo,
+        // 如果 vip 对象存在，则合并 vip 对象
+        vip: userInfo.vip ? { ...this.userInfo.vip, ...userInfo.vip } : this.userInfo.vip
+      }
     },
 
     async fetchUserInfo() {

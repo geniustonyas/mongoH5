@@ -110,6 +110,9 @@ export function updateUserInfo(data: UpdateUserInfo) {
   return request<ApiResponseData<any>>({
     url: 'Member/UpdateUserInfo',
     method: 'post',
+    headers: {
+      'X-Should-Encrypt': '1'
+    },
     data
   })
 }

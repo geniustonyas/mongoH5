@@ -170,34 +170,35 @@ const setupInterceptors = (service: AxiosInstance) => {
   if (service.interceptors.response.handlers.length === 0) {
     service.interceptors.response.use(
       async (response: AxiosResponse<any>) => {
-        const decrypt = new decryptionService()
-        const encryptedData = response.data
+        const shouldDecrypt = response.config.headers['X-Should-Decrypt'] !== '0'
+        let responseData = response.data
 
-        try {
-          const decryptedData = decrypt.decryptResponseData(encryptedData)
-          const parsedData = JSON.parse(decryptedData)
-          console.log('---------------->' + decrypt.decryptResponseData('UvpAYFk7jnB/lRYMtJx4N20gkka5gG1W6nTlds6HGE0='))
-
-          // 记录响应日志
-          logResponse(response, parsedData)
-
-          response.data = parsedData
-
-          if (parsedData.code === '401') {
-            useUserStoreHook().clearLogin()
-            showNotify({ type: 'danger', message: '登录已过期，请重新登录' })
-            return Promise.reject(new Error('Unauthorized'))
-          } else if (parsedData.code !== '200') {
-            // 显示错误信息
-            showNotify({ type: 'danger', message: parsedData.message || '请求失败' })
-            return Promise.reject(parsedData)
+        // 如果需要解密，先进行解密
+        if (shouldDecrypt) {
+          try {
+            const decrypt = new decryptionService()
+            const decryptedData = decrypt.decryptResponseData(responseData)
+            responseData = JSON.parse(decryptedData)
+            logResponse(response, responseData)
+          } catch (parseError) {
+            logError(parseError, 'Response Parsing')
+            showNotify({ type: 'danger', message: '数据解析失败' })
+            throw new Error('解密后的数据不是有效的 JSON 格式')
           }
-          return response
-        } catch (parseError) {
-          logError(parseError, 'Response Parsing')
-          showNotify({ type: 'danger', message: '数据解析失败' })
-          throw new Error('解密后的数据不是有效的 JSON 格式')
         }
+
+        // 统一的业务逻辑处理
+        if (responseData.code === '401') {
+          useUserStoreHook().clearLogin()
+          showNotify({ type: 'danger', message: '登录已过期，请重新登录' })
+          return Promise.reject(new Error('Unauthorized'))
+        } else if (responseData.code !== '200') {
+          showNotify({ type: 'danger', message: responseData.message || '请求失败' })
+          return Promise.reject(responseData)
+        }
+
+        response.data = responseData
+        return response
       },
       error => {
         logError(error, 'Response Interceptor')
@@ -205,7 +206,6 @@ const setupInterceptors = (service: AxiosInstance) => {
           useUserStoreHook().clearLogin()
           showNotify({ type: 'danger', message: '登录已过期，请重新登录' })
         } else {
-          // 显示网络错误信息
           showNotify({
             type: 'danger',
             message: error.response?.data?.msg || error.message || '网络请求失败'

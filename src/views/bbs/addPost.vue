@@ -54,7 +54,7 @@
             <a @click="showVideoPopup = true"><i class="mvfont mv-dianying" />添加视频</a>
           </div>
         </div>
-      </div>
+            </div>
     </main>
 
     <Popup v-model:show="showVideoPopup" :closeable="true" position="bottom" round :style="{ height: '60%' }">
@@ -81,7 +81,7 @@
         <div v-if="files.length != 0" class="upload-btns">
           <vButton type="primary" size="small" plain @click="batchUpload">全部上传</vButton>
           <vButton type="danger" size="small" @click="deleteAllFiles">全部删除</vButton>
-        </div>
+            </div>
       </div>
     </Popup>
 
@@ -119,7 +119,7 @@
                 <div v-if="file.status == 'failed'" class="upload-failed">
                   <Icon name="cross" color="var(--color-danger)" />
                 </div>
-              </div>
+            </div>
             </template>
           </Uploader>
         </div>

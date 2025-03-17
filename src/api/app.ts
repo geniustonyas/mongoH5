@@ -53,6 +53,9 @@ export function uploadFileApi(data: FormData) {
   return request<ApiResponseData<any>>({
     url: 'UploadFile/UploadImg',
     method: 'post',
+    headers: {
+      'X-Should-Decrypt': '0'
+    },
     data
   })
 }

@@ -2,7 +2,7 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a href="javascript:void(0)" onclick="javascript:history.go(-1)">
+        <a @click="appStore.setBack(true)">
           <i class="mvfont mv-left" />
         </a>
       </div>
@@ -15,7 +15,7 @@
       <div class="hpb-setting">
         <div class="hs-a">
           <div class="a-a" @click="selectAvatar">
-            <img :src="userStore.userInfo.avatar || getAssetsFile('u_video.png')" />
+            <img v-lazy-decrypt="userStore.userInfo.avatar" />
             <i class="mvfont mv-xiangji" />
           </div>
           <div class="a-b">修改头像</div>
@@ -60,7 +60,9 @@
   import { useUserStoreHook } from '@/store/user'
   import { uploadFileApi } from '@/api/app'
   import { updateUserInfo } from '@/api/user'
+  import { useAppStoreHook } from '@/store/app'
 
+  const appStore = useAppStoreHook()
   const userStore = useUserStoreHook()
   const fileInput = ref<HTMLInputElement | null>(null)
 
@@ -76,15 +78,15 @@
           try {
             formData.append('files', files[0])
             const { data } = await uploadFileApi(formData)
-            console.log(data)
-            if (response.data.code === 200) {
-              const avatarUrl = response.data.data.url
+            if (data.code == 200) {
+              const avatarUrl = data.data
+              console.log(userStore.userInfo)
               await updateUserInfo({
-                NickName: userStore.userInfo.nickName,
+                NickName: userStore.userInfo.nickName ? userStore.userInfo.nickName : '',
                 Avatar: avatarUrl,
-                Remark: userStore.userInfo.remark,
-                QQ: userStore.userInfo.qq,
-                WX: userStore.userInfo.wx
+                Remark: userStore.userInfo.remark ? userStore.userInfo.remark : '',
+                QQ: userStore.userInfo.qq ? userStore.userInfo.qq : '',
+                WX: userStore.userInfo.wx ? userStore.userInfo.wx : ''
               })
               userStore.userInfo.avatar = avatarUrl
             }
