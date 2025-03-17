@@ -28,6 +28,8 @@ export interface UserInfo {
   totalDepositOrderCount: string
   totalAgentCommon: number
   totalCommon: number
+  avatar: string
+  remark: string
   vip: {
     id: string
     vipId: string

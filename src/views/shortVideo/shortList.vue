@@ -39,13 +39,13 @@
               <div class="video-list-box">
                 <template v-for="(vd, index) in videos" :key="`${vd.imgUrl}${index}`">
                   <div v-if="!vd.isAd" class="video-list">
-                    <div class="l-a">
-                      <img :src="vd.poster" :alt="vd.title" />
-                      <span class="a-b" v-if="vd.duration != '0'">{{ formatDuration(parseInt(vd.duration)) }}</span>
-                    </div>
-                    <div class="l-b">
-                      <b>{{ vd.title }}</b>
-                      <div class="b-a">
+                  <div class="l-a">
+                    <img :src="vd.poster" :alt="vd.title" />
+                    <span class="a-b" v-if="vd.duration != '0'">{{ formatDuration(parseInt(vd.duration)) }}</span>
+                  </div>
+                  <div class="l-b">
+                    <b>{{ vd.title }}</b>
+                    <div class="b-a">
                         <div class="a-l">
                           <span>{{ formatNumber(vd.viewCount) }}</span>
                         </div>
@@ -53,23 +53,23 @@
                           <i class="mvfont mv-xihuan0" />
                           <span>{{ formatNumber(vd.likeCount) }}</span>
                         </div>
-                      </div>
                     </div>
                   </div>
-                  <div v-else @click="openAd(vd.targetUrl, '短视频列表广告', 'click', vd.id)" class="video-list">
-                    <div class="l-a">
-                      <img :src="vd.poster" :alt="vd.title" />
-                    </div>
-                    <div class="l-b">
-                      <b>{{ vd.title }}</b>
-                      <div class="b-a" />
-                    </div>
+                </div>
+                <div v-else @click="openAd(vd.targetUrl, '短视频列表广告', 'click', vd.id)" class="video-list">
+                  <div class="l-a">
+                    <img :src="vd.poster" :alt="vd.title" />
                   </div>
-                </template>
-              </div>
-            </List>
-          </PullRefresh>
-        </section>
+                  <div class="l-b">
+                    <b>{{ vd.title }}</b>
+                    <div class="b-a" />
+                  </div>
+                </div>
+              </template>
+            </div>
+          </List>
+        </PullRefresh>
+      </section>
       </section>
     </div>
   </HomeLayout>
@@ -120,19 +120,19 @@ const shortlistAdvertisement = () => {
 
 const fetchVideos = async (isRefresh: boolean) => {
   if (finished.value) return
-  const params: VideoListRequest = {
+    const params: VideoListRequest = {
     PageIndex: initPageNo.value,
-    PageSize: 10,
-    VideoType: 1,
-    SortType: 1
-  }
+      PageSize: 10,
+      VideoType: 1,
+      SortType: 1
+    }
   const adsList = shortlistAdvertisement()
   let dataWithAds: VideoWithAd[] = []
-  const {
-    data: { data }
-  } = await getVideoListApi(params)
+    const {
+      data: { data }
+    } = await getVideoListApi(params)
 
-  if (data && Array.isArray(data.items)) {
+    if (data && Array.isArray(data.items)) {
     totalPages.value = parseInt(data.pageCount)
     if (isRefresh && totalPages.value < initPageNo.value) {
       while (totalPages.value < initPageNo.value) {
@@ -154,31 +154,31 @@ const fetchVideos = async (isRefresh: boolean) => {
       video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
     }
     const startIndex = videos.length
-    if (isRefresh) {
+      if (isRefresh) {
       videos.splice(0, videos.length, ...dataWithAds)
-    } else {
+      } else {
       videos.splice(startIndex, dataWithAds.length, ...dataWithAds)
-    }
-    finished.value = data.items.length < params.PageSize
+      }
+      finished.value = data.items.length < params.PageSize
     loading.value = false
   }
 }
 
 const updateMasonry = async () => {
-  await nextTick()
-  const elem = document.querySelector('.video-list-box')
+      await nextTick()
+      const elem = document.querySelector('.video-list-box')
   if (!elem) return
 
   // 等待图片加载完成
-  imagesLoaded(elem, () => {
+        imagesLoaded(elem, () => {
     if (!masonryInstance) {
       masonryInstance = new Masonry(elem, {
-        itemSelector: '.video-list',
-        columnWidth: '.video-list',
-        percentPosition: true,
-        gutter: 4
-      })
-    } else {
+              itemSelector: '.video-list',
+              columnWidth: '.video-list',
+              percentPosition: true,
+              gutter: 4
+            })
+          } else {
       masonryInstance.reloadItems()
       masonryInstance.layout()
     }
@@ -237,7 +237,7 @@ const handleLoadVideoWithAd = async () => {
     await updateMasonry()
   } catch (error) {
     console.error('Load more failed:', error)
-  } finally {
+    } finally {
     loading.value = false
   }
 }

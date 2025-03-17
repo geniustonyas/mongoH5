@@ -116,3 +116,15 @@ export function updateUserInfo(data: UpdateUserInfo) {
     data
   })
 }
+
+/** 修改密码 */
+export function updatePassword(data: { NewPassword: string; CurrentPassword: string }) {
+  return request<ApiResponseData<any>>({
+    url: 'Member/ChangePassword',
+    method: 'post',
+    headers: {
+      'X-Should-Decrypt': '0'
+    },
+    data
+  })
+}

@@ -23,26 +23,38 @@
         <div class="aut-card">
           <div class="item">
             <div class="i-l">推荐码</div>
-            <div class="i-r">27044<i class="mvfont mv-fuzhi" /></div>
+            <div
+              class="i-r"
+              id="invitation-code"
+              @click="copy('#invitation-code', '复制成功')"
+              :data-clipboard-text="userStore.userInfo.invitationCode"
+            >
+              {{ userStore.userInfo.invitationCode }}<i class="mvfont mv-fuzhi" />
+            </div>
           </div>
           <div class="item">
             <div class="i-l">昵称</div>
-            <div class="i-r">小洋人<i class="mvfont mv-right3" /></div>
+            <div @click="router.push({ name: 'changeInfo' })" class="i-r">
+              {{ userStore.userInfo.nickName || '未设置' }}<i class="mvfont mv-right3" />
+            </div>
           </div>
           <div class="item">
             <div class="i-l">简介</div>
-            <div class="i-r">{{ userStore.userInfo.remark || '这人很懒，啥都没留下' }}<i class="mvfont mv-right3" /></div>
+            <div @click="router.push({ name: 'changeInfo' })" class="i-r">
+              {{ userStore.userInfo.remark || '这人很懒，啥都没留下' }}<i class="mvfont mv-right3" />
+            </div>
           </div>
           <!-- <div class="item">
             <div class="i-l">手机号</div>
-            <div class="i-r">
-              <span class="s-red"><i class="mvfont mv-jinyong" />未设置</span>
-              <i class="mvfont mv-right3" />
-            </div>
+            <div class="i-r">{{ userStore.userInfo.phoneNumber || '未设置' }}<i class="mvfont mv-right3" /></div>
+          </div>
+          <div class="item">
+            <div class="i-l">余额</div>
+            <div class="i-r">{{ userStore.userInfo.balance }} 元<i class="mvfont mv-right3" /></div>
           </div> -->
           <div class="item">
             <div class="i-l">修改密码</div>
-            <div class="i-r">修改<i class="mvfont mv-right3" /></div>
+            <div @click="router.push({ name: 'changePassword' })" class="i-r">修改<i class="mvfont mv-right3" /></div>
           </div>
           <div class="item">
             <div class="i-l">当前版本</div>
@@ -56,15 +68,17 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import { getAssetsFile } from '@/utils'
   import { useUserStoreHook } from '@/store/user'
   import { uploadFileApi } from '@/api/app'
   import { updateUserInfo } from '@/api/user'
   import { useAppStoreHook } from '@/store/app'
+  import { copy } from '@/utils/index'
+  import { useRouter } from 'vue-router'
 
   const appStore = useAppStoreHook()
   const userStore = useUserStoreHook()
   const fileInput = ref<HTMLInputElement | null>(null)
+  const router = useRouter()
 
   const selectAvatar = () => {
     if (!fileInput.value) {
@@ -80,6 +94,7 @@
             const { data } = await uploadFileApi(formData)
             if (data.code == 200) {
               const avatarUrl = data.data
+              userStore.userInfo.avatar = avatarUrl + '?t=' + new Date().getTime()
               console.log(userStore.userInfo)
               await updateUserInfo({
                 NickName: userStore.userInfo.nickName ? userStore.userInfo.nickName : '',
@@ -88,7 +103,6 @@
                 QQ: userStore.userInfo.qq ? userStore.userInfo.qq : '',
                 WX: userStore.userInfo.wx ? userStore.userInfo.wx : ''
               })
-              userStore.userInfo.avatar = avatarUrl
             }
           } catch (error) {
             console.error('上传头像失败:', error)

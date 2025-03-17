@@ -256,6 +256,24 @@ const routes: RouteRecordRaw[] = [
         meta: { needLogin: true, keepAlive: false, title: '个人设置' }
       },
       {
+        path: 'account',
+        component: AppMain,
+        children: [
+          {
+            path: 'changePassword',
+            name: 'changePassword',
+            component: () => import('@/views/home/account/changePassword.vue'),
+            meta: { needLogin: true, keepAlive: false, title: '修改密码' }
+          },
+          {
+            path: 'changeInfo',
+            name: 'changeInfo',
+            component: () => import('@/views/home/account/changeInfo.vue'),
+            meta: { needLogin: true, keepAlive: false, title: '修改信息' }
+          }
+        ]
+      },
+      {
         path: 'message',
         name: 'message',
         component: () => import('@/views/home/message.vue'),
