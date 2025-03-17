@@ -85,17 +85,17 @@ export function getRealVideoUrl(episodeIndex: Ref<string>, videoDetail: DramaDet
 }
 
 // 加载新剧集
-export async function loadVideo(currentDramaId: Ref<string>, currentEpisodeId: Ref<string>, dramaDetail: DramaItemVM) {
+export async function loadVideo(currentDramaId: Ref<string>, currentEpisodeId: Ref<string>, dramaDetail: DramaItemVM, autoPlay = false) {
   const videoDetail = await fetchDramaDetail(parseInt(dramaDetail.id))
   // 设置当前集数索引
-  currentEpisodeId.value = videoDetail.items[0].id
+  currentEpisodeId.value = videoDetail.first.id
   currentDramaId.value = videoDetail.id
 
   // 确保video元素已经被渲染
   const videoPlayerEle = getCurrentPlayElement(videoDetail)
   if (!videoPlayerEle) return
 
-  await loadEpisode(currentEpisodeId, videoDetail, true)
+  await loadEpisode(currentEpisodeId, videoDetail, autoPlay)
 }
 
 // 加载指定集数的视频
@@ -109,9 +109,6 @@ export async function loadEpisode(episodeId: Ref<string>, videoDetail: DramaDeta
 
   // 获取要播放的视频URL
   const url = getRealVideoUrl(episodeId, videoDetail)
-
-  // 清理之前的实例
-  cleanupVideoInstance(video.id)
 
   if (window.Hls.isSupported()) {
     try {
