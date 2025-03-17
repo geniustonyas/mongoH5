@@ -1,5 +1,5 @@
 import { request } from '@/utils/axios'
-import type { loginForm, loginResp, UserInfo, ShareRecordResponse, Suggestion } from '@/types/user'
+import type { loginForm, loginResp, UserInfo, ShareRecordResponse, Suggestion, UpdateUserInfo } from '@/types/user'
 import type { VideoListResponse } from '@/types/video'
 import type { ApiResponseData } from '@/types/global.d'
 import { TokenPrefix, getToken } from '@/utils/auth'
@@ -106,10 +106,13 @@ export function userSuggestion(data: Suggestion) {
 }
 
 /** 修改用户资料 */
-export function updateUserInfo(data: { NickName: string; Avatar: string; Introduction: string }) {
+export function updateUserInfo(data: UpdateUserInfo) {
   return request<ApiResponseData<any>>({
     url: 'Member/UpdateUserInfo',
     method: 'post',
+    headers: {
+      'X-Should-Encrypt': '1'
+    },
     data
   })
 }

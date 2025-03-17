@@ -88,6 +88,14 @@ export type ShareRecordResponse = {
   recordCount: string
 }
 
+export interface UpdateUserInfo {
+  NickName?: string | ''
+  Avatar?: string | ''
+  Remark?: string | ''
+  QQ?: string | ''
+  WX?: string | ''
+}
+
 export interface Suggestion {
   // 内容类型: 0全部 1视屏 2帖子
   ContentType: string
