@@ -64,4 +64,5 @@ export interface DramaDetailResponse {
 // 剧集列表项视图模型
 export interface DramaItemVM extends DramaItem {
   poster: string
+  virtualIndex: string | number
 }
