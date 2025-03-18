@@ -29,13 +29,22 @@
                     style="width: 100%; height: 100%"
                   />
                 </div>
+                <div class="v-b">
+                  <VideoActions
+                    :data="currentDramaDetail"
+                    @like="handleLike"
+                    @show-comment="handleShowComment"
+                    @toggle-collection="toggleCollection"
+                    @share="handleShare"
+                  />
+                </div>
                 <div v-if="false" class="v-d">
                   <div class="d-a">
                     <a href="#"><i class="mvfont mv-dianji" />点击查看更多短剧<i class="mvfont mv-right" /></a>
                   </div>
                   <div class="d-b">
-                    <h3>{{ videoDetail?.title || '-' }}</h3>
-                    <p>第{{ index + 1 }}集<small>|</small>雇人假结婚被抓包？不过女主是专业的，看合约夫妻如何反击！</p>
+                    <h3>{{ currentDramaDetail?.title || '-' }}</h3>
+                    <p>第{{ index + 1 }}集<small>|</small>{{ currentDramaDetail.introduction }}</p>
                   </div>
                   <div class="d-c" @click="showDramasPopup = true">
                     <div class="c-l"><img alt="" src="assets/imgs/logo-2.png" />短剧<b>●</b>三十天而已<span>更新至第3集</span></div>
@@ -47,15 +56,6 @@
               </div>
             </swiper-slide>
           </swiper>
-          <div class="v-b">
-            <VideoActions
-              :video-detail="videoDetail"
-              @like="handleLike"
-              @show-comment="handleShowComment"
-              @toggle-collection="toggleCollection"
-              @share="handleShare"
-            />
-          </div>
         </div>
       </div>
     </section>
@@ -105,7 +105,7 @@
 
 <script setup lang="ts">
   import HomeLayout from '@/components/layout/HomeLayout.vue'
-  import { computed, nextTick, onMounted, onUnmounted, reactive, ref } from 'vue'
+  import { nextTick, onMounted, onUnmounted, ref } from 'vue'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
   import Loading from '@/components/layout/Loading.vue'
@@ -114,7 +114,16 @@
   import { DramaDetailResponse, DramaItemVM } from '@/types/drama'
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import { Virtual } from 'swiper/modules'
-  import { cleanupAllVideoInstances, getVideoInstance, loadVideo } from './utils/videoLoader'
+  import {
+    cleanupAllVideoInstances,
+    cleanupVideoInstance,
+    fetchDramaDetail,
+    getRealVideoUrl,
+    getVideoInstance,
+    loadEpisodeOfDrama,
+    pauseVideo,
+    playVideo
+  } from './utils/videoLoader'
   import VideoActions from './components/video-actions.vue'
 
   import 'swiper/css'
@@ -122,7 +131,7 @@
 
   const modules = [Virtual]
   const dramas = ref<DramaItemVM[]>([])
-  const dramaDetails = reactive<DramaDetailResponse[]>([])
+  const currentDramaDetail = ref<DramaDetailResponse | null>(null)
   const decrypt = new decryptionService()
   const appStore = useAppStore()
   const isLoading = ref(true)
@@ -132,18 +141,15 @@
   const currentDramaId = ref('')
   const currentEpisodeId = ref('')
   const currentSwiperIndex = ref(0)
-
-  const videoDetail = computed(() => {
-    console.log(currentDramaId.value)
-    return dramaDetails.find(item => item.id === currentDramaId.value)
-  })
+  const totalCount = ref(0)
+  const pageIndex = ref(1)
 
   const fetchDramaList = async () => {
     try {
       const {
         data: { data }
       } = await getDramaList({
-        PageIndex: 1,
+        PageIndex: pageIndex.value,
         PageSize: 5,
         ChannelId: '',
         GenderChannelType: ''
@@ -153,38 +159,90 @@
           video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
           dramas.value.push(video)
         }
+        totalCount.value = data.recordCount
       }
     } catch (error) {
       console.error('获取剧集列表失败:', error)
     }
   }
 
+  const prepareVideo = async (dramaId: string, episodeId: string) => {
+    currentEpisodeId.value = episodeId
+    currentDramaId.value = dramaId
+    currentDramaDetail.value = await fetchDramaDetail(parseInt(dramas.value[0].id))
+
+    return getRealVideoUrl(currentEpisodeId.value, currentDramaDetail.value)
+  }
+
   const slideChange = async (swiper: any) => {
     const prevIndex = currentSwiperIndex.value
-    const currentDramaId = dramas.value[swiper.activeIndex]?.id
-    const instance = getVideoInstance(currentDramaId)
+    const currentIndex = swiper.activeIndex
+    const activedDramaId = dramas.value[currentIndex]?.id
+    const prevDramaId = dramas.value[prevIndex]?.id
+    const currentVideoInstance = getVideoInstance(activedDramaId)
+    const prevDramaVideoInstance = getVideoInstance(prevDramaId)
+    const isSlidingDown = currentIndex > prevIndex
 
     currentSwiperIndex.value = swiper.activeIndex
 
     if (prevIndex === currentSwiperIndex.value) return
 
-    if (instance) {
-      instance.player?.play()
+    // 停止并重置上一个视频
+    if (prevDramaVideoInstance) {
+      pauseVideo(prevDramaId)
+    }
+
+    // 销毁上上一个视频
+    const destroyIndex = isSlidingDown ? currentSwiperIndex.value - 2 : currentSwiperIndex.value + 2
+    if (destroyIndex >= 0 && dramas.value[destroyIndex]) {
+      cleanupVideoInstance(dramas.value[destroyIndex]?.id)
+    }
+
+    // 播放当前视频
+    if (currentVideoInstance) {
+      playVideo(activedDramaId)
+      currentDramaDetail.value = await fetchDramaDetail(parseInt(activedDramaId))
+    } else {
+      const url = await prepareVideo(currentDramaId.value, currentEpisodeId.value)
+      if (url) {
+        await loadEpisodeOfDrama(url, currentDramaId.value, true)
+      }
+    }
+
+    // 预先加载下一个视频
+    const nextVideoIndex = isSlidingDown ? currentSwiperIndex.value + 1 : currentSwiperIndex.value - 1
+    if (nextVideoIndex >= 0 && nextVideoIndex < dramas.value.length) {
+      const url = await prepareVideo(currentDramaId.value, dramas.value[nextVideoIndex].first.id)
+      if (url) {
+        await loadEpisodeOfDrama(url, currentDramaId.value, false)
+      }
+    }
+
+    // 是否要加载更多视频
+    if (currentSwiperIndex.value + 1 < totalCount.value) {
+      if (dramas.value.length - currentSwiperIndex.value < 3) {
+        pageIndex.value++
+        await fetchDramaList()
+      }
     }
   }
 
   onMounted(async () => {
     try {
+      let url = ''
       await fetchDramaList()
       if (dramas.value.length > 0) {
         isLoading.value = false
         await nextTick()
         // 加载并播放第一个视频
-        await loadVideo(currentDramaId, currentEpisodeId, dramas.value[0], true)
+        url = await prepareVideo(dramas.value[0].id, dramas.value[0].first.id)
+        if (url) {
+          await loadEpisodeOfDrama(url, currentDramaId.value, true)
+        }
         // 预加载后面两个视频
         const nextDramas = dramas.value.slice(1, 3)
         for (const drama of nextDramas) {
-          await loadVideo(currentDramaId, currentEpisodeId, drama, false)
+          await loadEpisodeOfDrama(drama.first.id, drama.id, false)
         }
       }
     } catch (e) {
