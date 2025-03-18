@@ -66,8 +66,12 @@ export function userWatchHistory(data: { PageIndex: number; PageSize: number }) 
   })
 }
 
-/** 用户收藏记录 */
-export function userCollectionHistory(data: { PageIndex: number; PageSize: number }) {
+/**
+ * 用户收藏记录
+ * @param data:VideoType: 0长视频 1短视频
+ * @returns
+ */
+export function userCollectionHistory(data: { PageIndex: number; PageSize: number; VideoType: number }) {
   return request<ApiResponseData<VideoListResponse>>({
     url: 'Web/MemberCollectVideoList',
     method: 'post',

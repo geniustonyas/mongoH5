@@ -10,7 +10,6 @@ const decrypt = new decryptionService()
 // 提取加载图片的逻辑
 const loadImage = async (el: HTMLElement, binding: DirectiveBinding, isImageElement: boolean) => {
   try {
-    console.log(appStore.cdnUrl + binding.value)
     const blob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + binding.value)
     if (!(blob instanceof Blob)) {
       throw new Error('解密后的数据不是有效的 Blob 对象')

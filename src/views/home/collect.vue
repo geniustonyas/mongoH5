@@ -2,180 +2,355 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
+        <a href="javascript:void(0)" onclick="javascript:history.go(-1)">
+          <i class="mvfont mv-left" />
+        </a>
       </div>
-      <div class="d-m">我的收藏</div>
-      <div v-show="!nodata" class="d-r" @click="toggleEditMode">{{ isEditing ? '取消' : '编辑' }}</div>
+      <div class="d-m">
+        <span>我的收藏</span>
+      </div>
+      <div class="d-r" onclick="editCollect(this)">
+        <span>管理</span>
+      </div>
     </header>
-    <section class="h-m-b">
-      <div class="his-box collect">
-        <ul v-if="videos.length > 0">
-          <li v-for="video in videos" :key="video.id" @click="!isEditing && router.push({ name: 'play', params: { id: video.id } })">
-            <div class="l-x" v-show="isEditing" @click.stop="toggleSelectVideo(parseInt(video.id))">
-              <div class="x-c" :class="{ checked: selectedVideos.has(parseInt(video.id)) }">
-                <i class="mvfont mv-radio" />
-              </div>
-            </div>
-            <div class="l-a">
-              <img v-lazy-decrypt="video.imgUrl" />
-              <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
-              <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
-              <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
-            </div>
-            <div class="l-b">
-              <div class="b-a">{{ video.title }}</div>
-              <div class="b-b">
-                <span><i class="mvfont mv-kan" />{{ formatNumber(video.viewCount) }}</span>
-                <span><i class="mvfont mv-zan" />{{ formatNumber(video.likeCount) }}</span>
-              </div>
-              <div class="b-c">{{ formatDate(video.addTime) }}</div>
-            </div>
-          </li>
-        </ul>
-        <div v-if="nodata" class="nodata">
-          <div class="d-i" />
-          <div class="d-t">暂无收藏记录</div>
-        </div>
+    <section class="au-main">
+      <div class="u-tabs">
+        <span v-for="tab in tabs" :key="tab.name" :class="{ active: activeTab === tab.name }" @click="clickTab(tab.name)">
+          {{ tab.title }}
+        </span>
       </div>
+      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="handleSwipeChange">
+        <!-- 短视频抖阴 -->
+        <swiper-slide>
+          <section class="h-l-b">
+            <ul v-if="dataMap[0] && dataMap[0].length > 0">
+              <li v-for="video in dataMap[0]" :key="video.id">
+                <div class="l-a">
+                  <img v-lazy-decrypt="video.imgUrl" />
+                  <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
+                </div>
+                <div class="l-b">
+                  <b>{{ video.title }}</b>
+                  <div class="b-a">
+                    <div class="a-l">
+                      <span>{{ formatNumber(video.viewCount) }} 次播放</span>
+                    </div>
+                    <div class="a-r">
+                      <span><i class="mvfont mv-xihuan0" />{{ formatNumber(video.likeCount) }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="edit-item">
+                  <i class="mvfont mv-ckbox" />
+                </div>
+              </li>
+            </ul>
+            <div v-if="noData[0]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+              <div class="d-t">暂无数据</div>
+            </div>
+          </section>
+        </swiper-slide>
+        <!-- 视频 -->
+        <swiper-slide>
+          <nav class="mv-t-l">
+            <div class="m-b" v-if="dataMap[1] && dataMap[1].length > 0">
+              <div class="item" v-for="video in dataMap[1]" :key="video.id">
+                <div class="i-a" v-lazy-decrypt="video.imgUrl">
+                  <span v-if="classifyResolution(video.resolution) != ''" :class="'a-a _' + classifyResolution(video.resolution)">
+                    {{ classifyResolution(video.resolution) }}
+                  </span>
+                  <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
+                  <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
+                </div>
+                <div class="i-b">
+                  <b>{{ video.title }}</b>
+                  <div class="b-dv">
+                    <div class="p-c">
+                      <span><i class="mvfont mv-kan" />{{ formatNumber(video.viewCount) }}</span>
+                      <span><i class="mvfont mv-zan" />{{ formatNumber(video.likeCount) }}</span>
+                    </div>
+                    <div v-if="video.addTime" class="p-c">
+                      <span><i class="mvfont mv-riqi" />{{ fromNow(video.addTime) }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div v-if="noData[1]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+              <div class="d-t">暂无数据</div>
+            </div>
+          </nav>
+        </swiper-slide>
+        <!-- 社区 -->
+        <swiper-slide>
+          <ul class="bbs-list mt-0">
+            <template v-if="dataMap[2] && dataMap[2].length > 0">
+              <template v-for="(post, index) in dataMap[2]" :key="index">
+                <li v-if="!post.isAd" @click="handleClick(post)">
+                  <div class="i-a">
+                    <div class="a-l">
+                      <img :src="getAssetsFile('logo-4.png')" />
+                      <div class="l-n">
+                        <h3>{{ post?.user?.nickName || '芒果TV官方' }}</h3>
+                        <span>{{ fromNow(post?.createTime) }}</span>
+                      </div>
+                    </div>
+                    <div class="a-r">
+                      <span class="off" @click.stop="toggleCollect(post)">取消收藏</span>
+                    </div>
+                  </div>
+                  <div class="i-b" v-html="decodeHtmlEntities(post.title || '')" />
+                  <div
+                    :class="`i-c pic${post.imgs.split(',').length > 4 ? '9' : post.imgs.split(',').length || ''}
+                    ${post.channel.id == '2' ? 'weimi' : ''}`"
+                  >
+                    <div class="item" v-for="(img, index1) in post.imgs.split(',')" :key="index1">
+                      <img
+                        v-lazy-decrypt="img"
+                        :loading-img="post.imgs.split(',').length == 3 && index1 == 0 ? 'default2.gif' : 'default.gif'"
+                      />
+                    </div>
+                  </div>
+                  <div class="i-d">
+                    <div class="d-x">
+                      <span><i class="mvfont mv-pinglun" />{{ post.commentCount ? formatNumber(post.commentCount) : 0 }}</span>
+                      <span><i class="mvfont mv-zan" />{{ post.likeCount ? formatNumber(post.likeCount) : 0 }}</span>
+                      <span><i class="mvfont mv-like" />{{ post.collectionCount ? formatNumber(post.collectionCount) : 0 }}</span>
+                    </div>
+                    <div class="d-x">
+                      <span><i class="mvfont mv-kan" />{{ post.viewCount ? formatNumber(post.viewCount) : 0 }}</span>
+                    </div>
+                  </div>
+                </li>
+              </template>
+            </template>
+          </ul>
+          <div v-if="noData[2]" class="nodata">
+            <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+            <div class="d-t">暂无数据</div>
+          </div>
+        </swiper-slide>
+        <!-- 短剧 -->
+        <swiper-slide>
+          <ul v-if="dataMap[3] && dataMap[3].length > 0" class="b-u-l">
+            <li v-for="video in dataMap[3]" :key="video.id" @click="handleClick(video)">
+              <div class="l-a" v-lazy-decrypt="video.imgUrl">
+                <a class="a-a"><i class="mvfont mv-bofang2" />{{ video.viewCount }}</a>
+              </div>
+              <div class="l-b">
+                <p>{{ video.title }}</p>
+                <span>
+                  <small>{{ video.channelName }}</small>
+                  全{{ video.episodeCount }}集
+                </span>
+              </div>
+            </li>
+          </ul>
+          <div v-if="noData[3]" class="nodata">
+            <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+            <div class="d-t">暂无数据</div>
+          </div>
+        </swiper-slide>
+        <!-- 合集 -->
+        <swiper-slide>
+          <div v-if="dataMap[4] && dataMap[4].length > 0" class="m-c-b">
+            <ul>
+              <li v-for="item in dataMap[4]" :key="item.id">
+                <div class="li-a ss1">
+                  <img v-lazy-decrypt="item.imgUrl" />
+                  <span> <i class="mvfont mv-heji" />{{ item.channelName }} </span>
+                </div>
+                <div class="li-b">{{ item.title }}</div>
+                <div class="li-c">
+                  <span>{{ item.videoCount }}个视频</span>
+                  <span>•{{ item.viewCount }}万次观看</span>
+                  <span>•{{ item.likeCount }}点赞</span>
+                  <span>•{{ item.collectionCount }}收藏</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div v-if="noData[4]" class="nodata">
+            <img :src="getAssetsFile('empty/collect.svg')" alt="" />
+            <div class="d-t">暂无合集</div>
+          </div>
+        </swiper-slide>
+        <!-- 小说 -->
+        <swiper-slide>
+          <div v-if="dataMap[5] && dataMap[5].length > 0" class="n-l-b">
+            <ul>
+              <li v-for="item in dataMap[5]" :key="item.id">
+                <div class="l-a">
+                  <img v-lazy-decrypt="item.coverurl" />
+                  <span class="a-a">{{ item.categoryName }}</span>
+                  <span class="a-b">{{ item.readCount }}阅读</span>
+                </div>
+                <div class="l-b">
+                  <b>{{ item.title }}</b>
+                  <p>{{ item.introduction }}</p>
+                </div>
+              </li>
+            </ul>
+            <div v-if="noData[5]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+              <div class="d-t">暂无数据</div>
+            </div>
+          </div>
+        </swiper-slide>
+        <!-- 有声 -->
+        <swiper-slide>
+          <div v-if="noData[6]" class="nodata">
+            <img :src="getAssetsFile('empty/collect.svg')" alt="" />
+            <div class="d-t">暂无有声</div>
+          </div>
+        </swiper-slide>
+        <!-- 漫画 -->
+        <swiper-slide>
+          <div v-if="dataMap[7] && dataMap[7].length > 0" class="n-l-b">
+            <ul>
+              <li v-for="item in dataMap[7]" :key="item.id">
+                <div class="l-a">
+                  <img v-lazy-decrypt="item.coverurl" />
+                  <span class="a-a">{{ item.categoryName }}</span>
+                  <span class="a-b">{{ item.readCount }}阅读</span>
+                </div>
+                <div class="l-b">
+                  <b>{{ item.title }}</b>
+                  <p>{{ item.introduction }}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div v-if="noData[7]" class="nodata">
+            <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+            <div class="d-t">暂无数据</div>
+          </div>
+        </swiper-slide>
+        <!-- 茶帖 -->
+        <swiper-slide>
+          <div class="nodata">
+            <img :src="getAssetsFile('empty/collect.svg')" alt="" />
+            <div class="d-t">暂无茶帖</div>
+          </div>
+        </swiper-slide>
+      </swiper>
     </section>
-    <footer class="footer" v-show="isEditing">
+    <footer class="footer">
       <div class="edit-foot">
         <div class="f-bd">
-          <a @click="selectAll">全选</a>
-          <a @click="removeSelected">移除</a>
+          <a><i class="mvfont mv-qiyong" />全选</a>
+          <a class="fx-15 bct-1"><i class="mvfont mv-shanchu" />删除</a>
         </div>
       </div>
     </footer>
-
-    <template v-if="totalPages > 1">
-      <div class="au-pagination-box" v-if="totalPages > 9">
-        <div class="pb-x">
-          <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">上一页</a>
-        </div>
-        <div class="pb-x">
-          <input v-model="currentPage" @change="() => fetchCollections()" type="number" min="1" :max="totalPages" />
-          <span>/ {{ totalPages }}</span>
-        </div>
-        <div class="pb-x">
-          <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">下一页</a>
-        </div>
-      </div>
-      <div v-else class="more-box"><a v-if="currentPage < totalPages && !nodata" @click="loadMore">加载更多</a></div>
-    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { userCollectionHistory, userCollection } from '@/api/user'
-import { classifyResolution, formatNumber } from '@/utils'
-import type { Video } from '@/types/video'
-import { useAppStore } from '@/store/app'
+  import { ref, onMounted, nextTick } from 'vue'
+  import { useAppStore } from '@/store/app'
+  import { useUserStore } from '@/store/user'
+  import { getAssetsFile } from '@/utils'
+  import { userCollectionHistory } from '@/api/user'
+  import { getBbsCollectionListApi } from '@/api/bbs'
+  import { getDramaCollectList } from '@/api/drama'
+  import { getCollectCollectionListApi } from '@/api/collection'
+  import { getCollectionList as getNovelCollectList } from '@/api/novel'
+  import { getCommicCollectionList } from '@/api/commic'
+  import { Swiper, SwiperSlide } from 'swiper/vue'
+  import { PullRefresh } from 'vant'
+  import { formatDuration, formatNumber, fromNow, classifyResolution, decodeHtmlEntities } from '@/utils'
+  import 'swiper/css'
 
-const router = useRouter()
-const appStore = useAppStore()
+  const appStore = useAppStore()
+  const userStore = useUserStore()
 
-const videos = ref<Video[]>([])
-const currentPage = ref(1)
-const totalPages = ref(1)
-const pageSize = ref(10)
-const nodata = ref(false)
-const isEditing = ref(false)
-const selectedVideos = ref<Set<number | string>>(new Set())
+  const tabs = ref([
+    { title: '抖阴', name: 0, api: userCollectionHistory, params: { VideoType: 1 } },
+    { title: '视频', name: 1, api: userCollectionHistory, params: { VideoType: 0 } },
+    { title: '社区', name: 2, api: getBbsCollectionListApi, params: {} },
+    { title: '短剧', name: 3, api: getDramaCollectList, params: {} },
+    { title: '合集', name: 4, api: getCollectCollectionListApi, params: {} },
+    { title: '小说', name: 5, api: getNovelCollectList, params: {} },
+    { title: '有声', name: 6, api: null, params: {} },
+    { title: '漫画', name: 7, api: getCommicCollectionList, params: {} },
+    { title: '茶贴', name: 8, api: null, params: {} }
+  ])
 
-const fetchCollections = async (loadMore = false) => {
-  try {
-    const params = {
-      PageIndex: currentPage.value,
-      PageSize: pageSize.value
+  const activeTab = ref(0)
+  const dataMap = ref<Record<number, any[]>>({})
+  const pageIndex = ref<Record<number, number>>({})
+  const totalPages = ref<Record<number, number>>({})
+  const noData = ref<Record<number, boolean>>({})
+  const refreshing = ref(false)
+  const loading = ref(false)
+  const swiperInstance = ref<any>(null)
+
+  const fetchData = async (tabName: number, loadMore = false) => {
+    loading.value = true
+    try {
+      const tab = tabs.value.find(t => t.name == tabName)
+      if (!tab || !tab.api) {
+        noData.value[tabName] = true
+        return
+      }
+      //@ts-ignore
+      const response = await tab.api({ PageIndex: pageIndex.value[tabName] ?? 1, PageSize: 10, ...tab.params })
+      const { data } = response.data
+      if (data && Array.isArray(data.items)) {
+        if (!dataMap.value[tabName]) {
+          dataMap.value[tabName] = []
+        }
+        if (loadMore) {
+          dataMap.value[tabName].push(...data.items)
+        } else {
+          dataMap.value[tabName] = data.items
+        }
+        totalPages.value[tabName] = Number(data.pageCount)
+        pageIndex.value[tabName] = Number(data.pageIndex)
+        noData.value[tabName] = data.items.length == 0
+        console.log(noData.value)
+      }
+    } catch (error) {
+      console.error('获取数据失败:', error)
+    } finally {
+      loading.value = false
     }
-    const {
-      data: { data }
-    } = await userCollectionHistory(params)
+  }
 
-    if (data && Array.isArray(data.items)) {
-      videos.value = loadMore ? videos.value.concat(data.items) : data.items
-      nodata.value = videos.value.length == 0
-      currentPage.value = parseInt(data.pageIndex)
-      totalPages.value = parseInt(data.pageCount)
-    } else {
-      nodata.value = true
-      videos.value = []
+  const onSwiper = (swiper: any) => {
+    swiperInstance.value = swiper
+  }
+
+  const clickTab = (tabName: number) => {
+    activeTab.value = tabName
+    if (swiperInstance.value) {
+      swiperInstance.value.slideTo(tabName, 0)
     }
-  } catch (error) {
-    console.error('获取收藏记录失败:', error)
-    nodata.value = true
-    videos.value = []
+    // if (!dataMap.value[tabName] || dataMap.value[tabName].length === 0) {
+    //   pageIndex.value[tabName] = 1
+    //   fetchData(tabName)
+    // }
   }
-}
 
-const changePage = (newPage: number) => {
-  if (newPage >= 1 && newPage <= totalPages.value) {
-    currentPage.value = newPage
-    fetchCollections()
+  const handleSwipeChange = (swiper: any) => {
+    const newIndex = swiper.activeIndex
+    activeTab.value = newIndex
+    if (!dataMap.value[newIndex] || dataMap.value[newIndex].length == 0) {
+      pageIndex.value[newIndex] = 1
+      fetchData(newIndex)
+    }
   }
-}
 
-const loadMore = async () => {
-  currentPage.value += 1
-  await fetchCollections(true)
-}
-
-const formatDate = (dateString: string | undefined) => {
-  if (!dateString) return ''
-  const date = new Date(dateString)
-  return date.toLocaleDateString('zh-CN')
-}
-
-const toggleEditMode = () => {
-  isEditing.value = !isEditing.value
-  if (!isEditing.value) {
-    selectedVideos.value.clear()
+  const handleRefresh = async (tabName: number) => {
+    refreshing.value = true
+    await fetchData(tabName)
+    refreshing.value = false
   }
-}
 
-const toggleSelectVideo = (videoId: number) => {
-  if (selectedVideos.value.has(videoId)) {
-    selectedVideos.value.delete(videoId)
-  } else {
-    selectedVideos.value.add(videoId)
-  }
-  console.log(selectedVideos.value)
-}
-
-const selectAll = () => {
-  if (selectedVideos.value.size === videos.value.length) {
-    selectedVideos.value.clear()
-  } else {
-    videos.value.forEach((video) => selectedVideos.value.add(parseInt(video.id)))
-  }
-}
-
-const removeSelected = async () => {
-  if (selectedVideos.value.size === 0) return
-
-  const videoIds = Array.from(selectedVideos.value).join(',')
-  try {
-    await userCollection({ Ids: videoIds, Collect: false })
-    currentPage.value = 1
-    fetchCollections()
-  } catch (error) {
-    console.error('移除收藏失败:', error)
-  } finally {
-    isEditing.value = false
-    selectedVideos.value.clear()
-  }
-}
-
-onMounted(() => {
-  fetchCollections()
-})
+  onMounted(() => {
+    fetchData(activeTab.value)
+  })
 </script>
-
-<style scoped>
-.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-</style>

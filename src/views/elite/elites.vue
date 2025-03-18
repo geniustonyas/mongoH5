@@ -33,6 +33,10 @@
                   <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.like == 1 }]" />
                   <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
                 </a>
+                <a @click="handleCollection()">
+                  <i :class="['mvfont', 'mv-shoucang', { active: videoDetail && videoDetail.collect }]" />
+                  <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
+                </a>
                 <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
                 <a class="btn-mute" @click="toggleMute">
                   <i :class="['mvfont', mutePlay ? 'mv-jingyin' : 'mv-shengyin0']" />
@@ -74,7 +78,7 @@
   import { onBeforeRouteLeave } from 'vue-router'
   import { getVideoListApi, getVideoDetailApi, addPlayCountApi } from '@/api/video'
   import decryptionService from '@/utils/decryptionService'
-  import { userLike } from '@/api/user'
+  import { userLike, userCollection } from '@/api/user'
   import type { Video, VideoDetailResponse } from '@/types/video'
   import { useAppStore } from '@/store/app'
   import { useUserStore } from '@/store/user'
@@ -423,6 +427,22 @@
 
       videoDetail.value.like = newLikeStatus
       videoDetail.value.likeCount = (Number(videoDetail.value.likeCount) + (newLikeStatus ? 1 : -1)).toString()
+    } catch (error) {
+      console.error('操作失败:', error)
+    }
+  }
+
+  const handleCollection = async () => {
+    if (!checkLogin()) return
+
+    try {
+      const videoId = videoDetail.value?.id
+      const newCollectStatus = !videoDetail.value?.collect
+
+      await userCollection({ VideoId: videoId, Collect: newCollectStatus })
+
+      videoDetail.value.collect = newCollectStatus
+      videoDetail.value.collectionCount = (Number(videoDetail.value.collectionCount) + (newCollectStatus ? 1 : -1)).toString()
     } catch (error) {
       console.error('操作失败:', error)
     }

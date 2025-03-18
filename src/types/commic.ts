@@ -151,8 +151,8 @@ export interface AddCommicToCollectionParams {
 }
 
 export interface CommicCollectionListRequest {
-  pageIndex: number
-  pageSize: number
+  PageIndex: number
+  PageSize: number
 }
 
 export interface CommicRecommendResponse {

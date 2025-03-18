@@ -161,8 +161,8 @@ export interface NovelChapterDetailResponse {
 }
 
 export interface NovelCollectionListRequest {
-  pageIndex: number
-  pageSize: number
+  PageIndex: number
+  PageSize: number
 }
 
 export interface AddNovelCollectionRequest {

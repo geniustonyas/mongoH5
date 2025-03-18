@@ -172,8 +172,8 @@
       error.value = null
 
       const params = {
-        pageIndex: currentPage.value,
-        pageSize: 10
+        PageIndex: currentPage.value,
+        PageSize: 10
       }
 
       const {

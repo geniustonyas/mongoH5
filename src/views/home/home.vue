@@ -107,6 +107,8 @@
         </ul>
       </div>
     </section>
+    <Footer active-menu="home" />
+    <NavBar active-menu="home" />
   </div>
 </template>
 
@@ -116,6 +118,9 @@
   import { useUserStoreHook } from '@/store/user'
   import { useAppStoreHook } from '@/store/app'
   import { openAd } from '@/utils'
+
+  import Footer from '@/components/layout/Footer.vue'
+  import NavBar from '@/components/layout/NavBar.vue'
 
   const userStore = useUserStoreHook()
   const appStore = useAppStoreHook()

@@ -25,3 +25,27 @@ export function getDramaDetail(params: DramaDetailRequestParams) {
     }
   })
 }
+
+/** 获取短剧收藏列表 */
+export function getDramaCollectList(params: { PageIndex: number; PageSize: number }) {
+  return request<ApiResponseData<DramaListResponse>>({
+    url: 'ShortMovie/CollectList',
+    method: 'post',
+    data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
+/** 收藏短剧 */
+export function addDramaToCollection(params: { Id: string; Collect: boolean; VideoId: string; Ids: string }) {
+  return request<ApiResponseData<DramaListResponse>>({
+    url: 'ShortMovie/Collect',
+    method: 'post',
+    headers: {
+      'X-Should-Encrypt': '1'
+    },
+    data: params
+  })
+}

@@ -29,6 +29,7 @@ export interface DramaItem {
   likeCount: string // 点赞数
   commentCount: string // 评论数
   collectionCount: string // 收藏数
+  collect: boolean // 是否收藏
   first: DramaEpisode // 第一集信息
 }
 

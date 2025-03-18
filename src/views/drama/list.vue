@@ -104,13 +104,14 @@
 </template>
 
 <script setup lang="ts">
+  import { useUserStore } from '@/store/user'
   import HomeLayout from '@/components/layout/HomeLayout.vue'
   import { nextTick, onMounted, onUnmounted, ref } from 'vue'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
   import Loading from '@/components/layout/Loading.vue'
   import { Popup } from 'vant'
-  import { getDramaList } from '@/api/drama'
+  import { getDramaList, addDramaToCollection } from '@/api/drama'
   import { DramaDetailResponse, DramaItemVM } from '@/types/drama'
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import { Virtual } from 'swiper/modules'
@@ -129,6 +130,7 @@
   import 'swiper/css'
   import 'swiper/css/virtual'
 
+  const userStore = useUserStore()
   const modules = [Virtual]
   const dramas = ref<DramaItemVM[]>([])
   const currentDramaDetail = ref<DramaDetailResponse | null>(null)
@@ -256,13 +258,36 @@
     cleanupAllVideoInstances()
   })
 
+  const checkLogin = (): boolean => {
+    if (userStore.userInfo.id == '') {
+      userStore.showLoginDialog = true
+      return false
+    }
+    return true
+  }
+
   const handleLike = () => {}
+
+  const toggleCollection = async () => {
+    if (!checkLogin()) return
+
+    try {
+      const videoId = dramas.value[currentSwiperIndex.value]?.id
+      const newCollectStatus = !dramas.value[currentSwiperIndex.value]?.collect
+
+      await addDramaToCollection({ Id: videoId, Collect: newCollectStatus, VideoId: '', Ids: '' })
+
+      dramas.value[currentSwiperIndex.value].collect = newCollectStatus
+      dramas.value[currentSwiperIndex.value].collectionCount = (Number(dramas.value[currentSwiperIndex.value].collectionCount) + (newCollectStatus ? 1 : -1)).toString()
+    } catch (error) {
+      console.error('操作失败:', error)
+    }
+  }
 
   const handleShare = () => {}
 
   const handleShowComment = () => {}
 
-  const toggleCollection = () => {}
 </script>
 
 <style scoped>
