@@ -51,7 +51,7 @@ export interface DramaDetailResponse {
   episodeCount: string // 总集数
   currentEpisodes: string // 当前集数
   genderChannelType: number // 性别频道类型
-  intro: string // 简介
+  introduction: string // 简介
   viewCount: string
   likeCount: string
   commentCount: string

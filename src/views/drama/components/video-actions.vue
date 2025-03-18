@@ -1,18 +1,60 @@
+<template>
+  <div class="video-actions">
+    <a href="#"><img alt="" :src="dramaDetail?.imgUrl" /></a>
+    <a @click.prevent="handleLike">
+      <i :class="['mvfont', 'mv-xihuan', { active: dramaDetail?.like }]" />
+      <b>{{ dramaDetail?.likeCount || 0 }}</b>
+    </a>
+    <a @click.prevent="handleShowComment">
+      <i class="mvfont mv-pinglun3" />
+      <b>{{ dramaDetail?.likeCount || 0 }}</b>
+    </a>
+    <a @click.prevent="toggleCollection">
+      <i :class="['mvfont', 'mv-shoucang', { active: dramaDetail?.collect }]" />
+      <b>{{ dramaDetail?.collectionCount || 0 }}</b>
+    </a>
+    <a @click="handleShare">
+      <i class="mvfont mv-zhuanfa" />
+      <b>分享</b>
+    </a>
+  </div>
+</template>
+
 <script setup lang="ts">
+  import { ref, watch } from 'vue'
+  import { DramaDetailResponse } from '@/types/drama'
+  import decryptionService from '@/utils/decryptionService'
+  import { useAppStore } from '@/store/app'
+
   interface Props {
-    videoDetail?: {
-      likeCount: string | number
-      collectionCount: string | number
-    }
+    data?: DramaDetailResponse
   }
 
-  defineProps<Props>()
+  const props = defineProps<Props>()
+
   const emit = defineEmits<{
     (e: 'like'): void
     (e: 'showComment'): void
     (e: 'toggleCollection'): void
     (e: 'share'): void
   }>()
+
+  const decrypt = new decryptionService()
+  const appStore = useAppStore()
+  const dramaDetail = ref<DramaDetailResponse | null>(null)
+
+  watch(
+    () => props.data,
+    async () => {
+      if (props.data) {
+        dramaDetail.value = props.data
+        dramaDetail.value.imgUrl = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + props.data?.imgUrl))
+      }
+    },
+    {
+      immediate: true
+    }
+  )
 
   function handleLike() {
     emit('like')
@@ -30,28 +72,6 @@
     emit('share')
   }
 </script>
-
-<template>
-  <div class="video-actions">
-    <a href="#"><img alt="" src="@/assets/imgs/logo-4.png" /></a>
-    <a @click.prevent="handleLike">
-      <i :class="['mvfont', 'mv-xihuan', { active: videoDetail?.likeCount === '1' }]" />
-      <b>{{ videoDetail?.likeCount || 0 }}</b>
-    </a>
-    <a @click.prevent="handleShowComment">
-      <i class="mvfont mv-pinglun3" />
-      <b>{{ videoDetail?.likeCount || 0 }}</b>
-    </a>
-    <a @click.prevent="toggleCollection">
-      <i class="mvfont mv-shoucang" />
-      <b>{{ videoDetail?.collectionCount || 0 }}</b>
-    </a>
-    <a @click="handleShare">
-      <i class="mvfont mv-zhuanfa" />
-      <b>分享</b>
-    </a>
-  </div>
-</template>
 
 <style lang="less" scoped>
   .video-actions {

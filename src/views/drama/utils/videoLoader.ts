@@ -1,4 +1,3 @@
-import { Ref } from 'vue'
 import { DramaDetailResponse, DramaItemVM } from '@/types/drama'
 import { generateAuthUrl } from '@/utils/decryptionService'
 import { useAppStore } from '@/store/app'
@@ -11,14 +10,55 @@ const appStore = useAppStore()
 const currentVideoInstances = new Map<string, { player: any; hls?: any }>()
 
 // 获取当前的剧集详情
-const fetchDramaDetail = async (videoId: number) => {
+export const fetchDramaDetail = async (dramaId: number) => {
   try {
     const {
       data: { data }
-    } = await getDramaDetail({ Id: videoId })
+    } = await getDramaDetail({ Id: dramaId })
     return data
   } catch (error) {
-    console.error('获取视频详情失败:', error)
+    console.error('获取剧集详情失败:', error)
+  }
+}
+
+// 暂停视频
+export function pauseVideo(videoId: string) {
+  const instance = currentVideoInstances.get(videoId)
+  if (!instance) return
+  try {
+    instance.player?.pause()
+    instance.hls?.stopLoad()
+  } catch (error) {
+    console.error('暂停视频失败:', error)
+  }
+}
+
+// 播放视频
+export function playVideo(videoId: string) {
+  const instance = currentVideoInstances.get(videoId)
+  const videoElement = instance.player.media as HTMLVideoElement
+
+  console.log('-------->开始播放，剧集编号:', videoId)
+
+  if (videoElement.readyState >= 2) {
+    try {
+      instance.player?.play()
+    } catch (error) {
+      console.error('播放视频失败:', error)
+    }
+  } else {
+    videoElement.addEventListener(
+      'canplay',
+      async function onCanPlay() {
+        try {
+          instance.player?.play()
+        } catch (error) {
+          console.error('播放视频失败:', error)
+        }
+        videoElement.removeEventListener('canplay', onCanPlay)
+      },
+      { once: true }
+    )
   }
 }
 
@@ -65,17 +105,17 @@ export function getVideoInstance(videoId: string) {
 }
 
 // 获得当前要播放的HTMLVideoElement元素
-export function getCurrentPlayElement(videoDetail: DramaDetailResponse) {
+export function getCurrentPlayElement(videoDetail: DramaDetailResponse | DramaItemVM) {
   return document.querySelector(`#video-player-${videoDetail?.id}`) as HTMLVideoElement
 }
 
 // 获取要播放的视频URL
-export function getRealVideoUrl(episodeIndex: Ref<string>, videoDetail: DramaDetailResponse) {
+export function getRealVideoUrl(episodeIndex: string, dramaDetail: DramaDetailResponse) {
   let playUrl = ''
-  if (episodeIndex.value === '0') {
-    playUrl = videoDetail?.first.playUrl
-  } else if (videoDetail?.items && videoDetail.items.find(item => item.id === episodeIndex.value)) {
-    playUrl = videoDetail.items.find(item => item.id === episodeIndex.value)?.playUrl
+  if (episodeIndex === '0') {
+    playUrl = dramaDetail?.first.playUrl
+  } else if (dramaDetail?.items && dramaDetail.items.find(item => item.id === episodeIndex)) {
+    playUrl = dramaDetail.items.find(item => item.id === episodeIndex)?.playUrl
   } else {
     console.error('找不到对应集数的视频')
     return
@@ -84,31 +124,13 @@ export function getRealVideoUrl(episodeIndex: Ref<string>, videoDetail: DramaDet
   return generateAuthUrl(appStore.playDomain, playUrl)
 }
 
-// 加载新剧集
-export async function loadVideo(currentDramaId: Ref<string>, currentEpisodeId: Ref<string>, dramaDetail: DramaItemVM, autoPlay = false) {
-  const videoDetail = await fetchDramaDetail(parseInt(dramaDetail.id))
-  // 设置当前集数索引
-  currentEpisodeId.value = videoDetail.first.id
-  currentDramaId.value = videoDetail.id
-
-  // 确保video元素已经被渲染
-  const videoPlayerEle = getCurrentPlayElement(videoDetail)
-  if (!videoPlayerEle) return
-
-  await loadEpisode(currentEpisodeId, videoDetail, autoPlay)
-}
-
 // 加载指定集数的视频
 // fn 是视频结束后的回调函数
-export async function loadEpisode(episodeId: Ref<string>, videoDetail: DramaDetailResponse, autoPlay = false, fn?: (player: any) => void) {
-  if (!videoDetail) return
+export async function loadEpisodeOfDrama(url: string, dramaId: string, autoPlay = false, fn?: (player: any) => void) {
+  const videoPlayerEle = document.querySelector(`#video-player-${dramaId}`) as HTMLVideoElement
 
-  const video = videoDetail
-  const videoPlayerEle = document.querySelector(`#video-player-${video.id}`) as HTMLVideoElement
+  // 确保video元素已经被渲染
   if (!videoPlayerEle) return
-
-  // 获取要播放的视频URL
-  const url = getRealVideoUrl(episodeId, videoDetail)
 
   if (window.Hls.isSupported()) {
     try {
@@ -120,9 +142,9 @@ export async function loadEpisode(episodeId: Ref<string>, videoDetail: DramaDeta
       setupHlsEvents(hlsInstance, player, autoPlay)
 
       // 保存实例
-      setVideoInstance(video.id, { hls: hlsInstance, player })
+      setVideoInstance(dramaId, { hls: hlsInstance, player })
     } catch (error) {
-      cleanupVideoInstance(video.id)
+      cleanupVideoInstance(dramaId)
       console.error('初始化hls失败: ', error)
     }
   } else if (videoPlayerEle.canPlayType('application/vnd.apple.mpegurl')) {
@@ -132,13 +154,11 @@ export async function loadEpisode(episodeId: Ref<string>, videoDetail: DramaDeta
     setupPlayerEvents(player, fn)
 
     if (autoPlay) {
-      player.play().catch(error => {
-        console.error('播放失败:', error)
-      })
+      playVideo(dramaId)
     }
 
     // 保存实例
-    setVideoInstance(video.id, { player })
+    setVideoInstance(dramaId, { player })
   } else {
     console.error('HLS not supported and cannot play type')
   }
