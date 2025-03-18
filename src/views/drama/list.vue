@@ -2,7 +2,7 @@
   <HomeLayout>
     <section class="vp-main">
       <div class="vpm-bd">
-        <div class="player-list">
+        <div class="vm-b">
           <swiper
             :direction="'vertical'"
             :modules="modules"
@@ -12,7 +12,7 @@
             @slide-change="slideChange"
             style="width: 100%; height: 100%"
           >
-            <swiper-slide v-for="(video, index) in dramas" :key="video.id" :virtual-index="index">
+            <swiper-slide v-for="(video, index) in dramas" :key="index" :virtual-index="index">
               <div class="vm-b">
                 <div class="v-a">
                   <video
@@ -28,22 +28,6 @@
                     webkit-playsinline
                     style="width: 100%; height: 100%"
                   />
-                </div>
-                <div class="v-b">
-                  <a href="#"><img alt="" src="../../assets/imgs/logo-4.png" /></a>
-                  <a @click.prevent="handleLike()">
-                    <i :class="['mvfont', 'mv-xihuan', { active: videoDetail && videoDetail.likeCount == '1' }]" />
-                    <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
-                  </a>
-                  <a @click.prevent="handleShowComment">
-                    <i class="mvfont mv-pinglun3" />
-                    <b>{{ videoDetail ? videoDetail.likeCount : 0 }}</b>
-                  </a>
-                  <a @click.prevent="toggleCollection">
-                    <i class="mvfont mv-shoucang" />
-                    <b>{{ videoDetail ? videoDetail.collectionCount : 0 }}</b>
-                  </a>
-                  <a @click="handleShare"><i class="mvfont mv-zhuanfa" /><b>分享</b></a>
                 </div>
                 <div v-if="false" class="v-d">
                   <div class="d-a">
@@ -63,6 +47,15 @@
               </div>
             </swiper-slide>
           </swiper>
+          <div class="v-b">
+            <VideoActions
+              :video-detail="videoDetail"
+              @like="handleLike"
+              @show-comment="handleShowComment"
+              @toggle-collection="toggleCollection"
+              @share="handleShare"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -85,94 +78,13 @@
           <div class="ma-b">
             <van-tabs v-model:active="activeEpisode" swipeable line-width="0" line-height="0">
               <van-tab title="选集">
-                <div class="m-b m-b-tab">
-                  <ul class="p-l-i">
-                    <li>
-                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
-                      <div class="l-r">
-                        <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
-                        <div class="r-b">
-                          <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2" />48.1万</span>
-                          <span><i class="mvfont mv-like" />2982</span>
-                          <span><i class="mvfont mv-zan" />2982</span>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
-                      <div class="l-r">
-                        <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
-                        <div class="r-b">
-                          <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2" />48.1万</span>
-                          <span><i class="mvfont mv-like" />2982</span>
-                          <span><i class="mvfont mv-zan" />2982</span>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
-                      <div class="l-r">
-                        <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
-                        <div class="r-b">
-                          <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2" />48.1万</span>
-                          <span><i class="mvfont mv-like" />2982</span>
-                          <span><i class="mvfont mv-zan" />2982</span>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
-                      <div class="l-r">
-                        <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
-                        <div class="r-b">
-                          <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2" />48.1万</span>
-                          <span><i class="mvfont mv-like" />2982</span>
-                          <span><i class="mvfont mv-zan" />2982</span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                <div class="m-b m-b-tab" />
               </van-tab>
               <van-tab title="热门短剧">
-                <div class="m-b">
-                  <ul class="p-l-i">
-                    <li>
-                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
-                      <div class="l-r">
-                        <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
-                        <div class="r-b">
-                          <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2" />48.1万</span>
-                          <span><i class="mvfont mv-like" />2982</span>
-                          <span><i class="mvfont mv-zan" />2982</span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                <div class="m-b" />
               </van-tab>
               <van-tab title="猜你喜欢">
-                <div class="m-b">
-                  <ul class="p-l-i">
-                    <li>
-                      <div class="l-l" style="background-image: url(src/assets/imgs/logo-4.png)" />
-                      <div class="l-r">
-                        <div class="r-a">第一集<small>|</small>女主播被爆养狗不养老，真相竟然是...</div>
-                        <div class="r-b">
-                          <span>02:46</span>
-                          <span><i class="mvfont mv-bofang2" />48.1万</span>
-                          <span><i class="mvfont mv-like" />2982</span>
-                          <span><i class="mvfont mv-zan" />2982</span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                <div class="m-b" />
               </van-tab>
             </van-tabs>
           </div>
@@ -202,7 +114,8 @@
   import { DramaDetailResponse, DramaItemVM } from '@/types/drama'
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import { Virtual } from 'swiper/modules'
-  import { cleanupAllVideoInstances, loadVideo } from './utils/videoLoader'
+  import { cleanupAllVideoInstances, getVideoInstance, loadVideo } from './utils/videoLoader'
+  import VideoActions from './components/video-actions.vue'
 
   import 'swiper/css'
   import 'swiper/css/virtual'
@@ -218,8 +131,10 @@
   const activeEpisode = ref('episodeListTab')
   const currentDramaId = ref('')
   const currentEpisodeId = ref('')
+  const currentSwiperIndex = ref(0)
 
   const videoDetail = computed(() => {
+    console.log(currentDramaId.value)
     return dramaDetails.find(item => item.id === currentDramaId.value)
   })
 
@@ -245,22 +160,16 @@
   }
 
   const slideChange = async (swiper: any) => {
-    currentIndex.value = swiper.activeIndex
-    const currentVideo = videos.value[currentIndex.value]
-    // 设置virtualIndex
-    currentVideo.virtualIndex = currentVideo.id
+    const prevIndex = currentSwiperIndex.value
+    const currentDramaId = dramas.value[swiper.activeIndex]?.id
+    const instance = getVideoInstance(currentDramaId)
 
-    // 获得当前剧集的详情
-    await fetchDramaDetail(parseInt(currentVideo.id))
+    currentSwiperIndex.value = swiper.activeIndex
 
-    // 播放当前视频
-    await loadVideo(currentVideo, currentEpisodeIndex, videoDetail, true)
+    if (prevIndex === currentSwiperIndex.value) return
 
-    // 预加载后面的视频
-    const nextVideos = videos.value.slice(currentIndex.value + 1, currentIndex.value + 3)
-    for (const video of nextVideos) {
-      video.virtualIndex = videos.value.indexOf(video)
-      await VideoPreloadManager.preloadVideo(video)
+    if (instance) {
+      instance.player?.play()
     }
   }
 
@@ -271,11 +180,11 @@
         isLoading.value = false
         await nextTick()
         // 加载并播放第一个视频
-        await loadVideo(currentDramaId, currentEpisodeId, dramas.value[0])
+        await loadVideo(currentDramaId, currentEpisodeId, dramas.value[0], true)
         // 预加载后面两个视频
         const nextDramas = dramas.value.slice(1, 3)
         for (const drama of nextDramas) {
-          await loadVideo(currentDramaId, currentEpisodeId, drama)
+          await loadVideo(currentDramaId, currentEpisodeId, drama, false)
         }
       }
     } catch (e) {
