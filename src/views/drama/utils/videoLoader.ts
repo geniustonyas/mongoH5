@@ -27,7 +27,7 @@ export function pauseVideo(videoId: string) {
   if (!instance) return
   try {
     instance.player?.pause()
-    instance.hls?.stopLoad()
+    // instance.hls?.stopLoad()
   } catch (error) {
     console.error('暂停视频失败:', error)
   }
@@ -37,8 +37,6 @@ export function pauseVideo(videoId: string) {
 export function playVideo(videoId: string) {
   const instance = currentVideoInstances.get(videoId)
   const videoElement = instance.player.media as HTMLVideoElement
-
-  console.log('-------->开始播放，剧集编号:', videoId)
 
   if (videoElement.readyState >= 2) {
     try {
@@ -124,10 +122,61 @@ export function getRealVideoUrl(episodeIndex: string, dramaDetail: DramaDetailRe
   return generateAuthUrl(appStore.playDomain, playUrl)
 }
 
+// 加载下一集
+export function loadNextEpisode(url: string, dramaId: string, onEndCallback?: (player: any) => void) {
+  const videoPlayerEle = document.querySelector(`#video-player-${dramaId}`) as HTMLVideoElement
+  const instance = getVideoInstance(dramaId)
+  if (!videoPlayerEle) return
+
+  if (instance) {
+    // 暂停当前播放并清理资源
+    if (instance.player) {
+      instance.player.pause()
+
+      // 移除之前的ended事件监听器
+      instance.player.off('ended')
+
+      // 如果使用 HLS
+      if (instance.hls) {
+        instance.hls.stopLoad()
+        instance.hls.detachMedia()
+        instance.hls.destroy()
+      }
+
+      // 加载新的视频源
+      if (window.Hls.isSupported()) {
+        try {
+          // 创建新的 HLS 实例
+          const hlsInstance = createHlsInstance(url, videoPlayerEle)
+
+          // 设置 HLS 事件
+          setupHlsEvents(hlsInstance, instance.player, true)
+
+          // 更新实例存储
+          setVideoInstance(dramaId, { hls: hlsInstance, player: instance.player })
+        } catch (error) {
+          console.error('加载下一集失败:', error)
+        }
+      } else if (videoPlayerEle.canPlayType('application/vnd.apple.mpegurl')) {
+        // 直接设置新的播放源
+        videoPlayerEle.src = url
+        instance.player.once('canplay', () => {
+          playVideo(dramaId)
+        })
+      }
+    }
+  } else {
+    // 如果没有现有实例，直接加载新视频
+    loadEpisodeOfDrama(url, dramaId, true, onEndCallback)
+  }
+}
+
 // 加载指定集数的视频
 // fn 是视频结束后的回调函数
 export async function loadEpisodeOfDrama(url: string, dramaId: string, autoPlay = false, fn?: (player: any) => void) {
   const videoPlayerEle = document.querySelector(`#video-player-${dramaId}`) as HTMLVideoElement
+
+  console.log('-------->开始加载HLS，HLS编号:', url)
 
   // 确保video元素已经被渲染
   if (!videoPlayerEle) return
@@ -163,29 +212,3 @@ export async function loadEpisodeOfDrama(url: string, dramaId: string, autoPlay 
     console.error('HLS not supported and cannot play type')
   }
 }
-
-// // 处理视频结束
-// export async function handleVideoEnd(
-//   currentEpisodeIndex: Ref<number>,
-//   currentIndex: Ref<number>,
-//   videoDetail: Ref<DramaDetailResponse | null>,
-//   videos: Ref<DramaItemVM[]>
-// ) {
-//   // 检查是否有下一集
-//   if (videoDetail.value?.items && currentEpisodeIndex.value < videoDetail.value.items.length) {
-//     currentEpisodeIndex.value++
-//     await loadEpisode(currentEpisodeIndex.value, videoDetail, handleVideoEnd)
-//   } else {
-//     // 如果是最后一集，检查是否有下一个视频
-//     if (currentIndex.value < videos.value.length - 1) {
-//       // 重置当前集数索引，准备播放下一个视频的第一集
-//       currentEpisodeIndex.value = 0
-//       // 触发滑动到下一个视频
-//       const swiperElement = document.querySelector('.swiper')
-//       if (swiperElement && 'swiper' in swiperElement) {
-//         const swiperInstance = (swiperElement as any).swiper
-//         swiperInstance.slideNext()
-//       }
-//     }
-//   }
-// }
