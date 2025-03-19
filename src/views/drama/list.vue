@@ -110,8 +110,8 @@
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
   import Loading from '@/components/layout/Loading.vue'
-  import { Popup } from 'vant'
   import { getDramaList, addDramaToCollection } from '@/api/drama'
+  import { Popup, showToast } from 'vant'
   import { DramaDetailResponse, DramaItemVM } from '@/types/drama'
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import { Virtual } from 'swiper/modules'
@@ -146,9 +146,8 @@
   const currentSwiperIndex = ref(0)
   const totalCount = ref(0)
   const pageIndex = ref(1)
-  const currentEpisodeIndex = ref(0)
   // 保存每个剧集当前播放到第几集
-  const dramaPlayStatus = new Map<string, { dramaId: string | number; episodeId: string }>()
+  const dramaPlayStatus = new Map<string, { episodeId: string }>()
 
   const fetchDramaList = async () => {
     try {
@@ -174,22 +173,18 @@
 
   // 连续播放处理函数
   function handleVideoEnd() {
-    // const prevDramaId = currentDramaDetail.value?.id
-    // 增加当前播放的剧集索引
-    currentEpisodeIndex.value++
-
-    // dramaPlayStatus.set(prevDramaId, {
-    //   episodeId: currentDramaDetail.value.items[currentEpisodeIndex.value].id,
-    //   dramaId: prevDramaId
-    // })
-
-    console.log('------------->', dramaPlayStatus)
+    console.log('-------------> 开始尝试播放下一集', currentDramaDetail.value.title)
+    const prevDramaId = currentDramaDetail.value?.id
+    const currentEpisodeIndex = currentDramaDetail.value?.items.findIndex(item => item.id === currentEpisodeId.value)
 
     // 检查是否还有下一集
-    if (currentDramaDetail.value?.items && currentEpisodeIndex.value < currentDramaDetail.value.items.length) {
+    if (currentDramaDetail.value?.items && currentEpisodeIndex < currentDramaDetail.value.items.length - 1) {
       // 获取下一集的ID
-      const nextEpisodeId = currentDramaDetail.value.items[currentEpisodeIndex.value].id
-
+      const nextEpisodeId = currentDramaDetail.value.items[currentEpisodeIndex + 1].id
+      // 保存当前剧集的播放状态
+      dramaPlayStatus.set(prevDramaId, {
+        episodeId: nextEpisodeId
+      })
       // 播放下一集
       playNextEpisode(currentDramaId.value, nextEpisodeId)
     } else {
@@ -198,9 +193,7 @@
       // 1. 显示"播放完毕"提示
       // 2. 自动滑动到下一个视频
       // 3. 循环播放当前剧集 (通过重置 currentEpisodeIndex 为 0 并重新播放第一集)
-
-      // 重置索引，准备播放下一个剧集或重新播放
-      currentEpisodeIndex.value = 0
+      showToast('当前剧集的所有分集已全部播放完毕')
     }
   }
 
@@ -225,11 +218,10 @@
 
     if (prevIndex === currentSwiperIndex.value) return
 
-    console.log(dramaPlayStatus)
-
     // 停止并重置上一个视频
     if (prevDramaVideoInstance) {
       pauseVideo(prevDramaId)
+      removePlayerEndedEvent(prevDramaId)
     }
 
     // 销毁上上一个视频
@@ -242,6 +234,11 @@
     currentDramaDetail.value = await fetchDramaDetail(parseInt(activedDramaId))
     // 更新当前播放的剧集ID和集数ID
     currentDramaId.value = activedDramaId
+    if (dramaPlayStatus.get(activedDramaId)) {
+      currentEpisodeId.value = dramaPlayStatus.get(activedDramaId)?.episodeId
+    } else {
+      currentEpisodeId.value = currentDramaDetail.value?.first?.id
+    }
 
     // 播放当前视频
     if (currentVideoInstance) {
@@ -258,16 +255,18 @@
       // 加载并播放第一集
       const url = getRealVideoUrl(currentDramaDetail.value?.first?.id, currentDramaDetail.value)
       if (url) {
-        await loadEpisodeOfDrama(url, currentDramaId.value, true, handleVideoEnd)
+        await loadEpisodeOfDrama(url, currentDramaId.value, true)
+        addPlayerEndedEvent(currentDramaId.value)
       }
     }
 
     // 预先加载下一个视频
-    const nextVideoIndex = isSlidingDown ? currentSwiperIndex.value + 1 : currentSwiperIndex.value - 1
-    if (nextVideoIndex >= 0 && nextVideoIndex < dramas.value.length) {
-      const url = await prepareVideo(currentDramaId.value, dramas.value[nextVideoIndex].first.id)
+    const nextDramaIndex = isSlidingDown ? currentSwiperIndex.value + 1 : currentSwiperIndex.value - 1
+    if (nextDramaIndex >= 0 && nextDramaIndex < dramas.value.length) {
+      const nextDramaDetail = await fetchDramaDetail(parseInt(dramas.value[nextDramaIndex].id))
+      const url = getRealVideoUrl(dramas.value[nextDramaIndex].first.id, nextDramaDetail)
       if (url) {
-        await loadEpisodeOfDrama(url, currentDramaId.value, false)
+        await loadEpisodeOfDrama(url, dramas.value[nextDramaIndex].id, false)
       }
     }
 
@@ -284,14 +283,21 @@
   const playNextEpisode = async (dramaId: string, episodeId: string) => {
     const url = await prepareVideo(dramaId, episodeId)
     if (url) {
-      // 在loadNextEpisode中也需要设置结束事件
       loadNextEpisode(url, dramaId)
+    }
+  }
 
-      // 在没有现有实例的情况下需要重新注册事件
-      const instance = getVideoInstance(dramaId)
-      if (instance && instance.player) {
-        instance.player.on('ended', () => handleVideoEnd())
-      }
+  const addPlayerEndedEvent = (dramaId: string) => {
+    const instance = getVideoInstance(dramaId)
+    if (instance && instance.player) {
+      instance.player.on('ended', handleVideoEnd)
+    }
+  }
+
+  const removePlayerEndedEvent = (dramaId: string) => {
+    const instance = getVideoInstance(dramaId)
+    if (instance && instance.player) {
+      instance.player.off('ended')
     }
   }
 
@@ -302,12 +308,11 @@
       if (dramas.value.length > 0) {
         isLoading.value = false
         await nextTick()
-        // 重置剧集索引
-        currentEpisodeIndex.value = 0
         // 加载并播放第一个视频
         url = await prepareVideo(dramas.value[0].id, dramas.value[0].first.id)
         if (url) {
-          await loadEpisodeOfDrama(url, currentDramaId.value, true, handleVideoEnd)
+          await loadEpisodeOfDrama(url, currentDramaId.value, true)
+          addPlayerEndedEvent(currentDramaId.value)
         }
         // 预加载后面两个视频
         const nextDramas = dramas.value.slice(1, 3)
@@ -348,7 +353,9 @@
       await addDramaToCollection({ Id: videoId, Collect: newCollectStatus, VideoId: '', Ids: '' })
 
       dramas.value[currentSwiperIndex.value].collect = newCollectStatus
-      dramas.value[currentSwiperIndex.value].collectionCount = (Number(dramas.value[currentSwiperIndex.value].collectionCount) + (newCollectStatus ? 1 : -1)).toString()
+      dramas.value[currentSwiperIndex.value].collectionCount = (
+        Number(dramas.value[currentSwiperIndex.value].collectionCount) + (newCollectStatus ? 1 : -1)
+      ).toString()
     } catch (error) {
       console.error('操作失败:', error)
     }
@@ -357,7 +364,6 @@
   const handleShare = () => {}
 
   const handleShowComment = () => {}
-
 </script>
 
 <style scoped>
