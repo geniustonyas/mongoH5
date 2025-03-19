@@ -38,21 +38,11 @@
                     @share="handleShare"
                   />
                 </div>
-                <div v-if="false" class="v-d">
-                  <div class="d-a">
-                    <a href="#"><i class="mvfont mv-dianji" />点击查看更多短剧<i class="mvfont mv-right" /></a>
-                  </div>
-                  <div class="d-b">
-                    <h3>{{ currentDramaDetail?.title || '-' }}</h3>
-                    <p>第{{ index + 1 }}集<small>|</small>{{ currentDramaDetail.introduction }}</p>
-                  </div>
-                  <div class="d-c" @click="showDramasPopup = true">
-                    <div class="c-l"><img alt="" src="assets/imgs/logo-2.png" />短剧<b>●</b>三十天而已<span>更新至第3集</span></div>
-                    <div class="c-r">
-                      <i class="mvfont mv-right" />
-                    </div>
-                  </div>
-                </div>
+                <VideoInfo
+                  :drama-detail="currentDramaDetail"
+                  :current-episode-id="currentEpisodeId"
+                  @show-detail-popup="showDramasPopup = true"
+                />
               </div>
             </swiper-slide>
           </swiper>
@@ -127,6 +117,7 @@
     playVideo
   } from './utils/videoLoader'
   import VideoActions from './components/video-actions.vue'
+  import VideoInfo from './components/video-info.vue'
 
   import 'swiper/css'
   import 'swiper/css/virtual'
@@ -160,9 +151,9 @@
         GenderChannelType: ''
       })
       if (data && data.items) {
-        for (const video of data.items) {
-          video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
-          dramas.value.push(video)
+        for (const episode of data.items) {
+          episode.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + episode.imgUrl))
+          dramas.value.push(episode)
         }
         totalCount.value = data.recordCount
       }
