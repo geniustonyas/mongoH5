@@ -75,13 +75,17 @@
               <Icon name="close" size="20" color="var(--color-primary)" @click="cancelUpload(index)" />
             </div>
           </div>
-          <vButton v-if="files.length < 10" type="primary" class="select-file-btn" size="small" plain @click="selectFile">选择文件</vButton>
-          <div v-else class="select-file-tip">最多上传10个视频文件</div>
+          <vButton type="primary" class="select-file-btn" size="small" plain @click="selectFile">选择文件</vButton>
+
+          <video v-if="videoUrl" controls>
+            <source :src="videoUrl" type="video/mp4" />
+            您的浏览器不支持视频播放。
+          </video>
         </div>
         <div v-if="files.length != 0" class="upload-btns">
           <vButton type="primary" size="small" plain @click="batchUpload">全部上传</vButton>
           <vButton type="danger" size="small" @click="deleteAllFiles">全部删除</vButton>
-            </div>
+        </div>
       </div>
     </Popup>
 
@@ -100,7 +104,6 @@
             :after-read="afterImageRead"
             multiple
             :accept="'image/*'"
-            :preview-size="120"
             :preview-full-image="true"
             :preview-image="true"
             :preview-options="{ closeable: true }"
@@ -119,7 +122,7 @@
                 <div v-if="file.status == 'failed'" class="upload-failed">
                   <Icon name="cross" color="var(--color-danger)" />
                 </div>
-            </div>
+              </div>
             </template>
           </Uploader>
         </div>
@@ -172,6 +175,7 @@
   const imageFiles = ref([])
   const userStore = useUserStoreHook()
   const uniqueId = ref(uuidv4())
+  const videoUrl = ref('') // 用于存储视频的URL
 
   // 帖子表单数据
   const postForm = ref({
@@ -229,7 +233,8 @@
     const dateStr = now.getFullYear().toString() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0')
     const fileType = file.type.startsWith('image/') ? 'image' : 'video'
     const userName = userStore.userInfo.userName || 'anonymous'
-    return `uploads/${dateStr}/${userName}/${uniqueId.value}/${fileType}/${file.name}`
+    const randomFileName = uuidv4() + '.' + file.name.split('.').pop() // 使用 uuid 生成随机文件名
+    return `uploads/${dateStr}/${userName}/${uniqueId.value}/${fileType}/${randomFileName}`
   }
 
   const FILE_STATUS = {
@@ -272,30 +277,28 @@
   function selectFile() {
     const input = document.createElement('input')
     input.type = 'file'
-    input.multiple = true // 支持多文件选择
+    input.multiple = false // 只允许选择一个文件
     input.accept = '.avi,.mp4,.mov,.mkv' // 限制文件格式
     input.onchange = event => {
       const target = event.target as HTMLInputElement
       const selectedFiles = Array.from(target.files)
       const allowedFormats = ['video/avi', 'video/mp4', 'video/quicktime', 'video/x-matroska'] // 允许的视频格式
 
-      selectedFiles.forEach(file => {
-        if (files.value.length >= 10) {
-          console.log('已达到最大文件数量限制')
-          return // 如果已达到10个文件，则不再添加
-        }
-
+      if (selectedFiles.length > 0) {
+        const file = selectedFiles[0]
         if (!allowedFormats.includes(file.type)) {
           console.log('不支持的文件格式:', file.name)
           return // 如果文件格式不支持，则跳过
         }
 
         if (file.size > 500 * 1024 * 1024) {
-          files.value.push({ progress: 0, file, uploading: false, error: `文件超过限制(500MB)`, status: FILE_STATUS.NOT_UPLOADED })
+          files.value = [{ progress: 0, file, uploading: false, error: `文件超过限制(500MB)`, status: FILE_STATUS.NOT_UPLOADED }]
         } else {
-          files.value.push({ progress: 0, file, uploading: false, error: null, status: FILE_STATUS.NOT_UPLOADED })
+          files.value = [{ progress: 0, file, uploading: false, error: null, status: FILE_STATUS.NOT_UPLOADED }]
         }
-      })
+
+        startUpload(0)
+      }
     }
     input.click()
   }
@@ -375,11 +378,12 @@
           Parts: uploadResults
         }
       })
-      await s3Client.send(completeCommand)
+      const completeResponse = await s3Client.send(completeCommand)
 
       files.value[index].status = FILE_STATUS.UPLOADED
       files.value[index].progress = 100 // 确保上传成功时进度为100%
       files.value[index].uploadPath = uploadPath // 保存上传路径
+      videoUrl.value = completeResponse.Location // 使用返回的 Location 字段设置视频URL
     } catch (error) {
       console.error('Error uploading file:', error)
       files.value[index].status = FILE_STATUS.FAILED
@@ -588,6 +592,7 @@
   // 取消上传
   function cancelUpload(index: number) {
     files.value.splice(index, 1)
+    videoUrl.value = '' // 清空视频URL以隐藏视频
   }
 
   // 获取分类列表

@@ -9,8 +9,11 @@
               <span># {{ post.subChannel.title }}</span>
             </div>
             <div class="d-r">
-              <span v-if="post.imgs != ''"><i class="mvfont mv-tuji1" />{{ post.imgs.split(',').length }}</span>
-              <span v-if="post.videos != ''"><i class="mvfont mv-mv1" />{{ post.videos.split(',').length }}</span>
+              <span v-if="post.imgs != ''"><i class="mvfont mv-tuji1" />{{ post.imageCount }}</span>
+              <span v-if="post.videos != ''">
+                <i class="mvfont mv-mv1" />
+                <!-- {{ post.videos.split(',').length }} -->
+              </span>
             </div>
           </div>
         </div>

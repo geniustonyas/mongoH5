@@ -32,6 +32,7 @@ export interface Bbs {
   }
   videos: string
   viewCount: string
+  imageCount: string
 }
 
 // 在 video.ts 中直接定义接口
