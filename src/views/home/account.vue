@@ -15,7 +15,8 @@
       <div class="hpb-setting">
         <div class="hs-a">
           <div class="a-a" @click="selectAvatar">
-            <img v-lazy-decrypt="userStore.userInfo.avatar" />
+            <img v-if="userStore.userInfo.avatar" v-lazy-decrypt="userStore.userInfo.avatar" />
+            <img v-else :src="getAssetsFile('u_video.png')" />
             <i class="mvfont mv-xiangji" />
           </div>
           <div class="a-b">修改头像</div>
@@ -72,7 +73,7 @@
   import { uploadFileApi } from '@/api/app'
   import { updateUserInfo } from '@/api/user'
   import { useAppStoreHook } from '@/store/app'
-  import { copy } from '@/utils/index'
+  import { copy, getAssetsFile } from '@/utils/index'
   import { useRouter } from 'vue-router'
 
   const appStore = useAppStoreHook()

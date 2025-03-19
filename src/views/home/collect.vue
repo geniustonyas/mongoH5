@@ -23,7 +23,7 @@
         <!-- 短视频抖阴 -->
         <swiper-slide>
           <section class="h-l-b">
-            <ul v-if="dataMap[0] && dataMap[0].length > 0">
+            <ul>
               <li v-for="video in dataMap[0]" :key="video.id">
                 <div class="l-a">
                   <img v-lazy-decrypt="video.imgUrl" />
@@ -54,7 +54,7 @@
         <!-- 视频 -->
         <swiper-slide>
           <nav class="mv-t-l">
-            <div class="m-b" v-if="dataMap[1] && dataMap[1].length > 0">
+            <div class="m-b">
               <div class="item" v-for="video in dataMap[1]" :key="video.id">
                 <div class="i-a" v-lazy-decrypt="video.imgUrl">
                   <span v-if="classifyResolution(video.resolution) != ''" :class="'a-a _' + classifyResolution(video.resolution)">
@@ -77,54 +77,52 @@
                 </div>
               </div>
             </div>
-            <div v-if="noData[1]" class="nodata">
-              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
-              <div class="d-t">暂无数据</div>
-            </div>
           </nav>
+          <div v-if="noData[1]" class="nodata">
+            <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+            <div class="d-t">暂无数据</div>
+          </div>
         </swiper-slide>
         <!-- 社区 -->
         <swiper-slide>
           <ul class="bbs-list mt-0">
-            <template v-if="dataMap[2] && dataMap[2].length > 0">
-              <template v-for="(post, index) in dataMap[2]" :key="index">
-                <li v-if="!post.isAd" @click="handleClick(post)">
-                  <div class="i-a">
-                    <div class="a-l">
-                      <img :src="getAssetsFile('logo-4.png')" />
-                      <div class="l-n">
-                        <h3>{{ post?.user?.nickName || '芒果TV官方' }}</h3>
-                        <span>{{ fromNow(post?.createTime) }}</span>
-                      </div>
-                    </div>
-                    <div class="a-r">
-                      <span class="off" @click.stop="toggleCollect(post)">取消收藏</span>
+            <template v-for="(post, index) in dataMap[2]" :key="index">
+              <li @click="handleClick(post)">
+                <div class="i-a">
+                  <div class="a-l">
+                    <img :src="getAssetsFile('logo-4.png')" />
+                    <div class="l-n">
+                      <h3>{{ post?.user?.nickName || '芒果TV官方' }}</h3>
+                      <span>{{ fromNow(post?.createTime) }}</span>
                     </div>
                   </div>
-                  <div class="i-b" v-html="decodeHtmlEntities(post.title || '')" />
-                  <div
-                    :class="`i-c pic${post.imgs.split(',').length > 4 ? '9' : post.imgs.split(',').length || ''}
-                    ${post.channel.id == '2' ? 'weimi' : ''}`"
-                  >
-                    <div class="item" v-for="(img, index1) in post.imgs.split(',')" :key="index1">
-                      <img
-                        v-lazy-decrypt="img"
-                        :loading-img="post.imgs.split(',').length == 3 && index1 == 0 ? 'default2.gif' : 'default.gif'"
-                      />
-                    </div>
+                  <div class="a-r">
+                    <span class="off" @click.stop="toggleCollect(post)">取消收藏</span>
                   </div>
-                  <div class="i-d">
-                    <div class="d-x">
-                      <span><i class="mvfont mv-pinglun" />{{ post.commentCount ? formatNumber(post.commentCount) : 0 }}</span>
-                      <span><i class="mvfont mv-zan" />{{ post.likeCount ? formatNumber(post.likeCount) : 0 }}</span>
-                      <span><i class="mvfont mv-like" />{{ post.collectionCount ? formatNumber(post.collectionCount) : 0 }}</span>
-                    </div>
-                    <div class="d-x">
-                      <span><i class="mvfont mv-kan" />{{ post.viewCount ? formatNumber(post.viewCount) : 0 }}</span>
-                    </div>
+                </div>
+                <div class="i-b" v-html="decodeHtmlEntities(post.title || '')" />
+                <div
+                  :class="`i-c pic${post.imgs.split(',').length > 4 ? '9' : post.imgs.split(',').length || ''}
+                  ${post.channel.id == '2' ? 'weimi' : ''}`"
+                >
+                  <div class="item" v-for="(img, index1) in post.imgs.split(',')" :key="index1">
+                    <img
+                      v-lazy-decrypt="img"
+                      :loading-img="post.imgs.split(',').length == 3 && index1 == 0 ? 'default2.gif' : 'default.gif'"
+                    />
                   </div>
-                </li>
-              </template>
+                </div>
+                <div class="i-d">
+                  <div class="d-x">
+                    <span><i class="mvfont mv-pinglun" />{{ post.commentCount ? formatNumber(post.commentCount) : 0 }}</span>
+                    <span><i class="mvfont mv-zan" />{{ post.likeCount ? formatNumber(post.likeCount) : 0 }}</span>
+                    <span><i class="mvfont mv-like" />{{ post.collectionCount ? formatNumber(post.collectionCount) : 0 }}</span>
+                  </div>
+                  <div class="d-x">
+                    <span><i class="mvfont mv-kan" />{{ post.viewCount ? formatNumber(post.viewCount) : 0 }}</span>
+                  </div>
+                </div>
+              </li>
             </template>
           </ul>
           <div v-if="noData[2]" class="nodata">
@@ -249,7 +247,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted, nextTick } from 'vue'
+  import { ref, reactive, onMounted, nextTick } from 'vue'
   import { useAppStore } from '@/store/app'
   import { useUserStore } from '@/store/user'
   import { getAssetsFile } from '@/utils'
@@ -280,10 +278,10 @@
   ])
 
   const activeTab = ref(0)
-  const dataMap = ref<Record<number, any[]>>({})
-  const pageIndex = ref<Record<number, number>>({})
-  const totalPages = ref<Record<number, number>>({})
-  const noData = ref<Record<number, boolean>>({})
+  const dataMap = reactive<Record<number, any[]>>({})
+  const pageIndex = reactive<Record<number, number>>({})
+  const totalPages = reactive<Record<number, number>>({})
+  const noData = reactive<Record<number, boolean>>({})
   const refreshing = ref(false)
   const loading = ref(false)
   const swiperInstance = ref<any>(null)
@@ -293,30 +291,31 @@
     try {
       const tab = tabs.value.find(t => t.name == tabName)
       if (!tab || !tab.api) {
-        noData.value[tabName] = true
+        noData[tabName] = true
         return
       }
       //@ts-ignore
-      const response = await tab.api({ PageIndex: pageIndex.value[tabName] ?? 1, PageSize: 10, ...tab.params })
+      const response = await tab.api({ PageIndex: pageIndex[tabName] ?? 1, PageSize: 10, ...tab.params })
       const { data } = response.data
       if (data && Array.isArray(data.items)) {
-        if (!dataMap.value[tabName]) {
-          dataMap.value[tabName] = []
-        }
         if (loadMore) {
-          dataMap.value[tabName].push(...data.items)
+          dataMap[tabName].push(...data.items)
         } else {
-          dataMap.value[tabName] = data.items
+          dataMap[tabName] = data.items
         }
-        totalPages.value[tabName] = Number(data.pageCount)
-        pageIndex.value[tabName] = Number(data.pageIndex)
-        noData.value[tabName] = data.items.length == 0
-        console.log(noData.value)
+        totalPages[tabName] = Number(data.pageCount)
+        pageIndex[tabName] = Number(data.pageIndex)
+        noData[tabName] = data.items.length == 0
       }
     } catch (error) {
       console.error('获取数据失败:', error)
     } finally {
       loading.value = false
+      if (swiperInstance.value) {
+        nextTick(() => {
+          swiperInstance.value.updateAutoHeight()
+        })
+      }
     }
   }
 
@@ -329,17 +328,14 @@
     if (swiperInstance.value) {
       swiperInstance.value.slideTo(tabName, 0)
     }
-    // if (!dataMap.value[tabName] || dataMap.value[tabName].length === 0) {
-    //   pageIndex.value[tabName] = 1
-    //   fetchData(tabName)
-    // }
   }
 
   const handleSwipeChange = (swiper: any) => {
     const newIndex = swiper.activeIndex
     activeTab.value = newIndex
-    if (!dataMap.value[newIndex] || dataMap.value[newIndex].length == 0) {
-      pageIndex.value[newIndex] = 1
+    if (!dataMap[newIndex] || dataMap[newIndex].length == 0) {
+      dataMap[newIndex] = []
+      pageIndex[newIndex] = 1
       fetchData(newIndex)
     }
   }
@@ -351,6 +347,10 @@
   }
 
   onMounted(() => {
+    // 初始化 dataMap
+    tabs.value.forEach(tab => {
+      dataMap[tab.name] = []
+    })
     fetchData(activeTab.value)
   })
 </script>

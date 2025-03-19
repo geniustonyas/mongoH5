@@ -62,12 +62,17 @@ export default {
     observer.observe(el)
   },
   updated(el: HTMLElement, binding: DirectiveBinding) {
-    if (el.dataset.blobUrl) {
-      URL.revokeObjectURL(el.dataset.blobUrl)
-      el.dataset.blobUrl = null
-    }
     const isImageElement = el.tagName.toLowerCase() === 'img'
-    loadImage(el, binding, isImageElement)
+
+    // 检查绑定的值是否发生变化
+    if (binding.oldValue !== binding.value) {
+      // 只有在值变化时才撤销旧的 Blob URL
+      if (el.dataset.blobUrl) {
+        URL.revokeObjectURL(el.dataset.blobUrl)
+        el.dataset.blobUrl = null
+      }
+      loadImage(el, binding, isImageElement)
+    }
   },
   unmounted(el: HTMLElement) {
     if (el.dataset.blobUrl) {
