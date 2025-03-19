@@ -33,8 +33,18 @@ export function checkVideoAspectRatio(videoElement: HTMLVideoElement) {
   }
 }
 
+export function removePlayerEndedEvent(player: any) {
+  player.off('ended')
+}
+
+export function addPlayerEndedEvent(player: any, fn: (player: any) => void) {
+  player.on('ended', () => {
+    fn?.apply(null, [player])
+  })
+}
+
 // 设置播放器事件监听
-export function setupPlayerEvents(player: any, fn?: (player: any) => void) {
+export function setupPlayerEvents(player: any) {
   // 点击事件
   player.on('click', (event: MouseEvent) => {
     if (player.touch && event.target instanceof Element && event.target.className === 'plyr__poster') {
@@ -48,12 +58,6 @@ export function setupPlayerEvents(player: any, fn?: (player: any) => void) {
     if (videoPlayerEle) {
       checkVideoAspectRatio(videoPlayerEle)
     }
-  })
-
-  // 播放结束事件
-  player.on('ended', () => {
-    console.log('播放结束')
-    fn?.apply(null, [player])
   })
 }
 

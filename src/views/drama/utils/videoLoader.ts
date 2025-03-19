@@ -123,7 +123,7 @@ export function getRealVideoUrl(episodeIndex: string, dramaDetail: DramaDetailRe
 }
 
 // 加载下一集
-export function loadNextEpisode(url: string, dramaId: string, onEndCallback?: (player: any) => void) {
+export function loadNextEpisode(url: string, dramaId: string) {
   const videoPlayerEle = document.querySelector(`#video-player-${dramaId}`) as HTMLVideoElement
   const instance = getVideoInstance(dramaId)
   if (!videoPlayerEle) return
@@ -132,9 +132,6 @@ export function loadNextEpisode(url: string, dramaId: string, onEndCallback?: (p
     // 暂停当前播放并清理资源
     if (instance.player) {
       instance.player.pause()
-
-      // 移除之前的ended事件监听器
-      instance.player.off('ended')
 
       // 如果使用 HLS
       if (instance.hls) {
@@ -167,16 +164,13 @@ export function loadNextEpisode(url: string, dramaId: string, onEndCallback?: (p
     }
   } else {
     // 如果没有现有实例，直接加载新视频
-    loadEpisodeOfDrama(url, dramaId, true, onEndCallback)
+    loadEpisodeOfDrama(url, dramaId, true)
   }
 }
 
 // 加载指定集数的视频
-// fn 是视频结束后的回调函数
-export async function loadEpisodeOfDrama(url: string, dramaId: string, autoPlay = false, fn?: (player: any) => void) {
+export async function loadEpisodeOfDrama(url: string, dramaId: string, autoPlay = false) {
   const videoPlayerEle = document.querySelector(`#video-player-${dramaId}`) as HTMLVideoElement
-
-  console.log('-------->开始加载HLS，HLS编号:', url)
 
   // 确保video元素已经被渲染
   if (!videoPlayerEle) return
@@ -187,7 +181,7 @@ export async function loadEpisodeOfDrama(url: string, dramaId: string, autoPlay 
       const player = createPlayer(videoPlayerEle)
       const hlsInstance = createHlsInstance(url, videoPlayerEle)
 
-      setupPlayerEvents(player, fn)
+      setupPlayerEvents(player)
       setupHlsEvents(hlsInstance, player, autoPlay)
 
       // 保存实例
@@ -200,7 +194,7 @@ export async function loadEpisodeOfDrama(url: string, dramaId: string, autoPlay 
     const player = createPlayer(videoPlayerEle)
 
     videoPlayerEle.src = url
-    setupPlayerEvents(player, fn)
+    setupPlayerEvents(player)
 
     if (autoPlay) {
       playVideo(dramaId)
