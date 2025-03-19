@@ -155,7 +155,7 @@
   import { Swiper, SwiperSlide } from 'swiper/vue'
   // Import Swiper styles
   import 'swiper/css'
-import dayjs from 'dayjs'
+  import dayjs from 'dayjs'
 
   const router = useRouter()
   const route = useRoute()
@@ -361,7 +361,7 @@ import dayjs from 'dayjs'
       )
 
       // 更新分页信息
-      hasMoreData.value = currentPage.value < parseInt(data.pageCount)
+      hasMoreData.value = currentPage.value < parseInt(data.pageCount as string)
 
       // 追加或替换数据
       if (isLoadMore) {
