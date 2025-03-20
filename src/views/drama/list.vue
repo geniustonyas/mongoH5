@@ -56,34 +56,16 @@
       position="bottom"
       round
       :close-on-click-overlay="true"
-      :style="{ height: '60%' }"
+      :style="{ height: '54%' }"
     >
-      <div class="moreEpisodes">
-        <div class="m-a">
-          <div class="ma-t">
-            <div class="t-l"><img src="assets/imgs/logo-2.png" />短剧<b>●</b>三十天而已<span>更新至第3集</span></div>
-          </div>
-        </div>
-        <div class="m-a" style="padding-top: 0">
-          <div class="ma-b">
-            <van-tabs v-model:active="activeEpisode" swipeable line-width="0" line-height="0">
-              <van-tab title="选集">
-                <div class="m-b m-b-tab" />
-              </van-tab>
-              <van-tab title="热门短剧">
-                <div class="m-b" />
-              </van-tab>
-              <van-tab title="猜你喜欢">
-                <div class="m-b" />
-              </van-tab>
-            </van-tabs>
-          </div>
-        </div>
-        <div class="m-c">
-          <a><i class="mvfont mv-like" />收藏短剧</a>
-          <a href="#"><i class="mvfont mv-home" />短剧首页</a>
-        </div>
-      </div>
+      <DramaDetailPopup
+        :drama-detail="currentDramaDetail"
+        :current-episode-id="currentEpisodeId"
+        :is-collecting="isCollecting"
+        @close="showDramasPopup = false"
+        @collect="toggleCollection"
+        @change-episode="handleChangeEpisode"
+      />
     </Popup>
     <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
       <div class="share-popup">
@@ -118,6 +100,7 @@
   } from './utils/videoLoader'
   import VideoActions from './components/video-actions.vue'
   import VideoInfo from './components/video-info.vue'
+  import DramaDetailPopup from './components/drama-detail-popup.vue'
 
   import 'swiper/css'
   import 'swiper/css/virtual'
@@ -131,12 +114,13 @@
   const isLoading = ref(true)
   const showSharePopup = ref(false)
   const showDramasPopup = ref(false)
-  const activeEpisode = ref('episodeListTab')
   const currentDramaId = ref('')
   const currentEpisodeId = ref('')
   const currentSwiperIndex = ref(0)
   const totalCount = ref(0)
   const pageIndex = ref(1)
+  const isCollecting = ref(false)
+  const isChangeEpisode = ref(false)
   // 保存每个剧集当前播放到第几集
   const dramaPlayStatus = new Map<string, { episodeId: string }>()
 
@@ -332,23 +316,42 @@
     return true
   }
 
+  const handleChangeEpisode = async (episodeId: string) => {
+    isChangeEpisode.value = true
+    currentEpisodeId.value = episodeId
+    showDramasPopup.value = false
+
+    // 保存当前剧集的播放状态
+    dramaPlayStatus.set(currentDramaId.value, {
+      episodeId: episodeId
+    })
+    // 播放下一集
+    playNextEpisode(currentDramaId.value, episodeId)
+  }
+
   const handleLike = () => {}
 
   const toggleCollection = async () => {
     if (!checkLogin()) return
 
     try {
-      const videoId = dramas.value[currentSwiperIndex.value]?.id
-      const newCollectStatus = !dramas.value[currentSwiperIndex.value]?.collect
+      isCollecting.value = true
+      const dramaId = currentDramaDetail.value?.id
+      const newCollectStatus = !currentDramaDetail.value?.collect
 
-      await addDramaToCollection({ Id: videoId, Collect: newCollectStatus, VideoId: '', Ids: '' })
+      await addDramaToCollection({ Id: dramaId, Collect: newCollectStatus, VideoId: '', Ids: '' })
 
-      dramas.value[currentSwiperIndex.value].collect = newCollectStatus
-      dramas.value[currentSwiperIndex.value].collectionCount = (
-        Number(dramas.value[currentSwiperIndex.value].collectionCount) + (newCollectStatus ? 1 : -1)
-      ).toString()
+      if (newCollectStatus) {
+        showToast('收藏成功')
+      } else {
+        showToast('取消收藏成功')
+      }
+
+      currentDramaDetail.value = await fetchDramaDetail(parseInt(dramaId))
     } catch (error) {
       console.error('操作失败:', error)
+    } finally {
+      isCollecting.value = false
     }
   }
 
@@ -360,164 +363,5 @@
 <style scoped>
   .vp-main .vm-b {
     height: calc(100vh - 4.8rem + env(safe-area-inset-bottom));
-  }
-
-  .moreEpisodes {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: calc(100% - 4.8rem + env(safe-area-inset-bottom));
-    background-color: var(--color-black);
-  }
-
-  .moreEpisodes .m-a {
-    display: flex;
-    flex-flow: column nowrap;
-    padding: 1rem 1rem 0 1rem;
-  }
-
-  .moreEpisodes .m-a .ma-t {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .moreEpisodes .m-a .ma-t .t-l {
-    color: var(--color-white);
-    font-size: 1.3rem;
-    font-weight: 500;
-    font-family: PingFang SC, DFPKingGothicGB-Medium, Lato, Tahoma, Microsoft Yahei, sans-serif;
-  }
-
-  .moreEpisodes .m-a .ma-t .t-r {
-    position: absolute;
-    right: -0.5rem;
-    top: -0.5rem;
-    width: 4rem;
-    height: 4rem;
-    line-height: 4rem;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .moreEpisodes .m-a .ma-t .t-l img {
-    height: 1.3rem;
-    margin-right: 0.3rem;
-    vertical-align: middle;
-    position: relative;
-    bottom: 0.1rem;
-  }
-
-  .moreEpisodes .m-a .ma-t .t-l b {
-    font-size: 0.4rem;
-    vertical-align: middle;
-    display: inline-block;
-    padding: 0 0.3rem;
-  }
-
-  .moreEpisodes .m-a .ma-t .t-l span {
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    padding: 0.1rem 0.4rem;
-    font-size: 1rem;
-    margin-left: 0.5rem;
-    vertical-align: middle;
-    position: relative;
-    bottom: 0.1rem;
-  }
-
-  .moreEpisodes .m-c {
-    position: absolute;
-    bottom: 0;
-    display: grid;
-    width: 100%;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
-    padding: 1rem;
-  }
-
-  .moreEpisodes .m-c a {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-white);
-    height: 3.6rem;
-    line-height: 3.6rem;
-    border-radius: 0.4rem;
-    -webkit-border-radius: 0.4rem;
-    -moz-border-radius: 0.4rem;
-    font-size: 1.3rem;
-    font-weight: 500;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .moreEpisodes .m-c a i {
-    margin-right: 0.3rem;
-    vertical-align: middle;
-    position: relative;
-    bottom: 0.2rem;
-  }
-
-  .moreEpisodes .m-a .m-b.m-b-tab {
-    height: calc(50vh - 9rem);
-    overflow: auto;
-  }
-</style>
-<!-- 覆盖van-tab的样式 -->
-<style lang="css">
-  .moreEpisodes .van-tabs--line .van-tabs__wrap {
-    height: 3.6rem;
-    padding-bottom: 3.8rem;
-    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.1);
-  }
-
-  .moreEpisodes .van-tabs__nav {
-    background-color: var(--color-black);
-    padding-left: 0.5rem;
-  }
-
-  .moreEpisodes .van-tab {
-    position: relative;
-    font-size: 1.2rem;
-    text-align: center;
-    color: var(--color-light);
-    display: inline-block;
-    height: 3.6rem;
-    line-height: 3.6rem;
-    cursor: pointer;
-    flex: 0 0 7.5rem;
-  }
-
-  .moreEpisodes .van-tab:first-child {
-    flex: 0 0 3.5rem;
-    margin-right: 0.8rem;
-  }
-
-  .moreEpisodes .van-tab--active:before {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 2.4rem;
-    background: url('../../assets/imgs/by.svg') no-repeat center;
-    background-size: cover;
-    display: inline-block;
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-
-  .moreEpisodes .van-tab:first-child.van-tab--active:before {
-    left: 0.6rem;
-  }
-
-  .moreEpisodes .van-tab--active .van-tab__text {
-    color: var(--color-white);
-    font-weight: 500;
-  }
-
-  .moreEpisodesPopup.van-popup {
-    background-color: var(--color-black);
   }
 </style>
