@@ -61,8 +61,10 @@
       <DramaDetailPopup
         :drama-detail="currentDramaDetail"
         :current-episode-id="currentEpisodeId"
+        :is-collecting="isCollecting"
         @close="showDramasPopup = false"
         @collect="toggleCollection"
+        @change-episode="handleChangeEpisode"
       />
     </Popup>
     <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
@@ -117,6 +119,8 @@
   const currentSwiperIndex = ref(0)
   const totalCount = ref(0)
   const pageIndex = ref(1)
+  const isCollecting = ref(false)
+  const isChangeEpisode = ref(false)
   // 保存每个剧集当前播放到第几集
   const dramaPlayStatus = new Map<string, { episodeId: string }>()
 
@@ -312,20 +316,42 @@
     return true
   }
 
+  const handleChangeEpisode = async (episodeId: string) => {
+    isChangeEpisode.value = true
+    currentEpisodeId.value = episodeId
+    showDramasPopup.value = false
+
+    // 保存当前剧集的播放状态
+    dramaPlayStatus.set(currentDramaId.value, {
+      episodeId: episodeId
+    })
+    // 播放下一集
+    playNextEpisode(currentDramaId.value, episodeId)
+  }
+
   const handleLike = () => {}
 
   const toggleCollection = async () => {
     if (!checkLogin()) return
 
     try {
+      isCollecting.value = true
       const dramaId = currentDramaDetail.value?.id
       const newCollectStatus = !currentDramaDetail.value?.collect
 
       await addDramaToCollection({ Id: dramaId, Collect: newCollectStatus, VideoId: '', Ids: '' })
 
+      if (newCollectStatus) {
+        showToast('收藏成功')
+      } else {
+        showToast('取消收藏成功')
+      }
+
       currentDramaDetail.value = await fetchDramaDetail(parseInt(dramaId))
     } catch (error) {
       console.error('操作失败:', error)
+    } finally {
+      isCollecting.value = false
     }
   }
 

@@ -37,7 +37,10 @@
       </div>
     </div>
     <div class="m-c">
-      <a @click="collectDrama"><i class="icon mvfont mv-like active" />收藏短剧</a>
+      <a :class="dramaDetail?.collect ? 'active' : ''" @click="collectDrama"
+        ><i class="icon mvfont" :class="dramaDetail?.collect ? 'mv-like_fill' : 'mv-like'" />
+        {{ dramaDetail?.collect ? '已收藏' : '收藏短剧' }}
+      </a>
       <a href="#"><i class="mvfont mv-home" />短剧首页</a>
     </div>
   </div>
@@ -46,15 +49,18 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
   import { DramaDetailResponse } from '@/types/drama'
+  import { closeToast, showLoadingToast } from 'vant'
 
   interface Props {
+    isCollecting?: boolean
     dramaDetail?: DramaDetailResponse | null
     currentEpisodeId?: string | null
   }
 
   const props = withDefaults(defineProps<Props>(), {
     dramaDetail: null,
-    currentEpisodeId: null
+    currentEpisodeId: null,
+    isCollecting: false
   })
 
   const emit = defineEmits(['close', 'collect', 'changeEpisode'])
@@ -69,12 +75,36 @@
       console.log('-------------> 剧集详情', props.currentEpisodeId)
     },
     {
-      immediate: true
+      immediate: true,
+      deep: true
+    }
+  )
+
+  watch(
+    () => props.currentEpisodeId,
+    newVal => {
+      activeEpisodeIndex.value = props.dramaDetail?.items.findIndex(item => item.id === newVal) || 0
+      console.log('-------------> 切换剧集', newVal)
+    }
+  )
+
+  watch(
+    () => props.isCollecting,
+    newVal => {
+      if (newVal) {
+        showLoadingToast({
+          message: '加载中...',
+          forbidClick: true
+        })
+      } else {
+        closeToast()
+      }
     }
   )
 
   const handleEpisodeClick = (episodeId: string) => {
     emit('changeEpisode', episodeId)
+    console.log('-------------> 切换剧集', episodeId)
   }
 
   const closePopup = () => {
@@ -249,5 +279,13 @@
 
   .moreEpisodesPopup.van-popup {
     background-color: var(--color-black);
+  }
+
+  .moreEpisodes .m-c a.active {
+    color: var(--color-primary);
+  }
+
+  .moreEpisodes .m-c a.active i {
+    color: var(--color-primary);
   }
 </style>
