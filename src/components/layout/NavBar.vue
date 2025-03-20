@@ -8,7 +8,7 @@
         <div class="nb-b">
           <div class="row">
             <router-link to="/index" :class="{ active: activeMenu == 'index' }"><i class="mvfont mv-shouye" /><span>首页</span></router-link>
-            <router-link to="/elites" :class="{ active: activeMenu == 'elites' }"><i class="mvfont mv-jingxuan" /><span>精选</span></router-link>
+            <router-link to="/shortVideo" :class="{ active: activeMenu == 'shortVideo' }"><i class="mvfont mv-jingxuan" /><span>精选</span></router-link>
             <router-link to="/shortList" :class="{ active: activeMenu == 'shortList' }"><i class="mvfont mv-dsp" /><span>短视频</span></router-link>
             <router-link to="/bbs" :class="{ active: activeMenu == 'bbs' }"><i class="mvfont mv-shequ" /><span>社区</span></router-link>
             <router-link to="/home" :class="{ active: activeMenu == 'home' }"><i class="mvfont mv-home0" /><span>我的</span></router-link>

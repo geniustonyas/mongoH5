@@ -5,7 +5,6 @@
         <a @click="router.push({ name: 'elites' })" class="active">{{ douyin }}</a>
         <a @click="router.push({ name: 'disclose' })">吃瓜</a>
         <a @click="showToast('建设中...')">短剧</a>
-        <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
       </div>
       <div class="h-r">
         <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />
@@ -19,7 +18,6 @@
             <a @click="router.push({ name: 'elites' })" class="active">{{ douyin }}</a>
             <a @click="router.push({ name: 'disclose' })">吃瓜</a>
             <a @click="showToast('建设中...')">短剧</a>
-            <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
           </div>
           <div class="h-r">
             <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />

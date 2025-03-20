@@ -12,7 +12,7 @@ export function setupRouteGuards(router: Router) {
       case 'shortList':
         appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.discover)
         break
-      case 'elites':
+      case 'shortVideo':
         appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.shortVideo)
         break
       case 'disclose':

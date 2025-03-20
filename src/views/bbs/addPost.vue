@@ -272,6 +272,7 @@
   // 删除所有文件
   function deleteAllFiles() {
     files.value = []
+    videoUrl.value = ''
   }
 
   function selectFile() {

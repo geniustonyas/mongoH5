@@ -36,7 +36,6 @@ export function getAssetsFile(url: string) {
 
 // 分类分辨率
 export const classifyResolution = (resolution: string): string => {
-  // 1920*1080
   const cleanedResolution = resolution.replace(/\s+/g, '')
   const match = cleanedResolution.match(/(\d+)[xX*&](\d+)/)
   if (match) {

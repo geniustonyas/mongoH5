@@ -135,6 +135,18 @@ export function addCommicToCollection(params: AddCommicToCollectionParams) {
   })
 }
 
+// 批量取消收藏
+export function delCommicCollection(params: { Ids: string }) {
+  return request<ApiResponseData>({
+    url: '/Web/CancelComicsFavorites',
+    method: 'post',
+    data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}
+
 // 获取漫画收藏列表
 export function getCommicCollectionList(params: CommicCollectionListRequest) {
   return request<ApiResponseData<CommicRecommendResponse>>({

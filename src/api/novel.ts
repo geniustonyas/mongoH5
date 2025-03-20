@@ -146,3 +146,15 @@ export function addNovelToCollection(params: AddNovelCollectionRequest) {
     }
   })
 }
+
+// 批量取消收藏
+export function delNovelCollection(params: { Ids: string }) {
+  return request<ApiResponseData>({
+    url: '/Web/CancelFavorites',
+    method: 'post',
+    data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}

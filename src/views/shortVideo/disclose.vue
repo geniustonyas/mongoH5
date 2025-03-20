@@ -5,10 +5,9 @@
         <div class="vpm-bd">
           <div class="vm-h">
             <div class="h-m">
-              <a @click="router.push({ name: 'elites' })">{{ douyin }}</a>
+              <a @click="router.push({ name: 'shortVideo' })">{{ douyin }}</a>
               <a @click="router.push({ name: 'disclose' })" class="active">吃瓜</a>
               <a @click="showToast('建设中...')">短剧</a>
-              <!-- <a @click="router.push({ name: 'shortPlay' })">短剧</a> -->
             </div>
             <div class="h-r">
               <i @click="router.push({ name: 'search' })" class="mvfont mv-search1" />

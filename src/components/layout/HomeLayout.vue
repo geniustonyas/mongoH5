@@ -8,7 +8,7 @@
         <a :class="{ active: appStore.homeActiveMenu === HOME_ACTIVE_MENU.discover }"
            @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.discover); router.push({ name: 'shortList' })">发现</a>
         <a :class="{ active: appStore.homeActiveMenu === HOME_ACTIVE_MENU.shortVideo }"
-           @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.shortVideo); router.push({ name: 'elites' })">抖阴</a>
+           @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.shortVideo); router.push({ name: 'shortVideo' })">抖阴</a>
         <a :class="{ active: appStore.homeActiveMenu === HOME_ACTIVE_MENU.pictures }"
            @click="appStore.setHomeActiveMenu(HOME_ACTIVE_MENU.pictures); router.push({ name: 'disclose' })">美图</a>
         <a :class="{ active: appStore.homeActiveMenu === HOME_ACTIVE_MENU.shortDrama }"
@@ -23,7 +23,7 @@
       </div>
     </header>
     <slot></slot>
-    <Footer active-menu="elites" footer-class="footer" />
+    <Footer active-menu="shortVideo" footer-class="footer" />
   </div>
 </template>
 

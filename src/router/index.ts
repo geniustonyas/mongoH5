@@ -12,7 +12,7 @@ const routes: RouteRecordRaw[] = [
     redirect: (to: any) => {
       const isPc = useAppStoreHook().isPc
       return {
-        name: isPc ? 'longVideo' : 'elites',
+        name: isPc ? 'longVideo' : 'shortVideo',
         query: to.query
       }
     }
@@ -20,8 +20,38 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/shortList',
     name: 'shortList',
-    meta: { needLogin: false, keepAlive: false, title: '抖阴' },
+    meta: { needLogin: false, keepAlive: false, title: '发现' },
     component: () => import('@/views/shortVideo/shortList.vue')
+  },
+  {
+    path: '/shortVideo',
+    name: 'shortVideo',
+    component: () => import('@/views/shortVideo/shortVideo.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '短视频' }
+  },
+  {
+    path: '/disclose',
+    name: 'disclose',
+    component: () => import('@/views/shortVideo/disclose.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '美图' }
+  },
+  {
+    path: '/shortDrama',
+    name: 'shortDrama',
+    component: () => import('@/views/drama/list.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '短剧' }
+  },
+  {
+    path: '/novel',
+    name: 'novel',
+    component: () => import('@/views/novel/index.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '小说' }
+  },
+  {
+    path: '/commic',
+    name: 'commic',
+    component: () => import('@/views/comics/index.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '漫画' }
   },
   {
     path: '/videoList/:id',
@@ -59,18 +89,7 @@ const routes: RouteRecordRaw[] = [
       }
     ]
   },
-  {
-    path: '/elites',
-    name: 'elites',
-    component: () => import('@/views/elite/elites.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '发现' }
-  },
-  {
-    path: '/disclose',
-    name: 'disclose',
-    component: () => import('@/views/elite/disclose.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '美图' }
-  },
+  
   {
     path: '/bbs',
     name: 'bbs',
@@ -120,18 +139,6 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false, title: '短剧' }
   },
   {
-    path: '/shortVideo',
-    name: 'shortVideo',
-    component: () => import('@/views/shortVideo/shortVideo.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '短视频' }
-  },
-  {
-    path: '/novel',
-    name: 'novel',
-    component: () => import('@/views/novel/index.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '小说' }
-  },
-  {
     path: '/novelIntro',
     name: 'novelIntro',
     component: () => import('@/views/novel/details.vue'),
@@ -166,12 +173,6 @@ const routes: RouteRecordRaw[] = [
     name: 'bookChapters',
     component: () => import('@/views/novel/chapterList.vue'),
     meta: { needLogin: false, keepAlive: false, title: '小说章节列表' }
-  },
-  {
-    path: '/commic',
-    name: 'commic',
-    component: () => import('@/views/comics/index.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '漫画' }
   },
   {
     path: '/comicCategory',
@@ -214,18 +215,6 @@ const routes: RouteRecordRaw[] = [
     name: 'longVideo',
     component: () => import('@/views/index/index.vue'),
     meta: { needLogin: false, keepAlive: false, title: '长视频列表' }
-  },
-  {
-    path: '/shortPlay',
-    name: 'shortPlay',
-    component: () => import('@/views/shortVideo/playlet.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '短视频播放' }
-  },
-  {
-    path: '/shortVideo/moreShortPlay',
-    name: 'moreShortPlay',
-    component: () => import('@/views/shortVideo/moreShortPlay.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '更多短视频' }
   },
   {
     path: '/video/search',
