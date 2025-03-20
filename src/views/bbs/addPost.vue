@@ -16,14 +16,18 @@
         <div class="item">
           <div class="i-t">板块</div>
           <div class="i-c">
-            <Cell class="custom-cell" label="请选择板块" :value="selectedChannelName || '请选择板块'" is-link @click="showChannelPicker = true" />
+            <van-config-provider theme="dark">
+              <Cell class="custom-cell" label="请选择板块" :value="selectedChannelName || '请选择板块'" is-link @click="showChannelPicker = true" />
+            </van-config-provider>
           </div>
         </div>
 
         <div class="item">
           <div class="i-t">子板块</div>
           <div class="i-c">
-            <Cell class="custom-cell" label="请选择子板块" :value="selectedSubChannelName || '请选择子板块'" is-link @click="showSubChannelPicker = true" />
+            <van-config-provider theme="dark">
+              <Cell class="custom-cell" label="请选择子板块" :value="selectedSubChannelName || '请选择子板块'" is-link @click="showSubChannelPicker = true" />
+            </van-config-provider>
           </div>
         </div>
 
@@ -54,7 +58,7 @@
             <a @click="showVideoPopup = true"><i class="mvfont mv-dianying" />添加视频</a>
           </div>
         </div>
-            </div>
+      </div>
     </main>
 
     <Popup v-model:show="showVideoPopup" :closeable="true" position="bottom" round :style="{ height: '60%' }">

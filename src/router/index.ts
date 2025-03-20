@@ -30,6 +30,18 @@ const routes: RouteRecordRaw[] = [
     meta: { needLogin: false, keepAlive: false, title: '短视频' }
   },
   {
+    path: '/shortVideo',
+    component: AppMain,
+    children: [
+      {
+        path: 'shortPlay',
+        name: 'shortPlay',
+        component: () => import('@/views/shortVideo/shortPlay.vue'),
+        meta: { needLogin: false, keepAlive: false, title: '播放短视屏' }
+      }
+    ]
+  },
+  {
     path: '/disclose',
     name: 'disclose',
     component: () => import('@/views/shortVideo/disclose.vue'),
@@ -89,7 +101,6 @@ const routes: RouteRecordRaw[] = [
       }
     ]
   },
-  
   {
     path: '/bbs',
     name: 'bbs',

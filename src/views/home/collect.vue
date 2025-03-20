@@ -25,7 +25,7 @@
           <PullRefresh v-model="refreshing[0]" @refresh="() => handleRefresh(0)">
             <section class="h-l-b" :class="{ edit: isEditing && activeTab == 0 }">
               <ul>
-                <li v-for="video in dataMap[0]" :key="video.id" @click="handleClick(video, 0)">
+                <li v-for="(video, index) in dataMap[0]" :key="video.id" @click="handleClick(video, 0, index)">
                   <div class="l-a">
                     <img v-lazy-decrypt="video.imgUrl" />
                     <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
@@ -410,6 +410,7 @@
   import { PullRefresh, showToast } from 'vant'
   import { formatDuration, formatNumber, fromNow, classifyResolution, decodeHtmlEntities } from '@/utils'
   import 'swiper/css'
+import router from '@/router'
 
   const appStore = useAppStore()
   const userStore = useUserStore()
@@ -493,11 +494,15 @@
     }
   }
 
-  const handleClick = (item: any, tabName: number) => {
+  const handleClick = (item: any, tabName: number, index: number | undefined) => {
     if (tabName == 0) {
-      router.push(`/video/${item.id}`)
+      // 将dataMap[0]的格式化为json 和点击选中的id 一起保存到localstorage
+      localStorage.setItem('shortVideoCollection', JSON.stringify({ data: dataMap[0], playIndex: index }))
+      router.push({ name: tabs.value[tabName].routeName })
     } else if (tabName == 1) {
-      router.push(`/video/${item.id}`)
+      router.push({ name: tabs.value[tabName].routeName, query: { id: item.id } })
+    } else {
+      router.push({ name: tabs.value[tabName].routeName, query: { id: item.id } })
     }
   }
 

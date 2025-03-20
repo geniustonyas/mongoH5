@@ -3,6 +3,7 @@ import { getUserInfo, userLogout } from '@/api/user'
 import store from '@/store'
 import type { UserInfo } from '@/types/user'
 import { clearToken } from '@/utils/auth'
+import { Video } from '@/types/video'
 
 export const useUserStore = defineStore('user', {
   state: () => {
