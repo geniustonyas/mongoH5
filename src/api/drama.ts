@@ -49,3 +49,15 @@ export function addDramaToCollection(params: { Id: string; Collect: boolean; Vid
     data: params
   })
 }
+
+/** 获取短剧分类列表 */
+export function getDramaCategoryList(params: { PageIndex: number; PageSize: number }) {
+  return request<ApiResponseData>({
+    url: 'ShortMovie/Channel',
+    method: 'post',
+    data: params,
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
+  })
+}

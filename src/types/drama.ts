@@ -1,8 +1,27 @@
 export interface DramaListRequestParams {
   PageIndex: number
   PageSize: number
-  ChannelId: number | string
-  GenderChannelType: number | string
+  ChannelId?: number | string
+  GenderChannelType?: number | string
+  SortType?: number | string // 排序类型  0 综合，1 最新，2最热，3 好评 , 4 收藏量
+}
+
+export enum DramaSortType {
+  All = 0,
+  New = 1,
+  Hot = 2,
+  Like = 3,
+  Collect = 4
+}
+
+export enum DramaGenderType {
+  All = 0,
+  Male = 1,
+  Female = 2
+}
+
+export enum DramaChannelType {
+  All = 0
 }
 
 export interface DramaDetailRequestParams {
@@ -61,6 +80,13 @@ export interface DramaDetailResponse {
   items: DramaEpisode[]
   like: boolean
   collect: boolean
+}
+
+export interface DramaCategoryItem {
+  id: string | number
+  sortNo?: string | number
+  title: string | number
+  active?: boolean
 }
 
 // 剧集列表项视图模型

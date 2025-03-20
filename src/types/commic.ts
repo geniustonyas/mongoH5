@@ -63,8 +63,9 @@ export interface CommicBookCategoryItem {
 
 // 通用选项接口
 export interface TabOption {
-  id: string | number
+  id?: string | number
   name: string
+  value?: string | number
   active: boolean
 }
 

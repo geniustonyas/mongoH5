@@ -38,8 +38,20 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/shortDrama',
     name: 'shortDrama',
-    component: () => import('@/views/drama/list.vue'),
+    component: () => import('@/views/drama/index.vue'),
     meta: { needLogin: false, keepAlive: false, title: '短剧' }
+  },
+  {
+    path: '/shortDramaPlayer',
+    name: 'shortDramaPlayer',
+    component: () => import('@/views/drama/playlet.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '剧集' }
+  },
+  {
+    path: '/allDramas',
+    name: 'allDramas',
+    component: () => import('@/views/drama/allDramas.vue'),
+    meta: { needLogin: false, keepAlive: false, title: '短剧列表' }
   },
   {
     path: '/novel',
@@ -89,7 +101,7 @@ const routes: RouteRecordRaw[] = [
       }
     ]
   },
-  
+
   {
     path: '/bbs',
     name: 'bbs',
@@ -131,12 +143,6 @@ const routes: RouteRecordRaw[] = [
     name: 'tea',
     component: () => import('@/views/tea/tea.vue'),
     meta: { needLogin: false, keepAlive: false, title: '品茶' }
-  },
-  {
-    path: '/shortDrama',
-    name: 'shortDrama',
-    component: () => import('@/views/drama/list.vue'),
-    meta: { needLogin: false, keepAlive: false, title: '短剧' }
   },
   {
     path: '/novelIntro',
