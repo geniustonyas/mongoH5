@@ -1,254 +1,58 @@
 <template>
-  <div>
-    <header class="s-header">
-      <input v-model="searchKeyword" placeholder="搜索" @keyup.enter="handleInputSearch" @input="clearTagId" />
-      <a @click="appStore.setBack(true)">取消</a>
+  <div class="page page-search">
+    <header class="d-header">
+      <div class="d-l" @click="goBack">
+        <i class="mvfont mv-left" />
+      </div>
+      <div class="d-m dm-input">
+        <input placeholder="请输入搜索内容" />
+      </div>
+      <div class="d-r dr-txt">
+        <span>搜索</span>
+      </div>
     </header>
-
-    <div class="ad-box1 search-padding">
-      <img v-if="bannerAdvertisement && bannerAdvertisement.length > 0" @click="openAd(bannerAdvertisement[0].targetUrl, '搜索页横幅', 'click', bannerAdvertisement[0].id)" :key="bannerAdvertisement[0].id" v-lazy-decrypt="bannerAdvertisement[0].imgUrl" :alt="bannerAdvertisement[0].title" />
-    </div>
-
-    <!-- 热门标签 -->
-    <section v-if="showHotTags" class="p-s-b">
+    <section class="p-s-b">
+      <!--历史搜索-->
+      <nav class="ps-ssfx">
+        <div class="s-a">
+          <b>历史搜索</b>
+          <span class="c-btn">
+            <i class="mvfont mv-shanchu" />
+          </span>
+        </div>
+        <div class="s-b">
+          <a href="result.html">长发</a>
+        </div>
+      </nav>
+      <!--热门标签-->
       <nav class="ps-ssfx">
         <div class="s-a">
           <b>热门标签</b>
+          <span class="c-btn"> <i class="mvfont mv-hyh" />换一换 </span>
         </div>
         <div class="s-b">
-          <a v-for="tag in hotTags" :key="tag.id" @click="selectTag(tag.title, tag.id)"> {{ tag.title }}<small v-if="tag.video_count > 0">热</small> </a>
+          <a href="result.html">自拍<small>热</small></a>
+          <a href="result.html">后入</a>
         </div>
       </nav>
     </section>
-
-    <!-- 搜索中提示 -->
-    <section v-if="searchIng" class="p-s-b">
-      <nav class="ps-ssfx">
-        <div class="s-a">
-          <b>
-            正在搜索"<span>{{ searchKeyword }}</span>
-            "相关的影片
-          </b>
-        </div>
-      </nav>
-    </section>
-
-    <!-- 搜索结果展示 -->
-    <section v-if="!searchIng && searchResults.length > 0" class="p-s-b">
-      <nav class="ps-ssfx">
-        <div class="s-a">
-          <b>
-            搜索"
-            <span>{{ searchKeyword }}</span>
-            "，找到
-            <span>{{ recordCount }}</span>
-            部影片
-          </b>
-        </div>
-        <div class="s-c">
-          <List v-model:loading="listLoading" :offset="20" :finished="finished" :immediate-check="false" v-model:error="error" @load="loadData">
-            <ul class="m-list">
-              <li v-for="video in searchResults" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
-                <div class="l-a" v-lazy-decrypt="video.imgUrl">
-                  <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
-                  <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
-                  <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
-                </div>
-                <div class="l-b">
-                  <div class="b-a">{{ video.title }}</div>
-                  <div class="b-b">
-                    <span>{{ video.channelName }}</span>
-                  </div>
-                  <div class="b-c">
-                    <span><i class="mvfont mv-kan" />{{ formatNumber(video.viewCount) }}</span>
-                    <span><i class="mvfont mv-zan" />{{ formatNumber(video.likeCount) }}</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </List>
-        </div>
-      </nav>
-    </section>
-
-    <!-- 搜索结果为空时的展示 -->
-    <section v-if="!searchIng && hasSearched && searchResults.length == 0" class="p-s-b">
-      <nav class="ps-ssfx">
-        <div class="s-a">
-          <b>
-            未找到"<span>{{ searchKeyword }}</span>
-            "相关的影片
-          </b>
-        </div>
-      </nav>
-    </section>
-    <NavBar active-menu="search" />
   </div>
 </template>
-
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useAppStore } from '@/store/app'
-import { getVideoListApi } from '@/api/video'
-import type { Video } from '@/types/video'
-import { List } from 'vant'
-import { formatDuration, classifyResolution, openAd, formatNumber } from '@/utils'
-import NavBar from '@/components/layout/NavBar.vue'
+  import { useAppStore } from '@/store/app'
+  import { getHotSeachKeywords } from '@/api/search'
+  import { onMounted } from 'vue'
 
-const router = useRouter()
-const route = useRoute()
-const appStore = useAppStore()
+  const appStore = useAppStore()
 
-const searchKeyword = ref('')
-const searchResults = ref<Video[]>([])
-const showHotTags = ref(true)
-const hasSearched = ref(false)
-const currentTagId = ref<string | null>(null)
-const recordCount = ref(0)
-
-let pageIndex = ref(1)
-let listLoading = ref(false)
-let finished = ref(false)
-let error = ref(false)
-const searchIng = ref(false)
-
-// 用于管理请求的 AbortController
-let currentAbortController: AbortController | null = null
-
-const bannerAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(12).items
-  return tmp || []
-})
-
-const hotTags = computed(() => {
-  const allTags = appStore.theme.flatMap((tag) => tag.items || [])
-  return allTags
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 10)
-    .map((tag) => ({
-      id: tag.id,
-      title: tag.title,
-      video_count: tag.targetUrl
-    }))
-})
-
-const searchVideos = async (isRefresh = false) => {
-  if (!searchKeyword.value && !currentTagId.value) return
-  if (isRefresh) {
-    searchResults.value = []
-    pageIndex.value = 1
-    finished.value = false
+  const goBack = () => {
+    appStore.setBack(true)
   }
-  if (finished.value) return
-  searchIng.value = true
-  showHotTags.value = false
-  try {
-    listLoading.value = true
 
-    // 取消上一个请求
-    if (currentAbortController) {
-      currentAbortController.abort()
-    }
-
-    // 创建一个新的 AbortController
-    currentAbortController = new AbortController()
-
-    const params = {
-      TagIds: currentTagId.value,
-      PageIndex: pageIndex.value,
-      PageSize: 30,
-      KeyWord: currentTagId.value ? '' : searchKeyword.value,
-      signal: currentAbortController.signal // 传递 signal
-    }
-    const {
-      data: { data }
-    } = await getVideoListApi(params)
-    if (data.items && Array.isArray(data.items)) {
-      if (isRefresh) {
-        searchResults.value = data.items
-      } else {
-        searchResults.value = searchResults.value.concat(data.items)
-      }
-      if (data.items.length < params.PageSize) {
-        finished.value = true
-      }
-      recordCount.value = parseInt(data.recordCount)
-      hasSearched.value = recordCount.value == 0
-    } else {
-      finished.value = true
-      recordCount.value = 0
-    }
-  } catch (error) {
-    console.error('搜索视频失败:', error)
-  } finally {
-    searchIng.value = false
-    listLoading.value = false
-  }
-}
-
-const selectTag = (tagName: string, tagId: string) => {
-  searchKeyword.value = tagName
-  currentTagId.value = tagId
-  pageIndex.value = 1
-  searchVideos(true)
-}
-
-const handleInputSearch = () => {
-  currentTagId.value = null
-  pageIndex.value = 1
-  searchResults.value = []
-  searchVideos(true)
-}
-
-const clearTagId = () => {
-  if (currentTagId.value) {
-    currentTagId.value = null
-  }
-}
-
-const loadData = () => {
-  pageIndex.value += 1
-  searchVideos()
-}
-
-if (appStore.theme.length == 0) {
-  appStore.fetTheme()
-}
-
-// 立即执行
-;(async () => {
-  if (appStore.advertisement.length == 0) {
-    await appStore.fetAdvertisement()
-  }
-})()
-
-onMounted(() => {
-  const queryKeyword = route.query.keyword
-  const queryTagId = route.query.tagId
-  if (queryKeyword && typeof queryKeyword == 'string') {
-    searchKeyword.value = queryKeyword
-  }
-  if (queryTagId && typeof queryTagId == 'string') {
-    currentTagId.value = queryTagId
-  }
-  searchVideos(true)
-})
+  onMounted(() => {
+    getHotSeachKeywords().then(res => {
+      console.log(res.data.data)
+    })
+  })
 </script>
-
-<style scoped>
-/* 可以根据需要添加样式 */
-.hot-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.hot-tags a {
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border-radius: 15px;
-  cursor: pointer;
-}
-</style>
+<style scoped lang="less"></style>
