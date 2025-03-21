@@ -51,7 +51,7 @@
       <div class="h-d">
         <ul class="au-rows">
           <li>
-            <a @click="openDownloadPage">
+            <a @click="router.push({ name: 'buyRecord' })">
               <span><img src="assets/imgs/icon/member.svg" />VIP购买记录</span><i class="mvfont mv-right3" />
             </a>
           </li>

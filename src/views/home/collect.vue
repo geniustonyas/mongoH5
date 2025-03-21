@@ -2,7 +2,7 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a href="javascript:void(0)" onclick="javascript:history.go(-1)">
+        <a @click="appStore.setBack(true)">
           <i class="mvfont mv-left" />
         </a>
       </div>
@@ -25,7 +25,7 @@
           <PullRefresh v-model="refreshing[0]" @refresh="() => handleRefresh(0)">
             <section class="h-l-b" :class="{ edit: isEditing && activeTab == 0 }">
               <ul>
-                <li v-for="(video, index) in dataMap[0]" :key="video.id" @click="handleClick(video, 0, index)">
+                <li v-for="(video, index) in dataMap[0]" :key="video.id" @click="handleClick(video, 0)">
                   <div class="l-a">
                     <img v-lazy-decrypt="video.imgUrl" />
                     <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
@@ -396,7 +396,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, reactive, onMounted, nextTick } from 'vue'
+  import { ref, reactive, nextTick } from 'vue'
   import { useAppStore } from '@/store/app'
   import { useUserStore } from '@/store/user'
   import { getAssetsFile } from '@/utils'
@@ -410,19 +410,19 @@
   import { PullRefresh, showToast } from 'vant'
   import { formatDuration, formatNumber, fromNow, classifyResolution, decodeHtmlEntities } from '@/utils'
   import 'swiper/css'
-import router from '@/router'
+  import router from '@/router'
 
   const appStore = useAppStore()
   const userStore = useUserStore()
   const tabs = ref([
-    { title: '抖阴', name: 0, routeName: 'shortList', api: userCollectionHistory, params: { PageIndex: 1, PageSize: 10, VideoType: 1 }, delApi: userCollection, delParams: { Ids: '', Collect: false, Id: '' } },
+    { title: '抖阴', name: 0, routeName: 'shortPlay', api: userCollectionHistory, params: { PageIndex: 1, PageSize: 10, VideoType: 1 }, delApi: userCollection, delParams: { Ids: '', Collect: false, Id: '' } },
     { title: '视频', name: 1, routeName: 'play', api: userCollectionHistory, params: { PageIndex: 1, PageSize: 10, VideoType: 0 }, delApi: userCollection, delParams: { Ids: '', Collect: false, Id: '' } },
-    { title: '社区', name: 2, routeName: 'bbs', api: getBbsCollectionListApi, params: { PageIndex: 1, PageSize: 10 }, delApi: bbsCollectionApi, delParams: { Ids: '', Collect: false, Id: '' } },
-    { title: '短剧', name: 3, routeName: 'drama', api: getDramaCollectList, params: { PageIndex: 1, PageSize: 10 }, delApi: addDramaToCollection, delParams: { Ids: '', Collect: false, Id: '' } },
-    { title: '合集', name: 4, routeName: 'collectDetails', api: getCollectCollectionListApi, params: { PageIndex: 1, PageSize: 20 }, delApi: addCollectionToCollectionApi, delParams: { Ids: '', Collect: false, Id: '' } },
-    { title: '小说', name: 5, routeName: 'novelIntro?nid=', api: getNovelCollectList, params: { PageIndex: 1, PageSize: 20 }, delApi: delNovelCollection, delParams: { Ids: '' } },
+    { title: '社区', name: 2, routeName: 'bbsDetail', api: getBbsCollectionListApi, params: { PageIndex: 1, PageSize: 10 }, delApi: bbsCollectionApi, delParams: { Ids: '', Collect: false, Id: '' } },
+    { title: '短剧', name: 3, routeName: 'shortDrama', api: getDramaCollectList, params: { PageIndex: 1, PageSize: 10 }, delApi: addDramaToCollection, delParams: { Ids: '', Collect: false, Id: '' } },
+    { title: '合集', name: 4, routeName: 'collectionDetail', api: getCollectCollectionListApi, params: { PageIndex: 1, PageSize: 20 }, delApi: addCollectionToCollectionApi, delParams: { Ids: '', Collect: false, Id: '' } },
+    { title: '小说', name: 5, routeName: 'novelIntro', api: getNovelCollectList, params: { PageIndex: 1, PageSize: 20 }, delApi: delNovelCollection, delParams: { Ids: '' } },
     { title: '有声', name: 6, routeName: 'audio', api: null, params: { PageIndex: 1, PageSize: 20 } },
-    { title: '漫画', name: 7, routeName: 'comicIntro?nid=', api: getCommicCollectionList, params: { PageIndex: 1, PageSize: 20 }, delApi: delCommicCollection, delParams: { Ids: '' } },
+    { title: '漫画', name: 7, routeName: 'comicIntro', api: getCommicCollectionList, params: { PageIndex: 1, PageSize: 20 }, delApi: delCommicCollection, delParams: { Ids: '' } },
     { title: '茶贴', name: 8, routeName: 'tea', api: null, params: { PageIndex: 1, PageSize: 20 } }
   ])
 
@@ -494,15 +494,17 @@ import router from '@/router'
     }
   }
 
-  const handleClick = (item: any, tabName: number, index: number | undefined) => {
+  // 点击收藏列表的item
+  const handleClick = (item: any, tabName: number) => {
     if (tabName == 0) {
-      // 将dataMap[0]的格式化为json 和点击选中的id 一起保存到localstorage
-      localStorage.setItem('shortVideoCollection', JSON.stringify({ data: dataMap[0], playIndex: index }))
-      router.push({ name: tabs.value[tabName].routeName })
-    } else if (tabName == 1) {
-      router.push({ name: tabs.value[tabName].routeName, query: { id: item.id } })
+      //   const playIndex = totalPages[0] > 9 ? index + (pageIndex[0] - 1) * tabs.value[0].params.PageSize : index
+      //   router.push({ name: tabs.value[tabName].routeName })
+      localStorage.setItem('shortPlayVideo', JSON.stringify(item))
+      router.push({ name: tabs.value[tabName].routeName, query: { listType: 'collect' } })
+    } else if (tabName == 1 || tabName == 2 || tabName == 3 || tabName == 4) {
+      router.push({ name: tabs.value[tabName].routeName, params: { id: item.id } })
     } else {
-      router.push({ name: tabs.value[tabName].routeName, query: { id: item.id } })
+      router.push({ name: tabs.value[tabName].routeName, query: { nid: item.id } })
     }
   }
 
@@ -583,13 +585,13 @@ import router from '@/router'
     }
   }
 
-  onMounted(() => {
+  ;(async () => {
     tabs.value.forEach(tab => {
       dataMap[tab.name] = []
       refreshing[tab.name] = false
     })
-    fetchData(activeTab.value, true)
-  })
+    await fetchData(activeTab.value, true)
+  })()
 </script>
 
 <style lang="less" scoped>

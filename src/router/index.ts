@@ -102,6 +102,24 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/collection',
+    component: AppMain,
+    children: [
+      {
+        path: '',
+        name: 'list',
+        component: () => import('@/views/collection/collectionList.vue'),
+        meta: { needLogin: false, keepAlive: false, title: '合集' }
+      },
+      {
+        path: 'collectionDetail/:id',
+        name: 'collectionDetail',
+        component: () => import('@/views/collection/collectionDetail.vue'),
+        meta: { needLogin: false, keepAlive: false, title: '合集详情' }
+      }
+    ]
+  },
+  {
     path: '/bbs',
     name: 'bbs',
     component: () => import('@/views/bbs/bbs.vue'),
@@ -302,6 +320,30 @@ const routes: RouteRecordRaw[] = [
         name: 'shareRecord',
         component: () => import('@/views/home/shareRecord.vue'),
         meta: { needLogin: true, keepAlive: false, title: '分享记录' }
+      },
+      {
+        path: 'accountChange',
+        name: 'accountChange',
+        component: () => import('@/views/home/accountChange.vue'),
+        meta: { needLogin: true, keepAlive: false, title: '账变记录' }
+      },
+      {
+        path: 'myPost',
+        name: 'myPost',
+        component: () => import('@/views/home/myPost.vue'),
+        meta: { needLogin: true, keepAlive: false, title: '我的社区帖' }
+      },
+      {
+        path: 'myTeaPost',
+        name: 'myTeaPost',
+        component: () => import('@/views/home/myTeaPost.vue'),
+        meta: { needLogin: true, keepAlive: false, title: '我的茶贴' }
+      },
+      {
+        path: 'unlockRecords',
+        name: 'unlockRecords',
+        component: () => import('@/views/home/unlockRecords.vue'),
+        meta: { needLogin: true, keepAlive: false, title: '品茶解锁记录' }
       }
     ]
   },

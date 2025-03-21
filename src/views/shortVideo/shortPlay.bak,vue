@@ -11,18 +11,20 @@
       <div class="vpm-bd">
         <div class="vm-b">
           <swiper
+            @on-swiper="onSwiper"
             :direction="'vertical'"
             :modules="modules"
             :virtual="{ slides: videos.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined"
             :slides-per-view="1"
             :space-between="0"
             @slide-change="slideChange"
+            :initial-slide="initialSlide"
             style="width: 100%; height: 100%"
           >
-            <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index">
+            <swiper-slide v-for="(video, index) in videos" :key="video.id" :virtual-index="index" :data-video-id="video.id">
               <div class="v-a">
                 <video
-                  :id="'video-player-' + index"
+                  :id="'video-player-' + video.id"
                   class="video-player"
                   :data-poster="video.poster"
                   muted
@@ -110,47 +112,74 @@
 
   const videos = ref<Video[]>([])
   const videoDetail = ref<VideoDetailResponse | null>(null)
-  const players = ref<Map<number, any>>(new Map())
-  const hlsInstances = ref<Map<number, any>>(new Map())
-  const currentVideoIndex = ref(0)
+  const players = ref<Map<string, any>>(new Map())
+  const hlsInstances = ref<Map<string, any>>(new Map())
+  const currentVideoId = ref(route.query.id ? (route.query.id as string) : '')
 
-  const pageIndex = ref(1)
+  const swiperInstance = ref<any>(null)
   const showSharePopup = ref(false)
   const clipboard = ref<Clipboard | null>(null)
   const isLoading = ref(true)
   const mutePlay = ref(true)
 
+  const playIndex = ref(route.query.playIndex ? Number(route.query.playIndex) : undefined)
   const listType = ref(route.query.listType || 'normal')
-  const pageSize = 5
 
-  const processVideoData = async items => {
-    for (const video of items) {
-      video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
-      videos.value.push(video)
-    }
+  const pageIndex = ref(0)
+  const pageSize = 5
+  const totalPage = ref(0)
+  const initialSlide = ref(3)
+
+  const onSwiper = (swiper: any) => {
+    swiperInstance.value = swiper
   }
 
-  const fetchVideos = async () => {
+  const fetchVideos = async (isPrepend = false) => {
     try {
-      let data
+      let newVideos = []
       if (listType.value === 'collect') {
         // 收藏列表
-        ;({
+        const {
           data: { data }
-        } = await userCollectionHistory({ PageIndex: pageIndex.value, PageSize: pageSize, VideoType: 1 }))
+        } = await userCollectionHistory({ PageIndex: pageIndex.value, PageSize: pageSize, VideoType: 1 })
+        if (data && data.items) {
+          newVideos = data.items
+          totalPage.value = Number(data.pageCount)
+        }
       } else if (listType.value === 'history') {
         // 足迹列表
-        ;({
+        const {
           data: { data }
-        } = await userWatchHistory({ PageIndex: pageIndex.value, PageSize: pageSize }))
+        } = await userWatchHistory({ PageIndex: pageIndex.value, PageSize: pageSize })
+        if (data && data.items) {
+          newVideos = data.items
+          totalPage.value = Number(data.pageCount)
+        }
       } else if (listType.value === 'normal') {
+        // 从 localStorage 读取视频对象
+        const storedVideo = localStorage.getItem('shortPlayVideo')
+        if (storedVideo) {
+          try {
+            const video = JSON.parse(storedVideo) as Video
+            videos.value.push(video)
+          } catch (error) {
+            console.error('解析本地存储视频失败:', error)
+          }
+        }
         // 调用随机视频接口
-        ;({
+        const {
           data: { data }
-        } = await getVideoListApi({ PageIndex: pageIndex.value, PageSize: pageSize, VideoType: 1, SortType: 1 }))
+        } = await getVideoListApi({ PageIndex: pageIndex.value, PageSize: pageSize, VideoType: 1, SortType: 1 })
+        if (data && data.items) {
+          newVideos = data.items
+          totalPage.value = Number(data.pageCount)
+        }
       }
-      if (data && data.items) {
-        await processVideoData(data.items)
+      // 上划和下滑分别插入到头部和尾部
+      if (isPrepend) {
+        videos.value.unshift(...newVideos)
+      } else {
+        videos.value.push(...newVideos)
       }
     } catch (error) {
       console.error('获取视频列表失败:', error)
@@ -168,27 +197,26 @@
     }
   }
 
-  const initializePlayer = async (index: number) => {
+  const initializePlayer = async (videoId: string) => {
     await nextTick() // 确保 DOM 已更新
-    const video = videos.value[index]
-    console.log(video)
-    if (!video) return
-    const videoElement = document.getElementById('video-player-' + index) as HTMLVideoElement
+    const videoIndex = videos.value.findIndex(video => video.id == videoId)
+    if (videoIndex == -1) return
+    const videoElement = document.getElementById('video-player-' + videoId) as HTMLVideoElement
     if (!videoElement) {
-      console.error(`Video element with id 'video-player-${index}' not found`)
+      console.error(`Video element with id 'video-player-${videoId}' not found`)
       return
     }
-    if (players.value.has(index)) {
-      players.value.get(index).destroy()
-      players.value.delete(index)
+    if (players.value.has(videoId)) {
+      players.value.get(videoId).destroy()
+      players.value.delete(videoId)
     }
-    if (hlsInstances.value.has(index)) {
-      hlsInstances.value.get(index).stopLoad()
-      hlsInstances.value.get(index).destroy()
-      hlsInstances.value.delete(index)
+    if (hlsInstances.value.has(videoId)) {
+      hlsInstances.value.get(videoId).stopLoad()
+      hlsInstances.value.get(videoId).destroy()
+      hlsInstances.value.delete(videoId)
     }
 
-    const url = generateAuthUrl(appStore.playDomain, video.playUrl)
+    const url = generateAuthUrl(appStore.playDomain, videos.value[videoIndex].playUrl)
     if (window.Hls.isSupported()) {
       try {
         const player = new window.Plyr(videoElement, {
@@ -214,7 +242,7 @@
         //   const tsUrlWithAuth = generateAuthUrl(appStore.playDomain, video.playUrl)
         //   xhr.open('GET', tsUrlWithAuth, true)
         // }
-        hlsInstances.value.set(index, hls)
+        hlsInstances.value.set(videoId, hls)
         hls.loadSource(url)
         hls.attachMedia(videoElement)
 
@@ -252,13 +280,13 @@
           if (videoRatio > 1.5) {
             videoElement.classList.add('cover-fit')
           }
-          if (currentVideoIndex.value == index) {
+          if (currentVideoId.value == videoId) {
             isLoading.value = false
           }
         })
-        players.value.set(index, player)
+        players.value.set(videoId, player)
       } catch (error) {
-        console.error('初始化hls失败: ' + index, error)
+        console.error('初始化hls失败: ' + videoId, error)
       }
     } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
       videoElement.src = url
@@ -279,11 +307,11 @@
         if (videoRatio > 1.5) {
           videoElement.classList.add('cover-fit')
         }
-        if (currentVideoIndex.value == index) {
+        if (currentVideoId.value == videoId) {
           isLoading.value = false
         }
       })
-      players.value.set(index, player)
+      players.value.set(videoId, player)
     } else {
       console.error('HLS not supported and cannot play type')
     }
@@ -312,59 +340,74 @@
     }
   }
 
+  let previousIndex = 0 // 用于记录上一个索引
   const slideChange = async swiper => {
     try {
-      const previousIndex = currentVideoIndex.value
-      currentVideoIndex.value = swiper.activeIndex
-      console.log('上一个: ' + previousIndex, '当前: ' + currentVideoIndex.value)
+      const currentIndex = swiper.activeIndex
+      const previousVideoId = currentVideoId.value
+      const currentSlide = swiper.slides[currentIndex]
+      if (!currentSlide) return
 
-      if (previousIndex === currentVideoIndex.value) return
+      // 更新当前视频id
+      currentVideoId.value = currentSlide.dataset.videoId
+      console.log('上一个: ' + previousVideoId, '当前: ' + currentVideoId.value)
+      if (previousVideoId === currentVideoId.value) return
 
       // 播放当前视频
       await playCurrentVideo()
-
       // 停止并重置上一个视频
-      await stopAndResetVideo(previousIndex)
-      // 预加载下一个视频
-      const isSlidingDown = currentVideoIndex.value > previousIndex
-      const nextVideoIndex = isSlidingDown ? currentVideoIndex.value + 1 : currentVideoIndex.value - 1
-      if (nextVideoIndex >= 0 && nextVideoIndex < videos.value.length) {
-        await initializePlayer(nextVideoIndex)
+      await stopAndResetVideo(previousVideoId)
+      // 判断上划还是下滑
+      const isSlidingDown = currentIndex > previousIndex
+      previousIndex = currentIndex
+
+      const videoIndex = videos.value.findIndex(video => video.id == currentVideoId.value)
+      const nextVideoId = isSlidingDown ? videos.value[videoIndex + 1].id : videos.value[videoIndex - 1].id
+      if (nextVideoId) {
+        await initializePlayer(nextVideoId)
       }
       // 销毁上上一个视频
-      const destroyIndex = isSlidingDown ? currentVideoIndex.value - 2 : currentVideoIndex.value + 2
-      if (destroyIndex >= 0 && players.value.has(destroyIndex)) {
-        await destroyVideo(destroyIndex)
-        console.log('上上一个视频销毁完成', destroyIndex)
+      const destroyVideoId = isSlidingDown ? videos.value[videoIndex - 2].id : videos.value[videoIndex + 2].id
+      if (destroyVideoId && players.value.has(destroyVideoId)) {
+        await destroyVideo(destroyVideoId)
+        console.log('上上一个视频销毁完成', destroyVideoId)
       }
 
       // 获取视频详情
-      const currentVideo = videos.value[currentVideoIndex.value]
+      const currentVideo = videos.value[videoIndex]
       if (currentVideo) {
         await fetchVideoDetail(parseInt(currentVideo.id))
       }
 
-      if (videos.value.length - currentVideoIndex.value < 3) {
-        pageIndex.value++
-        await fetchVideos()
+      // 上划加载下面的数据
+      if (isSlidingDown && videos.value.length - videoIndex < 3) {
+        if (pageIndex.value < totalPage.value) {
+          pageIndex.value++
+          await fetchVideos()
+        }
+      } else if (!isSlidingDown && videoIndex < 2) {
+        if (pageIndex.value > 1) {
+          pageIndex.value--
+          await fetchVideos()
+        }
       }
     } catch (error) {
       console.error('滑动失败:', error)
     }
   }
 
-  const stopAndResetVideo = index => {
-    const player = players.value.get(index)
-    if (hlsInstances.value.has(index)) {
-      console.log('stopload: ' + index)
-      hlsInstances.value.get(index).stopLoad()
+  const stopAndResetVideo = videoId => {
+    const player = players.value.get(videoId)
+    if (hlsInstances.value.has(videoId)) {
+      console.log('stopload: ' + videoId)
+      hlsInstances.value.get(videoId).stopLoad()
     }
     if (player) {
       try {
-        console.log('stop: ' + index)
-        if (currentVideoIndex.value != index) {
+        console.log('stop: ' + videoId)
+        if (currentVideoId.value != videoId) {
           player.stop()
-          console.log('播放器已停止: ' + index)
+          console.log('播放器已停止: ' + videoId)
         }
       } catch (error) {
         console.error('停止播放失败:', error)
@@ -374,10 +417,10 @@
 
   const playCurrentVideo = async () => {
     isLoading.value = true
-    const currentPlayer = players.value.get(currentVideoIndex.value)
+    const currentPlayer = players.value.get(currentVideoId.value)
     if (!currentPlayer) {
-      console.log('播放器不存在，初始化: ' + currentVideoIndex.value)
-      await initializePlayer(currentVideoIndex.value)
+      console.log('播放器不存在，初始化: ' + currentVideoId.value)
+      await initializePlayer(currentVideoId.value)
       return
     }
 
@@ -390,7 +433,7 @@
     const playVideo = async () => {
       console.log('playVideo 方法被调用')
       try {
-        console.log('播放器 ' + currentVideoIndex.value + ' 存在，播放')
+        console.log('播放器 ' + currentVideoId.value + ' 存在，播放')
         await currentPlayer.play()
       } catch (error) {
         if (error.name == 'NotAllowedError') {
@@ -405,7 +448,7 @@
       console.log('视频成功播放')
       await playVideo()
     } else {
-      console.log('播放器: ' + currentVideoIndex.value + ' 视频未准备好')
+      console.log('播放器: ' + currentVideoId.value + ' 视频未准备好')
       videoElement.addEventListener(
         'canplay',
         async function onCanPlay() {
@@ -417,17 +460,17 @@
     }
   }
 
-  const destroyVideo = async index => {
-    const playerToDestroy = players.value.get(index)
+  const destroyVideo = async videoId => {
+    const playerToDestroy = players.value.get(videoId)
     await playerToDestroy.stop()
     await playerToDestroy.destroy()
     playerToDestroy.currentTime = 0
-    if (hlsInstances.value.has(index)) {
-      hlsInstances.value.get(index).stopLoad()
-      hlsInstances.value.get(index).destroy()
-      hlsInstances.value.delete(index)
+    if (hlsInstances.value.has(videoId)) {
+      hlsInstances.value.get(videoId).stopLoad()
+      hlsInstances.value.get(videoId).destroy()
+      hlsInstances.value.delete(videoId)
     }
-    players.value.delete(index)
+    players.value.delete(videoId)
   }
 
   const checkLogin = (): boolean => {
@@ -506,35 +549,32 @@
   }
 
   ;(async () => {
-    if (listType.value === 'normal') {
-      pageIndex.value = Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
-    }
-    // 从 localStorage 读取视频对象
-    const storedVideo = localStorage.getItem('shortPlayVideo')
-    if (storedVideo) {
-      try {
-        const video = JSON.parse(storedVideo) as Video
-        videos.value.push(video)
-      } catch (error) {
-        console.error('解析本地存储视频失败:', error)
-      }
+    if (playIndex.value !== undefined && currentVideoId.value) {
+      initialSlide.value = playIndex.value % pageSize
     }
   })()
 
   onMounted(async () => {
-    await fetchVideos()
-    if (videos.value.length > 0) {
-      await fetchVideoDetail(parseInt(videos.value[0].id))
-      await initializePlayer(0)
-      // isAutoPlay.value = false
-      await initializePlayer(1)
-
-      const firstPlayer = players.value.get(0)
-      console.log(firstPlayer)
-      if (firstPlayer) {
-        console.log('播放第一个视频')
-        firstPlayer.play()
+    if (playIndex.value !== undefined && currentVideoId.value) {
+      pageIndex.value = Math.floor(playIndex.value / pageSize) + 1
+      await fetchVideos()
+      const index = videos.value.findIndex(video => video.id == currentVideoId.value)
+      if (index != -1) {
+        await initializePlayer(currentVideoId.value)
+        // 预加载上一个和下一个视频
+        if (videos.value[index - 1]) {
+          await initializePlayer(videos.value[index - 1].id)
+        }
+        if (videos.value[index + 1]) {
+          await initializePlayer(videos.value[index + 1].id)
+        }
+      } else {
+        showToast('视频未找到')
       }
+    } else {
+      const randomPageIndex = Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
+      pageIndex.value = randomPageIndex
+      await fetchVideos()
     }
   })
 
@@ -555,5 +595,8 @@
 <style scoped>
   .active {
     color: #ff6b6b;
+  }
+  .vp-main .vpm-bd {
+    height: calc(100vh - 4.8rem + env(safe-area-inset-bottom));
   }
 </style>

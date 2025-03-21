@@ -2,120 +2,523 @@
   <div class="page">
     <header class="d-header">
       <div class="d-l">
-        <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
+        <a @click="appStore.setBack(true)">
+          <i class="mvfont mv-left" />
+        </a>
       </div>
-      <div class="d-m">我的足迹</div>
+      <div class="d-m">
+        <span>我的足迹</span>
+      </div>
+      <div class="d-r" />
     </header>
-    <section class="h-m-b">
-      <div class="his-box">
-        <ul v-if="videos.length > 0">
-          <li v-for="video in videos" :key="video.id" @click="router.push({ name: 'play', params: { id: video.id } })">
-            <div class="l-a">
-              <img v-lazy-decrypt="video.imgUrl" />
-              <span :class="'a-a _' + classifyResolution(video.resolution)">{{ classifyResolution(video.resolution) }}</span>
-              <span class="a-b" v-if="video.duration != '0'">{{ video.duration }}</span>
-              <span class="a-c">{{ video.subChannelName ? video.subChannelName : video.channelName }}</span>
-            </div>
-            <div class="l-b">
-              <div class="b-a">{{ video.title }}</div>
-              <div class="b-b">
-                <span><i class="mvfont mv-kan" />{{ formatNumber(video.viewCount) }}</span>
-                <span><i class="mvfont mv-zan" />{{ formatNumber(video.likeCount) }}</span>
+    <section class="au-main">
+      <div class="u-tabs">
+        <span v-for="tab in tabs" :key="tab.name" :class="{ active: activeTab == tab.name }" @click="clickTab(tab.name)">
+          {{ tab.title }}
+        </span>
+      </div>
+      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="handleSwipeChange">
+        <!-- 短视频抖阴 -->
+        <swiper-slide>
+          <PullRefresh v-model="refreshing[0]" @refresh="() => handleRefresh(0)">
+            <section class="h-l-b" :class="{ edit: isEditing && activeTab == 0 }">
+              <ul>
+                <li v-for="video in dataMap[0]" :key="video.id" @click="handleClick(video, 0)">
+                  <div class="l-a">
+                    <img v-lazy-decrypt="video.imgUrl" />
+                    <span class="a-b" v-if="video.duration != '0'">{{ formatDuration(parseInt(video.duration)) }}</span>
+                  </div>
+                  <div class="l-b">
+                    <b>{{ video.title }}</b>
+                    <div class="b-a">
+                      <div class="a-l">
+                        <span>{{ formatNumber(video.viewCount) }} 次播放</span>
+                      </div>
+                      <div class="a-r">
+                        <span><i class="mvfont mv-xihuan0" />{{ formatNumber(video.likeCount) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <template v-if="totalPages[0] > 1">
+              <div class="au-pagination-box" v-if="totalPages[0] > 9">
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[0] - 1)" :class="{ disabled: pageIndex[0] == 1 }">上一页</a>
+                </div>
+                <div class="pb-x">
+                  <input v-model="pageIndex[0]" @change="changePage(pageIndex[0])" type="number" min="1" :max="totalPages[0]" />
+                  <span>/ {{ totalPages[0] }}</span>
+                </div>
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[0] + 1)" :class="{ disabled: pageIndex[0] == totalPages[0] }">下一页</a>
+                </div>
               </div>
-              <div class="b-c">{{ formatDate(video.addTime) }}</div>
+              <div v-else class="more-box"><a v-if="pageIndex[0] < totalPages[0]" @click="loadMore">加载更多</a></div>
+            </template>
+            <div v-if="noData[0]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+              <div class="d-t">暂无数据</div>
             </div>
-          </li>
-        </ul>
-        <div v-if="nodata" class="nodata">
-          <div class="d-i" />
-          <div class="d-t">暂无观影记录</div>
-        </div>
-      </div>
+          </PullRefresh>
+        </swiper-slide>
+        <!-- 视频 -->
+        <swiper-slide>
+          <PullRefresh v-model="refreshing[1]" @refresh="() => handleRefresh(1)">
+            <nav class="mv-t-l" :class="{ edit: isEditing && activeTab == 1 }">
+              <div class="m-b">
+                <div class="item" v-for="video in dataMap[1]" :key="video.id" @click="handleClick(video, 1)">
+                  <div class="i-a">
+                    <div class="ia-a">
+                      <img v-lazy-decrypt="video.imgUrl" />
+                    </div>
+                    <div class="ia-b">
+                      <div class="b-a">
+                        <span class="a-l" :class="`s${classifyResolution(video.resolution)}`">
+                          {{ classifyResolution(video.resolution) }}
+                        </span>
+                        <span class="a-r ss1">免费</span>
+                      </div>
+                      <div class="b-b">
+                        <span><i class="mvfont mv-zan" />{{ formatNumber(video.likeCount) }}</span>
+                        <span>{{ formatDuration(parseInt(video.duration)) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="i-b">
+                    <div class="ib-a">
+                      {{ video.title }}
+                    </div>
+                    <div class="ib-b">
+                      {{ formatNumber(video.viewCount) }}次观看
+                      <span>•{{ fromNow(video.addTime) }}</span>
+                      <span>•{{ video.channelName }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nav>
+            <template v-if="totalPages[1] > 1">
+              <div class="au-pagination-box" v-if="totalPages[1] > 9">
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[1] - 1)" :class="{ disabled: pageIndex[1] == 1 }">上一页</a>
+                </div>
+                <div class="pb-x">
+                  <input v-model="pageIndex[1]" @change="changePage(pageIndex[1])" type="number" min="1" :max="totalPages[1]" />
+                  <span>/ {{ totalPages[1] }}</span>
+                </div>
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[1] + 1)" :class="{ disabled: pageIndex[1] == totalPages[1] }">下一页</a>
+                </div>
+              </div>
+              <div v-else class="more-box"><a v-if="pageIndex[1] < totalPages[1]" @click="loadMore">加载更多</a></div>
+            </template>
+            <div v-if="noData[1]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+              <div class="d-t">暂无数据</div>
+            </div>
+          </PullRefresh>
+        </swiper-slide>
+        <!-- 社区 -->
+        <swiper-slide>
+          <PullRefresh v-model="refreshing[2]" @refresh="() => handleRefresh(2)">
+            <ul class="bbs-list mt-0" :class="{ edit: isEditing && activeTab == 2 }">
+              <template v-for="(post, index) in dataMap[2]" :key="index">
+                <li @click="handleClick(post, 2)">
+                  <div class="i-a">
+                    <div class="a-l">
+                      <img :src="getAssetsFile('logo-4.png')" />
+                      <div class="l-n">
+                        <h3>{{ post?.user?.nickName || '芒果TV官方' }}</h3>
+                        <span>{{ fromNow(post?.createTime) }}</span>
+                      </div>
+                    </div>
+                    <div class="a-r">
+                      <!-- <span class="off"></span> -->
+                    </div>
+                  </div>
+                  <div class="i-b" v-html="decodeHtmlEntities(post.title || '')" />
+                  <div
+                    :class="`i-c pic${post.imgs.split(',').length > 4 ? '9' : post.imgs.split(',').length || ''}
+                    ${post.channel.id == '2' ? 'weimi' : ''}`"
+                  >
+                    <div class="item" v-for="(img, index1) in post.imgs.split(',')" :key="index1">
+                      <img
+                        v-lazy-decrypt="img"
+                        :loading-img="post.imgs.split(',').length == 3 && index1 == 0 ? 'default2.gif' : 'default.gif'"
+                      />
+                    </div>
+                  </div>
+                  <div class="i-d">
+                    <div class="d-x">
+                      <span><i class="mvfont mv-pinglun" />{{ post.commentCount ? formatNumber(post.commentCount) : 0 }}</span>
+                      <span><i class="mvfont mv-zan" />{{ post.likeCount ? formatNumber(post.likeCount) : 0 }}</span>
+                      <span><i class="mvfont mv-like" />{{ post.collectionCount ? formatNumber(post.collectionCount) : 0 }}</span>
+                    </div>
+                    <div class="d-x">
+                      <span><i class="mvfont mv-kan" />{{ post.viewCount ? formatNumber(post.viewCount) : 0 }}</span>
+                    </div>
+                  </div>
+                </li>
+              </template>
+            </ul>
+            <template v-if="totalPages[2] > 1">
+              <div class="au-pagination-box" v-if="totalPages[2] > 9">
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[2] - 1)" :class="{ disabled: pageIndex[2] == 1 }">上一页</a>
+                </div>
+                <div class="pb-x">
+                  <input v-model="pageIndex[2]" @change="changePage(pageIndex[2])" type="number" min="1" :max="totalPages[2]" />
+                  <span>/ {{ totalPages[2] }}</span>
+                </div>
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[2] + 1)" :class="{ disabled: pageIndex[2] == totalPages[2] }">下一页</a>
+                </div>
+              </div>
+              <div v-else class="more-box"><a v-if="pageIndex[2] < totalPages[2]" @click="loadMore">加载更多</a></div>
+            </template>
+            <div v-if="noData[2]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+              <div class="d-t">暂无数据</div>
+            </div>
+          </PullRefresh>
+        </swiper-slide>
+        <!-- 短剧 -->
+        <swiper-slide>
+          <PullRefresh v-model="refreshing[3]" @refresh="() => handleRefresh(3)">
+            <ul v-if="dataMap[3] && dataMap[3].length > 0" class="b-u-l" :class="{ edit: isEditing && activeTab == 3 }">
+              <li v-for="video in dataMap[3]" :key="video.id" @click="handleClick(video, 3)">
+                <div class="l-a" v-lazy-decrypt="video.imgUrl">
+                  <a class="a-a"><i class="mvfont mv-bofang2" />{{ video.viewCount }}</a>
+                </div>
+                <div class="l-b">
+                  <p>{{ video.title }}</p>
+                  <span>
+                    <small>{{ video.channelName }}</small>
+                    全{{ video.episodeCount }}集
+                  </span>
+                </div>
+              </li>
+            </ul>
+            <template v-if="totalPages[3] > 1">
+              <div class="au-pagination-box" v-if="totalPages[3] > 9">
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[3] - 1)" :class="{ disabled: pageIndex[3] == 1 }">上一页</a>
+                </div>
+                <div class="pb-x">
+                  <input v-model="pageIndex[3]" @change="changePage(pageIndex[3])" type="number" min="1" :max="totalPages[3]" />
+                  <span>/ {{ totalPages[3] }}</span>
+                </div>
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[3] + 1)" :class="{ disabled: pageIndex[3] == totalPages[3] }">下一页</a>
+                </div>
+              </div>
+              <div v-else class="more-box"><a v-if="pageIndex[3] < totalPages[3]" @click="loadMore">加载更多</a></div>
+            </template>
+            <div v-if="noData[3]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+              <div class="d-t">暂无数据</div>
+            </div>
+          </PullRefresh>
+        </swiper-slide>
+        <!-- 合集 -->
+        <swiper-slide>
+          <PullRefresh v-model="refreshing[4]" @refresh="() => handleRefresh(4)">
+            <div v-if="dataMap[4] && dataMap[4].length > 0" class="m-c-b" :class="{ edit: isEditing && activeTab == 4 }">
+              <ul>
+                <li v-for="item in dataMap[4]" :key="item.id" @click="handleClick(item, 4)">
+                  <div class="li-a ss1">
+                    <img v-lazy-decrypt="item.imgUrl" />
+                    <span> <i class="mvfont mv-heji" />{{ item.channelName }} </span>
+                  </div>
+                  <div class="li-b">{{ item.title }}</div>
+                  <div class="li-c">
+                    <span>{{ item.videoCount }}个视频</span>
+                    <span>•{{ item.viewCount }}万次观看</span>
+                    <span>•{{ item.likeCount }}点赞</span>
+                    <span>•{{ item.collectionCount }}收藏</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <template v-if="totalPages[4] > 1">
+              <div class="au-pagination-box" v-if="totalPages[4] > 9">
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[4] - 1)" :class="{ disabled: pageIndex[4] == 1 }">上一页</a>
+                </div>
+                <div class="pb-x">
+                  <input v-model="pageIndex[4]" @change="changePage(pageIndex[4])" type="number" min="1" :max="totalPages[4]" />
+                  <span>/ {{ totalPages[4] }}</span>
+                </div>
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[4] + 1)" :class="{ disabled: pageIndex[4] == totalPages[4] }">下一页</a>
+                </div>
+              </div>
+              <div v-else class="more-box"><a v-if="pageIndex[4] < totalPages[4]" @click="loadMore">加载更多</a></div>
+            </template>
+            <div v-if="noData[4]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="" />
+              <div class="d-t">暂无合集</div>
+            </div>
+          </PullRefresh>
+        </swiper-slide>
+        <!-- 小说 -->
+        <swiper-slide>
+          <PullRefresh v-model="refreshing[5]" @refresh="() => handleRefresh(5)">
+            <div v-if="dataMap[5] && dataMap[5].length > 0" class="n-l-b" :class="{ edit: isEditing && activeTab == 5 }">
+              <ul>
+                <li v-for="item in dataMap[5]" :key="item.id" @click="handleClick(item, 5)">
+                  <div class="l-a">
+                    <img v-lazy-decrypt="item.coverurl" />
+                    <span class="a-a">{{ item.categoryName }}</span>
+                    <span class="a-b">{{ item.readCount }}阅读</span>
+                  </div>
+                  <div class="l-b">
+                    <b>{{ item.title }}</b>
+                    <p>{{ item.introduction }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <template v-if="totalPages[5] > 1">
+              <div class="au-pagination-box" v-if="totalPages[5] > 9">
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[5] - 1)" :class="{ disabled: pageIndex[5] == 1 }">上一页</a>
+                </div>
+                <div class="pb-x">
+                  <input v-model="pageIndex[5]" @change="changePage(pageIndex[5])" type="number" min="1" :max="totalPages[5]" />
+                  <span>/ {{ totalPages[5] }}</span>
+                </div>
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[5] + 1)" :class="{ disabled: pageIndex[5] == totalPages[5] }">下一页</a>
+                </div>
+              </div>
+              <div v-else class="more-box"><a v-if="pageIndex[5] < totalPages[5]" @click="loadMore">加载更多</a></div>
+            </template>
+            <div v-if="noData[5]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+              <div class="d-t">暂无数据</div>
+            </div>
+          </PullRefresh>
+        </swiper-slide>
+        <!-- 有声 -->
+        <swiper-slide>
+          <PullRefresh v-model="refreshing[6]" @refresh="() => handleRefresh(6)">
+            <div v-if="noData[6]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="" />
+              <div class="d-t">暂无有声</div>
+            </div>
+          </PullRefresh>
+        </swiper-slide>
+        <!-- 漫画 -->
+        <swiper-slide>
+          <PullRefresh v-model="refreshing[7]" @refresh="() => handleRefresh(7)">
+            <div v-if="dataMap[7] && dataMap[7].length > 0" class="n-l-b" :class="{ edit: isEditing && activeTab == 7 }">
+              <ul>
+                <li v-for="item in dataMap[7]" :key="item.id" @click="handleClick(item, 7)">
+                  <div class="l-a">
+                    <img v-lazy-decrypt="item.coverurl" />
+                    <span class="a-a">{{ item.categoryName }}</span>
+                    <span class="a-b">{{ item.readCount }}阅读</span>
+                  </div>
+                  <div class="l-b">
+                    <b>{{ item.title }}</b>
+                    <p>{{ item.introduction }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <template v-if="totalPages[7] > 1">
+              <div class="au-pagination-box" v-if="totalPages[7] > 9">
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[7] - 1)" :class="{ disabled: pageIndex[7] == 1 }">上一页</a>
+                </div>
+                <div class="pb-x">
+                  <input v-model="pageIndex[7]" @change="changePage(pageIndex[7])" type="number" min="1" :max="totalPages[7]" />
+                  <span>/ {{ totalPages[7] }}</span>
+                </div>
+                <div class="pb-x">
+                  <a @click="changePage(pageIndex[7] + 1)" :class="{ disabled: pageIndex[7] == totalPages[7] }">下一页</a>
+                </div>
+              </div>
+              <div v-else class="more-box"><a v-if="pageIndex[7] < totalPages[7]" @click="loadMore">加载更多</a></div>
+            </template>
+            <div v-if="noData[7]" class="nodata">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="No Data" />
+              <div class="d-t">暂无数据</div>
+            </div>
+          </PullRefresh>
+        </swiper-slide>
+        <!-- 茶帖 -->
+        <swiper-slide>
+          <PullRefresh v-model="refreshing[8]" @refresh="() => handleRefresh(8)">
+            <div class="nodata" :class="{ edit: isEditing && activeTab == 8 }">
+              <img :src="getAssetsFile('empty/collect.svg')" alt="" />
+              <div class="d-t">暂无茶帖</div>
+            </div>
+          </PullRefresh>
+        </swiper-slide>
+      </swiper>
     </section>
-    <template v-if="totalPages > 1">
-      <div class="au-pagination-box" v-if="totalPages > 9">
-        <div class="pb-x">
-          <a @click="changePage(currentPage - 1)" :class="{ disabled: currentPage == 1 }">上一页</a>
-        </div>
-        <div class="pb-x">
-          <input v-model="currentPage" @change="() => fetchRecords()" type="number" min="1" :max="totalPages" />
-          <span>/ {{ totalPages }}</span>
-        </div>
-        <div class="pb-x">
-          <a @click="changePage(currentPage + 1)" :class="{ disabled: currentPage == totalPages }">下一页</a>
+    <footer class="footer" v-if="isEditing">
+      <div class="edit-foot">
+        <div class="f-bd">
+          <a @click="selectAll"><i class="mvfont mv-qiyong" />全选</a>
+          <a class="fx-15 bct-1" @click="removeSelected"><i class="mvfont mv-shanchu" />删除</a>
         </div>
       </div>
-      <div v-else class="more-box"><a v-if="currentPage < totalPages" @click="loadMore">加载更多</a></div>
-    </template>
+    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { userWatchHistory } from '@/api/user'
-import type { Video } from '@/types/video'
-import { useAppStore } from '@/store/app'
-import { classifyResolution, formatNumber } from '@/utils'
-const router = useRouter()
-const appStore = useAppStore()
+  import { ref, reactive, onMounted, onActivated, nextTick } from 'vue'
+  import { useAppStore } from '@/store/app'
+  import { getAssetsFile } from '@/utils'
+  import { Swiper, SwiperSlide } from 'swiper/vue'
+  import { PullRefresh, showToast } from 'vant'
+  import { userWatchHistory } from '@/api/user'
+  import { formatDuration, formatNumber, fromNow, classifyResolution, decodeHtmlEntities } from '@/utils'
+  import 'swiper/css'
+  import router from '@/router'
 
-const videos = ref<Video[]>([])
-const currentPage = ref(1)
-const totalPages = ref(1)
-const pageSize = ref(20)
-const nodata = ref(false)
+  const appStore = useAppStore()
+  const tabs = ref([
+    { title: '抖阴', name: 0, routeName: 'shortPlay', params: { PageIndex: 1, PageSize: 10 } },
+    { title: '视频', name: 1, routeName: 'play', params: { PageIndex: 1, PageSize: 10 } },
+    { title: '社区', name: 2, routeName: 'bbsDetail', params: { PageIndex: 1, PageSize: 10 } },
+    { title: '短剧', name: 3, routeName: 'shortDrama', params: { PageIndex: 1, PageSize: 10 } },
+    { title: '合集', name: 4, routeName: 'collectionDetail', params: { PageIndex: 1, PageSize: 20 } },
+    { title: '小说', name: 5, routeName: 'novelIntro', params: { PageIndex: 1, PageSize: 20 } },
+    { title: '有声', name: 6, routeName: 'audio', params: { PageIndex: 1, PageSize: 20 } },
+    { title: '漫画', name: 7, routeName: 'comicIntro', params: { PageIndex: 1, PageSize: 20 } },
+    { title: '茶贴', name: 8, routeName: 'tea', params: { PageIndex: 1, PageSize: 20 } }
+  ])
 
-const fetchRecords = async (loadMore = false) => {
-  try {
-    const params = {
-      PageIndex: currentPage.value,
-      PageSize: pageSize.value
+  const activeTab = ref(0)
+  const dataMap = reactive<Record<number, any[]>>({})
+  const pageIndex = reactive<Record<number, number>>({})
+  const totalPages = reactive<Record<number, number>>({})
+  const noData = reactive<Record<number, boolean>>({})
+  const refreshing = reactive<Record<number, boolean>>({})
+  const swiperInstance = ref<any>(null)
+  const isEditing = ref(false)
+  const selectedIds = ref<number[]>([])
+
+  const fetchData = async (tabName: number, showRefreshing = false, loadMore = false) => {
+    if (showRefreshing) {
+      refreshing[tabName] = true
     }
-    const {
-      data: { data }
-    } = await userWatchHistory(params)
+    try {
+      const tab = tabs.value.find(t => t.name == tabName)
+      const response = await userWatchHistory(tab.params)
+      const { data } = response.data
+      if (data && Array.isArray(data.items)) {
+        if (loadMore) {
+          dataMap[tabName].push(...data.items)
+        } else {
+          dataMap[tabName] = data.items
+        }
+        totalPages[tabName] = Number(data.pageCount)
+        pageIndex[tabName] = Number(data.pageIndex)
+        noData[tabName] = data.items.length == 0
+      }
+    } catch (error) {
+      console.error('获取数据失败:', error)
+    } finally {
+      if (showRefreshing) {
+        refreshing[tabName] = false
+      }
+      if (swiperInstance.value) {
+        nextTick(() => {
+          swiperInstance.value.updateAutoHeight()
+        })
+      }
+    }
+  }
 
-    if (data && Array.isArray(data.items)) {
-      videos.value = loadMore ? videos.value.concat(data.items) : data.items
-      nodata.value = videos.value.length == 0
-      currentPage.value = parseInt(data.pageIndex)
-      totalPages.value = parseInt(data.pageCount)
+  const onSwiper = (swiper: any) => {
+    swiperInstance.value = swiper
+  }
+
+  const clickTab = (tabName: number) => {
+    activeTab.value = tabName
+    if (swiperInstance.value) {
+      swiperInstance.value.slideTo(tabName, 0)
+    }
+  }
+
+  const handleSwipeChange = (swiper: any) => {
+    isEditing.value = false
+    const newIndex = swiper.activeIndex
+    activeTab.value = newIndex
+    if (!dataMap[newIndex] || dataMap[newIndex].length == 0) {
+      dataMap[newIndex] = []
+      pageIndex[newIndex] = 1
+      fetchData(newIndex, true)
+    }
+  }
+
+  // 点击收藏列表的item
+  const handleClick = (item: any, tabName: number) => {
+    if (tabName == 0) {
+      //   const playIndex = totalPages[0] > 9 ? index + (pageIndex[0] - 1) * tabs.value[0].params.PageSize : index
+      //   router.push({ name: tabs.value[tabName].routeName })
+      localStorage.setItem('shortPlayVideo', JSON.stringify(item))
+      router.push({ name: tabs.value[tabName].routeName, query: { listType: 'collect' } })
+    } else if (tabName == 1 || tabName == 2 || tabName == 3 || tabName == 4) {
+      router.push({ name: tabs.value[tabName].routeName, params: { id: item.id } })
     } else {
-      nodata.value = true
+      router.push({ name: tabs.value[tabName].routeName, query: { nid: item.id } })
     }
-  } catch (error) {
-    console.error('获取浏览记录失败:', error)
-    nodata.value = true
   }
-}
 
-const changePage = (newPage: number) => {
-  if (newPage >= 1 && newPage <= totalPages.value) {
-    currentPage.value = newPage
-    fetchRecords()
+  const handleRefresh = async (tabName: number) => {
+    refreshing[tabName] = true
+    tabs.value[tabName].params.PageIndex = 1
+    await fetchData(tabName, true)
+    refreshing[tabName] = false
   }
-}
 
-const loadMore = async () => {
-  currentPage.value += 1
-  await fetchRecords(true)
-}
+  const changePage = async (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages[activeTab.value]) {
+      pageIndex[activeTab.value] = newPage
+      tabs.value[activeTab.value].params.PageIndex = newPage
+      fetchData(activeTab.value, true)
+    }
+  }
 
-const formatDate = (dateString: string | undefined) => {
-  if (!dateString) return ''
-  const date = new Date(dateString)
-  return date.toLocaleDateString('zh-CN')
-}
+  const loadMore = async () => {
+    if (pageIndex[activeTab.value] < totalPages[activeTab.value]) {
+      pageIndex[activeTab.value]++
+      tabs.value[activeTab.value].params.PageIndex = pageIndex[activeTab.value]
+      await fetchData(activeTab.value, true, true)
+    }
+  }
 
-onMounted(() => {
-  fetchRecords()
-})
+  const selectAll = () => {
+    if (isEditing.value) {
+      const currentIds = dataMap[activeTab.value].map(item => item.id)
+      selectedIds.value = currentIds
+    }
+  }
+
+  onActivated(() => {
+    console.log('onActivated')
+  })
+
+  onMounted(() => {
+    tabs.value.forEach(tab => {
+      dataMap[tab.name] = []
+      refreshing[tab.name] = false
+    })
+    fetchData(activeTab.value, true)
+  })
 </script>
 
-<style scoped>
-.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+<style lang="less" scoped>
+  :deep(.van-pull-refresh) {
+    min-height: calc(100vh - 100px);
+  }
 </style>
