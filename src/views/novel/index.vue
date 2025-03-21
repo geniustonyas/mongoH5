@@ -135,8 +135,8 @@
 <script setup lang="ts">
   import HomeLayout from '@/components/layout/HomeLayout.vue'
   import { nextTick, onMounted, onUnmounted, reactive, ref } from 'vue'
-  import { NovelBookCategoryItem, NovelIndexListItem, NovelStatus, NovelListRequest, NovelListItem } from '@/types/novel'
-  import { getNovelIndexList, getNovelAllLikeList } from '@/api/novel'
+  import { NovelBookCategoryItem, NovelIndexListItem, NovelStatus, NovelListItem } from '@/types/novel'
+  import { getNovelIndexList } from '@/api/novel'
   import { useAppStore } from '@/store/app'
   import decryptionService from '@/utils/decryptionService'
   import { formatCount } from '@/utils'
@@ -155,7 +155,7 @@
   const decrypt = new decryptionService()
   const hotBooks = reactive<NovelIndexListItem[]>([])
   const newBooks = reactive<NovelIndexListItem[]>([])
-  const recommendBooks = reactive<NovelListItem[]>([])
+  const recommendBooks = reactive<NovelIndexListItem[]>([])
   const serialBooks = reactive<NovelIndexListItem[]>([])
   const endBooks = reactive<NovelIndexListItem[]>([])
   const newHotBooks = reactive<NovelIndexListItem[]>([])
@@ -260,7 +260,7 @@
   function formatBookStatus(
     hots: NovelIndexListItem[],
     news: NovelIndexListItem[],
-    recommends: NovelListItem[],
+    recommends: NovelIndexListItem[],
     serial: NovelIndexListItem[],
     ends: NovelIndexListItem[],
     newhots: NovelIndexListItem[]
@@ -279,34 +279,6 @@
     formatBooks(newhots)
   }
 
-  const fetchRecommendBooks = async () => {
-    try {
-      const params: NovelListRequest = {
-        PageIndex: 1,
-        PageSize: 10
-      }
-      const {
-        data: { data }
-      } = await getNovelAllLikeList(params)
-      if (data?.items) {
-        const books = data.items
-        books.forEach(book => {
-          book.statusText = formatBookStatusText(book.status)
-        })
-        await Promise.all(
-          books.map(async book => {
-            await decryptBookImage(book)
-          })
-        )
-        nextTick(() => {
-          recommendBooks.splice(0, recommendBooks.length, ...books)
-        })
-      }
-    } catch (error) {
-      console.error('Failed to fetch recommend books:', error)
-    }
-  }
-
   const fetchBooksOfIndexPage = async () => {
     try {
       loading.value = true
@@ -315,15 +287,16 @@
         data: { data }
       } = await getNovelIndexList()
       if (data) {
-        const { hots, news, serial, end, newhots, categories } = data
+        const { hots, news, serial, end, newhots, categories, recommends } = data
         bookCategories.push({ id: 0, name: '推荐' }, ...categories)
-        formatBookStatus(hots, news, [], serial, end, newhots)
-        await decryptImage(hots, news, [], serial, end, newhots)
-        await fetchRecommendBooks() // 单独获取推荐书籍
+        formatBookStatus(hots, news, recommends, serial, end, newhots)
+        await decryptImage(hots, news, recommends, serial, end, newhots)
+        // await fetchRecommendBooks() // 单独获取推荐书籍
         nextTick(() => {
           hotBooks.push(...hots)
           newBooks.push(...news)
           serialBooks.push(...serial)
+          recommendBooks.push(...recommends)
           endBooks.push(...end)
           newHotBooks.push(...newhots)
         })

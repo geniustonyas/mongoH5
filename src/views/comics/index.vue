@@ -121,8 +121,8 @@
 <script setup lang="ts">
   import HomeLayout from '@/components/layout/HomeLayout.vue'
   import { nextTick, onMounted, onUnmounted, reactive, ref } from 'vue'
-  import { CommicBookCategoryItem, CommicIndexListItem, CommicStatus, CommicListRequest, CommicListItem } from '@/types/commic'
-  import { getCommicIndexList, getCommiclAllLikeList } from '@/api/commic'
+  import { CommicBookCategoryItem, CommicIndexListItem, CommicStatus, CommicListItem } from '@/types/commic'
+  import { getCommicIndexList } from '@/api/commic'
   import { useAppStore } from '@/store/app'
   import decryptionService from '@/utils/decryptionService'
   import { formatCount, preloadImages } from '@/utils'
@@ -141,7 +141,7 @@
   const decrypt = new decryptionService()
   const hotCommics = reactive<CommicIndexListItem[]>([])
   const newCommics = reactive<CommicIndexListItem[]>([])
-  const recommendCommics = reactive<CommicListItem[]>([])
+  const recommendCommics = reactive<CommicIndexListItem[]>([])
   const serialCommics = reactive<CommicIndexListItem[]>([])
   const endCommics = reactive<CommicIndexListItem[]>([])
   const newHotCommics = reactive<CommicIndexListItem[]>([])
@@ -208,7 +208,7 @@
   async function decryptImage(
     hots: CommicIndexListItem[],
     news: CommicIndexListItem[],
-    recommends: CommicListItem[],
+    recommends: CommicIndexListItem[],
     serial: CommicIndexListItem[],
     ends: CommicIndexListItem[],
     newhots: CommicIndexListItem[]
@@ -261,7 +261,7 @@
   function formatBookStatus(
     hots: CommicIndexListItem[],
     news: CommicIndexListItem[],
-    recommends: CommicListItem[],
+    recommends: CommicIndexListItem[],
     serial: CommicIndexListItem[],
     ends: CommicIndexListItem[],
     newhots: CommicIndexListItem[]
@@ -284,34 +284,6 @@
     formatBooks(newhots)
   }
 
-  const fetchRecommendCommics = async () => {
-    try {
-      const params: CommicListRequest = {
-        PageIndex: 1,
-        PageSize: 10
-      }
-      const {
-        data: { data }
-      } = await getCommiclAllLikeList(params)
-      if (data?.items) {
-        const commics = data.items
-        commics.forEach(comic => {
-          comic.statusText = formatBookStatusText(comic.status)
-        })
-        await Promise.all(
-          commics.map(async comic => {
-            await decryptBookImage(comic)
-          })
-        )
-        nextTick(() => {
-          recommendCommics.splice(0, recommendCommics.length, ...commics)
-        })
-      }
-    } catch (error) {
-      console.error('Failed to fetch recommend comics:', error)
-    }
-  }
-
   const fetchBooksOfIndexPage = async () => {
     try {
       loading.value = true
@@ -320,14 +292,15 @@
         data: { data }
       } = await getCommicIndexList()
       if (data) {
-        const { hots, news, serial, end, newhots, categories } = data
+        const { hots, news, serial, end, newhots, categories, recommends } = data
         commicCategories.push({ id: 0, name: '推荐' }, ...categories)
-        formatBookStatus(hots, news, [], serial, end, newhots)
-        await decryptImage(hots, news, [], serial, end, newhots)
-        await fetchRecommendCommics() // 单独获取推荐漫画
+        formatBookStatus(hots, news, recommends, serial, end, newhots)
+        await decryptImage(hots, news, recommends, serial, end, newhots)
+        // await fetchRecommendCommics() // 单独获取推荐漫画
         nextTick(() => {
           hotCommics.push(...hots)
           newCommics.push(...news)
+          recommendCommics.push(...recommends)
           serialCommics.push(...serial)
           endCommics.push(...end)
           newHotCommics.push(...newhots)

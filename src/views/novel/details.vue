@@ -57,7 +57,7 @@
             <div class="mc-a">
               <div class="a-l"><i class="mvfont mv-xietiao" /><span>目录</span></div>
               <div class="a-r">
-                <span>共{{ chapters.length }}章<i class="mvfont mv-right" /></span>
+                <span v-if="chapters.length > 0">共{{ chapters.length }}章<i class="mvfont mv-right" /></span>
               </div>
             </div>
             <div class="mc-b">
@@ -74,7 +74,7 @@
             <div class="mc-a">
               <div class="a-l" ref="recommendTitleRef"><i class="mvfont mv-xietiao" /><span>为您推荐</span></div>
               <div class="a-r">
-                <span>更多<i class="mvfont mv-right" /></span>
+                <span @click="handleViewAllRecommendBooks">更多<i class="mvfont mv-right" /></span>
               </div>
             </div>
             <div class="mc-b">
@@ -574,6 +574,10 @@
       return false
     }
     return true
+  }
+
+  const handleViewAllRecommendBooks = () => {
+    router.push({ name: 'novelCategory', query: { nid: bookInfo.value?.id } })
   }
 
   onMounted(async () => {
