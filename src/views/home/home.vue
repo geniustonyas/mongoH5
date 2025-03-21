@@ -117,7 +117,7 @@
   import { useRouter } from 'vue-router'
   import { useUserStoreHook } from '@/store/user'
   import { useAppStoreHook } from '@/store/app'
-  import { openAd } from '@/utils'
+  import { openAd, getAssetsFile } from '@/utils'
 
   import Footer from '@/components/layout/Footer.vue'
   import NavBar from '@/components/layout/NavBar.vue'

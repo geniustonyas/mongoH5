@@ -379,21 +379,22 @@
   import { Swiper, SwiperSlide } from 'swiper/vue'
   import { PullRefresh, showToast } from 'vant'
   import { userWatchHistory } from '@/api/user'
+  import { SearchType } from '@/utils/constant'
   import { formatDuration, formatNumber, fromNow, classifyResolution, decodeHtmlEntities } from '@/utils'
   import 'swiper/css'
   import router from '@/router'
 
   const appStore = useAppStore()
   const tabs = ref([
-    { title: '抖阴', name: 0, routeName: 'shortPlay', params: { PageIndex: 1, PageSize: 10 } },
-    { title: '视频', name: 1, routeName: 'play', params: { PageIndex: 1, PageSize: 10 } },
-    { title: '社区', name: 2, routeName: 'bbsDetail', params: { PageIndex: 1, PageSize: 10 } },
-    { title: '短剧', name: 3, routeName: 'shortDrama', params: { PageIndex: 1, PageSize: 10 } },
-    { title: '合集', name: 4, routeName: 'collectionDetail', params: { PageIndex: 1, PageSize: 20 } },
-    { title: '小说', name: 5, routeName: 'novelIntro', params: { PageIndex: 1, PageSize: 20 } },
-    { title: '有声', name: 6, routeName: 'audio', params: { PageIndex: 1, PageSize: 20 } },
-    { title: '漫画', name: 7, routeName: 'comicIntro', params: { PageIndex: 1, PageSize: 20 } },
-    { title: '茶贴', name: 8, routeName: 'tea', params: { PageIndex: 1, PageSize: 20 } }
+    { title: '抖阴', name: 0, routeName: 'shortPlay', params: { PageIndex: 1, PageSize: 10, SearchType: SearchType.ShortVideo } },
+    { title: '视频', name: 1, routeName: 'play', params: { PageIndex: 1, PageSize: 10, SearchType: SearchType.Video } },
+    { title: '社区', name: 2, routeName: 'bbsDetail', params: { PageIndex: 1, PageSize: 10, SearchType: SearchType.BBS } },
+    { title: '短剧', name: 3, routeName: 'shortDrama', params: { PageIndex: 1, PageSize: 10, SearchType: SearchType.ShortMovie } },
+    { title: '合集', name: 4, routeName: 'collectionDetail', params: { PageIndex: 1, PageSize: 20, SearchType: SearchType.Collections } },
+    { title: '小说', name: 5, routeName: 'novelIntro', params: { PageIndex: 1, PageSize: 20, SearchType: SearchType.Novel } },
+    { title: '有声', name: 6, routeName: 'audio', params: { PageIndex: 1, PageSize: 20, SearchType: SearchType.Audiobook } },
+    { title: '漫画', name: 7, routeName: 'comicIntro', params: { PageIndex: 1, PageSize: 20, SearchType: SearchType.Comics } },
+    { title: '茶贴', name: 8, routeName: 'tea', params: { PageIndex: 1, PageSize: 20, SearchType: SearchType.Tea } }
   ])
 
   const activeTab = ref(0)

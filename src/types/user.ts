@@ -110,3 +110,11 @@ export interface Suggestion {
   // 反馈内容
   Content: string
 }
+
+export interface userWatchHistoryRequest {
+  SearchType: number
+  StartTime?: string
+  EndTime?: string
+  PageSize: number
+  PageIndex: number
+}

@@ -500,8 +500,11 @@
       //   const playIndex = totalPages[0] > 9 ? index + (pageIndex[0] - 1) * tabs.value[0].params.PageSize : index
       //   router.push({ name: tabs.value[tabName].routeName })
       localStorage.setItem('shortPlayVideo', JSON.stringify(item))
-      router.push({ name: tabs.value[tabName].routeName, query: { listType: 'collect' } })
-    } else if (tabName == 1 || tabName == 2 || tabName == 3 || tabName == 4) {
+      router.push({ name: tabs.value[0].routeName, query: { listType: 'collect' } })
+    } else if (tabName == 3) {
+      localStorage.setItem('shortDramaCollect', JSON.stringify(item))
+      router.push({ name: tabs.value[3].routeName, query: { listType: 'collect' } })
+    } else if (tabName == 1 || tabName == 2 || tabName == 4) {
       router.push({ name: tabs.value[tabName].routeName, params: { id: item.id } })
     } else {
       router.push({ name: tabs.value[tabName].routeName, query: { nid: item.id } })

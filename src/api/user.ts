@@ -1,5 +1,5 @@
 import { request } from '@/utils/axios'
-import type { loginForm, loginResp, UserInfo, ShareRecordResponse, Suggestion, UpdateUserInfo } from '@/types/user'
+import type { loginForm, loginResp, UserInfo, ShareRecordResponse, Suggestion, UpdateUserInfo, userWatchHistoryRequest } from '@/types/user'
 import type { VideoListResponse } from '@/types/video'
 import type { ApiResponseData } from '@/types/global.d'
 import { TokenPrefix, getToken } from '@/utils/auth'
@@ -58,9 +58,9 @@ export function userCollection(data: { VideoId?: number | string; Ids?: number |
 }
 
 /** 浏览记录 */
-export function userWatchHistory(data: { PageIndex: number; PageSize: number }) {
-  return request<ApiResponseData<VideoListResponse>>({
-    url: 'Web/MemberWatchHistory',
+export function userWatchHistory(data: userWatchHistoryRequest) {
+  return request<ApiResponseData<any>>({
+    url: 'Web/BrowsingRecordList',
     method: 'post',
     data
   })

@@ -307,7 +307,7 @@ const routes: RouteRecordRaw[] = [
         path: 'history',
         name: 'history',
         component: () => import('@/views/home/history.vue'),
-        meta: { needLogin: true, keepAlive: false, title: '我的足迹' }
+        meta: { needLogin: false, keepAlive: false, title: '我的足迹' }
       },
       {
         path: 'collect',

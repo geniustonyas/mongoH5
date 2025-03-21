@@ -1,12 +1,3 @@
-/** 游戏类型枚举 */
-export enum GameType {
-  Sports = 1,
-  Casino = 2,
-  Slots = 3,
-  Esports = 4,
-  Lottery = 5
-}
-
 // 主頁菜单枚举
 export enum HOME_ACTIVE_MENU {
   'discover' = 'discover',
@@ -15,4 +6,19 @@ export enum HOME_ACTIVE_MENU {
   'shortDrama' = 'shortDrama',
   'novel' = 'novel',
   'commic' = 'commic'
+}
+
+export enum SearchType {
+  Video = 1,
+  ShortVideo = 2,
+  ShortMovie = 3,
+  BBS = 4,
+  Novel = 5,
+  Comics = 6,
+  Tea = 7,
+  Audiobook = 8,
+  VideoActor = 9,
+  ShortMovieActor = 10,
+  BBSModel = 11,
+  Collections = 12
 }

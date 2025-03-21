@@ -16,11 +16,11 @@
       </header>
 
       <div class="cdb-a">
-        <div class="a-y" style="background-image:url(assets/imgs/temp/bg.png)" />
+        <div class="a-y" :style="{ backgroundImage: `url(${getAssetsFile('temp/bg.png')})` }" />
         <div class="a-x">
           <div class="a-a">
             <div class="aa-a">
-              <img src="assets/imgs/temp/bg.png" />
+              <img :src="getAssetsFile('temp/bg.png')" />
             </div>
             <div class="aa-b">
               <h2>陈冠希</h2>
@@ -55,7 +55,7 @@
             <div class="item">
               <div class="i-a">
                 <div class="ia-a">
-                  <img src="assets/imgs/mv/m11.jpg" />
+                  <img :src="getAssetsFile('mv/m11.jpg')" />
                 </div>
                 <div class="ia-b">
                   <div class="b-a">
@@ -70,7 +70,7 @@
               </div>
               <div class="i-b">
                 <div class="ib-a">
-                  FSDSS-872 拘束で快感から逃がさず「ダメ今イッてるから！」の抵抗を完全無视して追击ピストンザーメン逆流连続中出し 藤井蘭蘭
+                  FSDSS-872 拘束で快感から逃がさず「ダメ今イッてるから！」の抵抗を完全无视して追击ピストンザーメン逆流连続中出し 藤井蘭蘭
                 </div>
                 <div class="ib-b">43.5万次观看<span>•03-11</span><span>•国产</span></div>
               </div>
@@ -78,7 +78,7 @@
             <div class="item">
               <div class="i-a">
                 <div class="ia-a">
-                  <img src="assets/imgs/mv/m12.jpg" />
+                  <img :src="getAssetsFile('mv/m12.jpg')" />
                 </div>
                 <div class="ia-b">
                   <div class="b-a">
@@ -101,7 +101,7 @@
             <div class="item">
               <div class="i-a">
                 <div class="ia-a">
-                  <img src="assets/imgs/mv/m10.jpg" />
+                  <img :src="getAssetsFile('mv/m10.jpg')" />
                 </div>
                 <div class="ia-b">
                   <div class="b-a">
@@ -124,7 +124,7 @@
             <div class="item">
               <div class="i-a">
                 <div class="ia-a">
-                  <img src="assets/imgs/mv/m9.jpg" />
+                  <img :src="getAssetsFile('mv/m9.jpg')" />
                 </div>
                 <div class="ia-b">
                   <div class="b-a">
@@ -146,7 +146,7 @@
             <div class="item">
               <div class="i-a">
                 <div class="ia-a">
-                  <img src="assets/imgs/mv/m8.jpg" />
+                  <img :src="getAssetsFile('mv/m8.jpg')" />
                 </div>
                 <div class="ia-b">
                   <div class="b-a">
@@ -169,7 +169,7 @@
             <div class="item">
               <div class="i-a">
                 <div class="ia-a">
-                  <img src="assets/imgs/mv/m7.jpg" />
+                  <img :src="getAssetsFile('mv/m7.jpg')" />
                 </div>
                 <div class="ia-b">
                   <div class="b-a">
@@ -195,6 +195,8 @@
     </main>
   </div>
 </template>
+
 <script setup lang="ts">
+import { getAssetsFile } from '@/utils'
 </script>
 
