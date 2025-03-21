@@ -1,7 +1,7 @@
 <template>
   <div class="v-d">
     <div class="d-a">
-      <a href="#"><i class="mvfont mv-dianji" />点击查看更多短剧<i class="mvfont mv-right" /></a>
+      <a @click="router.push({ name: 'allDramas' })"><i class="mvfont mv-dianji" />点击查看更多短剧<i class="mvfont mv-right" /></a>
     </div>
     <div class="d-b">
       <h3>@芒果短剧-永久域名:mg91.tv</h3>
@@ -29,6 +29,9 @@
 <script setup lang="ts">
   import { computed } from 'vue'
   import { DramaDetailResponse } from '@/types/drama'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
 
   interface Props {
     dramaDetail?: DramaDetailResponse | null

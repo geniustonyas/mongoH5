@@ -12,7 +12,7 @@
     </div>
     <div class="m-a" style="padding-top: 0">
       <div class="ma-b">
-        <van-tabs v-model:active="activeTab" swipeable line-width="0" line-height="0">
+        <van-tabs v-model:active="activeTab" swipeable line-width="0" line-height="0" @change="handleTabChange">
           <van-tab title="选集" name="episodeListTab">
             <div class="m-b m-b-tab">
               <div class="p-l-c">
@@ -28,10 +28,66 @@
             </div>
           </van-tab>
           <van-tab title="热门短剧" name="hotDramaTab">
-            <div class="m-b" />
+            <div class="m-b">
+              <template v-if="dramas.length > 0">
+                <van-pull-refresh v-model="isRefreshing" @refresh="onRefresh">
+                  <van-list v-model:loading="isLoadingMore" :finished="isFinished" finished-text="没有更多了" @load="onLoad">
+                    <ul class="p-l-i">
+                      <li v-for="drama in dramas" :key="drama.id" @click="handleDramaClick(drama.id)">
+                        <div class="l-l">
+                          <img width="100%" height="100%" style="border-radius: 0.4rem" :src="drama.poster" />
+                        </div>
+                        <div class="l-r">
+                          <div class="r-a">{{ drama?.title }}</div>
+                          <div class="r-b">
+                            <span><i class="mvfont mv-bofang2" />{{ drama?.viewCount }}万</span>
+                            <span><i class="mvfont mv-like" />{{ drama?.likeCount }}</span>
+                            <span><i class="mvfont mv-zan" />{{ drama?.collectionCount }}</span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </van-list>
+                </van-pull-refresh>
+              </template>
+              <template v-if="dramas.length === 0 && !isLoading">
+                <van-empty description="暂无热门短剧推荐" />
+              </template>
+              <template v-if="isLoading">
+                <Loading />
+              </template>
+            </div>
           </van-tab>
           <van-tab title="猜你喜欢" name="guessYouLikeTab">
-            <div class="m-b" />
+            <div class="m-b">
+              <template v-if="dramas.length > 0">
+                <van-pull-refresh v-model="isRefreshing" @refresh="onRefresh">
+                  <van-list v-model:loading="isLoadingMore" :finished="isFinished" finished-text="没有更多了" @load="onLoad">
+                    <ul class="p-l-i">
+                      <li v-for="drama in dramas" :key="drama.id" @click="handleDramaClick(drama.id)">
+                        <div class="l-l">
+                          <img width="100%" height="100%" style="border-radius: 0.4rem" :src="drama.poster" />
+                        </div>
+                        <div class="l-r">
+                          <div class="r-a">{{ drama?.title }}</div>
+                          <div class="r-b">
+                            <span><i class="mvfont mv-bofang2" />{{ drama?.viewCount }}万</span>
+                            <span><i class="mvfont mv-like" />{{ drama?.likeCount }}</span>
+                            <span><i class="mvfont mv-zan" />{{ drama?.collectionCount }}</span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </van-list>
+                </van-pull-refresh>
+              </template>
+              <template v-if="dramas.length === 0 && !isLoading">
+                <van-empty description="暂无热门短剧推荐" />
+              </template>
+              <template v-if="isLoading">
+                <Loading />
+              </template>
+            </div>
           </van-tab>
         </van-tabs>
       </div>
@@ -48,8 +104,13 @@
 
 <script setup lang="ts">
   import { ref, watch } from 'vue'
-  import { DramaDetailResponse } from '@/types/drama'
+  import { DramaDetailResponse, DramaItemVM, DramaSortType } from '@/types/drama'
   import { closeToast, showLoadingToast } from 'vant'
+  import { getDramaList, getGuessYouLikeDramaList } from '@/api/drama'
+  import { useAppStore } from '@/store/app'
+  import decryptionService from '@/utils/decryptionService'
+  import { useRouter } from 'vue-router'
+  import Loading from '@/components/layout/Loading.vue'
 
   interface Props {
     isCollecting?: boolean
@@ -67,6 +128,18 @@
 
   const activeTab = ref('episodeListTab')
   const activeEpisodeIndex = ref(0)
+  const dramas = ref<DramaItemVM[]>([])
+  const pageIndex = ref(1)
+  const totalCount = ref(0)
+  const appStore = useAppStore()
+  const decrypt = new decryptionService()
+  const router = useRouter()
+
+  const isRefreshing = ref(false)
+  const isLoading = ref(false)
+  const isFinished = ref(false)
+  const pageSize = 10
+  const isLoadingMore = ref(false)
 
   watch(
     props.dramaDetail,
@@ -102,9 +175,123 @@
     }
   )
 
+  const fetchGuessYouLikeDramaList = async (isRefresh = false) => {
+    try {
+      isLoading.value = true
+      const {
+        data: { data }
+      } = await getGuessYouLikeDramaList({
+        PageIndex: pageIndex.value,
+        PageSize: pageSize
+      })
+
+      if (data && data.items) {
+        const newDramas = await Promise.all(
+          data.items.map(async episode => {
+            episode.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + episode.imgUrl))
+            return episode
+          })
+        )
+
+        if (isRefresh) {
+          dramas.value = newDramas
+        } else {
+          dramas.value.push(...newDramas)
+        }
+
+        totalCount.value = data.recordCount
+        isFinished.value = dramas.value.length >= totalCount.value
+      }
+    } catch (error) {
+      console.error('获取猜你喜欢短剧列表失败:', error)
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const fetchDramaList = async (isRefresh = false) => {
+    try {
+      isLoading.value = true
+      const {
+        data: { data }
+      } = await getDramaList({
+        PageIndex: pageIndex.value,
+        PageSize: pageSize,
+        SortType: DramaSortType.Hot
+      })
+
+      if (data && data.items) {
+        const newDramas = await Promise.all(
+          data.items.map(async episode => {
+            episode.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + episode.imgUrl))
+            return episode
+          })
+        )
+
+        if (isRefresh) {
+          dramas.value = newDramas
+        } else {
+          dramas.value.push(...newDramas)
+        }
+
+        totalCount.value = data.recordCount
+        isFinished.value = dramas.value.length >= totalCount.value
+      }
+    } catch (error) {
+      console.error('获取剧集列表失败:', error)
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const onRefresh = async () => {
+    try {
+      pageIndex.value = 1
+      if (activeTab.value === 'hotDramaTab') {
+        await fetchDramaList(true)
+      } else if (activeTab.value === 'guessYouLikeTab') {
+        await fetchGuessYouLikeDramaList(true)
+      }
+    } finally {
+      isRefreshing.value = false
+    }
+  }
+
+  const onLoad = async () => {
+    if (dramas.value.length >= totalCount.value) {
+      isFinished.value = true
+      return
+    }
+
+    pageIndex.value++
+
+    if (activeTab.value === 'hotDramaTab') {
+      await fetchDramaList()
+    } else if (activeTab.value === 'guessYouLikeTab') {
+      await fetchGuessYouLikeDramaList()
+    }
+    isLoadingMore.value = false
+  }
+
+  const handleDramaClick = (dramaId: string) => {
+    router.push({
+      name: 'shortDramaPlayer',
+      query: { dramaId: dramaId, episodeId: props.dramaDetail?.first.id }
+    })
+  }
+
   const handleEpisodeClick = (episodeId: string) => {
     emit('changeEpisode', episodeId)
     console.log('-------------> 切换剧集', episodeId)
+  }
+
+  const handleTabChange = async (tab: string) => {
+    dramas.value = []
+    if (tab === 'hotDramaTab') {
+      await fetchDramaList()
+    } else if (tab === 'guessYouLikeTab') {
+      await fetchGuessYouLikeDramaList()
+    }
   }
 
   const closePopup = () => {
@@ -225,6 +412,16 @@
     height: calc(50vh - 9rem);
     overflow: auto;
   }
+
+  .m-b {
+    height: calc(50vh - 9rem);
+    overflow: hidden;
+  }
+
+  .van-list {
+    height: 100%;
+    overflow-y: auto;
+  }
 </style>
 <!-- 覆盖van-tab的样式 -->
 <style lang="css">
@@ -287,5 +484,27 @@
 
   .moreEpisodes .m-c a.active i {
     color: var(--color-primary);
+  }
+
+  .moreEpisodes .p-l-i li {
+    padding: 0.5rem;
+  }
+
+  .moreEpisodes .p-l-i li .l-l {
+    width: 8rem;
+    flex: 0 0 8rem;
+  }
+
+  .moreEpisodes .p-l-i li .l-l img {
+    border-radius: 0.4rem;
+    object-fit: cover;
+  }
+
+  .moreEpisodes .p-l-i li .l-r {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 10rem;
   }
 </style>

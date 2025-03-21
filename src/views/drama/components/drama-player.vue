@@ -1,0 +1,410 @@
+<template>
+  <section class="vp-main">
+    <div class="vpm-bd">
+      <div class="vm-b">
+        <swiper
+          :direction="'vertical'"
+          :modules="modules"
+          :virtual="{ slides: dramas.length, enabled: true, addSlidesBefore: 5, addSlidesAfter: 5 } as undefined"
+          :slides-per-view="1"
+          :space-between="0"
+          @slide-change="slideChange"
+          style="width: 100%; height: 100%"
+        >
+          <swiper-slide v-for="(video, index) in dramas" :key="index" :virtual-index="index">
+            <div class="vm-b">
+              <div class="v-a">
+                <video
+                  :id="'video-player-' + video.id"
+                  class="video-player"
+                  :data-poster="video.poster"
+                  muted
+                  preload="auto"
+                  :loop="false"
+                  x5-video-player-fullscreen="true"
+                  x5-playsinline
+                  playsinline
+                  webkit-playsinline
+                  style="width: 100%; height: 100%"
+                />
+              </div>
+              <div class="v-b">
+                <VideoActions
+                  :data="currentDramaDetail"
+                  @like="handleLike"
+                  @show-comment="handleShowComment"
+                  @toggle-collection="toggleCollection"
+                  @share="handleShare"
+                />
+              </div>
+              <VideoInfo
+                :drama-detail="currentDramaDetail"
+                :current-episode-id="currentEpisodeId"
+                @show-detail-popup="showDramasPopup = true"
+              />
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </div>
+  </section>
+  <Loading v-show="isLoading" />
+  <Popup
+    v-model:show="showDramasPopup"
+    class="moreEpisodesPopup"
+    position="bottom"
+    round
+    :close-on-click-overlay="true"
+    :style="{ height: '54%' }"
+  >
+    <DramaDetailPopup
+      :drama-detail="currentDramaDetail"
+      :current-episode-id="currentEpisodeId"
+      :is-collecting="isCollecting"
+      @close="showDramasPopup = false"
+      @collect="toggleCollection"
+      @change-episode="handleChangeEpisode"
+    />
+  </Popup>
+  <Comment
+    v-if="showCommentPopup"
+    v-model:show-comment="showCommentPopup"
+    :post-id="currentDramaDetail.id"
+    @comment-added="updateCommentCount"
+    teleport-target=".vpm-bd"
+  />
+  <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
+    <div class="share-popup">
+      <p>分享链接已复制，赶快去分享给好友吧！</p>
+    </div>
+  </Popup>
+</template>
+
+<script setup lang="ts">
+  import { useUserStore } from '@/store/user'
+  import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
+  import Loading from '@/components/layout/Loading.vue'
+  import { addDramaLike, addDramaPlayCallback, addDramaToCollection } from '@/api/drama'
+  import { Popup, showToast } from 'vant'
+  import { DramaDetailResponse, DramaItemVM } from '@/types/drama'
+  import { Swiper, SwiperSlide } from 'swiper/vue'
+  import { Virtual } from 'swiper/modules'
+  import {
+    cleanupAllVideoInstances,
+    cleanupVideoInstance,
+    fetchDramaDetail,
+    getRealVideoUrl,
+    getVideoInstance,
+    loadEpisodeOfDrama,
+    loadNextEpisode,
+    pauseVideo,
+    playVideo
+  } from '../utils/videoLoader'
+  import VideoActions from './video-actions.vue'
+  import VideoInfo from './video-info.vue'
+  import DramaDetailPopup from './drama-detail-popup.vue'
+  import Clipboard from 'clipboard'
+
+  import 'swiper/css'
+  import 'swiper/css/virtual'
+
+  interface Props {
+    dramas: DramaItemVM[]
+    dramaId?: string
+    episodeId?: string
+  }
+
+  const props = withDefaults(defineProps<Props>(), {
+    dramaId: '',
+    episodeId: ''
+  })
+
+  const emit = defineEmits(['update:dramaId', 'update:episodeId'])
+
+  const userStore = useUserStore()
+  const modules = [Virtual]
+  const isLoading = ref(true)
+  const showSharePopup = ref(false)
+  const showDramasPopup = ref(false)
+  const currentDramaId = ref(props.dramaId)
+  const currentEpisodeId = ref(props.episodeId)
+  const currentSwiperIndex = ref(0)
+  const isCollecting = ref(false)
+  const isChangeEpisode = ref(false)
+  const isLike = ref(false)
+  const clipboard = ref<Clipboard | null>(null)
+  const currentDramaDetail = ref<DramaDetailResponse | null>(null)
+  // 保存每个剧集当前播放到第几集
+  const dramaPlayStatus = new Map<string, { episodeId: string }>()
+  const showCommentPopup = ref(false)
+
+  // 监听 props 变化
+  watch(
+    () => props.dramaId,
+    async newVal => {
+      if (newVal && newVal !== currentDramaId.value) {
+        currentDramaId.value = newVal
+        initializeDrama(newVal, props.episodeId)
+      }
+    }
+  )
+
+  watch(
+    () => props.episodeId,
+    newVal => {
+      if (newVal && newVal !== currentEpisodeId.value) {
+        currentEpisodeId.value = newVal
+        initializeDrama(currentDramaId.value, newVal)
+      }
+    }
+  )
+
+  // 连续播放处理函数
+  function handleVideoEnd() {
+    console.log('-------------> 开始尝试播放下一集', currentDramaDetail.value?.title)
+    const prevDramaId = currentDramaDetail.value?.id
+    const currentEpisodeIndex = currentDramaDetail.value?.items.findIndex(item => item.id === currentEpisodeId.value)
+
+    // 检查是否还有下一集
+    if (currentDramaDetail.value?.items && currentEpisodeIndex < currentDramaDetail.value.items.length - 1) {
+      // 获取下一集的ID
+      const nextEpisodeId = currentDramaDetail.value.items[currentEpisodeIndex + 1].id
+      // 保存当前剧集的播放状态
+      dramaPlayStatus.set(prevDramaId, {
+        episodeId: nextEpisodeId
+      })
+      // 播放下一集
+      playNextEpisode(currentDramaId.value, nextEpisodeId)
+      addDramaPlayCallback({ ShortMovieId: currentDramaId.value, VideoId: nextEpisodeId })
+    } else {
+      console.log('当前剧集的所有分集已全部播放完毕')
+      showToast('当前剧集的所有分集已全部播放完毕')
+    }
+  }
+
+  const prepareVideo = async (dramaId: string, episodeId: string) => {
+    currentEpisodeId.value = episodeId
+    currentDramaId.value = dramaId
+    currentDramaDetail.value = await fetchDramaDetail(parseInt(dramaId))
+
+    return getRealVideoUrl(currentEpisodeId.value, currentDramaDetail.value)
+  }
+
+  const slideChange = async (swiper: any) => {
+    const prevIndex = currentSwiperIndex.value
+    const currentIndex = swiper.activeIndex
+    const activedDramaId = props.dramas[currentIndex]?.id
+    const prevDramaId = props.dramas[prevIndex]?.id
+    const currentVideoInstance = getVideoInstance(activedDramaId)
+    const prevDramaVideoInstance = getVideoInstance(prevDramaId)
+    const isSlidingDown = currentIndex > prevIndex
+
+    currentSwiperIndex.value = swiper.activeIndex
+
+    if (prevIndex === currentSwiperIndex.value) return
+
+    // 停止并重置上一个视频
+    if (prevDramaVideoInstance) {
+      pauseVideo(prevDramaId)
+      removePlayerEndedEvent(prevDramaId)
+    }
+
+    // 销毁上上一个视频
+    const destroyIndex = isSlidingDown ? currentSwiperIndex.value - 2 : currentSwiperIndex.value + 2
+    if (destroyIndex >= 0 && props.dramas[destroyIndex]) {
+      cleanupVideoInstance(props.dramas[destroyIndex]?.id)
+    }
+
+    // 获取当前剧集的详情信息
+    currentDramaDetail.value = await fetchDramaDetail(parseInt(activedDramaId))
+    // 更新当前播放的剧集ID和集数ID
+    currentDramaId.value = activedDramaId
+    emit('update:dramaId', activedDramaId)
+
+    if (dramaPlayStatus.get(activedDramaId)) {
+      currentEpisodeId.value = dramaPlayStatus.get(activedDramaId)?.episodeId
+      emit('update:episodeId', currentEpisodeId.value)
+    } else {
+      currentEpisodeId.value = currentDramaDetail.value?.first?.id
+      emit('update:episodeId', currentEpisodeId.value)
+    }
+
+    // 播放当前视频
+    if (currentVideoInstance) {
+      // 如果已有实例，需要重新绑定ended事件
+      if (currentVideoInstance.player) {
+        // 移除旧的事件监听
+        currentVideoInstance.player.off('ended')
+        // 添加新的事件监听
+        currentVideoInstance.player.on('ended', handleVideoEnd)
+      }
+
+      playVideo(activedDramaId)
+    } else {
+      // 加载并播放第一集
+      const url = getRealVideoUrl(currentDramaDetail.value?.first?.id, currentDramaDetail.value)
+      if (url) {
+        await loadEpisodeOfDrama(url, currentDramaId.value, true)
+        addPlayerEndedEvent(currentDramaId.value)
+      }
+    }
+  }
+
+  // 也需要更新播放下一集的函数，使其也使用相同的处理函数
+  const playNextEpisode = async (dramaId: string, episodeId: string) => {
+    const url = await prepareVideo(dramaId, episodeId)
+    if (url) {
+      loadNextEpisode(url, dramaId)
+    }
+  }
+
+  const addPlayerEndedEvent = (dramaId: string) => {
+    const instance = getVideoInstance(dramaId)
+    if (instance && instance.player) {
+      instance.player.on('ended', handleVideoEnd)
+    }
+  }
+
+  const removePlayerEndedEvent = (dramaId: string) => {
+    const instance = getVideoInstance(dramaId)
+    if (instance && instance.player) {
+      instance.player.off('ended')
+    }
+  }
+
+  const initializeDrama = async (dramaId: string, episodeId: string) => {
+    try {
+      isLoading.value = true
+      await nextTick()
+      // 加载并播放视频
+      const url = await prepareVideo(dramaId, episodeId)
+      if (url) {
+        await loadEpisodeOfDrama(url, dramaId, true)
+        addPlayerEndedEvent(dramaId)
+        addDramaPlayCallback({ ShortMovieId: dramaId, VideoId: episodeId })
+      }
+    } catch (e) {
+      console.error(e)
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  onMounted(async () => {
+    if (props.dramaId && props.episodeId) {
+      await initializeDrama(props.dramaId, props.episodeId)
+    }
+  })
+
+  onUnmounted(() => {
+    cleanupAllVideoInstances()
+  })
+
+  const checkLogin = (): boolean => {
+    if (userStore.userInfo.id == '') {
+      userStore.showLoginDialog = true
+      return false
+    }
+    return true
+  }
+
+  const handleChangeEpisode = async (episodeId: string) => {
+    isChangeEpisode.value = true
+    currentEpisodeId.value = episodeId
+    emit('update:episodeId', episodeId)
+    showDramasPopup.value = false
+
+    // 保存当前剧集的播放状态
+    dramaPlayStatus.set(currentDramaId.value, {
+      episodeId: episodeId
+    })
+    // 播放下一集
+    playNextEpisode(currentDramaId.value, episodeId)
+  }
+
+  const handleLike = async () => {
+    if (!checkLogin()) return
+
+    try {
+      isLike.value = true
+      const dramaId = currentDramaDetail.value?.id
+      const newLikeStatus = !currentDramaDetail.value?.like
+      await addDramaLike({ Id: dramaId, Like: newLikeStatus ? 1 : 0 })
+
+      if (newLikeStatus) {
+        showToast('点赞成功')
+      } else {
+        showToast('取消点赞成功')
+      }
+      currentDramaDetail.value = await fetchDramaDetail(parseInt(dramaId))
+    } catch (error) {
+      console.error('点赞失败:', error)
+    } finally {
+      isLike.value = false
+    }
+  }
+
+  const toggleCollection = async () => {
+    if (!checkLogin()) return
+
+    try {
+      isCollecting.value = true
+      const dramaId = currentDramaDetail.value?.id
+      const newCollectStatus = !currentDramaDetail.value?.collect
+
+      await addDramaToCollection({ Id: dramaId, Collect: newCollectStatus, VideoId: '', Ids: '' })
+
+      if (newCollectStatus) {
+        showToast('收藏成功')
+      } else {
+        showToast('取消收藏成功')
+      }
+
+      currentDramaDetail.value = await fetchDramaDetail(parseInt(dramaId))
+    } catch (error) {
+      console.error('操作失败:', error)
+    } finally {
+      isCollecting.value = false
+    }
+  }
+
+  const updateCommentCount = () => {}
+
+  const handleShare = () => {
+    if (clipboard.value) {
+      clipboard.value.destroy()
+    }
+    clipboard.value = new Clipboard('.share-button', {
+      text: () => window.location.href
+    })
+
+    clipboard.value?.on('success', () => {
+      showSharePopup.value = true
+      setTimeout(() => {
+        showSharePopup.value = false
+      }, 2000)
+      clipboard.value?.destroy()
+    })
+
+    clipboard.value?.on('error', () => {
+      console.error('复制失败')
+      clipboard.value?.destroy()
+    })
+
+    const button = document.createElement('button')
+    button.className = 'share-button'
+    document.body.appendChild(button)
+    button.click()
+    document.body.removeChild(button)
+  }
+
+  const handleShowComment = () => {
+    showCommentPopup.value = true
+  }
+</script>
+
+<style scoped>
+  .vp-main .vm-b {
+    height: calc(100vh - 4.8rem + env(safe-area-inset-bottom));
+  }
+</style>

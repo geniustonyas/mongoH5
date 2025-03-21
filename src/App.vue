@@ -41,6 +41,7 @@
   import decryptionService from '@/utils/decryptionService'
   import { useCommicCategoryStore } from '@/store/commicCategory'
   import { useNovelCategoryStore } from '@/store/novelCategory'
+  import { useDramaCategoryStore } from './store/dramaCategory'
 
   const offset = ref({ x: 0, y: 100 })
   const appStore = useAppStore()
@@ -48,6 +49,7 @@
   const decrypted = new decryptionService()
   const commicCategoryStore = useCommicCategoryStore()
   const novelCategoryStore = useNovelCategoryStore()
+  const dramaCategoryStore = useDramaCategoryStore()
 
   const getTransition = (transition: unknown): string | undefined => {
     if (typeof transition === 'string') {
@@ -105,6 +107,7 @@
     // 初始化漫画分类数据
     await commicCategoryStore.fetchCommicCategory()
     await novelCategoryStore.fetchNovelCategory()
+    await dramaCategoryStore.fetchDramaCategory()
     decryptAdvertisements()
 
     // 计算偏移量

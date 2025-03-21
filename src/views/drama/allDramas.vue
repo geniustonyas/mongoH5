@@ -1,5 +1,5 @@
 <template>
-  <div class="novel-rank page">
+  <div class="drama-list page">
     <header class="d-header">
       <div class="d-l">
         <a @click="router.go(-1)"><i class="mvfont mv-left" /></a>
@@ -7,20 +7,36 @@
       <div class="d-m">
         <span>短剧</span>
       </div>
-      <div class="d-r" />
+      <div class="d-r">
+        <i class="mvfont mv-search1" />
+      </div>
     </header>
-    <div class="au-main novel-main">
+    <div class="au-main drama-main">
       <div class="tabs-container">
         <div class="au-tab-group">
           <div class="g-item">
             <div class="i-r">
               <span
-                v-for="category in commicCategories"
+                v-for="category in dramaCategories"
                 :key="category.id"
                 :class="{ active: category.active }"
                 @click="handleCategoryClick(category.id)"
               >
-                {{ category.name }}
+                {{ category.title }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="au-tab-group">
+          <div class="g-item">
+            <div class="i-r">
+              <span
+                v-for="genderOption in genderOptions"
+                :key="genderOption.id"
+                :class="{ active: genderOption.active }"
+                @click="handleGenderOptionClick(genderOption.id)"
+              >
+                {{ genderOption.name }}
               </span>
             </div>
           </div>
@@ -39,24 +55,10 @@
             </div>
           </div>
         </div>
-        <div class="au-tab-group">
-          <div class="g-item">
-            <div class="i-r">
-              <span
-                v-for="statusOption in statusOptions"
-                :key="statusOption.id"
-                :class="{ active: statusOption.active }"
-                @click="handleStatusOptionClick(statusOption.id)"
-              >
-                {{ statusOption.name }}
-              </span>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- 书籍列表 -->
-      <div class="book-list">
+      <!-- 短剧列表 -->
+      <div class="drama-list">
         <div v-if="loading">
           <Loading />
         </div>
@@ -64,27 +66,27 @@
           <van-empty image="error" :description="error" />
         </div>
         <template v-else>
-          <div v-if="!commics.length" class="empty-container">
-            <van-empty description="暂无相关书籍" />
+          <div v-if="!dramas.length" class="empty-container">
+            <van-empty description="暂无短剧可供观看" />
           </div>
           <div v-else class="n-l-b">
             <ul>
-              <li v-for="item in commics" :key="item.id" @click="handleBookClick(item)">
+              <li v-for="item in dramas" :key="item.id" @click="handleDramaClick(item)">
                 <div class="l-a">
-                  <img :src="item.coverUrl" :alt="item.title" />
-                  <span class="a-a">{{ item.categoryName }}</span>
-                  <span class="a-b">{{ formatCount(item.readCount) }}&nbsp;阅读</span>
+                  <img :src="item.imgUrl" :alt="item.title" />
+                  <span class="a-a">{{ item.channelName }}</span>
+                  <span class="a-b">{{ formatCount(item.viewCount) }}&nbsp;播放</span>
                 </div>
                 <div class="l-b">
                   <b>{{ item.title }}</b>
-                  <p>{{ item.statusText }}</p>
+                  <p>{{ item.channelName }} | {{ item.collectionCount }}集</p>
                 </div>
               </li>
             </ul>
           </div>
 
           <!-- 加载更多状态 -->
-          <div class="load-more" v-if="commics.length">
+          <div class="load-more" v-if="dramas.length">
             <template v-if="isLoadingMore">
               <Loading size="24" />
               <span>加载中...</span>
@@ -102,17 +104,17 @@
   import { useRouter, useRoute } from 'vue-router'
   import { useThrottleFn } from '@vueuse/core'
   import Loading from '@/components/layout/Loading.vue'
-  import { useCommicCategoryStore } from '@/store/commicCategory'
-  import { CommicStatus, CategoryWithActive } from '@/types/commic'
   import { formatCount } from '@/utils'
   import decryptionService from '@/utils/decryptionService'
   import { useAppStore } from '@/store/app'
-  import { DEFAULT_RECOMMEND_PARAMS, CommicBookInfo, CommicRecommendParams, TabOption } from '@/types/commic'
-  import { getRecommendCommicList } from '@/api/commic'
+  import { TabOption } from '@/types/commic'
+  import { getDramaList } from '@/api/drama'
+  import { useDramaCategoryStore } from '@/store/dramaCategory'
+  import { DramaCategoryItem, DramaChannelType, DramaGenderType, DramaItem, DramaListRequestParams, DramaSortType } from '@/types/drama'
 
   const router = useRouter()
   const route = useRoute()
-  const commicCategoryStore = useCommicCategoryStore()
+  const dramaCategoryStore = useDramaCategoryStore()
   const appStore = useAppStore()
 
   const loading = ref(false)
@@ -120,31 +122,32 @@
   const currentPage = ref(1)
   const hasMoreData = ref(true)
   const isLoadingMore = ref(false)
-  const commics = ref<CommicBookInfo[]>([])
+  const dramas = ref<DramaItem[]>([])
   const decrypt = new decryptionService()
   const createdUrls = ref<string[]>([])
 
   // 分类选项
-  const commicCategories = reactive<CategoryWithActive[]>([])
+  const dramaCategories = reactive<DramaCategoryItem[]>([])
 
   // Initialize categories with active state
   const initialCategories = [
-    { id: -1, name: '全部', active: true },
-    ...commicCategoryStore.categories.map(cat => ({ ...cat, active: false }))
+    { id: 0, title: '全部', active: true },
+    ...dramaCategoryStore.categories.map(cat => ({ ...cat, active: false }))
   ]
-  commicCategories.push(...initialCategories)
+  dramaCategories.push(...initialCategories)
 
   const sortOptions = reactive<TabOption[]>([
-    { id: -1, name: '全部', active: true },
-    { id: 'CreateTime', name: '上架时间', active: false },
-    { id: 'ReadingCount', name: '最多阅读', active: false },
-    { id: 'FavoriteCount', name: '最多收藏', active: false }
+    { id: 0, name: '全部', active: true },
+    { id: 1, name: '最新', active: false },
+    { id: 2, name: '最热', active: false },
+    { id: 3, name: '好评', active: false },
+    { id: 4, name: '收藏', active: false }
   ])
 
-  const statusOptions = reactive<TabOption[]>([
-    { id: -1, name: '全部', active: true },
-    { id: 0, name: '完结', active: false },
-    { id: 1, name: '连载', active: false }
+  const genderOptions = reactive<TabOption[]>([
+    { id: 0, name: '全部', active: true },
+    { id: 1, name: '男频', active: false },
+    { id: 2, name: '女频道', active: false }
   ])
 
   // 根据路由参数初始化状态选项
@@ -153,60 +156,60 @@
     const sortTypeParam = route.query.sortType as string
     if (sortTypeParam !== undefined) {
       sortOptions.forEach(option => {
-        option.active = option.id === sortTypeParam
+        option.active = option.value === sortTypeParam
       })
     }
 
     // 处理分类ID参数
     const categoryId = route.query.categoryId
     if (categoryId !== undefined) {
-      commicCategories.forEach(category => {
+      dramaCategories.forEach(category => {
         category.active = category.id === categoryId
       })
     }
 
     // 处理排序类型参数
-    const sortType = route.query.sortType
-    if (sortType !== undefined) {
-      const statusId = Number(sortType)
-      statusOptions.forEach(option => {
-        option.active = option.id === statusId
+    const genderType = route.query.genderType
+    if (genderType !== undefined) {
+      const genderId = Number(genderType)
+      genderOptions.forEach(option => {
+        option.active = option.value === genderId
       })
     }
   }
 
   // 获取当前激活的选项ID
-  const getActiveId = (list: TabOption[] | CategoryWithActive[]) => {
+  const getActiveId = (list: TabOption[] | DramaCategoryItem[]) => {
     const activeItem = list.find(item => item.active)
-    return activeItem ? activeItem.id : -1
+    return activeItem ? activeItem.id : 0
   }
 
   // 处理图片解密
-  async function decryptBookImage(book: CommicBookInfo) {
-    if (book.coverUrl === '') {
-      book.coverUrl = '/src/assets/imgs/default2.gif'
-      return book
+  async function decryptDramaImage(drama: DramaItem) {
+    if (drama.imgUrl === '') {
+      drama.imgUrl = '/src/assets/imgs/default2.gif'
+      return drama
     }
 
     try {
-      const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + book.coverUrl)
+      const decryptedBlob = await decrypt.fetchAndDecrypt(appStore.cdnUrl + drama.imgUrl)
 
       // 验证解密后的数据是否为有效的图片
       const isValidImage = await validateImage(decryptedBlob)
       if (!isValidImage) {
-        console.warn('Invalid image data:', book.coverUrl)
-        book.coverUrl = '/src/assets/imgs/default2.gif'
-        return book
+        console.warn('Invalid image data:', drama.imgUrl)
+        drama.imgUrl = '/src/assets/imgs/default2.gif'
+        return drama
       }
 
       const objectUrl = URL.createObjectURL(decryptedBlob)
       createdUrls.value.push(objectUrl)
-      book.coverUrl = objectUrl
-      return book
+      drama.imgUrl = objectUrl
+      return drama
     } catch (error) {
       console.error('Image decryption failed:', error)
-      book.coverUrl = '/src/assets/imgs/default2.gif'
-      return book
+      drama.imgUrl = '/src/assets/imgs/default2.gif'
+      return drama
     }
   }
 
@@ -245,17 +248,6 @@
     createdUrls.value = []
   }
 
-  function formatBookStatusText(status: CommicStatus): string {
-    switch (status) {
-      case CommicStatus.Serial:
-        return '连载中'
-      case CommicStatus.Finished:
-        return '完结'
-      default:
-        return ''
-    }
-  }
-
   const fetchRankList = async (isLoadMore = false) => {
     try {
       if (isLoadMore) {
@@ -263,78 +255,76 @@
       } else {
         loading.value = true
         currentPage.value = 1
-        commics.value = []
+        dramas.value = []
         cleanupUrls()
       }
       error.value = null
 
       const params = {
-        categoryId: getActiveId(commicCategories),
-        sortType: getActiveId(sortOptions),
-        status: getActiveId(statusOptions)
+        ChannelId: getActiveId(dramaCategories),
+        SortType: getActiveId(sortOptions),
+        GenderChannelType: getActiveId(genderOptions)
       }
 
       // 构建基础请求参数
-      const requestParams: CommicRecommendParams = {
-        ...DEFAULT_RECOMMEND_PARAMS,
+      const requestParams: DramaListRequestParams = {
         PageIndex: currentPage.value,
-        PageSize: 10
+        PageSize: 12
       }
 
-      // 只有当分类不是全部时才添加分类参数
-      if (params.categoryId !== -1) {
-        requestParams.CategoryId = params.categoryId as number
+      // 设置默认参数
+      requestParams.SortType = params.SortType as number
+
+      // 当性别不是全部时才添加性别参数
+      if (params.GenderChannelType !== DramaGenderType.All) {
+        requestParams.GenderChannelType = params.GenderChannelType as number
       }
 
-      // 设置状态变量, '全部'默认设置为-1
-      if (params.status !== -1) {
-        requestParams.BookStatus = params.status as number
-      } else {
-        requestParams.BookStatus = CommicStatus.All
+      // 当分类不是全部时才添加分类参数
+      if (params.ChannelId !== DramaChannelType.All) {
+        requestParams.ChannelId = params.ChannelId as number
       }
 
-      // 只有当排序类型不是全部时才添加排序参数
-      if (params.sortType !== -1 && typeof params.sortType === 'string') {
-        switch (params.sortType) {
-          case 'CreateTime':
-            requestParams.CreateTime = 1
+      // 当排序类型不是全部时才添加排序参数
+      if (params.SortType !== DramaSortType.All) {
+        switch (params.SortType) {
+          case DramaSortType.New:
+            requestParams.SortType = 1
             break
-          case 'ReadingCount':
-            requestParams.ReadingCount = 1
+          case DramaSortType.Hot:
+            requestParams.SortType = 2
             break
-          case 'FavoriteCount':
-            requestParams.FavoriteCount = 1
+          case DramaSortType.Like:
+            requestParams.SortType = 3
+            break
+          case DramaSortType.Collect:
+            requestParams.SortType = 4
             break
         }
       }
 
       const {
         data: { data }
-      } = await getRecommendCommicList(requestParams)
+      } = await getDramaList(requestParams)
 
       if (data) {
         // 更新分页状态
-        hasMoreData.value = currentPage.value < parseInt(data.pageCount)
+        hasMoreData.value = currentPage.value < data.pageCount
 
         // 处理图片解密
-        const processedCommics = await Promise.all(data.items.map(decryptBookImage))
+        const processedDramas = await Promise.all(data.items.map(decryptDramaImage))
 
         // 处理漫画分类
-        processedCommics.forEach(item => {
-          const categoryName = commicCategoryStore.getCategoryNameById(item.categoryId.toString())
-          item.categoryName = categoryName.toString()
-        })
-
-        // 处理漫画状态
-        processedCommics.forEach(item => {
-          item.statusText = formatBookStatusText(item.status)
+        processedDramas.forEach(item => {
+          const categoryName = dramaCategoryStore.getCategoryNameById(item.channelId.toString())
+          item.channelName = categoryName.toString()
         })
 
         // 追加或替换数据
         if (isLoadMore) {
-          commics.value.push(...processedCommics)
+          dramas.value.push(...processedDramas)
         } else {
-          commics.value = processedCommics
+          dramas.value = processedDramas
         }
       }
     } catch (err) {
@@ -366,18 +356,18 @@
 
   const handleCategoryClick = (categoryId: string | number) => {
     // 更新分类选中状态
-    commicCategories.forEach(category => {
+    dramaCategories.forEach(category => {
       category.active = category.id === categoryId
     })
 
     // 重置排序选项到默认状态
     sortOptions.forEach(option => {
-      option.active = option.id === -1
+      option.active = option.id === 0
     })
 
     // 重置小说状态选项到默认状态
-    statusOptions.forEach(option => {
-      option.active = option.id === -1
+    genderOptions.forEach(option => {
+      option.active = option.id === 0
     })
 
     // 使用节流后的函数获取数据
@@ -392,19 +382,19 @@
     throttledFetchRankList()
   }
 
-  const handleStatusOptionClick = (statusId: string | number) => {
-    statusOptions.forEach(option => {
-      option.active = option.id === statusId
+  const handleGenderOptionClick = (genderId: string | number) => {
+    genderOptions.forEach(option => {
+      option.active = option.id === genderId
     })
     // 使用节流后的函数获取数据
     throttledFetchRankList()
   }
 
-  // 处理书籍点击
-  const handleBookClick = (item: CommicBookInfo) => {
+  // 处理剧集点击
+  const handleDramaClick = (item: DramaItem) => {
     router.push({
-      name: 'comicIntro',
-      query: { nid: item.id, status: item.statusText }
+      name: 'shortDramaPlayer',
+      query: { dramaId: item.id, episodeId: item.first.id }
     })
   }
 
@@ -422,7 +412,7 @@
   })
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   .loading-container,
   .error-container,
   .empty-container {
@@ -444,6 +434,10 @@
     gap: 8px;
   }
 
+  .drama-main {
+    padding: 5rem 0;
+  }
+
   .no-more {
     color: #999;
     font-size: 14px;
@@ -455,6 +449,10 @@
     padding-top: 0;
   }
 
+  .d-header .d-r i {
+    font-size: 2.4rem;
+  }
+
   .tabs-container {
     position: sticky;
     top: 4.8rem;
@@ -463,7 +461,39 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
+  .d-header .d-m span {
+    font-size: 1.8rem;
+  }
+
+  .au-tab-group {
+    padding: 0.5rem 1rem;
+  }
+
   .au-tab-group + .au-tab-group {
     margin-top: 1px;
+  }
+
+  .au-tab-group .g-item .i-r {
+    padding-left: 0;
+  }
+
+  .au-tab-group .g-item .i-r span {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-radius: 0.4rem;
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+    white-space: nowrap;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+
+    &.active {
+      background-color: rgba(var(--color-primary-rgba), 0.15);
+      color: var(--color-primary);
+      font-weight: 600;
+    }
   }
 </style>
