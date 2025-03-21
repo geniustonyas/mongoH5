@@ -146,6 +146,7 @@
   import { formatCount } from '@/utils/index'
   import { useNovelCategoryStore } from '@/store/novelCategory'
   import { Toast } from 'vant'
+  import { useUserStore } from '@/store/user'
 
   const router = useRouter()
   const route = useRoute()
@@ -173,6 +174,7 @@
   })
 
   const isExpanded = ref(false)
+  const userStore = useUserStore()
   const hasOverflow = ref(false)
   const descriptionRef = ref<HTMLElement | null>(null)
   const recommendTitleRef = ref<HTMLElement | null>(null)
@@ -519,6 +521,7 @@
 
   const handleChapterClick = async (chapter: NovelChapter) => {
     try {
+      if (!checkLogin()) return
       // 更新阅读进度
       await updateNovelReadProgress(bookInfo.value?.id as string, chapter.id)
 
@@ -543,6 +546,7 @@
 
   const handleAddToCollection = async () => {
     if (isCollecting.value) return
+    if (!checkLogin()) return
 
     try {
       isCollecting.value = true
@@ -562,6 +566,14 @@
     } finally {
       isCollecting.value = false
     }
+  }
+
+  const checkLogin = (): boolean => {
+    if (userStore.userInfo.id == '') {
+      userStore.showLoginDialog = true
+      return false
+    }
+    return true
   }
 
   onMounted(async () => {
