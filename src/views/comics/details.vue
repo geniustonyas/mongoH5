@@ -128,9 +128,9 @@
                 <div class="loading-dots"><i /><i /><i /></div>
               </template>
               <template v-else>
-                <i class="mvfont mv-shoucang" :class="{ active: isCollected }" />
+                <i class="mvfont mv-shoucang" :class="{ active: bookInfo?.favoriteCount === '1' }" />
               </template>
-              {{ isCollecting ? '' : isCollected ? '已收藏' : '加入收藏' }}
+              {{ bookInfo?.favoriteCount === '1' ? '已收藏' : '加入收藏' }}
             </span>
             <span @click="handleReadStart">开始阅读</span>
           </div>
@@ -156,6 +156,7 @@
   // Import Swiper styles
   import 'swiper/css'
   import dayjs from 'dayjs'
+  import { useUserStore } from '@/store/user'
 
   const router = useRouter()
   const route = useRoute()
@@ -184,6 +185,7 @@
     recordCount: '1'
   })
 
+  const userStore = useUserStore()
   const isExpanded = ref(false)
   const hasOverflow = ref(false)
   const descriptionRef = ref<HTMLElement | null>(null)
@@ -486,6 +488,7 @@
 
   // 监听滚动
   const handleHeaderScroll = () => {
+    if (!checkLogin()) return
     if (!aaRightRef.value) return
 
     const rect = aaRightRef.value.getBoundingClientRect()
@@ -516,6 +519,7 @@
 
   const handleChapterClick = async (chapter: CommicChapter) => {
     try {
+      if (!checkLogin()) return
       // 更新阅读进度
       await updateCommicReadProgress(bookInfo.value?.id as string, chapter.id)
 
@@ -540,17 +544,22 @@
 
   const handleAddToCollection = async () => {
     if (isCollecting.value) return
+    if (!checkLogin()) return
 
     try {
       isCollecting.value = true
       const params: AddCommicToCollectionParams = {
         id: bookInfo.value?.id as string,
-        type: 1
+        type: bookInfo.value?.favoriteCount === '1' ? '0' : '1'
       }
       const { data } = await addCommicToCollection(params)
       if (data.code === '200') {
         isCollected.value = true
-        Toast.success('收藏成功')
+        if (bookInfo.value?.favoriteCount === '1') {
+          Toast.success('取消收藏成功')
+        } else {
+          Toast.success('收藏成功')
+        }
       } else {
         Toast.fail(data.message || '收藏失败')
       }
@@ -578,6 +587,14 @@
         bookInfoKey
       }
     })
+  }
+
+  const checkLogin = (): boolean => {
+    if (userStore.userInfo.id == '') {
+      userStore.showLoginDialog = true
+      return false
+    }
+    return true
   }
 
   onMounted(async () => {

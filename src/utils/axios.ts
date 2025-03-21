@@ -179,7 +179,7 @@ const setupInterceptors = (service: AxiosInstance) => {
             const decrypt = new decryptionService()
             const decryptedData = decrypt.decryptResponseData(responseData)
 
-            // console.log('-------------> 解密后的数据', decrypt.decryptResponseData('+yaXhmv6hOpBVRl/bDxPUNYIKlpN7BIAv+eYaJNVQgoHx8P1TCwgwqe/pRzKYr+l'))
+            // console.log('-------------> 解密后的数据', decrypt.decryptResponseData('j7WJ/Q6PJsGg8O/fq+Xxv1hDS0HOJynEoW/acUO4Tsg='))
 
             responseData = JSON.parse(decryptedData)
             logResponse(response, responseData)

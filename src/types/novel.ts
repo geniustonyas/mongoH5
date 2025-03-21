@@ -5,9 +5,8 @@ export enum NovelCategory {
 
 export enum BookStatus {
   All = -1,
-  Single = 0,
   Serial = 1,
-  Finished = 2
+  Finished = 0
 }
 
 export enum NovelStatus {

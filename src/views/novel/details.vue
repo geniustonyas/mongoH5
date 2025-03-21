@@ -57,7 +57,7 @@
             <div class="mc-a">
               <div class="a-l"><i class="mvfont mv-xietiao" /><span>目录</span></div>
               <div class="a-r">
-                <span>共{{ chapters.length }}章<i class="mvfont mv-right" /></span>
+                <span v-if="chapters.length > 1">共{{ chapters.length }}章<i class="mvfont mv-right" /></span>
               </div>
             </div>
             <div class="mc-b">
@@ -74,7 +74,7 @@
             <div class="mc-a">
               <div class="a-l" ref="recommendTitleRef"><i class="mvfont mv-xietiao" /><span>为您推荐</span></div>
               <div class="a-r">
-                <span>更多<i class="mvfont mv-right" /></span>
+                <span @click="handleViewAllRecommendBooks">更多<i class="mvfont mv-right" /></span>
               </div>
             </div>
             <div class="mc-b">
@@ -146,6 +146,7 @@
   import { formatCount } from '@/utils/index'
   import { useNovelCategoryStore } from '@/store/novelCategory'
   import { Toast } from 'vant'
+  import { useUserStore } from '@/store/user'
 
   const router = useRouter()
   const route = useRoute()
@@ -173,6 +174,7 @@
   })
 
   const isExpanded = ref(false)
+  const userStore = useUserStore()
   const hasOverflow = ref(false)
   const descriptionRef = ref<HTMLElement | null>(null)
   const recommendTitleRef = ref<HTMLElement | null>(null)
@@ -497,7 +499,12 @@
   }
 
   const handleReadStart = () => {
-    const chapter = chapters.value[lastReadChapterId.value]
+    let chapter = null
+    if (lastReadChapterId.value === '0') {
+      chapter = chapters.value[0]
+    } else {
+      chapter = chapters.value.find(chapter => chapter.id === lastReadChapterId.value)
+    }
     if (!chapter) {
       Toast.fail('抱歉，暂无章节可供阅读')
       return
@@ -519,6 +526,7 @@
 
   const handleChapterClick = async (chapter: NovelChapter) => {
     try {
+      if (!checkLogin()) return
       // 更新阅读进度
       await updateNovelReadProgress(bookInfo.value?.id as string, chapter.id)
 
@@ -543,6 +551,7 @@
 
   const handleAddToCollection = async () => {
     if (isCollecting.value) return
+    if (!checkLogin()) return
 
     try {
       isCollecting.value = true
@@ -562,6 +571,18 @@
     } finally {
       isCollecting.value = false
     }
+  }
+
+  const checkLogin = (): boolean => {
+    if (userStore.userInfo.id == '') {
+      userStore.showLoginDialog = true
+      return false
+    }
+    return true
+  }
+
+  const handleViewAllRecommendBooks = () => {
+    router.push({ name: 'novelCategory', query: { nid: bookInfo.value?.id } })
   }
 
   onMounted(async () => {

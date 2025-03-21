@@ -39,19 +39,23 @@
         <pre class="nr-contnt" @click="toggleControls">{{ formattedContent }}</pre>
         <div class="chapter-navigation" :class="{ 'show-nav': showControls }">
           <div class="nav-left">
-            <template v-if="isFirstChapter || isSingleChapter">
-              <span class="nav-text">已是第一章</span>
-              <span class="nav-btn" @click="handleBackToBook">返回书目</span>
+            <template v-if="isSingleChapter">
+              <span class="nav-btn" @click="handleBackToBook">返回目录</span>
             </template>
-            <span v-else class="nav-btn" @click="handlePrevChapter">上一章</span>
+            <template v-else>
+              <span class="nav-btn" @click="handleBackToBook">全部目录</span>
+            </template>
           </div>
 
           <div class="nav-right">
-            <template v-if="isLastChapter && !isSingleChapter">
-              <span class="nav-text">已是最后一章</span>
-              <span class="nav-btn" @click="handleBackToBook">返回书目</span>
+            <span class="nav-text">
+              <span v-if="isSingleChapter" class="nav-text" @click="handleBackToBook">当前小说只有一个章节</span>
+              <span v-if="!isSingleChapter && isLastChapter" class="nav-text">已是最后一章</span>
+            </span>
+            <template v-if="!isSingleChapter">
+              <span class="nav-btn" :class="{ disabled: isFirstChapter }" @click="!isFirstChapter && handlePrevChapter">上一章</span>
+              <span class="nav-btn" :class="{ disabled: isLastChapter }" @click="!isLastChapter && handleNextChapter">下一章</span>
             </template>
-            <span v-else-if="!isSingleChapter" class="nav-btn" @click="handleNextChapter">下一章</span>
           </div>
         </div>
       </div>
@@ -342,7 +346,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--color-bg);
+    background: #333;
     z-index: 999;
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -361,21 +365,39 @@
       gap: 12px;
     }
 
+    .nav-left {
+      flex: 0 1 45%;
+    }
+
     .nav-text {
       color: #999;
       font-size: 14px;
     }
 
     .nav-btn {
+      width: 100%;
       color: #e0e0e0;
-      font-size: 1.2rem;
-      padding: 0.4rem 0.8rem;
+      text-align: center;
+      font-size: 1.4rem;
+      padding: 0.1rem 0.8rem;
       border-radius: 4px;
-      background: #333;
+      background: #572b2b;
       cursor: pointer;
+      transition: all 0.3s ease;
 
       &:active {
         opacity: 0.8;
+      }
+
+      &.disabled {
+        background: #3a3a3a;
+        color: #666;
+        cursor: not-allowed;
+        opacity: 0.6;
+
+        &:active {
+          opacity: 0.6;
+        }
       }
     }
   }

@@ -266,7 +266,7 @@
       const requestParams: NovelRecommendParams = {
         ...DEFAULT_RECOMMEND_PARAMS,
         PageIndex: currentPage.value,
-        PageSize: 10
+        PageSize: 12
       }
 
       // 只有当分类不是全部时才添加分类参数
