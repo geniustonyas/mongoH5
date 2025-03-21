@@ -146,10 +146,10 @@
 
     switch (activeTab.value) {
       case 'Series':
-        params.BookStatus = 0
+        params.BookStatus = 1
         break
       case 'End':
-        params.BookStatus = 1
+        params.BookStatus = 0
         break
       default:
         params.BookStatus = -1
