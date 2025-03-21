@@ -66,6 +66,13 @@
       @change-episode="handleChangeEpisode"
     />
   </Popup>
+  <Comment
+    v-if="showCommentPopup"
+    v-model:show-comment="showCommentPopup"
+    :post-id="currentDramaDetail.id"
+    @comment-added="updateCommentCount"
+    teleport-target=".vpm-bd"
+  />
   <Popup v-model:show="showSharePopup" teleport="body" position="center" :overlay="false" round>
     <div class="share-popup">
       <p>分享链接已复制，赶快去分享给好友吧！</p>
@@ -77,7 +84,7 @@
   import { useUserStore } from '@/store/user'
   import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
   import Loading from '@/components/layout/Loading.vue'
-  import { addDramaToCollection } from '@/api/drama'
+  import { addDramaLike, addDramaPlayCallback, addDramaToCollection } from '@/api/drama'
   import { Popup, showToast } from 'vant'
   import { DramaDetailResponse, DramaItemVM } from '@/types/drama'
   import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -96,6 +103,7 @@
   import VideoActions from './video-actions.vue'
   import VideoInfo from './video-info.vue'
   import DramaDetailPopup from './drama-detail-popup.vue'
+  import Clipboard from 'clipboard'
 
   import 'swiper/css'
   import 'swiper/css/virtual'
@@ -123,14 +131,17 @@
   const currentSwiperIndex = ref(0)
   const isCollecting = ref(false)
   const isChangeEpisode = ref(false)
+  const isLike = ref(false)
+  const clipboard = ref<Clipboard | null>(null)
   const currentDramaDetail = ref<DramaDetailResponse | null>(null)
   // 保存每个剧集当前播放到第几集
   const dramaPlayStatus = new Map<string, { episodeId: string }>()
+  const showCommentPopup = ref(false)
 
   // 监听 props 变化
   watch(
     () => props.dramaId,
-    newVal => {
+    async newVal => {
       if (newVal && newVal !== currentDramaId.value) {
         currentDramaId.value = newVal
         initializeDrama(newVal, props.episodeId)
@@ -164,6 +175,7 @@
       })
       // 播放下一集
       playNextEpisode(currentDramaId.value, nextEpisodeId)
+      addDramaPlayCallback({ ShortMovieId: currentDramaId.value, VideoId: nextEpisodeId })
     } else {
       console.log('当前剧集的所有分集已全部播放完毕')
       showToast('当前剧集的所有分集已全部播放完毕')
@@ -269,6 +281,7 @@
       if (url) {
         await loadEpisodeOfDrama(url, dramaId, true)
         addPlayerEndedEvent(dramaId)
+        addDramaPlayCallback({ ShortMovieId: dramaId, VideoId: episodeId })
       }
     } catch (e) {
       console.error(e)
@@ -309,7 +322,27 @@
     playNextEpisode(currentDramaId.value, episodeId)
   }
 
-  const handleLike = () => {}
+  const handleLike = async () => {
+    if (!checkLogin()) return
+
+    try {
+      isLike.value = true
+      const dramaId = currentDramaDetail.value?.id
+      const newLikeStatus = !currentDramaDetail.value?.like
+      await addDramaLike({ Id: dramaId, Like: newLikeStatus ? 1 : 0 })
+
+      if (newLikeStatus) {
+        showToast('点赞成功')
+      } else {
+        showToast('取消点赞成功')
+      }
+      currentDramaDetail.value = await fetchDramaDetail(parseInt(dramaId))
+    } catch (error) {
+      console.error('点赞失败:', error)
+    } finally {
+      isLike.value = false
+    }
+  }
 
   const toggleCollection = async () => {
     if (!checkLogin()) return
@@ -335,9 +368,39 @@
     }
   }
 
-  const handleShare = () => {}
+  const updateCommentCount = () => {}
 
-  const handleShowComment = () => {}
+  const handleShare = () => {
+    if (clipboard.value) {
+      clipboard.value.destroy()
+    }
+    clipboard.value = new Clipboard('.share-button', {
+      text: () => window.location.href
+    })
+
+    clipboard.value?.on('success', () => {
+      showSharePopup.value = true
+      setTimeout(() => {
+        showSharePopup.value = false
+      }, 2000)
+      clipboard.value?.destroy()
+    })
+
+    clipboard.value?.on('error', () => {
+      console.error('复制失败')
+      clipboard.value?.destroy()
+    })
+
+    const button = document.createElement('button')
+    button.className = 'share-button'
+    document.body.appendChild(button)
+    button.click()
+    document.body.removeChild(button)
+  }
+
+  const handleShowComment = () => {
+    showCommentPopup.value = true
+  }
 </script>
 
 <style scoped>
