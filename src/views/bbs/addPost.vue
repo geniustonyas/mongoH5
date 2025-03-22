@@ -170,7 +170,7 @@
   import { v4 as uuidv4 } from 'uuid'
   import type { BbsCategoryResponse, BbsCategoryItem } from '@/types/bbs'
   import { useAppStore } from '@/store/app'
-  
+
   const appStore = useAppStore()
   const showPopup = ref(false)
   const showVideoPopup = ref(false)
@@ -203,7 +203,7 @@
   // 板块选择相关
   const showChannelPicker = ref(false)
   const showSubChannelPicker = ref(false)
-  
+
   // 计算属性：板块选项
   const channelColumns = computed(() => {
     return categories.value.map(item => ({
@@ -636,6 +636,10 @@
   // 发布帖子
   async function publishPost() {
     try {
+      if (!appStore.allowPost) {
+        showToast('发帖功能已暂停, 请稍后再试')
+        return
+      }
       // 验证必填字段
       if (!postForm.value.channelId) {
         showToast('请选择板块')

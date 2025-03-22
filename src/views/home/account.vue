@@ -73,7 +73,8 @@
   import { uploadFileApi } from '@/api/app'
   import { updateUserInfo } from '@/api/user'
   import { useAppStoreHook } from '@/store/app'
-  import { copy, getAssetsFile } from '@/utils/index'
+  import { getAssetsFile, copy } from '@/utils'
+
   import { useRouter } from 'vue-router'
 
   const appStore = useAppStoreHook()

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <header class="header index-header">
+    <header class="header">
       <div class="head-search">
         <div class="hs-a">
           <img @click="router.push({ name: 'index' })" :src="getAssetsFile('logo.png')" />
@@ -10,21 +10,33 @@
             <input id="searchInput" class="search-inputs" />
             <i class="mvfont mv-search1" />
           </div>
-          <div class="sb-t" v-if="appStore.searchInputText && keepAlive">
-            <swiper @swiper="searchSwiper" :modules="[Autoplay]" :slides-per-view="1" :auto-height="true" direction="vertical" :centered-slides="true" :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: false } as any" :nested="true" style="line-height: 50px">
-              <swiper-slide v-for="item in appStore.searchInputText.split(',')" :key="item">
-                <span>{{ item }}</span>
-              </swiper-slide>
-            </swiper>
-          </div>
+          <swiper
+            v-if="appStore.searchInputText && keepAlive"
+            @swiper="searchSwiper"
+            :modules="[Autoplay]"
+            :slides-per-view="1"
+            :auto-height="true"
+            direction="vertical"
+            :centered-slides="true"
+            :loop="true"
+            :autoplay="{ delay: 3000, disableOnInteraction: false } as any"
+            :nested="true"
+            class="swiper-container sb-t"
+            style="line-height: 50px"
+          >
+            <swiper-slide v-for="item in appStore.searchInputText.split(',')" :key="item">
+              <span>{{ item }}</span>
+            </swiper-slide>
+          </swiper>
         </div>
         <div class="hs-c">
-          <a class="c-hot" @click="router.push({ name: 'hotVideo' })"><i class="mvfont mv-zhutirebangbeifen" /></a>
+          <a @click="showToast('暂未开放')"><img :src="getAssetsFile('icon/vip2.svg')" /></a>
+          <a @click="router.push({ name: 'history' })"><img :src="getAssetsFile('icon/ClockCircleFilled.svg')" /></a>
         </div>
       </div>
       <div v-if="appStore.isPc" class="head-menu">
         <div class="hm-a">
-          <a :class="{ active: activeId === 0 }" @click="clickTabPc(0)">首页</a>
+          <a :class="{ active: activeId === 0 }" @click="clickTabPc(0)">推荐</a>
           <a v-for="(category, index) in appStore.categorys" :key="category.d" :class="{ active: activeId === index + 1 }" @click="clickTabPc(index + 1)">
             {{ category.t }}
           </a>
@@ -50,7 +62,7 @@
           <PullRefresh v-model="refreshing" @refresh="handleCategoryChange(true)">
             <div class="web-col">
               <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="index-banner" class="swiper-container">
-                <swiper class="my-swipe" :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
+                <swiper :modules="[Autoplay, Pagination]" :slides-per-view="1" :pagination="{ clickable: true } as any" :centered-slides="true" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
                   <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                     <a target="_blank" @click="openAd(ad.targetUrl, '首页banner', 'click', ad.id)">
                       <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" @load="onImageLoad" />
@@ -64,165 +76,70 @@
                 </div>
               </div>
 
-              <nav class="wc-r">
-                <NoticeBar v-if="noticeAdvertisement && noticeAdvertisement.length > 0" @click="openAd(noticeAdvertisement[0].targetUrl, '首页滚动公告', 'click', noticeAdvertisement[0].id)" left-icon="volume-o" :text="noticeAdvertisement.length > 0 ? decodeHtmlEntities(noticeAdvertisement[0].introduction) : ''" :delay="1" />
-
-                <div v-if="isDecrypting" class="load-box">
-                  <div class="lb-i-m-m">
-                    <div class="m-icon">
-                      <div class="lb-s s-l" />
+              <nav class="i-m-b">
+                <div class="e-row">
+                  <!--<div class="er-t">热门聚集地</div>-->
+                  <div class="er-c">
+                    <div class="ct-a">
+                      <div class="row1" @click="router.push({ name: 'hotVideo' })">
+                        <div class="r-l">
+                          <b>主题热榜</b>
+                          <span>查看详情<i class="mvfont mv-right1" /></span>
+                        </div>
+                        <div class="r-r">
+                          <img :src="getAssetsFile('icon/Item_hot.svg')" />
+                        </div>
+                      </div>
+                      <div class="row2" @click="router.push({ name: 'collection' })">
+                        <b>专题合集</b>
+                        <span>{{ homeCollectionCount }}个合集<i class="mvfont mv-right1" /></span>
+                      </div>
                     </div>
-                    <div class="m-text">
-                      <div class="lb-s s-l" />
-                    </div>
+                    <swiper
+                      v-if="homeCollectionItems.length > 0"
+                      :modules="[Scrollbar]"
+                      :slides-per-view="1"
+                      :centered-slides="true"
+                      :loop="true"
+                      :nested="true"
+                      :scrollbar="{ el: '.rf-page', draggable: true } as any"
+                    >
+                      <swiper-slide v-for="(groups, index) in homeCollectionItems" :key="index">
+                        <div class="ct-b">
+                          <span
+                            v-for="(item, mindex) in groups"
+                            @click="router.push({ name: 'videoList', params: { id: item.id } })"
+                            :key="item.id"
+                            :class="getStyleClass(mindex)"
+                          >
+                            {{ item.title }}
+                          </span>
+                        </div>
+                      </swiper-slide>
+                    </swiper>
+                  </div>
+                  <div class="er-f">
+                    <div class="rf-page" />
                   </div>
                 </div>
 
-                <IconAd class="mt-10" />
-
-                <nav v-if="!isDecrypting" class="i-m-b">
-                  <div class="b-row r-ad">
-                    <a @click.prevent="openDownloadPage" href="#">
-                      <span><i class="mvfont mv-appxiazai" /></span>
-                      <small>APP下载</small>
-                    </a>
-                    <a @click="redirectCategory(3, 42)">
-                      <span><i class="mvfont mv-n91" /><em>91</em></span>
-                      <small>{{ dashen }}</small>
-                    </a>
-                    <a @click="redirectCategory(3, 40)">
-                      <span><i class="mvfont mv-madou1" /></span>
-                      <small>{{ madou }}</small>
-                    </a>
-                    <a @click="router.push({ name: 'spare' })">
-                      <span><i class="mvfont mv-yizhangtong" /></span>
-                      <small>防丢失</small>
-                    </a>
-                    <!-- <a>
-                      <span><i class="mvfont mv-changjianwenti" /></span>
-                      <small>常见问题</small>
-                    </a> -->
-                    <a @click="router.push({ name: 'share' })">
-                      <span><i class="mvfont mv-fenxiang3" /></span>
-                      <small>分享赚钱</small>
-                    </a>
-                    <!-- <a @click="showToast('暂未开通')">
-                      <span><i class="mvfont mv-vip1" /></span>
-                      <small>开通VIP</small>
-                    </a> -->
-                  </div>
-
-                  <div v-if="bannerTextAd && bannerTextAd.length > 0" class="b-row r-ad">
-                    <a @click="openAd(bannerTextAd[0].targetUrl, '首页文字广告', 'click', bannerTextAd[0].id)">
-                      <span><i class="mvfont mv-biaoji" /><em>精</em></span>
-                      <small>{{ bannerTextAd[0].title }}</small>
-                    </a>
-                    <a @click="openAd(bannerTextAd[1].targetUrl, '首页文字广告', 'click', bannerTextAd[1].id)">
-                      <span><i class="mvfont mv-cvFilter" /><em>选</em></span>
-                      <small>{{ bannerTextAd[1].title }}</small>
-                    </a>
-                    <a @click="openAd(bannerTextAd[2].targetUrl, '首页文字广告', 'click', bannerTextAd[2].id)">
-                      <span><i class="mvfont mv-jingzhun" /><em /></span>
-                      <small>{{ bannerTextAd[2].title }}</small>
-                    </a>
-                    <a @click="openAd(bannerTextAd[3].targetUrl, '首页文字广告', 'click', bannerTextAd[3].id)">
-                      <span><i class="mvfont mv-kuang2" /><em>平</em></span>
-                      <small>{{ bannerTextAd[3].title }}</small>
-                    </a>
-                    <a @click="openAd(bannerTextAd[4].targetUrl, '首页文字广告', 'click', bannerTextAd[4].id)">
-                      <span><i class="mvfont mv-dunp1" /><em>台</em></span>
-                      <small>{{ bannerTextAd[4].title }}</small>
-                    </a>
-                  </div>
-                </nav>
-
-                <div v-else class="load-box">
-                  <div class="lb-i-m-b">
-                    <div class="b-row">
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
+                <div class="f-row">
+                  <div class="fr-t">
+                    <div class="t-l">
+                      大家都在
+                      <span>玩</span>
                     </div>
-                    <div class="b-row">
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
-                      <div class="r-col">
-                        <div class="ms-box">
-                          <div class="lb-s" />
-                        </div>
-                        <div class="c-t">
-                          <div class="lb-s" />
-                        </div>
-                      </div>
+                    <div class="t-r">
+                      <NoticeBar
+                        v-if="noticeAdvertisement && noticeAdvertisement.length > 0"
+                        @click="openAd(noticeAdvertisement[0].targetUrl, '首页滚动公告', 'click', noticeAdvertisement[0].id)"
+                        :text="noticeAdvertisement.length > 0 ? decodeHtmlEntities(noticeAdvertisement[0].introduction) : ''"
+                        :delay="1"
+                      />
                     </div>
                   </div>
+
+                  <IconAdNew />
                 </div>
               </nav>
             </div>
@@ -231,18 +148,20 @@
             <nav v-if="latestVideos.length > 0" class="mv-t-c">
               <div class="mc-a">
                 <div class="a-l">
-                  <i class="mvfont mv-xietiao" />
-                  <span>最新视频</span>
+                  <span>最新更新</span>
                 </div>
                 <div class="a-r">
-                  <span>
-                    <em v-for="(chunk, index) in latestVideos" :key="index" :class="{ active: index === latestActiveIndex }" />
-                  </span>
                   <span @click="router.push({ name: 'videoList', params: { id: 1 } })">更多<i class="mvfont mv-right" /></span>
+                  <span @click="latestSwiperInstance?.slidePrev()" :class="{ un: latestSwiperInstance?.isBeginning }">
+                    <i class="mvfont mv-Left3" />
+                  </span>
+                  <span @click="latestSwiperInstance?.slideNext()" :class="{ un: latestSwiperInstance?.isEnd }">
+                    <i class="mvfont mv-right3" />
+                  </span>
                 </div>
               </div>
               <div class="mc-b">
-                <swiper :modules="[Pagination]" :slides-per-view="1" @slide-change="onLatestSlideChange" class="no-swipe">
+                <swiper @swiper="initLatestSwiper" :modules="[Pagination]" :slides-per-view="1" class="no-swipe">
                   <swiper-slide v-for="(chunk, index) in latestVideos" :key="index">
                     <nav class="mv-t-l">
                       <div class="m-b">
@@ -394,18 +313,20 @@
             <nav v-if="recommendedVideos.length > 0" class="mv-t-c">
               <div class="mc-a">
                 <div class="a-l">
-                  <i class="mvfont mv-xietiao" />
                   <span>热门推荐</span>
                 </div>
                 <div class="a-r">
-                  <span>
-                    <em v-for="(chunk, index) in recommendedVideos" :key="index" :class="{ active: index == recommendedActiveIndex }" />
-                  </span>
                   <span @click="router.push({ name: 'videoList', params: { id: 2 } })">更多<i class="mvfont mv-right" /></span>
+                  <span @click="recommendedSwiperInstance?.slidePrev()" :class="{ un: recommendedSwiperInstance?.isBeginning }">
+                    <i class="mvfont mv-Left3" />
+                  </span>
+                  <span @click="recommendedSwiperInstance?.slideNext()" :class="{ un: recommendedSwiperInstance?.isEnd }">
+                    <i class="mvfont mv-right3" />
+                  </span>
                 </div>
               </div>
               <div class="mc-b">
-                <swiper :modules="[Pagination]" :slides-per-view="1" @slide-change="onRecommendedSlideChange" class="no-swipe">
+                <swiper @swiper="initRecommendedSwiper" :modules="[Pagination]" :slides-per-view="1" class="no-swipe">
                   <swiper-slide v-for="(chunk, index) in recommendedVideos" :key="index">
                     <nav class="mv-t-l">
                       <div class="m-b">
@@ -423,7 +344,6 @@
               <nav v-if="channel.videos.length > 0" class="mv-t-c" :key="channelIndex">
                 <div class="mc-a">
                   <div class="a-l">
-                    <i class="mvfont mv-xietiao" />
                     <span>{{ channel.label }}</span>
                   </div>
                   <div class="a-r">
@@ -675,591 +595,585 @@
     </main>
     <Footer active-menu="index" />
     <NavBar active-menu="index" />
-    <Suggestion v-model:show-btn="showSuggestion" />
+    <Suggestion v-model:show-btn="showSuggestion" v-model:show-popup="showSuggestionPopup" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, nextTick, computed, watch, onMounted, onActivated, onDeactivated } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import NavBar from '@/components/layout/NavBar.vue'
-import Suggestion from '@/components/Suggestion.vue'
-import IconAd from '@/components/Advertisement/IconAd.vue'
-import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
-import { PullRefresh, Popup, Icon, Tabs, Tab, NoticeBar } from 'vant'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { useAppStoreHook } from '@/store/app'
-import type { VideoListRequest, Video } from '@/types/video'
-import type { DataWithAd } from '@/types/global.d'
-import { getAssetsFile, openAd, decodeHtmlEntities, chunkArray, shuffleArray, insertAds } from '@/utils'
-import { Autoplay, Pagination } from 'swiper/modules'
-import { dashen, madou, indexCategory } from '@/utils/cryptedData'
-import 'swiper/css'
-import 'swiper/css/autoplay'
-import 'swiper/css/pagination'
-import 'swiper/css/free-mode'
+  import { ref, reactive, nextTick, computed, watch, onMounted, onActivated, onDeactivated } from 'vue'
+  import { useRouter, useRoute } from 'vue-router'
+  import NavBar from '@/components/layout/NavBar.vue'
+  import Suggestion from '@/components/Suggestion.vue'
+  import IconAd from '@/components/Advertisement/IconAd.vue'
+  import IconAdNew from '@/components/Advertisement/IconAdNew.vue'
+  import { getIndexVideoListApi, getVideoListApi } from '@/api/video'
+  import { getHomeCollectionCountApi } from '@/api/collection'
+  import { PullRefresh, Popup, Icon, Tabs, Tab, NoticeBar, showToast } from 'vant'
+  import { Swiper, SwiperSlide } from 'swiper/vue'
+  import { useAppStoreHook } from '@/store/app'
+  import type { VideoListRequest, Video } from '@/types/video'
+  import type { DataWithAd } from '@/types/global.d'
+  import { getAssetsFile, openAd, decodeHtmlEntities, chunkArray, shuffleArray, insertAds } from '@/utils'
+  import { Autoplay, Pagination, Scrollbar } from 'swiper/modules'
+  import { dashen, madou, indexCategory } from '@/utils/cryptedData'
+  import 'swiper/css'
+  import 'swiper/css/autoplay'
+  import 'swiper/css/pagination'
+  import 'swiper/css/scrollbar'
+  import 'swiper/css/free-mode'
 
-import Footer from '@/components/layout/Footer.vue'
-import VideoGridItem from '@/components/VideoGridItem.vue'
-import IndexAd from '@/components/Advertisement/indexAd.vue'
-import decryptionService from '@/utils/decryptionService'
+  import Footer from '@/components/layout/Footer.vue'
+  import VideoGridItem from '@/components/VideoGridItem.vue'
+  import IndexAd from '@/components/Advertisement/indexAd.vue'
+  import decryptionService from '@/utils/decryptionService'
 
-const router = useRouter()
-const route = useRoute()
-const appStore = useAppStoreHook()
-const decrypted = new decryptionService()
+  const router = useRouter()
+  const route = useRoute()
+  const appStore = useAppStoreHook()
+  const decrypted = new decryptionService()
 
-const showSuggestion = ref(true)
+  const homeCollectionCount = ref(0)
+  const homeCollectionItems = ref<{ id: string; title: string }[][]>([])
 
-const keepAlive = ref(true)
-const swiperInstance = ref<any>(null)
-const searchSwiperInstance = ref<any>(null)
+  const showSuggestion = ref(true)
+  const showSuggestionPopup = ref(false)
+  const keepAlive = ref(true)
+  const swiperInstance = ref<any>(null)
+  const searchSwiperInstance = ref<any>(null)
 
-const refreshing = ref(false)
-const isRedirectCategory = ref(false)
+  const refreshing = ref(false)
+  const isRedirectCategory = ref(false)
 
-const activeId = ref(0)
-const recommendedVideos = ref<Video[][]>([])
-const latestVideos = ref<Video[][]>([])
-const channelVideos = ref<{ label: string; value: string; videos: Video[] }[]>([])
+  const activeId = ref(0)
+  const recommendedVideos = ref<Video[][]>([])
+  const latestVideos = ref<Video[][]>([])
+  const channelVideos = ref<{ label: string; value: string; videos: Video[] }[]>([])
 
-const categoryVideosMap = ref({})
-const categoryBannerVideosMap = ref({})
-const categoryTotalPages = ref({})
-const categoryPageIndex = ref({})
-const categorySortType = ref({})
-const categorySubChannelId = ref({})
+  const categoryVideosMap = ref({})
+  const categoryBannerVideosMap = ref({})
+  const categoryTotalPages = ref({})
+  const categoryPageIndex = ref({})
+  const categorySortType = ref({})
+  const categorySubChannelId = ref({})
 
-const latestActiveIndex = ref(0)
-const recommendedActiveIndex = ref(0)
-// const channelActiveIndices = ref<number[]>([])
+  const sortOptions = [
+    { label: '按最新', value: 1 },
+    { label: '按最热', value: 2 },
+    { label: '按好评', value: 3 }
+  ]
 
-const offset = ref({ x: 0, y: 100 })
+  const onSwiper = (swiper: any) => {
+    swiperInstance.value = swiper
+  }
 
-const sortOptions = [
-  { label: '按最新', value: 1 },
-  { label: '按最热', value: 2 },
-  { label: '按好评', value: 3 }
-]
+  const searchSwiper = (swiper: any) => {
+    searchSwiperInstance.value = swiper
+  }
 
-const onSwiper = (swiper: any) => {
-  swiperInstance.value = swiper
-}
+  const query = reactive<VideoListRequest>({
+    ChannelId: '',
+    SubChannelId: '',
+    SortType: 2,
+    IsFirst: true,
+    PageIndex: 1,
+    PageSize: 20
+  })
 
-const searchSwiper = (swiper: any) => {
-  searchSwiperInstance.value = swiper
-}
+  const showPopup = ref(false)
+  const showIosPopup = ref(false)
+  const showAdPopup = ref(false)
+  const currentPopAdIndex = ref(0)
+  const currentIosPopAdIndex = ref(0)
+  const currentAdIndex = ref(0)
+  const bannerAdvertisement = computed(() => {
+    const tmp = appStore.getAdvertisementById(2).items
+    return tmp || []
+  })
 
-const query = reactive<VideoListRequest>({
-  ChannelId: '',
-  SubChannelId: '',
-  SortType: 2,
-  IsFirst: true,
-  PageIndex: 1,
-  PageSize: 20
-})
+  // 谈窗框广告图片先解密, 不使用懒加载
+  const decryptedPopAds = ref([])
+  const decryptAdvertisements = async () => {
+    const tmp = appStore.getAdvertisementById(3).items || []
+    decryptedPopAds.value = await Promise.all(
+      tmp.map(async ad => {
+        if (ad.imgUrl) {
+          const tmp = await decrypted.fetchAndDecrypt(appStore.cdnUrl + ad.imgUrl)
+          ad.imgUrl = URL.createObjectURL(tmp)
+        }
+        return ad
+      })
+    )
+  }
 
-const bannerTextAd = computed(() => {
-  const tmp = appStore.getAdvertisementById(11).items
-  return tmp || []
-})
+  const popAdvertisement = computed(() => {
+    return decryptedPopAds.value.filter(ad => ad.introduction == 2)
+  })
 
-const showPopup = ref(false)
-const showIosPopup = ref(false)
-const showAdPopup = ref(false)
-const currentPopAdIndex = ref(0)
-const currentIosPopAdIndex = ref(0)
-const currentAdIndex = ref(0)
-const bannerAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(2).items
-  return tmp || []
-})
+  const iosPopAdvertisement = computed(() => {
+    return decryptedPopAds.value.filter(ad => ad.introduction == 1)
+  })
 
-// 谈窗框广告图片先解密, 不使用懒加载
-const decryptedPopAds = ref([])
-const decryptAdvertisements = async () => {
-  const tmp = appStore.getAdvertisementById(3).items || []
-  decryptedPopAds.value = await Promise.all(
-    tmp.map(async (ad) => {
-      if (ad.imgUrl) {
-        const tmp = await decrypted.fetchAndDecrypt(appStore.cdnUrl + ad.imgUrl)
-        ad.imgUrl = URL.createObjectURL(tmp)
+  const adPopupAdvertisement = computed(() => {
+    return decryptedPopAds.value.filter(ad => ad.introduction == 3)
+  })
+
+  const listBannerAdvertisement = computed(() => {
+    const tmp = appStore.getAdvertisementById(19).items
+    if (tmp && tmp.length > 0) {
+      return shuffleArray<{ targetUrl: string; id: string; imgUrl: string; title: string }>(tmp)
+    }
+    return []
+  })
+
+  const noticeAdvertisement = computed(() => {
+    const tmp = appStore.getAdvertisementById(17).items
+    console.log(tmp)
+    return tmp || []
+  })
+
+  const getStyleClass = (index: number) => {
+    const styles = ['sc1', 'sc2', 'sc3', 'sc4', 'sc5']
+    return (index + 1) % 3 === 0 ? styles[Math.floor(index / 3) % styles.length] : ''
+  }
+
+  // 获取视屏列表广告
+  const videoListAdvertisement = computed(() => {
+    const tmp = appStore.getAdvertisementById(28).items
+    return tmp || []
+  })
+
+  const currentPopAd = computed(() => {
+    var item = popAdvertisement.value[currentPopAdIndex.value]
+    return item || {}
+  })
+
+  const currentIosPopAd = computed(() => {
+    var item = iosPopAdvertisement.value[currentIosPopAdIndex.value]
+    return item || {}
+  })
+
+  const currentAd = computed(() => {
+    var item = adPopupAdvertisement.value[currentAdIndex.value]
+    return item || {}
+  })
+
+  // 监听邀请码
+  watch(
+    () => route.query.inviteCode,
+    newVal => {
+      if (newVal) {
+        localStorage.setItem('inviteCode', newVal as string)
       }
-      return ad
-    })
+    },
+    { immediate: true }
   )
-}
 
-const popAdvertisement = computed(() => {
-  return decryptedPopAds.value.filter((ad) => ad.introduction == 2)
-})
-
-const iosPopAdvertisement = computed(() => {
-  return decryptedPopAds.value.filter((ad) => ad.introduction == 1)
-})
-
-const adPopupAdvertisement = computed(() => {
-  return decryptedPopAds.value.filter((ad) => ad.introduction == 3)
-})
-
-const listBannerAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(19).items
-  if (tmp && tmp.length > 0) {
-    return shuffleArray<{ targetUrl: string; id: string; imgUrl: string; title: string }>(tmp)
-  }
-  return []
-})
-
-const noticeAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(17).items
-  return tmp || []
-})
-
-// 获取视屏列表广告
-const videoListAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(28).items
-  return tmp || []
-})
-
-const currentPopAd = computed(() => {
-  var item = popAdvertisement.value[currentPopAdIndex.value]
-  return item || {}
-})
-
-const currentIosPopAd = computed(() => {
-  var item = iosPopAdvertisement.value[currentIosPopAdIndex.value]
-  return item || {}
-})
-
-const currentAd = computed(() => {
-  var item = adPopupAdvertisement.value[currentAdIndex.value]
-  return item || {}
-})
-
-// 监听邀请码
-watch(
-  () => route.query.inviteCode,
-  (newVal) => {
-    if (newVal) {
-      localStorage.setItem('inviteCode', newVal as string)
-    }
-  },
-  { immediate: true }
-)
-
-watch(
-  popAdvertisement,
-  (newVal) => {
-    if (newVal.length > 0) {
-      const nu = localStorage.getItem('nu')
-      const isIOS = /iPad|iPhone|iPod|IOS|Ios/.test(navigator.userAgent)
-      if (!isIOS) {
-        if ((nu && nu != 'a1') || !nu) {
-          showPopup.value = true
-        } else {
-          if (adPopupAdvertisement.value.length > 0) {
-            showAdPopup.value = true
+  watch(
+    popAdvertisement,
+    newVal => {
+      if (newVal.length > 0) {
+        const nu = localStorage.getItem('nu')
+        const isIOS = /iPad|iPhone|iPod|IOS|Ios/.test(navigator.userAgent)
+        if (!isIOS) {
+          if ((nu && nu != 'a1') || !nu) {
+            showPopup.value = true
+          } else {
+            if (adPopupAdvertisement.value.length > 0) {
+              showAdPopup.value = true
+            }
           }
         }
       }
-    }
-  },
-  { immediate: true }
-)
+    },
+    { immediate: true }
+  )
 
-watch(
-  iosPopAdvertisement,
-  (newVal) => {
-    if (newVal.length > 0) {
-      const nu = localStorage.getItem('nu')
-      const isIOS = /iPad|iPhone|iPod|IOS|Ios/.test(navigator.userAgent)
-      if (isIOS) {
-        if ((nu && nu != 'a3') || !nu) {
-          showIosPopup.value = true
-        } else {
-          if (adPopupAdvertisement.value.length > 0) {
-            showAdPopup.value = true
+  watch(
+    iosPopAdvertisement,
+    newVal => {
+      if (newVal.length > 0) {
+        const nu = localStorage.getItem('nu')
+        const isIOS = /iPad|iPhone|iPod|IOS|Ios/.test(navigator.userAgent)
+        if (isIOS) {
+          if ((nu && nu != 'a3') || !nu) {
+            showIosPopup.value = true
+          } else {
+            if (adPopupAdvertisement.value.length > 0) {
+              showAdPopup.value = true
+            }
           }
         }
       }
-    }
-  },
-  { immediate: true }
-)
+    },
+    { immediate: true }
+  )
 
-const closePopup = () => {
-  if (currentPopAdIndex.value < popAdvertisement.value.length - 1) {
-    currentPopAdIndex.value++
-    showPopup.value = true
-  } else {
-    showPopup.value = false
-    if (adPopupAdvertisement.value.length > 0) {
-      showAdPopup.value = true
-    }
-    appStore.hasShownAnnouncement = false
-  }
-}
-
-const closeIosPopup = () => {
-  if (currentIosPopAdIndex.value < iosPopAdvertisement.value.length - 1) {
-    currentIosPopAdIndex.value++
-    showIosPopup.value = true
-  } else {
-    showIosPopup.value = false
-    if (adPopupAdvertisement.value.length > 0) {
-      showAdPopup.value = true
-    }
-    appStore.hasShownAnnouncement = false
-  }
-}
-
-const closeAdPopup = () => {
-  showAdPopup.value = false
-}
-
-const loadingCategoryVideos = ref(false)
-const fetchVideos = async (params: VideoListRequest, loadMore = false) => {
-  loadingCategoryVideos.value = true
-  const currentChannelId = params.ChannelId // 保存当前的 ChannelId
-  const isFirst = params.IsFirst
-  try {
-    const {
-      data: { data }
-    } = await getVideoListApi(params)
-    if (data && Array.isArray(data.items)) {
-      const videos = insertAds(data.items, videoListAdvertisement.value, 5, 7, true)
-      if (loadMore) {
-        categoryVideosMap.value[currentChannelId] = categoryVideosMap.value[currentChannelId].concat(videos)
-      } else {
-        categoryVideosMap.value[currentChannelId] = videos
-      }
-      if (isFirst) {
-        categoryBannerVideosMap.value[currentChannelId] = data.newVideos
-      }
-      query.IsFirst = false
-      categoryTotalPages.value[currentChannelId] = parseInt(data.pageCount)
-      categoryPageIndex.value[currentChannelId] = parseInt(data.pageIndex)
-      nextTick(() => {
-        swiperInstance.value.updateAutoHeight()
-      })
+  const closePopup = () => {
+    if (currentPopAdIndex.value < popAdvertisement.value.length - 1) {
+      currentPopAdIndex.value++
+      showPopup.value = true
     } else {
-      console.error('响应数据结构不正确')
-      return []
+      showPopup.value = false
+      if (adPopupAdvertisement.value.length > 0) {
+        showAdPopup.value = true
+      }
+      appStore.hasShownAnnouncement = false
     }
-  } catch (error) {
-    console.error(`获取视频列表失败:`, error)
-    return []
-  } finally {
-    loadingCategoryVideos.value = false
   }
-}
 
-const onLatestSlideChange = (swiper: any) => {
-  latestActiveIndex.value = swiper.activeIndex
-}
+  const closeIosPopup = () => {
+    if (currentIosPopAdIndex.value < iosPopAdvertisement.value.length - 1) {
+      currentIosPopAdIndex.value++
+      showIosPopup.value = true
+    } else {
+      showIosPopup.value = false
+      if (adPopupAdvertisement.value.length > 0) {
+        showAdPopup.value = true
+      }
+      appStore.hasShownAnnouncement = false
+    }
+  }
 
-const onRecommendedSlideChange = (swiper: any) => {
-  recommendedActiveIndex.value = swiper.activeIndex
-}
+  const closeAdPopup = () => {
+    showAdPopup.value = false
+  }
 
-// const onChannelSlideChange = (index: number, swiper: any) => {
-//   channelActiveIndices.value[index] = swiper.activeIndex
-// }
+  const getHomeCollection = async () => {
+    try {
+      const {
+        data: { data }
+      } = await getHomeCollectionCountApi()
+      homeCollectionCount.value = parseInt(data.count)
+      homeCollectionItems.value = chunkArray(data.items, 15)
+    } catch (error) {
+      console.error(`获取首页合集失败:`, error)
+    }
+  }
 
-const loadingIndexVideos = ref(false)
-const fetchIndexVideos = async () => {
-  loadingIndexVideos.value = true
-  try {
-    const {
-      data: { data }
-    } = await getIndexVideoListApi()
-    // 解密视频
-    // recommendedVideos.value = data.Recommended
-    // latestVideos.value = data.Latest
-    const recommendedVideAds = insertAds(data.Recommended, videoListAdvertisement.value, 5, 6, false)
-    recommendedVideos.value = chunkArray(recommendedVideAds, 6).slice(0, 4)
-    const latestVideAds = insertAds(data.Latest, videoListAdvertisement.value, 5, 6, false)
-    latestVideos.value = chunkArray(latestVideAds, 6).slice(0, 4)
-
-    // 合并 indexCategory 和 Channels 数据
-    if (data.Channels && data.Channels.length > 0) {
-      channelVideos.value = indexCategory.map((category) => {
-        const channel = data.Channels.find((ch) => ch.channel == category.value.toString())
-        if (channel && channel.items) {
-          channel.items = insertAds(channel.items, videoListAdvertisement.value, 5, 7, false)
-          channel.items = channel.items.slice(0, 6)
+  const loadingCategoryVideos = ref(false)
+  const fetchVideos = async (params: VideoListRequest, loadMore = false) => {
+    loadingCategoryVideos.value = true
+    const currentChannelId = params.ChannelId // 保存当前的 ChannelId
+    const isFirst = params.IsFirst
+    try {
+      const {
+        data: { data }
+      } = await getVideoListApi(params)
+      if (data && Array.isArray(data.items)) {
+        const videos = insertAds(data.items, videoListAdvertisement.value, 5, 7, true)
+        if (loadMore) {
+          categoryVideosMap.value[currentChannelId] = categoryVideosMap.value[currentChannelId].concat(videos)
+        } else {
+          categoryVideosMap.value[currentChannelId] = videos
         }
-        return {
-          label: category.label,
-          value: category.value,
-          videos: channel ? channel.items : []
+        if (isFirst) {
+          categoryBannerVideosMap.value[currentChannelId] = data.newVideos
         }
+        query.IsFirst = false
+        categoryTotalPages.value[currentChannelId] = parseInt(data.pageCount)
+        categoryPageIndex.value[currentChannelId] = parseInt(data.pageIndex)
+        nextTick(() => {
+          swiperInstance.value.updateAutoHeight()
+        })
+      } else {
+        console.error('响应数据结构不正确')
+        return []
+      }
+    } catch (error) {
+      console.error(`获取视频列表失败:`, error)
+      return []
+    } finally {
+      loadingCategoryVideos.value = false
+    }
+  }
+
+  const latestSwiperInstance = ref<any>(null)
+  const recommendedSwiperInstance = ref<any>(null)
+
+  const initLatestSwiper = (swiper: any) => {
+    latestSwiperInstance.value = swiper
+    console.log('aa:', latestSwiperInstance.value)
+  }
+
+  const initRecommendedSwiper = (swiper: any) => {
+    recommendedSwiperInstance.value = swiper
+    console.log('bb:', recommendedSwiperInstance.value)
+  }
+
+  // const onChannelSlideChange = (index: number, swiper: any) => {
+  //   channelActiveIndices.value[index] = swiper.activeIndex
+  // }
+
+  const loadingIndexVideos = ref(false)
+  const fetchIndexVideos = async () => {
+    loadingIndexVideos.value = true
+    try {
+      const {
+        data: { data }
+      } = await getIndexVideoListApi()
+      // 解密视频
+      // recommendedVideos.value = data.Recommended
+      // latestVideos.value = data.Latest
+      const recommendedVideAds = insertAds(data.Recommended, videoListAdvertisement.value, 5, 6, false)
+      recommendedVideos.value = chunkArray(recommendedVideAds, 6).slice(0, 4)
+      const latestVideAds = insertAds(data.Latest, videoListAdvertisement.value, 5, 6, false)
+      latestVideos.value = chunkArray(latestVideAds, 6).slice(0, 4)
+
+      // 合并 indexCategory 和 Channels 数据
+      if (data.Channels && data.Channels.length > 0) {
+        channelVideos.value = indexCategory.map(category => {
+          const channel = data.Channels.find(ch => ch.channel == category.value.toString())
+          if (channel && channel.items) {
+            channel.items = insertAds(channel.items, videoListAdvertisement.value, 5, 7, false)
+            channel.items = channel.items.slice(0, 6)
+          }
+          return {
+            label: category.label,
+            value: category.value,
+            videos: channel ? channel.items : []
+          }
+        })
+      }
+    } catch (error) {
+      console.error(`获取首页视频列表失败:`, error)
+      return []
+    } finally {
+      loadingIndexVideos.value = false
+    }
+  }
+
+  // 选择二级分类
+  const selectCategory = async (categoryId: string | number) => {
+    query.PageIndex = 1
+    query.SubChannelId = categoryId
+    categoryPageIndex.value[query.ChannelId] = query.PageIndex
+    categorySortType.value[query.ChannelId] = query.SortType
+    categorySubChannelId.value[query.ChannelId] = query.SubChannelId
+    categoryVideosMap.value[query.ChannelId] = []
+    query.IsFirst = false
+    await fetchVideos(query)
+  }
+
+  // 切换页码
+  const changePage = async (newPage: number) => {
+    if (newPage >= 1 && newPage <= categoryTotalPages.value[query.ChannelId]) {
+      categoryPageIndex.value[query.ChannelId] = newPage
+      query.PageIndex = newPage
+      query.IsFirst = false
+      categoryVideosMap.value[query.ChannelId] = []
+      await fetchVideos(query)
+      // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
+      nextTick(() => {
+        window.scrollTo(0, 0)
       })
     }
-  } catch (error) {
-    console.error(`获取首页视频列表失败:`, error)
-    return []
-  } finally {
-    loadingIndexVideos.value = false
   }
-}
 
-// 选择二级分类
-const selectCategory = async (categoryId: string | number) => {
-  query.PageIndex = 1
-  query.SubChannelId = categoryId
-  categoryPageIndex.value[query.ChannelId] = query.PageIndex
-  categorySortType.value[query.ChannelId] = query.SortType
-  categorySubChannelId.value[query.ChannelId] = query.SubChannelId
-  categoryVideosMap.value[query.ChannelId] = []
-  query.IsFirst = false
-  await fetchVideos(query)
-}
+  // 加载更多
+  const loadMore = async () => {
+    const newPage = query.PageIndex + 1
+    if (newPage >= 1 && newPage <= categoryTotalPages.value[query.ChannelId]) {
+      query.PageIndex = newPage
+      query.IsFirst = false
+      await fetchVideos(query, true)
+    }
+  }
 
-// 切换页码
-const changePage = async (newPage: number) => {
-  if (newPage >= 1 && newPage <= categoryTotalPages.value[query.ChannelId]) {
-    categoryPageIndex.value[query.ChannelId] = newPage
-    query.PageIndex = newPage
-    query.IsFirst = false
-    categoryVideosMap.value[query.ChannelId] = []
-    await fetchVideos(query)
-    // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
+  // PC端方法来切换 tab
+  const clickTabPc = (index: number) => {
+    activeId.value = index
+    if (swiperInstance.value) {
+      swiperInstance.value.slideTo(index, 0)
+    }
+  }
+
+  // 点击tab滑动到对应分类, 并重新获取数据
+  const clickTab = () => {
+    if (swiperInstance.value) {
+      swiperInstance.value.slideTo(activeId.value, 0)
+    }
+  }
+
+  const clickVideo = (video: DataWithAd<Video>) => {
+    if (video.isAd) {
+      openAd(video.targetUrl, '视频列表广告', 'click', video.title, 1, video.id)
+    } else {
+      router.push({ name: 'play', params: { id: video.id } })
+    }
+  }
+
+  // 切换分类
+  const handleCategoryChange = async (isRefresh = false) => {
+    query.PageIndex = 1
+    categoryPageIndex.value[query.ChannelId] = 1
+    if (isRefresh) {
+      refreshing.value = true
+    }
+    if (activeId.value == 0) {
+      await fetchIndexVideos()
+      refreshing.value = false
+    } else {
+      query.IsFirst = true
+      await fetchVideos(query)
+      refreshing.value = false
+    }
+  }
+
+  const swipePage = (swiper: any) => {
+    activeId.value = swiper.activeIndex
+    query.ChannelId = activeId.value == 0 ? '' : appStore.categorys[activeId.value - 1].d
+    // 如果没有数据。则重新获取数据
+    if (categoryVideosMap.value[query.ChannelId] == undefined) {
+      query.PageIndex = 1
+      query.SortType = 1
+      categoryPageIndex.value[query.ChannelId] = 1
+      if (isRedirectCategory.value) {
+        categoryPageIndex.value[query.ChannelId] = query.PageIndex
+        categorySortType.value[query.ChannelId] = query.SortType
+        categorySubChannelId.value[query.ChannelId] = query.SubChannelId
+      } else {
+        query.SubChannelId = ''
+        // categorySubChannelId.value[query.ChannelId] = query.SubChannelId
+      }
+      categorySortType.value[query.ChannelId] = query.SortType
+      handleCategoryChange()
+    } else {
+      // 如果有数据, 则切换到对应分类, 获取数据
+      if (isRedirectCategory.value) {
+        categorySubChannelId.value[query.ChannelId] = query.SubChannelId
+      }
+      selectCategory(categorySubChannelId.value[query.ChannelId])
+    }
+    isRedirectCategory.value = false
     nextTick(() => {
       window.scrollTo(0, 0)
     })
   }
-}
 
-// 加载更多
-const loadMore = async () => {
-  const newPage = query.PageIndex + 1
-  if (newPage >= 1 && newPage <= categoryTotalPages.value[query.ChannelId]) {
-    query.PageIndex = newPage
-    query.IsFirst = false
-    await fetchVideos(query, true)
+  // 打开到指定的顶级分类和二级分类
+  const redirectCategory = (channelId: number, subChannelId: number | string) => {
+    isRedirectCategory.value = true
+    query.SubChannelId = subChannelId
+    clickTabPc(channelId)
   }
-}
 
-// PC端方法来切换 tab
-const clickTabPc = (index: number) => {
-  activeId.value = index
-  if (swiperInstance.value) {
-    swiperInstance.value.slideTo(index, 0)
-  }
-}
-
-// 点击tab滑动到对应分类, 并重新获取数据
-const clickTab = () => {
-  if (swiperInstance.value) {
-    swiperInstance.value.slideTo(activeId.value, 0)
-  }
-}
-
-const clickVideo = (video: DataWithAd<Video>) => {
-  if (video.isAd) {
-    openAd(video.targetUrl, '视频列表广告', 'click', video.title, 1, video.id)
-  } else {
-    router.push({ name: 'play', params: { id: video.id } })
-  }
-}
-
-// 切换分类
-const handleCategoryChange = async (isRefresh = false) => {
-  query.PageIndex = 1
-  categoryPageIndex.value[query.ChannelId] = 1
-  if (isRefresh) {
-    refreshing.value = true
-  }
-  if (activeId.value == 0) {
-    await fetchIndexVideos()
-    refreshing.value = false
-  } else {
-    query.IsFirst = true
-    await fetchVideos(query)
-    refreshing.value = false
-  }
-}
-
-const swipePage = (swiper: any) => {
-  activeId.value = swiper.activeIndex
-  query.ChannelId = activeId.value == 0 ? '' : appStore.categorys[activeId.value - 1].d
-  // 如果没有数据。则重新获取数据
-  if (categoryVideosMap.value[query.ChannelId] == undefined) {
+  // 分类页切换排序
+  const changeSort = async sortValue => {
+    query.SortType = sortValue
     query.PageIndex = 1
-    query.SortType = 1
     categoryPageIndex.value[query.ChannelId] = 1
-    if (isRedirectCategory.value) {
-      categoryPageIndex.value[query.ChannelId] = query.PageIndex
-      categorySortType.value[query.ChannelId] = query.SortType
-      categorySubChannelId.value[query.ChannelId] = query.SubChannelId
-    } else {
-      query.SubChannelId = ''
-      // categorySubChannelId.value[query.ChannelId] = query.SubChannelId
-    }
     categorySortType.value[query.ChannelId] = query.SortType
-    handleCategoryChange()
-  } else {
-    // 如果有数据, 则切换到对应分类, 获取数据
-    if (isRedirectCategory.value) {
-      categorySubChannelId.value[query.ChannelId] = query.SubChannelId
-    }
-    selectCategory(categorySubChannelId.value[query.ChannelId])
-  }
-  isRedirectCategory.value = false
-  nextTick(() => {
-    window.scrollTo(0, 0)
-  })
-}
-
-// 打开到指定的顶级分类和二级分类
-const redirectCategory = (channelId: number, subChannelId: number | string) => {
-  isRedirectCategory.value = true
-  query.SubChannelId = subChannelId
-  clickTabPc(channelId)
-}
-
-// 分类页切换排序
-const changeSort = async (sortValue) => {
-  query.SortType = sortValue
-  query.PageIndex = 1
-  categoryPageIndex.value[query.ChannelId] = 1
-  categorySortType.value[query.ChannelId] = query.SortType
-  categoryVideosMap.value[query.ChannelId] = []
-  await fetchVideos(query)
-}
-
-// 页码变化
-const handlePageChange = async () => {
-  if (categoryPageIndex.value[query.ChannelId] >= 1 && categoryPageIndex.value[query.ChannelId] <= categoryTotalPages.value[query.ChannelId]) {
-    query.PageIndex = categoryPageIndex.value[query.ChannelId]
+    categoryVideosMap.value[query.ChannelId] = []
     await fetchVideos(query)
+  }
 
-    // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
+  // 页码变化
+  const handlePageChange = async () => {
+    if (categoryPageIndex.value[query.ChannelId] >= 1 && categoryPageIndex.value[query.ChannelId] <= categoryTotalPages.value[query.ChannelId]) {
+      query.PageIndex = categoryPageIndex.value[query.ChannelId]
+      await fetchVideos(query)
+
+      // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
+      window.scrollTo(0, 0)
+    }
+  }
+
+  const isDecrypting = ref(true)
+  const onImageLoad = () => {
+    isDecrypting.value = false
+  }
+
+  // 立即执行
+  ;(async () => {
+    await handleCategoryChange()
+    await getHomeCollection()
+    if (appStore.advertisement.length == 0) {
+      await appStore.fetAdvertisement()
+    }
+  })()
+
+  // const openDownloadPage = () => {
+  //   if (appStore.isPc) {
+  //     window.open('https://mg14.cc/', '_blank')
+  //   } else {
+  //     const ua = navigator.userAgent
+  //     if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+  //       window.open(appStore.iosDownloadUrl, '_blank')
+  //     } else {
+  //       window.open(appStore.androidDownloadUrl, '_blank')
+  //     }
+  //   }
+  // }
+
+  onActivated(() => {
+    // 进入页面后重新渲染swiper, 避免出现keep-alive后swiper不自动轮播
+    keepAlive.value = true
     window.scrollTo(0, 0)
-  }
-}
-
-const isDecrypting = ref(true)
-const onImageLoad = () => {
-  isDecrypting.value = false
-}
-
-// 立即执行
-;(async () => {
-  await handleCategoryChange()
-  if (appStore.advertisement.length == 0) {
-    await appStore.fetAdvertisement()
-  }
-})()
-
-const openDownloadPage = () => {
-  if (appStore.isPc) {
-    window.open('https://mg14.cc/', '_blank')
-  } else {
-    const ua = navigator.userAgent
-    if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
-      window.open(appStore.iosDownloadUrl, '_blank')
-    } else {
-      window.open(appStore.androidDownloadUrl, '_blank')
+    if (swiperInstance.value) {
+      swiperInstance.value.updateAutoHeight()
     }
-  }
-}
+  })
 
-function handleScroll() {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-  const header = document.querySelector('.index-header')!
-  const hmB = document.querySelector('.search-icon') as HTMLElement
+  onDeactivated(() => {
+    keepAlive.value = false
+  })
 
-  if (header && hmB) {
-    if (scrollTop > 100) {
-      hmB.style.display = 'block'
-      header.classList.add('fixed')
-    } else {
-      hmB.style.display = 'none'
-      header.classList.remove('fixed')
+  onMounted(() => {
+    decryptAdvertisements()
+  })
+
+  // 添加一个记录每个频道当前页码的对象
+  const channelPageIndexMap = ref<Record<string, number>>({})
+
+  // 添加换一换方法
+  const refreshChannelVideos = async (channelIndex: number) => {
+    const channel = channelVideos.value[channelIndex]
+    if (!channel) return
+
+    // 获取或初始化当前页码
+    if (!channelPageIndexMap.value[channel.value]) {
+      channelPageIndexMap.value[channel.value] = 1
     }
-  }
-}
+    try {
+      const {
+        data: { data }
+      } = await getVideoListApi({
+        ChannelId: channel.value,
+        SubChannelId: '',
+        SortType: 1,
+        PageIndex: channelPageIndexMap.value[channel.value] + 1,
+        PageSize: videoListAdvertisement.value > 0 ? 5 : 6,
+        IsFirst: false
+      })
 
-onActivated(() => {
-  showSuggestion.value = true
-  const header = document.querySelector('.index-header')
-  if (header) {
-    header.classList.remove('fixed')
-  }
-  keepAlive.value = true
-  window.scrollTo(0, 0)
-  if (swiperInstance.value) {
-    swiperInstance.value.updateAutoHeight()
-  }
-})
+      if (data && data.items) {
+        if (data.items.length > 0) {
+          if (videoListAdvertisement.value > 0) {
+            data.items = insertAds(data.items, videoListAdvertisement.value, 5, 7)
+          }
 
-onDeactivated(() => {
-  keepAlive.value = false
-})
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll, { passive: true })
-
-  // 计算偏移量
-  const bubbleWidth = 80 // 浮动元素的宽度
-  const rightMargin = 10 // 距离右侧的距离
-  offset.value.x = window.innerWidth - bubbleWidth - rightMargin
-
-  decryptAdvertisements()
-})
-
-// 添加一个记录每个频道当前页码的对象
-const channelPageIndexMap = ref<Record<string, number>>({})
-
-// 添加换一换方法
-const refreshChannelVideos = async (channelIndex: number) => {
-  const channel = channelVideos.value[channelIndex]
-  if (!channel) return
-
-  // 获取或初始化当前页码
-  if (!channelPageIndexMap.value[channel.value]) {
-    channelPageIndexMap.value[channel.value] = 1
-  }
-  try {
-    const {
-      data: { data }
-    } = await getVideoListApi({
-      ChannelId: channel.value,
-      SubChannelId: '',
-      SortType: 1,
-      PageIndex: channelPageIndexMap.value[channel.value] + 1,
-      PageSize: 5,
-      IsFirst: false
-    })
-
-    if (data && data.items) {
-      if (data.items.length > 0) {
-        data.items = insertAds(data.items, videoListAdvertisement.value, 5, 7)
-
-        channelVideos.value[channelIndex].videos = data.items
-        channelPageIndexMap.value[channel.value]++
-      } else {
-        // 如果没有更多数据，重置到第一页
-        channelPageIndexMap.value[channel.value] = 1
-        const {
-          data: { data: firstPageData }
-        } = await getVideoListApi({
-          ChannelId: channel.value,
-          SubChannelId: '',
-          SortType: 1,
-          PageIndex: 1,
-          PageSize: 6,
-          IsFirst: false
-        })
-        if (firstPageData && firstPageData.items) {
-          channelVideos.value[channelIndex].videos = firstPageData.items
+          channelVideos.value[channelIndex].videos = data.items
+          channelPageIndexMap.value[channel.value]++
+        } else {
+          // 如果没有更多数据，重置到第一页
+          channelPageIndexMap.value[channel.value] = 1
+          const {
+            data: { data: firstPageData }
+          } = await getVideoListApi({
+            ChannelId: channel.value,
+            SubChannelId: '',
+            SortType: 1,
+            PageIndex: 1,
+            PageSize: 6,
+            IsFirst: false
+          })
+          if (firstPageData && firstPageData.items) {
+            channelVideos.value[channelIndex].videos = firstPageData.items
+          }
         }
       }
+    } catch (error) {
+      console.error('获取视频列表失败:', error)
     }
-  } catch (error) {
-    console.error('获取视频列表失败:', error)
   }
-}
 </script>

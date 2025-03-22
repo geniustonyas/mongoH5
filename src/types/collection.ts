@@ -20,3 +20,12 @@ export interface CollectionListResponse {
   pageCount: number // 总页数
   recordCount: number // 总记录数
 }
+
+export interface HomeCollectionCountResponse {
+  count: string
+  items: {
+    id: string
+    title: string
+    cssClass: string
+  }[]
+}

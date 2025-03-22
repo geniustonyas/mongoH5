@@ -4,7 +4,8 @@
       <div class="d-l">
         <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
       </div>
-      <div class="d-m">分享好友</div>
+      <div class="d-m"><span>分享好友</span></div>
+      <div class="d-r" />
     </header>
     <section class="s-h-b">
       <div class="sb-a">

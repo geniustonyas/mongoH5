@@ -142,7 +142,7 @@
         // 足迹列表
         ;({
           data: { data }
-        } = await userWatchHistory({ PageIndex: pageIndex.value, PageSize: pageSize }))
+        } = await userWatchHistory({ PageIndex: pageIndex.value, PageSize: pageSize, SearchType: 2 }))
       } else if (listType.value === 'normal') {
         // 调用随机视频接口
         ;({
@@ -508,15 +508,25 @@
   ;(async () => {
     if (listType.value === 'normal') {
       pageIndex.value = Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
-    }
-    // 从 localStorage 读取视频对象
-    const storedVideo = localStorage.getItem('shortPlayVideo')
-    if (storedVideo) {
-      try {
-        const video = JSON.parse(storedVideo) as Video
+    } else {
+      pageIndex.value = 1
+      if (route.query.id) {
+        // 调用详情接口获取视频数据
+        await fetchVideoDetail(parseInt(route.query.id as string))
+        // 从videoDetails 中复制属性, 生成一个video类型对象
+        const video = {
+          id: videoDetail.value?.id,
+          title: videoDetail.value?.title,
+          channelId: videoDetail.value?.channelId,
+          addTime: videoDetail.value?.addTime,
+          imgUrl: videoDetail.value?.imgUrl,
+          viewCount: videoDetail.value?.viewCount,
+          likeCount: videoDetail.value?.likeCount,
+          playDomain: videoDetail.value?.playDomain,
+          playUrl: videoDetail.value?.playUrl,
+          poster: videoDetail.value?.poster
+        }
         videos.value.push(video)
-      } catch (error) {
-        console.error('解析本地存储视频失败:', error)
       }
     }
   })()
@@ -524,7 +534,6 @@
   onMounted(async () => {
     await fetchVideos()
     if (videos.value.length > 0) {
-      await fetchVideoDetail(parseInt(videos.value[0].id))
       await initializePlayer(0)
       // isAutoPlay.value = false
       await initializePlayer(1)

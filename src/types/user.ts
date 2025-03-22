@@ -118,3 +118,22 @@ export interface userWatchHistoryRequest {
   PageSize: number
   PageIndex: number
 }
+
+export interface historyItem {
+  createTime: string
+  id: string
+  imgUrl: string
+  key: string
+  other: any
+  sType: number
+  title: string
+  userId: string
+}
+
+export type userWatchHistoryResponse = {
+  items: historyItem[]
+  pageCount: string
+  pageIndex: string
+  pageSize: string
+  recordCount: string
+}

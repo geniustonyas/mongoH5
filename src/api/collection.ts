@@ -1,5 +1,5 @@
 import { request } from '@/utils/axios'
-import type { CollectionListResponse } from '@/types/collection'
+import type { CollectionListResponse, HomeCollectionCountResponse } from '@/types/collection'
 import type { ApiResponseData } from '@/types/global.d'
 
 /** 获取收藏的合集列表 */
@@ -23,5 +23,16 @@ export function addCollectionToCollectionApi(data: { Id: string; Collect: boolea
       'X-Should-Encrypt': '1'
     },
     data
+  })
+}
+
+/** 获取首页合集数量 */
+export function getHomeCollectionCountApi() {
+  return request<ApiResponseData<HomeCollectionCountResponse>>({
+    url: 'Collection/IndexCollectionList',
+    method: 'post',
+    headers: {
+      'X-Should-Encrypt': '1'
+    }
   })
 }

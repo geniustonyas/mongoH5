@@ -1,6 +1,32 @@
 <template>
   <div class="page">
-    <Header />
+    <div class="hot-header">
+      <div class="hh-menu">
+        <div class="m-l" @click="appStore.setBack(true)">
+          <i class="mvfont mv-left" />
+        </div>
+        <div class="m-m">
+          <a @click="router.push({ name: 'hotVideo' })" class="active">热门</a>
+          <a @click="router.push({ name: 'theme' })">主题</a>
+          <a @click="router.push({ name: 'actor' })">女优</a>
+        </div>
+        <div class="m-r" @click="router.push({ name: 'search' })">
+          <i class="mvfont mv-search1" />
+        </div>
+      </div>
+      <div class="hh-opts">
+        <div class="o-tabs">
+          <span :class="{ active: activeRank == '2' }" @click="changeRank('2')">日榜</span>
+          <span :class="{ active: activeRank == '1' }" @click="changeRank('1')">周榜</span>
+          <span :class="{ active: activeRank == '0' }" @click="changeRank('0')">月榜</span>
+          <span :class="{ active: activeRank == 'total' }" @click="changeRank('total')">总榜</span>
+        </div>
+        <div class="o-rmark">
+          每天12点更新，根据昨日综合热度排序<br />(含收藏、点赞、浏览量)
+        </div>
+      </div>
+      <div class="hh-round"></div>
+    </div>
     <section class="h-l-b">
       <div class="lb-b">
         <span v-for="item in rankOptions" :key="item.value" :class="{ active: activeRank == item.value }" @click="changeRank(item.value)">{{ item.label }}</span>

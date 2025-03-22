@@ -1,13 +1,16 @@
 <template>
   <div class="page">
     <header class="d-header u-header">
-      <a style="display: none" class="a-qd"><img src="assets/imgs/icon/calendar.svg" />未签到</a>
-      <a @click="router.push({ name: 'account' })"><img src="assets/imgs/icon/setting.svg" /></a>
+      <a style="display: none" class="a-qd"><img :src="getAssetsFile('icon/calendar.svg')" />未签到</a>
+      <a @click="router.push({ name: 'account' })"><img :src="getAssetsFile('icon/setting.svg')" /></a>
     </header>
     <section class="h-p-b">
       <div class="h-a">
         <div class="a-a">
-          <div class="a-l"><img src="assets/imgs/u_video.png" /></div>
+          <div class="a-l">
+            <img v-if="userStore.userInfo.avatar" v-lazy-decrypt="userStore.userInfo.avatar" />
+            <img v-else :src="getAssetsFile('u_video.png')" />
+          </div>
           <div class="a-n" v-if="userStore.userInfo.phoneNumber">{{ userStore.userInfo.phoneNumber }}</div>
           <div class="a-n" v-else @click="userStore.showLoginDialog = true">登录 / 注册</div>
         </div>
@@ -52,51 +55,51 @@
         <ul class="au-rows">
           <li>
             <a @click="router.push({ name: 'buyRecord' })">
-              <span><img src="assets/imgs/icon/member.svg" />VIP购买记录</span><i class="mvfont mv-right3" />
+              <span><img :src="getAssetsFile('icon/member.svg')" />VIP购买记录</span><i class="mvfont mv-right3" />
             </a>
           </li>
           <li>
             <a @click="router.push({ name: 'shareRecord' })">
-              <span><img src="assets/imgs/icon/Share_Records.svg" />分享记录</span><i class="mvfont mv-right3" />
+              <span><img :src="getAssetsFile('icon/Share_Records.svg')" />分享记录</span><i class="mvfont mv-right3" />
             </a>
           </li>
           <li>
             <a @click="router.push({ name: 'accountChange' })">
-              <span><img src="assets/imgs/icon/Account_change_records.svg" />账变记录</span><i class="mvfont mv-right3" />
+              <span><img :src="getAssetsFile('icon/Account_change_records.svg')" />账变记录</span><i class="mvfont mv-right3" />
             </a>
           </li>
         </ul>
         <ul class="au-rows">
           <li>
-            <a @click="router.push({ name: 'posts' })">
-              <span><img src="assets/imgs/icon/Posts.svg" />我的社区帖</span><i class="mvfont mv-right3" />
+            <a @click="router.push({ name: 'myPost' })">
+              <span><img :src="getAssetsFile('icon/Posts.svg')" />我的社区帖</span><i class="mvfont mv-right3" />
             </a>
           </li>
           <li>
-            <a @click="router.push({ name: 'teaPosts' })">
-              <span><img src="assets/imgs/icon/Tea_Post.svg" />我的茶贴</span><i class="mvfont mv-right3" />
+            <a @click="router.push({ name: 'myTeaPost' })">
+              <span><img :src="getAssetsFile('icon/Tea_Post.svg')" />我的茶贴</span><i class="mvfont mv-right3" />
             </a>
           </li>
           <li>
             <a @click="router.push({ name: 'unlockRecords' })">
-              <span><img src="assets/imgs/icon/Unlock.svg" />品茶解锁记录</span><i class="mvfont mv-right3" />
+              <span><img :src="getAssetsFile('icon/Unlock.svg')" />品茶解锁记录</span><i class="mvfont mv-right3" />
             </a>
           </li>
         </ul>
         <ul class="au-rows">
           <li>
-            <a @click="router.push({ name: 'announcement' })">
-              <span><img src="assets/imgs/icon/Announcement.svg" />系统公告</span><i class="mvfont mv-right3" />
+            <a @click="router.push({ name: 'message', query: { tab: 'notice' } })">
+              <span><img :src="getAssetsFile('icon/Announcement.svg')" />系统公告</span><i class="mvfont mv-right3" />
             </a>
           </li>
           <li>
             <a @click="openCustomerService">
-              <span><img src="assets/imgs/icon/service.svg" />联系客服</span><i class="mvfont mv-right3" />
+              <span><img :src="getAssetsFile('icon/service.svg')" />联系客服</span><i class="mvfont mv-right3" />
             </a>
           </li>
           <li>
-            <a @click="router.push({ name: 'feedback' })">
-              <span><img src="assets/imgs/icon/Opinion.svg" />意见反馈</span><i class="mvfont mv-right3" />
+            <a @click="showSuggestionPopup = true">
+              <span><img :src="getAssetsFile('icon/Opinion.svg')" />意见反馈</span><i class="mvfont mv-right3" />
             </a>
           </li>
         </ul>
@@ -107,6 +110,7 @@
         </ul>
       </div>
     </section>
+    <Suggestion v-model:show-btn="showSuggestion" v-model:show-popup="showSuggestionPopup" />
     <Footer active-menu="home" />
     <NavBar active-menu="home" />
   </div>
@@ -119,9 +123,12 @@
   import { useAppStoreHook } from '@/store/app'
   import { openAd, getAssetsFile } from '@/utils'
 
+  import Suggestion from '@/components/Suggestion.vue'
   import Footer from '@/components/layout/Footer.vue'
   import NavBar from '@/components/layout/NavBar.vue'
 
+  const showSuggestion = ref(false)
+  const showSuggestionPopup = ref(false)
   const userStore = useUserStoreHook()
   const appStore = useAppStoreHook()
   const router = useRouter()
@@ -138,14 +145,14 @@
     }
   })()
 
-  const openDownloadPage = () => {
-    const ua = navigator.userAgent
-    if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
-      window.open(appStore.iosDownloadUrl, '_blank')
-    } else {
-      window.open(appStore.androidDownloadUrl, '_blank')
-    }
-  }
+  // const openDownloadPage = () => {
+  //   const ua = navigator.userAgent
+  //   if (ua.indexOf('iPhone') > -1 || ua.indexOf('iPad') > -1 || ua.indexOf('Macintosh') > -1) {
+  //     window.open(appStore.iosDownloadUrl, '_blank')
+  //   } else {
+  //     window.open(appStore.androidDownloadUrl, '_blank')
+  //   }
+  // }
 
   const openCustomerService = () => {
     const customerServiceLink = appStore.customer_service_link

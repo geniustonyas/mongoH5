@@ -46,6 +46,7 @@ export const useAppStore = defineStore('app', {
       spareData: {} as SpareData, // 丢失数据
       sAds: '', // 启动广告
       sAdsRoute: '', // 启动广告路由
+      allowPost: false, // 是否允许发帖
 
       theme: [], // 标签
       categorys: decryptedCategorys, // 分类
@@ -103,6 +104,8 @@ export const useAppStore = defineStore('app', {
         this.shortVideoListRandomMax = parseInt(data.find((item: any) => item.pKey === 'ShortVideoListRandomPage')?.value2 || '10')
         this.discloseRandomMin = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value1 || '1')
         this.discloseRandomMax = parseInt(data.find((item: any) => item.pKey === 'BBSRandomPage')?.value2 || '10')
+        this.allowPost = data.find((item: any) => item.pKey === 'bbssetting')?.value1 == '1'
+
         const adTmp = data.find((item: any) => item.pKey === 'SAds')
         if (adTmp && adTmp.value1) {
           const tmp = await decrypted.fetchAndDecrypt(adTmp.value1)

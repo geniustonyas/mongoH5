@@ -76,7 +76,7 @@
                 <div class="item" v-for="video in dataMap[1]" :key="video.id" @click="handleClick(video, 1)">
                   <div class="i-a">
                     <div class="ia-a">
-                      <img v-lazy-decrypt="video.imgUrl" />
+              <img v-lazy-decrypt="video.imgUrl" />
                     </div>
                     <div class="ia-b">
                       <div class="b-a">
@@ -290,8 +290,8 @@
                     <img v-lazy-decrypt="item.coverurl" />
                     <span class="a-a">{{ item.categoryName }}</span>
                     <span class="a-b">{{ item.readCount }}阅读</span>
-                  </div>
-                  <div class="l-b">
+            </div>
+            <div class="l-b">
                     <b>{{ item.title }}</b>
                     <p>{{ item.introduction }}</p>
                   </div>
@@ -348,9 +348,9 @@
                   </div>
                   <div class="edit-item" :class="{ active: selectedIds.includes(item.id) }" @click.stop="toggleSelect(item.id)">
                     <i class="mvfont mv-ckbox" />
-                  </div>
-                </li>
-              </ul>
+            </div>
+          </li>
+        </ul>
             </div>
             <template v-if="totalPages[7] > 1">
               <div class="au-pagination-box" v-if="totalPages[7] > 9">
@@ -363,8 +363,8 @@
                 </div>
                 <div class="pb-x">
                   <a @click="changePage(pageIndex[7] + 1)" :class="{ disabled: pageIndex[7] == totalPages[7] }">下一页</a>
-                </div>
-              </div>
+        </div>
+      </div>
               <div v-else class="more-box"><a v-if="pageIndex[7] < totalPages[7]" @click="loadMore">加载更多</a></div>
             </template>
             <div v-if="noData[7]" class="nodata">
@@ -396,11 +396,11 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, reactive, nextTick } from 'vue'
+  import { ref, reactive, nextTick, onActivated } from 'vue'
   import { useAppStore } from '@/store/app'
   import { useUserStore } from '@/store/user'
   import { getAssetsFile } from '@/utils'
-  import { userCollectionHistory, userCollection } from '@/api/user'
+import { userCollectionHistory, userCollection } from '@/api/user'
   import { getBbsCollectionListApi, bbsCollectionApi } from '@/api/bbs'
   import { getDramaCollectList, addDramaToCollection } from '@/api/drama'
   import { getCollectCollectionListApi, addCollectionToCollectionApi } from '@/api/collection'
@@ -412,7 +412,7 @@
   import 'swiper/css'
   import router from '@/router'
 
-  const appStore = useAppStore()
+const appStore = useAppStore()
   const userStore = useUserStore()
   const tabs = ref([
     { title: '抖阴', name: 0, routeName: 'shortPlay', api: userCollectionHistory, params: { PageIndex: 1, PageSize: 10, VideoType: 1 }, delApi: userCollection, delParams: { Ids: '', Collect: false, Id: '' } },
@@ -433,7 +433,7 @@
   const noData = reactive<Record<number, boolean>>({})
   const refreshing = reactive<Record<number, boolean>>({})
   const swiperInstance = ref<any>(null)
-  const isEditing = ref(false)
+const isEditing = ref(false)
   const selectedIds = ref<number[]>([])
 
   const fetchData = async (tabName: number, showRefreshing = false, loadMore = false) => {
@@ -499,11 +499,9 @@
     if (tabName == 0) {
       //   const playIndex = totalPages[0] > 9 ? index + (pageIndex[0] - 1) * tabs.value[0].params.PageSize : index
       //   router.push({ name: tabs.value[tabName].routeName })
-      localStorage.setItem('shortPlayVideo', JSON.stringify(item))
-      router.push({ name: tabs.value[0].routeName, query: { listType: 'collect' } })
+      router.push({ name: tabs.value[0].routeName, query: { id: item.id, listType: 'collect' } })
     } else if (tabName == 3) {
-      localStorage.setItem('shortDramaCollect', JSON.stringify(item))
-      router.push({ name: tabs.value[3].routeName, query: { listType: 'collect' } })
+      router.push({ name: tabs.value[3].routeName, query: { id: item.id, listType: 'collect' } })
     } else if (tabName == 1 || tabName == 2 || tabName == 4) {
       router.push({ name: tabs.value[tabName].routeName, params: { id: item.id } })
     } else {
@@ -523,10 +521,10 @@
       pageIndex[activeTab.value] = newPage
       tabs.value[activeTab.value].params.PageIndex = newPage
       fetchData(activeTab.value, true)
-    }
   }
+}
 
-  const loadMore = async () => {
+const loadMore = async () => {
     if (pageIndex[activeTab.value] < totalPages[activeTab.value]) {
       pageIndex[activeTab.value]++
       tabs.value[activeTab.value].params.PageIndex = pageIndex[activeTab.value]
@@ -535,8 +533,8 @@
   }
 
   const editCollect = () => {
-    isEditing.value = !isEditing.value
-    if (!isEditing.value) {
+  isEditing.value = !isEditing.value
+  if (!isEditing.value) {
       selectedIds.value = []
     }
   }
@@ -545,12 +543,12 @@
     const index = selectedIds.value.indexOf(id)
     if (index === -1) {
       selectedIds.value.push(id)
-    } else {
+  } else {
       selectedIds.value.splice(index, 1)
     }
-  }
+}
 
-  const selectAll = () => {
+const selectAll = () => {
     if (isEditing.value) {
       const currentIds = dataMap[activeTab.value].map(item => item.id)
       selectedIds.value = currentIds
@@ -558,7 +556,7 @@
   }
 
   // 删除选中的数据
-  const removeSelected = async () => {
+const removeSelected = async () => {
     if (selectedIds.value.length === 0) return
     const currentTab = tabs.value[activeTab.value]
     if (typeof currentTab.delApi == 'function') {
@@ -595,10 +593,14 @@
     })
     await fetchData(activeTab.value, true)
   })()
+
+  onActivated(() => {
+    console.log('onActivated')
+})
 </script>
 
 <style lang="less" scoped>
   :deep(.van-pull-refresh) {
     min-height: calc(100vh - 100px);
-  }
+}
 </style>

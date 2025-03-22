@@ -15,10 +15,10 @@
     </div> -->
 
     <FloatingBubble v-if="showBtn" v-model:offset="offset" axis="xy" magnetic="x" class="fixed-suggestion" :gap="0">
-      <div class="fs-t" @click="toggleBtn">
+      <div class="fs-t" @click="emit('update:showBtn', false)">
         <span><i class="mvfont mv-close" /></span>
       </div>
-      <div class="fs-c" @click="showPopup = true">
+      <div class="fs-c" @click="emit('update:showPopup', true)">
         <span>
           <i class="mvfont mv-jianyi" />
           <small>建议<br />反馈</small>
@@ -26,7 +26,7 @@
       </div>
     </FloatingBubble>
 
-    <Popup v-model:show="showPopup" position="bottom" closeable :overlay="true" round>
+    <Popup v-model:show="showPopupLocal" position="bottom" closeable :overlay="true" round>
       <div class="suggestion-popup">
         <div class="su-title">建议反馈</div>
         <div class="su-content">
@@ -61,60 +61,62 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, defineProps, defineEmits } from 'vue'
-import { Popup, Form, Field, RadioGroup, Radio, Button, CellGroup, showSuccessToast, FloatingBubble } from 'vant'
-import { useAppStore } from '@/store/app'
-import { copy } from '@/utils'
-import { userSuggestion } from '@/api/user'
+  import { ref, onMounted, defineProps, defineEmits, watch } from 'vue'
+  import { Popup, Form, Field, RadioGroup, Radio, Button, CellGroup, showSuccessToast, FloatingBubble } from 'vant'
+  import { useAppStore } from '@/store/app'
+  import { copy } from '@/utils'
+  import { userSuggestion } from '@/api/user'
 
-const offset = ref({ x: 0, y: 400 })
+  const offset = ref({ x: 0, y: 400 })
 
-defineProps<{
-  showBtn: boolean
-}>()
+  const props = defineProps<{
+    showBtn: boolean
+    showPopup: boolean
+  }>()
 
-// 定义 emits
-const emit = defineEmits(['update:showBtn'])
+  const showPopupLocal = ref(props.showPopup)
 
-const appStore = useAppStore()
-const showPopup = ref(false)
+  const emit = defineEmits(['update:showBtn', 'update:showPopup'])
 
-const form = ref({
-  ContentType: '0', // 固定为 0
-  FeedbackType: '', // 用户选择
-  VideoErrorType: '',
-  SourceId: '',
-  Content: '' // 用户输入
-})
+  watch(
+    () => props.showPopup,
+    newValue => {
+      showPopupLocal.value = newValue
+    }
+  )
 
-const formRef = ref()
+  // 监听 showPopupLocal 的变化并通知父组件
+  watch(showPopupLocal, newValue => {
+    emit('update:showPopup', newValue)
+  })
 
-const toggleBtn = () => {
-  emit('update:showBtn', false)
-}
+  const appStore = useAppStore()
 
-const onSubmit = async () => {
-  try {
-    await userSuggestion(form.value)
-    showPopup.value = false
-    showSuccessToast('提交成功, 感谢您的反馈')
-    form.value.FeedbackType = ''
-    form.value.Content = ''
-  } catch (error) {
-    console.error('提交失败', error)
+  const form = ref({
+    ContentType: '0', // 固定为 0
+    FeedbackType: '', // 用户选择
+    VideoErrorType: '',
+    SourceId: '',
+    Content: '' // 用户输入
+  })
+
+  const onSubmit = async () => {
+    try {
+      await userSuggestion(form.value)
+      emit('update:showPopup', false)
+      showSuccessToast('提交成功, 感谢您的反馈')
+      form.value.FeedbackType = ''
+      form.value.Content = ''
+    } catch (error) {
+      console.error('提交失败', error)
+    }
   }
-}
 
-onMounted(() => {
-  copy('.copy')
-  // const script = document.createElement('script')
-  // script.src = '/stat.js'
-  // script.async = true
-  // document.body.appendChild(script)
-
-  // 计算偏移量
-  const bubbleWidth = 64 // 浮动元素的宽度
-  const rightMargin = 25 // 距离右侧的距离
-  offset.value.x = window.innerWidth - bubbleWidth - rightMargin
-})
+  onMounted(() => {
+    copy('.copy')
+    // 计算偏移量
+    const bubbleWidth = 64 // 浮动元素的宽度
+    const rightMargin = 25 // 距离右侧的距离
+    offset.value.x = window.innerWidth - bubbleWidth - rightMargin
+  })
 </script>

@@ -10,23 +10,25 @@ export interface IndexVideoResponse {
 export interface Video {
   id: string
   title: string
-  channelId: string
-  channelName: string
+  channelId?: string
+  channelName?: string
   subChannelId?: string
   subChannelName?: string
-  addTime: string
-  clarity: string
-  duration: string
-  imgDomain: string
-  imgUrl: string
-  viewCount: string
-  likeCount: string
-  playDomain: string
-  playUrl: string
+  addTime?: string
+  clarity?: string
+  duration?: string
+  imgDomain?: string
+  imgUrl?: string
+  viewCount?: string
+  likeCount?: string
+  playDomain?: string
+  playUrl?: string
   trailerDomain?: string
   trailerUrl?: string
   resolution?: string
   poster?: string
+  isAd?: boolean
+  targetUrl?: string
 }
 
 // 在 video.ts 中直接定义接口

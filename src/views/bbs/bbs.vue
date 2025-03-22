@@ -15,11 +15,28 @@
     </header>
 
     <main class="b-b-b">
-      <swiper @swiper="onSwiper" :slides-per-view="1" :auto-height="true" :loop="false" @slide-change="handleSwipeChange" :allow-touch-move="!appStore.isPc">
+      <swiper
+        @swiper="onSwiper"
+        :slides-per-view="1"
+        :auto-height="true"
+        :loop="false"
+        @slide-change="handleSwipeChange"
+        :allow-touch-move="!appStore.isPc"
+      >
         <!-- 推荐 -->
         <swiper-slide class="bbs-swipe-item0">
           <nav v-if="bannerAdvertisement && bannerAdvertisement.length > 0 && keepAlive" id="bbs-banner" class="swiper-container">
-            <swiper class="my-swipe" @swiper="onBannerSwiper" :modules="appStore.isPc ? [Autoplay, Pagination] : [Autoplay]" :slides-per-view="appStore.isPc ? 5 : 1" :space-between="10" :pagination="{ clickable: true } as any" :centered-slides="false" :loop="true" :autoplay="{ delay: 2500, disableOnInteraction: false } as any" :nested="true">
+            <swiper
+              @swiper="onBannerSwiper"
+              :modules="appStore.isPc ? [Autoplay, Pagination] : [Autoplay]"
+              :slides-per-view="appStore.isPc ? 5 : 1"
+              :space-between="10"
+              :pagination="{ clickable: true } as any"
+              :centered-slides="false"
+              :loop="true"
+              :autoplay="{ delay: 2500, disableOnInteraction: false } as any"
+              :nested="true"
+            >
               <swiper-slide v-for="ad in bannerAdvertisement" :key="ad.id">
                 <a target="_blank" @click="openAd(ad.targetUrl, '社区banner', 'click', ad.id)">
                   <img v-lazy-decrypt="ad.imgUrl" :alt="ad.title" @load="() => onImageLoad('banner')" />
@@ -126,7 +143,11 @@
         <swiper-slide class="bbs-swipe-item1">
           <div class="au-col-module-5">
             <div class="m-l">
-              <div class="item" @click="changeSubChannel(heiliaoCategories[0].items[0].id, 1)" v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 0">
+              <div
+                v-if="heiliaoCategories[0] && heiliaoCategories[0].items.length > 0"
+                @click="changeSubChannel(heiliaoCategories[0].items[0].id, 1)"
+                class="item"
+              >
                 <img v-lazy-decrypt="heiliaoCategories[0].items[0].img" />
                 <p>
                   <span># {{ heiliaoCategories[0].items[0].title }}</span>
@@ -558,358 +579,362 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onActivated, nextTick, onDeactivated, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { PullRefresh, showToast } from 'vant'
-import Footer from '@/components/layout/Footer.vue'
-import NavBar from '@/components/layout/NavBar.vue'
-import BbsListItem from '@/components/BbsListItem.vue'
-import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'
-import IconAd from '@/components/Advertisement/IconAd.vue'
-import { useAppStore } from '@/store/app'
-import { useUserStore } from '@/store/user'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
-import { insertAds, openAd } from '@/utils'
-import type { BbsListRequest, BbsCategoryResponse } from '@/types/bbs'
-import { Autoplay, Pagination } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/autoplay'
-import 'swiper/css/pagination'
+  import { ref, reactive, computed, onActivated, nextTick, onDeactivated, onMounted } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { PullRefresh, showToast } from 'vant'
+  import Footer from '@/components/layout/Footer.vue'
+  import NavBar from '@/components/layout/NavBar.vue'
+  import BbsListItem from '@/components/BbsListItem.vue'
+  import BbsWeimiListItem from '@/components/BbsWeimiListItem.vue'
+  import IconAd from '@/components/Advertisement/IconAd.vue'
+  import { useAppStore } from '@/store/app'
+  import { useUserStore } from '@/store/user'
+  import { Swiper, SwiperSlide } from 'swiper/vue'
+  import { getBbsListApi, getBbsCategoryApi, getBbsCollectionListApi } from '@/api/bbs'
+  import { insertAds, openAd } from '@/utils'
+  import type { BbsListRequest, BbsCategoryResponse } from '@/types/bbs'
+  import { Autoplay, Pagination } from 'swiper/modules'
+  import 'swiper/css'
+  import 'swiper/css/autoplay'
+  import 'swiper/css/pagination'
 
-const router = useRouter()
-const appStore = useAppStore()
-const userStore = useUserStore()
+  const router = useRouter()
+  const appStore = useAppStore()
+  const userStore = useUserStore()
 
-const tabs = [
-  { title: '推荐', name: 0 },
-  { title: '黑料', name: 1 },
-  { title: '微密', name: 2 },
-  { title: '圈子', name: 3 },
-  { title: '收藏', name: 4 }
-]
-const bannerAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(2).items
-  return tmp || []
-})
+  const tabs = [
+    { title: '推荐', name: 0 },
+    { title: '黑料', name: 1 },
+    { title: '微密', name: 2 },
+    { title: '圈子', name: 3 },
+    { title: '收藏', name: 4 }
+  ]
+  const bannerAdvertisement = computed(() => {
+    const tmp = appStore.getAdvertisementById(2).items
+    return tmp || []
+  })
 
-// 获取社区帖子广告
-const bbsListAdvertisement = computed(() => {
-  const tmp = appStore.getAdvertisementById(30).items
-  return tmp || []
-})
+  // 获取社区帖子广告
+  const bbsListAdvertisement = computed(() => {
+    const tmp = appStore.getAdvertisementById(30).items
+    return tmp || []
+  })
 
-const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
+  const sortOptions = { 1: '更新', 2: '浏览', 4: '点赞', 5: '评论', 6: '收藏', 3: '视频' }
 
-const activeTab = ref(0)
-const previousTab = ref(0)
+  const activeTab = ref(0)
+  const previousTab = ref(0)
 
-const query = reactive<BbsListRequest>({
-  PageIndex: 1,
-  PageSize: 10,
-  SortType: 1,
-  ChannelId: '',
-  SubChannelId: '',
-  ActressId: '',
-  KeyWord: ''
-})
+  const query = reactive<BbsListRequest>({
+    PageIndex: 1,
+    PageSize: 10,
+    SortType: 1,
+    ChannelId: '',
+    SubChannelId: '',
+    ActressId: '',
+    KeyWord: ''
+  })
 
-const refreshing = ref(false)
-const collectionRefreshing = ref(false) // 用于收藏列表的刷新状态
-const bbsListMap = ref<Record<number, any[]>>({})
-const bbsListTotalPages = ref<Record<number, number>>({})
-const bbsListPageIndex = ref<Record<number, number>>({})
-const bbsListSortType = ref({})
-const bbsListSubChannelId = ref({})
+  const refreshing = ref(false)
+  const collectionRefreshing = ref(false) // 用于收藏列表的刷新状态
+  const bbsListMap = ref<Record<number, any[]>>({})
+  const bbsListTotalPages = ref<Record<number, number>>({})
+  const bbsListPageIndex = ref<Record<number, number>>({})
+  const bbsListSortType = ref({})
+  const bbsListSubChannelId = ref({})
 
-const keepAlive = ref(true)
-const swiperInstance = ref<any>(null)
-const bannerSwiperInstance = ref<any>(null)
+  const keepAlive = ref(true)
+  const swiperInstance = ref<any>(null)
+  const bannerSwiperInstance = ref<any>(null)
 
-const heiliaoCategories = ref<BbsCategoryResponse[]>([])
-const weimiCategories = ref<BbsCategoryResponse[]>([])
-const quanziCategories = ref<BbsCategoryResponse[]>([])
+  const heiliaoCategories = ref<BbsCategoryResponse[]>([])
+  const weimiCategories = ref<BbsCategoryResponse[]>([])
+  const quanziCategories = ref<BbsCategoryResponse[]>([])
 
-const onSwiper = (swiper: any) => {
-  swiperInstance.value = swiper
-}
-
-const onBannerSwiper = (swiper: any) => {
-  bannerSwiperInstance.value = swiper
-}
-
-const clickAddPost = () => {
-  if (userStore.userInfo.id == '') {
-    userStore.showLoginDialog = true
-  } else {
-    router.push({ name: 'addPost' })
+  const onSwiper = (swiper: any) => {
+    swiperInstance.value = swiper
   }
-}
 
-const clickTab = (tabName: number) => {
-  activeTab.value = tabName
-  if (swiperInstance.value) {
-    swiperInstance.value.slideTo(tabName, 0)
+  const onBannerSwiper = (swiper: any) => {
+    bannerSwiperInstance.value = swiper
   }
-  if (tabName == 4) {
+
+  const clickAddPost = () => {
     if (userStore.userInfo.id == '') {
-      if (swiperInstance.value) {
-        swiperInstance.value.slideTo(previousTab.value, 0)
-      }
-      userStore.showLoginDialog = true
-    }
-  }
-}
-
-const handleSwipeChange = (swiper: any) => {
-  // 检查是否滑动到收藏列表
-  if (swiper.activeIndex == 4) {
-    if (userStore.userInfo.id == '') {
-      if (swiperInstance.value) {
-        swiperInstance.value.slideTo(activeTab.value, 0)
-      }
       userStore.showLoginDialog = true
       return
     }
+    if (!appStore.allowPost) {
+      showToast('发帖功能已暂停, 请稍后再试')
+      return
+    }
+    router.push({ name: 'addPost' })
   }
-  previousTab.value = activeTab.value
-  activeTab.value = swiper.activeIndex
-  query.ChannelId = activeTab.value == 0 ? '' : activeTab.value
 
-  // 滑动到新的swipeItem，获取之前的排序和子频道
-  if (bbsListSortType.value[activeTab.value] != undefined) {
-    query.SortType = bbsListSortType.value[activeTab.value]
-  } else {
-    query.SortType = 1
-    bbsListSortType.value[activeTab.value] = 1
+  const clickTab = (tabName: number) => {
+    activeTab.value = tabName
+    if (swiperInstance.value) {
+      swiperInstance.value.slideTo(tabName, 0)
+    }
+    if (tabName == 4) {
+      if (userStore.userInfo.id == '') {
+        if (swiperInstance.value) {
+          swiperInstance.value.slideTo(previousTab.value, 0)
+        }
+        userStore.showLoginDialog = true
+      }
+    }
   }
-  if (bbsListSubChannelId.value[activeTab.value] != undefined) {
-    query.SubChannelId = bbsListSubChannelId.value[activeTab.value]
-  } else {
-    query.SubChannelId = ''
-  }
-  bbsListMap.value[activeTab.value] = []
-  query.PageIndex = 1
-  // if (bbsListPageIndex.value[activeTab.value] == undefined) {
-  //   query.PageIndex = 1
-  // } else {
-  //   query.PageIndex = bbsListPageIndex.value[activeTab.value]
-  // }
 
-  // if (!bbsListMap.value[activeTab.value] || bbsListMap.value[activeTab.value].length == 0) {
-  if (activeTab.value == 4) {
-    fetchCollectionList()
-  } else {
+  const handleSwipeChange = (swiper: any) => {
+    // 检查是否滑动到收藏列表
+    if (swiper.activeIndex == 4) {
+      if (userStore.userInfo.id == '') {
+        if (swiperInstance.value) {
+          swiperInstance.value.slideTo(activeTab.value, 0)
+        }
+        userStore.showLoginDialog = true
+        return
+      }
+    }
+    previousTab.value = activeTab.value
+    activeTab.value = swiper.activeIndex
+    query.ChannelId = activeTab.value == 0 ? '' : activeTab.value
+
+    // 滑动到新的swipeItem，获取之前的排序和子频道
+    if (bbsListSortType.value[activeTab.value] != undefined) {
+      query.SortType = bbsListSortType.value[activeTab.value]
+    } else {
+      query.SortType = 1
+      bbsListSortType.value[activeTab.value] = 1
+    }
+    if (bbsListSubChannelId.value[activeTab.value] != undefined) {
+      query.SubChannelId = bbsListSubChannelId.value[activeTab.value]
+    } else {
+      query.SubChannelId = ''
+    }
+    bbsListMap.value[activeTab.value] = []
+    query.PageIndex = 1
+    // if (bbsListPageIndex.value[activeTab.value] == undefined) {
+    //   query.PageIndex = 1
+    // } else {
+    //   query.PageIndex = bbsListPageIndex.value[activeTab.value]
+    // }
+
+    // if (!bbsListMap.value[activeTab.value] || bbsListMap.value[activeTab.value].length == 0) {
+    if (activeTab.value == 4) {
+      fetchCollectionList()
+    } else {
+      fetchBbsList()
+    }
+    // }
+    nextTick(() => {
+      window.scrollTo(0, 0)
+    })
+  }
+
+  const loadingBbsList = ref(false)
+  const fetchBbsList = async (loadMore = false) => {
+    loadingBbsList.value = true
+    try {
+      const {
+        data: { data }
+      } = await getBbsListApi(query)
+      if (data && Array.isArray(data.items)) {
+        // 插入广告
+        data.items = insertAds(data.items, bbsListAdvertisement.value, 5, 7, false)
+
+        if (!bbsListMap.value[activeTab.value]) {
+          bbsListMap.value[activeTab.value] = []
+        }
+
+        if (loadMore) {
+          bbsListMap.value[activeTab.value].push(...data.items)
+          nextTick(() => {
+            swiperInstance.value.updateAutoHeight()
+          })
+        } else {
+          bbsListMap.value[activeTab.value] = data.items
+        }
+
+        bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
+        bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
+      } else {
+        console.error('响应数据结构不正确')
+      }
+    } catch (error) {
+      console.error('获取BBS列表失败:', error)
+    } finally {
+      loadingBbsList.value = false
+    }
+  }
+
+  const fetchCollectionList = async (loadMore = false) => {
+    loadingBbsList.value = true
+    try {
+      const {
+        data: { data }
+      } = await getBbsCollectionListApi({ PageIndex: query.PageIndex, PageSize: query.PageSize })
+      if (data && Array.isArray(data.items)) {
+        data.items = insertAds(data.items, bbsListAdvertisement.value, 5, 7, false)
+
+        if (!bbsListMap.value[activeTab.value]) {
+          bbsListMap.value[activeTab.value] = []
+        }
+
+        data.items = data.items.map((item) => ({
+          ...item,
+          isCollected: true
+        }))
+        if (loadMore) {
+          bbsListMap.value[activeTab.value].push(...data.items)
+          nextTick(() => {
+            swiperInstance.value.updateAutoHeight()
+          })
+        } else {
+          bbsListMap.value[activeTab.value] = data.items
+        }
+
+        bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
+        bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
+      } else {
+        console.error('响应数据结构不正确')
+      }
+    } catch (error) {
+      console.error('获取收藏列表失败:', error)
+    } finally {
+      loadingBbsList.value = false
+    }
+  }
+
+  const fetchCategories = async () => {
+    try {
+      const {
+        data: { data }
+      } = await getBbsCategoryApi()
+
+      if (data && Array.isArray(data)) {
+        const categoryMap = {
+          '1': heiliaoCategories,
+          '2': weimiCategories,
+          '3': quanziCategories
+        }
+        console.log(data)
+        data.forEach((item) => {
+          const category = categoryMap[item.id]
+          if (category) {
+            category.value.push(item)
+          }
+        })
+      } else {
+        console.error('响应数据结构不正确')
+      }
+    } catch (error) {
+      console.error('获取分类数据失败:', error)
+    }
+  }
+
+  const changeSortType = (sortType: number) => {
+    bbsListSortType.value[activeTab.value] = sortType
+    bbsListPageIndex.value[activeTab.value] = 1
+    bbsListTotalPages.value[activeTab.value] = 1
+    bbsListMap.value[activeTab.value] = []
+    query.SortType = sortType == 0 ? 1 : sortType
     fetchBbsList()
   }
-  // }
-  nextTick(() => {
+
+  const changeSubChannel = (id: string, channelId: number) => {
+    router.push({ name: 'weimi', params: { id: id }, query: { channelId: channelId } })
+  }
+
+  const handleRefresh = async () => {
+    refreshing.value = true
+    await fetchBbsList()
+    refreshing.value = false
+  }
+
+  const handleCollectionRefresh = async () => {
+    collectionRefreshing.value = true
+    await fetchCollectionList()
+    collectionRefreshing.value = false
+  }
+
+  // 切换页码
+  const changePage = async (newPage: number) => {
+    if (newPage >= 1 && newPage <= bbsListTotalPages.value[activeTab.value]) {
+      bbsListPageIndex.value[activeTab.value] = newPage
+      query.PageIndex = newPage
+      bbsListMap.value[activeTab.value] = []
+      if (activeTab.value == 4) {
+        await fetchCollectionList()
+      } else {
+        await fetchBbsList()
+      }
+      nextTick(() => {
+        window.scrollTo(0, 0)
+      })
+    }
+  }
+
+  const loadMore = async () => {
+    bbsListPageIndex.value[activeTab.value] += 1
+    query.PageIndex = bbsListPageIndex.value[activeTab.value]
+    if (activeTab.value == 4) {
+      await fetchCollectionList(true)
+    } else {
+      await fetchBbsList(true)
+    }
+  }
+
+  // 页码变化
+  const handlePageChange = async () => {
+    if (bbsListPageIndex.value[activeTab.value] >= 1 && bbsListPageIndex.value[activeTab.value] <= bbsListTotalPages.value[activeTab.value]) {
+      query.PageIndex = bbsListPageIndex.value[activeTab.value]
+      await fetchBbsList()
+
+      // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
+      nextTick(() => {
+        window.scrollTo(0, 0)
+      })
+    }
+  }
+
+  ;(async () => {
+    await fetchBbsList()
+    bbsListSortType.value[0] = 0
+    await fetchCategories()
+    if (appStore.advertisement.length == 0) {
+      await appStore.fetAdvertisement()
+    }
+  })()
+
+  const isDecrypting = ref({
+    banner: true,
+    heiliao: true,
+    weimi: true,
+    quanzi: true
+  })
+
+  const onImageLoad = (section: string) => {
+    isDecrypting.value[section] = false
+  }
+
+  onActivated(() => {
+    if (activeTab.value == 4) {
+      bbsListMap.value[4] = []
+      bbsListPageIndex.value[4] = 1
+      fetchCollectionList()
+    }
+    keepAlive.value = true
+
+    // window.scrollTo(0, 0)
+  })
+
+  onMounted(() => {
     window.scrollTo(0, 0)
   })
-}
 
-const loadingBbsList = ref(false)
-const fetchBbsList = async (loadMore = false) => {
-  loadingBbsList.value = true
-  try {
-    const {
-      data: { data }
-    } = await getBbsListApi(query)
-    if (data && Array.isArray(data.items)) {
-      // 插入广告
-      data.items = insertAds(data.items, bbsListAdvertisement.value, 5, 7, false)
-
-      if (!bbsListMap.value[activeTab.value]) {
-        bbsListMap.value[activeTab.value] = []
-      }
-
-      if (loadMore) {
-        bbsListMap.value[activeTab.value].push(...data.items)
-        nextTick(() => {
-          swiperInstance.value.updateAutoHeight()
-        })
-      } else {
-        bbsListMap.value[activeTab.value] = data.items
-      }
-
-      bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
-      bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
-    } else {
-      console.error('响应数据结构不正确')
-    }
-  } catch (error) {
-    console.error('获取BBS列表失败:', error)
-  } finally {
-    loadingBbsList.value = false
-  }
-}
-
-const fetchCollectionList = async (loadMore = false) => {
-  loadingBbsList.value = true
-  try {
-    const {
-      data: { data }
-    } = await getBbsCollectionListApi({ PageIndex: query.PageIndex, PageSize: query.PageSize })
-    if (data && Array.isArray(data.items)) {
-      data.items = insertAds(data.items, bbsListAdvertisement.value, 5, 7, false)
-
-      if (!bbsListMap.value[activeTab.value]) {
-        bbsListMap.value[activeTab.value] = []
-      }
-
-      data.items = data.items.map((item) => ({
-        ...item,
-        isCollected: true
-      }))
-      if (loadMore) {
-        bbsListMap.value[activeTab.value].push(...data.items)
-        nextTick(() => {
-          swiperInstance.value.updateAutoHeight()
-        })
-      } else {
-        bbsListMap.value[activeTab.value] = data.items
-      }
-
-      bbsListTotalPages.value[activeTab.value] = parseInt(data.pageCount)
-      bbsListPageIndex.value[activeTab.value] = parseInt(data.pageIndex)
-    } else {
-      console.error('响应数据结构不正确')
-    }
-  } catch (error) {
-    console.error('获取收藏列表失败:', error)
-  } finally {
-    loadingBbsList.value = false
-  }
-}
-
-const fetchCategories = async () => {
-  try {
-    const {
-      data: { data }
-    } = await getBbsCategoryApi()
-
-    if (data && Array.isArray(data)) {
-      const categoryMap = {
-        '1': heiliaoCategories,
-        '2': weimiCategories,
-        '3': quanziCategories
-      }
-      console.log(data)
-      data.forEach((item) => {
-        const category = categoryMap[item.id]
-        if (category) {
-          category.value.push(item)
-        }
-      })
-    } else {
-      console.error('响应数据结构不正确')
-    }
-  } catch (error) {
-    console.error('获取分类数据失败:', error)
-  }
-}
-
-const changeSortType = (sortType: number) => {
-  bbsListSortType.value[activeTab.value] = sortType
-  bbsListPageIndex.value[activeTab.value] = 1
-  bbsListTotalPages.value[activeTab.value] = 1
-  bbsListMap.value[activeTab.value] = []
-  query.SortType = sortType == 0 ? 1 : sortType
-  fetchBbsList()
-}
-
-const changeSubChannel = (id: string, channelId: number) => {
-  router.push({ name: 'weimi', params: { id: id }, query: { channelId: channelId } })
-}
-
-const handleRefresh = async () => {
-  refreshing.value = true
-  await fetchBbsList()
-  refreshing.value = false
-}
-
-const handleCollectionRefresh = async () => {
-  collectionRefreshing.value = true
-  await fetchCollectionList()
-  collectionRefreshing.value = false
-}
-
-// 切换页码
-const changePage = async (newPage: number) => {
-  if (newPage >= 1 && newPage <= bbsListTotalPages.value[activeTab.value]) {
-    bbsListPageIndex.value[activeTab.value] = newPage
-    query.PageIndex = newPage
-    bbsListMap.value[activeTab.value] = []
-    if (activeTab.value == 4) {
-      await fetchCollectionList()
-    } else {
-      await fetchBbsList()
-    }
-    nextTick(() => {
-      window.scrollTo(0, 0)
-    })
-  }
-}
-
-const loadMore = async () => {
-  bbsListPageIndex.value[activeTab.value] += 1
-  query.PageIndex = bbsListPageIndex.value[activeTab.value]
-  if (activeTab.value == 4) {
-    await fetchCollectionList(true)
-  } else {
-    await fetchBbsList(true)
-  }
-}
-
-// 页码变化
-const handlePageChange = async () => {
-  if (bbsListPageIndex.value[activeTab.value] >= 1 && bbsListPageIndex.value[activeTab.value] <= bbsListTotalPages.value[activeTab.value]) {
-    query.PageIndex = bbsListPageIndex.value[activeTab.value]
-    await fetchBbsList()
-
-    // 使用 Vue 的 nextTick 确保 DOM 更新后再重置滚动条
-    nextTick(() => {
-      window.scrollTo(0, 0)
-    })
-  }
-}
-
-;(async () => {
-  await fetchBbsList()
-  bbsListSortType.value[0] = 0
-  await fetchCategories()
-  if (appStore.advertisement.length == 0) {
-    await appStore.fetAdvertisement()
-  }
-})()
-
-const isDecrypting = ref({
-  banner: true,
-  heiliao: true,
-  weimi: true,
-  quanzi: true
-})
-
-const onImageLoad = (section: string) => {
-  isDecrypting.value[section] = false
-}
-
-onActivated(() => {
-  if (activeTab.value == 4) {
-    bbsListMap.value[4] = []
-    bbsListPageIndex.value[4] = 1
-    fetchCollectionList()
-  }
-  keepAlive.value = true
-
-  // window.scrollTo(0, 0)
-})
-
-onMounted(() => {
-  window.scrollTo(0, 0)
-})
-
-onDeactivated(() => {
-  keepAlive.value = false
-})
+  onDeactivated(() => {
+    keepAlive.value = false
+  })
 </script>

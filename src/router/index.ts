@@ -118,8 +118,8 @@ const routes: RouteRecordRaw[] = [
     component: AppMain,
     children: [
       {
-        path: '',
-        name: 'list',
+        path: 'collectionList',
+        name: 'collectionList',
         component: () => import('@/views/collection/collectionList.vue'),
         meta: { needLogin: false, keepAlive: false, title: '合集' }
       },
@@ -304,18 +304,6 @@ const routes: RouteRecordRaw[] = [
         meta: { needLogin: true, keepAlive: false, title: '站内信-消息' }
       },
       {
-        path: 'history',
-        name: 'history',
-        component: () => import('@/views/home/history.vue'),
-        meta: { needLogin: false, keepAlive: false, title: '我的足迹' }
-      },
-      {
-        path: 'collect',
-        name: 'collect',
-        component: () => import('@/views/home/collect.vue'),
-        meta: { needLogin: true, keepAlive: false, title: '我的收藏' }
-      },
-      {
         path: 'buyRecord',
         name: 'buyRecord',
         component: () => import('@/views/home/buyRecord.vue'),
@@ -352,6 +340,18 @@ const routes: RouteRecordRaw[] = [
         meta: { needLogin: true, keepAlive: false, title: '品茶解锁记录' }
       }
     ]
+  },
+  {
+    path: '/home/history',
+    name: 'history',
+    component: () => import('@/views/home/history.vue'),
+    meta: { needLogin: false, keepAlive: true, title: '我的足迹' }
+  },
+  {
+    path: '/home/collect',
+    name: 'collect',
+    component: () => import('@/views/home/collect.vue'),
+    meta: { needLogin: true, keepAlive: true, title: '我的收藏' }
   },
   {
     path: '/pages',

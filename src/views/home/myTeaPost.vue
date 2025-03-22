@@ -4,7 +4,8 @@
       <div class="d-l">
         <a @click="appStore.setBack(true)"><i class="mvfont mv-left" /></a>
       </div>
-      <div class="d-m">分享记录</div>
+      <div class="d-m"><span>我的茶贴</span></div>
+      <div class="d-r" />
     </header>
     <section class="h-m-b">
       <div class="share-box">
@@ -16,8 +17,8 @@
           </li>
         </ul>
         <div v-if="nodata" class="nodata">
-          <div class="d-i" />
-          <div class="d-t">暂无分享记录</div>
+          <img :src="getAssetsFile('empty/tea.svg')" />
+          <div class="d-t">暂无茶贴</div>
         </div>
       </div>
     </section>
@@ -40,61 +41,62 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { userShareHistory } from '@/api/user'
-import type { ShareRecord } from '@/types/user'
-import { useAppStore } from '@/store/app'
+  import { ref, onMounted } from 'vue'
+  import { userShareHistory } from '@/api/user'
+  import type { ShareRecord } from '@/types/user'
+  import { useAppStore } from '@/store/app'
+  import { getAssetsFile } from '@/utils'
 
-const appStore = useAppStore()
-const dataList = ref<ShareRecord[]>([])
-const currentPage = ref(1)
-const totalPages = ref(1)
-const pageSize = ref(20)
-const nodata = ref(false)
+  const appStore = useAppStore()
+  const dataList = ref<ShareRecord[]>([])
+  const currentPage = ref(1)
+  const totalPages = ref(1)
+  const pageSize = ref(20)
+  const nodata = ref(true)
 
-const fetchRecords = async (loadMore = false) => {
-  try {
-    const params = {
-      PageIndex: currentPage.value,
-      PageSize: pageSize.value
+  const fetchRecords = async (loadMore = false) => {
+    try {
+      const params = {
+        PageIndex: currentPage.value,
+        PageSize: pageSize.value
+      }
+      const {
+        data: { data }
+      } = await userShareHistory(params)
+
+      if (data && Array.isArray(data.items)) {
+        dataList.value = loadMore ? dataList.value.concat(data.items) : data.items
+        nodata.value = dataList.value.length == 0
+        currentPage.value = parseInt(data.pageIndex)
+        totalPages.value = parseInt(data.pageCount)
+      } else {
+        nodata.value = true
+      }
+    } catch (error) {
+      console.error('获取分享记录失败:', error)
     }
-    const {
-      data: { data }
-    } = await userShareHistory(params)
+  }
 
-    if (data && Array.isArray(data.items)) {
-      dataList.value = loadMore ? dataList.value.concat(data.items) : data.items
-      nodata.value = dataList.value.length == 0
-      currentPage.value = parseInt(data.pageIndex)
-      totalPages.value = parseInt(data.pageCount)
-    } else {
-      nodata.value = true
+  const changePage = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages.value) {
+      currentPage.value = newPage
+      fetchRecords()
     }
-  } catch (error) {
-    console.error('获取分享记录失败:', error)
   }
-}
 
-const changePage = (newPage: number) => {
-  if (newPage >= 1 && newPage <= totalPages.value) {
-    currentPage.value = newPage
-    fetchRecords()
+  const loadMore = async () => {
+    currentPage.value += 1
+    await fetchRecords(true)
   }
-}
 
-const loadMore = async () => {
-  currentPage.value += 1
-  await fetchRecords(true)
-}
-
-onMounted(() => {
-  fetchRecords()
-})
+  onMounted(() => {
+    // fetchRecords()
+  })
 </script>
 
 <style scoped>
-.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+  .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 </style>

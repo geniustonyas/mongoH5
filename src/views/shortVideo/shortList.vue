@@ -76,184 +76,184 @@
 </template>
 
 <script setup lang="ts">
-import HomeLayout from '@/components/layout/HomeLayout.vue'
-import { List, PullRefresh } from 'vant'
-import { formatDuration, formatNumber, insertAdsForShortList, openAd } from '@/utils'
-import { nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
-import { VideoWithAd } from '@/types/global'
-import { useAppStore } from '@/store/app'
-import type { VideoListRequest } from '@/types/video'
-import { getVideoListApi } from '@/api/video'
-import decryptionService from '@/utils/decryptionService'
-import Masonry from 'masonry-layout'
-import imagesLoaded from 'imagesloaded'
+  import HomeLayout from '@/components/layout/HomeLayout.vue'
+  import { List, PullRefresh } from 'vant'
+  import { formatDuration, formatNumber, insertAdsForShortList, openAd } from '@/utils'
+  import { nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
+  import { VideoWithAd } from '@/types/global'
+  import { useAppStore } from '@/store/app'
+  import type { VideoListRequest } from '@/types/video'
+  import { getVideoListApi } from '@/api/video'
+  import decryptionService from '@/utils/decryptionService'
+  import Masonry from 'masonry-layout'
+  import imagesLoaded from 'imagesloaded'
 
-let masonryInstance: Masonry | null = null
+  let masonryInstance: Masonry | null = null
 
-const decrypt = new decryptionService()
-const loading = ref(false)
-const refreshing = ref(false)
-const finished = ref(false)
-const error = ref(false)
-const activePreMenu = ref(0)
-const activeSubMenu = ref(0)
-const appStore = useAppStore()
-const videos = reactive<VideoWithAd[]>([])
-const totalPages = ref(0)
-const initPageNo = ref(
-  Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
-)
+  const decrypt = new decryptionService()
+  const loading = ref(false)
+  const refreshing = ref(false)
+  const finished = ref(false)
+  const error = ref(false)
+  const activePreMenu = ref(0)
+  const activeSubMenu = ref(0)
+  const appStore = useAppStore()
+  const videos = reactive<VideoWithAd[]>([])
+  const totalPages = ref(0)
+  const initPageNo = ref(
+    Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
+  )
 
-watch(
-  () => refreshing.value,
-  () => {
-    if (refreshing.value) {
-      reloadVideos()
-    }
-  }
-)
-
-const shortlistAdvertisement = () => {
-  const tmp = appStore.getAdvertisementById(29).items
-  return tmp || []
-}
-
-const fetchVideos = async (isRefresh: boolean) => {
-  if (finished.value) return
-    const params: VideoListRequest = {
-    PageIndex: initPageNo.value,
-      PageSize: 10,
-      VideoType: 1,
-      SortType: 1
-    }
-  const adsList = shortlistAdvertisement()
-  let dataWithAds: VideoWithAd[] = []
-    const {
-      data: { data }
-    } = await getVideoListApi(params)
-
-    if (data && Array.isArray(data.items)) {
-    totalPages.value = parseInt(data.pageCount)
-    if (isRefresh && totalPages.value < initPageNo.value) {
-      while (totalPages.value < initPageNo.value) {
-        initPageNo.value =
-          Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
+  watch(
+    () => refreshing.value,
+    () => {
+      if (refreshing.value) {
+        reloadVideos()
       }
-      await fetchVideos(false)
-      return
     }
+  )
 
-    if (adsList && Array.isArray(adsList) && adsList.length > 0) {
-      dataWithAds = insertAdsForShortList(data.items, adsList, 5, 7, false)
-    } else {
-      dataWithAds = data.items.map((item) => ({ ...item, isAd: false })) as VideoWithAd[]
-    }
+  const shortlistAdvertisement = () => {
+    const tmp = appStore.getAdvertisementById(29).items
+    return tmp || []
+  }
 
-    // 必须先等待解密图片存入poster中
-    for (const video of dataWithAds) {
-      video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
-    }
-    const startIndex = videos.length
-      if (isRefresh) {
-      videos.splice(0, videos.length, ...dataWithAds)
+  const fetchVideos = async (isRefresh: boolean) => {
+    if (finished.value) return
+      const params: VideoListRequest = {
+      PageIndex: initPageNo.value,
+        PageSize: 10,
+        VideoType: 1,
+        SortType: 1
+      }
+    const adsList = shortlistAdvertisement()
+    let dataWithAds: VideoWithAd[] = []
+      const {
+        data: { data }
+      } = await getVideoListApi(params)
+
+      if (data && Array.isArray(data.items)) {
+      totalPages.value = parseInt(data.pageCount)
+      if (isRefresh && totalPages.value < initPageNo.value) {
+        while (totalPages.value < initPageNo.value) {
+          initPageNo.value =
+            Math.floor(Math.random() * (appStore.shortVideoRandomMax - appStore.shortVideoRandomMin + 1)) + appStore.shortVideoRandomMin
+        }
+        await fetchVideos(false)
+        return
+      }
+
+      if (adsList && Array.isArray(adsList) && adsList.length > 0) {
+        dataWithAds = insertAdsForShortList(data.items, adsList, 5, 7, false)
       } else {
-      videos.splice(startIndex, dataWithAds.length, ...dataWithAds)
+        dataWithAds = data.items.map((item) => ({ ...item, isAd: false })) as VideoWithAd[]
       }
-      finished.value = data.items.length < params.PageSize
-    loading.value = false
+
+      // 必须先等待解密图片存入poster中
+      for (const video of dataWithAds) {
+        video.poster = URL.createObjectURL(await decrypt.fetchAndDecrypt(appStore.cdnUrl + video.imgUrl))
+      }
+      const startIndex = videos.length
+        if (isRefresh) {
+        videos.splice(0, videos.length, ...dataWithAds)
+        } else {
+        videos.splice(startIndex, dataWithAds.length, ...dataWithAds)
+        }
+        finished.value = data.items.length < params.PageSize
+      loading.value = false
+    }
   }
-}
 
-const updateMasonry = async () => {
-      await nextTick()
-      const elem = document.querySelector('.video-list-box')
-  if (!elem) return
+  const updateMasonry = async () => {
+        await nextTick()
+        const elem = document.querySelector('.video-list-box')
+    if (!elem) return
 
-  // 等待图片加载完成
-        imagesLoaded(elem, () => {
-    if (!masonryInstance) {
-      masonryInstance = new Masonry(elem, {
-              itemSelector: '.video-list',
-              columnWidth: '.video-list',
-              percentPosition: true,
-              gutter: 4
-            })
-          } else {
-      masonryInstance.reloadItems()
-      masonryInstance.layout()
+    // 等待图片加载完成
+          imagesLoaded(elem, () => {
+      if (!masonryInstance) {
+        masonryInstance = new Masonry(elem, {
+                itemSelector: '.video-list',
+                columnWidth: '.video-list',
+                percentPosition: true,
+                gutter: 4
+              })
+            } else {
+        masonryInstance.reloadItems()
+        masonryInstance.layout()
+      }
+    })
+  }
+
+  const reloadVideos = async () => {
+    videos.splice(0, videos.length)
+    try {
+      refreshing.value = true
+      loading.value = true
+      await fetchVideos(true)
+      await updateMasonry()
+    } catch (e) {
+      console.error('获取视频列表失败:', e)
+      error.value = true
+    } finally {
+      refreshing.value = false
+      loading.value = false
+    }
+  }
+
+  onMounted(async () => {
+    try {
+      loading.value = true
+      await fetchVideos(true)
+      await updateMasonry()
+      loading.value = false
+    } catch (e) {
+      console.error('获取视频列表失败:', e)
+      error.value = true
+      loading.value = false
+    } finally {
+      refreshing.value = false
+      loading.value = false
     }
   })
-}
 
-const reloadVideos = async () => {
-  videos.splice(0, videos.length)
-  try {
+  onBeforeUnmount(() => {
+    if (masonryInstance) {
+      masonryInstance.destroy()
+      masonryInstance = null
+    }
+  })
+
+  const handleRefresh = () => {
     refreshing.value = true
-    loading.value = true
-    await fetchVideos(true)
-    await updateMasonry()
-  } catch (e) {
-    console.error('获取视频列表失败:', e)
-    error.value = true
-  } finally {
-    refreshing.value = false
-    loading.value = false
+    finished.value = false
   }
-}
 
-onMounted(async () => {
-  try {
-    loading.value = true
-    await fetchVideos(true)
-    await updateMasonry()
-    loading.value = false
-  } catch (e) {
-    console.error('获取视频列表失败:', e)
-    error.value = true
-    loading.value = false
-  } finally {
-    refreshing.value = false
-    loading.value = false
+  const handleLoadVideoWithAd = async () => {
+    try {
+      loading.value = true
+      initPageNo.value++
+      await fetchVideos(false)
+      await updateMasonry()
+    } catch (error) {
+      console.error('Load more failed:', error)
+      } finally {
+      loading.value = false
+    }
   }
-})
 
-onBeforeUnmount(() => {
-  if (masonryInstance) {
-    masonryInstance.destroy()
-    masonryInstance = null
+  const handlePreMenuClick = (index: number) => {
+    activePreMenu.value = index
   }
-})
 
-const handleRefresh = () => {
-  refreshing.value = true
-  finished.value = false
-}
-
-const handleLoadVideoWithAd = async () => {
-  try {
-    loading.value = true
-    initPageNo.value++
-    await fetchVideos(false)
-    await updateMasonry()
-  } catch (error) {
-    console.error('Load more failed:', error)
-    } finally {
-    loading.value = false
+  const handleSubMenuClick = (index: number) => {
+    activeSubMenu.value = index
   }
-}
-
-const handlePreMenuClick = (index: number) => {
-  activePreMenu.value = index
-}
-
-const handleSubMenuClick = (index: number) => {
-  activeSubMenu.value = index
-}
 </script>
 
 <style scoped>
-.short-List .au-main .h-l-b {
-  height: calc(100vh - 4.8rem - 4.8rem - 4.8rem + env(safe-area-inset-bottom));
-  overflow: auto;
-}
+  .short-List .au-main .h-l-b {
+    height: calc(100vh - 4.8rem - 4.8rem - 4.8rem + env(safe-area-inset-bottom));
+    overflow: auto;
+  }
 </style>

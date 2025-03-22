@@ -6,8 +6,8 @@
       </div>
       <div class="d-m">
         <div class="au-tabs-box hms">
-          <span :class="{ active: activeTab === 'message' }" @click="changeTab('message')">消息</span>
-          <span :class="{ active: activeTab === 'notice' }" @click="changeTab('notice')">公告</span>
+          <span :class="{ active: activeTab == 'message' }" @click="changeTab('message')">消息</span>
+          <span :class="{ active: activeTab == 'notice' }" @click="changeTab('notice')">公告</span>
           <div ref="barRef" class="bar" style="transform: translateX(-50%)">
             <div class="cor" />
           </div>
@@ -29,7 +29,7 @@
           </li>
         </ul> -->
         <div class="nodata">
-          <img :src="getAssetsFile('empty/message.svg')" alt="默认图标" />
+          <img :src="getAssetsFile('empty/message.svg')" />
           <div class="d-t">{{ tips }}</div>
         </div>
       </div>
@@ -38,20 +38,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useAppStore } from '@/store/app'
-import { getAssetsFile } from '@/utils'
-const appStore = useAppStore()
+  import { ref } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { useAppStore } from '@/store/app'
+  import { getAssetsFile } from '@/utils'
+  const appStore = useAppStore()
+  const route = useRoute()
 
-const activeTab = ref('message')
-const tips = ref('暂无消息')
-const barRef = ref<HTMLElement | null>(null)
+  const activeTab = ref((route.query.tab as string) || 'message')
+  const tips = ref('暂无消息')
+  const barRef = ref<HTMLElement | null>(null)
 
-const changeTab = (tab: string) => {
-  activeTab.value = tab
-  tips.value = tab === 'message' ? '暂无消息' : '暂无公告'
-  if (barRef.value) {
-    barRef.value.style.transform = `translateX(${tab === 'message' ? '-50%' : '50%'})`
+  const changeTab = (tab: string) => {
+    activeTab.value = tab
+    tips.value = tab === 'message' ? '暂无消息' : '暂无公告'
+    if (barRef.value) {
+      barRef.value.style.transform = `translateX(${tab === 'message' ? '-50%' : '50%'})`
+    }
   }
-}
+
+  ;(async () => {
+    changeTab(activeTab.value)
+    console.log(activeTab.value)
+  })()
 </script>
