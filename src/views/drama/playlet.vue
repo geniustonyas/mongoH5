@@ -84,7 +84,7 @@
   import { useAppStore } from '@/store/app'
   import decryptionService from '@/utils/decryptionService'
   import { useUserStore } from '@/store/user'
-  import { addDramaToCollection } from '@/api/drama'
+  import { addDramaPlayCallback, addDramaToCollection } from '@/api/drama'
   import { showToast, Popup } from 'vant'
   import DramaDetailPopup from './components/drama-detail-popup.vue'
   import VideoActions from './components/video-actions.vue'
@@ -126,6 +126,7 @@
         const url = getRealVideoUrl(currentDramaDetail.value?.first?.id, currentDramaDetail.value)
         await loadEpisodeOfDrama(url, currentDramaId.value, true)
         addPlayerEndedEvent(currentDramaId.value)
+        addDramaPlayCallback({ ShortMovieId: currentDramaId.value, VideoId: currentDramaDetail.value?.first?.id })
       })
     },
     { immediate: true }
@@ -142,6 +143,7 @@
       const nextEpisodeId = currentDramaDetail.value.items[currentEpisodeIndex + 1].id
       // 播放下一集
       playNextEpisode(currentDramaId.value, nextEpisodeId)
+      addDramaPlayCallback({ ShortMovieId: currentDramaId.value, VideoId: nextEpisodeId })
     } else {
       console.log('当前剧集的所有分集已全部播放完毕')
       showToast('当前剧集的所有分集已全部播放完毕')
