@@ -22,3 +22,18 @@ export enum SearchType {
   BBSModel = 11,
   Collections = 12
 }
+
+export const SearchTypeMapping = {
+  [SearchType.Video]: '视频榜',
+  [SearchType.ShortVideo]: '短视频榜',
+  [SearchType.BBS]: '社区榜',
+  [SearchType.ShortMovie]: '短剧榜',
+  [SearchType.Novel]: '小说榜',
+  [SearchType.Comics]: '漫画榜',
+  [SearchType.Audiobook]: '有声书榜'
+  // [SearchType.Tea]: '茶榜',
+  // [SearchType.VideoActor]: '视频演员榜',
+  // [SearchType.ShortMovieActor]: '短剧演员榜',
+  // [SearchType.BBSModel]: '模特榜',
+  // [SearchType.Collections]: '收藏夹榜'
+}

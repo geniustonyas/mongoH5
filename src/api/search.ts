@@ -17,7 +17,7 @@ export function getSearchResult(params: { KeyWord: string; SearchType: string; P
   return request<ApiResponseData>({
     url: '/WEB/SearchByKeyword',
     method: 'post',
-    params,
+    data: params,
     headers: {
       'X-Should-Encrypt': '1'
     }
@@ -27,9 +27,9 @@ export function getSearchResult(params: { KeyWord: string; SearchType: string; P
 /**排行榜 */
 export function getRankList(params: { SearchType: number | string }) {
   return request<ApiResponseData>({
-    url: '/WEB/RankList',
+    url: '/WEB/SearchRank',
     method: 'post',
-    params,
+    data: params,
     headers: {
       'X-Should-Encrypt': '1'
     }
